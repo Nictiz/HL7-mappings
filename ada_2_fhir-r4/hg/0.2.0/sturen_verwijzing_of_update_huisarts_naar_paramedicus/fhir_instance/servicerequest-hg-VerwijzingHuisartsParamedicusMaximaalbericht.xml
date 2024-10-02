@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ServiceRequest xmlns="http://hl7.org/fhir">
+   <id value="servicerequest-hg-VerwijzingHuisartsParamedicusMaximaalbericht"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/hg-ReferralServiceRequest"/>
+   </meta>
+   <identifier>
+      <value value="hg-VerwijzingHuisartsParamedicusMaximaalbericht"/>
+   </identifier>
+   <status value="completed"/>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.30.69"/>
+         <code value="1"/>
+         <display value="Verwijsbrief"/>
+      </coding>
+   </category>
+   <priority value="asap"/>
+   <subject>
+      <reference value="Patient/patient-van-XXX-Sanderink-de-Kok"/>
+      <type value="Patient"/>
+      <display value="Patient, Sandra Janine (Sandra) van XXX_Sanderink"/>
+   </subject>
+   <authoredOn value="T"/>
+   <requester>
+      <reference value="PractitionerRole/practitionerrole-000001111"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Huisartsen, niet nader gespecificeerd, Gezondheidscentrum de Brug"/>
+   </requester>
+   <performer>
+      <reference value="PractitionerRole/practitionerrole-04115923"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Fysiotherapeuten, fysiotherapie en manuele therapie, FysioHolland"/>
+   </performer>
+   <supportingInfo>
+      <reference value="Composition/composition-hg-VerwijzingHuisartsParamedicusMaximaalbericht"/>
+      <type value="Composition"/>
+      <display value="Referral note, Test-XXX_Sanderink"/>
+   </supportingInfo>
+</ServiceRequest>

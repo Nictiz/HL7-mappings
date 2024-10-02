@@ -1,0 +1,1738 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../9.0.7/beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2023-01-09T17:55:42.152+01:00"
+         last-update-date="2023-01-09T17:55:42.152+01:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp907"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="uitwisselen_medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.102"
+                                            transactionEffectiveDate="2016-03-23T16:32:43"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="TEST REPO Scenarioset 6 b (Doseerschemas)"
+                                            id="mg-TEST-Scenarioset6b-v30">
+         <patient comment="">
+            <naamgegevens comment="">
+               <initialen value="G. "/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="">
+                  <achternaam value="XXX_Hemsbergen"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900602" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1963-11-02" datatype="datetime"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="MBH_300_bijzonderekeerdosis"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+28D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_300_bijzonderekeerdosis_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <afspraakdatum value="T+0D{08:15:00}" datatype="datetime"/>
+               <voorschrijver comment="">
+                  <zorgverlener>
+                     <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Peter_van_Pulver"/>
+                     </adaextension>
+                  </zorgverlener>
+               </voorschrijver>
+               <afgesproken_geneesmiddel comment="">
+                  <product>
+                     <product_code code="20850"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="NAPROXEN 500MG TABLET"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="51233"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="NAPROXEN 500MG TABLET"/>
+                     <adaextension>
+                        <reference_id value="PRK_NAPROXEN_20850"/>
+                     </adaextension>
+                  </product>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{18:00:00}&gt; t/m &lt;T+28D{23:59:59}&gt;, 2 maal per dag 0.5 tablet"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="0.5"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="MBH_300_bijzonderekeerdosis_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <datum value="T+0D{08:15:00}" datatype="datetime"/>
+               <auteur comment="">
+                  <zorgverlener>
+                     <zorgverlener_identificatie_nummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Peter_van_Pulver"/>
+                     </adaextension>
+                  </zorgverlener>
+               </auteur>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="30"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <te_verstrekken_geneesmiddel comment="">
+                  <product>
+                     <product_code code="20850"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="NAPROXEN 500MG TABLET"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="51233"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="NAPROXEN 500MG TABLET"/>
+                     <adaextension>
+                        <reference_id value="PRK_NAPROXEN_20850"/>
+                     </adaextension>
+                  </product>
+               </te_verstrekken_geneesmiddel>
+               <beoogd_verstrekker comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_de_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </beoogd_verstrekker>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_bijzonderekeerdosis_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+28D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_300_bijzonderekeerdosis_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <afspraakdatum value="T+0D{09:15:00}" datatype="datetime"/>
+               <verstrekker comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_de_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak comment="">
+                  <product>
+                     <product_code code="1137778"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="NAPROXEN APOTEX TABLET 500MG"/>
+                     <product_code code="20850"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="NAPROXEN 500MG TABLET"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="51233"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="NAPROXEN 500MG TABLET"/>
+                     <adaextension>
+                        <reference_id value="HPK_NAPROXEN_1137778"/>
+                     </adaextension>
+                  </product>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{18:00:00}&gt; t/m &lt;T+28D{23:59:59}&gt;, 2 maal per dag 0.5 tablet"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="0.5"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_bijzonderekeerdosis_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_medicatieafspraak>
+            </toedieningsafspraak>
+            <verstrekking comment="">
+               <identificatie value="MBH_300_bijzonderekeerdosis_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <datum value="T+0D{09:15:00}" datatype="datetime"/>
+               <verstrekker comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_de_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="30"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel comment="">
+                  <product>
+                     <product_code code="1137778"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="NAPROXEN APOTEX TABLET 500MG"/>
+                     <product_code code="20850"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="NAPROXEN 500MG TABLET"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="51233"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="NAPROXEN 500MG TABLET"/>
+                     <adaextension>
+                        <reference_id value="HPK_NAPROXEN_1137778"/>
+                     </adaextension>
+                  </product>
+               </verstrekt_geneesmiddel>
+               <relatie_naar_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_300_bijzonderekeerdosis_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_naar_verstrekkingsverzoek>
+            </verstrekking>
+            <medicatie_gebruik comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+14D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_300_bijzonderekeerdosis_MGB"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <registratiedatum value="T+14D{23:59:59}" datatype="datetime"/>
+               <gebruik_indicator value="true"/>
+               <volgens_afspraak_indicator value="true"/>
+               <gebruiks_product>
+                  <product>
+                     <product_code code="20850"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="NAPROXEN 500MG TABLET"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="51233"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="NAPROXEN 500MG TABLET"/>
+                     <adaextension>
+                        <reference_id value="PRK_NAPROXEN_20850"/>
+                     </adaextension>
+                  </product>
+               </gebruiks_product>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{18:00:00}&gt; t/m &lt;T+28D{23:59:59}&gt;, 2 maal per dag 0.5 tablet"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="0.5"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <gerelateerde_afspraak>
+                  <identificatie_medicatieafspraak value="MBH_300_bijzonderekeerdosis_MA"
+                                                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </gerelateerde_afspraak>
+               <voorschrijver comment="">
+                  <zorgverlener>
+                     <zorgverlener_identificatie_nummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Peter_van_Pulver"/>
+                     </adaextension>
+                  </zorgverlener>
+               </voorschrijver>
+               <auteur comment="">
+                  <auteur_is_patient value="false"/>
+                  <auteur_is_zorgverlener comment="">
+                     <zorgverlener>
+                        <zorgverlener_identificatie_nummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                        <zorgverlener_naam>
+                           <naamgegevens>
+                              <voornamen value="Peter"/>
+                              <geslachtsnaam comment="">
+                                 <voorvoegsels value="van"/>
+                                 <achternaam value="Pulver"/>
+                              </geslachtsnaam>
+                           </naamgegevens>
+                        </zorgverlener_naam>
+                        <specialisme code="0100"
+                                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                     codeSystemVersion="2020-10-23T00:00:00"
+                                     displayName="Huisartsen, niet nader gespecificeerd"/>
+                        <zorgaanbieder>
+                           <zorgaanbieder>
+                              <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                              <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                              <adresgegevens comment="">
+                                 <straat value="Dorpsstraat"/>
+                                 <huisnummer value="1"/>
+                                 <postcode value="1234AA"/>
+                                 <woonplaats value="Ons Dorp"/>
+                                 <adres_soort code="WP"
+                                              codeSystem="2.16.840.1.113883.5.1119"
+                                              displayName="Werkadres"/>
+                              </adresgegevens>
+                              <adaextension>
+                                 <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                              </adaextension>
+                           </zorgaanbieder>
+                        </zorgaanbieder>
+                        <adaextension>
+                           <reference_id value="Peter_van_Pulver"/>
+                        </adaextension>
+                     </zorgverlener>
+                  </auteur_is_zorgverlener>
+               </auteur>
+            </medicatie_gebruik>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="MBH_300_variabelehoeveelheid2"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+28D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_300_variabelehoeveelheid2_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <afspraakdatum value="T+0D{08:18:00}" datatype="datetime"/>
+               <voorschrijver comment="">
+                  <zorgverlener>
+                     <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Peter_van_Pulver"/>
+                     </adaextension>
+                  </zorgverlener>
+               </voorschrijver>
+               <afgesproken_geneesmiddel comment="">
+                  <product>
+                     <product_code code="72664"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="WATERSTOFPEROXIDE CONC VOOR MONDSPOELING 30MG/ML"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="119903"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="WATERSTOFPEROXIDE CONC VOOR MONDSPOELING 30MG/ML"/>
+                     <adaextension>
+                        <reference_id value="PRK_WATERSTOFPEROXIDE_72664"/>
+                     </adaextension>
+                  </product>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+28D{23:59:59}&gt;, 2 maal per dag 10 a 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="34"
+                                  displayName="OROMUCOSAAL"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <aanvullende_instructie code="27"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="Eerst oplossen in water"/>
+                  <aanvullende_instructie code="69"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="mond spoelen, daarna uitspugen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <min value="10"/>
+                              <max value="15"/>
+                           </aantal>
+                           <eenheid code="233"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="milliliter"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="MBH_300_variabelehoeveelheid2_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <datum value="T+0D{08:18:00}" datatype="datetime"/>
+               <auteur comment="">
+                  <zorgverlener>
+                     <zorgverlener_identificatie_nummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Peter_van_Pulver"/>
+                     </adaextension>
+                  </zorgverlener>
+               </auteur>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="450"/>
+                  <eenheid code="233"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="milliliter"/>
+               </te_verstrekken_hoeveelheid>
+               <te_verstrekken_geneesmiddel comment="">
+                  <product>
+                     <product_code code="72664"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="WATERSTOFPEROXIDE CONC VOOR MONDSPOELING 30MG/ML"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="119903"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="WATERSTOFPEROXIDE CONC VOOR MONDSPOELING 30MG/ML"/>
+                     <adaextension>
+                        <reference_id value="PRK_WATERSTOFPEROXIDE_72664"/>
+                     </adaextension>
+                  </product>
+               </te_verstrekken_geneesmiddel>
+               <beoogd_verstrekker comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_de_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </beoogd_verstrekker>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_variabelehoeveelheid2_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+28D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_300_variabelehoeveelheid2_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <afspraakdatum value="T+0D{09:18:00}" datatype="datetime"/>
+               <verstrekker comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_de_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak comment="">
+                  <product>
+                     <product_code code="261815"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="WATERSTOFPEROXIDE 3% CONC VOOR MONDSP FNA MR"/>
+                     <product_code code="72994"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="WATERSTOFPEROXIDE CONC VOOR MONDSPOELING 30MG/ML"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="119903"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="WATERSTOFPEROXIDE CONC VOOR MONDSPOELING 30MG/ML"/>
+                     <adaextension>
+                        <reference_id value="HPK_WATERSTOFPEROXIDE_261815"/>
+                     </adaextension>
+                  </product>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+28D{23:59:59}&gt;, 2 maal per dag 10 a 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="34"
+                                  displayName="OROMUCOSAAL"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <aanvullende_instructie code="27"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="Eerst oplossen in water"/>
+                  <aanvullende_instructie code="69"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="mond spoelen, daarna uitspugen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <min value="10"/>
+                              <max value="15"/>
+                           </aantal>
+                           <eenheid code="233"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="milliliter"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_variabelehoeveelheid2_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_medicatieafspraak>
+            </toedieningsafspraak>
+            <verstrekking comment="">
+               <identificatie value="MBH_300_variabelehoeveelheid2_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <datum value="T+0D{09:18:00}" datatype="datetime"/>
+               <verstrekker comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_de_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="450"/>
+                  <eenheid code="233"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="milliliter"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel comment="">
+                  <product>
+                     <product_code code="261815"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="WATERSTOFPEROXIDE 3% CONC VOOR MONDSP FNA MR"/>
+                     <product_code code="72994"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="WATERSTOFPEROXIDE CONC VOOR MONDSPOELING 30MG/ML"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="119903"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="WATERSTOFPEROXIDE CONC VOOR MONDSPOELING 30MG/ML"/>
+                     <adaextension>
+                        <reference_id value="HPK_WATERSTOFPEROXIDE_261815"/>
+                     </adaextension>
+                  </product>
+               </verstrekt_geneesmiddel>
+               <relatie_naar_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_300_variabelehoeveelheid2_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_naar_verstrekkingsverzoek>
+            </verstrekking>
+            <medicatie_gebruik comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+21D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_300_variabelehoeveelheid2_MGB"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <registratiedatum value="T+21D{23:59:59}" datatype="datetime"/>
+               <gebruik_indicator value="true"/>
+               <volgens_afspraak_indicator value="true"/>
+               <gebruiks_product>
+                  <product>
+                     <product_code code="72664"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="WATERSTOFPEROXIDE CONC VOOR MONDSPOELING 30MG/ML"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="119903"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="WATERSTOFPEROXIDE CONC VOOR MONDSPOELING 30MG/ML"/>
+                     <adaextension>
+                        <reference_id value="PRK_WATERSTOFPEROXIDE_72664"/>
+                     </adaextension>
+                  </product>
+               </gebruiks_product>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+28D{23:59:59}&gt;, 2 maal per dag 10 a 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="34"
+                                  displayName="OROMUCOSAAL"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <aanvullende_instructie code="27"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="Eerst oplossen in water"/>
+                  <aanvullende_instructie code="69"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="mond spoelen, daarna uitspugen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <min value="10"/>
+                              <max value="15"/>
+                           </aantal>
+                           <eenheid code="233"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="milliliter"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <gerelateerde_afspraak>
+                  <identificatie_medicatieafspraak value="MBH_300_variabelehoeveelheid2_MA"
+                                                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </gerelateerde_afspraak>
+               <voorschrijver comment="">
+                  <zorgverlener>
+                     <zorgverlener_identificatie_nummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Peter_van_Pulver"/>
+                     </adaextension>
+                  </zorgverlener>
+               </voorschrijver>
+               <informant comment="">
+                  <informant_is_patient value="true"/>
+               </informant>
+               <auteur comment="">
+                  <auteur_is_zorgverlener comment="">
+                     <zorgverlener>
+                        <zorgverlener_identificatie_nummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                        <zorgverlener_naam>
+                           <naamgegevens>
+                              <voornamen value="Peter"/>
+                              <geslachtsnaam comment="">
+                                 <voorvoegsels value="van"/>
+                                 <achternaam value="Pulver"/>
+                              </geslachtsnaam>
+                           </naamgegevens>
+                        </zorgverlener_naam>
+                        <specialisme code="0100"
+                                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                     codeSystemVersion="2020-10-23T00:00:00"
+                                     displayName="Huisartsen, niet nader gespecificeerd"/>
+                        <zorgaanbieder>
+                           <zorgaanbieder>
+                              <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                              <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                              <adresgegevens comment="">
+                                 <straat value="Dorpsstraat"/>
+                                 <huisnummer value="1"/>
+                                 <postcode value="1234AA"/>
+                                 <woonplaats value="Ons Dorp"/>
+                                 <adres_soort code="WP"
+                                              codeSystem="2.16.840.1.113883.5.1119"
+                                              displayName="Werkadres"/>
+                              </adresgegevens>
+                              <adaextension>
+                                 <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                              </adaextension>
+                           </zorgaanbieder>
+                        </zorgaanbieder>
+                        <adaextension>
+                           <reference_id value="Peter_van_Pulver"/>
+                        </adaextension>
+                     </zorgverlener>
+                  </auteur_is_zorgverlener>
+               </auteur>
+            </medicatie_gebruik>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="MBH_300_tijdstippen_flexibel"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+14D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_300_tijdstippen_flexibel_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <afspraakdatum value="T+0D{08:24:00}" datatype="datetime"/>
+               <voorschrijver comment="">
+                  <zorgverlener>
+                     <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Peter_van_Pulver"/>
+                     </adaextension>
+                  </zorgverlener>
+               </voorschrijver>
+               <afgesproken_geneesmiddel comment="">
+                  <product>
+                     <product_code code="1090"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="METFORMINE 500MG TABLET"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="3816"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="METFORMINE 500MG TABLET"/>
+                     <adaextension>
+                        <reference_id value="PRK_METFORMINE_1090"/>
+                     </adaextension>
+                  </product>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+14D{23:59:59}&gt;, 3 maal daags 1 tablet, (8:00, 14:00, 20:00) oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <is_flexibel value="true"/>
+                           <toedientijd value="1970-01-01T08:00:00" datatype="datetime"/>
+                           <toedientijd value="1970-01-01T14:00:00" datatype="datetime"/>
+                           <toedientijd value="1970-01-01T20:00:00" datatype="datetime"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="MBH_300_tijdstippen_flexibel_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <datum value="T+0D{08:24:00}" datatype="datetime"/>
+               <auteur comment="">
+                  <zorgverlener>
+                     <zorgverlener_identificatie_nummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Peter_van_Pulver"/>
+                     </adaextension>
+                  </zorgverlener>
+               </auteur>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="45"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <te_verstrekken_geneesmiddel comment="">
+                  <product>
+                     <product_code code="1090"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="METFORMINE 500MG TABLET"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="3816"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="METFORMINE 500MG TABLET"/>
+                     <adaextension>
+                        <reference_id value="PRK_METFORMINE_1090"/>
+                     </adaextension>
+                  </product>
+               </te_verstrekken_geneesmiddel>
+               <beoogd_verstrekker comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_de_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </beoogd_verstrekker>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_tijdstippen_flexibel_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+14D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_300_tijdstippen_flexibel_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <afspraakdatum value="T+0D{09:24:00}" datatype="datetime"/>
+               <verstrekker comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_de_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak comment="">
+                  <product>
+                     <product_code code="693332"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="METFORMINE HCL PCH TABLET 500MG"/>
+                     <product_code code="1090"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="METFORMINE 500MG TABLET"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="3816"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="METFORMINE 500MG TABLET"/>
+                     <adaextension>
+                        <reference_id value="HPK_METFORMINE_693332"/>
+                     </adaextension>
+                  </product>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+14D{23:59:59}&gt;, 3 maal daags 1 tablet, (8:00, 14:00, 20:00) oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <is_flexibel value="true"/>
+                           <toedientijd value="1970-01-01T08:00:00" datatype="datetime"/>
+                           <toedientijd value="1970-01-01T14:00:00" datatype="datetime"/>
+                           <toedientijd value="1970-01-01T20:00:00" datatype="datetime"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_tijdstippen_flexibel_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_medicatieafspraak>
+            </toedieningsafspraak>
+            <verstrekking comment="">
+               <identificatie value="MBH_300_tijdstippen_flexibel_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <datum value="T+0D{09:24:00}" datatype="datetime"/>
+               <verstrekker comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_de_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="45"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel comment="">
+                  <product>
+                     <product_code code="693332"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="METFORMINE HCL PCH TABLET 500MG"/>
+                     <product_code code="1090"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="METFORMINE 500MG TABLET"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="3816"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="METFORMINE 500MG TABLET"/>
+                     <adaextension>
+                        <reference_id value="HPK_METFORMINE_693332"/>
+                     </adaextension>
+                  </product>
+               </verstrekt_geneesmiddel>
+               <relatie_naar_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_300_tijdstippen_flexibel_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_naar_verstrekkingsverzoek>
+            </verstrekking>
+            <medicatie_gebruik comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+14D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_300_tijdstippen_flexibel_MGB"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <registratiedatum value="T+14D{23:59:59}" datatype="datetime"/>
+               <gebruik_indicator value="true"/>
+               <volgens_afspraak_indicator value="true"/>
+               <gebruiks_product>
+                  <product>
+                     <product_code code="1090"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="METFORMINE 500MG TABLET"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="3816"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="METFORMINE 500MG TABLET"/>
+                     <adaextension>
+                        <reference_id value="PRK_METFORMINE_1090"/>
+                     </adaextension>
+                  </product>
+               </gebruiks_product>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+14D{23:59:59}&gt;, 3 maal daags 1 tablet, (8:00, 14:00, 20:00) oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <is_flexibel value="true"/>
+                           <toedientijd value="1970-01-01T08:00:00" datatype="datetime"/>
+                           <toedientijd value="1970-01-01T14:00:00" datatype="datetime"/>
+                           <toedientijd value="1970-01-01T20:00:00" datatype="datetime"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <gerelateerde_afspraak>
+                  <identificatie_medicatieafspraak value="MBH_300_tijdstippen_flexibel_MA"
+                                                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </gerelateerde_afspraak>
+               <voorschrijver comment="">
+                  <zorgverlener>
+                     <zorgverlener_identificatie_nummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Peter_van_Pulver"/>
+                     </adaextension>
+                  </zorgverlener>
+               </voorschrijver>
+               <informant comment="">
+                  <informant_is_patient value="true"/>
+               </informant>
+               <auteur comment="">
+                  <auteur_is_zorgverlener comment="">
+                     <zorgverlener>
+                        <zorgverlener_identificatie_nummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                        <zorgverlener_naam>
+                           <naamgegevens>
+                              <voornamen value="Peter"/>
+                              <geslachtsnaam comment="">
+                                 <voorvoegsels value="van"/>
+                                 <achternaam value="Pulver"/>
+                              </geslachtsnaam>
+                           </naamgegevens>
+                        </zorgverlener_naam>
+                        <specialisme code="0100"
+                                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                     codeSystemVersion="2020-10-23T00:00:00"
+                                     displayName="Huisartsen, niet nader gespecificeerd"/>
+                        <zorgaanbieder>
+                           <zorgaanbieder>
+                              <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                              <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                              <adresgegevens comment="">
+                                 <straat value="Dorpsstraat"/>
+                                 <huisnummer value="1"/>
+                                 <postcode value="1234AA"/>
+                                 <woonplaats value="Ons Dorp"/>
+                                 <adres_soort code="WP"
+                                              codeSystem="2.16.840.1.113883.5.1119"
+                                              displayName="Werkadres"/>
+                              </adresgegevens>
+                              <adaextension>
+                                 <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                              </adaextension>
+                           </zorgaanbieder>
+                        </zorgaanbieder>
+                        <adaextension>
+                           <reference_id value="Peter_van_Pulver"/>
+                        </adaextension>
+                     </zorgverlener>
+                  </auteur_is_zorgverlener>
+               </auteur>
+            </medicatie_gebruik>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="MBH_300_weekdagen" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+70D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_300_weekdagen_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <afspraakdatum value="T+0D{08:25:00}" datatype="datetime"/>
+               <voorschrijver comment="">
+                  <zorgverlener>
+                     <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Peter_van_Pulver"/>
+                     </adaextension>
+                  </zorgverlener>
+               </voorschrijver>
+               <afgesproken_geneesmiddel comment="">
+                  <product>
+                     <product_code code="55050"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="IMIQUIMOD 50MG/G CREME"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="109398"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="IMIQUIMOD 50MG/G CREME"/>
+                     <adaextension>
+                        <reference_id value="PRK_IMIQUIMOD_55050"/>
+                     </adaextension>
+                  </product>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+70D{23:59:59}&gt;, op maandag, woensdag en vrijdag, voor de nacht aanbrengen, cutaan"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="53"
+                                  displayName="cutaan"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <aanvullende_instructie code="1128"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="voor de nacht"/>
+                  <aanvullende_instructie code="1018"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="aanbrengen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <toedieningsschema comment="">
+                           <weekdag code="307145004"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    displayName="maandag"/>
+                           <weekdag code="307148002"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    displayName="woensdag"/>
+                           <weekdag code="307150005"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    displayName="vrijdag"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="MBH_300_weekdagen_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <datum value="T+0D{08:25:00}" datatype="datetime"/>
+               <auteur comment="">
+                  <zorgverlener>
+                     <zorgverlener_identificatie_nummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Peter_van_Pulver"/>
+                     </adaextension>
+                  </zorgverlener>
+               </auteur>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="30"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <te_verstrekken_geneesmiddel comment="">
+                  <product>
+                     <product_code code="55050"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="IMIQUIMOD 50MG/G CREME"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="109398"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="IMIQUIMOD 50MG/G CREME"/>
+                     <adaextension>
+                        <reference_id value="PRK_IMIQUIMOD_55050"/>
+                     </adaextension>
+                  </product>
+               </te_verstrekken_geneesmiddel>
+               <beoogd_verstrekker comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_de_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </beoogd_verstrekker>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_weekdagen_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+70D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_300_weekdagen_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <afspraakdatum value="T+0D{09:25:00}" datatype="datetime"/>
+               <verstrekker comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_de_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak comment="">
+                  <product>
+                     <product_code code="1198521"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="ALDARA CREME 50MG/G IN SACHET"/>
+                     <product_code code="55050"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="IMIQUIMOD 50MG/G CREME"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="109398"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="IMIQUIMOD 50MG/G CREME"/>
+                     <adaextension>
+                        <reference_id value="HPK_IMIQUIMOD_1198521"/>
+                     </adaextension>
+                  </product>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+70D{23:59:59}&gt;, op maandag, woensdag en vrijdag, voor de nacht aanbrengen, cutaan"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="53"
+                                  displayName="cutaan"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <aanvullende_instructie code="1128"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="voor de nacht"/>
+                  <aanvullende_instructie code="1018"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="aanbrengen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <toedieningsschema comment="">
+                           <weekdag code="307145004"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    displayName="maandag"/>
+                           <weekdag code="307148002"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    displayName="woensdag"/>
+                           <weekdag code="307150005"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    displayName="vrijdag"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_weekdagen_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_medicatieafspraak>
+            </toedieningsafspraak>
+            <verstrekking comment="">
+               <identificatie value="MBH_300_weekdagen_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <datum value="T+0D{09:25:00}" datatype="datetime"/>
+               <verstrekker comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_de_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="30"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel comment="">
+                  <product>
+                     <product_code code="1198521"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="ALDARA CREME 50MG/G IN SACHET"/>
+                     <product_code code="55050"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="IMIQUIMOD 50MG/G CREME"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="109398"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="IMIQUIMOD 50MG/G CREME"/>
+                     <adaextension>
+                        <reference_id value="HPK_IMIQUIMOD_1198521"/>
+                     </adaextension>
+                  </product>
+               </verstrekt_geneesmiddel>
+               <relatie_naar_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_300_weekdagen_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_naar_verstrekkingsverzoek>
+            </verstrekking>
+            <medicatie_gebruik comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+14D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_300_weekdagen_MGB"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <registratiedatum value="T+14D{23:59:59}" datatype="datetime"/>
+               <gebruik_indicator value="true"/>
+               <volgens_afspraak_indicator value="true"/>
+               <gebruiks_product>
+                  <product>
+                     <product_code code="55050"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="IMIQUIMOD 50MG/G CREME"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="109398"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="IMIQUIMOD 50MG/G CREME"/>
+                     <adaextension>
+                        <reference_id value="PRK_IMIQUIMOD_55050"/>
+                     </adaextension>
+                  </product>
+               </gebruiks_product>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+70D{23:59:59}&gt;, op maandag, woensdag en vrijdag, voor de nacht aanbrengen, cutaan"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="53"
+                                  displayName="cutaan"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <aanvullende_instructie code="1128"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="voor de nacht"/>
+                  <aanvullende_instructie code="1018"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="aanbrengen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <toedieningsschema comment="">
+                           <weekdag code="307145004"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    displayName="maandag"/>
+                           <weekdag code="307148002"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    displayName="woensdag"/>
+                           <weekdag code="307150005"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    displayName="vrijdag"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <gerelateerde_afspraak>
+                  <identificatie_medicatieafspraak value="MBH_300_weekdagen_MA"
+                                                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </gerelateerde_afspraak>
+               <voorschrijver comment="">
+                  <zorgverlener>
+                     <zorgverlener_identificatie_nummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Peter_van_Pulver"/>
+                     </adaextension>
+                  </zorgverlener>
+               </voorschrijver>
+               <informant comment="">
+                  <informant_is_patient value="true"/>
+               </informant>
+               <auteur comment="">
+                  <auteur_is_zorgverlener comment="">
+                     <zorgverlener>
+                        <zorgverlener_identificatie_nummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                        <zorgverlener_naam>
+                           <naamgegevens>
+                              <voornamen value="Peter"/>
+                              <geslachtsnaam comment="">
+                                 <voorvoegsels value="van"/>
+                                 <achternaam value="Pulver"/>
+                              </geslachtsnaam>
+                           </naamgegevens>
+                        </zorgverlener_naam>
+                        <specialisme code="0100"
+                                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                     codeSystemVersion="2020-10-23T00:00:00"
+                                     displayName="Huisartsen, niet nader gespecificeerd"/>
+                        <zorgaanbieder>
+                           <zorgaanbieder>
+                              <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                              <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                              <adresgegevens comment="">
+                                 <straat value="Dorpsstraat"/>
+                                 <huisnummer value="1"/>
+                                 <postcode value="1234AA"/>
+                                 <woonplaats value="Ons Dorp"/>
+                                 <adres_soort code="WP"
+                                              codeSystem="2.16.840.1.113883.5.1119"
+                                              displayName="Werkadres"/>
+                              </adresgegevens>
+                              <adaextension>
+                                 <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                              </adaextension>
+                           </zorgaanbieder>
+                        </zorgaanbieder>
+                        <adaextension>
+                           <reference_id value="Peter_van_Pulver"/>
+                        </adaextension>
+                     </zorgverlener>
+                  </auteur_is_zorgverlener>
+               </auteur>
+            </medicatie_gebruik>
+         </medicamenteuze_behandeling>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

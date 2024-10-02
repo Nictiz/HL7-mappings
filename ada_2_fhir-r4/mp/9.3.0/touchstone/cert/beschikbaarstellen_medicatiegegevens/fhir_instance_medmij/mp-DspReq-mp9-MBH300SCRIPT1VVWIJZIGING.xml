@@ -1,0 +1,68 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="mp-DspReq-mp9-MBH300SCRIPT1VVWIJZIGING"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-DispenseRequest"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_300_SCRIPT1"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+      <value value="MBH_300_SCRIPT1_VV_WIJZIGING"/>
+   </identifier>
+   <status value="unknown"/>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="52711000146108"/>
+         <display value="verstrekkingsverzoek"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/mp-PhPrd-mp9-216840111388324410-59366"/>
+      <type value="Medication"/>
+      <display value="CAPECITABINE TABLET FO 500MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-HdeXXX-Huyser"/>
+      <type value="Patient"/>
+      <display value="Patient, H. de XXX_Huyser"/>
+   </subject>
+   <authoredOn value="${DATE, T, D, +7}T11:20:00+02:00"/>
+   <requester>
+      <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-PrcRol-2165281100731-000001111"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+   </requester>
+   <performer>
+      <reference value="Organization/nl-core-HPrv-Org-mp9-Org-2165281100733-01236578"/>
+      <type value="Organization"/>
+      <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+   </performer>
+   <basedOn>
+      <type value="MedicationRequest"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_300_SCRIPT1_MA_WIJZIGING"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak  met identificatie: MBH_300_SCRIPT1_MA_WIJZIGING || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+   </basedOn>
+   <dispenseRequest>
+      <validityPeriod>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
+            <valueDuration>
+               <value value="18"/>
+               <unit value="week"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="wk"/>
+            </valueDuration>
+         </extension>
+         <start value="${DATE, T, D, +13}T00:00:00+02:00"/>
+      </validityPeriod>
+      <numberOfRepeatsAllowed value="5"/>
+   </dispenseRequest>
+</MedicationRequest>

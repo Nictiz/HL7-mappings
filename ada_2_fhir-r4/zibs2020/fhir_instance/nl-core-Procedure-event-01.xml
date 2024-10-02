@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Procedure xmlns="http://hl7.org/fhir">
+   <id value="nl-core-Procedure-event-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event"/>
+   </meta>
+   <status value="completed"/>
+   <code>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.120.5.2"/>
+         <code value="038663"/>
+         <display value="Prothese implantatie kniegewricht"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <performedDateTime value="2012-06-05"/>
+   <performer>
+      <actor>
+         <reference value="PractitionerRole/nl-core-Procedure-01-PractitionerRole-01"/>
+         <type value="PractitionerRole"/>
+         <display value="Healthcare professional (role), Orthoptisten"/>
+      </actor>
+   </performer>
+   <location>
+      <reference value="Location/nl-core-Procedure-01-Location-01"/>
+      <type value="Location"/>
+      <display value="Healthcare provider (location), UMCG"/>
+   </location>
+   <reasonReference>
+      <reference value="Condition/nl-core-Procedure-01-Condition-01"/>
+      <type value="Condition"/>
+      <display value="Problem"/>
+   </reasonReference>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="72696002"/>
+         <display value="structuur van knieregio"/>
+      </coding>
+   </bodySite>
+</Procedure>

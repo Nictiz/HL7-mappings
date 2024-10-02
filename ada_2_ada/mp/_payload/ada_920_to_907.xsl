@@ -264,7 +264,9 @@
     <xd:doc>
         <xd:desc> afspraakdatumdatum van MP9 2.0 naar 9.0.7 </xd:desc>
     </xd:doc>
-    <xsl:template match="(medicatieafspraak_datum_tijd | toedieningsafspraak_datum_tijd)" mode="ada920_2_907">
+    <!--<xsl:template match="(medicatieafspraak_datum_tijd | toedieningsafspraak_datum_tijd)" mode="ada920_2_907">-->
+    <!-- Match expression was not XSLT2 compliant. Changed to: -->
+    <xsl:template match="medicatieafspraak_datum_tijd | toedieningsafspraak_datum_tijd" mode="ada920_2_907">
         <xsl:element name="afspraakdatum">
             <xsl:apply-templates select="@* | node()" mode="#current"/>
         </xsl:element>
@@ -374,7 +376,9 @@
     <xd:doc>
         <xd:desc> stoptype van MP9 2.0 naar 9.0.7 </xd:desc>
     </xd:doc>
-    <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik)/*[contains(replace(local-name(), '_', ''), 'stoptype')]" mode="ada920_2_907">
+    <!--<xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik)/*[contains(replace(local-name(), '_', ''), 'stoptype')]" mode="ada920_2_907">-->
+    <!-- Match expression was not XSLT2 compliant. Changed to: -->
+    <xsl:template match="medicatieafspraak/*[contains(replace(local-name(), '_', ''), 'stoptype')] | toedieningsafspraak/*[contains(replace(local-name(), '_', ''), 'stoptype')] | medicatiegebruik/*[contains(replace(local-name(), '_', ''), 'stoptype')] | medicatie_gebruik/*[contains(replace(local-name(), '_', ''), 'stoptype')]" mode="ada920_2_907">
 
         <xsl:variable name="theStopType" select="$stoptypeMap[@code = current()/@code][@codeSystem = current()/@codeSystem]/@stoptype"/>
         <xsl:variable name="theStopType907" select="$stoptypeMap[@stoptype = $theStopType][@version = '907']"/>
@@ -399,7 +403,9 @@
     <xd:doc>
         <xd:desc>Handle toelichting, needs to be enriched with non supported stuff in 907</xd:desc>
     </xd:doc>
-    <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik)/toelichting" mode="ada920_2_907">
+    <!--<xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik)/toelichting" mode="ada920_2_907">-->
+    <!-- Match expression was not XSLT2 compliant. Changed to: -->
+    <xsl:template match="medicatieafspraak/toelichting | toedieningsafspraak/toelichting | medicatiegebruik/toelichting | medicatie_gebruik/toelichting" mode="ada920_2_907">
         <xsl:call-template name="_toelichting"/>
     </xsl:template>
 

@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="f2a00ca6-5da2-11ec-7511-020000000000"/>
+   <id value="061d62b4-621b-11ee-6343-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,9 +9,10 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:adbfb4cf-1736-41ff-9f55-140e008aa498"/>
+      <fullUrl value="https://example.org/fhir/EpisodeOfCare/adbfb4cf-1736-41ff-9f55-140e008aa498"/>
       <resource>
          <EpisodeOfCare>
+            <id value="adbfb4cf-1736-41ff-9f55-140e008aa498"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-episodeofcare"/>
             </meta>
@@ -40,7 +41,9 @@
                         </tr>
                         <tr>
                            <th>Diagnose</th>
-                           <td>Emfyseem/COPD</td>
+                           <td>
+                              <a href="https://example.org/fhir/Condition/c4543900-ee6f-44c6-ab71-315b29da078e">Emfyseem/COPD</a>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
@@ -73,12 +76,12 @@
             </type>
             <diagnosis>
                <condition>
-                  <reference value="urn:uuid:c4543900-ee6f-44c6-ab71-315b29da078e"/>
+                  <reference value="https://example.org/fhir/Condition/c4543900-ee6f-44c6-ab71-315b29da078e"/>
                   <display value="Emfyseem/COPD"/>
                </condition>
             </diagnosis>
             <patient>
-               <reference value="urn:uuid:f2a01c2a-5da2-11ec-7511-020000000000"/>
+               <reference value="urn:uuid:061d7238-621b-11ee-6343-020000000000"/>
                <display value="Joris Hansman"/>
             </patient>
             <managingOrganization>
@@ -95,7 +98,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f2a01c2a-5da2-11ec-7511-020000000000"/>
+      <fullUrl value="urn:uuid:061d7238-621b-11ee-6343-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -104,7 +107,7 @@
             <text>
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), Joris Hansman, Man</div>
+                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), <span title="Naamsamenstelling: Onbekend">Joris Hansman</span>, Man</div>
                </div>
             </text>
             <identifier>
@@ -181,9 +184,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c4543900-ee6f-44c6-ab71-315b29da078e"/>
+      <fullUrl value="https://example.org/fhir/Condition/c4543900-ee6f-44c6-ab71-315b29da078e"/>
       <resource>
          <Condition>
+            <id value="c4543900-ee6f-44c6-ab71-315b29da078e"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
             </meta>
@@ -237,7 +241,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f2a01c2a-5da2-11ec-7511-020000000000"/>
+               <reference value="urn:uuid:061d7238-621b-11ee-6343-020000000000"/>
                <display value="Joris Hansman"/>
             </subject>
             <onsetPeriod>

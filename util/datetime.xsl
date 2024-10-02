@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:functx="http://www.functx.com" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
+<xsl:stylesheet xmlns:functx="http://www.functx.com" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
     <xd:doc>
         <xd:desc>Contains some generic dateTime functions</xd:desc>
     </xd:doc>
@@ -88,6 +88,9 @@
             <xsl:when test="$dateOrDt castable as xs:dateTime">
                 <xsl:value-of select="$dateOrDt &gt; current-dateTime()"/>
             </xsl:when>
+            <xsl:when test="starts-with($dateOrDt, 'T+')">
+                <xsl:value-of select="true()"/>
+            </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="false()"/>
             </xsl:otherwise>
@@ -152,6 +155,9 @@
             </xsl:when>
             <xsl:when test="$dateOrDt castable as xs:dateTime">
                 <xsl:value-of select="$dateOrDt &lt; current-dateTime()"/>
+            </xsl:when>
+            <xsl:when test="starts-with($dateOrDt, 'T-')">
+                <xsl:value-of select="true()"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="false()"/>
@@ -409,7 +415,10 @@
                 </xsl:variable>
 
                 <xsl:if test="string-length($time) gt 0 and not($time castable as xs:time)">
-                    <xsl:message>Variable dateTime "<xsl:value-of select="$in"/>" found with illegal time string "<xsl:value-of select="$timePart"/>"</xsl:message>
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="level" select="$logERROR"/>
+                        <xsl:with-param name="msg">Variable dateTime "<xsl:value-of select="$in"/>" found with illegal time string "<xsl:value-of select="$timePart"/>"</xsl:with-param>
+                    </xsl:call-template>
                 </xsl:if>
                 <xsl:variable name="calculatedDateTime">
                     <xsl:choose>

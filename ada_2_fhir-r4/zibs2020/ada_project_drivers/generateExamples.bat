@@ -33,6 +33,9 @@ exit /b
 
 :doTransformation
 set input=%1
+if exist "%inputDir%/!input!-bundled.xml" (
+	set input=!input!-bundled
+)
 
 echo Converting !input!
 set noDriverId=!input:-bundled=!

@@ -21,7 +21,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ADA toedienings_afsrpaak to FHIR MedicationDispense conforming to profile mp-AdministrationAgreement.</xd:desc>
     </xd:doc>
-
+    
+    <xsl:variable name="taCode930" select="$taCode[1]"/>
+    
     <xd:doc>
         <xd:desc>Create an mp-AdministrationAgreement instance as a MedicationDispense FHIR instance from ADA toedienings_afspraak.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -154,7 +156,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <category>
                     <coding>
                         <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                        <code value="422037009"/>
+                        <code value="{$taCode930}"/>
                         <display value="toedieningsafspraak"/>
                     </coding>
                 </category>

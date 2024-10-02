@@ -17,10 +17,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../../../zibs2017/payload/all-zibs.xsl"/>
     <xsl:output method="xml" indent="yes"/>
 
-    <xsl:variable name="transaction-name">beschikbaarstellen_verstrekkingenvertaling</xsl:variable>
-    <xsl:variable name="transaction-oid">2.16.840.1.113883.2.4.3.11.60.20.77.4.102</xsl:variable>
-    <xsl:variable name="transaction-effectiveDate" as="xs:dateTime">2016-03-23T16:32:43</xsl:variable>
-    <xsl:variable name="ada-formname">uitwisselen_verstrekkingenvertaling</xsl:variable>
+    <xsl:variable name="transactionName">beschikbaarstellen_verstrekkingenvertaling</xsl:variable>
+    <xsl:variable name="transactionOid">2.16.840.1.113883.2.4.3.11.60.20.77.4.102</xsl:variable>
+    <xsl:variable name="transactionEffectiveDate" as="xs:dateTime">2016-03-23T16:32:43</xsl:variable>
+    <xsl:variable name="adaFormname">uitwisselen_verstrekkingenvertaling</xsl:variable>
 
     <xd:doc>
         <xd:desc>Template voor converteren van de 6.12 XML</xd:desc>
@@ -36,7 +36,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <!-- anders alleen root element om valide xml in output te hebben -->
             <xsl:otherwise>
-                <beschikbaarstellen_verstrekkingenvertaling app="mp-mp907" shortName="{$transaction-name}" formName="{$ada-formname}" transactionRef="{$transaction-oid}" transactionEffectiveDate="{$transaction-effectiveDate}" prefix="mp-" language="nl-NL"/>
+                <beschikbaarstellen_verstrekkingenvertaling app="mp-mp907" shortName="{$transactionName}" formName="{$adaFormname}" transactionRef="{$transactionOid}" transactionEffectiveDate="{$transactionEffectiveDate}" prefix="mp-" language="nl-NL"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -57,7 +57,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="$dispense-lists">
                     <xsl:variable name="patient" select="./hl7:subject/hl7:Patient"/>
                     <xsl:variable name="dispense-events" select="./hl7:component/hl7:medicationDispenseEvent"/>
-                    <beschikbaarstellen_verstrekkingenvertaling app="mp-mp907" shortName="{$transaction-name}" formName="{$ada-formname}" transactionRef="{$transaction-oid}" transactionEffectiveDate="{$transaction-effectiveDate}" prefix="mp-" language="nl-NL">
+                    <beschikbaarstellen_verstrekkingenvertaling app="mp-mp907" shortName="{$transactionName}" formName="{$adaFormname}" transactionRef="{$transactionOid}" transactionEffectiveDate="{$transactionEffectiveDate}" prefix="mp-" language="nl-NL">
                         <xsl:attribute name="title">Generated from HL7v3 verstrekkingenlijst 6.12 xml</xsl:attribute>
                         <xsl:attribute name="id" select="tokenize(base-uri(), '/')[last()]"/>
                         <xsl:for-each select="$patient">
@@ -66,7 +66,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:for-each select="$dispense-events">
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.110_20130521000000_2_907">
                                 <xsl:with-param name="current-dispense-event" select="."/>
-                                <xsl:with-param name="transaction" select="$transaction-name"/>
+                                <xsl:with-param name="transaction" select="$transactionName"/>
                             </xsl:call-template>
                         </xsl:for-each>
                     </beschikbaarstellen_verstrekkingenvertaling>

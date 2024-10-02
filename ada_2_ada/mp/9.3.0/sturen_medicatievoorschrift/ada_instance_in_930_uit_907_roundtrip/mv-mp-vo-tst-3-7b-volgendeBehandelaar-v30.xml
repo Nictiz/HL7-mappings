@@ -1,0 +1,145 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../9.0.7/sturen_medicatievoorschrift/ada_schemas/ada_sturen_medicatievoorschrift.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2023-02-16T16:03:52.604+01:00"
+         last-update-date="2023-02-21T09:16:37.654+01:00"/>
+   <data>
+      <sturen_medicatievoorschrift app="mp-mp907"
+                                   shortName="sturen_medicatievoorschrift"
+                                   formName="sturen_voorschrift"
+                                   transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.95"
+                                   transactionEffectiveDate="2015-12-01T10:32:15"
+                                   versionDate=""
+                                   prefix="mp-"
+                                   language="nl-NL"
+                                   title="TEST Scenarioset 3 (stoppen scenario) VolgendeBehandelaar"
+                                   desc="&lt;div&gt;&lt;span style=&#34;font-family: sans-serif; font-size: 14px; background-color: #ffffff;&#34;&gt;Stop-medicatieafspraak&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&#34;color: #ff0000; font-family: sans-serif; font-size: 14px; background-color: #ffffff;&#34;&gt;LET OP:&amp;nbsp; tijdelijk stoppen van medicatieafspraak van scenario 3.7a&lt;/span&gt;&lt;/div&gt;"
+                                   id="mv-mp-vo-tst-3-7b-volgendeBehandelaar-v30">
+         <patient comment="">
+            <naamgegevens comment="">
+               <initialen value="J. "/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="">
+                  <voorvoegsels value="de "/>
+                  <achternaam value="XXX_Luzac"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900778" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1985-10-24" datatype="datetime"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_300_VolgendeBehandelaar"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <gebruiksperiode_start value="T-49D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+0D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_300_VolgendeBehandelaar_MA_Stop1"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <afspraakdatum value="T{13:00:00}" datatype="datetime"/>
+               <stoptype code="1"
+                         codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
+                         displayName="Tijdelijk"
+                         codeSystemName="Stoptype Medicatieafspraak, Toedieningsafspraak of -gebruik"/>
+               <relatie_naar_afspraak_of_gebruik>
+                  <identificatie value="MBH_300_VolgendeBehandelaar_MA_Start1"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_afspraak_of_gebruik>
+               <voorschrijver>
+                  <zorgverlener>
+                     <zorgverlener_identificatienummer value="000002222" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Jan"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Harten"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0303"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Medisch specialisten, chirurgie"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatienummer value="00004444" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Ziekenhuis het Gele Hart"/>
+                        <afdeling_specialisme code="0601"
+                                              codeSystem="2.16.840.1.113883.2.4.6.7"
+                                              codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                              codeSystemVersion="2020-10-23T00:00:00"
+                                              displayName="Ziekenhuizen, algemene ziekenhuizen"/>
+                        <adresgegevens comment="">
+                           <straat value="Groenestraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1200AA"/>
+                           <woonplaats value="Hartstad"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Ziekenhuis_het_Gele_Hart"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Jan_van_Harten"/>
+                     </adaextension>
+                  </zorgverlener>
+               </voorschrijver>
+               <reden_wijzigen_of_staken code="305335007"
+                                         codeSystem="2.16.840.1.113883.6.96"
+                                         displayName="opname in instelling"/>
+               <afgesproken_geneesmiddel>
+                  <product>
+                     <product_code code="105678"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard PRK"
+                                   displayName="APIXABAN TABLET 5MG"/>
+                     <product_code code="141992"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="APIXABAN TABLET 5MG"/>
+                     <adaextension>
+                        <reference_id value="PRK_APIXABAN5_99066"/>
+                     </adaextension>
+                  </product>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="wordt automatisch gegenereerd"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+         </medicamenteuze_behandeling>
+      </sturen_medicatievoorschrift>
+   </data>
+</adaxml>

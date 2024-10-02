@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" exclude-result-prefixes="#all" version="2.0">
-
+    <!-- moved import of util to all-zibs to prevent duplicate import warnings due to fhir use in ada-hl7v3 conversions (dosageInstructions in FHIR) -->
     <xsl:output indent="yes"/>
     <xsl:strip-space elements="*"/>
 
@@ -28,8 +28,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:variable name="out" as="element()">
             <xsl:choose>
-                <xsl:when test="$codeMap[@inValue = $value]">
-                    <xsl:copy-of select="$codeMap[@inValue = $value]"/>
+                <!-- constants.xsl uses maps with inCode that would not work otherwise -->
+                <xsl:when test="$codeMap[(@inValue, @inCode)[1] = $value]">
+                    <xsl:copy-of select="$codeMap[(@inValue, @inCode)[1] = $value]"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:copy-of select="."/>
@@ -218,10 +219,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Transforms FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#Quantity">Quantity</xd:a> to ada element of type hoeveelheid</xd:desc>
         <xd:param name="adaElementName">Optional string to provide the name of one of the ada output element. Defaults to 'hoeveelheid'.</xd:param>
+        <xd:param name="adaDatatype">Optional string to add datatype attribute in ada element.</xd:param>
     </xd:doc>
     <xsl:template name="Quantity-to-hoeveelheid" as="element()*">
         <xsl:param name="adaElementName" as="xs:string">hoeveelheid</xsl:param>
-
+        <xsl:param name="adaDatatype" as="xs:string?"/>
         <xsl:element name="{$adaElementName}">
             <xsl:choose>
                 <xsl:when test="f:extension/@url = $urlExtHL7NullFlavor">
@@ -232,6 +234,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:attribute name="unit" select="f:code/@value"/>
                 </xsl:otherwise>
             </xsl:choose>
+            <xsl:if test="not(empty($adaDatatype))">
+                <xsl:attribute name="datatype" select="$adaDatatype"/>
+            </xsl:if>
         </xsl:element>
 
     </xsl:template>
@@ -629,7 +634,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="$uri"/>
-                <xsl:message>WARNING: local:getOid() expects a FHIR System URI, but got "<xsl:value-of select="$uri"/>"</xsl:message>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logWARN"/>
+                    <xsl:with-param name="msg">local:getOid() expects a FHIR System URI, but got "<xsl:value-of select="$uri"/>"</xsl:with-param>
+                </xsl:call-template>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
@@ -646,7 +654,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="$oid"/>
-                <xsl:message>WARNING: local:getDisplayName() expects an OID, but got "<xsl:value-of select="$oid"/>" OR cannot find the matching displayName</xsl:message>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logWARN"/>
+                    <xsl:with-param name="msg">local:getDisplayName() expects an OID, but got "<xsl:value-of select="$oid"/>" OR cannot find the matching displayName</xsl:with-param>
+                </xsl:call-template>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>

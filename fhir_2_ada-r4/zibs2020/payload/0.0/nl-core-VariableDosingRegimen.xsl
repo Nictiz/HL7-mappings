@@ -43,7 +43,7 @@ WisselendDoseerschema in beschikbaarstellen_medicatiegegevens_2_ada.xsl boven me
 				</gebruiksperiode>
 			</xsl:if>
 			<!-- stoptype -->
-			<xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-ext-StopType"/>
+			<xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="ext-StopType"/>
 			<!-- reden_wijzigen_of_staken -->
 			<xsl:apply-templates select="f:reasonCode" mode="#current"/>
 			<!-- afgesproken_geneesmiddel -->
@@ -60,7 +60,7 @@ WisselendDoseerschema in beschikbaarstellen_medicatiegegevens_2_ada.xsl boven me
 			<!-- gebruiksinstructie -->
 			<xsl:call-template name="nl-core-InstructionsForUse"/>
 			<!-- kopie indicator -->
-			<xsl:apply-templates select="f:extension[@url = $extCopyIndicator] | f:reportedBoolean" mode="ext-CopyIndicator"/>
+			<xsl:apply-templates select="f:extension[@url = $urlExtCopyIndicator] | f:reportedBoolean" mode="ext-CopyIndicator"/>
 			<!-- toelichting -->
 			<xsl:apply-templates select="f:note" mode="#current"/>
 		</wisselend_doseerschema>

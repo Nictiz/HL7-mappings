@@ -33,7 +33,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- volgens_afspraak_indicator -->
             <xsl:apply-templates select="f:extension[@url = $urlExtAsAgreedIndicator]" mode="#current"/>
             <!-- stoptype -->
-            <xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-ext-StopType"/>
+            <xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="ext-StopType"/>
             <!-- gebruiksperiode -->
             <xsl:apply-templates select="f:effectivePeriod" mode="#current"/>
             <!-- gebruiks_product -->
@@ -58,7 +58,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- reden_wijzigen_of_stoppen_gebruik -->
             <!--            <xsl:apply-templates select="f:extension[@url = $zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse]" mode="#current"/>-->
             <!-- kopie_indicator -->
-            <xsl:apply-templates select="f:extension[@url = $extCopyIndicator]" mode="ext-CopyIndicator"/>
+            <xsl:apply-templates select="f:extension[@url = $urlExtCopyIndicator]" mode="ext-CopyIndicator"/>
             <!-- toelichting -->
             <xsl:apply-templates select="f:note" mode="#current"/>
         </medicatiegebruik>
@@ -248,7 +248,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
                 <xsl:when test="$resource/local-name() = 'PractitionerRole'">
                     <informant_is_zorgverlener>
-                        <xsl:apply-templates select="$resource" mode="resolve-practitionerRole">
+                        <xsl:apply-templates select="$resource" mode="resolve-HealthProfessional-PractitionerRole">
                             <xsl:with-param name="practitionerIdUnderscore" select="true()" tunnel="yes"/>
                             <xsl:with-param name="organizationIdUnderscore" select="true()" tunnel="yes"/>
                             <xsl:with-param name="practitionerNaamgegevensElement" select="'zorgverlener_naam'" tunnel="yes"/>

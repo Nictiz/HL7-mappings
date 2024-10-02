@@ -59,7 +59,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- toelichting -->
             <xsl:apply-templates select="f:note" mode="nl-core-Note"/>
             <!-- kopie indicator -->
-            <xsl:apply-templates select="f:extension[@url = $extCopyIndicator]" mode="ext-CopyIndicator"/>
+            <xsl:apply-templates select="f:extension[@url = $urlExtCopyIndicator]" mode="ext-CopyIndicator"/>
             <!-- relatie medicatieafspraak -->
             <xsl:apply-templates select="f:authorizingPrescription" mode="#current"/>
         </toedieningsafspraak>

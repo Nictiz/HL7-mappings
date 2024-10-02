@@ -37,6 +37,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BodyWeight"/>
                 </meta>
+                <xsl:for-each select="identificatie[@value | @root | @nullFlavor]">
+                    <identifier>
+                        <xsl:call-template name="id-to-Identifier"/>
+                    </identifier>
+                </xsl:for-each>
                 <status value="final"/>
                 <category>
                     <coding>

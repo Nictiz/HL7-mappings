@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-BowelFunction-02"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction"/>
+   </meta>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="111989001"/>
+         <display value="defecatie"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <note>
+      <text value="Patiënt was vanmorgen incontinent."/>
+   </note>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="129008009"/>
+            <display value="darmcontrole"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="165230005"/>
+            <display value="incidenteel ontlastingsverlies"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="162098000"/>
+            <display value="frequentie van defecatie"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="4"/>
+         <unit value="/d"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="/d"/>
+      </valueQuantity>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="443172007"/>
+            <display value="score op Bristol Stoelgangschaal"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.3.1"/>
+            <code value="Type 6"/>
+            <display value="Zachte stukjes met gehavende randen"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://loinc.org"/>
+            <code value="9397-1"/>
+            <display value="Color of Stool"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="267056008"/>
+            <display value="grijswitte feces"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+</Observation>
