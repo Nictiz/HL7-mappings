@@ -1,0 +1,6 @@
+echo ant imm 2.0 ada2fhir-r4 build ...
+echo >"`dirname "$0"`ant-build.log"
+ant -f "`dirname "$0"`/_ant-buildfiles/ant-publish/build-ada2fhir-imm-20.xml" &> "`dirname "$0"`/ant-build.log" 
+echo ant imm 2.0 ada2fhir-r4 copy results ...
+ant -f "`dirname "$0"`/_ant-buildfiles/ant-publish/build-ada2fhir-imm-20.xml" copy_result_to_testscripts >>  "`dirname "$0"`/ant-build.log" 2>&1
+echo Done

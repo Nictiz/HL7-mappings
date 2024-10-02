@@ -1,0 +1,79 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <id value="zib-Procedure-msz-a782111d-6add-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Jan Adrianus J.A.K. Jan Kooyman. Categorie: , Status: is bezig</caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="aanleggen van loopgips voor onderbeen (122531000146102 - SNOMED CT)">aanleggen van loopgips voor onderbeen</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: Vanaf ${DATE, T, D, -44}T09:30:00+02:00</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Gebaseerd op</th>
+                  <td>aanleggen van loopgips voor onderbeen</td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="structuur van enkelgewricht (70258002 - SNOMED CT)">structuur van enkelgewricht</span>
+                     <span title="Links (7771000 - SNOMED CT)">Links</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="4e0d86ea-6aee-11ec-0000-2"/>
+   </identifier>
+   <basedOn>
+      <reference value="ProcedureRequest/zib-ProcedureRequest-msz-a782111d-6add-11ec-0000-2"/>
+      <display value="aanleggen van loopgips voor onderbeen"/>
+   </basedOn>
+   <status value="in-progress"/>
+   <category>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="122531000146102"/>
+         <display value="aanleggen van loopgips voor onderbeen"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/JAN-ADRIANUS-J-A-K--JAN-KOOYMAN"/>
+      <display value="Jan Adrianus J.A.K. Jan Kooyman"/>
+   </subject>
+   <performedPeriod>
+      <start value="${DATE, T, D, -44}T09:30:00+02:00"/>
+   </performedPeriod>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="70258002"/>
+         <display value="structuur van enkelgewricht"/>
+      </coding>
+   </bodySite>
+</Procedure>

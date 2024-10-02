@@ -370,7 +370,6 @@
         <map oid="{$oidGStandaardBST361}" displayName="G-Standaard Bestand 361 a-tabel (eenheid gebruiksadvies)"/>
         <map oid="{$oidGStandaardBST902THES2}" displayName="G-Standaard thesaurus basiseenheden"/>
         <map oid="{$oidGStandaardFarmaceutischeVormen}" displayName="G-Standaard Farmaceutische vormen (tabel 6)"/>
-        <map oid="{$oidGTIN}" uri="https://www.gs1.org/gtin" displayName="GS1 GTIN"/>
         <map oid="{$oidICD10NL-STU3}" uri="http://hl7.org/fhir/sid/icd-10-nl" displayName="ICD-10 NL"/>
         <map oid="{$oidICD10NL-R4}" uri="http://hl7.org/fhir/sid/icd-10-nl" displayName="ICD-10 NL"/>
         <map oid="{$oidICPC1NL}" uri="http://hl7.org/fhir/sid/icpc-1-nl" displayName="ICPC-1NL"/>
@@ -410,6 +409,7 @@
             <xsl:when test="$fhirVersion='STU3'">
                 <map oid="{$oidChoiceListOrientation}" uri="http://hl7.org/fhir/choice-list-orientation" displayName="ChoiceListOrientation"/>
                 <map oid="{$oidFHIRObservationCategory}" uri="http://hl7.org/fhir/observation-category" displayName="ObservationCategory"/>
+                <map oid="{$oidGTIN}" uri="https://www.gs1.org/gtin" displayName="GS1 GTIN"/>
                 <map oid="{$oidHL7ActCode}" uri="http://hl7.org/fhir/v3/ActCode" displayName="HL7 ActCode"/>
                 <map oid="{$oidHL7ActStatus}" uri="http://hl7.org/fhir/v3/ActStatus" displayName="HL7 ActStatus"/>
                 <map oid="{$oidHL7AcknowledgementDetailCode}" uri="http://hl7.org/fhir/v3/AcknowledgementDetailCode" displayName="HL7 AcknowledgementDetailCode"/>
@@ -423,6 +423,9 @@
                 <map oid="{$oidQuestionnaireItemUsageMode}" uri="http://hl7.org/fhir/questionnaire-usage-mode" displayName="QuestionnaireItemUsageMode Item UI Control Codes"/>
                 <map uri="http://hl7.org/fhir/v2/0078" displayName="HL7 Version 2 Table 0078 v2 Interpretation Codes"/>
                 <map oid="{$oidHL7V3MaritalStatus}" uri="http://hl7.org/fhir/v3/MaritalStatus" displayName="HL7 MaritalStatus"/>
+                
+                <map oid="2.16.840.1.113883.5.1123" uri="http://hl7.org/fhir/v3/DataOperation" displayName="HL7 DataOperation"/>
+                <map oid="2.16.840.1.113883.5.33 http://hl7.org/fhir/v3/DocumentCompletion" displayName="HL7 DocumentCompletion"/>
             </xsl:when>
             <xsl:when test="$fhirVersion = 'R4'">
                 <map oid="{$oidChoiceListOrientation}" uri="http://terminology.hl7.org/CodeSystem/choice-list-orientation" displayName="ChoiceListOrientation"/>
@@ -444,6 +447,9 @@
 
                 <map oid="{$oidQuestionnaireItemUsageMode}" uri="http://terminology.hl7.org/CodeSystem/questionnaire-usage-mode" displayName="QuestionnaireItemUsageMode Item UI Control Codes"/>
                 <map uri="http://terminology.hl7.org/CodeSystem/v2-0078" displayName="HL7 Version 2 Table 0078 v2 Interpretation Codes"/>
+                
+                <map oid="2.16.840.1.113883.5.1123" uri="http://terminology.hl7.org/CodeSystem/v3-DataOperation" displayName="HL7 DataOperation"/>
+                <map oid="2.16.840.1.113883.5.33" uri="http://terminology.hl7.org/CodeSystem/v3-DocumentCompletion" displayName="HL7 DocumentCompletion"/>
             </xsl:when>
         </xsl:choose>
     </xsl:variable>

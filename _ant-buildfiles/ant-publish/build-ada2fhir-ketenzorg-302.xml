@@ -43,15 +43,15 @@
             </fileset>
         </copy>
         
-        <property name="xsl_allergyintolerance" value="${build.dir}/payload/beschikbaarstellen_allergieintoleranties_2_fhir.xsl"/>
-        <property name="xsl_episodes" value="${build.dir}/payload/beschikbaarstellen_episodes_2_fhir.xsl"/>
-        <property name="xsl_contactverslagen" value="${build.dir}/payload/beschikbaarstellen_contactverslagen_2_fhir.xsl"/>
-        <property name="xsl_diagnbepalingen" value="${build.dir}/payload/beschikbaarstellen_diagnostische_bepalingen_2_fhir.xsl"/>
-        <property name="xsl_labbepalingen" value="${build.dir}/payload/beschikbaarstellen_labbepalingen_2_fhir.xsl"/>
-        <property name="xsl_algemene_bepalingen" value="${build.dir}/payload/beschikbaarstellen_algemene_bepalingen_2_fhir.xsl"/>
-        <property name="xsl_alerts" value="${build.dir}/payload/beschikbaarstellen_alerts_2_fhir.xsl"/>
-        <property name="xsl_encounters" value="${build.dir}/payload/beschikbaarstellen_contactmomenten_2_fhir.xsl"/>
-        <property name="xsl_medicationagreements" value="${build.dir}/payload/beschikbaarstellen_medicatieafspraken907_2_fhir.xsl"/>
+        <property name="xsl_allergyintolerance" value="../../../../YATC-internal/ada-2-fhir/env/ketenzorg/3.0.2/beschikbaarstellen/payload/beschikbaarstellen_alerts_2_fhir.xsl"/>
+        <property name="xsl_episodes" value="../../../../YATC-internal/ada-2-fhir/env/ketenzorg/3.0.2/beschikbaarstellen/payload/beschikbaarstellen_episodes_2_fhir.xsl"/>
+        <property name="xsl_contactverslagen" value="../../../../YATC-internal/ada-2-fhir/env/ketenzorg/3.0.2/beschikbaarstellen/payload/beschikbaarstellen_contactverslagen_2_fhir.xsl"/>
+        <property name="xsl_diagnbepalingen" value="../../../../YATC-internal/ada-2-fhir/env/ketenzorg/3.0.2/beschikbaarstellen/payload/beschikbaarstellen_diagnostische_bepalingen_2_fhir.xsl"/>
+        <property name="xsl_labbepalingen" value="../../../../YATC-internal/ada-2-fhir/env/ketenzorg/3.0.2/beschikbaarstellen/payload/beschikbaarstellen_labbepalingen_2_fhir.xsl"/>
+        <property name="xsl_algemene_bepalingen" value="../../../../YATC-internal/ada-2-fhir/env/ketenzorg/3.0.2/beschikbaarstellen/payload/beschikbaarstellen_algemene_bepalingen_2_fhir.xsl"/>
+        <property name="xsl_alerts" value="../../../../YATC-internal/ada-2-fhir/env/ketenzorg/3.0.2/beschikbaarstellen/payload/beschikbaarstellen_alerts_2_fhir.xsl"/>
+        <property name="xsl_encounters" value="../../../../YATC-internal/ada-2-fhir/env/ketenzorg/3.0.2/beschikbaarstellen/payload/beschikbaarstellen_contactmomenten_2_fhir.xsl"/>
+        <property name="xsl_medicationagreements" value="../../../../YATC-internal/ada-2-fhir/env/ketenzorg/3.0.2/beschikbaarstellen/payload/beschikbaarstellen_medicatieafspraken907_2_fhir.xsl"/>
         
         <property name="xsl.input" value="${build.dir}/ada_instance"/>
         <property name="xsl.output" value="${build.dir}/fhir_instance"/>
@@ -79,6 +79,7 @@
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
                 <param name="logLevel" expression="${logLevel}"/>
                 <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <param name="outputDirectory" expression="../../ada_2_fhir/ketenzorg/3.0.2/beschikbaarstellen/fhir_instance"/>
                 <fileset refid="inputfilesAllergieIntoleranties"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -93,6 +94,7 @@
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
                 <param name="logLevel" expression="${logLevel}"/>
                 <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <param name="outputDirectory" expression="../../ada_2_fhir/ketenzorg/3.0.2/beschikbaarstellen/fhir_instance"/>
                 <fileset refid="inputfilesEpisodes"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -108,6 +110,7 @@
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
                 <param name="logLevel" expression="${logLevel}"/>
                 <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <param name="outputDirectory" expression="../../ada_2_fhir/ketenzorg/3.0.2/beschikbaarstellen/fhir_instance"/>
                 <fileset refid="inputfilesContactverslagen"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -122,6 +125,7 @@
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
                 <param name="logLevel" expression="${logLevel}"/>
                 <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <param name="outputDirectory" expression="../../ada_2_fhir/ketenzorg/3.0.2/beschikbaarstellen/fhir_instance"/>
                 <fileset refid="inputfilesDiagnBepalingen"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -136,6 +140,7 @@
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
                 <param name="logLevel" expression="${logLevel}"/>
                 <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <param name="outputDirectory" expression="../../ada_2_fhir/ketenzorg/3.0.2/beschikbaarstellen/fhir_instance"/>
                 <fileset refid="inputfilesLabBepalingen"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -150,6 +155,7 @@
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
                 <param name="logLevel" expression="${logLevel}"/>
                 <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <param name="outputDirectory" expression="../../ada_2_fhir/ketenzorg/3.0.2/beschikbaarstellen/fhir_instance"/>
                 <fileset refid="inputfilesAlgemeneBepalingen"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -164,6 +170,7 @@
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
                 <param name="logLevel" expression="${logLevel}"/>
                 <param name="bundleSelfLink" expression="https://example.org/fhir/Bundle"/>
+                <param name="outputDirectory" expression="../../ada_2_fhir/ketenzorg/3.0.2/beschikbaarstellen/fhir_instance"/>
                 <fileset refid="inputfilesAlerts"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -178,6 +185,7 @@
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
                 <param name="logLevel" expression="${logLevel}"/>
                 <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <param name="outputDirectory" expression="../../ada_2_fhir/ketenzorg/3.0.2/beschikbaarstellen/fhir_instance"/>
                 <fileset refid="inputfilesEncounters"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -192,6 +200,7 @@
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
                 <param name="logLevel" expression="${logLevel}"/>
                 <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <param name="outputDirectory" expression="../../ada_2_fhir/ketenzorg/3.0.2/beschikbaarstellen/fhir_instance"/>
                 <fileset refid="inputfilesMedicationAgreements"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>

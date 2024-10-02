@@ -28,11 +28,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada tekst_uitslag to FHIR DiagnosticReport and Media conforming to profile nl-core-TextResult and nl-core-TextResult.VisualResult.</xd:desc>
+        <xd:desc>Converts ADA tekst_uitslag to FHIR DiagnosticReport resource conforming to profile nl-core-TextResult and FHIR Media resource conforming to profile nl-core-TextResult.VisualResult.</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameTextResult">nl-core-TextResult</xsl:variable>
+    <xsl:variable name="profileNameTextResultVisualResult">nl-core-TextResult.VisualResult</xsl:variable>
+    
     <xd:doc>
-        <xd:desc>Create a FHIR DiagnosticReport instance conforming to profile nl-core-TextResult from ada tekst_uitslag element.</xd:desc>
+        <xd:desc>Creates a FHIR DiagnosticReport instance conforming to profile nl-core-TextResult from ADA tekst_uitslag element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
@@ -43,10 +46,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <DiagnosticReport>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-TextResult'"/>
+                    <xsl:with-param name="profile" select="$profileNameTextResult"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TextResult"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <xsl:for-each select="tekst_uitslag_status">
                     <status>
@@ -93,7 +96,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <media>
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="."/>
-                            <xsl:with-param name="profile" select="'nl-core-TextResult.VisualResult'"/>
+                            <xsl:with-param name="profile" select="$profileNameTextResultVisualResult"/>
                             <xsl:with-param name="wrapIn" select="'link'"/>
                         </xsl:call-template>
                     </media>
@@ -106,7 +109,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Create a FHIR Media instance conforming to profile nl-core-TextResult.VisualResult from ada tekst_uitslag element.</xd:desc>
+        <xd:desc>Creates a FHIR Media instance conforming to profile nl-core-TextResult.VisualResult from ADA tekst_uitslag element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
@@ -117,10 +120,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Media>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile">nl-core-TextResult.VisualResult</xsl:with-param>
+                    <xsl:with-param name="profile" select="$profileNameTextResultVisualResult"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TextResult.VisualResult"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="unknown"/>
                 <xsl:call-template name="makeReference">

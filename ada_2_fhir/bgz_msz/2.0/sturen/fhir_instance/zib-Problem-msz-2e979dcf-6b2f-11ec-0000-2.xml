@@ -1,0 +1,84 @@
+<Condition xmlns="http://hl7.org/fhir">
+   <id value="zib-Problem-msz-2e979dcf-6b2f-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Aandoening. Subject: Jan Adrianus J.A.K. Jan Kooyman. Categorie: <span title="Diagnose (282291009 - SNOMED CT)">Diagnose</span>, Status: actief</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Op een bal gaan staan tijdens het voetballen.</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="fractuur van enkel (16114001 - SNOMED CT)">fractuur van enkel</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>${DATE, T, D, -45}</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="05489321-6b68-11ec-0000-2"/>
+   </identifier>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="55561003"/>
+               <display value="Actueel"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="282291009"/>
+         <display value="Diagnose"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16114001"/>
+         <display value="fractuur van enkel"/>
+      </coding>
+   </code>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="70258002"/>
+         <display value="structuur van enkelgewricht"/>
+      </coding>
+   </bodySite>
+   <subject>
+      <reference value="Patient/JAN-ADRIANUS-J-A-K--JAN-KOOYMAN"/>
+      <display value="Jan Adrianus J.A.K. Jan Kooyman"/>
+   </subject>
+   <onsetDateTime value="${DATE, T, D, -45}"/>
+   <note>
+      <text value="Op een bal gaan staan tijdens het voetballen."/>
+   </note>
+</Condition>

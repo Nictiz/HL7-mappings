@@ -149,11 +149,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- ':' part of \i, but NOT part NCName/Letter. So replace it too -->
                 <!-- escape period, *, $, \ in testChar based on the regex function in FHIR Specification 2.3.0.2 Literal References 
                 https://hl7.org/fhir/R4/references.html#regex -->
+                <!-- actually: we need to replace all special characters in regex, not just the one mentioned on that FHIR page -->
                 <xsl:variable name="testCharEscaped" as="xs:string">
                     <xsl:choose>
                         <xsl:when test="$testChar = '.'">\.</xsl:when>
+                        <xsl:when test="$testChar = '+'">\+</xsl:when>
                         <xsl:when test="$testChar = '*'">\*</xsl:when>
+                        <xsl:when test="$testChar = '?'">\?</xsl:when>
+                        <xsl:when test="$testChar = '^'">\^</xsl:when>
                         <xsl:when test="$testChar = '$'">\$</xsl:when>
+                        <xsl:when test="$testChar = '('">\(</xsl:when>
+                        <xsl:when test="$testChar = ')'">\)</xsl:when>
+                        <xsl:when test="$testChar = '['">\[</xsl:when>
+                        <xsl:when test="$testChar = ']'">\]</xsl:when>
+                        <xsl:when test="$testChar = '{'">\{</xsl:when>
+                        <xsl:when test="$testChar = '}'">\}</xsl:when>
+                        <xsl:when test="$testChar = '|'">\|</xsl:when>
                         <xsl:when test="$testChar = '\'">\\</xsl:when>
                         <xsl:otherwise><xsl:value-of select="$testChar"/></xsl:otherwise>
                     </xsl:choose>

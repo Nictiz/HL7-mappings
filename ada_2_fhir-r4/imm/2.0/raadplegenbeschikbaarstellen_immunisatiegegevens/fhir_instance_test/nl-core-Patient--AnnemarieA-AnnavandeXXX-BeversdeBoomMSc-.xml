@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patient xmlns="http://hl7.org/fhir">
+   <id value="nl-core-Patient--AnnemarieA-AnnavandeXXX-BeversdeBoomMSc-"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+   </meta>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+      <value>
+         <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+            <valueCode value="masked"/>
+         </extension>
+      </value>
+   </identifier>
+   <name>
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+         <valueCode value="NL1"/>
+      </extension>
+      <use value="official"/>
+      <text value="Annemarie (Anna) van de XXX_Bevers"/>
+      <family value="van de XXX_Bevers">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+            <valueString value="van de"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="XXX_Bevers"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
+            <valueString value="de"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+            <valueString value="Boom"/>
+         </extension>
+      </family>
+      <given value="Annemarie">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <prefix value="MSc."/>
+   </name>
+   <name>
+      <use value="usual"/>
+      <given value="Anna"/>
+   </name>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+         <valueString value="Na 16u bereikbaar"/>
+      </extension>
+      <system value="phone">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                  <code value="MC"/>
+                  <display value="Mobiel telefoonnummer"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </system>
+      <value value="0612345678"/>
+      <use value="home"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="test@xxx_vandebevers.nl"/>
+      <use value="home"/>
+   </telecom>
+   <birthDate value="${DATE, T, Y, -60}"/>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+               <code value="HP"/>
+               <display value="Officieel adres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="home"/>
+      <type value="both"/>
+      <line value="Knolweg to 1002 A bis">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Knolweg"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="1002"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+            <valueString value="A bis"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
+            <valueString value="to"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
+            <valueString value="Tegenover bloemenwinkel"/>
+         </extension>
+      </line>
+      <city value="Stitswerd"/>
+      <district value="Het Hogeland"/>
+      <postalCode value="9999ZZ"/>
+      <country value="Nederland">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:iso:std:iso:3166"/>
+                  <version value="2020-10-26T00:00:00"/>
+                  <code value="NL"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+</Patient>
