@@ -34,6 +34,45 @@
             <observation classCode="OBS"
                          moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.19"/>
+               <code xsi:type="CD"
+                     code="350241000146102"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     displayName="potentiële contra-indicatie voor geneesmiddel (bevinding)"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <effectiveTime xsi:type="IVL_TS"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  <low value="20021001163457"/>
+                  <high value="20241001"/>
+               </effectiveTime>
+               <entryRelationship typeCode="REFR"
+                                  inversionInd="true">
+                  <observation classCode="OBS"
+                               moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.20"/>
+                     <code code="44944-7"
+                           displayName="Other alert"
+                           codeSystem="2.16.840.1.113883.6.1"
+                           codeSystemName="LOINC"/>
+                     <value xsi:type="CD"
+                            code="38"
+                            codeSystem="2.16.840.1.113883.2.4.4.1.902.40"
+                            displayName="DEPRESSIE"
+                            codeSystemName="G-standaard Contra Indicaties (Thesaurus 40)"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                  </observation>
+               </entryRelationship>
+               <entryRelationship typeCode="REFR">
+                  <observation classCode="OBS"
+                               moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.16"/>
+                     <id extension="pat07-mci-dep-01"
+                         root="2.16.840.1.113883.2.4.3.11.999.26.1.16"/>
+                     <code code="350241000146102"
+                           displayName="Potentiële contra-indicatie voor geneesmiddel (bevinding)"
+                           codeSystem="2.16.840.1.113883.6.96"
+                           codeSystemName="SNOMED CT"/>
+                  </observation>
+               </entryRelationship>
             </observation>
          </entryRelationship>
       </act>

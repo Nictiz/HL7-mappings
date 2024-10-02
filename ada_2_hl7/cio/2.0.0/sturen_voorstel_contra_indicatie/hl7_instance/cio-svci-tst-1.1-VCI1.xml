@@ -35,6 +35,57 @@
             <observation classCode="OBS"
                          moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.19"/>
+               <code xsi:type="CD"
+                     code="350241000146102"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     displayName="potentiële contra-indicatie voor geneesmiddel (bevinding)"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <effectiveTime xsi:type="IVL_TS"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  <low value="20241001"/>
+               </effectiveTime>
+               <performer>
+                  <time nullFlavor="NI"/>
+                  <assignedEntity>
+                     <id extension="000001116"
+                         root="2.16.840.1.113883.2.4.3.11.999.26.1.139"/>
+                     <assignedPerson>
+                        <name>
+                           <given qualifier="BR">Victor</given>
+                           <prefix qualifier="VV">de </prefix>
+                           <family qualifier="BR">Verstrekker</family>
+                        </name>
+                     </assignedPerson>
+                     <representedOrganization>
+                        <id extension="01236578"
+                            root="2.16.840.1.113883.2.4.3.11.999.26.1.205"/>
+                        <name>Apotheek de Gulle Gaper</name>
+                        <addr use="WP">
+                           <streetName>Dorpsweg</streetName>
+                           <houseNumber>28</houseNumber>
+                           <postalCode>1234 AB</postalCode>
+                           <city>Ons Dorp</city>
+                        </addr>
+                     </representedOrganization>
+                  </assignedEntity>
+               </performer>
+               <entryRelationship typeCode="REFR"
+                                  inversionInd="true">
+                  <observation classCode="OBS"
+                               moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.20"/>
+                     <code code="44944-7"
+                           displayName="Other alert"
+                           codeSystem="2.16.840.1.113883.6.1"
+                           codeSystemName="LOINC"/>
+                     <value xsi:type="CD"
+                            code="72"
+                            codeSystem="2.16.840.1.113883.2.4.4.1.902.40"
+                            displayName="HARTFALEN"
+                            codeSystemName="G-standaard Contra Indicaties (Thesaurus 40)"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                  </observation>
+               </entryRelationship>
             </observation>
          </entryRelationship>
       </act>
