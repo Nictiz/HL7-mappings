@@ -16,6 +16,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:variable name="nlcoreContactPerson">http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson</xsl:variable>
 
+    <xsl:variable name="rolCodesystem" select="('urn:oid:2.16.840.1.113883.2.4.3.11.22.472', 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.23.1')" as="xs:string*"/>
+
     <xd:doc>
         <xd:desc>Template to convert f:RelatedPerson to ADA contactpersoon, currently only support for elements that are part of MP9 2.0 transactions</xd:desc>
     </xd:doc>
@@ -41,11 +43,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- adresgegevens -->
             <xsl:apply-templates select="f:address" mode="nl-core-AddressInformation"/>
             
-            <!-- rol, TODO make specific based on codeSystem -->
-            <xsl:apply-templates select="f:relationship[f:coding/f:system/@value = ('urn:oid:2.16.840.1.113883.2.4.3.11.22.472', 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.23.1')]" mode="#current"/>
+            <!-- rol -->
+            <xsl:apply-templates select="f:relationship[f:coding/f:system/@value = $rolCodesystem]" mode="#current"/>
             
             <!-- relatie -->
-            <xsl:apply-templates select="f:relationship[not(f:coding/f:system/@value = ('urn:oid:2.16.840.1.113883.2.4.3.11.22.472', 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.23.1'))]" mode="#current"/> 
+            <xsl:apply-templates select="f:relationship[not(f:coding/f:system/@value = $rolCodesystem)]" mode="#current"/> 
             
         </contactpersoon>
     </xsl:template>
@@ -53,7 +55,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:relationship[not(f:system/@value = ('urn:oid:2.16.840.1.113883.2.4.3.11.22.472', 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.23.1'))] to ADA contactpersoon/relatie</xd:desc>
     </xd:doc>
-    <xsl:template match="f:relationship[not(f:coding/f:system/@value = ('urn:oid:2.16.840.1.113883.2.4.3.11.22.472', 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.23.1'))]" mode="nl-core-ContactPerson">
+    <xsl:template match="f:relationship[not(f:coding/f:system/@value = $rolCodesystem)]" mode="nl-core-ContactPerson">
         <xsl:call-template name="CodeableConcept-to-code">
             <xsl:with-param name="adaElementName">relatie</xsl:with-param>
         </xsl:call-template>
@@ -62,7 +64,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:relationship[f:system/@value = ('urn:oid:2.16.840.1.113883.2.4.3.11.22.472', 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.23.1')] to ADA contactpersoon/rol</xd:desc>
     </xd:doc>
-    <xsl:template match="f:relationship[f:coding/f:system/@value = ('urn:oid:2.16.840.1.113883.2.4.3.11.22.472', 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.23.1')]" mode="nl-core-ContactPerson">
+    <xsl:template match="f:relationship[f:coding/f:system/@value = $rolCodesystem]" mode="nl-core-ContactPerson">
         <xsl:call-template name="CodeableConcept-to-code">
             <xsl:with-param name="adaElementName">rol</xsl:with-param>
         </xsl:call-template>

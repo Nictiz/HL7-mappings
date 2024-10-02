@@ -491,129 +491,131 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="wrapIn" as="xs:string?"/>
         <xsl:param name="contained" as="xs:boolean" tunnel="yes" select="false()"/>
 
-        <!-- Debug -->
-        <xsl:if test="count($fhirMetadata) = 0">
-            <xsl:call-template name="util:logMessage">
-                <xsl:with-param name="level" select="$logFATAL"/>
-                <xsl:with-param name="msg">Cannot create reference because $fhirMetadata is empty or unknown.</xsl:with-param>
-                <xsl:with-param name="terminate" select="true()"/>
-            </xsl:call-template>
-        </xsl:if>
-
-        <xsl:variable name="resolvedAdaElement" as="element()*">
-            <xsl:choose>
-                <xsl:when test="$in[@datatype = 'reference' and @value] and not(empty(nf:resolveAdaInstance($in, /)))">
-                    <!-- use xsl:sequence instead of copy-of to preserve the context of the adaXml -->
-                    <xsl:sequence select="nf:resolveAdaInstance($in, /)"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <!-- use xsl:sequence instead of copy-of to preserve the context of the adaXml -->
-                    <xsl:sequence select="$in"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-
-        <xsl:variable name="groupKey" as="xs:string?">
-            <xsl:choose>
-                <xsl:when test="$resolvedAdaElement[self::laboratorium_test]">
-                    <xsl:value-of select="nf:getGroupingKeyLaboratoryTest($resolvedAdaElement)"/>
-                </xsl:when>
-                <xsl:when test="$resolvedAdaElement[self::zorgverlener]">
-                    <!-- let's resolve the zorgaanbieder ín the zorgverlener, to make sure deduplication also works for duplicated zorgaanbieders -->
-                    <xsl:variable name="zorgverlenerWithResolvedZorgaanbieder" as="element(zorgverlener)*">
-                        <xsl:apply-templates select="$resolvedAdaElement" mode="resolveAdaZorgaanbieder"/>
-                    </xsl:variable>
-                    <xsl:value-of select="nf:getGroupingKeyDefault($zorgverlenerWithResolvedZorgaanbieder)"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="nf:getGroupingKeyDefault($resolvedAdaElement)"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-
-        <xsl:variable name="element" as="element()?">
-            <xsl:choose>
-                <xsl:when test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1">
-                    <xsl:if test="string-length($profile) = 0">
-                        <xsl:call-template name="util:logMessage">
-                            <xsl:with-param name="level" select="$logFATAL"/>
-                            <xsl:with-param name="msg">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' in $fhirMetadata, while no $profile was supplied.</xsl:with-param>
-                            <xsl:with-param name="terminate" select="true()"/>
-                        </xsl:call-template>
-                    </xsl:if>
-                    <xsl:if test="not($fhirMetadata[@profile = $profile and nm:group-key = $groupKey])">
-                        <xsl:call-template name="util:logMessage">
-                            <xsl:with-param name="level" select="$logFATAL"/>
-                            <xsl:with-param name="msg">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' in $fhirMetadata, but no valid $profile ('<xsl:value-of select="$profile"/>') was supplied.</xsl:with-param>
-                            <xsl:with-param name="terminate" select="true()"/>
-                        </xsl:call-template>
-                    </xsl:if>
-                    <xsl:if test="count($fhirMetadata[@profile = $profile and nm:group-key = $groupKey]) gt 1">
-                        <xsl:call-template name="util:logMessage">
-                            <xsl:with-param name="level" select="$logFATAL"/>
-                            <xsl:with-param name="msg">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' and $profile '<xsl:value-of select="$profile"/>'in $fhirMetadata.</xsl:with-param>
-                            <xsl:with-param name="terminate" select="true()"/>
-                        </xsl:call-template>
-                    </xsl:if>
-                    <xsl:copy-of select="$fhirMetadata[@profile = $profile and nm:group-key = $groupKey]"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:copy-of select="$fhirMetadata[nm:group-key = $groupKey]"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="identifier" select="(identificatienummer | identificatie)[normalize-space(@value | @nullFlavor)]"/>
-
-        <!-- Debug -->
-        <xsl:if test="$in and count($element) = 0 and not($identifier)">
-            <xsl:call-template name="util:logMessage">
-                <xsl:with-param name="level" select="$logERROR"/>
-                <xsl:with-param name="msg">Cannot resolve reference within set of ada-instances: <xsl:value-of select="$groupKey"/></xsl:with-param>
-            </xsl:call-template>
-        </xsl:if>
-
-        <xsl:variable name="populatedReference" as="element()*">
-            <xsl:if test="string-length($element/nm:ref-url) gt 0">
-                <reference value="{$element/nm:ref-url}"/>
+        <xsl:for-each select="$in">
+            <!-- Debug -->
+            <xsl:if test="count($fhirMetadata) = 0">
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logFATAL"/>
+                    <xsl:with-param name="msg">Cannot create reference because $fhirMetadata is empty or unknown.</xsl:with-param>
+                    <xsl:with-param name="terminate" select="true()"/>
+                </xsl:call-template>
             </xsl:if>
-            <xsl:if test="string-length($element/nm:resource-type) gt 0">
-                <type value="{$element/nm:resource-type}"/>
+    
+            <xsl:variable name="resolvedAdaElement" as="element()*">
+                <xsl:choose>
+                    <xsl:when test="$in[@datatype = 'reference' and @value] and not(empty(nf:resolveAdaInstance($in, /)))">
+                        <!-- use xsl:sequence instead of copy-of to preserve the context of the adaXml -->
+                        <xsl:sequence select="nf:resolveAdaInstance($in, /)"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <!-- use xsl:sequence instead of copy-of to preserve the context of the adaXml -->
+                        <xsl:sequence select="$in"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+    
+            <xsl:variable name="groupKey" as="xs:string?">
+                <xsl:choose>
+                    <xsl:when test="$resolvedAdaElement[self::laboratorium_test]">
+                        <xsl:value-of select="nf:getGroupingKeyLaboratoryTest($resolvedAdaElement)"/>
+                    </xsl:when>
+                    <xsl:when test="$resolvedAdaElement[self::zorgverlener]">
+                        <!-- let's resolve the zorgaanbieder ín the zorgverlener, to make sure deduplication also works for duplicated zorgaanbieders -->
+                        <xsl:variable name="zorgverlenerWithResolvedZorgaanbieder" as="element(zorgverlener)*">
+                            <xsl:apply-templates select="$resolvedAdaElement" mode="resolveAdaZorgaanbieder"/>
+                        </xsl:variable>
+                        <xsl:value-of select="nf:getGroupingKeyDefault($zorgverlenerWithResolvedZorgaanbieder)"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="nf:getGroupingKeyDefault($resolvedAdaElement)"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+    
+            <xsl:variable name="element" as="element()?">
+                <xsl:choose>
+                    <xsl:when test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1">
+                        <xsl:if test="string-length($profile) = 0">
+                            <xsl:call-template name="util:logMessage">
+                                <xsl:with-param name="level" select="$logFATAL"/>
+                                <xsl:with-param name="msg">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' in $fhirMetadata, while no $profile was supplied.</xsl:with-param>
+                                <xsl:with-param name="terminate" select="true()"/>
+                            </xsl:call-template>
+                        </xsl:if>
+                        <xsl:if test="not($fhirMetadata[@profile = $profile and nm:group-key = $groupKey])">
+                            <xsl:call-template name="util:logMessage">
+                                <xsl:with-param name="level" select="$logFATAL"/>
+                                <xsl:with-param name="msg">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' in $fhirMetadata, but no valid $profile ('<xsl:value-of select="$profile"/>') was supplied.</xsl:with-param>
+                                <xsl:with-param name="terminate" select="true()"/>
+                            </xsl:call-template>
+                        </xsl:if>
+                        <xsl:if test="count($fhirMetadata[@profile = $profile and nm:group-key = $groupKey]) gt 1">
+                            <xsl:call-template name="util:logMessage">
+                                <xsl:with-param name="level" select="$logFATAL"/>
+                                <xsl:with-param name="msg">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' and $profile '<xsl:value-of select="$profile"/>'in $fhirMetadata.</xsl:with-param>
+                                <xsl:with-param name="terminate" select="true()"/>
+                            </xsl:call-template>
+                        </xsl:if>
+                        <xsl:copy-of select="$fhirMetadata[@profile = $profile and nm:group-key = $groupKey]"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:copy-of select="$fhirMetadata[nm:group-key = $groupKey]"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:variable name="identifier" select="(identificatienummer | identificatie)[normalize-space(@value | @nullFlavor)]"/>
+    
+            <!-- Debug -->
+            <xsl:if test="$in and count($element) = 0 and not($identifier)">
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logERROR"/>
+                    <xsl:with-param name="msg">Cannot resolve reference within set of ada-instances: <xsl:value-of select="$groupKey"/></xsl:with-param>
+                </xsl:call-template>
             </xsl:if>
-            <xsl:choose>
-                <xsl:when test="$referencingStrategy = 'none' and not($element/nm:ref-url) and $identifier">
-                    <identifier>
-                        <xsl:call-template name="id-to-Identifier">
-                            <xsl:with-param name="in" select="($identifier[not(@root = $mask-ids-var)], $identifier)[1]"/>
-                        </xsl:call-template>
-                    </identifier>
-                </xsl:when>
-                <!-- AWE regardless of referencingStrategy, it makes sense to output an identifier if available if reference has not been populated -->
-                <xsl:when test="empty($element/nm:ref-url) and $identifier">
-                    <identifier>
-                        <xsl:call-template name="id-to-Identifier">
-                            <xsl:with-param name="in" select="($identifier[not(@root = $mask-ids-var)], $identifier)[1]"/>
-                        </xsl:call-template>
-                    </identifier>
-                </xsl:when>
-            </xsl:choose>
-
-            <xsl:if test="string-length($element/nm:reference-display) gt 0">
-                <display value="{$element/nm:reference-display}"/>
-            </xsl:if>
-        </xsl:variable>
-
-        <xsl:if test="count($populatedReference) gt 0">
-            <xsl:choose>
-                <xsl:when test="$wrapIn">
-                    <xsl:element name="{$wrapIn}">
+    
+            <xsl:variable name="populatedReference" as="element()*">
+                <xsl:if test="string-length($element/nm:ref-url) gt 0">
+                    <reference value="{$element/nm:ref-url}"/>
+                </xsl:if>
+                <xsl:if test="string-length($element/nm:resource-type) gt 0">
+                    <type value="{$element/nm:resource-type}"/>
+                </xsl:if>
+                <xsl:choose>
+                    <xsl:when test="$referencingStrategy = 'none' and not($element/nm:ref-url) and $identifier">
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
+                                <xsl:with-param name="in" select="($identifier[not(@root = $mask-ids-var)], $identifier)[1]"/>
+                            </xsl:call-template>
+                        </identifier>
+                    </xsl:when>
+                    <!-- AWE regardless of referencingStrategy, it makes sense to output an identifier if available if reference has not been populated -->
+                    <xsl:when test="empty($element/nm:ref-url) and $identifier">
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
+                                <xsl:with-param name="in" select="($identifier[not(@root = $mask-ids-var)], $identifier)[1]"/>
+                            </xsl:call-template>
+                        </identifier>
+                    </xsl:when>
+                </xsl:choose>
+    
+                <xsl:if test="string-length($element/nm:reference-display) gt 0">
+                    <display value="{$element/nm:reference-display}"/>
+                </xsl:if>
+            </xsl:variable>
+    
+            <xsl:if test="count($populatedReference) gt 0">
+                <xsl:choose>
+                    <xsl:when test="$wrapIn">
+                        <xsl:element name="{$wrapIn}">
+                            <xsl:copy-of select="$populatedReference"/>
+                        </xsl:element>
+                    </xsl:when>
+                    <xsl:otherwise>
                         <xsl:copy-of select="$populatedReference"/>
-                    </xsl:element>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:copy-of select="$populatedReference"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:if>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:if>
+        </xsl:for-each>
     </xsl:template>
 
     <xd:doc>
@@ -863,7 +865,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                 <valueQuantity>
                     <value value="{$adaValue/@value}"/>
-                    <unit value="{@displayName}"/>
+                    <xsl:if test="string-length(@displayName) gt 0">
+                        <unit value="{@displayName}"/>
+                    </xsl:if>
                     <system value="{concat('urn:oid:', $oidGStandaardBST902THES2)}"/>
                     <code value="{@code}"/>
                 </valueQuantity>
@@ -871,7 +875,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
         <!-- UCUM -->
         <value value="{$adaValue/@value}"/>
-        <unit value="{$adaUnit[@codeSystem=$oidGStandaardBST902THES2]/@displayName}"/>
+        <xsl:if test="string-length($adaUnit[@codeSystem=$oidGStandaardBST902THES2]/@displayName) gt 0">
+            <unit value="{$adaUnit[@codeSystem=$oidGStandaardBST902THES2]/@displayName}"/>
+        </xsl:if>
         <system value="{$oidMap[@oid=$oidUCUM]/@uri}"/>
         <code value="{nf:convertGstdBasiseenheid2UCUM($adaUnit[@codeSystem=$oidGStandaardBST902THES2]/@code)}"/>
 

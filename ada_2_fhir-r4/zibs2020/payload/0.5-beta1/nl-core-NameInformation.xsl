@@ -25,7 +25,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="naamgegevens" mode="nl-core-NameInformation" name="nl-core-NameInformation" as="element(f:name)*">
         <xsl:param name="in" select="." as="element()*"/>
-        
+
         <xsl:for-each select="$in">
             <!-- Break the first names and initials string into parts and normalize them. -->
             <xsl:variable name="normalizedFirstNames" select="nf:_normalizeFirstNames(voornamen)" as="xs:string*"/>
@@ -34,7 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- Construct the full given name string and family string -->
             <xsl:variable name="given" as="xs:string?" select="nf:_renderGivenNames($normalizedFirstNames, $normalizedInitials)"/>
             <xsl:variable name="family" as="xs:string?" select="nf:_renderFamilyName(.)"/>
-            
+
             <!-- Create the main .name instance containing all official names -->
             <name>
                 <xsl:if test="naamgebruik">
@@ -46,7 +46,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueCode>
                     </extension>
                 </xsl:if>
-                
+
                 <use value="official"/>
                 <!-- Add the unstructured name under the assumption that it is the official name-->
                 <!-- there only may be one text in FHIR, give precedence to ada ongestructureerde_naam when it has a value. otherwise use the nameparts that may or may not be available -->
@@ -63,8 +63,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:otherwise>
                         <xsl:if test="$given or $family">
                             <text value="{nf:_renderNameFromParts($given, $family, roepnaam)}"/>
-                        </xsl:if>                        
-                    </xsl:otherwise>                    
+                        </xsl:if>
+                    </xsl:otherwise>
                 </xsl:choose>
 
                 <xsl:if test="$family">
@@ -84,47 +84,63 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </family>
                 </xsl:if>
 
-                <!-- If first names are provided, write them out here as separate .given elements. If first names are
-                     not provided but initials are, write out the initials. If both are provided and they don't match,
-                     a second .name instance will be created at a later stage. -->
-                <xsl:choose>
-                    <xsl:when test="count($normalizedFirstNames) &gt; 0">
-                        <xsl:for-each select="$normalizedFirstNames">
-                            <xsl:copy-of select="nf:_writeGiven(., 'BR')"/>
-                        </xsl:for-each>
-                    </xsl:when>
-                    <xsl:when test="count($normalizedInitials) &gt; 0">
-                        <xsl:for-each select="$normalizedInitials">
-                            <xsl:copy-of select="nf:_writeGiven(., 'IN')"/>
-                        </xsl:for-each>
-                    </xsl:when>
-                </xsl:choose>
+                <!-- If first names are provided, write them out here as separate .given elements. -->
+                <xsl:for-each select="$normalizedFirstNames">
+                    <xsl:copy-of select="nf:_writeGiven(., 'BR')"/>
+                </xsl:for-each>
+                
+                <!-- Since initials are definied differently in zib, we have to do some magic. We do assume official initials have been given correctly and can be written as part of the official name -->
+                <xsl:variable name="fhirInitials" as="xs:string?">
+                    <xsl:for-each select="initialen[@value | @nullFlavor]">
+                        <!-- in FHIR mogen de initialen van officiële voornamen niet herhaald / gedupliceerd worden in het initialen veld -->
+                        <!-- https://hl7.org/fhir/R4/datatypes-definitions.html#HumanName.given -->
+                        <!-- in de zib moeten de initialen juist compleet zijn, dus de initialen hier verwijderen van de officiële voornamen -->
+                        <!-- "Esther" "E.F.A." of "Esther" "E F A" wordt "Esther" "F.A.",
+                     "Esther Feline" "E.F.A." wordt "Esther Feline" "A." -->
+                        <!-- Een voornaam met een streepje wordt gezien als één naam met één bijbehorend initiaal
+                     "Albert-Jan" "A.D." wordt "Albert-Jan" "D.",
+                     "Albert-Jan" "A.J.D." wordt "Albert-Jan" "J.D.", 
+                     "Albert-Jan" "A.J." wordt "Albert-Jan" "J.",
+                     "Albert-Jan" "A." wordt "Albert-Jan" ""
+                -->
+                        <!-- Als de ada instance niet correct is gevuld en het initiaal van de ook doorgegeven voornamen niet in de juiste volgorde in de initialen staat, 
+                     dan lukt het verwijderen van initialen niet goed. 
+                     We zijn dus sterk afhankelijk van de kwaliteit van implementaties. -->
+                        <xsl:variable name="adaFirstNameInitials" as="xs:string?">
+                            <xsl:variable name="init" as="xs:string*">
+                                <xsl:for-each select="../voornamen/tokenize(normalize-space(@value), '\s')">
+                                    <xsl:value-of select="concat(substring(., 1, 1), '.')"/>
+                                </xsl:for-each>
+                            </xsl:variable>
+                            <xsl:value-of select="string-join($init, '')"/>
+                        </xsl:variable>
+                        <xsl:variable name="adaInitials" as="xs:string?">
+                            <xsl:variable name="init" as="xs:string*">
+                                <xsl:for-each select="tokenize(normalize-space(replace(@value, '\.', ' ')), '\s')">
+                                    <xsl:value-of select="concat(., '.')"/>
+                                </xsl:for-each>
+                            </xsl:variable>
+                            <xsl:value-of select="string-join($init, '')"/>
+                        </xsl:variable>
+                        <xsl:choose>
+                            <xsl:when test="string-length($adaFirstNameInitials) gt 0 and string-length($adaInitials) gt 0">
+                                <xsl:value-of select="replace($adaInitials, concat('^', $adaFirstNameInitials), '')"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="$adaInitials"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:for-each>
+                </xsl:variable>
+                <xsl:if test="$fhirInitials">
+                    <xsl:copy-of select="nf:_writeGiven($fhirInitials, 'IN')"/>
+                </xsl:if>                                
 
                 <xsl:if test="titels/@value">
                     <!-- 'titels' can be mapped both to prefix and suffix, but we cannot determine the type of 'titel' more specifically -->
                     <prefix value="{normalize-space(titels/@value)}"/>
                 </xsl:if>
             </name>
-
-            <!-- If both first names and initials are provided, check if they match. If not, write out a second .name
-                 instance containing just the initials. -->
-            <xsl:variable name="generatedInitials" as="xs:string*">
-                <xsl:for-each select="tokenize(normalize-space(voornamen/@value), ' ')">
-                    <xsl:if test="string-length(.) &gt; 0">
-                        <xsl:value-of select="concat(upper-case(substring(., 1, 1)), '.')"/>
-                    </xsl:if>
-                </xsl:for-each>
-            </xsl:variable>
-            <xsl:if test="
-                    count($generatedInitials) &gt; 0 and count($normalizedInitials) &gt; 0 and
-                    not(deep-equal($generatedInitials, $normalizedInitials))">
-                <name>
-                    <use value="official"/>
-                    <xsl:for-each select="$normalizedInitials">
-                        <xsl:copy-of select="nf:_writeGiven(., 'IN')"/>
-                    </xsl:for-each>
-                </name>
-            </xsl:if>
 
             <!-- If the GivenName (roepnaam) is provided, write out an additional .name element with .use 
                  set to "usual". -->
@@ -290,7 +306,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="iso21090Qualifier" as="xs:string"/>
 
         <given value="{$value}">
-            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <extension url="{$urlExtIso21090ENqualifier}">
                 <valueCode value="{$iso21090Qualifier}"/>
             </extension>
         </given>

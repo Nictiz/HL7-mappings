@@ -37,7 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
                 <xsl:otherwise>
                     <!-- fall back on status, maybe it is on-hold or stopped -->
-                    <xsl:apply-templates select="f:status" mode="mp-MedUseStopType"/>                    
+                    <xsl:apply-templates select="f:status" mode="mp-MedUseStopType"/>
                 </xsl:otherwise>
             </xsl:choose>
             <!-- gebruiksperiode -->
@@ -157,18 +157,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>
-            Template to convert f:status to stoptype. Only the FHIR status values that map to a ADA stoptype value are mapped.
-            Template to convert f:status to gebruik_indicator
-            Note: the values below are not fully implemented in the xml schema.
-            See MedicationStatement.status documentation.
-            not-taken > false
-            on-hold > false
-            stopped > false
-            completed > false
-            active > true
-            unknown > unknown (invalid ADA)
-        </xd:desc>
+        <xd:desc> Template to convert f:status to stoptype. Only the FHIR status values that map to a ADA stoptype value are mapped. Template to convert f:status to gebruik_indicator Note: the values below are not fully implemented in the xml schema. See MedicationStatement.status documentation. not-taken > false on-hold > false stopped > false completed > false active > true unknown > unknown (invalid ADA) </xd:desc>
     </xd:doc>
     <xsl:template match="f:status" mode="mp-MedicationUse2">
         <xsl:choose>
@@ -176,12 +165,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <gebruik_indicator>
                     <xsl:attribute name="value" select="'false'"/>
                 </gebruik_indicator>
-               
+
             </xsl:when>
             <xsl:when test="@value eq 'stopped'">
                 <gebruik_indicator>
                     <xsl:attribute name="value" select="'false'"/>
-                 </gebruik_indicator>
+                </gebruik_indicator>
             </xsl:when>
             <xsl:when test="
                     some $val in ('not-taken', 'completed')
@@ -211,37 +200,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>
-            Template to convert f:status to stoptype when the modifierExtension for stoptype is not present.
-            It uses the stoptypeMap-mapping for version 930 and is done for only two status:
-            on-hold > onderbroken
-            stopped > stopgezet
-        
-        </xd:desc>
+        <xd:desc> Template to convert f:status to stoptype when the modifierExtension for stoptype is not present. It uses the stoptypeMap-mapping for version 930 and is done for only two status: on-hold > onderbroken stopped > stopgezet </xd:desc>
     </xd:doc>
     <xsl:template match="f:status" mode="mp-MedUseStopType">
         <xsl:choose>
             <xsl:when test="@value eq 'on-hold'">
-                <medicatiegebruik_stop_type 
-                    code="{$stoptypeMap[@stoptype = 'onderbroken' and @version='930']/@code}" 
-                    codeSystem="{$stoptypeMap[@stoptype = 'onderbroken' and @version='930']/@codeSystem}" 
-                    displayName="{$stoptypeMap[@stoptype = 'onderbroken' and @version='930']/@displayName}"/>
+                <medicatiegebruik_stop_type code="{$stoptypeMap[@stoptype = 'onderbroken' and @version='930']/@code}" codeSystem="{$stoptypeMap[@stoptype = 'onderbroken' and @version='930']/@codeSystem}" displayName="{$stoptypeMap[@stoptype = 'onderbroken' and @version='930']/@displayName}"/>
             </xsl:when>
             <xsl:when test="@value eq 'stopped'">
-                <medicatiegebruik_stop_type 
-                    code="{$stoptypeMap[@stoptype = 'stopgezet' and @version='930']/@code}" 
-                    codeSystem="{$stoptypeMap[@stoptype = 'stopgezet' and @version='930']/@codeSystem}" 
-                    displayName="{$stoptypeMap[@stoptype = 'stopgezet' and @version='930']/@displayName}"
-                    version="{$stoptypeMap[@stoptype = 'stopgezet' and @version='930']/@version}"/>
+                <medicatiegebruik_stop_type code="{$stoptypeMap[@stoptype = 'stopgezet' and @version='930']/@code}" codeSystem="{$stoptypeMap[@stoptype = 'stopgezet' and @version='930']/@codeSystem}" displayName="{$stoptypeMap[@stoptype = 'stopgezet' and @version='930']/@displayName}" version="{$stoptypeMap[@stoptype = 'stopgezet' and @version='930']/@version}"/>
             </xsl:when>
         </xsl:choose>
     </xsl:template>
-   
-    
+
+
     <xd:doc>
-        <xd:desc>
-            Template to convert f:statusReason to reden_wijzigen_of_stoppen_gebruik.
-        </xd:desc>
+        <xd:desc> Template to convert f:statusReason to reden_wijzigen_of_stoppen_gebruik. </xd:desc>
     </xd:doc>
     <xsl:template match="f:statusReason" mode="mp-MedicationUse2">
         <reden_wijzigen_of_stoppen_gebruik code="{f:coding/f:code/@value}" codeSystem="2.16.840.1.113883.6.96" displayName="{f:coding/f:display/@value}"/>
@@ -262,7 +236,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:medicationReference" mode="mp-MedicationUse2">
         <gebruiksproduct>
-            <farmaceutisch_product value="{nf:convert2NCName(./f:reference/@value)}" datatype="reference"/>
+            <farmaceutisch_product value="{nf:process-reference-2NCName(f:reference/@value,ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
         </gebruiksproduct>
     </xsl:template>
 
@@ -270,7 +244,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:informationSource to informant</xd:desc>
     </xd:doc>
     <xsl:template match="f:informationSource" mode="mp-MedicationUse2">
-        <xsl:variable name="referenceValue" select="f:reference/@value"/>
+        <xsl:variable name="referenceValue" select="nf:process-reference(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)"/>
         <xsl:variable name="referenceValuePractitionerRole" select="f:extension/f:valueReference/f:reference/@value"/>
         <xsl:variable name="resource" select="(ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource/f:*)[1]"/>
         <informant>
@@ -282,32 +256,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
                 <xsl:when test="$resource/local-name() = 'Practitioner'">
                     <informant_is_zorgverlener>
-                        <xsl:apply-templates select="$resource" mode="nl-core-practitioner-2.0">
-                            <xsl:with-param name="practitionerIdUnderscore" select="true()" tunnel="yes"/>
-                            <xsl:with-param name="practitionerNaamgegevensElement" select="'zorgverlener_naam'" tunnel="yes"/>
-                        </xsl:apply-templates>
+                        <zorgverlener datatype="reference" value="{nf:convert2NCName(f:reference/@value)}"/>
                     </informant_is_zorgverlener>
                 </xsl:when>
                 <xsl:when test="$resource/local-name() = 'PractitionerRole'">
                     <informant_is_zorgverlener>
-                        <xsl:apply-templates select="$resource" mode="resolve-practitionerRole">
-                            <xsl:with-param name="practitionerIdUnderscore" select="true()" tunnel="yes"/>
-                            <xsl:with-param name="organizationIdUnderscore" select="true()" tunnel="yes"/>
-                            <xsl:with-param name="practitionerNaamgegevensElement" select="'zorgverlener_naam'" tunnel="yes"/>
-                        </xsl:apply-templates>
+                        <xsl:variable name="practitionerRole" select="string(f:reference/@value)"/>
+                        <zorgverlener datatype="reference" value="{nf:convert2NCName($practitionerRole)}"/>
                     </informant_is_zorgverlener>
                 </xsl:when>
-                <xsl:when test="$resource/local-name() = 'Organization'">
-                    <informant_is_zorgverlener>
-                        <xsl:apply-templates select="$resource" mode="nl-core-organization-2.0">
-                            <xsl:with-param name="organizationIdUnderscore" select="true()" tunnel="yes"/>
-                        </xsl:apply-templates>
-                    </informant_is_zorgverlener>
-                </xsl:when>
-                <xsl:when test="ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource/f:RelatedPerson">
-                    <xsl:apply-templates select="$resource" mode="nl-core-relatedperson-2.0">
-                        <xsl:with-param name="organizationIdUnderscore" select="true()" tunnel="yes"/>
-                    </xsl:apply-templates>
+                <xsl:when test="$resource/local-name() = 'RelatedPerson'">
+                    <persoon>
+                        <contactpersoon datatype="reference" value="{nf:convert2NCName(f:reference/@value)}"/>
+                    </persoon>
                 </xsl:when>
             </xsl:choose>
         </informant>
@@ -413,7 +374,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:extension with extension url ext-MedicationUse.Author to auteur</xd:desc>
     </xd:doc>
     <xsl:template match="f:extension[@url = $urlExtMedicationUseAuthor]" mode="mp-MedicationUse2">
-        <xsl:variable name="referenceValue" select="f:valueReference/f:reference/@value"/>
+        <xsl:variable name="referenceValue" select="nf:process-reference(f:valueReference/f:reference/@value,ancestor::f:entry/f:fullUrl/@value)" as="xs:string"/>
         <xsl:variable name="resource" select="(ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource/f:*)[1]"/>
         <auteur>
             <xsl:choose>
@@ -422,24 +383,38 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:attribute name="value" select="'true'"/>
                     </auteur_is_patient>
                 </xsl:when>
-                <xsl:when test="$resource/local-name() = 'Practitioner'">
+                <xsl:when test="$resource/local-name() = ('PractitionerRole', 'Practitioner')">
                     <auteur_is_zorgverlener>
                         <zorgverlener datatype="reference" value="{nf:convert2NCName(f:valueReference/f:reference/@value)}"/>
                     </auteur_is_zorgverlener>
                 </xsl:when>
-                <xsl:when test="$resource/local-name() = 'PractitionerRole'">
-                    <auteur_is_zorgverlener>
-                        <xsl:variable name="practitionerRole" select="string(f:valueReference/f:reference/@value)"/>
-                        <xsl:variable name="practitioner" select="string(/f:Bundle/f:entry[f:fullUrl/@value eq $practitionerRole]/f:resource/f:PractitionerRole/f:practitioner/f:reference/@value)"/>
-                        <zorgverlener datatype="reference" value="{nf:convert2NCName($practitionerRole)}"/>
-                    </auteur_is_zorgverlener>
-                </xsl:when>
-                <xsl:when test="$resource/local-name() = 'Organization'">
+                <xsl:when test="$resource/local-name() = ('Organization', 'Location')">
                     <auteur_is_zorgaanbieder>
-                        <xsl:apply-templates select="$resource" mode="nl-core-organization-2.0">
-                            <xsl:with-param name="organizationIdUnderscore" select="true()" tunnel="yes"/>
-                        </xsl:apply-templates>
+                        <zorgaanbieder datatype="reference" value="{nf:convert2NCName(f:valueReference/f:reference/@value)}"/> 
                     </auteur_is_zorgaanbieder>
+                </xsl:when>
+            <!-- LR: added errormessage for empty $resource -->
+            <xsl:when test="not($resource)">
+                        <xsl:call-template name="util:logMessage">
+                            <xsl:with-param name="level" select="$logERROR"/>
+                            <xsl:with-param name="msg">
+                                <xsl:value-of select="ancestor::f:resource/f:*/local-name()"/>
+                                <xsl:text> with fullUrl '</xsl:text>
+                                <xsl:value-of select="ancestor::f:resource/preceding-sibling::f:fullUrl/@value"/>
+                                <xsl:text>' .</xsl:text>
+                                <xsl:choose>
+                                    <xsl:when test="../parent::f:extension">
+                                        <xsl:value-of select="concat('extensie ', ../parent::f:extension/tokenize(@url, '/')[last()])"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:value-of select="f:*/local-name()"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                                <xsl:text> reference author: </xsl:text>
+                                <xsl:value-of select="$referenceValue"/>
+                                <xsl:text> cannot be resolved within the Bundle. Therefore information will be lost.</xsl:text>
+                            </xsl:with-param>
+                        </xsl:call-template>
                 </xsl:when>
             </xsl:choose>
         </auteur>
@@ -469,7 +444,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="f:reasonCode" mode="mp-MedicationUse2">
         <reden_gebruik value="{f:text/@value}"/>
     </xsl:template>
- 
+
     <xd:doc>
         <xd:desc>Template to convert f:note to toelichting.</xd:desc>
     </xd:doc>

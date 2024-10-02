@@ -35,9 +35,9 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <effectiveTime value="20230101130000"/>
-         <quantity value="100"
+         <quantity value="50"
                    unit="ml">
-            <translation value="100"
+            <translation value="50"
                          code="233"
                          displayName="milliliter"
                          codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -163,9 +163,9 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <effectiveTime value="20230101130500"/>
-         <quantity value="100"
+         <quantity value="75"
                    unit="g">
-            <translation value="100"
+            <translation value="75"
                          code="215"
                          displayName="gram"
                          codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -342,6 +342,72 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                    extension="MBH_300_magistraal90miljoennr"/>
+               <code code="1"
+                     displayName="Medicamenteuze behandeling"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </supply>
+   </component>
+   <component typeCode="COMP">
+      <supply classCode="SPLY"
+              moodCode="EVN">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9364"/>
+         <id extension="MBH_300_vrijetekstproduct_MVE"
+             root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+         <code displayName="Verstrekking"
+               code="373784005"
+               codeSystem="2.16.840.1.113883.6.96"
+               codeSystemName="SNOMED CT"/>
+         <effectiveTime value="20221231155000"/>
+         <quantity value="4"
+                   unit="1">
+            <translation value="4"
+                         code="245"
+                         displayName="stuks"
+                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                         codeSystemName="G-Standaard thesaurus basiseenheden"/>
+         </quantity>
+         <product>
+            <manufacturedProduct>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
+                  <code nullFlavor="OTH"/>
+                  <name>Jemperli 500 mg/ 10 mL</name>
+                  <pharm:desc>Titel: Jemperli (Dostarlimab-gxly) 500 mg/10 mL</pharm:desc>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </product>
+         <performer>
+            <assignedEntity>
+               <id nullFlavor="NI"/>
+               <representedOrganization>
+                  <id extension="01236578"
+                      root="2.16.528.1.1007.3.3"/>
+                  <name>Apotheek De Gulle Gaper</name>
+               </representedOrganization>
+            </assignedEntity>
+         </performer>
+         <entryRelationship typeCode="REFR">
+            <supply classCode="SPLY"
+                    moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9312"/>
+               <id extension="MBH_300_vrijetekstproduct_VV"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <code code="52711000146108"
+                     displayName="Request to dispense medication to patient"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+            </supply>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="MBH_300_vrijetekstproduct"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>

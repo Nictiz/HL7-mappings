@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Generated from ada instance with title: "av-mp-va-tst-6-7b-tijdstippen-niet-flexibel-v30" and id: "av-mp-va-tst-6-7b-tijdstippen-niet-flexibel-v30".-->
-<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns="urn:hl7-org:v3"
-           xmlns:cda="urn:hl7-org:v3"
-           xmlns:hl7nl="urn:hl7-nl:v3"
-           xmlns:pharm="urn:ihe:pharm:medication"
-           xmlns:sdtc="urn:hl7-org:sdtc"
-           xmlns:hl7="urn:hl7-org:v3"
-           xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd"
+<organizer xmlns="urn:hl7-org:v3"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            classCode="CLUSTER"
-           moodCode="EVN">
+           moodCode="EVN"
+           xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9420"/>
    <code code="131"
          displayName="Afhandelen voorschrift"
@@ -39,7 +34,11 @@
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, tijden exact aanhouden, oraal</text>
+         <text mediaType="text/plain">Vanaf 1 jan 2023, tot en met 8 jan 2023, elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, tijden exact aanhouden, oraal</text>
+         <effectiveTime xsi:type="IVL_TS">
+            <low value="20230101000000"/>
+            <high value="20230108235959"/>
+         </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
                     displayName="oraal"

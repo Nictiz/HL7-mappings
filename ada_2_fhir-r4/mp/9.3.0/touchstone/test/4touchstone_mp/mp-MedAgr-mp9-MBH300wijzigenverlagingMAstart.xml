@@ -3,6 +3,9 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
    </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+      <valueDateTime value="${DATE, T, D, -13}T08:05:00+02:00"/>
+   </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
       <valueString value="Vanaf T - 13 dagen, tot en met T + 14 dagen, 2 maal per week 1 stuk, Oraal"/>
    </extension>
@@ -41,7 +44,6 @@
       <type value="Patient"/>
       <display value="Patient, C. XXX_Dongen"/>
    </subject>
-   <authoredOn value="${DATE, T, D, -13}T08:05:00+02:00"/>
    <requester>
       <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-PrcRol-2165281100731-000001112"/>
       <type value="PractitionerRole"/>

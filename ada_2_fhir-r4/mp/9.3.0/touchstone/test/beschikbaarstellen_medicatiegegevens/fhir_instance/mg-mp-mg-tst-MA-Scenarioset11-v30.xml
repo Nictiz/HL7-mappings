@@ -2,18 +2,21 @@
    <id value="mg-mp-mg-tst-MA-Scenarioset11-v30"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:a3017b3e-6acc-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:8400450b-6b3c-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, -20}T08:00:00+02:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="Vanaf T - 20 dagen, Volgens schema trombosedienst, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="${DATE, T, D, -20}T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, -20}"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -45,7 +48,6 @@
                <type value="Patient"/>
                <display value="Patient, M. van de XXX_Roelofs"/>
             </subject>
-            <authoredOn value="${DATE, T, D, -20}T08:00:00+02:00"/>
             <requester>
                <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
