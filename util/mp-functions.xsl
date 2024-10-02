@@ -258,7 +258,7 @@
                                             <xsl:value-of select="$toedieningssnelheid/eenheid/@unit"/>
                                         </xsl:when>
                                         <xsl:otherwise>
-                                            <xsl:value-of select="concat(nwf:unit-string(1, $toedieningssnelheid/eenheid/@displayName), ' per ', $unitString)"/>
+                                    <xsl:value-of select="concat(nwf:unit-string(1, $toedieningssnelheid/eenheid/@displayName), ' per ', $unitString)"/>
                                         </xsl:otherwise>
                                     </xsl:choose>
                                 </xsl:if>
@@ -351,19 +351,19 @@
         <xsl:param name="end-date" as="element()?"/>
         <xsl:param name="criterium" as="element()?"/>
 
-        <xsl:variable name="waarde" as="xs:string*">
-            <xsl:if test="$start-date[@value]">Vanaf <xsl:value-of select="nf:formatDate(nf:calculate-t-date($start-date/@value, $dateT))"/></xsl:if>
-            <xsl:if test="$start-date[@value] and ($periode[@value] | $end-date[@value])">
-                <xsl:value-of select="', '"/>
-            </xsl:if>
+            <xsl:variable name="waarde" as="xs:string*">
+                <xsl:if test="$start-date[@value]">Vanaf <xsl:value-of select="nf:formatDate(nf:calculate-t-date($start-date/@value, $dateT))"/></xsl:if>
+                <xsl:if test="$start-date[@value] and ($periode[@value] | $end-date[@value])">
+                    <xsl:value-of select="', '"/>
+                </xsl:if>
             <xsl:if test="$periode[@value]">gedurende <xsl:value-of select="concat($periode/@value, ' ', nwf:unit-string($periode/@value, $periode/@unit))"/></xsl:if>
-            <xsl:if test="$end-date[@value]"> tot en met <xsl:value-of select="nf:formatDate(nf:calculate-t-date($end-date/@value, $dateT))"/>
-            </xsl:if>
+                <xsl:if test="$end-date[@value]"> tot en met <xsl:value-of select="nf:formatDate(nf:calculate-t-date($end-date/@value, $dateT))"/>
+                </xsl:if>
             <xsl:if test="$criterium[@value]"> (<xsl:value-of select="$criterium/@value"/>)</xsl:if>
-            <!-- projectgroep wil geen tekst 'tot nader order' in omschrijving, teams app Marijke dd 30 mrt 2020 -->
-            <!--                <xsl:if test="not($periode[@value]) and not($end-date[@value])"><xsl:if test="$start-date[@value]">, </xsl:if>tot nader order</xsl:if>-->
-        </xsl:variable>
-        <xsl:value-of select="normalize-space(string-join($waarde, ''))"/>
+                <!-- projectgroep wil geen tekst 'tot nader order' in omschrijving, teams app Marijke dd 30 mrt 2020 -->
+                <!--                <xsl:if test="not($periode[@value]) and not($end-date[@value])"><xsl:if test="$start-date[@value]">, </xsl:if>tot nader order</xsl:if>-->
+            </xsl:variable>
+            <xsl:value-of select="normalize-space(string-join($waarde, ''))"/>
     </xsl:function>
 
     <xd:doc>
@@ -454,8 +454,8 @@
                 <!-- en ten slotte hoort het stoptype ook in de omschrijving -->
                 <xsl:if test="not($cancelledBouwsteen)">
                     <xsl:for-each select="$theStoptype">
-                        <xsl:value-of select="$stoptypeMap[@code = current()/@code][@codeSystem = current()/@codeSystem]/@displayName"/>
-                    </xsl:for-each>
+                    <xsl:value-of select="$stoptypeMap[@code = current()/@code][@codeSystem = current()/@codeSystem]/@displayName"/>
+                </xsl:for-each>
                 </xsl:if>
 
             </xsl:variable>
@@ -603,7 +603,7 @@
         <xd:desc>Formats ada relativeDate(time) to a display date(Time)</xd:desc>
         <xd:param name="relativeDate">Input ada relativeDate(Time)</xd:param>
         <xd:param name="output0time">Whether or not a time of 00:00 should be outputted in the text. Defaults to true.</xd:param>
-        <xd:param name="outputEndtime">Whether or not a time of 23:59 should be outputted in the text. Defaults to true.</xd:param>
+        <xd:param name="outputEndtime">Whether or not a time of 23:59 should be outputted in the text.  Defaults to true.</xd:param>
     </xd:doc>
     <xsl:function name="nf:formatTDate" as="xs:string*">
         <xsl:param name="relativeDate" as="xs:string?"/>
