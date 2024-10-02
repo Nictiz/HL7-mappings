@@ -1,0 +1,139 @@
+<Consent xmlns="http://hl7.org/fhir">
+   <id value="zib-TreatmentDirective-msz-6cc02eb1-6aab-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Toestemming. Patiënt: Fatima Saïda F.S.K. Fatima Al Ksar el Kebir Çelik. Categorie: <span title="behandelaanwijzing (11291000146105 - SNOMED CT)">behandelaanwijzing</span>, Status: actief</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Bezwaren i.v.m. levensovertuiging. De uitgewisselde tekst moet de volgende zes speciale karakters, gescheiden door schuine streepjes, bevatten: é/è/ë/ü/ê/ç.</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Geldigheidsperiode</th>
+                  <td>Vanaf 12 november 1999</td>
+               </tr>
+               <tr>
+                  <th>Geverifieerd</th>
+                  <td>ja - 12 juli 1999 - <span title="Patiënt (116154003 - SNOMED CT)">Patiënt</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Geverifieerd</th>
+                  <td>nee - Echtgenoot</td>
+               </tr>
+               <tr>
+                  <th>Beperking i.v.m. levensovertuiging</th>
+                  <td>
+                     <span title="Ja, maar met beperkingen (JA_MAAR - 2.16.840.1.113883.2.4.3.11.60.40.4)">Ja, maar met beperkingen</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Niet toegestaan tenzij</th>
+                  <td>
+                     <div>
+                        <b>Behandelrestrictie</b>
+                        <div>Geen behandeling met materiaal van varkens.</div>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Bron </th>
+                  <td>Behandelverbod</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-Verification">
+      <extension url="Verified">
+         <valueBoolean value="true"/>
+      </extension>
+      <extension url="VerifiedWith">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="116154003"/>
+               <display value="Patiënt"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="VerificationDate">
+         <valueDateTime value="1999-07-12"/>
+      </extension>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-Verification">
+      <extension url="Verified">
+         <valueBoolean value="false"/>
+      </extension>
+      <extension url="VerifiedWith">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+               <code value="OTH"/>
+               <display value="Anders"/>
+            </coding>
+            <text value="Echtgenoot"/>
+         </valueCodeableConcept>
+      </extension>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/Comment">
+      <valueString value="Bezwaren i.v.m. levensovertuiging. De uitgewisselde tekst moet de volgende zes speciale karakters, gescheiden door schuine streepjes, bevatten: é/è/ë/ü/ê/ç."/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-Treatment">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="Anders"/>
+         </coding>
+         <text value="Beperking i.v.m. levensovertuiging"/>
+      </valueCodeableConcept>
+   </extension>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-TreatmentPermitted">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4"/>
+            <code value="JA_MAAR"/>
+            <display value="Ja, maar met beperkingen"/>
+         </coding>
+      </valueCodeableConcept>
+   </modifierExtension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="fac504f9-6af7-11ec-0000-2"/>
+   </identifier>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="11291000146105"/>
+         <display value="behandelaanwijzing"/>
+      </coding>
+   </category>
+   <patient>
+      <reference value="Patient/FATIMA-SAIDA-F-S-K--FATIMA-AL-KSAR-EL-KEBIR-ELIK"/>
+      <display value="Fatima Saïda F.S.K. Fatima Al Ksar el Kebir Çelik"/>
+   </patient>
+   <period>
+      <start value="1999-11-12"/>
+   </period>
+   <sourceReference>
+      <reference value="Consent/zib-AdvanceDirective-msz-22f9f595-6ab6-11ec-0000-2"/>
+      <display value="Behandelverbod"/>
+   </sourceReference>
+   <policy>
+      <uri value="http://wetten.overheid.nl/"/>
+   </policy>
+   <except>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-Restrictions">
+         <valueString value="Geen behandeling met materiaal van varkens."/>
+      </extension>
+      <type value="deny"/>
+   </except>
+</Consent>

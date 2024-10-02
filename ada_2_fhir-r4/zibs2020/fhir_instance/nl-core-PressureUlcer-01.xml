@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Condition xmlns="http://hl7.org/fhir">
+   <id value="nl-core-PressureUlcer-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PressureUlcer"/>
+   </meta>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="399912005"/>
+         <display value="Pressure ulcer"/>
+      </coding>
+   </code>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="76853006"/>
+         <display value="hiel"/>
+      </coding>
+   </bodySite>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <onsetDateTime value="2014-09-01"/>
+   <stage>
+      <summary>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="420324007"/>
+            <display value="decubitus graad 2"/>
+         </coding>
+      </summary>
+   </stage>
+   <evidence>
+      <detail>
+         <reference value="Observation/nl-core-PressureUlcer-01-WoundCharacteristics-01"/>
+         <type value="Observation"/>
+         <display value="Wound finding"/>
+      </detail>
+   </evidence>
+   <note>
+      <text value="Blaar met vocht op hiel."/>
+   </note>
+</Condition>

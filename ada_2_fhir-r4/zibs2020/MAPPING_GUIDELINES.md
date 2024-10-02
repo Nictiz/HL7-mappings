@@ -2,7 +2,7 @@
 
 ## Creating a zib stylesheet
 
-1. In the folder `payload/[version]`, open the file `template-zib.xsl` and save it as `nl-core-[zib name].xsl` within that folder.
+1. In the folder `payload/[version]`, create a new file `nl-core-[zib name].xsl`. It is convenient to copy an already existing template (preferably one that maps to the same FHIR resource).
 2. Fill in the template documentation string as appropriate.
 3. Create at least the following three templates:
     1. A "main" template with a name _and_ mode of the resulting profile id.
@@ -20,6 +20,28 @@ The template should perform a "pure" mapping from an ADA instance to FHIR resour
 The main template should always define the parameter `in` to specify the context to work on (with a default on the current context). In addition, for each reference that is to be generated, a parameter should be defined that accepts and ADA instance or ADA `reference` element, and defaults the element where inline references in the ADA instance can be found.
 
 Most of the input ADA content can be mapped one-on-one to the FHIR output. For just about every datatype, a template is available to transform the ADA element to a FHIR element. See the file `../fhir/2_fhir_fhir_include.xsl` and `../../ada_2_fhir/fhir/2_fhir_fhir_include.xsl`.
+
+### Specific guidelines
+
+##### Profile name variable
+For each FHIR profile add a variable of the form `profileName[English zib name]` to the respective template. This variable should be used whenever this profile needs to be referenced, instead of stating the profile name directly. This ensures a smaller risk on typos in the profile name and makes it easier to change a profile name in all relevant templates.
+
+Example: `<xsl:variable name="profileNamePatient">nl-core-Patient</xsl:variable>`
+
+##### Logical id
+In each template that is used to map an ADA instance to a FHIR resource instance, a logical id should be added to the resulting FHIR instance. This is done by invoking the template `insertLogicalId`. Note that the parameter `profile` should always be specified for consistency and to be future-proof, even though it's only necessary whenever there is no one-on-one relation between the ada element and FHIR resource.
+
+Example:
+
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNamePatient"/>
+                </xsl:call-template>
+
+                
+##### `meta.profile` element
+In each template that is used to map an ADA instance to a FHIR resource instance, the `.meta.profile` element should be added to the resulting FHIR instance. This is done by:
+* the `nf:get-full-profilename-from-adaelement(.)` function whenever there is an one-on-one relation between the ada element and FHIR resource (see the variable `ada2resourceType` in `2_fhir_fhir_include.xsl`);
+* `concat($urlBaseNictizProfile, $profileName[English zib name])` in all other cases.
 
 ## Schematron
 The Schematron file found in the `util` folder can be used to validate XSLT files to see if they meet the expected structure and contain the necessary templates and other elements to function in the zib2020 structure.

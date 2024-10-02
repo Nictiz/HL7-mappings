@@ -29,11 +29,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada juridische_situatie to FHIR Condition conforming to either profile nl-core-LegalSituation-LegalStatus or nl-core-LegalSituation-Representation</xd:desc>
+        <xd:desc>Converts ADA juridische_situatie to FHIR Condition resource conforming to profile nl-core-LegalSituation-LegalStatus or nl-core-LegalSituation-Representation.</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameLegalSituationLegalStatus">nl-core-LegalSituation-LegalStatus</xsl:variable>
+    <xsl:variable name="profileNameLegalSituationRepresentation">nl-core-LegalSituation-Representation</xsl:variable>
+    
     <xd:doc>
-        <xd:desc>Create an nl-core-LegalSituation-LegalStatus FHIR instance from an ada juridische_situatie element.</xd:desc>
+        <xd:desc>Creates an nl-core-LegalSituation-LegalStatus instance as a Condition FHIR instance from ADA juridische_situatie element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">The subject as ADA element or reference.</xd:param>
     </xd:doc>
@@ -44,10 +47,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in[juridische_status]">
             <Condition>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-LegalSituation-LegalStatus'"/>
+                    <xsl:with-param name="profile" select="$profileNameLegalSituationLegalStatus"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LegalSituation-LegalStatus"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNameLegalSituationLegalStatus)}"/>
                 </meta>
                 <xsl:if test="datum_einde">
                     <clinicalStatus>
@@ -99,7 +102,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-LegalSituation-Representation FHIR instance from an ada juridische_situatie element.</xd:desc>
+        <xd:desc>Creates an nl-core-LegalSituation-Representation instance as a Condition FHIR instance from ADA juridische_situatie element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
@@ -110,10 +113,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in[vertegenwoordiging]">
             <Condition>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-LegalSituation-Representation'"/>
+                    <xsl:with-param name="profile" select="$profileNameLegalSituationRepresentation"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LegalSituation-Representation"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNameLegalSituationRepresentation)}"/>
                 </meta>
                 <xsl:if test="datum_einde">
                     <clinicalStatus>
@@ -172,7 +175,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="profile" required="yes" as="xs:string"/>
         
         <xsl:choose>
-            <xsl:when test="$profile = 'nl-core-LegalSituation-LegalStatus'">
+            <xsl:when test="$profile = $profileNameLegalSituationLegalStatus">
                 <xsl:variable name="parts" as="item()*">
                     <xsl:text>Legal situation</xsl:text>
                     <xsl:if test="juridische_status/@displayName">
@@ -187,7 +190,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:variable>
                 <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
             </xsl:when>
-            <xsl:when test="$profile = 'nl-core-LegalSituation-Representation'">
+            <xsl:when test="$profile = $profileNameLegalSituationRepresentation">
                 <xsl:variable name="parts" as="item()*">
                     <xsl:text>Legal situation</xsl:text>
                     <xsl:if test="vertegenwoordiging/@displayName">

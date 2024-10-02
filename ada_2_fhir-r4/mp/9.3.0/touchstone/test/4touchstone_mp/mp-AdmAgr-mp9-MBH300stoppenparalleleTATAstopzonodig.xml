@@ -12,11 +12,11 @@
          </coding>
       </valueCodeableConcept>
    </extension>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
       <valueDateTime value="${DATE, T, D, -10}T10:05:00+02:00"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-      <valueString value="Vanaf T - 14 dagen, tot en met T - 10 dagen, Bij pijn 1 maal per dag 1 stuk 's avonds, Oraal, stopgezet"/>
+      <valueString value="Vanaf T - 14 dagen, tot en met T - 10 dagen, Bij pijn 1 stuk 's avonds, Oraal, stopgezet"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
       <valuePeriod>
@@ -89,9 +89,6 @@
    <dosageInstruction>
       <timing>
          <repeat>
-            <frequency value="1"/>
-            <period value="1"/>
-            <periodUnit value="d"/>
             <when value="EVE"/>
          </repeat>
       </timing>

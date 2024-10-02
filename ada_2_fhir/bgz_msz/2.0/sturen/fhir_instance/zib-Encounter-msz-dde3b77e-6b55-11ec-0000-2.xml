@@ -1,0 +1,73 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <id value="zib-Encounter-msz-dde3b77e-6b55-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: Michelle M.D. Michelle D Derencourt Verheul. Status: onbekend</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div>
+                        <span title="SEH (EMER - v3/ActCode)">SEH</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>Vanaf 1 januari 2003</td>
+               </tr>
+               <tr>
+                  <th>Probleem/Verrichting</th>
+                  <td>gesloten fractuur van olecranon</td>
+               </tr>
+               <tr>
+                  <th>Opnamegegevens</th>
+                  <td>
+                     <ul>
+                        <li>Opname vanuit: Vakantie adres</li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="e8d1dea3-6a96-11ec-0000-2"/>
+   </identifier>
+   <status value="unknown"/>
+   <class>
+      <system value="http://hl7.org/fhir/v3/ActCode"/>
+      <code value="EMER"/>
+      <display value="SEH"/>
+   </class>
+   <subject>
+      <reference value="Patient/MICHELLE-M-D--MICHELLE-D-DERENCOURT-VERHEUL"/>
+      <display value="Michelle M.D. Michelle D Derencourt Verheul"/>
+   </subject>
+   <period>
+      <start value="2003-01-01"/>
+   </period>
+   <diagnosis>
+      <condition>
+         <reference value="Condition/zib-Problem-msz-caeaaa8d-6b6a-11ec-0000-2"/>
+         <display value="gesloten fractuur van olecranon"/>
+      </condition>
+   </diagnosis>
+   <hospitalization>
+      <admitSource>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="Overig"/>
+         </coding>
+         <text value="Vakantie adres"/>
+      </admitSource>
+   </hospitalization>
+</Encounter>

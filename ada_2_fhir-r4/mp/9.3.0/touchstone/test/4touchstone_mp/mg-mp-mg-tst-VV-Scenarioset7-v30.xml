@@ -2,7 +2,7 @@
    <id value="mg-mp-mg-tst-VV-Scenarioset7-v30"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:3aea0abd-6a97-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:09f7aa89-6af1-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -30,7 +30,7 @@
             <medicationReference>
                <reference value="urn:uuid:3f743d1d-6ae4-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="overig"/>
+               <display value="Ureum 10% in eucerine cum aqua 100gr"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:758f80d2-6b35-11ec-0000-020000000000"/>
@@ -44,7 +44,7 @@
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -60,13 +60,13 @@
                <quantity>
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                      <valueQuantity>
-                        <value value="100"/>
+                        <value value="50"/>
                         <unit value="milliliter"/>
                         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                         <code value="233"/>
                      </valueQuantity>
                   </extension>
-                  <value value="100"/>
+                  <value value="50"/>
                   <unit value="milliliter"/>
                   <system value="http://unitsofmeasure.org"/>
                   <code value="ml"/>
@@ -80,7 +80,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:3be6ed3d-6ad7-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:daa64289-6b56-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -108,7 +108,7 @@
             <medicationReference>
                <reference value="urn:uuid:8c8bfb04-6b21-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="overig"/>
+               <display value="Vaseline 20% in cetomacrogolcrème FNA"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:758f80d2-6b35-11ec-0000-020000000000"/>
@@ -122,7 +122,7 @@
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -138,13 +138,13 @@
                <quantity>
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                      <valueQuantity>
-                        <value value="100"/>
+                        <value value="75"/>
                         <unit value="gram"/>
                         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                         <code value="215"/>
                      </valueQuantity>
                   </extension>
-                  <value value="100"/>
+                  <value value="75"/>
                   <unit value="gram"/>
                   <system value="http://unitsofmeasure.org"/>
                   <code value="g"/>
@@ -200,7 +200,7 @@
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -226,6 +226,84 @@
                   <unit value="gram"/>
                   <system value="http://unitsofmeasure.org"/>
                   <code value="g"/>
+               </quantity>
+            </dispenseRequest>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:258d40a1-6ad2-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-DispenseRequest"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_vrijetekstproduct"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <value value="MBH_300_vrijetekstproduct_VV"/>
+            </identifier>
+            <status value="unknown"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="52711000146108"/>
+                  <display value="verstrekkingsverzoek"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:e2241ae9-6b44-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="Jemperli 500 mg/ 10 mL"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:758f80d2-6b35-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, M. van de XXX_Rambaran Mishre"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -1}T14:52:00+02:00"/>
+            <requester>
+               <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </requester>
+            <performer>
+               <reference value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+            </performer>
+            <basedOn>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_vrijetekstproduct_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak  met identificatie: MBH_300_vrijetekstproduct_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </basedOn>
+            <dispenseRequest>
+               <quantity>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                     <valueQuantity>
+                        <value value="4"/>
+                        <unit value="stuks"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="245"/>
+                     </valueQuantity>
+                  </extension>
+                  <value value="4"/>
+                  <unit value="stuks"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="1"/>
                </quantity>
             </dispenseRequest>
          </MedicationRequest>
@@ -353,7 +431,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -364,6 +442,31 @@
                <value value="01236578"/>
             </identifier>
             <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -636,6 +739,31 @@
                   </denominator>
                </strength>
             </ingredient>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:e2241ae9-6b44-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalProduct.Description">
+               <valueString value="Titel: Jemperli (Dostarlimab-gxly) 500 mg/10 mL"/>
+            </extension>
+            <code>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+                  <code value="OTH"/>
+                  <display value="anders"/>
+               </coding>
+               <text value="Jemperli 500 mg/ 10 mL"/>
+            </code>
          </Medication>
       </resource>
       <request>

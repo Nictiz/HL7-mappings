@@ -1,0 +1,92 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <id value="zib-Encounter-bgz-msz-patD-encounter1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: Fatima Saïda F.S.K. Fatima Al Ksar el Kebir Çelik. Id: bgz-msz-patD-encounter1 (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div>
+                        <span title="Inpatient (IMP - v3/ActCode)">Inpatient</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>16 januari 1976 - 27 januari 1976</td>
+               </tr>
+               <tr>
+                  <th>Probleem/Verrichting</th>
+                  <td>tetralogie van Fallot</td>
+               </tr>
+               <tr>
+                  <th>Opnamegegevens</th>
+                  <td>
+                     <ul>
+                        <li>Opname vanuit: <span title="Home (264362003 - SNOMED CT)">Home</span>
+                        </li>
+                        <li>Ontslagwijze: <span title="Home (264362003 - SNOMED CT)">Home</span>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patD-encounter1"/>
+   </identifier>
+   <status value="finished"/>
+   <class>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActCode"/>
+               <code value="IMP"/>
+               <display value="Inpatient"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="http://hl7.org/fhir/v3/ActCode"/>
+      <code value="IMP"/>
+      <display value="Inpatient"/>
+   </class>
+   <subject>
+      <reference value="Patient/FATIMA-SAIDA-F-S-K--FATIMA-AL-KSAR-EL-KEBIR-ELIK"/>
+      <display value="Fatima Saïda F.S.K. Fatima Al Ksar el Kebir Çelik"/>
+   </subject>
+   <period>
+      <start value="1976-01-16"/>
+      <end value="1976-01-27"/>
+   </period>
+   <diagnosis>
+      <condition>
+         <reference value="Condition/zib-Problem-bgz-msz-bgz-msz-patD-problem1"/>
+         <display value="tetralogie van Fallot"/>
+      </condition>
+   </diagnosis>
+   <hospitalization>
+      <admitSource>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="264362003"/>
+            <display value="Home"/>
+         </coding>
+      </admitSource>
+      <dischargeDisposition>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="264362003"/>
+            <display value="Home"/>
+         </coding>
+      </dischargeDisposition>
+   </hospitalization>
+</Encounter>

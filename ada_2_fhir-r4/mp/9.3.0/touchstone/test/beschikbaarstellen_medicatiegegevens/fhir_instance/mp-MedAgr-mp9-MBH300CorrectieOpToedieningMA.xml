@@ -1,0 +1,81 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="mp-MedAgr-mp9-MBH300CorrectieOpToedieningMA"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+      <valueDateTime value="${DATE, T, D, -4}T07:45:00+02:00"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf T - 3 dagen om 07:45 uur, elke dag om 07:45 1 stuk, Oraal"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+      <valuePeriod>
+         <start value="${DATE, T, D, -3}T07:45:00+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_300_CorrectieOpToediening"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      <value value="MBH_300_CorrectieOpToediening_MA"/>
+   </identifier>
+   <status value="unknown"/>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="33633005"/>
+         <display value="voorschrijven van geneesmiddel"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/mp-PhPrd-mp9-216840111388324410-43044"/>
+      <type value="Medication"/>
+      <display value="PANTOPRAZOL 40MG TABLET MSR"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-C-XXX-Dongen"/>
+      <type value="Patient"/>
+      <display value="Patient, C. XXX_Dongen"/>
+   </subject>
+   <requester>
+      <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-PrcRol-2165281100731-000001112"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+   </requester>
+   <dosageInstruction>
+      <timing>
+         <repeat>
+            <timeOfDay value="07:45:00"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseAndRate>
+         <doseQuantity>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="1"/>
+                  <unit value="Stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </valueQuantity>
+            </extension>
+            <value value="1"/>
+            <unit value="Stuk"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="1"/>
+         </doseQuantity>
+      </doseAndRate>
+   </dosageInstruction>
+</MedicationRequest>

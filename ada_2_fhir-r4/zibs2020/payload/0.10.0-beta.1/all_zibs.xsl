@@ -48,7 +48,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../0.5-beta1/nl-core-DrugUse.xsl"/>
     <xsl:import href="../0.7-beta1/nl-core-Education.xsl"/>
     <xsl:import href="../0.7-beta1/nl-core-Encounter.xsl"/>
-    <xsl:import href="../0.5-beta1/nl-core-EpisodeOfcare.xsl"/>
+    <xsl:import href="../0.5-beta1/nl-core-EpisodeOfCare.xsl"/>
     <xsl:import href="nl-core-FeedingPatternInfant.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-FLACCpainScale.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-FluidBalance.xsl"/>
@@ -101,6 +101,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>This document import common and zib- and nl-core specific functions and templates to convert zib2020 ada instances to FHIR.</xd:desc>
+        <xd:desc>This document imports common and zib and nl-core specific functions and templates to convert zib2020 ada instances to FHIR.</xd:desc>
     </xd:doc>
 </xsl:stylesheet>
