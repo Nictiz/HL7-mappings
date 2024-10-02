@@ -1,0 +1,91 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <id value="zib-Encounter-msz-1a28550f-6aa8-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: Fatima Saïda F.S.K. Fatima Al Ksar el Kebir Çelik. Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div>
+                        <span title="SEH (EMER - v3/ActCode)">SEH</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>09:00 - 10:00 op 22 juni 2008</td>
+               </tr>
+               <tr>
+                  <th>Probleem/Verrichting</th>
+                  <td>Fractuur van elleboog</td>
+               </tr>
+               <tr>
+                  <th>Zorgaanbieder</th>
+                  <td>Ziekenhuis de grote terts</td>
+               </tr>
+               <tr>
+                  <th>Opnamegegevens</th>
+                  <td>
+                     <ul>
+                        <li>Opname vanuit: <span title="Eigen woonomgeving (264362003 - SNOMED CT)">Eigen woonomgeving</span>
+                        </li>
+                        <li>Ontslagwijze: <span title="Ander ziekenhuis (22232009 - SNOMED CT)">Ander ziekenhuis</span>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="fd367443-6b00-11ec-0000-2"/>
+   </identifier>
+   <status value="finished"/>
+   <class>
+      <system value="http://hl7.org/fhir/v3/ActCode"/>
+      <code value="EMER"/>
+      <display value="SEH"/>
+   </class>
+   <subject>
+      <reference value="Patient/FATIMA-SAIDA-F-S-K--FATIMA-AL-KSAR-EL-KEBIR-ELIK"/>
+      <display value="Fatima Saïda F.S.K. Fatima Al Ksar el Kebir Çelik"/>
+   </subject>
+   <period>
+      <start value="2008-06-22T09:00:00+02:00"/>
+      <end value="2008-06-22T10:00:00+02:00"/>
+   </period>
+   <diagnosis>
+      <condition>
+         <reference value="Condition/zib-Problem-msz-fdba610f-6b4d-11ec-0000-2"/>
+         <display value="Fractuur van elleboog"/>
+      </condition>
+   </diagnosis>
+   <hospitalization>
+      <admitSource>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="264362003"/>
+            <display value="Eigen woonomgeving"/>
+         </coding>
+      </admitSource>
+      <dischargeDisposition>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="22232009"/>
+            <display value="Ander ziekenhuis"/>
+         </coding>
+      </dischargeDisposition>
+   </hospitalization>
+   <serviceProvider>
+      <reference value="Organization/nl-core-organization-msz-2-16-528-1-1007-3-3-20000014"/>
+      <display value="Ziekenhuis de grote terts"/>
+   </serviceProvider>
+</Encounter>

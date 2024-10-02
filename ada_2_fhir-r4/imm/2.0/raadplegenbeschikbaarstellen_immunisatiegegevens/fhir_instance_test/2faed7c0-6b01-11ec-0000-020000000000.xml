@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Immunization xmlns="http://hl7.org/fhir">
+   <id value="2faed7c0-6b01-11ec-0000-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/imm-Vaccination-event"/>
+   </meta>
+   <contained>
+      <Location>
+         <id value="locatie1"/>
+         <address>
+            <country value="Nederland">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="urn:iso:std:iso:3166"/>
+                        <version value="2020-10-26T00:00:00"/>
+                        <code value="NL"/>
+                        <display value="Nederland"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </country>
+         </address>
+      </Location>
+   </contained>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-imm-Vaccination.PharmaceuticalProduct">
+      <valueReference>
+         <reference value="Medication/nl-core-PhPrd--018J21ABS-21684011138832447-2924528"/>
+         <type value="Medication"/>
+         <display value="COVID-19 VACCIN PFIZER INJVLST 0,3ML"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.131.2"/>
+      <value value="d90e47"/>
+   </identifier>
+   <status value="completed"/>
+   <vaccineCode>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+         <code value="206784"/>
+         <display value="COVID-19 VACCIN PFIZER INJVLST 0,3ML"/>
+      </coding>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+         <code value="2924528"/>
+         <display value="COVID-19 VACCIN PFIZER INJVLST 0,3ML"/>
+      </coding>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+         <code value="184284"/>
+         <display value="COVID-19 VACCIN PFIZER INJVLST 0,3ML"/>
+      </coding>
+   </vaccineCode>
+   <patient>
+      <reference value="Patient/nl-core-Patient--XXX-Biezen"/>
+      <type value="Patient"/>
+      <display value="Patient, XXX_Biezen"/>
+   </patient>
+   <occurrenceDateTime value="${DATE, T, Y, -2}"/>
+   <location>
+      <reference value="#locatie1"/>
+      <type value="Location"/>
+      <display value="Adres: Nederland."/>
+   </location>
+   <performer>
+      <function>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/v2-0443"/>
+            <code value="AP"/>
+            <display value="Administering Provider"/>
+         </coding>
+      </function>
+      <actor>
+         <reference value="Organization/nl-core-HPrv-Org--Org-2165281100733-20000002"/>
+         <type value="Organization"/>
+         <display value="Healthcare provider (organization), Huisartsenpraktijk test 02"/>
+      </actor>
+   </performer>
+</Immunization>

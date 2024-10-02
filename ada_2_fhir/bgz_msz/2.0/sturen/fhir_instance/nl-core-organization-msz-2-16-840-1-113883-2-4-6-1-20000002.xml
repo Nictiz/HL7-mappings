@@ -1,0 +1,93 @@
+<Organization xmlns="http://hl7.org/fhir">
+   <id value="nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000002"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Organisatie. Id: 20000002 (AGB-Z)</caption>
+            <tbody>
+               <tr>
+                  <th>Naam</th>
+                  <td>Ziekenhuis de Aandacht</td>
+               </tr>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <div>
+                        <span title="Ziekenhuizen, revalidatie-centra (0616 - AGB-medisch specialisme)">Ziekenhuizen, revalidatie-centra</span>
+                     </div>
+                     <div>
+                        <span title="Ziekenhuis (V4 - organization-type)">Ziekenhuis</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:021-9990101">021-9990101</a> (Vast telefoonnummer Werk)<br/>
+                     <a href="mailto:aandacht@hospital.nl">aandacht@hospital.nl</a> (E-mail Werk)<br/>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Adres</th>
+                  <td>Medicijnweg 8800, 3032ZY Rotterdam</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+      <value value="20000002"/>
+   </identifier>
+   <type>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+         <version value="2020-10-23T00:00:00"/>
+         <code value="0616"/>
+         <display value="Ziekenhuizen, revalidatie-centra"/>
+      </coding>
+   </type>
+   <type>
+      <coding>
+         <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+         <code value="V4"/>
+         <display value="Ziekenhuis"/>
+      </coding>
+   </type>
+   <name value="Ziekenhuis de Aandacht"/>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Vast telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="021-9990101"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="aandacht@hospital.nl"/>
+      <use value="work"/>
+   </telecom>
+   <address>
+      <line value="Medicijnweg 8800">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Medicijnweg"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="8800"/>
+         </extension>
+      </line>
+      <city value="Rotterdam"/>
+      <postalCode value="3032ZY"/>
+   </address>
+</Organization>

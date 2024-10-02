@@ -1,0 +1,81 @@
+<NutritionOrder xmlns="http://hl7.org/fhir">
+   <id value="zib-NutritionAdvice-msz-ab2880c6-6b4b-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-NutritionAdvice"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Voedingsadvies. Patiënt: Jan Adrianus J.A.K. Jan Kooyman. Status: actief</caption>
+            <tbody>
+               <tr>
+                  <th>Aanvraagdatum</th>
+                  <td>
+                     <i>onbekend (ontbrekend gegeven)</i>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Toelichting</th>
+                  <td>Spiermassa</td>
+               </tr>
+               <tr>
+                  <td colspan="2">
+                     <table>
+                        <caption>Orale voeding</caption>
+                        <thead>
+                           <tr>
+                              <th>Type</th>
+                              <th>Texture</th>
+                              <th>Vloeistofconsistentie</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td>Eiwitrijk voedsel</td>
+                              <td>Gemalen, gemixt of (dun)vloeibaar<div>Gemalen, gemixt of (dun)vloeibaar</div>
+                              </td>
+                              <td>Gemalen, gemixt of (dun)vloeibaar</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-NutritionAdvice-Explanation">
+      <valueString value="Spiermassa"/>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="15d3dc39-6b17-11ec-0000-2"/>
+   </identifier>
+   <status value="active"/>
+   <patient>
+      <reference value="Patient/JAN-ADRIANUS-J-A-K--JAN-KOOYMAN"/>
+      <display value="Jan Adrianus J.A.K. Jan Kooyman"/>
+   </patient>
+   <dateTime>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </dateTime>
+   <oralDiet>
+      <type>
+         <text value="Eiwitrijk voedsel"/>
+      </type>
+      <texture>
+         <modifier>
+            <text value="Gemalen, gemixt of (dun)vloeibaar"/>
+         </modifier>
+         <foodType>
+            <text value="Gemalen, gemixt of (dun)vloeibaar"/>
+         </foodType>
+      </texture>
+      <fluidConsistencyType>
+         <text value="Gemalen, gemixt of (dun)vloeibaar"/>
+      </fluidConsistencyType>
+   </oralDiet>
+</NutritionOrder>

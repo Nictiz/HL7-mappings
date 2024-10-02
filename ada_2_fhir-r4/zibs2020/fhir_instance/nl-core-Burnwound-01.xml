@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Condition xmlns="http://hl7.org/fhir">
+   <id value="nl-core-Burnwound-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Burnwound"/>
+   </meta>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="125666000"/>
+         <display value="Burn"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="105594005"/>
+         <display value="thermische brandwond"/>
+      </coding>
+   </code>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="51440002"/>
+               <display value="bilateraal"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="14975008"/>
+         <display value="onderarm"/>
+      </coding>
+   </bodySite>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <onsetDateTime value="2014-09-29"/>
+   <stage>
+      <summary>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="262587005"/>
+            <display value="oppervlakkige tweedegraads brandwond"/>
+         </coding>
+      </summary>
+   </stage>
+   <evidence>
+      <detail>
+         <reference value="Observation/nl-core-Burnwound-01-WoundCharacteristics-01"/>
+         <type value="Observation"/>
+         <display value="Wound finding"/>
+      </detail>
+   </evidence>
+   <note>
+      <text value="Mevrouw kreeg hete thee over zich heen, wond is ongeveer 10 bij 4 cm."/>
+   </note>
+</Condition>

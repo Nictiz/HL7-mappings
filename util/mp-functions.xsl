@@ -332,32 +332,61 @@
 
     <xd:doc>
         <xd:desc>Outputs a human readable string for a period with a possible start, duration, end date. The actual dates may be replaced by a configurable "T"-date with an addition of subtraction of a given number of days.</xd:desc>
-        <xd:param name="current-bouwsteen">The current MP building block, for example: medicatieafspraak or toedieningsafspraak.</xd:param>
         <xd:param name="start-date">start date of the period</xd:param>
         <xd:param name="periode">duration of the period</xd:param>
         <xd:param name="end-date">end date of the period</xd:param>
+        <xd:param name="criterium">criterium of the period</xd:param>
     </xd:doc>
     <xsl:function name="nf:periode-string" as="xs:string?">
-        <xsl:param name="current-bouwsteen"/>
-        <xsl:param name="start-date"/>
-        <xsl:param name="periode"/>
-        <xsl:param name="end-date"/>
-
-        <xsl:for-each select="$current-bouwsteen">
+        <xsl:param name="start-date" as="element()?"/>
+        <xsl:param name="periode" as="element()?"/>
+        <xsl:param name="end-date" as="element()?"/>
+        <xsl:param name="criterium" as="element()?"/>
+            
             <xsl:variable name="waarde" as="xs:string*">
                 <xsl:if test="$start-date[@value]">Vanaf <xsl:value-of select="nf:formatDate(nf:calculate-t-date($start-date/@value, $dateT))"/></xsl:if>
                 <xsl:if test="$start-date[@value] and ($periode[@value] | $end-date[@value])">
                     <xsl:value-of select="', '"/>
                 </xsl:if>
-                <xsl:if test="$periode/@value">gedurende <xsl:value-of select="concat($periode/@value, ' ', nwf:unit-string($periode/@value, $periode/@unit))"/></xsl:if>
+                <xsl:if test="$periode[@value]">gedurende <xsl:value-of select="concat($periode/@value, ' ', nwf:unit-string($periode/@value, $periode/@unit))"/></xsl:if>
                 <xsl:if test="$end-date[@value]"> tot en met <xsl:value-of select="nf:formatDate(nf:calculate-t-date($end-date/@value, $dateT))"/>
                 </xsl:if>
+                <xsl:if test="$criterium[@value]"> (<xsl:value-of select="$criterium/@value"/>)</xsl:if>                
                 <!-- projectgroep wil geen tekst 'tot nader order' in omschrijving, teams app Marijke dd 30 mrt 2020 -->
                 <!--                <xsl:if test="not($periode[@value]) and not($end-date[@value])"><xsl:if test="$start-date[@value]">, </xsl:if>tot nader order</xsl:if>-->
             </xsl:variable>
             <xsl:value-of select="normalize-space(string-join($waarde, ''))"/>
-        </xsl:for-each>
     </xsl:function>
+
+    <xd:doc>
+        <xd:desc>Create the ext-RenderedDosageInstruction extension from ADA InstructionsForUse.</xd:desc>
+        <xd:param name="in">The ADA instance to extract the rendered dosage instruction from. 
+            Override for default function in mp-InstructionsForUse so that we can generate instruction text based on structured data.</xd:param>
+    </xd:doc>
+    <xsl:template name="ext-RenderedDosageInstruction" mode="ext-RenderedDosageInstruction" match="gebruiksinstructie" as="element(f:extension)?">
+        <xsl:param name="in" as="element()?" select="."/>
+        
+        <xsl:for-each select="$in">
+            <xsl:for-each select="omschrijving[@value != '']">
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString>
+                        <xsl:attribute name="value">
+                            <xsl:choose>
+                                <xsl:when test="$generateInstructionText">
+                                    <xsl:value-of select="nf:gebruiksintructie-string(..)"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="@value"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:attribute>
+                    </valueString>
+                </extension>
+            </xsl:for-each>
+        </xsl:for-each>
+    </xsl:template>
+    
+    
 
     <xd:doc>
         <xd:desc>Generates omschrijving based on structured fields</xd:desc>
@@ -376,7 +405,7 @@
             <xsl:variable name="theOmschrijving" as="xs:string*">
 
                 <!-- gebruiksperiode -->
-                <xsl:variable name="periodeString" select="nf:periode-string(., ../(gebruiksperiode_start | gebruiksperiode/start_datum_tijd), ../(gebruiksperiode[@value] | gebruiksperiode/tijds_duur), ../(gebruiksperiode_eind | gebruiksperiode/eind_datum_tijd))"/>
+                <xsl:variable name="periodeString" select="nf:periode-string(../(gebruiksperiode_start | gebruiksperiode/start_datum_tijd), ../(gebruiksperiode[@value] | gebruiksperiode/tijds_duur), ../(gebruiksperiode_eind | gebruiksperiode/eind_datum_tijd), ../gebruiksperiode/criterium)"/>
                 <xsl:if test="string-length($periodeString) gt 0">
                     <xsl:value-of select="$periodeString"/>
                 </xsl:if>

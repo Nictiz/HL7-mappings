@@ -28,11 +28,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA alcohol_gebruik to FHIR resource conforming to profile nl-core-AlcoholUse</xd:desc>
+        <xd:desc>Converts ADA alcohol_gebruik to FHIR Observation resource conforming to profile nl-core-AlcoholUse.</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameAlcoholUse">nl-core-AlcoholUse</xsl:variable>
+    
     <xd:doc>
-        <xd:desc>Create a nl-core-AlcoholUse instance as a Observation FHIR instance from ADA alcohol_gebruik.</xd:desc>
+        <xd:desc>Creates an nl-core-AlcoholUse instance as an Observation FHIR instance from ADA alcohol_gebruik element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">The subject as ADA element or reference.</xd:param>
     </xd:doc>
@@ -42,9 +44,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameAlcoholUse"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AlcoholUse"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
