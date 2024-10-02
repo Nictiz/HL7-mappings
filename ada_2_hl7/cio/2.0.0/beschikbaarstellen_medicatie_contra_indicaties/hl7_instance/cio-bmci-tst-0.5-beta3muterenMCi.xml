@@ -1,0 +1,216 @@
+<organizer classCode="CLUSTER"
+           moodCode="EVN"
+           xmlns="urn:hl7-org:v3">
+   <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.7"/>
+   <code code="419891008"
+         displayName="Gegevensobject (gegevensobject)"
+         codeSystem="2.16.840.1.113883.6.96"
+         codeSystemName="SNOMED CT"/>
+   <recordTarget>
+      <patientRole>
+         <id extension="999900559"
+             root="2.16.840.1.113883.2.4.6.3"/>
+         <addr>
+            <streetName>Knolweg</streetName>
+            <houseNumber>1003</houseNumber>
+            <postalCode>9999 ZA</postalCode>
+            <county>Stitswerd </county>
+            <country code="6030"
+                     codeSystem="1.0.3166.1.2.2"
+                     displayName="NEDERLAND">NEDERLAND</country>
+         </addr>
+         <patient>
+            <name>
+               <given qualifier="BR">Floris</given>
+               <family qualifier="BR">XXX_Gelderen</family>
+            </name>
+            <administrativeGenderCode code="M"
+                                      codeSystem="2.16.840.1.113883.5.1"
+                                      displayName="Man"/>
+            <birthTime value="19631028"/>
+         </patient>
+      </patientRole>
+   </recordTarget>
+   <component typeCode="COMP">
+      <act classCode="ACT"
+           moodCode="EVN">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.14"/>
+         <code code="CONC"
+               displayName="Concern"
+               codeSystem="2.16.840.1.113883.5.6"
+               codeSystemName="ActClass"/>
+         <entryRelationship typeCode="SUBJ">
+            <observation classCode="OBS"
+                         moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.19"/>
+               <code xsi:type="CD"
+                     code="350241000146102"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     displayName="potentiële contra-indicatie voor geneesmiddel (bevinding)"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <effectiveTime xsi:type="IVL_TS"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  <low value="20151001144803"/>
+               </effectiveTime>
+               <performer>
+                  <time nullFlavor="NI"/>
+                  <assignedEntity>
+                     <id extension="000003333 "
+                         root="2.16.840.1.113883.2.4.3.11.999.26.1.139"/>
+                     <code code="0318"
+                           codeSystem="2.16.840.1.113883.2.4.6.7"
+                           displayName="MEDISCH SPECIALISTEN, GASTRO-ENTEROLOGIE (MAAG-DARM-LEVER-ARTS)"/>
+                     <assignedPerson>
+                        <name>
+                           <given qualifier="IN">M.</given>
+                           <prefix qualifier="VV">van </prefix>
+                           <family qualifier="BR">Gasteren</family>
+                        </name>
+                     </assignedPerson>
+                     <representedOrganization>
+                        <id extension="00002222 "
+                            root="2.16.840.1.113883.2.4.3.11.999.26.1.205"/>
+                        <name>Algemeen Stadsziekenhuis</name>
+                        <addr use="WP">
+                           <streetName>Hoofdstraat </streetName>
+                           <houseNumber>1</houseNumber>
+                           <postalCode>2143 AA</postalCode>
+                           <city>Zorgstad</city>
+                        </addr>
+                        <standardIndustryClassCode code="V4"
+                                                   codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                                   displayName="Ziekenhuis"/>
+                        <asOrganizationPartOf>
+                           <code code="0318"
+                                 codeSystem="2.16.840.1.113883.2.4.6.7"
+                                 displayName="MEDISCH SPECIALISTEN, GASTRO-ENTEROLOGIE (MAAG-DARM-LEVER-ARTS)"
+                                 codeSystemName="Vektis AGB-medische specialismen"/>
+                        </asOrganizationPartOf>
+                     </representedOrganization>
+                  </assignedEntity>
+               </performer>
+               <entryRelationship typeCode="REFR"
+                                  inversionInd="true">
+                  <observation classCode="OBS"
+                               moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.20"/>
+                     <code code="44944-7"
+                           displayName="Other alert"
+                           codeSystem="2.16.840.1.113883.6.1"
+                           codeSystemName="LOINC"/>
+                     <value xsi:type="CD"
+                            code="1352"
+                            codeSystem="2.16.840.1.113883.2.4.4.1.902.40"
+                            displayName="LEVERCIRROSE"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                  </observation>
+               </entryRelationship>
+               <entryRelationship typeCode="SUBJ"
+                                  inversionInd="true">
+                  <act classCode="ACT"
+                       moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+                     <code code="48767-8"
+                           codeSystem="2.16.840.1.113883.6.1"
+                           codeSystemName="LOINC"
+                           displayName="Annotation comment"/>
+                     <text mediaType="text/plain">Levercirrose ontstaan na alcoholabusus. Op dit moment Child-Pugh-A score 6.</text>
+                  </act>
+               </entryRelationship>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="SUBJ">
+            <observation classCode="OBS"
+                         moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.19"/>
+               <code xsi:type="CD"
+                     code="350241000146102"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     displayName="potentiële contra-indicatie voor geneesmiddel (bevinding)"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <effectiveTime xsi:type="IVL_TS"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  <low value="20151001144803"/>
+               </effectiveTime>
+               <performer>
+                  <time nullFlavor="NI"/>
+                  <assignedEntity>
+                     <id extension="000003333 "
+                         root="2.16.840.1.113883.2.4.3.11.999.26.1.139"/>
+                     <code code="0318"
+                           codeSystem="2.16.840.1.113883.2.4.6.7"
+                           displayName="MEDISCH SPECIALISTEN, GASTRO-ENTEROLOGIE (MAAG-DARM-LEVER-ARTS)"/>
+                     <assignedPerson>
+                        <name>
+                           <given qualifier="IN">M.</given>
+                           <prefix qualifier="VV">van </prefix>
+                           <family qualifier="BR">Gasteren</family>
+                        </name>
+                     </assignedPerson>
+                     <representedOrganization>
+                        <id extension="00002222 "
+                            root="2.16.840.1.113883.2.4.3.11.999.26.1.205"/>
+                        <name>Algemeen Stadsziekenhuis</name>
+                        <addr use="WP">
+                           <streetName>Hoofdstraat </streetName>
+                           <houseNumber>1</houseNumber>
+                           <postalCode>2143 AA</postalCode>
+                           <city>Zorgstad</city>
+                        </addr>
+                        <standardIndustryClassCode code="V4"
+                                                   codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                                   displayName="Ziekenhuis"/>
+                        <asOrganizationPartOf>
+                           <code code="0318"
+                                 codeSystem="2.16.840.1.113883.2.4.6.7"
+                                 displayName="MEDISCH SPECIALISTEN, GASTRO-ENTEROLOGIE (MAAG-DARM-LEVER-ARTS)"
+                                 codeSystemName="Vektis AGB-medische specialismen"/>
+                        </asOrganizationPartOf>
+                     </representedOrganization>
+                  </assignedEntity>
+               </performer>
+               <entryRelationship typeCode="REFR"
+                                  inversionInd="true">
+                  <observation classCode="OBS"
+                               moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.20"/>
+                     <code code="44944-7"
+                           displayName="Other alert"
+                           codeSystem="2.16.840.1.113883.6.1"
+                           codeSystemName="LOINC"/>
+                     <value xsi:type="CD"
+                            code="1352"
+                            codeSystem="2.16.840.1.113883.2.4.4.1.902.40"
+                            displayName="LEVERCIRROSE"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                  </observation>
+               </entryRelationship>
+               <entryRelationship typeCode="SUBJ"
+                                  inversionInd="true">
+                  <act classCode="ACT"
+                       moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+                     <code code="48767-8"
+                           codeSystem="2.16.840.1.113883.6.1"
+                           codeSystemName="LOINC"
+                           displayName="Annotation comment"/>
+                     <text mediaType="text/plain">Levercirrose ontstaan na alcoholabusus. Verergerend, op dit moment Child-Pugh-B score 8.</text>
+                  </act>
+               </entryRelationship>
+               <entryRelationship typeCode="REFR">
+                  <observation classCode="OBS"
+                               moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.16"/>
+                     <id extension="pat05-mci-lev-01"
+                         root="2.16.840.1.113883.2.4.3.11.999.26.1.16"/>
+                     <code code="350241000146102"
+                           displayName="Potentiële contra-indicatie voor geneesmiddel (bevinding)"
+                           codeSystem="2.16.840.1.113883.6.96"
+                           codeSystemName="SNOMED CT"/>
+                  </observation>
+               </entryRelationship>
+            </observation>
+         </entryRelationship>
+      </act>
+   </component>
+</organizer>
