@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="labtest-LAR-INR-POCT-LOINC-23568-C"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+      <valueBoolean value="true"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
+      <valueString value="111333"/>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.1"/>
+      <value value="23568"/>
+   </identifier>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+         <code value="laboratory"/>
+         <display value="Laboratory"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="6301-6"/>
+         <display value="PT-INR [relatieve tijd] in plaatjesarm plasma d.m.v. stollingsmethode"/>
+      </coding>
+   </code>
+   <performer>
+      <reference value="Organization/org-11112222"/>
+      <type value="Organization"/>
+      <display value="Healthcare provider (organization), Trombosedienst Ons Dorp"/>
+   </performer>
+   <valueQuantity>
+      <value value="2.9"/>
+      <unit value="{INR}"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="{INR}"/>
+   </valueQuantity>
+   <interpretation>
+      <text value="Hoog!"/>
+   </interpretation>
+   <specimen>
+      <reference value="Specimen/monster-1-87612001"/>
+      <type value="Specimen"/>
+      <display value="monster"/>
+   </specimen>
+   <referenceRange>
+      <low>
+         <value value="0.9"/>
+         <unit value="{INR}"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="{INR}"/>
+      </low>
+      <high>
+         <value value="1.1"/>
+         <unit value="{INR}"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="{INR}"/>
+      </high>
+   </referenceRange>
+</Observation>
