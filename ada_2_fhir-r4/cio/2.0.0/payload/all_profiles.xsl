@@ -22,11 +22,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="cio-MedicationContraIndication.xsl"/>
     <xsl:import href="cio-Reaction.xsl"/>
     <xsl:import href="cio-RegistrationInformation.xsl"/>
+    <xsl:import href="cio-ReplyProposalContraIndication.xsl"/>
     <xsl:import href="cio-SurveillanceDecision.xsl"/>
     <xsl:import href="cio-Symptom.xsl"/>
-    <xsl:import href="cio-ProposalContraIndication-Bundle.xsl"/>
-    <xsl:import href="cio-ReplyProposalContraIndication.xsl"/>
-
+    
     <xsl:import href="ext-MedicationHypersensitivityIdentifier.xsl"/>
 
     <xsl:output method="xml" indent="yes"/>

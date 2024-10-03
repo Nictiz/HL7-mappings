@@ -30,14 +30,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Create a cio-MedicationContraIndication instance as a Flag FHIR instance from the ada element medicatie_contra_indicatie/alert.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
-        <xd:param name="relationMedicationAgreement">ProposalContraIndication element</xd:param>
-        <xd:param name="proposalComment">ProposalContraIndication element</xd:param>
+        <xd:param name="relationMedicationAgreement">Medication agreement which served as the basis for initiating a proposal contraindication.</xd:param>
+        <xd:param name="proposalComment">Comment on a proposal contraindication.</xd:param>
+        <xd:param name="metaTag">The meta tag to be added. Optional. Typical use case is 'actionable' for proposals. Empty for informational purposes.</xd:param>
     </xd:doc>
     <xsl:template name="cio-MedicationContraIndication" as="element(f:Flag)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="../../patient" as="element()?"/>
         <xsl:param name="relationMedicationAgreement" as="element()?"/>
         <xsl:param name="proposalComment" as="element()?"/>
+        <xsl:param name="metaTag" as="xs:string?"/>
         
             <xsl:for-each select="$in">
                 <Flag>
@@ -56,6 +58,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                     <meta>
                         <profile value="{concat($urlBaseNictizProfile, $profileNameCioMedicationContraIndication)}"/>
+                        
+                        <xsl:if test="string-length($metaTag) gt 0">
+                            <tag>
+                                <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
+                                <code value="{$metaTag}"/>
+                            </tag>
+                        </xsl:if>
                     </meta>
                     
                     <xsl:if test="$relationAlert">
@@ -73,16 +82,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="ext-Comment"/>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="$proposalComment[@value]">
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ProposalContraIndication.ProposalComment">
-                            <valueString>
-                                <xsl:call-template name="string-to-string">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </valueString>
-                        </extension>
-                    </xsl:for-each>
-                    
                     <xsl:for-each select="$relationMedicationAgreement/identificatie[@value | @root | @nullFlavor]">
                         <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
                             <valueReference>
@@ -94,6 +93,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </identifier>
                                 <display value="Relatie naar medicatieafspraak: {string-join((@value, @root), ' || ')}"/>
                             </valueReference>
+                        </extension>
+                    </xsl:for-each>
+                    
+                    <xsl:for-each select="$proposalComment[@value]">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ProposalContraIndication.Comment">
+                            <valueString>
+                                <xsl:call-template name="string-to-string">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </valueString>
                         </extension>
                     </xsl:for-each>
                     
@@ -144,26 +153,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="makeReference">
                         <xsl:with-param name="in" select="$subject"/>
                         <xsl:with-param name="wrapIn" select="'subject'"/>
-                    </xsl:call-template>
+                    </xsl:call-template> 
                     
-                    <period>
-                        <start>
-                            <xsl:attribute name="value">
-                                <xsl:call-template name="format2FHIRDate">
-                                    <xsl:with-param name="dateTime" select="xs:string($startDateTime)"/>
-                                </xsl:call-template>
-                            </xsl:attribute>
-                        </start>
-                        <xsl:if test="$endDateTime">
-                            <end>
-                                <xsl:attribute name="value">
-                                    <xsl:call-template name="format2FHIRDate">
-                                        <xsl:with-param name="dateTime" select="xs:string($endDateTime)"/>
-                                    </xsl:call-template>
-                                </xsl:attribute>
-                            </end>
-                        </xsl:if>
-                    </period>
+                    <xsl:if test="$startDateTime or $endDateTime">
+                        <period>
+                            <xsl:if test="$startDateTime">
+                                <start>
+                                    <xsl:attribute name="value">
+                                        <xsl:call-template name="format2FHIRDate">
+                                            <xsl:with-param name="dateTime" select="xs:string($startDateTime)"/>
+                                        </xsl:call-template>
+                                    </xsl:attribute>
+                                </start>
+                            </xsl:if>
+                            <xsl:if test="$endDateTime">
+                                <end>
+                                    <xsl:attribute name="value">
+                                        <xsl:call-template name="format2FHIRDate">
+                                            <xsl:with-param name="dateTime" select="xs:string($endDateTime)"/>
+                                        </xsl:call-template>
+                                    </xsl:attribute>
+                                </end>
+                            </xsl:if>
+                        </period>
+                    </xsl:if>
                     
                     <xsl:for-each select="$author">
                         <xsl:call-template name="makeReference">

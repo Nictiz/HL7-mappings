@@ -40,7 +40,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="registrationInformation" select="../../bouwstenen/registratie_informatie[@id = current()/registratie_informatie/@value]"/>
                 <xsl:variable name="identificationNumber" select="$registrationInformation/identificatienummer"/>
                 <xsl:variable name="author" select="$registrationInformation/auteur/*"/>
-                <xsl:variable name="registrationDateTime" select="$registrationInformation/ontstaans_datum_tijd"/>
+                <xsl:variable name="creationDateTime" select="$registrationInformation/ontstaans_datum_tijd"/>
                 
                 <xsl:variable name="relationHypersensitivityIntoleranceRegistrationInformation" select="../../bouwstenen/registratie_informatie[identificatienummer/@value = current()/relatie_overgevoeligheid_intolerantie/identificatie/@value]"/>
                 <xsl:variable name="relationHypersensitivityIntolerance" select="../../geneesmiddelovergevoeligheid/overgevoeligheid[registratie_informatie/@value = $relationHypersensitivityIntoleranceRegistrationInformation/@id]"/>
@@ -97,7 +97,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </extension>
                 
                 <xsl:if test="$relationHypersensitivityIntolerance">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationHypersensitivityIntolerance">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Reaction.RelationHypersensitivityIntolerance">
                         <valueReference>
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="in" select="$relationHypersensitivityIntolerance"/>
@@ -119,26 +119,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </identifier>
-                </xsl:for-each>
-                
-                <xsl:for-each select="zekerheid_status[@code]">
-                    <verificationStatus>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="."/>
-                            <xsl:with-param name="codeMap" as="element()*">
-                                <map inCode="415684004" inCodeSystem="{$oidSNOMEDCT}" code="unconfirmed" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Unconfirmed"/>
-                                <map inCode="410590009" inCodeSystem="{$oidSNOMEDCT}" code="unconfirmed" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Unconfirmed"/>
-                                <map inCode="410605003" inCodeSystem="{$oidSNOMEDCT}" code="confirmed" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Confirmed"/>
-                                <map inCode="410593006" inCodeSystem="{$oidSNOMEDCT}" code="unconfirmed" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Unconfirmed"/>
-                                <map inCode="410516002" inCodeSystem="{$oidSNOMEDCT}" code="refuted" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Refuted"/>
-                                <map inCode="UNK" inCodeSystem="2.16.840.1.113883.5.1008" code="unconfirmed" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Unconfirmed"/>
-                            </xsl:with-param>
-                        </xsl:call-template>
-                        
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </verificationStatus>
                 </xsl:for-each>
                 
                 <xsl:for-each select="veroorzaker/veroorzakende_stof[@code]">
@@ -181,13 +161,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 
                 <reaction>
-                    <xsl:for-each select="latentie_tijd/bereik/nominale_waarde[@value]">
+                    <xsl:for-each select="latentie_tijd/bereik">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Reaction.LatencyTime">
-                            <valueQuantity>
-                                <xsl:call-template name="hoeveelheid-to-Duration">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </valueQuantity>
+                            <xsl:if test="(minimum_waarde | maximum_waarde)[@value]">
+                                <valueRange>
+                                    <xsl:for-each select="minimum_waarde[@value]">
+                                        <low>
+                                            <xsl:call-template name="hoeveelheid-to-Quantity">
+                                                <xsl:with-param name="in" select="."/>
+                                            </xsl:call-template>
+                                        </low>
+                                    </xsl:for-each>
+                                    <xsl:for-each select="maximum_waarde[@value]">
+                                        <high>
+                                            <xsl:call-template name="hoeveelheid-to-Quantity">
+                                                <xsl:with-param name="in" select="."/>
+                                            </xsl:call-template>
+                                        </high>
+                                    </xsl:for-each>
+                                </valueRange>
+                            </xsl:if>
+                            
+                            <xsl:for-each select="nominale_waarde[@value]">
+                                <valueQuantity>
+                                    <xsl:call-template name="hoeveelheid-to-Duration">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </valueQuantity>
+                            </xsl:for-each>
                         </extension>
                     </xsl:for-each>
                     
@@ -197,6 +198,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
                         </substance>
+                    </xsl:for-each>
+                    
+                    <xsl:for-each select="$relationCondition/periode_aanwezig/tijds_interval/start_datum_tijd[@value]">
+                        <onset>
+                            <xsl:attribute name="value">
+                                <xsl:call-template name="format2FHIRDate">
+                                    <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                </xsl:call-template>
+                            </xsl:attribute>
+                        </onset>
                     </xsl:for-each>
                     
                     <xsl:for-each select="wijze_van_blootstelling[@code]">
@@ -223,20 +234,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
-        <xd:param name="profile">Parameter to indicate for which target profile a display is to be generated.</xd:param>
     </xd:doc>
     <xsl:template match="reactie[parent::geneesmiddelovergevoeligheid]" mode="_generateDisplay">
-        <xsl:param name="profile" required="yes" as="xs:string"/>
-        
-        <xsl:choose>
-            <xsl:when test="$profile = $profileNameCioReaction">
-                <xsl:variable name="parts" as="item()*">
-                    <xsl:text>Reactie</xsl:text>
-                    <xsl:value-of select="veroorzaker/veroorzakende_stof/@displayName"/>
-                    <xsl:value-of select="concat('diagnosedatum: ', diagnostisch_inzicht_datum/@value)"/>
-                </xsl:variable>
-                <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
-            </xsl:when>
-        </xsl:choose>
+        <xsl:variable name="parts" as="item()*">
+            <xsl:text>Reactie</xsl:text>
+            <xsl:value-of select="veroorzaker/veroorzakende_stof/@displayName"/>
+            <xsl:value-of select="concat('diagnosedatum: ', diagnostisch_inzicht_datum/@value)"/>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
     </xsl:template>
 </xsl:stylesheet>

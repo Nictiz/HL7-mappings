@@ -164,6 +164,7 @@
     <xsl:variable name="urlExtMedicationAgreementNextPractitioner"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationAgreement.NextPractitioner</xsl:variable>
     <xsl:variable name="urlExtMedicationAgreementPeriodOfUseCondition"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationAgreement.PeriodOfUse.Condition</xsl:variable>
     <xsl:variable name="urlExtMedicationAgreementRelationMedicationUse"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationAgreement.RelationMedicationUse</xsl:variable>
+    <xsl:variable name="urlExtMedicationHypersensitivityIdentifier"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationHypersensitivity.Identifier</xsl:variable>
     <xsl:variable name="urlExtMedicationMedicationDispenseDistributionForm"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationDispense.DistributionForm</xsl:variable>
     <xsl:variable name="urlExtMedicationUse2Prescriber"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationUse2.Prescriber</xsl:variable>
     <xsl:variable name="urlExtMedicationUseAuthor"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationUse2.Author</xsl:variable>

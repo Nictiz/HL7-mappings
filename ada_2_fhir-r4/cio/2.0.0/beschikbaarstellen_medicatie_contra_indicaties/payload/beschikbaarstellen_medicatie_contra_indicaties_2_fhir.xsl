@@ -56,7 +56,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="beschikbaarstellen_medicatie_contra_indicaties">
         
         <xsl:variable name="resources" as="element(f:entry)*">
-            <xsl:variable name="medicatiecontraindicaties" as="element()*">
+            <xsl:variable name="medicationContraIndications" as="element()*">
                 <xsl:for-each-group select="medicatie_contra_indicatie/alert" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="cio-MedicationContraIndication">
                         <xsl:with-param name="in" select="current-group()[1]"/>
@@ -70,7 +70,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </xsl:variable>
             
-            <xsl:variable name="zorgverleners" as="element()*">
+            <xsl:variable name="healthProfessionals" as="element()*">
                 <xsl:for-each-group select="bouwstenen/zorgverlener" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="nl-core-HealthProfessional-PractitionerRole">
                         <xsl:with-param name="in" select="current-group()[1]"/>
@@ -82,7 +82,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each-group>
             </xsl:variable>
             
-            <xsl:variable name="zorgaanbieders" as="element()*">
+            <xsl:variable name="healthcareProviders" as="element()*">
                 <xsl:for-each-group select="bouwstenen/zorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="nl-core-HealthcareProvider-Organization">
                         <xsl:with-param name="in" select="current-group()[1]"/>
@@ -90,7 +90,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each-group>
             </xsl:variable>
             
-            <xsl:variable name="contactpersonen" as="element()*">
+            <xsl:variable name="contactPersons" as="element()*">
                 <xsl:for-each-group select="bouwstenen/contactpersoon" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="nl-core-ContactPerson">
                         <xsl:with-param name="in" select="current-group()[1]"/>
@@ -99,7 +99,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each-group>
             </xsl:variable>
             
-            <xsl:variable name="registratieinformaties" as="element()*">
+            <xsl:variable name="registrationInformations" as="element()*">
                 <xsl:for-each-group select="bouwstenen/registratie_informatie" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="cio-RegistrationInformation">
                         <xsl:with-param name="in" select="current-group()[1]"/>
@@ -107,7 +107,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each-group>
             </xsl:variable>
             
-            <xsl:for-each select="$medicatiecontraindicaties | $patient | $zorgverleners | $zorgaanbieders | $contactpersonen | $registratieinformaties">
+            <xsl:for-each select="$medicationContraIndications | $patient | $healthProfessionals | $healthcareProviders | $contactPersons | $registrationInformations">
                 <entry xmlns="http://hl7.org/fhir">
                     <xsl:call-template name="_insertFullUrlById"/>
                     <resource>

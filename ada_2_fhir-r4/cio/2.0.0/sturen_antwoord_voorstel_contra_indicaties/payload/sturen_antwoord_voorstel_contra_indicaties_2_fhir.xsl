@@ -42,11 +42,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="fhirMetadata" as="element()*">
         <xsl:call-template name="buildFhirMetadata">
             <xsl:with-param name="in" select="//(
-                beschikbaarstellen_medicatie_contra_indicaties/patient | 
-                beschikbaarstellen_medicatie_contra_indicaties/voorstel_gegevens/antwoord_voorstel_contra_indicatie |
-                beschikbaarstellen_medicatie_contra_indicaties/bouwstenen/zorgverlener |
-                beschikbaarstellen_medicatie_contra_indicaties/bouwstenen/zorgaanbieder |
-                beschikbaarstellen_medicatie_contra_indicaties/bouwstenen/registratie_informatie
+                sturen_antwoord_voorstel_contra_indicaties/voorstel_gegevens/antwoord_voorstel_contra_indicatie |
+                sturen_antwoord_voorstel_contra_indicaties/patient |
+                sturen_antwoord_voorstel_contra_indicaties/bouwstenen/zorgverlener |
+                sturen_antwoord_voorstel_contra_indicaties/bouwstenen/zorgaanbieder |
+                sturen_antwoord_voorstel_contra_indicaties/bouwstenen/registratie_informatie
                 )"/>
         </xsl:call-template>
     </xsl:param>
@@ -57,7 +57,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="sturen_antwoord_voorstel_contra_indicaties">
         
         <xsl:variable name="resources" as="element(f:entry)*">
-            <xsl:variable name="antwoordvoorstelcontraindicaties" as="element()*">
+            <xsl:variable name="replyProposalContraIndications" as="element()*">
                 <xsl:for-each-group select="voorstel_gegevens/antwoord_voorstel_contra_indicatie" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="cio-ReplyProposalContraIndication">
                         <xsl:with-param name="in" select="current-group()[1]"/>
@@ -71,7 +71,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </xsl:variable>
             
-            <xsl:variable name="zorgverleners" as="element()*">
+            <xsl:variable name="healthProfessionals" as="element()*">
                 <xsl:for-each-group select="bouwstenen/zorgverlener" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="nl-core-HealthProfessional-PractitionerRole">
                         <xsl:with-param name="in" select="current-group()[1]"/>
@@ -83,7 +83,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each-group>
             </xsl:variable>
             
-            <xsl:variable name="zorgaanbieders" as="element()*">
+            <xsl:variable name="healthcareProviders" as="element()*">
                 <xsl:for-each-group select="bouwstenen/zorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="nl-core-HealthcareProvider-Organization">
                         <xsl:with-param name="in" select="current-group()[1]"/>
@@ -91,7 +91,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each-group>
             </xsl:variable>
             
-            <xsl:variable name="registratieinformaties" as="element()*">
+            <xsl:variable name="registrationInformations" as="element()*">
                 <xsl:for-each-group select="bouwstenen/registratie_informatie" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="cio-RegistrationInformation">
                         <xsl:with-param name="in" select="current-group()[1]"/>
@@ -99,7 +99,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each-group>
             </xsl:variable>
             
-            <xsl:for-each select="$antwoordvoorstelcontraindicaties | $patient | $zorgverleners | $zorgaanbieders | $registratieinformaties">
+            <xsl:for-each select="$replyProposalContraIndications | $patient | $healthProfessionals | $healthcareProviders | $registrationInformations">
                 <entry xmlns="http://hl7.org/fhir">
                     <xsl:call-template name="_insertFullUrlById"/>
                     <resource>
@@ -172,7 +172,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:choose>
                 <xsl:when test="$localName = 'antwoord_voorstel_contra_indicatie' and $profile = $profileNameCioReplyProposalContraIndication">
                     <xsl:variable name="registrationInformation" select="../../bouwstenen/registratie_informatie[@id = current()/registratie_informatie/@value]"/>
-                    <xsl:value-of select="concat('mci-', $registrationInformation/identificatienummer/@value)"/>
+                    <xsl:value-of select="concat('avci-', $registrationInformation/identificatienummer/@value)"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'patient'">
                     <xsl:value-of select="concat('patient-', string-join((naamgegevens[1]/geslachtsnaam/(voorvoegsels, achternaam)/@value, naamgegevens[1]/geslachtsnaam_partner/(voorvoegsels_partner, achternaam_partner)/@value), '-'))"/>

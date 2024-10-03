@@ -27,7 +27,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="profileNameCioCondition">cio-Condition</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create a cio-Condition instance as a Condition FHIR instance from the ada elements geneesmiddelovergevoeligheid/overgevoeligheid and geneesmiddelovergevoeligheid/reactie.</xd:desc>
+        <xd:desc>Create a cio-Condition instance as a Condition FHIR instance from the ada element geneesmiddelovergevoeligheid/aandoening_of_gesteldheid.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
@@ -44,6 +44,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
                 <xsl:variable name="hypersensitivityIntolerance" select="../overgevoeligheid_intolerantie[relatie_aandoening_of_gesteldheid/identificatie/@value = $identificationNumber/@id]"/>
                 <xsl:variable name="reaction" select="../reactie[relatie_aandoening_of_gesteldheid/identificatie/@value = $identificationNumber/@id]"/>
+                <xsl:variable name="symptom" select="../symptoom[relatie_aandoening_of_gesteldheid/identificatie/@value = $identificationNumber/@id]"/>
                 
                 <xsl:call-template name="insertLogicalId">
                     <xsl:with-param name="profile" select="$profileNameCioCondition"/>
@@ -52,8 +53,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="{concat($urlBaseNictizProfile, $profileNameCioCondition)}"/>
                 </meta>
                 
-                <xsl:for-each select="diagnostisch_inzicht_datum[@value]">
-                    <extension url="http://hl7.org/fhir/StructureDefinition/allergyintolerance-assertedDate">
+                <xsl:for-each select="($hypersensitivityIntolerance | $reaction)/diagnostisch_inzicht_datum[@value]">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/condition-assertedDate">
                         <valueDateTime>
                             <xsl:attribute name="value">
                                 <xsl:call-template name="format2FHIRDate">
@@ -86,21 +87,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </severity>
                 </xsl:for-each>
                 
-                <xsl:for-each select="($hypersensitivityIntolerance | $reaction)/diagnose/diagnose_naam[@code]">
+                <xsl:for-each select="($hypersensitivityIntolerance | $reaction)/diagnose">
                     <code>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </code>
-                </xsl:for-each>
-                
-                <xsl:for-each select="($hypersensitivityIntolerance | $reaction)/diagnose/nadere_specificatie_diagnose_naam[@value]">
-                    <code>
-                        <text>
-                            <xsl:call-template name="string-to-string">
+                        <xsl:for-each select="diagnose_naam[@code]">
+                            <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
-                        </text>
+                        </xsl:for-each>
+                        
+                        <xsl:for-each select="nadere_specificatie_diagnose_naam[@value]">
+                            <text>
+                                <xsl:call-template name="string-to-string">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </text>
+                        </xsl:for-each>
                     </code>
                 </xsl:for-each>
             
@@ -155,17 +156,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:for-each>
                 
-                <evidence>
-                    <symptom>
+                <xsl:for-each select="$symptom">
+                    <evidence>
                         <detail>
                             <xsl:call-template name="makeReference">
-                                <xsl:with-param name="in" select="../symptoom/relatie_aandoening_of_gesteldheid"/>
-                                <xsl:with-param name="wrapIn" select="'relatieSymptoom'"/>
+                                <xsl:with-param name="in" select="."/>
                                 <xsl:with-param name="profile" select="$profileNameCioSymptom"/>
                             </xsl:call-template> 
-                        </detail> 
-                    </symptom>
-                </evidence>
+                        </detail>
+                    </evidence>
+                </xsl:for-each>
     
                 <xsl:for-each select="toelichting[@value]">
                     <note>
@@ -182,22 +182,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
-        <xd:param name="profile">Parameter to indicate for which target profile a display is to be generated.</xd:param>
     </xd:doc>
     <xsl:template match="aandoening_of_gesteldheid[parent::geneesmiddelovergevoeligheid]" mode="_generateDisplay">
-        <xsl:param name="profile" required="yes" as="xs:string"/>
-        
-        <xsl:choose>
-            <xsl:when test="$profile = $profileNameCioCondition">
-                <xsl:variable name="parts" as="item()*">
-                    <xsl:text>Reactie</xsl:text>
-                    <xsl:value-of select="concat('startdatum: ', start_datum_tijd/@value)"/>
-                    <xsl:if test="eind_datum_tijd/@value">
-                        <xsl:value-of select="concat('einddatum: ', eind_datum_tijd/@value)"/>
-                    </xsl:if>
-                </xsl:variable>
-                <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
-            </xsl:when>
-        </xsl:choose>
+        <xsl:variable name="parts" as="item()*">
+            <xsl:text>Aandoening</xsl:text>
+            <xsl:value-of select="concat('startdatum: ', start_datum_tijd/@value)"/>
+            <xsl:if test="eind_datum_tijd/@value">
+                <xsl:value-of select="concat('einddatum: ', eind_datum_tijd/@value)"/>
+            </xsl:if>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
     </xsl:template>
 </xsl:stylesheet>

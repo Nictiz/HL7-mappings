@@ -71,6 +71,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>
                 </xsl:for-each>
                 
+                <xsl:for-each select="besluit_grond/besluit_reden[@code]">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-SurveillanceDecision.SurveillanceDecision">
+                        <valueCodeableConcept>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </valueCodeableConcept>
+                    </extension>
+                </xsl:for-each>
+                
                 <xsl:if test="$relationSurveillanceDecision">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-SurveillanceDecision.RelationSurveillanceDecision">
                         <valueReference>
@@ -90,16 +100,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="ext-MedicationHypersensitivityIdentifier">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
-                </xsl:for-each>
-                
-                <xsl:for-each select="besluit_grond/besluit_reden[@code]">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-SurveillanceDecision.SurveillanceDecision">
-                        <valueCodeableConcept>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </valueCodeableConcept>
-                    </extension>
                 </xsl:for-each>
                 
                 <xsl:for-each select="$identificationNumber[@value]">

@@ -39,11 +39,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <Observation>
                 <xsl:variable name="registrationInformation" select="../../bouwstenen/registratie_informatie[@id = current()/registratie_informatie/@value]"/>
                 <xsl:variable name="identificationNumber" select="$registrationInformation/identificatienummer"/>
-                <xsl:variable name="author" select="$registrationInformation/auteur/*"/>
-                <xsl:variable name="registrationDateTime" select="$registrationInformation/ontstaans_datum_tijd"/>
-           
-                <xsl:variable name="relationConditionRegistrationInformation" select="../../bouwstenen/registratie_informatie[identificatienummer/@value = current()/relatie_aandoening_of_gesteldheid/identificatie/@value]"/>
-                <xsl:variable name="relationCondition" select="../../geneesmiddelovergevoeligheid/aandoening_of_gesteldheid[registratie_informatie/@value = $relationConditionRegistrationInformation/@id]"/>
                 
                 <xsl:call-template name="insertLogicalId">
                     <xsl:with-param name="profile" select="$profileNameCioSymptom"/>
@@ -51,15 +46,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="{concat($urlBaseNictizProfile, $profileNameCioSymptom)}"/>
                 </meta>
-
-                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationCondition">
-                    <valueReference>
-                        <xsl:call-template name="makeReference">
-                            <xsl:with-param name="in" select="$relationCondition"/>
-                            <xsl:with-param name="profile" select="$profileNameCioCondition"/>
-                        </xsl:call-template>
-                    </valueReference>
-                </extension>
                 
                 <xsl:for-each select="../identificatie_gmo">
                     <xsl:call-template name="ext-MedicationHypersensitivityIdentifier">
@@ -81,16 +67,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </code>
-                </xsl:for-each>
-                
-                <xsl:for-each select="nadere_specificatie_symptoom_naam[@value]">
-                    <code>
+                    
+                    <xsl:for-each select="../nadere_specificatie_symptoom_naam[@value]">
                         <text>
                             <xsl:call-template name="string-to-string">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
                         </text>
-                    </code>
+                    </xsl:for-each>
                 </xsl:for-each>
                 
                 <xsl:call-template name="makeReference">
@@ -98,28 +82,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="wrapIn" select="'subject'"/>
                 </xsl:call-template>
                 
-                <xsl:for-each select="toelichting[@value]">
-                    <note>
-                        <text>
-                            <xsl:call-template name="string-to-string">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </text>
-                    </note>
-                </xsl:for-each>
-                
-                <component>
-                    <code>
-                        <coding>
-                            <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                            <code value="246112005"/>
-                            <display value="severity "/>
-                        </coding>
-                    </code>
-                </component>
-                
-                <xsl:for-each select="symptoom_ernst[@value]">
+                <xsl:for-each select="symptoom_ernst[@code]">
                     <component>
+                        <code>
+                            <coding>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
+                                <code value="246112005"/>
+                                <display value="ernst "/>
+                            </coding>
+                        </code>
+                        
                         <valueCodeableConcept>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="."/>
@@ -127,27 +99,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueCodeableConcept>
                     </component>
                 </xsl:for-each>
-               
             </Observation>
         </xsl:for-each>
     </xsl:template>
     
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
-        <xd:param name="profile">Parameter to indicate for which target profile a display is to be generated.</xd:param>
     </xd:doc>
     <xsl:template match="symptoom[parent::geneesmiddelovergevoeligheid]" mode="_generateDisplay">
-        <xsl:param name="profile" required="yes" as="xs:string"/>
-        
-        <xsl:choose>
-            <xsl:when test="$profile = $profileNameCioSymptom">
-                <xsl:variable name="parts" as="item()*">
-                    <xsl:text>Symptoom</xsl:text>
-                    <xsl:value-of select="symptoom_naam/@displayName"/>
-                    <xsl:value-of select="concat('symptoomernst: ', symptoom_ernst/@value)"/>
-                </xsl:variable>
-                <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
-            </xsl:when>
-        </xsl:choose>
+        <xsl:variable name="parts" as="item()*">
+            <xsl:text>Symptoom</xsl:text>
+            <xsl:value-of select="symptoom_naam/@displayName"/>
+            <xsl:value-of select="concat('ernst: ', symptoom_ernst/@value)"/>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
     </xsl:template>
 </xsl:stylesheet>

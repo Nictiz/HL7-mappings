@@ -56,8 +56,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <valueCodeableConcept>
                         <coding>
                             <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                            <code value="609433001"/>
-                            <display value="overgevoeligheid"/>
+                            <code value="420134006"/>
+                            <display value="neiging tot ongewenste reactie"/>
                         </coding>
                     </valueCodeableConcept>
                 </extension>
@@ -107,26 +107,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </identifier>
                 </xsl:for-each>
                 
-                <xsl:for-each select="zekerheid_status[@code]">
-                    <verificationStatus>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="."/>
-                            <xsl:with-param name="codeMap" as="element()*">
-                                <map inCode="415684004" inCodeSystem="{$oidSNOMEDCT}" code="unconfirmed" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Unconfirmed"/>
-                                <map inCode="410590009" inCodeSystem="{$oidSNOMEDCT}" code="unconfirmed" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Unconfirmed"/>
-                                <map inCode="410605003" inCodeSystem="{$oidSNOMEDCT}" code="confirmed" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Confirmed"/>
-                                <map inCode="410593006" inCodeSystem="{$oidSNOMEDCT}" code="unconfirmed" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Unconfirmed"/>
-                                <map inCode="410516002" inCodeSystem="{$oidSNOMEDCT}" code="refuted" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Refuted"/>
-                                <map inCode="UNK" inCodeSystem="2.16.840.1.113883.5.1008" code="unconfirmed" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Unconfirmed"/>
-                            </xsl:with-param>
-                        </xsl:call-template>
-                        
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </verificationStatus>
-                </xsl:for-each>
-                
                 <xsl:for-each select="categorie[@code]">
                     <category>
                         <xsl:attribute name="value">
@@ -134,8 +114,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="in" select="."/>
                                 <xsl:with-param name="codeMap" as="element()*">
                                     <map inCode="418471000" inCodeSystem="{$oidSNOMEDCT}" code="food"/>
-                                    <map inCode="419511003" inCodeSystem="{$oidSNOMEDCT}" code="medication"/>
                                     <map inCode="157531000146101" inCodeSystem="{$oidSNOMEDCT}" code="environment"/>
+                                    <map inCode="419511003" inCodeSystem="{$oidSNOMEDCT}" code="medication"/>
+                                    <map inCode="157521000146103" inCodeSystem="{$oidSNOMEDCT}" code="environment"/>
+                                    <map inCode="157511000146108" inCodeSystem="{$oidSNOMEDCT}" code="environment"/>
                                 </xsl:with-param>
                             </xsl:call-template>
                         </xsl:attribute>
@@ -158,7 +140,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="codeMap" as="element()*">
                                     <map inCode="255604002" inCodeSystem="{$oidSNOMEDCT}" code="low"/>
                                     <map inCode="24484000" inCodeSystem="{$oidSNOMEDCT}" code="high"/>
-                                    <map inCode="1156316003" inCodeSystem="{$oidSNOMEDCT}" code="unable-to-assess"/>
                                 </xsl:with-param>
                             </xsl:call-template>
                         </xsl:attribute>
@@ -181,20 +162,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </code>
                 </xsl:for-each>
                 
-                <xsl:for-each select="diagnose/nadere_specificatie_diagnose_naam[@value]">
-                    <code>
-                        <text>
-                            <xsl:call-template name="string-to-string">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </text>
-                    </code>
-                </xsl:for-each>
-                
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn" select="'patient'"/>
                 </xsl:call-template>
+                
+                <xsl:for-each select="$relationCondition/periode_aanwezig/tijds_interval/start_datum_tijd[@value]">
+                    <onsetDateTime>
+                        <xsl:attribute name="value">
+                            <xsl:call-template name="format2FHIRDate">
+                                <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                            </xsl:call-template>
+                        </xsl:attribute>
+                    </onsetDateTime>
+                </xsl:for-each>
                 
                 <xsl:for-each select="$creationDateTime[@value]">
                     <recordedDate>
@@ -237,20 +218,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
-        <xd:param name="profile">Parameter to indicate for which target profile a display is to be generated.</xd:param>
     </xd:doc>
     <xsl:template match="overgevoeligheid_intolerantie[parent::geneesmiddelovergevoeligheid]" mode="_generateDisplay">
-        <xsl:param name="profile" required="yes" as="xs:string"/>
-        
-        <xsl:choose>
-            <xsl:when test="$profile = $profileNameCioHypersensitivityIntolerance">
-                <xsl:variable name="parts" as="item()*">
-                    <xsl:text>Overgevoeligheid Intolerantie</xsl:text>
-                    <xsl:value-of select="agens/stof/@displayName"/>
-                    <xsl:value-of select="concat('diagnosedatum: ', diagnostisch_inzicht_datum/@value)"/>
-                </xsl:variable>
-                <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
-            </xsl:when>
-        </xsl:choose>
+        <xsl:variable name="parts" as="item()*">
+            <xsl:text>Overgevoeligheid/intolerantie</xsl:text>
+            <xsl:value-of select="agens/stof/@displayName"/>
+            <xsl:value-of select="concat('diagnosedatum: ', diagnostisch_inzicht_datum/@value)"/>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
     </xsl:template>
 </xsl:stylesheet>

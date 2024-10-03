@@ -39,9 +39,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="surveillanceDecision" select="../../geneesmiddelovergevoeligheid/bewaking_besluit[registratie_informatie/@value = current()/@id]"/>
                 <xsl:variable name="hypersensitivityIntolerance" select="../../geneesmiddelovergevoeligheid/overgevoeligheid_intolerantie[registratie_informatie/@value = current()/@id]"/>
                 <xsl:variable name="reaction" select="../../geneesmiddelovergevoeligheid/reactie[registratie_informatie/@value = current()/@id]"/>
-                <xsl:variable name="condition" select="../../geneesmiddelovergevoeligheid/aandoening_of_gesteldheid[registratie_informatie/@value = current()/@id]"/>
                 <xsl:variable name="symptom" select="../../geneesmiddelovergevoeligheid/symptoom[registratie_informatie/@value = current()/@id]"/>
-                <xsl:variable name="replyProposalContraIndication" select="../../voorstel_gegevens/antwoord_voorstel_contra_indicatie[registratie_informatie/@value = current()/@id]"/>
+                <xsl:variable name="condition" select="../../geneesmiddelovergevoeligheid/aandoening_of_gesteldheid[registratie_informatie/@value = current()/@id]"/>
                 
                 <xsl:call-template name="insertLogicalId">
                     <xsl:with-param name="profile" select="$profileNameCioRegistrationInformation"/>
@@ -50,7 +49,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="{concat($urlBaseNictizProfile, $profileNameCioRegistrationInformation)}"/>
                 </meta>
                 
-                <xsl:for-each select="$medicationContraIndication | $surveillanceDecision | $hypersensitivityIntolerance | $reaction | $condition | $symptom | $replyProposalContraIndication">
+                <xsl:for-each select="$medicationContraIndication | $surveillanceDecision | $hypersensitivityIntolerance | $reaction | $symptom | $condition">
                     <xsl:call-template name="makeReference">
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="wrapIn" select="'target'"/>
@@ -68,27 +67,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:when test="self::reactie">
                                     <xsl:value-of select="$profileNameCioReaction"/>
                                 </xsl:when>
-                                <xsl:when test="self::aandoening_of_gesteldheid">
-                                    <xsl:value-of select="$profileNameCioCondition"/>
-                                </xsl:when>
                                 <xsl:when test="self::symptoom">
                                     <xsl:value-of select="$profileNameCioSymptom"/>
                                 </xsl:when>
-                                <xsl:when test="self::antwoord_voorstel_contra_indicatie">
-                                    <xsl:value-of select="$profileNameCioReplyProposalContraIndication"/>
+                                <xsl:when test="self::aandoening_of_gesteldheid">
+                                    <xsl:value-of select="$profileNameCioCondition"/>
                                 </xsl:when>
                             </xsl:choose>
                         </xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
-                
-                <!--<xsl:for-each select="$hypersensitivity | $reaction">
-                    <xsl:call-template name="makeReference">
-                        <xsl:with-param name="in" select="."/>
-                        <xsl:with-param name="wrapIn" select="'target'"/>
-                        <xsl:with-param name="profile" select="$profileNameCioCondition"/>
-                    </xsl:call-template>
-                </xsl:for-each>-->
                 
                 <xsl:for-each select="ontstaans_datum_tijd[@value]">
                     <recorded>
