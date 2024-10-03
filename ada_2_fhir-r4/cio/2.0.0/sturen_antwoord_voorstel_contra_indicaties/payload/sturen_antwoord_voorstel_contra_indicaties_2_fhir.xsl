@@ -45,8 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 sturen_antwoord_voorstel_contra_indicaties/voorstel_gegevens/antwoord_voorstel_contra_indicatie |
                 sturen_antwoord_voorstel_contra_indicaties/patient |
                 sturen_antwoord_voorstel_contra_indicaties/bouwstenen/zorgverlener |
-                sturen_antwoord_voorstel_contra_indicaties/bouwstenen/zorgaanbieder |
-                sturen_antwoord_voorstel_contra_indicaties/bouwstenen/registratie_informatie
+                sturen_antwoord_voorstel_contra_indicaties/bouwstenen/zorgaanbieder
                 )"/>
         </xsl:call-template>
     </xsl:param>
@@ -91,15 +90,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each-group>
             </xsl:variable>
             
-            <xsl:variable name="registrationInformations" as="element()*">
-                <xsl:for-each-group select="bouwstenen/registratie_informatie" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:call-template name="cio-RegistrationInformation">
-                        <xsl:with-param name="in" select="current-group()[1]"/>
-                    </xsl:call-template>
-                </xsl:for-each-group>
-            </xsl:variable>
-            
-            <xsl:for-each select="$replyProposalContraIndications | $patient | $healthProfessionals | $healthcareProviders | $registrationInformations">
+            <xsl:for-each select="$replyProposalContraIndications | $patient | $healthProfessionals | $healthcareProviders">
                 <entry xmlns="http://hl7.org/fhir">
                     <xsl:call-template name="_insertFullUrlById"/>
                     <resource>
@@ -185,9 +176,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
                 <xsl:when test="$localName = 'zorgaanbieder' and $profile = 'nl-core-HealthcareProvider-Organization'">
                     <xsl:value-of select="concat('org-', string-join((zorgaanbieder_identificatienummer/@value, afdeling_specialisme/@code)[. != ''], '-'))"/>
-                </xsl:when>
-                <xsl:when test="$localName = 'registratie_informatie' and $profile = $profileNameCioRegistrationInformation">
-                    <xsl:value-of select="concat('reginfo-', identificatienummer/@value)"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="$localName"/>
