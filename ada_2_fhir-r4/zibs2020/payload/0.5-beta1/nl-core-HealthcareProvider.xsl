@@ -19,14 +19,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada zorgaanbieder to FHIR resource conforming to profile nl-core-HealthcareProvider</xd:desc>
+        <xd:desc>Converts ADA zorgaanbieder to FHIR Location resource conforming to profile nl-core-HealthcareProvider and FHIR Organization resource conforming to profile nl-core-HealthcareProvider-Organization.</xd:desc>
     </xd:doc>
 
-    <xsl:variable name="profilenameHealthcareProvider">nl-core-HealthcareProvider</xsl:variable>
-    <xsl:variable name="profilenameHealthcareProviderOrganization">nl-core-HealthcareProvider-Organization</xsl:variable>
+    <xsl:variable name="profileNameHealthcareProvider">nl-core-HealthcareProvider</xsl:variable>
+    <xsl:variable name="profileNameHealthcareProviderOrganization">nl-core-HealthcareProvider-Organization</xsl:variable>
 
     <xd:doc>
-        <xd:desc>Produces a Location resource based on nl-core-HealthcareProvider</xd:desc>
+        <xd:desc>Creates an nl-core-HealthcareProvider instance as a Location FHIR instance from ADA zorgaanbieder element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="zorgaanbieder[not(zorgaanbieder)]" mode="nl-core-HealthcareProvider" name="nl-core-HealthcareProvider" as="element(f:Location)?">
@@ -35,19 +35,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Location>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="$profilenameHealthcareProvider"/>
+                    <xsl:with-param name="profile" select="$profileNameHealthcareProvider"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNameHealthcareProvider)}"/>
                 </meta>
 
-                <xsl:for-each select="organisatie_locatie/locatie_naam">
-                    <name>
-                        <xsl:call-template name="string-to-string"/>
-                    </name>
-                </xsl:for-each>
+                <xsl:choose>
+                    <xsl:when test="organisatie_locatie/locatie_naam[@value]">
+                        <name>
+                            <xsl:call-template name="string-to-string"/>
+                        </name>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <!-- fallback on organisation name -->
+                        <xsl:for-each select="organisatie_naam[@value]">
+                            <name>
+                                <xsl:call-template name="string-to-string"/>
+                            </name>
+                        </xsl:for-each>
+                    </xsl:otherwise>
+                </xsl:choose>
 
-                <xsl:for-each select="organisatie_locatie/locatie_nummer">
+                <xsl:for-each select="organisatie_locatie/locatie_nummer[@value]">
                     <name>
                         <xsl:call-template name="string-to-string"/>
                     </name>
@@ -63,7 +73,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="in" select="."/>
-                    <xsl:with-param name="profile" select="'nl-core-HealthcareProvider-Organization'"/>
+                    <xsl:with-param name="profile" select="$profileNameHealthcareProviderOrganization"/>
                     <xsl:with-param name="wrapIn" select="'managingOrganization'"/>
                 </xsl:call-template>
             </Location>
@@ -71,7 +81,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Produces an Organization resource based on nl-core-HealthcareProvider-Organization</xd:desc>
+        <xd:desc>Creates an nl-core-HealthcareProvider-Organization instance as an Organization FHIR instance from ADA zorgaanbieder element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="zorgaanbieder[not(zorgaanbieder)]" mode="nl-core-HealthcareProvider-Organization" name="nl-core-HealthcareProvider-Organization" as="element(f:Organization)?">
@@ -80,10 +90,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Organization>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="$profilenameHealthcareProviderOrganization"/>
+                    <xsl:with-param name="profile" select="$profileNameHealthcareProviderOrganization"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNameHealthcareProviderOrganization)}"/>
                 </meta>
                 <xsl:for-each select="zorgaanbieder_identificatienummer[@value]">
                     <identifier>
@@ -126,11 +136,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="profile" required="yes" as="xs:string"/>
 
         <xsl:choose>
-            <xsl:when test="$profile = $profilenameHealthcareProvider">
+            <xsl:when test="$profile = $profileNameHealthcareProvider">
                 <xsl:variable name="parts" as="item()*">
                     <xsl:text>Healthcare provider (location)</xsl:text>
                     <xsl:value-of select="organisatie_naam/@value"/>
-                    <xsl:value-of select="organisatie_locatie/locatie_naam/@value"/>
+                    <!-- only output location name if it is actually different from the organisation name -->
+                    <xsl:if test="organisatie_naam/@value != organisatie_locatie/locatie_naam/@value">
+                        <xsl:value-of select="organisatie_locatie/locatie_naam/@value"/>
+                    </xsl:if>
                     <xsl:if test="not(organisatie_naam/@value | organisatie_locatie/locatie_naam/@value)">
                         <xsl:value-of select="concat('organisation-id ', zorgaanbieder_identificatienummer/@value, ' in system ', zorgaanbieder_identificatienummer/@root)"/>
                     </xsl:if>
@@ -138,7 +151,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:variable>
                 <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
             </xsl:when>
-            <xsl:when test="$profile = $profilenameHealthcareProviderOrganization">
+            <xsl:when test="$profile = $profileNameHealthcareProviderOrganization">
                 <xsl:variable name="parts" as="item()*">
                     <xsl:text>Healthcare provider (organization)</xsl:text>
                     <xsl:value-of select="organisatie_naam/@value"/>
@@ -182,7 +195,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$currentZaId[@value | @root]">
                     <xsl:for-each select="($currentZaId[@value | @root])[1]">
                         <!-- use append for Organization to also create stable id based on identifier, but make it unique cause Location uses the same -->
-                        <xsl:if test="$profile = $profilenameHealthcareProviderOrganization">Org-</xsl:if>
+                        <xsl:if test="$profile = $profileNameHealthcareProviderOrganization">Org-</xsl:if>
                         <xsl:if test="$profile = $profileNameHealthProfessionalPractitionerRole">PrcRol-</xsl:if>
                         <!-- we remove '.' in root oid and '_' in extension to enlarge the chance of staying in 64 chars -->
                         <xsl:value-of select="concat(replace(@root, '\.', ''), '-', replace(@value, '_', ''))"/>
@@ -224,7 +237,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:function>
 
-    <!--_nl-core-HealthProfessional-PractionerRole_toOrganization-->
+    <xd:doc>
+        <xd:desc>_nl-core-HealthProfessional-PractionerRole_toOrganization</xd:desc>
+        <xd:param name="in">the element to be handled, defaults to context item</xd:param>
+    </xd:doc>
+
     <xsl:template match="zorgaanbieder" mode="_nl-core-HealthProfessional-PractitionerRole_toOrganization" name="_nl-core-HealthProfessional-PractionerRole_toOrganization" as="element(f:PractitionerRole)?">
         <xsl:param name="in" select="." as="element()?"/>
 
@@ -234,12 +251,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNameHealthProfessionalPractitionerRole)}"/>
                 </meta>
 
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="in" select="$in"/>
-                    <xsl:with-param name="profile">nl-core-HealthcareProvider-Organization</xsl:with-param>
+                    <xsl:with-param name="profile" select="$profileNameHealthcareProviderOrganization"/>
                     <xsl:with-param name="wrapIn" select="'organization'"/>
                 </xsl:call-template>
             </PractitionerRole>

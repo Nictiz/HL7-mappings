@@ -492,14 +492,14 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e88f0a06-6b06-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:403aade7-6b47-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="2 maal per dag 1 dosis, inhalatie"/>
+               <valueString value="Vanaf T - 130 dagen, tot en met T - 101 dagen, 2 maal per dag 1 dosis, inhalatie"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                <valueReference>
@@ -546,6 +546,10 @@
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
+            <effectivePeriod>
+               <start value="${DATE, T, D, -130}T00:00:00+02:00"/>
+               <end value="${DATE, T, D, -101}T23:59:59+02:00"/>
+            </effectivePeriod>
             <dateAsserted value="${DATE, T, D, -100}T07:59:59+02:00"/>
             <informationSource>
                <reference value="urn:uuid:5faee092-6b61-11ec-0000-020000000000"/>

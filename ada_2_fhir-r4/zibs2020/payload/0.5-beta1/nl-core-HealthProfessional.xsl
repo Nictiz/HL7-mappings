@@ -16,15 +16,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
+    <xd:doc scope="stylesheet">
+        <xd:desc>Converts ADA zorgverlener to FHIR PractitionerRole resource conforming to profile nl-core-HealthProfessional-PractitionerRole and FHIR Practitioner resource conforming to profile nl-core-HealthProfessional-Practitioner.</xd:desc>
+    </xd:doc>
+    
     <xsl:variable name="profileNameHealthProfessionalPractitionerRole">nl-core-HealthProfessional-PractitionerRole</xsl:variable>
     <xsl:variable name="profileNameHealthProfessionalPractitioner">nl-core-HealthProfessional-Practitioner</xsl:variable>
 
-    <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada zorgverlener_rol to FHIR resource conforming to profile nl-core-HealthProfessional-PractitionerRole</xd:desc>
-    </xd:doc>
-
     <xd:doc>
-        <xd:desc>Creates an nl-core-HealthProfessional-PractitionerRole FHIR instance from an ada 'zorgverlener' element. Please note that following the zib2020 R4 profiling guidelines, a PractitionerRole that references a Practitioner is considered more meaningful than directly referencing a Practitioner.</xd:desc>
+        <xd:desc>Creates an nl-core-HealthProfessional-PractitionerRole instance as a PractitionerRole FHIR instance from ADA zorgverlener element. Please note that following the zib2020 R4 profiling guidelines, a PractitionerRole that references a Practitioner is considered more meaningful than directly referencing a Practitioner.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="zorgverlener" mode="nl-core-HealthProfessional-PractitionerRole" name="nl-core-HealthProfessional-PractitionerRole" as="element(f:PractitionerRole)?">
@@ -54,7 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNameHealthProfessionalPractitionerRole)}"/>
                 </meta>
                 <xsl:if test="zorgverlener_identificatienummer | naamgegevens | geslacht | adresgegevens">
                     <practitioner>
@@ -66,7 +66,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="in" select="zorgaanbieder"/>
-                    <xsl:with-param name="profile">nl-core-HealthcareProvider-Organization</xsl:with-param>
+                    <xsl:with-param name="profile" select="$profileNameHealthcareProviderOrganization"/>
                     <xsl:with-param name="wrapIn" select="'organization'"/>
                 </xsl:call-template>
 
@@ -86,7 +86,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Creates an nl-core-HealthProfessional-Practitioner FHIR instance from an ada 'zorgverlener' element.</xd:desc>
+        <xd:desc>Creates an nl-core-HealthProfessional-Practitioner instance as a Practitioner FHIR instance from ADA zorgverlener element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="zorgverlener" mode="nl-core-HealthProfessional-Practitioner" name="nl-core-HealthProfessional-Practitioner" as="element(f:Practitioner)*">
@@ -115,10 +115,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <Practitioner>
                 <xsl:call-template name="insertLogicalId">
                     <xsl:with-param name="in" select="."/>
-                    <xsl:with-param name="profile" select="'nl-core-HealthProfessional-Practitioner'"/>
+                    <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitioner"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNameHealthProfessionalPractitioner)}"/>
                 </meta>
                 <xsl:for-each select="zorgverlener_identificatienummer">
                     <identifier>

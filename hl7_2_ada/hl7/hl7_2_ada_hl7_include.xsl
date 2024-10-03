@@ -260,8 +260,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:value-of select="concat(substring(concat($yyyymmddHHMMSS, '00000000000000'), 1, 14), $ssZZzz)"/>
     </xsl:function>
 
-
-
     <xd:doc>
         <xd:desc> appends an HL7 date with zeros so that an XML possibly vague date or dateTime can be created </xd:desc>
         <xd:param name="inputDate">HL7 ts date/time string expected format yyyymmddHHMMSS.sssss[+-]ZZzz</xd:param>
@@ -427,7 +425,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="level" select="$logFATAL"/>
                         <xsl:with-param name="terminate" select="true()"/>
                         <xsl:with-param name="msg">Cannot determine the datatype based on @xsi:type, or value not supported: <xsl:value-of select="$xsiType"/>. Calculated QName <xsl:value-of select="$xsiTypeURIName"/></xsl:with-param>
-                    </xsl:call-template>                    
+                    </xsl:call-template>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
@@ -1029,10 +1027,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                         </xsl:when>
                                                         <xsl:otherwise>
                                                             <!-- not in value, due to validation errors -->
-                                                      
+
                                                             <xsl:attribute name="displayName" select="$country/text()"/>
                                                         </xsl:otherwise>
-                                                        
+
                                                     </xsl:choose>
                                                 </xsl:if>
                                             </xsl:otherwise>
@@ -1380,7 +1378,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:copy-of select="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:copy-of select="."/>
+                        <!-- we don't want the @value if it is there, because in ada this has no significant meaning on a coded element and ada will probably break on negative values, which are possible in hl7 -->
+                        <!-- MP-1567 so not use xsl:copy/@select -->
+                        <xsl:element name="{local-name()}">
+                            <xsl:copy-of select="@*[name() != 'value']"/>
+                        </xsl:element>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
@@ -1664,6 +1666,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc>Creates ada attributes taking a hl7 code element as input</xd:desc>
+        <xd:param name="current-hl7-code">The hl7 code element for which to create the attributes</xd:param>
+    </xd:doc>
+    <xsl:template name="mp9-code-attribs">
+        <xsl:param name="current-hl7-code" as="element()?" select="."/>
+        
+        <xsl:for-each select="$current-hl7-code">
+            <xsl:choose>
+                <xsl:when test=".[@code]">
+                    <xsl:copy-of select="@code | @codeSystem | @codeSystemName | @codeSystemVersion | @displayName"/>
+                    <!-- really should not happen with a properly coded element, but let's preserve whatever was there -->
+                    <xsl:for-each select="hl7:originalText">
+                        <xsl:attribute name="originalText" select="."/>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:when test=".[@nullFlavor]">
+                    <xsl:attribute name="code" select="./@nullFlavor"/>
+                    <xsl:attribute name="codeSystem" select="$oidHL7NullFlavor"/>
+                    <xsl:attribute name="displayName" select="$hl7NullFlavorMap[@hl7NullFlavor = current()/@nullFlavor]/@displayName"/>
+                    <xsl:for-each select="hl7:originalText">
+                        <xsl:attribute name="originalText" select="."/>
+                    </xsl:for-each>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:for-each>
+    </xsl:template>    
+    
     <xd:doc>
         <xd:desc> auteur - zib2020 </xd:desc>
         <xd:param name="in-hl7">hl7 element assigned Contents, typically an assignedAuthor or assignedEntity</xd:param>
@@ -1977,8 +2007,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </contactpersoon>
     </xsl:template>
 
-
-
     <xd:doc>
         <xd:desc> shared part 1 of contactpersoon - zib2020 </xd:desc>
         <xd:param name="in-hl7">hl7 element containing the contact person code/address/telecom</xd:param>
@@ -2010,7 +2038,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </xsl:for-each>
     </xsl:template>
-
 
     <xd:doc>
         <xd:desc> auteur - zib2020 </xd:desc>
@@ -2151,8 +2178,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-
-
     <xd:doc>
         <xd:desc>Returns an XML comment on the output that marks that the output is generated content, and shows what instance (element name + hl7:id or hl7:code or hl7:templateId) it came from</xd:desc>
         <xd:param name="in">Optional explicit element to start from, if not the context node.</xd:param>
@@ -2241,6 +2266,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:value-of select="upper-case(string-join(($in//@value, $in//@root, $in//@unit, $in//@code, $in//@codeSystem, $in//@nullFlavor)/normalize-space(), ''))"/>
         </xsl:if>
     </xsl:function>
-
 
 </xsl:stylesheet>

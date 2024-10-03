@@ -3,11 +3,11 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
    </meta>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
       <valueDateTime value="${DATE, T, D, +0}T09:47:00+02:00"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-      <valueString value="Vanaf T, tot en met T + 8 dagen, toedieningssnelheid: 0.2 à 0.5 ml per uur, parenteraal"/>
+      <valueString value="Vanaf T, tot en met T + 8 dagen, toedieningssnelheid: 0.2 à 0.5 per, Intraveneus"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
       <valuePeriod>
@@ -34,9 +34,9 @@
       </coding>
    </category>
    <medicationReference>
-      <reference value="Medication/mp-PhPrd-mp9-21684011138832447-779288"/>
+      <reference value="Medication/mp-PhPrd-mp9-21684011138832447-2554771"/>
       <type value="Medication"/>
-      <display value="MORFINEHYDROCHLORIDE 1ML= 5MG EPI CAS 100ML FNA MR"/>
+      <display value="MORFINE HCL 3WATER INFVLST 5MG/ML CASS 100ML AHZ"/>
    </medicationReference>
    <subject>
       <reference value="Patient/nl-core-Patient-mp9-MXXX-Rambaldo"/>
@@ -62,8 +62,8 @@
       <route>
          <coding>
             <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-            <code value="10"/>
-            <display value="parenteraal"/>
+            <code value="5"/>
+            <display value="Intraveneus"/>
          </coding>
       </route>
       <doseAndRate>

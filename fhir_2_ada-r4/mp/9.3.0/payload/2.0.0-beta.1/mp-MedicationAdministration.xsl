@@ -38,7 +38,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- afgesproken_hoeveelheid -->
 			<xsl:apply-templates select="f:dosage/f:extension[@url = $urlExtMedicationAdministration2AgreedAmount]/f:valueQuantity" mode="#current"/>
 			<!-- volgens_afspraak_indicator -->
-			<!-- TODO: should be updated in FHIR profile -->
+			<!-- MP-1393 volgens_afspraak nolonger supported in MP9.3.0.0 beta.3 but is kept in the stylesheet to ensure backwards compatibility-->
 			<xsl:apply-templates select="f:extension[@url = $urlExtAsAgreedIndicator]" mode="#current"/>
 			<!-- toedieningsweg -->
 			<xsl:apply-templates select="f:dosage/f:route" mode="mp-InstructionsForUse"/>
@@ -72,6 +72,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xd:doc>
 		<xd:desc>Template to convert f:extension $urlExtAsAgreedIndicator to volgens_afspraak_indicator element.</xd:desc>
 	</xd:doc>
+	<!-- MP-1393 volgens_afspraak nolonger supported in MP9.3.0.0 beta.3 but is kept in the stylesheet to ensure backwards compatibility-->
 	<xsl:template match="f:extension[@url = $urlExtAsAgreedIndicator]" mode="mp-MedicationAdministration">
 		<volgens_afspraak_indicator>
 			<xsl:call-template name="boolean-to-boolean">
@@ -86,7 +87,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:template match="f:extension[@url = $urlExtMedicationAdministration2ReasonForDeviation]" mode="mp-MedicationAdministration">
 		<xsl:call-template name="CodeableConcept-to-code">
 			<xsl:with-param name="in" select="f:valueCodeableConcept"/>
-			<xsl:with-param name="adaElementName">medicatie_toediening_reden_van_afwijken</xsl:with-param>
+		    <!-- name change in MP9 dataset -->		    
+			<xsl:with-param name="adaElementName">medicatietoediening_reden_van_afwijken</xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
 
@@ -120,7 +122,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xd:desc>Template to convert f:dosage/f:dose to toegediende_hoeveelheid aantal  and eenheid element.</xd:desc>
 	</xd:doc>
 	<xsl:template match="f:dosage/f:dose" mode="mp-MedicationAdministration">
-
 		<toegediende_hoeveelheid>
 			<xsl:call-template name="GstdQuantity2ada"/>
 		</toegediende_hoeveelheid>
@@ -191,7 +192,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 						<!-- should be either organization or location, we'll select the first one found regardless -->
 <!--						<xsl:variable name="resourceProvider" select="nf:resolveRefInBundle(($resource/f:PractitionerRole/(f:organization|f:location)[f:reference])[1])"/>-->
 						<zorgaanbieder>
-							<!-- LR: TODO convert2NCName functie aanpassen naar process-reference-2NCName maar moet nog controleren wat hier precies gebeurt -->
+							<!-- pre MP9 3.0 beta3 it was possible to convey zorgaanbieder -->
 							<zorgaanbieder value="{nf:convert2NCName(($resource/f:PractitionerRole/(f:organization|f:location)[f:reference])[1]/f:reference/@value)}" datatype="reference"/>
 						</zorgaanbieder>
 					</xsl:when>
@@ -200,11 +201,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 							<contactpersoon value="{nf:process-reference-2NCName(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
 						</mantelzorger>
 					</xsl:when>
-					<!-- pre MP9 3.0 it was possible to convey zorgverleener -->
+					<!-- From version MP9 3.0 beta3, performer is mapped to zorgverlener -->
 					<xsl:when test="f:type/@value = ('Practitioner') or $resource[f:Practitioner | f:PractitionerRole[f:practitioner | f:specialty]]">
 						<zorgverlener>
-							<!-- LR: TODO de regex is obv R4, kunnen we hier de regex ook toepassen voor relatieve urls? Aangezien dit pre MP9 3.0 is?-->
-							<zorgverlener value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
+							<!-- de regex is obv R4, dit kunnen we hier de regex ook toepassen aangezien dit een r4 implemementatie is: fhir_2_ada-r4-->
+							<zorgverlener value="{nf:process-reference-2NCName(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
 						</zorgverlener>
 					</xsl:when>
 					

@@ -22,17 +22,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
 
     <xd:doc>
-        <xd:desc>Create a mp-PharmaceuticalProduct instance as a Medication FHIR instance from ADA farmaceutisch_product.</xd:desc>
+        <xd:desc>Create an mp-PharmaceuticalProduct instance as a Medication FHIR instance from ADA farmaceutisch_product.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="profile">The ADA-element name may or may not be enough to determine the profile from. For Immunization it is not, so allow explicit setting of the profile</xd:param>
     </xd:doc>
     <xsl:template match="farmaceutisch_product" name="mp-PharmaceuticalProduct" mode="mp-PharmaceuticalProduct" as="element(f:Medication)">
         <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="profile" as="xs:string?"/>
 
         <xsl:for-each select="$in">
             <Medication>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
+                    <xsl:choose>
+                        <xsl:when test="empty($profile)">
+                            <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <profile value="{$profile}"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </meta>
 
                 <xsl:for-each select="product_specificatie/omschrijving">
@@ -48,9 +57,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- the most specific coding will get userselected true, so a receiver can easily recognise the 'main' code -->
                 <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
                 <xsl:choose>
-                    <xsl:when test="product_code[@codeSystem = $oidsGstandaardMedication][@code]">
+                    <!--Temporary fix for imm. TODO: fix this xsl:when to include SNOMED CT as used in imm-->
+                    <!--<xsl:when test="product_code[@codeSystem = $oidsGstandaardMedication][@code]">-->
+                    <xsl:when test="product_code">
                         <code>
-                            <xsl:for-each select="product_code[@codeSystem = $oidsGstandaardMedication][@code]">
+                            <!--Temporary fix for imm. TODO: fix this xsl:for-each to include SNOMED CT as used in imm-->
+                            <!--<xsl:for-each select="product_code[@codeSystem = $oidsGstandaardMedication][@code]">-->
+                            <xsl:for-each select="product_code">
                                 <xsl:choose>
                                     <xsl:when test="@codeSystem = $most-specific-product-code/@codeSystem">
                                         <xsl:call-template name="code-to-CodeableConcept">
@@ -65,15 +78,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </xsl:for-each>
-                            <xsl:for-each select="$most-specific-product-code[@displayName]">
-                                <!-- MP-1295, call string function to get rid of leading/trailing spaces which FHIR does not appreciate -->
-                                <text>
-                                    <xsl:call-template name="string-to-string">
-                                        <xsl:with-param name="in" select="."/>
-                                        <xsl:with-param name="inAttributeName">displayName</xsl:with-param>
-                                    </xsl:call-template>
-                                </text>
-                            </xsl:for-each>
+                            <!-- Gemaakt om product_naam te kunnen toevoegen in code.text -->
+                            <xsl:choose>
+                                <xsl:when test="product_specificatie/product_naam">
+                                    <xsl:for-each select="product_specificatie/product_naam">
+                                        <text value="{@value}"/>
+                                    </xsl:for-each>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:for-each select="$most-specific-product-code[@displayName]">
+                                        <!-- MP-1295, call string function to get rid of leading/trailing spaces which FHIR does not appreciate -->
+                                        <text>
+                                            <xsl:call-template name="string-to-string">
+                                                <xsl:with-param name="in" select="."/>
+                                                <xsl:with-param name="inAttributeName">displayName</xsl:with-param>
+                                            </xsl:call-template>
+                                        </text>
+                                    </xsl:for-each>
+                                </xsl:otherwise>
+                            </xsl:choose>
+
                         </code>
                     </xsl:when>
                     <!-- magistraal -->
@@ -183,6 +207,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </ingredient>
                     </xsl:if>
                 </xsl:for-each>
+                <xsl:if test="batchnummer">
+                    <batch>
+                        <lotNumber value="{batchnummer/@value}"/>
+                    </batch>
+                </xsl:if>
             </Medication>
         </xsl:for-each>
     </xsl:template>
@@ -222,10 +251,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="farmaceutisch_product" mode="_generateDisplay">
         <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
         <xsl:choose>
-            <xsl:when test="$most-specific-product-code[@displayName]">
+            <xsl:when test="$most-specific-product-code[not(@codeSystem = $oidHL7NullFlavor)][@displayName]">
                 <xsl:value-of select="normalize-space($most-specific-product-code/@displayName)"/>
             </xsl:when>
-            <xsl:when test="product_code[@displayName]">
+            <xsl:when test="product_code[not(@codeSystem = $oidHL7NullFlavor)][@displayName]">
                 <xsl:value-of select="normalize-space((product_code/@displayName)[1])"/>
             </xsl:when>
             <xsl:when test="product_specificatie[product_naam/@value]">

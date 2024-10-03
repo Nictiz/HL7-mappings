@@ -27,7 +27,7 @@
     <property name="dummy.output.dir" value="../../dummy"/>
 
     <target name="run-ivy" if="${run-ivy}">
-        <ant antfile="${basedir}/../../../../../_ant-buildfiles/ant-include/ant.ivy.xml" inheritall="true" usenativebasedir="true"/>
+        <ant antfile="${basedir}/../../../../_ant-buildfiles/ant-include/ant.ivy.xml" inheritall="true" usenativebasedir="true"/>
     </target>
     <target name="setup_sub" description="Setup ${sub.build.dir} containing the new/schemas folder from the original ADA project and refreshed ada production instances">
         <mkdir dir="${sub.build.dir}"/>
@@ -93,13 +93,21 @@
             <include name="${xsl.in.include}"/>
             <exclude name="${xsl.in.exclude}" if="xsl.in.exclude"/>            
         </fileset>
-
+        
+        <!-- delete previous results, if any -->
+        <mkdir dir="${sub.build.dir}/${param.outputDir}"/>
+        <delete failonerror="true">
+            <fileset dir="${sub.build.dir}/${param.outputDir}" includes="*.xml"/>
+        </delete>
+        
         <echo/>
         <echo>${echo.label} input files ${xsl.in}/${xsl.in.include}, to be converted with: ${xsl.convert}</echo>
         <xslt force="true" style="${xsl.convert}" destdir="${xsl.out}" extension=".xml" useImplicitFileset="false">
             <fileset refid="inputFiles"/>
             <param name="dateT" expression="${param.tdate}" if="param.tdate"/>
             <param name="writeOutputToDisk" expression="${param.writeOutputToDisk}" if="param.writeOutputToDisk"/>
+            <!-- option to override output directory from fhir_instance to e.g. fhir_instance_test -->
+            <param name="outputDir" expression="${param.outputDir}" if="param.outputDir"/>
             <!-- whether to generate the textual instruction for use based on structured data, 
                     typically true for test/example instances 
                     typically false for production -->
@@ -108,7 +116,8 @@
             <param name="generateInstructionText" expression="true"/>
             <param name="dateT" expression="${param.tdate}" if="param.tdate"/>
             <param name="mask-ids" expression="${param.maskids}" if="param.maskids"/>
-            <param name="outputDir" expression="${output.dir}" if="output.dir"/>            
+            <param name="outputDir" expression="${output.dir}" if="output.dir"/>   
+            <param name="populateId" expression="${param.populateId}" if="param.populateId"/>   
         </xslt>
         
     </target>
