@@ -28,7 +28,7 @@
     <property name="schema.fhir" value="${build.dir}/../../fhir/fhir_schemas/fhir-single.xsd"/>
     <property name="schematron.fhir" value="${build.dir}/../../fhir/fhir_schemas/fhir-invariants.xsl"/>
     
-    <property name="xsl.validate.svrl" value="${build.dir}/../../../util/validate-svrl-output.xsl"/>
+    <property name="xsl.validate.svrl" value="${build.dir}/../../../../YATC-shared/xsl/util/validate-svrl-output.xsl"/>
     <!--<property name="xsl.validate.svrl.input" value="${build.dir}/../../../util/validate-svrl-default-input.xml"/>-->
     
     <target name="setup_lab300" description="Setup subdirectories, schemas, ada instance xml's in ${build.dir} for ${is.name} ${is.version}">
@@ -123,10 +123,11 @@
             <param name="param.writeOutputToDisk" value="false"/>
         </antcall>
         
-        <!-- convert sturen_laboratoriumresultaten_op_aanvraag -->
+        <!-- convert sturen_laboratoriumresultaat_op_aanvraag -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.labsroa}"/>
-            <param name="xsl.name" value="../${usecase.labsroa}/payload/${usecase.labsroa}.xsl"/>
+            <!--<param name="xsl.name" value="../${usecase.labsroa}/payload/${usecase.labsroa}.xsl"/>-->
+            <param name="xsl.name" value="../${usecase.labsr}/payload/${usecase.labsr}.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="fhir_instance"/>
             <!--<param name="param.tdate" value="${date.T}}"/>-->
@@ -193,7 +194,7 @@
             </xslt>
         </sequential>
         
-        <!-- sturen_laboratoriumresultaten_op_aanvraag -->
+        <!-- sturen_laboratoriumresultaat_op_aanvraag -->
         <sequential>
             <fileset id="inputfiles" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="lu*.xml"/>
             
@@ -242,7 +243,7 @@
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         
-        <!-- sturen_laboratoriumresultaten_op_aanvraag fhir organizer -->
+        <!-- sturen_laboratoriumresultaat_op_aanvraag fhir organizer -->
         <antcall target="schematronresults_fhir_300_sub">
             <param name="result.xml" value="${build.dir}/validate/fhir_${usecase.labsroa}.xml"/>
             <param name="input.dir" value="${basedir}/../../${usecase.labsroa}/validate_fhir_instance"/>
@@ -269,7 +270,7 @@
             <param name="xsl.lab" value="${schematron.fhir}"/>
         </antcall>
         
-        <!-- sturen_laboratoriumresultaten_op_aanvraag -->
+        <!-- sturen_laboratoriumresultaat_op_aanvraag -->
         <antcall target="validate_fhir_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.labsroa}"/>
             <param name="xsl.input" value="fhir_instance"/>
