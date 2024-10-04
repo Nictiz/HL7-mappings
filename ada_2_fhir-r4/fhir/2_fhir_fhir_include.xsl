@@ -548,7 +548,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:if test="not($fhirMetadata[@profile = $profile and nm:group-key = $groupKey])">
                             <xsl:call-template name="util:logMessage">
                                 <xsl:with-param name="level" select="$logFATAL"/>
-                                <xsl:with-param name="msg">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' in $fhirMetadata, but no valid $profile ('<xsl:value-of select="$profile"/>') was supplied.</xsl:with-param>
+                                <xsl:with-param name="msg">makeReference: No entry found for $groupKey '<xsl:value-of select="$groupKey"/>' in $fhirMetadata, but no valid $profile ('<xsl:value-of select="$profile"/>') was supplied.</xsl:with-param>
                                 <xsl:with-param name="terminate" select="true()"/>
                             </xsl:call-template>
                         </xsl:if>
@@ -865,7 +865,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <!-- G-Standaard (Simple)Quantity -->
         <xsl:for-each select="$adaUnit[@codeSystem = $oidGStandaardBST902THES2]">
-            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+            <extension url="{$urlExtIso21090PQtranslation}">
                 <valueQuantity>
                     <value value="{$adaValue/@value}"/>
                     <xsl:if test="string-length(@displayName) gt 0">

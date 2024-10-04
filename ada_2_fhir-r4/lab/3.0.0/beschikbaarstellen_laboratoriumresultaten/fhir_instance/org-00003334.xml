@@ -11,15 +11,19 @@
    <type>
       <coding>
          <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
-         <version value="2022-09-10T00:00:00"/>
+         <version value="2023-04-14T00:00:00"/>
          <code value="L1"/>
          <display value="Laboratorium"/>
       </coding>
    </type>
    <name value="Microbiologisch Lab Flagel"/>
    <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+         <valueString value="Bel met vragen"/>
+      </extension>
       <system value="phone"/>
       <value value="06-11122244"/>
+      <use value="work"/>
    </telecom>
    <address>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
@@ -42,5 +46,17 @@
       </line>
       <city value="Zorgstad"/>
       <postalCode value="2143BB"/>
+      <country value="Nederland">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:iso:std:iso:3166"/>
+                  <version value="2020-10-26T00:00:00"/>
+                  <code value="NL"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
    </address>
 </Organization>

@@ -105,7 +105,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="adaElementNameWaarde" as="xs:string">aantal</xsl:param>
         <xsl:param name="adaElementNameEenheid" as="xs:string">eenheid</xsl:param>
         <xsl:for-each select="$in">
-            <xsl:for-each select="f:extension[@url = $ext-iso21090-PQ-translation]/f:valueQuantity[contains(f:system/@value, $oidGStandaardBST902THES2)]">
+            <xsl:for-each select="f:extension[@url = $urlExtIso21090PQtranslation]/f:valueQuantity[contains(f:system/@value, $oidGStandaardBST902THES2)]">
                 <xsl:element name="{$adaElementNameWaarde}">
                     <xsl:attribute name="value" select="f:value/@value"/>
                 </xsl:element>

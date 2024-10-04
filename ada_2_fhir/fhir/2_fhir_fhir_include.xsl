@@ -17,12 +17,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- import because we want to be able to override the param for macAddress -->
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
-    <xsl:import href="../../util/uuid.xsl"/>
-    <xsl:import href="../../util/datetime.xsl"/>
-    <xsl:import href="../../util/units.xsl"/>
-    <xsl:import href="../../util/constants.xsl"/>
-    <!--    <xsl:import href="../../util/utilities.xsl"/>-->
-    <xsl:import href="../../util/NarrativeGenerator.xsl"/>
+    <xsl:import href="../../../YATC-shared/xsl/util/uuid.xsl"/>
+    <xsl:import href="../../../YATC-shared/xsl/util/datetime.xsl"/>
+    <xsl:import href="../../../YATC-shared/xsl/util/units.xsl"/>
+    <xsl:import href="../../../YATC-shared/xsl/util/constants.xsl"/>
+    <!--    <xsl:import href="../../../YATC-shared/xsl/util/utilities.xsl"/>-->
+    <xsl:import href="../../../YATC-shared/xsl/util/NarrativeGenerator.xsl"/>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
 
     <xsl:strip-space elements="*"/>

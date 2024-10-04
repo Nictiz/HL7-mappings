@@ -17,7 +17,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../zib2020bbr/payload/ada2hl7_all-zibs.xsl"/>
 
     <!-- these imports are needed to handle the FHIR Timing datatype in HL7v3 substanceAdministration -->
-    <xsl:import href="../../../util/mp-functions-fhir.xsl"/>
+    <xsl:import href="../../../../YATC-shared/xsl/util/mp-functions-fhir.xsl"/>
     <xsl:import href="../../../ada_2_fhir/fhir/2_fhir_fhir_include.xsl"/>
     <xsl:import href="../../../ada_2_fhir/zibs2017/payload/ext-zib-medication-repeat-period-cyclical-schedule-2.0.xsl"/>
 
