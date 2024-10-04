@@ -42,9 +42,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="author" select="$registrationInformation/auteur/*"/>
                 <xsl:variable name="creationDateTime" select="$registrationInformation/ontstaans_datum_tijd"/>
                 
-                <xsl:variable name="hypersensitivityIntolerance" select="../overgevoeligheid_intolerantie[relatie_aandoening_of_gesteldheid/identificatie/@value = $identificationNumber/@id]"/>
-                <xsl:variable name="reaction" select="../reactie[relatie_aandoening_of_gesteldheid/identificatie/@value = $identificationNumber/@id]"/>
-                <xsl:variable name="symptom" select="../symptoom[relatie_aandoening_of_gesteldheid/identificatie/@value = $identificationNumber/@id]"/>
+                <xsl:variable name="hypersensitivityIntolerance" select="../overgevoeligheid_intolerantie[relatie_aandoening_of_gesteldheid/identificatie/@value = $identificationNumber/@value]"/>
+                <xsl:variable name="reaction" select="../reactie[relatie_aandoening_of_gesteldheid/identificatie/@value = $identificationNumber/@value]"/>
+                <xsl:variable name="symptom" select="../symptoom[relatie_aandoening_of_gesteldheid/identificatie/@value = $identificationNumber/@value]"/>
                 
                 <xsl:call-template name="insertLogicalId">
                     <xsl:with-param name="profile" select="$profileNameCioCondition"/>
@@ -186,9 +186,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="aandoening_of_gesteldheid[parent::geneesmiddelovergevoeligheid]" mode="_generateDisplay">
         <xsl:variable name="parts" as="item()*">
             <xsl:text>Aandoening</xsl:text>
-            <xsl:value-of select="concat('startdatum: ', start_datum_tijd/@value)"/>
-            <xsl:if test="eind_datum_tijd/@value">
-                <xsl:value-of select="concat('einddatum: ', eind_datum_tijd/@value)"/>
+            <xsl:value-of select="concat('startdatum: ', periode_aanwezig/tijds_interval/start_datum_tijd/@value)"/>
+            <xsl:if test="periode_aanwezig/tijds_interval/eind_datum_tijd/@value">
+                <xsl:value-of select="concat('einddatum: ', periode_aanwezig/tijds_interval/eind_datum_tijd/@value)"/>
             </xsl:if>
         </xsl:variable>
         <xsl:value-of select="string-join($parts[. != ''], ', ')"/>

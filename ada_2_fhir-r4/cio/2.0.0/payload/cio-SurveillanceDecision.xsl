@@ -51,7 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="{concat($urlBaseNictizProfile, $profileNameCioSurveillanceDecision)}"/>
                 </meta>
                 
-                <xsl:for-each select="besluit_grond/*">
+                <xsl:for-each select="besluit_grond/(overgevoeligheid_intolerantie | reactie)">
                     <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
                         <valueReference>
                             <xsl:call-template name="makeReference">

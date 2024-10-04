@@ -110,7 +110,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="parts" as="item()*">
             <xsl:text>Symptoom</xsl:text>
             <xsl:value-of select="symptoom_naam/@displayName"/>
-            <xsl:value-of select="concat('ernst: ', symptoom_ernst/@value)"/>
+            <xsl:if test="symptoom_ernst/@displayName">
+                <xsl:value-of select="concat('ernst: ', symptoom_ernst/@displayName)"/>
+            </xsl:if>
         </xsl:variable>
         <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
     </xsl:template>
