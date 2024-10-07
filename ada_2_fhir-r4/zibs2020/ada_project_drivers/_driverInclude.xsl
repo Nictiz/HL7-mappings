@@ -398,7 +398,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:when test="$localName = 'decubitus_wond'">
                 <xsl:apply-templates select="$in" mode="nl-core-PressureUlcer">
-@@ -363,30 +402,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
+                    <xsl:with-param name="subject" select="$subject" as="element()"/>
                 </xsl:apply-templates>
                 <xsl:for-each select="wondlengte">
                     <xsl:call-template name="nl-core-wounds.WoundLength">
