@@ -918,65 +918,65 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:when test="$localName = 'wond'">
                 <xsl:apply-templates select="$in" mode="nl-core-Wound">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+                <xsl:for-each select="wond_weefsel">
+                    <xsl:call-template name="nl-core-Wound.WoundTissue">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="wond_infectie">
+                    <xsl:call-template name="nl-core-Wound.WoundInfection">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="wond_vochtigheid">
+                    <xsl:call-template name="nl-core-Wound.WoundMoisture">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="wond_rand">
+                    <xsl:call-template name="nl-core-Wound.WoundEdge">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="wondlengte">
+                    <xsl:call-template name="nl-core-wounds.WoundLength">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="wondbreedte">
+                    <xsl:call-template name="nl-core-wounds.WoundWidth">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="wonddiepte">
+                    <xsl:call-template name="nl-core-wounds.WoundDepth">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="datum_laatste_verbandwissel">
+                    <xsl:call-template name="nl-core-wounds.DateOfLastDressingChange">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="wond_foto">
+                    <xsl:call-template name="nl-core-wounds.WoundImage">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="nf:resolveAdaInstance(drain/medisch_hulpmiddel,$in)">
+                    <xsl:call-template name="nl-core-Wound.Drain">
                         <xsl:with-param name="subject" select="$subject"/>
-                    </xsl:apply-templates>
-                    <xsl:for-each select="wond_weefsel">
-                        <xsl:call-template name="nl-core-Wound.WoundTissue">
-                            <xsl:with-param name="subject" select="$subject" as="element()"/>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                    <xsl:for-each select="wond_infectie">
-                        <xsl:call-template name="nl-core-Wound.WoundInfection">
-                            <xsl:with-param name="subject" select="$subject" as="element()"/>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                    <xsl:for-each select="wond_vochtigheid">
-                        <xsl:call-template name="nl-core-Wound.WoundMoisture">
-                            <xsl:with-param name="subject" select="$subject" as="element()"/>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                    <xsl:for-each select="wond_rand">
-                        <xsl:call-template name="nl-core-Wound.WoundEdge">
-                            <xsl:with-param name="subject" select="$subject" as="element()"/>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                    <xsl:for-each select="wondlengte">
-                        <xsl:call-template name="nl-core-wounds.WoundLength">
-                            <xsl:with-param name="subject" select="$subject" as="element()"/>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                    <xsl:for-each select="wondbreedte">
-                        <xsl:call-template name="nl-core-wounds.WoundWidth">
-                            <xsl:with-param name="subject" select="$subject" as="element()"/>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                    <xsl:for-each select="wonddiepte">
-                        <xsl:call-template name="nl-core-wounds.WoundDepth">
-                            <xsl:with-param name="subject" select="$subject" as="element()"/>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                    <xsl:for-each select="datum_laatste_verbandwissel">
-                        <xsl:call-template name="nl-core-wounds.DateOfLastDressingChange">
-                            <xsl:with-param name="subject" select="$subject" as="element()"/>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                    <xsl:for-each select="wond_foto">
-                        <xsl:call-template name="nl-core-wounds.WoundImage">
-                            <xsl:with-param name="subject" select="$subject" as="element()"/>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                    <xsl:for-each select="nf:resolveAdaInstance(drain/medisch_hulpmiddel,$in)">
-                        <xsl:call-template name="nl-core-Wound.Drain">
+                        <xsl:with-param name="reasonReference" select="$in"/>
+                    </xsl:call-template>
+                    <xsl:for-each select="product">
+                        <xsl:call-template name="nl-core-Wound.Drain.Product">
                             <xsl:with-param name="subject" select="$subject"/>
-                            <xsl:with-param name="reasonReference" select="$in"/>
-                        </xsl:call-template>
-                        <xsl:for-each select="product">
-                            <xsl:call-template name="nl-core-Wound.Drain.Product">
-                                <xsl:with-param name="subject" select="$subject"/>
                         </xsl:call-template>
                     </xsl:for-each>
                 </xsl:for-each>
-            </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'ziektebeleving'">
                 <xsl:apply-templates select="$in" mode="nl-core-IllnessPerception">
                     <xsl:with-param name="subject" select="$subject"/>
