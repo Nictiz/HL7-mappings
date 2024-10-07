@@ -32,8 +32,8 @@
 
     <property name="usecase.bsmci" value="beschikbaarstellen_medicatie_contra_indicaties"/>
     <property name="usecase.bsgmo" value="beschikbaarstellen_geneesmiddelovergevoeligheden"/>
-    <property name="usecase.svci" value="sturen_voorstel_contra_indicaties"/> 
-    <property name="usecase.savc" value="sturen_antwoord_voorstel_contra_indicaties"/> 
+    <property name="usecase.svci" value="sturen_voorstel_contra_indicatie"/> 
+    <property name="usecase.savc" value="sturen_antwoord_voorstel_contra_indicatie"/> 
 
     <target name="setup" description="Setup subdirectories in ${build.dir}">
         <!-- copies schemas for project dir -->
@@ -87,7 +87,7 @@
             </fileset>
         </copy>
         
-        <!-- copy cio instances sturen_voorstel_contra_indicaties -->
+        <!-- copy cio instances sturen_voorstel_contra_indicatie -->
         <echo>CiO instances from ${prodinst.dir} to ${build.dir}/${usecase.svci}/ada_instance</echo>
         <mkdir dir="${build.dir}/${usecase.svci}/ada_instance"/>
         <delete>
@@ -101,7 +101,7 @@
             </fileset>
         </copy>
         
-        <!-- copy cio instances sturen_antwoord_voorstel_contra_indicaties -->
+        <!-- copy cio instances sturen_antwoord_voorstel_contra_indicatie -->
         <echo>CiO instances from ${prodinst.dir} to ${build.dir}/${usecase.savc}/ada_instance</echo>
         <mkdir dir="${build.dir}/${usecase.savc}/ada_instance"/>
         <delete>
