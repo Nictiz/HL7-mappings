@@ -42,7 +42,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="fhirMetadata" as="element()*">
         <xsl:call-template name="buildFhirMetadata">
             <xsl:with-param name="in" select="//(
-                sturen_voorstel_contra_indicatie/voorstel_gegevens/voorstel_contra_indicatie |
+                sturen_voorstel_contra_indicatie/medicatie_contra_indicatie/alert |
                 sturen_voorstel_contra_indicatie/patient |
                 sturen_voorstel_contra_indicatie/bouwstenen/zorgverlener |
                 sturen_voorstel_contra_indicatie/bouwstenen/zorgaanbieder |
@@ -149,9 +149,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{concat($urlBaseNictizProfile, $profileNameCioProposalContraIndicationBundle)}"/>
                     </meta>
                     <type value="transaction"/>
-                    <!-- What should we count? -->
-                    <total value="TODO"/>
-                    <!--<total value="{count($resources/f:resource/*)}"/>-->
+                    <total value="{count($resources/f:resource/*)}"/>
                     <xsl:choose>
                         <xsl:when test="$bundleSelfLink[not(. = '')]">
                             <link>
@@ -183,8 +181,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="localName" select="local-name()"/>
         <xsl:variable name="logicalId">
             <xsl:choose>
-                <xsl:when test="$localName = 'voorstel_contra_indicatie' and $profile = $profileNameCioMedicationContraIndication">
-                    <xsl:variable name="registrationInformation" select="../bouwstenen/registratie_informatie[@id = current()/registratie_informatie/@value]"/>
+                <xsl:when test="$localName = 'alert' and $profile = $profileNameCioMedicationContraIndication">
+                    <xsl:variable name="proposalContraIndication" select="../../voorstel_gegevens/voorstel_contra_indicatie[medicatie_contra_indicatie/@value = current()/../@id]"/>
+                    <xsl:variable name="registrationInformation" select="../../bouwstenen/registratie_informatie[@id = $proposalContraIndication/registratie_informatie/@value]"/>
                     <xsl:value-of select="concat('vci-', $registrationInformation/identificatienummer/@value)"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'patient'">

@@ -127,9 +127,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{concat($urlBaseNictizProfile, $profileNameCioReplyProposalContraIndicationBundle)}"/>
                     </meta>
                     <type value="transaction"/>
-                    <!-- What should we count? -->
-                    <total value="TODO"/>
-                    <!--<total value="{count($resources/f:resource/*)}"/>-->
+                    <total value="{count($resources/f:resource/*)}"/>
                     <xsl:choose>
                         <xsl:when test="$bundleSelfLink[not(. = '')]">
                             <link>
