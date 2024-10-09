@@ -63,6 +63,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each-group select="voorstel_gegevens/voorstel_contra_indicatie" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="cio-MedicationContraIndication">
                         <xsl:with-param name="in" select="current-group()[1]/../../medicatie_contra_indicatie/alert"/>
+                        <xsl:with-param name="proposalRegistrationInformation" select="current-group()[1]/../../bouwstenen/registratie_informatie[@id = current-group()[1]/registratie_informatie/@value]"/>
                         <xsl:with-param name="relationMedicationAgreement" select="current-group()[1]/relatie_medicatieafspraak"/>
                         <xsl:with-param name="proposalComment" select="current-group()[1]/toelichting"/>
                         <xsl:with-param name="metaTag" select="'actionable'"/>

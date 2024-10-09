@@ -21,6 +21,16 @@
                   <code value="actionable"/>
                </tag>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationContraIndication.RelationAlert">
+               <valueReference>
+                  <type value="Flag"/>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.16"/>
+                     <value value="pat07-mci-dep-01"/>
+                  </identifier>
+                  <display value="Relatie naar medicatie contra-indicatie: pat07-mci-dep-01 || 2.16.840.1.113883.2.4.3.11.999.26.1.16"/>
+               </valueReference>
+            </extension>
             <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
                <valueReference>
                   <type value="MedicationRequest"/>
@@ -34,6 +44,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ProposalContraIndication.Comment">
                <valueString value="Patiënt geeft aan de balie aan niet lager depressief te zijn. Klopt dat en kan deze contra-indicatie dus worden afgesloten?"/>
             </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.936"/>
+               <value value="pat07-vci-01"/>
+            </identifier>
             <status value="active"/>
             <category>
                <coding>
@@ -58,6 +72,11 @@
                <start value="${DATE, T, Y, -22}T16:34:57+02:00"/>
                <end value="${DATE, T, D, +0}"/>
             </period>
+            <author>
+               <reference value="PractitionerRole/pracrole-000001116"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Victor de Verstrekker, Apothekers, Apotheek de Gulle Gaper"/>
+            </author>
          </Flag>
       </resource>
       <request>
@@ -228,6 +247,11 @@
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-RegistrationInformation"/>
             </meta>
+            <target>
+               <reference value="Flag/vci-pat07-vci-01"/>
+               <type value="Flag"/>
+               <display value="Medicatie contra-indicatie, DEPRESSIE, startdatum: T-22Y{16:34:57}, einddatum: T"/>
+            </target>
             <recorded value="${DATE, T, D, +0}"/>
             <agent>
                <type>

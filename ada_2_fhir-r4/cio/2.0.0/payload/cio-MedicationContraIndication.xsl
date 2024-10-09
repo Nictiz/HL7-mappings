@@ -30,6 +30,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Create a cio-MedicationContraIndication instance as a Flag FHIR instance from the ada element medicatie_contra_indicatie/alert.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="proposalRegistrationInformation">Registration information of a proposal contraindication.</xd:param>
         <xd:param name="relationMedicationAgreement">Medication agreement which served as the basis for initiating a proposal contraindication.</xd:param>
         <xd:param name="proposalComment">Comment on a proposal contraindication.</xd:param>
         <xd:param name="metaTag">The meta tag to be added. Optional. Typical use case is 'actionable' for proposals. Empty for informational purposes.</xd:param>
@@ -37,13 +38,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="cio-MedicationContraIndication" as="element(f:Flag)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="../../patient" as="element()?"/>
+        <xsl:param name="proposalRegistrationInformation" as="element()?"/>
         <xsl:param name="relationMedicationAgreement" as="element()?"/>
         <xsl:param name="proposalComment" as="element()?"/>
         <xsl:param name="metaTag" as="xs:string?"/>
         
             <xsl:for-each select="$in">
                 <Flag>
-                    <xsl:variable name="registrationInformation" select="../../bouwstenen/registratie_informatie[@id = current()/registratie_informatie/@value]"/>
+                    <!-- The source of the registration information depends on whether we use this template for a medication contraindication or proposal contraindication. -->
+                    <xsl:variable name="registrationInformation" select="if ($proposalRegistrationInformation) then $proposalRegistrationInformation else ../../bouwstenen/registratie_informatie[@id = current()/registratie_informatie/@value]"/>
                     <xsl:variable name="identificationNumber" select="$registrationInformation/identificatienummer"/>
                     <xsl:variable name="author" select="$registrationInformation/auteur/*"/>
                     
@@ -74,6 +77,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="in" select="$relationAlert"/>
                                     <xsl:with-param name="profile" select="$profileNameCioMedicationContraIndication"/>
                                 </xsl:call-template>
+                            </valueReference>
+                        </extension>
+                    </xsl:if>
+                    
+                    <!-- In a proposal contraindication that is related to an existing medication contraindication, the latter building block is not explicitly included, but only referred to via an identifier. -->
+                    <xsl:if test="not($relationAlert) and relatie_alert/identificatie[@value]">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationContraIndication.RelationAlert">
+                            <valueReference>
+                                <type value="Flag"/>
+                                <identifier>
+                                    <xsl:call-template name="id-to-Identifier">
+                                        <xsl:with-param name="in" select="relatie_alert/identificatie"/>
+                                    </xsl:call-template>   
+                                </identifier>
+                                <display value="Relatie naar medicatie contra-indicatie: {string-join(relatie_alert/identificatie/(@value, @root), ' || ')}"/>
                             </valueReference>
                         </extension>
                     </xsl:if>

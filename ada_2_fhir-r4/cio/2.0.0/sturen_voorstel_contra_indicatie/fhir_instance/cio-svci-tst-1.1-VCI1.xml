@@ -34,6 +34,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ProposalContraIndication.Comment">
                <valueString value="Patiënt gebruikt combinatie van ACE-remmers, betablokkers en een lisdiureticum. Is dit in het kader van hartfalen?"/>
             </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.936"/>
+               <value value="pat06-vci-01"/>
+            </identifier>
             <status value="active"/>
             <category>
                <coding>
@@ -57,6 +61,11 @@
             <period>
                <start value="${DATE, T, D, +0}"/>
             </period>
+            <author>
+               <reference value="PractitionerRole/pracrole-000001116"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Victor de Verstrekker, Apotheek de Gulle Gaper"/>
+            </author>
          </Flag>
       </resource>
       <request>
@@ -223,6 +232,11 @@
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-RegistrationInformation"/>
             </meta>
+            <target>
+               <reference value="Flag/vci-pat06-vci-01"/>
+               <type value="Flag"/>
+               <display value="Medicatie contra-indicatie, HARTFALEN, startdatum: T"/>
+            </target>
             <recorded value="${DATE, T, D, +0}"/>
             <agent>
                <type>
@@ -230,6 +244,20 @@
                      <system value="http://terminology.hl7.org/CodeSystem/provenance-participant-type"/>
                      <code value="author"/>
                      <display value="Author"/>
+                  </coding>
+               </type>
+               <who>
+                  <reference value="PractitionerRole/pracrole-000001116"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare professional (role), Victor de Verstrekker, Apotheek de Gulle Gaper"/>
+               </who>
+            </agent>
+            <agent>
+               <type>
+                  <coding>
+                     <system value="http://terminology.hl7.org/CodeSystem/provenance-participant-type"/>
+                     <code value="performer"/>
+                     <display value="Performer"/>
                   </coding>
                </type>
                <who>

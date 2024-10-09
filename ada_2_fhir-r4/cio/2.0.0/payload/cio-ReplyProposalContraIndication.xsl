@@ -91,7 +91,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="$author">
                     <xsl:call-template name="makeReference">
                         <xsl:with-param name="in" select="."/>
-                        <xsl:with-param name="wrapIn" select="'author'"/>
+                        <xsl:with-param name="wrapIn" select="'sender'"/>
                         <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                     </xsl:call-template>
                 </xsl:for-each>

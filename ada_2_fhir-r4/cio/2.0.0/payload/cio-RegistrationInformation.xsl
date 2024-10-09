@@ -35,7 +35,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Provenance>
-                <xsl:variable name="medicationContraIndication" select="../../medicatie_contra_indicatie/alert[registratie_informatie/@value = current()/@id]"/>
+                <xsl:variable name="proposalContraIndication" select="../../voorstel_gegevens/voorstel_contra_indicatie[registratie_informatie/@value = current()/@id]"/>
+                <xsl:variable name="medicationContraIndication" select="../../medicatie_contra_indicatie/alert[registratie_informatie/@value = current()/@id] | ../../medicatie_contra_indicatie/alert[../@id = $proposalContraIndication/medicatie_contra_indicatie/@value]"/>
                 <xsl:variable name="surveillanceDecision" select="../../geneesmiddelovergevoeligheid/bewaking_besluit[registratie_informatie/@value = current()/@id]"/>
                 <xsl:variable name="hypersensitivityIntolerance" select="../../geneesmiddelovergevoeligheid/overgevoeligheid_intolerantie[registratie_informatie/@value = current()/@id]"/>
                 <xsl:variable name="reaction" select="../../geneesmiddelovergevoeligheid/reactie[registratie_informatie/@value = current()/@id]"/>
