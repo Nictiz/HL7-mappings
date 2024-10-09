@@ -25,6 +25,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     version="2.0">
     
     <xsl:import href="../../payload/all_profiles.xsl"/>
+    <xsl:import href="../../../../fhir/2_fhir_BundleEntryRequest.xsl"/>
     
     <xsl:variable name="profileNameCioReplyProposalContraIndicationBundle">cio-ReplyProposalContraIndication-Bundle</xsl:variable>
     
@@ -127,7 +128,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{concat($urlBaseNictizProfile, $profileNameCioReplyProposalContraIndicationBundle)}"/>
                     </meta>
                     <type value="transaction"/>
-                    <total value="{count($resources/f:resource/*)}"/>
                     <xsl:choose>
                         <xsl:when test="$bundleSelfLink[not(. = '')]">
                             <link>
@@ -143,7 +143,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </xsl:otherwise>
                     </xsl:choose>
-                    <xsl:copy-of select="$resources"/>
+                    <xsl:apply-templates select="$resources" mode="addBundleEntrySearchOrRequest"/>
                 </Bundle>
             </xsl:otherwise>
         </xsl:choose>

@@ -61,6 +61,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </identifier>
                 </xsl:for-each>
                 
+                <status value="final"/>
+                
                 <xsl:for-each select="symptoom_naam[@code]">
                     <code>
                         <xsl:call-template name="code-to-CodeableConcept">
