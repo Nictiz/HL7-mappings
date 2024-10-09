@@ -81,6 +81,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="darmfunctie" resource="Observation" profile="nl-core-BowelFunction"/>
         <nm:map ada="decubitus_wond" resource="Condition" profile="nl-core-PressureUlcer"/>
         <nm:map ada="decubitus_wond" resource="Observation" profile="nl-core-wounds.WoundCharacteristics"/>
+        <nm:map ada="feces_continentie" resource="Observation" profile="nl-core-BowelFunction.FecalContinence"/>
+        <nm:map ada="frequentie" resource="Observation" profile="nl-core-BowelFunction.Frequency"/>
+        <nm:map ada="defecatie_consistentie" resource="Observation" profile="nl-core-BowelFunction.DefecationConsistency"/>
+        <nm:map ada="defecatie_kleur" resource="Observation" profile="nl-core-BowelFunction.DefecationColor"/>
         <nm:map ada="dosscore" resource="Observation" profile="nl-core-DOSScore"/>
         <nm:map ada="drugs_gebruik" resource="Observation" profile="nl-core-DrugUse"/>
         <nm:map ada="envelop" resource="ServiceRequest" profile="hg-ReferralServiceRequest"/>
@@ -92,6 +96,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="functionele_of_mentale_status" resource="Observation" profile="nl-core-FunctionalOrMentalStatus"/>
         <nm:map ada="glasgow_coma_scale" resource="Observation" profile="nl-core-GlasgowComaScale"/>
         <nm:map ada="hartfrequentie" resource="Observation" profile="nl-core-HeartRate"/>
+        <nm:map ada="hartslag_regelmatigheid" resource="Observation" profile="nl-core-HeartRate.HeartbeatRegularity"/>
+        <nm:map ada="interpretatie_frequentie" resource="Observation" profile="nl-core-HeartRate.InterpretationHeartRate"/>
         <nm:map ada="huidaandoening" resource="Condition" profile="nl-core-SkinDisorder"/>
         <nm:map ada="hulp_van_anderen" resource="CarePlan" profile="nl-core-HelpFromOthers"/>
         <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-LegalStatus"/>
@@ -103,7 +109,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="lichaamslengte" resource="Observation" profile="nl-core-BodyHeight"/>
         <nm:map ada="lichaamstemperatuur" resource="Observation" profile="nl-core-BodyTemperature"/>
         <nm:map ada="lichaamsgewicht" resource="Observation" profile="nl-core-BodyWeight"/>
-        <nm:map ada="medicatie_contra_indicatie" resource="Flag" profile="cio-MedicationContraIndication"/>
         <nm:map ada="medicatie_contra_indicatie" resource="Flag" profile="nl-core-MedicationContraIndication"/>
         <nm:map ada="medicatiegebruik" resource="MedicationStatement" profile="mp-MedicationUse2"/>
         <nm:map ada="medicatie_gebruik" resource="MedicationStatement" profile="mp-MedicationUse2"/>
@@ -116,18 +121,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-VisualFunction.VisualAid"/>
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-Wound.Drain"/>
         <nm:map ada="mobiliteit" resource="Observation" profile="nl-core-Mobility"/>
+        <nm:map ada="lopen" resource="Observation" profile="nl-core-Mobility.Walking"/>
+        <nm:map ada="traplopen" resource="Observation" profile="nl-core-Mobility.ClimbingStairs"/>
+        <nm:map ada="houding_veranderen" resource="Observation" profile="nl-core-Mobility.MaintainingPosition"/>
+        <nm:map ada="houding_handhaven" resource="Observation" profile="nl-core-Mobility.ChangingPosition"/>
+        <nm:map ada="uitvoeren_transfer" resource="Observation" profile="nl-core-Mobility.Transfer"/>
         <nm:map ada="monster" resource="Specimen" profile="nl-core-LaboratoryTestResult.Specimen"/>
         <nm:map ada="monster2" resource="Specimen" profile="nl-core-LaboratoryTestResult.Specimen"/>
         <nm:map ada="bron_monster" resource="Device" profile="nl-core-LaboratoryTestResult.SpecimenSource"/>
         <nm:map ada="mustscore" resource="Observation" profile="nl-core-MUSTScore"/>
         <nm:map ada="o2saturatie" resource="Observation" profile="nl-core-O2Saturation"/>
         <nm:map ada="ontwikkeling_kind" resource="Observation" profile="nl-core-DevelopmentChild"/>
+        <nm:map ada="zindelijkheid_urine" resource="Observation" profile="nl-core-DevelopmentChild.ToiletTrainednessUrine"/>
+        <nm:map ada="zindelijkheid_feces" resource="Observation" profile="nl-core-DevelopmentChild.ToiletTrainednessFeces"/>
+        <nm:map ada="leeftijd_eerste_menstruatie" resource="Observation" profile="nl-core-DevelopmentChild.AgeFirstMenstruation"/>
+        <nm:map ada="ontwikkeling_motoriek" resource="Observation" profile="nl-core-DevelopmentChild.DevelopmentLocomotion"/>
+        <nm:map ada="ontwikkeling_sociaal" resource="Observation" profile="nl-core-DevelopmentChild.DevelopmentSocial"/>
+        <nm:map ada="ontwikkeling_taal" resource="Observation" profile="nl-core-DevelopmentChild.DevelopmentLinguistics"/>
+        <nm:map ada="ontwikkeling_verstandelijk" resource="Observation" profile="nl-core-DevelopmentChild.DevelopmentCognition"/>
         <nm:map ada="opleiding" resource="Observation" profile="nl-core-Education"/>
         <nm:map ada="overgevoeligheid_intolerantie" resource="AllergyIntolerance" profile="cio-HypersensitivityIntolerance"/>
         <nm:map ada="participatie_in_maatschappij" resource="Observation" profile="nl-core-ParticipationInSociety"/>
+        <nm:map ada="sociaal_netwerk" resource="Observation" profile="nl-core-ParticipationInSociety.SocialNetwork"/>
+        <nm:map ada="vrijetijdsbesteding" resource="Observation" profile="nl-core-ParticipationInSociety.Hobby"/>
+        <nm:map ada="arbeidssituatie" resource="Observation" profile="nl-core-ParticipationInSociety.WorkSituation"/>
         <nm:map ada="patient" resource="Patient" profile="nl-core-Patient"/>
         <nm:map ada="pijn_score" resource="Observation" profile="nl-core-PainScore"/>
         <nm:map ada="polsfrequentie" resource="Observation" profile="nl-core-PulseRate"/>
+        <nm:map ada="pols_regelmatigheid" resource="Observation" profile="nl-core-PulseRate.PulseRegularity"/>
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
         <nm:map ada="product" resource="Device" profile="nl-core-MedicalDevice.Product"/>
         <nm:map ada="product" resource="Device" profile="nl-core-HearingFunction.HearingAid.Product"/>
@@ -165,8 +186,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="vaccinatie" resource="Immunization" profile="nl-core-Vaccination-event"/>
         <nm:map ada="vaccinatie" resource="ImmunizationRecommendation" profile="nl-core-Vaccination-request"/>
         <nm:map ada="vermogen_tot_drinken" resource="Observation" profile="nl-core-AbilityToDrink"/>
+        <nm:map ada="drink_beperkingen" resource="Observation" profile="nl-core-AbilityToDrink.DrinkingLimitations"/>
         <nm:map ada="vermogen_tot_eten" resource="Observation" profile="nl-core-AbilityToEat"/>
+        <nm:map ada="eet_beperkingen" resource="Observation" profile="nl-core-AbilityToEat.EatingLimitations"/>
         <nm:map ada="vermogen_tot_toiletgang" resource="Observation" profile="nl-core-AbilityToUseToilet"/>
+        <nm:map ada="toiletgebruik" resource="Observation" profile="nl-core-AbilityToUseToilet.ToiletUse"/>
+        <nm:map ada="zorg_bij_menstruatie" resource="Observation" profile="nl-core-AbilityToUseToilet.MenstrualCare"/>
         <nm:map ada="vermogen_tot_uiterlijke_verzorging" resource="Observation" profile="nl-core-AbilityToGroom"/>
         <nm:map ada="vermogen_tot_zich_kleden" resource="Observation" profile="nl-core-AbilityToDressOneself"/>
         <nm:map ada="vermogen_tot_zich_wassen" resource="Observation" profile="nl-core-AbilityToWashOneself"/>
@@ -176,6 +201,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="visueel_resultaat" resource="Media" profile="nl-core-TextResult-Media"/>
         <nm:map ada="visus" resource="Observation" profile="nl-core-VisualAcuity"/>
         <nm:map ada="vochtbalans" resource="Observation" profile="nl-core-FluidBalance"/>
+        <nm:map ada="vocht_totaal_in" resource="Observation" profile="nl-core-FluidBalance.FluidTotalIn"/>
+        <nm:map ada="vocht_totaal_uit" resource="Observation" profile="nl-core-FluidBalance.FluidTotalOut"/>
         <nm:map ada="voedingsadvies" resource="NutritionOrder" profile="nl-core-NutritionAdvice"/>
         <nm:map ada="voedingspatroon_zuigeling" resource="Observation" profile="nl-core-FeedingPatternInfant"/>
         <nm:map ada="vrijheidsbeperkende_interventie" resource="Procedure" profile="nl-core-FreedomRestrictingIntervention"/>
@@ -189,6 +216,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="wond_rand" resource="Observation" profile="nl-core-Wound.WoundEdge"/>
         <nm:map ada="woonsituatie" resource="Observation" profile="nl-core-LivingSituation"/>
         <nm:map ada="ziektebeleving" resource="Observation" profile="nl-core-IllnessPerception"/>
+        <nm:map ada="ziekte_inzicht_van_patient" resource="Observation" profile="nl-core-IllnessPerception.PatientIllnessInsight"/>
+        <nm:map ada="omgaan_met_ziekteproces_door_patient" resource="Observation" profile="nl-core-IllnessPerception.CopingWithIllnessByPatient"/>
+        <nm:map ada="omgaan_met_ziekteproces_door_naasten" resource="Observation" profile="nl-core-IllnessPerception.CopingWithIllnessByFamily"/>
         <nm:map ada="zorgaanbieder" resource="Organization" profile="nl-core-HealthcareProvider-Organization"/>
         <nm:map ada="zorgaanbieder" resource="Location" profile="nl-core-HealthcareProvider"/>
         <nm:map ada="zorg_episode" resource="EpisodeOfCare" profile="nl-core-EpisodeOfCare"/>
@@ -320,7 +350,38 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 $in//wonddiepte[parent::wond or parent::decubitus_wond],
                 $in//wondfoto[parent::wond or parent::decubitus_wond or parent::brandwond],
                 $in//datum_laatste_verband_wissel[parent::wond or parent::decubitus_wond],
-                $in//uitgebreidheid[parent::brandwond]
+                $in//uitgebreidheid[parent::brandwond],
+                $in//sociaal_netwerk[parent::participatie_in_maatschappij],
+                $in//vrijetijdsbesteding[parent::participatie_in_maatschappij],
+                $in//arbeidssituatie[parent::participatie_in_maatschappij],
+                $in//lopen[parent::mobiliteit],
+                $in//traplopen[parent::mobiliteit],
+                $in//houding_veranderen[parent::mobiliteit],
+                $in//houding_handhaven[parent::mobiliteit],
+                $in//uitvoeren_transfer[parent::mobiliteit],
+                $in//ziekte_inzicht_van_patient[parent::ziektebeleving],
+                $in//omgaan_met_ziekteproces_door_patient[parent::ziektebeleving],
+                $in//omgaan_met_ziekteproces_door_naasten[parent::ziektebeleving],
+                $in//toiletgebruik[parent::vermogen_tot_toiletgang], 
+                $in//zorg_bij_menstruatie[parent::vermogen_tot_toiletgang],
+                $in//feces_continentie[parent::darmfunctie],
+                $in//frequentie[parent::darmfunctie],
+                $in//defecatie_consistentie[parent::darmfunctie],
+                $in//defecatie_kleur[parent::darmfunctie],
+                $in//zindelijkheid_urine[parent::ontwikkeling_kind],
+                $in//zindelijkheid_feces[parent::ontwikkeling_kind],
+                $in//leeftijd_eerste_menstruatie[parent::ontwikkeling_kind],
+                $in//ontwikkeling_motoriek[parent::ontwikkeling_kind],
+                $in//ontwikkeling_sociaal[parent::ontwikkeling_kind],
+                $in//ontwikkeling_taal[parent::ontwikkeling_kind],
+                $in//ontwikkeling_verstandelijk[parent::ontwikkeling_kind],
+                $in//vocht_totaal_in[parent::vochtbalans],
+                $in//vocht_totaal_uit[parent::vochtbalans],
+                $in//drink_beperkingen[parent::vermogen_tot_drinken],
+                $in//eet_beperkingen[parent::vermogen_tot_eten],
+                $in//hartslag_regelmatigheid[parent::hartfrequentie],
+                $in//interpretatie_frequentie[parent::hartfrequentie],
+                $in//pols_regelmatigheid[parent::polsfrequentie]
                 )[.//(@value | @code | @nullFlavor)]" group-by="local-name()">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry">

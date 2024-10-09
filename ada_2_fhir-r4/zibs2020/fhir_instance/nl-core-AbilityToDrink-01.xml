@@ -24,36 +24,14 @@
          <display value="Hulp nodig bij drinken"/>
       </coding>
    </valueCodeableConcept>
-   <component>
-      <code>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="288851008"/>
-            <display value="vermogen tot drinken"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="307071002"/>
-            <display value="Moeite met vastpakken van drank"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
-   <component>
-      <code>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="288851008"/>
-            <display value="vermogen tot drinken"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="288876009"/>
-            <display value="Moeite met naar mond brengen van drank"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
+   <hasMember>
+      <reference value="Observation/nl-core-AbilityToDrink.DrinkingLimitations-01"/>
+      <type value="Observation"/>
+      <display value="drink beperkingen: Moeite met vastpakken van drank"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-AbilityToDrink.DrinkingLimitations-02"/>
+      <type value="Observation"/>
+      <display value="drink beperkingen: Moeite met naar mond brengen van drank"/>
+   </hasMember>
 </Observation>
