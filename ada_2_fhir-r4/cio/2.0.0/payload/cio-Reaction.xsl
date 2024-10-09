@@ -43,7 +43,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="creationDateTime" select="$registrationInformation/ontstaans_datum_tijd"/>
                 
                 <xsl:variable name="relationHypersensitivityIntoleranceRegistrationInformation" select="../../bouwstenen/registratie_informatie[identificatienummer/@value = current()/relatie_overgevoeligheid_intolerantie/identificatie/@value]"/>
-                <xsl:variable name="relationHypersensitivityIntolerance" select="../../geneesmiddelovergevoeligheid/overgevoeligheid[registratie_informatie/@value = $relationHypersensitivityIntoleranceRegistrationInformation/@id]"/>
+                <xsl:variable name="relationHypersensitivityIntolerance" select="../../geneesmiddelovergevoeligheid/overgevoeligheid_intolerantie[registratie_informatie/@value = $relationHypersensitivityIntoleranceRegistrationInformation/@id]"/>
                 
                 <xsl:variable name="relationConditionRegistrationInformation" select="../../bouwstenen/registratie_informatie[identificatienummer/@value = current()/relatie_aandoening_of_gesteldheid/identificatie/@value]"/>
                 <xsl:variable name="relationCondition" select="../../geneesmiddelovergevoeligheid/aandoening_of_gesteldheid[registratie_informatie/@value = $relationConditionRegistrationInformation/@id]"/>
