@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Condition xmlns="http://hl7.org/fhir">
+   <id value="aog-pat09-aog-re-col-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-Condition"/>
+   </meta>
+   <extension url="http://hl7.org/fhir/StructureDefinition/condition-assertedDate">
+      <valueDateTime value="${DATE, T, D, -28}"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationHypersensitivity.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.341"/>
+         <value value="pat09-gmo-01"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.36"/>
+      <value value="pat09-aog-re-col-01"/>
+   </identifier>
+   <severity>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="24484000"/>
+         <display value="Ernstig"/>
+      </coding>
+   </severity>
+   <subject>
+      <reference value="Patient/patient-XXX-Hali"/>
+      <type value="Patient"/>
+      <display value="Patient, Abdelhak (Abdel) XXX_Hali"/>
+   </subject>
+   <onsetDateTime value="${DATE, T, D, -28}"/>
+   <abatementDateTime value="${DATE, T, D, -27}"/>
+   <recordedDate value="${DATE, T, D, -7}T16:43:06+02:00"/>
+   <recorder>
+      <reference value="PractitionerRole/pracrole-000003334"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), A. Rast, MEDISCH SPECIALIST, ALLERGOLOGIE, Algemeen Stadsziekenhuis"/>
+   </recorder>
+   <asserter>
+      <reference value="PractitionerRole/pracrole-000003334"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), A. Rast, MEDISCH SPECIALIST, ALLERGOLOGIE, Algemeen Stadsziekenhuis"/>
+   </asserter>
+   <evidence>
+      <detail>
+         <reference value="Observation/symp-pat09-sym-re-col-01"/>
+         <type value="Observation"/>
+         <display value="Symptoom, urtica (bevinding), ernst: Mild (qualifier value)"/>
+      </detail>
+   </evidence>
+   <evidence>
+      <detail>
+         <reference value="Observation/symp-pat09-sym-re-col-02"/>
+         <type value="Observation"/>
+         <display value="Symptoom, hypotensie (aandoening), ernst: Mild (qualifier value)"/>
+      </detail>
+   </evidence>
+   <evidence>
+      <detail>
+         <reference value="Observation/symp-pat09-sym-re-col-03"/>
+         <type value="Observation"/>
+         <display value="Symptoom, dyspneu (bevinding), ernst: Mild (qualifier value)"/>
+      </detail>
+   </evidence>
+   <note>
+      <text value="Extra toelichting op aandoening of gesteldheid van de Reactie"/>
+   </note>
+</Condition>

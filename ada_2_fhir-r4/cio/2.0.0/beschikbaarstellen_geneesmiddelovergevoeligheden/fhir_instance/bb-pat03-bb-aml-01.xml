@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flag xmlns="http://hl7.org/fhir">
+   <id value="bb-pat03-bb-aml-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-SurveillanceDecision"/>
+   </meta>
+   <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
+      <valueReference>
+         <reference value="AllergyIntolerance/reac-pat03-rea-aml-01"/>
+         <type value="AllergyIntolerance"/>
+         <display value="Reactie, NORVASC TABLET 5MG, diagnosedatum: T-8Y{13:08:15}"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+      <valueString value="invaliderende bijwerking bij amlodipine tablet gebruik i.h.k.v. angina pectoris "/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationHypersensitivity.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.341"/>
+         <value value="pat03-gmo-02"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.754"/>
+      <value value="pat03-bb-aml-01"/>
+   </identifier>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="225419007"/>
+         <display value="surveillance"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.750"/>
+         <code value="62081"/>
+         <display value="AMLODIPINE"/>
+      </coding>
+      <text value="Monitor the use of AMLODIPINE as treatment for the patient, since this substance is unsafe for the patient."/>
+   </code>
+   <subject>
+      <reference value="Patient/patient-XXX-Drijkoningen"/>
+      <type value="Patient"/>
+      <display value="Patient, Petra XXX_Drijkoningen"/>
+   </subject>
+   <period>
+      <start value="${DATE, T, Y, -8}T13:08:15+02:00"/>
+   </period>
+   <author>
+      <reference value="PractitionerRole/pracrole-000003332"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Peter van Pulver, HUISARTS, Huisartsenpraktijk Pulver &amp; Partners"/>
+   </author>
+</Flag>

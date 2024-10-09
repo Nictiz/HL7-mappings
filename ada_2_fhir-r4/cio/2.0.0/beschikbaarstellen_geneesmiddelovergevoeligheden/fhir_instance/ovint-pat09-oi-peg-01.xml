@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="ovint-pat09-oi-peg-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-HypersensitivityIntolerance"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AllergyIntolerance-Type">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="420134006"/>
+            <display value="neiging tot ongewenste reactie"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <extension url="http://hl7.org/fhir/StructureDefinition/allergyintolerance-assertedDate">
+      <valueDateTime value="${DATE, T, D, -7}T16:43:06+02:00"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-WayOfDetermination">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="14736009"/>
+            <display value="History and physical examination with evaluation and management of patient (procedure)"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationCondition">
+      <valueReference>
+         <reference value="Condition/aog-pat09-aog-oi-peg-01"/>
+         <type value="Condition"/>
+         <display value="Aandoening, startdatum: T-7D{16:43:06}"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationHypersensitivity.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.341"/>
+         <value value="pat09-gmo-01"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.456"/>
+      <value value="pat09-oi-peg-01"/>
+   </identifier>
+   <category value="medication">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="419511003"/>
+               <display value="Propensity to adverse reactions to drug (finding)"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <criticality value="high">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="24484000"/>
+               <display value="Severe (severity modifier) (qualifier value)"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </criticality>
+   <code>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.750"/>
+         <code value="59048"/>
+         <display value="MACROGOL"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/patient-XXX-Hali"/>
+      <type value="Patient"/>
+      <display value="Patient, Abdelhak (Abdel) XXX_Hali"/>
+   </patient>
+   <onsetDateTime value="${DATE, T, D, -7}T16:43:06+02:00"/>
+   <recordedDate value="${DATE, T, D, -7}T16:43:06+02:00"/>
+   <recorder>
+      <reference value="PractitionerRole/pracrole-000003334"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), A. Rast, MEDISCH SPECIALIST, ALLERGOLOGIE, Algemeen Stadsziekenhuis"/>
+   </recorder>
+   <asserter>
+      <reference value="PractitionerRole/pracrole-000003334"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), A. Rast, MEDISCH SPECIALIST, ALLERGOLOGIE, Algemeen Stadsziekenhuis"/>
+   </asserter>
+   <note>
+      <text value="Met intradermale test vastgesteld"/>
+   </note>
+</AllergyIntolerance>

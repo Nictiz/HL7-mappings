@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flag xmlns="http://hl7.org/fhir">
+   <id value="bb-pat03-bb-jod-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-SurveillanceDecision"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-SurveillanceDecision.SurveillanceDecision">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="281647001"/>
+            <display value="Adverse reaction (disorder)"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+      <valueString value="patiënt meldt dat de gynaecoloog na EUG heeft gezegd dat jodium nooit gebruikt mag worden. Er wordt een lage ernst verwacht van de reactie bij hernieuwde blootstelling"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationHypersensitivity.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.341"/>
+         <value value="pat03-gmo-01"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.754"/>
+      <value value="pat03-bb-jod-01"/>
+   </identifier>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="225419007"/>
+         <display value="surveillance"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.725"/>
+         <code value="2062"/>
+         <display value="JODIUM LOKAAL"/>
+      </coding>
+      <text value="Monitor the use of JODIUM LOKAAL as treatment for the patient, since this substance is unsafe for the patient."/>
+   </code>
+   <subject>
+      <reference value="Patient/patient-XXX-Drijkoningen"/>
+      <type value="Patient"/>
+      <display value="Patient, Petra XXX_Drijkoningen"/>
+   </subject>
+   <period>
+      <start value="${DATE, T, Y, -23}T08:53:09+02:00"/>
+   </period>
+   <author>
+      <reference value="PractitionerRole/pracrole-000003332"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Peter van Pulver, HUISARTS, Huisartsenpraktijk Pulver &amp; Partners"/>
+   </author>
+</Flag>

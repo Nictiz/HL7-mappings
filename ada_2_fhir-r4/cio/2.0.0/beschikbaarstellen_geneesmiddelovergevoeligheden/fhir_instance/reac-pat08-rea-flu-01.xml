@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="reac-pat08-rea-flu-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-Reaction"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AllergyIntolerance-Type">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="281647001"/>
+            <display value="ongewenste reactie"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <extension url="http://hl7.org/fhir/StructureDefinition/allergyintolerance-assertedDate">
+      <valueDateTime value="${DATE, T, Y, -13}T15:31:46+02:00"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationCondition">
+      <valueReference>
+         <reference value="Condition/aog-pat08-aog-01"/>
+         <type value="Condition"/>
+         <display value="Aandoening, startdatum: T-13Y{08:00:23}"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationHypersensitivity.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.341"/>
+         <value value="pat08-gmo-01"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.4"/>
+      <value value="pat08-rea-flu-01"/>
+   </identifier>
+   <code>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+         <code value="804541"/>
+         <display value="AMOXICILLINE DISP TEVA TABLET 750MG"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/patient-XXX-Smabers"/>
+      <type value="Patient"/>
+      <display value="Patient, Pascal XXX_Smabers"/>
+   </patient>
+   <recordedDate value="${DATE, T, Y, -13}T15:31:46+02:00"/>
+   <recorder>
+      <reference value="PractitionerRole/pracrole-000003331"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), S. van der Snel, ARTS SPOEDEISENDE HULP (SEH), Algemeen Stadsziekenhuis"/>
+   </recorder>
+   <asserter>
+      <reference value="PractitionerRole/pracrole-000003331"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), S. van der Snel, ARTS SPOEDEISENDE HULP (SEH), Algemeen Stadsziekenhuis"/>
+   </asserter>
+   <reaction>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Reaction.LatencyTime">
+         <valueQuantity>
+            <value value="3"/>
+            <unit value="d"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="d"/>
+         </valueQuantity>
+      </extension>
+      <substance>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+            <code value="804541"/>
+            <display value="AMOXICILLINE DISP TEVA TABLET 750MG"/>
+         </coding>
+      </substance>
+      <onset value="${DATE, T, Y, -13}T08:00:23+02:00"/>
+      <exposureRoute>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="ORAAL"/>
+         </coding>
+      </exposureRoute>
+   </reaction>
+</AllergyIntolerance>
