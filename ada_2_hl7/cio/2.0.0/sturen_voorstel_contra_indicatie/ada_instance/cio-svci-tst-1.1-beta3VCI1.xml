@@ -2,8 +2,8 @@
    <meta status="new"
          created-by="cioada"
          last-update-by="cioada"
-         creation-date="2024-09-10T08:46:03.553Z"
-         last-update-date="2024-10-09T10:07:11.678Z"/>
+         creation-date="2024-09-09T12:17:40.956Z"
+         last-update-date="2024-10-11T08:59:46.639Z"/>
    <data>
       <sturen_voorstel_contra_indicatie app="cio-2.0"
                                         shortName="sturen_voorstel_contra_indicatie"
@@ -13,71 +13,69 @@
                                         versionDate="development"
                                         prefix="cio-"
                                         language="nl-NL"
-                                        title="beta3-1.3-VCI2"
-                                        desc="&lt;div&gt;&lt;span style=&#34;font-family: Arial, Helvetica, Geneva, sans-serif; font-size: 12px; white-space-collapse: preserve; background-color: #ffffff;&#34;&gt;Testscenario tbv beta3, voorstel voor het beëindigen van een MCI&lt;/span&gt;&lt;/div&gt;"
-                                        id="cio-svci-tst-1.3-VCI2">
-         <patient conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.302">
+                                        title="1.1 - VCI voor nieuwe medicatie contra-indicatie"
+                                        desc="&lt;div&gt;Testscenario tbv beta3, voorstel voor het aanmaken van een MCI&lt;/div&gt;"
+                                        id="cio-svci-tst-1.1-beta3VCI1">
+         <patient conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.302"
+                  id="pat06">
             <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.670">
-               <voornamen value="Olaf"
+               <voornamen value="Ellen"
                           conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.742"/>
-               <initialen value="O"
+               <initialen value="E"
                           conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.743"/>
                <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.746">
-                  <achternaam value="XXX_Gerrits"
+                  <voorvoegsels value="van"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.747"/>
+                  <achternaam value="XXX_Geitenbeek"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.748"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999900158"
+            <identificatienummer value="999900547"
                                  root="2.16.840.1.113883.2.4.6.3"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.703"/>
-            <geboortedatum value="1963-09-22"
+            <geboortedatum value="1963-10-27"
                            datatype="datetime"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.704"/>
             <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.705"
-                      value="2"
-                      code="M"
+                      value="3"
+                      code="F"
                       codeSystem="2.16.840.1.113883.5.1"
-                      displayName="Man"/>
+                      displayName="Vrouw"/>
          </patient>
          <medicatie_contra_indicatie conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.821"
-                                     id="pat07-mci-dep-02">
+                                     id="pat06-mci-har-01">
             <alert conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.768">
                <alert_type conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.774"
                            value="1"
                            code="350241000146102"
                            codeSystem="2.16.840.1.113883.6.96"
                            displayName="potentiële contra-indicatie voor geneesmiddel (bevinding)"/>
-               <begin_datum_tijd value="T-22Y{16:34:57}"
+               <vaststeller conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.776">
+                  <zorgverlener value="zv-Victor-de-Verstrekker"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.777"/>
+               </vaststeller>
+               <begin_datum_tijd value="T"
                                  datatype="datetime"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.773"/>
-               <eind_datum_tijd value="T"
-                                datatype="datetime"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.769"/>
                <alert_naam codeSystem="2.16.840.1.113883.2.4.4.1.902.40"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.772"
-                           code="38"
+                           code="72"
                            codeSystemName="G-standaard Contra Indicaties (Thesaurus 40)"
-                           displayName="DEPRESSIE"/>
-               <toelichting value="Persistente depressieve stoornis"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.775"/>
-               <relatie_alert conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.881">
-                  <identificatie value="pat07-mci-dep-01"
-                                 root="2.16.840.1.113883.2.4.3.11.999.26.1.16"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.882"/>
-               </relatie_alert>
+                           displayName="HARTFALEN"/>
             </alert>
          </medicatie_contra_indicatie>
          <voorstel_gegevens conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.935">
             <voorstel_contra_indicatie conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.936">
                <relatie_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.938">
-                  <identificatie value="pat07-ma01"
+                  <identificatie value="pat06-ma01"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.939"/>
                </relatie_medicatieafspraak>
-               <medicatie_contra_indicatie value="pat07-mci-dep-02"
+               <medicatie_contra_indicatie value="pat06-mci-har-01"
                                            datatype="reference"
                                            conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.994"/>
-               <toelichting value="Patiënt geeft aan de balie aan niet lager depressief te zijn. Klopt dat en kan deze contra-indicatie dus worden afgesloten?"
+               <toelichting value="Patiënt gebruikt combinatie van ACE-remmers, betablokkers en een lisdiureticum. Is dit in het kader van hartfalen?"
                             conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.940"/>
                <registratie_informatie value="RI_01"
                                        datatype="reference"
@@ -87,9 +85,9 @@
          <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.294">
             <registratie_informatie conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.779"
                                     id="RI_01">
-               <identificatienummer value="pat07-vci-01"
-                                    root="2.16.840.1.113883.2.4.3.11.999.26.1.936"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.780"/>
+               <identificatienummer value="pat06-vci-01"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.780"
+                                    root="2.16.840.1.113883.2.4.3.11.999.26.1.936"/>
                <ontstaans_datum_tijd value="T"
                                      datatype="datetime"
                                      conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.783"/>
