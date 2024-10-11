@@ -68,15 +68,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
+                        
+                        <xsl:for-each select="../nadere_specificatie_symptoom_naam[@value]">
+                            <text>
+                                <xsl:call-template name="string-to-string">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </text>
+                        </xsl:for-each>
                     </code>
-                    
-                    <xsl:for-each select="../nadere_specificatie_symptoom_naam[@value]">
-                        <text>
-                            <xsl:call-template name="string-to-string">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </text>
-                    </xsl:for-each>
                 </xsl:for-each>
                 
                 <xsl:call-template name="makeReference">
