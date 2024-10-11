@@ -3,7 +3,7 @@
    <id value="lr-loa-TEST-l2z-1Maximaal-bericht-aanvraag-2MMBNHG"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:af8d836e-81cc-11ef-1446-020000000000"/>
+      <fullUrl value="urn:uuid:73770002-86eb-11ef-2956-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -29,13 +29,13 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:af8d8314-81cc-11ef-1446-020000000000"/>
+               <reference value="urn:uuid:7376ffa8-86eb-11ef-2956-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, Elise Erelies"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, -3}"/>
             <performer>
-               <reference value="urn:uuid:af8d8332-81cc-11ef-1446-020000000000"/>
+               <reference value="urn:uuid:7376ffc6-86eb-11ef-2956-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Microbiologisch Lab Flagel"/>
             </performer>
@@ -50,7 +50,7 @@
                <text value="Covid aanwezig"/>
             </interpretation>
             <specimen>
-               <reference value="urn:uuid:af8d83aa-81cc-11ef-1446-020000000000"/>
+               <reference value="urn:uuid:7377003e-86eb-11ef-2956-020000000000"/>
                <type value="Specimen"/>
                <display value="monster"/>
             </specimen>
@@ -62,7 +62,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:af8d83aa-81cc-11ef-1446-020000000000"/>
+      <fullUrl value="urn:uuid:7377003e-86eb-11ef-2956-020000000000"/>
       <resource>
          <Specimen>
             <meta>
@@ -80,7 +80,7 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:af8d8314-81cc-11ef-1446-020000000000"/>
+               <reference value="urn:uuid:7376ffa8-86eb-11ef-2956-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, Elise Erelies"/>
             </subject>
@@ -102,7 +102,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:af8d8332-81cc-11ef-1446-020000000000"/>
+      <fullUrl value="urn:uuid:7376ffc6-86eb-11ef-2956-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -125,6 +125,40 @@
                <system value="phone"/>
                <value value="06-11122244"/>
             </telecom>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Kerkstraat 23">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Kerkstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="23"/>
+                  </extension>
+               </line>
+               <city value="Zorgstad"/>
+               <postalCode value="2143BB"/>
+               <country value="Nederland">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="urn:iso:std:iso:3166"/>
+                           <version value="2020-10-26T00:00:00"/>
+                           <code value="NL"/>
+                           <display value="Nederland"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </country>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -133,7 +167,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:af8d8314-81cc-11ef-1446-020000000000"/>
+      <fullUrl value="urn:uuid:7376ffa8-86eb-11ef-2956-020000000000"/>
       <resource>
          <Patient>
             <meta>
