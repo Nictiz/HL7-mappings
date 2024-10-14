@@ -149,10 +149,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="polsfrequentie" resource="Observation" profile="nl-core-PulseRate"/>
         <nm:map ada="pols_regelmatigheid" resource="Observation" profile="nl-core-PulseRate.PulseRegularity"/>
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
-        <nm:map ada="product" resource="Device" profile="nl-core-MedicalDevice.Product"/>
-        <nm:map ada="product" resource="Device" profile="nl-core-HearingFunction.HearingAid.Product"/>
-        <nm:map ada="product" resource="Device" profile="nl-core-VisualFunction.VisualAid.Product"/>
-        <nm:map ada="product" resource="Device" profile="nl-core-Wound.Drain.Product"/>
+        <nm:map ada="medisch_hulpmiddel" resource="Device" profile="nl-core-MedicalDevice.Product"/>
+        <nm:map ada="medisch_hulpmiddel" resource="Device" profile="nl-core-HearingFunction.HearingAid.Product"/>
+        <nm:map ada="medisch_hulpmiddel" resource="Device" profile="nl-core-VisualFunction.VisualAid.Product"/>
+        <nm:map ada="medisch_hulpmiddel" resource="Device" profile="nl-core-Wound.Drain.Product"/>
         <nm:map ada="reactie" resource="AllergyIntolerance" profile="cio-Reaction"/>
         <nm:map ada="reactie" resource="Condition" profile="cio-Condition"/>
         <nm:map ada="refractie" resource="Observation" profile="nl-core-Refraction"/>
