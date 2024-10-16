@@ -53,7 +53,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc/>
     </xd:doc>
     <xsl:template match="sturen_laboratoriumresultaten | beschikbaarstellen_laboratoriumresultaten">
-
+        
         <xsl:variable name="resources" as="element(f:entry)*">
             <xsl:apply-templates select="onderzoeksresultaat"/>
 
@@ -148,12 +148,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:choose>
             <xsl:when test="$writeOutputToDisk">
-                <xsl:for-each select="$resources/f:resource/*">
+                <xsl:for-each-group select="$resources/f:resource/*" group-by="f:id/@value">
                     <xsl:choose>
                         <xsl:when test="string-length(f:id/@value) gt 0">
-                            <xsl:result-document href="../fhir_instance/{f:id/@value}.xml">
-                                <xsl:copy-of select="."/>
-                            </xsl:result-document>
+                            <xsl:if test="count(current-group()) gt 1">
+                                <xsl:call-template name="util:logMessage">
+                                    <xsl:with-param name="level" select="$logERROR"/>
+                                    <xsl:with-param name="msg">Creating <xsl:value-of select="f:id/@value"/> more than once (<xsl:value-of select="count(current-group())"/>) by adding a sequenceNumber suffix. This should not happen and likely causes reference issues. Please verify that every resource is unique.</xsl:with-param>
+                                    <xsl:with-param name="terminate" select="true()"/>
+                                </xsl:call-template>
+                            </xsl:if>
+                            
+                            <xsl:for-each select="current-group()">
+                                <xsl:variable name="sequenceNumber" select="if (count(current-group()) = 1) then () else concat('-', position())"/>
+                                
+                                <xsl:result-document href="../fhir_instance/{f:id/@value}{$sequenceNumber}.xml">
+                                    <xsl:copy-of select="."/>
+                                </xsl:result-document>
+                            </xsl:for-each>
                         </xsl:when>
                         <xsl:otherwise>
                             <!-- This happens when transforming a non-saved document in Oxygen -->
@@ -164,7 +176,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:copy-of select="."/>
                         </xsl:otherwise>
                     </xsl:choose>
-                </xsl:for-each>
+                </xsl:for-each-group>
             </xsl:when>
             <xsl:otherwise>
                 <Bundle xmlns="http://hl7.org/fhir">
