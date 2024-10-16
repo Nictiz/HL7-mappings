@@ -133,7 +133,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </timingPeriod>
                 </xsl:if>
 
-                <xsl:if test=".[product or product_omschrijving]">
+                <xsl:if test="product or product_omschrijving">
                     <device>
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="profile" select="concat($profile,'.Product')"/>
@@ -190,7 +190,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         <xsl:param name="profile" select="$profileNameMedicalDeviceProduct" as="xs:string"/>
         
-        <xsl:if test="$in[product or product_omschrijving]">
+        <xsl:for-each select="$in">
             <Device>
                 <xsl:call-template name="insertLogicalId">
                     <xsl:with-param name="profile" select="$profile"/>
@@ -198,8 +198,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="{concat($urlBaseNictizProfile, $profile)}"/>
                 </meta>
-                        
-                <xsl:for-each select="$in/product/product_id">
+                
+                <xsl:for-each select="product/product_id">
                     <xsl:choose>
                         <xsl:when test="@codeSystem = ($oidGTIN, $oidHIBC)">
                             <identifier>
@@ -221,7 +221,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:choose>
                 </xsl:for-each>
                 
-                <xsl:for-each select="$in/product/product_type">
+                <xsl:for-each select="product/product_type">
                     <type>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
@@ -244,7 +244,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </note>
                 </xsl:for-each> 
             </Device>
-        </xsl:if>
+        </xsl:for-each>
     </xsl:template>
     
     <xd:doc>

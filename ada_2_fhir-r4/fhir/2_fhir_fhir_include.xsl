@@ -115,9 +115,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="medicatieafspraak" resource="MedicationRequest" profile="mp-MedicationAgreement"/>
         <nm:map ada="medicatieverstrekking" resource="MedicationDispense" profile="mp-MedicationDispense"/>
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-MedicalDevice"/>
+        <nm:map ada="medisch_hulpmiddel" resource="Device" profile="nl-core-MedicalDevice.Product"/>
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-HearingFunction.HearingAid"/>
+        <nm:map ada="medisch_hulpmiddel" resource="Device" profile="nl-core-HearingFunction.HearingAid.Product"/>
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-VisualFunction.VisualAid"/>
+        <nm:map ada="medisch_hulpmiddel" resource="Device" profile="nl-core-VisualFunction.VisualAid.Product"/>
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-Wound.Drain"/>
+        <nm:map ada="medisch_hulpmiddel" resource="Device" profile="nl-core-Wound.Drain.Product"/>
         <nm:map ada="mobiliteit" resource="Observation" profile="nl-core-Mobility"/>
         <nm:map ada="lopen" resource="Observation" profile="nl-core-Mobility.Walking"/>
         <nm:map ada="traplopen" resource="Observation" profile="nl-core-Mobility.ClimbingStairs"/>
@@ -149,10 +153,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="polsfrequentie" resource="Observation" profile="nl-core-PulseRate"/>
         <nm:map ada="pols_regelmatigheid" resource="Observation" profile="nl-core-PulseRate.PulseRegularity"/>
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
-        <nm:map ada="medisch_hulpmiddel" resource="Device" profile="nl-core-MedicalDevice.Product"/>
-        <nm:map ada="medisch_hulpmiddel" resource="Device" profile="nl-core-HearingFunction.HearingAid.Product"/>
-        <nm:map ada="medisch_hulpmiddel" resource="Device" profile="nl-core-VisualFunction.VisualAid.Product"/>
-        <nm:map ada="medisch_hulpmiddel" resource="Device" profile="nl-core-Wound.Drain.Product"/>
         <nm:map ada="reactie" resource="AllergyIntolerance" profile="cio-Reaction"/>
         <nm:map ada="reactie" resource="Condition" profile="cio-Condition"/>
         <nm:map ada="refractie" resource="Observation" profile="nl-core-Refraction"/>
@@ -328,7 +328,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 $in//horen_hulpmiddel/medisch_hulpmiddel,
                 $in//zien_hulpmiddel/medisch_hulpmiddel,
                 $in//drain/medisch_hulpmiddel,
-                $in//product[parent::medisch_hulpmiddel],
                 $in//visueel_resultaat[parent::tekst_uitslag],
                 $in//soepregel[parent::soepverslag],
                 $in//monster[parent::laboratorium_uitslag],

@@ -57,7 +57,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../0.5-beta1/nl-core-HeadCircumference.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-HealthProfessional.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-HealthcareProvider.xsl"/>
-    <xsl:import href="../0.5-beta1/nl-core-HearingFunction.xsl"/>
+    <xsl:import href="nl-core-HearingFunction.xsl"/>
     <xsl:import href="nl-core-HeartRate.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-HelpFromOthers.xsl"/>
     <xsl:import href="nl-core-IllnessPerception.xsl"/>
@@ -95,7 +95,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../0.7-beta1/nl-core-TreatmentDirective2.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-Vaccination.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-VisualAcuity.xsl"/>
-    <xsl:import href="../0.5-beta1/nl-core-VisualFunction.xsl"/>
+    <xsl:import href="nl-core-VisualFunction.xsl"/>
     <xsl:import href="nl-core-Wound.xsl" />
     <xsl:import href="../0.5-beta1/ext-CodeSpecification.xsl"/>
     <xsl:import href="../0.5-beta1/ext-Comment.xsl"/>
