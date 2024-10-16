@@ -274,7 +274,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:if test="not($referencingStrategy = ('logicalId', 'uuid', 'none'))">
             <xsl:call-template name="util:logMessage">
                 <xsl:with-param name="level" select="$logFATAL"/>
-                <xsl:with-param name="msg">Invalid $referencingStrategy. Should be one of 'logicalId', 'uuid', 'none'</xsl:with-param>
+                <xsl:with-param name="msg">Invalid $referencingStrategy (<xsl:value-of select="$referencingStrategy"/>). Should be one of 'logicalId', 'uuid', 'none'</xsl:with-param>
                 <xsl:with-param name="terminate" select="true()"/>
             </xsl:call-template>
         </xsl:if>
