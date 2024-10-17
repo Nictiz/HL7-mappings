@@ -4,7 +4,7 @@
          created-by="zibsada"
          last-update-by="zibsada"
          creation-date="2024-06-05T14:17:13.308Z"
-         last-update-date="2024-09-23T16:16:17.282Z"/>
+         last-update-date="2024-10-15T12:10:05.251Z"/>
    <data>
       <sturen app="bgz2017-2.0"
               shortName="sturen"
@@ -14,7 +14,7 @@
               versionDate="development"
               prefix="bgz2017-"
               language="nl-NL"
-              title="BgZ msz patD sturen - verwacht resultaat"
+              title="BgZ msz patD sturen - transactie"
               desc="&lt;div&gt;&lt;span style=&#34;font-family: Arial, Helvetica, Geneva, sans-serif; font-size: 12px; white-space-collapse: preserve; background-color: #ffffff;&#34;&gt;Maximale set&lt;/span&gt;&lt;/div&gt;"
               id="BgZ-msz-tst-patD-SLB">
          <demografie_en_identificatie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.48">
@@ -423,6 +423,11 @@
                              conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.359"/>
                <toelichting value="Patiënt kan wel goed luisteren en begrijpen. Patiënt kan niet goed uit haar woorden komen."
                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.360"/>
+               <status_categorie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.756"
+                                 value="1"
+                                 code="118228005"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 displayName="bevinding betreffende functioneren"/>
             </functionele_of_mentale_status>
             <functionele_of_mentale_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.356">
                <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1.356">
@@ -452,6 +457,11 @@
                                       datatype="reference"
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.480"/>
                </hulpmiddel>
+               <status_categorie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.756"
+                                 value="1"
+                                 code="118228005"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 displayName="bevinding betreffende functioneren"/>
             </functionele_of_mentale_status>
          </functionelementale_status>
          <klachten_en_diagnoses conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.49">
@@ -957,6 +967,15 @@
                </reactie>
             </allergie_intolerantie>
             <allergie_intolerantie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.211">
+               <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1.211">
+                  <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11.211">
+                     <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12.211">
+                        <patient value="bgz-msz-patD"
+                                 datatype="reference"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146.211"/>
+                     </patient>
+                  </onderwerp>
+               </zibroot>
                <veroorzakende_stof code="127771000146105"
                                    codeSystem="2.16.840.1.113883.6.96"
                                    displayName="dihydroabietylalcohol"
@@ -990,6 +1009,82 @@
                </reactie>
             </allergie_intolerantie>
          </allergieen>
+         <medicatie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.620">
+            <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.638"
+                               id="bgz-msz-patD-medAgree1">
+               <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1.638">
+                  <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11.638">
+                     <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12.638">
+                        <patient value="bgz-msz-patD"
+                                 datatype="reference"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146.638"/>
+                     </patient>
+                  </onderwerp>
+               </zibroot>
+               <afgesprokengeneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.647">
+                  <farmaceutisch_product value="bgz-msz-patD-drug1"
+                                         datatype="reference"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.773"/>
+               </afgesprokengeneesmiddel>
+               <medicatieafspraak_datum_tijd value="2008-06-22"
+                                             datatype="datetime"
+                                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.651"/>
+               <reden_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.656"
+                                        value="1"
+                                        code="266709005"
+                                        codeSystem="2.16.840.1.113883.6.96"
+                                        displayName="Starten medicamenteuze behandeling"/>
+            </medicatieafspraak>
+            <toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.659"
+                                 id="bgz-msz-patD-adminAgree1">
+               <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1.659">
+                  <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11.659">
+                     <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12.659">
+                        <patient value="bgz-msz-patD"
+                                 datatype="reference"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146.659"/>
+                     </patient>
+                  </onderwerp>
+               </zibroot>
+               <geneesmiddel_bij_toedienings_afspraak conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.662">
+                  <farmaceutisch_product value="bgz-msz-patD-drug1"
+                                         datatype="reference"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.774"/>
+               </geneesmiddel_bij_toedienings_afspraak>
+               <toedieningsafspraak_datum_tijd value="2008-06-22"
+                                               datatype="datetime"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.666"/>
+               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.668">
+                  <tijds_interval value="bgz-msz-patD-interval1"
+                                  datatype="reference"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.775"/>
+               </gebruiksperiode>
+            </toedieningsafspraak>
+            <medicatie_gebruik conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.621"
+                               id="bgz-msz-patD-medUse1">
+               <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1.621">
+                  <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11.621">
+                     <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12.621">
+                        <patient value="bgz-msz-patD"
+                                 datatype="reference"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146.621"/>
+                     </patient>
+                  </onderwerp>
+               </zibroot>
+               <gebruiksproduct conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.624">
+                  <farmaceutisch_product value="bgz-msz-patD-drug1"
+                                         datatype="reference"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.803"/>
+               </gebruiksproduct>
+               <medicatie_gebruik_datum_tijd value="2008-06-22T23:00:00"
+                                             datatype="datetime"
+                                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.628"/>
+               <volgens_afspraak_indicator value="true"
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.631"/>
+               <gebruik_indicator value="true"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.632"/>
+            </medicatie_gebruik>
+         </medicatie>
          <medische_hulpmiddelen conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.205">
             <medisch_hulpmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.331"
                                 id="bgz-msz-patD-medDevice1">
@@ -2571,9 +2666,19 @@
                          conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.707"/>
                </doel>
                <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
-                  <contactpersonen value="bgz-msz-patD-contactperson1"
-                                   datatype="reference"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.708"/>
+                  <medicatieafspraak value="bgz-msz-patD-medAgree1"
+                                     datatype="reference"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.815"/>
+               </doel>
+               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
+                  <toedieningsafspraak value="bgz-msz-patD-adminAgree1"
+                                       datatype="reference"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.816"/>
+               </doel>
+               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
+                  <toedieningsafspraak value="bgz-msz-patD-adminAgree1"
+                                       datatype="reference"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.816"/>
                </doel>
                <datum_tijd value="2008-06-02T10:11:12"
                            datatype="datetime"
@@ -2589,6 +2694,19 @@
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.686"/>
                </actor>
             </metagegevens>
+            <tijds_interval conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.757"
+                            id="bgz-msz-patD-interval1">
+               <start_datum_tijd value="2008-06-22"
+                                 datatype="datetime"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.758"/>
+            </tijds_interval>
+            <farmaceutisch_product conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.762"
+                                   id="bgz-msz-patD-drug1">
+               <product_code code="17469"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="IBUPROFEN TABLET 600MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.772"/>
+            </farmaceutisch_product>
          </bouwstenen>
       </sturen>
    </data>
