@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bundle xmlns="http://hl7.org/fhir">
+   <id value="cio-savc-tst-2.1-beta3AVCI2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-ReplyProposalContraIndication-Bundle"/>
+   </meta>
+   <type value="transaction"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
+   <entry>
+      <fullUrl value="http://example.nictiz.nl/fhir/Communication/avci-pat07-avci-01"/>
+      <resource>
+         <Communication>
+            <id value="avci-pat07-avci-01"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-ReplyProposalContraIndication"/>
+               <tag>
+                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
+                  <code value="actionable"/>
+               </tag>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.937"/>
+               <value value="pat07-avci-01"/>
+            </identifier>
+            <basedOn>
+               <type value="Flag"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.936"/>
+                  <value value="pat07-vci-01"/>
+               </identifier>
+               <display value="Relatie naar voorstel: pat07-vci-01 || 2.16.840.1.113883.2.4.3.11.999.26.1.936"/>
+            </basedOn>
+            <subject>
+               <reference value="Patient/patient-XXX-Gerrits"/>
+               <type value="Patient"/>
+               <display value="Patient, Olaf XXX_Gerrits"/>
+            </subject>
+            <sent value="${DATE, T, D, +0}"/>
+            <sender>
+               <reference value="PractitionerRole/pracrole-000003332"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, HUISARTS, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </sender>
+            <payload>
+               <contentString>
+                  <extension url="http://nictiz.nl/fhir/5.0/StructureDefinition/extension-Communication.payload.content%5Bx%5D:contentCodeableConcept">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.26.5.1"/>
+                           <code value="code-2"/>
+                           <display value="Nee, voorstel afgewezen"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </contentString>
+            </payload>
+            <payload>
+               <contentString value="Patiënt op en af in depressie. Bij voorschrijven medicatie wenselijk om hier rekening mee te houden."/>
+            </payload>
+         </Communication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Communication"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="http://example.nictiz.nl/fhir/Patient/patient-XXX-Gerrits"/>
+      <resource>
+         <Patient>
+            <id value="patient-XXX-Gerrits"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999900158"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Olaf XXX_Gerrits"/>
+               <family value="XXX_Gerrits">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Gerrits"/>
+                  </extension>
+               </family>
+               <given value="Olaf">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1963-09-22"/>
+         </Patient>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="http://example.nictiz.nl/fhir/PractitionerRole/pracrole-000003332"/>
+      <resource>
+         <PractitionerRole>
+            <id value="pracrole-000003332"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+            </meta>
+            <practitioner>
+               <reference value="Practitioner/prac-000003332"/>
+               <type value="Practitioner"/>
+               <display value="Healthcare professional (person), Peter van Pulver"/>
+            </practitioner>
+            <organization>
+               <reference value="Organization/org-00001111"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <code value="0101"/>
+                  <display value="HUISARTS"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="http://example.nictiz.nl/fhir/Practitioner/prac-000003332"/>
+      <resource>
+         <Practitioner>
+            <id value="prac-000003332"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.139"/>
+               <value value="000003332"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Peter van Pulver"/>
+               <family value="van Pulver">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Pulver"/>
+                  </extension>
+               </family>
+               <given value="Peter">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="http://example.nictiz.nl/fhir/Organization/org-00001111"/>
+      <resource>
+         <Organization>
+            <id value="org-00001111"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.205"/>
+               <value value="00001111"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <code value="Z3"/>
+                  <display value="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
+               </coding>
+            </type>
+            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpstraat 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+</Bundle>

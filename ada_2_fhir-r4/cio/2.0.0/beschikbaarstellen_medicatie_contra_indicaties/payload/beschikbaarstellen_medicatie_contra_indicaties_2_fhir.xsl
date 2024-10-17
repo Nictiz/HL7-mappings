@@ -45,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 beschikbaarstellen_medicatie_contra_indicaties/bouwstenen/zorgverlener |
                 beschikbaarstellen_medicatie_contra_indicaties/bouwstenen/zorgaanbieder |
                 beschikbaarstellen_medicatie_contra_indicaties/bouwstenen/contactpersoon |
-                beschikbaarstellen_medicatie_contra_indicaties/bouwstenen/registratie_gegevens
+                beschikbaarstellen_medicatie_contra_indicaties/bouwstenen/registratie_informatie
                 )"/>
         </xsl:call-template>
     </xsl:param>
@@ -56,7 +56,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="beschikbaarstellen_medicatie_contra_indicaties">
         
         <xsl:variable name="resources" as="element(f:entry)*">
-            <xsl:variable name="medicatiecontraindicaties" as="element()*">
+            <xsl:variable name="medicationContraIndications" as="element()*">
                 <xsl:for-each-group select="medicatie_contra_indicatie/alert" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="cio-MedicationContraIndication">
                         <xsl:with-param name="in" select="current-group()[1]"/>
@@ -70,7 +70,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </xsl:variable>
             
-            <xsl:variable name="zorgverleners" as="element()*">
+            <xsl:variable name="healthProfessionals" as="element()*">
                 <xsl:for-each-group select="bouwstenen/zorgverlener" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="nl-core-HealthProfessional-PractitionerRole">
                         <xsl:with-param name="in" select="current-group()[1]"/>
@@ -82,7 +82,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each-group>
             </xsl:variable>
             
-            <xsl:variable name="zorgaanbieders" as="element()*">
+            <xsl:variable name="healthcareProviders" as="element()*">
                 <xsl:for-each-group select="bouwstenen/zorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="nl-core-HealthcareProvider-Organization">
                         <xsl:with-param name="in" select="current-group()[1]"/>
@@ -90,7 +90,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each-group>
             </xsl:variable>
             
-            <xsl:variable name="contactpersonen" as="element()*">
+            <xsl:variable name="contactPersons" as="element()*">
                 <xsl:for-each-group select="bouwstenen/contactpersoon" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="nl-core-ContactPerson">
                         <xsl:with-param name="in" select="current-group()[1]"/>
@@ -99,15 +99,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each-group>
             </xsl:variable>
             
-            <xsl:variable name="registratiegegevens" as="element()*">
-                <xsl:for-each-group select="bouwstenen/registratie_gegevens" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:call-template name="cio-RegistrationData">
+            <xsl:variable name="registrationInformations" as="element()*">
+                <xsl:for-each-group select="bouwstenen/registratie_informatie" group-by="nf:getGroupingKeyDefault(.)">
+                    <xsl:call-template name="cio-RegistrationInformation">
                         <xsl:with-param name="in" select="current-group()[1]"/>
                     </xsl:call-template>
                 </xsl:for-each-group>
             </xsl:variable>
             
-            <xsl:for-each select="$medicatiecontraindicaties | $patient | $zorgverleners | $zorgaanbieders | $contactpersonen | $registratiegegevens">
+            <xsl:for-each select="$medicationContraIndications | $patient | $healthProfessionals | $healthcareProviders | $contactPersons | $registrationInformations">
                 <entry xmlns="http://hl7.org/fhir">
                     <xsl:call-template name="_insertFullUrlById"/>
                     <resource>
@@ -141,9 +141,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <Bundle xmlns="http://hl7.org/fhir">
                     <id value="{nf:assure-logicalid-length(nf:removeSpecialCharacters(@id))}"/>
                     <type value="searchset"/>
-                    <!-- What should we count? -->
-                    <total value="TODO"/>
-                    <!--<total value="{count($resources/f:resource/*)}"/>-->
+                    <total value="{count($resources/f:resource/*)}"/>
                     <xsl:choose>
                         <xsl:when test="$bundleSelfLink[not(. = '')]">
                             <link>
@@ -176,8 +174,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="logicalId">
             <xsl:choose>
                 <xsl:when test="$localName = 'alert' and $profile = $profileNameCioMedicationContraIndication">
-                    <xsl:variable name="registrationData" select="../../bouwstenen/registratie_gegevens[@id = current()/registratie_gegevens/@value]"/>
-                    <xsl:value-of select="concat('mci-', $registrationData/identificatienummer/@value)"/>
+                    <xsl:variable name="registrationInformation" select="../../bouwstenen/registratie_informatie[@id = current()/registratie_informatie/@value]"/>
+                    <xsl:value-of select="concat('mci-', $registrationInformation/identificatienummer/@value)"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'patient'">
                     <xsl:value-of select="concat('patient-', string-join((naamgegevens[1]/geslachtsnaam/(voorvoegsels, achternaam)/@value, naamgegevens[1]/geslachtsnaam_partner/(voorvoegsels_partner, achternaam_partner)/@value), '-'))"/>
@@ -194,8 +192,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$localName = 'contactpersoon' and $profile = $profileNameContactPerson">
                     <xsl:value-of select="concat('cp-', string-join((naamgegevens[1]/geslachtsnaam/(voorvoegsels, achternaam)/@value, naamgegevens[1]/geslachtsnaam_partner/(voorvoegsels_partner, achternaam_partner)/@value), '-'))"/>
                 </xsl:when>
-                <xsl:when test="$localName = 'registratie_gegevens' and $profile = $profileNameCioRegistrationData">
-                    <xsl:value-of select="concat('regdata-', identificatienummer/@value)"/>
+                <xsl:when test="$localName = 'registratie_informatie' and $profile = $profileNameCioRegistrationInformation">
+                    <xsl:value-of select="concat('reginfo-', identificatienummer/@value)"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="$localName"/>
