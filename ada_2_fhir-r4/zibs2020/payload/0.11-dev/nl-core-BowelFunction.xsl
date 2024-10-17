@@ -268,8 +268,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </Observation>
         </xsl:for-each>
     </xsl:template>
-    
-   
      
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
@@ -281,7 +279,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
     </xsl:template>
-    
     
     <xsl:template match="feces_continentie[parent::darmfunctie]" mode="_generateDisplay">
         <xsl:variable name="parts" as="item()*">
