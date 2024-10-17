@@ -22,6 +22,7 @@
 
     <property name="usecase.labbr" value="beschikbaarstellen_laboratoriumresultaten"/>
     <property name="usecase.labsr" value="sturen_laboratoriumresultaten"/>
+    <property name="usecase.labsroa" value="sturen_laboratoriumresultaat_op_aanvraag"/>
 
     <target name="setup" description="Setup subdirectories, schemas, ada instance xmls in ${build.dir}">
 
@@ -41,6 +42,15 @@
             <param name="fileset.dir" value="ada_instance"/>
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.labsr}"/>
+        </antcall>
+        
+        <!-- sturen_laboratoriumgegevens_op_aanvraag copies schemas for project dir and appropriate ada instances from refs.dir -->
+        <antcall target="setup_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.labsroa}"/>
+            <param name="schema.string" value="*${usecase.labsroa}.xsd"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="*.xml"/>
+            <param name="refs.dir" value="${refs.dir}/${usecase.labsroa}"/>
         </antcall>
 
         <!--<!-\- xml voorbeelden -\->
@@ -91,6 +101,15 @@
             <param name="xsl.out" value="fhir_instance"/>
             <param name="param.bundleSelfLink" value="http://dummy.nictiz.nl/dummyquery"/>
         </antcall>
+        
+        <!-- sturen_laboratoriumgegevens_op_aanvraag -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.labsroa}"/>
+            <param name="xsl.name" value="payload/${usecase.labsroa}.xsl"/>
+            <param name="xsl.in" value="ada_instance"/>
+            <param name="xsl.out" value="fhir_instance"/>
+            <param name="param.bundleSelfLink" value="http://dummy.nictiz.nl/dummyquery"/>
+        </antcall>
 
         <!-- also do the examples -->
         <!--<antcall target="convert_ada_2_fhir_examples"/>-->
@@ -137,11 +156,16 @@
         <fileset id="inputfiles" dir="${xsl.input}" includes="*.xml"/>
 
         <echo/>
-        <echo>${echo.label} ${xsl.lab} input dir ${xsl.input}</echo>
+        <echo>${echo.label} input files ${xsl.input}, to be converted with: ${xsl.lab}</echo>
+        <echo>${echo.label} Param writeOutputToDisk=${param.writeOutputToDisk}</echo>
+        <echo>${echo.label} Param populateId=${param.populateId}</echo>
+        
         <xslt force="true" style="${xsl.lab}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
             <fileset refid="inputfiles"/>
             <param name="dateT" expression="${param.tdate}" if="param.tdate"/>
             <param name="writeOutputToDisk" expression="${param.writeOutputToDisk}" if="param.writeOutputToDisk"/>
+            <param name="populateId" expression="${param.populateId}" if="param.populateId"/>
+            <param name="referencingStrategy" expression="${param.referencingStrategy}" if="param.referencingStrategy"/>
             <!-- whether to generate the textual instruction for use based on structured data, 
                     typically true for test/example instances 
                     typically false for production -->

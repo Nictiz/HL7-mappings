@@ -56,14 +56,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:variable name="ada2resourceType">
         <nm:map ada="alcohol_gebruik" resource="Observation" profile="nl-core-AlcoholUse"/>
-        <nm:map ada="alert" resource="Flag" profile="nl-core-alert"/>
+        <nm:map ada="alert" resource="Flag" profile="nl-core-Alert"/>
+        <nm:map ada="alert" resource="Flag" profile="cio-MedicationContraIndication"/>
         <nm:map ada="allergie_intolerantie" resource="AllergyIntolerance" profile="nl-core-AllergyIntolerance"/>
         <nm:map ada="apgar_score" resource="Observation" profile="nl-core-ApgarScore-1Minute"/>
         <nm:map ada="apgar_score" resource="Observation" profile="nl-core-ApgarScore-5Minute"/>
         <nm:map ada="apgar_score" resource="Observation" profile="nl-core-ApgarScore-10Minute"/>
         <nm:map ada="barthel_index" resource="Observation" profile="nl-core-BarthelADLIndex"/>
         <nm:map ada="behandel_aanwijzing" resource="Consent" profile="nl-core-TreatmentDirective2"/>
+        <nm:map ada="bewaking_besluit" resource="Flag" profile="cio-SurveillanceDecision"/>
         <nm:map ada="bloeddruk" resource="Observation" profile="nl-core-BloodPressure"/>
+        <nm:map ada="brandwond" resource="Condition" profile="nl-core-Burnwound"/>
+        <nm:map ada="brandwond" resource="Observation" profile="nl-core-wounds.WoundCharacteristics"/>
+        <nm:map ada="uitgebreidheid" resource="Observation" profile="nl-core-Burnwound.Extent"/>
         <nm:map ada="comfort_score" resource="Observation" profile="nl-core-ComfortScale"/>
         <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer.InsuranceCompany"/>
         <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer.PayerPerson"/>
@@ -72,6 +77,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="contact" resource="Encounter" profile="nl-core-Encounter"/>
         <nm:map ada="contactpersoon" resource="RelatedPerson" profile="nl-core-ContactPerson"/>
         <nm:map ada="darmfunctie" resource="Observation" profile="nl-core-BowelFunction"/>
+        <nm:map ada="decubitus_wond" resource="Condition" profile="nl-core-PressureUlcer"/>
+        <nm:map ada="decubitus_wond" resource="Observation" profile="nl-core-wounds.WoundCharacteristics"/>
+        <nm:map ada="feces_continentie" resource="Observation" profile="nl-core-BowelFunction.FecalContinence"/>
+        <nm:map ada="frequentie" resource="Observation" profile="nl-core-BowelFunction.Frequency"/>
+        <nm:map ada="defecatie_consistentie" resource="Observation" profile="nl-core-BowelFunction.DefecationConsistency"/>
+        <nm:map ada="defecatie_kleur" resource="Observation" profile="nl-core-BowelFunction.DefecationColor"/>
         <nm:map ada="dosscore" resource="Observation" profile="nl-core-DOSScore"/>
         <nm:map ada="drugs_gebruik" resource="Observation" profile="nl-core-DrugUse"/>
         <nm:map ada="envelop" resource="ServiceRequest" profile="hg-ReferralServiceRequest"/>
@@ -81,7 +92,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="functie_horen" resource="Observation" profile="nl-core-HearingFunction"/>
         <nm:map ada="functie_zien" resource="Observation" profile="nl-core-VisualFunction"/>
         <nm:map ada="functionele_of_mentale_status" resource="Observation" profile="nl-core-FunctionalOrMentalStatus"/>
+        <nm:map ada="glasgow_coma_scale" resource="Observation" profile="nl-core-GlasgowComaScale"/>
         <nm:map ada="hartfrequentie" resource="Observation" profile="nl-core-HeartRate"/>
+        <nm:map ada="hartslag_regelmatigheid" resource="Observation" profile="nl-core-HeartRate.HeartbeatRegularity"/>
+        <nm:map ada="interpretatie_frequentie" resource="Observation" profile="nl-core-HeartRate.InterpretationHeartRate"/>
         <nm:map ada="huidaandoening" resource="Condition" profile="nl-core-SkinDisorder"/>
         <nm:map ada="hulp_van_anderen" resource="CarePlan" profile="nl-core-HelpFromOthers"/>
         <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-LegalStatus"/>
@@ -93,7 +107,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="lichaamslengte" resource="Observation" profile="nl-core-BodyHeight"/>
         <nm:map ada="lichaamstemperatuur" resource="Observation" profile="nl-core-BodyTemperature"/>
         <nm:map ada="lichaamsgewicht" resource="Observation" profile="nl-core-BodyWeight"/>
-        <nm:map ada="medicatie_contra_indicatie" resource="Flag" profile="cio-MedicationContraIndication"/>
         <nm:map ada="medicatie_contra_indicatie" resource="Flag" profile="nl-core-MedicationContraIndication"/>
         <nm:map ada="medicatiegebruik" resource="MedicationStatement" profile="mp-MedicationUse2"/>
         <nm:map ada="medicatie_gebruik" resource="MedicationStatement" profile="mp-MedicationUse2"/>
@@ -102,29 +115,52 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="medicatieafspraak" resource="MedicationRequest" profile="mp-MedicationAgreement"/>
         <nm:map ada="medicatieverstrekking" resource="MedicationDispense" profile="mp-MedicationDispense"/>
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-MedicalDevice"/>
+        <nm:map ada="medisch_hulpmiddel" resource="Device" profile="nl-core-MedicalDevice.Product"/>
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-HearingFunction.HearingAid"/>
+        <nm:map ada="medisch_hulpmiddel" resource="Device" profile="nl-core-HearingFunction.HearingAid.Product"/>
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-VisualFunction.VisualAid"/>
+        <nm:map ada="medisch_hulpmiddel" resource="Device" profile="nl-core-VisualFunction.VisualAid.Product"/>
+        <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-Wound.Drain"/>
+        <nm:map ada="medisch_hulpmiddel" resource="Device" profile="nl-core-Wound.Drain.Product"/>
         <nm:map ada="mobiliteit" resource="Observation" profile="nl-core-Mobility"/>
+        <nm:map ada="lopen" resource="Observation" profile="nl-core-Mobility.Walking"/>
+        <nm:map ada="traplopen" resource="Observation" profile="nl-core-Mobility.ClimbingStairs"/>
+        <nm:map ada="houding_veranderen" resource="Observation" profile="nl-core-Mobility.MaintainingPosition"/>
+        <nm:map ada="houding_handhaven" resource="Observation" profile="nl-core-Mobility.ChangingPosition"/>
+        <nm:map ada="uitvoeren_transfer" resource="Observation" profile="nl-core-Mobility.Transfer"/>
         <nm:map ada="monster" resource="Specimen" profile="nl-core-LaboratoryTestResult.Specimen"/>
         <nm:map ada="monster2" resource="Specimen" profile="nl-core-LaboratoryTestResult.Specimen"/>
         <nm:map ada="bron_monster" resource="Device" profile="nl-core-LaboratoryTestResult.SpecimenSource"/>
         <nm:map ada="mustscore" resource="Observation" profile="nl-core-MUSTScore"/>
         <nm:map ada="o2saturatie" resource="Observation" profile="nl-core-O2Saturation"/>
         <nm:map ada="ontwikkeling_kind" resource="Observation" profile="nl-core-DevelopmentChild"/>
+        <nm:map ada="zindelijkheid_urine" resource="Observation" profile="nl-core-DevelopmentChild.ToiletTrainednessUrine"/>
+        <nm:map ada="zindelijkheid_feces" resource="Observation" profile="nl-core-DevelopmentChild.ToiletTrainednessFeces"/>
+        <nm:map ada="leeftijd_eerste_menstruatie" resource="Observation" profile="nl-core-DevelopmentChild.AgeFirstMenstruation"/>
+        <nm:map ada="ontwikkeling_motoriek" resource="Observation" profile="nl-core-DevelopmentChild.DevelopmentLocomotion"/>
+        <nm:map ada="ontwikkeling_sociaal" resource="Observation" profile="nl-core-DevelopmentChild.DevelopmentSocial"/>
+        <nm:map ada="ontwikkeling_taal" resource="Observation" profile="nl-core-DevelopmentChild.DevelopmentLinguistics"/>
+        <nm:map ada="ontwikkeling_verstandelijk" resource="Observation" profile="nl-core-DevelopmentChild.DevelopmentCognition"/>
         <nm:map ada="opleiding" resource="Observation" profile="nl-core-Education"/>
-        <nm:map ada="overgevoeligheid" resource="AllergyIntolerance" profile="cio-HypersensitivityDispositionReaction"/>
-        <nm:map ada="overgevoeligheid" resource="Condition" profile="cio-HypersensitivityDisposition"/>
+        <nm:map ada="overgevoeligheid" resource="AllergyIntolerance" profile="cio-Hypersensitivity"/>
+        <nm:map ada="overgevoeligheid" resource="Condition" profile="cio-Condition"/>
         <nm:map ada="participatie_in_maatschappij" resource="Observation" profile="nl-core-ParticipationInSociety"/>
+        <nm:map ada="sociaal_netwerk" resource="Observation" profile="nl-core-ParticipationInSociety.SocialNetwork"/>
+        <nm:map ada="vrijetijdsbesteding" resource="Observation" profile="nl-core-ParticipationInSociety.Hobby"/>
+        <nm:map ada="arbeidssituatie" resource="Observation" profile="nl-core-ParticipationInSociety.WorkSituation"/>
         <nm:map ada="patient" resource="Patient" profile="nl-core-Patient"/>
         <nm:map ada="pijn_score" resource="Observation" profile="nl-core-PainScore"/>
         <nm:map ada="polsfrequentie" resource="Observation" profile="nl-core-PulseRate"/>
+        <nm:map ada="pols_regelmatigheid" resource="Observation" profile="nl-core-PulseRate.PulseRegularity"/>
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
-        <nm:map ada="product" resource="Device" profile="nl-core-MedicalDevice.Product"/>
-        <nm:map ada="product" resource="Device" profile="nl-core-HearingFunction.HearingAid.Product"/>
-        <nm:map ada="product" resource="Device" profile="nl-core-VisualFunction.VisualAid.Product"/>
-        <nm:map ada="reactie" resource="Observation" profile="cio-Reaction"/>
+        <nm:map ada="reactie" resource="AllergyIntolerance" profile="cio-Reaction"/>
+        <nm:map ada="reactie" resource="Condition" profile="cio-Condition"/>
         <nm:map ada="refractie" resource="Observation" profile="nl-core-Refraction"/>
+        <nm:map ada="registratie_gegevens" resource="Provenance" profile="cio-RegistrationData"/>
         <nm:map ada="schedelomvang" resource="Observation" profile="nl-core-HeadCircumference"/>
+        <nm:map ada="snaq65score" resource="Observation" profile="nl-core-SNAQ65plusScore"/>
+        <nm:map ada="snaqrc_score" resource="Observation" profile="nl-core-SNAQrcScore"/>
+        <nm:map ada="snaqscore" resource="Observation" profile="nl-core-SNAQScore"/>
         <nm:map ada="soepverslag" resource="Composition" profile="nl-core-SOAPReport"/>
         <nm:map ada="soepregel" resource="Observation" profile="nl-core-SOAPReport.SOAPLine"/>
         <nm:map ada="stoma" resource="Condition" profile="nl-core-Stoma"/>
@@ -147,8 +183,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="vaccinatie" resource="Immunization" profile="nl-core-Vaccination-event"/>
         <nm:map ada="vaccinatie" resource="ImmunizationRecommendation" profile="nl-core-Vaccination-request"/>
         <nm:map ada="vermogen_tot_drinken" resource="Observation" profile="nl-core-AbilityToDrink"/>
+        <nm:map ada="drink_beperkingen" resource="Observation" profile="nl-core-AbilityToDrink.DrinkingLimitations"/>
         <nm:map ada="vermogen_tot_eten" resource="Observation" profile="nl-core-AbilityToEat"/>
+        <nm:map ada="eet_beperkingen" resource="Observation" profile="nl-core-AbilityToEat.EatingLimitations"/>
         <nm:map ada="vermogen_tot_toiletgang" resource="Observation" profile="nl-core-AbilityToUseToilet"/>
+        <nm:map ada="toiletgebruik" resource="Observation" profile="nl-core-AbilityToUseToilet.ToiletUse"/>
+        <nm:map ada="zorg_bij_menstruatie" resource="Observation" profile="nl-core-AbilityToUseToilet.MenstrualCare"/>
         <nm:map ada="vermogen_tot_uiterlijke_verzorging" resource="Observation" profile="nl-core-AbilityToGroom"/>
         <nm:map ada="vermogen_tot_zich_kleden" resource="Observation" profile="nl-core-AbilityToDressOneself"/>
         <nm:map ada="vermogen_tot_zich_wassen" resource="Observation" profile="nl-core-AbilityToWashOneself"/>
@@ -158,13 +198,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="visueel_resultaat" resource="Media" profile="nl-core-TextResult-Media"/>
         <nm:map ada="visus" resource="Observation" profile="nl-core-VisualAcuity"/>
         <nm:map ada="vochtbalans" resource="Observation" profile="nl-core-FluidBalance"/>
+        <nm:map ada="vocht_totaal_in" resource="Observation" profile="nl-core-FluidBalance.FluidTotalIn"/>
+        <nm:map ada="vocht_totaal_uit" resource="Observation" profile="nl-core-FluidBalance.FluidTotalOut"/>
         <nm:map ada="voedingsadvies" resource="NutritionOrder" profile="nl-core-NutritionAdvice"/>
         <nm:map ada="voedingspatroon_zuigeling" resource="Observation" profile="nl-core-FeedingPatternInfant"/>
         <nm:map ada="vrijheidsbeperkende_interventie" resource="Procedure" profile="nl-core-FreedomRestrictingIntervention"/>
         <nm:map ada="wilsverklaring" resource="Consent" profile="nl-core-AdvanceDirective"/>
         <nm:map ada="wisselend_doseerschema" resource="MedicationRequest" profile="mp-VariableDosingRegimen"/>
+        <nm:map ada="wond" resource="Condition" profile="nl-core-Wound"/>
+        <nm:map ada="wond" resource="Observation" profile="nl-core-wounds.WoundCharacteristics"/>
+        <nm:map ada="wond_weefsel" resource="Observation" profile="nl-core-Wound.WoundTissue"/>
+        <nm:map ada="wond_infectie" resource="Observation" profile="nl-core-Wound.WoundInfection"/>
+        <nm:map ada="wond_vochtigheid" resource="Observation" profile="nl-core-Wound.WoundMoisture"/>
+        <nm:map ada="wond_rand" resource="Observation" profile="nl-core-Wound.WoundEdge"/>
         <nm:map ada="woonsituatie" resource="Observation" profile="nl-core-LivingSituation"/>
         <nm:map ada="ziektebeleving" resource="Observation" profile="nl-core-IllnessPerception"/>
+        <nm:map ada="ziekte_inzicht_van_patient" resource="Observation" profile="nl-core-IllnessPerception.PatientIllnessInsight"/>
+        <nm:map ada="omgaan_met_ziekteproces_door_patient" resource="Observation" profile="nl-core-IllnessPerception.CopingWithIllnessByPatient"/>
+        <nm:map ada="omgaan_met_ziekteproces_door_naasten" resource="Observation" profile="nl-core-IllnessPerception.CopingWithIllnessByFamily"/>
         <nm:map ada="zorgaanbieder" resource="Organization" profile="nl-core-HealthcareProvider-Organization"/>
         <nm:map ada="zorgaanbieder" resource="Location" profile="nl-core-HealthcareProvider"/>
         <nm:map ada="zorg_episode" resource="EpisodeOfCare" profile="nl-core-EpisodeOfCare"/>
@@ -177,6 +228,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="graviditeit" resource="Observation" profile="nl-core-Pregnancy.Gravidity"/>
         <nm:map ada="aterme_datum_items" resource="Observation" profile="nl-core-Pregnancy.EstimatedDateOfDelivery"/>
         <nm:map ada="datum_laatste_menstruatie" resource="Observation" profile="nl-core-Pregnancy.DateLastMenstruation"/>
+        <!-- Concepts for Brandwond (Burnwound), DecubitusWond (PressureUlcer) and/or Wond (Wound) -->
+        <nm:map ada="wondlengte" resource="Observation" profile="nl-core-wounds.WoundLength"/>
+        <nm:map ada="wondbreedte" resource="Observation" profile="nl-core-wounds.WoundWidth"/>
+        <nm:map ada="wonddiepte" resource="Observation" profile="nl-core-wounds.WoundDepth"/>
+        <nm:map ada="datum_laatste_verbandwissel" resource="Observation" profile="nl-core-wounds.DateOfLastDressingChange"/>
+        <nm:map ada="wond_foto" resource="DocumentReference" profile="nl-core-wounds.WoundImage"/>
     </xsl:variable>
 
     <xsl:variable name="zib2020Oid" select="'2.16.840.1.113883.2.4.3.11.60.40.1'"/>
@@ -217,7 +274,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:if test="not($referencingStrategy = ('logicalId', 'uuid', 'none'))">
             <xsl:call-template name="util:logMessage">
                 <xsl:with-param name="level" select="$logFATAL"/>
-                <xsl:with-param name="msg">Invalid $referencingStrategy. Should be one of 'logicalId', 'uuid', 'none'</xsl:with-param>
+                <xsl:with-param name="msg">Invalid $referencingStrategy (<xsl:value-of select="$referencingStrategy"/>). Should be one of 'logicalId', 'uuid', 'none'</xsl:with-param>
                 <xsl:with-param name="terminate" select="true()"/>
             </xsl:call-template>
         </xsl:if>
@@ -267,19 +324,60 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- General rule for all zib root concepts that need to be converted into a FHIR resource -->
         <xsl:for-each-group select="
                 (
-                $in[not(self::patient or self::zorgverlener or self::zorgaanbieder)],
+                $in[not(self::patient | self::zorgverlener | self::zorgaanbieder)],
                 $in//horen_hulpmiddel/medisch_hulpmiddel,
                 $in//zien_hulpmiddel/medisch_hulpmiddel,
-                $in//product[parent::medisch_hulpmiddel],
+                $in//drain/medisch_hulpmiddel,
                 $in//visueel_resultaat[parent::tekst_uitslag],
                 $in//soepregel[parent::soepverslag],
                 $in//monster[parent::laboratorium_uitslag],
-              $in//bron_monster[parent::monster],
-              $in//zwangerschapsduur[parent::zwangerschap],
-              $in//pariteit[parent::zwangerschap],
-              $in//graviditeit[parent::zwangerschap],
-              $in//aterme_datum_items[parent::zwangerschap],
-              $in//datum_laatste_menstruatie[parent::aterme_datum_items/parent::zwangerschap]
+                $in//bron_monster[parent::monster],
+                $in//zwangerschapsduur[parent::zwangerschap],
+                $in//pariteit[parent::zwangerschap],
+                $in//graviditeit[parent::zwangerschap],
+                $in//aterme_datum_items[parent::zwangerschap],
+                $in//datum_laatste_menstruatie[parent::aterme_datum_items/parent::zwangerschap],
+                $in//wond_weefsel[parent::wond],
+                $in//wond_infectie[parent::wond],
+                $in//wond_vochtigheid[parent::wond],
+                $in//wond_rand[parent::wond],
+                $in//wondlengte[parent::wond or parent::decubitus_wond],
+                $in//wondbreedte[parent::wond or parent::decubitus_wond],
+                $in//wonddiepte[parent::wond or parent::decubitus_wond],
+                $in//wondfoto[parent::wond or parent::decubitus_wond or parent::brandwond],
+                $in//datum_laatste_verband_wissel[parent::wond or parent::decubitus_wond],
+                $in//uitgebreidheid[parent::brandwond],
+                $in//sociaal_netwerk[parent::participatie_in_maatschappij],
+                $in//vrijetijdsbesteding[parent::participatie_in_maatschappij],
+                $in//arbeidssituatie[parent::participatie_in_maatschappij],
+                $in//lopen[parent::mobiliteit],
+                $in//traplopen[parent::mobiliteit],
+                $in//houding_veranderen[parent::mobiliteit],
+                $in//houding_handhaven[parent::mobiliteit],
+                $in//uitvoeren_transfer[parent::mobiliteit],
+                $in//ziekte_inzicht_van_patient[parent::ziektebeleving],
+                $in//omgaan_met_ziekteproces_door_patient[parent::ziektebeleving],
+                $in//omgaan_met_ziekteproces_door_naasten[parent::ziektebeleving],
+                $in//toiletgebruik[parent::vermogen_tot_toiletgang], 
+                $in//zorg_bij_menstruatie[parent::vermogen_tot_toiletgang],
+                $in//feces_continentie[parent::darmfunctie],
+                $in//frequentie[parent::darmfunctie],
+                $in//defecatie_consistentie[parent::darmfunctie],
+                $in//defecatie_kleur[parent::darmfunctie],
+                $in//zindelijkheid_urine[parent::ontwikkeling_kind],
+                $in//zindelijkheid_feces[parent::ontwikkeling_kind],
+                $in//leeftijd_eerste_menstruatie[parent::ontwikkeling_kind],
+                $in//ontwikkeling_motoriek[parent::ontwikkeling_kind],
+                $in//ontwikkeling_sociaal[parent::ontwikkeling_kind],
+                $in//ontwikkeling_taal[parent::ontwikkeling_kind],
+                $in//ontwikkeling_verstandelijk[parent::ontwikkeling_kind],
+                $in//vocht_totaal_in[parent::vochtbalans],
+                $in//vocht_totaal_uit[parent::vochtbalans],
+                $in//drink_beperkingen[parent::vermogen_tot_drinken],
+                $in//eet_beperkingen[parent::vermogen_tot_eten],
+                $in//hartslag_regelmatigheid[parent::hartfrequentie],
+                $in//interpretatie_frequentie[parent::hartfrequentie],
+                $in//pols_regelmatigheid[parent::polsfrequentie]
                 )[.//(@value | @code | @nullFlavor)]" group-by="local-name()">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry">
@@ -453,129 +551,131 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="wrapIn" as="xs:string?"/>
         <xsl:param name="contained" as="xs:boolean" tunnel="yes" select="false()"/>
 
-        <!-- Debug -->
-        <xsl:if test="count($fhirMetadata) = 0">
-            <xsl:call-template name="util:logMessage">
-                <xsl:with-param name="level" select="$logFATAL"/>
-                <xsl:with-param name="msg">Cannot create reference because $fhirMetadata is empty or unknown.</xsl:with-param>
-                <xsl:with-param name="terminate" select="true()"/>
-            </xsl:call-template>
-        </xsl:if>
-
-        <xsl:variable name="resolvedAdaElement" as="element()*">
-            <xsl:choose>
-                <xsl:when test="$in[@datatype = 'reference' and @value] and not(empty(nf:resolveAdaInstance($in, /)))">
-                    <!-- use xsl:sequence instead of copy-of to preserve the context of the adaXml -->
-                    <xsl:sequence select="nf:resolveAdaInstance($in, /)"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <!-- use xsl:sequence instead of copy-of to preserve the context of the adaXml -->
-                    <xsl:sequence select="$in"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-
-        <xsl:variable name="groupKey" as="xs:string?">
-            <xsl:choose>
-                <xsl:when test="$resolvedAdaElement[self::laboratorium_test]">
-                    <xsl:value-of select="nf:getGroupingKeyLaboratoryTest($resolvedAdaElement)"/>
-                </xsl:when>
-                <xsl:when test="$resolvedAdaElement[self::zorgverlener]">
-                    <!-- let's resolve the zorgaanbieder ín the zorgverlener, to make sure deduplication also works for duplicated zorgaanbieders -->
-                    <xsl:variable name="zorgverlenerWithResolvedZorgaanbieder" as="element(zorgverlener)*">
-                        <xsl:apply-templates select="$resolvedAdaElement" mode="resolveAdaZorgaanbieder"/>
-                    </xsl:variable>
-                    <xsl:value-of select="nf:getGroupingKeyDefault($zorgverlenerWithResolvedZorgaanbieder)"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="nf:getGroupingKeyDefault($resolvedAdaElement)"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-
-        <xsl:variable name="element" as="element()?">
-            <xsl:choose>
-                <xsl:when test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1">
-                    <xsl:if test="string-length($profile) = 0">
-                        <xsl:call-template name="util:logMessage">
-                            <xsl:with-param name="level" select="$logFATAL"/>
-                            <xsl:with-param name="msg">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' in $fhirMetadata, while no $profile was supplied.</xsl:with-param>
-                            <xsl:with-param name="terminate" select="true()"/>
-                        </xsl:call-template>
-                    </xsl:if>
-                    <xsl:if test="not($fhirMetadata[@profile = $profile and nm:group-key = $groupKey])">
-                        <xsl:call-template name="util:logMessage">
-                            <xsl:with-param name="level" select="$logFATAL"/>
-                            <xsl:with-param name="msg">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' in $fhirMetadata, but no valid $profile ('<xsl:value-of select="$profile"/>') was supplied.</xsl:with-param>
-                            <xsl:with-param name="terminate" select="true()"/>
-                        </xsl:call-template>
-                    </xsl:if>
-                    <xsl:if test="count($fhirMetadata[@profile = $profile and nm:group-key = $groupKey]) gt 1">
-                        <xsl:call-template name="util:logMessage">
-                            <xsl:with-param name="level" select="$logFATAL"/>
-                            <xsl:with-param name="msg">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' and $profile '<xsl:value-of select="$profile"/>'in $fhirMetadata.</xsl:with-param>
-                            <xsl:with-param name="terminate" select="true()"/>
-                        </xsl:call-template>
-                    </xsl:if>
-                    <xsl:copy-of select="$fhirMetadata[@profile = $profile and nm:group-key = $groupKey]"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:copy-of select="$fhirMetadata[nm:group-key = $groupKey]"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="identifier" select="(identificatienummer | identificatie)[normalize-space(@value | @nullFlavor)]"/>
-
-        <!-- Debug -->
-        <xsl:if test="$in and count($element) = 0 and not($identifier)">
-            <xsl:call-template name="util:logMessage">
-                <xsl:with-param name="level" select="$logERROR"/>
-                <xsl:with-param name="msg">Cannot resolve reference within set of ada-instances: <xsl:value-of select="$groupKey"/></xsl:with-param>
-            </xsl:call-template>
-        </xsl:if>
-
-        <xsl:variable name="populatedReference" as="element()*">
-            <xsl:if test="string-length($element/nm:ref-url) gt 0">
-                <reference value="{$element/nm:ref-url}"/>
+        <xsl:for-each select="$in">
+            <!-- Debug -->
+            <xsl:if test="count($fhirMetadata) = 0">
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logFATAL"/>
+                    <xsl:with-param name="msg">Cannot create reference because $fhirMetadata is empty or unknown.</xsl:with-param>
+                    <xsl:with-param name="terminate" select="true()"/>
+                </xsl:call-template>
             </xsl:if>
-            <xsl:if test="string-length($element/nm:resource-type) gt 0">
-                <type value="{$element/nm:resource-type}"/>
+    
+            <xsl:variable name="resolvedAdaElement" as="element()*">
+                <xsl:choose>
+                    <xsl:when test="$in[@datatype = 'reference' and @value] and not(empty(nf:resolveAdaInstance($in, /)))">
+                        <!-- use xsl:sequence instead of copy-of to preserve the context of the adaXml -->
+                        <xsl:sequence select="nf:resolveAdaInstance($in, /)"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <!-- use xsl:sequence instead of copy-of to preserve the context of the adaXml -->
+                        <xsl:sequence select="$in"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+    
+            <xsl:variable name="groupKey" as="xs:string?">
+                <xsl:choose>
+                    <xsl:when test="$resolvedAdaElement[self::laboratorium_test]">
+                        <xsl:value-of select="nf:getGroupingKeyLaboratoryTest($resolvedAdaElement)"/>
+                    </xsl:when>
+                    <xsl:when test="$resolvedAdaElement[self::zorgverlener]">
+                        <!-- let's resolve the zorgaanbieder ín the zorgverlener, to make sure deduplication also works for duplicated zorgaanbieders -->
+                        <xsl:variable name="zorgverlenerWithResolvedZorgaanbieder" as="element(zorgverlener)*">
+                            <xsl:apply-templates select="$resolvedAdaElement" mode="resolveAdaZorgaanbieder"/>
+                        </xsl:variable>
+                        <xsl:value-of select="nf:getGroupingKeyDefault($zorgverlenerWithResolvedZorgaanbieder)"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="nf:getGroupingKeyDefault($resolvedAdaElement)"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+    
+            <xsl:variable name="element" as="element()?">
+                <xsl:choose>
+                    <xsl:when test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1">
+                        <xsl:if test="string-length($profile) = 0">
+                            <xsl:call-template name="util:logMessage">
+                                <xsl:with-param name="level" select="$logFATAL"/>
+                                <xsl:with-param name="msg">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' in $fhirMetadata, while no $profile was supplied.</xsl:with-param>
+                                <xsl:with-param name="terminate" select="true()"/>
+                            </xsl:call-template>
+                        </xsl:if>
+                        <xsl:if test="not($fhirMetadata[@profile = $profile and nm:group-key = $groupKey])">
+                            <xsl:call-template name="util:logMessage">
+                                <xsl:with-param name="level" select="$logFATAL"/>
+                                <xsl:with-param name="msg">makeReference: No entry found for $groupKey '<xsl:value-of select="$groupKey"/>' in $fhirMetadata, but no valid $profile ('<xsl:value-of select="$profile"/>') was supplied.</xsl:with-param>
+                                <xsl:with-param name="terminate" select="true()"/>
+                            </xsl:call-template>
+                        </xsl:if>
+                        <xsl:if test="count($fhirMetadata[@profile = $profile and nm:group-key = $groupKey]) gt 1">
+                            <xsl:call-template name="util:logMessage">
+                                <xsl:with-param name="level" select="$logFATAL"/>
+                                <xsl:with-param name="msg">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' and $profile '<xsl:value-of select="$profile"/>'in $fhirMetadata.</xsl:with-param>
+                                <xsl:with-param name="terminate" select="true()"/>
+                            </xsl:call-template>
+                        </xsl:if>
+                        <xsl:copy-of select="$fhirMetadata[@profile = $profile and nm:group-key = $groupKey]"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:copy-of select="$fhirMetadata[nm:group-key = $groupKey]"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:variable name="identifier" select="(identificatienummer | identificatie)[normalize-space(@value | @nullFlavor)]"/>
+    
+            <!-- Debug -->
+            <xsl:if test="$in and count($element) = 0 and not($identifier)">
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logERROR"/>
+                    <xsl:with-param name="msg">Cannot resolve reference within set of ada-instances: <xsl:value-of select="$groupKey"/></xsl:with-param>
+                </xsl:call-template>
             </xsl:if>
-            <xsl:choose>
-                <xsl:when test="$referencingStrategy = 'none' and not($element/nm:ref-url) and $identifier">
-                    <identifier>
-                        <xsl:call-template name="id-to-Identifier">
-                            <xsl:with-param name="in" select="($identifier[not(@root = $mask-ids-var)], $identifier)[1]"/>
-                        </xsl:call-template>
-                    </identifier>
-                </xsl:when>
-                <!-- AWE regardless of referencingStrategy, it makes sense to output an identifier if available if reference has not been populated -->
-                <xsl:when test="empty($element/nm:ref-url) and $identifier">
-                    <identifier>
-                        <xsl:call-template name="id-to-Identifier">
-                            <xsl:with-param name="in" select="($identifier[not(@root = $mask-ids-var)], $identifier)[1]"/>
-                        </xsl:call-template>
-                    </identifier>
-                </xsl:when>
-            </xsl:choose>
-
-            <xsl:if test="string-length($element/nm:reference-display) gt 0">
-                <display value="{$element/nm:reference-display}"/>
-            </xsl:if>
-        </xsl:variable>
-
-        <xsl:if test="count($populatedReference) gt 0">
-            <xsl:choose>
-                <xsl:when test="$wrapIn">
-                    <xsl:element name="{$wrapIn}">
+    
+            <xsl:variable name="populatedReference" as="element()*">
+                <xsl:if test="string-length($element/nm:ref-url) gt 0">
+                    <reference value="{$element/nm:ref-url}"/>
+                </xsl:if>
+                <xsl:if test="string-length($element/nm:resource-type) gt 0">
+                    <type value="{$element/nm:resource-type}"/>
+                </xsl:if>
+                <xsl:choose>
+                    <xsl:when test="$referencingStrategy = 'none' and not($element/nm:ref-url) and $identifier">
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
+                                <xsl:with-param name="in" select="($identifier[not(@root = $mask-ids-var)], $identifier)[1]"/>
+                            </xsl:call-template>
+                        </identifier>
+                    </xsl:when>
+                    <!-- AWE regardless of referencingStrategy, it makes sense to output an identifier if available if reference has not been populated -->
+                    <xsl:when test="empty($element/nm:ref-url) and $identifier">
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
+                                <xsl:with-param name="in" select="($identifier[not(@root = $mask-ids-var)], $identifier)[1]"/>
+                            </xsl:call-template>
+                        </identifier>
+                    </xsl:when>
+                </xsl:choose>
+    
+                <xsl:if test="string-length($element/nm:reference-display) gt 0">
+                    <display value="{$element/nm:reference-display}"/>
+                </xsl:if>
+            </xsl:variable>
+    
+            <xsl:if test="count($populatedReference) gt 0">
+                <xsl:choose>
+                    <xsl:when test="$wrapIn">
+                        <xsl:element name="{$wrapIn}">
+                            <xsl:copy-of select="$populatedReference"/>
+                        </xsl:element>
+                    </xsl:when>
+                    <xsl:otherwise>
                         <xsl:copy-of select="$populatedReference"/>
-                    </xsl:element>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:copy-of select="$populatedReference"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:if>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:if>
+        </xsl:for-each>
     </xsl:template>
 
     <xd:doc>
@@ -822,10 +922,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <!-- G-Standaard (Simple)Quantity -->
         <xsl:for-each select="$adaUnit[@codeSystem = $oidGStandaardBST902THES2]">
-            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+            <extension url="{$urlExtIso21090PQtranslation}">
                 <valueQuantity>
                     <value value="{$adaValue/@value}"/>
-                    <unit value="{@displayName}"/>
+                    <xsl:if test="string-length(@displayName) gt 0">
+                        <unit value="{@displayName}"/>
+                    </xsl:if>
                     <system value="{concat('urn:oid:', $oidGStandaardBST902THES2)}"/>
                     <code value="{@code}"/>
                 </valueQuantity>
@@ -833,7 +935,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
         <!-- UCUM -->
         <value value="{$adaValue/@value}"/>
-        <unit value="{$adaUnit[@codeSystem=$oidGStandaardBST902THES2]/@displayName}"/>
+        <xsl:if test="string-length($adaUnit[@codeSystem=$oidGStandaardBST902THES2]/@displayName) gt 0">
+            <unit value="{$adaUnit[@codeSystem=$oidGStandaardBST902THES2]/@displayName}"/>
+        </xsl:if>
         <system value="{$oidMap[@oid=$oidUCUM]/@uri}"/>
         <code value="{nf:convertGstdBasiseenheid2UCUM($adaUnit[@codeSystem=$oidGStandaardBST902THES2]/@code)}"/>
 

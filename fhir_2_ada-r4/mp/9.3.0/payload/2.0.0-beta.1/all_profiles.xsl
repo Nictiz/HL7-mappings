@@ -16,8 +16,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:import href="../../../../zibs2020/payload/0.8.0-beta.1/all_zibs.xsl"/>
 
-<!--    <xsl:import href="../../../../../util/mp-functions.xsl"/>-->
-
     <xsl:import href="mp-AdministrationAgreement.xsl"/>
     <xsl:import href="mp-MedicationAdministration.xsl"/>
     <xsl:import href="mp-MedicationAgreement.xsl"/>

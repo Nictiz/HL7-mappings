@@ -50,7 +50,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="not($specialtyReference = '')">
                 <xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value = $specialtyReference]/f:resource/f:PractitionerRole" mode="nl-core-HealthProfessional-PractitionerRole"/>
             </xsl:if>
-            <!-- geslacht TODO -->
+             <!-- geslacht, re-use the patient implementation -->
+            <xsl:apply-templates select="f:gender" mode="nl-core-Patient"/>
             
             <!-- adresgegevens -->
             <xsl:apply-templates select="f:address" mode="nl-core-AddressInformation"/>
@@ -91,7 +92,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:name to naamgegevens</xd:desc>
     </xd:doc>
     <xsl:template match="f:name" mode="nl-core-HealthProfessional-Practitioner">
-        <xsl:apply-templates select="." mode="nl-core-NameInformation"/>
+        <xsl:apply-templates select="." mode="nl-core-Patient"/>
     </xsl:template>
 
 </xsl:stylesheet>

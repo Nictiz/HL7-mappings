@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Immunization xmlns="http://hl7.org/fhir">
+   <id value="1d8ff616-6af9-11ec-0000-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/imm-Vaccination-event"/>
+   </meta>
+   <contained>
+      <Location>
+         <id value="locatie1"/>
+         <address>
+            <country value="Nederland">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="urn:iso:std:iso:3166"/>
+                        <version value="2020-10-26T00:00:00"/>
+                        <code value="NL"/>
+                        <display value="Nederland"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </country>
+         </address>
+      </Location>
+   </contained>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-imm-Vaccination.PharmaceuticalProduct">
+      <valueReference>
+         <reference value="Medication/nl-core-PhPrd--UNK-HEPATITIS-A-VACCIN"/>
+         <type value="Medication"/>
+         <display value="anders"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.131.2"/>
+      <value value="d90e63"/>
+   </identifier>
+   <status value="completed"/>
+   <vaccineCode>
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+         <valueCode value="OTH"/>
+      </extension>
+      <text value="HEPATITIS-A-VACCIN"/>
+   </vaccineCode>
+   <patient>
+      <reference value="Patient/nl-core-Patient--XXX-Biezen"/>
+      <type value="Patient"/>
+      <display value="Patient, XXX_Biezen"/>
+   </patient>
+   <occurrenceDateTime value="${DATE, T, Y, -1}"/>
+   <location>
+      <reference value="#locatie1"/>
+      <type value="Location"/>
+      <display value="Adres: Nederland."/>
+   </location>
+   <performer>
+      <function>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/v2-0443"/>
+            <code value="AP"/>
+            <display value="Administering Provider"/>
+         </coding>
+      </function>
+      <actor>
+         <reference value="Organization/nl-core-HPrv-Org--Org-2165281100733-10000002"/>
+         <type value="Organization"/>
+         <display value="Healthcare provider (organization), GGD test 02"/>
+      </actor>
+   </performer>
+   <reasonCode>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="14747002"/>
+         <display value="Reizigersvaccinatie (verrichting)"/>
+      </coding>
+   </reasonCode>
+</Immunization>

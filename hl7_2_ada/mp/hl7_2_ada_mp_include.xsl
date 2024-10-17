@@ -13,8 +13,8 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:f="http://hl7.org/fhir" xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:util="urn:hl7:utilities" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:import href="../../util/mp-functions.xsl"/>
-    <xsl:import href="../../util/comment.xsl"/>
+    <xsl:import href="../../../YATC-shared/xsl/util/mp-functions.xsl"/>
+    <xsl:import href="../../../YATC-shared/xsl/util/comment.xsl"/>
 
     <xsl:import href="../../fhir_2_ada/fhir/fhir_2_ada_fhir_include.xsl"/>
     <xsl:import href="../hl7/hl7_2_ada_hl7_include.xsl"/>
@@ -163,7 +163,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test=".[@nullFlavor]">
                     <xsl:attribute name="code" select="./@nullFlavor"/>
                     <xsl:attribute name="codeSystem" select="$oidHL7NullFlavor"/>
-                    <xsl:attribute name="displayName" select="$hl7NullFlavorMap[@hl7NullFlavor = @nullFlavor]/@displayName"/>
+                    <xsl:attribute name="displayName" select="$hl7NullFlavorMap[@hl7NullFlavor = current()/@nullFlavor]/@displayName"/>
                     <xsl:for-each select="hl7:originalText">
                         <xsl:attribute name="originalText" select="."/>
                     </xsl:for-each>

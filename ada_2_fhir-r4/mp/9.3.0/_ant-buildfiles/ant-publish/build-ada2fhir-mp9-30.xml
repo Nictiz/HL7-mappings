@@ -9,7 +9,7 @@
 <project basedir="." default="convert_ada_2_fhir_30" name="build-ada2fhir-mp-30" xmlns:if="ant:if" xmlns:unless="ant:unless">
     <property name="is.version" value="9.3.0"/>
     <property name="is.version.short" value="93"/>
-    <!-- date.T, currently only used for the examples -->
+    <!-- date.T for conversion -->
     <property name="date.T" value="2023-01-01"/>
     <!-- specify BSN oid for masking BSN identifiers -->
     <property name="mask.ids" value=""/>
@@ -19,7 +19,7 @@
 
     <property name="ada.project.source.dir" value="${build.dir}\..\..\..\..\art_decor\projects\${is.abbreviation}-${is.abbreviation}${is.version.short}"/>
     <property name="refs.dir" value="${build.dir}\..\..\..\..\art_decor\adarefs2ada\${is.abbreviation}\${is.version}"/>
-    <property name="schema.bundle" value="https://hl7.org/fhir/R4/bundle.xsd"/>
+    <property name="schema.bundle" value="https://hl7.org/fhir/R4B/bundle.xsd"/>
 
     <!-- local version of schematron, since we need the svrl xsl -->
     <property name="validate.dir" value="${build.dir}/fhir-xsd/R4-sch"/>
@@ -142,13 +142,15 @@
         <!--  bundles for beschikbaarstellen_medicatiegegevens -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.mg}"/>
-            <param name="xsl.convert" value="${build.dir}/Touchstone/${usecase.fhir.fixtures}/payload/${usecase.mg}_2_fhir.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.mg}/payload/${usecase.mg}_2_fhir.xsl"/>
             <param name="xsl.in" value="${xsl.input.mg}"/>
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources using the output.dir, but ant xslt still needs an output dir -->
-            <param name="xsl.out" value="${xsl.output.dummy}"/>
+            <param name="xsl.out" value="${xsl.output.mg}"/>
             <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
+            <!-- omitting id's for transformations https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_IG_R4#Usage_of_the_.id.2C_.identifier_and_.fullUrl_elements_in_FHIR_instances -->
+            <param name="param.populateId" value="false"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.mg}"/>
         </antcall>
@@ -159,19 +161,19 @@
         <delete>
             <fileset dir="${build.dir}/${usecase.mg.st}/fhir_instance" includes="*.*"/>
         </delete>
-        <!-- push bundles for Touchstone for sturen_medicatiegegevens -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.mg.st}"/>
-            <param name="xsl.convert" value="${build.dir}/Touchstone/${usecase.fhir.fixtures}/payload/${usecase.mg.st}_2_fhir.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.mg.st}/payload/${usecase.mg.st}_2_fhir.xsl"/>
             <param name="xsl.in" value="${build.dir}/${usecase.mg.st}/ada_instance"/>
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources using the output.dir, but ant xslt still needs an output dir -->
-            <param name="xsl.out" value="${xsl.output.dummy}"/>
+            <param name="xsl.out" value="${build.dir}/${usecase.mg.st}/fhir_instance"/>
             <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${build.dir}/${usecase.mg.st}/fhir_instance"/>
         </antcall>
+        
         <echo>sturen_medicatievoorschrift</echo>
         <property name="xsl.input.mv" value="${build.dir}/${usecase.mv}/ada_instance"/>
         <property name="xsl.output.mv" value="${build.dir}/${usecase.mv}/fhir_instance"/>
@@ -185,11 +187,11 @@
         <!-- bundles -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.mv}"/>
-            <param name="xsl.convert" value="${build.dir}/Touchstone/${usecase.fhir.fixtures}/payload/${usecase.mv}_2_fhir.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.mv}/payload/${usecase.mv}_2_fhir.xsl"/>
             <param name="xsl.in" value="${xsl.input.mv}"/>
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
-            <param name="xsl.out" value="${xsl.output.dummy}"/>
+            <param name="xsl.out" value="${xsl.output.mv}"/>
             <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
@@ -209,11 +211,11 @@
         <!-- bundles -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.amv}"/>
-            <param name="xsl.convert" value="${build.dir}/Touchstone/${usecase.fhir.fixtures}/payload/${usecase.amv}_2_fhir.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.amv}/payload/${usecase.amv}_2_fhir.xsl"/>
             <param name="xsl.in" value="${xsl.input.amv}"/>
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
-            <param name="xsl.out" value="${xsl.output.dummy}"/>
+            <param name="xsl.out" value="${xsl.output.amv}"/>
             <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
@@ -233,11 +235,11 @@
         <!-- bundles -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.vma}"/>
-            <param name="xsl.convert" value="${build.dir}/Touchstone/${usecase.fhir.fixtures}/payload/${usecase.vma}_2_fhir.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.vma}/payload/${usecase.vma}_2_fhir.xsl"/>
             <param name="xsl.in" value="${xsl.input.vma}"/>
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
-            <param name="xsl.out" value="${xsl.output.dummy}"/>
+            <param name="xsl.out" value="${xsl.output.vma}"/>
             <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
@@ -257,11 +259,11 @@
         <!-- bundles -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.avma}"/>
-            <param name="xsl.convert" value="${build.dir}/Touchstone/${usecase.fhir.fixtures}/payload/${usecase.avma}_2_fhir.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.avma}/payload/${usecase.avma}_2_fhir.xsl"/>
             <param name="xsl.in" value="${xsl.input.avma}"/>
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
-            <param name="xsl.out" value="${xsl.output.dummy}"/>
+            <param name="xsl.out" value="${xsl.output.avma}"/>
             <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
@@ -281,11 +283,11 @@
         <!-- bundles -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.vvv}"/>
-            <param name="xsl.convert" value="${build.dir}/Touchstone/${usecase.fhir.fixtures}/payload/${usecase.vvv}_2_fhir.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.vvv}/payload/${usecase.vvv}_2_fhir.xsl"/>
             <param name="xsl.in" value="${xsl.input.vvv}"/>
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
-            <param name="xsl.out" value="${xsl.output.dummy}"/>
+            <param name="xsl.out" value="${xsl.output.vvv}"/>
             <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
@@ -305,11 +307,11 @@
         <!-- bundles -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.avvv}"/>
-            <param name="xsl.convert" value="${build.dir}/Touchstone/${usecase.fhir.fixtures}/payload/${usecase.avvv}_2_fhir.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.avvv}/payload/${usecase.avvv}_2_fhir.xsl"/>
             <param name="xsl.in" value="${xsl.input.avvv}"/>
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
-            <param name="xsl.out" value="${xsl.output.dummy}"/>
+            <param name="xsl.out" value="${xsl.output.avvv}"/>
             <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
@@ -331,13 +333,15 @@
         <!-- bundles -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="nictiz_test"/>
-            <param name="xsl.convert" value="${build.dir}/Touchstone/${usecase.fhir.fixtures}/payload/${usecase.mg}_2_fhir.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.mg}/payload/${usecase.mg}_2_fhir.xsl"/>
             <param name="xsl.in" value="${xsl.input.ntest}"/>
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
-            <param name="xsl.out" value="${xsl.output.dummy}"/>
+            <param name="xsl.out" value="${xsl.output.ntest}"/>
             <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
+            <!-- omitting id's for transformations https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_IG_R4#Usage_of_the_.id.2C_.identifier_and_.fullUrl_elements_in_FHIR_instances -->
+            <param name="param.populateId" value="false"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.ntest}"/>
         </antcall>
@@ -364,11 +368,11 @@
         <!-- bundles -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="xml-voorbeelden"/>
-            <param name="xsl.convert" value="${build.dir}/Touchstone/${usecase.fhir.fixtures}/payload/${usecase.amv}_2_fhir.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.amv}/payload/${usecase.amv}_2_fhir.xsl"/>
             <param name="xsl.in" value="${xsl.input.exmpl}"/>
             <param name="xsl.in.include" value="av-*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
-            <param name="xsl.out" value="${xsl.output.dummy}"/>
+            <param name="xsl.out" value="${xsl.output.exmpl}"/>
             <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
@@ -376,11 +380,11 @@
         </antcall>
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="xml-voorbeelden"/>
-            <param name="xsl.convert" value="${build.dir}/Touchstone/${usecase.fhir.fixtures}/payload/${usecase.avma}_2_fhir.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.avma}/payload/${usecase.avma}_2_fhir.xsl"/>
             <param name="xsl.in" value="${xsl.input.exmpl}"/>
             <param name="xsl.in.include" value="avma-*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
-            <param name="xsl.out" value="${xsl.output.dummy}"/>
+            <param name="xsl.out" value="${xsl.output.exmpl}"/>
             <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
@@ -388,7 +392,7 @@
         </antcall>
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="xml-voorbeelden"/>
-            <param name="xsl.convert" value="${build.dir}/Touchstone/${usecase.fhir.fixtures}/payload/${usecase.avvv}_2_fhir.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.avvv}/payload/${usecase.avvv}_2_fhir.xsl"/>
             <param name="xsl.in" value="${xsl.input.exmpl}"/>
             <param name="xsl.in.include" value="avvv-*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
@@ -397,38 +401,28 @@
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.exmpl}"/>
-        </antcall>
+        </antcall>      
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="xml-voorbeelden"/>
-            <param name="xsl.convert" value="${build.dir}/Touchstone/${usecase.fhir.fixtures}/payload/${usecase.avvv}_2_fhir.xsl"/>
-            <param name="xsl.in" value="${xsl.input.exmpl}"/>
-            <param name="xsl.in.include" value="avvv-*.xml"/>
-            <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
-            <param name="xsl.out" value="${xsl.output.dummy}"/>
-            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
-            <param name="param.maskids" value="${mask.ids}"/>
-            <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
-            <param name="output.dir" value="../${xsl.output.exmpl}"/>
-        </antcall>
-        <antcall target="convert_ada_2_fhir_sub">
-            <param name="usecase" value="xml-voorbeelden"/>
-            <param name="xsl.convert" value="${build.dir}/Touchstone/${usecase.fhir.fixtures}/payload/${usecase.mg}_2_fhir.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.mg}/payload/${usecase.mg}_2_fhir.xsl"/>
             <param name="xsl.in" value="${xsl.input.exmpl}"/>
             <param name="xsl.in.include" value="mg-*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
-            <param name="xsl.out" value="${xsl.output.dummy}"/>
+            <param name="xsl.out" value="${xsl.output.exmpl}"/>
             <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
+            <!-- omitting id's for transformations https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_IG_R4#Usage_of_the_.id.2C_.identifier_and_.fullUrl_elements_in_FHIR_instances -->
+            <param name="param.populateId" value="false"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.exmpl}"/>
         </antcall>
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="xml-voorbeelden"/>
-            <param name="xsl.convert" value="${build.dir}/Touchstone/${usecase.fhir.fixtures}/payload/${usecase.mv}_2_fhir.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.mv}/payload/${usecase.mv}_2_fhir.xsl"/>
             <param name="xsl.in" value="${xsl.input.exmpl}"/>
             <param name="xsl.in.include" value="mv-*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
-            <param name="xsl.out" value="${xsl.output.dummy}"/>
+            <param name="xsl.out" value="${xsl.output.exmpl}"/>
             <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
@@ -436,11 +430,11 @@
         </antcall>
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="xml-voorbeelden"/>
-            <param name="xsl.convert" value="${build.dir}/Touchstone/${usecase.fhir.fixtures}/payload/${usecase.vma}_2_fhir.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.vma}/payload/${usecase.vma}_2_fhir.xsl"/>
             <param name="xsl.in" value="${xsl.input.exmpl}"/>
             <param name="xsl.in.include" value="vma-*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
-            <param name="xsl.out" value="${xsl.output.dummy}"/>
+            <param name="xsl.out" value="${xsl.output.exmpl}"/>
             <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
@@ -448,29 +442,32 @@
         </antcall>
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="xml-voorbeelden"/>
-            <param name="xsl.convert" value="${build.dir}/Touchstone/${usecase.fhir.fixtures}/payload/${usecase.vvv}_2_fhir.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.vvv}/payload/${usecase.vvv}_2_fhir.xsl"/>
             <param name="xsl.in" value="${xsl.input.exmpl}"/>
             <param name="xsl.in.include" value="vvv-*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
-            <param name="xsl.out" value="${xsl.output.dummy}"/>
+            <param name="xsl.out" value="${xsl.output.exmpl}"/>
             <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.exmpl}"/>
         </antcall>
         <!-- fixtures / resources for beschikbaarstellen_medicatiegegevens-->
-        <antcall target="convert_ada_2_fhir_sub">
+        <!-- AWE - not sure why we would create these touchstone fictures for the examples so I commented out the call below. If we do need themo, the call below overwrites the original mg-example bundle in the output, so it needs work -->
+        <!--<antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="xml-voorbeelden"/>
-            <param name="xsl.convert" value="${build.dir}/Touchstone/${usecase.fhir.fixtures}/payload/${usecase.mg}_2_fhir_resources.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/touchstone/fhir_fixtures4Touchstone/payload/${usecase.mg}_2_fhir_resources.xsl"/>
             <param name="xsl.in" value="${xsl.input.exmpl}"/>
             <param name="xsl.in.include" value="mg-*.xml"/>
-            <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
-            <param name="xsl.out" value="${xsl.output.dummy}"/>
+            <!-\- the xsl will write it's resources, but ant xslt still needs output dir -\->
+            <param name="xsl.out" value="${xsl.output.exmpl}"/>
             <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
-            <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
+            <!-\- omitting id's for transformations https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_IG_R4#Usage_of_the_.id.2C_.identifier_and_.fullUrl_elements_in_FHIR_instances -\->
+            <param name="param.populateId" value="false"/>
+            <!-\- this dir is relative to the xsl.out, so we need an extra dir up -\->
             <param name="output.dir" value="../${xsl.output.exmpl}"/>
-        </antcall>
+        </antcall>-->
 
     </target>
 
@@ -492,12 +489,20 @@
             <!--            <param name="fileset.exclude" value="nictiz_test/**/*"/>-->
             <param name="validate.schema" value="${schema.bundle}"/>
         </antcall>
+        
+        <echo>Schema validate **/nictiz_test/fhir_instance/mg-*.xml with ${schema.bundle}</echo>
+        
+        <antcall target="schemavalidate_sub">
+            <param name="fileset.include" value="**/nictiz_test/fhir_instance/*.xml"/>
+            <!--            <param name="fileset.exclude" value="nictiz_test/**/*"/>-->
+            <param name="validate.schema" value="${schema.bundle}"/>
+        </antcall>
 
         <echo>Schema validate **/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-*.xml with ${schema.bundle}</echo>
         <antcall target="schemavalidate_sub_url">
             <param name="fileset.include" value="**/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-*.xml"/>
             <param name="fileset.exclude" value="nictiz_test/**/*"/>
-            <param name="fileset.exclude2" value="Touchstone/**/*"/>
+            <param name="fileset.exclude2" value="touchstone/**/*"/>
             <param name="validate.schema" value="${schema.bundle}"/>
         </antcall>
 
@@ -630,55 +635,61 @@
         <!-- examples -->
         <antcall target="schematronresults_fhir_30_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_xml-voorbeelden.xml"/>
-            <param name="input.dir" value="../ada_2_fhir-r4/mp/${is.version}/xml-voorbeelden/validate_fhir_instance"/>
+            <param name="input.dir" value="../../../HL7-mappings/ada_2_fhir-r4/mp/${is.version}/xml-voorbeelden/validate_fhir_instance"/>
+            <param name="input.fileset" value="*.xml"/>
+        </antcall>
+        <!-- nictiz_test -->
+        <antcall target="schematronresults_fhir_30_sub">
+            <param name="result.xml" value="${build.dir}/validate/hl7_nictiz_test.xml"/>
+            <param name="input.dir" value="../../../HL7-mappings/ada_2_fhir-r4/mp/${is.version}/nictiz_test/validate_fhir_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="schematronresults_fhir_30_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mg}.xml"/>
-            <param name="input.dir" value="../ada_2_fhir-r4/mp/${is.version}/${usecase.mg}/validate_fhir_instance"/>
+            <param name="input.dir" value="../../../HL7-mappings/ada_2_fhir-r4/mp/${is.version}/${usecase.mg}/validate_fhir_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="schematronresults_fhir_30_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mg.st}.xml"/>
-            <param name="input.dir" value="../ada_2_fhir-r4/mp/${is.version}/${usecase.mg.st}/validate_fhir_instance"/>
+            <param name="input.dir" value="../../../HL7-mappings/ada_2_fhir-r4/mp/${is.version}/${usecase.mg.st}/validate_fhir_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_medicatievoorschrift -->
            <antcall target="schematronresults_fhir_30_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mv}.xml"/>
-            <param name="input.dir" value="../ada_2_fhir-r4/mp/${is.version}/${usecase.mv}/validate_fhir_instance"/>
+               <param name="input.dir" value="../../../HL7-mappings/ada_2_fhir-r4/mp/${is.version}/${usecase.mv}/validate_fhir_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_afhandeling_medicatievoorschrift -->
         <antcall target="schematronresults_fhir_30_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.amv}.xml"/>
-            <param name="input.dir" value="../ada_2_fhir-r4/mp/${is.version}/${usecase.amv}/validate_fhir_instance"/>
+            <param name="input.dir" value="../../../HL7-mappings/ada_2_fhir-r4/mp/${is.version}/${usecase.amv}/validate_fhir_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_voorstel_medicatieafspraak -->
         <antcall target="schematronresults_fhir_30_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.vma}.xml"/>
-            <param name="input.dir" value="../ada_2_fhir-r4/mp/${is.version}/${usecase.vma}/validate_fhir_instance"/>
+            <param name="input.dir" value="../../../HL7-mappings/ada_2_fhir-r4/mp/${is.version}/${usecase.vma}/validate_fhir_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_antwoord_voorstel_medicatieafspraak -->
         <antcall target="schematronresults_fhir_30_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.avma}.xml"/>
-            <param name="input.dir" value="../ada_2_fhir-r4/mp/${is.version}/${usecase.avma}/validate_fhir_instance"/>
+            <param name="input.dir" value="../../../HL7-mappings/ada_2_fhir-r4/mp/${is.version}/${usecase.avma}/validate_fhir_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_voorstel_verstrekkingsverzoek -->
         <antcall target="schematronresults_fhir_30_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.vvv}.xml"/>
-            <param name="input.dir" value="../ada_2_fhir-r4/mp/${is.version}/${usecase.vvv}/validate_fhir_instance"/>
+            <param name="input.dir" value="../../../HL7-mappings/ada_2_fhir-r4/mp/${is.version}/${usecase.vvv}/validate_fhir_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_antwoord_voorstel_verstrekkingsverzoek -->
         <antcall target="schematronresults_fhir_30_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.avvv}.xml"/>
-            <param name="input.dir" value="../ada_2_fhir-r4/mp/${is.version}/${usecase.avvv}/validate_fhir_instance"/>
+            <param name="input.dir" value="../../../HL7-mappings/ada_2_fhir-r4/mp/${is.version}/${usecase.avvv}/validate_fhir_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
 

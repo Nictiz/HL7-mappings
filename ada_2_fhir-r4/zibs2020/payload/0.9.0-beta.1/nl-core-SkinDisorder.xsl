@@ -16,11 +16,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada huidaandoening to FHIR Condition conforming to profile nl-core-SkinDisorder</xd:desc>
+        <xd:desc>Converts ADA huidaandoening to FHIR Condition resource conforming to profile nl-core-SkinDisorder.</xd:desc>
     </xd:doc>
+    
+    <xsl:variable name="profileNameSkinDisorder">nl-core-SkinDisorder</xsl:variable>
 
     <xd:doc>
-        <xd:desc>Create an nl-core-SkinDisorder as a Condition FHIR instance from ada huidaandoening element.</xd:desc>
+        <xd:desc>Creates an nl-core-SkinDisorder instance as a Condition FHIR instance from ADA huidaandoening element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
@@ -32,10 +34,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Condition>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-SkinDisorder'"/>
+                    <xsl:with-param name="profile" select="$profileNameSkinDisorder"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-SkinDisorder"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 
                 <xsl:for-each select="$cause">

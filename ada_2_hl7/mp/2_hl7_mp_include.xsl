@@ -14,7 +14,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!-- these imports are needed to handle the FHIR Timing datatype in HL7v3 substanceAdministration -->
-    <xsl:import href="../../util/mp-functions-fhir.xsl"/>
+    <xsl:import href="../../../YATC-shared/xsl/util/mp-functions-fhir.xsl"/>
     <xsl:import href="../../ada_2_fhir/fhir/2_fhir_fhir_include.xsl"/>
     <xsl:import href="../../ada_2_fhir/zibs2017/payload/ext-zib-medication-repeat-period-cyclical-schedule-2.0.xsl"/>
 
@@ -542,7 +542,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </center>
                 </xsl:when>
             </xsl:choose>
-            
+
         </doseQuantity>
     </xsl:template>
 
@@ -1472,53 +1472,37 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9150_20160726150449">
         <rateQuantity>
-            <xsl:variable name="speedUnit">
-                <xsl:value-of select="nf:convertGstdBasiseenheid2UCUM(eenheid/@code)"/>
-                <xsl:text>/</xsl:text>
-                <xsl:value-of select="nf:convertTime_ADA_unit2UCUM(tijdseenheid/@unit)"/>
+
+            <xsl:variable name="speedUnit" as="xs:string*">
+                <xsl:choose>
+                    <xsl:when test="string-length(eenheid/@code) gt 0">
+                        <xsl:value-of select="nf:convertGstdBasiseenheid2UCUM(eenheid/@code)"/>
+                        <xsl:text>/</xsl:text>
+                        <xsl:if test="tijdseenheid/@value != '1' and tijdseenheid/@value castable as xs:float">
+                            <xsl:value-of select="concat(tijdseenheid/@value, '.')"/>
+                        </xsl:if>
+                        <xsl:value-of select="nf:convertTime_ADA_unit2UCUM(tijdseenheid/@unit)"/>
+                    </xsl:when>
+                    <xsl:when test="eenheid/@unit">
+                        <xsl:value-of select="eenheid/@unit"/>
+                    </xsl:when>
+                </xsl:choose>
             </xsl:variable>
             <xsl:choose>
                 <xsl:when test="waarde/(vaste_waarde | nominale_waarde)/@value">
                     <center>
-                        <xsl:choose>
-                            <xsl:when test="tijdseenheid/@value">
-                                <xsl:attribute name="value" select="waarde/(vaste_waarde | nominale_waarde)/@value div tijdseenheid/@value"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:attribute name="value" select="waarde/(vaste_waarde | nominale_waarde)/@value"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                        <xsl:attribute name="unit" select="$speedUnit"/>
+                        <xsl:attribute name="value" select="waarde/(vaste_waarde | nominale_waarde)/@value"/>
+                        <xsl:attribute name="unit" select="string-join($speedUnit, '')"/>
                     </center>
                 </xsl:when>
                 <xsl:when test="waarde/(min | minimum_waarde)/@value or waarde/(max | maximum_waarde)/@value">
                     <xsl:for-each select="waarde/(min | minimum_waarde)">
                         <!-- min can occur 0 or 1 time -->
-                        <low>
-                            <xsl:choose>
-                                <xsl:when test="../../tijdseenheid/@value">
-                                    <xsl:attribute name="value" select="@value div ../../tijdseenheid/@value"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:attribute name="value" select="@value"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                            <xsl:attribute name="unit" select="$speedUnit"/>
-                        </low>
+                        <low value="{@value}" unit="{string-join($speedUnit, '')}"/>                        
                     </xsl:for-each>
                     <xsl:for-each select="waarde/(max | maximum_waarde)">
                         <!-- max can occur 0 or 1 time -->
-                        <high>
-                            <xsl:choose>
-                                <xsl:when test="../../tijdseenheid/@value">
-                                    <xsl:attribute name="value" select="@value div ../../tijdseenheid/@value"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:attribute name="value" select="@value"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                            <xsl:attribute name="unit" select="$speedUnit"/>
-                        </high>
+                        <high value="{@value}" unit="{string-join($speedUnit, '')}"/>                        
                     </xsl:for-each>
                 </xsl:when>
             </xsl:choose>
@@ -3045,10 +3029,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="zo_nodig/criterium[.//(@value | @code)]">
                 <precondition>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9182_20170601000000">
-                        <xsl:with-param name="inCode" select="code/@code"/>
-                        <xsl:with-param name="inCodeSystem" select="code/@codeSystem"/>
-                        <xsl:with-param name="inDisplayName" select="code/@displayName"/>
-                        <xsl:with-param name="strOriginalText" select="code/@originalText"/>
+                        <xsl:with-param name="inCode" select="(. | code | criterium)/@code"/>
+                        <xsl:with-param name="inCodeSystem" select="(. | code | criterium)/@codeSystem"/>
+                        <xsl:with-param name="inDisplayName" select="(. | code | criterium)/@displayName"/>
+                        <xsl:with-param name="strOriginalText" select="(. | code | criterium)/@originalText"/>
                     </xsl:call-template>
                 </precondition>
             </xsl:for-each>
@@ -3161,9 +3145,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="toedieningsschema[.//(@value | @code)]">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9358_20210517124213"/>
                 </xsl:for-each>
-                <xsl:for-each select="keerdosis[.//(@value | @code )]">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9048_20160614145840"/>
-                </xsl:for-each>   
+                <xsl:for-each select="keerdosis[.//(@value | @code)]">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9048_20160614145840"/>
+                </xsl:for-each>
                 <xsl:for-each select="toedieningssnelheid[.//(@value | @code)]">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9150_20160726150449"/>
                 </xsl:for-each>
@@ -3177,12 +3161,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <consumable xsi:nil="true"/>
 
             <xsl:for-each select="zo_nodig/criterium[.//(@value | @code)]">
+                <xsl:variable name="theOriginalText">
+                    <xsl:choose>                        
+                        <xsl:when test="(. | code | criterium)/@originalText"><xsl:value-of select="(. | code | criterium)/@originalText"/></xsl:when>
+                        <xsl:when test="omschrijving/@value"><xsl:value-of select="omschrijving/@value"/></xsl:when>
+                    </xsl:choose>
+                </xsl:variable>
                 <precondition>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9182_20170601000000">
-                        <xsl:with-param name="inCode" select="(code | criterium)/@code"/>
-                        <xsl:with-param name="inCodeSystem" select="(code | criterium)/@codeSystem"/>
-                        <xsl:with-param name="inDisplayName" select="(code | criterium)/@displayName"/>
-                        <xsl:with-param name="strOriginalText" select="(code | criterium)/@originalText"/>
+                        <xsl:with-param name="inCode" select="(. | code | criterium)/@code"/>
+                        <xsl:with-param name="inCodeSystem" select="(. | code | criterium)/@codeSystem"/>
+                        <xsl:with-param name="inDisplayName" select="(. | code | criterium)/@displayName"/>
+                        <xsl:with-param name="strOriginalText" select="$theOriginalText"/>
                     </xsl:call-template>
                 </precondition>
             </xsl:for-each>
@@ -3347,7 +3337,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <width>
                             <xsl:call-template name="makeTimePQValueAttribs"/>
                         </width>
-                        
+
                     </expectedUseTime>
                 </xsl:for-each>
 
@@ -3530,7 +3520,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc> Reden van afwijken medicatietoediening</xd:desc>
     </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9375_20210616173557" match="medicatie_toediening_reden_van_afwijken" mode="HandleMtdRedenVanAfwijken92">
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9375_20210616173557" match="medicatie_toediening_reden_van_afwijken | medicatietoediening_reden_van_afwijken" mode="HandleMtdRedenVanAfwijken92">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9375"/>
             <code code="153631000146105" displayName="reden voor afwijken in toedienen van medicatie (waarneembare entiteit)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
@@ -3633,7 +3623,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </substanceAdministration>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>MP CDA author zorgverlener of patient vanaf 9.0.7. Also compatible with 9 2.0 dataset structure. Used in medicatiegebruik </xd:desc>
         <xd:param name="adaAuteur">Input ada auteur element to be handled</xd:param>

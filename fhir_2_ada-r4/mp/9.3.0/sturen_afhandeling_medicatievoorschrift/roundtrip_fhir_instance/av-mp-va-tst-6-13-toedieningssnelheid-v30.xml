@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="av-mp-va-tst-6-13-toedieningssnelheid-v30"/>
+   <id value="851e846f-4835-11ef-4968-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f243d-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:851e855e-4835-11ef-4968-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -15,16 +15,16 @@
                   <code value="actionable"/>
                </tag>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="${DATE, T, D, +0}T09:47:00+02:00"/>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="2023-01-01T09:47:00+01:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T, tot en met T + 8 dagen, toedieningssnelheid: maximaal 0.2 à 0.5 ml per uur, parenteraal"/>
+               <valueString value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+8D{23:59:59}&gt;, 0.2 a 0.5 ml per uur parenteraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, +8}T23:59:59+02:00"/>
+                  <start value="2023-01-01T00:00:00+01:00"/>
+                  <end value="2023-01-09T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -46,18 +46,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f1bde-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:851e859a-4835-11ef-4968-020000000000"/>
                <type value="Medication"/>
-               <display value="MORFINEHYDROCHLORIDE 1ML= 5MG EPI CAS 100ML FNA MR"/>
+               <display value="MORFINE HCL 3WATER INFVLST 5MG/ML CASS 100ML AHZ"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f243f-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:851e84e6-4835-11ef-4968-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c33f1aa8-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:851e8522-4835-11ef-4968-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
                </actor>
@@ -74,8 +74,8 @@
                <route>
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="10"/>
-                     <display value="parenteraal"/>
+                     <code value="5"/>
+                     <display value="Intraveneus"/>
                   </coding>
                </route>
                <doseAndRate>
@@ -103,7 +103,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f2424-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:851e857c-4835-11ef-4968-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -132,18 +132,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f1bde-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:851e859a-4835-11ef-4968-020000000000"/>
                <type value="Medication"/>
-               <display value="MORFINEHYDROCHLORIDE 1ML= 5MG EPI CAS 100ML FNA MR"/>
+               <display value="MORFINE HCL 3WATER INFVLST 5MG/ML CASS 100ML AHZ"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f243f-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:851e84e6-4835-11ef-4968-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c33f1aa8-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:851e8522-4835-11ef-4968-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
                </actor>
@@ -170,7 +170,7 @@
                <system value="http://unitsofmeasure.org"/>
                <code value="ml"/>
             </quantity>
-            <whenHandedOver value="${DATE, T, D, +0}T09:47:00+02:00"/>
+            <whenHandedOver value="2023-01-01T09:47:00+01:00"/>
          </MedicationDispense>
       </resource>
       <request>
@@ -179,7 +179,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f243f-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:851e84e6-4835-11ef-4968-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -226,7 +226,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1aa8-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:851e8522-4835-11ef-4968-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -237,6 +237,31 @@
                <value value="01236578"/>
             </identifier>
             <name value="Apotheek de Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -245,7 +270,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1bde-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:851e859a-4835-11ef-4968-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -254,8 +279,8 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="779288"/>
-                  <display value="MORFINEHYDROCHLORIDE 1ML= 5MG EPI CAS 100ML FNA MR"/>
+                  <code value="2554771"/>
+                  <display value="MORFINE HCL 3WATER INFVLST 5MG/ML CASS 100ML AHZ"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
@@ -268,7 +293,7 @@
                   <code value="134538"/>
                   <display value="MORFINE INFVLST 5MG/ML CAS 100ML"/>
                </coding>
-               <text value="MORFINEHYDROCHLORIDE 1ML= 5MG EPI CAS 100ML FNA MR"/>
+               <text value="MORFINE HCL 3WATER INFVLST 5MG/ML CASS 100ML AHZ"/>
             </code>
          </Medication>
       </resource>

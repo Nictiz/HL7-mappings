@@ -2,13 +2,16 @@
 
 This repository contains executable mappings to convert between different HL7 formats (like HL7v3 and FHIR) for various Dutch standards for electronic exchange of healthcare information.
 
-These mappings are usually based on XSLT transformations on XML messages. Most of these mappings use a neutral intermediate format called ADA ([ART-DECOR Applications](https://art-decor.org/mediawiki/index.php?title=ADA_Documentation)), which is an extension of the [ART-DECOR tooling](https://art-decor.org/mediawiki/index.php/Main_Page) for specifying electronic healthcare standards. 
+These mappings are usually based on XSLT transformations on XML messages. Most of these mappings use a neutral intermediate format called ADA ([ART-DECOR Applications](https://docs.art-decor.org/release2/specials/#installing-ada)), which is an extension of the [ART-DECOR tooling](https://docs.art-decor.org/) for specifying electronic healthcare standards. 
 
 Within Nictiz ADA is used for additional purposes, like generating documentation. These mappings are not part of this public repository.
 
 These mappings are mainly used for demonstration purposes. Nictiz provides no guarantees regarding the accuracy of the transformations.
 
-The XSLT's have been tested with Saxon-HE-9.8.0-15.jar . 
+The XSLT's have been tested with Saxon-HE-9.8.0-15.jar.
+
+## Publications
+2024-03-12 Publications have thusfar been done in this project. For the past year or so we have been working on major restructuring to better separate code from data. We have also replaced most of the ant powered toolchain with a brand new tool we dubbed yatc (Yet Another ToolChain). This repository no longer holds the code it used to. At publication time the yatc tool assembles all required parts for a given use case. Publications then take place in the sibling repository [YATC-public](https://github.com/Nictiz/YATC-public). The publications in this repository will not be moved or copied there. Over time they will just loose relevance as they are superseded by newer releases.
 
 ## Folder structure
 

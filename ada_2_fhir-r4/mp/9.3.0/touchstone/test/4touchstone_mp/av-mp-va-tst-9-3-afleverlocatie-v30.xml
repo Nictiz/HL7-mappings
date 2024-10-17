@@ -15,7 +15,7 @@
                   <code value="actionable"/>
                </tag>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="${DATE, T, D, +0}T12:07:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
@@ -46,9 +46,9 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c8dcf604-6b6b-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:8f27a004-6aca-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="BROXIL CAPSULE 500MG"/>
+               <display value="MODAFINIL FOCUS TABLET 200MG"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:eb74c70e-6ab7-11ec-0000-020000000000"/>
@@ -57,7 +57,7 @@
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -110,7 +110,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a619cbdd-6b76-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:62628bdd-6abc-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -142,9 +142,9 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c8dcf604-6b6b-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:8f27a004-6aca-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="BROXIL CAPSULE 500MG"/>
+               <display value="MODAFINIL FOCUS TABLET 200MG"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:eb74c70e-6ab7-11ec-0000-020000000000"/>
@@ -153,7 +153,7 @@
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -241,7 +241,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -252,6 +252,31 @@
                <value value="01236578"/>
             </identifier>
             <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -260,7 +285,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c8dcf604-6b6b-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:8f27a004-6aca-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -269,21 +294,21 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="425087"/>
-                  <display value="BROXIL CAPSULE 500MG"/>
+                  <code value="2842246"/>
+                  <display value="MODAFINIL FOCUS TABLET 200MG"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="17205"/>
-                  <display value="FENETICILLINE CAPSULE 500MG"/>
+                  <code value="199311"/>
+                  <display value="MODAFINIL TABLET 200MG"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="41092"/>
-                  <display value="FENETICILLINE 500MG CAPSULE"/>
+                  <code value="179051"/>
+                  <display value="MODAFINIL TABLET 200MG"/>
                </coding>
-               <text value="BROXIL CAPSULE 500MG"/>
+               <text value="MODAFINIL FOCUS TABLET 200MG"/>
             </code>
          </Medication>
       </resource>

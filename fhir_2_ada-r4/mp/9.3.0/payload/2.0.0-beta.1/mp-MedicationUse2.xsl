@@ -37,7 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- gebruiks_product -->
             <xsl:apply-templates select="f:medicationReference" mode="#current"/>
             <!-- gebruiksinstructie -->
-            <xsl:call-template name="nl-core-InstructionsForUse"/>
+            <xsl:call-template name="mp-InstructionsForUse"/>
             <!-- relatie_medicatieafspraak, toedieningsafspraak, medicatieverstrekking -->
             <xsl:apply-templates select="f:derivedFrom" mode="#current"/>
             <!-- relatie_contact en zorgepisode -->
@@ -255,7 +255,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
                 <xsl:when test="$resource/local-name() = 'PractitionerRole'">
                     <informant_is_zorgverlener>
-                        <xsl:apply-templates select="$resource" mode="resolve-practitionerRole">
+                        <xsl:apply-templates select="$resource" mode="resolve-HealthProfessional-PractitionerRole">
                             <xsl:with-param name="practitionerIdUnderscore" select="true()" tunnel="yes"/>
                             <xsl:with-param name="organizationIdUnderscore" select="true()" tunnel="yes"/>
                             <xsl:with-param name="practitionerNaamgegevensElement" select="'zorgverlener_naam'" tunnel="yes"/>

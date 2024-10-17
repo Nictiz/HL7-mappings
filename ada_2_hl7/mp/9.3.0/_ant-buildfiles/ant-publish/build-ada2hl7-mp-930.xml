@@ -27,17 +27,10 @@
 
     <target name="setup_mp930" description="Setup subdirectories, schemas, ada instance xml's in ${build.dir} for ${is.name} ${is.version}">
 
-        <!-- nictiz_test copies appropriate ada instances from refs.dir -->
-        <!-- not yet implemented  -->
-        <!--<antcall target="setup_sub_instances">
-            <param name="fileset.dir" value="ada_instance"/>
-            <param name="refs.ada.dir" value="ada_instance"/>
-            <param name="usecase" value="${usecase.nt}"/>
-        </antcall>-->
-        <!-- at the moment only schemas for nictiz test -->
+        <!-- at the moment only schemas for nictiz test, instances are not retrieved from adarefs -->
         <antcall target="setup_sub_schemas">
             <param name="usecase" value="${usecase.nt}"/>
-            <param name="schema.string" value="*${usecase.mv}.xsd"/>
+            <param name="schema.string" value="*${usecase.mg}.xsd"/>
         </antcall>
 
         <!-- beschikbaarstellen_medicatiegegevens copies schemas for project dir and appropriate ada instances from refs.dir for MA-->
@@ -256,12 +249,12 @@
     <target name="convert_ada_2_hl7_930">
 
         <!-- convert nictiz test -->
-        <!-- <antcall target="convert_ada_2_hl7_sub">
+         <antcall target="convert_ada_2_hl7_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.nt}"/>
-            <param name="xsl.name" value="../${usecase.mv}/payload/${usecase.mv}_org.xsl"/>
+            <param name="xsl.name" value="../${usecase.mg}/payload/${usecase.mg}_org.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="hl7_instance"/>
-        </antcall>-->
+        </antcall>
 
         <!-- convert beschikbaarstellen_medicatiegegevens -->
         <antcall target="convert_ada_2_hl7_sub">
@@ -641,6 +634,12 @@
             <param name="input.dir" value="../ada_2_hl7/${is.abbreviation}/${is.version}/${usecase.avvv}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
+        <!-- nictiz_test -->
+        <antcall target="schematronresults_hl7_930_sub">
+            <param name="result.xml" value="${build.dir}/validate/hl7_nictiz_test.xml"/>
+            <param name="input.dir" value="../ada_2_hl7/${is.abbreviation}/${is.version}/nictiz_test/validate_hl7_instance"/>
+            <param name="input.fileset" value="*.xml"/>
+        </antcall>
         <!-- xml voorbeelden organizer -->
         <antcall target="schematronresults_hl7_930_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_xml_voorbeelden.xml"/>
@@ -654,7 +653,7 @@
 
         <echo/>
         <echo>${echo.label} ${xsl.validate.svrl} make recap of validation in ${result.xml}</echo>
-        <xslt force="true" style="${xsl.validate.svrl}" in="${build.dir}/validate/default_input.xml" out="${result.xml}">
+        <xslt force="true" style="${xsl.validate.svrl}" in="${xsl.validate.svrl}" out="${result.xml}">
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
             <param name="inputDir" expression="${input.dir}"/>
@@ -728,6 +727,14 @@
             <param name="xsl.mp" value="${validate.dir}/mp-mp93_vvv.xsl"/>
         </antcall>
 
+        <!-- nictiz_test -->
+        <antcall target="validate_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/nictiz_test"/>
+            <param name="xsl.input" value="hl7_instance"/>
+            <param name="xsl.output" value="validate_hl7_instance"/>
+            <param name="xsl.mp" value="${validate.dir}/mp-mp93_mgb.xsl"/>
+        </antcall>
+        
         <!-- xml-voorbeelden -->
         <echo/>
         <echo>${echo.label} xml-voorbeelden hl7_instance</echo>

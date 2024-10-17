@@ -122,9 +122,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:country" mode="nl-core-AddressInformation">
         <xsl:choose>
-            <xsl:when test="f:extension[@url='http://nictiz.nl/fhir/StructureDefinition/code-specification']">
+            <xsl:when test="f:extension[@url='http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification']">
                 <xsl:call-template name="CodeableConcept-to-code">
-                    <xsl:with-param name="in" select="f:extension[@url='http://nictiz.nl/fhir/StructureDefinition/code-specification']/f:valueCodeableConcept"/>
+                    <xsl:with-param name="in" select="f:extension[@url='http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification']/f:valueCodeableConcept"/>
                     <xsl:with-param name="adaElementName" select="'land'"/>
                 </xsl:call-template>
             </xsl:when>

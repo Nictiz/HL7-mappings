@@ -29,21 +29,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada medisch_hulpmiddel to FHIR DeviceUseStatement conforming to profile nl-core-MedicalDevice and FHIR Device conforming to profile nl-core-MedicalDevice.Product</xd:desc>
+        <xd:desc>Converts ADA medisch_hulpmiddel to FHIR DeviceUseStatement resource conforming to profile nl-core-MedicalDevice and FHIR Device resource conforming to profile nl-core-MedicalDevice.Product.</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameMedicalDevice">nl-core-MedicalDevice</xsl:variable>
+    <xsl:variable name="profileNameMedicalDeviceProduct">nl-core-MedicalDevice.Product</xsl:variable>
+    
     <xd:doc>
-        <xd:desc>Create an nl-core-MedicalDevice instance as a DeviceUseStatement FHIR instance from ada medisch_hulpmiddel element.</xd:desc>
+        <xd:desc>Creates an nl-core-MedicalDevice instance as a DeviceUseStatement FHIR instance from ADA medisch_hulpmiddel element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
-        <xd:param name="profile">Optional string that represents the (derived) profile of which a FHIR resource should be created. Defaults to 'nl-core-MedicalDevice'.</xd:param>
+        <xd:param name="profile">Optional string that represents the (derived) profile of which a FHIR resource should be created. Defaults to 'nl-core-MedicalDevice'. Other uses are 'nl-core-HearingFunction.HearingAid', 'nl-core-VisualFunction.VisualAid' and 'nl-core-Wound.Drain'.</xd:param>
         <xd:param name="reasonReference">Optional ADA instance used to populate the reasonReference element. Used for several zibs that contain a reference to MedicalDevice, which is mapped via this reasonReference.</xd:param>
+        <xd:param name="reasonReferenceProfile">Optional profile name for the FHIR instance that is referenced in reasonReference, when the reasonReference can result in multiple different profiles.</xd:param>
     </xd:doc>
     <xsl:template match="medisch_hulpmiddel" name="nl-core-MedicalDevice" mode="nl-core-MedicalDevice" as="element(f:DeviceUseStatement)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="profile" select="'nl-core-MedicalDevice'" as="xs:string"/>
+        <xsl:param name="profile" select="$profileNameMedicalDevice" as="xs:string"/>
         <xsl:param name="reasonReference" as="element()?"/>
+        <xsl:param name="reasonReferenceProfile" as="xs:string" select="''"/>
         
         <xsl:for-each select="$in">
             <DeviceUseStatement>
@@ -54,7 +59,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="profile" select="$profile"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/{$profile}"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profile)}"/>
                 </meta>
                 
                 <xsl:for-each select="zorgverlener">
@@ -62,7 +67,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <valueReference>
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="in" select="zorgverlener"/>
-                                <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                                <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                             </xsl:call-template>
                         </valueReference>
                     </extension>
@@ -73,12 +78,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <valueReference>
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="in" select="zorgaanbieder"/>
-                                <xsl:with-param name="profile" select="'nl-core-HealthcareProvider'"/>
+                                <xsl:with-param name="profile" select="$profileNameHealthcareProvider"/>
                             </xsl:call-template>
                         </valueReference>
                     </extension>
-                </xsl:for-each>               
-                              
+                </xsl:for-each>
+                
                 <status>
                     <xsl:choose>
                         <!-- When startDate is in the future: _intended_  -->
@@ -146,7 +151,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!--The element reasonReference is present to support resources that refer to a MedicalDevice, such as HearingFunction and VisualFunction. -->
                 <xsl:for-each select="$reasonReference">
                     <reasonReference>
-                        <xsl:call-template name="makeReference"/>
+                        <xsl:call-template name="makeReference">
+                            <xsl:with-param name="profile" select="$reasonReferenceProfile"/>
+                        </xsl:call-template>
                     </reasonReference>
                 </xsl:for-each>
                 
@@ -173,15 +180,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Create an nl-core-MedicalDevice.Product instance as a Device FHIR instance from ada medisch_hulpmiddel element.</xd:desc>
+        <xd:desc>Creates an nl-core-MedicalDevice.Product instance as a Device FHIR instance from ADA product element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
-        <xd:param name="profile">Optional string that represents the (derived) profile of which a FHIR resource should be created. Defaults to 'nl-core-MedicalDevice.Product'. Other uses are 'nl-core-HearingFunction.HearingAid.Product' and 'nl-core-VisualFunction.VisualAid.Product'.</xd:param>
+        <xd:param name="profile">Optional string that represents the (derived) profile of which a FHIR resource should be created. Defaults to 'nl-core-MedicalDevice.Product'. Other uses are 'nl-core-HearingFunction.HearingAid.Product', 'nl-core-VisualFunction.VisualAid.Product' and 'nl-core-Wound.Drain'.</xd:param>
     </xd:doc>
     <xsl:template match="product" name="nl-core-MedicalDevice.Product" mode="nl-core-MedicalDevice.Product" as="element(f:Device)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="profile" select="'nl-core-MedicalDevice.Product'" as="xs:string"/>
+        <xsl:param name="profile" select="$profileNameMedicalDeviceProduct" as="xs:string"/>
         
         <xsl:for-each select="$in">
             <Device>
@@ -189,19 +196,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="profile" select="$profile"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/{$profile}"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profile)}"/>
                 </meta>
                         
                 <xsl:for-each select="product_id">
                     <xsl:choose>
                         <xsl:when test="@codeSystem = ($oidGTIN, $oidHIBC)">
-                            <xsl:variable name="system" select="local:getUri(@codeSystem)"/>
                             <identifier>
-                                <system value="{$system}"/>
+                                <system value="{local:getUri(@codeSystem)}"/>
                                 <value value="{@code}"/>
                             </identifier>
                             <udiCarrier>
-                                <issuer value="{$system}"/>
+                                <issuer value="{local:getUri(@codeSystem)}"/>
                                 <carrierHRF value="{@code}"/>
                             </udiCarrier>
                         </xsl:when>
@@ -221,7 +227,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>        
                     </type>
-                </xsl:for-each>              
+                </xsl:for-each>
                 
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="in" select="$subject"/>

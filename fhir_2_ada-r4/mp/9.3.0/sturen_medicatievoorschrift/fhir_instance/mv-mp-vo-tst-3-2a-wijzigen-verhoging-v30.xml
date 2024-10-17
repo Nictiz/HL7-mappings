@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="mv-mp-vo-tst-3-2a-wijzigen-verhoging-v30"/>
+   <id value="dc7cf6c5-4807-11ef-1958-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:6f9828cb-6b3d-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:dc7cf868-4807-11ef-1958-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -15,12 +15,15 @@
                   <code value="actionable"/>
                </tag>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="2023-01-01T08:02:00+01:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T om 09:00 uur, 1 maal per dag 1 stuk, Oraal"/>
+               <valueString value="wordt automatisch gegenereerd"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="${DATE, T, D, +0}T09:00:00+02:00"/>
+                  <start value="2023-01-01T09:00:00+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -43,18 +46,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:097956e9-6aa6-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:dc7cf8a4-4807-11ef-1958-020000000000"/>
                <type value="Medication"/>
                <display value="FUROSEMIDE 40MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:1c84b21e-6b37-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:dc7cf73c-4807-11ef-1958-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
-            <authoredOn value="${DATE, T, D, +0}T08:02:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:fbd0582e-6b5a-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:dc7cf764-4807-11ef-1958-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -98,7 +100,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:46f83689-6b72-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:dc7cf886-4807-11ef-1958-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -128,23 +130,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:097956e9-6aa6-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:dc7cf8a4-4807-11ef-1958-020000000000"/>
                <type value="Medication"/>
                <display value="FUROSEMIDE 40MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:1c84b21e-6b37-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:dc7cf73c-4807-11ef-1958-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
-            <authoredOn value="${DATE, T, D, +0}T08:02:00+02:00"/>
+            <authoredOn value="2023-01-01T08:02:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:fbd0582e-6b5a-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:dc7cf764-4807-11ef-1958-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:dc7cf82c-4807-11ef-1958-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -180,7 +182,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:1c84b21e-6b37-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:dc7cf73c-4807-11ef-1958-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -230,19 +232,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fbd0582e-6b5a-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:dc7cf764-4807-11ef-1958-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:bb0c0824-6b30-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:dc7cf78c-4807-11ef-1958-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:dc7cf7d2-4807-11ef-1958-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -267,7 +269,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bb0c0824-6b30-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:dc7cf78c-4807-11ef-1958-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -307,7 +309,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:dc7cf7d2-4807-11ef-1958-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -348,7 +350,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:dc7cf82c-4807-11ef-1958-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -359,6 +361,31 @@
                <value value="01236578"/>
             </identifier>
             <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -367,7 +394,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:097956e9-6aa6-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:dc7cf8a4-4807-11ef-1958-020000000000"/>
       <resource>
          <Medication>
             <meta>

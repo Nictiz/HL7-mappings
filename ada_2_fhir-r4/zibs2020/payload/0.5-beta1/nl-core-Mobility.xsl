@@ -28,11 +28,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada mobiliteit to FHIR Observation conforming to profile nl-core-Mobility</xd:desc>
+        <xd:desc>Converts ADA mobiliteit to FHIR Observation resource conforming to profile nl-core-Mobility.</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameMobility">nl-core-Mobility</xsl:variable>
+    
     <xd:doc>
-        <xd:desc>Create an nl-core-nl-core-Mobility instance as an Observation FHIR instance from ada mobiliteit element.</xd:desc>
+        <xd:desc>Creates an nl-core-Mobility instance as an Observation FHIR instance from ADA mobiliteit element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
@@ -43,16 +45,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Observation>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-Mobility'"/>
+                    <xsl:with-param name="profile" select="$profileNameMobility"/>
                 </xsl:call-template>
                 
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="301438001"/>
                         <display value="vermogen tot mobiliteit"/>
                     </coding>
@@ -72,87 +74,87 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <xsl:for-each select="lopen">
                     <component>
-                        <code>
-                            <coding>
-                                <system value="http://snomed.info/sct"/>
-                                <code value="282097004"/>
-                                <display value="loopvermogen"/>
-                            </coding>
-                        </code>
-                        <valueCodeableConcept>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </valueCodeableConcept>
+                <code>
+                    <coding>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
+                        <code value="282097004"/>
+                        <display value="loopvermogen"/>
+                    </coding>
+                </code>
+                <valueCodeableConcept>
+                    <xsl:call-template name="code-to-CodeableConcept">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </valueCodeableConcept>
                     </component>
-                </xsl:for-each>
+        </xsl:for-each>
                 <xsl:for-each select="traplopen">
                     <component>
-                        <code>
-                            <coding>
-                                <system value="http://snomed.info/sct"/>
-                                <code value="301587001"/>
-                                <display value="vermogen tot traplopen"/>
-                            </coding>
-                        </code>
-                        <valueCodeableConcept>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </valueCodeableConcept>
+                <code>
+                    <coding>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
+                        <code value="301587001"/>
+                        <display value="vermogen tot traplopen"/>
+                    </coding>
+                </code>
+                <valueCodeableConcept>
+                    <xsl:call-template name="code-to-CodeableConcept">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </valueCodeableConcept>
                     </component>
-                </xsl:for-each>
+        </xsl:for-each>
                 <xsl:for-each select="houding_veranderen">
                     <component>
-                        <code>
-                            <coding>
-                                <system value="http://snomed.info/sct"/>
-                                <code value="282869009"/>
-                                <display value="vermogen om van houding te veranderen"/>
-                            </coding>
-                        </code>
-                        <valueCodeableConcept>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </valueCodeableConcept>
+                <code>
+                    <coding>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
+                        <code value="282869009"/>
+                        <display value="vermogen om van houding te veranderen"/>
+                    </coding>
+                </code>
+                <valueCodeableConcept>
+                    <xsl:call-template name="code-to-CodeableConcept">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </valueCodeableConcept>
                     </component>
-                </xsl:for-each>
+        </xsl:for-each>
                 <xsl:for-each select="houding_handhaven">
                     <component>
-                        <code>
-                            <coding>
-                                <system value="http://snomed.info/sct"/>
-                                <code value="249868004"/>
-                                <display value="vermogen om positie aan te houden"/>
-                            </coding>
-                        </code>
-                        <valueCodeableConcept>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </valueCodeableConcept>
+                <code>
+                    <coding>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
+                        <code value="249868004"/>
+                        <display value="vermogen om positie aan te houden"/>
+                    </coding>
+                </code>
+                <valueCodeableConcept>
+                    <xsl:call-template name="code-to-CodeableConcept">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </valueCodeableConcept>
                     </component>
-                </xsl:for-each>
+        </xsl:for-each>
                 <xsl:for-each select="uitvoeren_transfer">
                     <component>
-                        <code>
-                            <coding>
-                                <system value="http://snomed.info/sct"/>
-                                <code value="364666007"/>
-                                <display value="vermogen om te verplaatsen"/>
-                            </coding>
-                        </code>
-                        <valueCodeableConcept>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </valueCodeableConcept>
+                <code>
+                    <coding>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
+                        <code value="364666007"/>
+                        <display value="vermogen om te verplaatsen"/>
+                    </coding>
+                </code>
+                <valueCodeableConcept>
+                    <xsl:call-template name="code-to-CodeableConcept">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </valueCodeableConcept>
                     </component>
                 </xsl:for-each>
             </Observation>
         </xsl:for-each>
-    </xsl:template>
+    </xsl:template>    
     
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>

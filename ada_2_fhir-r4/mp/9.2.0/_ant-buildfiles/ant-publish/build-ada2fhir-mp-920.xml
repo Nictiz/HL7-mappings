@@ -14,17 +14,18 @@
     <!-- specify BSN oid for masking BSN identifiers -->
     <property name="mask.ids" value=""/>
     <property name="mask.ids.mm" value="2.16.840.1.113883.2.4.6.3"/>
-
+ 
+    <import file="../../../_ant-buildfiles/ant-publish/build-ada2fhir-mp-include.xml"/>
+    
     <property name="ada.project.source.dir" value="${build.dir}\..\..\..\..\art_decor\projects\${is.abbreviation}-${is.abbreviation}${is.version.short}"/>
     <property name="refs.dir" value="${build.dir}\..\..\..\..\art_decor\adarefs2ada\${is.abbreviation}\${is.version}"/>
 
-    <import file="../../../_ant-buildfiles/ant-publish/build-ada2fhir-mp-include.xml"/>
-
+ 
     <property name="schema.bundle" value="https://hl7.org/fhir/R4/bundle.xsd"/>
 
     <!-- local version of schematron, since we need the svrl xsl -->
     <property name="validate.dir" value="${build.dir}/fhir-xsd/R4-sch"/>
-    <property name="xsl.validate.svrl" value="${build.dir}/../../../validate/validate-svrl-output.xsl"/>
+    <property name="xsl.validate.svrl" value="${build.dir}/../../../../YATC-shared/xsl/util/validate-svrl-output.xsl"/>
 
     <target name="setup_920">
         <!-- beschikbaarstellen_medicatiegegevens -->
@@ -34,7 +35,7 @@
             <param name="schema.string" value="*${usecase.mg}.xsd"/>
         </antcall>
 
-        <echo>Copying ADA instances from ${refs.dir}/ada_instance to ${sub.build.dir}/${fileset.dir}</echo>
+        <echo>Copying ADA instances from ${refs.dir}/ada_instance to ${build.dir}/${fileset.dir}</echo>
         <!-- make dir if it does not exist (anymore) -->
         <mkdir dir="${build.dir}/${usecase.mg}/ada_instance"/>
         <!-- deleting previous results, if any -->
@@ -647,43 +648,43 @@
         <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="schematronresults_fhir_920_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mg}.xml"/>
-            <param name="input.dir" value="../ada_2_fhir-r4/mp/${is.version}/${usecase.mg}/validate_fhir_instance"/>
+            <param name="input.dir" value="../../../HL7-mappings/ada_2_fhir-r4/mp/${is.version}/${usecase.mg}/validate_fhir_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_medicatievoorschrift -->
         <antcall target="schematronresults_fhir_920_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mv}.xml"/>
-            <param name="input.dir" value="../ada_2_fhir-r4/mp/${is.version}/${usecase.mv}/validate_fhir_instance"/>
+            <param name="input.dir" value="../../../HL7-mappings/ada_2_fhir-r4/mp/${is.version}/${usecase.mv}/validate_fhir_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_afhandeling_medicatievoorschrift -->
         <antcall target="schematronresults_fhir_920_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.amv}.xml"/>
-            <param name="input.dir" value="../ada_2_fhir-r4/mp/${is.version}/${usecase.amv}/validate_fhir_instance"/>
+            <param name="input.dir" value="../../../HL7-mappings/ada_2_fhir-r4/mp/${is.version}/${usecase.amv}/validate_fhir_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_voorstel_medicatieafspraak -->
         <antcall target="schematronresults_fhir_920_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.vma}.xml"/>
-            <param name="input.dir" value="../ada_2_fhir-r4/mp/${is.version}/${usecase.vma}/validate_fhir_instance"/>
+            <param name="input.dir" value="../../../HL7-mappings/ada_2_fhir-r4/mp/${is.version}/${usecase.vma}/validate_fhir_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_antwoord_voorstel_medicatieafspraak -->
         <antcall target="schematronresults_fhir_920_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.avma}.xml"/>
-            <param name="input.dir" value="../ada_2_fhir-r4/mp/${is.version}/${usecase.avma}/validate_fhir_instance"/>
+            <param name="input.dir" value="../../../HL7-mappings/ada_2_fhir-r4/mp/${is.version}/${usecase.avma}/validate_fhir_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_voorstel_verstrekkingsverzoek -->
         <antcall target="schematronresults_fhir_920_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.vvv}.xml"/>
-            <param name="input.dir" value="../ada_2_fhir-r4/mp/${is.version}/${usecase.vvv}/validate_fhir_instance"/>
+            <param name="input.dir" value="../../../HL7-mappings/ada_2_fhir-r4/mp/${is.version}/${usecase.vvv}/validate_fhir_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_antwoord_voorstel_verstrekkingsverzoek -->
         <antcall target="schematronresults_fhir_920_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.avvv}.xml"/>
-            <param name="input.dir" value="../ada_2_fhir-r4/mp/${is.version}/${usecase.avvv}/validate_fhir_instance"/>
+            <param name="input.dir" value="../../../HL7-mappings/ada_2_fhir-r4/mp/${is.version}/${usecase.avvv}/validate_fhir_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
 
@@ -693,7 +694,7 @@
 
         <echo/>
         <echo>${echo.label} ${xsl.validate.svrl} make recap of validation in ${result.xml}</echo>
-        <xslt force="true" style="${xsl.validate.svrl}" in="${build.dir}/../../../validate/default_input.xml" out="${result.xml}">
+        <xslt force="true" style="${xsl.validate.svrl}" in="${xsl.validate.svrl}" out="${result.xml}">
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
             <param name="inputDir" expression="${input.dir}"/>

@@ -1,0 +1,84 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <id value="zib-Encounter-bgz-msz-patD-encounter2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: Fatima Saïda F.S.K. Fatima Al Ksar el Kebir Çelik. Id: bgz-msz-patD-encounter2 (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div>
+                        <span title="Other (OTH - v3/NullFlavor)">Other</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>6 november 1988</td>
+               </tr>
+               <tr>
+                  <th>Probleem/Verrichting</th>
+                  <td>kortademigheid bij milde inspanning</td>
+               </tr>
+               <tr>
+                  <th>Participant</th>
+                  <td>
+                     <div>Hip Plato Orpheus H.P.O Crates van Kos || Huisarts || Centrum Kos de rechte rug</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patD-encounter2"/>
+   </identifier>
+   <status value="finished"/>
+   <class>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+               <code value="OTH"/>
+               <display value="Other"/>
+            </coding>
+            <text value="Huisarts"/>
+         </valueCodeableConcept>
+      </extension>
+      <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+      <code value="OTH"/>
+      <display value="Other"/>
+   </class>
+   <subject>
+      <reference value="Patient/FATIMA-SAIDA-F-S-K--FATIMA-AL-KSAR-EL-KEBIR-ELIK"/>
+      <display value="Fatima Saïda F.S.K. Fatima Al Ksar el Kebir Çelik"/>
+   </subject>
+   <participant>
+      <individual>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-bgz-msz-1000001001-01520000010"/>
+               <display value="Hip Plato Orpheus H.P.O Crates van Kos || Huisarts || Centrum Kos de rechte rug"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-528-1-1007-3-1-10000010"/>
+         <display value="Hip Plato Orpheus H.P.O Crates van Kos"/>
+      </individual>
+   </participant>
+   <period>
+      <start value="1988-11-06"/>
+      <end value="1988-11-06"/>
+   </period>
+   <diagnosis>
+      <condition>
+         <reference value="Condition/zib-Problem-bgz-msz-bgz-msz-patD-problem2"/>
+         <display value="kortademigheid bij milde inspanning"/>
+      </condition>
+   </diagnosis>
+</Encounter>
