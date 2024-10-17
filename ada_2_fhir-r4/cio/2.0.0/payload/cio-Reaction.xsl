@@ -55,7 +55,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="{concat($urlBaseNictizProfile, $profileNameCioReaction)}"/>
                 </meta>
                 
-                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AllergyIntolerance-Type">
+                <extension url="http://nictiz.nl/fhir/5.0/StructureDefinition/extension-AllergyIntolerance.type">
                     <valueCodeableConcept>
                         <coding>
                             <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>

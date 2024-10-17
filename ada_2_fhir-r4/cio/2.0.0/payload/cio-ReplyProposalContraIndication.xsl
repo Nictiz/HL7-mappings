@@ -99,7 +99,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="beantwoording_voorstel_contra_indicatie[@code]">
                     <payload>
                         <contentString>
-                            <extension url="http://nictiz.nl/fhir/5.0/StructureDefinition/extension-Communication.payload.content[x]:contentCodeableConcept">
+                            <extension url="http://nictiz.nl/fhir/5.0/StructureDefinition/extension-Communication.payload.content%5Bx%5D:contentCodeableConcept">
                                 <valueCodeableConcept>
                                     <xsl:call-template name="code-to-CodeableConcept">
                                         <xsl:with-param name="in" select="."/>
