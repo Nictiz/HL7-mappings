@@ -20,6 +20,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>This document imports nl-core specific functions and templates to convert zib2024 ada instances to FHIR.</xd:desc>
+        <xd:desc>This document imports nl-core specific functions and templates to convert zib2024 ADA instances to FHIR.</xd:desc>
     </xd:doc>
 </xsl:stylesheet>

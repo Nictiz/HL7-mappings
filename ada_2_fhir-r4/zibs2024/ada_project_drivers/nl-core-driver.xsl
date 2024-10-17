@@ -27,15 +27,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="../payload/nl-core-latest.xsl"/>
 
-    <!-- 
-        Referencing strategy defaults to logicalId. See 2_fhir_fhir_include for the different options.
-    -->
+    <!-- Referencing strategy defaults to logicalId. See 2_fhir_fhir_include for the different options. -->
     <xsl:param name="referencingStrategy" select="'logicalId'" as="xs:string"/>
 
-    <!--
-        If true, write all generated resources to disk in the fhir_instance directory. Otherwise, return all the output
-        in a FHIR Bundle.
-    -->
+    <!-- If true, write all generated resources to disk in the fhir_instance directory. Otherwise, return all the output in a FHIR Bundle. -->
     <xsl:param name="writeOutputToDisk" select="true()" as="xs:boolean"/>
         
     <!-- Generate metadata for all ADA instances -->
@@ -99,12 +94,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     
-    <!--
-        Extract the patient either from the special way how it is done within this project (by business identifier), or
-        if that's unavailable from the bundle (when that mechanism is used). If neither are available, nothing is
-        returned.
-        - businessIdentifierRef: The element containing the business identifier reference, may be absent.
-    -->
+    <xd:doc>
+        <xd:desc>Extract the patient either from the special way how it is done within this project (by business identifier), or
+            if that's unavailable from the Bundle (when that mechanism is used). If neither are available, nothing is
+            returned.</xd:desc>
+        <xd:param name="businessIdentifierRef">The element containing the business identifier reference may be absent.</xd:param>
+    </xd:doc>
     <xsl:template name="_resolveAdaPatient" as="element()?">
         <xsl:param name="businessIdentifierRef" as="element()?" select="onderwerp/patient-id"/>
         
@@ -124,11 +119,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     
-    <!--
-        The template to dynamically call the proper nl-core template on the ADA input.
-        - in:  The ADA instance to output.
-        - The 'subject' parameter to pass to the nl-core template
-    -->
+    <xd:doc>
+        <xd:desc>The template to dynamically call the proper nl-core template on the ADA input.</xd:desc>
+        <xd:param name="in">The ADA instance to output.</xd:param>
+        <xd:param name="subject">The 'subject' to pass to the nl-core template.</xd:param>
+    </xd:doc>
     <xsl:template name="_applyNlCoreTemplate">
         <xsl:param name="in" select="nf:ada-resolve-reference(.)"/>
         <xsl:param name="subject"/>
