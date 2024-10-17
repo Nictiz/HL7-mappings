@@ -24,7 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="patientTokensXml">Optional parameter containing XML document based on QualificationTokens.json as used on Github / Touchstone</xd:param>
     </xd:doc>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
-    <xsl:param name="patientTokensXml" select="document('../../fhir/QualificationTokens.xml')"/>
+    <xsl:param name="patientTokensXml" select="document('../../../../../../YATC-internal/ada-2-fhir/env/fhir/QualificationTokens.xml')"/>
 
     <xd:doc>
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
