@@ -153,9 +153,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:when test="string-length(f:id/@value) gt 0">
                             <xsl:if test="count(current-group()) gt 1">
                                 <xsl:call-template name="util:logMessage">
-                                    <xsl:with-param name="level" select="$logERROR"/>
+                                    <xsl:with-param name="level" select="$logFATAL"/>
                                     <xsl:with-param name="msg">Creating <xsl:value-of select="f:id/@value"/> more than once (<xsl:value-of select="count(current-group())"/>) by adding a sequenceNumber suffix. This should not happen and likely causes reference issues. Please verify that every resource is unique.</xsl:with-param>
-                                    <xsl:with-param name="terminate" select="true()"/>
+                                    <xsl:with-param name="terminate" select="false()"/>
                                 </xsl:call-template>
                             </xsl:if>
                             
@@ -170,7 +170,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:otherwise>
                             <!-- This happens when transforming a non-saved document in Oxygen -->
                             <xsl:call-template name="util:logMessage">
-                                <xsl:with-param name="level" select="$logWARN"/>
+                                <xsl:with-param name="level" select="$logERROR"/>
                                 <xsl:with-param name="msg">Could not output to result-document without Resource.id. Outputting to console instead.</xsl:with-param>
                             </xsl:call-template>
                             <xsl:copy-of select="."/>
