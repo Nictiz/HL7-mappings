@@ -453,11 +453,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="subject" select="$subject"/>
                         <xsl:with-param name="reasonReference" select="$in"/>
                     </xsl:call-template>
-                    <xsl:for-each select="product">
-                        <xsl:call-template name="nl-core-HearingFunction.HearingAid.Product">
-                            <xsl:with-param name="subject" select="$subject"/>
-                        </xsl:call-template>    
-                    </xsl:for-each>
+                    <xsl:apply-templates select="$in" mode="nl-core-HearingFunction.HearingAid.Product">
+                        <xsl:with-param name="subject" select="$subject"/>
+                    </xsl:apply-templates>
                 </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'functie_zien'">
@@ -469,11 +467,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="subject" select="$subject"/>
                         <xsl:with-param name="reasonReference" select="$in"/>
                     </xsl:call-template>
-                    <xsl:for-each select="product">
-                        <xsl:call-template name="nl-core-VisualFunction.VisualAid.Product">
-                            <xsl:with-param name="subject" select="$subject"/>
-                        </xsl:call-template>    
-                    </xsl:for-each>
+                    <xsl:apply-templates select="$in" mode="nl-core-VisualFunction.VisualAid.Product">
+                        <xsl:with-param name="subject" select="$subject"/>
+                    </xsl:apply-templates>
                 </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'functionele_of_mentale_status'">
@@ -587,12 +583,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="derivedFrom" select="if (ancestor::verrichting) then ancestor::*[starts-with(@conceptId, $zib2020Oid) and matches(@conceptId, '(\.1|9\.\d+\.\d+)$')] else ()"/>
                     <xsl:with-param name="derivedFromProfile" select="if (ancestor::verrichting) then if (nf:isFuture(ancestor::verrichting/verrichting_start_datum/@value) or ancestor::verrichting/aanvrager) then $profileNameProcedureRequest else $profileNameProcedureEvent else ()"/>
                     <xsl:with-param name="reasonReference" select="if (ancestor::functionele_of_mentale_status or ancestor::mobiliteit or ancestor::stoma or ancestor::darmfunctie) then ancestor::*[starts-with(@conceptId, $zib2020Oid) and matches(@conceptId, '(\.1|9\.\d+\.\d+)$')] else ()"/>
-                </xsl:apply-templates>  
-                <xsl:for-each select="product">
-                    <xsl:call-template name="nl-core-MedicalDevice.Product">
-                        <xsl:with-param name="subject" select="$subject"/>
-                    </xsl:call-template>    
-                </xsl:for-each>
+                </xsl:apply-templates>
+                <xsl:apply-templates select="$in" mode="nl-core-MedicalDevice.Product">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'mobiliteit'">
                 <xsl:apply-templates select="$in" mode="nl-core-Mobility">
@@ -970,11 +964,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="subject" select="$subject"/>
                         <xsl:with-param name="reasonReference" select="$in"/>
                     </xsl:call-template>
-                    <xsl:for-each select="product">
-                        <xsl:call-template name="nl-core-Wound.Drain.Product">
-                            <xsl:with-param name="subject" select="$subject"/>
-                        </xsl:call-template>
-                    </xsl:for-each>
+                    <xsl:apply-templates select="$in" mode="nl-core-Wound.Drain.Product">
+                        <xsl:with-param name="subject" select="$subject"/>
+                    </xsl:apply-templates>
                 </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'ziektebeleving'">

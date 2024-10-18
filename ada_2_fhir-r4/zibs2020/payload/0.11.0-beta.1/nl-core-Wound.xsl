@@ -298,7 +298,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
-    <xsl:template match="product" name="nl-core-Wound.Drain.Product" mode="nl-core-Wound.Drain.Product" as="element(f:Device)?">
+    <xsl:template match="drain/medisch_hulpmiddel[product or product_omschrijving]" name="nl-core-Wound.Drain.Product" mode="nl-core-Wound.Drain.Product" as="element(f:Device)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         
