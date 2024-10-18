@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" elementFormDefault="qualified" targetNamespace="urn:hl7-org:v3" xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3">
+    <xsd:include schemaLocation="../coreschemas/datatypes.xsd"/>
+    <xsd:element name="codeSystem" type="codeSystem">
+        <xsd:unique name="uniqueCode">
+            <xsd:selector xpath="hl7:code"/>
+            <xsd:field xpath="./@code"/>
+        </xsd:unique>
+    </xsd:element>
+    <xsd:complexType name="codeSystem">
+        <xsd:sequence>
+            <xsd:element name="name" type="ST"/>
+            <xsd:element name="desc" type="ST" minOccurs="0"/>
+            <xsd:element name="code" type="CD_vocab" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="codeStrength" type="cs_codeStrength"/>
+    </xsd:complexType>
+    <xsd:complexType name="CD_vocab">
+        <xsd:sequence>
+            <xsd:element name="reference" type="II" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="originalText" type="ST" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="qualifier" type="CR_vocab" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="translation" type="CD_vocab" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="code" type="cs" use="optional"/>
+        <xsd:attribute name="codeSystem" type="uid" use="required"/>
+        <xsd:attribute name="codeSystemName" type="st" use="optional"/>
+        <xsd:attribute name="codeSystemVersion" type="st" use="optional"/>
+        <xsd:attribute name="displayName" type="st" use="optional"/>
+    </xsd:complexType>
+    <xsd:complexType name="CR_vocab">
+        <xsd:attribute name="name" type="cs_qualifierNames"/>
+        <xsd:attribute name="value" type="cs_qualifierValues"/>
+    </xsd:complexType>
+    <xsd:simpleType name="cs_codeStrength">
+        <xsd:restriction base="cs">
+            <xsd:enumeration value="CNE"/>
+            <xsd:enumeration value="CWE"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="cs_qualifierNames">
+        <xsd:restriction base="cs">
+            <xsd:enumeration value="Vertrouwensniveau">
+                <xsd:annotation>
+                    <xsd:documentation>Vertrouwensniveau's (laag, midden(, hoog))</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Gegevenssoort">
+                <xsd:annotation>
+                    <xsd:documentation>Gegevenssoorten (TODO, momenteel zijn alle waarden valide)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Verzendtype">
+                <xsd:annotation>
+                    <xsd:documentation>Verzendtypen (initiërend of reagerend)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Vraagtype">
+                <xsd:annotation>
+                    <xsd:documentation>Vraagtypen (indirect of direct)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Actief">
+                <xsd:annotation>
+                    <xsd:documentation>Actief (true of false) - standaardwaarde indien afwezig is 'true'</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AttentionLineMetBsn">
+                <xsd:annotation>
+                    <xsd:documentation>AttentionLineMetBsn (true of false) - standaardwaarde indien afwezig is 'false'</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AttentionLineMetContextCode">
+                <xsd:annotation>
+                    <xsd:documentation>AttentionLineMetContextCode (true of false) - standaardwaarde indien afwezig is 'false'</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="cs_qualifierValues">
+        <xsd:union memberTypes="cs_qualifierGegevenssoortValues cs_qualifierVertrouwensniveauValues cs_qualifierVerzendtypeValues cs_qualifierVraagtypeValues cs_qualifierActiefValues"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="cs_qualifierVertrouwensniveauValues">
+        <xsd:restriction base="cs">
+            <xsd:enumeration value="Laag">
+                <xsd:annotation>
+                    <xsd:documentation>Vertrouwensniveau: laag</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Midden">
+                <xsd:annotation>
+                    <xsd:documentation>Vertrouwensniveau: midden</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <!--xsd:enumeration value="Hoog">
+        <xsd:annotation>
+          <xsd:documentation>Vertrouwensniveau: hoog</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration-->
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="cs_qualifierGegevenssoortValues">
+        <xsd:restriction base="cs"/>
+        <!-- TODO -->
+    </xsd:simpleType>
+    <xsd:simpleType name="cs_qualifierVerzendtypeValues">
+        <xsd:restriction base="cs">
+            <xsd:enumeration value="Initiërend">
+                <xsd:annotation>
+                    <xsd:documentation>Verzendtype: initiërend, merk op dat dit alleen betekent dat om deze interactie te versturen ook eerst een transportlaag opgezet moet worden. Het zou inhoudelijk best een asynchroon antwoord kunen vormen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Reagerend">
+                <xsd:annotation>
+                    <xsd:documentation>Verzendtype: reagerend, merk op dat dit alleen betekent dat om deze interactie te versturen een bestaande transportlaag wordt gebruikt.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="cs_qualifierVraagtypeValues">
+        <xsd:restriction base="cs">
+            <xsd:enumeration value="Direct">
+                <xsd:annotation>
+                    <xsd:documentation>Vraagtype: direct, vraag wordt direct aan de bron gesteld.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Indirect">
+                <xsd:annotation>
+                    <xsd:documentation>Vraagtype: indirect, vraag wordt via de ZIM aan de bron(nen) gesteld. Antwoord is een Batch.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="cs_qualifierActiefValues">
+        <xsd:restriction base="cs">
+            <xsd:enumeration value="false">
+                <xsd:annotation>
+                    <xsd:documentation>Actief: false, interactie is niet (meer) actief op de AORTA, of zou dat niet moeten zijn</xsd:documentation>
+                    <xsd:documentation>AttentionLineMetBsn: false, interactie mag in principe geen AttentionLine element bevatten in de transmission wrapper met daarin het burgerservicenummer van de patiënt in de berichtinhoud</xsd:documentation>
+                    <xsd:documentation>AttentionLineMetContextCode: false, interactie mag in principe geen AttentionLine element bevatten in de transmission wrapper met daarin de contextcode van de (gevraagde) gegevens in de berichtinhoud</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="true">
+                <xsd:annotation>
+                    <xsd:documentation>Actief: true, interactie is actief op de AORTA, of zou dat moeten zijn</xsd:documentation>
+                    <xsd:documentation>AttentionLineMetBsn: true, interactie moet verplicht een AttentionLine element bevatten in de transmission wrapper met daarin het burgerservicenummer van de patiënt in de berichtinhoud</xsd:documentation>
+                    <xsd:documentation>AttentionLineMetContextCode: true, interactie moet verplicht een AttentionLine element bevatten in de transmission wrapper met daarin de contextcode van de (gevraagde) gegevens in de berichtinhoud</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- vanaf augustus2006-release: versionCode en profileId verplicht -->
+<!-- 20070130 Verwijderd (in NL niet te gebruiken): /securityText, /attachmentText, /sequenceNumber -->
+<xs:schema targetNamespace="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="urn:hl7-org:v3" elementFormDefault="qualified">
+	<xs:include schemaLocation="../coreschemas/datatypes.xsd"/>
+	<xs:include schemaLocation="../coreschemas/voc.xsd"/>
+	<xs:include schemaLocation="COCT_MT040203.xsd"/>
+	<xs:element name="Message" type="MCCI_MT000100.Message"/>
+	<xs:group name="MCCI_MT000100">
+		<xs:sequence>
+			<xs:element name="Message" type="MCCI_MT000100.Message"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:complexType name="MCCI_MT000100.Message">
+		<xs:sequence>
+			<xs:element name="id" type="II" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="creationTime" type="TS" minOccurs="1"/>
+			<xs:element name="versionCode" type="CS" minOccurs="1"/>
+			<xs:element name="interactionId" type="II" minOccurs="1"/>
+			<xs:element name="profileId" type="II" minOccurs="1"/>
+			<xs:element name="processingCode" type="CS" minOccurs="1"/>
+			<xs:element name="processingModeCode" type="CS" minOccurs="1"/>
+			<xs:element name="acceptAckCode" type="CS" minOccurs="1"/>
+			<xs:element name="attentionLine" type="MCCI_MT000100.AttentionLine" minOccurs="0"
+				maxOccurs="unbounded"/>
+			<xs:element name="receiver" type="MCCI_MT000100.Receiver"/>
+			<xs:element name="respondTo" type="MCCI_MT000100.RespondTo" minOccurs="0"
+				maxOccurs="unbounded"/>
+			<xs:element name="sender" type="MCCI_MT000100.Sender"/>
+			<xs:group ref="ControlAct"/>
+			<!-- OZ version -->
+			<!-- <xs:element name="controlActProcess" type="MCCI_MT000100.ControlActProcess"/> -->
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="Message"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT000100.AttentionLine">
+		<xs:sequence>
+			<xs:element name="keyWordText" type="SC" minOccurs="1"/>
+			<xs:element name="value" type="ANY" minOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="AttentionLine"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT000100.ControlActProcess">
+		<xs:attribute name="type" type="Classes" default="ControlAct"/>
+		<xs:attribute name="classCode" type="ActClass" use="optional" default="CACT"/>
+		<xs:attribute name="moodCode" type="x_ActMoodIntentEvent" use="required"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT000100.Receiver">
+		<xs:sequence>
+			<xs:element name="telecom" type="TEL" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="device" type="MCCI_MT000100.Device" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="CommunicationFunction"/>
+		<xs:attribute name="typeCode" type="cs" use="optional" default="RCV"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT000100.Device">
+		<xs:sequence>
+			<xs:element name="id" type="II" maxOccurs="unbounded"/>
+			<xs:element name="name" type="EN" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="desc" type="ED" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="existenceTime" type="IVL_TS" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="telecom" type="TEL" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="manufacturerModelName" type="SC" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="softwareName" type="SC" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="agencyFor" type="MCCI_MT000100.Agent" minOccurs="0"/>
+			<xs:element name="location" type="MCCI_MT000100.LocatedEntity" minOccurs="0"
+				maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="Device"/>
+		<xs:attribute name="classCode" type="EntityClass" use="optional" default="DEV"/>
+		<xs:attribute name="determinerCode" type="EntityDeterminer" use="optional"
+			default="INSTANCE"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT000100.Agent">
+		<xs:sequence>
+			<xs:element name="representedOrganization" type="MCCI_MT000100.Organization"
+				minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="RoleHeir"/>
+		<xs:attribute name="classCode" type="RoleClass" use="optional" default="AGNT"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT000100.Organization">
+		<xs:sequence>
+			<xs:element name="id" type="II" maxOccurs="unbounded"/>
+			<xs:element name="name" type="EN" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="telecom" type="TEL" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="COCT_MT040203"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="Organization"/>
+		<xs:attribute name="classCode" type="EntityClass" use="optional" default="ORG"/>
+		<xs:attribute name="determinerCode" type="EntityDeterminer" use="optional"
+			default="INSTANCE"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT000100.LocatedEntity">
+		<xs:sequence>
+			<xs:element name="location" type="MCCI_MT000100.Place" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="RoleHeir"/>
+		<xs:attribute name="classCode" type="RoleClass" use="optional" default="LOCE"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT000100.Place">
+		<xs:sequence>
+			<xs:element name="id" type="II" maxOccurs="unbounded"/>
+			<xs:element name="name" type="EN" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="telecom" type="TEL" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="Place"/>
+		<xs:attribute name="classCode" type="EntityClass" use="optional" default="PLC"/>
+		<xs:attribute name="determinerCode" type="EntityDeterminer" use="optional"
+			default="INSTANCE"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT000100.RespondTo">
+		<xs:sequence>
+			<xs:element name="telecom" type="TEL" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="entityRsp" type="MCCI_MT000100.EntityRsp" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="CommunicationFunction"/>
+		<xs:attribute name="typeCode" type="cs" use="optional" default="RSP"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT000100.EntityRsp">
+		<xs:sequence>
+			<xs:element name="id" type="II" maxOccurs="unbounded"/>
+			<xs:element name="name" type="EN" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="telecom" type="TEL" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="EntityHeir"/>
+		<xs:attribute name="classCode" type="EntityClass" use="optional" default="ENT"/>
+		<xs:attribute name="determinerCode" type="EntityDeterminer" use="optional"
+			default="INSTANCE"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT000100.Sender">
+		<xs:sequence>
+			<xs:element name="telecom" type="TEL" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="device" type="MCCI_MT000100.Device" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="CommunicationFunction"/>
+		<xs:attribute name="typeCode" type="cs" use="optional" default="SND"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+</xs:schema>
