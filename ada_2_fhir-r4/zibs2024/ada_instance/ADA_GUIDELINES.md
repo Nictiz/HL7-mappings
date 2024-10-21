@@ -1,0 +1,11 @@
+# ADA guidelines
+
+In this folder instances of the zib scenarios are added in ADA format, which are used to test the conversion from zibs to FHIR resources.
+
+## ADA environment
+All ADA instances are created via the ADA environment accessible at `https://decor.nictiz.nl/art-decor/ada-data/projects/zib2024-prerelease/views/zorginformatiebouwstenen_zib_2024_index.xhtml`. Make sure to add these while being logged in with the _zibs2024ada_ account. This ensures that instances that have been created in the context of this project can be easily distinguished from other instances, while also making it easy for anyone in the zibs2024 project to update existing instances (without copying existing ones made by other accounts).
+
+## ADA instance conventions
+* The example instances available on the respective zib's page are manually recreated as-is in an ADA instance. Both `title` and `id` of these ADA instances SHOULD have the form `nl-core-[English zib name]-0x`, where `x` denotes the 'sequence number' of the zib example (note that in most cases there is only a single example instance for each zib).
+* In a lot of zib example instances not all concepts are filled (even if you'd combine all example instances of a certain zib), which is not convenient when fully testing the ADA to FHIR conversion. Moreover, the value of a certain zib concept might result in a completely different modeling in FHIR (e.g. based on a status or date/time concept, a zib instance might result in either a request or an event resource in FHIR), while not all these variants are worked out as separate zib example instances. In the above scenarios, additional ADA instances are created which contain at least these missing concepts (or values of concepts), and are preferably filled in as much as possible. Both `title` and `id` of these ADA instances SHOULD have the form `nl-core-[English zib name]-full-0x`, where `x` denotes the 'sequence number' of the additional instance.
+* ADA instances of the former category (`zib-[English zib name]-0x`) are to be considered as representative real-life examples, while instances of the latter category (`zib-[English zib name]-full-0x`) are mostly created for testing purposes and therefore the content might not reflect representative real-life examples.
