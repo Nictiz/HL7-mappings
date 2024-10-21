@@ -69,5 +69,10 @@ In this situation, there is no stylesheet or profile template for the "guest" zi
 ## The `_generateDisplay` template(s)
 For each profile template, there must be a template with mode set to `_generateDisplay` and a match on the ADA instance element. This template is used to generate a display for references to the resulting instance.
 
-## Branching strategy
-For each new stylesheet, a branch is made from master. When the profile is added to the package, the new work is merged with master.
+## Branching strategy and pull requests
+For each addition or change, a new branch is made. Each branch may only be merged back by means of a reviewed pull request.
+
+There are different situations:
+* A new profile is added to the FHIR package. In this case, a branch is made from master with name "zib2024-[zib name]" and the stylesheet is added to the folder corresponding with the package release. When the profile is added to the package, the new work is merged with master.
+* A profile is changed in the new version of the FHIR package. In this case, a new branch is made with the issue key as its name, the existing stylesheet is copied to the folder corresponding with the new package release (and the `nl-core-[package version].xsl` file is updated), and the changes are applied to the copy. When the profile is added to the package, the new work is merged to master.
+* The change is due to an error or omission in the implementation of the existing profile. In this case, a new branch is made with the issue key as its name and the existing stylesheet is changed. Since this change may affect existing implementations, a review is required from downstream projects before it is merged to master.
