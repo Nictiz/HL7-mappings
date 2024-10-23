@@ -38,9 +38,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="insertLogicalId">
                     <xsl:with-param name="profile" select="$profileNameContactPerson"/>
                 </xsl:call-template>
+                
                 <meta>
                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
+
+                <xsl:for-each select="toelichting">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/note">
+                        <valueAnnotation>
+                            <text value="{normalize-space(@value)}"/>
+                        </valueAnnotation>
+                    </extension>
+                </xsl:for-each>
 
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="in" select="$patient"/>

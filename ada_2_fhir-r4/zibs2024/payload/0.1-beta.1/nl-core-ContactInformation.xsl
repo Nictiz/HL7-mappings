@@ -52,25 +52,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:variable>
 
                 <telecom>
-                    <!-- TODO -->
-                    <!--  <xsl:for-each select="toelichting">
-                        <xsl:call-template name="ext-Comment">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </xsl:for-each> -->
+                    <xsl:for-each select="toelichting">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/contactpoint-comment">
+                            <valueString value="{normalize-space(@value)}"/>
+                        </extension>
+                    </xsl:for-each>
+                    <xsl:for-each select="nummer_soort[@code]">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/contactpoint-purpose">
+                            <valueCodeableConcept>
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </valueCodeableConcept> 
+                        </extension>
+                    </xsl:for-each>
                     <xsl:if test="telefoonnummer[@value]">
                         <system>
                             <xsl:if test="string-length($telecomSystem) gt 0">
                                 <xsl:attribute name="value" select="$telecomSystem"/>
                             </xsl:if>
-                            <!-- TODO -->
-                            <!--  
                             <xsl:if test="$telecomType">
                                 <xsl:call-template name="ext-CodeSpecification">
                                     <xsl:with-param name="in" select="telecom_type"/>
                                 </xsl:call-template>
                             </xsl:if>
-                            -->
                         </system>
                     </xsl:if>
                     <xsl:for-each select="telefoonnummer">

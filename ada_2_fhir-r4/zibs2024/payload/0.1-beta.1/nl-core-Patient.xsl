@@ -21,11 +21,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-    
+
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ADA patient to FHIR Patient resource conforming to profile nl-core-Patient.</xd:desc>
     </xd:doc>
-
+    
     <xsl:variable name="profileNamePatient">nl-core-Patient</xsl:variable>
 
     <xd:doc>
@@ -33,7 +33,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xd:ul>
                 <xd:li>zib Patient</xd:li>
                 <xd:li>zib Nationality</xd:li>
-                <xd:li>zib LifeStance</xd:li>
                 <xd:li>zib MaritalStatus</xd:li>
                 <xd:li>zib LanguageProficiency</xd:li>
                 <xd:li>zib ContactPerson</xd:li>
@@ -42,9 +41,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xd:li>zib AddressInformation</xd:li>
             </xd:ul>
         </xd:desc>
-        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param> 
         
-        The following components need to be passed as ada instances; although the zibs themselves are not related to a patient, the translation to FHIR is specific to the Patient resource:
+        The following components need to be passed as ada instances; although the zibs themselves are not related to a patient, the translation to FHIR is specific to the Patient resource: 
         <xd:param name="nationality">Optional ada instance of zib Nationality</xd:param>
         <xd:param name="maritalStatus">Optional ada instance of zib MaritalStatus</xd:param>
         <xd:param name="languageProficiency">Optional ada instances of zib LanguageProficiency</xd:param>
@@ -54,8 +53,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         as="element(f:Patient)">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="nationality" as="element(nationaliteit_rc)?" select="$in/nationaliteit_rc"/>
-        <xsl:param name="lifeStance" as="element(levensovertuiging_rc)?"
-            select="$in/levensovertuiging_rc"/>
         <xsl:param name="maritalStatus" as="element(burgerlijke_staat_rc)?"
             select="$in/burgerlijke_staat_rc"/>
         <xsl:param name="languageProficiency" as="element(taalvaardigheid)*"
@@ -83,25 +80,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </extension>
                     </extension>
                 </xsl:for-each>
-                <!-- LifeStance is a zib on its own, but the implementation is specific for the Patient resource. 
-                 Therefore, it is created inline. -->
-                <!-- TODO
-                <xsl:for-each select="$lifeStance/levensovertuiging">
-                    <extension
-                        url="http://nictiz.nl/fhir/StructureDefinition/ext-Patient.LifeStance">
-                        <valueCodeableConcept>
-                            <xsl:for-each select="../toelichting">
-                                <xsl:call-template name="ext-Comment">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </valueCodeableConcept>
-                    </extension>
-                </xsl:for-each>
-                -->
                 
                 <xsl:for-each select="identificatienummer">
                     <identifier>
@@ -220,11 +198,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </valueCodeableConcept>
                             </extension>
                         </xsl:for-each>
-                        <!-- TODO
                         <xsl:for-each select="toelichting">
-                            <xsl:call-template name="ext-Comment"/>
+                            <extension
+                                url="http://nictiz.nl/fhir/StructureDefinition/ext-LanguageProficiency.Comment">
+                                <valueString value="{normalize-space(@value)}"/>                                
+                            </extension>
                         </xsl:for-each>
-                        -->
                         <language>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="communicatie_taal"/>
