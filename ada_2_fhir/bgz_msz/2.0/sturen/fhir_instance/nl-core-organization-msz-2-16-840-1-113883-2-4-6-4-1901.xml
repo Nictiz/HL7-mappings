@@ -1,0 +1,51 @@
+<Organization xmlns="http://hl7.org/fhir">
+   <id value="nl-core-organization-msz-2-16-840-1-113883-2-4-6-4-1901"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Organisatie. Id: 1901 (UZOVI)</caption>
+            <tbody>
+               <tr>
+                  <th>Naam</th>
+                  <td>Bedachtzame Zorgverzekeraar</td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:021-9990002">021-9990002</a> (Vast telefoonnummer Werk)<br/>
+                     <a href="mailto:bverzekering@test.nl">bverzekering@test.nl</a> (E-mail Werk)<br/>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/uzovi"/>
+      <value value="1901"/>
+   </identifier>
+   <name value="Bedachtzame Zorgverzekeraar"/>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Vast telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="021-9990002"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="bverzekering@test.nl"/>
+      <use value="work"/>
+   </telecom>
+</Organization>

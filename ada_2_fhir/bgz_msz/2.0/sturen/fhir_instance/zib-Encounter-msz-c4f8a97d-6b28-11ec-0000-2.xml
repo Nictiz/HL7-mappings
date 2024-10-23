@@ -1,5 +1,5 @@
 <Encounter xmlns="http://hl7.org/fhir">
-   <id value="zib-Encounter-msz-1a28550f-6aa8-11ec-0000-2"/>
+   <id value="zib-Encounter-msz-c4f8a97d-6b28-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
    </meta>
@@ -7,27 +7,27 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Contact. Subject: Fatima Saïda F.S.K. Fatima Al Ksar el Kebir Çelik. Status: voltooid</caption>
+            <caption>Contact. Subject: Michelle M.D. Michelle D Derencourt Verheul. Status: onbekend</caption>
             <tbody>
                <tr>
                   <th>Type contact</th>
                   <td>
                      <div>
-                        <span title="SEH (EMER - v3/ActCode)">SEH</span>
+                        <span title="Poliklinisch (AMB - v3/ActCode)">Poliklinisch</span>
                      </div>
                   </td>
                </tr>
                <tr>
                   <th>Periode</th>
-                  <td>09:00 - 10:00 op 22 juni 2008</td>
+                  <td>Vanaf 5 april 2009</td>
                </tr>
                <tr>
-                  <th>Probleem/Verrichting</th>
-                  <td>Fractuur van elleboog</td>
+                  <th>Reden</th>
+                  <td>39,1°C matige koorts</td>
                </tr>
                <tr>
                   <th>Zorgaanbieder</th>
-                  <td>Ziekenhuis de grote terts</td>
+                  <td>Ziekenhuis de Rust - Poli urologie</td>
                </tr>
                <tr>
                   <th>Opnamegegevens</th>
@@ -35,8 +35,7 @@
                      <ul>
                         <li>Opname vanuit: <span title="Eigen woonomgeving (264362003 - SNOMED CT)">Eigen woonomgeving</span>
                         </li>
-                        <li>Ontslagwijze: <span title="Ander ziekenhuis (22232009 - SNOMED CT)">Ander ziekenhuis</span>
-                        </li>
+                        <li>Ontslagwijze: Opname in ziekenhuis</li>
                      </ul>
                   </td>
                </tr>
@@ -46,28 +45,24 @@
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="fd367443-6b00-11ec-0000-2"/>
+      <value value="7344d6eb-6adb-11ec-0000-2"/>
    </identifier>
-   <status value="finished"/>
+   <status value="unknown"/>
    <class>
       <system value="http://hl7.org/fhir/v3/ActCode"/>
-      <code value="EMER"/>
-      <display value="SEH"/>
+      <code value="AMB"/>
+      <display value="Poliklinisch"/>
    </class>
    <subject>
-      <reference value="Patient/FATIMA-SAIDA-F-S-K--FATIMA-AL-KSAR-EL-KEBIR-ELIK"/>
-      <display value="Fatima Saïda F.S.K. Fatima Al Ksar el Kebir Çelik"/>
+      <reference value="Patient/MICHELLE-M-D--MICHELLE-D-DERENCOURT-VERHEUL"/>
+      <display value="Michelle M.D. Michelle D Derencourt Verheul"/>
    </subject>
    <period>
-      <start value="2008-06-22T09:00:00+02:00"/>
-      <end value="2008-06-22T10:00:00+02:00"/>
+      <start value="2009-04-05"/>
    </period>
-   <diagnosis>
-      <condition>
-         <reference value="Condition/zib-Problem-msz-fdba610f-6b4d-11ec-0000-2"/>
-         <display value="Fractuur van elleboog"/>
-      </condition>
-   </diagnosis>
+   <reason>
+      <text value="39,1°C matige koorts"/>
+   </reason>
    <hospitalization>
       <admitSource>
          <coding>
@@ -78,14 +73,15 @@
       </admitSource>
       <dischargeDisposition>
          <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="22232009"/>
-            <display value="Ander ziekenhuis"/>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="Overig"/>
          </coding>
+         <text value="Opname in ziekenhuis"/>
       </dischargeDisposition>
    </hospitalization>
    <serviceProvider>
-      <reference value="Organization/nl-core-organization-msz-2-16-528-1-1007-3-3-20000014"/>
-      <display value="Ziekenhuis de grote terts"/>
+      <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000006"/>
+      <display value="Ziekenhuis de Rust - Poli urologie"/>
    </serviceProvider>
 </Encounter>
