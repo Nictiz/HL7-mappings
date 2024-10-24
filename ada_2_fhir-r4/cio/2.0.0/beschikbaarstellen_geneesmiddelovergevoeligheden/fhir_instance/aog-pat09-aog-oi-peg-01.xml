@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Condition xmlns="http://hl7.org/fhir">
+   <id value="aog-pat09-aog-oi-peg-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-Condition"/>
+   </meta>
+   <extension url="http://hl7.org/fhir/StructureDefinition/condition-assertedDate">
+      <valueDateTime value="${DATE, T, D, -7}T16:43:06+02:00"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationHypersensitivity.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.341"/>
+         <value value="pat09-gmo-01"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.36"/>
+      <value value="pat09-aog-oi-peg-01"/>
+   </identifier>
+   <severity>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="24484000"/>
+         <display value="Ernstig"/>
+      </coding>
+   </severity>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="416098002"/>
+         <display value="allergie voor drug of geneesmiddel (bevinding)"/>
+      </coding>
+      <text value="Allergie voor PEG"/>
+   </code>
+   <subject>
+      <reference value="Patient/patient-XXX-Hali"/>
+      <type value="Patient"/>
+      <display value="Patient, Abdelhak (Abdel) XXX_Hali"/>
+   </subject>
+   <onsetDateTime value="${DATE, T, D, -7}T16:43:06+02:00"/>
+   <recordedDate value="${DATE, T, D, -7}T16:43:06+02:00"/>
+   <recorder>
+      <reference value="PractitionerRole/pracrole-000003334"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), A. Rast, MEDISCH SPECIALIST, ALLERGOLOGIE, Algemeen Stadsziekenhuis"/>
+   </recorder>
+   <asserter>
+      <reference value="PractitionerRole/pracrole-000003334"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), A. Rast, MEDISCH SPECIALIST, ALLERGOLOGIE, Algemeen Stadsziekenhuis"/>
+   </asserter>
+</Condition>
