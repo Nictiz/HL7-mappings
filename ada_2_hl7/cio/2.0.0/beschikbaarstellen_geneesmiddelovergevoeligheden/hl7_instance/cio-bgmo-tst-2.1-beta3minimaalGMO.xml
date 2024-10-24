@@ -6,20 +6,20 @@
          displayName="Gegevensobject (gegevensobject)"
          codeSystem="2.16.840.1.113883.6.96"
          codeSystemName="SNOMED CT"/>
-   <statusCode nullFlavor="NI"/>
    <recordTarget>
       <patientRole>
-         <id extension="999900523"
+         <id extension="999901199"
              root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
-               <given qualifier="BR">Petra</given>
-               <family qualifier="BR">XXX_Drijkoningen</family>
+               <given qualifier="BR">Willem</given>
+               <prefix qualifier="VV">van </prefix>
+               <family qualifier="BR">XXX_Zwaan</family>
             </name>
-            <administrativeGenderCode code="F"
+            <administrativeGenderCode code="M"
                                       codeSystem="2.16.840.1.113883.5.1"
-                                      displayName="Vrouw"/>
-            <birthTime value="19631025"/>
+                                      displayName="Man"/>
+            <birthTime value="19851130"/>
          </patient>
       </patientRole>
    </recordTarget>
@@ -35,7 +35,7 @@
             <observation classCode="OBS"
                          moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.23"/>
-               <id extension="pat02-BB-01"
+               <id extension="pat02-bb-01"
                    root="2.16.840.1.113883.2.4.3.11.999.26.1.754"/>
                <code code="225419007"
                      displayName="Surveillance (regime/therapie)"
@@ -44,18 +44,16 @@
                <statusCode code="active"/>
                <effectiveTime xsi:type="IVL_TS"
                               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <low value="20231202091054"/>
+                  <low value="20240901091054"/>
                </effectiveTime>
                <performer>
-                  <time value="20231202091054"/>
+                  <time nullFlavor="NI"/>
                   <assignedEntity>
-                     <id extension="000001111"
+                     <id extension="000003332"
                          root="2.16.840.1.113883.2.4.3.11.999.26.1.139"/>
-                     <code code="0100"
+                     <code code="0101"
                            codeSystem="2.16.840.1.113883.2.4.6.7"
-                           displayName="Huisartsen, niet nader gespecificeerd"
-                           codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                           codeSystemVersion="2020-10-23T00:00:00"/>
+                           displayName="HUISARTS"/>
                      <assignedPerson>
                         <name>
                            <given qualifier="BR">Peter</given>
@@ -73,19 +71,20 @@
                            <postalCode>1234 AA</postalCode>
                            <city>Ons Dorp</city>
                         </addr>
+                        <standardIndustryClassCode code="Z3"
+                                                   codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                                   displayName="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
                      </representedOrganization>
                   </assignedEntity>
                </performer>
                <author>
-                  <time value="20231202091054"/>
+                  <time value="20240901091054"/>
                   <assignedAuthor>
-                     <id extension="000001111"
+                     <id extension="000003332"
                          root="2.16.840.1.113883.2.4.3.11.999.26.1.139"/>
-                     <code code="0100"
+                     <code code="0101"
                            codeSystem="2.16.840.1.113883.2.4.6.7"
-                           displayName="Huisartsen, niet nader gespecificeerd"
-                           codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                           codeSystemVersion="2020-10-23T00:00:00"/>
+                           displayName="HUISARTS"/>
                      <assignedPerson>
                         <name>
                            <given qualifier="BR">Peter</given>
@@ -103,9 +102,21 @@
                            <postalCode>1234 AA</postalCode>
                            <city>Ons Dorp</city>
                         </addr>
+                        <standardIndustryClassCode code="Z3"
+                                                   codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                                   displayName="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
                      </representedOrganization>
                   </assignedAuthor>
                </author>
+               <informant typeCode="INF">
+                  <templateId root="2.16.840.1.113883.2.4.3.11.60.121.10.38"/>
+                  <assignedEntity classCode="ASSIGNED">
+                     <id extension="999901199"
+                         root="2.16.840.1.113883.2.4.6.3"/>
+                     <code code="ONESELF"
+                           codeSystem="2.16.840.1.113883.5.111"/>
+                  </assignedEntity>
+               </informant>
                <participant typeCode="CSM">
                   <participantRole classCode="MANU">
                      <playingEntity classCode="MMAT">
@@ -113,11 +124,25 @@
                               code="1155"
                               codeSystem="2.16.840.1.113883.2.4.4.1.750"
                               displayName="IBUPROFEN"
-                              codeSystemName="G-Standaard generieke namen (bestand 750)"
+                              codeSystemName="G-standaard generieke namen"
                               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
                      </playingEntity>
                   </participantRole>
                </participant>
+               <entryRelationship typeCode="RSON">
+                  <observation classCode="OBS"
+                               moodCode="EVN">
+                     <code code="330431000146105"
+                           displayName="Reden voor bewakingsbesluit (waarneembare entiteit)"
+                           codeSystem="2.16.840.1.113883.6.96"
+                           codeSystemName="SNOMED CT"/>
+                     <value xsi:type="CD"
+                            code="281647001"
+                            codeSystem="2.16.840.1.113883.6.96"
+                            displayName="Adverse reaction (disorder)"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                  </observation>
+               </entryRelationship>
                <entryRelationship typeCode="SUBJ"
                                   inversionInd="true">
                   <act classCode="ACT"
@@ -127,8 +152,21 @@
                            codeSystem="2.16.840.1.113883.6.1"
                            codeSystemName="LOINC"
                            displayName="Annotation comment"/>
-                     <text mediaType="text/plain">zwelling van lippen en tong na gebruik van ibuprofen tabletten</text>
+                     <text mediaType="text/plain">Zwelling van lippen en tong na gebruik van ibuprofen tabletten</text>
                   </act>
+               </entryRelationship>
+               <entryRelationship typeCode="COMP"
+                                  inversionInd="true">
+                  <procedure classCode="PROC"
+                             moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.31"/>
+                     <id extension="pat02-gmo-01"
+                         root="2.16.840.1.113883.2.4.3.11.999.26.1.341"/>
+                     <code code="410398001"
+                           displayName="Surveillance van toedienen van medicatie (regime/therapie)"
+                           codeSystem="2.16.840.1.113883.6.96"
+                           codeSystemName="SNOMED CT"/>
+                  </procedure>
                </entryRelationship>
             </observation>
          </entryRelationship>
