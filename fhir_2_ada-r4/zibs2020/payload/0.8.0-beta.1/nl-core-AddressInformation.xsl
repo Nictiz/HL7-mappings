@@ -163,7 +163,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:variable>
             
             <adres_soort>
-                <xsl:call-template name="code-to-code">
+                <xsl:call-template name="fhircode-to-adacode">
                     <xsl:with-param name="value" select="$codeMapInput"/>
                     <xsl:with-param name="codeMap" as="element()*">
                         <map inValue="PST" code="PST" codeSystem="2.16.840.1.113883.5.1119" displayName="Postadres"/>
