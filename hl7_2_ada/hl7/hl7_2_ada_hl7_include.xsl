@@ -141,78 +141,87 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:function name="nf:formatHL72VagueAdaDate" as="xs:string">
         <xsl:param name="input-hl7-date" as="xs:string"/>
         <xsl:param name="precision"/>
-
+        
+        <xsl:variable name="inputWithoutTimeZone" select="replace($input-hl7-date, '(^\d+(\.\d+)?)(([+-]\d{2,4})$)?', '$1')"/>
+        
         <!-- year -->
-        <xsl:variable name="yyyy">
-            <xsl:if test="string-length($input-hl7-date) ge 4">
-                <xsl:value-of select="substring($input-hl7-date, 1, 4)"/>
+        <xsl:variable name="yyyy"  as="xs:string?">
+            <xsl:if test="string-length($inputWithoutTimeZone) ge 4">
+                <xsl:value-of select="substring($inputWithoutTimeZone, 1, 4)"/>
             </xsl:if>
         </xsl:variable>
 
         <!-- month -->
-        <xsl:variable name="mm">
-            <xsl:if test="string-length($input-hl7-date) ge 6">
-                <xsl:value-of select="substring($input-hl7-date, 5, 2)"/>
+        <xsl:variable name="mm" as="xs:string?">
+            <xsl:if test="string-length($inputWithoutTimeZone) ge 6">
+                <xsl:value-of select="substring($inputWithoutTimeZone, 5, 2)"/>
             </xsl:if>
         </xsl:variable>
 
         <!-- day -->
         <xsl:variable name="dd" as="xs:string?">
-            <xsl:if test="string-length($input-hl7-date) ge 8">
-                <xsl:value-of select="substring($input-hl7-date, 7, 2)"/>
+            <xsl:if test="string-length($inputWithoutTimeZone) ge 8">
+                <xsl:value-of select="substring($inputWithoutTimeZone, 7, 2)"/>
             </xsl:if>
         </xsl:variable>
 
         <!-- hour -->
         <xsl:variable name="HH" as="xs:string?">
-            <xsl:if test="string-length($input-hl7-date) ge 10">
-                <xsl:value-of select="substring($input-hl7-date, 9, 2)"/>
+            <xsl:if test="string-length($inputWithoutTimeZone) ge 10">
+                <xsl:value-of select="substring($inputWithoutTimeZone, 9, 2)"/>
             </xsl:if>
         </xsl:variable>
 
         <!-- minute -->
         <xsl:variable name="MM" as="xs:string?">
-            <xsl:if test="string-length($input-hl7-date) ge 12">
-                <xsl:value-of select="substring($input-hl7-date, 11, 2)"/>
+            <xsl:if test="string-length($inputWithoutTimeZone) ge 12">
+                <xsl:value-of select="substring($inputWithoutTimeZone, 11, 2)"/>
             </xsl:if>
         </xsl:variable>
 
         <!-- second -->
         <xsl:variable name="SS" as="xs:string?">
-            <xsl:if test="string-length($input-hl7-date) ge 14">
-                <xsl:value-of select="substring($input-hl7-date, 13, 2)"/>
+            <xsl:if test="string-length($inputWithoutTimeZone) ge 14">
+                <xsl:value-of select="substring($inputWithoutTimeZone, 13, 2)"/>
             </xsl:if>
         </xsl:variable>
 
         <!-- millisecond -->
         <xsl:variable name="sss" as="xs:string?">
-            <xsl:if test="matches($input-hl7-date, '^\d+(\.\d+)')">
-                <xsl:value-of select="replace($input-hl7-date, '^\d+(\.\d+)', '$1')"/>
+            <xsl:if test="matches($inputWithoutTimeZone, '^\d+(\.\d+)')">
+                <xsl:value-of select="replace($inputWithoutTimeZone, '^\d+(\.\d+)', '$1')"/>
             </xsl:if>
         </xsl:variable>
 
         <!-- timezone -->
         <xsl:variable name="TZ" as="xs:string?">
-            <xsl:if test="matches($input-hl7-date, '^\d+(\.\d+)')">
-                <xsl:value-of select="replace($input-hl7-date, '.*([+-]\d{2,4})$', '$1')"/>
+            <xsl:if test="matches($input-hl7-date, '^\d+(\.\d+)?([+-]\d{2,4})$')">
+                <xsl:value-of select="replace($input-hl7-date, '.*([+-]\d{2})(\d{2})?$', '$1:$2')"/>
             </xsl:if>
         </xsl:variable>
 
         <xsl:variable name="str_date" select="concat($yyyy, '-', $mm, '-', $dd)"/>
-        <xsl:variable name="str_time" select="concat($HH, ':', $MM, ':', $SS, $sss, $TZ)"/>
-        <xsl:variable name="str_datetime" select="concat($str_date, 'T', $str_time)"/>
+        <xsl:variable name="strDateTZ" select="concat($yyyy, '-', $mm, '-', $dd, $TZ)"/>
+        <xsl:variable name="str_time" select="concat($HH, ':', $MM, ':', $SS, $sss)"/>
+        <xsl:variable name="str_datetime" select="concat($str_date, 'T', $str_time, $TZ)"/>
         <xsl:choose>
             <xsl:when test="upper-case($precision) = ('SECOND', 'SECONDE', 'SECONDS', 'SECONDEN', 'SEC', 'S')">
                 <xsl:value-of select="$str_datetime"/>
             </xsl:when>
             <xsl:when test="upper-case($precision) = ('MINUTE', 'MINUUT', 'MINUTES', 'MINUTEN', 'MIN', 'M')">
-                <xsl:value-of select="substring($str_datetime, 1, 16)"/>
+                <xsl:value-of select="concat(substring($str_datetime, 1, 16), $TZ)"/>
             </xsl:when>
             <xsl:when test="upper-case($precision) = ('HOUR', 'UUR', 'HOURS', 'UREN', 'HR', 'HH', 'H', 'U')">
-                <xsl:value-of select="substring($str_datetime, 1, 13)"/>
+                <xsl:value-of select="concat(substring($str_datetime, 1, 13), $TZ)"/>
             </xsl:when>
             <xsl:when test="upper-case($precision) = ('DAY', 'DAG', 'DAYS', 'DAGEN', 'D')">
-                <xsl:value-of select="$str_date"/>
+                <xsl:value-of select="$strDateTZ"/>
+            </xsl:when>
+            <xsl:when test="upper-case($precision) = ('MONTH', 'MAAND', 'MONTHS', 'MAANDEN', 'MO')">
+                <xsl:value-of select="concat($yyyy, '-', $mm, $TZ)"/>
+            </xsl:when>
+            <xsl:when test="upper-case($precision) = ('YEAR', 'JAAR', 'YEARS', 'JAREN', 'Y')">
+                <xsl:value-of select="concat($yyyy, $TZ)"/>
             </xsl:when>
             <xsl:when test="$str_date castable as xs:dateTime">
                 <xsl:value-of select="$str_date"/>
@@ -223,7 +232,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:otherwise>
                 <xsl:value-of select="$input-hl7-date"/>
                 <xsl:call-template name="util:logMessage">
-                    <xsl:with-param name="level" select="$logWARN"/>
+                    <xsl:with-param name="level" select="$logERROR"/>
                     <xsl:with-param name="msg">Could not determine xml date from input: '<xsl:value-of select="$input-hl7-date"/>' with precision: '<xsl:value-of select="$precision"/>'.</xsl:with-param>
                 </xsl:call-template>
             </xsl:otherwise>
@@ -236,12 +245,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:function name="nf:determine_date_precision">
         <xsl:param name="input-hl7-date"/>
+        <xsl:variable name="inputWithoutTimeZone" select="replace($input-hl7-date, '(^\d+(\.\d+)?)(([+-]\d{2,4})$)?', '$1')"/>
         <xsl:choose>
-            <xsl:when test="string-length($input-hl7-date) le 4">YEAR</xsl:when>
-            <xsl:when test="string-length($input-hl7-date) le 6">MONTH</xsl:when>
-            <xsl:when test="string-length($input-hl7-date) le 8">DAY</xsl:when>
-            <xsl:when test="string-length($input-hl7-date) = 10">HOUR</xsl:when>
-            <xsl:when test="string-length($input-hl7-date) = 12">MINUTE</xsl:when>
+            <xsl:when test="string-length($inputWithoutTimeZone) le 4">YEAR</xsl:when>
+            <xsl:when test="string-length($inputWithoutTimeZone) le 6">MONTH</xsl:when>
+            <xsl:when test="string-length($inputWithoutTimeZone) le 8">DAY</xsl:when>
+            <xsl:when test="string-length($inputWithoutTimeZone) = 10">HOUR</xsl:when>
+            <xsl:when test="string-length($inputWithoutTimeZone) = 12">MINUTE</xsl:when>
             <xsl:otherwise>SECOND</xsl:otherwise>
         </xsl:choose>
     </xsl:function>
