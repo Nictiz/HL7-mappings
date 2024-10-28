@@ -80,7 +80,6 @@
             </fileset>
         </copy>
 
-
         <!-- sturen_medicatiegegevens -->
         <echo/>
         <echo>Setup ${build.dir}/${usecase.mg.st} containing refreshed hl7 instances</echo>
@@ -255,6 +254,16 @@
             <param name="xsl.in" value="hl7_instance"/>
             <param name="xsl.out" value="ada_instance"/>
         </antcall>
+        
+        <!-- convert test timezone -->
+        <sequential>            
+            <echo/>
+            <echo>${echo.label} testTimezone.xsl input file testTimezone.xml</echo>
+            <xslt force="true" style="../../nictiz_test/test_datetime/testTimezone.xsl" in="../../nictiz_test/test_datetime/testTimezone.xml" out="../../nictiz_test/test_datetime/testTimezone_converted.xml">
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
 
     </target>
 
