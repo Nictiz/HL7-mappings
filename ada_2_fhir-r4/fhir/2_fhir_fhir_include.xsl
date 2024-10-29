@@ -939,7 +939,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
         <system value="{$oidMap[@oid=$oidUCUM]/@uri}"/>
         <code value="{nf:convertGstdBasiseenheid2UCUM($adaUnit[@codeSystem=$oidGStandaardBST902THES2]/@code)}"/>
-
     </xsl:template>
 
 </xsl:stylesheet>

@@ -29,7 +29,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="profileNamePatient">nl-core-Patient</xsl:variable>
 
     <xd:doc>
-        <xd:desc>Creates an nl-core-Patient instance as a Patient FHIR instance from the following ada parts: 
+        <xd:desc>Creates an nl-core-Patient instance as a Patient FHIR instance from the following ADA parts: 
             <xd:ul>
                 <xd:li>zib Patient</xd:li>
                 <xd:li>zib Nationality</xd:li>
@@ -43,20 +43,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param> 
         
-        The following components need to be passed as ada instances; although the zibs themselves are not related to a patient, the translation to FHIR is specific to the Patient resource: 
-        <xd:param name="nationality">Optional ada instance of zib Nationality</xd:param>
-        <xd:param name="maritalStatus">Optional ada instance of zib MaritalStatus</xd:param>
-        <xd:param name="languageProficiency">Optional ada instances of zib LanguageProficiency</xd:param>
-        <xd:param name="contactPersons">Optional ada instances of zib ContactPerson that need to be mapped to Patient.contact in FHIR (this is not always the case).</xd:param>
+        The following components need to be passed as ADA instances; although the zibs themselves are not related to a patient, the translation to FHIR is specific to the Patient resource: 
+        <xd:param name="nationality">Optional ADA instance of zib Nationality</xd:param>
+        <xd:param name="maritalStatus">Optional ADA instance of zib MaritalStatus</xd:param>
+        <xd:param name="languageProficiency">Optional ADA instances of zib LanguageProficiency</xd:param>
+        <xd:param name="contactPersons">Optional ADA instances of zib ContactPerson that need to be mapped to Patient.contact in FHIR (this is not always the case).</xd:param>
     </xd:doc>
-    <xsl:template match="patient" mode="nl-core-Patient" name="nl-core-Patient"
-        as="element(f:Patient)">
+    <xsl:template match="patient" mode="nl-core-Patient" name="nl-core-Patient" as="element(f:Patient)">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="nationality" as="element(nationaliteit_rc)?" select="$in/nationaliteit_rc"/>
-        <xsl:param name="maritalStatus" as="element(burgerlijke_staat_rc)?"
-            select="$in/burgerlijke_staat_rc"/>
-        <xsl:param name="languageProficiency" as="element(taalvaardigheid)*"
-            select="$in/taalvaardigheid"/>
+        <xsl:param name="maritalStatus" as="element(burgerlijke_staat_rc)?" select="$in/burgerlijke_staat_rc"/>
+        <xsl:param name="languageProficiency" as="element(taalvaardigheid)*" select="$in/taalvaardigheid"/>
         <xsl:param name="contactPersons" as="element(contactpersoon)*" select="$in/contactpersoon"/>
 
         <xsl:for-each select="$in">
@@ -67,8 +64,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
-                <!-- Nationality is a zib on its own, but the implementation is specific for the Patient resource. 
-                 Therefore, it is created inline. -->
+                <!-- Nationality is a zib on its own, but the implementation is specific for the Patient resource. Therefore, it is created inline. -->
                 <xsl:for-each select="$nationality/nationaliteit">
                     <extension url="http://hl7.org/fhir/StructureDefinition/patient-nationality">
                         <extension url="code">
@@ -148,8 +144,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="nl-core-AddressInformation"/>
                 </xsl:for-each>
 
-                <!-- MaritalStatus is a zib on its own, but the implementation is specific for the Patient resource. 
-                 Therefore, it is created inline. -->
+                <!-- MaritalStatus is a zib on its own, but the implementation is specific for the Patient resource. Therefore, it is created inline. -->
                 <xsl:for-each select="$maritalStatus">
                     <maritalStatus>
                         <xsl:call-template name="code-to-CodeableConcept">
@@ -189,8 +184,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="typeCode" select="'RWR'"/>
                         </xsl:call-template>
                         <xsl:for-each select="communicatie_bijzonderheden">
-                            <extension
-                                url="http://nictiz.nl/fhir/StructureDefinition/ext-LanguageProficiency.CommunicationDetails">
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-LanguageProficiency.CommunicationDetails">
                                 <valueCodeableConcept>
                                     <xsl:call-template name="code-to-CodeableConcept">
                                         <xsl:with-param name="in" select="."/>
@@ -199,8 +193,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </extension>
                         </xsl:for-each>
                         <xsl:for-each select="toelichting">
-                            <extension
-                                url="http://nictiz.nl/fhir/StructureDefinition/ext-LanguageProficiency.Comment">
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-LanguageProficiency.Comment">
                                 <valueString value="{normalize-space(@value)}"/>                                
                             </extension>
                         </xsl:for-each>
@@ -216,13 +209,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc> Helper template to render the 'patient proficiency' extension for the types RSP,
-            ESP en RWR, which repesent the zib concepts LanguageControlListening,
-            LanguageControlWriting and LanguageControlWriting. </xd:desc>
-        <xd:param name="in"> The root element of the ada concept for the three zib concepts
-            mentioned. May be empty, in which case the extension will not be rendered. </xd:param>
-        <xd:param name="typeCode">The code used for the 'type' part of the complex
-            extension.</xd:param>
+        <xd:desc> Helper template to render the 'patient proficiency' extension for the types RSP, ESP en RWR, which repesent the zib concepts LanguageControlListening, LanguageControlWriting and LanguageControlWriting. </xd:desc>
+        <xd:param name="in"> The root element of the ada concept for the three zib concepts mentioned. May be empty, in which case the extension will not be rendered. </xd:param>
+        <xd:param name="typeCode">The code used for the 'type' part of the complex extension.</xd:param>
     </xd:doc>
     <xsl:template name="_patientProficiency">
         <xsl:param name="in" as="element()?"/>
@@ -260,31 +249,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Template to generate a unique id to identify a patient present in a (set of)
-            ada-instance(s)</xd:desc>
+        <xd:desc>Template to generate a unique id to identify a patient present in a (set of) ADA instance(s)</xd:desc>
     </xd:doc>
     <xsl:template match="patient" mode="_generateId">
         <xsl:variable name="uniqueString" as="xs:string?">
             <xsl:choose>
-                <!-- this when is only for Touchstone purposes, should be removed here -->
+                <!-- This when clause is only for Touchstone purposes, should be removed here -->
                 <!-- Tries to match patient to token -->
                 <xsl:when test="string-length(nf:get-resourceid-from-token(.)) gt 0">
                     <xsl:value-of select="nf:get-resourceid-from-token(.)"/>
                 </xsl:when>
-                <!-- this when is only for Touchstone purposes, should be removed here -->
+                <!-- This when clause is only for Touchstone purposes, should be removed here -->
                 <xsl:when test="naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value">
-                    <xsl:value-of
-                        select="normalize-space(string-join(naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value, ' '))"
-                    />
+                    <xsl:value-of select="normalize-space(string-join(naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value, ' '))"/>
                 </xsl:when>
-                <xsl:when
-                    test="identificatie[@root][@value][string-length(concat(@root, @value)) le 63]">
+                <xsl:when test="identificatie[@root][@value][string-length(concat(@root, @value)) le 63]">
                     <xsl:for-each select="(identificatie[@root][@value])[1]">
                         <xsl:value-of select="concat(@root, '-', @value)"/>
                     </xsl:for-each>
                 </xsl:when>
                 <xsl:otherwise>
-                    <!-- we do not have anything to create a stable logicalId, lets return a UUID -->
+                    <!-- We do not have anything to create a stable logicalId, let's return a UUID -->
                     <xsl:value-of select="uuid:get-uuid(.)"/>
                 </xsl:otherwise>
             </xsl:choose>
@@ -296,8 +281,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Template to generate a display that can be shown when referencing a
-            patient</xd:desc>
+        <xd:desc>Template to generate a display that can be shown when referencing a patient</xd:desc>
     </xd:doc>
     <xsl:template match="patient" mode="_generateDisplay">
         <xsl:value-of select="string-join(('Patient', nf:renderName(naamgegevens)), ', ')"/>

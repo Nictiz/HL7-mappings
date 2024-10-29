@@ -136,8 +136,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <!-- If so required, an xsl:when condition can be added for templates that need to be called in some deviating way, but it should normally not be required. -->
             <xsl:when test="$localName = 'contactpersoon'">
-                <xsl:variable name="patient-id" select="$in/patient/identificatienummer/@value"/>
-                <xsl:call-template name="nl-core-ContactPerson"/>
+                <xsl:call-template name="nl-core-ContactPerson">
+                    <xsl:with-param name="patient" select="$subject"/>
+                </xsl:call-template>
             </xsl:when>
             <xsl:when test="$localName = 'patient'">
                 <xsl:variable name="patient-id" select="$in/patient/identificatienummer/@value"/>
