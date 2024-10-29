@@ -302,4 +302,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="patient" mode="_generateDisplay">
         <xsl:value-of select="string-join(('Patient', nf:renderName(naamgegevens)), ', ')"/>
     </xsl:template>
+    
 </xsl:stylesheet>

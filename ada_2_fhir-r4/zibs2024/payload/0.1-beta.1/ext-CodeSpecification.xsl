@@ -36,10 +36,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>Template for shared extension http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification</xd:desc>
-        <xd:param name="in">Optional. Ada element containing the comment code element</xd:param>
+        <xd:param name="in">Optional. ADA element containing the code element</xd:param>
     </xd:doc>
     <xsl:template match="*" name="ext-CodeSpecification" mode="ext-CodeSpecification" as="element()?">
         <xsl:param name="in" as="element()?" select="."/>
+        
         <xsl:for-each select="$in">
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
                 <valueCodeableConcept>

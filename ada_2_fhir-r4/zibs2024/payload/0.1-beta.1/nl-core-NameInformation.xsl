@@ -16,12 +16,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA naamgegevens to FHIR HumanName datatype conforming to profile nl-core-NameInformation and nl-core-NameInformation.GivenName.</xd:desc>
+        <xd:desc>Converts ADA naamgegevens to FHIR HumanName data type conforming to profile nl-core-NameInformation and nl-core-NameInformation.GivenName.</xd:desc>
     </xd:doc>
 
     <xd:doc>
-        <xd:desc>Converts FHIR HumanName datatype from ADA naamgegevens element.</xd:desc>
-        <xd:param name="in">Ada 'naamgegevens' element containing the zib data</xd:param>
+        <xd:desc>Creates FHIR HumanName data type from ADA naamgegevens element.</xd:desc>
+        <xd:param name="in">ADA naamgegevens element</xd:param>
     </xd:doc>
     <xsl:template match="naamgegevens" mode="nl-core-NameInformation" name="nl-core-NameInformation" as="element(f:name)*">
         <xsl:param name="in" select="." as="element()*"/>
@@ -44,10 +44,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                  as additional .given elements. If this is not possible, we have to write out a separate name element
                  with only the initials.
                  So:
-                 - "Esther"/"E.F.A." becomes "Esther" "F.", A."
+                 - "Esther"/"E.F.A." becomes "Esther", "F.", A."
                  - "Esther Feline"/"E.F.A." becomes "Esther", "Feline", "A."
                  - "Esther Feline"/"E.B.A." becomes "Ester", "Feline" AND "E.", "B.", "A."
-                 A given name with a dash is usually viewd as a name with one initial:
+                 A given name with a dash is usually viewed as a name with one initial:
                  - "Albert-Jan"/"A.D." becomes "Albert-Jan", "D."
                  - "Albert-Jan"/"A.J.D." becomes "Albert-Jan", "J.", "D." 
                  - "Albert-Jan"/"A.J." becomes "Albert-Jan", "J."
@@ -89,21 +89,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <!-- Create the main .name instance containing all official names -->
             <name>
-                <xsl:if test="naamgebruik">
+                <xsl:for-each select="naamgebruik[@code]">
                     <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
                         <valueCode>
                             <xsl:call-template name="code-to-code">
-                                <xsl:with-param name="in" select="naamgebruik"/>
+                                <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
                         </valueCode>
                     </extension>
-                </xsl:if>
+                </xsl:for-each>
 
                 <use value="official"/>
                 <!-- Add the unstructured name under the assumption that it is the official name. This has no functional counterpart in the zib or elsewhere. -->
-                <!-- there only may be one text in FHIR, give precedence to ada ongestructureerde_naam when it has a value. otherwise use the nameparts that may or may not be available -->
+                
+                <!-- There may only be one text in FHIR, so give precedence to ADA ongestructureerde_naam when it has a value; otherwise use the name parts that may or may not be available. -->
                 <xsl:choose>
-                    <xsl:when test="string-length(ongestructureerde_naam/@value) gt 0">
+                    <xsl:when test="ongestructureerde_naam[@value]">
                         <text>
                             <xsl:attribute name="value">
                                 <xsl:call-template name="string-to-string">
@@ -121,16 +122,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <xsl:if test="$family">
                     <family value="{$family}">
-                        <xsl:for-each select="geslachtsnaam/voorvoegsels">
+                        <xsl:for-each select="geslachtsnaam/voorvoegsels[@value]">
                             <xsl:copy-of select="nf:_writeFamilyExtension(., 'humanname-own-prefix')"/>
                         </xsl:for-each>
-                        <xsl:for-each select="geslachtsnaam/achternaam">
+                        <xsl:for-each select="geslachtsnaam/achternaam[@value]">
                             <xsl:copy-of select="nf:_writeFamilyExtension(., 'humanname-own-name')"/>
                         </xsl:for-each>
-                        <xsl:for-each select="geslachtsnaam_partner/voorvoegsels_partner">
+                        <xsl:for-each select="geslachtsnaam_partner/voorvoegsels_partner[@value]">
                             <xsl:copy-of select="nf:_writeFamilyExtension(., 'humanname-partner-prefix')"/>
                         </xsl:for-each>
-                        <xsl:for-each select="geslachtsnaam_partner/achternaam_partner">
+                        <xsl:for-each select="geslachtsnaam_partner/achternaam_partner[@value]">
                             <xsl:copy-of select="nf:_writeFamilyExtension(., 'humanname-partner-name')"/>
                         </xsl:for-each>
                     </family>
@@ -153,13 +154,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:copy-of select="."/>
                 </xsl:for-each>
                 
-                <xsl:if test="titels/@value">
-                    <!-- 'titels' can be mapped both to prefix and suffix, but we cannot determine the type of 'titel' more specifically -->
-                    <prefix value="{normalize-space(titels/@value)}"/>
-                </xsl:if>
+                <xsl:for-each select="titels[@value]">
+                    <!-- 'Titels' can be mapped both to prefix and suffix, but we cannot determine the type of 'titel' more specifically -->
+                    <prefix>
+                        <xsl:call-template name="string-to-string">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </prefix>
+                </xsl:for-each>
             </name>
 
-            <!-- If the given names and initials couldn't be matchted up, a second official name element should be produced. -->
+            <!-- If the given names and initials couldn't be matched up, a second official name element should be produced. -->
             <xsl:if test="$processedInitials castable as xs:boolean">
                 <xsl:if test="not($processedInitials cast as xs:boolean)">
                     <name>
@@ -172,12 +177,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
             </xsl:if>
             
-            <!-- If the GivenName (roepnaam) is provided, write out an additional .name element with .use 
-                 set to "usual". -->
+            <!-- If the GivenName (roepnaam) is provided, write out an additional .name element with .use set to "usual". -->
             <xsl:if test="roepnaam[@value]">
                 <name>
                     <use value="usual"/>
-                      <given value="{roepnaam/@value}"/>
+                    <given value="{roepnaam/@value}"/>
                 </name>
             </xsl:if>           
         </xsl:for-each>
@@ -186,7 +190,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Render the name of the person.</xd:desc>
         <xd:param name="in">The ADA naamgegevens element.</xd:param>
-        <xd:return>The rendered name of the person in the format [given names] [(roepnaam)] [family name]</xd:return>
+        <xd:return>The rendered name of the person in the format [given names] ([roepnaam]) [family name]</xd:return>
     </xd:doc>
     <xsl:function name="nf:renderName" as="xs:string">
         <xsl:param name="in" as="element(naamgegevens)?"/>
@@ -201,7 +205,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="given">The rendered given names of the person</xd:param>
         <xd:param name="family">The rendered family name of the person</xd:param>
         <xd:param name="roepnaam">The ADA roepnaam element</xd:param>
-        <xd:return>The rendered name of the person in the format [given names] [(roepnaam)] [family name]</xd:return>
+        <xd:return>The rendered name of the person in the format [given names] ([roepnaam]) [family name]</xd:return>
     </xd:doc>
     <xsl:function name="nf:_renderNameFromParts" as="xs:string?">
         <xsl:param name="given" as="xs:string?"/>
@@ -238,7 +242,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
-        <xd:desc>Helper function to parse the initials (initialen) string into individual initials. There are no formal requirements to the input strings, but it is assumed that initial is is delimited by a dot or whitespace character, possibly followed by one or more whitespace characters.</xd:desc>
+        <xd:desc>Helper function to parse the initials (initialen) string into individual initials. There are no formal requirements to the input strings, but it is assumed that each initial is delimited by a dot or whitespace character, possibly followed by one or more whitespace characters.</xd:desc>
         <xd:param name="initialen">The ADA initialen element</xd:param>
         <xd:return>A list of individual initials, delimited with a dot and with all spaces removed.</xd:return>
     </xd:doc>
@@ -252,7 +256,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
     
     <xd:doc>
-        <xd:desc>Helper function to create a abbreviate first names to initials, in the same format that nf:_normalizeInitials() produces.</xd:desc>
+        <xd:desc>Helper function to create a list of initials by abbreviating the first names, in the same format that nf:_normalizeInitials() produces.</xd:desc>
         <xd:param name="firstNames">The collection of first names</xd:param>
         <xd:return>A collection of initials for each provided first name, delimited with a dot and with all spaces removed.</xd:return>
     </xd:doc>
@@ -271,7 +275,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Build the given name string, that is the complete collection of known official given names, based on the input. Note: not the "GivenName" according to the zib, which is used for the nickname, not the official name of the person.</xd:desc>
         <xd:param name="normalizedFirstNames">The list of normalized first names (as returned by <xd:ref name="nf:_normalizeFirstNames()"/></xd:param>
         <xd:param name="normalizedInitials">The list of normalized initials (as returned by <xd:ref name="nf:_normalizeInitials()"/></xd:param>
-        <xd:return>A string with all the first names of a person, separated by a space. This string will contain the full names if known or the initials otherwise (or nothing is nothing is known).</xd:return>
+        <xd:return>A string with all the first names of a person, separated by a space. This string will contain the full names if known or the initials otherwise (or nothing if nothing is known).</xd:return>
     </xd:doc>
     <xsl:function name="nf:_renderGivenNames" as="xs:string?">
         <xsl:param name="normalizedFirstNames" as="xs:string*"/>
@@ -287,7 +291,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
-        <xd:desc>Helper function to build the familiy name from the name parts as specified by the zib.</xd:desc>
+        <xd:desc>Helper function to build the family name from the name parts as specified by the zib.</xd:desc>
         <xd:param name="in">The ADA naamgegevens element</xd:param>
         <xd:return>A string containing the constructed family name of the person.</xd:return>
     </xd:doc>
@@ -303,7 +307,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="$nameUsage = 'NL1'">
                         <xsl:value-of select="$lastName"/>
                     </xsl:when>
-                    <!--     Geslachtsnaam partner -->
+                    <!-- Geslachtsnaam partner -->
                     <xsl:when test="$nameUsage = 'NL2'">
                         <xsl:value-of select="$lastNamePartner"/>
                     </xsl:when>
@@ -315,7 +319,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="$nameUsage = 'NL4'">
                         <xsl:value-of select="string-join(($lastName, $lastNamePartner), '-')"/>
                     </xsl:when>
-                    <!-- otherwise: we nemen aan NL4 - Eigen geslachtsnaam gevolgd door geslachtsnaam partner zodat iig geen informatie 'verdwijnt' -->
+                    <!-- Otherwise: we nemen aan NL4 - Eigen geslachtsnaam gevolgd door geslachtsnaam partner zodat iig geen informatie 'verdwijnt' -->
                     <xsl:otherwise>
                         <xsl:value-of select="string-join(($lastName, $lastNamePartner), '-')"/>
                     </xsl:otherwise>
@@ -357,4 +361,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </extension>
         </given>
     </xsl:function>
+    
 </xsl:stylesheet>

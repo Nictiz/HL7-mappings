@@ -18,19 +18,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA adresgegevens to FHIR Address datatype conforming to profile nl-core-AddressInformation.</xd:desc>
+        <xd:desc>Converts ADA adresgegevens to FHIR Address data type conforming to profile nl-core-AddressInformation.</xd:desc>
     </xd:doc>
 
     <xd:doc>
-        <xd:desc>Creates FHIR Address datatype from ADA adresgegevens element.</xd:desc>
-        <xd:param name="in">Ada 'adresgegevens' element containing the zib data</xd:param>
+        <xd:desc>Creates FHIR Address data type from ADA adresgegevens element.</xd:desc>
+        <xd:param name="in">ADA adresgegevens element</xd:param>
     </xd:doc>
     <xsl:template match="adresgegevens" mode="nl-core-AddressInformation" name="nl-core-AddressInformation" as="element(f:address)*">
         <xsl:param name="in" select="." as="element()?"/>
 
         <xsl:for-each select="$in">
             <address>
-                <xsl:for-each select="adres_soort">
+                <xsl:for-each select="adres_soort[@code]">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
                         <valueCodeableConcept>
                             <xsl:call-template name="code-to-CodeableConcept">
@@ -38,6 +38,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </valueCodeableConcept>
                     </extension>
+                    
                     <xsl:choose>
                         <xsl:when test="@code = 'PST'">
                             <type value="postal"/>
@@ -60,35 +61,50 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <xsl:variable name="lineItems" as="element()*">
-                    <xsl:for-each select="straat">
+                    <xsl:for-each select="straat[@value]">
                         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
-                            <valueString value="{normalize-space(@value)}"/>
+                            <valueString>
+                                <xsl:call-template name="string-to-string">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </valueString>
                         </extension>
                     </xsl:for-each>
-                    <xsl:for-each select="huisnummer">
+                    
+                    <xsl:for-each select="huisnummer[@value]">
                         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-                            <valueString value="{normalize-space(@value)}"/>
+                            <valueString>
+                                <xsl:call-template name="string-to-string">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </valueString>
                         </extension>
                     </xsl:for-each>
-                    <!-- http://nictiz.nl/fhir/StructureDefinition/nl-core-AddressInformation
-                        Export:
+                    
+                    <!-- 
                         If a HouseNumberLetter as well as a HouseNumberAddition is known: HouseNumberLetter first, followed by a space and finally the HouseNumberAddition.
                         If only a HouseNumberLetter is known, send just that. No trailing space is required.
                         If only a HouseNumberAddition is known, communicate that with a leading space.
                     -->
-                    <xsl:if test="huisnummerletter | huisnummertoevoeging">
+                    <xsl:if test="(huisnummerletter | huisnummertoevoeging)[@value]">
                         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
                             <valueString value="{replace(concat(huisnummerletter/normalize-space(@value), ' ', huisnummertoevoeging/normalize-space(@value)), '\s+$', '')}"/>
                         </extension>
                     </xsl:if>
-                    <xsl:for-each select="aanduiding_bij_nummer">
+                    
+                    <xsl:for-each select="aanduiding_bij_nummer[@code]">
                         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
-                            <valueString value="{normalize-space(@code)}"/>
+                            <valueString value="{@code}"/>
                         </extension>
                     </xsl:for-each>
-                    <xsl:for-each select="additionele_informatie">
+                    
+                    <xsl:for-each select="additionele_informatie[@value]">
                         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
-                            <valueString value="{normalize-space(@value)}"/>
+                            <valueString>
+                                <xsl:call-template name="string-to-string">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </valueString>
                         </extension>
                     </xsl:for-each>
                 </xsl:variable>
@@ -99,23 +115,36 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </line>
                 </xsl:if>
 
-                <xsl:for-each select="woonplaats">
-                    <city value="{normalize-space(@value)}"/>
+                <xsl:for-each select="woonplaats[@value]">
+                    <city>
+                        <xsl:call-template name="string-to-string">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </city>
                 </xsl:for-each>
 
-                <xsl:for-each select="gemeente">
-                    <district value="{normalize-space(@value)}"/>
+                <xsl:for-each select="gemeente[@value]">
+                    <district>
+                        <xsl:call-template name="string-to-string">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </district>
                 </xsl:for-each>
 
-                <xsl:for-each select="postcode">
-                    <postalCode value="{normalize-space(@value)}"/>
+                <xsl:for-each select="postcode[@value]">
+                    <postalCode>
+                        <xsl:call-template name="string-to-string">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </postalCode>
                 </xsl:for-each>
 
-                <xsl:for-each select="land">
+                <xsl:for-each select="land[@code]">
                     <country>
                         <xsl:if test="@displayName">
                             <xsl:attribute name="value" select="@displayName"/>
                         </xsl:if>
+                        
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
                             <valueCodeableConcept>
                                 <xsl:call-template name="code-to-CodeableConcept">
@@ -128,4 +157,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </address>
         </xsl:for-each>
     </xsl:template>
+    
 </xsl:stylesheet>

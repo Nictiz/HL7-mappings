@@ -27,7 +27,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:param name="populateId" select="true()" as="xs:boolean"/>
 
-
     <xd:doc>
         <xd:desc>$referencingStrategy will be filled with one of the following values: <xd:ul>
                 <xd:li>logicalId</xd:li>
@@ -288,8 +287,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each-group>
 
         <xsl:for-each-group select="$in[self::zorgverlener[.//(@value | @code | @nullFlavor)]]" group-by="
-                concat(nf:ada-healthprofessional-id(zorgverlener_identificatienummer)/@root,
-                nf:ada-healthprofessional-id(zorgverlener_identificatienummer)/normalize-space(@value))">
+                concat(nf:ada-zvl-id(zorgverlener_identificatienummer)/@root,
+                nf:ada-zvl-id(zorgverlener_identificatienummer)/normalize-space(@value))">
 
             <!-- let's resolve the zorgaanbieder ín the zorgverlener, to make sure deduplication also works for duplicated zorgaanbieders -->
             <xsl:variable name="zorgverlenerWithResolvedZorgaanbieder" as="element(zorgverlener)*">
@@ -304,8 +303,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each-group>
 
         <xsl:for-each-group select="$in[self::zorgaanbieder[.//(@value | @code | @nullFlavor)]]" group-by="
-                concat(nf:ada-healthprovider-id(zorgaanbieder_identificatienummer)/@root,
-                nf:ada-healthprovider-id(zorgaanbieder_identificatienummer)/normalize-space(@value))">
+                concat(nf:ada-za-id(zorgaanbieder_identificatienummer)/@root,
+                nf:ada-za-id(zorgaanbieder_identificatienummer)/normalize-space(@value))">
 
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry">

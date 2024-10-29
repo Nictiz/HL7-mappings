@@ -134,8 +134,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- Do nothing -->
             </xsl:when>
             
-            <!-- If so required, an xsl:when condition can be added for templates that need to be called in some
-                 deviating way, but it should normally not be required. -->
+            <!-- If so required, an xsl:when condition can be added for templates that need to be called in some deviating way, but it should normally not be required. -->
             <xsl:when test="$localName = 'contactpersoon'">
                 <xsl:variable name="patient-id" select="$in/patient/identificatienummer/@value"/>
                 <xsl:call-template name="nl-core-ContactPerson"/>
@@ -160,7 +159,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc>Override the id generation with the file name of the ADA instance</xd:desc>
-        <xd:param name="profile">The id of the profile that is targeted. This is needed to specify which profile is targeted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
+        <xd:param name="profile">The id of the profile that is targeted. This is needed to specify which profile is targeted when a single ADA instance is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
         <xd:param name="partNumber">The sequence number of the ADA instance being passed in the total collection of ADA instances of this kind. This sequence number is needed for ids in resources that represent just a part of a zib.</xd:param>
     </xd:doc>
     <xsl:template match="*" mode="_generateId" priority="2">

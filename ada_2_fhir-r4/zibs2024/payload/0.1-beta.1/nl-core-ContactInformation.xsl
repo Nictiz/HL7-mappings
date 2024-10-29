@@ -19,12 +19,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA contactgegevens to FHIR ContactPoint datatype conforming to profile nl-core-ContactInformation-TelephoneNumbers and nl-core-ContactInformation-E-mailAddresses.</xd:desc>
+        <xd:desc>Converts ADA contactgegevens to FHIR ContactPoint data type conforming to profile nl-core-ContactInformation-TelephoneNumbers and nl-core-ContactInformation-EmailAddresses.</xd:desc>
     </xd:doc>
 
     <xd:doc>
-        <xd:desc>Converts FHIR ContactPoint datatype from ADA contactgegevens element.</xd:desc>
-        <xd:param name="in">Ada 'contactgegevens' element containing the nl-core data</xd:param>
+        <xd:desc>Creates FHIR ContactPoint data type from ADA contactgegevens element.</xd:desc>
+        <xd:param name="in">ADA contactgegevens element</xd:param>
     </xd:doc>
     <xsl:template match="contactgegevens" mode="nl-core-ContactInformation" name="nl-core-ContactInformation" as="element(f:telecom)*">
         <xsl:param name="in" select="." as="element()?"/>
@@ -47,17 +47,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:choose>
                         <xsl:when test="$numberType = 'HP'">home</xsl:when>
                         <xsl:when test="$numberType = 'TMP'">temp</xsl:when>
-                        <xsl:when test="$numberType = 'WP'">work</xsl:when>
+                        <xsl:when test="$numberType = ('WP', 'EC')">work</xsl:when>
                     </xsl:choose>
                 </xsl:variable>
 
                 <telecom>
-                    <xsl:for-each select="toelichting">
+                    <xsl:for-each select="toelichting[@value]">
                         <extension url="http://hl7.org/fhir/StructureDefinition/contactpoint-comment">
-                            <valueString value="{normalize-space(@value)}"/>
+                            <valueString>
+                                <xsl:call-template name="string-to-string">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </valueString>
                         </extension>
                     </xsl:for-each>
-                    <xsl:for-each select="nummer_soort[@code]">
+                    
+                    <xsl:for-each select="nummer_soort[@code = 'EC']">
                         <extension url="http://hl7.org/fhir/StructureDefinition/contactpoint-purpose">
                             <valueCodeableConcept>
                                 <xsl:call-template name="code-to-CodeableConcept">
@@ -66,40 +71,53 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </valueCodeableConcept> 
                         </extension>
                     </xsl:for-each>
-                    <xsl:if test="telefoonnummer[@value]">
-                        <system>
-                            <xsl:if test="string-length($telecomSystem) gt 0">
-                                <xsl:attribute name="value" select="$telecomSystem"/>
-                            </xsl:if>
-                            <xsl:if test="$telecomType">
-                                <xsl:call-template name="ext-CodeSpecification">
-                                    <xsl:with-param name="in" select="telecom_type"/>
-                                </xsl:call-template>
-                            </xsl:if>
-                        </system>
-                    </xsl:if>
-                    <xsl:for-each select="telefoonnummer">
-                        <value value="{normalize-space(@value)}"/>
+                    
+                    <system>
+                        <xsl:if test="$telecomSystem">
+                            <xsl:attribute name="value" select="$telecomSystem"/>
+                        </xsl:if>
+                        
+                        <xsl:if test="$telecomType">
+                            <xsl:call-template name="ext-CodeSpecification">
+                                <xsl:with-param name="in" select="telecom_type"/>
+                            </xsl:call-template>
+                        </xsl:if>
+                    </system>
+                    
+                    <xsl:for-each select="telefoonnummer[@value]">
+                        <value>
+                            <xsl:call-template name="string-to-string">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </value>
                     </xsl:for-each>
-                    <xsl:if test="string-length($numberUse) gt 0">
+                    
+                    <xsl:if test="$numberUse">
                         <use value="{$numberUse}"/>
                     </xsl:if>
                 </telecom>
             </xsl:for-each>
+            
             <xsl:for-each select="email_adressen[email_adres/@value]">
                 <xsl:variable name="emailType" select="email_soort/@code"/>
                 <xsl:variable name="emailUse" as="xs:string?">
                     <xsl:choose>
-                        <xsl:when test="$emailType = 'WP'">work</xsl:when>
                         <xsl:when test="$emailType = 'HP'">home</xsl:when>
+                        <xsl:when test="$emailType = 'WP'">work</xsl:when>
                     </xsl:choose>
                 </xsl:variable>
 
                 <telecom>
                     <system value="email"/>
-                    <xsl:for-each select="email_adres">
-                        <value value="{normalize-space(@value)}"/>
+                    
+                    <xsl:for-each select="email_adres[@value]">
+                        <value>
+                            <xsl:call-template name="string-to-string">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </value>
                     </xsl:for-each>
+                    
                     <xsl:if test="$emailUse">
                         <use value="{$emailUse}"/>
                     </xsl:if>
@@ -107,5 +125,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </xsl:for-each>
     </xsl:template>
-
+    
 </xsl:stylesheet>

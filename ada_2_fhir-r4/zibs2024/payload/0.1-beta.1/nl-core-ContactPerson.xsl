@@ -43,10 +43,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
 
-                <xsl:for-each select="toelichting">
+                <xsl:for-each select="toelichting[@value]">
                     <extension url="http://hl7.org/fhir/StructureDefinition/note">
                         <valueAnnotation>
-                            <text value="{normalize-space(@value)}"/>
+                            <text>
+                                <xsl:call-template name="string-to-string">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </text>
                         </valueAnnotation>
                     </extension>
                 </xsl:for-each>
@@ -73,15 +77,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <xsl:for-each select="naamgegevens">
-                    <xsl:call-template name="nl-core-NameInformation"/>
+                    <xsl:call-template name="nl-core-NameInformation">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
                 </xsl:for-each>
 
                 <xsl:for-each select="contactgegevens">
-                    <xsl:call-template name="nl-core-ContactInformation"/>
+                    <xsl:call-template name="nl-core-ContactInformation">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
                 </xsl:for-each>
 
                 <xsl:for-each select="adresgegevens">
-                    <xsl:call-template name="nl-core-AddressInformation"/>
+                    <xsl:call-template name="nl-core-AddressInformation">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
                 </xsl:for-each>
             </RelatedPerson>
         </xsl:for-each>
@@ -96,7 +106,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="$in">
             <contact>
-                <xsl:for-each select="rol">
+                <xsl:for-each select="rol[@code]">
                     <relationship>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
@@ -104,7 +114,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </relationship>
                 </xsl:for-each>
 
-                <xsl:for-each select="relatie">
+                <xsl:for-each select="relatie[@code]">
                     <relationship>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
@@ -112,11 +122,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </relationship>
                 </xsl:for-each>
 
-                <!-- We can't add the full name information here, just the name information needed to address the 
-                     contact person -->
+                <!-- We can't add the full name information here, just the name information needed to address the contact person -->
                 <xsl:variable name="nameInformation" as="element(f:name)*">
                     <xsl:for-each select="naamgegevens">
-                        <xsl:call-template name="nl-core-NameInformation"/>
+                        <xsl:call-template name="nl-core-NameInformation">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
                     </xsl:for-each>
                 </xsl:variable>
                 <xsl:if test="count($nameInformation) &gt; 0">
@@ -124,18 +135,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
 
                 <xsl:for-each select="contactgegevens">
-                    <xsl:call-template name="nl-core-ContactInformation"/>
+                    <xsl:call-template name="nl-core-ContactInformation">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
                 </xsl:for-each>
 
                 <xsl:for-each select="adresgegevens">
-                    <xsl:call-template name="nl-core-AddressInformation"/>
+                    <xsl:call-template name="nl-core-AddressInformation">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
                 </xsl:for-each>
             </contact>
         </xsl:for-each>
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Template to generate a unique id to identify a patient present in a (set of) ada-instance(s)</xd:desc>
+        <xd:desc>Template to generate a unique id to identify a contact person present in a (set of) ada-instance(s)</xd:desc>
     </xd:doc>
     <xsl:template match="contactpersoon" mode="_generateId">
 
@@ -151,7 +166,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:value-of select="upper-case(replace(string-join(naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value, ' '), '\s', ''))"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <!-- we do not have anything to create a stable logicalId, lets return a UUID -->
+                    <!-- we do not have anything to create a stable logicalId, let's return a UUID -->
                     <xsl:value-of select="uuid:get-uuid(.)"/>
                 </xsl:otherwise>
             </xsl:choose>
@@ -169,9 +184,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="parts" as="item()*">
             <xsl:text>Contact person</xsl:text>
             <xsl:value-of select="nf:renderName(naamgegevens)"/>
-
         </xsl:variable>
         <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
     </xsl:template>
-
+    
 </xsl:stylesheet>
