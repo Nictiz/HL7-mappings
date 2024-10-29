@@ -140,9 +140,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:function name="nf:formatHL72VagueAdaDate" as="xs:string">
         <xsl:param name="input-hl7-date" as="xs:string"/>
-        <xsl:param name="precision"/>
+        <xsl:param name="precision" as="xs:string?"/>
         
-        <xsl:variable name="inputWithoutTimeZone" select="replace($input-hl7-date, '(^\d+(\.\d+)?)(([+-]\d{2,4})$)?', '$1')"/>
+        <!-- we support timezone Z should that have been entered in HL7v3, however Z is officially not allowed in datatype TS in HL7v3, it should be +0000 -->
+        <xsl:variable name="inputWithoutTimeZone" select="replace($input-hl7-date, '(^\d+(\.\d+)?)(Z|[+-]\d{2,4})?$', '$1')"/>
         
         <!-- year -->
         <xsl:variable name="yyyy"  as="xs:string?">
@@ -198,6 +199,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="matches($input-hl7-date, '^\d+(\.\d+)?([+-]\d{2,4})$')">
                 <xsl:value-of select="replace($input-hl7-date, '.*([+-]\d{2})(\d{2})?$', '$1:$2')"/>
             </xsl:if>
+            <xsl:if test="matches($input-hl7-date, '^\d+(\.\d+)?Z$')">
+                <xsl:value-of select="'Z'"/>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logWARN"/>
+                    <xsl:with-param name="msg">Encountered an Hl7v3 TS with timezone 'Z' (<xsl:value-of select="$input-hl7-date"/>). Officially this is not allowed, but we'll do our best to convert it anyway.</xsl:with-param>
+                </xsl:call-template>
+            </xsl:if>
         </xsl:variable>
 
         <xsl:variable name="str_date" select="concat($yyyy, '-', $mm, '-', $dd)"/>
@@ -223,11 +231,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="upper-case($precision) = ('YEAR', 'JAAR', 'YEARS', 'JAREN', 'Y')">
                 <xsl:value-of select="concat($yyyy, $TZ)"/>
             </xsl:when>
-            <xsl:when test="$str_date castable as xs:dateTime">
-                <xsl:value-of select="$str_date"/>
+            <xsl:when test="$str_datetime castable as xs:dateTime">
+                <xsl:value-of select="$str_datetime"/>
             </xsl:when>
             <xsl:when test="$str_date castable as xs:date">
-                <xsl:value-of select="$str_date"/>
+                <xsl:value-of select="concat($str_date, $TZ)"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="$input-hl7-date"/>

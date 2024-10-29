@@ -61,6 +61,29 @@
 
     </xsl:template>
 
+    <xsl:template match="timezones_test/hl7_inputdate" mode="testTimeZone"> 
+        <xsl:element name="date">
+            <xsl:copy>
+                <xsl:apply-templates select="@* | node()" mode="#current"/>
+            </xsl:copy>
+            <xsl:variable name="adaDate" select="nf:formatHL72VagueAdaDate(., nf:determine_date_precision(.))"></xsl:variable>
+            <xsl:element name="h2ada_date">
+                <xsl:value-of select="$adaDate"/>
+            </xsl:element>
+            <xsl:variable name="hl7v3Date">
+                <xsl:call-template name="format2HL7Date">
+                    <xsl:with-param name="dateTime">
+                        <xsl:value-of select="$adaDate"/>
+                    </xsl:with-param>
+                    <xsl:with-param name="precision"/>
+                </xsl:call-template>
+            </xsl:variable>
+            <xsl:element name="hl7v3_date">
+                <xsl:value-of select="$hl7v3Date"/>
+            </xsl:element>
+        </xsl:element>
+    </xsl:template>
+
     <xsl:template match="@* | node()" mode="testTimeZone">
         <xsl:copy>
             <xsl:apply-templates select="@* | node()" mode="#current"/>
