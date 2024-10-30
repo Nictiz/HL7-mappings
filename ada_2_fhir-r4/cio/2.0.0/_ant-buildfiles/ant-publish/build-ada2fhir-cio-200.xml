@@ -168,6 +168,7 @@
 
         <property name="xsl.input" value="${build.dir}/${xsl.in}"/>
         <property name="xsl.output" value="${build.dir}/${xsl.out}"/>
+        <!-- The xsl will write its resources, but ant xslt still needs output dir -->
         <property name="xsl.output.dummy" value="dummy"/>
 
         <echo>Deleting previous results, if any</echo>
@@ -180,9 +181,11 @@
             
             <echo/>
             <echo>${echo.label} ${xsl.cio}</echo>
-            <xslt force="true" style="${xsl.cio}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+            <xslt force="true" style="${xsl.cio}" destdir="${xsl.output.dummy}" extension=".xml" useImplicitFileset="false">
                 <fileset refid="inputfiles"/>
                 <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <!-- This directory is relative to the (dummy) destination directory, so we need an extra dir up -->
+                <param name="outputDir" expression="../${xsl.output}"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>

@@ -38,6 +38,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- If the desired output is to be a Bundle, then a self link string of type url is required. 
          See: https://www.hl7.org/fhir/R4/search.html#conformance -->
     <xsl:param name="bundleSelfLink" as="xs:string?"/>
+    <!-- Output dir for the result doc(s) -->
+    <xsl:param name="outputDir" select="'.'"/>
     
     <!-- Generate metadata for all ADA instances -->
     <xsl:param name="fhirMetadata" as="element()*">
@@ -129,7 +131,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="$resources/f:resource/*">
                     <xsl:choose>
                         <xsl:when test="string-length(f:id/@value) gt 0">
-                            <xsl:result-document href="../fhir_instance/{f:id/@value}.xml">
+                            <xsl:result-document href="{$outputDir}/{f:id/@value}.xml">
                                 <xsl:copy-of select="."/>
                             </xsl:result-document>
                         </xsl:when>
@@ -145,7 +147,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:result-document href="../fhir_instance/{nf:assure-logicalid-length(nf:removeSpecialCharacters(replace(@id,'\.','-')))}.xml">
+                <xsl:result-document href="{$outputDir}/{nf:assure-logicalid-length(nf:removeSpecialCharacters(replace(@id,'\.','-')))}.xml">
                     <Bundle xmlns="http://hl7.org/fhir">
                         <id value="{nf:assure-logicalid-length(nf:removeSpecialCharacters(replace(@id,'\.','-')))}"/>
                         <meta>
