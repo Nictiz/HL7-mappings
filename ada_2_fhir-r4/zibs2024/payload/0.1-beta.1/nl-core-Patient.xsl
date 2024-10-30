@@ -51,10 +51,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="patient" mode="nl-core-Patient" name="nl-core-Patient" as="element(f:Patient)">
         <xsl:param name="in" as="element()?" select="."/>
-        <xsl:param name="nationality" as="element(nationaliteit_rc)?" select="$in/nationaliteit_rc"/>
-        <xsl:param name="maritalStatus" as="element(burgerlijke_staat_rc)?" select="$in/burgerlijke_staat_rc"/>
-        <xsl:param name="languageProficiency" as="element(taalvaardigheid)*" select="$in/taalvaardigheid"/>
-        <xsl:param name="contactPersons" as="element(contactpersoon)*" select="$in/contactpersoon"/>
+        <xsl:param name="nationality" as="element(nationaliteit_rc)?"/>
+        <xsl:param name="maritalStatus" as="element(burgerlijke_staat_rc)?"/>
+        <xsl:param name="languageProficiency" as="element(taalvaardigheid)*"/>
+        <xsl:param name="contactPersons" as="element(contactpersoon)*"/>
 
         <xsl:for-each select="$in">
             <Patient>
@@ -65,7 +65,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <!-- Nationality is a zib on its own, but the implementation is specific for the Patient resource. Therefore, it is created inline. -->
-                <xsl:for-each select="$nationality/nationaliteit">
+                <xsl:for-each select="$nationality/nationaliteit[@code]">
                     <extension url="http://hl7.org/fhir/StructureDefinition/patient-nationality">
                         <extension url="code">
                             <valueCodeableConcept>
@@ -77,9 +77,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>
                 </xsl:for-each>
                 
-                <xsl:for-each select="identificatienummer">
+                <xsl:for-each select="identificatienummer[@value]">
                     <identifier>
-                        <xsl:call-template name="id-to-Identifier"/>
+                        <xsl:call-template name="id-to-Identifier">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
                     </identifier>
                 </xsl:for-each>
 
@@ -91,7 +93,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="nl-core-ContactInformation"/>
                 </xsl:for-each>
 
-                <xsl:for-each select="geslacht">
+                <xsl:for-each select="geslacht[@code]">
                     <gender>
                         <xsl:call-template name="code-to-code">
                             <xsl:with-param name="in" select="."/>
@@ -107,7 +109,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </gender>
                 </xsl:for-each>
 
-                <xsl:for-each select="geboortedatum">
+                <xsl:for-each select="geboortedatum[@value]">
                     <birthDate>
                         <xsl:attribute name="value">
                             <xsl:call-template name="format2FHIRDate">
@@ -145,10 +147,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- MaritalStatus is a zib on its own, but the implementation is specific for the Patient resource. Therefore, it is created inline. -->
-                <xsl:for-each select="$maritalStatus">
+                <xsl:for-each select="$maritalStatus/burgerlijke_staat[@code]">
                     <maritalStatus>
                         <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="burgerlijke_staat"/>
+                            <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </maritalStatus>
                 </xsl:for-each>
@@ -162,28 +164,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- Only "Eerste relatie/contactpersoon" and "Tweede relatie/contactpersoon" as Patient.contacts. Otherwise they should be entered as RelatedPerson-->
-                <xsl:for-each select="$contactPersons">
-                    <xsl:if
-                        test="$contactPersons/rol[@value = '1'] | $contactPersons/rol[@value = '2']">
-                        <xsl:call-template name="nl-core-ContactPerson-embedded"/>
-                    </xsl:if>
+                <xsl:for-each select="$contactPersons[rol[@code = ('300481000146102', '300531000146100')]]">
+                    <xsl:call-template name="nl-core-ContactPerson-embedded"/>
                 </xsl:for-each>
 
                 <xsl:for-each select="$languageProficiency">
                     <communication>
-                        <xsl:call-template name="_patientProficiency">
-                            <xsl:with-param name="in" select="taalvaardigheid_begrijpen"/>
-                            <xsl:with-param name="typeCode" select="'RSP'"/>
-                        </xsl:call-template>
-                        <xsl:call-template name="_patientProficiency">
-                            <xsl:with-param name="in" select="taalvaardigheid_spreken"/>
-                            <xsl:with-param name="typeCode" select="'ESP'"/>
-                        </xsl:call-template>
-                        <xsl:call-template name="_patientProficiency">
-                            <xsl:with-param name="in" select="taalvaardigheid_lezen"/>
-                            <xsl:with-param name="typeCode" select="'RWR'"/>
-                        </xsl:call-template>
-                        <xsl:for-each select="communicatie_bijzonderheden">
+                        <xsl:for-each select="taalvaardigheid_begrijpen[@code]">
+                            <xsl:call-template name="_patientProficiency">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="typeCode" select="'RSP'"/>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                        
+                        <xsl:for-each select="taalvaardigheid_spreken[@code]">
+                            <xsl:call-template name="_patientProficiency">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="typeCode" select="'ESP'"/>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                        
+                        <xsl:for-each select="taalvaardigheid_lezen[@code]">
+                            <xsl:call-template name="_patientProficiency">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="typeCode" select="'RWR'"/>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                        
+                        <xsl:for-each select="communicatie_bijzonderheden[@code]">
                             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-LanguageProficiency.CommunicationDetails">
                                 <valueCodeableConcept>
                                     <xsl:call-template name="code-to-CodeableConcept">
@@ -192,16 +200,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </valueCodeableConcept>
                             </extension>
                         </xsl:for-each>
-                        <xsl:for-each select="toelichting">
+                        
+                        <xsl:for-each select="toelichting[@value]">
                             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-LanguageProficiency.Comment">
-                                <valueString value="{normalize-space(@value)}"/>                                
+                                <valueString>
+                                    <xsl:call-template name="string-to-string">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </valueString>
                             </extension>
                         </xsl:for-each>
-                        <language>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="communicatie_taal"/>
-                            </xsl:call-template>
-                        </language>
+                        
+                        <xsl:for-each select="communicatie_taal[@code]">
+                            <language>
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </language>
+                        </xsl:for-each>
                     </communication>
                 </xsl:for-each>
             </Patient>
@@ -216,15 +232,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="_patientProficiency">
         <xsl:param name="in" as="element()?"/>
         <xsl:param name="typeCode" as="xs:string"/>
-        <xsl:if test="$in">
+        
+        <xsl:for-each select="$in">
             <extension url="http://hl7.org/fhir/StructureDefinition/patient-proficiency">
                 <extension url="level">
                     <valueCoding>
                         <xsl:call-template name="code-to-Coding">
-                            <xsl:with-param name="in" select="$in"/>
+                            <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </valueCoding>
                 </extension>
+                
                 <extension url="type">
                     <valueCoding>
                         <system value="http://terminology.hl7.org/CodeSystem/v3-LanguageAbilityMode"/>
@@ -245,7 +263,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </valueCoding>
                 </extension>
             </extension>
-        </xsl:if>
+        </xsl:for-each>
     </xsl:template>
 
     <xd:doc>
