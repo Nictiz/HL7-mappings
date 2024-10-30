@@ -168,6 +168,7 @@
 
         <property name="xsl.input" value="${build.dir}/${xsl.in}"/>
         <property name="xsl.output" value="${build.dir}/${xsl.out}"/>
+        <property name="xsl.output.dummy" value="dummy"/>
 
         <echo>Deleting previous results, if any</echo>
         <delete>
@@ -186,6 +187,9 @@
                 <classpath location="${xsl.saxon}"/>
             </xslt>
         </sequential>
+        
+        <!-- delete dummy dir -->
+        <delete dir="${xsl.output.dummy}"/>
     </target>
 
 </project>

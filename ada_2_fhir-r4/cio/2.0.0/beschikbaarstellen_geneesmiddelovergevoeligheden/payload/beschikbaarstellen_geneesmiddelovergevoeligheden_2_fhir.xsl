@@ -174,9 +174,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:result-document href="../fhir_instance/{translate(@id,'.','-')}.xml">
+                <xsl:result-document href="../fhir_instance/{nf:assure-logicalid-length(nf:removeSpecialCharacters(replace(@id,'\.','-')))}.xml">
                     <Bundle xmlns="http://hl7.org/fhir">
-                        <id value="{nf:assure-logicalid-length(nf:removeSpecialCharacters(@id))}"/>
+                        <id value="{nf:assure-logicalid-length(nf:removeSpecialCharacters(replace(@id,'\.','-')))}"/>
                         <type value="searchset"/>
                         <total value="{count($resources/f:resource/*)}"/>
                         <xsl:choose>
