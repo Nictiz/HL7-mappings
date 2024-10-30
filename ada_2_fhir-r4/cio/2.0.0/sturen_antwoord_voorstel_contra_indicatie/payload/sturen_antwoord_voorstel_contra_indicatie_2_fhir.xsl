@@ -122,29 +122,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </xsl:when>
             <xsl:otherwise>
-                <Bundle xmlns="http://hl7.org/fhir">
-                    <id value="{nf:assure-logicalid-length(nf:removeSpecialCharacters(@id))}"/>
-                    <meta>
-                        <profile value="{concat($urlBaseNictizProfile, $profileNameCioReplyProposalContraIndicationBundle)}"/>
-                    </meta>
-                    <type value="transaction"/>
-                    <xsl:choose>
-                        <xsl:when test="$bundleSelfLink[not(. = '')]">
-                            <link>
-                                <relation value="self"/>
-                                <url value="{$bundleSelfLink}"/>
-                            </link>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:call-template name="util:logMessage">
-                                <xsl:with-param name="level" select="$logWARN"/>
-                                <xsl:with-param name="msg">Parameter bundleSelfLink is empty, but server SHALL return the parameters that were actually used to process the search.</xsl:with-param>
-                                <xsl:with-param name="terminate" select="false()"/>
-                            </xsl:call-template>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                    <xsl:apply-templates select="$resources" mode="addBundleEntrySearchOrRequest"/>
-                </Bundle>
+                <xsl:result-document href="../fhir_instance/{translate(@id,'.','-')}.xml">
+                    <Bundle xmlns="http://hl7.org/fhir">
+                        <id value="{nf:assure-logicalid-length(nf:removeSpecialCharacters(@id))}"/>
+                        <meta>
+                            <profile value="{concat($urlBaseNictizProfile, $profileNameCioReplyProposalContraIndicationBundle)}"/>
+                        </meta>
+                        <type value="transaction"/>
+                        <xsl:choose>
+                            <xsl:when test="$bundleSelfLink[not(. = '')]">
+                                <link>
+                                    <relation value="self"/>
+                                    <url value="{$bundleSelfLink}"/>
+                                </link>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:call-template name="util:logMessage">
+                                    <xsl:with-param name="level" select="$logWARN"/>
+                                    <xsl:with-param name="msg">Parameter bundleSelfLink is empty, but server SHALL return the parameters that were actually used to process the search.</xsl:with-param>
+                                    <xsl:with-param name="terminate" select="false()"/>
+                                </xsl:call-template>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        <xsl:apply-templates select="$resources" mode="addBundleEntrySearchOrRequest"/>
+                    </Bundle>
+                </xsl:result-document>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
