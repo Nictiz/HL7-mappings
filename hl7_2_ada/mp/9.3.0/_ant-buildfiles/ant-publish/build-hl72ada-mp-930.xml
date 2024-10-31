@@ -80,7 +80,6 @@
             </fileset>
         </copy>
 
-
         <!-- sturen_medicatiegegevens -->
         <echo/>
         <echo>Setup ${build.dir}/${usecase.mg.st} containing refreshed hl7 instances</echo>
@@ -256,10 +255,18 @@
             <param name="xsl.out" value="ada_instance"/>
         </antcall>
 
+        <!-- convert test timezone -->
+        <echo/>
+        <echo>${echo.label} testTimezone.xsl input file testTimezone.xml</echo>
+        <xslt force="true" style="../../nictiz_test/test_datetime/testTimezone.xsl" in="../../nictiz_test/test_datetime/testTimezone.xml" out="../../nictiz_test/test_datetime/testTimezone_converted.xml">
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>
+
     </target>
 
     <target name="double_roundtrip_hl7_2_ada_930">
-        
+
         <!-- convert beschikbaarstellen_medicatiegegevens -->
         <antcall target="convert_hl7_2_ada_sub_930">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
@@ -267,7 +274,7 @@
             <param name="xsl.in" value="hl7_instance_roundtrip"/>
             <param name="xsl.out" value="ada_instance_roundtrip"/>
         </antcall>
-        
+
         <!-- convert sturen_medicatiegegevens -->
         <antcall target="convert_hl7_2_ada_sub_930">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg.st}"/>
@@ -275,7 +282,7 @@
             <param name="xsl.in" value="hl7_instance_roundtrip"/>
             <param name="xsl.out" value="ada_instance_roundtrip"/>
         </antcall>
-        
+
         <!-- convert medicatievoorschrift -->
         <antcall target="convert_hl7_2_ada_sub_930">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
@@ -283,7 +290,7 @@
             <param name="xsl.in" value="hl7_instance_roundtrip"/>
             <param name="xsl.out" value="ada_instance_roundtrip"/>
         </antcall>
-        
+
         <!-- convert sturen_afhandeling_medicatievoorschrift -->
         <antcall target="convert_hl7_2_ada_sub_930">
             <param name="sub.build.dir" value="${build.dir}/${usecase.av}"/>
@@ -291,7 +298,7 @@
             <param name="xsl.in" value="hl7_instance_roundtrip"/>
             <param name="xsl.out" value="ada_instance_roundtrip"/>
         </antcall>
-        
+
         <!-- convert sturen_voorstel_medicatieafspraak -->
         <antcall target="convert_hl7_2_ada_sub_930">
             <param name="sub.build.dir" value="${build.dir}/${usecase.vma}"/>
@@ -299,7 +306,7 @@
             <param name="xsl.in" value="hl7_instance_roundtrip"/>
             <param name="xsl.out" value="ada_instance_roundtrip"/>
         </antcall>
-        
+
         <!-- convert sturen_antwoord_voorstel_medicatieafspraak -->
         <antcall target="convert_hl7_2_ada_sub_930">
             <param name="sub.build.dir" value="${build.dir}/${usecase.avma}"/>
@@ -307,7 +314,7 @@
             <param name="xsl.in" value="hl7_instance_roundtrip"/>
             <param name="xsl.out" value="ada_instance_roundtrip"/>
         </antcall>
-        
+
         <!-- convert sturen_voorstel_verstrekkingsverzoek -->
         <antcall target="convert_hl7_2_ada_sub_930">
             <param name="sub.build.dir" value="${build.dir}/${usecase.vvv}"/>
@@ -315,7 +322,7 @@
             <param name="xsl.in" value="hl7_instance_roundtrip"/>
             <param name="xsl.out" value="ada_instance_roundtrip"/>
         </antcall>
-        
+
         <!-- convert sturen_antwoord_voorstel_verstrekkingsverzoek -->
         <antcall target="convert_hl7_2_ada_sub_930">
             <param name="sub.build.dir" value="${build.dir}/${usecase.avvv}"/>
@@ -323,9 +330,9 @@
             <param name="xsl.in" value="hl7_instance_roundtrip"/>
             <param name="xsl.out" value="ada_instance_roundtrip"/>
         </antcall>
-        
+
     </target>
-    
+
 
     <target name="convert_hl7_2_ada_sub_930">
 
@@ -340,23 +347,38 @@
             <fileset dir="${xsl.output}" includes="*.xml"/>
         </delete>
 
-        <sequential>
-            <fileset id="inputfilesMP" dir="${xsl.input}" includes="*.xml"/>
+        <fileset id="inputfilesMP" dir="${xsl.input}" includes="*.xml"/>
 
-            <echo/>
-            <echo>${echo.label} ${xsl.hl72ada} input dir ${xsl.input}</echo>
-            <xslt force="true" style="${xsl.hl72ada}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
-                <fileset refid="inputfilesMP"/>
-                <!-- hl7_2_ada param -->
-                <param name="outputSchemaRef" expression="${output.ada.schemaref}" if="output.ada.schemaref"/>
-                <param name="deduplicateAdaBouwstenen" expression="true" type="BOOLEAN"/>
-                <param name="addAdaConceptId" expression="true" type="BOOLEAN"/>
-                <!-- ada_2_hl7 param -->
-                <param name="schematronRef" expression="false"/>
-                <factory name="${xsl.saxon.class}"/>
-                <classpath location="${xsl.saxon}"/>
-            </xslt>
-        </sequential>
+        <echo/>
+        <echo>${echo.label} ${xsl.hl72ada} input dir ${xsl.input}</echo>
+        <xslt force="true" style="${xsl.hl72ada}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+            <fileset refid="inputfilesMP"/>
+            <!-- hl7_2_ada param -->
+            <param name="outputSchemaRef" expression="${output.ada.schemaref}" if="output.ada.schemaref"/>
+            <param name="deduplicateAdaBouwstenen" expression="true" type="BOOLEAN"/>
+            <param name="addAdaConceptId" expression="true" type="BOOLEAN"/>
+            <!-- ada_2_hl7 param -->
+            <param name="schematronRef" expression="false"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>
+        
+        <!-- update meta dates to avoid pseudo changes in GitHub -->
+        <move file="${xsl.output}" tofile="${xsl.output}_temp"/>
+        <fileset id="inputfilesMetaUpdate" dir="${xsl.output}_temp" includes="*.xml"/>
+        
+        <echo/>
+        <echo>${echo.label} UpdateMeta.xsl input dir ${xsl.output}</echo>
+        <xslt force="true" style="../../../../../ada_2_ada/ada/UpdateMeta.xsl" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+            <fileset refid="inputfilesMetaUpdate"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>        
+       
+        <!-- remove the temp folder -->
+        <delete dir="${xsl.output}_temp" deleteonexit="true"/>
+        
+        
     </target>
 
 
@@ -368,7 +390,7 @@
 
         <!-- roundtrip -->
         <antcall target="roundtrip_ada_2_hl7_930_sub"/>
-        
+
         <!-- double roundtrip ada again -->
         <antcall target="double_roundtrip_hl7_2_ada_930"/>
 

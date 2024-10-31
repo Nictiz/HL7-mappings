@@ -59,9 +59,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:choose>
                     <xsl:when test="product_code[@codeSystem = $oidsGstandaardMedication][@code]">
                         <code>
-                            <!--Temporary fix for imm. TODO: fix this xsl:for-each to include SNOMED CT as used in imm-->
-                            <!--<xsl:for-each select="product_code[@codeSystem = $oidsGstandaardMedication][@code]">-->
-                            <xsl:for-each select="product_code">
+                            <xsl:for-each select="product_code[@codeSystem = $oidsGstandaardMedication][@code]">
                                 <xsl:choose>
                                     <xsl:when test="@codeSystem = $most-specific-product-code/@codeSystem">
                                         <xsl:call-template name="code-to-CodeableConcept">
