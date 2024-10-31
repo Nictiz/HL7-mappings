@@ -35,7 +35,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:if>
                     <xsl:for-each select="f:use[@value]">
                         <nummer_soort>
-                            <xsl:call-template name="code-to-code">
+                            <xsl:call-template name="fhircode-to-adacode">
                                 <xsl:with-param name="value" select="@value"/>
                                 <xsl:with-param name="codeMap" as="element()*">
                                     <map inValue="home" code="HP" codeSystem="{$oidHL7AddressUse}" displayName="Telefoonnummer thuis"/>
@@ -60,7 +60,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <email_adres value="{f:value/@value}"/>
             <xsl:for-each select="f:use[@value]">
                 <nummer_soort>
-                    <xsl:call-template name="code-to-code">
+                    <xsl:call-template name="fhircode-to-adacode">
                         <xsl:with-param name="value" select="@value"/>
                         <xsl:with-param name="codeMap" as="element()*">
                             <map inValue="home" code="HP" codeSystem="{$oidHL7AddressUse}" displayName="Privé e-mailadres"/>

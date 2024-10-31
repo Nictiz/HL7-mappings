@@ -169,7 +169,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				</xsl:variable>
 				<xsl:if test="@value = $mapMtdStatus/@inValue">
 					<medicatie_toediening_status>
-						<xsl:call-template name="code-to-code">
+						<xsl:call-template name="fhircode-to-adacode">
 							<xsl:with-param name="value" select="@value"/>
 							<xsl:with-param name="codeMap" as="element()*" select="$mapMtdStatus"/>
 						</xsl:call-template>
