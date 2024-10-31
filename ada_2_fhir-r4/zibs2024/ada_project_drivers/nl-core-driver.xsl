@@ -143,10 +143,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$localName = 'patient'">
                 <xsl:variable name="patient-id" select="identificatienummer/@value"/>
                 <xsl:call-template name="nl-core-Patient">
-                    <xsl:with-param name="nationality" select="collection('../ada_instance/')/*/nationaliteit_rc[onderwerp/patient-id/@value = $patient-id]"/>
-                    <xsl:with-param name="maritalStatus" select="collection('../ada_instance/')/*/burgerlijke_staat_rc[onderwerp/patient-id/@value = $patient-id]"/>
+                    <xsl:with-param name="nationality" select="collection('../ada_instance/')/*/nationaliteit_rc[onderwerp/patient-id/@value = $patient-id][1]"/>
+                    <xsl:with-param name="maritalStatus" select="collection('../ada_instance/')/*/burgerlijke_staat_rc[onderwerp/patient-id/@value = $patient-id][1]"/>
                     <xsl:with-param name="languageProficiency" select="collection('../ada_instance/')/*/taalvaardigheid[onderwerp/patient-id/@value = $patient-id]"/>
-                    <xsl:with-param name="contactPersons" select="collection('../ada_instance/')/*/contactpersoon[onderwerp/patient-id/@value = $patient-id]"/>
+                    <xsl:with-param name="contactPerson" select="collection('../ada_instance/')/*/contactpersoon[onderwerp/patient-id/@value = $patient-id]"/>
                 </xsl:call-template>
             </xsl:when>
 
