@@ -84,6 +84,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:attribute name="value">
                             <xsl:call-template name="format2FHIRDate">
                                 <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                <!-- Since this FHIR element has data type instant, we need a date/time precision of seconds -->
+                                <xsl:with-param name="precision" select="'SECONDS'"/>
                             </xsl:call-template>
                         </xsl:attribute>
                     </recorded>
