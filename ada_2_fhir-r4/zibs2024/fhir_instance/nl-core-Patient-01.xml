@@ -69,6 +69,7 @@
          </extension>
       </system>
       <value value="+31611234567"/>
+      <use value="home"/>
    </telecom>
    <telecom>
       <system value="email"/>
@@ -116,7 +117,6 @@
             <valueCodeableConcept>
                <coding>
                   <system value="urn:iso:std:iso:3166"/>
-                  <version value="2020-10-26T00:00:00"/>
                   <code value="NL"/>
                   <display value="Nederland"/>
                </coding>
@@ -174,16 +174,32 @@
          <use value="official"/>
          <text value="J.P.M. van Putten-van der Giessen"/>
          <family value="van Putten-van der Giessen">
+            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+               <valueString value="van"/>
+            </extension>
             <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-               <valueString value="van Putten"/>
+               <valueString value="Putten"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
+               <valueString value="van der"/>
             </extension>
             <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
-               <valueString value="van der Giessen"/>
+               <valueString value="Giessen"/>
             </extension>
          </family>
-         <given value="J.P.M.">
+         <given value="J.">
             <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-               <valueCode value="BR"/>
+               <valueCode value="IN"/>
+            </extension>
+         </given>
+         <given value="P.">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+               <valueCode value="IN"/>
+            </extension>
+         </given>
+         <given value="M.">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+               <valueCode value="IN"/>
             </extension>
          </given>
       </name>
@@ -200,6 +216,7 @@
             </extension>
          </system>
          <value value="+31611234567"/>
+         <use value="home"/>
       </telecom>
       <telecom>
          <system value="email"/>
@@ -234,7 +251,6 @@
                <valueCodeableConcept>
                   <coding>
                      <system value="urn:iso:std:iso:3166"/>
-                     <version value="2020-10-26T00:00:00"/>
                      <code value="NL"/>
                      <display value="Nederland"/>
                   </coding>

@@ -61,8 +61,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$writeOutputToDisk">
                 <xsl:for-each select="$resources">
                     <xsl:choose>
-                        <!-- When a bundled version of a resource exists, ignore the current version (because we assume the bundled version contains more details) -->
-                        <xsl:when test="not(ends-with(base-uri(), '-bundled.xml')) and doc-available(concat('../ada_instance/', ./f:id/@value, '-bundled.xml'))"/>
                         <xsl:when test="string-length(f:id/@value) gt 0">
                             <xsl:result-document href="../fhir_instance/{./f:id/@value}.xml">
                                 <xsl:copy-of select="."/>
@@ -95,25 +93,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Extract the patient either from the special way how it is done within this project (by business identifier), or
-            if that's unavailable from the Bundle (when that mechanism is used). If neither are available, nothing is
-            returned.</xd:desc>
-        <xd:param name="businessIdentifierRef">The element containing the business identifier reference may be absent.</xd:param>
+        <xd:desc>Extract the patient from the reference in zibroot. If no reference available, nothing is returned.</xd:desc>
+        <xd:param name="zibrootPatient">The element containing the reference to the ADA Patient.</xd:param>
     </xd:doc>
     <xsl:template name="_resolveAdaPatient" as="element()?">
-        <xsl:param name="businessIdentifierRef" as="element()?" select="onderwerp/patient-id"/>
+        <xsl:param name="zibrootPatient" as="element()?" select="zibroot/patient"/>
         
-        <xsl:variable name="patient-id" select="$businessIdentifierRef/@value"/>
-        <!-- Give preference to patient that is not in 'referenties' -->
-        <xsl:variable name="referencedPatient" select="(collection('../ada_instance')//patient[identificatienummer/@value = $patient-id]/(self::*[not(ancestor::referenties)],self::*[ancestor::referenties]))[1]"/>
+        <xsl:variable name="patientId" select="substring-after($zibrootPatient/@value,'#')"/>
+        <xsl:variable name="referencedPatient" select="collection('../ada_instance')//patient[@id = $patientId]"/>
         <xsl:choose>
             <xsl:when test="$referencedPatient">
                 <xsl:copy-of select="$referencedPatient"/>
             </xsl:when>
-            <xsl:when test="$patient-id and not($referencedPatient)">
+            <xsl:when test="$patientId and not($referencedPatient)">
                 <xsl:call-template name="util:logMessage">
                     <xsl:with-param name="level" select="$logWARN"/>
-                    <xsl:with-param name="msg">Could not find Patient instance with patient-id '<xsl:value-of select="$patient-id"/>'</xsl:with-param>
+                    <xsl:with-param name="msg">Could not find Patient instance with patient id '<xsl:value-of select="$patientId"/>'</xsl:with-param>
                 </xsl:call-template>
             </xsl:when>
         </xsl:choose>
@@ -141,12 +136,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
             </xsl:when>
             <xsl:when test="$localName = 'patient'">
-                <xsl:variable name="patient-id" select="identificatienummer/@value"/>
+                <xsl:variable name="patientId" select="@id"/>
                 <xsl:call-template name="nl-core-Patient">
-                    <xsl:with-param name="nationality" select="collection('../ada_instance/')/*/nationaliteit_rc[onderwerp/patient-id/@value = $patient-id][1]"/>
-                    <xsl:with-param name="maritalStatus" select="collection('../ada_instance/')/*/burgerlijke_staat_rc[onderwerp/patient-id/@value = $patient-id][1]"/>
-                    <xsl:with-param name="languageProficiency" select="collection('../ada_instance/')/*/taalvaardigheid[onderwerp/patient-id/@value = $patient-id]"/>
-                    <xsl:with-param name="contactPerson" select="collection('../ada_instance/')/*/contactpersoon[onderwerp/patient-id/@value = $patient-id]"/>
+                    <xsl:with-param name="nationality" select="collection('../ada_instance')//nationaliteit_rc[substring-after(zibroot/patient/@value,'#') = $patientId][1]"/>
+                    <xsl:with-param name="maritalStatus" select="collection('../ada_instance')//burgerlijke_staat_rc[substring-after(zibroot/patient/@value,'#') = $patientId][1]"/>
+                    <xsl:with-param name="languageProficiency" select="collection('../ada_instance')//taalvaardigheid[substring-after(zibroot/patient/@value,'#') = $patientId]"/>
+                    <xsl:with-param name="contactPerson" select="collection('../ada_instance')//contactpersoon[substring-after(zibroot/patient/@value,'#') = $patientId]"/>
                 </xsl:call-template>
             </xsl:when>
 

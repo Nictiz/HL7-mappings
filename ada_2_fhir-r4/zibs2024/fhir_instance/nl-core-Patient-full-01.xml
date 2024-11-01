@@ -54,7 +54,7 @@
    </name>
    <telecom>
       <extension url="http://hl7.org/fhir/StructureDefinition/contactpoint-comment">
-         <valueString value="S'ochtends niet bereikbaar."/>
+         <valueString value="'s Ochtends niet bereikbaar."/>
       </extension>
       <system value="phone">
          <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
@@ -112,8 +112,11 @@
             <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
                <valueString value="Putten"/>
             </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
+               <valueString value="van der"/>
+            </extension>
             <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
-               <valueString value="van der Giessen"/>
+               <valueString value="Giessen"/>
             </extension>
          </family>
          <given value="Johanna">
@@ -137,6 +140,15 @@
          <extension url="http://hl7.org/fhir/StructureDefinition/contactpoint-comment">
             <valueString value="Alleen tijdens kantooruren bellen."/>
          </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/contactpoint-purpose">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                  <code value="EC"/>
+                  <display value="Emergencycontact"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
          <system value="phone">
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
                <valueCodeableConcept>
@@ -149,7 +161,7 @@
             </extension>
          </system>
          <value value="+31611234567"/>
-         <use value="home"/>
+         <use value="work"/>
       </telecom>
       <telecom>
          <system value="email"/>
@@ -193,7 +205,6 @@
                <valueCodeableConcept>
                   <coding>
                      <system value="urn:iso:std:iso:3166"/>
-                     <version value="2020-10-26T00:00:00"/>
                      <code value="NL"/>
                      <display value="Nederland"/>
                   </coding>
