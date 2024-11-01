@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Condition xmlns="http://hl7.org/fhir">
+   <id value="aog-pat03-aog-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-Condition"/>
+   </meta>
+   <extension url="http://hl7.org/fhir/StructureDefinition/condition-assertedDate">
+      <valueDateTime value="${DATE, T, Y, -8}T13:08:15+02:00"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationHypersensitivity.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.341"/>
+         <value value="pat03-gmo-02"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.36"/>
+      <value value="pat03-aog-01"/>
+   </identifier>
+   <severity>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="6736007"/>
+         <display value="Matig"/>
+      </coding>
+   </severity>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="421961002"/>
+         <display value="OVERGEVOELIGHEIDSREACTIE (AANDOENING)"/>
+      </coding>
+      <text value="farmacologische bijwerking"/>
+   </code>
+   <subject>
+      <reference value="Patient/patient-XXX-Drijkoningen"/>
+      <type value="Patient"/>
+      <display value="Patient, Petra XXX_Drijkoningen"/>
+   </subject>
+   <onsetDateTime value="${DATE, T, Y, -8}T13:08:15+02:00"/>
+   <recordedDate value="${DATE, T, Y, -8}T13:08:15+02:00"/>
+   <recorder>
+      <reference value="PractitionerRole/pracrole-000003332"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Peter van Pulver, HUISARTS, Huisartsenpraktijk Pulver &amp; Partners"/>
+   </recorder>
+   <asserter>
+      <reference value="PractitionerRole/pracrole-000003332"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Peter van Pulver, HUISARTS, Huisartsenpraktijk Pulver &amp; Partners"/>
+   </asserter>
+   <evidence>
+      <detail>
+         <reference value="Observation/symp-pat03-sym-01"/>
+         <type value="Observation"/>
+         <display value="Symptoom, HOOFDPIJN (BEVINDING)"/>
+      </detail>
+   </evidence>
+   <evidence>
+      <detail>
+         <reference value="Observation/symp-pat03-sym-02"/>
+         <type value="Observation"/>
+         <display value="Symptoom, OEDEEM (BEVINDING)"/>
+      </detail>
+   </evidence>
+</Condition>

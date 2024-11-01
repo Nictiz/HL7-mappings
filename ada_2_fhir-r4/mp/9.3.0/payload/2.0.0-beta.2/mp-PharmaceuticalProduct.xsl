@@ -57,13 +57,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- the most specific coding will get userselected true, so a receiver can easily recognise the 'main' code -->
                 <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
                 <xsl:choose>
-                    <!--Temporary fix for imm. TODO: fix this xsl:when to include SNOMED CT as used in imm-->
-                    <!--<xsl:when test="product_code[@codeSystem = $oidsGstandaardMedication][@code]">-->
-                    <xsl:when test="product_code">
+                    <xsl:when test="product_code[@codeSystem = $oidsGstandaardMedication][@code]">
                         <code>
-                            <!--Temporary fix for imm. TODO: fix this xsl:for-each to include SNOMED CT as used in imm-->
-                            <!--<xsl:for-each select="product_code[@codeSystem = $oidsGstandaardMedication][@code]">-->
-                            <xsl:for-each select="product_code">
+                            <xsl:for-each select="product_code[@codeSystem = $oidsGstandaardMedication][@code]">
                                 <xsl:choose>
                                     <xsl:when test="@codeSystem = $most-specific-product-code/@codeSystem">
                                         <xsl:call-template name="code-to-CodeableConcept">
@@ -113,7 +109,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:if>
                         </code>
                     </xsl:when>
-                    <!-- 90 miljoen -->
+                    <!-- 90 miljoen or any other code, including SNOMED CT -->
                     <xsl:when test="product_code[not(@codeSystem = ($oidHL7NullFlavor, $oidsGstandaardMedication))]">
                         <code>
                             <xsl:call-template name="code-to-CodeableConcept">

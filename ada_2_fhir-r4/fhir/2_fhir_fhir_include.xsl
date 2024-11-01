@@ -54,10 +54,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xd:desc>
     </xd:doc>
     <xsl:variable name="ada2resourceType">
+        <nm:map ada="aandoening_of_gesteldheid" resource="Condition" profile="cio-Condition"/>
         <nm:map ada="alcohol_gebruik" resource="Observation" profile="nl-core-AlcoholUse"/>
         <nm:map ada="alert" resource="Flag" profile="nl-core-Alert"/>
         <nm:map ada="alert" resource="Flag" profile="cio-MedicationContraIndication"/>
         <nm:map ada="allergie_intolerantie" resource="AllergyIntolerance" profile="nl-core-AllergyIntolerance"/>
+        <nm:map ada="antwoord_voorstel_contra_indicatie" resource="Communication" profile="cio-ReplyProposalContraIndication"/>
         <nm:map ada="apgar_score" resource="Observation" profile="nl-core-ApgarScore-1Minute"/>
         <nm:map ada="apgar_score" resource="Observation" profile="nl-core-ApgarScore-5Minute"/>
         <nm:map ada="apgar_score" resource="Observation" profile="nl-core-ApgarScore-10Minute"/>
@@ -141,8 +143,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="ontwikkeling_taal" resource="Observation" profile="nl-core-DevelopmentChild.DevelopmentLinguistics"/>
         <nm:map ada="ontwikkeling_verstandelijk" resource="Observation" profile="nl-core-DevelopmentChild.DevelopmentCognition"/>
         <nm:map ada="opleiding" resource="Observation" profile="nl-core-Education"/>
-        <nm:map ada="overgevoeligheid" resource="AllergyIntolerance" profile="cio-Hypersensitivity"/>
-        <nm:map ada="overgevoeligheid" resource="Condition" profile="cio-Condition"/>
+        <nm:map ada="overgevoeligheid_intolerantie" resource="AllergyIntolerance" profile="cio-HypersensitivityIntolerance"/>
         <nm:map ada="participatie_in_maatschappij" resource="Observation" profile="nl-core-ParticipationInSociety"/>
         <nm:map ada="sociaal_netwerk" resource="Observation" profile="nl-core-ParticipationInSociety.SocialNetwork"/>
         <nm:map ada="vrijetijdsbesteding" resource="Observation" profile="nl-core-ParticipationInSociety.Hobby"/>
@@ -153,9 +154,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="pols_regelmatigheid" resource="Observation" profile="nl-core-PulseRate.PulseRegularity"/>
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
         <nm:map ada="reactie" resource="AllergyIntolerance" profile="cio-Reaction"/>
-        <nm:map ada="reactie" resource="Condition" profile="cio-Condition"/>
         <nm:map ada="refractie" resource="Observation" profile="nl-core-Refraction"/>
-        <nm:map ada="registratie_gegevens" resource="Provenance" profile="cio-RegistrationData"/>
+        <nm:map ada="registratie_informatie" resource="Provenance" profile="cio-RegistrationInformation"/>
         <nm:map ada="schedelomvang" resource="Observation" profile="nl-core-HeadCircumference"/>
         <nm:map ada="snaq65score" resource="Observation" profile="nl-core-SNAQ65plusScore"/>
         <nm:map ada="snaqrc_score" resource="Observation" profile="nl-core-SNAQrcScore"/>
@@ -166,15 +166,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="strong_kids_score" resource="Observation" profile="nl-core-StrongKidsScore"/>
         <nm:map ada="sturen_medicatievoorschrift" resource="Bundle" profile="mp-MedicationPrescription-Bundle"/>
         <nm:map ada="sturen_afhandeling_medicatievoorschrift" resource="Bundle" profile="mp-MedicationPrescriptionProcessing-Bundle"/>
+        <nm:map ada="sturen_antwoord_voorstel_contra_indicatie" resource="Bundle" profile="cio-ReplyProposalContraIndication-Bundle"/>
         <nm:map ada="sturen_antwoord_voorstel_medicatieafspraak" resource="Bundle" profile="mp-ReplyProposalMedicationAgreement-Bundle"/>
         <nm:map ada="sturen_antwoord_voorstel_medicatieafspraak" resource="Communication" profile="mp-ReplyProposalMedicationAgreement"/>
         <nm:map ada="sturen_antwoord_voorstel_verstrekkingsverzoek" resource="Bundle" profile="mp-ReplyProposalDispenseRequest-Bundle"/>
         <nm:map ada="sturen_antwoord_voorstel_verstrekkingsverzoek" resource="Communication" profile="mp-ReplyProposalDispenseRequest"/>
+        <nm:map ada="sturen_voorstel_contra_indicatie" resource="Bundle" profile="cio-ProposalContraIndication-Bundle"/>
         <nm:map ada="sturen_voorstel_medicatieafspraak" resource="Bundle" profile="mp-ProposalMedicationAgreement-Bundle"/>
         <nm:map ada="sturen_voorstel_verstrekkingsverzoek" resource="Bundle" profile="mp-ProposalDispenseRequest-Bundle"/>
         <nm:map ada="sturen_afhandeling_medicatievoorschrift" resource="Bundle" profile="mp-MedicationPrescriptionProcessing-Bundle"/>
         <nm:map ada="sturen_afhandeling_medicatievoorschrift" resource="Bundle" profile="mp-MedicationPrescriptionProcessing-Bundle"/>
         <nm:map ada="sturen_afhandeling_medicatievoorschrift" resource="Bundle" profile="mp-MedicationPrescriptionProcessing-Bundle"/>
+        <nm:map ada="symptoom" resource="Observation" profile="cio-Symptom"/>
         <nm:map ada="tabak_gebruik" resource="Observation" profile="nl-core-TobaccoUse"/>
         <nm:map ada="tekst_uitslag" resource="DiagnosticReport" profile="nl-core-TextResult"/>
         <nm:map ada="visueel_resultaat" resource="Media" profile="nl-core-TextResult.VisualResult"/>

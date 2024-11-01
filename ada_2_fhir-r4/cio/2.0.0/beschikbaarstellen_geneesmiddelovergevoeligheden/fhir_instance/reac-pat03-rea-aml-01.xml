@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="reac-pat03-rea-aml-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-Reaction"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/5.0/StructureDefinition/extension-AllergyIntolerance.type">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="281647001"/>
+            <display value="ongewenste reactie"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <extension url="http://hl7.org/fhir/StructureDefinition/allergyintolerance-assertedDate">
+      <valueDateTime value="${DATE, T, Y, -8}T13:08:15+02:00"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-WayOfDetermination">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="84100007"/>
+            <display value="History taking (procedure)"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationCondition">
+      <valueReference>
+         <reference value="Condition/aog-pat03-aog-01"/>
+         <type value="Condition"/>
+         <display value="Aandoening, startdatum: T-8Y{13:08:15}"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationHypersensitivity.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.341"/>
+         <value value="pat03-gmo-02"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.4"/>
+      <value value="pat03-rea-aml-01"/>
+   </identifier>
+   <code>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+         <code value="642916"/>
+         <display value="NORVASC TABLET 5MG"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/patient-XXX-Drijkoningen"/>
+      <type value="Patient"/>
+      <display value="Patient, Petra XXX_Drijkoningen"/>
+   </patient>
+   <recordedDate value="${DATE, T, Y, -8}T13:08:15+02:00"/>
+   <recorder>
+      <reference value="PractitionerRole/pracrole-000003332"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Peter van Pulver, HUISARTS, Huisartsenpraktijk Pulver &amp; Partners"/>
+   </recorder>
+   <asserter>
+      <reference value="PractitionerRole/pracrole-000003332"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Peter van Pulver, HUISARTS, Huisartsenpraktijk Pulver &amp; Partners"/>
+   </asserter>
+   <reaction>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Reaction.LatencyTime">
+         <valueQuantity>
+            <value value="12"/>
+            <unit value="h"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="h"/>
+         </valueQuantity>
+      </extension>
+      <substance>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+            <code value="642916"/>
+            <display value="NORVASC TABLET 5MG"/>
+         </coding>
+      </substance>
+      <onset value="${DATE, T, Y, -8}T13:08:15+02:00"/>
+      <exposureRoute>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="ORAAL"/>
+         </coding>
+      </exposureRoute>
+   </reaction>
+</AllergyIntolerance>

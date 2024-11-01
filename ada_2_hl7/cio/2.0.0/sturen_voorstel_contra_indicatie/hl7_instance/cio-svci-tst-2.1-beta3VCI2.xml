@@ -1,0 +1,147 @@
+<organizer classCode="CLUSTER"
+           moodCode="EVN"
+           xmlns="urn:hl7-org:v3">
+   <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.35"/>
+   <code code="38"
+         displayName="Sturen voorstel contra-indicatie"
+         codeSystem="2.16.840.1.113883.2.4.3.11.60.26.4"
+         codeSystemName="CiO transacties"/>
+   <recordTarget>
+      <patientRole>
+         <id extension="999900158"
+             root="2.16.840.1.113883.2.4.6.3"/>
+         <patient>
+            <name>
+               <given qualifier="BR">Olaf</given>
+               <family qualifier="BR">XXX_Gerrits</family>
+            </name>
+            <administrativeGenderCode code="M"
+                                      codeSystem="2.16.840.1.113883.5.1"
+                                      displayName="Man"/>
+            <birthTime value="19630922"/>
+         </patient>
+      </patientRole>
+   </recordTarget>
+   <component typeCode="COMP">
+      <act classCode="ACT"
+           moodCode="PRP">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.44"/>
+         <code code="1"
+               displayName="Voorstel contra-indicatie"
+               codeSystem="2.16.840.1.113883.2.4.3.11.60.26.5.5"
+               codeSystemName="CiO acts"/>
+         <entryRelationship typeCode="SUBJ">
+            <observation classCode="OBS"
+                         moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.19"/>
+               <id extension="pat07-vci-01"
+                   root="2.16.840.1.113883.2.4.3.11.999.26.1.936"/>
+               <code xsi:type="CD"
+                     code="350241000146102"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     displayName="potentiële contra-indicatie voor geneesmiddel (bevinding)"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <effectiveTime xsi:type="IVL_TS"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  <low value="20021001163457"/>
+                  <high value="20241001"/>
+               </effectiveTime>
+               <author>
+                  <time value="20241001"/>
+                  <assignedAuthor>
+                     <id extension="000001116"
+                         root="2.16.840.1.113883.2.4.3.11.999.26.1.139"/>
+                     <code code="0200"
+                           codeSystem="2.16.840.1.113883.2.4.6.7"
+                           displayName="Apothekers"/>
+                     <assignedPerson>
+                        <name>
+                           <given qualifier="BR">Victor</given>
+                           <prefix qualifier="VV">de </prefix>
+                           <family qualifier="BR">Verstrekker</family>
+                        </name>
+                     </assignedPerson>
+                     <representedOrganization>
+                        <id extension="01236578"
+                            root="2.16.840.1.113883.2.4.3.11.999.26.1.205"/>
+                        <name>Apotheek de Gulle Gaper</name>
+                        <addr use="WP">
+                           <streetName>Dorpsweg</streetName>
+                           <houseNumber>28</houseNumber>
+                           <postalCode>1234 AB</postalCode>
+                           <city>Ons Dorp</city>
+                        </addr>
+                     </representedOrganization>
+                  </assignedAuthor>
+               </author>
+               <entryRelationship typeCode="REFR"
+                                  inversionInd="true">
+                  <observation classCode="OBS"
+                               moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.20"/>
+                     <code code="44944-7"
+                           displayName="Other alert"
+                           codeSystem="2.16.840.1.113883.6.1"
+                           codeSystemName="LOINC"/>
+                     <value xsi:type="CD"
+                            code="38"
+                            codeSystem="2.16.840.1.113883.2.4.4.1.902.40"
+                            displayName="DEPRESSIE"
+                            codeSystemName="G-standaard Contra Indicaties (Thesaurus 40)"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                  </observation>
+               </entryRelationship>
+               <entryRelationship typeCode="SUBJ"
+                                  inversionInd="true">
+                  <act classCode="ACT"
+                       moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+                     <code code="48767-8"
+                           codeSystem="2.16.840.1.113883.6.1"
+                           codeSystemName="LOINC"
+                           displayName="Annotation comment"/>
+                     <text mediaType="text/plain">Persistente depressieve stoornis</text>
+                  </act>
+               </entryRelationship>
+               <entryRelationship typeCode="REFR">
+                  <observation classCode="OBS"
+                               moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.16"/>
+                     <id extension="pat07-mci-dep-01"
+                         root="2.16.840.1.113883.2.4.3.11.999.26.1.16"/>
+                     <code code="350241000146102"
+                           displayName="Potentiële contra-indicatie voor geneesmiddel (bevinding)"
+                           codeSystem="2.16.840.1.113883.6.96"
+                           codeSystemName="SNOMED CT"/>
+                  </observation>
+               </entryRelationship>
+            </observation>
+         </entryRelationship>
+      </act>
+   </component>
+   <component typeCode="COMP">
+      <substanceAdministration classCode="SBADM"
+                               moodCode="RQO">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
+         <id extension="pat07-ma01"
+             root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <code code="33633005"
+               codeSystem="2.16.840.1.113883.6.96"
+               codeSystemName="SNOMED CT"
+               displayName="Medicatieafspraak"/>
+         <consumable xsi:nil="true"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+      </substanceAdministration>
+   </component>
+   <component typeCode="COMP">
+      <act classCode="ACT"
+           moodCode="EVN">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+         <code code="48767-8"
+               codeSystem="2.16.840.1.113883.6.1"
+               codeSystemName="LOINC"
+               displayName="Annotation comment"/>
+         <text mediaType="text/plain">Patiënt geeft aan de balie aan niet lager depressief te zijn. Klopt dat en kan deze contra-indicatie dus worden afgesloten?</text>
+      </act>
+   </component>
+</organizer>

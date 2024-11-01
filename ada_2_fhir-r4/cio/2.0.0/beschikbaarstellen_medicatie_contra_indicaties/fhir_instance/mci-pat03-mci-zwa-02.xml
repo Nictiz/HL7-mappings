@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flag xmlns="http://hl7.org/fhir">
+   <id value="mci-pat03-mci-zwa-02"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-MedicationContraIndication"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationContraIndication.RelationAlert">
+      <valueReference>
+         <reference value="Flag/mci-pat03-mci-zwa-01"/>
+         <type value="Flag"/>
+         <display value="Medicatie contra-indicatie, ZWANGERSCHAP, startdatum: T-10M{08:54:38}"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+      <valueString value="Patiënt niet meer zwanger"/>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.16"/>
+      <value value="pat03-mci-zwa-02"/>
+   </identifier>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="350241000146102"/>
+         <display value="potentiële contra-indicatie voor geneesmiddel (bevinding)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.902.40"/>
+         <code value="1320"/>
+         <display value="ZWANGERSCHAP"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/patient-XXX-Drijkoningen"/>
+      <type value="Patient"/>
+      <display value="Patient, Petra XXX_Drijkoningen"/>
+   </subject>
+   <period>
+      <start value="${DATE, T, M, -10}T08:54:38+02:00"/>
+      <end value="${DATE, T, D, +0}"/>
+   </period>
+   <author>
+      <reference value="PractitionerRole/pracrole-000003332"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Peter van Pulver, HUISARTS, Huisartsenpraktijk Pulver &amp; Partners"/>
+   </author>
+</Flag>

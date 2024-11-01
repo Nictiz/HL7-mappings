@@ -189,7 +189,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:variable>
         <naamgebruik>
-            <xsl:call-template name="code-to-code">
+            <xsl:call-template name="fhircode-to-adacode">
                 <xsl:with-param name="value" select="$value"/>
                 <xsl:with-param name="codeMap" as="element()*">
                     <map inValue="NL1" code="NL1" codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4" displayName="Eigen geslachtsnaam"/>
