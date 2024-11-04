@@ -1205,6 +1205,15 @@
 
     <!-- R009 -->
     
+    <xd:doc>
+        <xd:desc>voeg doc toe</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:appendage/hl7:document/hl7:code[@code = '03' or @code = '04'][@codeSystem = '2.16.840.1.113883.2.4.4.40.303']" mode="dob420">
+        <code nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+            <originalText><xsl:value-of select="@displayName"/></originalText>
+        </code>
+    </xsl:template>
+    
     <!-- R012 -->
     
     <!-- R018 -->
