@@ -1598,6 +1598,55 @@
         </xsl:copy>
     </xsl:template>-->
 
+    <!-- R009 -->
+    
+    <!-- R012 -->
+    
+    <!-- R018 -->
+    <!--1424	Indicatie activiteit W0619-->
+    
+    <!-- R019 -->
+    <!--1665	In de omgeving van de jeugdige wordt wel eens of dagelijks gerookt	W0704-->
+    <!--1668	Jeugdige heeft zwemdiploma	W0705-->
+    
+    <!-- R021 -->
+    <!--324	Zindelijkheid	W0209-->
+    <!--1647	Soorten genotsmiddelen/verslavingsrisico	W0214-->
+    
+    <!--1649	Seksueel functioneren-->
+    <!--1651	Conclusie seksueel gedrag-->
+
+    <!-- R023 -->
+    <!--1678	Voorkeurshouding	W0708-->
+    
+    <!-- R025 -->
+    <!--422	Bijzonderheden testis rechts	W0250-->
+    <!--1392	Bijzonderheden testis links	W0250-->
+    
+    <!-- R026 -->
+    <!--1673	Beoordeling puberteitsontwikkeling-->
+    
+    <!-- R030 -->
+    <!--1658	Beoordeling cognitieve ontwikkeling-->
+    <!--1659	Bevinding(en) psychosociaal functioneren-->
+    
+    <!-- R039 -->
+    <!--1680	Risicosignalen hartfunctie-->
+    
+    <!-- R041 -->
+    <!--1682	De kinderarts heeft een contra-indicatie voor vaccinatie doorgegeven-->
+    <!--1683	Moeder heeft biological gebruikt-->
+    
+    <!-- R042 -->
+    <!--1684	Score op aanvullende vragen op ontwikkelingskenmerk 41-->
+    <!--1686	Score spelvraag Van Wiechentaalonderzoek-->
+    
+    <!-- R054 -->
+    <!--1341	Screeningsinstrument psychosociale problematiek	W0640-->
+    
+    <!-- R047 -->
+    <!--485	Indicatie W0619-->
+    
     <xd:doc>
         <xd:desc>Conversie van oude nonBDSData naar nieuwe nonBDSData</xd:desc>
     </xd:doc>
