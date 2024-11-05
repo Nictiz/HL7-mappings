@@ -107,6 +107,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </identifier>
                 </xsl:for-each>
                 
+                <clinicalStatus>
+                    <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical"/>
+                        <code value="active"/>
+                        <display value="Active"/>
+                    </coding>
+                </clinicalStatus>
+                
                 <xsl:for-each select="categorie[@code]">
                     <category>
                         <xsl:attribute name="value">

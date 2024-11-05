@@ -79,6 +79,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </identifier>
                 </xsl:for-each>
                 
+                <clinicalStatus>
+                    <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
+                        
+                        <xsl:choose>
+                            <xsl:when test="periode_aanwezig/tijds_interval/eind_datum_tijd[@value]">
+                                <code value="inactive"/>
+                                <display value="Inactive"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <code value="active"/>
+                                <display value="Active"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </coding>
+                </clinicalStatus>
+                
                 <xsl:for-each select="ernst[@code]">
                     <severity>
                         <xsl:call-template name="code-to-CodeableConcept">

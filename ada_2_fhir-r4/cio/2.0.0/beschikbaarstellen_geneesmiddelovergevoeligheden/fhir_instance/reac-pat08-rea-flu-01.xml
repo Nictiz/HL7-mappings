@@ -33,6 +33,13 @@
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.4"/>
       <value value="pat08-rea-flu-01"/>
    </identifier>
+   <clinicalStatus>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical"/>
+         <code value="active"/>
+         <display value="Active"/>
+      </coding>
+   </clinicalStatus>
    <code>
       <coding>
          <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
@@ -72,6 +79,11 @@
             <display value="AMOXICILLINE DISP TEVA TABLET 750MG"/>
          </coding>
       </substance>
+      <manifestation>
+         <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+            <valueCode value="unknown"/>
+         </extension>
+      </manifestation>
       <onset value="${DATE, T, Y, -13}T08:00:23+02:00"/>
       <exposureRoute>
          <coding>

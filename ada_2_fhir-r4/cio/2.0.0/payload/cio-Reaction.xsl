@@ -121,6 +121,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </identifier>
                 </xsl:for-each>
                 
+                <clinicalStatus>
+                    <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical"/>
+                        <code value="active"/>
+                        <display value="Active"/>
+                    </coding>
+                </clinicalStatus>
+                
                 <xsl:for-each select="veroorzaker/veroorzakende_stof[@code]">
                     <code>
                         <xsl:call-template name="code-to-CodeableConcept">
@@ -199,6 +207,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </substance>
                     </xsl:for-each>
+                    
+                    <manifestation>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                            <valueCode value="unknown"/>
+                        </extension>
+                    </manifestation>
                     
                     <xsl:for-each select="$relationCondition/periode_aanwezig/tijds_interval/start_datum_tijd[@value]">
                         <onset>
