@@ -296,38 +296,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Template to generate a unique id to identify a patient present in a (set of) ADA instance(s)</xd:desc>
-    </xd:doc>
-    <xsl:template match="patient" mode="_generateId">
-        <xsl:variable name="uniqueString" as="xs:string?">
-            <xsl:choose>
-                <!-- This when clause is only for Touchstone purposes, should be removed here -->
-                <!-- Tries to match patient to token -->
-                <xsl:when test="string-length(nf:get-resourceid-from-token(.)) gt 0">
-                    <xsl:value-of select="nf:get-resourceid-from-token(.)"/>
-                </xsl:when>
-                <!-- This when clause is only for Touchstone purposes, should be removed here -->
-                <xsl:when test="naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value">
-                    <xsl:value-of select="normalize-space(string-join(naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value, ' '))"/>
-                </xsl:when>
-                <xsl:when test="identificatie[@root][@value][string-length(concat(@root, @value)) le 63]">
-                    <xsl:for-each select="(identificatie[@root][@value])[1]">
-                        <xsl:value-of select="concat(@root, '-', @value)"/>
-                    </xsl:for-each>
-                </xsl:when>
-                <xsl:otherwise>
-                    <!-- We do not have anything to create a stable logicalId, let's return a UUID -->
-                    <xsl:value-of select="uuid:get-uuid(.)"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        
-        <xsl:apply-templates select="." mode="generateLogicalId">
-            <xsl:with-param name="uniqueString" select="string-join($uniqueString, '')"/>
-        </xsl:apply-templates>
-    </xsl:template>
-
-    <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing a patient</xd:desc>
     </xd:doc>
     <xsl:template match="patient" mode="_generateDisplay">

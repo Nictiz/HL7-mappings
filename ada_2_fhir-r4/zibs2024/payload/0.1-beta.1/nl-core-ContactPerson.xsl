@@ -150,34 +150,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Template to generate a unique id to identify a contact person present in a (set of) ada-instance(s)</xd:desc>
-    </xd:doc>
-    <xsl:template match="contactpersoon" mode="_generateId">
-
-        <xsl:variable name="uniqueString" as="xs:string?">
-            <xsl:choose>
-                <xsl:when test="identificatie[@root][@value]">
-                    <xsl:for-each select="(identificatie[@root][@value])[1]">
-                        <!-- we remove '.' in root oid and '_' in extension to enlarge the chance of staying in 64 chars -->
-                        <xsl:value-of select="concat(replace(@root, '\.', ''), '-', replace(@value, '_', ''))"/>
-                    </xsl:for-each>
-                </xsl:when>
-                <xsl:when test="naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value">
-                    <xsl:value-of select="upper-case(replace(string-join(naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value, ' '), '\s', ''))"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <!-- we do not have anything to create a stable logicalId, let's return a UUID -->
-                    <xsl:value-of select="uuid:get-uuid(.)"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-
-        <xsl:call-template name="generateLogicalId">
-            <xsl:with-param name="uniqueString" select="$uniqueString"/>
-        </xsl:call-template>
-    </xsl:template>
-
-    <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="contactpersoon" mode="_generateDisplay">
