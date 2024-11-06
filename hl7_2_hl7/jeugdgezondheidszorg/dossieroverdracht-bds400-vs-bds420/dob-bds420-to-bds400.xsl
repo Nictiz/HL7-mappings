@@ -1614,8 +1614,8 @@
     <!--324	Zindelijkheid	W0209-->
     <!--1647	Soorten genotsmiddelen/verslavingsrisico	W0214-->
     
-    <!--1649	Seksueel functioneren-->
-    <!--1651	Conclusie seksueel gedrag-->
+    <!--1649	Seksueel functioneren W0700-->
+    <!--1651	Conclusie seksueel gedrag W0701-->
 
     <!-- R023 -->
     <!--1678	Voorkeurshouding	W0708-->
@@ -1625,22 +1625,22 @@
     <!--1392	Bijzonderheden testis links	W0250-->
     
     <!-- R026 -->
-    <!--1673	Beoordeling puberteitsontwikkeling-->
+    <!--1673	Beoordeling puberteitsontwikkeling W0707-->
     
     <!-- R030 -->
-    <!--1658	Beoordeling cognitieve ontwikkeling-->
-    <!--1659	Bevinding(en) psychosociaal functioneren-->
+    <!--1658	Beoordeling cognitieve ontwikkeling W0702-->
+    <!--1659	Bevinding(en) psychosociaal functioneren W0703-->
     
     <!-- R039 -->
-    <!--1680	Risicosignalen hartfunctie-->
+    <!--1680	Risicosignalen hartfunctie W0709-->
     
     <!-- R041 -->
-    <!--1682	De kinderarts heeft een contra-indicatie voor vaccinatie doorgegeven-->
-    <!--1683	Moeder heeft biological gebruikt-->
+    <!--1682	De kinderarts heeft een contra-indicatie voor vaccinatie doorgegeven W0710-->
+    <!--1683	Moeder heeft biological gebruikt W0711-->
     
     <!-- R042 -->
-    <!--1684	Score op aanvullende vragen op ontwikkelingskenmerk 41-->
-    <!--1686	Score spelvraag Van Wiechentaalonderzoek-->
+    <!--1684	Score op aanvullende vragen op ontwikkelingskenmerk 41 W0712-->
+    <!--1686	Score spelvraag Van Wiechentaalonderzoek W0713-->
     
     <!-- R054 -->
     <!--1341	Screeningsinstrument psychosociale problematiek	W0640-->
