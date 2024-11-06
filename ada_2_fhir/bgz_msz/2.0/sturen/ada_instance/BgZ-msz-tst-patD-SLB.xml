@@ -4,7 +4,7 @@
          created-by="zibsada"
          last-update-by="zibsada"
          creation-date="2024-06-05T14:17:13.308Z"
-         last-update-date="2024-10-21T12:19:06.351Z"/>
+         last-update-date="2024-11-03T19:41:22.98Z"/>
    <data>
       <sturen app="bgz2017-2.0"
               shortName="sturen"
@@ -1037,28 +1037,19 @@
             </medicatieafspraak>
             <toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.659"
                                  id="bgz-msz-patD-adminAgree1">
-               <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1.659">
-                  <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11.659">
-                     <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12.659">
-                        <patient value="bgz-msz-patD"
-                                 datatype="reference"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146.659"/>
-                     </patient>
-                  </onderwerp>
-               </zibroot>
                <geneesmiddel_bij_toedienings_afspraak conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.662">
                   <farmaceutisch_product value="bgz-msz-patD-drug1"
                                          datatype="reference"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.774"/>
                </geneesmiddel_bij_toedienings_afspraak>
+               <gebruiks_instructie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.845">
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.849"/>
+               </gebruiks_instructie>
                <toedieningsafspraak_datum_tijd value="2008-06-22"
                                                datatype="datetime"
                                                conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.666"/>
-               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.668">
-                  <tijds_interval value="bgz-msz-patD-interval1"
-                                  datatype="reference"
-                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.775"/>
-               </gebruiksperiode>
             </toedieningsafspraak>
             <medicatie_gebruik conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.621"
                                id="bgz-msz-patD-medUse1">
@@ -2536,11 +2527,16 @@
          <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.593">
             <metagegevens conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.594">
                <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
-                  <probleem value="bgz-msz-patD-problem2"
+                  <probleem value="bgz-msz-patD-problem4"
                             datatype="reference"
                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.689"/>
                </doel>
-               <datum_tijd value="2008-06-02T10:11:12"
+               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
+                  <woonsituatie value="bgz-msz-patD-living1"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.690"/>
+               </doel>
+               <datum_tijd value="2008-06-23"
                            datatype="datetime"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.595"/>
                <activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.616"
@@ -2549,159 +2545,21 @@
                            codeSystem="2.16.840.1.113883.5.1123"
                            displayName="create"/>
                <actor conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.619">
-                  <zorgverlener value="bgz-msz-patD-healthProf1"
-                                datatype="reference"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.618"/>
-               </actor>
-            </metagegevens>
-            <metagegevens conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.594">
-               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
-                  <probleem value="bgz-msz-patD-problem2"
-                            datatype="reference"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.689"/>
-               </doel>
-               <datum_tijd value="2008-06-04T10:11:12"
-                           datatype="datetime"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.595"/>
-               <activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.616"
-                           value="2"
-                           code="UPDATE"
-                           codeSystem="2.16.840.1.113883.5.1123"
-                           displayName="revise"/>
-               <actor conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.619">
-                  <zorgverlener value="bgz-msz-patD-healthProf1"
-                                datatype="reference"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.618"/>
-               </actor>
-            </metagegevens>
-            <metagegevens conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.594">
-               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
-                  <woonsituatie value="bgz-msz-patD-living1"
-                                datatype="reference"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.690"/>
-               </doel>
-               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
-                  <drugs_gebruik value="bgz-msz-patD-druguse1"
-                                 datatype="reference"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.694"/>
-               </doel>
-               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
-                  <alcohol_gebruik value="bgz-msz-patD-alcoholuse1"
-                                   datatype="reference"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.695"/>
-               </doel>
-               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
-                  <tabak_gebruik value="bgz-msz-patD-tobaccoUse1"
-                                 datatype="reference"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.696"/>
-               </doel>
-               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
-                  <voedingsadvies value="bgz-msz-patD-nutrition1"
-                                  datatype="reference"
-                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.697"/>
-               </doel>
-               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
-                  <functionele_of_mentale_status value="bgz-msz-patD-funcment1"
-                                                 datatype="reference"
-                                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.688"/>
-               </doel>
-               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
-                  <verrichting value="bgz-msz-patD-procedure1"
-                               datatype="reference"
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.691"/>
-               </doel>
-               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
-                  <contact value="bgz-msz-patD-encounter1"
-                           datatype="reference"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.692"/>
-               </doel>
-               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
-                  <allergie_intolerantie value="bgz-msz-patD-allergy1"
-                                         datatype="reference"
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.693"/>
-               </doel>
-               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
-                  <behandel_aanwijzing value="bgz-msz-patD-treatmentdir1"
-                                       datatype="reference"
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.698"/>
-               </doel>
-               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
-                  <patient value="bgz-msz-patD"
-                           datatype="reference"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.699"/>
-               </doel>
-               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
-                  <burgerlijke_staat_rc value="bgz-msz-patD-marital1"
-                                        datatype="reference"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.700"/>
-               </doel>
-               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
-                  <wilsverklaring value="bgz-msz-patD-advdir"
-                                  datatype="reference"
-                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.701"/>
-               </doel>
-               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
-                  <medisch_hulpmiddel value="bgz-msz-patD-medDevice1"
-                                      datatype="reference"
-                                      conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.702"/>
-               </doel>
-               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
-                  <vaccinatie value="bgz-msz-patD-vaccin1"
-                              datatype="reference"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.703"/>
-               </doel>
-               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
-                  <bloeddruk value="bgz-msz-patD-bloodpressure1"
-                             datatype="reference"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.704"/>
-               </doel>
-               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
-                  <lichaamslengte value="bgz-msz-patD-bodyheight1"
-                                  datatype="reference"
-                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.706"/>
-               </doel>
-               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
-                  <alert value="bgz-msz-patD-alert1"
-                         datatype="reference"
-                         conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.707"/>
-               </doel>
-               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
-                  <medicatieafspraak value="bgz-msz-patD-medAgree1"
-                                     datatype="reference"
-                                     conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.815"/>
-               </doel>
-               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
-                  <toedieningsafspraak value="bgz-msz-patD-adminAgree1"
-                                       datatype="reference"
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.816"/>
-               </doel>
-               <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
-                  <toedieningsafspraak value="bgz-msz-patD-adminAgree1"
-                                       datatype="reference"
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.816"/>
-               </doel>
-               <datum_tijd value="2008-06-02T10:11:12"
-                           datatype="datetime"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.595"/>
-               <activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.616"
-                           value="2"
-                           code="UPDATE"
-                           codeSystem="2.16.840.1.113883.5.1123"
-                           displayName="revise"/>
-               <actor conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.619">
-                  <zorgaanbieder value="bgz-msz-patD-healthcareProv1"
+                  <zorgaanbieder value="bgz-msz-patD-healthcareProv2"
                                  datatype="reference"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.686"/>
                </actor>
             </metagegevens>
-            <tijds_interval conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.757"
-                            id="bgz-msz-patD-interval1">
-               <start_datum_tijd value="2008-06-22"
-                                 datatype="datetime"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.758"/>
-            </tijds_interval>
             <farmaceutisch_product conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.762"
                                    id="bgz-msz-patD-drug1">
+               <product_specificatie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.763">
+                  <ingredient conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.767">
+                     <ingredient_code code="M01AE01"
+                                      codeSystem="2.16.840.1.113883.6.73"
+                                      displayName="ibuprofen (systemisch)"
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.768"/>
+                  </ingredient>
+               </product_specificatie>
                <product_code code="17469"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              displayName="IBUPROFEN TABLET 600MG"
