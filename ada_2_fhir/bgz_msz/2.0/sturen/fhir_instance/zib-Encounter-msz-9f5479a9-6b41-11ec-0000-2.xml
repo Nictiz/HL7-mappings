@@ -1,0 +1,74 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <id value="zib-Encounter-msz-9f5479a9-6b41-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: Michelle M.D. Michelle D Derencourt Verheul. Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div>
+                        <span title="SEH (EMER - v3/ActCode)">SEH</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>1 juli 2000</td>
+               </tr>
+               <tr>
+                  <th>Probleem/Verrichting</th>
+                  <td>Verrichtingtype: intraveneuze trombolyse</td>
+               </tr>
+               <tr>
+                  <th>Opnamegegevens</th>
+                  <td>
+                     <ul>
+                        <li>Ontslagwijze: <span title="Instelling voor revalidatie (80522000 - SNOMED CT)">Instelling voor revalidatie</span>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="16d930e0-6ace-11ec-0000-2"/>
+   </identifier>
+   <status value="finished"/>
+   <class>
+      <system value="http://hl7.org/fhir/v3/ActCode"/>
+      <code value="EMER"/>
+      <display value="SEH"/>
+   </class>
+   <subject>
+      <reference value="Patient/MICHELLE-M-D--MICHELLE-D-DERENCOURT-VERHEUL"/>
+      <display value="Michelle M.D. Michelle D Derencourt Verheul"/>
+   </subject>
+   <period>
+      <start value="2000-07-01"/>
+      <end value="2000-07-01"/>
+   </period>
+   <diagnosis>
+      <condition>
+         <reference value="Procedure/zib-Procedure-msz-371cebcf-6af9-11ec-0000-2"/>
+         <display value="Verrichtingtype: intraveneuze trombolyse"/>
+      </condition>
+   </diagnosis>
+   <hospitalization>
+      <dischargeDisposition>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="80522000"/>
+            <display value="Instelling voor revalidatie"/>
+         </coding>
+      </dischargeDisposition>
+   </hospitalization>
+</Encounter>

@@ -1,0 +1,54 @@
+<DeviceUseStatement xmlns="http://hl7.org/fhir">
+   <id value="zib-MedicalDevice-msz-f189b6f1-6ad0-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Beschrijving apparaatgebruik. Subject: Jan Adrianus J.A.K. Jan Kooyman. Status: actief</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Mag been even niet belasten.</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Apparaat/Systeem</th>
+                  <td>bekrachtigde niet-inklapbare rolstoel door gebruiker bestuurd gemotoriseerde rolstoel</td>
+               </tr>
+               <tr>
+                  <th>Gebruiksperiode</th>
+                  <td>Vanaf ${DATE, T, D, -43}</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Organization">
+      <valueReference>
+         <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000002"/>
+         <display value="Ziekenhuis de Aandacht"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="13901f76-6b23-11ec-0000-2"/>
+   </identifier>
+   <status value="active"/>
+   <subject>
+      <reference value="Patient/JAN-ADRIANUS-J-A-K--JAN-KOOYMAN"/>
+      <display value="Jan Adrianus J.A.K. Jan Kooyman"/>
+   </subject>
+   <whenUsed>
+      <start value="${DATE, T, D, -43}"/>
+   </whenUsed>
+   <device>
+      <reference value="Device/zib-MedicalDeviceProduct-msz-f189b6f1-6ad0-11ec-0000-2"/>
+      <display value="bekrachtigde niet-inklapbare rolstoel door gebruiker bestuurd gemotoriseerde rolstoel"/>
+   </device>
+   <note>
+      <text value="Mag been even niet belasten."/>
+   </note>
+</DeviceUseStatement>
