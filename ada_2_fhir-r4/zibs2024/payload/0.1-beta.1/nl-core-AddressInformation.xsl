@@ -18,10 +18,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
-    <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA adresgegevens to FHIR Address data type conforming to profile nl-core-AddressInformation.</xd:desc>
-    </xd:doc>
-
     <xd:doc>
         <xd:desc>Creates FHIR Address data type from ADA adresgegevens element.</xd:desc>
         <xd:param name="in">ADA adresgegevens element</xd:param>

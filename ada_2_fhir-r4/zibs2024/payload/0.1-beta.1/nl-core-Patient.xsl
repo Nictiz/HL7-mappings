@@ -17,10 +17,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-
-    <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA patient to FHIR Patient resource conforming to profile nl-core-Patient.</xd:desc>
-    </xd:doc>
     
     <xsl:variable name="profileNamePatient">nl-core-Patient</xsl:variable>
 

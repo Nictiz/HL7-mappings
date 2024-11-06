@@ -17,10 +17,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-
-    <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA contactpersoon to FHIR RelatedPerson resource conforming to profile nl-core-ContactPerson.</xd:desc>
-    </xd:doc>
     
     <xsl:variable name="profileNameContactPerson">nl-core-ContactPerson</xsl:variable>
 

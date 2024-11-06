@@ -18,10 +18,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
-    <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA contactgegevens to FHIR ContactPoint data type conforming to profile nl-core-ContactInformation-TelephoneNumbers and nl-core-ContactInformation-EmailAddresses.</xd:desc>
-    </xd:doc>
-
     <xd:doc>
         <xd:desc>Creates FHIR ContactPoint data type from ADA contactgegevens element.</xd:desc>
         <xd:param name="in">ADA contactgegevens element</xd:param>

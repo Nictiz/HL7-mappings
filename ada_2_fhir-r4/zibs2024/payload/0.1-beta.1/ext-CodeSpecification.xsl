@@ -18,10 +18,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
-    <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA code to FHIR extension conforming to profile ext-CodeSpecification.</xd:desc>
-    </xd:doc>
-    
     <xd:doc>
         <xd:desc>Template for shared extension http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification</xd:desc>
         <xd:param name="in">Optional. ADA element containing the code element</xd:param>

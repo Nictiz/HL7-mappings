@@ -18,10 +18,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
-    <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA naamgegevens to FHIR HumanName data type conforming to profile nl-core-NameInformation and nl-core-NameInformation.GivenName.</xd:desc>
-    </xd:doc>
-
     <xd:doc>
         <xd:desc>Creates FHIR HumanName data type from ADA naamgegevens element.</xd:desc>
         <xd:param name="in">ADA naamgegevens element</xd:param>
