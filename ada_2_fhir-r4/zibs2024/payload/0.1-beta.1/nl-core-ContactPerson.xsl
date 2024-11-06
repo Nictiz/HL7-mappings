@@ -31,7 +31,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="contactpersoon" name="nl-core-ContactPerson" mode="nl-core-ContactPerson" as="element(f:RelatedPerson)?">
         <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="patient" select="patient" as="element()?"/>
+        <xsl:param name="subject" as="element()?"/>
 
         <xsl:for-each select="$in">
             <RelatedPerson>
@@ -56,7 +56,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="$patient"/>
+                    <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn" select="'patient'"/>
                 </xsl:call-template>
 
