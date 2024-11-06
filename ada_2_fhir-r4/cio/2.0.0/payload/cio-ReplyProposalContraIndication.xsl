@@ -73,6 +73,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </basedOn>
                 </xsl:for-each>
                 
+                <status value="in-progress"/>
+                
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn" select="'subject'"/>
