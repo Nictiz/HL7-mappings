@@ -1222,19 +1222,52 @@
         <code nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
             <originalText><xsl:value-of select="@displayName"/></originalText>
         </code>
+    </xsl:template>    
+       
+    <xd:doc>
+        <xd:desc>Rubriek 12 - Gewijzigde namen binnen waardelijst W0114 (hardcoded) </xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.40080']/hl7:value[@codeSystem = '2.16.840.1.113883.2.4.4.40.8']" mode="dob420">
+        <value xsi:type="CV">
+            <xsl:attribute name="code">
+                <xsl:value-of select="@code"/>
+            </xsl:attribute>
+            <xsl:attribute name="codeSystem">
+                <xsl:value-of select="@codeSystem"/>
+            </xsl:attribute>
+            <xsl:attribute name="displayName">
+                <!-- Conditional transformation for displayName -->
+                <xsl:choose>
+                    <xsl:when test="@code = '08'">
+                        <xsl:text>Slechthorendheid</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="@code = '12'">
+                        <xsl:text>Aangeboren afwijking</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="@code = '14'">
+                        <xsl:text>Psychiatrische aandoening</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="@displayName"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:attribute>
+        </value>
     </xsl:template>
     
-<!--    <xd:doc>
-        <xd:desc>Rubriek 12 - Gewijzigde namen binnen waardelijst W0114 </xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.40080']/hl7:value[@code = '16' or @code = '17' or @code = '18' or @code = '19' or @code = '20' or @code = '21' or @code = '22' or @code = '23'][@codeSystem = '2.16.840.1.113883.2.4.4.40.8']" mode="dob420">
-        <code nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
-            <originalText><xsl:value-of select="@displayName"/></originalText>
-        </code>
-    </xsl:template>-->
-
     <!-- R018 -->
     <!--731	Begeleider	W0193-->
+    <xd:doc>
+        <xd:desc>Rubriek 18 - Nieuwe codes binnen waardelijst W0193 </xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:escort/hl7:responsibleParty/hl7:code[@code = '13' or @code = '14'][@codeSystem = '2.16.840.1.113883.2.4.4.40.421']" mode="dob420">
+        <code nullFlavor="OTH" 
+              codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+            <originalText>
+                <xsl:value-of select="@displayName"/>
+            </originalText>
+        </code>
+    </xsl:template>
     <!--1424	Indicatie activiteit W0619-->
     
     <!-- R019 -->
@@ -1245,7 +1278,24 @@
     
     <!-- R021 -->
     <!--324	Zindelijkheid	W0209-->
+    <xd:doc>
+        <xd:desc>Rubriek 21 - Nieuwe code binnen waardelijst W0209 </xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.40324']/hl7:value[@code = '10'][@codeSystem = '2.16.840.1.113883.2.4.4.40.46']" mode="dob420">
+        <value nullFlavor="OTH" 
+               codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+            <originalText><xsl:value-of select="@displayName"/></originalText>
+        </value>
+    </xsl:template>
     <!--1647	Soorten genotsmiddelen/verslavingsrisico	W0214-->
+    <xd:doc>
+        <xd:desc>Rubriek 21 - Nieuwe code binnen waardelijst W0214 </xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.40324']/hl7:value[@code = '10'][@codeSystem = '2.16.840.1.113883.2.4.4.40.46']" mode="dob420">
+        <code nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+            <originalText><xsl:value-of select="@displayName"/></originalText>
+        </code>
+    </xsl:template>
     
     <!--1649	Seksueel functioneren W0700-->
     <!--1651	Conclusie seksueel gedrag W0701-->
@@ -1256,6 +1306,15 @@
     <!-- R025 -->
     <!--422	Bijzonderheden testis rechts	W0250-->
     <!--1392	Bijzonderheden testis links	W0250-->
+    <xd:doc>
+        <xd:desc>Rubriek 25 - Nieuwe codes binnen waardelijst W0250 </xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.41392']/hl7:value[@code = '05' or @code = '06'][@codeSystem = '2.16.840.1.113883.2.4.4.40.72']" mode="dob420">
+        <value nullFlavor="OTH" 
+               codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+            <originalText><xsl:value-of select="@displayName"/></originalText>
+        </value>
+    </xsl:template>
     
     <!-- R026 -->
     <!--1673	Beoordeling puberteitsontwikkeling W0707-->
@@ -1279,9 +1338,25 @@
     
     <!-- R054 -->
     <!--1341	Screeningsinstrument psychosociale problematiek	W0640-->
-    
+    <xd:doc>
+        <xd:desc>Rubriek 54 - Nieuwe code binnen waardelijst W0640 </xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.41345']/hl7:methodCode[@code = '11' or @code = '12' or @code = '13' or @code = '14' or @code = '15' or @code = '16' or @code = '17'][@codeSystem = '2.16.840.1.113883.2.4.4.40.387']" mode="dob420">
+        <methodCode nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+            <originalText><xsl:value-of select="@displayName"/></originalText>
+        </methodCode>
+    </xsl:template>
+        
     <!-- R047 -->
     <!--485	Indicatie W0619-->
+    <xd:doc>
+        <xd:desc>Rubriek 47 - Nieuwe code binnen waardelijst W0619 </xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:encounter/hl7:reasonCode[@code = '51'][@codeSystem = '2.16.840.1.113883.2.4.4.40.373']" mode="dob420">
+        <reasonCode nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+            <originalText><xsl:value-of select="@displayName"/></originalText>
+        </reasonCode>
+    </xsl:template>    
 
     <xd:doc>
         <xd:desc>Skip lines consisting only of spaces</xd:desc>
