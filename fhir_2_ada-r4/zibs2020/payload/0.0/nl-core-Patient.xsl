@@ -70,7 +70,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:gender" mode="nl-core-Patient">
         <geslacht>
-            <xsl:call-template name="code-to-code">
+            <xsl:call-template name="fhircode-to-adacode">
                 <xsl:with-param name="value" select="@value"/>
                 <xsl:with-param name="codeMap" as="element()*">
                     <map code="M" codeSystem="2.16.840.1.113883.5.1" inValue="male" displayName="Man"/>

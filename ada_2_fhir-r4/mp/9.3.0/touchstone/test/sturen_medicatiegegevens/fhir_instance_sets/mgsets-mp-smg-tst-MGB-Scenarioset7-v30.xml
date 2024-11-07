@@ -9,7 +9,7 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T, tot en met T, 2 maal per dag, cutaan"/>
+               <valueString value="2 maal per dag, cutaan"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                <valueReference>
@@ -114,7 +114,7 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T, tot en met T, 3 maal per dag, cutaan"/>
+               <valueString value="3 maal per dag, cutaan"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                <valueReference>
@@ -219,7 +219,7 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T, tot en met T, 1 maal per dag, cutaan"/>
+               <valueString value="1 maal per dag, cutaan"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                <valueReference>
@@ -324,7 +324,7 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 1 dag, gedurende 1 dag, 1 maal per 3 weken 1 stuk, Intraveneus"/>
+               <valueString value="1 maal per 3 weken 1 stuk, Intraveneus"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                <valueReference>
@@ -610,11 +610,9 @@
                <valueString value="Titel: Ureum 10% in eucerine cum aqua 100gr           Regel: UREUM 10gr           Regel: EUCERINE MET WATER FAGRON ad 100gr"/>
             </extension>
             <code>
-               <coding>
-                  <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
-                  <code value="OTH"/>
-                  <display value="overig"/>
-               </coding>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                  <valueCode value="OTH"/>
+               </extension>
                <text value="Ureum 10% in eucerine cum aqua 100gr"/>
             </code>
             <ingredient>
@@ -713,11 +711,9 @@
                <valueString value="Titel: Vaseline 20% in cetomacrogolcrème FNA Regel 1: cetomacrogolcreme 80 gr"/>
             </extension>
             <code>
-               <coding>
-                  <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
-                  <code value="OTH"/>
-                  <display value="overig"/>
-               </coding>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                  <valueCode value="OTH"/>
+               </extension>
                <text value="Vaseline 20% in cetomacrogolcrème FNA"/>
             </code>
             <ingredient>
@@ -781,6 +777,7 @@
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.9999.77.90000000.1.1111"/>
                   <code value="90000001"/>
                   <display value="Eigen artikel: ureumzalf"/>
+                  <userSelected value="true"/>
                </coding>
                <text value="Ureum 10% in eucerine cum aqua 100gr"/>
             </code>
@@ -841,11 +838,9 @@
                <valueString value="Titel: Jemperli (Dostarlimab-gxly) 500 mg/10 mL"/>
             </extension>
             <code>
-               <coding>
-                  <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
-                  <code value="OTH"/>
-                  <display value="anders"/>
-               </coding>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                  <valueCode value="OTH"/>
+               </extension>
                <text value="Jemperli 500 mg/ 10 mL"/>
             </code>
          </Medication>

@@ -124,7 +124,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		</xsl:variable>
 		<xsl:if test="@value = $mapStatus/@inValue">
 			<resultaat_status>
-				<xsl:call-template name="code-to-code">
+				<xsl:call-template name="fhircode-to-adacode">
 					<xsl:with-param name="value" select="@value"/>
 					<xsl:with-param name="codeMap" as="element()*" select="$mapStatus"/>
 				</xsl:call-template>
@@ -151,7 +151,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					<xsl:variable name="mapStatus" select="$fhirDataAbsentReason_to_NullFlavor/*" as="element()*"/>
 					<xsl:if test="@value = $mapStatus/@inCode">
 						<test_uitslag>
-							<xsl:call-template name="code-to-code">
+							<xsl:call-template name="fhircode-to-adacode">
 								<xsl:with-param name="value" select="f:dataAbsentReason/@value"/>
 								<xsl:with-param name="codeMap" as="element()*" select="$mapStatus"/>
 							</xsl:call-template>
@@ -259,7 +259,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		</xsl:variable>
 		<xsl:if test="@value = $mapStatus/@inValue">
 			<test_uitslag_status>
-				<xsl:call-template name="code-to-code">
+				<xsl:call-template name="fhircode-to-adacode">
 					<xsl:with-param name="value" select="@value"/>
 					<xsl:with-param name="codeMap" as="element()*" select="$mapStatus"/>
 				</xsl:call-template>
@@ -300,11 +300,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				</interpretatie_vlaggen>
 			</xsl:when>
 			<xsl:otherwise>
-				<!-- Note: constants.xsl uses @inCode instead of @inValue - requires updated code-to-code -->
+				<!-- Note: constants.xsl uses @inCode instead of @inValue - requires updated fhircode-to-adacode -->
 				<xsl:variable name="mapStatus" select="$fhirObservationInterpretation_to_zibInterpretatieVlaggen/map" as="element()*"/>
 				<xsl:for-each-group select="f:coding/f:code/@value[. = $mapStatus/@inCode]" group-by=".">
 					<interpretatie_vlaggen>
-						<xsl:call-template name="code-to-code">
+						<xsl:call-template name="fhircode-to-adacode">
 							<xsl:with-param name="value" select="current-grouping-key()"/>
 							<xsl:with-param name="codeMap" as="element()*" select="$mapStatus"/>
 						</xsl:call-template>

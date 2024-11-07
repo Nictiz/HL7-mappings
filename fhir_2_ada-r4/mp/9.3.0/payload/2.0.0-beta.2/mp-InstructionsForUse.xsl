@@ -363,7 +363,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:dayOfWeek" mode="mp-InstructionsForUse">
         <weekdag>
-            <xsl:call-template name="code-to-code">
+            <xsl:call-template name="fhircode-to-adacode">
                 <xsl:with-param name="value" select="@value"/>
                 <xsl:with-param name="codeMap" as="element()*">
                     <map inValue="mon" code="307145004" codeSystem="2.16.840.1.113883.6.96" displayName="maandag"/>
@@ -383,7 +383,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:when" mode="mp-InstructionsForUse">
         <dagdeel>
-            <xsl:call-template name="code-to-code">
+            <xsl:call-template name="fhircode-to-adacode">
                 <xsl:with-param name="value" select="@value"/>
                 <xsl:with-param name="codeMap" as="element()*">
                     <map inValue="MORN" code="73775008" codeSystem="2.16.840.1.113883.6.96" displayName="'s ochtends"/>
