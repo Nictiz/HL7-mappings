@@ -1069,11 +1069,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:element name="{$elmAddressInformation}">
-                                <!-- No address parts... submit as street -->
-                                <xsl:element name="{$elmStreet}">
-                                    <xsl:attribute name="value" select="."/>
-                                </xsl:element>
-                                <xsl:copy-of select="$currentAddressType"/>
+                                <xsl:if test=".!=''">
+                                    <!-- No address parts... submit as street -->
+                                    <xsl:element name="{$elmStreet}">
+                                        <xsl:attribute name="value" select="."/>
+                                    </xsl:element>
+                                    <xsl:copy-of select="$currentAddressType"/>
+                                </xsl:if>
+                                <xsl:if test=".=''">
+                                    <!-- No string value in address, omit the street and only copy addressType -->
+                                    <xsl:copy-of select="$currentAddressType"/>
+                                    <xsl:call-template name="util:logMessage">
+                                        <xsl:with-param name="level" select="$logWARN"/>
+                                        <xsl:with-param name="msg">Address element empty <xsl:value-of select="name()"/></xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:if>
                             </xsl:element>
                         </xsl:otherwise>
                     </xsl:choose>
