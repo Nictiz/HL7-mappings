@@ -1,0 +1,76 @@
+<MedicationAdministration xmlns="http://hl7.org/fhir">
+   <id value="mp-MedAdm2-mp9-MBH300SCRIPT1MTD3"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+      <valueDateTime value="${DATE, T, D, +0}T21:00:00+02:00"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_300_SCRIPT1"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+      <value value="MBH_300_SCRIPT1_MTD3"/>
+   </identifier>
+   <status value="unknown"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="18629005"/>
+         <display value="toediening van medicatie"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/mp-PhPrd-mp9-21684011138832447-3060195"/>
+      <type value="Medication"/>
+      <display value="ECANSYA TABLET FILMOMHULD 500MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-HdeXXX-Huyser"/>
+      <type value="Patient"/>
+      <display value="Patient, H. de XXX_Huyser"/>
+   </subject>
+   <supportingInformation>
+      <type value="MedicationDispense"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+         <value value="MBH_300_SCRIPT1_TA"/>
+      </identifier>
+      <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_SCRIPT1_TA || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+   </supportingInformation>
+   <effectiveDateTime value="${DATE, T, D, +0}T21:00:00+02:00"/>
+   <performer>
+      <actor>
+         <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-PrcRol-2165281100731-222220000"/>
+         <type value="PractitionerRole"/>
+         <display value="Healthcare professional (role), Jantien Toedien, Verpleegkundigen, niet nader gespecificeerd, Thuiszorg Om en Bij"/>
+      </actor>
+   </performer>
+   <dosage>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="oraal"/>
+         </coding>
+      </route>
+      <dose>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+            <valueQuantity>
+               <value value="4"/>
+               <unit value="stuk"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+               <code value="245"/>
+            </valueQuantity>
+         </extension>
+         <value value="4"/>
+         <unit value="stuk"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="1"/>
+      </dose>
+   </dosage>
+</MedicationAdministration>

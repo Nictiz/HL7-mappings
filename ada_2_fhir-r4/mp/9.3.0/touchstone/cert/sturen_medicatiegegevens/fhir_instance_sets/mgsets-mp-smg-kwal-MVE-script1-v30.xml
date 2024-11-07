@@ -2,7 +2,7 @@
    <id value="mgsets-mp-smg-kwal-MVE-script1-v30"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:0eaa53dd-6abf-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:53e903dd-6b53-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -38,7 +38,7 @@
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -54,24 +54,24 @@
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                   <valueQuantity>
-                     <value value="140"/>
+                     <value value="112"/>
                      <unit value="stuk"/>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                      <code value="245"/>
                   </valueQuantity>
                </extension>
-               <value value="140"/>
+               <value value="112"/>
                <unit value="stuk"/>
                <system value="http://unitsofmeasure.org"/>
                <code value="1"/>
             </quantity>
             <daysSupply>
-               <value value="2"/>
+               <value value="3"/>
                <unit value="week"/>
                <system value="http://unitsofmeasure.org"/>
                <code value="wk"/>
             </daysSupply>
-            <whenHandedOver value="${DATE, T, D, -9}T08:30:00+02:00"/>
+            <whenHandedOver value="${DATE, T, D, +0}T08:30:00+02:00"/>
          </MedicationDispense>
       </resource>
       <request>
@@ -80,14 +80,14 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:90bd9da7-6ad3-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:95cfc3dd-6ab6-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.RequestDate">
-               <valueDateTime value="${DATE, T, D, +7}T15:00:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, +20}T07:30:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
@@ -119,7 +119,7 @@
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -135,24 +135,24 @@
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                   <valueQuantity>
-                     <value value="112"/>
+                     <value value="140"/>
                      <unit value="stuk"/>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                      <code value="245"/>
                   </valueQuantity>
                </extension>
-               <value value="112"/>
+               <value value="140"/>
                <unit value="stuk"/>
                <system value="http://unitsofmeasure.org"/>
                <code value="1"/>
             </quantity>
             <daysSupply>
-               <value value="14"/>
-               <unit value="dag"/>
+               <value value="3"/>
+               <unit value="week"/>
                <system value="http://unitsofmeasure.org"/>
-               <code value="dag"/>
+               <code value="wk"/>
             </daysSupply>
-            <whenHandedOver value="${DATE, T, D, +7}T15:00:00+02:00"/>
+            <whenHandedOver value="${DATE, T, D, +20}T07:30:00+02:00"/>
          </MedicationDispense>
       </resource>
       <request>
@@ -208,7 +208,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -219,6 +219,31 @@
                <value value="01236578"/>
             </identifier>
             <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Organization>
       </resource>
       <request>

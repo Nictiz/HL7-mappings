@@ -2,7 +2,7 @@
    <id value="mg-mp-mg-kwal-MVE-script0-v30"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:eba3b9a7-6b4d-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:87c7f9a7-6b61-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -27,9 +27,9 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:29c3071d-6ac8-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:44f3f51d-6b3d-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="PARACETAMOL SANDOZ TABLET 500MG"/>
+               <display value="INNOHEP INJVLST 20000 IE/ML WWSP 0,7ML"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:921e6ff8-6b68-11ec-0000-020000000000"/>
@@ -38,7 +38,7 @@
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -54,16 +54,16 @@
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                   <valueQuantity>
-                     <value value="20"/>
-                     <unit value="stuk"/>
+                     <value value="5"/>
+                     <unit value="milliliter"/>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                     <code value="245"/>
+                     <code value="233"/>
                   </valueQuantity>
                </extension>
-               <value value="20"/>
-               <unit value="stuk"/>
+               <value value="5"/>
+               <unit value="milliliter"/>
                <system value="http://unitsofmeasure.org"/>
-               <code value="1"/>
+               <code value="ml"/>
             </quantity>
             <whenHandedOver value="${DATE, T, D, -20}T09:15:00+02:00"/>
          </MedicationDispense>
@@ -74,7 +74,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fb5a09a7-6b78-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:58ebb3dd-6aa6-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -99,9 +99,9 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:80ff0804-6ab7-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:54506004-6abd-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="OXAZEPAM ACTAVIS TABLET 10MG"/>
+               <display value="ENOXAPARINE BECAT INJVLST 2.000IE (20MG)/0,2ML WW"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:921e6ff8-6b68-11ec-0000-020000000000"/>
@@ -110,7 +110,7 @@
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -126,16 +126,16 @@
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                   <valueQuantity>
-                     <value value="16"/>
-                     <unit value="stuks"/>
+                     <value value="1.4"/>
+                     <unit value="milliliter"/>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                     <code value="245"/>
+                     <code value="233"/>
                   </valueQuantity>
                </extension>
-               <value value="16"/>
-               <unit value="stuks"/>
+               <value value="1.4"/>
+               <unit value="milliliter"/>
                <system value="http://unitsofmeasure.org"/>
-               <code value="1"/>
+               <code value="ml"/>
             </quantity>
             <whenHandedOver value="${DATE, T, D, -10}T09:18:00+02:00"/>
          </MedicationDispense>
@@ -182,7 +182,7 @@
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -254,7 +254,7 @@
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -337,7 +337,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -348,77 +348,36 @@
                <value value="01236578"/>
             </identifier>
             <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Organization>
       </resource>
       <request>
          <method value="POST"/>
          <url value="Organization"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:80ff0804-6ab7-11ec-0000-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="613401"/>
-                  <display value="OXAZEPAM ACTAVIS TABLET 10MG"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="353"/>
-                  <display value="OXAZEPAM TABLET 10MG"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="1023"/>
-                  <display value="OXAZEPAM TABLET 10MG"/>
-               </coding>
-               <text value="OXAZEPAM ACTAVIS TABLET 10MG"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:29c3071d-6ac8-11ec-0000-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="665800"/>
-                  <display value="PARACETAMOL SANDOZ TABLET 500MG"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="67903"/>
-                  <display value="PARACETAMOL 500MG TABLET"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="2194"/>
-                  <display value="PARACETAMOL 500MG TABLET"/>
-               </coding>
-               <text value="PARACETAMOL SANDOZ TABLET 500MG"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
       </request>
    </entry>
    <entry>
@@ -455,6 +414,39 @@
       </request>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:54506004-6abd-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="2807815"/>
+                  <display value="ENOXAPARINE BECAT INJVLST 2.000IE (20MG)/0,2ML WW"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="146676"/>
+                  <display value="ENOXAPARINE INJ SP 2000IE(20MG)=0,2ML(10.000IE/ML)"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="171816"/>
+                  <display value="ENOXAPARINE INJVLST 10.000IE/ML (100MG/ML)"/>
+               </coding>
+               <text value="ENOXAPARINE BECAT INJVLST 2.000IE (20MG)/0,2ML WW"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
       <fullUrl value="urn:uuid:3e96c11d-6ad5-11ec-0000-020000000000"/>
       <resource>
          <Medication>
@@ -479,6 +471,39 @@
                   <display value="FENPROCOUMON TABLET 3MG"/>
                </coding>
                <text value="FENPROCOUMON TABLET 3MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:44f3f51d-6b3d-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="1108751"/>
+                  <display value="INNOHEP INJVLST 20000 IE/ML WWSP 0,7ML"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="49255"/>
+                  <display value="TINZAPARINE INJVL WWSP 14000IE=0,7ML (20.000IE/ML)"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="103888"/>
+                  <display value="TINZAPARINE INJVLST 20.000IE/ML"/>
+               </coding>
+               <text value="INNOHEP INJVLST 20000 IE/ML WWSP 0,7ML"/>
             </code>
          </Medication>
       </resource>
