@@ -1373,4 +1373,11 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+    
+    <!-- R012 -->
+    
+    <!-- R025 -->
+    <!--422	Bijzonderheden testis rechts	W0250-->
+    <!--1392	Bijzonderheden testis links	W0250-->
+    
 </xsl:stylesheet>
