@@ -23,7 +23,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Creates an nl-core-ContactPerson instance as a RelatedPerson FHIR instance from ADA contactpersoon element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="patient">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the subject.</xd:param>
     </xd:doc>
     <xsl:template match="contactpersoon" name="nl-core-ContactPerson" mode="nl-core-ContactPerson" as="element(f:RelatedPerson)?">
         <xsl:param name="in" select="." as="element()?"/>
