@@ -17,8 +17,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../../../zibs2020/payload/0.8.0-beta.1/all_zibs.xsl"/>
     <xsl:import href="../2.0.0-beta.2/_ada2resourceType.xsl"/> <!-- Override the generic ada2resourceType variable with a version that used mp-PharmaceuticalProduct -->
 
-    <xsl:import href="../../../../../../YATC-shared/xsl/util/mp-functions.xsl"/>
-
     <xsl:import href="mp-AdministrationAgreement.xsl"/>
     <xsl:import href="../../../9.2.0/payload/1.0/mp-DispenseRequest.xsl"/>
     <xsl:import href="mp-InstructionsForUse.xsl"/>
@@ -34,6 +32,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../../9.2.0/payload/1.0/ext-PharmaceuticalTreatmentIdentifier.xsl"/>
     <xsl:import href="../../../9.2.0/payload/1.0/ext-MedicationAgreementPeriodOfUseCondition.xsl"/>
     <xsl:import href="ext-RegistrationDateTime.xsl"/>
+    
+    <xsl:import href="../../../../../../YATC-shared/xsl/util/mp-functions.xsl"/>
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
