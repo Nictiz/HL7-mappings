@@ -1306,9 +1306,9 @@
         <xd:desc>Rubriek 21 - Nieuwe code binnen waardelijst W0214 </xd:desc>
     </xd:doc>
     <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.41647']/hl7:value[@code = '03' or @code = '04' or @code = '05' or @code = '06' or @code = '07'][@codeSystem = '2.16.840.1.113883.2.4.4.40.313']" mode="dob420">
-        <code nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+        <value nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
             <originalText><xsl:value-of select="@displayName"/></originalText>
-        </code>
+        </value>
     </xsl:template>
     
     <!--1649	Seksueel functioneren W0700-->
