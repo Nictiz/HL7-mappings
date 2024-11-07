@@ -1463,6 +1463,52 @@
     </xsl:template>
     
     <!-- R012 -->
+    <xd:doc>
+        <xd:desc>Rubriek 12 - Gewijzigde waardes binnen waardelijst W0114 </xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.40080']/hl7:value[@codeSystem = '2.16.840.1.113883.2.4.4.40.8']" mode="dob420">
+        <xsl:choose>            
+            <!-- Condition for modified displayName for codes 08, 12, and 14 -->
+            <xsl:when test="@code = '08' or @code = '12' or @code = '14'">
+                <value xsi:type="CV">
+                    <xsl:attribute name="code">
+                        <xsl:value-of select="@code"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="codeSystem">
+                        <xsl:value-of select="@codeSystem"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="displayName">
+                        <xsl:choose>
+                            <xsl:when test="@code = '08'">
+                                <xsl:text>Gehoorverlies op jongere leeftijd</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="@code = '12'">
+                                <xsl:text>Erfelijke aangeboren afwijking</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="@code = '14'">
+                                <xsl:text>Overige psychiatrische aandoeningen</xsl:text>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:attribute>
+                </value>
+            </xsl:when>
+            
+            <!-- Default behavior if none of the specific conditions are met -->
+            <xsl:otherwise>
+                <value xsi:type="CV">
+                    <xsl:attribute name="code">
+                        <xsl:value-of select="@code"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="codeSystem">
+                        <xsl:value-of select="@codeSystem"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="displayName">
+                        <xsl:value-of select="@displayName"/>
+                    </xsl:attribute>
+                </value>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
     
     <!-- R019 -->
     
@@ -1473,6 +1519,16 @@
     <!-- R025 -->
     <!--422	Bijzonderheden testis rechts	W0250-->
     <!--1392	Bijzonderheden testis links	W0250-->
+    
+    <xd:doc>
+        <xd:desc>Rubriek 25 - Nieuwe codes binnen waardelijst W0250 </xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.41392']/hl7:value[@code = '02' or @code = '03' or @code='04'][@codeSystem = '2.16.840.1.113883.2.4.4.40.72']" mode="dob420">
+        <value nullFlavor="OTH" 
+            codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+            <originalText><xsl:value-of select="@displayName"/></originalText>
+        </value>
+    </xsl:template>
     
     <!-- R026 -->
     
