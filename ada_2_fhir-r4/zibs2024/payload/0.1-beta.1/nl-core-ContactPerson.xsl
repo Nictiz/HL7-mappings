@@ -20,11 +20,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:variable name="profileNameContactPerson">nl-core-ContactPerson</xsl:variable>
 
-    <xd:doc>
-        <xd:desc>Creates an nl-core-ContactPerson instance as a RelatedPerson FHIR instance from ADA contactpersoon element.</xd:desc>
-        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="subject">Optional ADA instance or ADA reference element for the subject.</xd:param>
-    </xd:doc>
     <xsl:template match="contactpersoon" name="nl-core-ContactPerson" mode="nl-core-ContactPerson" as="element(f:RelatedPerson)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" as="element()?"/>
@@ -94,8 +89,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Creates an nl-core-Contactperson FHIR instance embedded in the Patient instance from ADA contactpersoon element. Since it is embedded in the Patient no Resource.id is needed.</xd:desc>
-        <xd:param name="in">Node to consider in the creation of a Patient.contact element.</xd:param>
+        <xd:desc>Creates a Patient.contact element in line with nl-core-Contactperson from ADA contactpersoon element.</xd:desc>
     </xd:doc>
     <xsl:template match="contactpersoon" name="nl-core-ContactPerson-embedded" mode="nl-core-ContactPerson-embedded" as="element(f:contact)?">
         <xsl:param name="in" select="." as="element()?"/>
@@ -145,9 +139,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-    <xd:doc>
-        <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
-    </xd:doc>
     <xsl:template match="contactpersoon" mode="_generateDisplay">
         <xsl:variable name="parts" as="item()*">
             <xsl:text>Contact person</xsl:text>

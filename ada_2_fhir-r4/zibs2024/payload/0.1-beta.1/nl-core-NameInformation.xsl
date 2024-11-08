@@ -18,10 +18,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
-    <xd:doc>
-        <xd:desc>Creates FHIR HumanName data type from ADA naamgegevens element.</xd:desc>
-        <xd:param name="in">ADA naamgegevens element</xd:param>
-    </xd:doc>
     <xsl:template match="naamgegevens" name="nl-core-NameInformation" mode="nl-core-NameInformation" as="element(f:name)*">
         <xsl:param name="in" select="." as="element()*"/>
 
@@ -182,7 +178,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <use value="usual"/>
                     <given value="{roepnaam/@value}"/>
                 </name>
-            </xsl:if>           
+            </xsl:if>
         </xsl:for-each>
     </xsl:template>
 

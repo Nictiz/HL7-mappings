@@ -18,10 +18,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
-    <xd:doc>
-        <xd:desc>Creates FHIR ContactPoint data type from ADA contactgegevens element.</xd:desc>
-        <xd:param name="in">ADA contactgegevens element</xd:param>
-    </xd:doc>
     <xsl:template match="contactgegevens" name="nl-core-ContactInformation" mode="nl-core-ContactInformation" as="element(f:telecom)*">
         <xsl:param name="in" select="." as="element()?"/>
 

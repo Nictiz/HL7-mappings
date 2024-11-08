@@ -28,21 +28,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xd:li>zib MaritalStatus</xd:li>
                 <xd:li>zib LanguageProficiency</xd:li>
                 <xd:li>zib ContactPerson</xd:li>
-                <xd:li>zib NameInformation</xd:li>
-                <xd:li>zib ContactInformation</xd:li>
-                <xd:li>zib AddressInformation</xd:li>
             </xd:ul>
         </xd:desc>
-        <xd:param name="in">ADA element as input. Defaults to self.</xd:param> 
         
         The following components need to be passed as ADA instances; although the zibs themselves are not related to a patient, the translation to FHIR is specific to the Patient resource: 
         <xd:param name="nationality">Optional ADA instance of zib Nationality</xd:param>
         <xd:param name="maritalStatus">Optional ADA instance of zib MaritalStatus</xd:param>
         <xd:param name="languageProficiency">Optional ADA instances of zib LanguageProficiency</xd:param>
-        <xd:param name="contactPersons">Optional ADA instances of zib ContactPerson that need to be mapped to Patient.contact in FHIR (this is not always the case).</xd:param>
+        <xd:param name="contactPersons">Optional ADA instances of zib ContactPerson that need to be mapped to Patient.contact in FHIR (this is not always the case)</xd:param>
     </xd:doc>
     <xsl:template match="patient" mode="nl-core-Patient" name="nl-core-Patient" as="element(f:Patient)">
-        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="nationality" as="element(nationaliteit_rc)?"/>
         <xsl:param name="maritalStatus" as="element(burgerlijke_staat_rc)?"/>
         <xsl:param name="languageProficiency" as="element(taalvaardigheid)*"/>
@@ -186,7 +182,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:otherwise>
                 </xsl:choose>
                 
-                <!-- Only "Eerste relatie/contactpersoon" and "Tweede relatie/contactpersoon" as Patient.contacts. Otherwise they should be entered as RelatedPerson-->
+                <!-- Only contact persons with role "First contact person" or "Second contact person" in Patient.contact; all other contact persons are only transformed to RelatedPerson resources. -->
                 <xsl:for-each select="$contactPerson[rol[@code = ('300481000146102', '300531000146100')]]">
                     <xsl:call-template name="nl-core-ContactPerson-embedded">
                         <xsl:with-param name="in" select="."/>
@@ -251,7 +247,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc> Helper template to render the 'patient proficiency' extension for the types RSP, ESP en RWR, which repesent the zib concepts LanguageControlListening, LanguageControlWriting and LanguageControlWriting. </xd:desc>
-        <xd:param name="in"> The root element of the ada concept for the three zib concepts mentioned. May be empty, in which case the extension will not be rendered. </xd:param>
+        <xd:param name="in">The root element of the ada concept for the three zib concepts mentioned. May be empty, in which case the extension will not be rendered.</xd:param>
         <xd:param name="typeCode">The code used for the 'type' part of the complex extension.</xd:param>
     </xd:doc>
     <xsl:template name="_patientProficiency">
@@ -290,12 +286,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </extension>
         </xsl:for-each>
     </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Template to generate a display that can be shown when referencing a patient</xd:desc>
-    </xd:doc>
+    
     <xsl:template match="patient" mode="_generateDisplay">
-        <xsl:value-of select="string-join(('Patient', nf:renderName(naamgegevens)), ', ')"/>
+        <xsl:variable name="parts" as="item()*">
+            <xsl:text>Patient</xsl:text>
+            <xsl:value-of select="nf:renderName(naamgegevens)"/>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
     </xsl:template>
     
 </xsl:stylesheet>

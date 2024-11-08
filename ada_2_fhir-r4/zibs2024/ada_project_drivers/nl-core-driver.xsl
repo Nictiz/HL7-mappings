@@ -115,21 +115,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>The template to dynamically call the proper nl-core template on the ADA input.</xd:desc>
+        <xd:desc>The (quite verbose) template to dynamically call the proper nl-core template on the ADA input.</xd:desc>
         <xd:param name="in">The ADA instance to output.</xd:param>
-        <xd:param name="subject">The 'subject' to pass to the nl-core template.</xd:param>
+        <xd:param name="subject">The subject to pass to the nl-core template.</xd:param>
     </xd:doc>
     <xsl:template name="_applyNlCoreTemplate">
         <xsl:param name="in" select="nf:ada-resolve-reference(.)"/>
         <xsl:param name="subject"/>
-
+        
+        <!-- Quite verbose, but the only way to 'dynamically' apply a mode -->
         <xsl:variable name="localName" select="$in/local-name()"/>
         <xsl:choose>
             <xsl:when test="$localName = 'adaextension'">
                 <!-- Do nothing -->
             </xsl:when>
             
-            <!-- If so required, an xsl:when condition can be added for templates that need to be called in some deviating way, but it should normally not be required. -->
             <xsl:when test="$localName = 'contactpersoon'">
                 <xsl:call-template name="nl-core-ContactPerson">
                     <xsl:with-param name="subject" select="$subject"/>
@@ -144,11 +144,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="contactPerson" select="collection('../ada_instance')//contactpersoon[substring-after(zibroot/patient/@value,'#') = $patientId]"/>
                 </xsl:call-template>
             </xsl:when>
-
+            
             <xsl:otherwise>
-                <xsl:apply-templates select="$in">
-                    <xsl:with-param name="subject" select="$subject"/>
-                </xsl:apply-templates>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logWARN"/>
+                    <xsl:with-param name="msg">Unknown ADA localName: '<xsl:value-of select="$localName"/>'</xsl:with-param>
+                </xsl:call-template>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
