@@ -66,7 +66,7 @@ If a choice as to which transformation can be made based on the content of the A
 ### Multiple zibs resulting in single FHIR resource
 In some rare situations, multiple zibs end up in the same FHIR resource. For example zib Nationality, which will usually be mapped to an element in the Patient resource.
 
-In this situation, there is no stylesheet or profile template for the "guest" zibs. Instead, the ADA instance for which the result should end up in the focal resource is defined as a parameter to the template of the focal resource. This means that it is up to the caller of the template to preprocess the ADA input in such a way that the template is invoked with the proper parameter. This preprocessing is done in `ada_project_drivers/nl-core-driver.xsl`.
+In this situation, there is no stylesheet or profile template for the "guest" zibs. Instead, the ADA instance for which the result should end up in the focal resource is defined as a parameter to the template of the focal resource. This means that it is up to the caller of the template to preprocess the ADA input in such a way that the template is invoked with the proper parameter. This preprocessing is done in (for instance) `ada_project_drivers/nl-core-driver.xsl`.
 
 ### The `_generateDisplay` template(s)
 For each profile template, there SHOULD be a template with `mode` set to `_generateDisplay` and a `match` on the ADA instance element. This template is used to generate a display for references to the resulting instance.
