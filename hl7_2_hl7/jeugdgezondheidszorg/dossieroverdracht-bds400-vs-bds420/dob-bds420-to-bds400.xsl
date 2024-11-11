@@ -1610,6 +1610,8 @@
     <!--1665	In de omgeving van de jeugdige wordt wel eens of dagelijks gerookt	W0704-->
     <!--1668	Jeugdige heeft zwemdiploma	W0705-->
     
+    <!-- R020 -->
+    
     <!-- R021 -->
     <!--324	Zindelijkheid	W0209-->
     <!--1647	Soorten genotsmiddelen/verslavingsrisico	W0214-->
@@ -1630,6 +1632,8 @@
     <!-- R030 -->
     <!--1658	Beoordeling cognitieve ontwikkeling W0702-->
     <!--1659	Bevinding(en) psychosociaal functioneren W0703-->
+    
+    <!-- R031 -->
     
     <!-- R039 -->
     <!--1680	Risicosignalen hartfunctie W0709-->
