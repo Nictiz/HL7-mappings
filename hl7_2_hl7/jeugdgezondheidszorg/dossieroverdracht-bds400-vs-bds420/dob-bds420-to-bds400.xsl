@@ -1285,6 +1285,12 @@
     <!--1424	Indicatie activiteit W0619-->
     
     <!-- R019 -->
+    <xd:doc>
+        <xd:desc>Rubriek 19, elementen 1665-1678 bestonden niet in 4.0.0</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1665' or @code = '1666' or @code = '1667' or @code = '1668'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
+        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
+    </xsl:template>
     <!--1665	In de omgeving van de jeugdige wordt wel eens of dagelijks gerookt	W0704-->
     <!--1668	Jeugdige heeft zwemdiploma	W0705-->
     
