@@ -1370,6 +1370,12 @@
     <!--1673	Beoordeling puberteitsontwikkeling W0707-->
     
     <!-- R030 -->
+    <xd:doc>
+        <xd:desc>Rubriek 30, elementen 1656-1659 bestonden niet in 4.0.0</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1656' or @code = '1657' or @code = '1658' or @code = '1659'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
+        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
+    </xsl:template>
     <!--1658	Beoordeling cognitieve ontwikkeling W0702-->
     <!--1659	Bevinding(en) psychosociaal functioneren W0703-->
     
