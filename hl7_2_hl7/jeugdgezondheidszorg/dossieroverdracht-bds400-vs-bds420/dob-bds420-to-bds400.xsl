@@ -1361,6 +1361,12 @@
     </xsl:template>
     
     <!-- R026 -->
+    <xd:doc>
+        <xd:desc>Rubriek 26, elementen 1672-1674 bestonden niet in 4.0.0</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1672' or @code = '1673' or @code = '1674'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
+        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
+    </xsl:template>
     <!--1673	Beoordeling puberteitsontwikkeling W0707-->
     
     <!-- R030 -->
