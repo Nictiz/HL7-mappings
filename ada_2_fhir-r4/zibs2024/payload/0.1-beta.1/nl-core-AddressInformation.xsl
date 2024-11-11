@@ -52,6 +52,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:when>
                     </xsl:choose>
                 </xsl:for-each>
+                
+                <xsl:variable name="houseNumberIndication">
+                    <xsl:if test="aanduiding_bij_nummer[@code]">
+                        <xsl:choose>
+                            <xsl:when test="not(aanduiding_bij_nummer/(@codeSystem = '2.16.840.1.113883.5.1008' and @code = 'OTH'))">
+                                <xsl:value-of select="aanduiding_bij_nummer/@code"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="aanduiding_bij_nummer/@originalText"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:if>
+                </xsl:variable>
 
                 <xsl:variable name="lineItems" as="element()*">
                     <xsl:for-each select="straat[@value]">
@@ -85,11 +98,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </extension>
                     </xsl:if>
                     
-                    <xsl:for-each select="aanduiding_bij_nummer[@code]">
+                    <xsl:if test="aanduiding_bij_nummer[@code]">
                         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
-                            <valueString value="{@code}"/>
+                            <valueString value="{$houseNumberIndication}"/>
                         </extension>
-                    </xsl:for-each>
+                    </xsl:if>
                     
                     <xsl:for-each select="additionele_informatie[@value]">
                         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
@@ -103,7 +116,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:variable>
 
                 <xsl:if test="$lineItems">
-                    <line value="{string-join((straat/@value, aanduiding_bij_nummer/@code, huisnummer/@value, huisnummerletter/@value, huisnummertoevoeging/@value), ' ')}">
+                    <line value="{string-join((straat/@value, $houseNumberIndication, huisnummer/@value, huisnummerletter/@value, huisnummertoevoeging/@value)[. != ''], ' ')}">
                         <xsl:copy-of select="$lineItems"/>
                     </line>
                 </xsl:if>
