@@ -3,17 +3,14 @@
     <xsl:import href="../../../../YATC-shared/xsl/util/utilities.xsl"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
-            <xd:p><xd:b>Author:</xd:b> Alexander Henket, Nictiz</xd:p>
             <xd:p><xd:b>Author:</xd:b> Onno Gieling, Nictiz</xd:p>
-            <xd:p><xd:b>Purpose:</xd:b> Conversie van een valide Dossieroverdrachtbericht op basis van BDS 4.0.1 (REPC_IN902120NL03) naar een valide versie op basis van BDS 3.2.7 (REPC_IN902120NL). Regelt zelf het bijwerken van de weergavenamen bij rubrieken, groepen en elementen. Laat de weergavenamen van waarden ongemoeid.</xd:p>
+            <xd:p><xd:b>Author:</xd:b> Nathalie Nikodym, Nictiz</xd:p>
+            <xd:p><xd:b>Purpose:</xd:b> Conversie van een valide Dossieroverdrachtbericht op basis van BDS 4.1.3 (REPC_IN902120NL03) naar een valide versie op basis van BDS 4.2.0 (REPC_IN902120NL04). Regelt zelf het bijwerken van de weergavenamen bij rubrieken, groepen en elementen. Laat de weergavenamen van waarden ongemoeid.</xd:p>
             <xd:p>
                 <xd:b>History:</xd:b>
             </xd:p>
             <xd:ul>
-                <xd:li>07-06-2020 - Eerste versie</xd:li>
-                <xd:li>10-02-2022 - 1.0.0</xd:li>
-                <xd:li>24-04-2023 - 1.1.0</xd:li>
-                <xd:li>13-06-2023 - 1.1.1</xd:li>
+                <xd:li>xx-xx-202x - 0.1</xd:li>
             </xd:ul>
             <xd:p><xd:b>License:</xd:b> Copyright © Nictiz</xd:p>
             <xd:p>This program is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.</xd:p>
@@ -1212,17 +1209,6 @@
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Annotation is OBS, but was ACT. Act.value (ANY) was Act.text (ST). If ACT.text really is ST, then so is value[@xsi:type=ST]</xd:desc>
-    </xd:doc>
-    <xsl:template match="
-        hl7:careProvisionEvent/hl7:component7/hl7:*/hl7:*/hl7:annotation/hl7:value |
-        hl7:careProvisionEvent/hl7:component7/hl7:*/hl7:*/hl7:conclusion/hl7:subjectOf/hl7:annotation/hl7:value" mode="dob400">
-        <text xmlns="urn:hl7-org:v3">
-            <xsl:value-of select="."/>
-        </text>
-    </xsl:template>
-
-    <xd:doc>
         <xd:desc>Conversie van nieuwe nonBDSData naar oude nonBDSData</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:nonBDSData" mode="dob400">
@@ -1309,12 +1295,6 @@
             </xsl:choose>
         </name>
     </xsl:template>
-
-    <!--<xsl:template name="toLowerCase">
-        <xsl:param name="in"/>
-        
-        <xsl:value-of select="translate($in, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')"/>
-    </xsl:template>-->
 
     <xd:doc>
         <xd:desc>Maak component1/nonBDSdata</xd:desc>
