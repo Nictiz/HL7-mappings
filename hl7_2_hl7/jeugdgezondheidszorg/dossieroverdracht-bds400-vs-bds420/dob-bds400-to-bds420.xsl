@@ -1527,6 +1527,13 @@
     </xsl:template>
     
     <!-- R020-->
+    <xd:doc>
+        <xd:desc>Rubriek 20: elementen 756-768 vervallen</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '756' or @code = '757' or @code = '758' or @code = '759' or @code = '760' or @code = '761' or @code = '762' or @code = '763' or @code = '764' or @code = '765' or @code = '766' or @code = '767' or @code = '768'
+        ][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob400">
+        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is vervallen </xsl:text></xsl:comment>
+    </xsl:template>
       
     <!-- R021 -->
     
@@ -1553,7 +1560,7 @@
     <!-- R034 -->
     
     <!-- R038 -->
-    
+
     <!-- R039 -->
     
     <!-- R042 -->
