@@ -1574,7 +1574,13 @@
     </xsl:template>
     
     <!-- R030 -->
-    
+    <xd:doc>
+        <xd:desc>Rubriek 30:elementen 259, 265, 814, 1440 vervallen</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '259' or @code = '265' or @code = '814' or @code = '1440'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob400">
+        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is vervallen </xsl:text></xsl:comment>
+    </xsl:template>
+
     <!-- R031 -->
     
     <!-- R034 -->
