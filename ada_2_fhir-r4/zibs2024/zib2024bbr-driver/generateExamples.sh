@@ -12,7 +12,7 @@ function doTransformation {
     echo Removing previous output
     rm -f "$outputDir"/"$input"*.xml
        
-    java -jar "$saxonPath" -s:"$inputDir/$input.xml" -xsl:nl-core-driver.xsl -o:"$outputDir/$input.xml"
+    java -jar "$saxonPath" -s:"$inputDir/$input.xml" -xsl:zib2024bbr-driver.xsl -o:"$outputDir/$input.xml"
 }
 
 if [[ ! -f "$saxonPath" ]]; then
