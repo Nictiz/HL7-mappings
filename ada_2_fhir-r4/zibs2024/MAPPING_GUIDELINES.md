@@ -15,7 +15,7 @@ Transforming ADA instances to FHIR is a two-pass process: first all metadata (li
 ## The profile template(s)
 In each zib stylesheet, a "profile template" is created for each profile that represents the zib or a part of it. This template has a `name` _and_ `mode` equal to the profile id, and a `match` on the ADA element that is transformed. In a lot of circumstances, it is the only (transformation) template in the stylesheet (next to the `_generateDisplay` template), but there are some special situations which are described below. The profile template only needs documentation (in an `xd:doc` element) whenever the transformation between ADA and FHIR is not straightforward (e.g. in the case of Patient).
 
-The template should perform a "pure" mapping from an ADA instance representing the zib to the corresponding FHIR resource(s). The transaction context should be left out of this level; for example, the mapping should not assume that is part of a transaction where it can resolve some dependency; this kind of data should be defined explicitly using a parameter or the reference mechanism. Similarly, the template should not know whether the result is to be used within a Bundle or as a single instance. There are various utility templates and functions (like `insertLogicalId` and `makeReference`) to abstract away all these kind of considerations.
+Each template should perform a "pure" mapping from an ADA instance representing the zib to the corresponding FHIR resource. The transaction context should be left out of this level; for example, the mapping should not assume that it is part of a transaction where it can resolve some dependency; this kind of data should be defined explicitly using a parameter or the reference mechanism. Similarly, the template should not know whether the result is to be used within a Bundle or as a single instance. There are various utility templates and functions (like `insertLogicalId` and `makeReference`) to abstract away all these kind of considerations.
 
 Most of the ADA input content can be mapped one-on-one to the FHIR output. For just about every data type, a template is available to transform the ADA element to a FHIR element. See the files `../fhir/2_fhir_fhir_include.xsl` and `../../ada_2_fhir/fhir/2_fhir_fhir_include.xsl`.
 
@@ -35,7 +35,7 @@ Each profile template SHOULD have an optional parameter called `$subject` contai
 Additional parameters may be used as desired, as long as they are documented properly.
 
 #### Logical id
-In each template that is used to map an ADA instance to a FHIR resource instance, a logical id should be added to the resulting FHIR instance. This is done by invoking the template `insertLogicalId`, in which the `profile` parameter SHOULD be used, even though it is only strictly necessary whenever there is no one-on-one relation between the ADA element and FHIR resource.
+In each template that is used to map an ADA instance to a FHIR resource instance, a logical id should be added to the resulting FHIR instance. This is done by invoking the template `insertLogicalId`, in which the `profile` parameter SHOULD be used, even though it is only strictly necessary whenever there is no one-on-one relation between the ADA element and FHIR resource. Adding the `profile` parameter in all cases, ensures that the logical id is always assigned correctly, even if later on an extra relation between the ADA element and FHIR resource would be added, e.g. whenever an information standard deviates from or extends the nl-core profile, but uses the same ADA element.
 
 Example:
 
@@ -78,9 +78,9 @@ There are different situations:
 * The change is due to an error or omission in the implementation of the existing profile. In this case, a new branch is made with the issue key as its name and the existing stylesheet is changed. Since this change may affect existing implementations, a review is required from downstream projects before it is merged to master.
 
 ## ADA transaction driver templates
-As stated above, the nl-core stylesheets should perform a pure mapping on the building block level from the zib ADA to the corresponding FHIR resources, without knowledge of the ADA transaction where these zibs were used. As a result, the nl-core stylesheets can't be used stand-alone, as ADA instances always corresponds with a transaction. Instead, a driver template is needed to interpret the transaction, apply the nl-core stylesheets with the proper parameters, and handle the result.
+As stated above, the nl-core stylesheets should perform a pure mapping on the building block level from the zib ADA to the corresponding FHIR resources, without knowledge of the ADA transaction where these zibs were used. As a result, the nl-core stylesheets can't be used stand-alone, as ADA instances always correspond with a transaction. Instead, a driver template is needed to interpret the transaction, apply the nl-core stylesheets with the proper parameters, and handle the result.
 
 ### zib2024bbr-driver
-The zib2024bbr (building block repository) project in ART-DECOR provides all the zibs as building blocks for other projects. To allow for working with discrete zibs in ADA/XSLT, this project has defined a transaction for each zib. A single driver template has been created for all these transactions, called "zib2024-driver" in the folder with the same name.
+The zib2024bbr (building block repository) project in ART-DECOR provides all the zibs as building blocks for other projects. To allow for working with discrete zibs in ADA/XSLT, this project has defined a transaction for each zib. A single driver template has been created for all these transactions, called `zib2024bbr-driver` in the folder with the same name.
 
 See [`zib2024bbr-driver/README.md`](zib2024bbr-driver/README.md) for further instructions.
