@@ -1,0 +1,197 @@
+<REPC_IN902120NL04 xsi:schemaLocation="urn:hl7-org:v3 ../hl7v3_schemas/REPC_IN902120NL04.xsd"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="urn:hl7-org:v3"
+                   xmlns:hl7="urn:hl7-org:v3"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+   <id extension="1243567"
+       root="2.16.528.1.1007.3.3.12345678.1"/>
+   <creationTime value="20000101000000"/>
+   <versionCode code="NICTIZEd2005-Okt"/>
+   <interactionId extension="REPC_IN902120NL04"
+                  root="2.16.840.1.113883.1.6"/>
+   <profileId extension="810"
+              root="2.16.840.1.113883.2.4.3.11.1"/>
+   <processingCode code="P"/>
+   <processingModeCode code="T"/>
+   <acceptAckCode code="AL"/>
+   <attentionLine>
+      <keyWordText code="PATID"
+                   codeSystem="2.16.840.1.113883.2.4.15.1">Patient.id</keyWordText>
+      <value xsi:type="II"
+             extension="123456782"
+             root="2.16.840.1.113883.2.4.6.3"/>
+   </attentionLine>
+   <receiver>
+      <device>
+         <id extension="{$receiverId}"
+             root="2.16.840.1.113883.2.4.6.6"/>
+      </device>
+   </receiver>
+   <sender>
+      <device>
+         <id extension="{$applicationId}"
+             root="2.16.840.1.113883.2.4.6.6"/>
+      </device>
+   </sender>
+   <ControlActProcess classCode="CACT"
+                      moodCode="EVN">
+      <authorOrPerformer typeCode="AUT">
+         <participant>
+            <AssignedDevice>
+               <id root="2.16.528.1.1007.3.2"
+                   extension="091287345"/>
+               <Organization>
+                  <id extension="00001111"
+                      root="2.16.528.1.1007.3.3"/>
+                  <name>GGD Groningen</name>
+               </Organization>
+            </AssignedDevice>
+         </participant>
+      </authorOrPerformer>
+      <subject>
+         <CareProvisionRequest>
+            <templateId root="2.16.840.1.113883.2.4.6.10.100.10000"/>
+            <id extension="123456782"
+                root="2.16.528.1.1007.3.3.1111.999.2"/>
+            <code code="CPHC"
+                  codeSystem="2.16.840.1.113883.5.4"
+                  displayName="certified public health and general preventive medicine care"/>
+            <statusCode code="active"/>
+            <author>
+               <time value="2024"/>
+               <assignedEntity classCode="ASSIGNED">
+                  <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
+                  <id root="2.16.528.1.1007.3.3"
+                      extension="00001111"/>
+               </assignedEntity>
+            </author>
+            <sequelTo>
+               <careProvisionEvent moodCode="EVN">
+                  <id extension="123456782"
+                      root="2.16.528.1.1007.3.3.1111.999.2"/>
+                  <code codeSystem="2.16.840.1.113883.5.4"
+                        code="CPHC"
+                        displayName="certified public health and general preventive medicine care"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime>
+                     <high value="20200607213533"/>
+                  </effectiveTime>
+                  <subject typeCode="SBJ">
+                     <patient classCode="PAT">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.100.131"/>
+                        <id extension="123456782"
+                            root="2.16.840.1.113883.2.4.6.3"/>
+                        <statusCode code="active"/>
+                        <patientPerson>
+                           <name use="OR">
+                              <family qualifier="BR">AchternaamTest</family>
+                           </name>
+                           <birthTime value="20000101"/>
+                        </patientPerson>
+                     </patient>
+                  </subject>
+                  <author typeCode="AUT">
+                     <time nullFlavor="UNK"/>
+                     <assignedEntity classCode="ASSIGNED">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
+                        <id extension="12345678"
+                            root="2.16.528.1.1007.3.3"/>
+                        <assignedOrganization classCode="ORG"
+                                              determinerCode="INSTANCE">
+                           <name>GGD TEST</name>
+                        </assignedOrganization>
+                     </assignedEntity>
+                  </author>
+                  <component7 typeCode="COMP">
+                     <encounter classCode="ENC"
+                                moodCode="EVN">
+                        <id extension="01"
+                            root="2.16.528.1.1007.3.3.1111.999.2"/>
+                        <code code="01"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.308"
+                              displayName="Contact 4-7 dagen"/>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="20000101"/>
+                        <!-- r018_activiteit -->
+                        <pertinentInformation typeCode="PERT">
+                           <rubricCluster classCode="CLUSTER"
+                                          moodCode="EVN">
+                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11018"/>
+                              <code code="R018"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
+                                    displayName="Activiteit"/>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41605"/>
+                                    <code code="1605"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Status activiteit"/>
+                                    <value xsi:type="CV"
+                                           code="01"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.434"
+                                           displayName="Gerealiseerd"/>
+                                 </observation>
+                              </component>
+                           </rubricCluster>
+                        </pertinentInformation>
+                        <!-- r039_hartonderzoek -->
+                        <pertinentInformation>
+                           <rubricCluster classCode="CLUSTER"
+                                          moodCode="EVN">
+                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11039"/>
+                              <code code="R039"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
+                                    displayName="Hartonderzoek"/>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41680"/>
+                                    <code code="1680"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Risicosignalen hartfunctie"/>
+                                    <value xsi:type="CV"
+                                           code="01"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.454"
+                                           displayName="Bleekheid"/>
+                                 </observation>
+                              </component>
+                           </rubricCluster>
+                        </pertinentInformation>
+                     </encounter>
+                  </component7>
+                  <subjectOf typeCode="SUBJ"
+                             contextConductionInd="false">
+                     <careStatus classCode="STC"
+                                 moodCode="EVN">
+                        <code code="1197"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Status in zorg"/>
+                        <effectiveTime value="20000101"/>
+                        <reasonCode code="01"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.376"
+                                    displayName="Regulier"/>
+                     </careStatus>
+                  </subjectOf>
+                  <subjectOf typeCode="SUBJ"
+                             contextConductionInd="false">
+                     <careStatus classCode="STC"
+                                 moodCode="EVN">
+                        <code code="487"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Zorgbeëindiging"/>
+                        <effectiveTime value="20000101"/>
+                        <reasonCode code="04"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.82"
+                                    displayName="Leeftijd"/>
+                     </careStatus>
+                  </subjectOf>
+               </careProvisionEvent>
+            </sequelTo>
+         </CareProvisionRequest>
+      </subject>
+   </ControlActProcess>
+</REPC_IN902120NL04>

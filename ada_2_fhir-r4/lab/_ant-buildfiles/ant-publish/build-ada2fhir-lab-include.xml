@@ -156,11 +156,16 @@
         <fileset id="inputfiles" dir="${xsl.input}" includes="*.xml"/>
 
         <echo/>
-        <echo>${echo.label} ${xsl.lab} input dir ${xsl.input}</echo>
+        <echo>${echo.label} input files ${xsl.input}, to be converted with: ${xsl.lab}</echo>
+        <echo>${echo.label} Param writeOutputToDisk=${param.writeOutputToDisk}</echo>
+        <echo>${echo.label} Param populateId=${param.populateId}</echo>
+        
         <xslt force="true" style="${xsl.lab}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
             <fileset refid="inputfiles"/>
             <param name="dateT" expression="${param.tdate}" if="param.tdate"/>
             <param name="writeOutputToDisk" expression="${param.writeOutputToDisk}" if="param.writeOutputToDisk"/>
+            <param name="populateId" expression="${param.populateId}" if="param.populateId"/>
+            <param name="referencingStrategy" expression="${param.referencingStrategy}" if="param.referencingStrategy"/>
             <!-- whether to generate the textual instruction for use based on structured data, 
                     typically true for test/example instances 
                     typically false for production -->

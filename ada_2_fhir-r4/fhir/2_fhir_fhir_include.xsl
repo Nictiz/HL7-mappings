@@ -15,7 +15,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:uuid="http://www.uuid.org" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:util="urn:hl7:utilities" version="2.0">
 
-    <xsl:import href="../../ada_2_fhir/fhir/2_fhir_fhir_include.xsl"/>
+    <xsl:import href="../../../YATC-internal/ada-2-fhir/env/fhir/2_fhir_fhir_include.xsl"/>
 
     <xd:doc>
         <xd:desc>
@@ -117,9 +117,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="medicatieafspraak" resource="MedicationRequest" profile="mp-MedicationAgreement"/>
         <nm:map ada="medicatieverstrekking" resource="MedicationDispense" profile="mp-MedicationDispense"/>
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-MedicalDevice"/>
+        <nm:map ada="medisch_hulpmiddel" resource="Device" profile="nl-core-MedicalDevice.Product"/>
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-HearingFunction.HearingAid"/>
+        <nm:map ada="medisch_hulpmiddel" resource="Device" profile="nl-core-HearingFunction.HearingAid.Product"/>
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-VisualFunction.VisualAid"/>
+        <nm:map ada="medisch_hulpmiddel" resource="Device" profile="nl-core-VisualFunction.VisualAid.Product"/>
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-Wound.Drain"/>
+        <nm:map ada="medisch_hulpmiddel" resource="Device" profile="nl-core-Wound.Drain.Product"/>
         <nm:map ada="mobiliteit" resource="Observation" profile="nl-core-Mobility"/>
         <nm:map ada="lopen" resource="Observation" profile="nl-core-Mobility.Walking"/>
         <nm:map ada="traplopen" resource="Observation" profile="nl-core-Mobility.ClimbingStairs"/>
@@ -150,10 +154,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="polsfrequentie" resource="Observation" profile="nl-core-PulseRate"/>
         <nm:map ada="pols_regelmatigheid" resource="Observation" profile="nl-core-PulseRate.PulseRegularity"/>
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
-        <nm:map ada="product" resource="Device" profile="nl-core-MedicalDevice.Product"/>
-        <nm:map ada="product" resource="Device" profile="nl-core-HearingFunction.HearingAid.Product"/>
-        <nm:map ada="product" resource="Device" profile="nl-core-VisualFunction.VisualAid.Product"/>
-        <nm:map ada="product" resource="Device" profile="nl-core-Wound.Drain.Product"/>
         <nm:map ada="reactie" resource="AllergyIntolerance" profile="cio-Reaction"/>
         <nm:map ada="refractie" resource="Observation" profile="nl-core-Refraction"/>
         <nm:map ada="registratie_informatie" resource="Provenance" profile="cio-RegistrationInformation"/>
@@ -245,7 +245,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:param name="patientTokensXml">Override optional parameter containing XML document based on QualificationTokens.json as used on Github / Touchstone</xd:param>
     </xd:doc>
-    <xsl:param name="patientTokensXml" select="document('../../ada_2_fhir/fhir/QualificationTokens.xml')"/>
+    <xsl:param name="patientTokensXml" select="document('../../../YATC-internal/ada-2-fhir/env/fhir/QualificationTokens.xml')"/>
 
     <xd:doc>
         <xd:desc>Build the metadata for all the FHIR resources that are to be generated from the current input.</xd:desc>
@@ -277,7 +277,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:if test="not($referencingStrategy = ('logicalId', 'uuid', 'none'))">
             <xsl:call-template name="util:logMessage">
                 <xsl:with-param name="level" select="$logFATAL"/>
-                <xsl:with-param name="msg">Invalid $referencingStrategy. Should be one of 'logicalId', 'uuid', 'none'</xsl:with-param>
+                <xsl:with-param name="msg">Invalid $referencingStrategy (<xsl:value-of select="$referencingStrategy"/>). Should be one of 'logicalId', 'uuid', 'none'</xsl:with-param>
                 <xsl:with-param name="terminate" select="true()"/>
             </xsl:call-template>
         </xsl:if>
@@ -331,7 +331,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 $in//horen_hulpmiddel/medisch_hulpmiddel,
                 $in//zien_hulpmiddel/medisch_hulpmiddel,
                 $in//drain/medisch_hulpmiddel,
-                $in//product[parent::medisch_hulpmiddel],
                 $in//visueel_resultaat[parent::tekst_uitslag],
                 $in//soepregel[parent::soepverslag],
                 $in//monster[parent::laboratorium_uitslag],

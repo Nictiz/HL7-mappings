@@ -3,7 +3,7 @@
    <id value="lr-slr-KWAL-l2z-3Meesturen-met-ander-bericht-MO-4KCNHG"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:af42c63a-81cc-11ef-1371-020000000000"/>
+      <fullUrl value="urn:uuid:ff6602e0-8d1f-11ef-1518-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -35,13 +35,13 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:af42c59a-81cc-11ef-1371-020000000000"/>
+               <reference value="urn:uuid:ff660240-8d1f-11ef-1518-020000000000"/>
                <type value="Patient"/>
-               <display value="Patient, H Smit"/>
+               <display value="Patient, H. XXX_Smit"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, -30}"/>
             <performer>
-               <reference value="urn:uuid:af42c5b8-81cc-11ef-1371-020000000000"/>
+               <reference value="urn:uuid:ff66025e-8d1f-11ef-1518-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
             </performer>
@@ -55,13 +55,13 @@
                <text value="Waarde is te laag. Stadium 4 nierfalen, ernstige nierfunctiestoornis."/>
             </interpretation>
             <specimen>
-               <reference value="urn:uuid:af42c676-81cc-11ef-1371-020000000000"/>
+               <reference value="urn:uuid:ff66031c-8d1f-11ef-1518-020000000000"/>
                <type value="Specimen"/>
                <display value="monster"/>
             </specimen>
             <referenceRange>
                <low>
-                  <value value="90"/>
+                  <value value="60"/>
                   <unit value="mL/min/{1.73_m2}"/>
                   <system value="http://unitsofmeasure.org"/>
                   <code value="mL/min/{1.73_m2}"/>
@@ -75,7 +75,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:af42c694-81cc-11ef-1371-020000000000"/>
+      <fullUrl value="urn:uuid:ff66033a-8d1f-11ef-1518-020000000000"/>
       <resource>
          <Device>
             <meta>
@@ -86,9 +86,9 @@
                <type value="other"/>
             </deviceName>
             <patient>
-               <reference value="urn:uuid:af42c59a-81cc-11ef-1371-020000000000"/>
+               <reference value="urn:uuid:ff660240-8d1f-11ef-1518-020000000000"/>
                <type value="Patient"/>
-               <display value="Patient, H Smit"/>
+               <display value="Patient, H. XXX_Smit"/>
             </patient>
          </Device>
       </resource>
@@ -98,7 +98,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:af42c676-81cc-11ef-1371-020000000000"/>
+      <fullUrl value="urn:uuid:ff66031c-8d1f-11ef-1518-020000000000"/>
       <resource>
          <Specimen>
             <meta>
@@ -116,7 +116,7 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:af42c694-81cc-11ef-1371-020000000000"/>
+               <reference value="urn:uuid:ff66033a-8d1f-11ef-1518-020000000000"/>
                <type value="Device"/>
                <display value="bron_monster"/>
             </subject>
@@ -132,7 +132,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:af42c5b8-81cc-11ef-1371-020000000000"/>
+      <fullUrl value="urn:uuid:ff66025e-8d1f-11ef-1518-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -194,7 +194,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:af42c59a-81cc-11ef-1371-020000000000"/>
+      <fullUrl value="urn:uuid:ff660240-8d1f-11ef-1518-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -205,16 +205,19 @@
                <value value="999910966"/>
             </identifier>
             <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
                <use value="official"/>
-               <text value="H Smit"/>
-               <family value="Smit">
+               <text value="H. XXX_Smit"/>
+               <family value="XXX_Smit">
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="Smit"/>
+                     <valueString value="XXX_Smit"/>
                   </extension>
                </family>
-               <given value="H">
+               <given value="H.">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                     <valueCode value="BR"/>
+                     <valueCode value="IN"/>
                   </extension>
                </given>
             </name>
