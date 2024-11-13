@@ -49,7 +49,7 @@ if exist "%outputDir%\!noDriverId!*.xml" (
 if exist "!baseId!-driver.xsl" (
 	set xslPath=!baseId!-driver.xsl
 ) else (
-	set xslPath=nl-core-driver.xsl
+	set xslPath=zib2024bbr-driver.xsl
 )
 
 java -jar "%saxonPath%" -s:"%inputDir%/!input!.xml" -xsl:!xslPath! -o:"%outputDir%/!noDriverId!.xml
