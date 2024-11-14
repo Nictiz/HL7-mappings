@@ -97,6 +97,56 @@
                             </scopingEntity>
                         </participantRole>
                     </participant>
+                    <!-- NSM-1166 -->
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <observation classCode="OBS" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                            <id root="2.16.840.1.113883.2.4.3.39.6101.64740.90001234.22" extension="647660"/>
+                            <code code="2811" codeSystem="2.16.840.1.113883.2.4.4.30.45"
+                                codeSystemVersion="v41" displayName="4DKL angstscore"/>
+                            <text>4DKL angstscore is 0</text>
+                            <statusCode code="completed"/>
+                            <effectiveTime value="20240228"/>
+                            <value xsi:type="ST">0</value>
+                            <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83"
+                                codeSystemName="HL7 ObservationInterpretation" displayName="Normal"/>
+                            <entryRelationship typeCode="REFR">
+                                <encounter classCode="ENC" moodCode="EVN">
+                                    <id root="2.16.840.1.113883.2.4.3.39.6101.62128.90012345.4"
+                                        extension="2116503"/>
+                                </encounter>
+                            </entryRelationship>
+                            <referenceRange typeCode="REFV">
+                                <observationRange classCode="OBS" moodCode="EVN.CRT">
+                                    <text>0.00 - 3.00</text>
+                                    <value xsi:type="IVL_PQ">
+                                        <low value="0.00"/>
+                                        <high value="3.00"/>
+                                    </value>
+                                    <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83"
+                                        codeSystemName="HL7 ObservationInterpretation"
+                                        displayName="Normal"/>
+                                </observationRange>
+                            </referenceRange>
+                        </observation>
+                    </component>
+                    <!-- NSM-1166 -->
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <observation classCode="OBS" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                            <id root="2.16.840.1.113883.2.4.3.39.6101.64740.90001234.22" extension="647659"/>
+                            <code code="1591" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemVersion="v42" displayName="alcoholgebruik"/>
+                            <text>alcoholgebruik is 0. Opmerking: </text>
+                            <statusCode code="completed"/>
+                            <effectiveTime value="20240726"/>
+                            <value xsi:type="ST">0</value>
+                            <entryRelationship typeCode="REFR">
+                                <encounter classCode="ENC" moodCode="EVN">
+                                    <id root="2.16.840.1.113883.2.4.3.39.6101.64740.90001234.4" extension="1139712"/>
+                                </encounter>
+                            </entryRelationship>
+                        </observation>
+                    </component>
                     <component typeCode="COMP" contextControlCode="OP">
                         <observation classCode="OBS" moodCode="EVN">
                             <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
