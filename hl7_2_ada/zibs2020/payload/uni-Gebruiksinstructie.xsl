@@ -102,19 +102,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:choose>
                 <xsl:when test="string-length($ucum-rate-eenheid) gt 0">
                     <toedieningssnelheid>
+                        <!-- MP-1535 toedieningssnelheid only exists of 'waarde' from mp9 3.0-beta.4 -->
                         <waarde>
                             <xsl:for-each select="hl7:low">
-                                <minimum_waarde value="{@value}"/>
+                                <minimum_waarde value="{@value}" unit="{$ucum-rate-eenheid}"/>
                             </xsl:for-each>
                             <xsl:for-each select="hl7:center">
-                                <nominale_waarde value="{@value}"/>
+                                <nominale_waarde value="{@value}" unit="{$ucum-rate-eenheid}"/>
                             </xsl:for-each>
                             <xsl:for-each select="hl7:high">
-                                <maximum_waarde value="{@value}"/>
+                                <maximum_waarde value="{@value}" unit="{$ucum-rate-eenheid}"/>
                             </xsl:for-each>
                         </waarde>
+                        
                         <!-- mp9 3.0-beta.3 simplified dataset structure, we now use ucum directly in ada -->
-                        <eenheid value="1" unit="{$ucum-rate-eenheid}"/>
+                        <!-- <eenheid value="1" unit="{$ucum-rate-eenheid}"/> -->
                         
                         <!-- legacy implementation pre mp9 3.0-beta.3-->
                         <!--<xsl:variable name="ucum-eenheid" select="substring-before($ucum-rate-eenheid, '/')"/>
