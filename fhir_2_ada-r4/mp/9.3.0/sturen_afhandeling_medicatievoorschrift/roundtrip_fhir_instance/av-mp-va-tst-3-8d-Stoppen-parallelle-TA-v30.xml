@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="8519ac01-4835-11ef-1588-020000000000"/>
+   <id value="9c2118d9-a281-11ef-1752-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:8519acf0-4835-11ef-1588-020000000000"/>
+      <fullUrl value="urn:uuid:9c2119c8-a281-11ef-1752-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -27,9 +27,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2023-01-01T10:05:00+01:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="wordt automatisch gevuld"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 1 jan 2023, gedurende 23 dagen, Bij pijn 2 stuks 's avonds, Oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
@@ -72,18 +73,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:8519ad2c-4835-11ef-1588-020000000000"/>
+               <reference value="urn:uuid:9c211a04-a281-11ef-1752-020000000000"/>
                <type value="Medication"/>
                <display value="PANTOZOL TABLET MSR 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:8519ac78-4835-11ef-1588-020000000000"/>
+               <reference value="urn:uuid:9c211950-a281-11ef-1752-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:8519acb4-4835-11ef-1588-020000000000"/>
+                  <reference value="urn:uuid:9c21198c-a281-11ef-1752-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -141,7 +142,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:8519ad0e-4835-11ef-1588-020000000000"/>
+      <fullUrl value="urn:uuid:9c2119e6-a281-11ef-1752-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -170,18 +171,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:8519ad2c-4835-11ef-1588-020000000000"/>
+               <reference value="urn:uuid:9c211a04-a281-11ef-1752-020000000000"/>
                <type value="Medication"/>
                <display value="PANTOZOL TABLET MSR 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:8519ac78-4835-11ef-1588-020000000000"/>
+               <reference value="urn:uuid:9c211950-a281-11ef-1752-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:8519acb4-4835-11ef-1588-020000000000"/>
+                  <reference value="urn:uuid:9c21198c-a281-11ef-1752-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -217,7 +218,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:8519ac78-4835-11ef-1588-020000000000"/>
+      <fullUrl value="urn:uuid:9c211950-a281-11ef-1752-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -267,7 +268,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:8519acb4-4835-11ef-1588-020000000000"/>
+      <fullUrl value="urn:uuid:9c21198c-a281-11ef-1752-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -311,7 +312,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:8519ad2c-4835-11ef-1588-020000000000"/>
+      <fullUrl value="urn:uuid:9c211a04-a281-11ef-1752-020000000000"/>
       <resource>
          <Medication>
             <meta>

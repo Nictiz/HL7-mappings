@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="dd2133bb-4807-11ef-2753-020000000000"/>
+   <id value="5bfa8b2d-a281-11ef-1789-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:dd2134aa-4807-11ef-2753-020000000000"/>
+      <fullUrl value="urn:uuid:5bfa8c1c-a281-11ef-1789-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -18,9 +18,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2023-01-01T14:10:00+01:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Wordt gegenereerd "/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 8 jan 2023, tot en met 19 feb 2023, 1 maal per week 1 stuk, Oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="2023-01-08T00:00:00+01:00"/>
@@ -46,18 +47,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:dd2134e6-4807-11ef-2753-020000000000"/>
+               <reference value="urn:uuid:5bfa8c58-a281-11ef-1789-020000000000"/>
                <type value="Medication"/>
                <display value="LARIAM TABLET 250MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dd213432-4807-11ef-2753-020000000000"/>
+               <reference value="urn:uuid:5bfa8ba4-a281-11ef-1789-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:dd21346e-4807-11ef-2753-020000000000"/>
+                  <reference value="urn:uuid:5bfa8be0-a281-11ef-1789-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -110,7 +111,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dd2134c8-4807-11ef-2753-020000000000"/>
+      <fullUrl value="urn:uuid:5bfa8c3a-a281-11ef-1789-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -139,18 +140,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:dd2134e6-4807-11ef-2753-020000000000"/>
+               <reference value="urn:uuid:5bfa8c58-a281-11ef-1789-020000000000"/>
                <type value="Medication"/>
                <display value="LARIAM TABLET 250MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dd213432-4807-11ef-2753-020000000000"/>
+               <reference value="urn:uuid:5bfa8ba4-a281-11ef-1789-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:dd21346e-4807-11ef-2753-020000000000"/>
+                  <reference value="urn:uuid:5bfa8be0-a281-11ef-1789-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -186,7 +187,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dd213432-4807-11ef-2753-020000000000"/>
+      <fullUrl value="urn:uuid:5bfa8ba4-a281-11ef-1789-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -236,7 +237,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dd21346e-4807-11ef-2753-020000000000"/>
+      <fullUrl value="urn:uuid:5bfa8be0-a281-11ef-1789-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -280,7 +281,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dd2134e6-4807-11ef-2753-020000000000"/>
+      <fullUrl value="urn:uuid:5bfa8c58-a281-11ef-1789-020000000000"/>
       <resource>
          <Medication>
             <meta>
