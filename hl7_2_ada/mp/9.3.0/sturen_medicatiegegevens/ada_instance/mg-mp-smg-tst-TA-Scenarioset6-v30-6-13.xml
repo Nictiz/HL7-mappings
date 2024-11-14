@@ -35,19 +35,19 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_toedieningssnelheid_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T09:47:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-01-01T09:47:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-01-09T23:59:59"/>
+                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2023-01-09T23:59:59+01:00"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d3363e84" datatype="reference"/>
+                  <zorgaanbieder value="d3363e39" datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d3363e64" datatype="reference"/>
+                  <farmaceutisch_product value="d3363e31" datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, tot en met 9 jan 2023, toedieningssnelheid: 0.2 à 0.5 per, Intraveneus"/>
+                  <omschrijving value="toedieningssnelheid: 0.2 à 0.5 ml/h, Intraveneus"/>
                   <toedieningsweg code="5"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
@@ -57,10 +57,9 @@
                      <dosering>
                         <toedieningssnelheid>
                            <waarde>
-                              <minimum_waarde value="0.2"/>
-                              <maximum_waarde value="0.5"/>
+                              <minimum_waarde value="0.2" unit="ml/h"/>
+                              <maximum_waarde value="0.5" unit="ml/h"/>
                            </waarde>
-                           <eenheid value="1" unit="ml/h"/>
                         </toedieningssnelheid>
                      </dosering>
                   </doseerinstructie>
@@ -72,7 +71,7 @@
             </toedieningsafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d3363e64">
+            <farmaceutisch_product id="d3363e31">
                <product_code code="2554771"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -86,7 +85,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="MORFINE INFVLST 5MG/ML CAS 100ML"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="d3363e84">
+            <zorgaanbieder id="d3363e39">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek de Gulle Gaper"/>
             </zorgaanbieder>

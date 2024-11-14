@@ -36,19 +36,19 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_magistraalalleingredienten_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T12:00:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-01-01T12:00:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-02-01T23:59:59"/>
+                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2023-02-01T23:59:59+01:00"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d1849e123" datatype="reference"/>
+                  <zorgverlener value="d1849e54" datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d1849e64" datatype="reference"/>
+                  <farmaceutisch_product value="d1849e31" datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, tot en met 1 feb 2023, Zo nodig, cutaan"/>
+                  <omschrijving value="Zo nodig, cutaan"/>
                   <toedieningsweg code="53"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
@@ -68,12 +68,12 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_magistraalalleingredienten_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-01-01T12:00:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-01-01T12:00:00+01:00"/>
                <auteur>
-                  <zorgverlener value="d1849e123" datatype="reference"/>
+                  <zorgverlener value="d1849e54" datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d1849e64" datatype="reference"/>
+                  <farmaceutisch_product value="d1849e31" datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
                   <aantal value="50"/>
@@ -83,7 +83,7 @@
                            displayName="milliliter"/>
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d1849e289" datatype="reference"/>
+                  <zorgaanbieder value="d1849e121" datatype="reference"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_magistraalalleingredienten_MA"
@@ -92,7 +92,7 @@
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d1849e64">
+            <farmaceutisch_product id="d1849e31">
                <product_code code="OTH"
                              codeSystem="2.16.840.1.113883.5.1008"
                              displayName="overig"/>
@@ -145,7 +145,7 @@
                   </ingredient>
                </product_specificatie>
             </farmaceutisch_product>
-            <zorgverlener id="d1849e123">
+            <zorgverlener id="d1849e54">
                <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Peter"/>
@@ -171,10 +171,10 @@
                   </telefoonnummers>
                </contactgegevens>
                <zorgaanbieder>
-                  <zorgaanbieder value="d1849e146" datatype="reference"/>
+                  <zorgaanbieder value="d1849e66" datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d1849e146">
+            <zorgaanbieder id="d1849e66">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
@@ -187,7 +187,7 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="d1849e289">
+            <zorgaanbieder id="d1849e121">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
             </zorgaanbieder>

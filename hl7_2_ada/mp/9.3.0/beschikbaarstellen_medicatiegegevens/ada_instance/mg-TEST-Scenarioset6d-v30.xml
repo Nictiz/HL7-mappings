@@ -35,19 +35,19 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_toedieningssnelheid_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T08:47:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-01-01T08:47:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-01-09T23:59:59"/>
+                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2023-01-09T23:59:59+01:00"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d4175e78" datatype="reference"/>
+                  <zorgverlener value="d4175e36" datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d4175e64" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e31" datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, tot en met 9 jan 2023, toedieningssnelheid: 0.2 à 0.5 per, parenteraal"/>
+                  <omschrijving value="toedieningssnelheid: 0.2 à 0.5 ml/h, parenteraal"/>
                   <toedieningsweg code="10"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
@@ -57,10 +57,9 @@
                      <dosering>
                         <toedieningssnelheid>
                            <waarde>
-                              <minimum_waarde value="0.2"/>
-                              <maximum_waarde value="0.5"/>
+                              <minimum_waarde value="0.2" unit="ml/h"/>
+                              <maximum_waarde value="0.5" unit="ml/h"/>
                            </waarde>
-                           <eenheid value="1" unit="ml/h"/>
                         </toedieningssnelheid>
                      </dosering>
                   </doseerinstructie>
@@ -69,12 +68,12 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_toedieningssnelheid_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-01-01T08:47:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-01-01T08:47:00+01:00"/>
                <auteur>
-                  <zorgverlener value="d4175e78" datatype="reference"/>
+                  <zorgverlener value="d4175e36" datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d4175e64" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e31" datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
                   <aantal value="100"/>
@@ -84,7 +83,7 @@
                            displayName="milliliter"/>
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d4175e196" datatype="reference"/>
+                  <zorgaanbieder value="d4175e84" datatype="reference"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_toedieningssnelheid_MA"
@@ -94,19 +93,19 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_toedieningssnelheid_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T09:47:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-01-01T09:47:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-01-09T23:59:59"/>
+                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2023-01-09T23:59:59+01:00"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d4175e196" datatype="reference"/>
+                  <zorgaanbieder value="d4175e84" datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d4175e315" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e134" datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, tot en met 9 jan 2023, toedieningssnelheid: 0.2 à 0.5 per, Intraveneus"/>
+                  <omschrijving value="toedieningssnelheid: 0.2 à 0.5 ml/h, Intraveneus"/>
                   <toedieningsweg code="5"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
@@ -116,10 +115,9 @@
                      <dosering>
                         <toedieningssnelheid>
                            <waarde>
-                              <minimum_waarde value="0.2"/>
-                              <maximum_waarde value="0.5"/>
+                              <minimum_waarde value="0.2" unit="ml/h"/>
+                              <maximum_waarde value="0.5" unit="ml/h"/>
                            </waarde>
-                           <eenheid value="1" unit="ml/h"/>
                         </toedieningssnelheid>
                      </dosering>
                   </doseerinstructie>
@@ -134,7 +132,7 @@
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
                <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-01-01T09:47:00"/>
                <verstrekker>
-                  <zorgaanbieder value="d4175e196" datatype="reference"/>
+                  <zorgaanbieder value="d4175e84" datatype="reference"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="100"/>
@@ -144,7 +142,7 @@
                            displayName="milliliter"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d4175e315" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e134" datatype="reference"/>
                </verstrekt_geneesmiddel>
                <relatie_verstrekkingsverzoek>
                   <identificatie value="MBH_300_toedieningssnelheid_VV"
@@ -158,14 +156,14 @@
                <gebruik_indicator value="true"/>
                <volgens_afspraak_indicator value="true"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-01-09T23:59:59"/>
+                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2023-01-09T23:59:59+01:00"/>
                </gebruiksperiode>
                <gebruiksproduct>
-                  <farmaceutisch_product value="d4175e64" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e31" datatype="reference"/>
                </gebruiksproduct>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, tot en met 9 jan 2023, toedieningssnelheid: 0.2 à 0.5 per, intraveneus"/>
+                  <omschrijving value="toedieningssnelheid: 0.2 à 0.5 ml/uur, intraveneus"/>
                   <toedieningsweg code="5"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
@@ -175,10 +173,9 @@
                      <dosering>
                         <toedieningssnelheid>
                            <waarde>
-                              <minimum_waarde value="0.2"/>
-                              <maximum_waarde value="0.5"/>
+                              <minimum_waarde value="0.2" unit="ml/uur"/>
+                              <maximum_waarde value="0.5" unit="ml/uur"/>
                            </waarde>
-                           <eenheid value="1" unit="ml/uur"/>
                         </toedieningssnelheid>
                      </dosering>
                   </doseerinstructie>
@@ -188,14 +185,14 @@
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_medicatieafspraak>
                <voorschrijver>
-                  <zorgverlener value="d4175e78" datatype="reference"/>
+                  <zorgverlener value="d4175e36" datatype="reference"/>
                </voorschrijver>
                <informant>
                   <informant_is_patient value="true"/>
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener value="d4175e78" datatype="reference"/>
+                     <zorgverlener value="d4175e36" datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
@@ -203,9 +200,9 @@
                <identificatie value="MBH_300_toedieningssnelheid_MTD"
                               root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
                <toedienings_product>
-                  <farmaceutisch_product value="d4175e315" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e134" datatype="reference"/>
                </toedienings_product>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T11:49:39"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-01-01T11:49:39+01:00"/>
                <toedienings_datum_tijd datatype="datetime" value="2023-01-01T11:49:39"/>
                <toegediende_hoeveelheid>
                   <aantal value="100"/>
@@ -220,9 +217,8 @@
                                displayName="intraveneus"/>
                <toedieningssnelheid>
                   <waarde>
-                     <nominale_waarde value="0.3"/>
+                     <nominale_waarde value="0.3" unit="ml/h"/>
                   </waarde>
-                  <eenheid value="1" unit="ml/h"/>
                </toedieningssnelheid>
                <prik_plak_locatie>
                   <anatomische_locatie>
@@ -240,7 +236,7 @@
                </relatie_toedieningsafspraak>
                <toediener>
                   <zorgverlener>
-                     <zorgverlener value="d4175e766" datatype="reference"/>
+                     <zorgverlener value="d4175e320" datatype="reference"/>
                   </zorgverlener>
                </toediener>
             </medicatietoediening>
@@ -251,19 +247,19 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_toedieningsduur_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T08:49:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-01-01T08:49:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
+                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00+01:00"/>
                   <eind_datum_tijd datatype="datetime" nullFlavor="NI"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d4175e78" datatype="reference"/>
+                  <zorgverlener value="d4175e36" datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d4175e882" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e370" datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, 1 maal per dag 1 stuk gedurende 16 uur, transdermaal"/>
+                  <omschrijving value="1 maal per dag 1 stuk gedurende 16 uur, transdermaal"/>
                   <toedieningsweg code="58"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
@@ -298,12 +294,12 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_toedieningsduur_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-01-01T08:49:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-01-01T08:49:00+01:00"/>
                <auteur>
-                  <zorgverlener value="d4175e78" datatype="reference"/>
+                  <zorgverlener value="d4175e36" datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d4175e882" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e370" datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
                   <aantal value="30"/>
@@ -313,7 +309,7 @@
                            displayName="stuks"/>
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d4175e196" datatype="reference"/>
+                  <zorgaanbieder value="d4175e84" datatype="reference"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_toedieningsduur_MA"
@@ -323,19 +319,19 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_toedieningsduur_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T09:49:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-01-01T09:49:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
+                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00+01:00"/>
                   <eind_datum_tijd datatype="datetime" nullFlavor="NI"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d4175e196" datatype="reference"/>
+                  <zorgaanbieder value="d4175e84" datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d4175e1150" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e481" datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, 1 maal per dag 1 stuk gedurende 16 uur, transdermaal"/>
+                  <omschrijving value="1 maal per dag 1 stuk gedurende 16 uur, transdermaal"/>
                   <toedieningsweg code="58"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
@@ -376,7 +372,7 @@
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
                <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-01-01T09:49:00"/>
                <verstrekker>
-                  <zorgaanbieder value="d4175e196" datatype="reference"/>
+                  <zorgaanbieder value="d4175e84" datatype="reference"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="30"/>
@@ -386,7 +382,7 @@
                            displayName="stuks"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d4175e1150" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e481" datatype="reference"/>
                </verstrekt_geneesmiddel>
                <relatie_verstrekkingsverzoek>
                   <identificatie value="MBH_300_toedieningsduur_VV"
@@ -399,14 +395,14 @@
                <medicatiegebruik_datum_tijd datatype="datetime" value="2023-01-15T12:00:00"/>
                <gebruik_indicator value="true"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-01-15T12:00:00"/>
+                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2023-01-15T12:00:00+01:00"/>
                </gebruiksperiode>
                <gebruiksproduct>
-                  <farmaceutisch_product value="d4175e882" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e370" datatype="reference"/>
                </gebruiksproduct>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, tot en met 15 jan 2023, 1 maal per dag 1 stuk gedurende 16 uur, transdermaal"/>
+                  <omschrijving value="1 maal per dag 1 stuk gedurende 16 uur, transdermaal"/>
                   <toedieningsweg code="58"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
@@ -442,14 +438,14 @@
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_medicatieafspraak>
                <voorschrijver>
-                  <zorgverlener value="d4175e78" datatype="reference"/>
+                  <zorgverlener value="d4175e36" datatype="reference"/>
                </voorschrijver>
                <informant>
                   <informant_is_patient value="true"/>
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener value="d4175e78" datatype="reference"/>
+                     <zorgverlener value="d4175e36" datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
@@ -457,9 +453,9 @@
                <identificatie value="MBH_300_toedieningsduur_MTD"
                               root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
                <toedienings_product>
-                  <farmaceutisch_product value="d4175e1150" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e481" datatype="reference"/>
                </toedienings_product>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-09T08:59:59"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-01-09T08:59:59+01:00"/>
                <toedienings_datum_tijd datatype="datetime" value="2023-01-09T08:59:59"/>
                <toegediende_hoeveelheid>
                   <aantal value="1"/>
@@ -485,7 +481,7 @@
                </relatie_toedieningsafspraak>
                <toediener>
                   <zorgverlener>
-                     <zorgverlener value="d4175e766" datatype="reference"/>
+                     <zorgverlener value="d4175e320" datatype="reference"/>
                   </zorgverlener>
                </toediener>
             </medicatietoediening>
@@ -495,19 +491,19 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_zonodig_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T08:57:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-01-01T08:57:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-01-28T23:59:59"/>
+                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2023-01-28T23:59:59+01:00"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d4175e78" datatype="reference"/>
+                  <zorgverlener value="d4175e36" datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d4175e1726" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e721" datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, tot en met 28 jan 2023, Zo nodig 1 maal per dag 1 stuk, Oraal"/>
+                  <omschrijving value="Zo nodig 1 maal per dag 1 stuk, Oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
@@ -544,12 +540,12 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_zonodig_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-01-01T08:57:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-01-01T08:57:00+01:00"/>
                <auteur>
-                  <zorgverlener value="d4175e78" datatype="reference"/>
+                  <zorgverlener value="d4175e36" datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d4175e1726" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e721" datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
                   <aantal value="14"/>
@@ -559,7 +555,7 @@
                            displayName="stuk"/>
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d4175e196" datatype="reference"/>
+                  <zorgaanbieder value="d4175e84" datatype="reference"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_zonodig_MA"
@@ -569,19 +565,19 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_zonodig_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T09:57:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-01-01T09:57:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-01-28T23:59:59"/>
+                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2023-01-28T23:59:59+01:00"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d4175e196" datatype="reference"/>
+                  <zorgaanbieder value="d4175e84" datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d4175e1998" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e832" datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, tot en met 28 jan 2023, Zo nodig 1 maal per dag 1 stuk, Oraal"/>
+                  <omschrijving value="Zo nodig 1 maal per dag 1 stuk, Oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
@@ -624,7 +620,7 @@
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
                <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-01-01T09:57:00"/>
                <verstrekker>
-                  <zorgaanbieder value="d4175e196" datatype="reference"/>
+                  <zorgaanbieder value="d4175e84" datatype="reference"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="14"/>
@@ -634,7 +630,7 @@
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d4175e1998" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e832" datatype="reference"/>
                </verstrekt_geneesmiddel>
                <relatie_verstrekkingsverzoek>
                   <identificatie value="MBH_300_zonodig_VV"
@@ -648,14 +644,14 @@
                <gebruik_indicator value="true"/>
                <volgens_afspraak_indicator value="true"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-01-15T23:59:59"/>
+                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2023-01-15T23:59:59+01:00"/>
                </gebruiksperiode>
                <gebruiksproduct>
-                  <farmaceutisch_product value="d4175e1726" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e721" datatype="reference"/>
                </gebruiksproduct>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, tot en met 15 jan 2023, Zo nodig 1 maal per dag 1 stuk, Oraal"/>
+                  <omschrijving value="Zo nodig 1 maal per dag 1 stuk, Oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
@@ -693,14 +689,14 @@
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_medicatieafspraak>
                <voorschrijver>
-                  <zorgverlener value="d4175e78" datatype="reference"/>
+                  <zorgverlener value="d4175e36" datatype="reference"/>
                </voorschrijver>
                <informant>
                   <informant_is_patient value="true"/>
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener value="d4175e78" datatype="reference"/>
+                     <zorgverlener value="d4175e36" datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
@@ -711,19 +707,19 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_tijdstippen_niet_flexibel_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T09:15:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-01-01T09:15:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-01-08T23:59:59"/>
+                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2023-01-08T23:59:59+01:00"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d4175e78" datatype="reference"/>
+                  <zorgverlener value="d4175e36" datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d4175e2462" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e1024" datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, tot en met 8 jan 2023, elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, tijden exact aanhouden, oraal"/>
+                  <omschrijving value="elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, tijden exact aanhouden, oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
@@ -753,12 +749,12 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_tijdstippen_niet_flexibel_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-01-01T09:15:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-01-01T09:15:00+01:00"/>
                <auteur>
-                  <zorgverlener value="d4175e78" datatype="reference"/>
+                  <zorgverlener value="d4175e36" datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d4175e2462" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e1024" datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
                   <aantal value="24"/>
@@ -768,7 +764,7 @@
                            displayName="stuk"/>
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d4175e196" datatype="reference"/>
+                  <zorgaanbieder value="d4175e84" datatype="reference"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_tijdstippen_niet_flexibel_MA"
@@ -778,19 +774,19 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_tijdstippen_niet_flexibel_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T10:15:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-01-01T10:15:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-01-08T23:59:59"/>
+                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2023-01-08T23:59:59+01:00"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d4175e196" datatype="reference"/>
+                  <zorgaanbieder value="d4175e84" datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d4175e2462" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e1024" datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, tot en met 8 jan 2023, elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, tijden exact aanhouden, oraal"/>
+                  <omschrijving value="elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, tijden exact aanhouden, oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
@@ -826,7 +822,7 @@
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
                <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-01-01T10:17:00"/>
                <verstrekker>
-                  <zorgaanbieder value="d4175e196" datatype="reference"/>
+                  <zorgaanbieder value="d4175e84" datatype="reference"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="24"/>
@@ -836,7 +832,7 @@
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d4175e2849" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e1183" datatype="reference"/>
                </verstrekt_geneesmiddel>
                <relatie_verstrekkingsverzoek>
                   <identificatie value="MBH_300_tijdstippen_niet_flexibel_VV"
@@ -850,14 +846,14 @@
                <gebruik_indicator value="true"/>
                <volgens_afspraak_indicator value="true"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-01-08T15:00:00"/>
+                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2023-01-08T15:00:00+01:00"/>
                </gebruiksperiode>
                <gebruiksproduct>
-                  <farmaceutisch_product value="d4175e2462" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e1024" datatype="reference"/>
                </gebruiksproduct>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, tot en met 8 jan 2023, elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, tijden exact aanhouden"/>
+                  <omschrijving value="elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, tijden exact aanhouden"/>
                   <doseerinstructie>
                      <volgnummer value="1"/>
                      <dosering>
@@ -884,14 +880,14 @@
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_medicatieafspraak>
                <voorschrijver>
-                  <zorgverlener value="d4175e78" datatype="reference"/>
+                  <zorgverlener value="d4175e36" datatype="reference"/>
                </voorschrijver>
                <informant>
                   <informant_is_patient value="true"/>
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener value="d4175e78" datatype="reference"/>
+                     <zorgverlener value="d4175e36" datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
@@ -902,19 +898,19 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_WDS_trombose_medicatie_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T08:00:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-01-01T08:00:00+01:00"/>
                <gebruiksperiode>
                   <start_datum_tijd datatype="datetime" value="2023-01-01"/>
                   <tijds_duur value="2" unit="dag"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d4175e78" datatype="reference"/>
+                  <zorgverlener value="d4175e36" datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d4175e3185" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e1323" datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, gedurende 2 dagen, 5 stuks 's avonds, oraal"/>
+                  <omschrijving value="5 stuks 's avonds, oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
@@ -943,12 +939,12 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_WDS_trombose_medicatie_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-01-01T08:15:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-01-01T08:15:00+01:00"/>
                <auteur>
-                  <zorgverlener value="d4175e78" datatype="reference"/>
+                  <zorgverlener value="d4175e36" datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d4175e3185" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e1323" datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
                   <aantal value="10"/>
@@ -958,7 +954,7 @@
                            displayName="stuks"/>
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d4175e196" datatype="reference"/>
+                  <zorgaanbieder value="d4175e84" datatype="reference"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_WDS_trombose_medicatie_MA"
@@ -968,19 +964,19 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_WDS_trombose_medicatie_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T09:15:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-01-01T09:15:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
+                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00+01:00"/>
                   <tijds_duur value="2" unit="dag"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d4175e196" datatype="reference"/>
+                  <zorgaanbieder value="d4175e84" datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d4175e3444" datatype="reference"/>
+                  <farmaceutisch_product value="d4175e1429" datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, gedurende 2 dagen, 1 maal per dag 1 stuk 's avonds"/>
+                  <omschrijving value="1 maal per dag 1 stuk 's avonds"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
@@ -1017,7 +1013,7 @@
             </toedieningsafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d4175e64">
+            <farmaceutisch_product id="d4175e31">
                <product_code code="94692"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1027,7 +1023,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="MORFINE INFVLST 5MG/ML CAS 100ML"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d4175e315">
+            <farmaceutisch_product id="d4175e134">
                <product_code code="2554771"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -1041,7 +1037,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="MORFINE INFVLST 5MG/ML CAS 100ML"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d4175e882">
+            <farmaceutisch_product id="d4175e370">
                <product_code code="44520"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1051,7 +1047,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="NITROGLYCERINE PLEISTER 5MG/24UUR (DEPONIT T)"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d4175e1150">
+            <farmaceutisch_product id="d4175e481">
                <product_code code="1013602"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -1065,7 +1061,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="NITROGLYCERINE PLEISTER 5MG/24UUR (DEPONIT T)"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d4175e1726">
+            <farmaceutisch_product id="d4175e721">
                <product_code code="3956"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1075,7 +1071,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="ACETYLSALICYLZUUR TABLET 100MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d4175e1998">
+            <farmaceutisch_product id="d4175e832">
                <product_code code="202681"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -1089,7 +1085,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="ACETYLSALICYLZUUR TABLET 100MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d4175e2462">
+            <farmaceutisch_product id="d4175e1024">
                <product_code code="1090"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1099,7 +1095,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="METFORMINE 500MG TABLET"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d4175e2849">
+            <farmaceutisch_product id="d4175e1183">
                <product_code code="693332"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -1113,7 +1109,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="METFORMINE 500MG TABLET"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d4175e3185">
+            <farmaceutisch_product id="d4175e1323">
                <product_code code="106720"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1123,7 +1119,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="FYTOMENADION TABLET 1MG ACE"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d4175e3444">
+            <farmaceutisch_product id="d4175e1429">
                <product_code code="2875993"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -1137,7 +1133,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="FYTOMENADION TABLET 1MG ACE"/>
             </farmaceutisch_product>
-            <zorgverlener id="d4175e78">
+            <zorgverlener id="d4175e36">
                <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Peter"/>
@@ -1152,10 +1148,10 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d4175e99" datatype="reference"/>
+                  <zorgaanbieder value="d4175e47" datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgverlener id="d4175e766">
+            <zorgverlener id="d4175e320">
                <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Peter"/>
@@ -1173,10 +1169,10 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d4175e99" datatype="reference"/>
+                  <zorgaanbieder value="d4175e47" datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d4175e99">
+            <zorgaanbieder id="d4175e47">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
@@ -1189,7 +1185,7 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="d4175e196">
+            <zorgaanbieder id="d4175e84">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek de Gulle Gaper"/>
             </zorgaanbieder>
