@@ -2,14 +2,14 @@
    <id value="mg-mp-mg-kwal-MGB-script1-v30"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:11b2bf67-6b08-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:48148726-6adf-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 9 dagen, tot en met T + 5 dagen, cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 5 stuks - let op, tijden exact aanhouden, oraal"/>
+               <valueString value="cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 5 stuks - let op, tijden exact aanhouden, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                <valueReference>
@@ -65,7 +65,7 @@
                <display value="Patient, H. de XXX_Huyser"/>
             </subject>
             <effectivePeriod>
-               <start value="${DATE, T, D, -9}T00:00:00+02:00"/>
+               <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
                <end value="${DATE, T, D, +5}T23:59:59+02:00"/>
             </effectivePeriod>
             <dateAsserted value="${DATE, T, D, +7}T11:10:59+02:00"/>
@@ -82,7 +82,7 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-                  <value value="MBH_300_SCRIPT1_TA"/>
+                  <value value="MBH_300_SCRIPT1_TA_WIJZIGING"/>
                </identifier>
                <display value="relatie naar toedieningsafspraak"/>
             </derivedFrom>

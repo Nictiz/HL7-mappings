@@ -11,7 +11,7 @@
                                             prefix="mp-"
                                             language="nl-NL"
                                             title="Generated from HL7 FHIR sturen_voorstel_verstrekkingsverzoek"
-                                            id="ddf78187-4807-11ef-8636-020000000000">
+                                            id="5c8fc3af-a281-11ef-1074-020000000000">
          <patient>
             <naamgegevens>
                <initialen value="C."/>
@@ -32,7 +32,7 @@
                            root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             <verstrekkingsverzoek>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-ddf78352-4807-11ef-8636-020000000000"
+                  <farmaceutisch_product value="urn-uuid-5c8fc520-a281-11ef-1074-020000000000"
                                          datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
@@ -43,7 +43,7 @@
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-ddf7829e-4807-11ef-8636-020000000000"/>
+                                 value="urn-uuid-5c8fc4c6-a281-11ef-1074-020000000000"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_start_eind_MA"
@@ -52,7 +52,12 @@
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-ddf78352-4807-11ef-8636-020000000000">
+            <farmaceutisch_product id="urn-uuid-5c8fc520-a281-11ef-1074-020000000000">
+               <product_code code="560308"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="METOCLOPRAMIDE HCL PCH TABLET 10MG"
+                             preferred="true"/>
                <product_code code="6947"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -61,13 +66,8 @@
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              codeSystemName="G-Standaard GPK"
                              displayName="METOCLOPRAMIDE TABLET 10MG"/>
-               <product_code code="560308"
-                             codeSystem="2.16.840.1.113883.2.4.4.7"
-                             codeSystemName="G-Standaard HPK"
-                             displayName="METOCLOPRAMIDE HCL PCH TABLET 10MG"
-                             preferred="true"/>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-ddf78230-4807-11ef-8636-020000000000">
+            <zorgverlener id="urn-uuid-5c8fc458-a281-11ef-1074-020000000000">
                <zorgverlener_identificatienummer value="000001116" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Victor"/>
@@ -83,16 +83,22 @@
                             displayName="Apothekers"/>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-ddf7829e-4807-11ef-8636-020000000000"/>
+                                 value="urn-uuid-5c8fc4c6-a281-11ef-1074-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-ddf7829e-4807-11ef-8636-020000000000">
+            <zorgaanbieder id="urn-uuid-5c8fc4c6-a281-11ef-1074-020000000000">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
-            </zorgaanbieder>
-            <zorgaanbieder id="urn-uuid-ddf782f8-4807-11ef-8636-020000000000">
-               <zorgaanbieder_identificatienummer value="87654321" root="2.16.528.1.1007.3.3"/>
-               <organisatie_naam value="Thuiszorg Samen Uit"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
          <voorstel_gegevens>
@@ -102,7 +108,7 @@
                <voorstel_datum value="2023-01-01T13:24:00+01:00" datatype="datetime"/>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener value="urn-uuid-ddf78230-4807-11ef-8636-020000000000"
+                     <zorgverlener value="urn-uuid-5c8fc458-a281-11ef-1074-020000000000"
                                    datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>

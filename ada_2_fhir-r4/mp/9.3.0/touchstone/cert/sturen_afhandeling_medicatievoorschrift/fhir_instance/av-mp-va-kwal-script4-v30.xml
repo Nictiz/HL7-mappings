@@ -1,0 +1,54 @@
+<Bundle xmlns="http://hl7.org/fhir">
+   <id value="av-mp-va-kwal-script4-v30"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/"/>
+   </meta>
+   <type value="transaction"/>
+   <entry>
+      <fullUrl value="urn:uuid:ab1a105e-6b79-11ec-0000-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999910966"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <use value="official"/>
+               <text value="H. XXX_Smit"/>
+               <family value="XXX_Smit">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Smit"/>
+                  </extension>
+               </family>
+               <given value="H.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1954-08-24"/>
+         </Patient>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
+   </entry>
+</Bundle>

@@ -1,0 +1,641 @@
+<Bundle xmlns="http://hl7.org/fhir">
+   <id value="mgsets-mp-smg-kwal-MTD-script4-v30"/>
+   <type value="transaction"/>
+   <entry>
+      <fullUrl value="urn:uuid:116e880f-6b36-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationAdministration>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, -2}T22:25:10+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_script4"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <value value="MBH_300_script4_MTD1"/>
+            </identifier>
+            <status value="unknown"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="18629005"/>
+                  <display value="toediening van medicatie"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:99b7b11d-6ad2-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="DICLOFENAC NATRIUM AUROBINDO TABLET MSR 25MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:ab1a105e-6b79-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, H. XXX_Smit"/>
+            </subject>
+            <supportingInformation>
+               <type value="MedicationDispense"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                  <value value="MBH_300_script4_TA_GDS"/>
+               </identifier>
+               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_script4_TA_GDS || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            </supportingInformation>
+            <effectiveDateTime value="${DATE, T, D, -2}T22:24:01+02:00"/>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:8d3d1824-6aeb-11ec-0000-020000000000"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare professional (role), Tanja de Bakker, Trombosediensten, Trombosedienst Ons Dorp"/>
+               </actor>
+            </performer>
+            <dosage>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <dose>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                     <valueQuantity>
+                        <value value="2"/>
+                        <unit value="stuks"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="245"/>
+                     </valueQuantity>
+                  </extension>
+                  <value value="2"/>
+                  <unit value="stuks"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="1"/>
+               </dose>
+            </dosage>
+         </MedicationAdministration>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationAdministration"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2b75d45d-6b3a-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationAdministration>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, -1}T08:15:50+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.ReasonForDeviation">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="406149000"/>
+                     <display value="toediening van medicatie geweigerd"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_script4"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <value value="MBH_300_script4_MTD2_GDS"/>
+            </identifier>
+            <status value="unknown"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="18629005"/>
+                  <display value="toediening van medicatie"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:99b7b11d-6ad2-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="DICLOFENAC NATRIUM AUROBINDO TABLET MSR 25MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:ab1a105e-6b79-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, H. XXX_Smit"/>
+            </subject>
+            <supportingInformation>
+               <type value="MedicationDispense"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                  <value value="MBH_300_script4_TA_GDS"/>
+               </identifier>
+               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_script4_TA_GDS || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            </supportingInformation>
+            <effectiveDateTime value="${DATE, T, D, -1}T08:15:00+02:00"/>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:a757282e-6b76-11ec-0000-020000000000"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare professional (role), Jantien Toedien, Verpleegkundigen, niet nader gespecificeerd, Thuiszorg Om en Bij"/>
+               </actor>
+            </performer>
+            <note>
+               <text value="deze toediening hoeft niet later ingehaald te worden."/>
+            </note>
+            <dosage>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <dose>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                     <valueQuantity>
+                        <value value="0"/>
+                        <unit value="stuks"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="245"/>
+                     </valueQuantity>
+                  </extension>
+                  <value value="0"/>
+                  <unit value="stuks"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="1"/>
+               </dose>
+            </dosage>
+         </MedicationAdministration>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationAdministration"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:26b7c80f-6ade-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationAdministration>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, -1}T14:05:50+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_script4"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <value value="MBH_300_script4_MTD3_GDS"/>
+            </identifier>
+            <status value="unknown"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="18629005"/>
+                  <display value="toediening van medicatie"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:99b7b11d-6ad2-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="DICLOFENAC NATRIUM AUROBINDO TABLET MSR 25MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:ab1a105e-6b79-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, H. XXX_Smit"/>
+            </subject>
+            <supportingInformation>
+               <type value="MedicationDispense"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+                  <value value="MBH_300_script4_TA_GDS"/>
+               </identifier>
+               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_script4_TA_GDS || 2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+            </supportingInformation>
+            <effectiveDateTime value="${DATE, T, D, -1}T14:05:05+02:00"/>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:a757282e-6b76-11ec-0000-020000000000"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare professional (role), Jantien Toedien, Verpleegkundigen, niet nader gespecificeerd, Thuiszorg Om en Bij"/>
+               </actor>
+            </performer>
+            <dosage>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <dose>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                     <valueQuantity>
+                        <value value="1"/>
+                        <unit value="stuks"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="245"/>
+                     </valueQuantity>
+                  </extension>
+                  <value value="1"/>
+                  <unit value="stuks"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="1"/>
+               </dose>
+            </dosage>
+         </MedicationAdministration>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationAdministration"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:34db080f-6b21-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationAdministration>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, -1}T14:05:50+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_script4"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <value value="MBH_300_script4_MTD3_los"/>
+            </identifier>
+            <status value="unknown"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="18629005"/>
+                  <display value="toediening van medicatie"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:99b7b11d-6ad2-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="DICLOFENAC NATRIUM AUROBINDO TABLET MSR 25MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:ab1a105e-6b79-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, H. XXX_Smit"/>
+            </subject>
+            <supportingInformation>
+               <type value="MedicationDispense"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+                  <value value="MBH_300_script4_TA_los"/>
+               </identifier>
+               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_script4_TA_los || 2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+            </supportingInformation>
+            <effectiveDateTime value="${DATE, T, D, -1}T14:05:05+02:00"/>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:a757282e-6b76-11ec-0000-020000000000"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare professional (role), Jantien Toedien, Verpleegkundigen, niet nader gespecificeerd, Thuiszorg Om en Bij"/>
+               </actor>
+            </performer>
+            <dosage>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <dose>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                     <valueQuantity>
+                        <value value="1"/>
+                        <unit value="stuks"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="245"/>
+                     </valueQuantity>
+                  </extension>
+                  <value value="1"/>
+                  <unit value="stuks"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="1"/>
+               </dose>
+            </dosage>
+         </MedicationAdministration>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationAdministration"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:ab1a105e-6b79-11ec-0000-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999910966"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <use value="official"/>
+               <text value="H. XXX_Smit"/>
+               <family value="XXX_Smit">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Smit"/>
+                  </extension>
+               </family>
+               <given value="H.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1954-08-24"/>
+         </Patient>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:a757282e-6b76-11ec-0000-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+            </meta>
+            <practitioner>
+               <reference value="urn:uuid:f1e8c824-6b20-11ec-0000-020000000000"/>
+               <type value="Practitioner"/>
+               <display value="Healthcare professional (person), Jantien Toedien"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:b0d9956e-6a9d-11ec-0000-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Thuiszorg Om en Bij"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2020-10-23T00:00:00"/>
+                  <code value="9100"/>
+                  <display value="Verpleegkundigen, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:f1e8c824-6b20-11ec-0000-020000000000"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="222220000"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Jantien Toedien"/>
+               <family value="Toedien">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Toedien"/>
+                  </extension>
+               </family>
+               <given value="Jantien">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:8d3d1824-6aeb-11ec-0000-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+            </meta>
+            <practitioner>
+               <reference value="urn:uuid:7cac7558-6b5d-11ec-0000-020000000000"/>
+               <type value="Practitioner"/>
+               <display value="Healthcare professional (person), Tanja de Bakker"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:5bc4856e-6b7b-11ec-0000-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Trombosedienst Ons Dorp"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2020-10-23T00:00:00"/>
+                  <code value="3400"/>
+                  <display value="Trombosediensten"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:7cac7558-6b5d-11ec-0000-020000000000"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="222221111"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Tanja de Bakker"/>
+               <family value="de Bakker">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="de"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Bakker"/>
+                  </extension>
+               </family>
+               <given value="Tanja">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:b0d9956e-6a9d-11ec-0000-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="11110000"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <code value="T2"/>
+                  <display value="Thuiszorg"/>
+               </coding>
+            </type>
+            <name value="Thuiszorg Om en Bij"/>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:5bc4856e-6b7b-11ec-0000-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="11112222"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2020-10-23T00:00:00"/>
+                  <code value="3400"/>
+                  <display value="Trombosediensten"/>
+               </coding>
+            </type>
+            <name value="Trombosedienst Ons Dorp"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Kerkstraat 28 d">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Kerkstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="28"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="d"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1332GH"/>
+            </address>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:99b7b11d-6ad2-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="630586"/>
+                  <display value="DICLOFENAC NATRIUM AUROBINDO TABLET MSR 25MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="8060"/>
+                  <display value="DICLOFENAC-NATRIUM TABLET MSR 25MG"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="22276"/>
+                  <display value="DICLOFENAC-NATRIUM TABLET MSR 25MG"/>
+               </coding>
+               <text value="DICLOFENAC NATRIUM AUROBINDO TABLET MSR 25MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+</Bundle>

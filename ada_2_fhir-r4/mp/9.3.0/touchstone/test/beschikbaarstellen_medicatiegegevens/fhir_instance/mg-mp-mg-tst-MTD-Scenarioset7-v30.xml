@@ -380,6 +380,70 @@
       </request>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:a757282e-6b76-11ec-0000-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+            </meta>
+            <practitioner>
+               <reference value="urn:uuid:f1e8c824-6b20-11ec-0000-020000000000"/>
+               <type value="Practitioner"/>
+               <display value="Healthcare professional (person), Jantien Toedien"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:b0d9956e-6a9d-11ec-0000-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Thuiszorg Om en Bij"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2020-10-23T00:00:00"/>
+                  <code value="9100"/>
+                  <display value="Verpleegkundigen, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:f1e8c824-6b20-11ec-0000-020000000000"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="222220000"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Jantien Toedien"/>
+               <family value="Toedien">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Toedien"/>
+                  </extension>
+               </family>
+               <given value="Jantien">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
+   </entry>
+   <entry>
       <fullUrl value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
@@ -434,70 +498,6 @@
                   </extension>
                </family>
                <given value="Peter">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                     <valueCode value="BR"/>
-                  </extension>
-               </given>
-            </name>
-         </Practitioner>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Practitioner"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:a757282e-6b76-11ec-0000-020000000000"/>
-      <resource>
-         <PractitionerRole>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
-            </meta>
-            <practitioner>
-               <reference value="urn:uuid:f1e8c824-6b20-11ec-0000-020000000000"/>
-               <type value="Practitioner"/>
-               <display value="Healthcare professional (person), Jantien Toedien"/>
-            </practitioner>
-            <organization>
-               <reference value="urn:uuid:b0d9956e-6a9d-11ec-0000-020000000000"/>
-               <type value="Organization"/>
-               <display value="Healthcare provider (organization), Thuiszorg Om en Bij"/>
-            </organization>
-            <specialty>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
-                  <version value="2020-10-23T00:00:00"/>
-                  <code value="9100"/>
-                  <display value="Verpleegkundigen, niet nader gespecificeerd"/>
-               </coding>
-            </specialty>
-         </PractitionerRole>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="PractitionerRole"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:f1e8c824-6b20-11ec-0000-020000000000"/>
-      <resource>
-         <Practitioner>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
-               <value value="222220000"/>
-            </identifier>
-            <name>
-               <use value="official"/>
-               <text value="Jantien Toedien"/>
-               <family value="Toedien">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="Toedien"/>
-                  </extension>
-               </family>
-               <given value="Jantien">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
                      <valueCode value="BR"/>
                   </extension>
@@ -588,9 +588,11 @@
                <valueString value="Titel: Ureum 10% in eucerine cum aqua 100gr           Regel: UREUM 10gr           Regel: EUCERINE MET WATER FAGRON ad 100gr"/>
             </extension>
             <code>
-               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-                  <valueCode value="OTH"/>
-               </extension>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+                  <code value="OTH"/>
+                  <display value="overig"/>
+               </coding>
                <text value="Ureum 10% in eucerine cum aqua 100gr"/>
             </code>
             <ingredient>
@@ -689,9 +691,11 @@
                <valueString value="Titel: Vaseline 20% in cetomacrogolcrème FNA Regel 1: cetomacrogolcreme 80 gr"/>
             </extension>
             <code>
-               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-                  <valueCode value="OTH"/>
-               </extension>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+                  <code value="OTH"/>
+                  <display value="overig"/>
+               </coding>
                <text value="Vaseline 20% in cetomacrogolcrème FNA"/>
             </code>
             <ingredient>
@@ -755,7 +759,6 @@
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.9999.77.90000000.1.1111"/>
                   <code value="90000001"/>
                   <display value="Eigen artikel: ureumzalf"/>
-                  <userSelected value="true"/>
                </coding>
                <text value="Ureum 10% in eucerine cum aqua 100gr"/>
             </code>
@@ -816,9 +819,11 @@
                <valueString value="Titel: Jemperli (Dostarlimab-gxly) 500 mg/10 mL"/>
             </extension>
             <code>
-               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-                  <valueCode value="OTH"/>
-               </extension>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+                  <code value="OTH"/>
+                  <display value="anders"/>
+               </coding>
                <text value="Jemperli 500 mg/ 10 mL"/>
             </code>
          </Medication>

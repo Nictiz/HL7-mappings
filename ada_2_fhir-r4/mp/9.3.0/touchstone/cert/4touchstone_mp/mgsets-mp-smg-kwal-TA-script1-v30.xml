@@ -2,17 +2,17 @@
    <id value="mgsets-mp-smg-kwal-TA-script1-v30"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:f713b9a8-6b71-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:557c61a8-6ab8-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
-               <valueDateTime value="${DATE, T, D, -9}T08:30:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, +0}T08:30:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 9 dagen, gedurende 21 weken, cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 5 stuks - let op, tijden exact aanhouden, Oraal"/>
+               <valueString value="cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 4 stuks - let op, tijden exact aanhouden, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -24,7 +24,7 @@
                         <code value="wk"/>
                      </valueDuration>
                   </extension>
-                  <start value="${DATE, T, D, -9}T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -65,7 +65,7 @@
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -105,13 +105,13 @@
                   <doseQuantity>
                      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                         <valueQuantity>
-                           <value value="5"/>
+                           <value value="4"/>
                            <unit value="stuk"/>
                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                            <code value="245"/>
                         </valueQuantity>
                      </extension>
-                     <value value="5"/>
+                     <value value="4"/>
                      <unit value="stuk"/>
                      <system value="http://unitsofmeasure.org"/>
                      <code value="1"/>
@@ -126,7 +126,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fb87ef0d-6aee-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:a6a67f0d-6b4e-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -136,16 +136,16 @@
                <valueCodeableConcept>
                   <coding>
                      <system value="http://snomed.info/sct"/>
-                     <code value="112251000146103"/>
-                     <display value="te sterk effect van medicatie"/>
+                     <code value="58848006"/>
+                     <display value="gebrek aan geneesmiddeleffect"/>
                   </coding>
                </valueCodeableConcept>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
-               <valueDateTime value="${DATE, T, D, +7}T15:00:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, +20}T07:30:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T + 13 dagen, gedurende 18 weken, cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 4 stuks - let op, tijden exact aanhouden, oraal"/>
+               <valueString value="cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 5 stuks - let op, tijden exact aanhouden, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -157,7 +157,7 @@
                         <code value="wk"/>
                      </valueDuration>
                   </extension>
-                  <start value="${DATE, T, D, +13}T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, +21}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -208,7 +208,7 @@
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -248,13 +248,13 @@
                   <doseQuantity>
                      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                         <valueQuantity>
-                           <value value="4"/>
+                           <value value="5"/>
                            <unit value="stuk"/>
                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                            <code value="245"/>
                         </valueQuantity>
                      </extension>
-                     <value value="4"/>
+                     <value value="5"/>
                      <unit value="stuk"/>
                      <system value="http://unitsofmeasure.org"/>
                      <code value="1"/>
@@ -269,22 +269,22 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:8cdced42-6a9d-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:8f793f0d-6af1-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
-               <valueDateTime value="${DATE, T, D, +7}T15:00:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, +20}T07:30:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 9 dagen, tot en met T + 12 dagen, cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 5 stuks - let op, tijden exact aanhouden, oraal, stopgezet"/>
+               <valueString value="cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 4 stuks - let op, tijden exact aanhouden, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="${DATE, T, D, -9}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, +12}T23:59:59+02:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, +20}T23:59:59+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -334,7 +334,7 @@
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -374,13 +374,13 @@
                   <doseQuantity>
                      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                         <valueQuantity>
-                           <value value="5"/>
+                           <value value="4"/>
                            <unit value="stuk"/>
                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                            <code value="245"/>
                         </valueQuantity>
                      </extension>
-                     <value value="5"/>
+                     <value value="4"/>
                      <unit value="stuk"/>
                      <system value="http://unitsofmeasure.org"/>
                      <code value="1"/>
@@ -442,7 +442,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -453,6 +453,31 @@
                <value value="01236578"/>
             </identifier>
             <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Organization>
       </resource>
       <request>

@@ -2,7 +2,7 @@
    <id value="mg-mp-mg-tst-VV-Scenarioset7-v30"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:09f7aa89-6af1-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:eac698a1-6b57-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -11,7 +11,7 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_magistraalalleingredienten"/>
+                  <value value="MBH_300_hybride_voorschrift_magistraalalleingredienten"/>
                </valueIdentifier>
             </extension>
             <identifier>
@@ -52,9 +52,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_magistraalalleingredienten_MA"/>
+                  <value value="MBH_300_hybride_voorschrift_magistraalalleingredienten_MA"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak  met identificatie: MBH_300_magistraalalleingredienten_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak  met identificatie: MBH_300_hybride_voorschrift_magistraalalleingredienten_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </basedOn>
             <dispenseRequest>
                <quantity>
@@ -526,9 +526,11 @@
                <valueString value="Titel: Ureum 10% in eucerine cum aqua 100gr           Regel: UREUM 10gr           Regel: EUCERINE MET WATER FAGRON ad 100gr"/>
             </extension>
             <code>
-               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-                  <valueCode value="OTH"/>
-               </extension>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+                  <code value="OTH"/>
+                  <display value="overig"/>
+               </coding>
                <text value="Ureum 10% in eucerine cum aqua 100gr"/>
             </code>
             <ingredient>
@@ -627,9 +629,11 @@
                <valueString value="Titel: Vaseline 20% in cetomacrogolcrème FNA Regel 1: cetomacrogolcreme 80 gr"/>
             </extension>
             <code>
-               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-                  <valueCode value="OTH"/>
-               </extension>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+                  <code value="OTH"/>
+                  <display value="overig"/>
+               </coding>
                <text value="Vaseline 20% in cetomacrogolcrème FNA"/>
             </code>
             <ingredient>
@@ -693,7 +697,6 @@
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.9999.77.90000000.1.1111"/>
                   <code value="90000001"/>
                   <display value="Eigen artikel: ureumzalf"/>
-                  <userSelected value="true"/>
                </coding>
                <text value="Ureum 10% in eucerine cum aqua 100gr"/>
             </code>
@@ -754,9 +757,11 @@
                <valueString value="Titel: Jemperli (Dostarlimab-gxly) 500 mg/10 mL"/>
             </extension>
             <code>
-               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-                  <valueCode value="OTH"/>
-               </extension>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+                  <code value="OTH"/>
+                  <display value="anders"/>
+               </coding>
                <text value="Jemperli 500 mg/ 10 mL"/>
             </code>
          </Medication>

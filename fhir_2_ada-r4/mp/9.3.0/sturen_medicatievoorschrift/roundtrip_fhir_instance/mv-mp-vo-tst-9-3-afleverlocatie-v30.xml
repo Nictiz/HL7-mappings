@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="84ab2dad-4835-11ef-9070-020000000000"/>
+   <id value="9bd7f861-a281-11ef-1055-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:84ab2f50-4835-11ef-9070-020000000000"/>
+      <fullUrl value="urn:uuid:9bd7fa04-a281-11ef-1055-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -18,9 +18,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2023-01-01T11:07:00+01:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf &lt;T+1D{00:00:00}&gt; t/m &lt;T+10D{23:59:59}&gt;, 3 maal per dag 1 stuk, oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 2 jan 2023, tot en met 11 jan 2023, 3 maal per dag 1 stuk, Oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="2023-01-02T00:00:00+01:00"/>
@@ -47,17 +48,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:84ab2faa-4835-11ef-9070-020000000000"/>
+               <reference value="urn:uuid:9bd7fa5e-a281-11ef-1055-020000000000"/>
                <type value="Medication"/>
                <display value="MODAFINIL TABLET 200MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:84ab2e24-4835-11ef-9070-020000000000"/>
+               <reference value="urn:uuid:9bd7f8d8-a281-11ef-1055-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:84ab2e4c-4835-11ef-9070-020000000000"/>
+               <reference value="urn:uuid:9bd7f900-a281-11ef-1055-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -101,7 +102,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:84ab2f6e-4835-11ef-9070-020000000000"/>
+      <fullUrl value="urn:uuid:9bd7fa22-a281-11ef-1055-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -131,23 +132,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:84ab2faa-4835-11ef-9070-020000000000"/>
+               <reference value="urn:uuid:9bd7fa5e-a281-11ef-1055-020000000000"/>
                <type value="Medication"/>
                <display value="MODAFINIL TABLET 200MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:84ab2e24-4835-11ef-9070-020000000000"/>
+               <reference value="urn:uuid:9bd7f8d8-a281-11ef-1055-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <authoredOn value="2023-01-01T11:07:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:84ab2e4c-4835-11ef-9070-020000000000"/>
+               <reference value="urn:uuid:9bd7f900-a281-11ef-1055-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:84ab2f14-4835-11ef-9070-020000000000"/>
+               <reference value="urn:uuid:9bd7f9c8-a281-11ef-1055-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -162,7 +163,7 @@
             <dispenseRequest>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.DispenseLocation">
                   <valueReference>
-                     <reference value="urn:uuid:84ab2f8c-4835-11ef-9070-020000000000"/>
+                     <reference value="urn:uuid:9bd7fa40-a281-11ef-1055-020000000000"/>
                      <type value="Location"/>
                      <display value="afleverlocatie"/>
                   </valueReference>
@@ -190,7 +191,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:84ab2e24-4835-11ef-9070-020000000000"/>
+      <fullUrl value="urn:uuid:9bd7f8d8-a281-11ef-1055-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -237,19 +238,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:84ab2e4c-4835-11ef-9070-020000000000"/>
+      <fullUrl value="urn:uuid:9bd7f900-a281-11ef-1055-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:84ab2e74-4835-11ef-9070-020000000000"/>
+               <reference value="urn:uuid:9bd7f928-a281-11ef-1055-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:84ab2eba-4835-11ef-9070-020000000000"/>
+               <reference value="urn:uuid:9bd7f96e-a281-11ef-1055-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -274,7 +275,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:84ab2e74-4835-11ef-9070-020000000000"/>
+      <fullUrl value="urn:uuid:9bd7f928-a281-11ef-1055-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -314,7 +315,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:84ab2eba-4835-11ef-9070-020000000000"/>
+      <fullUrl value="urn:uuid:9bd7f96e-a281-11ef-1055-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -355,7 +356,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:84ab2f14-4835-11ef-9070-020000000000"/>
+      <fullUrl value="urn:uuid:9bd7f9c8-a281-11ef-1055-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -399,7 +400,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:84ab2faa-4835-11ef-9070-020000000000"/>
+      <fullUrl value="urn:uuid:9bd7fa5e-a281-11ef-1055-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -427,7 +428,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:84ab2f8c-4835-11ef-9070-020000000000"/>
+      <fullUrl value="urn:uuid:9bd7fa40-a281-11ef-1055-020000000000"/>
       <resource>
          <Location>
             <meta>

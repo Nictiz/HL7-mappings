@@ -4,7 +4,7 @@
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-      <valueString value="Vanaf T - 20 dagen, gedurende 5 dagen, 2 maal per dag 2 stuks, oraal"/>
+      <valueString value="1 maal per dag 0.7 ml, Subcutaan"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
       <valueReference>
@@ -42,9 +42,9 @@
       </coding>
    </category>
    <medicationReference>
-      <reference value="Medication/mp-PhPrd-mp9-21684011138832447-665800"/>
+      <reference value="Medication/mp-PhPrd-mp9-21684011138832447-1108751"/>
       <type value="Medication"/>
-      <display value="PARACETAMOL SANDOZ TABLET 500MG"/>
+      <display value="INNOHEP INJVLST 20000 IE/ML WWSP 0,7ML"/>
    </medicationReference>
    <subject>
       <reference value="Patient/nl-core-Patient-mp9-G-XXX-Groot"/>
@@ -88,7 +88,7 @@
    <dosage>
       <timing>
          <repeat>
-            <frequency value="2"/>
+            <frequency value="1"/>
             <period value="1"/>
             <periodUnit value="d"/>
          </repeat>
@@ -96,24 +96,24 @@
       <route>
          <coding>
             <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-            <code value="9"/>
-            <display value="oraal"/>
+            <code value="21"/>
+            <display value="Subcutaan"/>
          </coding>
       </route>
       <doseAndRate>
          <doseQuantity>
             <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                <valueQuantity>
-                  <value value="2"/>
-                  <unit value="stuk"/>
+                  <value value="0.7"/>
+                  <unit value="milliliter"/>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="245"/>
+                  <code value="233"/>
                </valueQuantity>
             </extension>
-            <value value="2"/>
-            <unit value="stuk"/>
+            <value value="0.7"/>
+            <unit value="milliliter"/>
             <system value="http://unitsofmeasure.org"/>
-            <code value="1"/>
+            <code value="ml"/>
          </doseQuantity>
       </doseAndRate>
    </dosage>

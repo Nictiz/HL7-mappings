@@ -2,7 +2,7 @@
    <id value="mgsets-mp-smg-kwal-WDS-script2-v30"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:b193c2b0-6ac2-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:867d0b6d-6afa-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -18,7 +18,7 @@
                <valueDateTime value="${DATE, T, D, -40}T10:34:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 40 dagen, tot en met T - 37 dagen, eerst gedurende 1 dag elke dag om 18:00 2 stuks - let op, tijden exact aanhouden, dan gedurende 1 dag elke dag om 18:00 2 stuks - let op, tijden exact aanhouden, dan gedurende 1 uur elke dag om 18:00 3 stuks - let op, tijden exact aanhouden, Oraal"/>
+               <valueString value="eerst gedurende 1 dag elke dag om 18:00 2 stuks - let op, tijden exact aanhouden, dan gedurende 1 dag elke dag om 18:00 2 stuks - let op, tijden exact aanhouden, dan gedurende 1 dag elke dag om 18:00 2 stuks - let op, tijden exact aanhouden, dan gedurende 1 dag 1 maal per dag 2 stuks, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -154,9 +154,9 @@
                      </extension>
                      <boundsDuration>
                         <value value="1"/>
-                        <unit value="uur"/>
+                        <unit value="dag"/>
                         <system value="http://unitsofmeasure.org"/>
-                        <code value="h"/>
+                        <code value="d"/>
                      </boundsDuration>
                      <timeOfDay value="18:00:00"/>
                   </repeat>
@@ -172,14 +172,53 @@
                   <doseQuantity>
                      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                         <valueQuantity>
-                           <value value="3"/>
+                           <value value="2"/>
                            <unit value="stuk"/>
                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                            <code value="245"/>
                         </valueQuantity>
                      </extension>
-                     <value value="3"/>
+                     <value value="2"/>
                      <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+            <dosageInstruction>
+               <sequence value="4"/>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="2"/>
+                           <unit value="Stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="2"/>
+                     <unit value="Stuk"/>
                      <system value="http://unitsofmeasure.org"/>
                      <code value="1"/>
                   </doseQuantity>
@@ -209,7 +248,7 @@
                <valueDateTime value="${DATE, T, D, -36}T14:30:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 36 dagen, gedurende 14 dagen, eerst gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, Oraal"/>
+               <valueString value="eerst gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -855,7 +894,7 @@
                <valueDateTime value="${DATE, T, D, -24}T10:30:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 36 dagen, tot en met T - 24 dagen, eerst gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, Oraal, stopgezet"/>
+               <valueString value="eerst gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -1503,7 +1542,7 @@
                <valueDateTime value="${DATE, T, D, -24}T10:30:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 23 dagen, tot en met T - 17 dagen, eerst gedurende 1 dag elke dag om 19:00 0 stuks, dan gedurende 1 dag elke dag om 19:00 0 stuks, dan gedurende 1 dag 0 stuks 's avonds, dan gedurende 1 dag 0 stuks 's avonds, dan gedurende 1 dag 1 stuk 's avonds, dan gedurende 1 dag 0 stuks 's avonds, dan gedurende 1 dag 0 stuks 's avonds, oraal"/>
+               <valueString value="eerst gedurende 1 dag elke dag om 19:00 0 stuks, dan gedurende 1 dag elke dag om 19:00 0 stuks, dan gedurende 1 dag 0 stuks 's avonds, dan gedurende 1 dag 0 stuks 's avonds, dan gedurende 1 dag 1 stuk 's avonds, dan gedurende 1 dag 0 stuks 's avonds, dan gedurende 1 dag 0 stuks 's avonds, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -1869,7 +1908,7 @@
                <valueDateTime value="${DATE, T, D, -16}T09:33:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 16 dagen, gedurende 6 dagen, eerst gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, oraal"/>
+               <valueString value="eerst gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 3 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -2469,7 +2508,7 @@
                   </valueCodeableConcept>
                </extension>
                <use value="work"/>
-               <line value="Kerkstraat  28 d">
+               <line value="Kerkstraat 28 d">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
                      <valueString value="Kerkstraat"/>
                   </extension>

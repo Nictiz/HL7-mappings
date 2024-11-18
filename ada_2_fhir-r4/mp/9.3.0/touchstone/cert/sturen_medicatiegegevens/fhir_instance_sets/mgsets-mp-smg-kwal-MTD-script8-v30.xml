@@ -1,0 +1,378 @@
+<Bundle xmlns="http://hl7.org/fhir">
+   <id value="mgsets-mp-smg-kwal-MTD-script8-v30"/>
+   <type value="transaction"/>
+   <entry>
+      <fullUrl value="urn:uuid:f7de380f-6b57-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationAdministration>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.InjectionPatchSite">
+               <valueCodeableConcept>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://snomed.info/sct"/>
+                           <code value="7771000"/>
+                           <display value="links"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="160521000146106"/>
+                     <display value="structuur van weke delen van laterale bovenkwadrant van anterieur oppervlak van bovenbeen"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, -1}T12:00:00+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_SCRIPT8"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <value value="MBH_300_SCRIPT8_MTD1"/>
+            </identifier>
+            <status value="unknown"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="18629005"/>
+                  <display value="toediening van medicatie"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:119dd11d-6abe-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="FRAXIPARINE FORTE INJV 11400IE/0,6ML(19000IE/ML)WW"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:ab71cf1e-6b3e-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, J. XXX_Laan"/>
+            </subject>
+            <supportingInformation>
+               <type value="MedicationDispense"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                  <value value="MBH_300_SCRIPT8_TA"/>
+               </identifier>
+               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_SCRIPT8_TA || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            </supportingInformation>
+            <effectiveDateTime value="${DATE, T, D, -1}T12:00:00+02:00"/>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:a757282e-6b76-11ec-0000-020000000000"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare professional (role), Jantien Toedien, Verpleegkundigen, niet nader gespecificeerd, Thuiszorg Om en Bij"/>
+               </actor>
+            </performer>
+            <dosage>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="21"/>
+                     <display value="subcutaan"/>
+                  </coding>
+               </route>
+               <dose>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                     <valueQuantity>
+                        <value value="0.6"/>
+                        <unit value="milliliter"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="233"/>
+                     </valueQuantity>
+                  </extension>
+                  <value value="0.6"/>
+                  <unit value="milliliter"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="ml"/>
+               </dose>
+            </dosage>
+         </MedicationAdministration>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationAdministration"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c0b8ac96-6ae1-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationAdministration>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.InjectionPatchSite">
+               <valueCodeableConcept>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://snomed.info/sct"/>
+                           <code value="24028007"/>
+                           <display value="rechts"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="160511000146101"/>
+                     <display value="structuur van weke delen van mediale bovenkwadrant van anterieur oppervlak van bovenbeen"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, +0}T12:00:00+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_SCRIPT8"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <value value="MBH_300_SCRIPT8_MTD2"/>
+            </identifier>
+            <status value="unknown"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="18629005"/>
+                  <display value="toediening van medicatie"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:119dd11d-6abe-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="FRAXIPARINE FORTE INJV 11400IE/0,6ML(19000IE/ML)WW"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:ab71cf1e-6b3e-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, J. XXX_Laan"/>
+            </subject>
+            <supportingInformation>
+               <type value="MedicationDispense"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                  <value value="MBH_300_SCRIPT8_TA"/>
+               </identifier>
+               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_SCRIPT8_TA || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            </supportingInformation>
+            <effectiveDateTime value="${DATE, T, D, +0}T12:00:00+02:00"/>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:a757282e-6b76-11ec-0000-020000000000"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare professional (role), Jantien Toedien, Verpleegkundigen, niet nader gespecificeerd, Thuiszorg Om en Bij"/>
+               </actor>
+            </performer>
+            <dosage>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="21"/>
+                     <display value="subcutaan"/>
+                  </coding>
+               </route>
+               <dose>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                     <valueQuantity>
+                        <value value="0.6"/>
+                        <unit value="mililiter"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="233"/>
+                     </valueQuantity>
+                  </extension>
+                  <value value="0.6"/>
+                  <unit value="mililiter"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="ml"/>
+               </dose>
+            </dosage>
+         </MedicationAdministration>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationAdministration"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:ab71cf1e-6b3e-11ec-0000-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999900742"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <use value="official"/>
+               <text value="J. XXX_Laan"/>
+               <family value="XXX_Laan">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Laan"/>
+                  </extension>
+               </family>
+               <given value="J.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1985-10-21"/>
+         </Patient>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:a757282e-6b76-11ec-0000-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+            </meta>
+            <practitioner>
+               <reference value="urn:uuid:f1e8c824-6b20-11ec-0000-020000000000"/>
+               <type value="Practitioner"/>
+               <display value="Healthcare professional (person), Jantien Toedien"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:b0d9956e-6a9d-11ec-0000-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Thuiszorg Om en Bij"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2020-10-23T00:00:00"/>
+                  <code value="9100"/>
+                  <display value="Verpleegkundigen, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:f1e8c824-6b20-11ec-0000-020000000000"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="222220000"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Jantien Toedien"/>
+               <family value="Toedien">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Toedien"/>
+                  </extension>
+               </family>
+               <given value="Jantien">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:b0d9956e-6a9d-11ec-0000-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="11110000"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <code value="T2"/>
+                  <display value="Thuiszorg"/>
+               </coding>
+            </type>
+            <name value="Thuiszorg Om en Bij"/>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:119dd11d-6abe-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="1184601"/>
+                  <display value="FRAXIPARINE FORTE INJV 11400IE/0,6ML(19000IE/ML)WW"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="53821"/>
+                  <display value="NADROPARINE INJVL WWSP 11400IE=0,6ML (19000IE/ML)"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="108278"/>
+                  <display value="NADROPARINE INJVLST 19000IE/ML"/>
+               </coding>
+               <text value="FRAXIPARINE FORTE INJV 11400IE/0,6ML(19000IE/ML)WW"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+</Bundle>

@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="848f6933-4835-11ef-1949-020000000000"/>
+   <id value="9bc70a0b-a281-11ef-1631-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:848f6ad6-4835-11ef-1949-020000000000"/>
+      <fullUrl value="urn:uuid:9bc70bae-a281-11ef-1631-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -18,9 +18,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2023-01-01T08:47:00+01:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+8D{23:59:59}&gt;, 0.2 a 0.5 ml per uur parenteraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 1 jan 2023, tot en met 9 jan 2023, toedieningssnelheid: 0.2 à 0.5 per, parenteraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="2023-01-01T00:00:00+01:00"/>
@@ -47,17 +48,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:848f6b12-4835-11ef-1949-020000000000"/>
+               <reference value="urn:uuid:9bc70bea-a281-11ef-1631-020000000000"/>
                <type value="Medication"/>
                <display value="MORFINE INFVLST 5MG/ML CAS 100ML"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:848f69aa-4835-11ef-1949-020000000000"/>
+               <reference value="urn:uuid:9bc70a82-a281-11ef-1631-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:848f69d2-4835-11ef-1949-020000000000"/>
+               <reference value="urn:uuid:9bc70aaa-a281-11ef-1631-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -69,22 +70,6 @@
                      <display value="parenteraal"/>
                   </coding>
                </route>
-               <doseAndRate>
-                  <rateRange>
-                     <low>
-                        <value value="0.2"/>
-                        <unit value="ml/h"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="ml/h"/>
-                     </low>
-                     <high>
-                        <value value="0.5"/>
-                        <unit value="ml/h"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="ml/h"/>
-                     </high>
-                  </rateRange>
-               </doseAndRate>
             </dosageInstruction>
          </MedicationRequest>
       </resource>
@@ -94,7 +79,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:848f6af4-4835-11ef-1949-020000000000"/>
+      <fullUrl value="urn:uuid:9bc70bcc-a281-11ef-1631-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -124,25 +109,25 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:848f6b12-4835-11ef-1949-020000000000"/>
+               <reference value="urn:uuid:9bc70bea-a281-11ef-1631-020000000000"/>
                <type value="Medication"/>
                <display value="MORFINE INFVLST 5MG/ML CAS 100ML"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:848f69aa-4835-11ef-1949-020000000000"/>
+               <reference value="urn:uuid:9bc70a82-a281-11ef-1631-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <authoredOn value="2023-01-01T08:47:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:848f69d2-4835-11ef-1949-020000000000"/>
+               <reference value="urn:uuid:9bc70aaa-a281-11ef-1631-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:848f6a9a-4835-11ef-1949-020000000000"/>
+               <reference value="urn:uuid:9bc70b72-a281-11ef-1631-020000000000"/>
                <type value="Organization"/>
-               <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
+               <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
             <basedOn>
                <type value="MedicationRequest"/>
@@ -176,7 +161,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:848f69aa-4835-11ef-1949-020000000000"/>
+      <fullUrl value="urn:uuid:9bc70a82-a281-11ef-1631-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -223,19 +208,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:848f69d2-4835-11ef-1949-020000000000"/>
+      <fullUrl value="urn:uuid:9bc70aaa-a281-11ef-1631-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:848f69fa-4835-11ef-1949-020000000000"/>
+               <reference value="urn:uuid:9bc70ad2-a281-11ef-1631-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:848f6a40-4835-11ef-1949-020000000000"/>
+               <reference value="urn:uuid:9bc70b18-a281-11ef-1631-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -260,7 +245,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:848f69fa-4835-11ef-1949-020000000000"/>
+      <fullUrl value="urn:uuid:9bc70ad2-a281-11ef-1631-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -300,7 +285,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:848f6a40-4835-11ef-1949-020000000000"/>
+      <fullUrl value="urn:uuid:9bc70b18-a281-11ef-1631-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -341,7 +326,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:848f6a9a-4835-11ef-1949-020000000000"/>
+      <fullUrl value="urn:uuid:9bc70b72-a281-11ef-1631-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -351,7 +336,7 @@
                <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
                <value value="01236578"/>
             </identifier>
-            <name value="Apotheek de Gulle Gaper"/>
+            <name value="Apotheek De Gulle Gaper"/>
             <address>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
                   <valueCodeableConcept>
@@ -385,7 +370,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:848f6b12-4835-11ef-1949-020000000000"/>
+      <fullUrl value="urn:uuid:9bc70bea-a281-11ef-1631-020000000000"/>
       <resource>
          <Medication>
             <meta>
