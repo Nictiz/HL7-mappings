@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:nf="http://www.nictiz.nl/functions" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
+    
     <!-- this import is to avoid compilation errors when running outside of oXygen with the super cool main files functionality -->
-    <xsl:import href="../../../../../../HL7-mappings/ada_2_fhir-r4/mp/9.3.0/beschikbaarstellen_medicatiegegevens/payload/beschikbaarstellen_medicatiegegevens_2_fhir.xsl"/>
+    <!--<xsl:import href="../../../../../../HL7-mappings/ada_2_fhir-r4/mp/9.3.0/beschikbaarstellen_medicatiegegevens/payload/beschikbaarstellen_medicatiegegevens_2_fhir.xsl"/>-->
+    <xsl:import href="../../../../../../YATC-internal/ada-2-fhir-r4/env/mp/9.3.0/beschikbaarstellen_medicatiegegevens/payload/beschikbaarstellen_medicatiegegevens_2_fhir.xsl"/>
+    
     <!-- these imports are for the format date templates that we really need to test -->
     <xsl:import href="../../../../../../YATC-internal/ada-2-hl7/env/hl7/2_hl7_hl7_include.xsl"/>
-    <xsl:import href="../../../../../../HL7-mappings/ada_2_fhir-r4/fhir/2_fhir_fhir_include.xsl"/>
+    <!--<xsl:import href="../../../../../../HL7-mappings/ada_2_fhir-r4/fhir/2_fhir_fhir_include.xsl"/>-->
+    <xsl:import href="../../../../../../YATC-internal/ada-2-fhir-r4/env/fhir/2_fhir_fhir_include.xsl"/>
     <xsl:import href="../../../../../../HL7-mappings/hl7_2_ada/hl7/hl7_2_ada_hl7_include.xsl"/>
     <xsl:import href="../../../../../../HL7-mappings/fhir_2_ada-r4/fhir/fhir_2_ada_fhir_include.xsl"/>
 
