@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="cio-savc-tst-2.1-beta3AVCI2"/>
+   <id value="cio-savc-tst-1-1-beta3AVCI1"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-ReplyProposalContraIndication-Bundle"/>
    </meta>
@@ -10,10 +10,10 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="http://example.nictiz.nl/fhir/Communication/avci-pat07-avci-01"/>
+      <fullUrl value="http://example.nictiz.nl/fhir/Communication/avci-pat06-avci-01"/>
       <resource>
          <Communication>
-            <id value="avci-pat07-avci-01"/>
+            <id value="avci-pat06-avci-01"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-ReplyProposalContraIndication"/>
                <tag>
@@ -23,20 +23,21 @@
             </meta>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.937"/>
-               <value value="pat07-avci-01"/>
+               <value value="pat06-avci-01"/>
             </identifier>
             <basedOn>
                <type value="Flag"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.936"/>
-                  <value value="pat07-vci-01"/>
+                  <value value="pat06-vci-01"/>
                </identifier>
-               <display value="Relatie naar voorstel: pat07-vci-01 || 2.16.840.1.113883.2.4.3.11.999.26.1.936"/>
+               <display value="Relatie naar voorstel: pat06-vci-01 || 2.16.840.1.113883.2.4.3.11.999.26.1.936"/>
             </basedOn>
+            <status value="in-progress"/>
             <subject>
-               <reference value="Patient/patient-XXX-Gerrits"/>
+               <reference value="Patient/patient-van-XXX-Geitenbeek"/>
                <type value="Patient"/>
-               <display value="Patient, Olaf XXX_Gerrits"/>
+               <display value="Patient, Ellen van XXX_Geitenbeek"/>
             </subject>
             <sent value="${DATE, T, D, +0}"/>
             <sender>
@@ -50,15 +51,12 @@
                      <valueCodeableConcept>
                         <coding>
                            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.26.5.1"/>
-                           <code value="code-2"/>
-                           <display value="Nee, voorstel afgewezen"/>
+                           <code value="code-1"/>
+                           <display value="Ja, voorstel akkoord"/>
                         </coding>
                      </valueCodeableConcept>
                   </extension>
                </contentString>
-            </payload>
-            <payload>
-               <contentString value="Patiënt op en af in depressie. Bij voorschrijven medicatie wenselijk om hier rekening mee te houden."/>
             </payload>
          </Communication>
       </resource>
@@ -68,43 +66,46 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="http://example.nictiz.nl/fhir/Patient/patient-XXX-Gerrits"/>
+      <fullUrl value="http://example.nictiz.nl/fhir/Patient/patient-van-XXX-Geitenbeek"/>
       <resource>
          <Patient>
-            <id value="patient-XXX-Gerrits"/>
+            <id value="patient-van-XXX-Geitenbeek"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="999900158"/>
+               <value value="999900547"/>
             </identifier>
             <name>
                <use value="official"/>
-               <text value="Olaf XXX_Gerrits"/>
-               <family value="XXX_Gerrits">
+               <text value="Ellen van XXX_Geitenbeek"/>
+               <family value="van XXX_Geitenbeek">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van"/>
+                  </extension>
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="XXX_Gerrits"/>
+                     <valueString value="XXX_Geitenbeek"/>
                   </extension>
                </family>
-               <given value="Olaf">
+               <given value="Ellen">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
                      <valueCode value="BR"/>
                   </extension>
                </given>
             </name>
-            <gender value="male">
+            <gender value="female">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
                   <valueCodeableConcept>
                      <coding>
                         <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
-                        <code value="M"/>
-                        <display value="Man"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
                      </coding>
                   </valueCodeableConcept>
                </extension>
             </gender>
-            <birthDate value="1963-09-22"/>
+            <birthDate value="1963-10-27"/>
          </Patient>
       </resource>
       <request>
