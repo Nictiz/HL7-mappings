@@ -40,6 +40,13 @@
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.4"/>
       <value value="pat09-rea-col-01"/>
    </identifier>
+   <clinicalStatus>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical"/>
+         <code value="active"/>
+         <display value="Active"/>
+      </coding>
+   </clinicalStatus>
    <code>
       <coding>
          <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
@@ -79,6 +86,11 @@
             <display value="COLOFORT POEDER VOOR DRANK IN SACHET"/>
          </coding>
       </substance>
+      <manifestation>
+         <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+            <valueCode value="unknown"/>
+         </extension>
+      </manifestation>
       <onset value="${DATE, T, D, -28}"/>
       <exposureRoute>
          <coding>

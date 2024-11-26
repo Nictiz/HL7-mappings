@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="cio-savc-tst-1.1-beta3AVCI1"/>
+   <id value="cio-svci-tst-1-1-beta3VCI1"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-ReplyProposalContraIndication-Bundle"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-ProposalContraIndication-Bundle"/>
    </meta>
    <type value="transaction"/>
    <link>
@@ -10,58 +10,67 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="http://example.nictiz.nl/fhir/Communication/avci-pat06-avci-01"/>
+      <fullUrl value="http://example.nictiz.nl/fhir/Flag/vci-pat06-vci-01"/>
       <resource>
-         <Communication>
-            <id value="avci-pat06-avci-01"/>
+         <Flag>
+            <id value="vci-pat06-vci-01"/>
             <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-ReplyProposalContraIndication"/>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-MedicationContraIndication"/>
                <tag>
                   <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
                   <code value="actionable"/>
                </tag>
             </meta>
+            <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
+               <valueReference>
+                  <type value="MedicationRequest"/>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                     <value value="pat06-ma01"/>
+                  </identifier>
+                  <display value="Relatie naar medicatieafspraak: pat06-ma01 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ProposalContraIndication.Comment">
+               <valueString value="Patiënt gebruikt combinatie van ACE-remmers, betablokkers en een lisdiureticum. Is dit in het kader van hartfalen?"/>
+            </extension>
             <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.937"/>
-               <value value="pat06-avci-01"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.936"/>
+               <value value="pat06-vci-01"/>
             </identifier>
-            <basedOn>
-               <type value="Flag"/>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.936"/>
-                  <value value="pat06-vci-01"/>
-               </identifier>
-               <display value="Relatie naar voorstel: pat06-vci-01 || 2.16.840.1.113883.2.4.3.11.999.26.1.936"/>
-            </basedOn>
+            <status value="active"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="350241000146102"/>
+                  <display value="potentiële contra-indicatie voor geneesmiddel (bevinding)"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.902.40"/>
+                  <code value="72"/>
+                  <display value="HARTFALEN"/>
+               </coding>
+            </code>
             <subject>
                <reference value="Patient/patient-van-XXX-Geitenbeek"/>
                <type value="Patient"/>
                <display value="Patient, Ellen van XXX_Geitenbeek"/>
             </subject>
-            <sent value="${DATE, T, D, +0}"/>
-            <sender>
-               <reference value="PractitionerRole/pracrole-000003332"/>
+            <period>
+               <start value="${DATE, T, D, +0}"/>
+            </period>
+            <author>
+               <reference value="PractitionerRole/pracrole-000001116"/>
                <type value="PractitionerRole"/>
-               <display value="Healthcare professional (role), Peter van Pulver, HUISARTS, Huisartsenpraktijk Pulver &amp; Partners"/>
-            </sender>
-            <payload>
-               <contentString>
-                  <extension url="http://nictiz.nl/fhir/5.0/StructureDefinition/extension-Communication.payload.content%5Bx%5D:contentCodeableConcept">
-                     <valueCodeableConcept>
-                        <coding>
-                           <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.26.5.1"/>
-                           <code value="code-1"/>
-                           <display value="Ja, voorstel akkoord"/>
-                        </coding>
-                     </valueCodeableConcept>
-                  </extension>
-               </contentString>
-            </payload>
-         </Communication>
+               <display value="Healthcare professional (role), Victor de Verstrekker, Apothekers, Apotheek de Gulle Gaper"/>
+            </author>
+         </Flag>
       </resource>
       <request>
          <method value="POST"/>
-         <url value="Communication"/>
+         <url value="Flag"/>
       </request>
    </entry>
    <entry>
@@ -113,28 +122,28 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="http://example.nictiz.nl/fhir/PractitionerRole/pracrole-000003332"/>
+      <fullUrl value="http://example.nictiz.nl/fhir/PractitionerRole/pracrole-000001116"/>
       <resource>
          <PractitionerRole>
-            <id value="pracrole-000003332"/>
+            <id value="pracrole-000001116"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="Practitioner/prac-000003332"/>
+               <reference value="Practitioner/prac-000001116"/>
                <type value="Practitioner"/>
-               <display value="Healthcare professional (person), Peter van Pulver"/>
+               <display value="Healthcare professional (person), Victor de Verstrekker"/>
             </practitioner>
             <organization>
-               <reference value="Organization/org-00001111"/>
+               <reference value="Organization/org-01236578"/>
                <type value="Organization"/>
-               <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
+               <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
             </organization>
             <specialty>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
-                  <code value="0101"/>
-                  <display value="HUISARTS"/>
+                  <code value="0200"/>
+                  <display value="Apothekers"/>
                </coding>
             </specialty>
          </PractitionerRole>
@@ -145,29 +154,29 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="http://example.nictiz.nl/fhir/Practitioner/prac-000003332"/>
+      <fullUrl value="http://example.nictiz.nl/fhir/Practitioner/prac-000001116"/>
       <resource>
          <Practitioner>
-            <id value="prac-000003332"/>
+            <id value="prac-000001116"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
             </meta>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.139"/>
-               <value value="000003332"/>
+               <value value="000001116"/>
             </identifier>
             <name>
                <use value="official"/>
-               <text value="Peter van Pulver"/>
-               <family value="van Pulver">
+               <text value="Victor de Verstrekker"/>
+               <family value="de Verstrekker">
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
-                     <valueString value="van"/>
+                     <valueString value="de"/>
                   </extension>
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="Pulver"/>
+                     <valueString value="Verstrekker"/>
                   </extension>
                </family>
-               <given value="Peter">
+               <given value="Victor">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
                      <valueCode value="BR"/>
                   </extension>
@@ -181,25 +190,18 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="http://example.nictiz.nl/fhir/Organization/org-00001111"/>
+      <fullUrl value="http://example.nictiz.nl/fhir/Organization/org-01236578"/>
       <resource>
          <Organization>
-            <id value="org-00001111"/>
+            <id value="org-01236578"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.205"/>
-               <value value="00001111"/>
+               <value value="01236578"/>
             </identifier>
-            <type>
-               <coding>
-                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
-                  <code value="Z3"/>
-                  <display value="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
-               </coding>
-            </type>
-            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            <name value="Apotheek de Gulle Gaper"/>
             <address>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
                   <valueCodeableConcept>
@@ -211,22 +213,71 @@
                   </valueCodeableConcept>
                </extension>
                <use value="work"/>
-               <line value="Dorpstraat 1">
+               <line value="Dorpsweg 28">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
-                     <valueString value="Dorpstraat"/>
+                     <valueString value="Dorpsweg"/>
                   </extension>
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-                     <valueString value="1"/>
+                     <valueString value="28"/>
                   </extension>
                </line>
                <city value="Ons Dorp"/>
-               <postalCode value="1234AA"/>
+               <postalCode value="1234AB"/>
             </address>
          </Organization>
       </resource>
       <request>
          <method value="POST"/>
          <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="http://example.nictiz.nl/fhir/Provenance/reginfo-pat06-vci-01"/>
+      <resource>
+         <Provenance>
+            <id value="reginfo-pat06-vci-01"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-RegistrationInformation"/>
+            </meta>
+            <target>
+               <reference value="Flag/vci-pat06-vci-01"/>
+               <type value="Flag"/>
+               <display value="Medicatie contra-indicatie, HARTFALEN, startdatum: T"/>
+            </target>
+            <recorded value="${DATE, T, D, +0}T00:00:00+02:00"/>
+            <agent>
+               <type>
+                  <coding>
+                     <system value="http://terminology.hl7.org/CodeSystem/provenance-participant-type"/>
+                     <code value="author"/>
+                     <display value="Author"/>
+                  </coding>
+               </type>
+               <who>
+                  <reference value="PractitionerRole/pracrole-000001116"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare professional (role), Victor de Verstrekker, Apothekers, Apotheek de Gulle Gaper"/>
+               </who>
+            </agent>
+            <agent>
+               <type>
+                  <coding>
+                     <system value="http://terminology.hl7.org/CodeSystem/provenance-participant-type"/>
+                     <code value="performer"/>
+                     <display value="Performer"/>
+                  </coding>
+               </type>
+               <who>
+                  <reference value="PractitionerRole/pracrole-000001116"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare professional (role), Victor de Verstrekker, Apothekers, Apotheek de Gulle Gaper"/>
+               </who>
+            </agent>
+         </Provenance>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Provenance"/>
       </request>
    </entry>
 </Bundle>
