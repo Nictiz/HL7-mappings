@@ -185,17 +185,17 @@
                </xs:enumeration>
                <xs:enumeration value="1">
                   <xs:annotation>
-                     <xs:documentation>Independent drinking</xs:documentation>
+                     <xs:documentation>in staat om zelfstandig te drinken</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="2">
                   <xs:annotation>
-                     <xs:documentation>Needs help with drinking</xs:documentation>
+                     <xs:documentation>hulp nodig bij drinken</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="3">
                   <xs:annotation>
-                     <xs:documentation>Unable to drink</xs:documentation>
+                     <xs:documentation>niet in staat te drinken</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
             </xs:restriction>
@@ -239,17 +239,17 @@
                </xs:enumeration>
                <xs:enumeration value="1">
                   <xs:annotation>
-                     <xs:documentation>Difficulty preparing drink</xs:documentation>
+                     <xs:documentation>moeite met bereiden van drank</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="2">
                   <xs:annotation>
-                     <xs:documentation>Difficulty holding drinks</xs:documentation>
+                     <xs:documentation>moeite met vastpakken van drank</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="3">
                   <xs:annotation>
-                     <xs:documentation>Difficulty taking drink to mouth</xs:documentation>
+                     <xs:documentation>moeite met naar mond brengen van drank</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
             </xs:restriction>
@@ -330,12 +330,12 @@
    </xs:simpleType>
    <xs:simpleType name="RelativeDate">
       <xs:restriction base="xs:string">
-         <xs:pattern value="T([+\-](\d+(\.\d+)?[YMD]){1,3})?"/>
+         <xs:pattern value="(T|DOB)([+\-](\d+(\.\d+)?[YMD]){1,3})?"/>
       </xs:restriction>
    </xs:simpleType>
    <xs:simpleType name="RelativeDateTime">
       <xs:restriction base="xs:string">
-         <xs:pattern value="T([+\-](\d+(\.\d+)?[YMD]){1,3})?(\{([01]\d|2[0-3]):(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?"/>
+         <xs:pattern value="(T|DOB)([+\-](\d+(\.\d+)?[YMD]){1,3})?(\{([01]\d|2[0-3]):(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?"/>
       </xs:restriction>
    </xs:simpleType>
    <xs:simpleType name="DateYear">
@@ -369,7 +369,7 @@
    </xs:simpleType>
    <xs:simpleType name="RelativeTime">
       <xs:restriction base="xs:string">
-         <xs:pattern value="T(([+\-]\d+(\.\d+)?[HMS])?(\{:(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?)?"/>
+         <xs:pattern value="(T|DOB)(([+\-]\d+(\.\d+)?[HMS])?(\{:(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?)?"/>
       </xs:restriction>
    </xs:simpleType>
    <xs:simpleType name="TimeHourOptionalMinutesSeconds">
