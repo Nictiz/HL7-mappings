@@ -441,32 +441,32 @@
                </xs:enumeration>
                <xs:enumeration value="1">
                   <xs:annotation>
-                     <xs:documentation>Diagnosis</xs:documentation>
+                     <xs:documentation>interpretatie van diagnose</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="2">
                   <xs:annotation>
-                     <xs:documentation>Symptom</xs:documentation>
+                     <xs:documentation>bevinding gerapporteerd door patiënt of andere bron van voorgeschiedenis</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="3">
                   <xs:annotation>
-                     <xs:documentation>FInding</xs:documentation>
+                     <xs:documentation>klinische bevinding</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="4">
                   <xs:annotation>
-                     <xs:documentation>Complaint</xs:documentation>
+                     <xs:documentation>klacht</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="5">
                   <xs:annotation>
-                     <xs:documentation>Functional Limitation</xs:documentation>
+                     <xs:documentation>bevinding van functionele prestatie en activiteit</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="6">
                   <xs:annotation>
-                     <xs:documentation>Complication</xs:documentation>
+                     <xs:documentation>complicatie</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
             </xs:restriction>
@@ -582,17 +582,17 @@
                </xs:enumeration>
                <xs:enumeration value="1">
                   <xs:annotation>
-                     <xs:documentation>left</xs:documentation>
+                     <xs:documentation>links</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="2">
                   <xs:annotation>
-                     <xs:documentation>right</xs:documentation>
+                     <xs:documentation>rechts</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="3">
                   <xs:annotation>
-                     <xs:documentation>bilateral</xs:documentation>
+                     <xs:documentation>bilateraal</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
             </xs:restriction>
@@ -623,10 +623,16 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.6"/>
-      <xs:attribute name="value" type="VariableDateTime"/>
+      <xs:attribute name="value" type="VariableVagueDateTime"/>
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="datetime"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: ProbleemBeginDatum: string</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="probleem_begin_datum_1_datatype_2_16_840_1_113883_2_4_3_11_60_40_1_5_1_6">
+      <xs:restriction base="xs:string"/>
+   </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: ProbleemEindDatum - 0..* </xs:documentation>
    </xs:annotation>
@@ -643,10 +649,16 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.9"/>
-      <xs:attribute name="value" type="VariableDateTime"/>
+      <xs:attribute name="value" type="VariableVagueDateTime"/>
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="datetime"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: ProbleemEindDatum: string</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="probleem_eind_datum_1_datatype_2_16_840_1_113883_2_4_3_11_60_40_1_5_1_9">
+      <xs:restriction base="xs:string"/>
+   </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: ProbleemStatus - 0..* </xs:documentation>
    </xs:annotation>
@@ -676,12 +688,12 @@
                </xs:enumeration>
                <xs:enumeration value="1">
                   <xs:annotation>
-                     <xs:documentation>Active</xs:documentation>
+                     <xs:documentation>actief</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="2">
                   <xs:annotation>
-                     <xs:documentation>Inactive</xs:documentation>
+                     <xs:documentation>inactief</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
             </xs:restriction>
@@ -725,22 +737,22 @@
                </xs:enumeration>
                <xs:enumeration value="1">
                   <xs:annotation>
-                     <xs:documentation>Suspected</xs:documentation>
+                     <xs:documentation>vermoedelijk</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="2">
                   <xs:annotation>
-                     <xs:documentation>Known possible</xs:documentation>
+                     <xs:documentation>mogelijk</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="3">
                   <xs:annotation>
-                     <xs:documentation>Confirmed present</xs:documentation>
+                     <xs:documentation>aanwezigheid bevestigd</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="4">
                   <xs:annotation>
-                     <xs:documentation>Known absent</xs:documentation>
+                     <xs:documentation>afwezigheid bekend</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="5">
@@ -849,57 +861,57 @@
                </xs:enumeration>
                <xs:enumeration value="1">
                   <xs:annotation>
-                     <xs:documentation>Infectious disease carrier</xs:documentation>
+                     <xs:documentation>drager van infectie</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="2">
                   <xs:annotation>
-                     <xs:documentation>Carbapenemase producing Enterobacteriaceae carrier</xs:documentation>
+                     <xs:documentation>drager van carbapenemresistente Enterobacteriaceae</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="3">
                   <xs:annotation>
-                     <xs:documentation>Carrier of carbapenem susceptible Enterobacteriaceae</xs:documentation>
+                     <xs:documentation>drager van carbapenemgevoelige multiresistente Enterobacteriaceae</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="4">
                   <xs:annotation>
-                     <xs:documentation>Carrier of multidrug resistant Stenotrophomonas maltophilia</xs:documentation>
+                     <xs:documentation>drager van multiresistente Stenotrophomonas maltophilia</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="5">
                   <xs:annotation>
-                     <xs:documentation>Carrier of multidrug resistant Acinetobacter</xs:documentation>
+                     <xs:documentation>drager van multiresistente Acinetobacter</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="6">
                   <xs:annotation>
-                     <xs:documentation>Carrier of multidrug resistant Pseudomonas aeruginosa</xs:documentation>
+                     <xs:documentation>drager van multiresistente Pseudomonas aeruginosa</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="7">
                   <xs:annotation>
-                     <xs:documentation>Carrier of vancomycin resistant enterococcus</xs:documentation>
+                     <xs:documentation>drager van vancomycineresistente enterokok</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="8">
                   <xs:annotation>
-                     <xs:documentation>Carrier of multidrug resistant Streptococcus pneumoniae</xs:documentation>
+                     <xs:documentation>drager van multiresistente Streptococcus pneumoniae</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="9">
                   <xs:annotation>
-                     <xs:documentation>Methicillin resistant staphylococcus aureus carrier</xs:documentation>
+                     <xs:documentation>drager van meticillineresistente Staphylococcus aureus</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="10">
                   <xs:annotation>
-                     <xs:documentation>Human immunodeficiency virus (HIV) carrier</xs:documentation>
+                     <xs:documentation>drager van humaan immunodeficiëntievirus</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="11">
                   <xs:annotation>
-                     <xs:documentation>Victim of child abuse</xs:documentation>
+                     <xs:documentation>slachtoffer van kindermishandeling</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="12">
@@ -968,12 +980,12 @@
                </xs:enumeration>
                <xs:enumeration value="1">
                   <xs:annotation>
-                     <xs:documentation>condition</xs:documentation>
+                     <xs:documentation>Condition</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="2">
                   <xs:annotation>
-                     <xs:documentation>alert</xs:documentation>
+                     <xs:documentation>Alert</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
             </xs:restriction>
@@ -1074,12 +1086,12 @@
    </xs:simpleType>
    <xs:simpleType name="RelativeDate">
       <xs:restriction base="xs:string">
-         <xs:pattern value="T([+\-](\d+(\.\d+)?[YMD]){1,3})?"/>
+         <xs:pattern value="(T|DOB)([+\-](\d+(\.\d+)?[YMD]){1,3})?"/>
       </xs:restriction>
    </xs:simpleType>
    <xs:simpleType name="RelativeDateTime">
       <xs:restriction base="xs:string">
-         <xs:pattern value="T([+\-](\d+(\.\d+)?[YMD]){1,3})?(\{([01]\d|2[0-3]):(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?"/>
+         <xs:pattern value="(T|DOB)([+\-](\d+(\.\d+)?[YMD]){1,3})?(\{([01]\d|2[0-3]):(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?"/>
       </xs:restriction>
    </xs:simpleType>
    <xs:simpleType name="DateYear">
@@ -1113,7 +1125,7 @@
    </xs:simpleType>
    <xs:simpleType name="RelativeTime">
       <xs:restriction base="xs:string">
-         <xs:pattern value="T(([+\-]\d+(\.\d+)?[HMS])?(\{:(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?)?"/>
+         <xs:pattern value="(T|DOB)(([+\-]\d+(\.\d+)?[HMS])?(\{:(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?)?"/>
       </xs:restriction>
    </xs:simpleType>
    <xs:simpleType name="TimeHourOptionalMinutesSeconds">
