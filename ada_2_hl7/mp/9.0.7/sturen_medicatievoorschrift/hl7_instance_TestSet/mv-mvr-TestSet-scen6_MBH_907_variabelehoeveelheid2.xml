@@ -1,14 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns="urn:hl7-org:v3"
-           xmlns:cda="urn:hl7-org:v3"
-           xmlns:hl7nl="urn:hl7-nl:v3"
-           xmlns:pharm="urn:ihe:pharm:medication"
-           xmlns:nf="http://www.nictiz.nl/functions"
-           xmlns:hl7="urn:hl7-org:v3"
-           xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           classCode="CLUSTER"
-           moodCode="EVN">
+<organizer classCode="CLUSTER"
+           moodCode="EVN"
+           xmlns="urn:hl7-org:v3">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9240"/>
    <code code="95"
          displayName="Voorschrift"
@@ -17,19 +9,23 @@
    <statusCode nullFlavor="NI"/>
    <recordTarget>
       <patientRole>
-         <id extension="999990056" root="2.16.840.1.113883.2.4.6.3"/>
+         <id extension="999990056"
+             root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
                <given qualifier="IN">F.</given>
                <family qualifier="BR">XXX-GBZ-Smoketest-B</family>
             </name>
-            <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <administrativeGenderCode code="F"
+                                      codeSystem="2.16.840.1.113883.5.1"
+                                      displayName="Vrouw"/>
             <birthTime value="19500206"/>
          </patient>
       </patientRole>
    </recordTarget>
    <component typeCode="COMP">
-      <substanceAdministration classCode="SBADM" moodCode="RQO">
+      <substanceAdministration classCode="SBADM"
+                               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
          <id extension="tsMBH_907_variabelehoeveelheid2_MA-GSB"
@@ -39,9 +35,10 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 13 nov 2020, tot en met 13 dec 2020, 2 maal per dag 2 à 5 ml, Eerst aanbrengen op een watje, Daarna met het watje de huid ontsmetten</text>
-         <effectiveTime xsi:type="IVL_TS">
-            <low value="20201113000000"/>
-            <high value="20201213235959"/>
+         <effectiveTime xsi:type="IVL_TS"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <low value="20201113000000+0100"/>
+            <high value="20201213235959+0100"/>
          </effectiveTime>
          <routeCode code="1"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -50,7 +47,8 @@
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
                   <code code="13501"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
                         displayName="CHLOORHEXIDINE OPL CUTAAN 10MG/ML"
@@ -64,9 +62,10 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20201113081800"/>
+            <time value="20201113081800+0100"/>
             <assignedAuthor>
-               <id extension="000001116" root="2.16.528.1.1007.3.1"/>
+               <id extension="000001116"
+                   root="2.16.528.1.1007.3.1"/>
                <code code="0100"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
                      displayName="Huisartsen, niet nader gespecificeerd"
@@ -80,7 +79,8 @@
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001116" root="2.16.528.1.1007.3.3"/>
+                  <id extension="00001116"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Huisartsenpraktijk Staden</name>
                   <addr use="WP">
                      <streetName>Kerkstraat</streetName>
@@ -92,7 +92,8 @@
             </assignedAuthor>
          </author>
          <entryRelationship typeCode="SPRT">
-            <act classCode="ACT" moodCode="RQO">
+            <act classCode="ACT"
+                 moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9085"/>
                <code code="27"
                      codeSystem="2.16.840.1.113883.2.4.4.5"
@@ -101,7 +102,8 @@
             </act>
          </entryRelationship>
          <entryRelationship typeCode="SPRT">
-            <act classCode="ACT" moodCode="RQO">
+            <act classCode="ACT"
+                 moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9085"/>
                <code code="69"
                      codeSystem="2.16.840.1.113883.2.4.4.5"
@@ -111,23 +113,32 @@
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
-               <effectiveTime xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="true">
-                  <hl7nl:frequency>
-                     <hl7nl:numerator xsi:type="hl7nl:INT" value="2"/>
-                     <hl7nl:denominator xsi:type="hl7nl:PQ" value="1" unit="d"/>
+               <effectiveTime xsi:type="hl7nl:PIVL_TS"
+                              operator="A"
+                              isFlexible="true"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                     <hl7nl:numerator xsi:type="hl7nl:INT"
+                                      value="2"/>
+                     <hl7nl:denominator xsi:type="hl7nl:PQ"
+                                        value="1"
+                                        unit="d"/>
                   </hl7nl:frequency>
                </effectiveTime>
                <doseQuantity>
-                  <low value="2" unit="ml">
+                  <low value="2"
+                       unit="ml">
                      <translation value="2"
                                   code="233"
                                   displayName="milliliter"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </low>
-                  <high value="5" unit="ml">
+                  <high value="5"
+                        unit="ml">
                      <translation value="5"
                                   code="233"
                                   displayName="milliliter"
@@ -135,11 +146,14 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </high>
                </doseQuantity>
-               <consumable xsi:nil="true"/>
+               <consumable xsi:nil="true"
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                    extension="tsMBH_907_variabelehoeveelheid2-GSB"/>
@@ -151,7 +165,8 @@
       </substanceAdministration>
    </component>
    <component typeCode="COMP">
-      <supply classCode="SPLY" moodCode="RQO">
+      <supply classCode="SPLY"
+              moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9257"/>
          <id extension="tsMBH_907_variabelehoeveelheid2_VV-GSB"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
@@ -159,7 +174,8 @@
                displayName="Verstrekkingsverzoek"
                code="52711000146108"
                codeSystem="2.16.840.1.113883.6.96"/>
-         <quantity value="300" unit="ml">
+         <quantity value="300"
+                   unit="ml">
             <translation value="300"
                          code="233"
                          displayName="milliliter"
@@ -169,7 +185,8 @@
          <product>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
                   <code code="13501"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
                         displayName="CHLOORHEXIDINE OPL CUTAAN 10MG/ML"
@@ -186,15 +203,17 @@
             <assignedEntity>
                <id nullFlavor="NI"/>
                <representedOrganization>
-                  <id extension="01236579" root="2.16.528.1.1007.3.3"/>
+                  <id extension="01236579"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek De Sleutel</name>
                </representedOrganization>
             </assignedEntity>
          </performer>
          <author>
-            <time value="20201113081800"/>
+            <time value="20201113081800+0100"/>
             <assignedAuthor>
-               <id extension="000001116" root="2.16.528.1.1007.3.1"/>
+               <id extension="000001116"
+                   root="2.16.528.1.1007.3.1"/>
                <code code="0100"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
                      displayName="Huisartsen, niet nader gespecificeerd"
@@ -208,7 +227,8 @@
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001116" root="2.16.528.1.1007.3.3"/>
+                  <id extension="00001116"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Huisartsenpraktijk Staden</name>
                   <addr use="WP">
                      <streetName>Kerkstraat</streetName>
@@ -220,7 +240,8 @@
             </assignedAuthor>
          </author>
          <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
                <id extension="tsMBH_907_variabelehoeveelheid2_MA-GSB"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -228,11 +249,14 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
+               <consumable xsi:nil="true"
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                    extension="tsMBH_907_variabelehoeveelheid2-GSB"/>

@@ -1,35 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20181220/mp-xml-20181220T121121/schematron_closed_warnings/mp-MP90_mo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
-<?xml-model href="file:/C:/SVN/art_decor/trunk/ada-data/ada_2_test-xslt/mp/9.0.7/beschikbaarstellen_medicatieoverzicht/test_xslt_instance/mo-mor-ma-TestSet-scen3-1-b-optioneel-output.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                  xmlns:sdtc="urn:hl7-org:sdtc"
-                  xmlns="urn:hl7-org:v3"
-                  xmlns:hl7nl="urn:hl7-nl:v3"
-                  xmlns:pharm="urn:ihe:pharm:medication"
-                  xmlns:hl7="urn:hl7-org:v3"
-                  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<ClinicalDocument xmlns="urn:hl7-org:v3">
    <realmCode code="NL"/>
-   <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
+   <typeId extension="POCD_HD000040"
+           root="2.16.840.1.113883.1.3"/>
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9243"/>
-   <id extension="e15f54b9-c7da-11ec-2035-020000000000"
+   <id extension="8031b31b-b3f1-11ef-8534-020000000000"
        root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9245.1.2.3.999"/>
    <code code="52981000146104"
          codeSystem="2.16.840.1.113883.6.96"
          codeSystemName="SNOMED CT"
-         displayName="Medication section (record artifact)"/>
+         displayName="gedeelte betreffende medicatie in status (gegevensobject)"/>
    <title>Medicatieoverzicht M. XXX-LEV-TEST-D op 13 nov 2020</title>
    <effectiveTime value="20201113000000"/>
-   <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="normal"/>
+   <confidentialityCode code="N"
+                        codeSystem="2.16.840.1.113883.5.25"
+                        displayName="normal"/>
    <languageCode code="nl-NL"/>
    <recordTarget>
       <patientRole>
-         <id extension="999990147" root="2.16.840.1.113883.2.4.6.3"/>
+         <id extension="999990147"
+             root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
                <given qualifier="IN">M.</given>
                <family qualifier="BR">XXX-LEV-TEST-D</family>
             </name>
-            <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+            <administrativeGenderCode code="M"
+                                      codeSystem="2.16.840.1.113883.5.1"
+                                      displayName="Man"/>
             <birthTime value="19500503"/>
          </patient>
       </patientRole>
@@ -39,7 +36,8 @@
       <assignedAuthor>
          <id nullFlavor="NI"/>
          <representedOrganization>
-            <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+            <id extension="00001111"
+                root="2.16.528.1.1007.3.3"/>
             <name>Huisartsenpraktijk Pulver &amp; Partners</name>
             <telecom value="tel:099-12345678"/>
             <addr use="WP">
@@ -54,7 +52,8 @@
    <custodian>
       <assignedCustodian>
          <representedCustodianOrganization>
-            <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+            <id extension="00001111"
+                root="2.16.528.1.1007.3.3"/>
             <name>Huisartsenpraktijk Pulver &amp; Partners</name>
             <telecom value="tel:099-12345678"/>
             <addr use="WP">
@@ -72,7 +71,8 @@
             <section>
                <text>Medicatiegegevens.</text>
                <entry>
-                  <substanceAdministration classCode="SBADM" moodCode="RQO">
+                  <substanceAdministration classCode="SBADM"
+                                           moodCode="RQO">
                      <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
                      <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
                      <id extension="tsMBH_907_start_duur2_MA-LTD"
@@ -82,9 +82,11 @@
                            codeSystem="2.16.840.1.113883.6.96"
                            codeSystemName="SNOMED CT"/>
                      <text mediaType="text/plain">Vanaf 19 sep 2020, gedurende 30 dagen, 3 maal per dag 1 stuk, Oraal</text>
-                     <effectiveTime xsi:type="IVL_TS">
-                        <low value="20200919000000"/>
-                        <width value="30" unit="d"/>
+                     <effectiveTime xsi:type="IVL_TS"
+                                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                        <low value="20200919000000+0200"/>
+                        <width value="30"
+                               unit="d"/>
                      </effectiveTime>
                      <routeCode code="9"
                                 codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -93,7 +95,8 @@
                      <consumable>
                         <manufacturedProduct>
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
-                           <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                           <manufacturedMaterial classCode="MMAT"
+                                                 determinerCode="KIND">
                               <code code="17205"
                                     codeSystem="2.16.840.1.113883.2.4.4.10"
                                     displayName="FENETICILLINE 500MG CAPSULEG"
@@ -107,9 +110,10 @@
                         </manufacturedProduct>
                      </consumable>
                      <author>
-                        <time value="20200919113000"/>
+                        <time value="20200919113000+0200"/>
                         <assignedAuthor>
-                           <id extension="000001116" root="2.16.528.1.1007.3.1"/>
+                           <id extension="000001116"
+                               root="2.16.528.1.1007.3.1"/>
                            <code code="0100"
                                  codeSystem="2.16.840.1.113883.2.4.6.7"
                                  displayName="Huisarts, niet nader gespecificeerd"
@@ -122,7 +126,8 @@
                               </name>
                            </assignedPerson>
                            <representedOrganization>
-                              <id extension="00001116" root="2.16.528.1.1007.3.3"/>
+                              <id extension="00001116"
+                                  root="2.16.528.1.1007.3.3"/>
                               <name>Huisartsenpraktijk Staden</name>
                               <addr use="WP">
                                  <streetName>Kerkstraat</streetName>
@@ -135,16 +140,24 @@
                      </author>
                      <entryRelationship typeCode="COMP">
                         <sequenceNumber value="1"/>
-                        <substanceAdministration classCode="SBADM" moodCode="RQO">
+                        <substanceAdministration classCode="SBADM"
+                                                 moodCode="RQO">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
-                           <effectiveTime xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="true">
-                              <hl7nl:frequency>
-                                 <hl7nl:numerator xsi:type="hl7nl:INT" value="3"/>
-                                 <hl7nl:denominator xsi:type="hl7nl:PQ" value="1" unit="d"/>
+                           <effectiveTime xsi:type="hl7nl:PIVL_TS"
+                                          operator="A"
+                                          isFlexible="true"
+                                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                              <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                                 <hl7nl:numerator xsi:type="hl7nl:INT"
+                                                  value="3"/>
+                                 <hl7nl:denominator xsi:type="hl7nl:PQ"
+                                                    value="1"
+                                                    unit="d"/>
                               </hl7nl:frequency>
                            </effectiveTime>
                            <doseQuantity>
-                              <center value="1" unit="1">
+                              <center value="1"
+                                      unit="1">
                                  <translation value="1"
                                               code="245"
                                               displayName="stuk"
@@ -152,11 +165,14 @@
                                               codeSystemName="G-Standaard thesaurus basiseenheden"/>
                               </center>
                            </doseQuantity>
-                           <consumable xsi:nil="true"/>
+                           <consumable xsi:nil="true"
+                                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
                         </substanceAdministration>
                      </entryRelationship>
-                     <entryRelationship typeCode="COMP" inversionInd="true">
-                        <procedure classCode="PROC" moodCode="EVN">
+                     <entryRelationship typeCode="COMP"
+                                        inversionInd="true">
+                        <procedure classCode="PROC"
+                                   moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                            <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                                extension="tsMBH_907_start_duur2-LTD"/>

@@ -1,18 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20181220/mp-xml-20181220T121121/schematron_closed_warnings/mp-MP90_mo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
-<?xml-model href="file:/C:/SVN/art_decor/trunk/ada-data/ada_2_test-xslt/mp/9.0.7/beschikbaarstellen_medicatieoverzicht/test_xslt_instance/mo-mor-ma-Scenario3-0-b-output.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns="urn:hl7-org:v3"
-           xmlns:cda="urn:hl7-org:v3"
-           xmlns:hl7nl="urn:hl7-nl:v3"
-           xmlns:pharm="urn:ihe:pharm:medication"
-           xmlns:hl7="urn:hl7-org:v3"
-           xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-           xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:nf="http://www.nictiz.nl/functions"
+<organizer classCode="CLUSTER"
+           moodCode="EVN"
            xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd"
-           classCode="CLUSTER"
-           moodCode="EVN">
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="urn:hl7-org:v3">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9245"/>
    <code code="129"
          displayName="Medicatieoverzicht"
@@ -22,13 +12,16 @@
    <effectiveTime value="20201113"/>
    <recordTarget>
       <patientRole>
-         <id extension="999911466" root="2.16.840.1.113883.2.4.6.3"/>
+         <id extension="999911466"
+             root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
                <given qualifier="IN">A.</given>
                <family qualifier="BR">XXX_Herweijer</family>
             </name>
-            <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <administrativeGenderCode code="F"
+                                      codeSystem="2.16.840.1.113883.5.1"
+                                      displayName="Vrouw"/>
             <birthTime value="19540802"/>
          </patient>
       </patientRole>
@@ -38,7 +31,8 @@
       <assignedAuthor>
          <id nullFlavor="NI"/>
          <representedOrganization>
-            <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+            <id extension="00001111"
+                root="2.16.528.1.1007.3.3"/>
             <name>Huisartsenpraktijk Pulver &amp; Partners</name>
             <telecom value="tel:099-12345678"/>
             <addr use="WP">
@@ -51,7 +45,8 @@
       </assignedAuthor>
    </author>
    <component typeCode="COMP">
-      <substanceAdministration classCode="SBADM" moodCode="RQO">
+      <substanceAdministration classCode="SBADM"
+                               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
          <id extension="MBH_907_aanvullendeinformatiewensen_MA_onderbreken-HRW"
@@ -62,8 +57,8 @@
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 9 nov 2020, tot en met 12 nov 2020, 3 maal per dag 1 stuk, Oraal, tijdelijk gestopt</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20201109000000"/>
-            <high value="20201112235959"/>
+            <low value="20201109000000+0100"/>
+            <high value="20201112235959+0100"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -72,7 +67,8 @@
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
                   <code code="17205"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
                         displayName="FENETICILLINE CAPSULE 500MG"
@@ -86,9 +82,10 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20201112181200"/>
+            <time value="20201112181200+0100"/>
             <assignedAuthor>
-               <id extension="000001112" root="2.16.528.1.1007.3.1"/>
+               <id extension="000001112"
+                   root="2.16.528.1.1007.3.1"/>
                <code code="0100"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
                      displayName="Huisartsen, niet nader gespecificeerd"
@@ -101,7 +98,8 @@
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                  <id extension="00001111"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Huisartsenpraktijk Pulver &amp; Partners</name>
                   <addr use="WP">
                      <streetName>Dorpsstraat</streetName>
@@ -113,7 +111,8 @@
             </assignedAuthor>
          </author>
          <entryRelationship typeCode="COMP">
-            <observation classCode="OBS" moodCode="EVN">
+            <observation classCode="OBS"
+                         moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9067"/>
                <code code="1"
                      displayName="Stoptype"
@@ -126,7 +125,8 @@
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="RSON">
-            <observation classCode="OBS" moodCode="EVN">
+            <observation classCode="OBS"
+                         moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9270"/>
                <code code="2"
                      displayName="Reden medicatieafspraak"
@@ -139,7 +139,8 @@
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
-            <observation classCode="OBS" moodCode="EVN">
+            <observation classCode="OBS"
+                         moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9177"/>
                <code code="11"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
@@ -152,16 +153,23 @@
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
-               <effectiveTime xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="true">
-                  <hl7nl:frequency>
-                     <hl7nl:numerator xsi:type="hl7nl:INT" value="3"/>
-                     <hl7nl:denominator xsi:type="hl7nl:PQ" value="1" unit="d"/>
+               <effectiveTime xsi:type="hl7nl:PIVL_TS"
+                              operator="A"
+                              isFlexible="true">
+                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                     <hl7nl:numerator xsi:type="hl7nl:INT"
+                                      value="3"/>
+                     <hl7nl:denominator xsi:type="hl7nl:PQ"
+                                        value="1"
+                                        unit="d"/>
                   </hl7nl:frequency>
                </effectiveTime>
                <doseQuantity>
-                  <center value="1" unit="1">
+                  <center value="1"
+                          unit="1">
                      <translation value="1"
                                   code="245"
                                   displayName="stuk"
@@ -173,7 +181,8 @@
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
                <id extension="MBH_907_aanvullendeinformatiewensen_MA-HRW"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -184,8 +193,10 @@
                <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                    extension="MBH_907_aanvullendeinformatiewensen-HRW"/>
