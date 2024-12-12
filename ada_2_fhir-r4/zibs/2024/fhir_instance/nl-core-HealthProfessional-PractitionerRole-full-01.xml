@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PractitionerRole xmlns="http://hl7.org/fhir">
+   <id value="nl-core-HealthProfessional-PractitionerRole-full-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+   </meta>
+   <practitioner>
+      <reference value="Practitioner/nl-core-HealthProfessional-Practitioner-full-01"/>
+      <type value="Practitioner"/>
+      <display value="Healthcare professional (person), J.H.R. Peters"/>
+   </practitioner>
+   <organization>
+      <reference value="Organization/re-HealthProfessional-full-01-HealthcareProvider-Organization-01"/>
+      <type value="Organization"/>
+      <display value="Healthcare provider (organization), Amsterdam UMC"/>
+   </organization>
+   <specialty>
+      <coding>
+         <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+         <code value="01.026"/>
+         <display value="Neuroloog"/>
+      </coding>
+   </specialty>
+   <telecom>
+      <system value="phone"/>
+      <value value="+3715828282"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="j.peters@hospital.nl"/>
+      <use value="work"/>
+   </telecom>
+</PractitionerRole>
