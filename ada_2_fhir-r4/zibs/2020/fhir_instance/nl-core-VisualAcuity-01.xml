@@ -4,15 +4,6 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualAcuity"/>
    </meta>
-   <extension url="http://hl7.org/fhir/StructureDefinition/observation-deviceCode">
-      <valueCodeableConcept>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="419475002"/>
-            <display value="Pinhole visual acuity"/>
-         </coding>
-      </valueCodeableConcept>
-   </extension>
    <status value="final"/>
    <code>
       <coding>
@@ -21,6 +12,11 @@
          <display value="visus"/>
       </coding>
    </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
    <effectiveDateTime value="2020-02-08"/>
    <valueQuantity>
       <value value="0.8"/>
@@ -41,6 +37,11 @@
          <display value="oog"/>
       </coding>
    </bodySite>
+   <device>
+      <reference value="Device/nl-core-VisualAcuity.VisualAcuityMeasurementDevice-01"/>
+      <type value="Device"/>
+      <display value="Visual acuity measurement device: Pinhole visual acuity"/>
+   </device>
    <component>
       <code>
          <coding>
