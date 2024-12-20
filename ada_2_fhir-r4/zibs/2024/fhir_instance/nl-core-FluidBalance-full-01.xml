@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-FluidBalance-full-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-FluidBalance"/>
+   </meta>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="710853006"/>
+         <display value="evaluatie van vochtbalans"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-full-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Peter Jan (PeJe) Jansen"/>
+   </subject>
+   <effectivePeriod>
+      <start value="2024-11-01"/>
+      <end value="2024-11-03"/>
+   </effectivePeriod>
+   <note>
+      <text value="Er is significant meer vocht opgenomen dan verloren."/>
+   </note>
+   <hasMember>
+      <reference value="Observation/nl-core-FluidBalance.FluidTotalIn-full-01"/>
+      <type value="Observation"/>
+      <display value="Fluid total in, 1700 ml"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-FluidBalance.FluidTotalOut-full-01"/>
+      <type value="Observation"/>
+      <display value="Fluid total out, 1250 ml"/>
+   </hasMember>
+</Observation>
