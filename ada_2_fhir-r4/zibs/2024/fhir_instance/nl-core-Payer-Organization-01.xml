@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Organization xmlns="http://hl7.org/fhir">
+   <id value="nl-core-Payer-Organization-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Payer-Organization"/>
+   </meta>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/uzovi"/>
+      <value value="3332"/>
+   </identifier>
+   <name value="Menzis Zorgverzekeraar N.V."/>
+   <telecom>
+      <system value="phone">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+                  <code value="LL"/>
+                  <display value="Vaste lijn"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </system>
+      <value value="+3150523333"/>
+      <use value="work"/>
+   </telecom>
+   <address>
+      <line value="Postbus 34000">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Postbus"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="34000"/>
+         </extension>
+      </line>
+      <city value="Enschede"/>
+      <postalCode value="7500 KC"/>
+      <country value="Nederland">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:iso:std:iso:3166"/>
+                  <code value="NL"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+</Organization>
