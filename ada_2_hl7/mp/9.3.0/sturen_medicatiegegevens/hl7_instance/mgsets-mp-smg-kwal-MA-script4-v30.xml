@@ -35,10 +35,10 @@
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">eerst gedurende 3 dagen 3 maal per dag 1 stuk, dan gedurende 7 dagen 2 maal per dag 1 stuk, vóór het eten, oraal</text>
+         <text mediaType="text/plain">Vanaf 26 dec 2023, gedurende 10 dagen, eerst gedurende 3 dagen 2 maal per dag 2 stuks en Bij pijn 1 maal per dag 2 stuks , maximaal 6 stuks per dag, dan gedurende 7 dagen 3 maal per dag 1 stuk en Bij pijn 1 maal per dag 1 stuks , maximaal 4 stuks per dag, vóór het eten, oraal</text>
          <effectiveTime xsi:type="IVL_TS"
                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <low value="20221226113000+0100"/>
+            <low value="20231226113000+0100"/>
             <width value="10"
                    unit="d"/>
          </effectiveTime>
@@ -51,20 +51,20 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
                <manufacturedMaterial classCode="MMAT"
                                      determinerCode="KIND">
-                  <code code="8079 "
+                  <code code="8060"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="DICLOFENAC-NATRIUM TABLET MSR 50MG"
+                        displayName="DICLOFENAC-NATRIUM TABLET MSR 25MG"
                         codeSystemName="G-Standaard PRK">
-                     <translation code="22284"
+                     <translation code="22276"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="DICLOFENAC-NATRIUM TABLET MSR 50MG"
+                                  displayName="DICLOFENAC-NATRIUM TABLET MSR 25MG"
                                   codeSystemName="G-Standaard GPK"/>
                   </code>
                </manufacturedMaterial>
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20221226113000+0100"/>
+            <time value="20231226113000+0100"/>
             <assignedAuthor>
                <id extension="000001111"
                    root="2.16.528.1.1007.3.1"/>
@@ -117,6 +117,93 @@
                         <system value="http://unitsofmeasure.org"/>
                         <code value="d"/>
                      </boundsDuration>
+                     <frequency value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2"
+                          unit="1">
+                     <translation value="2"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenhed"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="1"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="3"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2"
+                          unit="1">
+                     <translation value="2"
+                                  code="245"
+                                  displayName="Stuks"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <maxDoseQuantity>
+                  <numerator value="6"
+                             unit="1">
+                     <translation value="6"
+                                  code="245"
+                                  displayName="Stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </numerator>
+                  <denominator value="1"
+                               unit="d"/>
+               </maxDoseQuantity>
+               <consumable xsi:nil="true"
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <precondition>
+                  <criterion>
+                     <code code="1028"
+                           codeSystem="2.16.840.1.113883.2.4.4.5"
+                           displayName="Bij pijn"/>
+                  </criterion>
+               </precondition>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="2"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="7"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
                      <frequency value="3"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
@@ -127,9 +214,9 @@
                           unit="1">
                      <translation value="1"
                                   code="245"
-                                  displayName="stuk"
+                                  displayName="Stuk"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                  codeSystemName="G-Standaard thesaurus basiseenhed"/>
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
                <consumable xsi:nil="true"
@@ -151,7 +238,7 @@
                         <system value="http://unitsofmeasure.org"/>
                         <code value="d"/>
                      </boundsDuration>
-                     <frequency value="2"/>
+                     <frequency value="1"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
                   </repeat>
@@ -161,13 +248,32 @@
                           unit="1">
                      <translation value="1"
                                   code="245"
-                                  displayName="stuk"
+                                  displayName="Stuks"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
+               <maxDoseQuantity>
+                  <numerator value="4"
+                             unit="1">
+                     <translation value="4"
+                                  code="245"
+                                  displayName="Stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </numerator>
+                  <denominator value="1"
+                               unit="d"/>
+               </maxDoseQuantity>
                <consumable xsi:nil="true"
                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <precondition>
+                  <criterion>
+                     <code code="1028"
+                           codeSystem="2.16.840.1.113883.2.4.4.5"
+                           displayName="Bij pijn"/>
+                  </criterion>
+               </precondition>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
