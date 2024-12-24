@@ -36,16 +36,16 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_variabelehoeveelheidenmaximum_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T08:45:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2024-01-01T08:45:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-01-22T23:59:59+01:00"/>
+                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2024-01-22T23:59:59+01:00"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d1437e36" datatype="reference"/>
+                  <zorgverlener value="d1713e78" datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d1437e31" datatype="reference"/>
+                  <farmaceutisch_product value="d1713e64" datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
                   <omschrijving value="Bij hoest 1 à 2 stuks , maximaal 6 stuks per dag, oraal"/>
@@ -86,12 +86,12 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_variabelehoeveelheidenmaximum_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-01-01T08:45:00+01:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2024-01-01T08:45:00+01:00"/>
                <auteur>
-                  <zorgverlener value="d1437e36" datatype="reference"/>
+                  <zorgverlener value="d1713e78" datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d1437e31" datatype="reference"/>
+                  <farmaceutisch_product value="d1713e64" datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
                   <aantal value="120"/>
@@ -101,7 +101,7 @@
                            displayName="stuk"/>
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d1437e94" datatype="reference"/>
+                  <zorgaanbieder value="d1713e222" datatype="reference"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_variabelehoeveelheidenmaximum_MA"
@@ -110,7 +110,7 @@
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d1437e31">
+            <farmaceutisch_product id="d1713e64">
                <product_code code="42773"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -120,7 +120,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="CODEINE TABLET 10MG (FOSFAAT)"/>
             </farmaceutisch_product>
-            <zorgverlener id="d1437e36">
+            <zorgverlener id="d1713e78">
                <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Peter"/>
@@ -146,10 +146,10 @@
                   </telefoonnummers>
                </contactgegevens>
                <zorgaanbieder>
-                  <zorgaanbieder value="d1437e48" datatype="reference"/>
+                  <zorgaanbieder value="d1713e101" datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d1437e48">
+            <zorgaanbieder id="d1713e101">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
@@ -162,9 +162,19 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="d1437e94">
+            <zorgaanbieder id="d1713e222">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
-               <organisatie_naam value="Apotheek de Gulle Gaper"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_medicatievoorschrift>

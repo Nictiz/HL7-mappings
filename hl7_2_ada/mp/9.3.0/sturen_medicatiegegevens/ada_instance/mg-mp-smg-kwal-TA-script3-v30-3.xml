@@ -34,19 +34,19 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_script3_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2022-12-27T09:15:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-12-27T09:15:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2022-12-27T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-01-16T23:59:00+01:00"/>
+                  <start_datum_tijd datatype="datetime" value="2023-12-27T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2024-01-16T23:59:00+01:00"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d409e39" datatype="reference"/>
+                  <zorgaanbieder value="d669e84" datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d409e31" datatype="reference"/>
+                  <farmaceutisch_product value="d669e64" datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
-                  <omschrijving value="Bij pijn 1 à 2 spray, 1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. . Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts., oromucosaal"/>
+                  <omschrijving value="Bij pijn 1 à 2 doses , maximaal 3 doses per dag, 1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts., oromucosaal"/>
                   <toedieningsweg code="34"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
@@ -54,7 +54,7 @@
                   <aanvullende_instructie code="OTH"
                                           codeSystem="2.16.840.1.113883.5.1008"
                                           displayName="overig"
-                                          originalText="1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. . Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts."/>
+                                          originalText="1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts."/>
                   <doseerinstructie>
                      <volgnummer value="1"/>
                      <dosering>
@@ -63,8 +63,8 @@
                               <minimum_waarde value="1"/>
                               <maximum_waarde value="2"/>
                            </aantal>
-                           <eenheid code="303"
-                                    displayName="Spray"
+                           <eenheid code="208"
+                                    displayName="dosis"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     codeSystemName="G-Standaard thesaurus basiseenheden"/>
                         </keerdosis>
@@ -72,6 +72,14 @@
                            <criterium code="1028"
                                       codeSystem="2.16.840.1.113883.2.4.4.5"
                                       displayName="Bij pijn"/>
+                           <maximale_dosering>
+                              <aantal value="3"/>
+                              <eenheid code="208"
+                                       displayName="dosis"
+                                       codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                       codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </maximale_dosering>
                         </zo_nodig>
                      </dosering>
                   </doseerinstructie>
@@ -83,23 +91,33 @@
             </toedieningsafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d409e31">
-               <product_code code="1822454"
+            <farmaceutisch_product id="d669e64">
+               <product_code code="704369"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
-                             displayName="NITROGLYCERINE SDZ OROMUC SPRAY "/>
-               <product_code code="72206"
+                             displayName="NITROLINGUAL OROMUCOSALE SPRAY 0,4MG/DO FLAC 250DO"/>
+               <product_code code="72214"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
-                             displayName="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO "/>
+                             displayName="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO FL 250DO"/>
                <product_code code="119431"
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              codeSystemName="G-Standaard GPK"
                              displayName="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="d409e39">
+            <zorgaanbieder id="d669e84">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_medicatiegegevens>

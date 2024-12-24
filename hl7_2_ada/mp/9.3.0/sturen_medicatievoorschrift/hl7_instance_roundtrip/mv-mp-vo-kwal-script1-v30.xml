@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--Generated from ada instance with title: "mv-mp-vo-kwal-script1-v30" and id: "mv-mp-vo-kwal-script1-v30".-->
-<organizer xmlns="urn:hl7-org:v3"
+<!--Generated from ada instance with title: "mv-mp-vo-kwal-script1-v30" and id: "mv-mp-vo-kwal-script1-v30".--><organizer xmlns="urn:hl7-org:v3"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            classCode="CLUSTER"
            moodCode="EVN"
@@ -34,9 +32,9 @@
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 1 jan 2023, gedurende 21 weken, cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 5 stuks - let op, tijden exact aanhouden, oraal</text>
+         <text mediaType="text/plain">cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 4 stuks - let op, tijden exact aanhouden, oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20230101000000"/>
+            <low value="20240101000000+0100"/>
             <width value="21" unit="wk"/>
          </effectiveTime>
          <routeCode code="9"
@@ -60,7 +58,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20230101112000"/>
+            <time value="20240101082000+0100"/>
             <assignedAuthor>
                <id extension="000001111" root="2.16.528.1.1007.3.1"/>
                <code code="0100"
@@ -93,7 +91,7 @@
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
-                  <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-RepeatPeriodCyclicalSchedule">
+                  <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
                      <valueDuration>
                         <value value="21"/>
                         <unit value="dag"/>
@@ -116,8 +114,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="5" unit="1">
-                     <translation value="5"
+                  <center value="4" unit="1">
+                     <translation value="4"
                                   code="245"
                                   displayName="stuk"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -148,10 +146,8 @@
                displayName="Verstrekkingsverzoek"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <repeatNumber value="7"/>
          <expectedUseTime>
-            <low value="20221222000000"/>
-            <width value="21" unit="wk"/>
+            <width value="3" unit="wk"/>
          </expectedUseTime>
          <product>
             <manufacturedProduct>
@@ -175,11 +171,18 @@
                <representedOrganization>
                   <id extension="01236578" root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek De Gulle Gaper</name>
+                  <addr use="WP">
+                     <streetName>Dorpsstraat</streetName>
+                     <houseNumber>12</houseNumber>
+                     <buildingNumberSuffix>A</buildingNumberSuffix>
+                     <postalCode>1234 AA</postalCode>
+                     <city>Ons Dorp</city>
+                  </addr>
                </representedOrganization>
             </assignedEntity>
          </performer>
          <author>
-            <time value="20230101112000"/>
+            <time value="20240101082000+0100"/>
             <assignedAuthor>
                <id extension="000001111" root="2.16.528.1.1007.3.1"/>
                <code code="0100"
@@ -238,7 +241,7 @@
                codeSystem="2.16.840.1.113883.6.1"
                codeSystemName="LOINC"
                displayName="Body height"/>
-         <effectiveTime value="20221220105245"/>
+         <effectiveTime value="20231220105245+0100"/>
          <value xsi:type="PQ" value="169" unit="cm"/>
       </observation>
    </component>
@@ -248,7 +251,7 @@
          <code code="29463-7"
                codeSystem="2.16.840.1.113883.6.1"
                displayName="Body Weight"/>
-         <effectiveTime value="20221220105516"/>
+         <effectiveTime value="20231220105516+0100"/>
          <value xsi:type="PQ" value="85" unit="kg"/>
       </observation>
    </component>

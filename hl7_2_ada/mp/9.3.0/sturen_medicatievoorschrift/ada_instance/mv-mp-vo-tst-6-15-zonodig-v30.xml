@@ -35,16 +35,16 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_zonodig_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T08:57:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2024-01-01T08:57:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-01-28T23:59:59+01:00"/>
+                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2024-01-28T23:59:59+01:00"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d1521e36" datatype="reference"/>
+                  <zorgverlener value="d1806e78" datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d1521e31" datatype="reference"/>
+                  <farmaceutisch_product value="d1806e64" datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
                   <omschrijving value="Zo nodig 1 maal per dag 1 stuk, Oraal"/>
@@ -84,12 +84,12 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_zonodig_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-01-01T08:57:00+01:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2024-01-01T08:57:00+01:00"/>
                <auteur>
-                  <zorgverlener value="d1521e36" datatype="reference"/>
+                  <zorgverlener value="d1806e78" datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d1521e31" datatype="reference"/>
+                  <farmaceutisch_product value="d1806e64" datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
                   <aantal value="14"/>
@@ -99,7 +99,7 @@
                            displayName="stuk"/>
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d1521e93" datatype="reference"/>
+                  <zorgaanbieder value="d1806e219" datatype="reference"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_zonodig_MA"
@@ -108,17 +108,17 @@
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d1521e31">
+            <farmaceutisch_product id="d1806e64">
                <product_code code="3956"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
-                             displayName="ACETYLSALICYLZUUR 100MG TAB"/>
+                             displayName="ACETYLSALICYLZUUR TABLET 100MG"/>
                <product_code code="12548"
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              codeSystemName="G-Standaard GPK"
                              displayName="ACETYLSALICYLZUUR TABLET 100MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="d1521e36">
+            <zorgverlener id="d1806e78">
                <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Peter"/>
@@ -144,10 +144,10 @@
                   </telefoonnummers>
                </contactgegevens>
                <zorgaanbieder>
-                  <zorgaanbieder value="d1521e48" datatype="reference"/>
+                  <zorgaanbieder value="d1806e101" datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d1521e48">
+            <zorgaanbieder id="d1806e101">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
@@ -160,9 +160,19 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="d1521e93">
+            <zorgaanbieder id="d1806e219">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
-               <organisatie_naam value="Apotheek de Gulle Gaper"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_medicatievoorschrift>

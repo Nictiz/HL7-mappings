@@ -51,7 +51,7 @@
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Volgens schema trombosedienst, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20221122000000+0100"/>
+            <low value="20231122000000+0100"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
          <routeCode code="9"
@@ -80,13 +80,20 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20230101152300+0100"/>
+            <time value="20240101152300+0100"/>
             <assignedAuthor>
                <id nullFlavor="NI"/>
                <representedOrganization>
                   <id extension="01236578"
                       root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek De Gulle Gaper</name>
+                  <addr use="WP">
+                     <streetName>Dorpsstraat</streetName>
+                     <houseNumber>12</houseNumber>
+                     <buildingNumberSuffix>A</buildingNumberSuffix>
+                     <postalCode>1234 AA</postalCode>
+                     <city>Ons Dorp</city>
+                  </addr>
                </representedOrganization>
             </assignedAuthor>
          </author>
@@ -136,7 +143,7 @@
                code="373784005"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <effectiveTime value="20230101152500+0100"/>
+         <effectiveTime value="20240101152500+0100"/>
          <quantity value="40"
                    unit="1">
             <translation value="40"
@@ -173,9 +180,29 @@
                   <id extension="01236578"
                       root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek De Gulle Gaper</name>
+                  <addr use="WP">
+                     <streetName>Dorpsstraat</streetName>
+                     <houseNumber>12</houseNumber>
+                     <buildingNumberSuffix>A</buildingNumberSuffix>
+                     <postalCode>1234 AA</postalCode>
+                     <city>Ons Dorp</city>
+                  </addr>
                </representedOrganization>
             </assignedEntity>
          </performer>
+         <entryRelationship typeCode="COMP">
+            <observation classCode="OBS"
+                         moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9178"/>
+               <code code="13"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
+                     displayName="Aanvullende informatie Verstrekking"/>
+               <value xsi:type="CE"
+                      code="1"
+                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2052"
+                      displayName="Aantal bewust gewijzigd"/>
+            </observation>
+         </entryRelationship>
          <entryRelationship typeCode="REFR">
             <supply classCode="SPLY"
                     moodCode="RQO">

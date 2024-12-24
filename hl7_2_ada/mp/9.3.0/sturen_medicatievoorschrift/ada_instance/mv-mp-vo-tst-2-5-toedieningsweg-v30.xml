@@ -36,16 +36,16 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_Toedieningsweg_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T08:15:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2024-01-01T08:15:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-01-08T23:59:59+01:00"/>
+                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2024-01-08T23:59:59+01:00"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d778e36" datatype="reference"/>
+                  <zorgverlener value="d1003e78" datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d778e31" datatype="reference"/>
+                  <farmaceutisch_product value="d1003e64" datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
                   <omschrijving value="2 maal per dag 1 druppel, In het rechter oog, oculair"/>
@@ -87,12 +87,12 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_Toedieningsweg_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-01-01T08:15:00+01:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2024-01-01T08:15:00+01:00"/>
                <auteur>
-                  <zorgverlener value="d778e36" datatype="reference"/>
+                  <zorgverlener value="d1003e78" datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d778e31" datatype="reference"/>
+                  <farmaceutisch_product value="d1003e64" datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
                   <aantal value="1"/>
@@ -102,7 +102,7 @@
                            displayName="Milliliter"/>
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d778e101" datatype="reference"/>
+                  <zorgaanbieder value="d1003e238" datatype="reference"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_Toedieningsweg_MA"
@@ -111,7 +111,7 @@
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d778e31">
+            <farmaceutisch_product id="d1003e64">
                <product_code code="80691"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -121,7 +121,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
             </farmaceutisch_product>
-            <zorgverlener id="d778e36">
+            <zorgverlener id="d1003e78">
                <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Bertine"/>
@@ -147,10 +147,10 @@
                   </telefoonnummers>
                </contactgegevens>
                <zorgaanbieder>
-                  <zorgaanbieder value="d778e48" datatype="reference"/>
+                  <zorgaanbieder value="d1003e101" datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d778e48">
+            <zorgaanbieder id="d1003e101">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
@@ -163,9 +163,19 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="d778e101">
+            <zorgaanbieder id="d1003e238">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_medicatievoorschrift>
