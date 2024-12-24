@@ -1,6 +1,10 @@
 <organizer classCode="CLUSTER"
            moodCode="EVN"
-           xmlns="urn:hl7-org:v3">
+           xmlns="urn:hl7-org:v3"
+           xmlns:hl7="urn:hl7-org:v3"
+           xmlns:hl7nl="urn:hl7-nl:v3"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9239"/>
    <code code="102"
          displayName="Medicatiegegevens"
@@ -35,8 +39,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 1 jan 2024, tot en met 17 jan 2024, 1 à 2 maal per dag 1 stuk, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high value="20240117235959+0100"/>
          </effectiveTime>
@@ -98,9 +101,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT">
                         <hl7nl:uncertainRange>
                            <hl7nl:low xsi:type="hl7nl:INT"
@@ -124,8 +126,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -154,8 +155,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 1 jan 2024, iedere 8 uur 1 stuk - gelijke tussenpozen aanhouden, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
@@ -217,9 +217,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="false"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="false">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="1"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -237,8 +236,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -267,8 +265,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 1 jan 2024, tot en met 29 jan 2024, 3 maal per dag 1 à 2 stuks, oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high value="20240129235959+0100"/>
          </effectiveTime>
@@ -330,9 +327,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="3"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -358,8 +354,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </high>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -388,8 +383,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 1 jan 2024, tot en met 29 jan 2024, 3 maal per dag, aanbrengen, cutaan</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high value="20240129235959+0100"/>
          </effectiveTime>
@@ -461,9 +455,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="3"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -471,8 +464,7 @@
                                         unit="d"/>
                   </hl7nl:frequency>
                </effectiveTime>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -501,8 +493,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 1 jan 2024, tot en met 29 jan 2024, 2 maal per dag 0.5 stuk, oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high value="20240129235959+0100"/>
          </effectiveTime>
@@ -564,9 +555,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="2"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -584,8 +574,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -614,8 +603,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 1 jan 2024, tot en met 29 jan 2024, 2 maal per dag 10 à 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen, OROMUCOSAAL</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high value="20240129235959+0100"/>
          </effectiveTime>
@@ -697,9 +685,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="2"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -725,8 +712,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </high>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -755,8 +741,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 1 jan 2024, tot en met 15 jan 2024, elke dag om 08:00, 14:00 en 20:00 1 stuk, oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high value="20240115235959+0100"/>
          </effectiveTime>
@@ -817,37 +802,33 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime operator="A"
-                              xsi:type="SXPR_TS"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                              xsi:type="SXPR_TS">
                   <comp xsi:type="hl7nl:PIVL_TS"
                         operator="A"
                         isFlexible="true">
-                     <hl7nl:phase xmlns:hl7nl="urn:hl7-nl:v3">
-                        <hl7nl:low value="20240101080000.000+0100"/>
+                     <hl7nl:phase>
+                        <hl7nl:low value="20240101080000+0100"/>
                      </hl7nl:phase>
                      <hl7nl:period unit="d"
-                                   value="1"
-                                   xmlns:hl7nl="urn:hl7-nl:v3"/>
+                                   value="1"/>
                   </comp>
                   <comp xsi:type="hl7nl:PIVL_TS"
                         operator="I"
                         isFlexible="true">
-                     <hl7nl:phase xmlns:hl7nl="urn:hl7-nl:v3">
-                        <hl7nl:low value="20240101140000.000+0100"/>
+                     <hl7nl:phase>
+                        <hl7nl:low value="20240101140000+0100"/>
                      </hl7nl:phase>
                      <hl7nl:period unit="d"
-                                   value="1"
-                                   xmlns:hl7nl="urn:hl7-nl:v3"/>
+                                   value="1"/>
                   </comp>
                   <comp xsi:type="hl7nl:PIVL_TS"
                         operator="I"
                         isFlexible="true">
-                     <hl7nl:phase xmlns:hl7nl="urn:hl7-nl:v3">
-                        <hl7nl:low value="20240101200000.000+0100"/>
+                     <hl7nl:phase>
+                        <hl7nl:low value="20240101200000+0100"/>
                      </hl7nl:phase>
                      <hl7nl:period unit="d"
-                                   value="1"
-                                   xmlns:hl7nl="urn:hl7-nl:v3"/>
+                                   value="1"/>
                   </comp>
                </effectiveTime>
                <doseQuantity>
@@ -860,8 +841,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -890,8 +870,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 1 jan 2024, tot en met 11 mar 2024, op maandag, woensdag en vrijdag, voor de nacht, aanbrengen, cutaan</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high value="20240311235959+0100"/>
          </effectiveTime>
@@ -972,44 +951,39 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime operator="A"
-                              xsi:type="SXPR_TS"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                              xsi:type="SXPR_TS">
                   <comp xsi:type="hl7nl:PIVL_TS"
                         operator="A"
                         isFlexible="true"
                         alignment="DW">
-                     <hl7nl:phase xmlns:hl7nl="urn:hl7-nl:v3">
+                     <hl7nl:phase>
                         <hl7nl:low value="19700601"/>
                      </hl7nl:phase>
                      <hl7nl:period unit="wk"
-                                   value="1"
-                                   xmlns:hl7nl="urn:hl7-nl:v3"/>
+                                   value="1"/>
                   </comp>
                   <comp xsi:type="hl7nl:PIVL_TS"
                         operator="I"
                         isFlexible="true"
                         alignment="DW">
-                     <hl7nl:phase xmlns:hl7nl="urn:hl7-nl:v3">
+                     <hl7nl:phase>
                         <hl7nl:low value="19700603"/>
                      </hl7nl:phase>
                      <hl7nl:period unit="wk"
-                                   value="1"
-                                   xmlns:hl7nl="urn:hl7-nl:v3"/>
+                                   value="1"/>
                   </comp>
                   <comp xsi:type="hl7nl:PIVL_TS"
                         operator="I"
                         isFlexible="true"
                         alignment="DW">
-                     <hl7nl:phase xmlns:hl7nl="urn:hl7-nl:v3">
+                     <hl7nl:phase>
                         <hl7nl:low value="19700605"/>
                      </hl7nl:phase>
                      <hl7nl:period unit="wk"
-                                   value="1"
-                                   xmlns:hl7nl="urn:hl7-nl:v3"/>
+                                   value="1"/>
                   </comp>
                </effectiveTime>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1038,8 +1012,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 1 jan 2024, 1 stuk 's avonds, oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
@@ -1102,15 +1075,13 @@
                <effectiveTime operator="A"
                               xsi:type="hl7nl:PIVL_TS"
                               isFlexible="true"
-                              alignment="HD"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:phase xmlns:hl7nl="urn:hl7-nl:v3">
+                              alignment="HD">
+                  <hl7nl:phase>
                      <hl7nl:low value="1970010118"/>
                      <hl7nl:high value="1970010200"/>
                   </hl7nl:phase>
                   <hl7nl:period value="1"
-                                unit="d"
-                                xmlns:hl7nl="urn:hl7-nl:v3"/>
+                                unit="d"/>
                </effectiveTime>
                <doseQuantity>
                   <center value="1"
@@ -1122,8 +1093,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1152,8 +1122,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 1 jan 2024, cyclus van 28 dagen: steeds gedurende 21 dagen 1 maal per dag 1 stuk, oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
@@ -1214,12 +1183,11 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime operator="A"
-                              xsi:type="SXPR_TS"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                              xsi:type="SXPR_TS">
                   <comp xsi:type="hl7nl:PIVL_TS"
                         operator="A"
                         isFlexible="true">
-                     <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                     <hl7nl:frequency>
                         <hl7nl:numerator xsi:type="hl7nl:INT"
                                          value="1"/>
                         <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -1230,14 +1198,13 @@
                   <comp xsi:type="hl7nl:PIVL_TS"
                         operator="A"
                         isFlexible="true">
-                     <hl7nl:phase xmlns:hl7nl="urn:hl7-nl:v3">
+                     <hl7nl:phase>
                         <hl7nl:width xsi:type="hl7nl:PQ"
                                      value="21"
                                      unit="d"/>
                      </hl7nl:phase>
                      <hl7nl:period value="28"
-                                   unit="d"
-                                   xmlns:hl7nl="urn:hl7-nl:v3"/>
+                                   unit="d"/>
                   </comp>
                </effectiveTime>
                <doseQuantity>
@@ -1250,8 +1217,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1280,8 +1246,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 1 jan 2024, tot en met 11 feb 2024, eerst gedurende 2 weken 1 maal per dag 3 gram, dan gedurende 3 weken 1 maal per dag 2 gram, dan gedurende 6 dagen 1 maal per dag 1 gram, cutaan</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high value="20240211235959+0100"/>
          </effectiveTime>
@@ -1341,16 +1306,14 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
-               <effectiveTime xsi:type="IVL_TS"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+               <effectiveTime xsi:type="IVL_TS">
                   <width value="2"
                          unit="wk"/>
                </effectiveTime>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="1"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -1368,8 +1331,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -1377,16 +1339,14 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
-               <effectiveTime xsi:type="IVL_TS"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+               <effectiveTime xsi:type="IVL_TS">
                   <width value="3"
                          unit="wk"/>
                </effectiveTime>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="1"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -1404,8 +1364,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -1413,16 +1372,14 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
-               <effectiveTime xsi:type="IVL_TS"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+               <effectiveTime xsi:type="IVL_TS">
                   <width value="6"
                          unit="d"/>
                </effectiveTime>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="1"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -1440,8 +1397,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1470,8 +1426,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 1 jan 2024, tot en met 22 jan 2024, bij hoest 1 à 2 stuks , maximaal 6 stuks per dag, oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high value="20240122235959+0100"/>
          </effectiveTime>
@@ -1561,8 +1516,7 @@
                   <denominator value="1"
                                unit="d"/>
                </maxDoseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
                <precondition>
                   <criterion>
                      <code code="1387"
@@ -1598,8 +1552,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 1 jan 2024, tot en met 9 jan 2024, toedieningssnelheid: 0.2 à 0.5 ml per uur, parenteraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high value="20240109235959+0100"/>
          </effectiveTime>
@@ -1665,8 +1618,7 @@
                   <high value="0.5"
                         unit="ml/h"/>
                </rateQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1695,8 +1647,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 1 jan 2024, 1 maal per dag 1 stuk gedurende 16 uur, transdermaal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
@@ -1758,14 +1709,13 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:phase xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:phase>
                      <hl7nl:width xsi:type="hl7nl:PQ"
                                   value="16"
                                   unit="h"/>
                   </hl7nl:phase>
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="1"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -1783,8 +1733,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1813,8 +1762,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 1 jan 2024, tot en met 28 jan 2024, zo nodig 1 maal per dag 1 stuk, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high value="20240128235959+0100"/>
          </effectiveTime>
@@ -1875,9 +1823,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="1"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -1895,8 +1842,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
                <precondition>
                   <criterion>
                      <code code="1137"

@@ -1,6 +1,10 @@
 <organizer classCode="CLUSTER"
            moodCode="EVN"
-           xmlns="urn:hl7-org:v3">
+           xmlns="urn:hl7-org:v3"
+           xmlns:hl7="urn:hl7-org:v3"
+           xmlns:hl7nl="urn:hl7-nl:v3"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9239"/>
    <code code="102"
          displayName="Medicatiegegevens"
@@ -35,8 +39,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 1 sep 2023, tot en met 1 sep 2024, 1 maal per dag 1 stuk, Bij het eten innemen, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20230901000000+0200"/>
             <high value="20240901235959+0200"/>
          </effectiveTime>
@@ -107,9 +110,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="1"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -127,8 +129,7 @@
                                   codeSystemName="G-Standaardthesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -157,8 +158,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 1 sep 2023, tot en met 22 dec 2023, 1 maal per dag 1 stuk, Bij het eten innemen, Oraal, definitief gestopt</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20230901000000+0200"/>
             <high value="20231222235959+0100"/>
          </effectiveTime>
@@ -224,8 +224,7 @@
                <value xsi:type="CE"
                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
                       code="2"
-                      displayName="Definitief"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      displayName="Definitief"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="RSON">
@@ -239,8 +238,7 @@
                       code="79899007"
                       codeSystem="2.16.840.1.113883.6.96"
                       displayName="Interactie"
-                      codeSystemName="SNOMED CT"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      codeSystemName="SNOMED CT"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="SPRT">
@@ -259,9 +257,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="1"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -279,8 +276,7 @@
                                   codeSystemName="G-Standaardthesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -293,8 +289,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -323,8 +318,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 1 sep 2023, tot en met 1 sep 2024, 1 maal per dag 1 stuk, Bij het eten innemen, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20230901000000+0200"/>
             <high value="20240901235959+0200"/>
          </effectiveTime>
@@ -353,7 +347,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20230901090000.000+0200"/>
+            <time value="20230901090000+0200"/>
             <assignedAuthor>
                <id nullFlavor="NI"/>
                <representedOrganization>
@@ -379,9 +373,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="1"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -399,8 +392,7 @@
                                   codeSystemName="G-Standaardthesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -413,8 +405,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -443,8 +434,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 11 dec 2023, 1 maal per dag 1 stuk, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231211000000+0100"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
@@ -518,9 +508,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="1"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -538,8 +527,7 @@
                                   codeSystemName="G-Standaardthesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -568,8 +556,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 30 dec 2023, 1 maal per dag 2 stuks, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231230000000+0100"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
@@ -634,8 +621,7 @@
                <value xsi:type="CE"
                       code="5"
                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"
-                      displayName="Geen of onvoldoende effect"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      displayName="Geen of onvoldoende effect"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -645,9 +631,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="1"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -665,8 +650,7 @@
                                   codeSystemName="G-Standaardthesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -679,8 +663,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -709,8 +692,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 11 dec 2023, tot en met 29 dec 2023, 1 maal per dag 1 stuk, Oraal, definitief gestopt</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231211000000+0100"/>
             <high value="20231229235959+0100"/>
          </effectiveTime>
@@ -775,8 +757,7 @@
                <value xsi:type="CE"
                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
                       code="2"
-                      displayName="Definitief"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      displayName="Definitief"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -786,9 +767,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="1"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -806,8 +786,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -820,8 +799,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -935,8 +913,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -965,8 +942,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 11 dec 2023, 1 maal per dag 1 stuk, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231211000000+0100"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
@@ -996,7 +972,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20231211090200.000+0100"/>
+            <time value="20231211090200+0100"/>
             <assignedAuthor>
                <id nullFlavor="NI"/>
                <representedOrganization>
@@ -1025,9 +1001,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="1"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -1045,8 +1020,7 @@
                                   codeSystemName="G-Standaardthesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -1059,8 +1033,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1089,8 +1062,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 30 dec 2023, 1 maal per dag 2 stuks, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231230000000+0100"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
@@ -1120,7 +1092,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20231230090200.000+0100"/>
+            <time value="20231230090200+0100"/>
             <assignedAuthor>
                <id nullFlavor="NI"/>
                <representedOrganization>
@@ -1137,9 +1109,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="1"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -1157,8 +1128,7 @@
                                   codeSystemName="G-Standaardthesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -1171,8 +1141,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1277,8 +1246,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 19 dec 2023, tot en met 15 jan 2024, 1 maal per week 5 stuks, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231219000000+0100"/>
             <high value="20240115235959+0100"/>
          </effectiveTime>
@@ -1342,8 +1310,7 @@
                      codeSystemName="Medicatieproces observaties"
                      displayName="Reden van voorschrijven."/>
                <value xsi:type="CE"
-                      nullFlavor="OTH"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                      nullFlavor="OTH">
                   <originalText>Reumatoide artritis</originalText>
                </value>
             </observation>
@@ -1355,9 +1322,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="1"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -1375,8 +1341,7 @@
                                   codeSystemName="G-Standaardthesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1405,8 +1370,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 31 dec 2023, tot en met 15 jan 2024, 1 maal per week 4 stuks, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231231000000+0100"/>
             <high value="20240115235959+0100"/>
          </effectiveTime>
@@ -1471,8 +1435,7 @@
                <value xsi:type="CE"
                       code="6"
                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"
-                      displayName="Te sterk effect"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      displayName="Te sterk effect"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="RSON">
@@ -1484,8 +1447,7 @@
                      codeSystemName="Medicatieproces observaties"
                      displayName="Reden van voorschrijven."/>
                <value xsi:type="CE"
-                      nullFlavor="OTH"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                      nullFlavor="OTH">
                   <originalText>Reumatoide artritis</originalText>
                </value>
             </observation>
@@ -1497,9 +1459,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="1"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -1517,8 +1478,7 @@
                                   codeSystemName="G-Standaardthesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -1531,8 +1491,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1561,8 +1520,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 19 dec 2023, tot en met 30 dec 2023, 1 maal per week 5 stuks, Oraal, definitief gestopt</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231219000000+0100"/>
             <high value="20231230235959+0100"/>
          </effectiveTime>
@@ -1626,8 +1584,7 @@
                <value xsi:type="CE"
                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
                       code="2"
-                      displayName="Definitief"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      displayName="Definitief"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="RSON">
@@ -1639,8 +1596,7 @@
                      codeSystemName="Medicatieproces observaties"
                      displayName="Reden van voorschrijven."/>
                <value xsi:type="CE"
-                      nullFlavor="OTH"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                      nullFlavor="OTH">
                   <originalText>Reumatoide artritis</originalText>
                </value>
             </observation>
@@ -1652,9 +1608,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="1"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -1672,8 +1627,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -1686,8 +1640,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1716,8 +1669,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 19 dec 2023, tot en met 15 jan 2024, 1 maal per week 5 stuks, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231219000000+0100"/>
             <high value="20240115235959+0100"/>
          </effectiveTime>
@@ -1747,7 +1699,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20231219090500.000+0100"/>
+            <time value="20231219090500+0100"/>
             <assignedAuthor>
                <id nullFlavor="NI"/>
                <representedOrganization>
@@ -1764,9 +1716,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="1"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -1784,8 +1735,7 @@
                                   codeSystemName="G-Standaardthesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -1798,8 +1748,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1828,8 +1777,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 31 dec 2023, tot en met 15 jan 2024, 1 maal per week 4 stuks, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231231000000+0100"/>
             <high value="20240115235959+0100"/>
          </effectiveTime>
@@ -1859,7 +1807,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20231231091000.000+0100"/>
+            <time value="20231231091000+0100"/>
             <assignedAuthor>
                <id nullFlavor="NI"/>
                <representedOrganization>
@@ -1876,9 +1824,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="1"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -1896,8 +1843,7 @@
                                   codeSystemName="G-Standaardthesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -1910,8 +1856,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1940,8 +1885,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 28 dec 2023, tot en met 6 jan 2024, 3 maal per dag 1 stuk, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231228000000+0100"/>
             <high value="20240106235959+0100"/>
          </effectiveTime>
@@ -2006,8 +1950,7 @@
                <value xsi:type="CE"
                       code="1"
                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"
-                      displayName="Bewust hoge dosering"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      displayName="Bewust hoge dosering"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -2017,9 +1960,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="3"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -2037,8 +1979,7 @@
                                   codeSystemName="G-Standaardthesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -2067,8 +2008,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 28 dec 2023, tot en met 31 dec 2023, 3 maal per dag 1 stuk, Oraal, tijdelijk gestopt</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231228000000+0100"/>
             <high value="20231231235959+0100"/>
          </effectiveTime>
@@ -2133,8 +2073,7 @@
                <value xsi:type="CE"
                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
                       code="1"
-                      displayName="Tijdelijk"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      displayName="Tijdelijk"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="RSON">
@@ -2148,8 +2087,7 @@
                       code="305335007"
                       codeSystem="2.16.840.1.113883.6.96"
                       displayName="Opname"
-                      codeSystemName="SNOMED CT"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      codeSystemName="SNOMED CT"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -2162,8 +2100,7 @@
                <value xsi:type="CE"
                       code="1"
                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"
-                      displayName="Bewust hoge dosering"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      displayName="Bewust hoge dosering"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -2173,9 +2110,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="3"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -2193,8 +2129,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -2207,8 +2142,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -2319,8 +2253,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -2349,8 +2282,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 28 dec 2023, tot en met 6 jan 2024, 3 maal per dag 1 stuk, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231228000000+0100"/>
             <high value="20240106235959+0100"/>
          </effectiveTime>
@@ -2380,7 +2312,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20231227090600.000+0100"/>
+            <time value="20231227090600+0100"/>
             <assignedAuthor>
                <id nullFlavor="NI"/>
                <representedOrganization>
@@ -2400,8 +2332,7 @@
                <value xsi:type="CE"
                       code="1"
                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"
-                      displayName="Bewust hoge dosering"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      displayName="Bewust hoge dosering"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -2411,9 +2342,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="3"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -2431,8 +2361,7 @@
                                   codeSystemName="G-Standaardthesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -2445,8 +2374,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -2475,8 +2403,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 28 dec 2023, tot en met 31 dec 2023, 3 maal per dag 1 stuk, Oraal, tijdelijk gestopt</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231228000000+0100"/>
             <high value="20231231235959+0100"/>
          </effectiveTime>
@@ -2506,7 +2433,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20231231191200.000+0100"/>
+            <time value="20231231191200+0100"/>
             <assignedAuthor>
                <id nullFlavor="NI"/>
                <representedOrganization>
@@ -2527,8 +2454,7 @@
                <value xsi:type="CE"
                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
                       code="1"
-                      displayName="Tijdelijk"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      displayName="Tijdelijk"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -2541,8 +2467,7 @@
                <value xsi:type="CE"
                       code="1"
                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"
-                      displayName="Bewust hoge dosering"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      displayName="Bewust hoge dosering"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -2552,9 +2477,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="3"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -2572,8 +2496,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -2586,8 +2509,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -2692,8 +2614,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 27 dec 2023, tot en met 3 jan 2024, 2 maal per dag 1 druppel, In het rechter oog, oculair</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231227000000+0100"/>
             <high value="20240103235959+0100"/>
          </effectiveTime>
@@ -2766,8 +2687,7 @@
                <value xsi:type="CE"
                       code="3"
                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"
-                      displayName="Bewust afwijkende toedieningsweg"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      displayName="Bewust afwijkende toedieningsweg"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -2777,9 +2697,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="2"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -2797,8 +2716,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -2827,8 +2745,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 27 dec 2023, tot en met 3 jan 2024, 2 maal per dag 1 druppel, In het rechter oog, oculair</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231227000000+0100"/>
             <high value="20240103235959+0100"/>
          </effectiveTime>
@@ -2858,7 +2775,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20231227091500.000+0100"/>
+            <time value="20231227091500+0100"/>
             <assignedAuthor>
                <id nullFlavor="NI"/>
                <representedOrganization>
@@ -2887,8 +2804,7 @@
                <value xsi:type="CE"
                       code="3"
                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"
-                      displayName="Bewust afwijkende toedieningsweg"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      displayName="Bewust afwijkende toedieningsweg"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -2898,9 +2814,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="2"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -2918,8 +2833,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -2932,8 +2846,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -3062,7 +2975,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20231112123000.000+0100"/>
+            <time value="20231112123000+0100"/>
             <assignedAuthor>
                <id nullFlavor="NI"/>
                <representedOrganization>
@@ -3083,8 +2996,7 @@
                <value xsi:type="CE"
                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
                       code="2"
-                      displayName="Definitief"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      displayName="Definitief"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -3097,8 +3009,7 @@
                <value xsi:type="CE"
                       code="2"
                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2053"
-                      displayName="Niet leverbaar"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      displayName="Niet leverbaar"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -3111,8 +3022,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -3141,8 +3051,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 12 nov 2023, gedurende 28 dagen, 1 maal per dag 1 stuk, oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231112000000+0100"/>
             <width value="28"
                    unit="d"/>
@@ -3172,7 +3081,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20231112123500.000+0100"/>
+            <time value="20231112123500+0100"/>
             <assignedAuthor>
                <id nullFlavor="NI"/>
                <representedOrganization>
@@ -3202,8 +3111,7 @@
                <value xsi:type="CE"
                       code="2"
                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2053"
-                      displayName="Niet leverbaar"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      displayName="Niet leverbaar"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="SUBJ"
@@ -3225,9 +3133,8 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                <effectiveTime xsi:type="hl7nl:PIVL_TS"
                               operator="A"
-                              isFlexible="true"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                  <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                              isFlexible="true">
+                  <hl7nl:frequency>
                      <hl7nl:numerator xsi:type="hl7nl:INT"
                                       value="1"/>
                      <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -3245,8 +3152,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -3259,8 +3165,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"

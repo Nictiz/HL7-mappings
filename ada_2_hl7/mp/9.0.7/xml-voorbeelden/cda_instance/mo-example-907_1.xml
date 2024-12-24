@@ -1,9 +1,13 @@
-<ClinicalDocument xmlns="urn:hl7-org:v3">
+<ClinicalDocument xmlns="urn:hl7-org:v3"
+                  xmlns:hl7="urn:hl7-org:v3"
+                  xmlns:hl7nl="urn:hl7-nl:v3"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <realmCode code="NL"/>
    <typeId extension="POCD_HD000040"
            root="2.16.840.1.113883.1.3"/>
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9243"/>
-   <id extension="cf58200a-c117-11ef-2661-020000000000"
+   <id extension="b063429a-c1e9-11ef-3337-020000000000"
        root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9245.1.2.3.999"/>
    <code code="52981000146104"
          codeSystem="2.16.840.1.113883.6.96"
@@ -94,8 +98,7 @@
                            codeSystem="2.16.840.1.113883.6.96"
                            codeSystemName="SNOMED CT"/>
                      <text mediaType="text/plain">Vanaf 1 jan 2024, zo nodig 1 maal per dag 1 stuk, rectaal</text>
-                     <effectiveTime xsi:type="IVL_TS"
-                                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                     <effectiveTime xsi:type="IVL_TS">
                         <low value="20240101"/>
                         <high nullFlavor="NI"/>
                      </effectiveTime>
@@ -154,9 +157,8 @@
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                            <effectiveTime xsi:type="hl7nl:PIVL_TS"
                                           operator="A"
-                                          isFlexible="true"
-                                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                              <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                                          isFlexible="true">
+                              <hl7nl:frequency>
                                  <hl7nl:numerator xsi:type="hl7nl:INT"
                                                   value="1"/>
                                  <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -173,8 +175,7 @@
                                               codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
                               </center>
                            </doseQuantity>
-                           <consumable xsi:nil="true"
-                                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                           <consumable xsi:nil="true"/>
                            <precondition>
                               <criterion>
                                  <code code="1137"
@@ -192,8 +193,7 @@
                                  code="16"
                                  codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
                            <value xsi:type="BL"
-                                  value="false"
-                                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                                  value="false"/>
                         </observation>
                      </entryRelationship>
                      <entryRelationship typeCode="COMP"
@@ -222,8 +222,7 @@
                            codeSystem="2.16.840.1.113883.6.96"
                            codeSystemName="SNOMED CT"/>
                      <text mediaType="text/plain">Vanaf 1 jan 2024, 1 maal per dag, rectaal</text>
-                     <effectiveTime xsi:type="IVL_TS"
-                                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                     <effectiveTime xsi:type="IVL_TS">
                         <low value="20240101"/>
                         <high nullFlavor="NI"/>
                      </effectiveTime>
@@ -257,7 +256,7 @@
                         </manufacturedProduct>
                      </consumable>
                      <author>
-                        <time value="20240101105412.000+0100"/>
+                        <time value="20240101105412+0100"/>
                         <assignedAuthor>
                            <id nullFlavor="NI"/>
                            <representedOrganization>
@@ -277,8 +276,7 @@
                            <value xsi:type="CE"
                                   code="1"
                                   codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2053"
-                                  displayName="Niet leverbaar"
-                                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                                  displayName="Niet leverbaar"/>
                         </observation>
                      </entryRelationship>
                      <entryRelationship typeCode="SUBJ"
@@ -300,9 +298,8 @@
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                            <effectiveTime xsi:type="hl7nl:PIVL_TS"
                                           operator="A"
-                                          isFlexible="true"
-                                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                              <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                                          isFlexible="true">
+                              <hl7nl:frequency>
                                  <hl7nl:numerator xsi:type="hl7nl:INT"
                                                   value="1"/>
                                  <hl7nl:denominator xsi:type="hl7nl:PQ"
@@ -310,8 +307,7 @@
                                                     unit="d"/>
                               </hl7nl:frequency>
                            </effectiveTime>
-                           <consumable xsi:nil="true"
-                                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                           <consumable xsi:nil="true"/>
                         </substanceAdministration>
                      </entryRelationship>
                      <entryRelationship typeCode="COMP">
@@ -322,8 +318,7 @@
                                  code="16"
                                  codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
                            <value xsi:type="BL"
-                                  value="false"
-                                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                                  value="false"/>
                         </observation>
                      </entryRelationship>
                      <entryRelationship typeCode="REFR">
@@ -336,8 +331,7 @@
                                  codeSystem="2.16.840.1.113883.6.96"
                                  codeSystemName="SNOMED CT"
                                  displayName="Medicatieafspraak"/>
-                           <consumable xsi:nil="true"
-                                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                           <consumable xsi:nil="true"/>
                         </substanceAdministration>
                      </entryRelationship>
                      <entryRelationship typeCode="COMP"
@@ -367,8 +361,7 @@
                            codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"
                            codeSystemName="Medicatieproces acts"/>
                      <text mediaType="text/plain">Vanaf 13 feb 2024, gedurende 30 dagen, zo nodig maximaal 4 maal per dag 1 à 2 stuks , maximaal 6 stuks per dag, ORAAL</text>
-                     <effectiveTime xsi:type="IVL_TS"
-                                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                     <effectiveTime xsi:type="IVL_TS">
                         <low value="20240213"/>
                         <width value="30"
                                unit="d"/>
@@ -421,8 +414,7 @@
                                  code="15"
                                  codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
                            <value xsi:type="BL"
-                                  value="true"
-                                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                                  value="true"/>
                         </observation>
                      </entryRelationship>
                      <entryRelationship typeCode="COMP">
@@ -433,8 +425,7 @@
                                  code="8"
                                  codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
                            <value xsi:type="BL"
-                                  value="true"
-                                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                                  value="true"/>
                         </observation>
                      </entryRelationship>
                      <entryRelationship typeCode="COMP">
@@ -444,9 +435,8 @@
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                            <effectiveTime xsi:type="hl7nl:PIVL_TS"
                                           operator="A"
-                                          isFlexible="true"
-                                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                              <hl7nl:frequency xmlns:hl7nl="urn:hl7-nl:v3">
+                                          isFlexible="true">
+                              <hl7nl:frequency>
                                  <hl7nl:numerator xsi:type="hl7nl:INT">
                                     <hl7nl:uncertainRange>
                                        <hl7nl:high xsi:type="hl7nl:INT"
@@ -485,8 +475,7 @@
                               <denominator value="1"
                                            unit="d"/>
                            </maxDoseQuantity>
-                           <consumable xsi:nil="true"
-                                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                           <consumable xsi:nil="true"/>
                            <precondition>
                               <criterion>
                                  <code code="1137"
@@ -504,8 +493,7 @@
                                  code="16"
                                  codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
                            <value xsi:type="BL"
-                                  value="false"
-                                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                                  value="false"/>
                         </observation>
                      </entryRelationship>
                      <entryRelationship typeCode="REFR">
@@ -518,8 +506,7 @@
                                  codeSystem="2.16.840.1.113883.6.96"
                                  codeSystemName="SNOMED CT"
                                  displayName="Medicatieafspraak"/>
-                           <consumable xsi:nil="true"
-                                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                           <consumable xsi:nil="true"/>
                         </substanceAdministration>
                      </entryRelationship>
                      <entryRelationship typeCode="COMP"
