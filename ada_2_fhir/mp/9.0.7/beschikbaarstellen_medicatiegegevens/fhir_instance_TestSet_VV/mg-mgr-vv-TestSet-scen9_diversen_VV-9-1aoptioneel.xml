@@ -1,7 +1,8 @@
-<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Bundle xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="c33f0750-6a95-11ec-0000-020000000000"/>
+        xmlns="http://hl7.org/fhir">
+   <id value="5a7572f5-6b47-11ec-0000-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +10,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:c33f222c-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:a613ed66-6b2d-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -19,7 +20,9 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Toedieningsverzoek. Subject: C. XXX-CSC-Smoketest-A. Id: tsMBH_907_logistiekeverbruiksperiode_start_eind_VV-CSA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1), Categorie: <span title="Request to dispense medication to patient (situation) (52711000146108 - SNOMED CT)">Request to dispense medication to patient (situation)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                     <caption>Verstrekkingsverzoek. Subject: C. XXX-CSC-Smoketest-A. Id: tsMBH_907_logistiekeverbruiksperiode_start_eind_VV-CSA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1), Categorie: 
+<span title="Request to dispense medication to patient (situation) (52711000146108 - SNOMED CT)">Request to dispense medication to patient (situation)</span>, 
+<span style="display: block;">Intentie: aanvraag</span>
                         <span style="display: block;">Aangevraagd door: Bert van Dam || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Van Dam</span>
                      </caption>
                      <tbody>
@@ -40,7 +43,7 @@
                            <td>${DATE, T, D, +0}T11:00:00+02:00</td>
                         </tr>
                         <tr>
-                           <th>Toedieningsverzoek</th>
+                           <th>Verstrekkingsverzoek</th>
                            <td>
                               <div>Geldigheidsperiode: ${DATE, T, D, +10}T00:00:00+02:00 - ${DATE, T, M, +6}T23:59:59+02:00</div>
                               <div>Uitvoerende: Apotheek De Sleutel</div>
@@ -83,7 +86,7 @@
                <display value="RIVAROXABAN TABLET 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f220e-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:83a4f6fd-6a9f-11ec-0000-020000000000"/>
                <display value="C. XXX-CSC-Smoketest-A"/>
             </subject>
             <authoredOn value="${DATE, T, D, +0}T11:00:00+02:00"/>
@@ -91,7 +94,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:c33f2232-6a95-11ec-0000-020000000000"/>
+                        <reference value="urn:uuid:19b5a900-6b64-11ec-0000-020000000000"/>
                         <display value="Bert van Dam || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Van Dam"/>
                      </valueReference>
                   </extension>
@@ -116,7 +119,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f220e-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:83a4f6fd-6a9f-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -125,7 +128,9 @@
             <text>
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), C. XXX-CSC-Smoketest-A, Man, 3 februari 1950</div>
+                  <div>Id 
+<i>afgeschermd (ontbrekend gegeven)</i> (BSN), 
+<span title="Naamsamenstelling: Eigennaam">C. XXX-CSC-Smoketest-A</span>, Man, 3 februari 1950</div>
                </div>
             </text>
             <identifier>
@@ -180,6 +185,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 000001117 (UZI-NR-PERS), Bert van Dam</div>
+                  <div>Hazepad 4, 1234BB Mijn Dorp (WP)</div>
                </div>
             </text>
             <identifier>
@@ -201,6 +207,28 @@
                   </extension>
                </given>
             </name>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Hazepad 4">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Hazepad"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="4"/>
+                  </extension>
+               </line>
+               <city value="Mijn Dorp"/>
+               <postalCode value="1234BB"/>
+            </address>
          </Practitioner>
       </resource>
       <search>
@@ -298,7 +326,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f2232-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:19b5a900-6b64-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
