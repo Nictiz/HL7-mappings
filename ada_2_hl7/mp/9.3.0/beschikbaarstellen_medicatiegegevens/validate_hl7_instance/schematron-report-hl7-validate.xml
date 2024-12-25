@@ -1,8 +1,8 @@
-<validation-results detection-count="20"
+<validation-results detection-count="16"
                     validation-step-name="schematron-validate-hl7-beschikbaarstellen_medicatiegegevens"
                     href-schema="YATC-internal/ada-2-hl7/env/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_mgb.sch"
                     validation-type="schematron"
-                    timestamp="2024-12-24T14:14:51.21+01:00">
+                    timestamp="2024-12-24T19:19:47.54+01:00">
    <validation detection-count="0"
                href="HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-bouwstenen-v30.xml">
       <svrl:schematron-output title="Schematron file for transaction Beschikbaarstellen medicatiegegevens MP9 3.0.0 (2.16.840.1.113883.2.4.3.11.60.20.77.4.374 2022-06-30T00:00:00)"
@@ -143,7 +143,7 @@
                               xmlns:nfu="urn:urn:nictiz-nl:v3/nfu"
                               xmlns:pharm="urn:ihe:pharm:medication"/>
    </validation>
-   <validation detection-count="9"
+   <validation detection-count="5"
                href="HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15c-v30.xml">
       <svrl:schematron-output title="Schematron file for transaction Beschikbaarstellen medicatiegegevens MP9 3.0.0 (2.16.840.1.113883.2.4.3.11.60.20.77.4.374 2022-06-30T00:00:00)"
                               xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
@@ -162,34 +162,6 @@
                               xmlns:xs="http://www.w3.org/2001/XMLSchema"
                               xmlns:nfu="urn:urn:nictiz-nl:v3/nfu"
                               xmlns:pharm="urn:ihe:pharm:medication">
-         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[25]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[2]/Q{urn:hl7-org:v3}procedure[1]/Q{urn:hl7-org:v3}id[1]"
-                             role="error"
-                             see="https://art-decor.org/mediawiki/index.php?title=DTr1_II"
-                             test="not(@root) or matches(@root, $OIDpattern) or matches(@root, $UUIDpattern)">
-            <svrl:text>dtr1-10-II: @root SHALL be a syntactically correct OID or UUID.</svrl:text>
-         </svrl:failed-assert>
-         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[25]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[2]/Q{urn:hl7-org:v3}procedure[1]/Q{urn:hl7-org:v3}id[1]"
-                             role="error"
-                             see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9084-2016-06-21T103838.html"
-                             test="not(@root) or matches(@root,'^[0-2](\.(0|[1-9]\d*))*$') or matches(@root,'^[A-Fa-f\d]{8}-[A-Fa-f\d]{4}-[A-Fa-f\d]{4}-[A-Fa-f\d]{4}-[A-Fa-f\d]{12}$') or matches(@root,'^[A-Za-z][A-Za-z\d\-]*$')">
-            <svrl:text>(MPMedBehIdentificatie): attribuut @root MOET datatype 'uid' hebben  - '
-2.16.840.1.113883.2.4.3.11.999.77.1.1
-'</svrl:text>
-         </svrl:failed-assert>
-         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[26]/Q{urn:hl7-org:v3}supply[1]/Q{urn:hl7-org:v3}entryRelationship[2]/Q{urn:hl7-org:v3}procedure[1]/Q{urn:hl7-org:v3}id[1]"
-                             role="error"
-                             see="https://art-decor.org/mediawiki/index.php?title=DTr1_II"
-                             test="not(@root) or matches(@root, $OIDpattern) or matches(@root, $UUIDpattern)">
-            <svrl:text>dtr1-10-II: @root SHALL be a syntactically correct OID or UUID.</svrl:text>
-         </svrl:failed-assert>
-         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[26]/Q{urn:hl7-org:v3}supply[1]/Q{urn:hl7-org:v3}entryRelationship[2]/Q{urn:hl7-org:v3}procedure[1]/Q{urn:hl7-org:v3}id[1]"
-                             role="error"
-                             see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9084-2016-06-21T103838.html"
-                             test="not(@root) or matches(@root,'^[0-2](\.(0|[1-9]\d*))*$') or matches(@root,'^[A-Fa-f\d]{8}-[A-Fa-f\d]{4}-[A-Fa-f\d]{4}-[A-Fa-f\d]{4}-[A-Fa-f\d]{12}$') or matches(@root,'^[A-Za-z][A-Za-z\d\-]*$')">
-            <svrl:text>(MPMedBehIdentificatie): attribuut @root MOET datatype 'uid' hebben  - '
-2.16.840.1.113883.2.4.3.11.999.77.1.1
-'</svrl:text>
-         </svrl:failed-assert>
          <svrl:successful-report location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[27]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[2]/Q{urn:hl7-org:v3}procedure[1]/Q{urn:hl7-org:v3}id[1]"
                                  role="warning"
                                  see="https://art-decor.org/mediawiki/index.php?title=DTr1_II"
