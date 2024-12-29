@@ -6,7 +6,8 @@
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
-         <div>Id 999001112 (UZI-NR-PERS), Bertine van Doorn</div>
+         <div>Id 999001112 (UZI-NR-PERS), Hans van Doorn</div>
+         <div>Dorpsstraat 1, 1234AA Ons Dorp (WP)</div>
       </div>
    </text>
    <identifier>
@@ -22,10 +23,32 @@
             <valueString value="Doorn"/>
          </extension>
       </family>
-      <given value="Bertine">
+      <given value="Hans">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
             <valueCode value="BR"/>
          </extension>
       </given>
    </name>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="WP"/>
+               <display value="Werkadres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="work"/>
+      <line value="Dorpsstraat 1">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Dorpsstraat"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="1"/>
+         </extension>
+      </line>
+      <city value="Ons Dorp"/>
+      <postalCode value="1234AA"/>
+   </address>
 </Practitioner>

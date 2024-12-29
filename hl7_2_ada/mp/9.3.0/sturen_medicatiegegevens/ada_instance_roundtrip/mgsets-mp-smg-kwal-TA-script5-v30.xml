@@ -1,11 +1,10 @@
-<!--Generated from HL7v3 instance.-->
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<!--Generated from HL7v3 instance.--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatiegegevens.xsd">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2024-04-17T15:48:39.131+02:00"
-         last-update-date="2024-04-17T15:48:39.131+02:00"/>
+         creation-date="2024-01-01T00:00:00+02:00"
+         last-update-date="2024-01-01T00:00:00+02:00"/>
    <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
       <sturen_medicatiegegevens app="mp-mp93"
                                 shortName="sturen_medicatiegegevens"
@@ -36,19 +35,19 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_SCRIPT5_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2022-12-24T09:00:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2024-01-01T09:00:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2022-12-24T00:00:00"/>
+                  <start_datum_tijd datatype="datetime" value="2023-12-31T00:00:00+01:00"/>
                   <tijds_duur value="6" unit="dag"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d4566e87" datatype="reference"/>
+                  <zorgaanbieder value="d5550e87" datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d4566e67" datatype="reference"/>
+                  <farmaceutisch_product value="d5550e67" datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 24 dec 2022, gedurende 6 dagen, 1 maal per dag 1 stuk, Oraal"/>
+                  <omschrijving value="1 maal per dag 1 stuk, Oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
@@ -84,25 +83,25 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_SCRIPT5_TA_STAKEN"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2022-12-28T09:00:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2024-01-03T09:20:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2022-12-24T00:00:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2022-12-28T23:59:59"/>
+                  <start_datum_tijd datatype="datetime" value="2023-12-31T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2024-01-03T23:59:59+01:00"/>
                </gebruiksperiode>
                <toedieningsafspraak_stop_type code="410546004"
                                               codeSystem="2.16.840.1.113883.6.96"
                                               displayName="stopgezet"/>
                <verstrekker>
-                  <zorgaanbieder value="d4566e87" datatype="reference"/>
+                  <zorgaanbieder value="d5550e87" datatype="reference"/>
                </verstrekker>
                <toedieningsafspraak_reden_wijzigen_of_staken code="62014003"
                                                              codeSystem="2.16.840.1.113883.6.96"
                                                              displayName="ongewenste reactie op medicatie en/of drugs"/>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d4566e67" datatype="reference"/>
+                  <farmaceutisch_product value="d5550e67" datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 24 dec 2022, tot en met 28 dec 2022, 1 maal per dag 1 stuk, Oraal, stopgezet"/>
+                  <omschrijving value="1 maal per dag 1 stuk, Oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
@@ -141,7 +140,7 @@
             </toedieningsafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d4566e67">
+            <farmaceutisch_product id="d5550e67">
                <product_code code="611662"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -154,9 +153,19 @@
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              displayName="TEMAZEPAM CAPSULE 20MG"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="d4566e87">
+            <zorgaanbieder id="d5550e87">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_medicatiegegevens>

@@ -51,16 +51,16 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_script2_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2022-12-18T15:23:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-12-18T15:23:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2022-11-22T00:00:00+01:00"/>
+                  <start_datum_tijd datatype="datetime" value="2023-11-22T00:00:00+01:00"/>
                   <eind_datum_tijd datatype="datetime" nullFlavor="NI"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d69e49" datatype="reference"/>
+                  <zorgaanbieder value="d84e109" datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d69e41" datatype="reference"/>
+                  <farmaceutisch_product value="d84e89" datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
                   <omschrijving value="Volgens schema trombosedienst, Oraal"/>
@@ -81,9 +81,9 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_script2_MVE2"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-01-01T16:44:00"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2024-01-01T16:44:00+01:00"/>
                <verstrekker>
-                  <zorgaanbieder value="d69e49" datatype="reference"/>
+                  <zorgaanbieder value="d84e109" datatype="reference"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="80"/>
@@ -93,8 +93,11 @@
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d69e41" datatype="reference"/>
+                  <farmaceutisch_product value="d84e89" datatype="reference"/>
                </verstrekt_geneesmiddel>
+               <medicatieverstrekking_aanvullende_informatie code="1"
+                                                             codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2052"
+                                                             displayName="Aantal bewust gewijzigd"/>
                <relatie_verstrekkingsverzoek>
                   <identificatie value="MBH_300_script2_VV2"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
@@ -102,7 +105,7 @@
             </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d69e41">
+            <farmaceutisch_product id="d84e89">
                <product_code code="856126"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -116,9 +119,19 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="ACENOCOUMAROL TABLET 1MG"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="d69e49">
+            <zorgaanbieder id="d84e109">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_afhandeling_medicatievoorschrift>

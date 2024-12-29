@@ -34,19 +34,19 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_script4_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2022-12-26T11:30:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-12-26T11:30:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2022-12-26T11:30:00+01:00"/>
+                  <start_datum_tijd datatype="datetime" value="2023-12-26T11:30:00+01:00"/>
                   <tijds_duur value="10" unit="dag"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d131e36" datatype="reference"/>
+                  <zorgverlener value="d131e78" datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d131e31" datatype="reference"/>
+                  <farmaceutisch_product value="d131e64" datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
-                  <omschrijving value="eerst gedurende 3 dagen 3 maal per dag 1 stuk, dan gedurende 7 dagen 2 maal per dag 1 stuk, vóór het eten, oraal"/>
+                  <omschrijving value="eerst gedurende 3 dagen 2 maal per dag 2 stuks en Bij pijn 1 maal per dag 2 stuks , maximaal 6 stuks per dag, dan gedurende 7 dagen 3 maal per dag 1 stuk en Bij pijn 1 maal per dag 1 stuks , maximaal 4 stuks per dag, vóór het eten, oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
@@ -61,12 +61,71 @@
                      <dosering>
                         <keerdosis>
                            <aantal>
-                              <nominale_waarde value="1"/>
+                              <nominale_waarde value="2"/>
                            </aantal>
                            <eenheid code="245"
                                     displayName="stuk"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     codeSystemName="G-Standaard thesaurus basiseenhed"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie>
+                     <doseerduur value="3" unit="dag"/>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="Stuks"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                        <zo_nodig>
+                           <criterium code="1028"
+                                      codeSystem="2.16.840.1.113883.2.4.4.5"
+                                      displayName="Bij pijn"/>
+                           <maximale_dosering>
+                              <aantal value="6"/>
+                              <eenheid code="245"
+                                       displayName="Stuk"
+                                       codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                       codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </maximale_dosering>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie>
+                     <doseerduur value="7" unit="dag"/>
+                     <volgnummer value="2"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="Stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
                         </keerdosis>
                         <toedieningsschema>
                            <frequentie>
@@ -87,35 +146,48 @@
                               <nominale_waarde value="1"/>
                            </aantal>
                            <eenheid code="245"
-                                    displayName="stuk"
+                                    displayName="Stuks"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     codeSystemName="G-Standaard thesaurus basiseenheden"/>
                         </keerdosis>
                         <toedieningsschema>
                            <frequentie>
                               <aantal>
-                                 <nominale_waarde value="2"/>
+                                 <nominale_waarde value="1"/>
                               </aantal>
                               <tijdseenheid value="1" unit="dag"/>
                            </frequentie>
                         </toedieningsschema>
+                        <zo_nodig>
+                           <criterium code="1028"
+                                      codeSystem="2.16.840.1.113883.2.4.4.5"
+                                      displayName="Bij pijn"/>
+                           <maximale_dosering>
+                              <aantal value="4"/>
+                              <eenheid code="245"
+                                       displayName="Stuk"
+                                       codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                       codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </maximale_dosering>
+                        </zo_nodig>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
             </medicatieafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d131e31">
-               <product_code code="8079 "
+            <farmaceutisch_product id="d131e64">
+               <product_code code="8060"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
-                             displayName="DICLOFENAC-NATRIUM TABLET MSR 50MG"/>
-               <product_code code="22284"
+                             displayName="DICLOFENAC-NATRIUM TABLET MSR 25MG"/>
+               <product_code code="22276"
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              codeSystemName="G-Standaard GPK"
-                             displayName="DICLOFENAC-NATRIUM TABLET MSR 50MG"/>
+                             displayName="DICLOFENAC-NATRIUM TABLET MSR 25MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="d131e36">
+            <zorgverlener id="d131e78">
                <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Peter"/>
@@ -130,10 +202,10 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d131e47" datatype="reference"/>
+                  <zorgaanbieder value="d131e99" datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d131e47">
+            <zorgaanbieder id="d131e99">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>

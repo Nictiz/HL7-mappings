@@ -1,7 +1,8 @@
-<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Bundle xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="c33f10ec-6a95-11ec-0000-020000000000"/>
+        xmlns="http://hl7.org/fhir">
+   <id value="6c4c15e8-6a99-11ec-0000-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +10,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:c33f0d18-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:7fd97bcf-6ad7-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -19,7 +20,9 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Medicatieafspraak. Subject: C. XXX_Vonker. Id: MBH_907_aanvullendeinstructie_MA-VNK (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                     <caption>Medicatieafspraak. Subject: C. XXX_Vonker. Id: MBH_907_aanvullendeinstructie_MA-VNK (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: 
+<span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, 
+<span style="display: block;">Intentie: aanvraag</span>
                         <span style="display: block;">Aangevraagd door: Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
                      </caption>
                      <tbody>
@@ -44,9 +47,11 @@
                            <td>
                               <div>Tekst: Vanaf T - 4 maanden, tot en met T + 8 maanden, 1 maal per dag 1 stuk, Bij het eten innemen, Oraal</div>
                               <div>Instructie: Bij het eten innemen</div>
-                              <div>Timing: <div>eenmalig per dag</div>
+                              <div>Timing: 
+<div>eenmalig per dag</div>
                               </div>
-                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              <div>Toedieningsweg: 
+<span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
                               </div>
                               <div>Dosering: 1 stuk</div>
                            </td>
@@ -85,7 +90,7 @@
                <display value="Acetylsalicylzuur tabletmsr 100mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f0cf6-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:723889b5-6b54-11ec-0000-020000000000"/>
                <display value="C. XXX_Vonker"/>
             </subject>
             <authoredOn value="${DATE, T, M, -4}T08:00:00+02:00"/>
@@ -93,7 +98,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:c33f0d1e-6a95-11ec-0000-020000000000"/>
+                        <reference value="urn:uuid:4df49620-6aef-11ec-0000-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -139,7 +144,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0cf6-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:723889b5-6b54-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -148,7 +153,9 @@
             <text>
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), C. XXX_Vonker, Man, 8 februari 1954</div>
+                  <div>Id 
+<i>afgeschermd (ontbrekend gegeven)</i> (BSN), 
+<span title="Naamsamenstelling: Eigennaam">C. XXX_Vonker</span>, Man, 8 februari 1954</div>
                </div>
             </text>
             <identifier>
@@ -203,6 +210,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 000001112 (UZI-NR-PERS), Bertine van Doorn</div>
+                  <div>Dorpsstraat 1, 1234AA Ons Dorp (WP)</div>
                </div>
             </text>
             <identifier>
@@ -224,6 +232,28 @@
                   </extension>
                </given>
             </name>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Practitioner>
       </resource>
       <search>
@@ -289,7 +319,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0d1e-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:4df49620-6aef-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>

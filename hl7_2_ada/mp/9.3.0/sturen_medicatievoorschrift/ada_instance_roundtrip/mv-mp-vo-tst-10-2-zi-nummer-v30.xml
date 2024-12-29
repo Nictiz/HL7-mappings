@@ -1,11 +1,10 @@
-<!--Generated from HL7v3 instance.-->
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<!--Generated from HL7v3 instance.--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2024-04-17T15:48:39.784+02:00"
-         last-update-date="2024-04-17T15:48:39.784+02:00"/>
+         creation-date="2024-01-01T00:00:00+02:00"
+         last-update-date="2024-01-01T00:00:00+02:00"/>
    <data>
       <sturen_medicatievoorschrift app="mp-mp93"
                                    shortName="sturen_medicatievoorschrift"
@@ -37,19 +36,19 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_ZINRvoorschrijven_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T13:05:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2024-01-01T13:05:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-05-31T23:59:59"/>
+                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2024-05-30T23:59:59+02:00"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d543e83" datatype="reference"/>
+                  <zorgverlener value="d747e83" datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d543e65" datatype="reference"/>
+                  <farmaceutisch_product value="d747e65" datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, tot en met 31 mei 2023, 1 maal per dag 1 stuk, Oraal"/>
+                  <omschrijving value="1 maal per dag 1 stuk, Oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
@@ -81,12 +80,12 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_ZINRvoorschrijven_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-01-01T13:05:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2024-01-01T13:05:00+01:00"/>
                <auteur>
-                  <zorgverlener value="d543e83" datatype="reference"/>
+                  <zorgverlener value="d747e83" datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d543e65" datatype="reference"/>
+                  <farmaceutisch_product value="d747e65" datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
                   <aantal value="150"/>
@@ -96,7 +95,7 @@
                            displayName="stuk"/>
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d543e220" datatype="reference"/>
+                  <zorgaanbieder value="d747e220" datatype="reference"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_ZINRvoorschrijven_MA"
@@ -105,7 +104,7 @@
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d543e65">
+            <farmaceutisch_product id="d747e65">
                <product_code code="13627163"
                              codeSystem="2.16.840.1.113883.2.4.4.8"
                              codeSystemName="G-Standaard ZI-nr"
@@ -123,7 +122,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="INDAPAMIDE 2,5MG TABLET"/>
             </farmaceutisch_product>
-            <zorgverlener id="d543e83">
+            <zorgverlener id="d747e83">
                <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Peter"/>
@@ -149,10 +148,10 @@
                   </telefoonnummers>
                </contactgegevens>
                <zorgaanbieder>
-                  <zorgaanbieder value="d543e106" datatype="reference"/>
+                  <zorgaanbieder value="d747e106" datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d543e106">
+            <zorgaanbieder id="d747e106">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
@@ -165,9 +164,19 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="d543e220">
+            <zorgaanbieder id="d747e220">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_medicatievoorschrift>

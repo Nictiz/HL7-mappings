@@ -36,16 +36,16 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_tijdstippen_niet_flexibel_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T10:15:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2024-01-01T10:15:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-01-08T23:59:59+01:00"/>
+                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2024-01-08T23:59:59+01:00"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d964e38" datatype="reference"/>
+                  <zorgaanbieder value="d1399e82" datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d964e31" datatype="reference"/>
+                  <farmaceutisch_product value="d1399e64" datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
                   <omschrijving value="elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, tijden exact aanhouden, oraal"/>
@@ -82,9 +82,9 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_tijdstippen_niet_flexibel_MVE"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-01-01T10:17:00"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2024-01-01T10:17:00+01:00"/>
                <verstrekker>
-                  <zorgaanbieder value="d964e38" datatype="reference"/>
+                  <zorgaanbieder value="d1399e82" datatype="reference"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="24"/>
@@ -94,7 +94,7 @@
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d964e79" datatype="reference"/>
+                  <farmaceutisch_product value="d1399e201" datatype="reference"/>
                </verstrekt_geneesmiddel>
                <relatie_verstrekkingsverzoek>
                   <identificatie value="MBH_300_tijdstippen_niet_flexibel_VV"
@@ -103,7 +103,7 @@
             </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d964e31">
+            <farmaceutisch_product id="d1399e64">
                <product_code code="1090"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -113,7 +113,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="METFORMINE 500MG TABLET"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d964e79">
+            <farmaceutisch_product id="d1399e201">
                <product_code code="693332"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -127,9 +127,19 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="METFORMINE 500MG TABLET"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="d964e38">
+            <zorgaanbieder id="d1399e82">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
-               <organisatie_naam value="Apotheek de Gulle Gaper"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_afhandeling_medicatievoorschrift>

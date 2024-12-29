@@ -31,21 +31,21 @@
             <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
          </patient>
          <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_logistiekeverbruiksperiode_eind"
+            <identificatie value="MBH_300_distributievorm_GDS"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <toedieningsafspraak>
-               <identificatie value="MBH_300_logistiekeverbruiksperiode_eind_TA"
+               <identificatie value="MBH_300_distributievorm_GDS_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T12:01:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2024-01-01T12:01:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-07-20T23:59:59+02:00"/>
+                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2024-07-19T23:59:59+02:00"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d1142e39" datatype="reference"/>
+                  <zorgaanbieder value="d1625e84" datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d1142e31" datatype="reference"/>
+                  <farmaceutisch_product value="d1625e64" datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
                   <omschrijving value="1 maal per dag 1 stuk, Oraal"/>
@@ -80,16 +80,16 @@
                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8"
                                 displayName="GDS"/>
                <relatie_medicatieafspraak>
-                  <identificatie value="MBH_300_logistiekeverbruiksperiode_eind_MA"
+                  <identificatie value="MBH_300_distributievorm_GDS_MA"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_medicatieafspraak>
             </toedieningsafspraak>
             <medicatieverstrekking>
-               <identificatie value="MBH_300_logistiekeverbruiksperiode_eind_MVE"
+               <identificatie value="MBH_300_distributievorm_GDS_MVE"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-01-01T12:01:00"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2024-01-01T12:01:00+01:00"/>
                <verstrekker>
-                  <zorgaanbieder value="d1142e39" datatype="reference"/>
+                  <zorgaanbieder value="d1625e84" datatype="reference"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="100"/>
@@ -99,19 +99,19 @@
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d1142e31" datatype="reference"/>
+                  <farmaceutisch_product value="d1625e64" datatype="reference"/>
                </verstrekt_geneesmiddel>
                <distributievorm code="1"
                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8"
                                 displayName="GDS"/>
                <relatie_verstrekkingsverzoek>
-                  <identificatie value="MBH_300_logistiekeverbruiksperiode_eind_VV"
+                  <identificatie value="MBH_300_distributievorm_GDS_VV"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
                </relatie_verstrekkingsverzoek>
             </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d1142e31">
+            <farmaceutisch_product id="d1625e64">
                <product_code code="1101099"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -125,9 +125,19 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="MIZOLASTINE TABLET MGA  10MG"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="d1142e39">
+            <zorgaanbieder id="d1625e84">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_afhandeling_medicatievoorschrift>

@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--Generated from HL7v3 verstrekkingenlijst 6.12 xml with message id (QURX_IN990113NL/id) root: 2.16.840.1.113883.2.4.6.6.1.1 and extension: 0123456789.-->
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<!--Generated from HL7v3 verstrekkingenlijst 6.12 xml with message id (QURX_IN990113NL/id) root: 2.16.840.1.113883.2.4.6.6.1.1 and extension: 0123456789.--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_verstrekkingenvertaling.xsd">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2022-08-23T14:00:09.728172+02:00"
-         last-update-date="2022-08-23T14:00:09.728172+02:00"/>
+         creation-date="2024-12-24T12:25:57.096+01:00"
+         last-update-date="2024-12-24T12:25:57.096+01:00"/>
    <data>
       <beschikbaarstellen_verstrekkingenvertaling app="mp-mp907"
                                                   shortName="beschikbaarstellen_verstrekkingenvertaling"
@@ -20,10 +18,10 @@
          <patient>
             <naamgegevens>
                <initialen value="J.J."/>
-               <naamgebruik value="3"
-                            code="NL3"
+               <naamgebruik value="4"
+                            code="NL4"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
-                            displayName="Geslachtsnaam partner gevolgd door eigen geslachtsnaam"/>
+                            displayName="Eigen geslachtsnaam gevolgd door geslachtsnaam partner"/>
                <geslachtsnaam>
                   <voorvoegsels value="le "/>
                   <achternaam value="Noble"/>
@@ -40,9 +38,9 @@
                       codeSystemName="AdministrativeGender"
                       displayName="Vrouw"/>
          </patient>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="mag01" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2016-03-03"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -54,7 +52,7 @@
                   <product>
                      <product_code code="OTH"
                                    codeSystem="2.16.840.1.113883.5.1008"
-                                   displayName=""
+                                   displayName="overig"
                                    originalText="Hydrocortison zetpil 100 mg"/>
                      <product_specificatie>
                         <product_naam value="Hydrocortison zetpil 100 mg"/>
@@ -104,8 +102,18 @@
                      </product_specificatie>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+						
+						
+						
+						
+							
+						
+						
+							
+								
+							
+						
+						         <gebruiksinstructie>
                   <omschrijving value="gebruik volgens schema"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
@@ -113,14 +121,22 @@
                   <aanvullende_instructie code="1131"
                                           codeSystem="2.16.840.1.113883.2.4.4.5"
                                           displayName="gebruik volgens schema"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis--><!--geen keerdosis in input-->
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612--><!--geen frequentie in input--></toedieningsschema>
+                     <dosering>
+                        <toedieningsschema/>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+						
+							
+								
+								
+								
+									
+								
+							
+						
+					       </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="mag01"/>
                <datum nullFlavor="NI"/>
@@ -141,7 +157,7 @@
                   <product>
                      <product_code code="OTH"
                                    codeSystem="2.16.840.1.113883.5.1008"
-                                   displayName=""
+                                   displayName="overig"
                                    originalText="Hydrocortison zetpil 100 mg"/>
                      <product_specificatie>
                         <product_naam value="Hydrocortison zetpil 100 mg"/>
@@ -193,9 +209,9 @@
                </verstrekt_geneesmiddel>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="0123456702" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2005-01-28"/>
                <gebruiksperiode value="21" unit="dag"/>
                <verstrekker>
@@ -213,24 +229,43 @@
                      <product_code code="1417762" codeSystem="2.16.840.1.113883.2.4.4.7"/>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+						
+						
+						
+						
+							
+						
+						
+							
+						
+						
+							
+								
+							
+						
+						         <gebruiksinstructie>
                   <omschrijving value="gedurende 21 dagen, 3 maal per dag 1 zakje"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
                                   displayName="geen informatie"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
                         <keerdosis>
                            <aantal>
-                              <vaste_waarde value="1"/>
+                              <vaste_waarde value="1">
+                                 <adaextension>
+                                    <translation value="1"
+                                                 code="121"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="zakje"/>
+                                 </adaextension>
+                              </vaste_waarde>
                            </aantal>
                            <eenheid code="245"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="Stuk"/>
                         </keerdosis>
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                        <toedieningsschema>
                            <frequentie>
                               <aantal>
                                  <vaste_waarde value="3"/>
@@ -241,7 +276,16 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+						
+							
+								
+								
+								
+									
+								
+							
+						
+					       </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="0123456702"/>
                <datum nullFlavor="NI"/>
@@ -270,9 +314,9 @@
                <verbruiksduur value="20" unit="dag"/>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="0123456703" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2005-01-28"/>
                <gebruiksperiode value="14" unit="dag"/>
                <verstrekker>
@@ -291,25 +335,51 @@
                      <product_code code="82309" codeSystem="2.16.840.1.113883.2.4.4.1"/>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+						
+						
+						
+						
+							
+						
+						
+							
+						
+						
+							
+								
+							
+						
+						         <gebruiksinstructie>
                   <omschrijving value="2 maal per dag 1 tot 2 tabletten"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
                                   displayName="geen informatie"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
                         <keerdosis>
                            <aantal>
-                              <min value="1"/>
-                              <max value="2"/>
+                              <min value="1">
+                                 <adaextension>
+                                    <translation value="1"
+                                                 code="100"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="tablet"/>
+                                 </adaextension>
+                              </min>
+                              <max value="2">
+                                 <adaextension>
+                                    <translation value="2"
+                                                 code="100"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="tablet"/>
+                                 </adaextension>
+                              </max>
                            </aantal>
                            <eenheid code="245"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="Stuk"/>
                         </keerdosis>
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                        <toedieningsschema>
                            <frequentie>
                               <aantal>
                                  <vaste_waarde value="2"/>
@@ -320,7 +390,16 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+						
+							
+								
+								
+								
+									
+								
+							
+						
+					       </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="0123456703"/>
                <datum nullFlavor="NI"/>
@@ -350,9 +429,9 @@
                <verbruiksduur value="15" unit="dag"/>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="0123456704" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2005-01-28"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -370,19 +449,37 @@
                      <product_code code="103039" codeSystem="2.16.840.1.113883.2.4.4.1"/>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+						
+						
+						
+						
+							
+						
+						
+							
+						
+						
+							
+								
+							
+						
+						         <gebruiksinstructie>
                   <omschrijving value="1 tot 2 maal per dag 1 tablet"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
                                   displayName="geen informatie"/>
-                  <!--variabele frequentie in effectiveTime of comp, 2 mars, 1 vast, 1 zo nodig, parallel, zelfde keerdosis-->
-                  <!--mp9-doseerinstructie-from-mp612-var-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
                         <keerdosis>
                            <aantal>
-                              <vaste_waarde value="1"/>
+                              <vaste_waarde value="1">
+                                 <adaextension>
+                                    <translation value="1"
+                                                 code="100"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="tablet"/>
+                                 </adaextension>
+                              </vaste_waarde>
                            </aantal>
                            <eenheid code="245"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -400,7 +497,16 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+						
+							
+								
+								
+								
+									
+								
+							
+						
+					       </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="0123456704"/>
                <datum nullFlavor="NI"/>
@@ -430,9 +536,9 @@
                <verbruiksduur value="1" unit="dag"/>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="0123456705" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2005-01-28"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -450,24 +556,43 @@
                      <product_code code="73563" codeSystem="2.16.840.1.113883.2.4.4.1"/>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+						
+						
+						
+						
+							
+						
+						
+							
+						
+						
+							
+								
+							
+						
+						         <gebruiksinstructie>
                   <omschrijving value="1 maal per jaar 2 tabletten"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
                                   displayName="geen informatie"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
                         <keerdosis>
                            <aantal>
-                              <vaste_waarde value="2"/>
+                              <vaste_waarde value="2">
+                                 <adaextension>
+                                    <translation value="2"
+                                                 code="100"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="tablet"/>
+                                 </adaextension>
+                              </vaste_waarde>
                            </aantal>
                            <eenheid code="245"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="Stuk"/>
                         </keerdosis>
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                        <toedieningsschema>
                            <frequentie>
                               <aantal>
                                  <vaste_waarde value="1"/>
@@ -478,7 +603,16 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+						
+							
+								
+								
+								
+									
+								
+							
+						
+					       </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="0123456705"/>
                <datum nullFlavor="NI"/>
@@ -508,9 +642,9 @@
                <verbruiksduur value="182" unit="dag"/>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="0123456706" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2005-01-28"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -527,17 +661,25 @@
                      <product_code code="1099280" codeSystem="2.16.840.1.113883.2.4.4.7"/>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+						
+						
+						
+						
+							
+						
+						
+							
+								
+							
+						
+						         <gebruiksinstructie>
                   <omschrijving value="1 tot 2 maal per week zonodig"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
                                   displayName="geen informatie"/>
-                  <!--variabele frequentie in effectiveTime of comp, 2 mars, minimaal een precondition (indien 1 is die anders dan de 1137, want anders eerder gematcht), parallel-->
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis--><!--geen keerdosis in input-->
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                     <dosering>
+                        <toedieningsschema>
                            <frequentie>
                               <aantal>
                                  <vaste_waarde value="1"/>
@@ -545,19 +687,27 @@
                               <tijdseenheid value="1" unit="week"/>
                            </frequentie>
                         </toedieningsschema>
-                        <zo_nodig>
+										1 tot 2 maal per week zonodig
+										
+										
+											
+										
+										
+											
+												<zo_nodig>
                            <criterium>
                               <code code="1137"
                                     codeSystem="2.16.840.1.113883.2.4.4.5"
                                     displayName="zo nodig"/>
                            </criterium>
                         </zo_nodig>
-                     </dosering>
+											
+										
+									            </dosering>
                   </doseerinstructie>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis--><!--geen keerdosis in input-->
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                     <dosering>
+                        <toedieningsschema>
                            <frequentie>
                               <aantal>
                                  <vaste_waarde value="1"/>
@@ -565,17 +715,35 @@
                               <tijdseenheid value="1" unit="week"/>
                            </frequentie>
                         </toedieningsschema>
-                        <zo_nodig>
+										1 tot 2 maal per week zonodig
+										
+										
+											
+										
+										
+											
+												<zo_nodig>
                            <criterium>
                               <code code="1137"
                                     codeSystem="2.16.840.1.113883.2.4.4.5"
                                     displayName="zo nodig"/>
                            </criterium>
                         </zo_nodig>
-                     </dosering>
+											
+										
+									            </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+						
+							
+								
+								
+								
+									
+								
+							
+						
+					       </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="0123456706"/>
                <datum nullFlavor="NI"/>
@@ -603,9 +771,9 @@
                </verstrekt_geneesmiddel>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="0123456707" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2005-01-28"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -623,24 +791,44 @@
                      <product_code code="50997" codeSystem="2.16.840.1.113883.2.4.4.1"/>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+						
+						
+						
+						
+							
+						
+						
+							
+						
+						
+							
+								
+
+							
+						
+						         <gebruiksinstructie>
                   <omschrijving value="1 maal per dag een kwart tablet"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
                                   displayName="geen informatie"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
                         <keerdosis>
                            <aantal>
-                              <vaste_waarde value="0.25"/>
+                              <vaste_waarde value="0.25">
+                                 <adaextension>
+                                    <translation value="0.25"
+                                                 code="100"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="tablet"/>
+                                 </adaextension>
+                              </vaste_waarde>
                            </aantal>
                            <eenheid code="245"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="Stuk"/>
                         </keerdosis>
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                        <toedieningsschema>
                            <frequentie>
                               <aantal>
                                  <vaste_waarde value="1"/>
@@ -651,7 +839,16 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+						
+							
+								
+								
+								
+									
+								
+							
+						
+					       </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="0123456707"/>
                <datum nullFlavor="NI"/>
@@ -681,9 +878,9 @@
                <verbruiksduur value="60" unit="dag"/>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="0123456708" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2005-01-28"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -701,24 +898,40 @@
                      <product_code code="120219" codeSystem="2.16.840.1.113883.2.4.4.1"/>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+						
+						
+						
+						
+							
+						
+						
+							
+								
+							
+						
+						         <gebruiksinstructie>
                   <omschrijving value="per week 15 milliliter"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
                                   displayName="geen informatie"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
                         <keerdosis>
                            <aantal>
-                              <vaste_waarde value="15"/>
+                              <vaste_waarde value="15">
+                                 <adaextension>
+                                    <translation value="15"
+                                                 code="56"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="milliliter"/>
+                                 </adaextension>
+                              </vaste_waarde>
                            </aantal>
                            <eenheid code="233"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="Milliliter"/>
                         </keerdosis>
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                        <toedieningsschema>
                            <frequentie>
                               <aantal>
                                  <vaste_waarde value="1"/>
@@ -729,7 +942,16 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+						
+							
+								
+								
+								
+									
+								
+							
+						
+					       </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="0123456708"/>
                <datum nullFlavor="NI"/>
@@ -758,9 +980,9 @@
                </verstrekt_geneesmiddel>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="0123456709" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2005-01-28"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -778,19 +1000,37 @@
                      <product_code code="15865" codeSystem="2.16.840.1.113883.2.4.4.1"/>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+						
+						
+						
+						
+							
+						
+						
+							
+						
+						
+							
+								
+							
+						
+						         <gebruiksinstructie>
                   <omschrijving value="1 tot 3 maal per week 2 tabletten"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
                                   displayName="geen informatie"/>
-                  <!--variabele frequentie in effectiveTime of comp, 2 mars, 1 vast, 1 zo nodig, parallel, zelfde keerdosis-->
-                  <!--mp9-doseerinstructie-from-mp612-var-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
                         <keerdosis>
                            <aantal>
-                              <vaste_waarde value="2"/>
+                              <vaste_waarde value="2">
+                                 <adaextension>
+                                    <translation value="2"
+                                                 code="100"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="tablet"/>
+                                 </adaextension>
+                              </vaste_waarde>
                            </aantal>
                            <eenheid code="245"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -808,7 +1048,16 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+						
+							
+								
+								
+								
+									
+								
+							
+						
+					       </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="0123456709"/>
                <datum nullFlavor="NI"/>
@@ -838,9 +1087,9 @@
                <verbruiksduur value="24" unit="dag"/>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="0123456710" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2005-01-28"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -858,24 +1107,40 @@
                      <product_code code="42609" codeSystem="2.16.840.1.113883.2.4.4.1"/>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+						
+						
+						
+						
+							
+						
+						
+							
+								
+							
+						
+						         <gebruiksinstructie>
                   <omschrijving value="1 maal per week 6 tabletten"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
                                   displayName="geen informatie"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
                         <keerdosis>
                            <aantal>
-                              <vaste_waarde value="6"/>
+                              <vaste_waarde value="6">
+                                 <adaextension>
+                                    <translation value="6"
+                                                 code="100"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="tablet"/>
+                                 </adaextension>
+                              </vaste_waarde>
                            </aantal>
                            <eenheid code="245"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="Stuk"/>
                         </keerdosis>
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                        <toedieningsschema>
                            <frequentie>
                               <aantal>
                                  <vaste_waarde value="1"/>
@@ -886,7 +1151,16 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+						
+							
+								
+								
+								
+									
+								
+							
+						
+					       </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="0123456710"/>
                <datum nullFlavor="NI"/>
@@ -915,9 +1189,9 @@
                </verstrekt_geneesmiddel>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="0123456711" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2005-01-28"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -935,24 +1209,43 @@
                      <product_code code="10960" codeSystem="2.16.840.1.113883.2.4.4.1"/>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+						
+						
+						
+						
+							
+						
+						
+							
+						
+						
+							
+								
+							
+						
+						         <gebruiksinstructie>
                   <omschrijving value="1 maal per dag 10 milliliter"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
                                   displayName="geen informatie"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
                         <keerdosis>
                            <aantal>
-                              <vaste_waarde value="10"/>
+                              <vaste_waarde value="10">
+                                 <adaextension>
+                                    <translation value="10"
+                                                 code="56"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="milliliter"/>
+                                 </adaextension>
+                              </vaste_waarde>
                            </aantal>
                            <eenheid code="233"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="Milliliter"/>
                         </keerdosis>
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                        <toedieningsschema>
                            <frequentie>
                               <aantal>
                                  <vaste_waarde value="1"/>
@@ -963,7 +1256,16 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+						
+							
+								
+								
+								
+									
+								
+							
+						
+					       </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="0123456711"/>
                <datum nullFlavor="NI"/>
@@ -993,9 +1295,9 @@
                <verbruiksduur value="1" unit="dag"/>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="0123456712" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2005-01-28"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -1013,24 +1315,41 @@
                      <product_code code="95575" codeSystem="2.16.840.1.113883.2.4.4.1"/>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+						
+						
+						
+						
+							
+						
+						
+							
+								
+
+							
+						
+						         <gebruiksinstructie>
                   <omschrijving value="2 maal per dag 1 druppel"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
                                   displayName="geen informatie"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
                         <keerdosis>
                            <aantal>
-                              <vaste_waarde value="1"/>
+                              <vaste_waarde value="1">
+                                 <adaextension>
+                                    <translation value="1"
+                                                 code="20"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="druppel"/>
+                                 </adaextension>
+                              </vaste_waarde>
                            </aantal>
                            <eenheid code="303"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="Druppel"/>
                         </keerdosis>
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                        <toedieningsschema>
                            <frequentie>
                               <aantal>
                                  <vaste_waarde value="2"/>
@@ -1041,7 +1360,16 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+						
+							
+								
+								
+								
+									
+								
+							
+						
+					       </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="0123456712"/>
                <datum nullFlavor="NI"/>
@@ -1070,9 +1398,9 @@
                </verstrekt_geneesmiddel>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="0123456713" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2005-01-28"/>
                <gebruiksperiode value="21" unit="dag"/>
                <verstrekker>
@@ -1091,24 +1419,40 @@
                      <product_code code="115371" codeSystem="2.16.840.1.113883.2.4.4.1"/>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+						
+						
+						
+						
+							
+						
+						
+							
+								
+							
+						
+						         <gebruiksinstructie>
                   <omschrijving value="gedurende 21 dagen, elke 2 dagen 1 inhalatie"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
                                   displayName="geen informatie"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
                         <keerdosis>
                            <aantal>
-                              <vaste_waarde value="1"/>
+                              <vaste_waarde value="1">
+                                 <adaextension>
+                                    <translation value="1"
+                                                 code="36"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="inhalatie"/>
+                                 </adaextension>
+                              </vaste_waarde>
                            </aantal>
                            <eenheid code="208"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="Dosis"/>
                         </keerdosis>
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                        <toedieningsschema>
                            <frequentie>
                               <aantal>
                                  <vaste_waarde value="1"/>
@@ -1119,7 +1463,16 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+						
+							
+								
+								
+								
+									
+								
+							
+						
+					       </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="0123456713"/>
                <datum nullFlavor="NI"/>
@@ -1148,9 +1501,9 @@
                </verstrekt_geneesmiddel>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="0123456715" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2005-01-28"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -1168,20 +1521,42 @@
                      <product_code code="98221" codeSystem="2.16.840.1.113883.2.4.4.1"/>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+						
+						
+						
+						
+							
+						
+						
+							
+								
+							
+						
+						         <gebruiksinstructie>
                   <omschrijving value="1 tot 3 maal per dag 1 tot 2 tabletten"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
                                   displayName="geen informatie"/>
-                  <!--variabele frequentie in effectiveTime of comp, 2 mars, 1 vast, 1 zo nodig, parallel, zelfde keerdosis-->
-                  <!--mp9-doseerinstructie-from-mp612-var-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
                         <keerdosis>
                            <aantal>
-                              <min value="1"/>
-                              <max value="2"/>
+                              <min value="1">
+                                 <adaextension>
+                                    <translation value="1"
+                                                 code="100"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="tablet"/>
+                                 </adaextension>
+                              </min>
+                              <max value="2">
+                                 <adaextension>
+                                    <translation value="2"
+                                                 code="100"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="tablet"/>
+                                 </adaextension>
+                              </max>
                            </aantal>
                            <eenheid code="245"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -1199,7 +1574,16 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+						
+							
+								
+								
+								
+									
+								
+							
+						
+					       </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="0123456715"/>
                <datum nullFlavor="NI"/>
@@ -1228,9 +1612,9 @@
                </verstrekt_geneesmiddel>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="0123456716" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2005-01-28"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -1247,24 +1631,40 @@
                      <product_code code="710695" codeSystem="2.16.840.1.113883.2.4.4.7"/>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+						
+						
+						
+						
+							
+						
+						
+							
+								
+							
+						
+						         <gebruiksinstructie>
                   <omschrijving value="3 maal per dag 1 eetlepel (= 15ml)"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
                                   displayName="geen informatie"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
                         <keerdosis>
                            <aantal>
-                              <vaste_waarde value="15"/>
+                              <vaste_waarde value="15">
+                                 <adaextension>
+                                    <translation value="1"
+                                                 code="10"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="eetlepel (= 15ml)"/>
+                                 </adaextension>
+                              </vaste_waarde>
                            </aantal>
                            <eenheid code="233"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="Milliliter"/>
                         </keerdosis>
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                        <toedieningsschema>
                            <frequentie>
                               <aantal>
                                  <vaste_waarde value="3"/>
@@ -1275,7 +1675,16 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+						
+							
+								
+								
+								
+									
+								
+							
+						
+					       </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="0123456716"/>
                <datum nullFlavor="NI"/>
@@ -1303,9 +1712,9 @@
                </verstrekt_geneesmiddel>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="0123456717" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2005-01-28"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -1323,24 +1732,40 @@
                      <product_code code="121363" codeSystem="2.16.840.1.113883.2.4.4.1"/>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+						
+						
+						
+						
+							
+						
+						
+							
+								
+							
+						
+						         <gebruiksinstructie>
                   <omschrijving value="2 maal per dag 5 gram"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
                                   displayName="geen informatie"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
                         <keerdosis>
                            <aantal>
-                              <vaste_waarde value="5"/>
+                              <vaste_waarde value="5">
+                                 <adaextension>
+                                    <translation value="5"
+                                                 code="34"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="gram"/>
+                                 </adaextension>
+                              </vaste_waarde>
                            </aantal>
                            <eenheid code="215"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="Gram"/>
                         </keerdosis>
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                        <toedieningsschema>
                            <frequentie>
                               <aantal>
                                  <vaste_waarde value="2"/>
@@ -1351,7 +1776,16 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+						
+							
+								
+								
+								
+									
+								
+							
+						
+					       </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="0123456717"/>
                <datum nullFlavor="NI"/>
@@ -1380,9 +1814,9 @@
                </verstrekt_geneesmiddel>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="0123456718" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2005-01-28"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -1400,24 +1834,40 @@
                      <product_code code="87424" codeSystem="2.16.840.1.113883.2.4.4.1"/>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+						
+						
+						
+						
+							
+						
+						
+							
+								
+							
+						
+						         <gebruiksinstructie>
                   <omschrijving value="2 maal per dag 1 inhalatie"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
                                   displayName="geen informatie"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
                         <keerdosis>
                            <aantal>
-                              <vaste_waarde value="1"/>
+                              <vaste_waarde value="1">
+                                 <adaextension>
+                                    <translation value="1"
+                                                 code="36"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="inhalatie"/>
+                                 </adaextension>
+                              </vaste_waarde>
                            </aantal>
                            <eenheid code="208"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="Dosis"/>
                         </keerdosis>
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                        <toedieningsschema>
                            <frequentie>
                               <aantal>
                                  <vaste_waarde value="2"/>
@@ -1428,7 +1878,16 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+						
+							
+								
+								
+								
+									
+								
+							
+						
+					       </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="0123456718"/>
                <datum nullFlavor="NI"/>
@@ -1457,9 +1916,9 @@
                </verstrekt_geneesmiddel>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="0123456719" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2005-06-29"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -1477,24 +1936,40 @@
                      <product_code code="122041" codeSystem="2.16.840.1.113883.2.4.4.1"/>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+						
+						
+						
+						
+							
+						
+						
+							
+								
+							
+						
+						         <gebruiksinstructie>
                   <omschrijving value="1 maal per 3 dagen 1 pleister"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
                                   displayName="geen informatie"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
                         <keerdosis>
                            <aantal>
-                              <vaste_waarde value="1"/>
+                              <vaste_waarde value="1">
+                                 <adaextension>
+                                    <translation value="1"
+                                                 code="77"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="pleister"/>
+                                 </adaextension>
+                              </vaste_waarde>
                            </aantal>
                            <eenheid code="245"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="Stuk"/>
                         </keerdosis>
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                        <toedieningsschema>
                            <frequentie>
                               <aantal>
                                  <vaste_waarde value="1"/>
@@ -1505,7 +1980,16 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+						
+							
+								
+								
+								
+									
+								
+							
+						
+					       </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="0123456719"/>
                <datum nullFlavor="NI"/>
@@ -1534,9 +2018,9 @@
                </verstrekt_geneesmiddel>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="0123456720" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2005-01-28"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -1553,27 +2037,51 @@
                      <product_code code="753696" codeSystem="2.16.840.1.113883.2.4.4.7"/>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+						
+						
+						
+						
+							
+						
+						
+							
+								
+							
+						
+						         <gebruiksinstructie>
                   <omschrijving value="zonodig"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
                                   displayName="geen informatie"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis--><!--geen keerdosis in input-->
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612--><!--geen frequentie in input--></toedieningsschema>
-                        <zo_nodig>
+                     <dosering>
+                        <toedieningsschema/>
+										zonodig
+										
+										
+											
+												<zo_nodig>
                            <criterium>
                               <code code="1137"
                                     codeSystem="2.16.840.1.113883.2.4.4.5"
                                     displayName="zo nodig"/>
                            </criterium>
                         </zo_nodig>
-                     </dosering>
+											
+										
+									            </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+						
+							
+								
+								
+								
+									
+								
+							
+						
+					       </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="0123456720"/>
                <datum nullFlavor="NI"/>
@@ -1601,9 +2109,9 @@
                </verstrekt_geneesmiddel>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="0123456721" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2005-06-16"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -1621,24 +2129,43 @@
                      <product_code code="122033" codeSystem="2.16.840.1.113883.2.4.4.1"/>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+						
+						
+						
+						
+							
+						
+						
+							
+						
+						
+							
+								
+							
+						
+						         <gebruiksinstructie>
                   <omschrijving value="1 maal per 3 dagen 1 pleister"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
                                   displayName="geen informatie"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
                         <keerdosis>
                            <aantal>
-                              <vaste_waarde value="1"/>
+                              <vaste_waarde value="1">
+                                 <adaextension>
+                                    <translation value="1"
+                                                 code="77"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="pleister"/>
+                                 </adaextension>
+                              </vaste_waarde>
                            </aantal>
                            <eenheid code="245"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="Stuk"/>
                         </keerdosis>
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                        <toedieningsschema>
                            <frequentie>
                               <aantal>
                                  <vaste_waarde value="1"/>
@@ -1649,7 +2176,16 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+						
+							
+								
+								
+								
+									
+								
+							
+						
+					       </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="0123456721"/>
                <datum nullFlavor="NI"/>
@@ -1679,9 +2215,9 @@
                <verbruiksduur value="14" unit="dag"/>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="0123456724" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2005-06-16"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -1699,15 +2235,24 @@
                      <product_code code="111325" codeSystem="2.16.840.1.113883.2.4.4.1"/>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+						
+						
+						
+						
+							
+						
+						
+							
+								
+							
+						
+						         <gebruiksinstructie>
                   <omschrijving value="3 maal per dag 16 IE"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
                                   displayName="geen informatie"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
                         <keerdosis>
                            <aantal>
                               <vaste_waarde value="16"/>
@@ -1716,7 +2261,7 @@
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="Internat.eenh."/>
                         </keerdosis>
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                        <toedieningsschema>
                            <frequentie>
                               <aantal>
                                  <vaste_waarde value="3"/>
@@ -1727,7 +2272,16 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+						
+							
+								
+								
+								
+									
+								
+							
+						
+					       </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="0123456724"/>
                <datum nullFlavor="NI"/>
@@ -1756,9 +2310,9 @@
                </verstrekt_geneesmiddel>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="0123456725" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2005-06-16"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -1776,24 +2330,40 @@
                      <product_code code="38539" codeSystem="2.16.840.1.113883.2.4.4.1"/>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+						
+						
+						
+						
+							
+						
+						
+							
+								
+							
+						
+						         <gebruiksinstructie>
                   <omschrijving value="4 maal per dag 2 milliliter"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
                                   displayName="geen informatie"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
                         <keerdosis>
                            <aantal>
-                              <vaste_waarde value="2"/>
+                              <vaste_waarde value="2">
+                                 <adaextension>
+                                    <translation value="2"
+                                                 code="56"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="milliliter"/>
+                                 </adaextension>
+                              </vaste_waarde>
                            </aantal>
                            <eenheid code="233"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="Milliliter"/>
                         </keerdosis>
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                        <toedieningsschema>
                            <frequentie>
                               <aantal>
                                  <vaste_waarde value="4"/>
@@ -1804,7 +2374,16 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+						
+							
+								
+								
+								
+									
+								
+							
+						
+					       </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="0123456725"/>
                <datum nullFlavor="NI"/>
@@ -1833,10 +2412,10 @@
                </verstrekt_geneesmiddel>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="00244159705"
                            root="2.16.840.1.113883.2.4.3.39.6101.23639.10000972.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2019-09-27"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -1854,25 +2433,43 @@
                      <product_code code="83704" codeSystem="2.16.840.1.113883.2.4.4.1"/>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+			            
+			            
+			            
+			            
+			                
+			            
+			            
+			                
+			            
+			            
+			                
+			                    
+			                
+			            
+			            <gebruiksinstructie>
                   <omschrijving value="1-4 maal per dag 1 inhalatie zo nodig"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
                                   displayName="geen informatie"/>
-                  <!--variabele frequentie in effectiveTime of comp, 2 mars, minimaal een precondition (indien 1 is die anders dan de 1137, want anders eerder gematcht), parallel-->
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
                         <keerdosis>
                            <aantal>
-                              <vaste_waarde value="1"/>
+                              <vaste_waarde value="1">
+                                 <adaextension>
+                                    <translation value="1"
+                                                 code="36"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="inhalatie"/>
+                                 </adaextension>
+                              </vaste_waarde>
                            </aantal>
                            <eenheid code="208"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="DO"/>
                         </keerdosis>
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                        <toedieningsschema>
                            <frequentie>
                               <aantal>
                                  <vaste_waarde value="1"/>
@@ -1880,27 +2477,54 @@
                               <tijdseenheid value="1" unit="dag"/>
                            </frequentie>
                         </toedieningsschema>
-                        <zo_nodig>
+			                            
+			                            1-4 maal per dag 1 inhalatie zo nodig
+			                            
+			                            
+			                                
+			                                    
+			                                
+			                                
+			                                    
+			                                
+			                            
+			                            
+			                                
+			                                    
+			                                    
+			                                
+			                            
+			                            
+			                                
+			                                    <zo_nodig>
                            <criterium>
                               <code code="1137"
                                     codeSystem="2.16.840.1.113883.2.4.4.5"
                                     displayName="zo nodig"/>
                            </criterium>
                         </zo_nodig>
-                     </dosering>
+			                                
+			                            
+			                        </dosering>
                   </doseerinstructie>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
                         <keerdosis>
                            <aantal>
-                              <vaste_waarde value="1"/>
+                              <vaste_waarde value="1">
+                                 <adaextension>
+                                    <translation value="1"
+                                                 code="36"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="inhalatie"/>
+                                 </adaextension>
+                              </vaste_waarde>
                            </aantal>
                            <eenheid code="208"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="DO"/>
                         </keerdosis>
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                        <toedieningsschema>
                            <frequentie>
                               <aantal>
                                  <vaste_waarde value="3"/>
@@ -1908,18 +2532,48 @@
                               <tijdseenheid value="1" unit="dag"/>
                            </frequentie>
                         </toedieningsschema>
-                        <zo_nodig>
+			                            
+			                            1-4 maal per dag 1 inhalatie zo nodig
+			                            
+			                            
+			                                
+			                                    
+			                                
+			                                
+			                                    
+			                                
+			                            
+			                            
+			                                
+			                                    
+			                                    
+			                                
+			                            
+			                            
+			                                
+			                                    <zo_nodig>
                            <criterium>
                               <code code="OTH"
                                     codeSystem="2.16.840.1.113883.5.1008"
-                                    displayName=""
+                                    displayName="overig"
                                     originalText="zo nodig"/>
                            </criterium>
                         </zo_nodig>
-                     </dosering>
+			                                
+			                            
+			                        </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+			            
+			                
+			                    
+			                    
+			                    
+			                        
+			                    
+			                
+			            
+			        </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.840.1.113883.2.4.3.39.6101.23639.10000972.3"
                               value="00244159705"/>

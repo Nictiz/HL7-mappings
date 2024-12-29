@@ -4,7 +4,7 @@
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
          creation-date="2024-03-19T14:13:55.949+01:00"
-         last-update-date="2024-06-24T11:09:01.63Z"/>
+         last-update-date="2024-11-11T15:30:05.314Z"/>
    <data>
       <sturen_medicatiegegevens app="mp-mp93"
                                 shortName="sturen_medicatiegegevens"
@@ -329,16 +329,68 @@
                                  datatype="reference"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.276"/>
                </beoogd_verstrekker>
-               <financiele_indicatiecode code="OTH"
+               <financiele_indicatiecode originalText="B2"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.592"
+                                         value="2"
+                                         code="OTH"
                                          codeSystem="2.16.840.1.113883.5.1008"
-                                         codeSystemName="NullFlavor"
-                                         originalText="B2"
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.592"/>
+                                         displayName="overig"/>
                <relatie_medicatieafspraak comment=""
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.292">
                   <identificatie value="MBH_300_financiele_indicatiecode_MA"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.293"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+         </medicamenteuze_behandeling>
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_geannuleerd_indicator-->
+         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
+            <identificatie value="MBH_300_geannuleerd_indicator"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.274"
+                                  comment="">
+               <identificatie value="MBH_300_geannuleerd_indicator_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.289"/>
+               <verstrekkingsverzoek_datum_tijd value="T+0D{13:00:00}"
+                                                datatype="datetime"
+                                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.279"/>
+               <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.290"
+                       comment="">
+                  <zorgverlener value="PETER_VAN_PULVER"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.291"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.277"
+                                            comment="">
+                  <farmaceutisch_product value="PRK_FINASTERIDE_34975"
+                                         datatype="reference"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.278"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.285"
+                                           comment="">
+                  <aantal value="180"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.562"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.563"/>
+               </te_verstrekken_hoeveelheid>
+               <geannuleerd_indicator value="true"
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1167"/>
+               <beoogd_verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.275"
+                                   comment="">
+                  <zorgaanbieder value="APOTHEEK_DE_GULLE_GAPER"
+                                 datatype="reference"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.276"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.292"
+                                          comment="">
+                  <identificatie value="MBH_300_geannuleerd_indicator_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.293"/>
                </relatie_medicatieafspraak>
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
@@ -406,12 +458,12 @@
                <product_code code="353"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
-                             displayName="OXAZEPAM 10MG TABLET"
+                             displayName="OXAZEPAM TABLET 10MG"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
                <product_code code="1023"
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              codeSystemName="G-Standaard GPK"
-                             displayName="OXAZEPAM TABLET  10MG "
+                             displayName="OXAZEPAM TABLET 10MG"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
             <farmaceutisch_product id="PRK_PARACETAMOL_67903"
@@ -426,6 +478,20 @@
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              codeSystemName="G-Standaard GPK"
                              displayName="PARACETAMOL 500MG TABLET"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260"
+                                   comment=""
+                                   id="PRK_FINASTERIDE_34975">
+               <product_code code="34975"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="FINASTERIDE TABLET 5MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="87912"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="FINASTERIDE TABLET 5MG"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
             <zorgverlener id="BERTINE_VAN_DOORN"
@@ -443,6 +509,38 @@
                      <voorvoegsels value="van "
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.139"/>
                      <achternaam value="Doorn"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.140"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.145"
+                            value="2"
+                            code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder comment=""
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.168">
+                  <zorgaanbieder datatype="reference"
+                                 value="HUISARTSENPRAKTIJK_PULVER_EN_PARTNERS"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.846"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgverlener id="PETER_VAN_PULVER"
+                          comment=""
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.92">
+               <zorgverlener_identificatienummer value="000001111"
+                                                 root="2.16.528.1.1007.3.1"
+                                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.132"/>
+               <naamgegevens comment=""
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.133">
+                  <voornamen value="Peter"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.134"/>
+                  <geslachtsnaam comment=""
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.138">
+                     <voorvoegsels value="van "
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.139"/>
+                     <achternaam value="Pulver"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.140"/>
                   </geslachtsnaam>
                </naamgegevens>

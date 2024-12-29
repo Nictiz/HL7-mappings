@@ -36,16 +36,16 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_annuleren_TA_starten"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T14:10:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2024-01-01T14:10:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-08T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-02-19T00:00:00+01:00"/>
+                  <start_datum_tijd datatype="datetime" value="2024-01-08T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2024-02-19T00:00:00+01:00"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d644e41" datatype="reference"/>
+                  <zorgaanbieder value="d970e87" datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d644e33" datatype="reference"/>
+                  <farmaceutisch_product value="d970e67" datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
                   <omschrijving value="1 maal per week 1 stuk, Oraal"/>
@@ -84,9 +84,9 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_annuleren_MVE_starten"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-01-01T14:10:00"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2024-01-01T14:10:00+01:00"/>
                <verstrekker>
-                  <zorgaanbieder value="d644e41" datatype="reference"/>
+                  <zorgaanbieder value="d970e87" datatype="reference"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="42"/>
@@ -96,7 +96,7 @@
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d644e33" datatype="reference"/>
+                  <farmaceutisch_product value="d970e67" datatype="reference"/>
                </verstrekt_geneesmiddel>
                <relatie_verstrekkingsverzoek>
                   <identificatie value="MBH_300_annuleren_VV_starten"
@@ -105,7 +105,7 @@
             </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d644e33">
+            <farmaceutisch_product id="d970e67">
                <product_code code="602574"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -119,9 +119,19 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="MEFLOQUINE TABLET 250MG"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="d644e41">
+            <zorgaanbieder id="d970e87">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_afhandeling_medicatievoorschrift>

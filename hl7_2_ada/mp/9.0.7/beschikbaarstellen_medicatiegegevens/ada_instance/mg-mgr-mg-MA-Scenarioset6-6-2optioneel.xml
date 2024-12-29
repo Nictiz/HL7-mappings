@@ -1,8 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!--Generated from HL7v3 instance.-->
 <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:nf="http://www.nictiz.nl/functions"
-        xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
         xmlns:sdtc="urn:hl7-org:sdtc"
         xmlns:pharm="urn:ihe:pharm:medication"
         xmlns:hl7="urn:hl7-org:v3"
@@ -12,8 +9,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2022-08-23T14:00:04.983235+02:00"
-         last-update-date="2022-08-23T14:00:04.983235+02:00"/>
+         creation-date="2024-12-24T12:25:48.912+01:00"
+         last-update-date="2024-12-24T12:25:48.912+01:00"/>
    <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
       <beschikbaarstellen_medicatiegegevens app="mp-mp907"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -39,13 +36,14 @@
             <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
          </patient>
          <medicamenteuze_behandeling>
-            <identificatie value="MBH_907_interval" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <identificatie value="MBH_907_interval-MSZ"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <medicatieafspraak>
-               <gebruiksperiode_start value="2020-03-24T00:00:00"/>
+               <gebruiksperiode_start value="2024-01-01T00:00:00+01:00"/>
                <gebruiksperiode_eind nullFlavor="NI"/>
-               <identificatie value="MBH_907_interval_MA"
+               <identificatie value="MBH_907_interval_MA-MSZ"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <afspraakdatum value="2020-03-24T08:04:00"/>
+               <afspraakdatum value="2024-01-01T08:04:00+01:00"/>
                <voorschrijver>
                   <zorgverlener>
                      <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
@@ -83,36 +81,36 @@
                </voorschrijver>
                <afgesproken_geneesmiddel>
                   <product>
-                     <product_code code="34851"
+                     <product_code code="68519"
                                    codeSystem="2.16.840.1.113883.2.4.4.10"
                                    codeSystemName="G-Standaard PRK"
-                                   displayName="INSULINE ISOFAAN 100IE/ML"/>
-                     <product_code code="111325"
+                                   displayName="AMOXICILLINE DISPERTABLET 500MG"/>
+                     <product_code code="117080"
                                    codeSystem="2.16.840.1.113883.2.4.4.1"
                                    codeSystemName="G-Standaard GPK"
-                                   displayName="INSULINE ISOFAAN 100IE/ML"/>
+                                   displayName="AMOXICILLINE DISPERTABLET 500MG"/>
                   </product>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt;, exact iedere 12 uur 16 IE, subcutaan"/>
-                  <toedieningsweg code="21"
+                  <omschrijving value="Vanaf 1 jan 2024, iedere 8 uur 1 stuk - gelijke tussenpozen aanhouden, Oraal"/>
+                  <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
-                                  displayName="subcutaan"/>
+                                  displayName="Oraal"/>
                   <doseerinstructie>
                      <volgnummer value="1"/>
                      <dosering>
                         <keerdosis>
                            <aantal>
-                              <vaste_waarde value="16"/>
+                              <vaste_waarde value="1"/>
                            </aantal>
-                           <eenheid code="217"
-                                    displayName="internationale eenheid"
+                           <eenheid code="245"
+                                    displayName="stuk"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     codeSystemName="G-Standaard thesaurus basiseenheden"/>
                         </keerdosis>
                         <toedieningsschema>
-                           <interval value="12" unit="uur"/>
+                           <interval value="8" unit="uur"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>

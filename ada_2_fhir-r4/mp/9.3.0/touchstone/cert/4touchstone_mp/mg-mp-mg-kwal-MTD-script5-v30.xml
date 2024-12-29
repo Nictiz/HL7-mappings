@@ -1,6 +1,10 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-kwal-MTD-script5-v30"/>
    <type value="transaction"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
       <fullUrl value="urn:uuid:b70cb45d-6b19-11ec-0000-020000000000"/>
       <resource>
@@ -39,6 +43,14 @@
                <type value="Patient"/>
                <display value="Patient, I. XXX_Klerk"/>
             </subject>
+            <supportingInformation>
+               <type value="MedicationDispense"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                  <value value="MBH_300_SCRIPT5_TA"/>
+               </identifier>
+               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_SCRIPT5_TA || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            </supportingInformation>
             <effectiveDateTime value="${DATE, T, D, -1}T20:00:00+02:00"/>
             <performer>
                <actor>

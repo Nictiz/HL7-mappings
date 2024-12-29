@@ -35,46 +35,53 @@
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">2 maal per dag 2 stuks, oraal</text>
+         <text mediaType="text/plain">1 maal per dag 0.7 ml, Subcutaan</text>
          <effectiveTime xsi:type="IVL_TS"
                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <low value="20221212000000+0100"/>
+            <low value="20231212000000+0100"/>
             <width value="5"
                    unit="d"/>
          </effectiveTime>
-         <routeCode code="9"
+         <routeCode code="21"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
-                    displayName="oraal"
+                    displayName="Subcutaan"
                     codeSystemName="G-Standaard Toedieningswegen"/>
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
                <manufacturedMaterial classCode="MMAT"
                                      determinerCode="KIND">
-                  <code code="665800"
+                  <code code="1108751"
                         codeSystem="2.16.840.1.113883.2.4.4.7"
-                        displayName="PARACETAMOL SANDOZ TABLET 500MG"
+                        displayName="INNOHEP INJVLST 20000 IE/ML WWSP 0,7ML"
                         codeSystemName="G-Standaard HPK">
-                     <translation code="67903"
+                     <translation code="49255"
                                   codeSystem="2.16.840.1.113883.2.4.4.10"
-                                  displayName="PARACETAMOL 500MG TABLET"
+                                  displayName="TINZAPARINE INJVL WWSP 14000IE=0,7ML (20.000IE/ML)"
                                   codeSystemName="G-Standaard PRK"/>
-                     <translation code="2194"
+                     <translation code="103888"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="PARACETAMOL 500MG TABLET"
+                                  displayName="TINZAPARINE INJVLST 20.000IE/ML"
                                   codeSystemName="G-Standaard GPK"/>
                   </code>
                </manufacturedMaterial>
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20221212091500+0100"/>
+            <time value="20231212091500+0100"/>
             <assignedAuthor>
                <id nullFlavor="NI"/>
                <representedOrganization>
                   <id extension="01236578"
                       root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek De Gulle Gaper</name>
+                  <addr use="WP">
+                     <streetName>Dorpsstraat</streetName>
+                     <houseNumber>12</houseNumber>
+                     <buildingNumberSuffix>A</buildingNumberSuffix>
+                     <postalCode>1234 AA</postalCode>
+                     <city>Ons Dorp</city>
+                  </addr>
                </representedOrganization>
             </assignedAuthor>
          </author>
@@ -87,17 +94,17 @@
                               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
-                     <frequency value="2"/>
+                     <frequency value="1"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="2"
-                          unit="1">
-                     <translation value="2"
-                                  code="245"
-                                  displayName="stuk"
+                  <center value="0.7"
+                          unit="ml">
+                     <translation value="0.7"
+                                  code="233"
+                                  displayName="milliliter"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>

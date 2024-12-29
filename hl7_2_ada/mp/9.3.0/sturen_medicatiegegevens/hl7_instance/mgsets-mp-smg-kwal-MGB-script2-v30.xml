@@ -49,11 +49,11 @@
                displayName="bevinding betreffende gedrag met betrekking tot medicatieregime (bevinding)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">gedurende 4 dagen elke dag om 18:00 3 stuks - let op, tijden exact aanhouden, oraal</text>
+         <text mediaType="text/plain">Volgens schema trombosedienst, oraal</text>
          <effectiveTime xsi:type="IVL_TS"
                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <low value="20221122000000+0100"/>
-            <high value="20221125235959+0100"/>
+            <low value="20231122000000+0100"/>
+            <high value="20231125235959+0100"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -81,7 +81,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20221126142500+0100"/>
+            <time value="20231126142500+0100"/>
             <assignedAuthor>
                <id extension="222221111"
                    root="2.16.528.1.1007.3.1"/>
@@ -101,7 +101,7 @@
                   <id extension="11112222"
                       root="2.16.528.1.1007.3.3"/>
                   <name>Trombosedienst Ons Dorp</name>
-                  <addr>
+                  <addr use="WP">
                      <streetName>Kerkstraat</streetName>
                      <houseNumber>28</houseNumber>
                      <buildingNumberSuffix>d</buildingNumberSuffix>
@@ -153,44 +153,18 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
                <value xsi:type="BL"
-                      value="false"
+                      value="true"
                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
             </observation>
          </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <sequenceNumber value="1"/>
-            <substanceAdministration classCode="SBADM"
-                                     moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xmlns="http://hl7.org/fhir">
-                  <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="true"/>
-                     </extension>
-                     <boundsDuration>
-                        <value value="4"/>
-                        <unit value="dag"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="d"/>
-                     </boundsDuration>
-                     <timeOfDay value="18:00:00"/>
-                  </repeat>
-               </effectiveTime>
-               <doseQuantity>
-                  <center value="3"
-                          unit="1">
-                     <translation value="3"
-                                  code="245"
-                                  displayName="stuk"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                  </center>
-               </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-            </substanceAdministration>
+         <entryRelationship typeCode="SPRT">
+            <act classCode="ACT"
+                 moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9085"/>
+               <code nullFlavor="OTH">
+                  <originalText>Volgens schema trombosedienst</originalText>
+               </code>
+            </act>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
@@ -274,11 +248,11 @@
                displayName="bevinding betreffende gedrag met betrekking tot medicatieregime (bevinding)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">eerst gedurende 3 dagen 2 stuks 's avonds, dan gedurende 2 dagen 3 stuks 's avonds, dan gedurende 2 dagen 2 stuks 's avonds, dan gedurende 2 dagen 3 stuks 's avonds, dan gedurende 3 dagen 2 stuks 's avonds, dan gedurende 2 dagen 3 stuks 's avonds, oraal</text>
+         <text mediaType="text/plain">Volgens schema trombosedienst, oraal</text>
          <effectiveTime xsi:type="IVL_TS"
                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <low value="20221126000000+0100"/>
-            <high value="20221208235959+0100"/>
+            <low value="20231126000000+0100"/>
+            <high value="20231208235959+0100"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -306,7 +280,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20221212102500+0100"/>
+            <time value="20231212102500+0100"/>
             <assignedAuthor>
                <id extension="222221111"
                    root="2.16.528.1.1007.3.1"/>
@@ -326,7 +300,7 @@
                   <id extension="11112222"
                       root="2.16.528.1.1007.3.3"/>
                   <name>Trombosedienst Ons Dorp</name>
-                  <addr>
+                  <addr use="WP">
                      <streetName>Kerkstraat</streetName>
                      <houseNumber>28</houseNumber>
                      <buildingNumberSuffix>d</buildingNumberSuffix>
@@ -382,215 +356,14 @@
                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
             </observation>
          </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <sequenceNumber value="1"/>
-            <substanceAdministration classCode="SBADM"
-                                     moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xmlns="http://hl7.org/fhir">
-                  <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
-                     <boundsDuration>
-                        <value value="3"/>
-                        <unit value="dag"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="d"/>
-                     </boundsDuration>
-                     <when value="EVE"/>
-                  </repeat>
-               </effectiveTime>
-               <doseQuantity>
-                  <center value="2"
-                          unit="1">
-                     <translation value="2"
-                                  code="245"
-                                  displayName="stuk"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                  </center>
-               </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <sequenceNumber value="2"/>
-            <substanceAdministration classCode="SBADM"
-                                     moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xmlns="http://hl7.org/fhir">
-                  <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
-                     <boundsDuration>
-                        <value value="2"/>
-                        <unit value="dag"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="d"/>
-                     </boundsDuration>
-                     <when value="EVE"/>
-                  </repeat>
-               </effectiveTime>
-               <doseQuantity>
-                  <center value="3"
-                          unit="1">
-                     <translation value="3"
-                                  code="245"
-                                  displayName="stuk"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                  </center>
-               </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <sequenceNumber value="3"/>
-            <substanceAdministration classCode="SBADM"
-                                     moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xmlns="http://hl7.org/fhir">
-                  <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
-                     <boundsDuration>
-                        <value value="2"/>
-                        <unit value="dag"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="d"/>
-                     </boundsDuration>
-                     <when value="EVE"/>
-                  </repeat>
-               </effectiveTime>
-               <doseQuantity>
-                  <center value="2"
-                          unit="1">
-                     <translation value="2"
-                                  code="245"
-                                  displayName="stuk"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                  </center>
-               </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <sequenceNumber value="4"/>
-            <substanceAdministration classCode="SBADM"
-                                     moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xmlns="http://hl7.org/fhir">
-                  <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
-                     <boundsDuration>
-                        <value value="2"/>
-                        <unit value="dag"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="d"/>
-                     </boundsDuration>
-                     <when value="EVE"/>
-                  </repeat>
-               </effectiveTime>
-               <doseQuantity>
-                  <center value="3"
-                          unit="1">
-                     <translation value="3"
-                                  code="245"
-                                  displayName="stuk"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                  </center>
-               </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <sequenceNumber value="5"/>
-            <substanceAdministration classCode="SBADM"
-                                     moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xmlns="http://hl7.org/fhir">
-                  <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
-                     <boundsDuration>
-                        <value value="3"/>
-                        <unit value="dag"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="d"/>
-                     </boundsDuration>
-                     <when value="EVE"/>
-                  </repeat>
-               </effectiveTime>
-               <doseQuantity>
-                  <center value="2"
-                          unit="1">
-                     <translation value="2"
-                                  code="245"
-                                  displayName="stuk"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                  </center>
-               </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <sequenceNumber value="6"/>
-            <substanceAdministration classCode="SBADM"
-                                     moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xmlns="http://hl7.org/fhir">
-                  <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
-                     <boundsDuration>
-                        <value value="2"/>
-                        <unit value="dag"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="d"/>
-                     </boundsDuration>
-                     <when value="EVE"/>
-                  </repeat>
-               </effectiveTime>
-               <doseQuantity>
-                  <center value="3"
-                          unit="1">
-                     <translation value="3"
-                                  code="245"
-                                  displayName="stuk"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                  </center>
-               </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-            </substanceAdministration>
+         <entryRelationship typeCode="SPRT">
+            <act classCode="ACT"
+                 moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9085"/>
+               <code nullFlavor="OTH">
+                  <originalText>Volgens schema trombosedienst</originalText>
+               </code>
+            </act>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"

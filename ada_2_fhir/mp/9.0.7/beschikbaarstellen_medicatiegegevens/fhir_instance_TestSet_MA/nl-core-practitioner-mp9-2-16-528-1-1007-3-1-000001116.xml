@@ -7,6 +7,7 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <div>Id 000001116 (UZI-NR-PERS), Pieter de Plat</div>
+         <div>Kerkstraat 4, 1234AB Onze Stad (WP)</div>
       </div>
    </text>
    <identifier>
@@ -28,4 +29,26 @@
          </extension>
       </given>
    </name>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="WP"/>
+               <display value="Werkadres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="work"/>
+      <line value="Kerkstraat 4">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Kerkstraat"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="4"/>
+         </extension>
+      </line>
+      <city value="Onze Stad"/>
+      <postalCode value="1234AB"/>
+   </address>
 </Practitioner>

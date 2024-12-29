@@ -34,18 +34,18 @@
             <medicatiegebruik>
                <identificatie value="MBH_300_script3_MGB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <medicatiegebruik_datum_tijd datatype="datetime" value="2023-01-02T09:15:00"/>
+               <medicatiegebruik_datum_tijd datatype="datetime" value="2024-01-02T09:15:00+01:00"/>
                <gebruik_indicator value="true"/>
                <volgens_afspraak_indicator value="true"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2022-12-31T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2022-12-31T23:59:59+01:00"/>
+                  <start_datum_tijd datatype="datetime" value="2023-12-27T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2024-01-16T23:59:59+01:00"/>
                </gebruiksperiode>
                <gebruiksproduct>
-                  <farmaceutisch_product value="d260e31" datatype="reference"/>
+                  <farmaceutisch_product value="d294e64" datatype="reference"/>
                </gebruiksproduct>
                <gebruiksinstructie>
-                  <omschrijving value="Bij pijn 2 mg/dosis , maximaal 3 mg/dosis per dag, 1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts., oromucosaal"/>
+                  <omschrijving value="Bij pijn 2 doses , maximaal 3 doses per dag, 1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts., oromucosaal"/>
                   <toedieningsweg code="34"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
@@ -61,8 +61,8 @@
                            <aantal>
                               <nominale_waarde value="2"/>
                            </aantal>
-                           <eenheid code="303"
-                                    displayName="mg/dosis"
+                           <eenheid code="208"
+                                    displayName="dosis"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     codeSystemName="G-Standaard thesaurus basiseenheden"/>
                         </keerdosis>
@@ -72,8 +72,8 @@
                                       displayName="Bij pijn"/>
                            <maximale_dosering>
                               <aantal value="3"/>
-                              <eenheid code="303"
-                                       displayName="mg/dosis"
+                              <eenheid code="208"
+                                       displayName="dosis"
                                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
                               <tijdseenheid value="1" unit="dag"/>
@@ -87,34 +87,30 @@
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_medicatieafspraak>
                <voorschrijver>
-                  <zorgverlener value="d260e98" datatype="reference"/>
+                  <zorgverlener value="d294e225" datatype="reference"/>
                </voorschrijver>
                <informant>
                   <informant_is_patient value="true"/>
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener value="d260e98" datatype="reference"/>
+                     <zorgverlener value="d294e225" datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d260e31">
-               <product_code code="1822454"
-                             codeSystem="2.16.840.1.113883.2.4.4.7"
-                             codeSystemName="G-Standaard HPK"
-                             displayName="NITROGLYCERINE SDZ OROMUC SPRAY "/>
-               <product_code code="72206"
+            <farmaceutisch_product id="d294e64">
+               <product_code code="72214"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
-                             displayName="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO "/>
+                             displayName="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO FL 250DO"/>
                <product_code code="119431"
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              codeSystemName="G-Standaard GPK"
                              displayName="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO"/>
             </farmaceutisch_product>
-            <zorgverlener id="d260e98">
+            <zorgverlener id="d294e225">
                <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Bertine"/>
@@ -129,10 +125,10 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d260e109" datatype="reference"/>
+                  <zorgaanbieder value="d294e246" datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d260e109">
+            <zorgaanbieder id="d294e246">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>

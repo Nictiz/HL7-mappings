@@ -1,6 +1,10 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-tst-MGB-Scenarioset6-v30"/>
    <type value="transaction"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
       <fullUrl value="urn:uuid:450f4536-6b0f-11ec-0000-020000000000"/>
       <resource>
@@ -138,7 +142,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2796f727-6ac1-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:914fa1b6-6b73-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -259,7 +263,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:acd96cbd-6b5c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:a25504b6-6b59-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -393,7 +397,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f25992b6-6b53-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:fd809cbd-6b70-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -434,7 +438,11 @@
                   <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
                </coding>
             </category>
-            <medicationReference/>
+            <medicationReference>
+               <reference value="urn:uuid:c8fceee9-6b2e-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="Cetomacrogolcreme met vaseline 10%"/>
+            </medicationReference>
             <subject>
                <reference value="urn:uuid:6bc7b2fe-6aa1-11ec-0000-020000000000"/>
                <type value="Patient"/>
@@ -498,7 +506,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9f8e60a7-6b26-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:f07d5a56-6b29-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -880,7 +888,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:32822cbd-6b64-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:59b7db16-6b7c-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1115,7 +1123,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2da39956-6b3c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:dd740956-6b32-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1456,7 +1464,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:65ec3cbd-6b6b-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:d5b209b6-6ace-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1615,7 +1623,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7b5f77a7-6b12-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:db10bcbd-6af7-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1743,7 +1751,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:1b55e2b6-6b6b-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:a1564ca7-6aa8-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1860,7 +1868,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:77b13cbd-6b7b-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:ad18d927-6b13-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1974,7 +1982,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6d6c1cbd-6af5-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:68ee9be7-6b31-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -2296,6 +2304,34 @@
                   <display value="AMOXICILLINE DISPERTABLET 500MG"/>
                </coding>
                <text value="AMOXICILLINE DISPERTABLET 500MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c8fceee9-6b2e-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="226866"/>
+                  <display value="Cetomacrogolcreme met vaseline 10%"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="195758"/>
+                  <display value="Cetomacrogolcreme met vaseline 10%"/>
+               </coding>
+               <text value="Cetomacrogolcreme met vaseline 10%"/>
             </code>
          </Medication>
       </resource>

@@ -1,6 +1,7 @@
-<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Bundle xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+        xmlns="http://hl7.org/fhir">
    <id value="MO-XXX-Ruys"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
@@ -12,7 +13,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:c33f0fd6-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:e2d87eaf-6b03-11ec-0000-020000000000"/>
       <resource>
          <List>
             <meta>
@@ -37,14 +38,14 @@
                <text value="Medicatieoverzicht"/>
             </code>
             <subject>
-               <reference value="urn:uuid:c33f1cf1-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:7b3b0d1e-6b61-11ec-0000-020000000000"/>
                <display value="R. XXX_Ruys"/>
             </subject>
             <date value="${DATE, T, D, +0}T00:00:00+02:00"/>
             <source>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-SourceOrganization">
                   <valueReference>
-                     <reference value="urn:uuid:c33f0fde-6a95-11ec-0000-020000000000"/>
+                     <reference value="urn:uuid:54d87f45-6b45-11ec-0000-020000000000"/>
                      <display value="Apotheek de Gulle Gaper"/>
                   </valueReference>
                </extension>
@@ -57,7 +58,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1cf1-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:7b3b0d1e-6b61-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -66,7 +67,9 @@
             <text>
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), Id 13103 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.19829.1), R. XXX_Ruys, Man, 1 augustus 1964</div>
+                  <div>Id 
+<i>afgeschermd (ontbrekend gegeven)</i> (BSN), Id 13103 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.19829.1), 
+<span title="Naamsamenstelling: Eigennaam">R. XXX_Ruys</span>, Man, 1 augustus 1964</div>
                   <div>
                      <a href="tel:+31612341234">+31612341234</a> (Tel)</div>
                   <div>Knolweg 1000, 9999XA Stitswerd (Bezoek)</div>
@@ -148,7 +151,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0fde-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:54d87f45-6b45-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -167,8 +170,10 @@
                         <tr>
                            <th>Contactgegevens</th>
                            <td>
-                              <a href="tel:+31703655424">+31703655424</a> (Tel)<br/>
-                              <a href="mailto:info@apotheekgullegaper.com">info@apotheekgullegaper.com</a> (E-mail)<br/>
+                              <a href="tel:+31703655424">+31703655424</a> (Tel)
+<br/>
+                              <a href="mailto:info@apotheekgullegaper.com">info@apotheekgullegaper.com</a> (E-mail)
+<br/>
                            </td>
                         </tr>
                         <tr>
