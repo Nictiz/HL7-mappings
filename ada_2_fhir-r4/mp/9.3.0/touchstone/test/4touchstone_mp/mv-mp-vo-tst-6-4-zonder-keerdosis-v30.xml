@@ -5,7 +5,7 @@
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:1290fb3e-6b61-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:20d8525d-6abf-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -46,6 +46,11 @@
                   <display value="voorschrijven van geneesmiddel"/>
                </coding>
             </category>
+            <medicationReference>
+               <reference value="urn:uuid:c8fceee9-6b2e-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="Cetomacrogolcreme met vaseline 10%"/>
+            </medicationReference>
             <subject>
                <reference value="urn:uuid:839f5efe-6b41-11ec-0000-020000000000"/>
                <type value="Patient"/>
@@ -87,7 +92,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0f2390a1-6aa3-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:4a12a289-6acb-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -116,7 +121,11 @@
                   <display value="verstrekkingsverzoek"/>
                </coding>
             </category>
-            <medicationReference/>
+            <medicationReference>
+               <reference value="urn:uuid:c8fceee9-6b2e-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="Cetomacrogolcreme met vaseline 10%"/>
+            </medicationReference>
             <subject>
                <reference value="urn:uuid:839f5efe-6b41-11ec-0000-020000000000"/>
                <type value="Patient"/>
@@ -371,6 +380,34 @@
       <request>
          <method value="POST"/>
          <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c8fceee9-6b2e-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="226866"/>
+                  <display value="Cetomacrogolcreme met vaseline 10%"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="195758"/>
+                  <display value="Cetomacrogolcreme met vaseline 10%"/>
+               </coding>
+               <text value="Cetomacrogolcreme met vaseline 10%"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
       </request>
    </entry>
 </Bundle>

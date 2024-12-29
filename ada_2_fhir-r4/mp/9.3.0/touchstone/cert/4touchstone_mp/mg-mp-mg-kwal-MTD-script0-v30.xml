@@ -6,595 +6,6 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:e2935e26-6ab7-11ec-0000-020000000000"/>
-      <resource>
-         <MedicationStatement>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Volgens schema trombosedienst, oraal"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
-               <valueReference>
-                  <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
-                  <type value="PractitionerRole"/>
-                  <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
-               </valueReference>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
-               <valueBoolean value="true"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_script0_QA3"/>
-               </valueIdentifier>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
-               <valueReference>
-                  <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
-                  <type value="PractitionerRole"/>
-                  <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
-               </valueReference>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <value value="MBH_300_script0_QA3_MGB"/>
-            </identifier>
-            <status value="active"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="422979000"/>
-                  <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
-               </coding>
-            </category>
-            <medicationReference>
-               <reference value="urn:uuid:4a6e2804-6b1d-11ec-0000-020000000000"/>
-               <type value="Medication"/>
-               <display value="ACENOCOUMAROL AURO TABLET 1MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:921e6ff8-6b68-11ec-0000-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, G. XXX_Groot"/>
-            </subject>
-            <effectivePeriod>
-               <start value="${DATE, T, D, -25}T00:00:00+02:00"/>
-               <end value="${DATE, T, D, -12}T23:59:59+02:00"/>
-            </effectivePeriod>
-            <dateAsserted value="${DATE, T, D, -11}T08:10:00+02:00"/>
-            <informationSource>
-               <reference value="urn:uuid:921e6ff8-6b68-11ec-0000-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, G. XXX_Groot"/>
-            </informationSource>
-            <derivedFrom>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
-                  <valueCodeableConcept>
-                     <coding>
-                        <system value="http://snomed.info/sct"/>
-                        <code value="33633005"/>
-                        <display value="voorschrijven van geneesmiddel"/>
-                     </coding>
-                  </valueCodeableConcept>
-               </extension>
-               <type value="MedicationRequest"/>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_script0_QA3_MA"/>
-               </identifier>
-               <display value="relatie naar medicatieafspraak"/>
-            </derivedFrom>
-            <dosage>
-               <additionalInstruction>
-                  <coding>
-                     <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
-                     <code value="OTH"/>
-                     <display value="overig"/>
-                  </coding>
-                  <text value="Volgens schema trombosedienst"/>
-               </additionalInstruction>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="oraal"/>
-                  </coding>
-               </route>
-            </dosage>
-         </MedicationStatement>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationStatement"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:869b780f-6ab8-11ec-0000-020000000000"/>
-      <resource>
-         <MedicationAdministration>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
-               <valueDateTime value="${DATE, T, D, -25}T18:07:19+02:00"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_script0_QA3"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-               <value value="MBH_300_script0_QA3_MTD1"/>
-            </identifier>
-            <status value="unknown"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="18629005"/>
-                  <display value="toediening van medicatie"/>
-               </coding>
-            </category>
-            <medicationReference>
-               <reference value="urn:uuid:4a6e2804-6b1d-11ec-0000-020000000000"/>
-               <type value="Medication"/>
-               <display value="ACENOCOUMAROL AURO TABLET 1MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:921e6ff8-6b68-11ec-0000-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, G. XXX_Groot"/>
-            </subject>
-            <effectiveDateTime value="${DATE, T, D, -25}T18:07:19+02:00"/>
-            <performer>
-               <actor>
-                  <reference value="urn:uuid:a757282e-6b76-11ec-0000-020000000000"/>
-                  <type value="PractitionerRole"/>
-                  <display value="Healthcare professional (role), Jantien Toedien, Verpleegkundigen, niet nader gespecificeerd, Thuiszorg Om en Bij"/>
-               </actor>
-            </performer>
-            <request>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
-                  <valueCodeableConcept>
-                     <coding>
-                        <system value="http://snomed.info/sct"/>
-                        <code value="395067002"/>
-                        <display value="optimaliseren van dosering van medicatie"/>
-                     </coding>
-                  </valueCodeableConcept>
-               </extension>
-               <type value="MedicationRequest"/>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-                  <value value="MBH_300_script0_QA3_WDS1"/>
-               </identifier>
-               <display value="relatie naar wisselend doseerschema met identificatie: MBH_300_script0_QA3_WDS1 || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-            </request>
-            <dosage>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="oraal"/>
-                  </coding>
-               </route>
-               <dose>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
-                     <valueQuantity>
-                        <value value="2"/>
-                        <unit value="stuk"/>
-                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                        <code value="245"/>
-                     </valueQuantity>
-                  </extension>
-                  <value value="2"/>
-                  <unit value="stuk"/>
-                  <system value="http://unitsofmeasure.org"/>
-                  <code value="1"/>
-               </dose>
-            </dosage>
-         </MedicationAdministration>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationAdministration"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:6d4df80f-6ac7-11ec-0000-020000000000"/>
-      <resource>
-         <MedicationAdministration>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
-               <valueDateTime value="${DATE, T, D, -24}T17:58:57+02:00"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_script0_QA3"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-               <value value="MBH_300_script0_QA3_MTD2"/>
-            </identifier>
-            <status value="unknown"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="18629005"/>
-                  <display value="toediening van medicatie"/>
-               </coding>
-            </category>
-            <medicationReference>
-               <reference value="urn:uuid:4a6e2804-6b1d-11ec-0000-020000000000"/>
-               <type value="Medication"/>
-               <display value="ACENOCOUMAROL AURO TABLET 1MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:921e6ff8-6b68-11ec-0000-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, G. XXX_Groot"/>
-            </subject>
-            <effectiveDateTime value="${DATE, T, D, -24}T17:58:57+02:00"/>
-            <performer>
-               <actor>
-                  <reference value="urn:uuid:a757282e-6b76-11ec-0000-020000000000"/>
-                  <type value="PractitionerRole"/>
-                  <display value="Healthcare professional (role), Jantien Toedien, Verpleegkundigen, niet nader gespecificeerd, Thuiszorg Om en Bij"/>
-               </actor>
-            </performer>
-            <request>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
-                  <valueCodeableConcept>
-                     <coding>
-                        <system value="http://snomed.info/sct"/>
-                        <code value="395067002"/>
-                        <display value="optimaliseren van dosering van medicatie"/>
-                     </coding>
-                  </valueCodeableConcept>
-               </extension>
-               <type value="MedicationRequest"/>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-                  <value value="MBH_300_script0_QA3_WDS1"/>
-               </identifier>
-               <display value="relatie naar wisselend doseerschema met identificatie: MBH_300_script0_QA3_WDS1 || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-            </request>
-            <dosage>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="oraal"/>
-                  </coding>
-               </route>
-               <dose>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
-                     <valueQuantity>
-                        <value value="3"/>
-                        <unit value="stuk"/>
-                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                        <code value="245"/>
-                     </valueQuantity>
-                  </extension>
-                  <value value="3"/>
-                  <unit value="stuk"/>
-                  <system value="http://unitsofmeasure.org"/>
-                  <code value="1"/>
-               </dose>
-            </dosage>
-         </MedicationAdministration>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationAdministration"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:5400780f-6ad6-11ec-0000-020000000000"/>
-      <resource>
-         <MedicationAdministration>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
-               <valueDateTime value="${DATE, T, D, -23}T18:11:08+02:00"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_script0_QA3"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-               <value value="MBH_300_script0_QA3_MTD3"/>
-            </identifier>
-            <status value="unknown"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="18629005"/>
-                  <display value="toediening van medicatie"/>
-               </coding>
-            </category>
-            <medicationReference>
-               <reference value="urn:uuid:4a6e2804-6b1d-11ec-0000-020000000000"/>
-               <type value="Medication"/>
-               <display value="ACENOCOUMAROL AURO TABLET 1MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:921e6ff8-6b68-11ec-0000-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, G. XXX_Groot"/>
-            </subject>
-            <effectiveDateTime value="${DATE, T, D, -23}T18:11:08+02:00"/>
-            <performer>
-               <actor>
-                  <reference value="urn:uuid:a757282e-6b76-11ec-0000-020000000000"/>
-                  <type value="PractitionerRole"/>
-                  <display value="Healthcare professional (role), Jantien Toedien, Verpleegkundigen, niet nader gespecificeerd, Thuiszorg Om en Bij"/>
-               </actor>
-            </performer>
-            <request>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
-                  <valueCodeableConcept>
-                     <coding>
-                        <system value="http://snomed.info/sct"/>
-                        <code value="395067002"/>
-                        <display value="optimaliseren van dosering van medicatie"/>
-                     </coding>
-                  </valueCodeableConcept>
-               </extension>
-               <type value="MedicationRequest"/>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-                  <value value="MBH_300_script0_QA3_WDS1"/>
-               </identifier>
-               <display value="relatie naar wisselend doseerschema met identificatie: MBH_300_script0_QA3_WDS1 || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-            </request>
-            <dosage>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="oraal"/>
-                  </coding>
-               </route>
-               <dose>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
-                     <valueQuantity>
-                        <value value="3"/>
-                        <unit value="stuk"/>
-                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                        <code value="245"/>
-                     </valueQuantity>
-                  </extension>
-                  <value value="3"/>
-                  <unit value="stuk"/>
-                  <system value="http://unitsofmeasure.org"/>
-                  <code value="1"/>
-               </dose>
-            </dosage>
-         </MedicationAdministration>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationAdministration"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:3ab2f80f-6ae5-11ec-0000-020000000000"/>
-      <resource>
-         <MedicationAdministration>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
-               <valueDateTime value="${DATE, T, D, -23}T18:48:44+02:00"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.ReasonForDeviation">
-               <valueCodeableConcept>
-                  <coding>
-                     <system value="http://snomed.info/sct"/>
-                     <code value="152741000146103"/>
-                     <display value="medicatie uitgespuugd door patiënt"/>
-                  </coding>
-               </valueCodeableConcept>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_script0_QA3"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-               <value value="MBH_300_script0_QA3_MTD4"/>
-            </identifier>
-            <status value="unknown"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="18629005"/>
-                  <display value="toediening van medicatie"/>
-               </coding>
-            </category>
-            <medicationReference>
-               <reference value="urn:uuid:4a6e2804-6b1d-11ec-0000-020000000000"/>
-               <type value="Medication"/>
-               <display value="ACENOCOUMAROL AURO TABLET 1MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:921e6ff8-6b68-11ec-0000-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, G. XXX_Groot"/>
-            </subject>
-            <effectiveDateTime value="${DATE, T, D, -23}T18:20:00+02:00"/>
-            <performer>
-               <actor>
-                  <reference value="urn:uuid:a757282e-6b76-11ec-0000-020000000000"/>
-                  <type value="PractitionerRole"/>
-                  <display value="Healthcare professional (role), Jantien Toedien, Verpleegkundigen, niet nader gespecificeerd, Thuiszorg Om en Bij"/>
-               </actor>
-            </performer>
-            <request>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
-                  <valueCodeableConcept>
-                     <coding>
-                        <system value="http://snomed.info/sct"/>
-                        <code value="395067002"/>
-                        <display value="optimaliseren van dosering van medicatie"/>
-                     </coding>
-                  </valueCodeableConcept>
-               </extension>
-               <type value="MedicationRequest"/>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-                  <value value="MBH_300_script0_QA3_WDS1"/>
-               </identifier>
-               <display value="relatie naar wisselend doseerschema met identificatie: MBH_300_script0_QA3_WDS1 || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-            </request>
-            <dosage>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="oraal"/>
-                  </coding>
-               </route>
-               <dose>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
-                     <valueQuantity>
-                        <value value="-3"/>
-                        <unit value="stuk"/>
-                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                        <code value="245"/>
-                     </valueQuantity>
-                  </extension>
-                  <value value="-3"/>
-                  <unit value="stuk"/>
-                  <system value="http://unitsofmeasure.org"/>
-                  <code value="1"/>
-               </dose>
-            </dosage>
-         </MedicationAdministration>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationAdministration"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:af01445d-6b1a-11ec-0000-020000000000"/>
-      <resource>
-         <MedicationAdministration>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
-               <valueDateTime value="${DATE, T, D, -23}T19:05:33+02:00"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.ReasonForDeviation">
-               <valueCodeableConcept>
-                  <coding>
-                     <system value="http://snomed.info/sct"/>
-                     <code value="152741000146103"/>
-                     <display value="medicatie uitgespuugd door patiënt"/>
-                  </coding>
-               </valueCodeableConcept>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_script0_QA3"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-               <value value="MBH_300_script0_QA3_MTD5"/>
-            </identifier>
-            <status value="unknown"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="18629005"/>
-                  <display value="toediening van medicatie"/>
-               </coding>
-            </category>
-            <medicationReference>
-               <reference value="urn:uuid:4a6e2804-6b1d-11ec-0000-020000000000"/>
-               <type value="Medication"/>
-               <display value="ACENOCOUMAROL AURO TABLET 1MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:921e6ff8-6b68-11ec-0000-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, G. XXX_Groot"/>
-            </subject>
-            <effectiveDateTime value="${DATE, T, D, -23}T19:05:33+02:00"/>
-            <performer>
-               <actor>
-                  <reference value="urn:uuid:a757282e-6b76-11ec-0000-020000000000"/>
-                  <type value="PractitionerRole"/>
-                  <display value="Healthcare professional (role), Jantien Toedien, Verpleegkundigen, niet nader gespecificeerd, Thuiszorg Om en Bij"/>
-               </actor>
-            </performer>
-            <request>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
-                  <valueCodeableConcept>
-                     <coding>
-                        <system value="http://snomed.info/sct"/>
-                        <code value="395067002"/>
-                        <display value="optimaliseren van dosering van medicatie"/>
-                     </coding>
-                  </valueCodeableConcept>
-               </extension>
-               <type value="MedicationRequest"/>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-                  <value value="MBH_300_script0_QA3_WDS1"/>
-               </identifier>
-               <display value="relatie naar wisselend doseerschema met identificatie: MBH_300_script0_QA3_WDS1 || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-            </request>
-            <dosage>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="oraal"/>
-                  </coding>
-               </route>
-               <dose>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
-                     <valueQuantity>
-                        <value value="3"/>
-                        <unit value="stuk"/>
-                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                        <code value="245"/>
-                     </valueQuantity>
-                  </extension>
-                  <value value="3"/>
-                  <unit value="stuk"/>
-                  <system value="http://unitsofmeasure.org"/>
-                  <code value="1"/>
-               </dose>
-            </dosage>
-         </MedicationAdministration>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationAdministration"/>
-      </request>
-   </entry>
-   <entry>
       <fullUrl value="urn:uuid:65ffcc96-6adf-11ec-0000-020000000000"/>
       <resource>
          <MedicationAdministration>
@@ -666,6 +77,23 @@
                   <display value="Healthcare professional (role), Jantien Toedien, Verpleegkundigen, niet nader gespecificeerd, Thuiszorg Om en Bij"/>
                </actor>
             </performer>
+            <request>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="33633005"/>
+                        <display value="voorschrijven"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_script0_QA1_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_script0_QA1_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </request>
             <dosage>
                <route>
                   <coding>
@@ -768,6 +196,23 @@
                   <display value="Healthcare professional (role), Jantien Toedien, Verpleegkundigen, niet nader gespecificeerd, Thuiszorg Om en Bij"/>
                </actor>
             </performer>
+            <request>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="33633005"/>
+                        <display value="voorschrijven"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_script0_QA1_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_script0_QA1_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </request>
             <dosage>
                <route>
                   <coding>
@@ -799,7 +244,530 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:077f145d-6b10-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:49d93c96-6a99-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationAdministration>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, -25}T18:07:19+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_script0_QA3"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <value value="MBH_300_script0_QA3_MTD1"/>
+            </identifier>
+            <status value="unknown"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="18629005"/>
+                  <display value="toediening van medicatie"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:4a6e2804-6b1d-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="ACENOCOUMAROL AURO TABLET 1MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:921e6ff8-6b68-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, G. XXX_Groot"/>
+            </subject>
+            <supportingInformation>
+               <type value="MedicationDispense"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                  <value value="MBH_300_script0_QA3_TA"/>
+               </identifier>
+               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_script0_QA3_TA || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            </supportingInformation>
+            <effectiveDateTime value="${DATE, T, D, -25}T18:07:19+02:00"/>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:a757282e-6b76-11ec-0000-020000000000"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare professional (role), Jantien Toedien, Verpleegkundigen, niet nader gespecificeerd, Thuiszorg Om en Bij"/>
+               </actor>
+            </performer>
+            <request>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="33633005"/>
+                        <display value="voorschrijven"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_script0_QA3_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_script0_QA3_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </request>
+            <dosage>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <dose>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                     <valueQuantity>
+                        <value value="2"/>
+                        <unit value="stuk"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="245"/>
+                     </valueQuantity>
+                  </extension>
+                  <value value="2"/>
+                  <unit value="stuk"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="1"/>
+               </dose>
+            </dosage>
+         </MedicationAdministration>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationAdministration"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:a424dc96-6b2f-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationAdministration>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, -24}T17:58:57+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_script0_QA3"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <value value="MBH_300_script0_QA3_MTD2"/>
+            </identifier>
+            <status value="unknown"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="18629005"/>
+                  <display value="toediening van medicatie"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:4a6e2804-6b1d-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="ACENOCOUMAROL AURO TABLET 1MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:921e6ff8-6b68-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, G. XXX_Groot"/>
+            </subject>
+            <supportingInformation>
+               <type value="MedicationDispense"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                  <value value="MBH_300_script0_QA3_TA"/>
+               </identifier>
+               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_script0_QA3_TA || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            </supportingInformation>
+            <effectiveDateTime value="${DATE, T, D, -24}T17:58:57+02:00"/>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:a757282e-6b76-11ec-0000-020000000000"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare professional (role), Jantien Toedien, Verpleegkundigen, niet nader gespecificeerd, Thuiszorg Om en Bij"/>
+               </actor>
+            </performer>
+            <request>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="33633005"/>
+                        <display value="voorschrijven"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_script0_QA3_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_script0_QA3_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </request>
+            <dosage>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <dose>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                     <valueQuantity>
+                        <value value="3"/>
+                        <unit value="stuk"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="245"/>
+                     </valueQuantity>
+                  </extension>
+                  <value value="3"/>
+                  <unit value="stuk"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="1"/>
+               </dose>
+            </dosage>
+         </MedicationAdministration>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationAdministration"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:29cb6c96-6add-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationAdministration>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, -23}T18:11:08+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_script0_QA3"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <value value="MBH_300_script0_QA3_MTD3"/>
+            </identifier>
+            <status value="unknown"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="18629005"/>
+                  <display value="toediening van medicatie"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:4a6e2804-6b1d-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="ACENOCOUMAROL AURO TABLET 1MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:921e6ff8-6b68-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, G. XXX_Groot"/>
+            </subject>
+            <supportingInformation>
+               <type value="MedicationDispense"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                  <value value="MBH_300_script0_QA3_TA"/>
+               </identifier>
+               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_script0_QA3_TA || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            </supportingInformation>
+            <effectiveDateTime value="${DATE, T, D, -23}T18:11:08+02:00"/>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:a757282e-6b76-11ec-0000-020000000000"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare professional (role), Jantien Toedien, Verpleegkundigen, niet nader gespecificeerd, Thuiszorg Om en Bij"/>
+               </actor>
+            </performer>
+            <request>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="33633005"/>
+                        <display value="voorschrijven"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_script0_QA3_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_script0_QA3_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </request>
+            <dosage>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <dose>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                     <valueQuantity>
+                        <value value="3"/>
+                        <unit value="stuk"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="245"/>
+                     </valueQuantity>
+                  </extension>
+                  <value value="3"/>
+                  <unit value="stuk"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="1"/>
+               </dose>
+            </dosage>
+         </MedicationAdministration>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationAdministration"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:84170c96-6b73-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationAdministration>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, -23}T18:48:44+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.ReasonForDeviation">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="152741000146103"/>
+                     <display value="medicatie uitgespuugd door patiënt"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_script0_QA3"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <value value="MBH_300_script0_QA3_MTD4"/>
+            </identifier>
+            <status value="unknown"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="18629005"/>
+                  <display value="toediening van medicatie"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:4a6e2804-6b1d-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="ACENOCOUMAROL AURO TABLET 1MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:921e6ff8-6b68-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, G. XXX_Groot"/>
+            </subject>
+            <supportingInformation>
+               <type value="MedicationDispense"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                  <value value="MBH_300_script0_QA3_TA"/>
+               </identifier>
+               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_script0_QA3_TA || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            </supportingInformation>
+            <effectiveDateTime value="${DATE, T, D, -23}T18:20:00+02:00"/>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:a757282e-6b76-11ec-0000-020000000000"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare professional (role), Jantien Toedien, Verpleegkundigen, niet nader gespecificeerd, Thuiszorg Om en Bij"/>
+               </actor>
+            </performer>
+            <request>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="33633005"/>
+                        <display value="voorschrijven"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_script0_QA3_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_script0_QA3_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </request>
+            <dosage>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <dose>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                     <valueQuantity>
+                        <value value="-3"/>
+                        <unit value="stuk"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="245"/>
+                     </valueQuantity>
+                  </extension>
+                  <value value="-3"/>
+                  <unit value="stuk"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="1"/>
+               </dose>
+            </dosage>
+         </MedicationAdministration>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationAdministration"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2165780f-6af4-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationAdministration>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, -23}T19:05:33+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.ReasonForDeviation">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="152741000146103"/>
+                     <display value="medicatie uitgespuugd door patiënt"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_script0_QA3"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <value value="MBH_300_script0_QA3_MTD5"/>
+            </identifier>
+            <status value="unknown"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="18629005"/>
+                  <display value="toediening van medicatie"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:4a6e2804-6b1d-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="ACENOCOUMAROL AURO TABLET 1MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:921e6ff8-6b68-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, G. XXX_Groot"/>
+            </subject>
+            <supportingInformation>
+               <type value="MedicationDispense"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                  <value value="MBH_300_script0_QA3_TA"/>
+               </identifier>
+               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_script0_QA3_TA || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            </supportingInformation>
+            <effectiveDateTime value="${DATE, T, D, -23}T19:05:33+02:00"/>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:a757282e-6b76-11ec-0000-020000000000"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare professional (role), Jantien Toedien, Verpleegkundigen, niet nader gespecificeerd, Thuiszorg Om en Bij"/>
+               </actor>
+            </performer>
+            <request>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="33633005"/>
+                        <display value="voorschrijven"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_script0_QA3_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_script0_QA3_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </request>
+            <dosage>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <dose>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                     <valueQuantity>
+                        <value value="3"/>
+                        <unit value="stuk"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="245"/>
+                     </valueQuantity>
+                  </extension>
+                  <value value="3"/>
+                  <unit value="stuk"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="1"/>
+               </dose>
+            </dosage>
+         </MedicationAdministration>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationAdministration"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:9948980f-6b1e-11ec-0000-020000000000"/>
       <resource>
          <MedicationAdministration>
             <meta>
@@ -836,6 +804,14 @@
                <type value="Patient"/>
                <display value="Patient, G. XXX_Groot"/>
             </subject>
+            <supportingInformation>
+               <type value="MedicationDispense"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                  <value value="MBH_300_script0_QA4_TA"/>
+               </identifier>
+               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_script0_QA4_TA || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            </supportingInformation>
             <effectiveDateTime value="${DATE, T, D, -11}T18:35:11+02:00"/>
             <performer>
                <actor>
@@ -849,17 +825,17 @@
                   <valueCodeableConcept>
                      <coding>
                         <system value="http://snomed.info/sct"/>
-                        <code value="395067002"/>
-                        <display value="optimaliseren van dosering van medicatie"/>
+                        <code value="33633005"/>
+                        <display value="voorschrijven"/>
                      </coding>
                   </valueCodeableConcept>
                </extension>
                <type value="MedicationRequest"/>
                <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-                  <value value="MBH_300_script0_QA4_WDS1"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_script0_QA4_MA"/>
                </identifier>
-               <display value="relatie naar wisselend doseerschema met identificatie: MBH_300_script0_QA4_WDS1 || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_script0_QA4_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </request>
             <dosage>
                <route>
@@ -892,7 +868,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:411d345d-6aaa-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:7ffb180f-6b2d-11ec-0000-020000000000"/>
       <resource>
          <MedicationAdministration>
             <meta>
@@ -929,6 +905,14 @@
                <type value="Patient"/>
                <display value="Patient, G. XXX_Groot"/>
             </subject>
+            <supportingInformation>
+               <type value="MedicationDispense"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                  <value value="MBH_300_script0_QA4_TA"/>
+               </identifier>
+               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_script0_QA4_TA || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            </supportingInformation>
             <effectiveDateTime value="${DATE, T, D, -10}T18:45:20+02:00"/>
             <performer>
                <actor>
@@ -942,17 +926,17 @@
                   <valueCodeableConcept>
                      <coding>
                         <system value="http://snomed.info/sct"/>
-                        <code value="395067002"/>
-                        <display value="optimaliseren van dosering van medicatie"/>
+                        <code value="33633005"/>
+                        <display value="voorschrijven"/>
                      </coding>
                   </valueCodeableConcept>
                </extension>
                <type value="MedicationRequest"/>
                <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-                  <value value="MBH_300_script0_QA4_WDS1"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_script0_QA4_MA"/>
                </identifier>
-               <display value="relatie naar wisselend doseerschema met identificatie: MBH_300_script0_QA4_WDS1 || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_script0_QA4_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </request>
             <dosage>
                <route>
@@ -985,7 +969,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4f60645d-6b2d-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:66ad980f-6b3c-11ec-0000-020000000000"/>
       <resource>
          <MedicationAdministration>
             <meta>
@@ -1031,6 +1015,14 @@
                <type value="Patient"/>
                <display value="Patient, G. XXX_Groot"/>
             </subject>
+            <supportingInformation>
+               <type value="MedicationDispense"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                  <value value="MBH_300_script0_QA4_TA"/>
+               </identifier>
+               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_script0_QA4_TA || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            </supportingInformation>
             <effectiveDateTime value="${DATE, T, D, -10}T18:45:20+02:00"/>
             <performer>
                <actor>
@@ -1044,17 +1036,17 @@
                   <valueCodeableConcept>
                      <coding>
                         <system value="http://snomed.info/sct"/>
-                        <code value="395067002"/>
-                        <display value="optimaliseren van dosering van medicatie"/>
+                        <code value="33633005"/>
+                        <display value="voorschrijven"/>
                      </coding>
                   </valueCodeableConcept>
                </extension>
                <type value="MedicationRequest"/>
                <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-                  <value value="MBH_300_script0_QA4_WDS1"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_script0_QA4_MA"/>
                </identifier>
-               <display value="relatie naar wisselend doseerschema met identificatie: MBH_300_script0_QA4_WDS1 || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_script0_QA4_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </request>
             <dosage>
                <route>
@@ -1087,7 +1079,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4d60180f-6b4b-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:0eaa3c96-6b71-11ec-0000-020000000000"/>
       <resource>
          <MedicationAdministration>
             <meta>
@@ -1124,6 +1116,14 @@
                <type value="Patient"/>
                <display value="Patient, G. XXX_Groot"/>
             </subject>
+            <supportingInformation>
+               <type value="MedicationDispense"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                  <value value="MBH_300_script0_QA4_TA"/>
+               </identifier>
+               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_script0_QA4_TA || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            </supportingInformation>
             <effectiveDateTime value="${DATE, T, D, -9}T18:20:23+02:00"/>
             <performer>
                <actor>
@@ -1137,17 +1137,17 @@
                   <valueCodeableConcept>
                      <coding>
                         <system value="http://snomed.info/sct"/>
-                        <code value="395067002"/>
-                        <display value="optimaliseren van dosering van medicatie"/>
+                        <code value="33633005"/>
+                        <display value="voorschrijven"/>
                      </coding>
                   </valueCodeableConcept>
                </extension>
                <type value="MedicationRequest"/>
                <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-                  <value value="MBH_300_script0_QA4_WDS1"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_script0_QA4_MA"/>
                </identifier>
-               <display value="relatie naar wisselend doseerschema met identificatie: MBH_300_script0_QA4_WDS1 || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_script0_QA4_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </request>
             <dosage>
                <route>
@@ -1288,114 +1288,6 @@
       <request>
          <method value="POST"/>
          <url value="Practitioner"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
-      <resource>
-         <PractitionerRole>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
-            </meta>
-            <practitioner>
-               <reference value="urn:uuid:4a573558-6ad5-11ec-0000-020000000000"/>
-               <type value="Practitioner"/>
-               <display value="Healthcare professional (person), Peter van Pulver"/>
-            </practitioner>
-            <organization>
-               <reference value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
-               <type value="Organization"/>
-               <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
-            </organization>
-            <specialty>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
-                  <version value="2020-10-23T00:00:00"/>
-                  <code value="0100"/>
-                  <display value="Huisartsen, niet nader gespecificeerd"/>
-               </coding>
-            </specialty>
-         </PractitionerRole>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="PractitionerRole"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:4a573558-6ad5-11ec-0000-020000000000"/>
-      <resource>
-         <Practitioner>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
-               <value value="000001111"/>
-            </identifier>
-            <name>
-               <use value="official"/>
-               <text value="Peter van Pulver"/>
-               <family value="van Pulver">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
-                     <valueString value="van"/>
-                  </extension>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="Pulver"/>
-                  </extension>
-               </family>
-               <given value="Peter">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                     <valueCode value="BR"/>
-                  </extension>
-               </given>
-            </name>
-         </Practitioner>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Practitioner"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
-      <resource>
-         <Organization>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="00001111"/>
-            </identifier>
-            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
-            <address>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
-                  <valueCodeableConcept>
-                     <coding>
-                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
-                        <code value="WP"/>
-                        <display value="Werkadres"/>
-                     </coding>
-                  </valueCodeableConcept>
-               </extension>
-               <use value="work"/>
-               <line value="Dorpsstraat 1">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
-                     <valueString value="Dorpsstraat"/>
-                  </extension>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-                     <valueString value="1"/>
-                  </extension>
-               </line>
-               <city value="Ons Dorp"/>
-               <postalCode value="1234AA"/>
-            </address>
-         </Organization>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
       </request>
    </entry>
    <entry>
