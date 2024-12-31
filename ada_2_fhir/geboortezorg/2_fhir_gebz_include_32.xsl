@@ -342,6 +342,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </unieke-encounter>
         </xsl:for-each-group>
+        <xsl:for-each-group select="//partusassistentie_contact[not(@datatype='reference')]" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
+            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+            <xsl:variable name="elementName" select="name(.)"/>
+            <xsl:variable name="encounterType" select="contact_type/@displayName"/>
+            <unieke-encounter xmlns="">
+                <group-key xmlns="">
+                    <xsl:value-of select="current-grouping-key()"/>
+                </group-key>
+                <reference-display xmlns="">
+                    <xsl:value-of select="concat(replace($elementName, '_', ' '),' ',$encounterType,' ',$vrouwId)"/>
+                </reference-display>
+                <xsl:for-each select=".">
+                    <xsl:call-template name="bcEncounterEntry">
+                        <xsl:with-param name="adaPatient" select="$patient-ada"/>
+                        <xsl:with-param name="adaZorgverlener" select="$zorgverlener-ada"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+            </unieke-encounter>
+        </xsl:for-each-group>
     </xsl:variable>
 
     <!-- observations -->

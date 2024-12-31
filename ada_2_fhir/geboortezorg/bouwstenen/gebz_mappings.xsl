@@ -111,18 +111,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <display value="Kleding gedragen tijdens meting [type]"/>
                 </coding>                   
             </xsl:when>
-            <xsl:when test="@conceptId='2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4099'">
-                <coding>
-                    <system value="http://snomed.info/sct"/>
-                    <code value="249120008"/>
-                    <display value="begin van eerste fase van partus (waarneembare entiteit)"/>
-                </coding>                   
-            </xsl:when>
             <xsl:when test="@conceptId='2.16.840.1.113883.2.4.3.11.60.90.77.2.12.39'">
                 <coding>
                     <system value="http://snomed.info/sct"/>
                     <code value="3950001"/>
                     <display value="geboorte (bevinding)"/>
+                </coding>                   
+            </xsl:when>
+            <xsl:when test="@conceptId='2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4135'">
+                <coding>
+                    <system value="http://snomed.info/sct"/>
+                    <code value="249163006"/>
+                    <display value="begin van persen tijdens partus (waarneembare entiteit)"/>
                 </coding>                   
             </xsl:when>
             <xsl:when test="$concept">

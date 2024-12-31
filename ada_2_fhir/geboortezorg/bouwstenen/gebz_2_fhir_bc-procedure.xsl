@@ -118,7 +118,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <id value="{$logicalId}"/>
                 </xsl:if>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+                    <xsl:if test="not($elementName=('bevalling','baring','uitdrijvingsfase'))">
+                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+                    </xsl:if>
                     <xsl:call-template name="bc-profile"/>
                 </meta>
                 <xsl:for-each select="partusnummer">
@@ -140,7 +142,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <coding>
                         <system value='http://snomed.info/sct'/>
                         <code value="386637004"/>
-                        <display value='Obstetric procedure (procedure)'/>
+                        <display value='Obstetrische verrichting (verrichting)'/>
                     </coding>
                 </category>               
                 <code>
@@ -156,7 +158,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:choose>
                 </code>
                 <xsl:choose>
-                    <xsl:when test="$adaChild and name(.)='uitdrijvingsfase'">
+                    <xsl:when test="$adaChild and $elementName='uitdrijvingsfase'">
                         <xsl:variable name="kindId" select="patient/@value"/>
                         <xsl:for-each select="$adaChild[@id=$kindId]">
                             <subject>
@@ -173,7 +175,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:otherwise>
                 </xsl:choose>
                 <!-- voor 2.3 wordt dossier vanuit zwangerschap gevuld, voor 3.2 vanuit zorg_episode -->
-                <xsl:for-each select="(/*/zorgverlening/zorg_episode | ancestor::*/zwangerschap)[1]">
+                <xsl:for-each select="(ancestor::*/zorgverlening/zorg_episode | ancestor::*/zwangerschap)[1]">
                     <context>
                         <xsl:apply-templates select="." mode="doMaternalRecordReference"/>
                     </context>

@@ -181,7 +181,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:function name="nf:getGroupingKeyPractitioner" as="xs:string?">
         <xsl:param name="healthProfessional" as="element()?"/>
         <xsl:if test="$healthProfessional">
-            <xsl:variable name="personIdentifier" select="nf:getGroupingKeyDefault($healthProfessional/zorgverlener_identificatienummer | $healthProfessional/zorgverlener_identificatie_nummer | $healthProfessional/health_professional_identification_number)"/>
+            <xsl:variable name="personIdentifier" select="nf:getGroupingKeyDefault($healthProfessional/zorgverlener_identificatienummer[1] | $healthProfessional/zorgverlener_identificatie_nummer[1] | $healthProfessional/health_professional_identification_number[1])"/>
             <xsl:variable name="personName" select="nf:getGroupingKeyDefault($healthProfessional/zorgverlener_naam | $healthProfessional/naamgegevens | $healthProfessional/name_information)"/>
             <xsl:variable name="personAddress" select="nf:getGroupingKeyDefault($healthProfessional/adres | $healthProfessional/adresgegevens | $healthProfessional/address_information)"/>
             <xsl:variable name="contactInformation" select="nf:getGroupingKeyDefault($healthProfessional/telefoon_email | $healthProfessional/contactgegevens | $healthProfessional/contact_information)"/>

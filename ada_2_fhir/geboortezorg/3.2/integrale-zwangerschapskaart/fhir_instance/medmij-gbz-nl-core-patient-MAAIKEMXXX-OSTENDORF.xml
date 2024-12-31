@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patient xmlns="http://hl7.org/fhir">
+   <id value="MAAIKEMXXX-OSTENDORF"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+   </meta>
+   <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>Id 999910413 (BSN), Maaike M XXX_Ostendorf, 2 mei 1985</div>
+         <div>
+            <a href="tel:0613243546">0613243546</a> (Tel Mobiel), <a href="mailto:hallo@e-mail.com">hallo@e-mail.com</a> (E-mail Privé)</div>
+         <div>Knolweg 1002, 9999ZZ Stitswerd Stitswerd, 146 (Privé Bezoek)</div>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+      <value value="999910413"/>
+   </identifier>
+   <name>
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+         <valueCode value="NL1"/>
+      </extension>
+      <family value="XXX_Ostendorf">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="XXX_Ostendorf"/>
+         </extension>
+      </family>
+      <given value="Maaike">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <given value="M">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="IN"/>
+         </extension>
+      </given>
+   </name>
+   <telecom>
+      <system value="phone">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                  <code value="MC"/>
+                  <display value="Mobiel telefoonnummer"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </system>
+      <value value="0613243546"/>
+      <use value="mobile">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                  <code value="HP"/>
+                  <display value="Telefoonnummer thuis"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </use>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="hallo@e-mail.com"/>
+      <use value="home">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                  <code value="HP"/>
+                  <display value="Privé e-mailadres"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </use>
+   </telecom>
+   <birthDate value="1985-05-02"/>
+   <deceasedBoolean/>
+   <address>
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
+         <valueCode value="PHYS"/>
+      </extension>
+      <use value="home"/>
+      <type value="physical"/>
+      <line value="Knolweg 1002">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Knolweg"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="1002"/>
+         </extension>
+      </line>
+      <city value="Stitswerd"/>
+      <district value="Stitswerd"/>
+      <postalCode value="9999ZZ"/>
+      <country value="146"/>
+   </address>
+</Patient>

@@ -22,7 +22,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
-    <xsl:template name="bcEncounterReference" match="prenatale_controle" mode="doBcEncounterReference" as="element()*">
+    <xsl:template name="bcEncounterReference" match="prenatale_controle | partusassistentie_contact" mode="doBcEncounterReference" as="element()*">
         <xsl:variable name="theIdentifier" select="."/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$encounters[group-key = $theGroupKey]" as="element()?"/>
@@ -53,7 +53,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Encounter.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="bcEncounterEntry" match="prenatale_controle" mode="doBcEncounterEntry" as="element(f:entry)">
+    <xsl:template name="bcEncounterEntry" match="prenatale_controle | partusassistentie_contact" mode="doBcEncounterEntry" as="element(f:entry)">
         <xsl:param name="adaPatient"/>
         <xsl:param name="adaChild"/>
         <xsl:param name="adaZorgverlener"/>
@@ -97,12 +97,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">Node to consider in the creation of an Observation resource</xd:param>
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
     </xd:doc>
-    <xsl:template name="bc-Encounter" mode="doEncounterResource" match="prenatale_controle" as="element()">
+    <xsl:template name="bc-Encounter" mode="doEncounterResource" match="prenatale_controle | partusassistentie_contact" as="element()">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient"/>
         <xsl:param name="adaChild"/>
         <xsl:param name="adaZorgverlener"/>
+        
+        <xsl:variable name="contactId" select="contact/@value"/>
+        <xsl:variable name="contact" select="ancestor::*/administratief/contact[@id=$contactId]"/>
+        <xsl:variable name="participantId" select="$contact/contact_met/zorgverlener/@value"/>
                 
         <xsl:for-each select="$in">            
             <Encounter>
@@ -110,20 +114,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <id value="{$logicalId}"/>
                 </xsl:if>
                 <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
                     <xsl:call-template name="bc-profile"/>
                 </meta>                    
                 <status value="finished"/>  
-                <xsl:if test="name(.)='prenatale_controle'">
+                <xsl:if test="$contact/contact_type">
                     <class>
-                        <system value="http://hl7.org/fhir/v3/ActCode"/>
-                        <code value="AMB"/>
-                        <display value="ambulatory"/>
-                    </class>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="$contact/contact_type"/>
+                        </xsl:call-template>                        
+                    </class>                    
+                </xsl:if>
+                <xsl:if test="$contact/contact_soort">
+                    <type>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="$contact/contact_soort"/>
+                        </xsl:call-template>                        
+                    </type>
+                </xsl:if>
+                <xsl:if test="name(.)='partusassistentie_contact'">
                     <type>
                         <coding>
-                            <system value="http://snomed.info/sct"/>
-                            <code value="18114009"/>
-                            <display value="prenataal onderzoek en zorg voor moeder (procedure)"/>
+                            <system value="http://snomed.info/sct" />
+                            <code value="236973005" />
+                            <display value="verlossing (verrichting)" />
                         </coding>
                     </type>
                 </xsl:if>
@@ -132,19 +146,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
                     </subject>
                 </xsl:for-each> 
-                <xsl:for-each select="/*/zorgverlening/zorg_episode">
+                <xsl:for-each select="ancestor::*/zorgverlening/zorg_episode">
                     <episodeOfCare>
                         <xsl:apply-templates select="." mode="doMaternalRecordReference"/>
                     </episodeOfCare>
                 </xsl:for-each> 
-                <xsl:for-each select="$adaZorgverlener">
+                <xsl:for-each select="ancestor::*/administratief/zorgverlener[@id=$participantId]">
                     <participant>
                         <individual>
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                                <valueReference>
+                                    <xsl:call-template name="practitionerRoleReference"/>
+                                </valueReference>
+                            </extension>
                             <xsl:call-template name="practitionerReference"/>
                         </individual>
                     </participant>
                 </xsl:for-each>
-                <xsl:for-each select="datum_prenatale_controle/begin_datum_tijd">
+                <xsl:for-each select="$contact/begin_datum_tijd">
                     <period>
                         <start value ="{@value}">
                             <xsl:attribute name="value">
@@ -156,7 +175,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </start>
                     </period>
                 </xsl:for-each>
-                <xsl:for-each select="../zwangerschap | ../../zwangerschap | ../zwangerschapsgegevens/zwangerschap">
+                <xsl:for-each select="ancestor::*/zwangerschap">
                     <diagnosis>
                         <condition>
                             <xsl:call-template name="pregnancyReference"/>

@@ -115,23 +115,38 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <id value="{$logicalId}"/>
                 </xsl:if>
                 <meta>
+                    <xsl:variable name="bcProfiles" as="element()*">
+                        <xsl:call-template name="bc-profile"/>    
+                    </xsl:variable>
                     <xsl:variable name="profiles" as="element()*">
-                        <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+                        <xsl:copy-of select="$bcProfiles"/>
+                        <xsl:if test="not(contains($bcProfiles/@value,'zib'))">
+                            <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+                        </xsl:if>
                         <xsl:call-template name="bc-profile"/>    
                     </xsl:variable>
                     <xsl:for-each-group select="$profiles" group-by="@value">
                         <xsl:copy-of select="."/>
                     </xsl:for-each-group>
                 </meta>
-                <xsl:if test="ancestor::zwangerschap or ancestor::zwangerschapsgegevens/zwangerschap or ancestor::bevalling or ancestor::baring or ancestor::foetusspecifieke_onderzoeksgegevens"><!-- was: not(ancestor::lichamelijk_onderzoek_kind) -->
+                <xsl:if test="ancestor::zwangerschap or ancestor::zwangerschapsgegevens/zwangerschap or ancestor::bevalling or ancestor::baring or ancestor::uitdrijvingsfase or ancestor::foetusspecifieke_onderzoeksgegevens"><!-- was: not(ancestor::lichamelijk_onderzoek_kind) -->
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focusSTU3">
                         <valueReference>
                             <xsl:for-each select="ancestor::zwangerschap | ancestor::zwangerschapsgegevens/zwangerschap">
                                 <xsl:call-template name="pregnancyReference"/>
                             </xsl:for-each>
-                            <xsl:for-each select="ancestor::bevalling | ancestor::baring">
-                                <xsl:call-template name="bcProcedureReference"/>
-                            </xsl:for-each>
+                            <xsl:choose>
+                                <xsl:when test="ancestor::baring | ancestor::uitdrijvingsfase">
+                                    <xsl:for-each select="ancestor::baring | ancestor::uitdrijvingsfase">
+                                        <xsl:call-template name="bcProcedureReference"/>
+                                    </xsl:for-each>    
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:for-each select="ancestor::bevalling">
+                                        <xsl:call-template name="bcProcedureReference"/>
+                                    </xsl:for-each>
+                                </xsl:otherwise>
+                            </xsl:choose>
                             <xsl:for-each select="ancestor::foetusspecifieke_onderzoeksgegevens">
                                 <!--<xsl:call-template name="bcFetusReference"/>-->
                             </xsl:for-each>
@@ -188,7 +203,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- indien de observatie niet aan een contact hangt dan zwangerschapsdossier (episode of care) als context nemen -->
                     <xsl:otherwise>
                         <!-- voor 2.3 wordt dossier vanuit zwangerschap gevuld, voor 3.2 vanuit zorg_episode -->
-                        <xsl:for-each select="(/*/zorgverlening/zorg_episode | ancestor::*/zwangerschap)[1]">
+                        <xsl:for-each select="(ancestor::*/zorgverlening/zorg_episode | ancestor::*/zwangerschap)[1]">
                             <context>
                                 <xsl:apply-templates select="." mode="doMaternalRecordReference"/>
                             </context>
@@ -209,7 +224,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </effectiveDateTime>
                         </xsl:for-each>
                     </xsl:when>
-                    <!-- indien geen datum ingevuld dit afleiden uit contact waarbinnen observatie heeft plaatsgevonden -->
+                    <!-- onderstaande regels in heroverweging nemen, worden nu niet gebruikt -->
+<!--                    <!-\- indien geen datum ingevuld dit afleiden uit contact waarbinnen observatie heeft plaatsgevonden -\->
                     <xsl:when test="ancestor::prenatale_controle/datum_prenatale_controle/begin_datum_tijd">
                         <xsl:for-each select="ancestor::prenatale_controle/datum_prenatale_controle/begin_datum_tijd">
                             <effectiveDateTime value="{@value}">
@@ -222,7 +238,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </effectiveDateTime>                   
                         </xsl:for-each>
                     </xsl:when>
-                    <!-- indien niet gekoppeld aan contact voor lichamelijk onderzoek kind bij geboorte de geboortedatum overnemen -->
+                    <!-\- indien niet gekoppeld aan contact voor lichamelijk onderzoek kind bij geboorte de geboortedatum overnemen -\->
                     <xsl:when test="ancestor::lichamelijk_onderzoek_kind">
                         <xsl:variable name="kindId" select="ancestor::kind/demografische_gegevens/patient/@value"/>
                         <xsl:for-each select="ancestor::*/administratief/patient[@id=$kindId]/geboortedatum">
@@ -236,7 +252,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </effectiveDateTime>                   
                         </xsl:for-each>                       
                     </xsl:when>
-                    <!-- voor overige observaties waarbij datum verplicht is de periode van de episode invullen -->
+                    <!-\- voor overige observaties waarbij datum verplicht is de periode van de episode invullen -\->
                     <xsl:otherwise>
                         <xsl:for-each select="ancestor::*/zorgverlening/zorg_episode">
                             <effectivePeriod>
@@ -258,7 +274,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </end>                       
                             </effectivePeriod>
                         </xsl:for-each>
-                    </xsl:otherwise>
+                    </xsl:otherwise>-->
                 </xsl:choose>
                 <!-- voor observaties met componenten value[x] leeglaten -->
                 <xsl:if test="not(name(.)='bloeddruk')">
@@ -277,9 +293,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:when>
                             <xsl:when test="not(@code) and (@value castable as xs:integer or @value castable as xs:decimal)">
                                 <xsl:element name="valueQuantity" namespace="http://hl7.org/fhir">
-                                    <xsl:call-template name="hoeveelheid-to-Quantity">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
+                                    <xsl:choose>
+                                        <xsl:when test="@unit">
+                                            <xsl:call-template name="hoeveelheid-to-Quantity">
+                                                <xsl:with-param name="in" select="."/>
+                                            </xsl:call-template>  
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:choose>
+                                                <xsl:when test="$in[not(@value) or @nullFlavor]">
+                                                    <extension url="{$urlExtHL7NullFlavor}">
+                                                        <xsl:variable name="valueCode" select="($in/@nullFlavor, 'NI')[1]"/>
+                                                        <valueCode value="{$valueCode}"/>
+                                                    </extension>
+                                                </xsl:when>
+                                                <xsl:otherwise>
+                                                    <value value="{@value}"/>
+                                                    <unit value="1"/>
+                                                    <system value="http://unitsofmeasure.org"/>
+                                                    <code value="1"/>
+                                                </xsl:otherwise>
+                                            </xsl:choose>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
                                 </xsl:element>
                             </xsl:when>
                             <xsl:otherwise>

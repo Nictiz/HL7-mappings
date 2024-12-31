@@ -121,8 +121,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <code>
                     <coding>
                         <system value="http://snomed.info/sct" />
-                        <code value="364320009" />
-                        <display value="observatie betreffende zwangerschap (waarneembare entiteit)"/>
+                        <code value="118185001" />
+                        <display value="bevinding betreffende zwangerschap (bevinding)"/>
                     </coding>
                 </code>
                 <xsl:for-each select="$adaPatient">
@@ -131,7 +131,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </subject>
                 </xsl:for-each>
                 <!-- voor 2.3 wordt dossier vanuit zwangerschap gevuld, voor 3.2 vanuit zorg_episode -->
-                <xsl:for-each select="(/*/zorgverlening/zorg_episode | .)[1]">
+                <xsl:for-each select="(ancestor::*/zorgverlening/zorg_episode | .)[1]">
                     <context>
                         <xsl:apply-templates select="." mode="doMaternalRecordReference"/>
                     </context>

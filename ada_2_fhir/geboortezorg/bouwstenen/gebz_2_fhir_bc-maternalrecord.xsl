@@ -106,6 +106,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="adaZorgverlener"/>
         
         <xsl:variable name="parentElemName" select="parent::node()/name(.)"/>
+        <xsl:variable name="careManagerId" select="zorg_episode_verantwoordelijke/zorgverlener/@value"/>
+        <xsl:variable name="careManager" select="ancestor::*/administratief/zorgverlener[@id=$careManagerId]"/>
+        <xsl:variable name="managingOrganizationId" select="$careManager/zorgaanbieder/@value"/>
+        <xsl:variable name="managingOrganization" select="ancestor::*/administratief/zorgaanbieder[@id=$managingOrganizationId]"/>
         
         <xsl:for-each select="$in">            
             <EpisodeOfCare>
@@ -144,7 +148,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
                     </patient>
                 </xsl:for-each>          
-                <xsl:for-each select="$adaZorginstelling">
+                <xsl:for-each select="$managingOrganization">
                     <managingOrganization>
                         <xsl:call-template name="organizationReference"/>
                     </managingOrganization>
@@ -173,8 +177,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>
                     </period>
                 </xsl:if>
-                <xsl:for-each select="$adaZorgverlener">
+                <xsl:for-each select="$careManager">
                     <careManager>
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                            <valueReference>
+                                <xsl:call-template name="practitionerRoleReference"/>
+                            </valueReference>
+                        </extension>
                         <xsl:call-template name="practitionerReference"/>
                     </careManager>
                 </xsl:for-each>                
