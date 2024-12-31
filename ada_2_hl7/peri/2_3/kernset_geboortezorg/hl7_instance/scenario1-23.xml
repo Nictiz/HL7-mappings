@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model phase="#ALL" href="file:/C:/SVN/AORTA/trunk/Zorgtoepassing/PerinataleZorg/DECOR/peri20-runtime-develop/peri20-ksgz-alg-23.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<?xml-model href="file:/C:/SVN/art_decor/trunk/ada-data/ada_2_test-xslt/peri/2.3.3/sturen_kernset_geboortezorg/test-xslt_instance/scenario1-23.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model phase="#ALL" href="file:/C:/SVN/art_decor/trunk/ada-data/ada_2_test-xslt/peri/2.3/kernset_geboortezorg/test_xslt_instance/scenario1-23-20200101.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <REPC_IN004014NL xmlns="urn:hl7-org:v3"
                  xmlns:hl7="urn:hl7-org:v3"
                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -94,8 +94,8 @@
                   <id root="2.16.840.1.113883.2.4.3.11.999.60.4"
                       extension="0cbda760-1fdd-11e9-b56e-0800200c9a66"/>
                   <effectiveTime>
-                     <low value="20180301000000"/>
-                     <high value="20181112000000"/>
+                     <low value="20190301"/>
+                     <high value="20191112"/>
                   </effectiveTime>
                   <subject typeCode="SBJ">
                      <patient classCode="PAT">
@@ -105,7 +105,7 @@
                            <postalCode>4563 AB</postalCode>
                         </addr>
                         <patientPerson classCode="PSN" determinerCode="INSTANCE">
-                           <birthTime value="19800502"/>
+                           <birthTime value="19810101"/>
                            <deceasedInd value="false"/>
                            <ethnicGroupCode code="5"
                                             codeSystem="2.16.840.1.113883.2.4.4.13.28"
@@ -205,6 +205,7 @@
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.900963"/>
                         <code code="417662000"
                               codeSystem="2.16.840.1.113883.6.96"
+                              codeSystemName="SNOMED CT"
                               displayName="Anamnese"/>
                         <component typeCode="COMP">
                            <observation classCode="OBS" moodCode="EVN">
@@ -220,12 +221,14 @@
                               <templateId root="2.16.840.1.113883.2.4.6.10.90.900959"/>
                               <code code="312850006"
                                     codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"
                                     displayName="Algemene anamnese"/>
                               <component typeCode="COMP" contextConductionInd="true">
                                  <observation classCode="OBS" moodCode="EVN">
                                     <templateId root="2.16.840.1.113883.2.4.6.10.90.900945"/>
                                     <code code="49601007"
                                           codeSystem="2.16.840.1.113883.6.96"
+                                          codeSystemName="SNOMED CT"
                                           displayName="Cardiovasculaire aandoening"/>
                                     <value xsi:type="CE" nullFlavor="OTH"/>
                                  </observation>
@@ -235,6 +238,7 @@
                                     <templateId root="2.16.840.1.113883.2.4.6.10.90.900948"/>
                                     <code code="363346000"
                                           codeSystem="2.16.840.1.113883.6.96"
+                                          codeSystemName="SNOMED CT"
                                           displayName="Oncologische aandoening"/>
                                     <value xsi:type="CE" nullFlavor="OTH"/>
                                  </observation>
@@ -244,6 +248,7 @@
                                     <templateId root="2.16.840.1.113883.2.4.6.10.90.900950"/>
                                     <code code="40733004"
                                           codeSystem="2.16.840.1.113883.6.96"
+                                          codeSystemName="SNOMED CT"
                                           displayName="Infectieziekte"/>
                                     <value xsi:type="CE"
                                            code="23513009"
@@ -256,6 +261,7 @@
                                     <templateId root="2.16.840.1.113883.2.4.6.10.90.900956"/>
                                     <code code="387713003"
                                           codeSystem="2.16.840.1.113883.6.96"
+                                          codeSystemName="SNOMED CT"
                                           displayName="Type operatie"/>
                                     <value xsi:type="CE"
                                            code="112697007"
@@ -279,6 +285,7 @@
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901095"/>
                         <code code="248983002"
                               codeSystem="2.16.840.1.113883.6.96"
+                              codeSystemName="SNOMED CT"
                               displayName="Obstetrische anamnese"/>
                         <component typeCode="COMP" contextConductionInd="true">
                            <observation classCode="OBS" moodCode="EVN">
@@ -298,7 +305,7 @@
                               <code code="EDDDef"
                                     codeSystem="2.16.840.1.113883.2.4.4.13"
                                     displayName="A terme datum (definitive)"/>
-                              <value xsi:type="TS" value="20151201"/>
+                              <value xsi:type="TS" value="20161130"/>
                            </observation>
                         </component>
                         <component typeCode="COMP" contextConductionInd="true">
@@ -314,6 +321,7 @@
                               <id nullFlavor="NI"/>
                               <code code="236973005"
                                     codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"
                                     displayName="Bevalling"/>
                               <outboundRelationship typeCode="COMP">
                                  <observation classCode="OBS" moodCode="EVN">
@@ -332,6 +340,7 @@
                                     <templateId root="2.16.840.1.113883.2.4.6.10.90.900900"/>
                                     <code code="364332008"
                                           codeSystem="2.16.840.1.113883.6.96"
+                                          codeSystemName="SNOMED CT"
                                           displayName="Hoeveelheid bloedverlies"/>
                                     <value xsi:type="PQ" value="550" unit="ml"/>
                                  </observation>
@@ -347,16 +356,12 @@
                                        <personalRelationship classCode="PRS">
                                           <code code="CHILD" codeSystem="2.16.840.1.113883.5.111"/>
                                           <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
-                                             <birthTime value="20151208000000"/>
+                                             <birthTime value="20161207"/>
                                           </relationshipHolder>
                                        </personalRelationship>
                                     </subject>
                                     <outboundRelationship typeCode="COMP">
-                                       <observation xmlns:sdtc="urn:hl7-org:sdtc"
-                                                    xmlns:nf="http://www.nictiz.nl/functions"
-                                                    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-                                                    classCode="OBS"
-                                                    moodCode="EVN">
+                                       <observation classCode="OBS" moodCode="EVN">
                                           <templateId root="2.16.840.1.113883.2.4.6.10.90.901107"/>
                                           <code code="364336006"
                                                 codeSystem="2.16.840.1.113883.6.96"
@@ -372,6 +377,7 @@
                                           <templateId root="2.16.840.1.113883.2.4.6.10.90.900902"/>
                                           <code code="301334000"
                                                 codeSystem="2.16.840.1.113883.6.96"
+                                                codeSystemName="SNOMED CT"
                                                 displayName="Percentiel geboortegewicht"/>
                                           <value xsi:type="CE"
                                                  code="4"
@@ -393,6 +399,7 @@
                                           <templateId root="2.16.840.1.113883.2.4.6.10.90.901015"/>
                                           <code code="443341004"
                                                 codeSystem="2.16.840.1.113883.6.96"
+                                                codeSystemName="SNOMED CT"
                                                 displayName="Congenitale afwijking"/>
                                        </observation>
                                     </outboundRelationship>
@@ -426,7 +433,7 @@
                         <code code="EDDDef"
                               codeSystem="2.16.840.1.113883.2.4.4.13"
                               displayName="A terme datum (definitive)"/>
-                        <value xsi:type="TS" value="20181009"/>
+                        <value xsi:type="TS" value="20191009"/>
                      </observation>
                   </pertinentInformation3>
                   <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
@@ -455,13 +462,15 @@
                         <id nullFlavor="NI"/>
                         <code code="18114009"
                               codeSystem="2.16.840.1.113883.6.96"
+                              codeSystemName="SNOMED CT"
                               displayName="Prenatale controle"/>
-                        <effectiveTime value="20180302000000"/>
+                        <effectiveTime value="20190302"/>
                         <outboundRelationship typeCode="COMP">
                            <observation classCode="OBS" moodCode="EVN">
                               <templateId root="2.16.840.1.113883.2.4.6.10.90.900236"/>
                               <code code="445872007"
                                     codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"
                                     displayName="Zwangerschapsduur"/>
                               <value xsi:type="PQ" value="59" unit="d"/>
                            </observation>
@@ -471,6 +480,7 @@
                               <templateId root="2.16.840.1.113883.2.4.6.10.90.901023"/>
                               <code code="364618000"
                                     codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"
                                     displayName="Leven voelen"/>
                               <value xsi:type="CE"
                                      code="289431008"
@@ -495,6 +505,7 @@
                               <templateId root="2.16.840.1.113883.2.4.6.10.90.901001"/>
                               <code code="228309001"
                                     codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"
                                     displayName="Alcoholgebruik"/>
                               <value xsi:type="CE"
                                      code="1"
@@ -527,13 +538,15 @@
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901092"/>
                         <code code="439401001"
                               codeSystem="2.16.840.1.113883.6.96"
+                              codeSystemName="SNOMED CT"
                               displayName="Diagnosis"/>
-                        <effectiveTime value="20180302000000"/>
+                        <effectiveTime value="20190302"/>
                         <component typeCode="COMP" contextConductionInd="true">
                            <observation classCode="OBS" moodCode="EVN">
                               <templateId root="2.16.840.1.113883.2.4.6.10.90.900236"/>
                               <code code="445872007"
                                     codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"
                                     displayName="Zwangerschapsduur"/>
                               <value xsi:type="PQ" value="59" unit="d"/>
                            </observation>
@@ -541,7 +554,9 @@
                         <component typeCode="COMP" contextConductionInd="true">
                            <observation classCode="OBS" moodCode="EVN">
                               <templateId root="2.16.840.1.113883.2.4.6.10.90.900975"/>
-                              <code code="40733004" codeSystem="2.16.840.1.113883.6.96"/>
+                              <code code="40733004"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"/>
                               <value xsi:type="CE"
                                      code="307534009"
                                      codeSystem="2.16.840.1.113883.6.96"
@@ -567,6 +582,7 @@
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901101"/>
                         <code code="236973005"
                               codeSystem="2.16.840.1.113883.6.96"
+                              codeSystemName="SNOMED CT"
                               displayName="Bevalling"/>
                         <component typeCode="COMP" contextConductionInd="true">
                            <act classCode="COND" moodCode="EVN">
@@ -578,11 +594,7 @@
                            </act>
                         </component>
                         <component typeCode="COMP" contextConductionInd="true">
-                           <observation xmlns:sdtc="urn:hl7-org:sdtc"
-                                        xmlns:nf="http://www.nictiz.nl/functions"
-                                        xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-                                        classCode="OBS"
-                                        moodCode="EVN">
+                           <observation classCode="OBS" moodCode="EVN">
                               <templateId root="2.16.840.1.113883.2.4.6.10.90.900358"/>
                               <code code="NBorn16"
                                     codeSystem="2.16.840.1.113883.2.4.4.13"
@@ -641,8 +653,9 @@
                               <templateId root="2.16.840.1.113883.2.4.6.10.90.900197"/>
                               <code code="249120008"
                                     codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"
                                     displayName="Tijdstip begin actieve ontsluiting"/>
-                              <effectiveTime value="20181007143000"/>
+                              <effectiveTime value="20191007143000"/>
                            </observation>
                         </component>
                         <component typeCode="COMP" contextConductionInd="true">
@@ -684,6 +697,7 @@
                               <templateId root="2.16.840.1.113883.2.4.6.10.90.900900"/>
                               <code code="364332008"
                                     codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"
                                     displayName="Hoeveelheid bloedverlies"/>
                               <value xsi:type="PQ" value="615" unit="ml"/>
                            </observation>
@@ -693,6 +707,7 @@
                               <templateId root="2.16.840.1.113883.2.4.6.10.90.900262"/>
                               <code code="364297003"
                                     codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"
                                     displayName="Conditie perineum postpartum"/>
                               <value xsi:type="CE"
                                      code="199916005"
@@ -712,7 +727,7 @@
                                           displayName="Kind"/>
                                     <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
                                        <id extension="999910383" root="2.16.840.1.113883.2.4.6.3"/>
-                                       <birthTime value="20181008000000"/>
+                                       <birthTime value="20191008"/>
                                        <deceasedInd value="false"/>
                                     </relationshipHolder>
                                  </personalRelationship>
@@ -765,8 +780,9 @@
                                     <templateId root="2.16.840.1.113883.2.4.6.10.90.900198"/>
                                     <code code="289251005"
                                           codeSystem="2.16.840.1.113883.6.96"
+                                          codeSystemName="SNOMED CT"
                                           displayName="Tijdstip breken vliezen"/>
-                                    <value xsi:type="TS" value="20181008091500"/>
+                                    <value xsi:type="TS" value="20191008091500"/>
                                  </observation>
                               </outboundRelationship>
                               <outboundRelationship typeCode="COMP">
@@ -787,7 +803,7 @@
                                     <code code="PRN530401"
                                           codeSystem="2.16.840.1.113883.2.4.3.22.1.1"
                                           displayName="Tijdstip actief meepersen"/>
-                                    <value xsi:type="TS" value="20181008121300"/>
+                                    <value xsi:type="TS" value="20191008121300"/>
                                  </observation>
                               </outboundRelationship>
                               <outboundRelationship typeCode="COMP">
@@ -814,6 +830,7 @@
                                     <id nullFlavor="NI"/>
                                     <code code="278414003"
                                           codeSystem="2.16.840.1.113883.6.96"
+                                          codeSystemName="SNOMED CT"
                                           displayName="Pijnbestrijding"/>
                                  </procedure>
                               </outboundRelationship>
@@ -823,15 +840,12 @@
                                     <id nullFlavor="NI"/>
                                     <code code="72641008"
                                           codeSystem="2.16.840.1.113883.6.96"
+                                          codeSystemName="SNOMED CT"
                                           displayName="Sedatie"/>
                                  </procedure>
                               </outboundRelationship>
                               <outboundRelationship typeCode="COMP">
-                                 <observation xmlns:sdtc="urn:hl7-org:sdtc"
-                                              xmlns:nf="http://www.nictiz.nl/functions"
-                                              xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-                                              classCode="OBS"
-                                              moodCode="EVN">
+                                 <observation classCode="OBS" moodCode="EVN">
                                     <templateId root="2.16.840.1.113883.2.4.6.10.90.901107"/>
                                     <code code="364336006"
                                           codeSystem="2.16.840.1.113883.6.96"
@@ -866,6 +880,7 @@
                                     <templateId root="2.16.840.1.113883.2.4.6.10.90.901017"/>
                                     <code code="443341004"
                                           codeSystem="2.16.840.1.113883.6.96"
+                                          codeSystemName="SNOMED CT"
                                           displayName="Congenitale afwijking"/>
                                  </observation>
                               </outboundRelationship>
@@ -889,8 +904,10 @@
                                  <supply classCode="DIET" moodCode="EVN">
                                     <templateId root="2.16.840.1.113883.2.4.6.10.90.900724"/>
                                     <id nullFlavor="NI"/>
-                                    <code code="230126006" codeSystem="2.16.840.1.113883.6.96"/>
-                                    <effectiveTime value="20181012"/>
+                                    <code code="230126006"
+                                          codeSystem="2.16.840.1.113883.6.96"
+                                          codeSystemName="SNOMED CT"/>
+                                    <effectiveTime value="20191012"/>
                                     <product typeCode="PRD">
                                        <product classCode="ACCESS">
                                           <playingMaterial classCode="MAT" determinerCode="KIND">
@@ -932,6 +949,7 @@
                                     <templateId root="2.16.840.1.113883.2.4.6.10.90.900171"/>
                                     <code code="312457003"
                                           codeSystem="2.16.840.1.113883.6.96"
+                                          codeSystemName="SNOMED CT"
                                           displayName="Irregulaire antistoffen"/>
                                  </observation>
                               </component>

@@ -1,0 +1,63 @@
+<PractitionerRole xmlns="http://hl7.org/fhir">
+   <id value="nl-core-practitionerrole-bgz-msz-0016161601-02520000003"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgverlenerrol. </caption>
+            <tbody>
+               <tr>
+                  <th>Zorgverlener</th>
+                  <td>
+                     <div>HersenDokter H. HersenDokter Beleving</div>
+                     <div>Ziekenhuis Beterschap</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Specialisme</th>
+                  <td>
+                     <span title="Neurochirurg (01.025 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Neurochirurg</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:021-9990004">021-9990004</a> (Vast telefoonnummer Werk)</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <practitioner>
+      <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-00161616"/>
+      <display value="HersenDokter H. HersenDokter Beleving"/>
+   </practitioner>
+   <organization>
+      <reference value="Organization/nl-core-organization-bgz-msz-2-16-840-1-113883-2-4-6-1-20000003"/>
+      <display value="Ziekenhuis Beterschap"/>
+   </organization>
+   <specialty>
+      <coding>
+         <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+         <code value="01.025"/>
+         <display value="Neurochirurg"/>
+      </coding>
+   </specialty>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Land Line"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="021-9990004"/>
+      <use value="work"/>
+   </telecom>
+</PractitionerRole>

@@ -1,0 +1,100 @@
+<Condition xmlns="http://hl7.org/fhir">
+   <id value="zib-Problem-medmij-bgz-test-patA-problem3"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Aandoening. Subject: Anouk A. Anouk van XXX_Rijn de XXX_Vries. Id: patA-problem3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Categorie: <span title="Complaint (409586006 - SNOMED CT)">Complaint</span>, Status: inactief / voorlopig</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Na gebruik maagzuurremmers zijn de klachten verdwenen</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="Maagpijn (271681002 - SNOMED CT)">Maagpijn</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>25 maart 2021</td>
+               </tr>
+               <tr>
+                  <th>Oplossing/remissie</th>
+                  <td>2 mei 2021</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-problem3"/>
+   </identifier>
+   <clinicalStatus value="inactive">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="73425007"/>
+               <display value="Inactive"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus value="provisional">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="415684004"/>
+               <display value="Suspected"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </verificationStatus>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="409586006"/>
+         <display value="Complaint"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="271681002"/>
+         <display value="Maagpijn"/>
+      </coding>
+   </code>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Left"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="279995000"/>
+         <display value="Maagwand"/>
+      </coding>
+   </bodySite>
+   <subject>
+      <reference value="Patient/medmij-bgz-test-patA"/>
+      <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
+   </subject>
+   <onsetDateTime value="2021-03-25"/>
+   <abatementDateTime value="2021-05-02"/>
+   <note>
+      <text value="Na gebruik maagzuurremmers zijn de klachten verdwenen"/>
+   </note>
+</Condition>

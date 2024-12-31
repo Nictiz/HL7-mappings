@@ -1,0 +1,124 @@
+<PractitionerRole xmlns="http://hl7.org/fhir">
+   <id value="nl-core-practitionerrole-bgz-msz-1000001001-01520000010"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgverlenerrol. Id: bgz-msz-patD-healthProf2 (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6)</caption>
+            <tbody>
+               <tr>
+                  <th>Zorgverlener</th>
+                  <td>
+                     <div>Hip Plato Orpheus H.P.O Crates van Kos</div>
+                     <div>Centrum Kos de rechte rug</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Specialisme</th>
+                  <td>
+                     <span title="Huisarts (01.015 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Huisarts</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <div>
+                        <a href="tel:021-9990103">021-9990103</a> (Vast telefoonnummer Werk)</div>
+                     <div>
+                        <a href="mailto:test02@infuusTest2.nl">test02@infuusTest2.nl</a> (E-mail Werk)</div>
+                     <div>
+                        <a href="tel:021-9990107">021-9990107</a> (Vast telefoonnummer Werk)</div>
+                     <div>
+                        <a href="tel:021-9990108">021-9990108</a> (Vast telefoonnummer Werk)</div>
+                     <div>
+                        <a href="tel:06-99990101">06-99990101</a> (Mobiel Werk)</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patD-healthProf2"/>
+   </identifier>
+   <practitioner>
+      <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-528-1-1007-3-1-10000010"/>
+      <display value="Hip Plato Orpheus H.P.O Crates van Kos"/>
+   </practitioner>
+   <organization>
+      <reference value="Organization/nl-core-organization-bgz-msz-2-16-840-1-113883-2-4-6-1-20000010"/>
+      <display value="Centrum Kos de rechte rug"/>
+   </organization>
+   <specialty>
+      <coding>
+         <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+         <code value="01.015"/>
+         <display value="Huisarts"/>
+      </coding>
+   </specialty>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Land Line"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="021-9990103"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="test02@infuusTest2.nl"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Land Line"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="021-9990107"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Land Line"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="021-9990108"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="MC"/>
+               <display value="Mobile Phone"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="06-99990101"/>
+      <use value="work"/>
+   </telecom>
+</PractitionerRole>

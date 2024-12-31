@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-ParticipationInSociety-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ParticipationInSociety"/>
+   </meta>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="314845004"/>
+         <display value="status van participatie van patiënt"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <note>
+      <text value="Bezoekt activiteitencentrum 2 maal per week."/>
+   </note>
+   <hasMember>
+      <reference value="Observation/nl-core-ParticipationInSociety.SocialNetwork-01"/>
+      <type value="Observation"/>
+      <display value="Sociaal netwerk: Heeft veel aanloop van buren"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-ParticipationInSociety.Hobby-01"/>
+      <type value="Observation"/>
+      <display value="Vrijetijdsbesteding: Nordic walking"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-ParticipationInSociety.WorkSituation-01"/>
+      <type value="Observation"/>
+      <display value="Arbeidssituatie: ICT-er"/>
+   </hasMember>
+</Observation>

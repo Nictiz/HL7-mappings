@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CarePlan xmlns="http://hl7.org/fhir">
+   <id value="nl-core-HelpFromOthers-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HelpFromOthers"/>
+   </meta>
+   <status value="active"/>
+   <intent value="plan"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="243114000"/>
+         <display value="ondersteuning"/>
+      </coding>
+   </category>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <activity>
+      <detail>
+         <code>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="386229000"/>
+               <display value="ondersteuning voor verzorger"/>
+            </coding>
+         </code>
+         <status value="in-progress"/>
+         <scheduledString value="1 keer per week"/>
+         <performer>
+            <reference value="RelatedPerson/nl-core-HelpFromOthers-01-RelatedPerson-01"/>
+            <type value="RelatedPerson"/>
+            <display value="Contact person, de Boer"/>
+         </performer>
+         <description value="Boodschappen doen"/>
+      </detail>
+   </activity>
+</CarePlan>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Marc Meermans (LifeLine Networks bv) -->
+<xs:schema targetNamespace="urn:hl7-org:v3" xmlns="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:include schemaLocation="../coreschemas/datatypes.xsd"/>
+	<xs:include schemaLocation="../coreschemas/voc.xsd"/>
+	<!-- xs:element name="DetectedIssueEvent" type="MCAI_MT900001.DetectedIssueEvent"/-->
+	<xs:complexType name="MCAI_MT900001.DetectedIssueEvent">
+		<xs:sequence>
+			<xs:element name="id" type="II" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="code" type="CD"/>
+			<xs:element name="text" type="ED" minOccurs="0"/>
+			<!-- RS change to ANY instead of xs:anyType -->
+			<xs:element name="value" type="ANY" minOccurs="0"/>
+			<xs:element name="triggerFor" type="MCAI_MT900001.Requires" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="targetOf" type="MCAI_MT900001.SourceOf" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="Observation"/>
+		<xs:attribute name="classCode" type="ActClass" use="optional" default="ALRT"/>
+		<xs:attribute name="moodCode" type="ActMood" use="optional" default="EVN"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCAI_MT900001.Requires">
+		<xs:sequence>
+			<xs:element name="actOrderRequired" type="MCAI_MT900001.ActOrderRequired"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="ActRelationship"/>
+		<xs:attribute name="typeCode" type="ActRelationshipType" use="optional" default="TRIG"/>
+		<xs:attribute name="contextConductionInd" type="bl" use="optional"/>
+		<xs:attribute name="negationInd" type="bl" use="optional"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCAI_MT900001.ActOrderRequired">
+		<xs:sequence>
+			<xs:element name="code" type="CE" minOccurs="0"/>
+			<xs:element name="effectiveTime" type="SXCM_TS" minOccurs="0"/>
+			<xs:element name="subject" type="MCAI_MT900001.Subject" minOccurs="0" maxOccurs="unbounded"/>
+			<!--(marcm) | xs:element name="effectiveTime" minOccurs="0" maxOccurs="1" type="GTS"/-->
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="ActHeir"/>
+		<xs:attribute name="classCode" type="ActClass" use="optional" default="ACT"/>
+		<xs:attribute name="moodCode" type="ActMood" use="optional" default="RQO"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCAI_MT900001.Subject">
+		<xs:sequence>
+			<xs:element name="participant" type="MCAI_MT900001.Role"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="Participation"/>
+		<xs:attribute name="typeCode" type="ParticipationType" use="optional" default="SBJ"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCAI_MT900001.Role">
+		<xs:sequence>
+			<xs:element name="code" type="CE" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="RoleHeir"/>
+		<xs:attribute name="classCode" type="RoleClass" use="optional" default="ROL"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCAI_MT900001.SourceOf">
+		<xs:sequence>
+			<xs:element name="source" type="MCAI_MT900001.DetectedIssueManagement"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="ActRelationship"/>
+		<xs:attribute name="typeCode" type="ActRelationshipType" use="optional" default="MITGT"/>
+		<xs:attribute name="contextConductionInd" type="bl" use="optional" default="false"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCAI_MT900001.DetectedIssueManagement">
+		<xs:sequence>
+			<xs:element name="code" type="CD" minOccurs="0"/>
+			<xs:element name="text" type="ED" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="ActHeir"/>
+		<xs:attribute name="classCode" type="ActClass" use="optional" default="ACT"/>
+		<xs:attribute name="moodCode" type="x_ActMoodDefEvn" use="required"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+</xs:schema>

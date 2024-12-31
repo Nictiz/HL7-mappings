@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-BowelFunction-02"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction"/>
+   </meta>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="111989001"/>
+         <display value="defecatie"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <note>
+      <text value="Patiënt was vanmorgen incontinent."/>
+   </note>
+   <hasMember>
+      <reference value="Observation/nl-core-BowelFunction.FecalContinence-01"/>
+      <type value="Observation"/>
+      <display value="Feces continentie: incidenteel ontlastingsverlies"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-BowelFunction.Frequency-02"/>
+      <type value="Observation"/>
+      <display value="Frequentie: 4/d"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-BowelFunction.DefecationConsistency-02"/>
+      <type value="Observation"/>
+      <display value="Defecatie consistentie: Zachte stukjes met gehavende randen"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-BowelFunction.DefecationColor-02"/>
+      <type value="Observation"/>
+      <display value="Defecatie kleur: grijswitte feces"/>
+   </hasMember>
+</Observation>

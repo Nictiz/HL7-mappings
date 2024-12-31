@@ -1,0 +1,93 @@
+<Organization xmlns="http://hl7.org/fhir">
+   <id value="nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000001"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Organisatie. Id: 20000001 (AGB-Z)</caption>
+            <tbody>
+               <tr>
+                  <th>Naam</th>
+                  <td>Huisartsenpraktijk van  - Noord</td>
+               </tr>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <div>
+                        <span title="Huisartsen, niet nader gespecificeerd (0100 - AGB-medisch specialisme)">Huisartsen, niet nader gespecificeerd</span>
+                     </div>
+                     <div>
+                        <span title="Huisartspraktijk (zelfstandig of groepspraktijk) (Z3 - organization-type)">Huisartspraktijk (zelfstandig of groepspraktijk)</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:021-9990100">021-9990100</a> (Vast telefoonnummer Werk)<br/>
+                     <a href="mailto:aanpakken@huisartsen.nl">aanpakken@huisartsen.nl</a> (E-mail Werk)<br/>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Adres</th>
+                  <td>Medicijnweg 9990, 3032ZZ Rotterdam</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+      <value value="20000001"/>
+   </identifier>
+   <type>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+         <version value="2020-10-23T00:00:00"/>
+         <code value="0100"/>
+         <display value="Huisartsen, niet nader gespecificeerd"/>
+      </coding>
+   </type>
+   <type>
+      <coding>
+         <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+         <code value="Z3"/>
+         <display value="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
+      </coding>
+   </type>
+   <name value="Huisartsenpraktijk van  - Noord"/>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Vast telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="021-9990100"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="aanpakken@huisartsen.nl"/>
+      <use value="work"/>
+   </telecom>
+   <address>
+      <line value="Medicijnweg 9990">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Medicijnweg"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="9990"/>
+         </extension>
+      </line>
+      <city value="Rotterdam"/>
+      <postalCode value="3032ZZ"/>
+   </address>
+</Organization>

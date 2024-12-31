@@ -1,0 +1,100 @@
+<Condition xmlns="http://hl7.org/fhir">
+   <id value="zib-Problem-medmij-bgz-test-patA-problem2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Aandoening. Subject: Anouk A. Anouk van XXX_Rijn de XXX_Vries. Id: patA-problem2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Categorie: <span title="Diagnosis (282291009 - SNOMED CT)">Diagnosis</span>, Status: actief / differentiaal</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Pijn bij normale belasting</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="Artrose van rechter kniegewricht (323321000119100 - SNOMED CT)">Artrose van rechter kniegewricht</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>5 augustus 2018</td>
+               </tr>
+               <tr>
+                  <th>Oplossing/remissie</th>
+                  <td>12 december 2022</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-problem2"/>
+   </identifier>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="55561003"/>
+               <display value="Active"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus value="differential">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="410590009"/>
+               <display value="Known possible"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </verificationStatus>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="282291009"/>
+         <display value="Diagnosis"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="323321000119100"/>
+         <display value="Artrose van rechter kniegewricht"/>
+      </coding>
+   </code>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="24028007"/>
+               <display value="Right"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="735264009"/>
+         <display value="Rechter knie"/>
+      </coding>
+   </bodySite>
+   <subject>
+      <reference value="Patient/medmij-bgz-test-patA"/>
+      <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
+   </subject>
+   <onsetDateTime value="2018-08-05"/>
+   <abatementDateTime value="2022-12-12"/>
+   <note>
+      <text value="Pijn bij normale belasting"/>
+   </note>
+</Condition>

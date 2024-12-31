@@ -13,8 +13,8 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet xmlns:hl7="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-   <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
-   <xsl:include href="../hl7/hl7_2_ada_hl7_include.xsl"/>
+    <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
+    <xsl:include href="../hl7/hl7_2_ada_hl7_include.xsl"/>
    
     <xsl:variable name="oidOrganizerAllergyIntolerances">2.16.840.1.113883.2.4.3.11.60.66.10.20</xsl:variable>
     <xsl:variable name="oidOrganizerEpisodes">2.16.840.1.113883.2.4.3.11.60.66.10.16</xsl:variable>
@@ -788,6 +788,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="handleANY">
                             <xsl:with-param name="in" select="hl7:value"/>
                             <xsl:with-param name="elemName">result_value</xsl:with-param>
+                            <xsl:with-param name="dodatatype" select="true()"/>
                             <!-- mapping into itself relevant to get the @value attributes which is required in the schema -->
                             <xsl:with-param name="codeMap" as="element(map)*">
                                 <map inCode="282291009" inCodeSystem="{$oidSNOMEDCT}" value="1" code="282291009" codeSystem="{$oidSNOMEDCT}" displayName="Diagnosis"/>
@@ -805,16 +806,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="handlePQ">
                             <xsl:with-param name="in" select="hl7:referenceRange/hl7:observationRange/hl7:value/hl7:low"/>
                             <xsl:with-param name="elemName">reference_range_lower_limit</xsl:with-param>
+                            <xsl:with-param name="datatype">quantity</xsl:with-param>
                         </xsl:call-template>
                         
                         <xsl:call-template name="handlePQ">
                             <xsl:with-param name="in" select="hl7:referenceRange/hl7:observationRange/hl7:value/hl7:high"/>
                             <xsl:with-param name="elemName">reference_range_upper_limit</xsl:with-param>
+                            <xsl:with-param name="datatype">quantity</xsl:with-param>
                         </xsl:call-template>
                         
                         <xsl:call-template name="handleCV">
-                            <xsl:with-param name="in" select="hl7:interpretationCode"/>
+                            <xsl:with-param name="in" select="hl7:interpretationCode[not(@code = 'N' and @codeSystem = '2.16.840.1.113883.5.83')]"/>
                             <xsl:with-param name="elemName">result_flags</xsl:with-param>
+                            <xsl:with-param name="codeMap" select="$hl7v3ObservationInterpretation_to_zibInterpretatieVlaggen/*" as="element()*"/>
                         </xsl:call-template>
                     </measurement_result>
                 </general_measurement>
@@ -863,6 +867,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:for-each>
                             
                             <!-- Date and if relevant the time the event to which the information relates took place . -->
+                            <!-- MM-1733 -->
                             <!--<xsl:for-each select="hl7:effectiveTime/hl7:low">
                                 <xsl:call-template name="handleTS">
                                     <xsl:with-param name="in" select="."/>
@@ -894,7 +899,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                     
                     <!-- The date and time at which the allergy or undesired reaction was determined.  -->
-                    <xsl:for-each select="ancestor::hl7:act[1]/hl7:effectiveTime/hl7:low">
+                    <!-- MM-1733 -->
+                    <xsl:for-each select="(ancestor::hl7:act[1]/hl7:effectiveTime/hl7:low, hl7:effectiveTime/hl7:low)[1]">
                         <xsl:call-template name="handleTS">
                             <xsl:with-param name="in" select="."/>
                             <xsl:with-param name="elemName">start_date_time</xsl:with-param>
@@ -1393,8 +1399,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         
                         <!-- result_flags -->
                         <xsl:call-template name="handleCV">
-                            <xsl:with-param name="in" select="hl7:interpretationCode"/>
+                            <xsl:with-param name="in" select="hl7:interpretationCode[not(@code = 'N' and @codeSystem = '2.16.840.1.113883.5.83')]"/>
                             <xsl:with-param name="elemName">result_flags</xsl:with-param>
+                            <xsl:with-param name="codeMap" select="$hl7v3ObservationInterpretation_to_zibInterpretatieVlaggen/*" as="element()*"/>
                         </xsl:call-template>
                         
                         <!-- result_interpretation -->

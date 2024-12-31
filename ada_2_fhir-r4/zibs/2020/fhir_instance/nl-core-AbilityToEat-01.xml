@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-AbilityToEat-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AbilityToEat"/>
+   </meta>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="288883002"/>
+         <display value="vermogen tot eten"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="129033007"/>
+         <display value="Hulp nodig bij eten"/>
+      </coding>
+   </valueCodeableConcept>
+   <hasMember>
+      <reference value="Observation/nl-core-AbilityToEat.EatingLimitations-01"/>
+      <type value="Observation"/>
+      <display value="Eet beperkingen: 3"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-AbilityToEat.EatingLimitations-02"/>
+      <type value="Observation"/>
+      <display value="Eet beperkingen: 2"/>
+   </hasMember>
+</Observation>

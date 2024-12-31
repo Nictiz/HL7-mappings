@@ -1,0 +1,120 @@
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="zib-AllergyIntolerance-msz-ba4a988a-6b70-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Allergie/intolerantie. Patiënt: Jan Adrianus J.A.K. Jan Kooyman. Categorie: <span title="allergie voor substantie (419199007 - SNOMED CT)">allergie voor substantie</span>, Status: opgelost / bevestigd</caption>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="latex (111088007 - SNOMED CT)">latex</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>2006</td>
+               </tr>
+               <tr>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>
+                              <span title="Licht (255604002 - SNOMED CT)">Licht</span>
+                           </div>
+                           <div>
+                              <span title="Jeuk (418363000 - SNOMED CT)">Jeuk</span>
+                           </div>
+                           <div>Huidproblemen</div>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="0168faa9-6b37-11ec-0000-2"/>
+   </identifier>
+   <clinicalStatus value="resolved">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActStatus"/>
+               <code value="completed"/>
+               <display value="Niet meer aanwezig"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus value="confirmed"/>
+   <category value="biologic">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="419199007"/>
+               <display value="allergie voor substantie"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <criticality value="high">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="6736007"/>
+               <display value="matig"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </criticality>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="111088007"/>
+         <display value="latex"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/JAN-ADRIANUS-J-A-K--JAN-KOOYMAN"/>
+      <display value="Jan Adrianus J.A.K. Jan Kooyman"/>
+   </patient>
+   <onsetDateTime value="2006"/>
+   <reaction>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="418363000"/>
+            <display value="Jeuk"/>
+         </coding>
+      </manifestation>
+      <description value="Huidproblemen"/>
+      <severity value="mild">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="255604002"/>
+                  <display value="Licht"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </severity>
+      <exposureRoute>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="448598008"/>
+            <display value="cutane route"/>
+         </coding>
+      </exposureRoute>
+   </reaction>
+</AllergyIntolerance>

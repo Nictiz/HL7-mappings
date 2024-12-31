@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-TobaccoUse-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TobaccoUse"/>
+   </meta>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="365980008"/>
+         <display value="bevinding betreffende tabakgebruik en blootstelling aan tabaksrook"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <effectivePeriod>
+      <start value="1985-01-01"/>
+   </effectivePeriod>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="65568007"/>
+         <display value="Rookt sigaretten"/>
+      </coding>
+   </valueCodeableConcept>
+   <note>
+      <text value="Probeert te stoppen. Thuis wordt ook door partner gerookt"/>
+   </note>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="53661000146106"/>
+            <display value="Type of tobacco used"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="160619003"/>
+            <display value="Rookt shag"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="266918002"/>
+            <display value="Tobacco smoking consumption"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="350"/>
+         <unit value="g per week"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="{g per week}"/>
+      </valueQuantity>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="401201003"/>
+            <display value="pakjaren"/>
+         </coding>
+      </code>
+      <valueInteger value="20"/>
+   </component>
+</Observation>

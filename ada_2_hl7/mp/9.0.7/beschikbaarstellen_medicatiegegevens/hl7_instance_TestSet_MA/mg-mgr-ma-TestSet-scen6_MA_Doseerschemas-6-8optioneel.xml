@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:hl7nl="urn:hl7-nl:v3"
+           xmlns:pharm="urn:ihe:pharm:medication"
+           xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="urn:hl7-org:v3"
+           classCode="CLUSTER"
+           moodCode="EVN">
+   <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9239"/>
+   <code code="102"
+         displayName="Medicatiegegevens"
+         codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4"
+         codeSystemName="ART DECOR transacties"/>
+   <statusCode nullFlavor="NI"/>
+   <recordTarget>
+      <patientRole>
+         <id extension="999990056" root="2.16.840.1.113883.2.4.6.3"/>
+         <patient>
+            <name>
+               <given qualifier="IN">F.</given>
+               <family qualifier="BR">XXX-GBZ-Smoketest-B</family>
+            </name>
+            <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <birthTime value="19500206"/>
+         </patient>
+      </patientRole>
+   </recordTarget>
+   <component typeCode="COMP">
+      <substanceAdministration classCode="SBADM" moodCode="RQO">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
+         <id extension="tsMBH_907_weekdagen_MA-GSB"
+             root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <code code="16076005"
+               displayName="Medicatieafspraak"
+               codeSystem="2.16.840.1.113883.6.96"
+               codeSystemName="SNOMED CT"/>
+         <text mediaType="text/plain">Vanaf 13 nov 2020, tot en met 12 jan 2021, op dinsdag en vrijdag, cutaan</text>
+         <effectiveTime xsi:type="IVL_TS">
+            <low value="20201113000000"/>
+            <high value="20210112235959"/>
+         </effectiveTime>
+         <routeCode code="53"
+                    codeSystem="2.16.840.1.113883.2.4.4.9"
+                    displayName="cutaan"
+                    codeSystemName="G-Standaard Toedieningswegen"/>
+         <consumable>
+            <manufacturedProduct>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
+               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                  <code code="108103"
+                        codeSystem="2.16.840.1.113883.2.4.4.10"
+                        displayName="TRETINOIN/HYDROCHINON/HYDROCORT CREM 0,5/50/10MG/G"
+                        codeSystemName="G-Standaard PRK">
+                     <translation code="143685"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1"
+                                  displayName="TRETINOIN/HYDROCHINON/HYDROCORT CREM 0,5/50/10MG/G"
+                                  codeSystemName="G-Standaard GPK"/>
+                  </code>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </consumable>
+         <author>
+            <time value="20201113082500"/>
+            <assignedAuthor>
+               <id extension="000001116" root="2.16.528.1.1007.3.1"/>
+               <code code="0100"
+                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                     displayName="Huisartsen, niet nader gespecificeerd"
+                     codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                     codeSystemVersion="2017-12-14T00:00:00"/>
+               <assignedPerson>
+                  <name>
+                     <given qualifier="BR">Pieter</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Plat</family>
+                  </name>
+               </assignedPerson>
+               <representedOrganization>
+                  <id extension="00001116" root="2.16.528.1.1007.3.3"/>
+                  <name>Huisartsenpraktijk Staden</name>
+                  <addr use="WP">
+                     <streetName>Kerkstraat</streetName>
+                     <houseNumber>4</houseNumber>
+                     <postalCode>1234 AB</postalCode>
+                     <city>Onze Stad</city>
+                  </addr>
+               </representedOrganization>
+            </assignedAuthor>
+         </author>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="1"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
+               <effectiveTime xsi:type="SXPR_TS" operator="A">
+                  <comp xsi:type="hl7nl:PIVL_TS"
+                        operator="A"
+                        isFlexible="true"
+                        alignment="DW">
+                     <hl7nl:phase>
+                        <hl7nl:low value="19700602"/>
+                     </hl7nl:phase>
+                     <hl7nl:period unit="wk" value="1"/>
+                  </comp>
+                  <comp xsi:type="hl7nl:PIVL_TS"
+                        operator="I"
+                        isFlexible="true"
+                        alignment="DW">
+                     <hl7nl:phase>
+                        <hl7nl:low value="19700605"/>
+                     </hl7nl:phase>
+                     <hl7nl:period unit="wk" value="1"/>
+                  </comp>
+               </effectiveTime>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP" inversionInd="true">
+            <procedure classCode="PROC" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="tsMBH_907_weekdagen-GSB"/>
+               <code code="1"
+                     displayName="Medicamenteuze behandeling"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </substanceAdministration>
+   </component>
+</organizer>

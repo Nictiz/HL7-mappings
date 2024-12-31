@@ -1,0 +1,102 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <id value="zib-Procedure-msz-68e808ea-6b40-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Jan Adrianus J.A.K. Jan Kooyman. Categorie: , Status: voltooid<span style="display: block;">Uitvoerende: Ziekenhuis de Aandacht</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="externe fixatie van fractuur van malleolus (111501000146106 - SNOMED CT)">externe fixatie van fractuur van malleolus</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: ${DATE, T, D, -45}T14:00:00+02:00 - ${DATE, T, D, -45}T15:00:00+02:00</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="immobilisatie (129371009 - SNOMED CT)">immobilisatie</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Gebaseerd op</th>
+                  <td>externe fixatie van fractuur van malleolus</td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="structuur van enkelgewricht (70258002 - SNOMED CT)">structuur van enkelgewricht</span>
+                     <span title="Links (7771000 - SNOMED CT)">Links</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="129371009"/>
+            <display value="immobilisatie"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="7340db31-6b0c-11ec-0000-2"/>
+   </identifier>
+   <basedOn>
+      <reference value="ProcedureRequest/zib-ProcedureRequest-msz-68e808ea-6b40-11ec-0000-2"/>
+      <display value="externe fixatie van fractuur van malleolus"/>
+   </basedOn>
+   <status value="completed"/>
+   <category>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="111501000146106"/>
+         <display value="externe fixatie van fractuur van malleolus"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/JAN-ADRIANUS-J-A-K--JAN-KOOYMAN"/>
+      <display value="Jan Adrianus J.A.K. Jan Kooyman"/>
+   </subject>
+   <performedPeriod>
+      <start value="${DATE, T, D, -45}T14:00:00+02:00"/>
+      <end value="${DATE, T, D, -45}T15:00:00+02:00"/>
+   </performedPeriod>
+   <performer>
+      <actor>
+         <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000002"/>
+         <display value="Ziekenhuis de Aandacht"/>
+      </actor>
+   </performer>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="70258002"/>
+         <display value="structuur van enkelgewricht"/>
+      </coding>
+   </bodySite>
+</Procedure>

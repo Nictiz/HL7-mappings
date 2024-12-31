@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?nictiz status="example"?>
+<QURX_IN990113NL xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3">
+    <id extension="555555112" root="2.16.840.1.113883.2.4.6.6.1.1"/>
+    <creationTime value="20090401090530"/>
+    <versionCode code="NICTIZEd2005-Okt"/>
+    <interactionId extension="QURX_IN990113NL" root="2.16.840.1.113883.1.6"/>
+    <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+    <processingCode code="P"/>
+    <processingModeCode code="T"/>
+    <acceptAckCode code="NE"/>
+    <acknowledgement typeCode="AA">
+        <targetMessage>
+            <id extension="555555112" root="2.16.528.1.1007.3.3.1234567.1"/>
+        </targetMessage>
+    </acknowledgement>
+    <receiver>
+        <device classCode="DEV" determinerCode="INSTANCE">
+            <id root="2.16.840.1.113883.2.4.6.6" extension="1"/>
+        </device>
+    </receiver>
+    <sender>
+        <device classCode="DEV" determinerCode="INSTANCE">
+            <id root="2.16.840.1.113883.2.4.6.6" extension="31"/>
+            <name>Reagerende Simulator</name>
+            <agencyFor classCode="AGNT">
+                <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                    <id root="2.16.528.1.1007.3.3" extension="00000509"/>
+                    <name>Reagerende Simulator</name>
+                </representedOrganization>
+            </agencyFor>
+        </device>
+    </sender>
+    <ControlActProcess moodCode="EVN">
+        <authorOrPerformer typeCode="AUT">
+            <participant>
+                <AssignedDevice>
+                    <id extension="009876543" root="2.16.528.1.1007.3.2"/>
+                    <id extension="31" root="2.16.840.1.113883.2.4.6.6"/>
+                    <Organization>
+                        <id extension="01234567" root="2.16.528.1.1007.3.3"/>
+                        <code code="J8" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Openbare apotheek"/>
+                        <name>Apotheek De Gulle Gaper</name>
+                    </Organization>
+                </AssignedDevice>
+            </participant>
+        </authorOrPerformer>
+        <subject>
+            <MedicationDispenseList>
+                <code codeSystem="2.16.840.1.113883.5.4" code="MEDLIST"/>
+                <subject>
+                    <Patient>
+                        <id extension="555555112" root="2.16.840.1.113883.2.4.6.3"/>
+                        <addr use="HP">
+                            <streetName>Maasstraat</streetName>
+                            <houseNumber>2</houseNumber>
+                            <buildingNumberSuffix>B II</buildingNumberSuffix>
+                            <postalCode>1235 DB</postalCode>
+                            <city>Roermond</city>
+                        </addr>
+                        <statusCode code="active"/>
+                        <Person>
+                            <name use="L">
+                                <given>Richard</given>
+                                <prefix qualifier="VV">van </prefix>
+                                <family qualifier="BR">Henegouwen</family>
+                            </name>
+                            <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+                            <birthTime value="19500220"/>
+                        </Person>
+                    </Patient>
+                </subject>
+                <!-- ___MEBENDAZOL_____________________________________________________________________________ -->
+                <component>
+                    <medicationDispenseEvent>
+                        <id extension="38129f10-100a-11e5-b939-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="20071208"/>
+                        <quantity value="2">
+                            <translation value="2" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Stuk"/>
+                        </quantity>
+                        <expectedUseTime nullFlavor="NA"/>
+                        <performer>
+                            <assignedPerson>
+                                <id nullFlavor="MSK"/>
+                            </assignedPerson>
+                        </performer>
+                        <product>
+                            <dispensedMedication>
+                                <MedicationKind>
+                                    <code code="14234785" codeSystem="2.16.840.1.113883.2.4.4.8" codeSystemName="G-Standaard Artikel" displayName="MEBENDAZOL SAN TABLET 100MG">
+                                        <translation code="1046764" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                                        <translation code="9954" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                                    </code>
+                                </MedicationKind>
+                                <directTargetOf typeCode="DIR">
+                                    <prescription>
+                                        <id extension="0000007844" root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+                                        <statusCode nullFlavor="UNK"/>
+                                        <author>
+                                            <time value="20071208"/>
+                                            <AssignedPerson>
+                                                <id extension="01008316" root="2.16.840.1.113883.2.4.6.1"/>
+                                            </AssignedPerson>
+                                        </author>
+                                    </prescription>
+                                </directTargetOf>
+                                <therapeuticAgentOf>
+                                    <medicationAdministrationRequest>
+                                        <text mediaType="text/plain">Gebruik bekend</text>
+                                        <statusCode code="active"/>
+                                        <effectiveTime nullFlavor="NA"/>
+                                    </medicationAdministrationRequest>
+                                </therapeuticAgentOf>
+                            </dispensedMedication>
+                        </product>
+                        <responsibleParty>
+                            <assignedCareProvider>
+                                <id extension="012345679" root="2.16.528.1.1007.3.1"/>
+                                <code code="17.000" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+
+                                <representedOrganization>
+                                    <id extension="01234567" root="2.16.528.1.1007.3.3"/>
+                                </representedOrganization>
+                            </assignedCareProvider>
+                        </responsibleParty>
+                    </medicationDispenseEvent>
+                </component>
+
+                <!-- ________________________________________________________________________________ -->
+
+            </MedicationDispenseList>
+        </subject>
+        <queryAck>
+            <queryId extension="555555112" root="2.16.528.1.1007.3.3.1234567.2"/>
+            <queryResponseCode code="OK"/>
+            <resultTotalQuantity value="1"/>
+            <resultCurrentQuantity value="1"/>
+            <resultRemainingQuantity value="0"/>
+        </queryAck>
+    </ControlActProcess>
+</QURX_IN990113NL>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:hl7nl="urn:hl7-nl:v3"
+           xmlns:pharm="urn:ihe:pharm:medication"
+           xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="urn:hl7-org:v3"
+           classCode="CLUSTER"
+           moodCode="EVN">
+   <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9239"/>
+   <code code="102"
+         displayName="Medicatiegegevens"
+         codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4"
+         codeSystemName="ART DECOR transacties"/>
+   <statusCode nullFlavor="NI"/>
+   <recordTarget>
+      <patientRole>
+         <id extension="999990020" root="2.16.840.1.113883.2.4.6.3"/>
+         <patient>
+            <name>
+               <given qualifier="IN">C.</given>
+               <family qualifier="BR">XXX-CSC-Smoketest-A</family>
+            </name>
+            <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+            <birthTime value="19500203"/>
+         </patient>
+      </patientRole>
+   </recordTarget>
+   <component typeCode="COMP">
+      <supply classCode="SPLY" moodCode="RQO">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9257"/>
+         <id extension="tsMBH_907_HPKvoorschrijven_VV-CSA"
+             root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+         <code codeSystemName="SNOMED CT"
+               displayName="Verstrekkingsverzoek"
+               code="52711000146108"
+               codeSystem="2.16.840.1.113883.6.96"/>
+         <quantity value="300" unit="1">
+            <translation value="300"
+                         code="245"
+                         displayName="stuk"
+                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                         codeSystemName="G-Standaard thesaurus basiseenheden"/>
+         </quantity>
+         <product>
+            <manufacturedProduct>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
+               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                  <code code="1110837"
+                        codeSystem="2.16.840.1.113883.2.4.4.7"
+                        displayName="Acetylsalicylzuur tabletmsr 100mg"
+                        codeSystemName="G-Standaard HPK">
+                     <translation code="49484"
+                                  codeSystem="2.16.840.1.113883.2.4.4.10"
+                                  displayName="Acetylsalicylzuur tabletmsr 100mg"
+                                  codeSystemName="G-Standaard PRK"/>
+                     <translation code="103039"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1"
+                                  displayName="Acetylsalicylzuur tabletmsr 100mg"
+                                  codeSystemName="G-Standaard GPK"/>
+                  </code>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </product>
+         <performer>
+            <assignedEntity>
+               <id nullFlavor="NI"/>
+               <representedOrganization>
+                  <id extension="01236576" root="2.16.528.1.1007.3.3"/>
+                  <name>Apotheek De Sleutel</name>
+               </representedOrganization>
+            </assignedEntity>
+         </performer>
+         <author>
+            <time value="20200616130000"/>
+            <assignedAuthor>
+               <id extension="000001116" root="2.16.528.1.1007.3.1"/>
+               <code code="0100"
+                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                     displayName="Huisartsen, niet nader gespecificeerd"
+                     codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                     codeSystemVersion="2017-12-14T00:00:00"/>
+               <assignedPerson>
+                  <name>
+                     <given qualifier="BR">Pieter</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Plat</family>
+                  </name>
+               </assignedPerson>
+               <representedOrganization>
+                  <id extension="00001116" root="2.16.528.1.1007.3.3"/>
+                  <name>Huisartsenpraktijk Staden</name>
+                  <addr use="WP">
+                     <streetName>Kerkstraat</streetName>
+                     <houseNumber>4</houseNumber>
+                     <postalCode>1234 AB</postalCode>
+                     <city>Onze Stad</city>
+                  </addr>
+               </representedOrganization>
+            </assignedAuthor>
+         </author>
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
+               <id extension="tsMBH_907_HPKvoorschrijven_MA-CSA"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <code code="16076005"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"
+                     displayName="Medicatieafspraak"/>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP" inversionInd="true">
+            <procedure classCode="PROC" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="tsMBH_907_HPKvoorschrijven-CSA"/>
+               <code code="1"
+                     displayName="Medicamenteuze behandeling"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </supply>
+   </component>
+   <component typeCode="COMP">
+      <supply classCode="SPLY" moodCode="RQO">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9257"/>
+         <id extension="tsMBH_907_ZINRvoorschrijven_VV-CSA"
+             root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+         <code codeSystemName="SNOMED CT"
+               displayName="Verstrekkingsverzoek"
+               code="52711000146108"
+               codeSystem="2.16.840.1.113883.6.96"/>
+         <quantity value="120" unit="1">
+            <translation value="120"
+                         code="245"
+                         displayName="stuk"
+                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                         codeSystemName="G-Standaard thesaurus basiseenheden"/>
+         </quantity>
+         <product>
+            <manufacturedProduct>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
+               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                  <code code="12377333"
+                        codeSystem="2.16.840.1.113883.2.4.4.8"
+                        displayName="LASIX TABLET 40MG"
+                        codeSystemName="G-Standaard ZI-nr">
+                     <translation code="220515"
+                                  codeSystem="2.16.840.1.113883.2.4.4.7"
+                                  displayName="LASIX TABLET 40MG"
+                                  codeSystemName="G-Standaard HPK"/>
+                     <translation code="5967"
+                                  codeSystem="2.16.840.1.113883.2.4.4.10"
+                                  displayName="FUROSEMIDE TABLET 40MG"
+                                  codeSystemName="G-Standaard PRK"/>
+                     <translation code="16810"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1"
+                                  displayName="FUROSEMIDE TABLET 40MG"
+                                  codeSystemName="G-Standaard GPK"/>
+                  </code>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </product>
+         <performer>
+            <assignedEntity>
+               <id nullFlavor="NI"/>
+               <representedOrganization>
+                  <id extension="01236579" root="2.16.528.1.1007.3.3"/>
+                  <name>Apotheek De Sleutel</name>
+               </representedOrganization>
+            </assignedEntity>
+         </performer>
+         <author>
+            <time value="20201113130500"/>
+            <assignedAuthor>
+               <id extension="000001116" root="2.16.528.1.1007.3.1"/>
+               <code code="0100"
+                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                     displayName="Huisartsen, niet nader gespecificeerd"
+                     codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                     codeSystemVersion="2017-12-14T00:00:00"/>
+               <assignedPerson>
+                  <name>
+                     <given qualifier="BR">Pieter</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Plat</family>
+                  </name>
+               </assignedPerson>
+               <representedOrganization>
+                  <id extension="00001116" root="2.16.528.1.1007.3.3"/>
+                  <name>Huisartsenpraktijk Staden</name>
+                  <addr use="WP">
+                     <streetName>Kerkstraat</streetName>
+                     <houseNumber>4</houseNumber>
+                     <postalCode>1234 AB</postalCode>
+                     <city>Onze Stad</city>
+                  </addr>
+               </representedOrganization>
+            </assignedAuthor>
+         </author>
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
+               <id extension="tsMBH_907_ZINRvoorschrijven_MA-CSA"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <code code="16076005"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"
+                     displayName="Medicatieafspraak"/>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP" inversionInd="true">
+            <procedure classCode="PROC" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="tsMBH_907_ZINRvoorschrijven-CSA"/>
+               <code code="1"
+                     displayName="Medicamenteuze behandeling"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </supply>
+   </component>
+</organizer>

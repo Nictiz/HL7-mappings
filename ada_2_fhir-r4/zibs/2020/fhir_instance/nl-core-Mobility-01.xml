@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-Mobility-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility"/>
+   </meta>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="301438001"/>
+         <display value="vermogen tot mobiliteit"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <note>
+      <text value="Rollator is eigen bezit."/>
+   </note>
+   <hasMember>
+      <reference value="Observation/nl-core-Mobility.Walking-01"/>
+      <type value="Observation"/>
+      <display value="Lopen: Needs help with walking"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-Mobility.ClimbingStairs-01"/>
+      <type value="Observation"/>
+      <display value="Traplopen: Niet in staat trap te lopen"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-Mobility.MaintainingPosition-01"/>
+      <type value="Observation"/>
+      <display value="Houding veranderen: Independently able to change position"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-Mobility.ChangingPosition-01"/>
+      <type value="Observation"/>
+      <display value="Houding handhaven: Independently able to maintain position"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-Mobility.Transfer-01"/>
+      <type value="Observation"/>
+      <display value="Uitvoeren transfer: Able to transfer location with assistance"/>
+   </hasMember>
+</Observation>

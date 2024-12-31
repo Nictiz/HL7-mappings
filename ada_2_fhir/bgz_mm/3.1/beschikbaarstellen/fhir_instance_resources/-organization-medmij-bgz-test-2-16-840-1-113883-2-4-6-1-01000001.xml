@@ -1,0 +1,97 @@
+<Organization xmlns="http://hl7.org/fhir">
+   <id value="-organization-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-01000001"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Organisatie. Id: PatA-HealthcareProvider1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), 01000001 (AGB-Z)</caption>
+            <tbody>
+               <tr>
+                  <th>Naam</th>
+                  <td>Huisartsenpraktijk het Hogeland</td>
+               </tr>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <div>
+                        <span title="Huisartsen, niet nader gespecificeerd (0100 - AGB-medisch specialisme)">Huisartsen, niet nader gespecificeerd</span>
+                     </div>
+                     <div>
+                        <span title="Huisartspraktijk (zelfstandig of groepspraktijk) (Z3 - organization-type)">Huisartspraktijk (zelfstandig of groepspraktijk)</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Adres</th>
+                  <td>Knolweg 11 A-G, 9999ZA Stitswerd Het Hogeland, NLD (Bezoek)</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="PatA-HealthcareProvider1"/>
+   </identifier>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+      <value value="01000001"/>
+   </identifier>
+   <type>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+         <version value="2017-12-14T00:00:00"/>
+         <code value="0100"/>
+         <display value="Huisartsen, niet nader gespecificeerd"/>
+      </coding>
+   </type>
+   <type>
+      <coding>
+         <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+         <code value="Z3"/>
+         <display value="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
+      </coding>
+   </type>
+   <name value="Huisartsenpraktijk het Hogeland"/>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="PHYS"/>
+               <display value="Woon-/verblijfadres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="home"/>
+      <type value="physical"/>
+      <line value="Knolweg 11 A-G">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Knolweg"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="11"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+            <valueString value="A-G"/>
+         </extension>
+      </line>
+      <city value="Stitswerd"/>
+      <district value="Het Hogeland"/>
+      <postalCode value="9999ZA"/>
+      <country value="NLD">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:iso:std:iso:3166"/>
+                  <code value="NLD"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+</Organization>

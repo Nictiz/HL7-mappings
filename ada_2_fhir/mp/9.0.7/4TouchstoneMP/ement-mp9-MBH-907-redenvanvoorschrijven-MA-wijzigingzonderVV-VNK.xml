@@ -1,0 +1,149 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="ement-mp9-MBH-907-redenvanvoorschrijven-MA-wijzigingzonderVV-VNK"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Medicatieafspraak. Subject: C. XXX_Vonker. Id: MBH_907_redenvanvoorschrijven_MA_wijzigingzonderVV-VNK (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>MBH_907_redenvanvoorschrijven-VNK (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+               </tr>
+               <tr>
+                  <th>Gebaseerd op</th>
+                  <td>relatie naar medicatieafspraak: MBH_907_redenvanvoorschrijven_MA-VNK || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_907_redenvanvoorschrijven_MA-VNK (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>Methotrexaat tablet 2,5mg</td>
+               </tr>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>${DATE, T, D, -1}T08:10:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <span title="Te sterk effect (6 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2)">Te sterk effect</span>
+                        </li>
+                        <li>Reumatoide artritis overig</li>
+                     </ul>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Gebruiksduur</th>
+                  <td>${DATE, T, D, -1}T00:00:00+02:00 - ${DATE, T, D, +14}T23:59:59+02:00</td>
+               </tr>
+               <tr>
+                  <th>Doseerinstructie</th>
+                  <td>
+                     <div>Tekst: Vanaf T - 1 dag, tot en met T + 14 dagen, 1 maal per week 4 stuks, Oraal</div>
+                     <div>Timing: <div>eenmalig per week</div>
+                     </div>
+                     <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                     </div>
+                     <div>Dosering: 4 stuk</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+      <valuePeriod>
+         <start value="${DATE, T, D, -1}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, +14}T23:59:59+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_907_redenvanvoorschrijven-VNK"/>
+      </valueIdentifier>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+      <valueReference>
+         <identifier>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <value value="MBH_907_redenvanvoorschrijven_MA-VNK"/>
+         </identifier>
+         <display value="relatie naar medicatieafspraak: MBH_907_redenvanvoorschrijven_MA-VNK || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      <value value="MBH_907_redenvanvoorschrijven_MA_wijzigingzonderVV-VNK"/>
+   </identifier>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="Prescription (procedure)"/>
+      </coding>
+      <text value="Medicatieafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/zib-Product-mp9-2-16-840-1-113883-2-4-4-10-141631"/>
+      <display value="Methotrexaat tablet 2,5mg"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/XXX-VONKER"/>
+      <display value="C. XXX_Vonker"/>
+   </subject>
+   <authoredOn value="${DATE, T, D, -1}T08:10:00+02:00"/>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-mp9-000001112010000001111"/>
+               <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-mp9-2-16-528-1-1007-3-1-000001112"/>
+         <display value="Bertine van Doorn"/>
+      </agent>
+   </requester>
+   <reasonCode>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"/>
+         <code value="6"/>
+         <display value="Te sterk effect"/>
+      </coding>
+   </reasonCode>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-mp9-c33f13f7-6a95-11ec-0000-020000000000"/>
+      <display value="Reumatoide artritis overig"/>
+   </reasonReference>
+   <dosageInstruction>
+      <text value="Vanaf T - 1 dag, tot en met T + 14 dagen, 1 maal per week 4 stuks, Oraal"/>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="wk"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseQuantity>
+         <value value="4"/>
+         <unit value="stuk"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="245"/>
+      </doseQuantity>
+   </dosageInstruction>
+</MedicationRequest>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-FluidBalance-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-FluidBalance"/>
+   </meta>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="710853006"/>
+         <display value="evaluatie van vochtbalans"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <effectivePeriod>
+      <start value="2016-12-19T00:00:00+01:00"/>
+      <end value="2016-12-20T00:00:00+01:00"/>
+   </effectivePeriod>
+   <note>
+      <text value="Moeite met aflezen"/>
+   </note>
+   <hasMember>
+      <reference value="Observation/nl-core-FluidBalance.FluidTotalIn-01"/>
+      <type value="Observation"/>
+      <display value="vocht_totaal_in"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-FluidBalance.FluidTotalOut-01"/>
+      <type value="Observation"/>
+      <display value="vocht_totaal_uit"/>
+   </hasMember>
+</Observation>

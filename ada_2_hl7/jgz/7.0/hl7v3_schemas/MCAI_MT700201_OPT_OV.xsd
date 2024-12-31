@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema targetNamespace="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:hl7-org:v3" elementFormDefault="qualified">
+	<xs:include schemaLocation="../coreschemas/datatypes.xsd"/>
+	<xs:include schemaLocation="../coreschemas/voc.xsd"/>
+	<!-- schema is gelijk aan MCAI_MT700201: variant met optionele overseer, en optioneel subject  -->
+	<xs:include schemaLocation="COCT_MT090300.xsd"/>
+	<xs:include schemaLocation="COCT_MT090100.xsd"/>
+	<xs:element name="ControlActProcess" type="MCAI_MT700201_OPT_OV.ControlActProcess"/>
+	<xs:group name="ControlAct">
+		<xs:sequence>
+			<xs:element name="ControlActProcess" type="MCAI_MT700201_OPT_OV.ControlActProcess"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:complexType name="MCAI_MT700201_OPT_OV.ControlActProcess">
+		<xs:sequence>
+			<xs:element name="id" type="II" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="code" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="text" type="ED" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="effectiveTime" type="IVL_TS" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="priorityCode" type="CE" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="reasonCode" type="CE" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="languageCode" type="CE" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="authorOrPerformer" type="MCAI_MT700201_OPT_OV.AuthorOrPerformer"/>
+			<xs:element name="dataEnterer" type="MCAI_MT700201_OPT_OV.DataEnterer" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="informationRecipient" type="MCAI_MT700201_OPT_OV.InformationRecipient" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="overseer" type="MCAI_MT700201_OPT_OV.Overseer" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="reason" type="MCAI_MT700201_OPT_OV.Reason" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="subject" type="MCAI_MT700201_OPT_OV.Subject2" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="ControlAct"/>
+		<xs:attribute name="classCode" type="ActClass" use="optional" default="ACTN"/>
+		<xs:attribute name="moodCode" type="x_ActMoodIntentEvent" use="required"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCAI_MT700201_OPT_OV.AuthorOrPerformer">
+		<xs:sequence>
+			<xs:element name="noteText" type="ED" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="time" type="IVL_TS" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="modeCode" type="CE" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="signatureCode" type="CE" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="signatureText" type="ED" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="participant" type="MCAI_MT700201_OPT_OV.ParticipationChoice"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="Participation"/>
+		<xs:attribute name="typeCode" type="x_ParticipationAuthorPerformer" use="required"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCAI_MT700201_OPT_OV.DataEnterer">
+		<xs:sequence>
+			<xs:element name="time" type="IVL_TS" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="COCT_MT090100"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="Participation"/>
+		<xs:attribute name="typeCode" type="ParticipationType" use="optional" default="ENT"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCAI_MT700201_OPT_OV.InformationRecipient">
+		<xs:sequence>
+			<xs:element name="time" type="IVL_TS" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="COCT_MT090100"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="Participation"/>
+		<xs:attribute name="typeCode" type="ParticipationInformationRecipient" use="required"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCAI_MT700201_OPT_OV.Overseer">
+		<xs:sequence>
+			<xs:element name="noteText" type="ED" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="time" type="IVL_TS" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="modeCode" type="CE" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="signatureCode" type="CE" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="signatureText" type="ED" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="COCT_MT090100"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="Participation"/>
+		<xs:attribute name="typeCode" type="x_ParticipationVrfRespSprfWit" use="required"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCAI_MT700201_OPT_OV.Reason">
+		<xs:sequence>
+			<xs:element name="justifyingDetectedIssueEvent" type="MCAI_MT700201_OPT_OV.DetectedIssueEvent"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="ActRelationship"/>
+		<xs:attribute name="typeCode" type="ActRelationshipType" use="optional" default="RSON"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCAI_MT700201_OPT_OV.DetectedIssueEvent">
+		<xs:sequence>
+			<xs:element name="id" type="II" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="code" type="CD" maxOccurs="unbounded"/>
+			<xs:element name="text" type="ED" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="value" type="xs:anyType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="requires" type="MCAI_MT700201_OPT_OV.Requires" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="sourceOf" type="MCAI_MT700201_OPT_OV.SourceOf" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="Observation"/>
+		<xs:attribute name="classCode" type="ActClass" use="optional" default="ALRT"/>
+		<xs:attribute name="moodCode" type="ActMood" use="optional" default="EVN"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCAI_MT700201_OPT_OV.Requires">
+		<xs:sequence>
+			<xs:element name="actOrderRequired" type="MCAI_MT700201_OPT_OV.ActOrderRequired"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="ActRelationship"/>
+		<xs:attribute name="typeCode" type="ActRelationshipType" use="optional" default="TRIG"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCAI_MT700201_OPT_OV.ActOrderRequired">
+		<xs:sequence>
+			<xs:element name="code" type="CE" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="effectiveTime" type="SXCM_TS" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="subject" type="MCAI_MT700201_OPT_OV.Subject" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="ActHeir"/>
+		<xs:attribute name="classCode" type="ActClass" use="optional" default="ACT"/>
+		<xs:attribute name="moodCode" type="ActMood" use="optional" default="RQO"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCAI_MT700201_OPT_OV.Subject">
+		<xs:sequence>
+			<xs:element name="participant" type="MCAI_MT700201_OPT_OV.Role"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="Participation"/>
+		<xs:attribute name="typeCode" type="ParticipationType" use="optional" default="SBJ"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCAI_MT700201_OPT_OV.Role">
+		<xs:sequence>
+			<xs:element name="code" type="CE" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="RoleHeir"/>
+		<xs:attribute name="classCode" type="RoleClass" use="optional" default="ROL"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCAI_MT700201_OPT_OV.SourceOf">
+		<xs:sequence>
+			<xs:element name="target" type="MCAI_MT700201_OPT_OV.DetectedIssueManagement"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="ActRelationship"/>
+		<xs:attribute name="typeCode" type="ActRelationshipType" use="optional" default="MITGT"/>
+		<xs:attribute name="contextConductionInd" type="bl" use="optional" default="false"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCAI_MT700201_OPT_OV.DetectedIssueManagement">
+		<xs:sequence>
+			<xs:element name="code" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="text" type="ED" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="ActHeir"/>
+		<xs:attribute name="classCode" type="ActClass" use="optional" default="ACT"/>
+		<xs:attribute name="moodCode" type="x_ActMoodDefEvn" use="required"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCAI_MT700201_OPT_OV.Subject2">
+		<xs:sequence>
+			<xs:group ref="Payload"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="ActRelationship"/>
+		<xs:attribute name="typeCode" type="ActRelationshipType" use="optional" default="SUBJ"/>
+		<xs:attribute name="contextConductionInd" type="bl" use="optional" default="false"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCAI_MT700201_OPT_OV.Act">
+		<xs:attribute name="type" type="Classes" default="ActHeir"/>
+		<xs:attribute name="classCode" type="ActClass" use="optional" default="ACT"/>
+		<xs:attribute name="moodCode" type="ActMood" use="required"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MCAI_MT700201_OPT_OV.ParticipationChoice">
+		<xs:choice>
+			<xs:element name="AssignedDevice" type="COCT_MT090300.AssignedDevice"/>
+			<xs:element name="AssignedPerson" type="COCT_MT090100.AssignedPerson"/>
+		</xs:choice>
+		<xs:attribute name="type" type="Classes" default="Role"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+		<xs:attribute name="stubId" type="oid" use="optional"/>
+	</xs:complexType>
+</xs:schema>

@@ -17,6 +17,11 @@
                                              desc="&lt;div&gt;&lt;span style=&#34;font-family: sans-serif; font-size: 14px; background-color: #f9f9f9;&#34;&gt;Huidige medicatieafspraken, gestopte medicatie en toekomstige medicatieafspraken&lt;/span&gt;&lt;/div&gt;"
                                              id="mo-mor-ma-Scenario2-0-b-output">
          <scenario-nr value="2.0b" conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.2"/>
+         <systeemrol conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.6"
+                     value="1"
+                     code="1"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.6.1.20201207000000"
+                     displayName="Beide"/>
          <!--Patient found in instance with id: mg-Patient-999910668 and title: id: MP KWALIFICATIE Medicatiegegevens Patient (XXX_Klokgieters)-->
          <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798">
             <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799">
@@ -45,7 +50,7 @@
          </patient>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_907_aanvullendeinstructie-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
-            <identificatie value="MBH_907_aanvullendeinstructie"
+            <identificatie value="MBH_907_aanvullendeinstructie-KLK"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
             <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580" comment="">
@@ -56,7 +61,7 @@
                                      conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.2"
                                      datatype="datetime"/>
                <identificatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"
-                              value="MBH_907_aanvullendeinstructie_MA_staken"
+                              value="MBH_907_aanvullendeinstructie_MA_staken-KLK"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <afspraakdatum value="T-10D{18:00:00}"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19757"
@@ -67,7 +72,7 @@
                          codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
                          displayName="Definitief"/>
                <relatie_naar_afspraak_of_gebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23238" comment="">
-                  <identificatie value="MBH_907_aanvullendeinstructie_MA"
+                  <identificatie value="MBH_907_aanvullendeinstructie_MA-KLK"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23239"/>
                </relatie_naar_afspraak_of_gebruik>
@@ -178,7 +183,7 @@
          </medicamenteuze_behandeling>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_907_toelichting-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
-            <identificatie value="MBH_907_toelichting"
+            <identificatie value="MBH_907_toelichting-KLK"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
             <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580" comment="">
@@ -186,13 +191,13 @@
                                       conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.1"
                                       datatype="datetime"/>
                <identificatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"
-                              value="MBH_907_toelichting_MA_wijzigingmetVV"
+                              value="MBH_907_toelichting_MA_wijzigingmetVV-KLK"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <afspraakdatum value="T-2D{08:02:00}"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19757"
                               datatype="datetime"/>
                <relatie_naar_afspraak_of_gebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23238" comment="">
-                  <identificatie value="MBH_907_toelichting_MA"
+                  <identificatie value="MBH_907_toelichting_MA-KLK"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23239"/>
                </relatie_naar_afspraak_of_gebruik>
@@ -296,7 +301,7 @@
          </medicamenteuze_behandeling>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_907_redenvanvoorschrijven-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
-            <identificatie value="MBH_907_redenvanvoorschrijven"
+            <identificatie value="MBH_907_redenvanvoorschrijven-KLK"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
             <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580" comment="">
@@ -307,11 +312,16 @@
                                      conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.2"
                                      datatype="datetime"/>
                <identificatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"
-                              value="MBH_907_redenvanvoorschrijven_MA_wijzigingzonderVV"
+                              value="MBH_907_redenvanvoorschrijven_MA_wijzigingzonderVV-KLK"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <afspraakdatum value="T-1D{08:10:00}"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19757"
                               datatype="datetime"/>
+               <relatie_naar_afspraak_of_gebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23238" comment="">
+                  <identificatie value="MBH_907_redenvanvoorschrijven_MA-KLK"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23239"/>
+               </relatie_naar_afspraak_of_gebruik>
                <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.1030" comment="">
                   <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19835" comment="">
                      <zorgverlener_identificatienummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19836"
@@ -361,6 +371,15 @@
                                          code="6"
                                          codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"
                                          displayName="Te sterk effect"/>
+               <reden_van_voorschrijven conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23133" comment="">
+                  <probleem conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23134" comment="">
+                     <probleem_naam code="OTH"
+                                    codeSystem="2.16.840.1.113883.5.1008"
+                                    originalText="Reumatoide artritis"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23136"
+                                    displayName="overig"/>
+                  </probleem>
+               </reden_van_voorschrijven>
                <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19925" comment="">
                   <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22603" comment="">
                      <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22604"
@@ -412,7 +431,7 @@
          </medicamenteuze_behandeling>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_907_chronisch-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
-            <identificatie value="MBH_907_chronisch"
+            <identificatie value="MBH_907_chronisch-KLK"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
             <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580" comment="">
@@ -420,7 +439,7 @@
                                       conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.1"
                                       datatype="datetime"/>
                <identificatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"
-                              value="MBH_907_chronisch_MA"
+                              value="MBH_907_chronisch_MA-KLK"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <afspraakdatum value="T-30D{11:32:00}"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19757"
@@ -520,10 +539,10 @@
          </medicamenteuze_behandeling>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_907_logistiekeverbruiksperiode_start_eind-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
-            <identificatie value="MBH_907_logistiekeverbruiksperiode_start_eind"
+            <identificatie value="MBH_907_logistiekeverbruiksperiode_start_eind-KLK"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
-            <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580">
+            <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580" comment="">
                <gebruiksperiode_start value="T+10D{00:00:00}"
                                       conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.1"
                                       datatype="datetime"/>
@@ -531,21 +550,21 @@
                                      conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.2"
                                      datatype="datetime"/>
                <identificatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"
-                              value="MBH_907_logistiekeverbruiksperiode_start_eind_MA"
+                              value="MBH_907_logistiekeverbruiksperiode_start_eind_MA-KLK"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <afspraakdatum value="T+0D{11:00:00}"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19757"
                               datatype="datetime"/>
-               <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.1030">
-                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19835">
+               <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.1030" comment="">
+                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19835" comment="">
                      <zorgverlener_identificatienummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19836"
                                                        value="000001112"
                                                        root="2.16.528.1.1007.3.1"/>
-                     <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19837">
-                        <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19838">
+                     <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19837" comment="">
+                        <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19838" comment="">
                            <voornamen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19839"
                                       value="Bertine"/>
-                           <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19843">
+                           <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19843" comment="">
                               <voorvoegsels conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19844" value="van "/>
                               <achternaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19845" value="Doorn"/>
                            </geslachtsnaam>
@@ -557,13 +576,13 @@
                                   codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
                                   codeSystemVersion="2017-12-14T00:00:00"
                                   displayName="Huisartsen, niet nader gespecificeerd"/>
-                     <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19871">
+                     <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19871" comment="">
                         <zorgaanbieder_identificatienummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19873"
                                                            value="00001111"
                                                            root="2.16.528.1.1007.3.3"/>
                         <organisatie_naam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19874"
                                           value="Huisartsenpraktijk Pulver &amp; Partners"/>
-                        <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19885">
+                        <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19885" comment="">
                            <straat value="Dorpsstraat"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19886"/>
                            <huisnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19887"/>
@@ -580,8 +599,8 @@
                      </zorgaanbieder>
                   </zorgverlener>
                </voorschrijver>
-               <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19925">
-                  <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22603">
+               <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19925" comment="">
+                  <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22603" comment="">
                      <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22604"
                                    code="49484"
                                    codeSystem="2.16.840.1.113883.2.4.4.10"
@@ -594,7 +613,7 @@
                                    displayName="Acetylsalicylzuur tabletmsr 100mg"/>
                   </product>
                </afgesproken_geneesmiddel>
-               <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23240">
+               <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23240" comment="">
                   <omschrijving conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23241"
                                 value="Vanaf &lt;T+10D{00:00:00}&gt; t/m &lt;T+12M{23:59:59}&gt;, 1 maal per dag 1 stuk, oraal"/>
                   <toedieningsweg conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23242"
@@ -602,10 +621,10 @@
                                   code="9"
                                   displayName="Oraal"
                                   codeSystemName="G-Standaard Toedieningswegen"/>
-                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23245">
-                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23248">
-                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23249">
-                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23250">
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23245" comment="">
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23248" comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23249" comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23250" comment="">
                               <vaste_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23252"/>
                            </aantal>
                            <eenheid code="245"
@@ -614,9 +633,9 @@
                                     displayName="stuk"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23254"/>
                         </keerdosis>
-                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23256">
-                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23257">
-                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23258">
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23256" comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23257" comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23258" comment="">
                                  <vaste_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23260" value="1"/>
                               </aantal>
                               <tijdseenheid unit="dag"
@@ -628,29 +647,29 @@
                   </doseerinstructie>
                </gebruiksinstructie>
             </medicatieafspraak>
-            <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580">
+            <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580" comment="">
                <gebruiksperiode_start value="T+0D{00:00:00}"
                                       datatype="datetime"
                                       conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.1"/>
                <gebruiksperiode_eind value="T+9D{23:59:59}"
                                      datatype="datetime"
                                      conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.2"/>
-               <identificatie value="MBH_907_logistiekeverbruiksperiode_start_eind_MA_1"
+               <identificatie value="MBH_907_logistiekeverbruiksperiode_start_eind_MA_1-KLK"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"/>
                <afspraakdatum value="T+0D{10:59:59}"
                               datatype="datetime"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19757"/>
-               <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.1030">
-                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19835">
+               <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.1030" comment="">
+                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19835" comment="">
                      <zorgverlener_identificatienummer value="000001112"
                                                        root="2.16.528.1.1007.3.1"
                                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19836"/>
-                     <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19837">
-                        <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19838">
+                     <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19837" comment="">
+                        <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19838" comment="">
                            <voornamen value="Bertine"
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19839"/>
-                           <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19843">
+                           <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19843" comment="">
                               <voorvoegsels value="van" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19844"/>
                               <achternaam value="Doorn" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19845"/>
                            </geslachtsnaam>
@@ -661,13 +680,13 @@
                                   codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
                                   displayName="Huisartsen, niet nader gespecificeerd"
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19849"/>
-                     <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19871">
+                     <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19871" comment="">
                         <zorgaanbieder_identificatienummer value="00001111"
                                                            root="2.16.528.1.1007.3.3"
                                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19873"/>
                         <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19874"/>
-                        <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19885">
+                        <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19885" comment="">
                            <straat value="Dorpsstraat"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19886"/>
                            <huisnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19887"/>
@@ -684,8 +703,8 @@
                      </zorgaanbieder>
                   </zorgverlener>
                </voorschrijver>
-               <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19925">
-                  <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22603">
+               <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19925" comment="">
+                  <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22603" comment="">
                      <product_code code="49484"
                                    codeSystem="2.16.840.1.113883.2.4.4.10"
                                    codeSystemName="G-Standaard PRK"
@@ -698,7 +717,7 @@
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22604"/>
                   </product>
                </afgesproken_geneesmiddel>
-               <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23240">
+               <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23240" comment="">
                   <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+9D{23:59:59}&gt;, 1 maal per dag 2 stuks, oraal"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23241"/>
                   <toedieningsweg code="9"
@@ -706,10 +725,10 @@
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                   displayName="Oraal"
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23242"/>
-                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23245">
-                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23248">
-                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23249">
-                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23250">
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23245" comment="">
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23248" comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23249" comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23250" comment="">
                               <vaste_waarde value="2" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23252"/>
                            </aantal>
                            <eenheid code="245"
@@ -718,9 +737,9 @@
                                     displayName="stuk"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23254"/>
                         </keerdosis>
-                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23256">
-                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23257">
-                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23258">
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23256" comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23257" comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23258" comment="">
                                  <vaste_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23260"/>
                               </aantal>
                               <tijdseenheid value="1"

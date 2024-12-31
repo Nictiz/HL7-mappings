@@ -18,4 +18,3 @@ The folder structure uses the following conventions:
 The ADA front-end for this project is available at https://decor.nictiz.nl/art-decor/ada-data/projects/zib2017/views/health_and_care_information_models_hcim_2017_index.xhtml. Using the front-end, ADA instances can be created. 
 
 These instances can be further accessed at https://decor.nictiz.nl/ada/modules/index-admin.xquery?app=langdurigezorg. This is also the place to download the instances in XML format.
-

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-BowelFunction-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-StomaReference">
+      <valueReference>
+         <reference value="Condition/nl-core-BowelFunction-01-Condition-01"/>
+         <type value="Condition"/>
+         <display value="Stoma, type: dubbelloops colostoma"/>
+      </valueReference>
+   </extension>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="111989001"/>
+         <display value="defecatie"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <hasMember>
+      <reference value="Observation/nl-core-BowelFunction.Frequency-01"/>
+      <type value="Observation"/>
+      <display value="Frequentie: 3/d"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-BowelFunction.DefecationConsistency-01"/>
+      <type value="Observation"/>
+      <display value="Defecatie consistentie: Als een worst of slang, glad en zacht"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-BowelFunction.DefecationColor-01"/>
+      <type value="Observation"/>
+      <display value="Defecatie kleur: kleur van feces normaal"/>
+   </hasMember>
+</Observation>

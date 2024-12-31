@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="labtest-LAR-blr-MinResultaat-LOINC-99999"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
+      <valueString value="111777"/>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.1"/>
+      <value value="99999"/>
+   </identifier>
+   <status value="unknown"/>
+   <category>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+         <code value="laboratory"/>
+         <display value="Laboratory"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="14631-6"/>
+         <display value="Bilirubine [mol/volume] in serum of plasma"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/patient-XXX-Doppen"/>
+      <type value="Patient"/>
+      <display value="Patient, Eduardo XXX_Doppen"/>
+   </subject>
+   <performer>
+      <reference value="Organization/org-11112222"/>
+      <type value="Organization"/>
+      <display value="Healthcare provider (organization), Trombosedienst Ons Dorp"/>
+   </performer>
+   <valueQuantity>
+      <value value="5.4"/>
+      <unit value="umol/L"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="umol/L"/>
+   </valueQuantity>
+</Observation>

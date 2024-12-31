@@ -1,0 +1,97 @@
+<DeviceUseStatement xmlns="http://hl7.org/fhir">
+   <id value="zib-MedicalDevice-medmij-bgz-test-patA-medDevice1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Beschrijving apparaatgebruik. Subject: Anouk A. Anouk van XXX_Rijn de XXX_Vries. Id: patA-medDevice1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Status: actief</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Ter ondersteuning bij lopen</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Apparaat/Systeem</th>
+                  <td>Krukken Verstelbare elleboogkrukken met gesloten manchet</td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="Knie (49076000 - SNOMED CT)">Knie</span>
+                     <span title="Right and left (51440002 - SNOMED CT)">Right and left</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Gebruiksperiode</th>
+                  <td>Vanaf 28 juli 2022</td>
+               </tr>
+               <tr>
+                  <th>Indicatie</th>
+                  <td>
+                     <div>Artrose van rechter kniegewricht</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Organization">
+      <valueReference>
+         <reference value="Organization/-organization-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-01000001"/>
+         <display value="Huisartsenpraktijk het Hogeland"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Practitioner">
+      <valueReference>
+         <reference value="Practitioner/-practitioner-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-01000002"/>
+         <display value="Franciscus Dominicus Antonius F.D.A. Frans Pleijster"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-medDevice1"/>
+   </identifier>
+   <status value="active"/>
+   <subject>
+      <reference value="Patient/medmij-bgz-test-patA"/>
+      <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
+   </subject>
+   <whenUsed>
+      <start value="2022-07-28"/>
+   </whenUsed>
+   <device>
+      <reference value="Device/zib-MedicalDeviceProduct-medmij-bgz-test-patA-medDevice1"/>
+      <display value="Krukken Verstelbare elleboogkrukken met gesloten manchet"/>
+   </device>
+   <indication>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Problem">
+         <valueReference>
+            <reference value="Condition/zib-Problem-medmij-bgz-test-patA-problem2"/>
+            <display value="Artrose van rechter kniegewricht"/>
+         </valueReference>
+      </extension>
+   </indication>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="51440002"/>
+               <display value="Right and left"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="49076000"/>
+         <display value="Knie"/>
+      </coding>
+   </bodySite>
+   <note>
+      <text value="Ter ondersteuning bij lopen"/>
+   </note>
+</DeviceUseStatement>

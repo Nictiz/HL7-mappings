@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Task xmlns="http://hl7.org/fhir">
+   <id value="aaec7614-567b-11eb-8350-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/vl-QuestionnaireProvisioningTask"/>
+   </meta>
+   <status value="requested"/>
+   <intent value="order"/>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="74468-0"/>
+         <display value="Questionnaire form definition Document"/>
+      </coding>
+   </code>
+   <description value="De vragenlijst 'Patient Health Questionnaire (PHQ-9)' is beschikbaar om in te vullen"/>
+   <authoredOn value="${DATE, T, D, -16}T16:00:00+02:00"/>
+   <lastModified value="${DATE, T, D, -16}T16:00:00+02:00"/>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/000001111"/>
+               <display value="Frans Lijster || Gezondheidscentrum Quaestionario"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/0000011112-16-528-1-1007-3-1"/>
+         <display value="Frans Lijster"/>
+      </agent>
+   </requester>
+   <owner>
+      <reference value="Patient/JEANDEBIE"/>
+      <display value="Jean de Bie"/>
+   </owner>
+   <input>
+      <type>
+         <text value="Questionnaire"/>
+      </type>
+      <valueReference>
+         <reference value="http://examplerepository.nl/vragenlijst4-doesnotexist"/>
+         <display value=""/>
+      </valueReference>
+   </input>
+   <input>
+      <type>
+         <text value="Subject"/>
+      </type>
+      <valueReference>
+         <reference value="Patient/JEANDEBIE"/>
+         <display value="Jean de Bie"/>
+      </valueReference>
+   </input>
+</Task>

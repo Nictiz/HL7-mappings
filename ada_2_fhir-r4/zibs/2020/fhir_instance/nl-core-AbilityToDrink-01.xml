@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-AbilityToDrink-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AbilityToDrink"/>
+   </meta>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="288852001"/>
+         <display value="vermogen om te drinken"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16681000146102"/>
+         <display value="Hulp nodig bij drinken"/>
+      </coding>
+   </valueCodeableConcept>
+   <hasMember>
+      <reference value="Observation/nl-core-AbilityToDrink.DrinkingLimitations-01"/>
+      <type value="Observation"/>
+      <display value="drink beperkingen: Moeite met vastpakken van drank"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-AbilityToDrink.DrinkingLimitations-02"/>
+      <type value="Observation"/>
+      <display value="drink beperkingen: Moeite met naar mond brengen van drank"/>
+   </hasMember>
+</Observation>

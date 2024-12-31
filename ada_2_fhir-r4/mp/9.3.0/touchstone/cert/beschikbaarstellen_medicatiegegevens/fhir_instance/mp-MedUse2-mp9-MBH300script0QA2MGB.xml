@@ -1,0 +1,113 @@
+<MedicationStatement xmlns="http://hl7.org/fhir">
+   <id value="mp-MedUse2-mp9-MBH300script0QA2MGB"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf T - 10 dagen, tot en met T - 5 dagen, 2 maal per dag 1 stuk, oraal"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
+      <valueReference>
+         <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-PrcRol-2165281100731-000001111"/>
+         <type value="PractitionerRole"/>
+         <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
+      <valueBoolean value="false"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_300_script0_QA2"/>
+      </valueIdentifier>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
+      <valueReference>
+         <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-PrcRol-2165281100731-000001111"/>
+         <type value="PractitionerRole"/>
+         <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+      <value value="MBH_300_script0_QA2_MGB"/>
+   </identifier>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422979000"/>
+         <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/mp-PhPrd-mp9-216840111388324410-353"/>
+      <type value="Medication"/>
+      <display value="OXAZEPAM TABLET 10MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-G-XXX-Groot"/>
+      <type value="Patient"/>
+      <display value="Patient, G. XXX_Groot"/>
+   </subject>
+   <effectivePeriod>
+      <start value="${DATE, T, D, -10}T00:00:00+02:00"/>
+      <end value="${DATE, T, D, -5}T23:59:59+02:00"/>
+   </effectivePeriod>
+   <dateAsserted value="${DATE, T, D, -2}T08:59:59+02:00"/>
+   <informationSource>
+      <reference value="Patient/nl-core-Patient-mp9-G-XXX-Groot"/>
+      <type value="Patient"/>
+      <display value="Patient, G. XXX_Groot"/>
+   </informationSource>
+   <derivedFrom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="33633005"/>
+               <display value="voorschrijven van geneesmiddel"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <type value="MedicationRequest"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_300_script0_QA2_MA"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak"/>
+   </derivedFrom>
+   <dosage>
+      <timing>
+         <repeat>
+            <frequency value="2"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="oraal"/>
+         </coding>
+      </route>
+      <doseAndRate>
+         <doseQuantity>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </valueQuantity>
+            </extension>
+            <value value="1"/>
+            <unit value="stuk"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="1"/>
+         </doseQuantity>
+      </doseAndRate>
+   </dosage>
+</MedicationStatement>

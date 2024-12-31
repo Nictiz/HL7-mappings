@@ -1,0 +1,158 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="zib-AdministrationAgreement-mp9-MBH-413-12-TA-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Toedieningsafspraak. Subject: R. XXX_Strengersz. Id: MBH_413_12_TA_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1), Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
+               <span style="display: block;">Uitvoerende: Apotheek De Gulle Gaper</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>MBH_413_12 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+               </tr>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>${DATE, T, D, +0}T11:25:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Gebaseerd op</th>
+                  <td>relatie naar medicatieafspraak: MBH_413_12_MA_1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_413_12_MA_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>CODEINEFOSFAAT PCH TABLET 10MG</td>
+               </tr>
+               <tr>
+                  <th>Gebruiksduur</th>
+                  <td>
+                     <ul>
+                        <li>Vanaf ${DATE, T, D, +0}T00:00:00+02:00</li>
+                        <li>3 week</li>
+                     </ul>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Doseerinstructie</th>
+                  <td>
+                     <div>Volgnummer: 1</div>
+                     <div>Tekst: Vanaf T, gedurende 3 weken, bij hoest 1 maal per 3 uur 1 stuk , maximaal 6 stuks per dag, oraal</div>
+                     <div>Timing: <div>eenmalig per 3 uren</div>
+                     </div>
+                     <div>Zo nodig: <span title="bij hoest (1387 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">bij hoest</span>
+                     </div>
+                     <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
+                     </div>
+                     <div>Dosering: 1 stuk</div>
+                     <div>Max dosering: 6 stuk / 1 dag (per period)</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+      <valueDateTime value="${DATE, T, D, +0}T11:25:00+02:00"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+      <valuePeriod>
+         <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+      <valueDuration>
+         <value value="3"/>
+         <unit value="week"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="wk"/>
+      </valueDuration>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_413_12"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+      <value value="MBH_413_12_TA_1"/>
+   </identifier>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="Provider medication administration instructions (procedure)"/>
+      </coding>
+      <text value="Toedieningsafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/zib-Product-mp9-2-16-840-1-113883-2-4-4-7-874965"/>
+      <display value="CODEINEFOSFAAT PCH TABLET 10MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/XXX-STRENGERSZ"/>
+      <display value="R. XXX_Strengersz"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/nl-core-organization-mp9-2-16-528-1-1007-3-3-01236578"/>
+         <display value="Apotheek De Gulle Gaper"/>
+      </actor>
+   </performer>
+   <authorizingPrescription>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_413_12_MA_1"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak: MBH_413_12_MA_1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+   </authorizingPrescription>
+   <dosageInstruction>
+      <sequence value="1"/>
+      <text value="Vanaf T, gedurende 3 weken, bij hoest 1 maal per 3 uur 1 stuk , maximaal 6 stuks per dag, oraal"/>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <period value="3"/>
+            <periodUnit value="h"/>
+         </repeat>
+      </timing>
+      <asNeededCodeableConcept>
+         <coding>
+            <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+            <code value="1387"/>
+            <display value="bij hoest"/>
+         </coding>
+      </asNeededCodeableConcept>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="oraal"/>
+         </coding>
+      </route>
+      <doseQuantity>
+         <value value="1"/>
+         <unit value="stuk"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="245"/>
+      </doseQuantity>
+      <maxDosePerPeriod>
+         <numerator>
+            <value value="6"/>
+            <unit value="stuk"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="245"/>
+         </numerator>
+         <denominator>
+            <value value="1"/>
+            <unit value="dag"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="d"/>
+         </denominator>
+      </maxDosePerPeriod>
+   </dosageInstruction>
+</MedicationDispense>

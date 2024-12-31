@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Condition xmlns="http://hl7.org/fhir">
+   <id value="nl-core-SkinDisorder-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-SkinDisorder"/>
+   </meta>
+   <extension url="http://hl7.org/fhir/StructureDefinition/condition-dueTo">
+      <valueReference>
+         <reference value="Condition/nl-core-SkinDisorder-01-Condition-01"/>
+         <type value="Condition"/>
+         <display value="Problem"/>
+      </valueReference>
+   </extension>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="95320005"/>
+         <display value="aandoening van huid"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="402276007"/>
+         <display value="irritatief contacteczeem door incontinentie"/>
+      </coding>
+   </code>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="26893007"/>
+         <display value="lies"/>
+      </coding>
+   </bodySite>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <onsetDateTime value="2014-09-10"/>
+   <note>
+      <text value="Intacte velrode huid met glanzend aspect."/>
+   </note>
+</Condition>

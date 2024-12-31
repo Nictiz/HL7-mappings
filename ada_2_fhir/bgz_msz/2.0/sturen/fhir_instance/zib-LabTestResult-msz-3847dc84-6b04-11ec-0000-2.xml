@@ -1,0 +1,105 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="zib-LabTestResult-msz-3847dc84-6b04-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Jan Adrianus J.A.K. Jan Kooyman. Categorie: <span title="bevinding betreffende laboratoriumonderzoek (49581000146104 - SNOMED CT)">bevinding betreffende laboratoriumonderzoek</span>, <span title="Hematologie (252275004 - SNOMED CT)">Hematologie</span>, Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td colspan="2">${DATE, T, D, -45}T13:00:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+                  <th>Referentiewaarden</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Hematocriet [volumefractie] in bloed d.m.v. geautomatiseerde telling (4544-3 - LOINC)">Hematocriet [volumefractie] in bloed d.m.v. geautomatiseerde telling</span>
+                  </td>
+                  <td>0.39 L/L</td>
+                  <td>
+                     <div>
+                        <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span>
+
+0.36 L/L - 0.46 L/L</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="8c1d5505-6ae7-11ec-0000-2"/>
+   </identifier>
+   <status value="final">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
+               <code value="final"/>
+               <display value="Definitief"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </status>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="49581000146104"/>
+         <display value="bevinding betreffende laboratoriumonderzoek"/>
+      </coding>
+   </category>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="252275004"/>
+         <display value="Hematologie"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="4544-3"/>
+         <display value="Hematocriet [volumefractie] in bloed d.m.v. geautomatiseerde telling"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/JAN-ADRIANUS-J-A-K--JAN-KOOYMAN"/>
+      <display value="Jan Adrianus J.A.K. Jan Kooyman"/>
+   </subject>
+   <effectiveDateTime value="${DATE, T, D, -45}T13:00:00+02:00"/>
+   <valueQuantity>
+      <value value="0.39"/>
+      <unit value="L/L"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="L/L"/>
+   </valueQuantity>
+   <referenceRange>
+      <low>
+         <value value="0.36"/>
+         <unit value="L/L"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="L/L"/>
+      </low>
+      <high>
+         <value value="0.46"/>
+         <unit value="L/L"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="L/L"/>
+      </high>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/referencerange-meaning"/>
+            <code value="normal"/>
+            <display value="Normal Range"/>
+         </coding>
+      </type>
+   </referenceRange>
+</Observation>

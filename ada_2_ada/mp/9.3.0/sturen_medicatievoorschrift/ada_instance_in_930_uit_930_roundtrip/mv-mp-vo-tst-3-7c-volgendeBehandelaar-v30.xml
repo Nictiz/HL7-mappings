@@ -1,0 +1,141 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../9.3.0/sturen_medicatievoorschrift/ada_schemas/ada_sturen_medicatievoorschrift.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2023-02-16T16:07:48.392+01:00"
+         last-update-date="2023-02-21T09:24:25.254+01:00"/>
+   <data>
+      <sturen_medicatievoorschrift app="mp-mp93"
+                                   shortName="sturen_medicatievoorschrift"
+                                   formName="sturen_medicatievoorschrift"
+                                   transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.395"
+                                   transactionEffectiveDate="2022-06-30T00:00:00"
+                                   versionDate=""
+                                   prefix="mp-"
+                                   language="nl-NL"
+                                   title="TEST Scenarioset 3 VolgendeBehandelaar"
+                                   desc="&lt;div&gt;&lt;span style=&#34;font-family: sans-serif; font-size: 14px; background-color: #ffffff;&#34;&gt;Medicatieafspraak met VolgendeBehandelaar gevuld&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&#34;color: #ff0000; font-family: sans-serif; font-size: 14px; background-color: #ffffff;&#34;&gt;LET OP:&amp;nbsp; Hiermee wordt de MA van scenarioset 3.7a weer &#34;hervat&#34;. Als in het beleid van MA 3.7a wordt weer voortgezet met de MA van 3.7c&lt;/span&gt;&lt;/div&gt;"
+                                   id="mv-mp-vo-tst-3-7c-volgendeBehandelaar-v30">
+         <patient comment="">
+            <naamgegevens comment="">
+               <initialen value="J. "/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="">
+                  <voorvoegsels value="de "/>
+                  <achternaam value="XXX_Luzac"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900778" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1985-10-24" datatype="datetime"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_300_VolgendeBehandelaar"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <identificatie value="MBH_300_VolgendeBehandelaar_MA_Start2"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <medicatieafspraak_datum_tijd value="T{13:00:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T+4D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+51D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_VolgendeBehandelaar_MA_Start1"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <voorschrijver>
+                  <zorgverlener datatype="reference" value="Jan_van_Harten"/>
+               </voorschrijver>
+               <reden_wijzigen_of_staken code="112261000146100"
+                                         codeSystem="2.16.840.1.113883.6.96"
+                                         displayName="hervatten van beleid van vorige voorschrijver"
+                                         codeSystemName="SNOMED CT"/>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="PRK_APIXABAN5_99066"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="wordt automatisch gegenereerd"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <toelichting value="Volgende behandelaar: Bertine, van , Doorn, Zorgverlener identificatie (UZI): 000001112, Specialisme: Huisartsen, niet nader gespecificeerd, Organisatienaam: Huisartsenpraktijk Pulver &amp; Partners, Zorgaanbieder identificatie (URA): 00001111"/>
+            </medicatieafspraak>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="PRK_APIXABAN5_99066">
+               <product_code code="105678"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="APIXABAN TABLET 5MG"/>
+               <product_code code="141992"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="APIXABAN TABLET 5MG"/>
+            </farmaceutisch_product>
+            <zorgverlener id="Jan_van_Harten">
+               <zorgverlener_identificatienummer value="000002222" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Jan"/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value="van"/>
+                     <achternaam value="Harten"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0303"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Medisch specialisten, chirurgie"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference" value="Ziekenhuis_het_Gele_Hart"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="Ziekenhuis_het_Gele_Hart">
+               <zorgaanbieder_identificatienummer value="00004444" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Ziekenhuis het Gele Hart"/>
+               <afdeling_specialisme code="0601"
+                                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                     codeSystemVersion="2020-10-23T00:00:00"
+                                     displayName="Ziekenhuizen, algemene ziekenhuizen"/>
+               <adresgegevens comment="">
+                  <straat value="Groenestraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1200AA"/>
+                  <woonplaats value="Hartstad"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
+      </sturen_medicatievoorschrift>
+   </data>
+</adaxml>

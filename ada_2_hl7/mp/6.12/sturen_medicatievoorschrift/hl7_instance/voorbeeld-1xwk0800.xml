@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schematron_closed_warnings/mp-medvoors.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
+<!--Generated from ada instance with title: "Nieuw voorschrift" and id: "8ac56799-00d0-4bfc-98ad-0d6addedc5d3".-->
+<subject xmlns:nf="http://www.nictiz.nl/functions"
+         xmlns:pharm="urn:ihe:pharm:medication"
+         xmlns="urn:hl7-org:v3"
+         xmlns:hl7="urn:hl7-org:v3"
+         xmlns:hl7nl="urn:hl7-nl:v3"
+         xmlns:xs="http://www.w3.org/2001/XMLSchema"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <prescription classCode="SBADM" moodCode="RQO">
+      <statusCode code="active"/>
+      <subject typeCode="SBJ">
+         <Patient>
+            <id extension="122547892" root="2.16.840.1.113883.2.4.6.3"/>
+            <statusCode code="active"/>
+            <Person>
+               <name>
+                  <given qualifier="BR">Marieke Antionette</given>
+                  <given qualifier="IN">M. A.</given>
+                  <given qualifier="CL">Marieke</given>
+                  <prefix qualifier="VV">de </prefix>
+                  <family qualifier="BR">Boer</family>
+               </name>
+               <administrativeGenderCode code="UN"
+                                         codeSystem="2.16.840.1.113883.5.1"
+                                         displayName="Ongedifferentieerd"/>
+               <birthTime value="19870313"/>
+               <multipleBirthInd value="true"/>
+            </Person>
+         </Patient>
+      </subject>
+      <directTarget typeCode="DIR">
+         <prescribedMedication>
+            <productOf>
+               <medicationDispenseRequest>
+                  <statusCode nullFlavor="NA"/>
+               </medicationDispenseRequest>
+            </productOf>
+            <therapeuticAgentOf>
+               <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+                  <text>vanaf 27 mrt 2018, gedurende 2 weken, 2 maal per dag 1 à 2 stuks</text>
+                  <statusCode code="active"/>
+                  <effectiveTime xsi:type="SXPR_TS">
+                     <comp xsi:type="IVL_TS">
+                        <low value="20180327000000"/>
+                        <width value="14" unit="d"/>
+                     </comp>
+                     <comp xsi:type="PIVL_TS" operator="A">
+                        <phase>
+                           <center value="197001010800"/>
+                        </phase>
+                        <period value="1" unit="wk"/>
+                     </comp>
+                  </effectiveTime>
+                  <routeCode code="oraal"
+                             codeSystem="2.16.840.1.113883.2.4.4.9"
+                             displayName="oraal"/>
+                  <doseQuantity>
+                     <center value="1" unit="1">
+                        <translation value="1"
+                                     code="245"
+                                     displayName="stuk"
+                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                     </center>
+                  </doseQuantity>
+               </medicationAdministrationRequest>
+            </therapeuticAgentOf>
+         </prescribedMedication>
+      </directTarget>
+      <reason typeCode="RSON">
+         <diagnosisEvent>
+            <code code="DX" codeSystem="2.16.840.1.113883.5.4"/>
+            <value xsi:type="CE"
+                   code="ziek"
+                   codeSystem="2.16.840.1.113883.6.96"
+                   displayName="heel erg ziek"/>
+         </diagnosisEvent>
+      </reason>
+   </prescription>
+</subject>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flag xmlns="http://hl7.org/fhir">
+   <id value="mci-pat04-mci-nie-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-MedicationContraIndication"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+      <valueString value="Status na niertransplantatie uitgevoerd wegens IgA nefropathie"/>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.16"/>
+      <value value="pat04-mci-nie-01"/>
+   </identifier>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="350241000146102"/>
+         <display value="potentiële contra-indicatie voor geneesmiddel (bevinding)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.902.40"/>
+         <code value="1375"/>
+         <display value="NIERTRANSPLANTATIE"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/patient-XXX-Dubbeld"/>
+      <type value="Patient"/>
+      <display value="Patient, Erwin (Erwin) XXX_Dubbeld"/>
+   </subject>
+   <period>
+      <start value="${DATE, T, Y, -57}T13:32:04+02:00"/>
+   </period>
+   <author>
+      <reference value="PractitionerRole/pracrole-000003338"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), C. Dokter, CHIRURGIE (HEELKUNDE), Algemeen Stadsziekenhuis"/>
+   </author>
+</Flag>

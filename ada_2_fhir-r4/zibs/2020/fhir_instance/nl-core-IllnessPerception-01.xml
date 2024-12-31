@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-IllnessPerception-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-IllnessPerception"/>
+   </meta>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="363910003"/>
+         <display value="kenmerk van psychosociaal functioneren"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <hasMember>
+      <reference value="Observation/nl-core-IllnessPerception.PatientIllnessInsight-01"/>
+      <type value="Observation"/>
+      <display value="Ziekte inzicht van patiënt: Kan niet overzien wat de ziekte betekent in het dagelijks leven."/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-IllnessPerception.CopingWithIllnessByPatient-01"/>
+      <type value="Observation"/>
+      <display value="Omgaan met ziekteproces door patiënt: Patiënt wil niet praten over de toekomst."/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-IllnessPerception.CopingWithIllnessByFamily-01"/>
+      <type value="Observation"/>
+      <display value="Omgaan met ziekteproces door naasten: Partner heeft veel vragen over hoe de toekomst er uit ziet."/>
+   </hasMember>
+</Observation>

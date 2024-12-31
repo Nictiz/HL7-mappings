@@ -1,0 +1,1375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schematron_closed_warnings/mp-medverslstresp.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
+<!--Generated from ada instance with title: "Generated from HL7v3 verstrekkingenlijst 6.12 xml" and id: "999901291_Kruk_QURX113_0900.xml".-->
+<QURX_IN990113NL xmlns:pharm="urn:ihe:pharm:medication"
+                 xmlns="urn:hl7-org:v3"
+                 xmlns:hl7="urn:hl7-org:v3"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20200122/mp-xml-20200122T161947/schemas/QURX_IN990113NL.xsd">
+   <id extension="TOBEGENERATED" root="2.16.840.1.113883.2.4.6.6.1.1"/>
+   <creationTime value="20230323165047"/>
+   <versionCode code="NICTIZEd2005-Okt"/>
+   <interactionId extension="QURX_IN990113NL" root="2.16.840.1.113883.1.6"/>
+   <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+   <processingCode code="P"/>
+   <processingModeCode code="T"/>
+   <acceptAckCode code="NE"/>
+   <acknowledgement typeCode="AA">
+      <targetMessage>
+         <id extension="0123456789" root="2.16.528.1.1007.3.3.1234567.1"/>
+      </targetMessage>
+   </acknowledgement>
+   <receiver>
+      <device>
+         <id extension="01234567" root="2.16.840.1.113883.2.4.6.6"/>
+      </device>
+   </receiver>
+   <sender>
+      <device>
+         <id extension="1" root="2.16.840.1.113883.2.4.6.6"/>
+      </device>
+   </sender>
+   <ControlActProcess moodCode="EVN">
+      <authorOrPerformer typeCode="AUT">
+         <participant>
+            <AssignedDevice>
+               <id extension="009876543" root="2.16.528.1.1007.3.2"/>
+               <id extension="00765432" root="2.16.840.1.113883.2.4.6.6"/>
+               <Organization>
+                  <id extension="01234567" root="2.16.528.1.1007.3.3"/>
+                  <name>Apotheek De Gulle Gaper</name>
+               </Organization>
+            </AssignedDevice>
+         </participant>
+      </authorOrPerformer>
+      <subject>
+         <MedicationDispenseList>
+            <code code="MEDLIST" codeSystem="2.16.840.1.113883.5.4"/>
+            <subject>
+               <Patient>
+                  <id extension="999901291" root="2.16.840.1.113883.2.4.6.3"/>
+                  <addr use="HP">
+                     <streetName>Knolweg</streetName>
+                     <houseNumber>1002</houseNumber>
+                     <postalCode>9999 ZZ</postalCode>
+                     <city>Stitswerd</city>
+                     <country>Nederland</country>
+                  </addr>
+                  <statusCode code="active"/>
+                  <Person>
+                     <name>
+                        <prefix qualifier="VV">van de </prefix>
+                        <family qualifier="BR">XXX Kruk</family>
+                     </name>
+                     <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Female"/>
+                     <birthTime value="19851209"/>
+                  </Person>
+               </Patient>
+            </subject>
+            <component>
+               <medicationDispenseEvent>
+                  <id extension="00039977201"
+                      root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.3"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="20200602"/>
+                  <quantity nullFlavor="NA"/>
+                  <performer>
+                     <assignedPerson>
+                        <id nullFlavor="MSK"/>
+                     </assignedPerson>
+                  </performer>
+                  <product>
+                     <dispensedMedication>
+                        <MedicationKind classCode="MMAT" determinerCode="KIND">
+                           <code code="16275721"
+                                 codeSystem="2.16.840.1.113883.2.4.4.8"
+                                 displayName="OMECAT CAPSULE MSR 20MG">
+                              <translation code="2546310" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                              <translation code="60062" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+                              <translation code="114529" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                           </code>
+                        </MedicationKind>
+                        <directTargetOf typeCode="DIR">
+                           <prescription>
+                              <id extension="00039977201"
+                                  root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.6"/>
+                              <statusCode nullFlavor="UNK"/>
+                           </prescription>
+                        </directTargetOf>
+                        <therapeuticAgentOf>
+                           <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+                              <text mediaType="text/plain">1 maal per dag 1 capsule
+zo nodig</text>
+                              <statusCode code="active"/>
+                              <effectiveTime xsi:type="SXPR_TS">
+                                 <comp xsi:type="IVL_TS">
+                                    <width value="30" unit="d"/>
+                                 </comp>
+                                 <comp xsi:type="PIVL_TS" operator="A">
+                                    <period value="1" unit="d"/>
+                                 </comp>
+                              </effectiveTime>
+                              <doseQuantity>
+                                 <center value="1" unit="1">
+                                    <translation value="1"
+                                                 code="245"
+                                                 displayName="ST"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <translation value="1"
+                                                 code="6"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="capsule"/>
+                                 </center>
+                              </doseQuantity>
+                              <precondition>
+                                 <observationEventCriterion>
+                                    <code code="1137"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          displayName="zo nodig"/>
+                                 </observationEventCriterion>
+                              </precondition>
+                           </medicationAdministrationRequest>
+                        </therapeuticAgentOf>
+                     </dispensedMedication>
+                  </product>
+                  <responsibleParty>
+                     <assignedCareProvider>
+                        <id nullFlavor="NI"/>
+                        <code code="17.000"
+                              codeSystem="2.16.840.1.113883.2.4.15.111"
+                              displayName="Apotheker"/>
+                        <representedOrganization>
+                           <id extension="00057947" root="2.16.528.1.1007.3.3"/>
+                           <name>Klatter Apo</name>
+                           <addr use="WP">
+                              <streetName nullFlavor="NI"/>
+                              <houseNumber nullFlavor="NI"/>
+                              <postalCode nullFlavor="NI"/>
+                              <city>St. Jacobipararochie</city>
+                           </addr>
+                        </representedOrganization>
+                     </assignedCareProvider>
+                  </responsibleParty>
+               </medicationDispenseEvent>
+            </component>
+            <component>
+               <medicationDispenseEvent>
+                  <id extension="00039977202"
+                      root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.3"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="20200602"/>
+                  <quantity nullFlavor="NA"/>
+                  <performer>
+                     <assignedPerson>
+                        <id nullFlavor="MSK"/>
+                     </assignedPerson>
+                  </performer>
+                  <product>
+                     <dispensedMedication>
+                        <MedicationKind classCode="MMAT" determinerCode="KIND">
+                           <code nullFlavor="OTH">
+                              <originalText>HYDROCORTISON 120 MG ZETPIL</originalText>
+                           </code>
+                           <formCode code="100"
+                                     codeSystem="2.16.840.1.113883.2.4.4.11"
+                                     displayName="ZETPIL"/>
+                           <activeIngredient>
+                              <quantity>
+                                 <numerator xsi:type="PQ" value="1200.0000" unit="mg">
+                                    <translation value="1200.0000"
+                                                 code="229"
+                                                 displayName="MG"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                                 </numerator>
+                                 <denominator xsi:type="PQ" value="10.0000" unit="1">
+                                    <translation value="10.0000"
+                                                 code="245"
+                                                 displayName="ST"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                                 </denominator>
+                              </quantity>
+                              <activeIngredientMaterialKind>
+                                 <code code="13928082"
+                                       codeSystem="2.16.840.1.113883.2.4.4.8"
+                                       displayName="HYDROCORTISONUM MICRONISAT">
+                                    <translation code="28126" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                                    <translation code="252247" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                                    <translation code="10936" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+                                    <translation code="H02AB09" codeSystem="2.16.840.1.113883.6.73"/>
+                                 </code>
+                              </activeIngredientMaterialKind>
+                           </activeIngredient>
+                           <activeIngredient>
+                              <quantity>
+                                 <numerator xsi:type="PQ" value="19.9000" unit="g">
+                                    <translation value="19.9000"
+                                                 code="215"
+                                                 displayName="G"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                                 </numerator>
+                                 <denominator xsi:type="PQ" value="10.0000" unit="1">
+                                    <translation value="10.0000"
+                                                 code="245"
+                                                 displayName="ST"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                                 </denominator>
+                              </quantity>
+                              <activeIngredientMaterialKind>
+                                 <code code="13519514"
+                                       codeSystem="2.16.840.1.113883.2.4.4.8"
+                                       displayName="WITEPSOL H15 PAST">
+                                    <translation code="79707" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                                    <translation code="265144" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                                    <translation code="10456" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+                                    <translation code="Z" codeSystem="2.16.840.1.113883.6.73"/>
+                                 </code>
+                              </activeIngredientMaterialKind>
+                           </activeIngredient>
+                           <activeIngredient>
+                              <quantity>
+                                 <numerator xsi:type="PQ" value="0.1000" unit="g">
+                                    <translation value="0.1000"
+                                                 code="215"
+                                                 displayName="G"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                                 </numerator>
+                                 <denominator xsi:type="PQ" value="10.0000" unit="1">
+                                    <translation value="10.0000"
+                                                 code="245"
+                                                 displayName="ST"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                                 </denominator>
+                              </quantity>
+                              <activeIngredientMaterialKind>
+                                 <code code="15314162"
+                                       codeSystem="2.16.840.1.113883.2.4.4.8"
+                                       displayName="SILICA COLL 0AQ NIETGEPERST">
+                                    <translation code="80411" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                                    <translation code="260452" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                                    <translation code="13307" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+                                    <translation code="Z" codeSystem="2.16.840.1.113883.6.73"/>
+                                 </code>
+                              </activeIngredientMaterialKind>
+                           </activeIngredient>
+                        </MedicationKind>
+                        <directTargetOf typeCode="DIR">
+                           <prescription>
+                              <id extension="00039977202"
+                                  root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.6"/>
+                              <statusCode nullFlavor="UNK"/>
+                           </prescription>
+                        </directTargetOf>
+                        <therapeuticAgentOf>
+                           <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+                              <text mediaType="text/plain">gebruik bekend&#xD;
+</text>
+                              <statusCode code="active"/>
+                           </medicationAdministrationRequest>
+                        </therapeuticAgentOf>
+                     </dispensedMedication>
+                  </product>
+                  <responsibleParty>
+                     <assignedCareProvider>
+                        <id nullFlavor="NI"/>
+                        <code code="17.000"
+                              codeSystem="2.16.840.1.113883.2.4.15.111"
+                              displayName="Apotheker"/>
+                        <representedOrganization>
+                           <id extension="00057947" root="2.16.528.1.1007.3.3"/>
+                           <name>Klatter Apo</name>
+                           <addr use="WP">
+                              <streetName nullFlavor="NI"/>
+                              <houseNumber nullFlavor="NI"/>
+                              <postalCode nullFlavor="NI"/>
+                              <city>St. Jacobipararochie</city>
+                           </addr>
+                        </representedOrganization>
+                     </assignedCareProvider>
+                  </responsibleParty>
+               </medicationDispenseEvent>
+            </component>
+            <component>
+               <medicationDispenseEvent>
+                  <id extension="00039977203"
+                      root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.3"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="20200602"/>
+                  <quantity nullFlavor="NA"/>
+                  <performer>
+                     <assignedPerson>
+                        <id nullFlavor="MSK"/>
+                     </assignedPerson>
+                  </performer>
+                  <product>
+                     <dispensedMedication>
+                        <MedicationKind classCode="MMAT" determinerCode="KIND">
+                           <code code="12133183"
+                                 codeSystem="2.16.840.1.113883.2.4.4.8"
+                                 displayName="MICROGYNON 30 TABLET OMHULD">
+                              <translation code="95133" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                              <translation code="83348" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+                              <translation code="127280" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                           </code>
+                        </MedicationKind>
+                        <directTargetOf typeCode="DIR">
+                           <prescription>
+                              <id extension="00039977203"
+                                  root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.6"/>
+                              <statusCode nullFlavor="UNK"/>
+                           </prescription>
+                        </directTargetOf>
+                        <therapeuticAgentOf>
+                           <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+                              <text mediaType="text/plain">1 maal per dag 1 tablet
+gedurende 3 weken, daarna 1 week stoppen</text>
+                              <statusCode code="active"/>
+                              <effectiveTime xsi:type="SXPR_TS">
+                                 <comp xsi:type="IVL_TS">
+                                    <width value="63" unit="d"/>
+                                 </comp>
+                                 <comp xsi:type="PIVL_TS" operator="A">
+                                    <period value="1" unit="d"/>
+                                 </comp>
+                                 <comp xsi:type="PIVL_TS" operator="A">
+                                    <phase>
+                                       <width value="21" unit="d"/>
+                                    </phase>
+                                    <period value="28" unit="d"/>
+                                 </comp>
+                              </effectiveTime>
+                              <doseQuantity>
+                                 <center value="1" unit="1">
+                                    <translation value="1"
+                                                 code="245"
+                                                 displayName="ST"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <translation value="1"
+                                                 code="100"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="tablet"/>
+                                 </center>
+                              </doseQuantity>
+                           </medicationAdministrationRequest>
+                        </therapeuticAgentOf>
+                     </dispensedMedication>
+                  </product>
+                  <responsibleParty>
+                     <assignedCareProvider>
+                        <id nullFlavor="NI"/>
+                        <code code="17.000"
+                              codeSystem="2.16.840.1.113883.2.4.15.111"
+                              displayName="Apotheker"/>
+                        <representedOrganization>
+                           <id extension="00057947" root="2.16.528.1.1007.3.3"/>
+                           <name>Klatter Apo</name>
+                           <addr use="WP">
+                              <streetName nullFlavor="NI"/>
+                              <houseNumber nullFlavor="NI"/>
+                              <postalCode nullFlavor="NI"/>
+                              <city>St. Jacobipararochie</city>
+                           </addr>
+                        </representedOrganization>
+                     </assignedCareProvider>
+                  </responsibleParty>
+               </medicationDispenseEvent>
+            </component>
+            <component>
+               <medicationDispenseEvent>
+                  <id extension="00039977204"
+                      root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.3"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="20200602"/>
+                  <quantity nullFlavor="NA"/>
+                  <performer>
+                     <assignedPerson>
+                        <id nullFlavor="MSK"/>
+                     </assignedPerson>
+                  </performer>
+                  <product>
+                     <dispensedMedication>
+                        <MedicationKind classCode="MMAT" determinerCode="KIND">
+                           <code code="13648276"
+                                 codeSystem="2.16.840.1.113883.2.4.4.8"
+                                 displayName="TENA LADY MINI">
+                              <translation code="705659" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                           </code>
+                        </MedicationKind>
+                        <directTargetOf typeCode="DIR">
+                           <prescription>
+                              <id extension="00039977204"
+                                  root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.6"/>
+                              <statusCode nullFlavor="UNK"/>
+                           </prescription>
+                        </directTargetOf>
+                        <therapeuticAgentOf>
+                           <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+                              <text mediaType="text/plain">gebruik bekend&#xD;
+</text>
+                              <statusCode code="active"/>
+                           </medicationAdministrationRequest>
+                        </therapeuticAgentOf>
+                     </dispensedMedication>
+                  </product>
+                  <responsibleParty>
+                     <assignedCareProvider>
+                        <id nullFlavor="NI"/>
+                        <code code="17.000"
+                              codeSystem="2.16.840.1.113883.2.4.15.111"
+                              displayName="Apotheker"/>
+                        <representedOrganization>
+                           <id extension="00057947" root="2.16.528.1.1007.3.3"/>
+                           <name>Klatter Apo</name>
+                           <addr use="WP">
+                              <streetName nullFlavor="NI"/>
+                              <houseNumber nullFlavor="NI"/>
+                              <postalCode nullFlavor="NI"/>
+                              <city>St. Jacobipararochie</city>
+                           </addr>
+                        </representedOrganization>
+                     </assignedCareProvider>
+                  </responsibleParty>
+               </medicationDispenseEvent>
+            </component>
+            <component>
+               <medicationDispenseEvent>
+                  <id extension="00039977205"
+                      root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.3"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="20200602"/>
+                  <quantity nullFlavor="NA"/>
+                  <performer>
+                     <assignedPerson>
+                        <id nullFlavor="MSK"/>
+                     </assignedPerson>
+                  </performer>
+                  <product>
+                     <dispensedMedication>
+                        <MedicationKind classCode="MMAT" determinerCode="KIND">
+                           <code code="15110044"
+                                 codeSystem="2.16.840.1.113883.2.4.4.8"
+                                 displayName="ALENDRONINEZUUR PCH TABLET 70MG">
+                              <translation code="1719181" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                              <translation code="122416" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+                              <translation code="154792" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                           </code>
+                        </MedicationKind>
+                        <directTargetOf typeCode="DIR">
+                           <prescription>
+                              <id extension="00039977205"
+                                  root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.6"/>
+                              <statusCode nullFlavor="UNK"/>
+                           </prescription>
+                        </directTargetOf>
+                        <therapeuticAgentOf>
+                           <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+                              <text mediaType="text/plain">2 maal per week 1 tablet</text>
+                              <statusCode code="active"/>
+                              <effectiveTime xsi:type="SXPR_TS">
+                                 <comp xsi:type="IVL_TS">
+                                    <width value="7" unit="d"/>
+                                 </comp>
+                                 <comp xsi:type="PIVL_TS" operator="A">
+                                    <period value="0.5" unit="wk"/>
+                                 </comp>
+                              </effectiveTime>
+                              <doseQuantity>
+                                 <center value="1" unit="1">
+                                    <translation value="1"
+                                                 code="245"
+                                                 displayName="ST"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <translation value="1"
+                                                 code="100"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="tablet"/>
+                                 </center>
+                              </doseQuantity>
+                           </medicationAdministrationRequest>
+                        </therapeuticAgentOf>
+                     </dispensedMedication>
+                  </product>
+                  <responsibleParty>
+                     <assignedCareProvider>
+                        <id nullFlavor="NI"/>
+                        <code code="17.000"
+                              codeSystem="2.16.840.1.113883.2.4.15.111"
+                              displayName="Apotheker"/>
+                        <representedOrganization>
+                           <id extension="00057947" root="2.16.528.1.1007.3.3"/>
+                           <name>Klatter Apo</name>
+                           <addr use="WP">
+                              <streetName nullFlavor="NI"/>
+                              <houseNumber nullFlavor="NI"/>
+                              <postalCode nullFlavor="NI"/>
+                              <city>St. Jacobipararochie</city>
+                           </addr>
+                        </representedOrganization>
+                     </assignedCareProvider>
+                  </responsibleParty>
+               </medicationDispenseEvent>
+            </component>
+            <component>
+               <medicationDispenseEvent>
+                  <id extension="00039977206"
+                      root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.3"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="20200602"/>
+                  <quantity nullFlavor="NA"/>
+                  <performer>
+                     <assignedPerson>
+                        <id nullFlavor="MSK"/>
+                     </assignedPerson>
+                  </performer>
+                  <product>
+                     <dispensedMedication>
+                        <MedicationKind classCode="MMAT" determinerCode="KIND">
+                           <code code="15642232"
+                                 codeSystem="2.16.840.1.113883.2.4.4.8"
+                                 displayName="TRAFLOXAL OOGDRUPPELS 3MG/ML FLACON 5ML">
+                              <translation code="658235" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                              <translation code="32174" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+                              <translation code="82570" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                           </code>
+                        </MedicationKind>
+                        <directTargetOf typeCode="DIR">
+                           <prescription>
+                              <id extension="00039977206"
+                                  root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.6"/>
+                              <statusCode nullFlavor="UNK"/>
+                           </prescription>
+                        </directTargetOf>
+                        <therapeuticAgentOf>
+                           <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+                              <text mediaType="text/plain">4 maal per dag 1 druppel
+in het rechter oor</text>
+                              <statusCode code="active"/>
+                              <effectiveTime xsi:type="SXPR_TS">
+                                 <comp xsi:type="IVL_TS">
+                                    <width value="37" unit="d"/>
+                                 </comp>
+                                 <comp xsi:type="PIVL_TS" operator="A">
+                                    <period value="0.25" unit="d"/>
+                                 </comp>
+                              </effectiveTime>
+                              <doseQuantity>
+                                 <center value="1" unit="[drp]">
+                                    <translation value="1"
+                                                 code="303"
+                                                 displayName="DR"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <translation value="1"
+                                                 code="20"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="druppel"/>
+                                 </center>
+                              </doseQuantity>
+                              <support2 typeCode="SPRT">
+                                 <medicationAdministrationInstruction>
+                                    <code code="1106"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          displayName="in het rechter oor"/>
+                                 </medicationAdministrationInstruction>
+                              </support2>
+                           </medicationAdministrationRequest>
+                        </therapeuticAgentOf>
+                     </dispensedMedication>
+                  </product>
+                  <responsibleParty>
+                     <assignedCareProvider>
+                        <id nullFlavor="NI"/>
+                        <code code="17.000"
+                              codeSystem="2.16.840.1.113883.2.4.15.111"
+                              displayName="Apotheker"/>
+                        <representedOrganization>
+                           <id extension="00057947" root="2.16.528.1.1007.3.3"/>
+                           <name>Klatter Apo</name>
+                           <addr use="WP">
+                              <streetName nullFlavor="NI"/>
+                              <houseNumber nullFlavor="NI"/>
+                              <postalCode nullFlavor="NI"/>
+                              <city>St. Jacobipararochie</city>
+                           </addr>
+                        </representedOrganization>
+                     </assignedCareProvider>
+                  </responsibleParty>
+               </medicationDispenseEvent>
+            </component>
+            <component>
+               <medicationDispenseEvent>
+                  <id extension="00039977207"
+                      root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.3"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="20200602"/>
+                  <quantity nullFlavor="NA"/>
+                  <performer>
+                     <assignedPerson>
+                        <id nullFlavor="MSK"/>
+                     </assignedPerson>
+                  </performer>
+                  <product>
+                     <dispensedMedication>
+                        <MedicationKind classCode="MMAT" determinerCode="KIND">
+                           <code code="14077108"
+                                 codeSystem="2.16.840.1.113883.2.4.4.8"
+                                 displayName="HYPERIFORCE FORTE TABLET">
+                              <translation code="1049526" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                              <translation code="47392" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+                              <translation code="110817" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                           </code>
+                        </MedicationKind>
+                        <directTargetOf typeCode="DIR">
+                           <prescription>
+                              <id extension="00039977207"
+                                  root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.6"/>
+                              <statusCode nullFlavor="UNK"/>
+                           </prescription>
+                        </directTargetOf>
+                        <therapeuticAgentOf>
+                           <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+                              <text mediaType="text/plain">2 maal per dag 1-2 tabletten</text>
+                              <statusCode code="active"/>
+                              <effectiveTime xsi:type="SXPR_TS">
+                                 <comp xsi:type="IVL_TS">
+                                    <width value="26" unit="d"/>
+                                 </comp>
+                                 <comp xsi:type="PIVL_TS" operator="A">
+                                    <period value="0.5" unit="d"/>
+                                 </comp>
+                              </effectiveTime>
+                              <doseQuantity>
+                                 <low value="1" unit="1">
+                                    <translation value="1"
+                                                 code="245"
+                                                 displayName="ST"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <translation value="1"
+                                                 code="100"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="tablet"/>
+                                 </low>
+                                 <high value="2" unit="1">
+                                    <translation value="2"
+                                                 code="245"
+                                                 displayName="ST"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <translation value="2"
+                                                 code="100"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="tablet"/>
+                                 </high>
+                              </doseQuantity>
+                           </medicationAdministrationRequest>
+                        </therapeuticAgentOf>
+                     </dispensedMedication>
+                  </product>
+                  <responsibleParty>
+                     <assignedCareProvider>
+                        <id nullFlavor="NI"/>
+                        <code code="17.000"
+                              codeSystem="2.16.840.1.113883.2.4.15.111"
+                              displayName="Apotheker"/>
+                        <representedOrganization>
+                           <id extension="00057947" root="2.16.528.1.1007.3.3"/>
+                           <name>Klatter Apo</name>
+                           <addr use="WP">
+                              <streetName nullFlavor="NI"/>
+                              <houseNumber nullFlavor="NI"/>
+                              <postalCode nullFlavor="NI"/>
+                              <city>St. Jacobipararochie</city>
+                           </addr>
+                        </representedOrganization>
+                     </assignedCareProvider>
+                  </responsibleParty>
+               </medicationDispenseEvent>
+            </component>
+            <component>
+               <medicationDispenseEvent>
+                  <id extension="00039977208"
+                      root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.3"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="20200602"/>
+                  <quantity nullFlavor="NA"/>
+                  <performer>
+                     <assignedPerson>
+                        <id nullFlavor="MSK"/>
+                     </assignedPerson>
+                  </performer>
+                  <product>
+                     <dispensedMedication>
+                        <MedicationKind classCode="MMAT" determinerCode="KIND">
+                           <code code="14848163"
+                                 codeSystem="2.16.840.1.113883.2.4.4.8"
+                                 displayName="CETOMACROGOLCREME MET 10% VASELINE FAGRON">
+                              <translation code="1205943" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                              <translation code="92789" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+                              <translation code="133329" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                           </code>
+                        </MedicationKind>
+                        <directTargetOf typeCode="DIR">
+                           <prescription>
+                              <id extension="00039977208"
+                                  root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.6"/>
+                              <statusCode nullFlavor="UNK"/>
+                           </prescription>
+                        </directTargetOf>
+                        <therapeuticAgentOf>
+                           <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+                              <text mediaType="text/plain">zo nodig</text>
+                              <statusCode code="active"/>
+                              <effectiveTime xsi:type="IVL_TS">
+                                 <width value="90" unit="d"/>
+                              </effectiveTime>
+                              <precondition>
+                                 <observationEventCriterion>
+                                    <code code="1137"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          displayName="zo nodig"/>
+                                 </observationEventCriterion>
+                              </precondition>
+                           </medicationAdministrationRequest>
+                        </therapeuticAgentOf>
+                     </dispensedMedication>
+                  </product>
+                  <responsibleParty>
+                     <assignedCareProvider>
+                        <id nullFlavor="NI"/>
+                        <code code="17.000"
+                              codeSystem="2.16.840.1.113883.2.4.15.111"
+                              displayName="Apotheker"/>
+                        <representedOrganization>
+                           <id extension="00057947" root="2.16.528.1.1007.3.3"/>
+                           <name>Klatter Apo</name>
+                           <addr use="WP">
+                              <streetName nullFlavor="NI"/>
+                              <houseNumber nullFlavor="NI"/>
+                              <postalCode nullFlavor="NI"/>
+                              <city>St. Jacobipararochie</city>
+                           </addr>
+                        </representedOrganization>
+                     </assignedCareProvider>
+                  </responsibleParty>
+               </medicationDispenseEvent>
+            </component>
+            <component>
+               <medicationDispenseEvent>
+                  <id extension="00039977209"
+                      root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.3"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="20200602"/>
+                  <quantity nullFlavor="NA"/>
+                  <performer>
+                     <assignedPerson>
+                        <id nullFlavor="MSK"/>
+                     </assignedPerson>
+                  </performer>
+                  <product>
+                     <dispensedMedication>
+                        <MedicationKind classCode="MMAT" determinerCode="KIND">
+                           <code code="14719517"
+                                 codeSystem="2.16.840.1.113883.2.4.4.8"
+                                 displayName="NOVOMIX 30 PENFILL INJ 100E/ML PATROON 3ML">
+                              <translation code="1507656" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                              <translation code="65749" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+                              <translation code="115045" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                           </code>
+                        </MedicationKind>
+                        <directTargetOf typeCode="DIR">
+                           <prescription>
+                              <id extension="00039977209"
+                                  root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.6"/>
+                              <statusCode nullFlavor="UNK"/>
+                           </prescription>
+                        </directTargetOf>
+                        <therapeuticAgentOf>
+                           <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+                              <text mediaType="text/plain">2 x daags 10 eenheden</text>
+                              <statusCode code="active"/>
+                              <effectiveTime xsi:type="IVL_TS">
+                                 <width value="90" unit="d"/>
+                              </effectiveTime>
+                           </medicationAdministrationRequest>
+                        </therapeuticAgentOf>
+                     </dispensedMedication>
+                  </product>
+                  <responsibleParty>
+                     <assignedCareProvider>
+                        <id nullFlavor="NI"/>
+                        <code code="17.000"
+                              codeSystem="2.16.840.1.113883.2.4.15.111"
+                              displayName="Apotheker"/>
+                        <representedOrganization>
+                           <id extension="00057947" root="2.16.528.1.1007.3.3"/>
+                           <name>Klatter Apo</name>
+                           <addr use="WP">
+                              <streetName nullFlavor="NI"/>
+                              <houseNumber nullFlavor="NI"/>
+                              <postalCode nullFlavor="NI"/>
+                              <city>St. Jacobipararochie</city>
+                           </addr>
+                        </representedOrganization>
+                     </assignedCareProvider>
+                  </responsibleParty>
+               </medicationDispenseEvent>
+            </component>
+            <component>
+               <medicationDispenseEvent>
+                  <id extension="00039977210"
+                      root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.3"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="20200602"/>
+                  <quantity nullFlavor="NA"/>
+                  <performer>
+                     <assignedPerson>
+                        <id nullFlavor="MSK"/>
+                     </assignedPerson>
+                  </performer>
+                  <product>
+                     <dispensedMedication>
+                        <MedicationKind classCode="MMAT" determinerCode="KIND">
+                           <code code="15143252"
+                                 codeSystem="2.16.840.1.113883.2.4.4.8"
+                                 displayName="METHOTREXAAT SANDOZ TABLET  2,5MG">
+                              <translation code="1799975" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                              <translation code="141631" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+                              <translation code="16918" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                           </code>
+                        </MedicationKind>
+                        <directTargetOf typeCode="DIR">
+                           <prescription>
+                              <id extension="00039977210"
+                                  root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.6"/>
+                              <statusCode nullFlavor="UNK"/>
+                           </prescription>
+                        </directTargetOf>
+                        <therapeuticAgentOf>
+                           <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+                              <text mediaType="text/plain">gebruik volgens voorschrift specialist&#xD;
+woensdagochtend 2 tabletten , woensdagavond 2&#xD;
+tabletten en donderdagochtend 2 tabletten&#xD;
+Bij reuma/psoriasis 1xper wk op vaste dag&#xD;
+</text>
+                              <statusCode code="active"/>
+                           </medicationAdministrationRequest>
+                        </therapeuticAgentOf>
+                     </dispensedMedication>
+                  </product>
+                  <responsibleParty>
+                     <assignedCareProvider>
+                        <id nullFlavor="NI"/>
+                        <code code="17.000"
+                              codeSystem="2.16.840.1.113883.2.4.15.111"
+                              displayName="Apotheker"/>
+                        <representedOrganization>
+                           <id extension="00057947" root="2.16.528.1.1007.3.3"/>
+                           <name>Klatter Apo</name>
+                           <addr use="WP">
+                              <streetName nullFlavor="NI"/>
+                              <houseNumber nullFlavor="NI"/>
+                              <postalCode nullFlavor="NI"/>
+                              <city>St. Jacobipararochie</city>
+                           </addr>
+                        </representedOrganization>
+                     </assignedCareProvider>
+                  </responsibleParty>
+               </medicationDispenseEvent>
+            </component>
+            <component>
+               <medicationDispenseEvent>
+                  <id extension="00039977211"
+                      root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.3"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="20200602"/>
+                  <quantity nullFlavor="NA"/>
+                  <performer>
+                     <assignedPerson>
+                        <id nullFlavor="MSK"/>
+                     </assignedPerson>
+                  </performer>
+                  <product>
+                     <dispensedMedication>
+                        <MedicationKind classCode="MMAT" determinerCode="KIND">
+                           <code code="14003007"
+                                 codeSystem="2.16.840.1.113883.2.4.4.8"
+                                 displayName="FOLIUMZUUR TEVA TABLET 5MG">
+                              <translation code="1009818" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                              <translation code="44148" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+                              <translation code="3530" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                           </code>
+                        </MedicationKind>
+                        <directTargetOf typeCode="DIR">
+                           <prescription>
+                              <id extension="00039977211"
+                                  root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.6"/>
+                              <statusCode nullFlavor="UNK"/>
+                           </prescription>
+                        </directTargetOf>
+                        <therapeuticAgentOf>
+                           <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+                              <text mediaType="text/plain">1 maal per week 1 tablet
+24 uur na laatste methotrexaat inname</text>
+                              <statusCode code="active"/>
+                              <effectiveTime xsi:type="SXPR_TS">
+                                 <comp xsi:type="IVL_TS">
+                                    <width value="209" unit="d"/>
+                                 </comp>
+                                 <comp xsi:type="PIVL_TS" operator="A">
+                                    <period value="1" unit="wk"/>
+                                 </comp>
+                              </effectiveTime>
+                              <doseQuantity>
+                                 <center value="1" unit="1">
+                                    <translation value="1"
+                                                 code="245"
+                                                 displayName="ST"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <translation value="1"
+                                                 code="100"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="tablet"/>
+                                 </center>
+                              </doseQuantity>
+                           </medicationAdministrationRequest>
+                        </therapeuticAgentOf>
+                     </dispensedMedication>
+                  </product>
+                  <responsibleParty>
+                     <assignedCareProvider>
+                        <id nullFlavor="NI"/>
+                        <code code="17.000"
+                              codeSystem="2.16.840.1.113883.2.4.15.111"
+                              displayName="Apotheker"/>
+                        <representedOrganization>
+                           <id extension="00057947" root="2.16.528.1.1007.3.3"/>
+                           <name>Klatter Apo</name>
+                           <addr use="WP">
+                              <streetName nullFlavor="NI"/>
+                              <houseNumber nullFlavor="NI"/>
+                              <postalCode nullFlavor="NI"/>
+                              <city>St. Jacobipararochie</city>
+                           </addr>
+                        </representedOrganization>
+                     </assignedCareProvider>
+                  </responsibleParty>
+               </medicationDispenseEvent>
+            </component>
+            <component>
+               <medicationDispenseEvent>
+                  <id extension="00039977212"
+                      root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.3"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="20200602"/>
+                  <quantity nullFlavor="NA"/>
+                  <performer>
+                     <assignedPerson>
+                        <id nullFlavor="MSK"/>
+                     </assignedPerson>
+                  </performer>
+                  <product>
+                     <dispensedMedication>
+                        <MedicationKind classCode="MMAT" determinerCode="KIND">
+                           <code code="15367878"
+                                 codeSystem="2.16.840.1.113883.2.4.4.8"
+                                 displayName="VOLTAREN K TABLET OMHULD 25MG">
+                              <translation code="1942298" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                              <translation code="86630" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+                              <translation code="129461" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                           </code>
+                        </MedicationKind>
+                        <directTargetOf typeCode="DIR">
+                           <prescription>
+                              <id extension="00039977212"
+                                  root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.6"/>
+                              <statusCode nullFlavor="UNK"/>
+                           </prescription>
+                        </directTargetOf>
+                        <therapeuticAgentOf>
+                           <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+                              <text mediaType="text/plain">1 x PER DAG 1 TABLET zo nodig bij pijn&#xD;
+Bij maagklachten NA het eten innemen&#xD;
+Bij voorkeur een half uur VOOR het eten&#xD;
+Pas op met alcohol i.v.m. maagklachten&#xD;
+</text>
+                              <statusCode code="active"/>
+                           </medicationAdministrationRequest>
+                        </therapeuticAgentOf>
+                     </dispensedMedication>
+                  </product>
+                  <responsibleParty>
+                     <assignedCareProvider>
+                        <id nullFlavor="NI"/>
+                        <code code="17.000"
+                              codeSystem="2.16.840.1.113883.2.4.15.111"
+                              displayName="Apotheker"/>
+                        <representedOrganization>
+                           <id extension="00057947" root="2.16.528.1.1007.3.3"/>
+                           <name>Klatter Apo</name>
+                           <addr use="WP">
+                              <streetName nullFlavor="NI"/>
+                              <houseNumber nullFlavor="NI"/>
+                              <postalCode nullFlavor="NI"/>
+                              <city>St. Jacobipararochie</city>
+                           </addr>
+                        </representedOrganization>
+                     </assignedCareProvider>
+                  </responsibleParty>
+               </medicationDispenseEvent>
+            </component>
+            <component>
+               <medicationDispenseEvent>
+                  <id extension="00039977213"
+                      root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.3"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="20200602"/>
+                  <quantity nullFlavor="NA"/>
+                  <performer>
+                     <assignedPerson>
+                        <id nullFlavor="MSK"/>
+                     </assignedPerson>
+                  </performer>
+                  <product>
+                     <dispensedMedication>
+                        <MedicationKind classCode="MMAT" determinerCode="KIND">
+                           <code code="15375641"
+                                 codeSystem="2.16.840.1.113883.2.4.4.8"
+                                 displayName="PARACETAMOL TEVA TABLET 500MG">
+                              <translation code="768901" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                              <translation code="67903" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+                              <translation code="2194" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                           </code>
+                        </MedicationKind>
+                        <directTargetOf typeCode="DIR">
+                           <prescription>
+                              <id extension="00039977213"
+                                  root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.6"/>
+                              <statusCode nullFlavor="UNK"/>
+                           </prescription>
+                        </directTargetOf>
+                        <therapeuticAgentOf>
+                           <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+                              <text mediaType="text/plain">1-3 maal per week 1-2 tabletten
+zo nodig</text>
+                              <statusCode code="active"/>
+                              <effectiveTime xsi:type="SXPR_TS">
+                                 <comp xsi:type="IVL_TS">
+                                    <width value="69" unit="d"/>
+                                 </comp>
+                                 <comp xsi:type="PIVL_TS" operator="A">
+                                    <period value="1" unit="wk"/>
+                                 </comp>
+                              </effectiveTime>
+                              <doseQuantity>
+                                 <low value="1" unit="1">
+                                    <translation value="1"
+                                                 code="245"
+                                                 displayName="ST"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <translation value="1"
+                                                 code="100"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="tablet"/>
+                                 </low>
+                                 <high value="2" unit="1">
+                                    <translation value="2"
+                                                 code="245"
+                                                 displayName="ST"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <translation value="2"
+                                                 code="100"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="tablet"/>
+                                 </high>
+                              </doseQuantity>
+                              <precondition>
+                                 <observationEventCriterion>
+                                    <code code="1137"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          displayName="zo nodig"/>
+                                 </observationEventCriterion>
+                              </precondition>
+                           </medicationAdministrationRequest>
+                        </therapeuticAgentOf>
+                        <therapeuticAgentOf>
+                           <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+                              <text mediaType="text/plain">1-3 maal per week 1-2 tabletten
+zo nodig</text>
+                              <statusCode code="active"/>
+                              <effectiveTime xsi:type="SXPR_TS">
+                                 <comp xsi:type="IVL_TS">
+                                    <width value="69" unit="d"/>
+                                 </comp>
+                                 <comp xsi:type="PIVL_TS" operator="A">
+                                    <period value="0.5" unit="wk"/>
+                                 </comp>
+                              </effectiveTime>
+                              <doseQuantity>
+                                 <low value="1" unit="1">
+                                    <translation value="1"
+                                                 code="245"
+                                                 displayName="ST"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <translation value="1"
+                                                 code="100"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="tablet"/>
+                                 </low>
+                                 <high value="2" unit="1">
+                                    <translation value="2"
+                                                 code="245"
+                                                 displayName="ST"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <translation value="2"
+                                                 code="100"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="tablet"/>
+                                 </high>
+                              </doseQuantity>
+                              <precondition>
+                                 <observationEventCriterion>
+                                    <code nullFlavor="OTH">
+                                       <originalText>zo nodig</originalText>
+                                    </code>
+                                 </observationEventCriterion>
+                              </precondition>
+                           </medicationAdministrationRequest>
+                        </therapeuticAgentOf>
+                     </dispensedMedication>
+                  </product>
+                  <responsibleParty>
+                     <assignedCareProvider>
+                        <id nullFlavor="NI"/>
+                        <code code="17.000"
+                              codeSystem="2.16.840.1.113883.2.4.15.111"
+                              displayName="Apotheker"/>
+                        <representedOrganization>
+                           <id extension="00057947" root="2.16.528.1.1007.3.3"/>
+                           <name>Klatter Apo</name>
+                           <addr use="WP">
+                              <streetName nullFlavor="NI"/>
+                              <houseNumber nullFlavor="NI"/>
+                              <postalCode nullFlavor="NI"/>
+                              <city>St. Jacobipararochie</city>
+                           </addr>
+                        </representedOrganization>
+                     </assignedCareProvider>
+                  </responsibleParty>
+               </medicationDispenseEvent>
+            </component>
+            <component>
+               <medicationDispenseEvent>
+                  <id extension="00039977214"
+                      root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.3"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="20200602"/>
+                  <quantity nullFlavor="NA"/>
+                  <performer>
+                     <assignedPerson>
+                        <id nullFlavor="MSK"/>
+                     </assignedPerson>
+                  </performer>
+                  <product>
+                     <dispensedMedication>
+                        <MedicationKind classCode="MMAT" determinerCode="KIND">
+                           <code code="14083523"
+                                 codeSystem="2.16.840.1.113883.2.4.4.8"
+                                 displayName="ACETYLSALICYLZUUR CARDIO TEVA DISP TABLET 80MG">
+                              <translation code="1051385" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                              <translation code="68632" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+                              <translation code="117145" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                           </code>
+                        </MedicationKind>
+                        <directTargetOf typeCode="DIR">
+                           <prescription>
+                              <id extension="00039977214"
+                                  root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.6"/>
+                              <statusCode nullFlavor="UNK"/>
+                           </prescription>
+                        </directTargetOf>
+                        <therapeuticAgentOf>
+                           <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+                              <text mediaType="text/plain">1 maal per dag 1 tablet</text>
+                              <statusCode code="active"/>
+                              <effectiveTime xsi:type="SXPR_TS">
+                                 <comp xsi:type="IVL_TS">
+                                    <width value="30" unit="d"/>
+                                 </comp>
+                                 <comp xsi:type="PIVL_TS" operator="A">
+                                    <period value="1" unit="d"/>
+                                 </comp>
+                              </effectiveTime>
+                              <doseQuantity>
+                                 <center value="1" unit="1">
+                                    <translation value="1"
+                                                 code="245"
+                                                 displayName="ST"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <translation value="1"
+                                                 code="100"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="tablet"/>
+                                 </center>
+                              </doseQuantity>
+                           </medicationAdministrationRequest>
+                        </therapeuticAgentOf>
+                     </dispensedMedication>
+                  </product>
+                  <responsibleParty>
+                     <assignedCareProvider>
+                        <id nullFlavor="NI"/>
+                        <code code="17.000"
+                              codeSystem="2.16.840.1.113883.2.4.15.111"
+                              displayName="Apotheker"/>
+                        <representedOrganization>
+                           <id extension="00057947" root="2.16.528.1.1007.3.3"/>
+                           <name>Klatter Apo</name>
+                           <addr use="WP">
+                              <streetName nullFlavor="NI"/>
+                              <houseNumber nullFlavor="NI"/>
+                              <postalCode nullFlavor="NI"/>
+                              <city>St. Jacobipararochie</city>
+                           </addr>
+                        </representedOrganization>
+                     </assignedCareProvider>
+                  </responsibleParty>
+               </medicationDispenseEvent>
+            </component>
+            <component>
+               <medicationDispenseEvent>
+                  <id extension="00039977215"
+                      root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.3"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="20200602"/>
+                  <quantity nullFlavor="NA"/>
+                  <performer>
+                     <assignedPerson>
+                        <id nullFlavor="MSK"/>
+                     </assignedPerson>
+                  </performer>
+                  <product>
+                     <dispensedMedication>
+                        <MedicationKind classCode="MMAT" determinerCode="KIND">
+                           <code code="15903044"
+                                 codeSystem="2.16.840.1.113883.2.4.4.8"
+                                 displayName="SILDENAFIL TEVA TABLET FILMOMHULD  50MG">
+                              <translation code="2319616" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                              <translation code="51071" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+                              <translation code="105406" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                           </code>
+                        </MedicationKind>
+                        <directTargetOf typeCode="DIR">
+                           <prescription>
+                              <id extension="00039977215"
+                                  root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.6"/>
+                              <statusCode nullFlavor="UNK"/>
+                           </prescription>
+                        </directTargetOf>
+                        <therapeuticAgentOf>
+                           <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+                              <text mediaType="text/plain">zo nodig</text>
+                              <statusCode code="active"/>
+                              <effectiveTime xsi:type="IVL_TS">
+                                 <width value="90" unit="d"/>
+                              </effectiveTime>
+                              <precondition>
+                                 <observationEventCriterion>
+                                    <code code="1137"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          displayName="zo nodig"/>
+                                 </observationEventCriterion>
+                              </precondition>
+                           </medicationAdministrationRequest>
+                        </therapeuticAgentOf>
+                     </dispensedMedication>
+                  </product>
+                  <responsibleParty>
+                     <assignedCareProvider>
+                        <id nullFlavor="NI"/>
+                        <code code="17.000"
+                              codeSystem="2.16.840.1.113883.2.4.15.111"
+                              displayName="Apotheker"/>
+                        <representedOrganization>
+                           <id extension="00057947" root="2.16.528.1.1007.3.3"/>
+                           <name>Klatter Apo</name>
+                           <addr use="WP">
+                              <streetName nullFlavor="NI"/>
+                              <houseNumber nullFlavor="NI"/>
+                              <postalCode nullFlavor="NI"/>
+                              <city>St. Jacobipararochie</city>
+                           </addr>
+                        </representedOrganization>
+                     </assignedCareProvider>
+                  </responsibleParty>
+               </medicationDispenseEvent>
+            </component>
+            <component>
+               <medicationDispenseEvent>
+                  <id extension="00039977216"
+                      root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.3"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="20200602"/>
+                  <quantity nullFlavor="NA"/>
+                  <performer>
+                     <assignedPerson>
+                        <id nullFlavor="MSK"/>
+                     </assignedPerson>
+                  </performer>
+                  <product>
+                     <dispensedMedication>
+                        <MedicationKind classCode="MMAT" determinerCode="KIND">
+                           <code code="16011368"
+                                 codeSystem="2.16.840.1.113883.2.4.4.8"
+                                 displayName="ACENOCOUMAROL TEVA TABLET 1MG">
+                              <translation code="1090194" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                              <translation code="7323" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+                              <translation code="20303" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                           </code>
+                        </MedicationKind>
+                        <directTargetOf typeCode="DIR">
+                           <prescription>
+                              <id extension="00039977216"
+                                  root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.6"/>
+                              <statusCode nullFlavor="UNK"/>
+                           </prescription>
+                        </directTargetOf>
+                        <therapeuticAgentOf>
+                           <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+                              <text mediaType="text/plain">Gebruik volgens schema trombosedienst&#xD;
+Heel doorslikken, niet kauwen&#xD;
+'s Avonds innemen bij de maaltijd&#xD;
+</text>
+                              <statusCode code="active"/>
+                           </medicationAdministrationRequest>
+                        </therapeuticAgentOf>
+                     </dispensedMedication>
+                  </product>
+                  <responsibleParty>
+                     <assignedCareProvider>
+                        <id nullFlavor="NI"/>
+                        <code code="17.000"
+                              codeSystem="2.16.840.1.113883.2.4.15.111"
+                              displayName="Apotheker"/>
+                        <representedOrganization>
+                           <id extension="00057947" root="2.16.528.1.1007.3.3"/>
+                           <name>Klatter Apo</name>
+                           <addr use="WP">
+                              <streetName nullFlavor="NI"/>
+                              <houseNumber nullFlavor="NI"/>
+                              <postalCode nullFlavor="NI"/>
+                              <city>St. Jacobipararochie</city>
+                           </addr>
+                        </representedOrganization>
+                     </assignedCareProvider>
+                  </responsibleParty>
+               </medicationDispenseEvent>
+            </component>
+         </MedicationDispenseList>
+      </subject>
+      <queryAck>
+         <queryId extension="TOBEGENERATED" root="1.2.3.999"/>
+         <queryResponseCode code="OK"/>
+         <resultTotalQuantity value="1"/>
+         <resultCurrentQuantity value="1"/>
+         <resultRemainingQuantity value="0"/>
+      </queryAck>
+   </ControlActProcess>
+</QURX_IN990113NL>

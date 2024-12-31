@@ -1,0 +1,83 @@
+<DeviceUseStatement xmlns="http://hl7.org/fhir">
+   <id value="zib-MedicalDevice-bgz-msz-bgz-msz-patD-medDevice3"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Beschrijving apparaatgebruik. Subject: Fatima Saïda F.S.K. Fatima Al Ksar el Kebir Çelik. Id: bgz-msz-patD-medDevice3 (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), Status: actief</caption>
+            <tbody>
+               <tr>
+                  <th>Apparaat/Systeem</th>
+                  <td>mitella voor ondersteuning van arm mitella</td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="Left (7771000 - SNOMED CT)">Left</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Gebruiksperiode</th>
+                  <td>Vanaf 22 juni 2008</td>
+               </tr>
+               <tr>
+                  <th>Indicatie</th>
+                  <td>
+                     <div>Fractuur van elleboog</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Organization">
+      <valueReference>
+         <reference value="Organization/nl-core-organization-bgz-msz-2-16-840-1-113883-2-4-6-1-20000014"/>
+         <display value="Ziekenhuis de grote terts"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Practitioner">
+      <valueReference>
+         <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-528-1-1007-3-1-10000014"/>
+         <display value="A.B.C.D.E. Affine Stabiel in de Benen"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patD-medDevice3"/>
+   </identifier>
+   <status value="active"/>
+   <subject>
+      <reference value="Patient/FATIMA-SAIDA-F-S-K--FATIMA-AL-KSAR-EL-KEBIR-ELIK"/>
+      <display value="Fatima Saïda F.S.K. Fatima Al Ksar el Kebir Çelik"/>
+   </subject>
+   <whenUsed>
+      <start value="2008-06-22"/>
+   </whenUsed>
+   <device>
+      <reference value="Device/zib-MedicalDeviceProduct-bgz-msz-bgz-msz-patD-medDevice3"/>
+      <display value="mitella voor ondersteuning van arm mitella"/>
+   </device>
+   <indication>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Problem">
+         <valueReference>
+            <reference value="Condition/zib-Problem-bgz-msz-bgz-msz-patD-problem4"/>
+            <display value="Fractuur van elleboog"/>
+         </valueReference>
+      </extension>
+   </indication>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Left"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </bodySite>
+</DeviceUseStatement>

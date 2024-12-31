@@ -1,8 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <Questionnaire xmlns="http://hl7.org/fhir">
    <id value="INTAKE-NIEUWE-PATIENT"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/vl-Questionnaire"/>
    </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Vragenlijst. Status: concept</caption>
+            <tbody>
+               <tr>
+                  <th>waarde</th>
+                  <td>intake-nieuwe-patient</td>
+               </tr>
+               <tr>
+                  <th>Titel</th>
+                  <td>Intake nieuwe patiënt</td>
+               </tr>
+               <tr>
+                  <th colspan="2">Experimenteel</th>
+               </tr>
+               <tr>
+                  <th>Doel</th>
+                  <td>Deze vragenlijst is ontwikkeld voor test- en kwalificatiedoeleinden binnen de informatiestandaard MedMij Vragenlijsten.</td>
+               </tr>
+               <tr>
+                  <th>Publisher</th>
+                  <td>Nictiz</td>
+               </tr>
+            </tbody>
+         </table>
+         <div class="questionnaireContent">
+            <ol>
+               <li id="_introductie">Met het beantwoorden van deze vragenlijst voorziet u ons van enkele basisgegevens die we opnemen in uw dossier.<div>Type: display</div>
+               </li>
+               <li id="_algemeen">Algemene vragen<div>Type: group</div>
+                  <ol>
+                     <li id="_gewicht">Wat is uw gewicht in kg?<div>Type: decimal</div>
+                        <div>Verplicht</div>
+                     </li>
+                     <li id="_lengte">Wat is uw lengte in cm?<div>Type: integer</div>
+                        <div>Verplicht</div>
+                     </li>
+                     <li id="_roken">Rookt u?<div>Type: boolean</div>
+                     </li>
+                     <li id="_ooitgerookt">U rookt niet meer, maar heeft u ooit gerookt?<div>Type: boolean</div>
+                     </li>
+                     <li id="_jarensindsroken">Hoe lang is het geleden dat u heeft gerookt (in jaren)?<div>Type: decimal</div>
+                     </li>
+                     <li id="_hoevaakroken">Hoe vaak rookt u?<div>Type: choice</div>
+                     </li>
+                     <li id="_drinken">Drinkt u alcohol?<div>Type: boolean</div>
+                     </li>
+                     <li id="_hoevaakdrinken">Hoe vaak per week drinkt u alcohol?<div>Type: choice</div>
+                     </li>
+                     <li id="_lichamelijkegezondheid">Hoe omschrijft u uw algemene lichamelijke gezondheid?<div>Type: text</div>
+                     </li>
+                     <li id="_opstaan">Hoe laat staat u meestal op?<div>Type: time</div>
+                     </li>
+                     <li id="_sport">Beoefent u een sport?<div>Type: boolean</div>
+                     </li>
+                     <li id="_welkesport">Welke sport(en) beoefent u?<div>Type: choice</div>
+                        <div>Optioneel, Meerdere mogelijk</div>
+                     </li>
+                     <li id="_welkeanderesport">Anders, namelijk<div>Type: string</div>
+                        <div>Optioneel, Meerdere mogelijk</div>
+                     </li>
+                  </ol>
+               </li>
+               <li id="_voorgeschiedenis">Voorgeschiedenis<div>Type: group</div>
+                  <ol>
+                     <li id="_onderbehandeling">Bent u op dit moment onder behandeling van een specialist?<div>Type: boolean</div>
+                        <div>Verplicht</div>
+                     </li>
+                     <li id="_datumlaatstebehandeling">Wanneer was uw laatste contact met een specialist?<div>Type: date</div>
+                     </li>
+                     <li id="_geneesmiddelen">Gebruikt u geneesmiddelen?<div>Type: boolean</div>
+                        <div>Verplicht</div>
+                     </li>
+                  </ol>
+               </li>
+               <li id="_socialemedia">Sociale media<div>Type: group</div>
+                  <ol>
+                     <li id="_actiefsocialemedia">Bent u actief op sociale media?<div>Type: display</div>
+                     </li>
+                     <li id="_facebook">Facebook<div>Type: boolean</div>
+                     </li>
+                     <li id="_instagram">Instagram<div>Type: boolean</div>
+                     </li>
+                     <li id="_linkedin">LinkedIn<div>Type: boolean</div>
+                     </li>
+                     <li id="_anderplatform">Van een ander platform dat hier niet is genoemd?<div>Type: boolean</div>
+                     </li>
+                     <li id="_hoeveelandere">Hoeveel andere platforms zijn dit dan? (maximaal 5)<div>Type: integer</div>
+                     </li>
+                     <li id="_welkplatform">Welk of welke platforms zijn dit dan?<div>Type: string</div>
+                     </li>
+                  </ol>
+               </li>
+               <li id="_contactgegevens">Contactgegevens<div>Type: group</div>
+                  <ol>
+                     <li id="_uitlegcontact">Om u beter van dienst te kunnen zijn gebruiken we graag uw mobiele telefoonnummer en e-mailadres, bijvoorbeeld voor afspraakherinneringen en herhaalrecepten.<div>Type: display</div>
+                     </li>
+                     <li id="_mobiel">Wat is uw mobiele telefoonnummer?<div>Type: string</div>
+                     </li>
+                     <li id="_mail">Wat is uw e-mailadres?<div>Type: string</div>
+                     </li>
+                  </ol>
+               </li>
+               <li id="_belafspraak">
+                  <div>Type: group</div>
+                  <ol>
+                     <li id="_uitlegbelafspraak">Graag zouden we telefonisch contact met u opnemen om uw inschrijving te voltooien.<div>Type: display</div>
+                     </li>
+                     <li id="_toestemmingbelafspraak">Mogen we u telefonisch benaderen?<div>Type: boolean</div>
+                     </li>
+                     <li id="_datumtijdbelafspraak">Als u voorkeur heeft voor een datum/tijd, dan kunt u deze hier opgeven.<div>Type: dateTime</div>
+                     </li>
+                  </ol>
+               </li>
+            </ol>
+         </div>
+      </div>
+   </text>
    <url value="http://examplerepository.nl/intake-nieuwe-patient--20200327"/>
    <version value="20200327"/>
    <name value="intake-nieuwe-patient"/>
