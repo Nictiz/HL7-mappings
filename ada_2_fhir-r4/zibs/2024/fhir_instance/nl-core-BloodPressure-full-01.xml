@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-BloodPressure-full-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BloodPressure"/>
+   </meta>
+   <extension url="http://hl7.org/fhir/StructureDefinition/observation-bodyPosition">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="34106002"/>
+            <display value="Trendelenburg-ligging"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+         <code value="vital-signs"/>
+         <display value="Vital Signs"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="85354-9"/>
+         <display value="Bloeddruk panel waarvan alle leden optioneel in arterieel vaatstelsel"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-full-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Peter Jan (PeJe) Jansen"/>
+   </subject>
+   <effectiveDateTime value="2025-01-01"/>
+   <bodySite>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="68367000"/>
+         <display value="Structuur van bovenbeen"/>
+      </coding>
+   </bodySite>
+   <method>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="99041000146109"/>
+         <display value="Invasief meten van arteriële bloeddruk"/>
+      </coding>
+   </method>
+   <component>
+      <code>
+         <coding>
+            <system value="http://loinc.org"/>
+            <code value="8480-6"/>
+            <display value="Intravasculaire systolische bloeddruk in arterieel vaatstelsel"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="137"/>
+         <unit value="mmHg"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mm[Hg]"/>
+      </valueQuantity>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://loinc.org"/>
+            <code value="8462-4"/>
+            <display value="Intravasculaire diastolische bloeddruk in arterieel vaatstelsel"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="73"/>
+         <unit value="mmHg"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mm[Hg]"/>
+      </valueQuantity>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="85549003"/>
+            <display value="Korotkofftonen"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="255272007"/>
+            <display value="Fase 5"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="70665002"/>
+            <display value="bloeddrukmanchet"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+            <code value="OTH"/>
+            <display value="Other"/>
+         </coding>
+         <text value="Semi-large"/>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="6797001"/>
+            <display value="gemiddelde bloeddruk"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="94"/>
+         <unit value="mmHg"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mm[Hg]"/>
+      </valueQuantity>
+   </component>
+</Observation>

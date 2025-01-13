@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-BloodPressure-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BloodPressure"/>
+   </meta>
+   <extension url="http://hl7.org/fhir/StructureDefinition/observation-bodyPosition">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="102538003"/>
+            <display value="Liggende positie"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+         <code value="vital-signs"/>
+         <display value="Vital Signs"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="85354-9"/>
+         <display value="Bloeddruk panel waarvan alle leden optioneel in arterieel vaatstelsel"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <effectiveDateTime value="2013-02-08T06:43:00+01:00"/>
+   <bodySite>
+      <extension url="http://hl7.org/fhir/StructureDefinition/bodySite">
+         <valueReference>
+            <reference value="BodyStructure/nl-core-BloodPressure-01-AnatomicalLocation"/>
+            <type value="BodyStructure"/>
+            <display value="Anatomical location, Structuur van bovenarm, Rechts"/>
+         </valueReference>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="40983000"/>
+         <display value="Structuur van bovenarm"/>
+      </coding>
+   </bodySite>
+   <component>
+      <code>
+         <coding>
+            <system value="http://loinc.org"/>
+            <code value="8480-6"/>
+            <display value="Intravasculaire systolische bloeddruk in arterieel vaatstelsel"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="125"/>
+         <unit value="mmHg"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mm[Hg]"/>
+      </valueQuantity>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://loinc.org"/>
+            <code value="8462-4"/>
+            <display value="Intravasculaire diastolische bloeddruk in arterieel vaatstelsel"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="75"/>
+         <unit value="mmHg"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mm[Hg]"/>
+      </valueQuantity>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="70665002"/>
+            <display value="bloeddrukmanchet"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.15.1"/>
+            <code value="STD"/>
+            <display value="Standaard"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+</Observation>
