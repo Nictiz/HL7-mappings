@@ -61,7 +61,7 @@
                   displayName="certified public health and general preventive medicine care"/>
             <statusCode code="active"/>
             <author>
-               <time value="2024"/>
+               <time value="2025"/>
                <assignedEntity classCode="ASSIGNED">
                   <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
                   <id root="2.16.528.1.1007.3.3"
@@ -93,6 +93,7 @@
                            <country code="6030"
                                     codeSystem="2.16.840.1.113883.2.4.3.11.60.100.12.14">Nederland</country>
                         </addr>
+                        <telecom value="tel:"/>
                         <statusCode code="active"/>
                         <patientPerson>
                            <name use="OR">
@@ -123,13 +124,55 @@
                         <effectiveTime value="20000101"/>
                      </document>
                   </appendage>
-                  <pertinentInformation>
+                  <authorization typeCode="AUTH"
+                                 contextConductionInd="false">
+                     <consentEvent classCode="CONS"
+                                   moodCode="EVN"
+                                   negationInd="false">
+                        <code code="1533"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Toestemming gegevensuitwisseling RVP"/>
+                        <author typeCode="AUT">
+                           <time value="20100101"/>
+                           <responsibleParty classCode="CON">
+                              <code xsi:type="CV"
+                                    code="03"
+                                    codeSystem="2.16.840.1.113883.2.4.3.11.60.100.12.691"
+                                    displayName="Gezaghebbende (Geen toestemming van andere gezaghebbende vereist)"/>
+                              <agentPerson classCode="PSN"
+                                           determinerCode="INSTANCE">
+                                 <name>Valerie Vooys</name>
+                              </agentPerson>
+                           </responsibleParty>
+                        </author>
+                        <consultant typeCode="CON">
+                           <assignedEntity1 classCode="ASSIGNED">
+                              <representedOrganization classCode="ORG"
+                                                       determinerCode="INSTANCE">
+                                 <name>RGC Apeldoorn</name>
+                              </representedOrganization>
+                           </assignedEntity1>
+                        </consultant>
+                        <subjectOf typeCode="SUBJ">
+                           <annotation>
+                              <code code="1541"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Toestemmingswijze gegevensuitwisseling RVP"/>
+                              <value xsi:type="CV"
+                                     code="02"
+                                     codeSystem="2.16.840.1.113883.2.4.3.11.60.100.12.678"
+                                     displayName="Mondeling"/>
+                           </annotation>
+                        </subjectOf>
+                     </consentEvent>
+                  </authorization>
+                  <pertinentInformation typeCode="PERT">
                      <annotationObsEvent classCode="OBS"
                                          moodCode="EVN">
-                        <templateId root="2.16.840.1.113883.2.4.6.10.100.41167"/>
-                        <code code="1167"
+                        <templateId root="2.16.840.1.113883.2.4.6.10.100.40476"/>
+                        <code code="476"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                              displayName="Papieren JGZ-dossier aanwezig"/>
+                              displayName="Informatie verstrekt over werkwijze JGZ"/>
                         <value xsi:type="BL"
                                value="false"/>
                      </annotationObsEvent>
@@ -223,9 +266,9 @@
                                     displayName="Gewicht"/>
                         <escort typeCode="ESC">
                            <responsibleParty classCode="ASSIGNED">
-                              <code code="01"
-                                    codeSystem="2.16.840.1.113883.2.4.4.40.421"
-                                    displayName="(Biologische of adoptief) Moeder"/>
+                              <code code="14"
+                                    codeSystem="2.16.840.1.113883.2.4.3.11.60.100.12.193"
+                                    displayName="Jeugdbeschermer (voorheen gezinsvoogd)"/>
                               <agentPerson nullFlavor="NI"/>
                            </responsibleParty>
                         </escort>
@@ -279,9 +322,9 @@
                               displayName="Contact 1 tot 4 jaar"/>
                         <statusCode code="completed"/>
                         <effectiveTime value="20131013"/>
-                        <reasonCode code="12"
-                                    codeSystem="2.16.840.1.113883.2.4.4.40.373"
-                                    displayName="Spraak- taalontwikkeling"/>
+                        <reasonCode code="51"
+                                    codeSystem="2.16.840.1.113883.2.4.3.11.60.100.12.619"
+                                    displayName="Ouder-kindrelatie"/>
                         <escort typeCode="ESC">
                            <responsibleParty classCode="ASSIGNED">
                               <code code="02"
