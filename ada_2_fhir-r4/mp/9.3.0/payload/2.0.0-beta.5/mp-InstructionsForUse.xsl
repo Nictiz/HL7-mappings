@@ -215,7 +215,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <xsl:variable name="rate" as="element()?">
 
                                                 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-                                                <!-- this is zib ada dataset -->
+                                                <!-- this is zib ada dataset and MP9 ada dataset from 3.0.0-beta.4 onwards -->
                                                 <xsl:for-each select="toedieningssnelheid[minimum_waarde | nominale_waarde | maximum_waarde]">
                                                     <xsl:if test="nominale_waarde[@value | @unit | @nullFlavor]">
                                                         <rateQuantity>
@@ -247,7 +247,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
                                                 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-                                                <!-- this is MP9 ada dataset -->
+                                                <!-- this is MP9 ada dataset 3.0.0-beta.3 or before -->
                                                 <xsl:for-each select="toedieningssnelheid[*/(minimum_waarde | nominale_waarde | maximum_waarde)]">
                                                     <!-- MP-1367 tijdseenheid is no longer used in toedieningssnelheid from MP 9.3 beta.3 onwards but kept in stylesheet due to backwards compatibility with older versions -->
                                                     <xsl:choose>
@@ -338,7 +338,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                         </xsl:when>
                                                     </xsl:choose>
                                                 </xsl:for-each>
-                                                <!-- end of MP ada dataset -->
+                                                <!-- end of MP ada dataset 3.0.0-beta.3 or before -->
                                                 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
                                             </xsl:variable>
 

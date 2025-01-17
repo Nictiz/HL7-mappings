@@ -1836,7 +1836,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="mp9-gebruiksperiode-eind">
         <xsl:param name="inputValue"/>
-        <gebruiksperiode_eind value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime($inputValue), nf:determine_date_precision($inputValue))}"/>
+        <gebruiksperiode_eind value="{nf:formatHL72VagueAdaDate($inputValue, nf:determine_date_precision($inputValue))}"/>
     </xsl:template>
     <xd:doc>
         <xd:desc/>
@@ -1848,7 +1848,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="nullFlavor"/>
         <xsl:choose>
             <xsl:when test="string-length($inputValue) gt 0">
-                <gebruiksperiode_start value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime($inputValue), nf:determine_date_precision($inputValue))}"/>
+                <gebruiksperiode_start value="{nf:formatHL72VagueAdaDate($inputValue, nf:determine_date_precision($inputValue))}"/>
             </xsl:when>
             <xsl:when test="string-length($nullFlavor) gt 0">
                 <gebruiksperiode_start nullFlavor="{$nullFlavor}"/>
@@ -2391,9 +2391,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
                 <!-- afspraakdatum -->
                 <xsl:for-each select="hl7:effectiveTime[@value]">
-                    <afspraakdatum>
-                        <xsl:attribute name="value" select="nf:formatHL72XMLDate(./@value, nf:determine_date_precision(./@value))"/>
-                    </afspraakdatum>
+                    <afspraakdatum value="{nf:formatHL72VagueAdaDate(@value, nf:determine_date_precision(@value))}"/>
                 </xsl:for-each>
                 <!-- gebruiksperiode -->
                 <!-- alleen gebruiksperiode output bij 1 MAR die een width heeft, en bij meerder MAR's berekenen we indien mogelijk de einddatum -->
@@ -2580,9 +2578,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
                 <!-- afspraakdatum -->
                 <xsl:for-each select="hl7:effectiveTime[@value]">
-                    <afspraakdatum>
-                        <xsl:attribute name="value" select="nf:formatHL72XMLDate(./@value, nf:determine_date_precision(./@value))"/>
-                    </afspraakdatum>
+                    <afspraakdatum value="{nf:formatHL72VagueAdaDate(@value, nf:determine_date_precision(@value))}"/>                    
                 </xsl:for-each>
                 <!-- gebruiksperiode -->
                 <!-- alleen gebruiksperiode output bij 1 MAR die een width heeft, en bij meerder MAR's berekenen we indien mogelijk de einddatum -->
@@ -2730,7 +2726,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <datum nullFlavor="NI"/>
                 <!-- 6.12 heeft de aanschrijfdatum -->
                 <xsl:for-each select="hl7:effectiveTime[@value]">
-                    <aanschrijfdatum value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(./@value), nf:determine_date_precision(./@value))}"/>
+                    <aanschrijfdatum value="{nf:formatHL72VagueAdaDate(@value, nf:determine_date_precision(@value))}"/>
                 </xsl:for-each>
                 <!-- verstrekker -->
                 <xsl:for-each select="hl7:responsibleParty/hl7:assignedCareProvider/hl7:representedOrganization">
@@ -3395,10 +3391,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <!-- geboortedatum -->
             <xsl:for-each select="$current-patient/hl7:Person/hl7:birthTime[@value]">
-                <geboortedatum>
-                    <xsl:variable name="precision" select="nf:determine_date_precision(./@value)"/>
-                    <xsl:attribute name="value" select="nf:formatHL72XMLDate(./@value, $precision)"/>
-                </geboortedatum>
+                <geboortedatum value="{nf:formatHL72VagueAdaDate(@value, nf:determine_date_precision(@value))}"/>                
             </xsl:for-each>
             <!-- geslacht -->
             <xsl:for-each select="$current-patient/hl7:Person/hl7:administrativeGenderCode">
@@ -3442,10 +3435,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <!-- geboortedatum -->
             <xsl:for-each select="$current-patient/hl7:Person/hl7:birthTime[@value]">
-                <geboortedatum>
-                    <xsl:variable name="precision" select="nf:determine_date_precision(./@value)"/>
-                    <xsl:attribute name="value" select="nf:formatHL72XMLDate(./@value, $precision)"/>
-                </geboortedatum>
+                <geboortedatum value="{nf:formatHL72VagueAdaDate(@value, nf:determine_date_precision(@value))}"/>                
             </xsl:for-each>
             <!-- geslacht -->
             <xsl:for-each select="$current-patient/hl7:Person/hl7:administrativeGenderCode">
@@ -3868,18 +3858,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:for-each>
                 <xsl:for-each select="hl7:assignedPerson/hl7:name">
-                    <xsl:variable name="elemName">naamgegevens</xsl:variable>
-                    <xsl:element name="{$elemName}">
-                        <xsl:variable name="elemName">naamgegevens</xsl:variable>
-
-                        <!-- naamgegevens -->
-                        <xsl:call-template name="handleENtoNameInformation">
-                            <xsl:with-param name="in" select="."/>
-                            <xsl:with-param name="language" select="$language"/>
-                            <!-- naamgebruik is not part of the MP transactions for voorschrijver -->
-                            <xsl:with-param name="outputNaamgebruik" select="false()"/>
-                        </xsl:call-template>
-                    </xsl:element>
+                    <xsl:choose>
+                        <xsl:when test="ancestor::hl7:informant">
+                            <!-- unfortunately the 907 dataset is not consistent, there is an extra element for name -->
+                            <zorgverlener_naam>
+                                <naamgegevens>
+                                    <!-- naamgegevens -->
+                                    <xsl:call-template name="handleENtoNameInformation">
+                                        <xsl:with-param name="in" select="."/>
+                                        <xsl:with-param name="language" select="$language"/>
+                                        <!-- naamgebruik is not part of the MP transactions for voorschrijver -->
+                                        <xsl:with-param name="outputNaamgebruik" select="false()"/>
+                                    </xsl:call-template>
+                                </naamgegevens>
+                            </zorgverlener_naam>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <naamgegevens>
+                                <!-- naamgegevens -->
+                                <xsl:call-template name="handleENtoNameInformation">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="language" select="$language"/>
+                                    <!-- naamgebruik is not part of the MP transactions for voorschrijver -->
+                                    <xsl:with-param name="outputNaamgebruik" select="false()"/>
+                                </xsl:call-template>
+                            </naamgegevens>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                   
                 </xsl:for-each>
                 <!-- specialisme -->
                 <xsl:for-each select="hl7:code">
@@ -3935,7 +3941,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <identificatie value="{@extension}" root="{@root}"/>
                 </xsl:for-each>
                 <xsl:for-each select="hl7:author/hl7:time">
-                    <afspraakdatum value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(./@value), nf:determine_date_precision(./@value))}"/>
+                    <afspraakdatum value="{nf:formatHL72VagueAdaDate(@value, nf:determine_date_precision(@value))}"/>
                 </xsl:for-each>
                 <xsl:for-each select="$IVL_TS/hl7:width">
                     <gebruiksperiode value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}"/>
@@ -5200,21 +5206,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <!-- voorschrijver -->
                 <xsl:for-each select="hl7:entryRelationship/hl7:substanceAdministration[hl7:code[@code = $maCode][@codeSystem = $oidSNOMEDCT]]/hl7:author">
-                    <xsl:variable name="elemName">voorschrijver</xsl:variable>
-                    <xsl:element name="{$elemName}">
-
+                    <voorschrijver>
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9066_20181205174210">
                             <xsl:with-param name="in" select="."/>
-
-
                         </xsl:call-template>
-                    </xsl:element>
+                    </voorschrijver>
                 </xsl:for-each>
 
                 <!-- informant -->
                 <xsl:for-each select="hl7:informant">
-                    <xsl:variable name="elemName">informant</xsl:variable>
-                    <xsl:element name="{$elemName}">
+                    <informant>
 
                         <!-- persoon -->
                         <xsl:for-each select="hl7:relatedEntity">
@@ -5262,14 +5263,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>
                         <!-- informant_is_zorgverlener -->
                         <xsl:for-each select="hl7:assignedEntity[hl7:assignedPerson]">
-                            <xsl:variable name="elemName">informant_is_zorgverlener</xsl:variable>
-                            <xsl:element name="{$elemName}">
+                            <informant_is_zorgverlener>
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9167_20170516000000">
                                     <xsl:with-param name="in" select="."/>
                                 </xsl:call-template>
-                            </xsl:element>
+                            </informant_is_zorgverlener>
                         </xsl:for-each>
-                    </xsl:element>
+                    </informant>
                 </xsl:for-each>
 
                 <!-- auteur -->
@@ -5508,7 +5508,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <!-- datum -->
                 <xsl:for-each select="hl7:author/hl7:time">
-                    <datum value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(@value), nf:determine_date_precision(@value))}"/>
+                    <datum value="{nf:formatHL72VagueAdaDate(@value, nf:determine_date_precision(@value))}"/>
                 </xsl:for-each>
 
                 <!-- auteur -->
@@ -5589,13 +5589,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="hl7:expectedUseTime[.//(@value | @unit | @nullFlavor | @code)]">
                     <verbruiksperiode>
                         <xsl:for-each select="hl7:low[@value]">
-                            <ingangsdatum value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(@value), nf:determine_date_precision(@value))}"/>
+                            <ingangsdatum value="{nf:formatHL72VagueAdaDate(@value, nf:determine_date_precision(@value))}"/>
                         </xsl:for-each>
                         <xsl:for-each select="hl7:width[@value | @unit]">
                             <duur value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(@unit)}"/>
                         </xsl:for-each>
                         <xsl:for-each select="hl7:high[@value]">
-                            <einddatum value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(@value), nf:determine_date_precision(@value))}"/>
+                            <einddatum value="{nf:formatHL72VagueAdaDate(@value, nf:determine_date_precision(@value))}"/>
                         </xsl:for-each>
                     </verbruiksperiode>
                 </xsl:for-each>
@@ -5873,13 +5873,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="hl7:expectedUseTime[.//(@value | @unit | @nullFlavor | @code)]">
                     <verbruiksperiode>
                         <xsl:for-each select="hl7:low[@value]">
-                            <ingangsdatum value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(@value), nf:determine_date_precision(@value))}"/>
+                            <ingangsdatum value="{nf:formatHL72VagueAdaDate(@value, nf:determine_date_precision(@value))}"/>
                         </xsl:for-each>
                         <xsl:for-each select="hl7:width[@value | @unit]">
                             <duur value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(@unit)}"/>
                         </xsl:for-each>
                         <xsl:for-each select="hl7:high[@value]">
-                            <einddatum value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(@value), nf:determine_date_precision(@value))}"/>
+                            <einddatum value="{nf:formatHL72VagueAdaDate(@value, nf:determine_date_precision(@value))}"/>
                         </xsl:for-each>
                     </verbruiksperiode>
                 </xsl:for-each>
@@ -5946,7 +5946,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <!-- datum -->
                 <xsl:for-each select="hl7:author/hl7:time">
-                    <datum value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(@value), nf:determine_date_precision(@value))}"/>
+                    <datum value="{nf:formatHL72VagueAdaDate(@value, nf:determine_date_precision(@value))}"/>
                 </xsl:for-each>
 
                 <!-- auteur -->
@@ -5994,13 +5994,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="hl7:expectedUseTime[.//(@value | @unit | @nullFlavor | @code)]">
                     <verbruiksperiode>
                         <xsl:for-each select="hl7:low[@value]">
-                            <ingangsdatum value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(@value), nf:determine_date_precision(@value))}"/>
+                            <ingangsdatum value="{nf:formatHL72VagueAdaDate(@value, nf:determine_date_precision(@value))}"/>
                         </xsl:for-each>
                         <xsl:for-each select="hl7:width[@value | @unit]">
                             <duur value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(@unit)}"/>
                         </xsl:for-each>
                         <xsl:for-each select="hl7:high[@value]">
-                            <einddatum value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(@value), nf:determine_date_precision(@value))}"/>
+                            <einddatum value="{nf:formatHL72VagueAdaDate(@value, nf:determine_date_precision(@value))}"/>
                         </xsl:for-each>
                     </verbruiksperiode>
                 </xsl:for-each>
@@ -6231,7 +6231,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <!-- datum -->
                 <xsl:for-each select="hl7:author/hl7:time">
-                    <datum value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(./@value), nf:determine_date_precision(./@value))}"/>
+                    <datum value="{nf:formatHL72VagueAdaDate(@value, nf:determine_date_precision(@value))}"/>
                 </xsl:for-each>
                 <!-- auteur -->
                 <auteur>
@@ -6324,10 +6324,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </patient_identificatienummer>
             </xsl:for-each>
             <xsl:for-each select="$current-patient/hl7:patient/hl7:birthTime[@value]">
-                <geboortedatum>
-                    <xsl:variable name="precision" select="nf:determine_date_precision(./@value)"/>
-                    <xsl:attribute name="value" select="nf:formatHL72XMLDate(./@value, $precision)"/>
-                </geboortedatum>
+                <geboortedatum value="{nf:formatHL72VagueAdaDate(@value, nf:determine_date_precision(@value))}"/>        
             </xsl:for-each>
             <xsl:for-each select="$current-patient/hl7:patient/hl7:administrativeGenderCode">
                 <xsl:call-template name="mp9-geslacht">

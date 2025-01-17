@@ -1,8 +1,12 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-kwal-VV-script4-v30"/>
    <type value="transaction"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
-      <fullUrl value="urn:uuid:c842ea7d-6aca-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:2695ba7d-6b17-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -28,9 +32,9 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:d7fe46e9-6b39-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:0fb46ee9-6b51-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="DICLOFENAC-NATRIUM TABLET MSR 50MG"/>
+               <display value="DICLOFENAC-NATRIUM TABLET MSR 25MG"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:e3397b78-6b39-11ec-0000-020000000000"/>
@@ -44,7 +48,7 @@
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -60,13 +64,13 @@
                <quantity>
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                      <valueQuantity>
-                        <value value="23"/>
+                        <value value="56"/>
                         <unit value="stuk"/>
                         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                         <code value="245"/>
                      </valueQuantity>
                   </extension>
-                  <value value="23"/>
+                  <value value="56"/>
                   <unit value="stuk"/>
                   <system value="http://unitsofmeasure.org"/>
                   <code value="1"/>
@@ -198,6 +202,50 @@
       </request>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="01236578"/>
+            </identifier>
+            <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
       <fullUrl value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
       <resource>
          <Organization>
@@ -239,26 +287,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
-      <resource>
-         <Organization>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="01236578"/>
-            </identifier>
-            <name value="Apotheek De Gulle Gaper"/>
-         </Organization>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:d7fe46e9-6b39-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:0fb46ee9-6b51-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -267,16 +296,16 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="8079"/>
-                  <display value="DICLOFENAC-NATRIUM TABLET MSR 50MG"/>
+                  <code value="8060"/>
+                  <display value="DICLOFENAC-NATRIUM TABLET MSR 25MG"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="22284"/>
-                  <display value="DICLOFENAC-NATRIUM TABLET MSR 50MG"/>
+                  <code value="22276"/>
+                  <display value="DICLOFENAC-NATRIUM TABLET MSR 25MG"/>
                </coding>
-               <text value="DICLOFENAC-NATRIUM TABLET MSR 50MG"/>
+               <text value="DICLOFENAC-NATRIUM TABLET MSR 25MG"/>
             </code>
          </Medication>
       </resource>

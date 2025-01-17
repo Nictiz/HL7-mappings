@@ -35,19 +35,19 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_chronisch_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T12:32:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2024-01-01T12:32:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
+                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
                   <eind_datum_tijd datatype="datetime" nullFlavor="NI"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d249e84" datatype="reference"/>
+                  <zorgaanbieder value="d464e84" datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d249e64" datatype="reference"/>
+                  <farmaceutisch_product value="d464e64" datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, 1 maal per dag 1 stuk, oraal"/>
+                  <omschrijving value="1 maal per dag 1 stuk, oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
@@ -83,9 +83,9 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_chronisch_MVE"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-01-01T12:32:00"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2024-01-01T12:32:00+01:00"/>
                <verstrekker>
-                  <zorgaanbieder value="d249e84" datatype="reference"/>
+                  <zorgaanbieder value="d464e84" datatype="reference"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="21"/>
@@ -95,7 +95,7 @@
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d249e64" datatype="reference"/>
+                  <farmaceutisch_product value="d464e64" datatype="reference"/>
                </verstrekt_geneesmiddel>
                <relatie_verstrekkingsverzoek>
                   <identificatie value="MBH_300_chronisch_VV"
@@ -104,7 +104,7 @@
             </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d249e64">
+            <farmaceutisch_product id="d464e64">
                <product_code code="202185"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -118,9 +118,19 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="ACETYLSALICYLZUUR/PARACETAMOL/COF TAB 250/250/50MG"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="d249e84">
+            <zorgaanbieder id="d464e84">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_afhandeling_medicatievoorschrift>

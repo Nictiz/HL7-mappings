@@ -12,7 +12,7 @@
                <valueDateTime value="${DATE, T, D, -6}T11:30:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 6 dagen om 11:30 uur, gedurende 10 dagen, eerst gedurende 3 dagen 3 maal per dag 1 stuk, dan gedurende 7 dagen 2 maal per dag 1 stuk, vóór het eten, oraal"/>
+               <valueString value="eerst gedurende 3 dagen 2 maal per dag 2 stuks en Bij pijn 1 maal per dag 2 stuks , maximaal 6 stuks per dag, dan gedurende 7 dagen 3 maal per dag 1 stuk en Bij pijn 1 maal per dag 1 stuks , maximaal 4 stuks per dag, vóór het eten, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -47,9 +47,9 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:d7fe46e9-6b39-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:0fb46ee9-6b51-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="DICLOFENAC-NATRIUM TABLET MSR 50MG"/>
+               <display value="DICLOFENAC-NATRIUM TABLET MSR 25MG"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:ab1a105e-6b79-11ec-0000-020000000000"/>
@@ -79,6 +79,129 @@
                         <system value="http://unitsofmeasure.org"/>
                         <code value="d"/>
                      </boundsDuration>
+                     <frequency value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="2"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="2"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <additionalInstruction>
+                  <coding>
+                     <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+                     <code value="OTH"/>
+                     <display value="overig"/>
+                  </coding>
+                  <text value="vóór het eten"/>
+               </additionalInstruction>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="3"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <asNeededCodeableConcept>
+                  <coding>
+                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                     <code value="1028"/>
+                     <display value="Bij pijn"/>
+                  </coding>
+               </asNeededCodeableConcept>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="2"/>
+                           <unit value="Stuks"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="2"/>
+                     <unit value="Stuks"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+               <maxDosePerPeriod>
+                  <numerator>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="6"/>
+                           <unit value="Stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="6"/>
+                     <unit value="Stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </numerator>
+                  <denominator>
+                     <value value="1"/>
+                     <unit value="dag"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="d"/>
+                  </denominator>
+               </maxDosePerPeriod>
+            </dosageInstruction>
+            <dosageInstruction>
+               <sequence value="2"/>
+               <additionalInstruction>
+                  <coding>
+                     <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+                     <code value="OTH"/>
+                     <display value="overig"/>
+                  </coding>
+                  <text value="vóór het eten"/>
+               </additionalInstruction>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="7"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
                      <frequency value="3"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
@@ -96,13 +219,13 @@
                      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                         <valueQuantity>
                            <value value="1"/>
-                           <unit value="stuk"/>
+                           <unit value="Stuk"/>
                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                            <code value="245"/>
                         </valueQuantity>
                      </extension>
                      <value value="1"/>
-                     <unit value="stuk"/>
+                     <unit value="Stuk"/>
                      <system value="http://unitsofmeasure.org"/>
                      <code value="1"/>
                   </doseQuantity>
@@ -126,11 +249,18 @@
                         <system value="http://unitsofmeasure.org"/>
                         <code value="d"/>
                      </boundsDuration>
-                     <frequency value="2"/>
+                     <frequency value="1"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
                   </repeat>
                </timing>
+               <asNeededCodeableConcept>
+                  <coding>
+                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                     <code value="1028"/>
+                     <display value="Bij pijn"/>
+                  </coding>
+               </asNeededCodeableConcept>
                <route>
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
@@ -143,17 +273,39 @@
                      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                         <valueQuantity>
                            <value value="1"/>
-                           <unit value="stuk"/>
+                           <unit value="Stuks"/>
                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                            <code value="245"/>
                         </valueQuantity>
                      </extension>
                      <value value="1"/>
-                     <unit value="stuk"/>
+                     <unit value="Stuks"/>
                      <system value="http://unitsofmeasure.org"/>
                      <code value="1"/>
                   </doseQuantity>
                </doseAndRate>
+               <maxDosePerPeriod>
+                  <numerator>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="4"/>
+                           <unit value="Stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="4"/>
+                     <unit value="Stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </numerator>
+                  <denominator>
+                     <value value="1"/>
+                     <unit value="dag"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="d"/>
+                  </denominator>
+               </maxDosePerPeriod>
             </dosageInstruction>
          </MedicationRequest>
       </resource>
@@ -318,7 +470,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d7fe46e9-6b39-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:0fb46ee9-6b51-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -327,16 +479,16 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="8079"/>
-                  <display value="DICLOFENAC-NATRIUM TABLET MSR 50MG"/>
+                  <code value="8060"/>
+                  <display value="DICLOFENAC-NATRIUM TABLET MSR 25MG"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="22284"/>
-                  <display value="DICLOFENAC-NATRIUM TABLET MSR 50MG"/>
+                  <code value="22276"/>
+                  <display value="DICLOFENAC-NATRIUM TABLET MSR 25MG"/>
                </coding>
-               <text value="DICLOFENAC-NATRIUM TABLET MSR 50MG"/>
+               <text value="DICLOFENAC-NATRIUM TABLET MSR 25MG"/>
             </code>
          </Medication>
       </resource>

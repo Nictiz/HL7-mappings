@@ -1,8 +1,12 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-tst-MTD-Scenarioset13-v30"/>
    <type value="transaction"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
-      <fullUrl value="urn:uuid:95f56c96-6ab5-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:29a1205d-6ab6-11ec-0000-020000000000"/>
       <resource>
          <MedicationAdministration>
             <meta>
@@ -57,6 +61,14 @@
                </identifier>
                <display value="relatie naar contact met identificatie: MBH_300_contactepisode_CONTACT2 || 2.16.840.1.113883.2.4.3.11.999.66.2709"/>
             </context>
+            <supportingInformation>
+               <type value="MedicationDispense"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                  <value value="MBH_300_contactepisode_TA"/>
+               </identifier>
+               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_contactepisode_TA || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            </supportingInformation>
             <effectiveDateTime value="${DATE, T, D, -20}T20:30:00+02:00"/>
             <performer>
                <actor>
@@ -70,17 +82,17 @@
                   <valueCodeableConcept>
                      <coding>
                         <system value="http://snomed.info/sct"/>
-                        <code value="395067002"/>
-                        <display value="optimaliseren van dosering van medicatie"/>
+                        <code value="33633005"/>
+                        <display value="voorschrijven"/>
                      </coding>
                   </valueCodeableConcept>
                </extension>
                <type value="MedicationRequest"/>
                <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-                  <value value="MBH_300_QA1_WDS1"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_contactepisode_MA"/>
                </identifier>
-               <display value="relatie naar wisselend doseerschema met identificatie: MBH_300_QA1_WDS1 || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_contactepisode_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </request>
             <dosage>
                <route>

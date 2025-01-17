@@ -36,9 +36,9 @@
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 14 jan 2023, gedurende 18 weken, cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 4 stuks - let op, tijden exact aanhouden, oraal</text>
+         <text mediaType="text/plain">cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 5 stuks - let op, tijden exact aanhouden, oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20230114000000"/>
+            <low value="20240122000000+0100"/>
             <width value="18"
                    unit="wk"/>
          </effectiveTime>
@@ -68,13 +68,20 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20230101150000"/>
+            <time value="20240121073000+0100"/>
             <assignedAuthor>
                <id nullFlavor="NI"/>
                <representedOrganization>
                   <id extension="01236578"
                       root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek De Gulle Gaper</name>
+                  <addr use="WP">
+                     <streetName>Dorpsstraat</streetName>
+                     <houseNumber>12</houseNumber>
+                     <buildingNumberSuffix>A</buildingNumberSuffix>
+                     <postalCode>1234 AA</postalCode>
+                     <city>Ons Dorp</city>
+                  </addr>
                </representedOrganization>
             </assignedAuthor>
          </author>
@@ -87,9 +94,9 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
                <value xsi:type="CE"
-                      code="112251000146103"
+                      code="58848006"
                       codeSystem="2.16.840.1.113883.6.96"
-                      displayName="te sterk effect van medicatie"/>
+                      displayName="gebrek aan geneesmiddeleffect"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -99,7 +106,7 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
                               xmlns="http://hl7.org/fhir">
-                  <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-RepeatPeriodCyclicalSchedule">
+                  <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
                      <valueDuration>
                         <value value="21"/>
                         <unit value="dag"/>
@@ -122,9 +129,9 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="4"
+                  <center value="5"
                           unit="1">
-                     <translation value="4"
+                     <translation value="5"
                                   code="245"
                                   displayName="stuk"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -185,10 +192,10 @@
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 23 dec 2022, tot en met 13 jan 2023, cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 5 stuks - let op, tijden exact aanhouden, oraal, stopgezet</text>
+         <text mediaType="text/plain">cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 4 stuks - let op, tijden exact aanhouden, oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20221223000000"/>
-            <high value="20230113235959"/>
+            <low value="20240101000000+0100"/>
+            <high value="20240121235959+0100"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -216,13 +223,20 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20230101150000"/>
+            <time value="20240121073000+0100"/>
             <assignedAuthor>
                <id nullFlavor="NI"/>
                <representedOrganization>
                   <id extension="01236578"
                       root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek De Gulle Gaper</name>
+                  <addr use="WP">
+                     <streetName>Dorpsstraat</streetName>
+                     <houseNumber>12</houseNumber>
+                     <buildingNumberSuffix>A</buildingNumberSuffix>
+                     <postalCode>1234 AA</postalCode>
+                     <city>Ons Dorp</city>
+                  </addr>
                </representedOrganization>
             </assignedAuthor>
          </author>
@@ -247,7 +261,7 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
                               xmlns="http://hl7.org/fhir">
-                  <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-RepeatPeriodCyclicalSchedule">
+                  <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
                      <valueDuration>
                         <value value="21"/>
                         <unit value="dag"/>
@@ -270,9 +284,9 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="5"
+                  <center value="4"
                           unit="1">
-                     <translation value="5"
+                     <translation value="4"
                                   code="245"
                                   displayName="stuk"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -319,18 +333,18 @@
                code="373784005"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <effectiveTime value="20230101150000"/>
-         <quantity value="112"
+         <effectiveTime value="20240121073000+0100"/>
+         <quantity value="140"
                    unit="1">
-            <translation value="112"
+            <translation value="140"
                          code="245"
                          displayName="stuk"
                          codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                          codeSystemName="G-Standaard thesaurus basiseenheden"/>
          </quantity>
          <expectedUseTime>
-            <width value="14"
-                   unit="d"/>
+            <width value="3"
+                   unit="wk"/>
          </expectedUseTime>
          <product>
             <manufacturedProduct>
@@ -360,6 +374,13 @@
                   <id extension="01236578"
                       root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek De Gulle Gaper</name>
+                  <addr use="WP">
+                     <streetName>Dorpsstraat</streetName>
+                     <houseNumber>12</houseNumber>
+                     <buildingNumberSuffix>A</buildingNumberSuffix>
+                     <postalCode>1234 AA</postalCode>
+                     <city>Ons Dorp</city>
+                  </addr>
                </representedOrganization>
             </assignedEntity>
          </performer>
@@ -372,7 +393,7 @@
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
                      codeSystemName="MP Observaties"/>
                <value xsi:type="TS"
-                      value="20230108150000"/>
+                      value="20240121073000+0100"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="REFR">

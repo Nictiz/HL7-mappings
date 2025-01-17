@@ -1,7 +1,8 @@
-<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Bundle xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="c33f1114-6a95-11ec-0000-020000000000"/>
+        xmlns="http://hl7.org/fhir">
+   <id value="687d8319-6a9b-11ec-0000-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +10,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:c33f0ea4-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:4724d79b-6b09-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -19,7 +20,9 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Toedieningsverzoek. Subject: N. XXX-Incident-A. Id: MBH_907_herhalingen_VV-NCD (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1), Categorie: <span title="Request to dispense medication to patient (situation) (52711000146108 - SNOMED CT)">Request to dispense medication to patient (situation)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                     <caption>Verstrekkingsverzoek. Subject: N. XXX-Incident-A. Id: MBH_907_herhalingen_VV-NCD (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1), Categorie: 
+<span title="Request to dispense medication to patient (situation) (52711000146108 - SNOMED CT)">Request to dispense medication to patient (situation)</span>, 
+<span style="display: block;">Intentie: aanvraag</span>
                         <span style="display: block;">Aangevraagd door: Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Ziekenhuis Stitswerd</span>
                      </caption>
                      <tbody>
@@ -40,7 +43,7 @@
                            <td>${DATE, T, D, -50}T11:05:00+02:00</td>
                         </tr>
                         <tr>
-                           <th>Toedieningsverzoek</th>
+                           <th>Verstrekkingsverzoek</th>
                            <td>
                               <div>Max Repeats: 5</div>
                               <div>Hoeveelheid: </div>
@@ -84,7 +87,7 @@
                <display value="FUROSEMIDE 40MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f0e86-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:a501437c-6b24-11ec-0000-020000000000"/>
                <display value="N. XXX-Incident-A"/>
             </subject>
             <authoredOn value="${DATE, T, D, -50}T11:05:00+02:00"/>
@@ -92,7 +95,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:c33f0eaa-6a95-11ec-0000-020000000000"/>
+                        <reference value="urn:uuid:cb988896-6b69-11ec-0000-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Ziekenhuis Stitswerd"/>
                      </valueReference>
                   </extension>
@@ -120,7 +123,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0e86-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:a501437c-6b24-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -129,7 +132,9 @@
             <text>
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), N. XXX-Incident-A, Vrouw, 1 januari 1950</div>
+                  <div>Id 
+<i>afgeschermd (ontbrekend gegeven)</i> (BSN), 
+<span title="Naamsamenstelling: Eigennaam">N. XXX-Incident-A</span>, Vrouw, 1 januari 1950</div>
                </div>
             </text>
             <identifier>
@@ -184,6 +189,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 999001112 (UZI-NR-PERS), Bertine van Doorn</div>
+                  <div>Dorpsstraat 1, 1234AA Ons Dorp (WP)</div>
                </div>
             </text>
             <identifier>
@@ -205,6 +211,28 @@
                   </extension>
                </given>
             </name>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Practitioner>
       </resource>
       <search>
@@ -302,7 +330,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0eaa-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:cb988896-6b69-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>

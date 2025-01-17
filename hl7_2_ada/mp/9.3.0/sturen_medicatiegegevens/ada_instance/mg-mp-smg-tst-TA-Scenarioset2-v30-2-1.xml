@@ -35,19 +35,19 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_aanvullendeinstructie_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2022-09-01T09:00:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-09-01T09:00:00+02:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2022-09-01T00:00:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-09-01T23:59:59"/>
+                  <start_datum_tijd datatype="datetime" value="2023-09-01T00:00:00+02:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2024-09-01T23:59:59+02:00"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d3014e84" datatype="reference"/>
+                  <zorgaanbieder value="d3531e84" datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d3014e64" datatype="reference"/>
+                  <farmaceutisch_product value="d3531e64" datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 sep 2022, tot en met 1 sep 2023, 1 maal per dag 1 stuk, Bij het eten innemen, Oraal"/>
+                  <omschrijving value="1 maal per dag 1 stuk, Bij het eten innemen, Oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
@@ -86,7 +86,7 @@
             </toedieningsafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d3014e64">
+            <farmaceutisch_product id="d3531e64">
                <product_code code="1110837"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -100,9 +100,19 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="Acetylsalicylzuur tabletmsr 100mg"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="d3014e84">
+            <zorgaanbieder id="d3531e84">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_medicatiegegevens>

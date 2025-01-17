@@ -440,13 +440,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
+        <!-- MP-1535 toedieningssnelheid nolonger consists of 'waarde' and 'eenheid'. The eenheid is contains the 'eenheid'. --> 
         <waarde>
-            <minimum_waarde value="{f:low/f:value/@value}"/>
-            <maximum_waarde value="{f:high/f:value/@value}"/>
+            <minimum_waarde value="{f:low/f:value/@value}" unit="{$code}"/>
+            <maximum_waarde value="{f:high/f:value/@value}" unit="{$code}"/>
         </waarde>
-        <eenheid
-            value="1"
-            unit="{$code}"/>
     </xsl:template>
 
     <xd:doc>
@@ -455,11 +453,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- MP-1367 / ZIB-815 tijdseenheid no longer a part of toedieningssnelheid from MP9.3 beta and eenheid is NOT in Gstd anymore but UCUM-->
     <xsl:template match="f:rateQuantity" mode="mp-InstructionsForUse">
         <waarde>
-            <nominale_waarde value="{f:value/@value}"/>
+            <nominale_waarde value="{f:value/@value}" unit="{f:code/@value}"/>
         </waarde>
-        <eenheid
-            value="1"
-            unit="{f:code/@value}"/>
+
     </xsl:template>
 
 </xsl:stylesheet>

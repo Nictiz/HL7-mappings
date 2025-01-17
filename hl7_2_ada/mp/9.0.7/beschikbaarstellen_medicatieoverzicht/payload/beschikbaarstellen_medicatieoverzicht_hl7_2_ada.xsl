@@ -18,7 +18,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Dit is een conversie van MP 9.0.7 naar ADA 9.0.7 beschikbaarstellen medicatieoverzicht</xd:desc>
     </xd:doc>
-    <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
+    <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all" omit-xml-declaration="yes"/>
     <!-- parameter to control whether or not the result should contain a reference to the ada xsd -->
     <xsl:param name="outputSchemaRef" as="xs:boolean" select="false()"/>
 

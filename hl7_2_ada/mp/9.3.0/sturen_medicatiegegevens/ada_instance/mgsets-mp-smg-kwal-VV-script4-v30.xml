@@ -34,22 +34,22 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_script4_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2022-12-26T11:30:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-12-26T11:30:00+01:00"/>
                <auteur>
-                  <zorgverlener value="d4650e85" datatype="reference"/>
+                  <zorgverlener value="d5655e103" datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d4650e54" datatype="reference"/>
+                  <farmaceutisch_product value="d5655e54" datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
-                  <aantal value="23"/>
+                  <aantal value="56"/>
                   <eenheid code="245"
                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                            codeSystemName="G-Standaard thesaurus basiseenheden"
                            displayName="stuk"/>
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d4650e71" datatype="reference"/>
+                  <zorgaanbieder value="d5655e71" datatype="reference"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_script4_MA"
@@ -58,17 +58,17 @@
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d4650e54">
-               <product_code code="8079 "
+            <farmaceutisch_product id="d5655e54">
+               <product_code code="8060"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
-                             displayName="DICLOFENAC-NATRIUM TABLET MSR 50MG"/>
-               <product_code code="22284"
+                             displayName="DICLOFENAC-NATRIUM TABLET MSR 25MG"/>
+               <product_code code="22276"
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              codeSystemName="G-Standaard GPK"
-                             displayName="DICLOFENAC-NATRIUM TABLET MSR 50MG"/>
+                             displayName="DICLOFENAC-NATRIUM TABLET MSR 25MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="d4650e85">
+            <zorgverlener id="d5655e103">
                <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Peter"/>
@@ -83,10 +83,10 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d4650e106" datatype="reference"/>
+                  <zorgaanbieder value="d5655e124" datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d4650e106">
+            <zorgaanbieder id="d5655e124">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
@@ -99,9 +99,19 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="d4650e71">
+            <zorgaanbieder id="d5655e71">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_medicatiegegevens>

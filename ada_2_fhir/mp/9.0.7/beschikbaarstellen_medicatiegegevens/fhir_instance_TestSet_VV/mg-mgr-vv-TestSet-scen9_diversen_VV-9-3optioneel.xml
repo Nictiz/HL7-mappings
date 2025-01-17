@@ -1,7 +1,8 @@
-<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Bundle xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="c33f2118-6a95-11ec-0000-020000000000"/>
+        xmlns="http://hl7.org/fhir">
+   <id value="0207f517-6b3f-11ec-0000-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +10,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:c33f128c-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c994cdb8-6af6-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -19,7 +20,9 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Toedieningsverzoek. Subject: C. XXX-CSC-Smoketest-A. Id: tsMBH_907_afleverlocatie_VV-CSA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1), Categorie: <span title="Request to dispense medication to patient (situation) (52711000146108 - SNOMED CT)">Request to dispense medication to patient (situation)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                     <caption>Verstrekkingsverzoek. Subject: C. XXX-CSC-Smoketest-A. Id: tsMBH_907_afleverlocatie_VV-CSA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1), Categorie: 
+<span title="Request to dispense medication to patient (situation) (52711000146108 - SNOMED CT)">Request to dispense medication to patient (situation)</span>, 
+<span style="display: block;">Intentie: aanvraag</span>
                         <span style="display: block;">Aangevraagd door: Bert van Dam || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Van Dam</span>
                      </caption>
                      <tbody>
@@ -40,7 +43,7 @@
                            <td>${DATE, T, D, +0}T11:07:00+02:00</td>
                         </tr>
                         <tr>
-                           <th>Toedieningsverzoek</th>
+                           <th>Verstrekkingsverzoek</th>
                            <td>
                               <div>Hoeveelheid: </div>
                               <div>Uitvoerende: Apotheek De Sleutel</div>
@@ -83,7 +86,7 @@
                <display value="MIZOLASTINE TABLET MGA  10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f126e-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:83a4f6fd-6a9f-11ec-0000-020000000000"/>
                <display value="C. XXX-CSC-Smoketest-A"/>
             </subject>
             <authoredOn value="${DATE, T, D, +0}T11:07:00+02:00"/>
@@ -91,7 +94,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:c33f1292-6a95-11ec-0000-020000000000"/>
+                        <reference value="urn:uuid:dca16900-6aa0-11ec-0000-020000000000"/>
                         <display value="Bert van Dam || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Van Dam"/>
                      </valueReference>
                   </extension>
@@ -102,7 +105,7 @@
             <dispenseRequest>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-Location">
                   <valueReference>
-                     <reference value="urn:uuid:c33f1bd5-6a95-11ec-0000-020000000000"/>
+                     <reference value="urn:uuid:b4db9c90-6ad7-11ec-0000-020000000000"/>
                      <display value="Bospad 13,1598AM Onze Stad"/>
                   </valueReference>
                </extension>
@@ -124,7 +127,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f126e-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:83a4f6fd-6a9f-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -133,7 +136,9 @@
             <text>
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), C. XXX-CSC-Smoketest-A, Man, 3 februari 1950</div>
+                  <div>Id 
+<i>afgeschermd (ontbrekend gegeven)</i> (BSN), 
+<span title="Naamsamenstelling: Eigennaam">C. XXX-CSC-Smoketest-A</span>, Man, 3 februari 1950</div>
                </div>
             </text>
             <identifier>
@@ -188,6 +193,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 000001117 (UZI-NR-PERS), Bert van Dam</div>
+                  <div>Hazepad 2, 1234BB Mijn Dorp (WP)</div>
                </div>
             </text>
             <identifier>
@@ -209,6 +215,28 @@
                   </extension>
                </given>
             </name>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Hazepad 2">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Hazepad"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="2"/>
+                  </extension>
+               </line>
+               <city value="Mijn Dorp"/>
+               <postalCode value="1234BB"/>
+            </address>
          </Practitioner>
       </resource>
       <search>
@@ -306,7 +334,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1292-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:dca16900-6aa0-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -400,7 +428,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1bd5-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:b4db9c90-6ad7-11ec-0000-020000000000"/>
       <resource>
          <Location>
             <meta>

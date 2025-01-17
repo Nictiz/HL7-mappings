@@ -32,7 +32,7 @@
       <type value="Patient"/>
       <display value="Patient, H. de XXX_Huyser"/>
    </subject>
-   <authoredOn value="${DATE, T, D, -10}T11:20:00+02:00"/>
+   <authoredOn value="${DATE, T, D, +0}T08:20:00+02:00"/>
    <requester>
       <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-PrcRol-2165281100731-000001111"/>
       <type value="PractitionerRole"/>
@@ -55,14 +55,12 @@
       <validityPeriod>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
             <valueDuration>
-               <value value="21"/>
+               <value value="3"/>
                <unit value="week"/>
                <system value="http://unitsofmeasure.org"/>
                <code value="wk"/>
             </valueDuration>
          </extension>
-         <start value="${DATE, T, D, -10}T00:00:00+02:00"/>
       </validityPeriod>
-      <numberOfRepeatsAllowed value="6"/>
    </dispenseRequest>
 </MedicationRequest>

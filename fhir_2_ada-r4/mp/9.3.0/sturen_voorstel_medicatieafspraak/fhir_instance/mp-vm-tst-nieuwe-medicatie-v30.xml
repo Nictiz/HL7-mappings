@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="dd84547d-4807-11ef-2093-020000000000"/>
+   <id value="5c3cdb13-a281-11ef-6475-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-ProposalMedicationAgreement-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:dd84556c-4807-11ef-2093-020000000000"/>
+      <fullUrl value="urn:uuid:5c3cdc02-a281-11ef-6475-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -15,9 +15,10 @@
                   <code value="actionable"/>
                </tag>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="wordt gegenereerd"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 2 jan 2023, tot en met 11 jan 2023, 1 maal per dag 1 à 2 stuks, Oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="2023-01-02T00:00:00+01:00"/>
@@ -41,18 +42,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:dd84558a-4807-11ef-2093-020000000000"/>
+               <reference value="urn:uuid:5c3cdc20-a281-11ef-6475-020000000000"/>
                <type value="Medication"/>
                <display value="IBUPROFEN 800MG TABLET MGA"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dd8454f4-4807-11ef-2093-020000000000"/>
+               <reference value="urn:uuid:5c3cdb8a-a281-11ef-6475-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
             <authoredOn value="2023-01-01T08:45:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:dd845530-4807-11ef-2093-020000000000"/>
+               <reference value="urn:uuid:5c3cdbc6-a281-11ef-6475-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </requester>
@@ -112,7 +113,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dd8454f4-4807-11ef-2093-020000000000"/>
+      <fullUrl value="urn:uuid:5c3cdb8a-a281-11ef-6475-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -159,7 +160,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dd845530-4807-11ef-2093-020000000000"/>
+      <fullUrl value="urn:uuid:5c3cdbc6-a281-11ef-6475-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -170,6 +171,31 @@
                <value value="01236578"/>
             </identifier>
             <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -178,7 +204,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dd84558a-4807-11ef-2093-020000000000"/>
+      <fullUrl value="urn:uuid:5c3cdc20-a281-11ef-6475-020000000000"/>
       <resource>
          <Medication>
             <meta>

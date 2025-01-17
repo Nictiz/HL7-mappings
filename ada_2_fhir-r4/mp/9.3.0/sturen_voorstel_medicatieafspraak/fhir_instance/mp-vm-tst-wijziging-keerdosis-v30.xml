@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="dd85b917-4807-11ef-3712-020000000000"/>
+   <id value="900a6a01-c2ac-11ef-1667-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-ProposalMedicationAgreement-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:dd85ba06-4807-11ef-3712-020000000000"/>
+      <fullUrl value="urn:uuid:900a6a82-c2ac-11ef-1667-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -16,7 +16,7 @@
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="wordt gegenereerd"/>
+               <valueString value="1 maal per 2 dagen 1 à 2 stuks, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -54,18 +54,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:dd85ba24-4807-11ef-3712-020000000000"/>
+               <reference value="urn:uuid:900a6a96-c2ac-11ef-1667-020000000000"/>
                <type value="Medication"/>
                <display value="LISINOPRIL 10MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dd85b98e-4807-11ef-3712-020000000000"/>
+               <reference value="urn:uuid:900a6a32-c2ac-11ef-1667-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
             <authoredOn value="2023-01-01T10:00:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:dd85b9ca-4807-11ef-3712-020000000000"/>
+               <reference value="urn:uuid:900a6a5a-c2ac-11ef-1667-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </requester>
@@ -125,7 +125,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dd85b98e-4807-11ef-3712-020000000000"/>
+      <fullUrl value="urn:uuid:900a6a32-c2ac-11ef-1667-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -172,7 +172,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dd85b9ca-4807-11ef-3712-020000000000"/>
+      <fullUrl value="urn:uuid:900a6a5a-c2ac-11ef-1667-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -183,6 +183,31 @@
                <value value="01236578"/>
             </identifier>
             <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -191,7 +216,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dd85ba24-4807-11ef-3712-020000000000"/>
+      <fullUrl value="urn:uuid:900a6a96-c2ac-11ef-1667-020000000000"/>
       <resource>
          <Medication>
             <meta>

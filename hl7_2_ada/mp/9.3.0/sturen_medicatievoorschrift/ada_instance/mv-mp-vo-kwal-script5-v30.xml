@@ -36,19 +36,19 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_SCRIPT5_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T08:00:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2024-01-01T08:00:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
+                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
                   <tijds_duur value="6" unit="dag"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d299e81" datatype="reference"/>
+                  <zorgverlener value="d364e81" datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d299e67" datatype="reference"/>
+                  <farmaceutisch_product value="d364e67" datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, gedurende 6 dagen, 1 maal per dag 1 stuk, Oraal"/>
+                  <omschrijving value="1 maal per dag 1 stuk, Oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
@@ -80,12 +80,12 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_SCRIPT5_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-01-01T08:00:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2024-01-01T08:00:00+01:00"/>
                <auteur>
-                  <zorgverlener value="d299e81" datatype="reference"/>
+                  <zorgverlener value="d364e81" datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d299e67" datatype="reference"/>
+                  <farmaceutisch_product value="d364e67" datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
                   <aantal value="6"/>
@@ -95,12 +95,8 @@
                            displayName="stuk"/>
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d299e214" datatype="reference"/>
+                  <zorgaanbieder value="d364e214" datatype="reference"/>
                </beoogd_verstrekker>
-               <financiele_indicatiecode code="OTH"
-                                         codeSystem="2.16.840.1.113883.5.1008"
-                                         displayName="overig"
-                                         originalText="B2"/>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_SCRIPT5_MA"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -108,7 +104,7 @@
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d299e67">
+            <farmaceutisch_product id="d364e67">
                <product_code code="15814"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -118,7 +114,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="TEMAZEPAM CAPSULE 20MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="d299e81">
+            <zorgverlener id="d364e81">
                <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Bertine"/>
@@ -144,10 +140,10 @@
                   </telefoonnummers>
                </contactgegevens>
                <zorgaanbieder>
-                  <zorgaanbieder value="d299e104" datatype="reference"/>
+                  <zorgaanbieder value="d364e104" datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d299e104">
+            <zorgaanbieder id="d364e104">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
@@ -160,9 +156,19 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="d299e214">
+            <zorgaanbieder id="d364e214">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_medicatievoorschrift>
