@@ -1,6 +1,8 @@
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_afhandeling_medicatievoorschrift.xsd">
-   <meta status="new" created-by="generated" last-update-by="generated"/>
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_afhandeling_medicatievoorschrift.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"/>
    <data>
       <sturen_afhandeling_medicatievoorschrift app="mp-mp93"
                                                shortName="sturen_afhandeling_medicatievoorschrift"
@@ -11,7 +13,7 @@
                                                prefix="mp-"
                                                language="nl-NL"
                                                title="Generated from HL7 FHIR sturen_afhandeling_medicatievoorschrift"
-                                               id="5c0a334d-a281-11ef-2872-020000000000">
+                                               id="b144a3bb-d4db-11ef-1774-020000000000">
          <patient>
             <naamgegevens>
                <initialen value="G."/>
@@ -22,9 +24,13 @@
                   <achternaam value="XXX_Hess"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999900614" root="2.16.840.1.113883.2.4.6.3"/>
-            <geboortedatum value="1963-11-03" datatype="datetime"/>
-            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+            <identificatienummer value="999900614"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1963-11-03"
+                           datatype="datetime"/>
+            <geslacht code="M"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Man"/>
          </patient>
          <medicamenteuze_behandeling>
             <identificatie value="MBH_300_vrijetekstproduct"
@@ -32,21 +38,24 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_vrijetekstproduct_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2023-01-01T15:50:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2023-01-01T15:50:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-31T00:00:00+01:00" datatype="datetime"/>
-                  <tijds_duur value="12" unit="week"/>
+                  <start_datum_tijd value="2022-12-31T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <tijds_duur value="12"
+                              unit="week"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-5c0a3400-a281-11ef-2872-020000000000"/>
+                                 value="urn-uuid-b144a414-d4db-11ef-1774-020000000000"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
                   <farmaceutisch_product datatype="reference"
-                                         value="urn-uuid-5c0a3478-a281-11ef-2872-020000000000"/>
+                                         value="urn-uuid-b144a464-d4db-11ef-1774-020000000000"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 31 dec 2022, gedurende 12 weken, 1 maal per 3 weken 1 stuk, Intraveneus"/>
+                  <omschrijving value="1 maal per 3 weken 1 stuk, Intraveneus"/>
                   <toedieningsweg code="5"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
@@ -67,7 +76,8 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="3" unit="week"/>
+                              <tijdseenheid value="3"
+                                            unit="week"/>
                            </frequentie>
                         </toedieningsschema>
                      </dosering>
@@ -81,10 +91,11 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_vrijetekstproduct_MVE"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-01-01T15:50:00+01:00"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                                  value="2023-01-01T15:50:00+01:00"/>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-5c0a3400-a281-11ef-2872-020000000000"/>
+                                 value="urn-uuid-b144a414-d4db-11ef-1774-020000000000"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="4"/>
@@ -93,7 +104,7 @@
                            displayName="stuks"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-5c0a3478-a281-11ef-2872-020000000000"
+                  <farmaceutisch_product value="urn-uuid-b144a464-d4db-11ef-1774-020000000000"
                                          datatype="reference"/>
                </verstrekt_geneesmiddel>
                <relatie_verstrekkingsverzoek>
@@ -103,7 +114,7 @@
             </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-5c0a3478-a281-11ef-2872-020000000000">
+            <farmaceutisch_product id="urn-uuid-b144a464-d4db-11ef-1774-020000000000">
                <product_code code="OTH"
                              codeSystem="2.16.840.1.113883.5.1008"
                              codeSystemName="HL7 NullFlavor"
@@ -113,8 +124,9 @@
                   <omschrijving value="Titel: Jemperli (Dostarlimab-gxly) 500 mg/10 mL"/>
                </product_specificatie>
             </farmaceutisch_product>
-            <zorgaanbieder id="urn-uuid-5c0a3400-a281-11ef-2872-020000000000">
-               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+            <zorgaanbieder id="urn-uuid-b144a414-d4db-11ef-1774-020000000000">
+               <zorgaanbieder_identificatienummer value="01236578"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>

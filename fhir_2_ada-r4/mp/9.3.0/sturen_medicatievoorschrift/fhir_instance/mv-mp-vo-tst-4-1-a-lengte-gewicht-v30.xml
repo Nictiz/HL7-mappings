@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="5b9c37fd-a281-11ef-5846-020000000000"/>
+   <id value="a738da4f-d4db-11ef-1160-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:5b9c39a0-a281-11ef-5846-020000000000"/>
+      <fullUrl value="urn:uuid:a738db52-d4db-11ef-1160-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -18,10 +18,9 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2023-01-01T10:00:00+01:00"/>
             </extension>
-            <f:extension xmlns:f="http://hl7.org/fhir"
-                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <f:valueString value="Vanaf 1 jan 2023, gedurende 2 weken, 1 maal per dag 1 stuk, oraal"/>
-            </f:extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="1 maal per dag 1 stuk, oraal"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
@@ -55,17 +54,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:5b9c39dc-a281-11ef-5846-020000000000"/>
+               <reference value="urn:uuid:a738db7a-d4db-11ef-1160-020000000000"/>
                <type value="Medication"/>
                <display value="RIVAROXABAN TABLET 15MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:5b9c3874-a281-11ef-5846-020000000000"/>
+               <reference value="urn:uuid:a738da80-d4db-11ef-1160-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:5b9c389c-a281-11ef-5846-020000000000"/>
+               <reference value="urn:uuid:a738da9e-d4db-11ef-1160-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -109,7 +108,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5b9c39be-a281-11ef-5846-020000000000"/>
+      <fullUrl value="urn:uuid:a738db66-d4db-11ef-1160-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -139,23 +138,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:5b9c39dc-a281-11ef-5846-020000000000"/>
+               <reference value="urn:uuid:a738db7a-d4db-11ef-1160-020000000000"/>
                <type value="Medication"/>
                <display value="RIVAROXABAN TABLET 15MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:5b9c3874-a281-11ef-5846-020000000000"/>
+               <reference value="urn:uuid:a738da80-d4db-11ef-1160-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
             <authoredOn value="2023-01-01T10:00:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:5b9c389c-a281-11ef-5846-020000000000"/>
+               <reference value="urn:uuid:a738da9e-d4db-11ef-1160-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:5b9c3964-a281-11ef-5846-020000000000"/>
+               <reference value="urn:uuid:a738db2a-d4db-11ef-1160-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -191,7 +190,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5b9c3874-a281-11ef-5846-020000000000"/>
+      <fullUrl value="urn:uuid:a738da80-d4db-11ef-1160-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -238,19 +237,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5b9c389c-a281-11ef-5846-020000000000"/>
+      <fullUrl value="urn:uuid:a738da9e-d4db-11ef-1160-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:5b9c38c4-a281-11ef-5846-020000000000"/>
+               <reference value="urn:uuid:a738dabc-d4db-11ef-1160-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:5b9c390a-a281-11ef-5846-020000000000"/>
+               <reference value="urn:uuid:a738daee-d4db-11ef-1160-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -275,7 +274,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5b9c38c4-a281-11ef-5846-020000000000"/>
+      <fullUrl value="urn:uuid:a738dabc-d4db-11ef-1160-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -315,7 +314,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5b9c390a-a281-11ef-5846-020000000000"/>
+      <fullUrl value="urn:uuid:a738daee-d4db-11ef-1160-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -356,7 +355,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5b9c3964-a281-11ef-5846-020000000000"/>
+      <fullUrl value="urn:uuid:a738db2a-d4db-11ef-1160-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -400,7 +399,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5b9c39dc-a281-11ef-5846-020000000000"/>
+      <fullUrl value="urn:uuid:a738db7a-d4db-11ef-1160-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -428,7 +427,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5b9c12f4-a281-11ef-5846-020000000000"/>
+      <fullUrl value="urn:uuid:a738db8e-d4db-11ef-1160-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -450,7 +449,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:5b9c3874-a281-11ef-5846-020000000000"/>
+               <reference value="urn:uuid:a738da80-d4db-11ef-1160-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
@@ -469,7 +468,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5b9c131c-a281-11ef-5846-020000000000"/>
+      <fullUrl value="urn:uuid:a738dba2-d4db-11ef-1160-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -491,7 +490,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:5b9c3874-a281-11ef-5846-020000000000"/>
+               <reference value="urn:uuid:a738da80-d4db-11ef-1160-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>

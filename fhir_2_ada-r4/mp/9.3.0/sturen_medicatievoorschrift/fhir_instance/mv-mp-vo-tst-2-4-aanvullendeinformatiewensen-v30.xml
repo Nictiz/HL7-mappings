@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="5b8c3619-a281-11ef-1978-020000000000"/>
+   <id value="a88428c3-d4db-11ef-1273-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:5b8c37bc-a281-11ef-1978-020000000000"/>
+      <fullUrl value="urn:uuid:a88429c6-d4db-11ef-1273-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -27,10 +27,9 @@
                   </coding>
                </valueCodeableConcept>
             </extension>
-            <f:extension xmlns:f="http://hl7.org/fhir"
-                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <f:valueString value="Vanaf 1 jan 2023, tot en met 11 jan 2023, elke dag om 19:00 1 stuk - let op, tijden exact aanhouden, Oraal"/>
-            </f:extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="elke dag om 19:00 1 stuk - let op, tijden exact aanhouden, Oraal"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="2023-01-01T00:00:00+01:00"/>
@@ -57,17 +56,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:5b8c37f8-a281-11ef-1978-020000000000"/>
+               <reference value="urn:uuid:a88429ee-d4db-11ef-1273-020000000000"/>
                <type value="Medication"/>
                <display value="FENETICILLINE CAPSULE 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:5b8c3690-a281-11ef-1978-020000000000"/>
+               <reference value="urn:uuid:a88428f4-d4db-11ef-1273-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:5b8c36b8-a281-11ef-1978-020000000000"/>
+               <reference value="urn:uuid:a8842912-d4db-11ef-1273-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -112,7 +111,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5b8c37da-a281-11ef-1978-020000000000"/>
+      <fullUrl value="urn:uuid:a88429da-d4db-11ef-1273-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -151,23 +150,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:5b8c37f8-a281-11ef-1978-020000000000"/>
+               <reference value="urn:uuid:a88429ee-d4db-11ef-1273-020000000000"/>
                <type value="Medication"/>
                <display value="FENETICILLINE CAPSULE 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:5b8c3690-a281-11ef-1978-020000000000"/>
+               <reference value="urn:uuid:a88428f4-d4db-11ef-1273-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
             <authoredOn value="2023-01-01T08:06:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:5b8c36b8-a281-11ef-1978-020000000000"/>
+               <reference value="urn:uuid:a8842912-d4db-11ef-1273-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:5b8c3780-a281-11ef-1978-020000000000"/>
+               <reference value="urn:uuid:a884299e-d4db-11ef-1273-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -203,7 +202,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5b8c3690-a281-11ef-1978-020000000000"/>
+      <fullUrl value="urn:uuid:a88428f4-d4db-11ef-1273-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -250,19 +249,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5b8c36b8-a281-11ef-1978-020000000000"/>
+      <fullUrl value="urn:uuid:a8842912-d4db-11ef-1273-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:5b8c36e0-a281-11ef-1978-020000000000"/>
+               <reference value="urn:uuid:a8842930-d4db-11ef-1273-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:5b8c3726-a281-11ef-1978-020000000000"/>
+               <reference value="urn:uuid:a8842962-d4db-11ef-1273-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -287,7 +286,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5b8c36e0-a281-11ef-1978-020000000000"/>
+      <fullUrl value="urn:uuid:a8842930-d4db-11ef-1273-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -327,7 +326,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5b8c3726-a281-11ef-1978-020000000000"/>
+      <fullUrl value="urn:uuid:a8842962-d4db-11ef-1273-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -368,7 +367,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5b8c3780-a281-11ef-1978-020000000000"/>
+      <fullUrl value="urn:uuid:a884299e-d4db-11ef-1273-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -412,7 +411,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5b8c37f8-a281-11ef-1978-020000000000"/>
+      <fullUrl value="urn:uuid:a88429ee-d4db-11ef-1273-020000000000"/>
       <resource>
          <Medication>
             <meta>

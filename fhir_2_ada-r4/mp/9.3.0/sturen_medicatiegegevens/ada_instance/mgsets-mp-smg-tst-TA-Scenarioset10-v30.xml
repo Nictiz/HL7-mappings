@@ -1,6 +1,8 @@
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatiegegevens.xsd">
-   <meta status="new" created-by="generated" last-update-by="generated"/>
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatiegegevens.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"/>
    <data>
       <sturen_medicatiegegevens app="mp-mp93"
                                 shortName="sturen_medicatiegegevens"
@@ -10,7 +12,7 @@
                                 prefix="mp-"
                                 language="nl-NL"
                                 title="Generated from HL7 FHIR medicatiegegevens"
-                                id="5b2a70a5-a281-11ef-1457-020000000000">
+                                id="a04c11a7-d4db-11ef-9140-020000000000">
          <patient>
             <naamgegevens>
                <initialen value="M."/>
@@ -21,9 +23,13 @@
                   <achternaam value="XXX_Niesing"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999900845" root="2.16.840.1.113883.2.4.6.3"/>
-            <geboortedatum value="1985-10-29" datatype="datetime"/>
-            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+            <identificatienummer value="999900845"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1985-10-29"
+                           datatype="datetime"/>
+            <geslacht code="M"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Man"/>
          </patient>
          <medicamenteuze_behandeling>
             <identificatie value="MBH_300_ZINRvoorschrijven"
@@ -31,21 +37,24 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_ZINRvoorschrijven_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2023-01-01T14:05:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2023-01-01T14:05:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2023-01-01T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-05-31T23:59:59+02:00" datatype="datetime"/>
+                  <start_datum_tijd value="2023-01-01T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-05-31T23:59:59+02:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-5b2a7158-a281-11ef-1457-020000000000"/>
+                                 value="urn-uuid-a04c1200-d4db-11ef-9140-020000000000"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
                   <farmaceutisch_product datatype="reference"
-                                         value="urn-uuid-5b2a71b2-a281-11ef-1457-020000000000"/>
+                                         value="urn-uuid-a04c123c-d4db-11ef-9140-020000000000"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, tot en met 31 mei 2023, 1 maal per dag 1 stuk, Oraal"/>
+                  <omschrijving value="1 maal per dag 1 stuk, Oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
@@ -66,7 +75,8 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
                         </toedieningsschema>
                      </dosering>
@@ -79,7 +89,7 @@
             </toedieningsafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-5b2a71b2-a281-11ef-1457-020000000000">
+            <farmaceutisch_product id="urn-uuid-a04c123c-d4db-11ef-9140-020000000000">
                <product_code code="13627163"
                              codeSystem="2.16.840.1.113883.2.4.4.8"
                              codeSystemName="G-Standaard ZI-nummer"
@@ -98,8 +108,9 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="INDAPAMIDE 2,5MG TABLET"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="urn-uuid-5b2a7158-a281-11ef-1457-020000000000">
-               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+            <zorgaanbieder id="urn-uuid-a04c1200-d4db-11ef-9140-020000000000">
+               <zorgaanbieder_identificatienummer value="01236578"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>
