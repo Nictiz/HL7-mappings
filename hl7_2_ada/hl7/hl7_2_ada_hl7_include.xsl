@@ -906,6 +906,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             <xsl:variable name="currentAddress" select="."/>
             <!-- output an address for each type, but also one address when there is no type, which is why we put a nullFlavor in that variable -->
+            <!-- however an address type is in the attribute use in HL7v3 which cannot be nullFlavored, therefore we do not want to output a nullFlavor address type -->
             <xsl:for-each select="$addressType">
                 <xsl:variable name="currentAddressType" select="."/>
                 <xsl:for-each select="$currentAddress">
@@ -1073,25 +1074,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:element>
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:element name="{$elmAddressInformation}">
-                                <xsl:choose>
-                                    <xsl:when test=".!=''">
-                                        <!-- No address parts... submit as street -->
+                            <xsl:choose>
+                                <xsl:when test=". != ''">
+                                    <xsl:element name="{$elmAddressInformation}">
+                                        <!-- No address parts, but we do have an unstructured string... submit as street -->
                                         <xsl:element name="{$elmStreet}">
                                             <xsl:attribute name="value" select="."/>
                                         </xsl:element>
-                                        <xsl:copy-of select="$currentAddressType"/>
-                                    </xsl:when>
-                                    <xsl:when test=".=''">
-                                        <!-- No string value in address, omit the street and only copy addressType -->
-                                        <xsl:copy-of select="$currentAddressType"/>
-                                        <xsl:call-template name="util:logMessage">
-                                            <xsl:with-param name="level" select="$logWARN"/>
-                                            <xsl:with-param name="msg">Address element empty <xsl:value-of select="name()"/></xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:when>
-                                </xsl:choose>
-                            </xsl:element>
+                                        <!-- we do not want to output a nullFlavor address type, but will output the address type otherwise -->
+                                        <xsl:copy-of select="$currentAddressType[not(@nullFlavor)]"/>
+                                    </xsl:element>
+                                </xsl:when>
+                                <xsl:when test=". = '' and $currentAddressType[not(@nullFlavor)]">
+                                    <!-- No string value in address, omit the street and only copy addressType if it does not have an artifical nullFlavor-->
+                                    <xsl:element name="{$elmAddressInformation}">
+                                        <xsl:copy-of select="$currentAddressType[not(@nullFlavor)]"/>
+                                    </xsl:element>
+                                    <xsl:call-template name="util:logMessage">
+                                        <xsl:with-param name="level" select="$logWARN"/>
+                                        <xsl:with-param name="msg">Encountered an empty <xsl:value-of select="local-name()"/> element</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:when>
+                            </xsl:choose>
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:for-each>
