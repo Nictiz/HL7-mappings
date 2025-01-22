@@ -1,0 +1,196 @@
+<?xml-model href="file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schematron_closed_warnings/mp-medvoors.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
+<!--Generated from ada instance with title: "Nieuw voorschrift" and id: "8ac56799-00d0-4bfc-98ad-0d6addedc5d3".-->
+<subject xmlns="urn:hl7-org:v3">
+   <prescription classCode="SBADM"
+                 moodCode="RQO">
+      <id extension="ABC123_VV1"
+          root="1.2.3.999"/>
+      <statusCode code="active"/>
+      <subject typeCode="SBJ">
+         <Patient>
+            <id extension="122547892"
+                root="2.16.840.1.113883.2.4.6.3"/>
+            <statusCode code="active"/>
+            <Person>
+               <name>
+                  <given qualifier="BR">Marieke Antionette</given>
+                  <given qualifier="IN">M. A.</given>
+                  <given qualifier="CL">Marieke</given>
+                  <prefix qualifier="VV">de </prefix>
+                  <family qualifier="BR">Boer</family>
+               </name>
+               <administrativeGenderCode code="UN"
+                                         codeSystem="2.16.840.1.113883.5.1"
+                                         displayName="Ongedifferentieerd"/>
+               <birthTime value="19870313"/>
+               <multipleBirthInd value="true"/>
+            </Person>
+         </Patient>
+      </subject>
+      <author typeCode="AUT">
+         <time value="20180327000000"/>
+         <AssignedPerson classCode="ASSIGNED">
+            <id extension="234234999"
+                root="2.16.528.1.1007.3.1"/>
+            <code code="3434"
+                  codeSystem="2.16.840.1.113883.2.4.15.111"
+                  displayName="dokter"/>
+            <assignee>
+               <assigneePerson classCode="PSN"
+                               determinerCode="INSTANCE">
+                  <name>
+                     <given qualifier="BR">asdf adsf </given>
+                     <prefix qualifier="VV">vd </prefix>
+                     <family qualifier="BR">asdf sadf aa sdf</family>
+                  </name>
+               </assigneePerson>
+            </assignee>
+            <!--The message template (9043) incorrectly defines representedOrganization, however the xsd only accepts Organization-->
+            <!--Closed warnings schematron messages for this element should be ignored.-->
+            <Organization classCode="ORG"
+                          determinerCode="INSTANCE">
+               <id extension="32234234"
+                   root="1.2.3.999"/>
+               <name>zorginstelling ABC</name>
+            </Organization>
+         </AssignedPerson>
+      </author>
+      <directTarget typeCode="DIR">
+         <prescribedMedication>
+            <MedicationKind classCode="MMAT"
+                            determinerCode="KIND">
+               <code code="2341234324"
+                     codeSystem="2.16.840.1.113883.2.4.4.7"
+                     displayName="roze pil dus"/>
+            </MedicationKind>
+            <productOf>
+               <medicationDispenseRequest>
+                  <id extension="ABC123_VV1"
+                      root="1.2.3.999"/>
+                  <statusCode nullFlavor="NA"/>
+                  <repeatNumber value="1"/>
+                  <quantity value="28"
+                            unit="1">
+                     <translation value="28"
+                                  code="245"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="stuk"/>
+                  </quantity>
+                  <performer typeCode="PRF">
+                     <assignedPerson>
+                        <representedOrganization>
+                           <id extension="1123"
+                               root="1.2.3.999"/>
+                           <name>apotheek je weet wel</name>
+                        </representedOrganization>
+                     </assignedPerson>
+                  </performer>
+               </medicationDispenseRequest>
+            </productOf>
+            <therapeuticAgentOf>
+               <medicationAdministrationRequest classCode="SBADM"
+                                                moodCode="RQO">
+                  <text mediaType="text/plain">vanaf 27 mrt 2018, gedurende 2 weken, 2 maal per dag 1 à 2 stuks</text>
+                  <statusCode code="active"/>
+                  <effectiveTime xsi:type="SXPR_TS"
+                                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                     <comp xsi:type="IVL_TS">
+                        <low value="20180327000000.000"/>
+                        <width value="14"
+                               unit="d"/>
+                     </comp>
+                     <comp xsi:type="PIVL_TS"
+                           operator="A">
+                        <period value="0.3333"
+                                unit="d"/>
+                     </comp>
+                  </effectiveTime>
+                  <routeCode code="oraal"
+                             codeSystem="2.16.840.1.113883.2.4.4.9"
+                             displayName="oraal"/>
+                  <doseQuantity>
+                     <low value="1"
+                          unit="1">
+                        <translation value="1"
+                                     code="245"
+                                     displayName="stuk"
+                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                     </low>
+                     <high value="2"
+                           unit="1">
+                        <translation value="2"
+                                     code="245"
+                                     displayName="stuk"
+                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                     </high>
+                  </doseQuantity>
+                  <precondition>
+                     <observationEventCriterion>
+                        <code code="1137"
+                              codeSystem="2.16.840.1.113883.2.4.4.5"
+                              displayName="zo nodig"/>
+                     </observationEventCriterion>
+                  </precondition>
+               </medicationAdministrationRequest>
+            </therapeuticAgentOf>
+            <therapeuticAgentOf>
+               <medicationAdministrationRequest classCode="SBADM"
+                                                moodCode="RQO">
+                  <text mediaType="text/plain">vanaf 27 mrt 2018, gedurende 2 weken, 2 maal per dag 1 à 2 stuks</text>
+                  <statusCode code="active"/>
+                  <effectiveTime xsi:type="SXPR_TS"
+                                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                     <comp xsi:type="IVL_TS">
+                        <low value="20180327000000.000"/>
+                        <width value="14"
+                               unit="d"/>
+                     </comp>
+                     <comp xsi:type="PIVL_TS"
+                           operator="A">
+                        <period value="0.25"
+                                unit="d"/>
+                     </comp>
+                  </effectiveTime>
+                  <routeCode code="oraal"
+                             codeSystem="2.16.840.1.113883.2.4.4.9"
+                             displayName="oraal"/>
+                  <doseQuantity>
+                     <low value="1"
+                          unit="1">
+                        <translation value="1"
+                                     code="245"
+                                     displayName="stuk"
+                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                     </low>
+                     <high value="2"
+                           unit="1">
+                        <translation value="2"
+                                     code="245"
+                                     displayName="stuk"
+                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                     </high>
+                  </doseQuantity>
+                  <precondition>
+                     <observationEventCriterion>
+                        <code code="1137"
+                              codeSystem="2.16.840.1.113883.2.4.4.5"
+                              displayName="zo nodig"/>
+                     </observationEventCriterion>
+                  </precondition>
+               </medicationAdministrationRequest>
+            </therapeuticAgentOf>
+         </prescribedMedication>
+      </directTarget>
+      <reason typeCode="RSON">
+         <diagnosisEvent>
+            <code code="DX"
+                  codeSystem="2.16.840.1.113883.5.4"/>
+            <value xsi:type="CE"
+                   code="ziek"
+                   codeSystem="2.16.840.1.113883.6.96"
+                   displayName="heel erg ziek"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+         </diagnosisEvent>
+      </reason>
+   </prescription>
+</subject>

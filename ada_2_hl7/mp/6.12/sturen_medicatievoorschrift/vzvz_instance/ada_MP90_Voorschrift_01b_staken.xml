@@ -1,0 +1,104 @@
+<?xml-model href="../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schematron_closed_warnings/mp-medvoors.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
+<PORX_IN932000NL xsi:schemaLocation="urn:hl7-org:v3 ../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/PORX_IN932000NL.xsd"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns="urn:hl7-org:v3"
+                 xmlns:hl7="urn:hl7-org:v3"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <id extension="2BGeneratedID"
+       root="2.16.840.1.113883.2.4.3.11.999.77.3"/>
+   <creationTime value="20240101000000"/>
+   <versionCode code="NICTIZEd2005-Okt"/>
+   <interactionId extension="PORX_IN932000NL"
+                  root="2.16.840.1.113883.1.6"/>
+   <profileId root="2.16.840.1.113883.2.4.3.11.1"
+              extension="810"/>
+   <processingCode code="P"/>
+   <processingModeCode code="T"/>
+   <acceptAckCode code="AL"/>
+   <attentionLine>
+      <keyWordText code="PATID"
+                   codeSystem="2.16.840.1.113883.2.4.15.1">Patient.id</keyWordText>
+      <value extension="012345672"
+             root="2.16.840.1.113883.2.4.6.3"
+             xsi:type="II"/>
+   </attentionLine>
+   <receiver typeCode="RCV">
+      <device classCode="DEV"
+              determinerCode="INSTANCE">
+         <id extension="2BFilledWithRealValue"
+             root="2.16.840.1.113883.2.4.6.6"/>
+         <name>AIS van openbare apotheek De Gulle Gaper</name>
+      </device>
+   </receiver>
+   <sender typeCode="SND">
+      <device classCode="DEV"
+              determinerCode="INSTANCE">
+         <id extension="2BFilledWithRealValue"
+             root="2.16.840.1.113883.2.4.6.6"/>
+         <name>EVS van ziekenhuis Medisch Centrum Oost</name>
+      </device>
+   </sender>
+   <ControlActProcess classCode="CACT"
+                      moodCode="EVN">
+      <authorOrPerformer typeCode="AUT">
+         <participant>
+            <AssignedPerson>
+               <id extension="123456789"
+                   root="2.16.528.1.1007.3.1"/>
+               <id extension="12345678"
+                   root="2.16.840.1.113883.2.4.6.1"/>
+               <code code="01.046"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"/>
+               <assignedPrincipalChoiceList>
+                  <assignedPerson>
+                     <name>Peter van den Broek</name>
+                  </assignedPerson>
+               </assignedPrincipalChoiceList>
+               <Organization>
+                  <id extension="2BFilledWithRealValue"
+                      root="2.16.840.1.113883.2.4.3.11.21"/>
+                  <id extension="13265478"
+                      root="2.16.528.1.1007.3.3"/>
+                  <code code="V4"
+                        codeSystem="2.16.840.1.113883.2.4.15.1060"
+                        displayName="Ziekenhuis"/>
+                  <name>Ziekenhuis X</name>
+                  <addr>
+                     <city>Lutjebroek</city>
+                  </addr>
+               </Organization>
+            </AssignedPerson>
+         </participant>
+      </authorOrPerformer>
+      <overseer typeCode="RESP">
+         <AssignedPerson>
+            <id extension="123456798"
+                root="2.16.528.1.1007.3.1"/>
+            <id extension="12365487"
+                root="2.16.840.1.113883.2.4.6.1"/>
+            <code code="01.046"
+                  codeSystem="2.16.840.1.113883.2.4.15.111"
+                  displayName="Huisarts"/>
+            <assignedPrincipalChoiceList>
+               <assignedPerson>
+                  <name>Peter van den Broek</name>
+               </assignedPerson>
+            </assignedPrincipalChoiceList>
+            <Organization>
+               <id extension="2BFilledWithRealValue"
+                   root="2.16.840.1.113883.2.4.3.11.21"/>
+               <id extension="12346548"
+                   root="2.16.528.1.1007.3.3"/>
+               <code code="V4"
+                     codeSystem="2.16.840.1.113883.2.4.15.1060"
+                     displayName="Ziekenhuis"/>
+               <name>Ziekenhuis X</name>
+               <addr>
+                  <city>Lutjebroek</city>
+               </addr>
+            </Organization>
+         </AssignedPerson>
+      </overseer>
+   </ControlActProcess>
+</PORX_IN932000NL>
