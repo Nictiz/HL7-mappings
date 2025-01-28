@@ -1,5 +1,5 @@
 <Medication xmlns="http://hl7.org/fhir">
-   <id value="zib-Product-msz-bf0bc59c-6b75-11ec-0000-2"/>
+   <id value="zib-Product-msz-40f46fff-6af8-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
    </meta>
@@ -29,10 +29,6 @@
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Product-Description">
       <valueString value="smalspectrum antibioticum bij huidinfecties"/>
    </extension>
-   <identifier>
-      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="e4f591d1-6b5c-11ec-0000-2"/>
-   </identifier>
    <code>
       <coding>
          <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
@@ -48,11 +44,13 @@
             <display value="flucloxacillin"/>
          </coding>
       </itemCodeableConcept>
-      <valueQuantity>
-         <value value="500.000"/>
-         <unit value="MILLIGRAM"/>
-         <system value="http://unitsofmeasure.org"/>
-         <code value="{MILLIGRAM}"/>
-      </valueQuantity>
+      <amount>
+         <numerator>
+            <value value="500"/>
+            <unit value="mg"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="mg"/>
+         </numerator>
+      </amount>
    </ingredient>
 </Medication>
