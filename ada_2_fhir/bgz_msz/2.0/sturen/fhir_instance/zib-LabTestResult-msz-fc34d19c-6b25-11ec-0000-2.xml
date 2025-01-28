@@ -1,5 +1,5 @@
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="zib-LabTestResult-msz-7a1e010b-6b25-11ec-0000-2"/>
+   <id value="zib-LabTestResult-msz-fc34d19c-6b25-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
    </meta>
@@ -7,8 +7,7 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Observatie/bepaling. Subject: de Boer. Categorie: <span title="bevinding betreffende laboratoriumonderzoek (49581000146104 - SNOMED CT)">bevinding betreffende laboratoriumonderzoek</span>, Status: <i>onbekend (ontbrekend gegeven)</i>
-            </caption>
+            <caption>Observatie/bepaling. Subject: de Boer. Categorie: <span title="bevinding betreffende laboratoriumonderzoek (49581000146104 - SNOMED CT)">bevinding betreffende laboratoriumonderzoek</span>, <span title="Klinische chemie (275711006 - SNOMED CT)">Klinische chemie</span>, Status: definitief</caption>
             <tbody>
                <tr>
                   <th>Code</th>
@@ -26,11 +25,17 @@
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="f9e17305-6ab6-11ec-0000-2"/>
+      <value value="6068df44-6b41-11ec-0000-2"/>
    </identifier>
-   <status>
-      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-         <valueCode value="unknown"/>
+   <status value="final">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
+               <code value="final"/>
+               <display value="Definitief"/>
+            </coding>
+         </valueCodeableConcept>
       </extension>
    </status>
    <category>
@@ -38,6 +43,13 @@
          <system value="http://snomed.info/sct"/>
          <code value="49581000146104"/>
          <display value="bevinding betreffende laboratoriumonderzoek"/>
+      </coding>
+   </category>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="275711006"/>
+         <display value="Klinische chemie"/>
       </coding>
    </category>
    <code>
