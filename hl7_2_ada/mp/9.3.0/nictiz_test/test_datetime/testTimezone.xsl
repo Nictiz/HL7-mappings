@@ -10,7 +10,7 @@
     <!--<xsl:import href="../../../../../../HL7-mappings/ada_2_fhir-r4/fhir/2_fhir_fhir_include.xsl"/>-->
     <xsl:import href="../../../../../../YATC-internal/ada-2-fhir-r4/env/fhir/2_fhir_fhir_include.xsl"/>
     <xsl:import href="../../../../../../HL7-mappings/hl7_2_ada/hl7/hl7_2_ada_hl7_include.xsl"/>
-    <xsl:import href="../../../../../../HL7-mappings/fhir_2_ada-r4/fhir/fhir_2_ada_fhir_include.xsl"/>
+    <xsl:import href="../../../../../../YATC-internal/fhir-2-ada-r4/env/fhir/fhir_2_ada_fhir_include.xsl"/>
 
     <xsl:output omit-xml-declaration="yes" indent="yes"/>
 
