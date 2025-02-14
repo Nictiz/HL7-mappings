@@ -1,6 +1,10 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-tst-TA-Scenarioset2-v30"/>
    <type value="transaction"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
       <fullUrl value="urn:uuid:53377b48-6b27-11ec-0000-020000000000"/>
       <resource>
@@ -12,7 +16,7 @@
                <valueDateTime value="${DATE, T, M, -4}T09:00:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 4 maanden, tot en met T + 8 maanden, 1 maal per dag 1 stuk, Bij het eten innemen, Oraal"/>
+               <valueString value="1 maal per dag 1 stuk, Bij het eten innemen, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -111,7 +115,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4a55b302-6afa-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:8c1e1f0d-6aa2-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -121,7 +125,7 @@
                <valueDateTime value="${DATE, T, D, -21}T09:02:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 21 dagen, 1 maal per dag 1 stuk, Oraal"/>
+               <valueString value="1 maal per dag 1 stuk, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -214,7 +218,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5a864f0d-6b40-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:34db09c8-6b34-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -224,7 +228,7 @@
                <valueDateTime value="${DATE, T, D, -13}T09:05:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 13 dagen, tot en met T + 14 dagen, 1 maal per week 5 stuks, Oraal"/>
+               <valueString value="1 maal per week 5 stuks, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -325,7 +329,7 @@
                <valueDateTime value="${DATE, T, D, -5}T09:06:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 4 dagen, tot en met T + 5 dagen, elke dag om 19:00 1 stuk - let op, tijden exact aanhouden, Oraal"/>
+               <valueString value="elke dag om 19:00 1 stuk - let op, tijden exact aanhouden, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -430,7 +434,7 @@
                <valueDateTime value="${DATE, T, D, -5}T09:15:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 5 dagen, tot en met T + 2 dagen, 2 maal per dag 1 druppel, In het rechter oog, oculair"/>
+               <valueString value="2 maal per dag 1 druppel, In het rechter oog, oculair"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -623,6 +627,39 @@
       </request>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:e353031d-6b40-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="1110837"/>
+                  <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="49484"/>
+                  <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="103039"/>
+                  <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+               </coding>
+               <text value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
       <fullUrl value="urn:uuid:2467cc04-6b6e-11ec-0000-020000000000"/>
       <resource>
          <Medication>
@@ -656,7 +693,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e353031d-6b40-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c8dcf604-6b6b-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -665,21 +702,21 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="1110837"/>
-                  <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+                  <code value="425087"/>
+                  <display value="BROXIL CAPSULE 500MG"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="49484"/>
-                  <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+                  <code value="17205"/>
+                  <display value="FENETICILLINE CAPSULE 500MG"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="103039"/>
-                  <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+                  <code value="41092"/>
+                  <display value="FENETICILLINE CAPSULE 500MG"/>
                </coding>
-               <text value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+               <text value="BROXIL CAPSULE 500MG"/>
             </code>
          </Medication>
       </resource>
@@ -746,39 +783,6 @@
                   <display value="Methotrexaat tablet 2,5mg"/>
                </coding>
                <text value="METHOTREXAAT PCH TABLET 2,5MG"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:c8dcf604-6b6b-11ec-0000-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="425087"/>
-                  <display value="BROXIL CAPSULE 500MG"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="17205"/>
-                  <display value="FENETICILLINE CAPSULE 500MG"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="41092"/>
-                  <display value="FENETICILLINE 500MG CAPSULE"/>
-               </coding>
-               <text value="BROXIL CAPSULE 500MG"/>
             </code>
          </Medication>
       </resource>

@@ -35,19 +35,19 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_interval_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T08:04:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2024-01-01T08:04:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
+                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
                   <eind_datum_tijd datatype="datetime" nullFlavor="NI"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d1581e78" datatype="reference"/>
+                  <zorgverlener value="d1872e78" datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d1581e64" datatype="reference"/>
+                  <farmaceutisch_product value="d1872e64" datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, iedere 8 uur 1 stuk - gelijke tussenpozen aanhouden, Oraal"/>
+                  <omschrijving value="iedere 8 uur 1 stuk - gelijke tussenpozen aanhouden, Oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
@@ -75,12 +75,12 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_interval_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-01-01T08:04:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2024-01-01T08:04:00+01:00"/>
                <auteur>
-                  <zorgverlener value="d1581e78" datatype="reference"/>
+                  <zorgverlener value="d1872e78" datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d1581e64" datatype="reference"/>
+                  <farmaceutisch_product value="d1872e64" datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
                   <aantal value="90"/>
@@ -90,7 +90,7 @@
                            displayName="stuk"/>
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d1581e216" datatype="reference"/>
+                  <zorgaanbieder value="d1872e216" datatype="reference"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_interval_MA"
@@ -99,7 +99,7 @@
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d1581e64">
+            <farmaceutisch_product id="d1872e64">
                <product_code code="68519"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -109,7 +109,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="AMOXICILLINE DISPERTABLET 500MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="d1581e78">
+            <zorgverlener id="d1872e78">
                <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Peter"/>
@@ -135,10 +135,10 @@
                   </telefoonnummers>
                </contactgegevens>
                <zorgaanbieder>
-                  <zorgaanbieder value="d1581e101" datatype="reference"/>
+                  <zorgaanbieder value="d1872e101" datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d1581e101">
+            <zorgaanbieder id="d1872e101">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
@@ -151,9 +151,19 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="d1581e216">
+            <zorgaanbieder id="d1872e216">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
-               <organisatie_naam value="Apotheek de Gulle Gaper"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_medicatievoorschrift>

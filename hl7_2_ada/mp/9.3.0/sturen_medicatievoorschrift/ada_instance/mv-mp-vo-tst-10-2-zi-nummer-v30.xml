@@ -36,19 +36,19 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_ZINRvoorschrijven_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T13:05:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2024-01-01T13:05:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-05-31T23:59:59"/>
+                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2024-05-30T23:59:59+02:00"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d543e82" datatype="reference"/>
+                  <zorgverlener value="d747e82" datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d543e64" datatype="reference"/>
+                  <farmaceutisch_product value="d747e64" datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, tot en met 31 mei 2023, 1 maal per dag 1 stuk, Oraal"/>
+                  <omschrijving value="1 maal per dag 1 stuk, Oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
@@ -80,12 +80,12 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_ZINRvoorschrijven_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-01-01T13:05:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2024-01-01T13:05:00+01:00"/>
                <auteur>
-                  <zorgverlener value="d543e82" datatype="reference"/>
+                  <zorgverlener value="d747e82" datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d543e64" datatype="reference"/>
+                  <farmaceutisch_product value="d747e64" datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
                   <aantal value="150"/>
@@ -95,7 +95,7 @@
                            displayName="stuk"/>
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d543e219" datatype="reference"/>
+                  <zorgaanbieder value="d747e219" datatype="reference"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_ZINRvoorschrijven_MA"
@@ -104,7 +104,7 @@
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d543e64">
+            <farmaceutisch_product id="d747e64">
                <product_code code="13627163"
                              codeSystem="2.16.840.1.113883.2.4.4.8"
                              codeSystemName="G-Standaard ZI-nr"
@@ -122,7 +122,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="INDAPAMIDE 2,5MG TABLET"/>
             </farmaceutisch_product>
-            <zorgverlener id="d543e82">
+            <zorgverlener id="d747e82">
                <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Peter"/>
@@ -148,10 +148,10 @@
                   </telefoonnummers>
                </contactgegevens>
                <zorgaanbieder>
-                  <zorgaanbieder value="d543e105" datatype="reference"/>
+                  <zorgaanbieder value="d747e105" datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d543e105">
+            <zorgaanbieder id="d747e105">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
@@ -164,9 +164,19 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="d543e219">
+            <zorgaanbieder id="d747e219">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_medicatievoorschrift>

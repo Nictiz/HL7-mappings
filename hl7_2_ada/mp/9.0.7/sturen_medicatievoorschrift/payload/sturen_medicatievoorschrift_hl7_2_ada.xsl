@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../../hl7_2_ada_mp_include.xsl"/>
     <xsl:import href="../../../../zibs2017/payload/all-zibs.xsl"/>
 
-    <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
+    <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all" omit-xml-declaration="yes"/>
     <!-- Dit is een conversie van MP 9.1.0 naar ADA 9.0 voorschrift bericht -->
     <!-- parameter to control whether or not the result should contain a reference to the ada xsd -->
     <xsl:param name="outputSchemaRef" as="xs:boolean" select="true()"/>

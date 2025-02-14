@@ -1,6 +1,7 @@
-<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Bundle xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+        xmlns="http://hl7.org/fhir">
    <id value="MO-XXX-GBZ-Smoketest-A"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
@@ -12,7 +13,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:c33f11ec-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6ea87454-6a9f-11ec-0000-020000000000"/>
       <resource>
          <List>
             <meta>
@@ -37,14 +38,14 @@
                <text value="Medicatieoverzicht"/>
             </code>
             <subject>
-               <reference value="urn:uuid:c33f24c7-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:8e92dc93-6ae0-11ec-0000-020000000000"/>
                <display value="E. XXX-GBZ-Smoketest-A"/>
             </subject>
             <date value="${DATE, T, D, +0}"/>
             <source>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-SourceOrganization">
                   <valueReference>
-                     <reference value="urn:uuid:c33f11f4-6a95-11ec-0000-020000000000"/>
+                     <reference value="urn:uuid:4b248570-6aa9-11ec-0000-020000000000"/>
                      <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
                   </valueReference>
                </extension>
@@ -52,31 +53,31 @@
             </source>
             <entry>
                <item>
-                  <reference value="urn:uuid:c33f24e9-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:5fe5ecf1-6b70-11ec-0000-020000000000"/>
                   <display value="Medicatieafspraak identifier: value='tsMBH_907_QA1_MA-GSA', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
             <entry>
                <item>
-                  <reference value="urn:uuid:c33f103f-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:62aafdf1-6b70-11ec-0000-020000000000"/>
                   <display value="Medicatieafspraak identifier: value='tsMBH_907_QA3_MA-GSA', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
             <entry>
                <item>
-                  <reference value="urn:uuid:c33f10ad-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:640d8671-6b70-11ec-0000-020000000000"/>
                   <display value="Medicatieafspraak identifier: value='tsMBH_907_QA4_MA-GSA', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
             <entry>
                <item>
-                  <reference value="urn:uuid:c33f111a-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:65700ef1-6b70-11ec-0000-020000000000"/>
                   <display value="Medicatieafspraak identifier: value='tsMBH_907_QA5_MA-GSA', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
             <entry>
                <item>
-                  <reference value="urn:uuid:c33f118a-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:66d29771-6b70-11ec-0000-020000000000"/>
                   <display value="Medicatieafspraak identifier: value='tsMBH_907_QA6_MA-GSA', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
@@ -87,7 +88,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f24e9-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:5fe5ecf1-6b70-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -97,7 +98,9 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Medicatieafspraak. Subject: E. XXX-GBZ-Smoketest-A. Id: tsMBH_907_QA1_MA-GSA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                     <caption>Medicatieafspraak. Subject: E. XXX-GBZ-Smoketest-A. Id: tsMBH_907_QA1_MA-GSA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: 
+<span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, 
+<span style="display: block;">Intentie: aanvraag</span>
                         <span style="display: block;">Aangevraagd door: Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
                      </caption>
                      <tbody>
@@ -121,9 +124,11 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Tekst: Vanaf T - 20 dagen, tot en met T + 9 dagen, 1 maal per dag 2 stuks, Oraal</div>
-                              <div>Timing: <div>eenmalig per dag</div>
+                              <div>Timing: 
+<div>eenmalig per dag</div>
                               </div>
-                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              <div>Toedieningsweg: 
+<span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
                               </div>
                               <div>Dosering: 2 stuk</div>
                            </td>
@@ -162,7 +167,7 @@
                <display value="IBUPROFEN TABLET 600MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f24c7-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:8e92dc93-6ae0-11ec-0000-020000000000"/>
                <display value="E. XXX-GBZ-Smoketest-A"/>
             </subject>
             <authoredOn value="${DATE, T, D, -20}T08:00:00+02:00"/>
@@ -170,7 +175,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:c33f24ef-6a95-11ec-0000-020000000000"/>
+                        <reference value="urn:uuid:5d091430-6a99-11ec-0000-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -208,7 +213,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f103f-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:62aafdf1-6b70-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -218,7 +223,9 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Medicatieafspraak. Subject: E. XXX-GBZ-Smoketest-A. Id: tsMBH_907_QA3_MA-GSA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                     <caption>Medicatieafspraak. Subject: E. XXX-GBZ-Smoketest-A. Id: tsMBH_907_QA3_MA-GSA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: 
+<span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, 
+<span style="display: block;">Intentie: aanvraag</span>
                         <span style="display: block;">Aangevraagd door: Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
                      </caption>
                      <tbody>
@@ -242,9 +249,11 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Tekst: Vanaf T - 50 dagen, tot en met T - 11 dagen, 2 maal per dag 50 ml, oraal</div>
-                              <div>Timing: <div>2 maal per dag</div>
+                              <div>Timing: 
+<div>2 maal per dag</div>
                               </div>
-                              <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
+                              <div>Toedieningsweg: 
+<span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
                               </div>
                               <div>Dosering: 50 milliliter</div>
                            </td>
@@ -283,7 +292,7 @@
                <display value="VLOEIBARE VOEDING MET O.A. VITAMINE K"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f24c7-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:8e92dc93-6ae0-11ec-0000-020000000000"/>
                <display value="E. XXX-GBZ-Smoketest-A"/>
             </subject>
             <authoredOn value="${DATE, T, D, -50}T08:10:00+02:00"/>
@@ -291,7 +300,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:c33f24ef-6a95-11ec-0000-020000000000"/>
+                        <reference value="urn:uuid:5d091430-6a99-11ec-0000-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -329,7 +338,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f10ad-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:640d8671-6b70-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -339,7 +348,9 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Medicatieafspraak. Subject: E. XXX-GBZ-Smoketest-A. Id: tsMBH_907_QA4_MA-GSA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                     <caption>Medicatieafspraak. Subject: E. XXX-GBZ-Smoketest-A. Id: tsMBH_907_QA4_MA-GSA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: 
+<span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, 
+<span style="display: block;">Intentie: aanvraag</span>
                         <span style="display: block;">Aangevraagd door: Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
                      </caption>
                      <tbody>
@@ -363,9 +374,11 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Tekst: Vanaf T - 10 dagen, tot en met T + 19 dagen, 1 maal per dag 3 stuks, oraal</div>
-                              <div>Timing: <div>eenmalig per dag</div>
+                              <div>Timing: 
+<div>eenmalig per dag</div>
                               </div>
-                              <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
+                              <div>Toedieningsweg: 
+<span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
                               </div>
                               <div>Dosering: 3 stuk</div>
                            </td>
@@ -404,7 +417,7 @@
                <display value="ACETYLSALICYLZUUR TABLET 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f24c7-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:8e92dc93-6ae0-11ec-0000-020000000000"/>
                <display value="E. XXX-GBZ-Smoketest-A"/>
             </subject>
             <authoredOn value="${DATE, T, D, -10}T08:12:00+02:00"/>
@@ -412,7 +425,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:c33f24ef-6a95-11ec-0000-020000000000"/>
+                        <reference value="urn:uuid:5d091430-6a99-11ec-0000-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -450,7 +463,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f111a-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:65700ef1-6b70-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -460,7 +473,9 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Medicatieafspraak. Subject: E. XXX-GBZ-Smoketest-A. Id: tsMBH_907_QA5_MA-GSA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                     <caption>Medicatieafspraak. Subject: E. XXX-GBZ-Smoketest-A. Id: tsMBH_907_QA5_MA-GSA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: 
+<span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, 
+<span style="display: block;">Intentie: aanvraag</span>
                         <span style="display: block;">Aangevraagd door: Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
                      </caption>
                      <tbody>
@@ -489,9 +504,11 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Tekst: Vanaf T - 50 dagen, gedurende 7 dagen, 1 maal per dag 1 stuk, oraal</div>
-                              <div>Timing: <div>eenmalig per dag</div>
+                              <div>Timing: 
+<div>eenmalig per dag</div>
                               </div>
-                              <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
+                              <div>Toedieningsweg: 
+<span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
                               </div>
                               <div>Dosering: 1 stuk</div>
                            </td>
@@ -537,7 +554,7 @@
                <display value="ACENOCOUMAROL TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f24c7-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:8e92dc93-6ae0-11ec-0000-020000000000"/>
                <display value="E. XXX-GBZ-Smoketest-A"/>
             </subject>
             <authoredOn value="${DATE, T, D, -50}T08:15:00+02:00"/>
@@ -545,7 +562,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:c33f24ef-6a95-11ec-0000-020000000000"/>
+                        <reference value="urn:uuid:5d091430-6a99-11ec-0000-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -583,7 +600,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f118a-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:66d29771-6b70-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -593,7 +610,9 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Medicatieafspraak. Subject: E. XXX-GBZ-Smoketest-A. Id: tsMBH_907_QA6_MA-GSA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                     <caption>Medicatieafspraak. Subject: E. XXX-GBZ-Smoketest-A. Id: tsMBH_907_QA6_MA-GSA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: 
+<span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, 
+<span style="display: block;">Intentie: aanvraag</span>
                         <span style="display: block;">Aangevraagd door: Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
                      </caption>
                      <tbody>
@@ -617,9 +636,11 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Tekst: Vanaf T - 5 dagen, tot en met T + 1 dag, 2 maal per dag 2 stuks, oraal</div>
-                              <div>Timing: <div>2 maal per dag</div>
+                              <div>Timing: 
+<div>2 maal per dag</div>
                               </div>
-                              <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
+                              <div>Toedieningsweg: 
+<span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
                               </div>
                               <div>Dosering: 2 stuk</div>
                            </td>
@@ -658,7 +679,7 @@
                <display value="OXAZEPAM TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f24c7-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:8e92dc93-6ae0-11ec-0000-020000000000"/>
                <display value="E. XXX-GBZ-Smoketest-A"/>
             </subject>
             <authoredOn value="${DATE, T, D, -5}T08:18:00+02:00"/>
@@ -666,7 +687,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:c33f24ef-6a95-11ec-0000-020000000000"/>
+                        <reference value="urn:uuid:5d091430-6a99-11ec-0000-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -704,7 +725,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f24c7-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:8e92dc93-6ae0-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -713,7 +734,9 @@
             <text>
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), E. XXX-GBZ-Smoketest-A, Man, 2 mei 1950</div>
+                  <div>Id 
+<i>afgeschermd (ontbrekend gegeven)</i> (BSN), 
+<span title="Naamsamenstelling: Eigennaam">E. XXX-GBZ-Smoketest-A</span>, Man, 2 mei 1950</div>
                </div>
             </text>
             <identifier>
@@ -768,6 +791,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 000001111 (UZI-NR-PERS), Peter van Pulver</div>
+                  <div>Dorpsstraat 1, 1234AA Ons Dorp (WP)</div>
                </div>
             </text>
             <identifier>
@@ -789,6 +813,28 @@
                   </extension>
                </given>
             </name>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Practitioner>
       </resource>
       <search>
@@ -854,7 +900,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f11f4-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:4b248570-6aa9-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -921,7 +967,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f24ef-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:5d091430-6a99-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>

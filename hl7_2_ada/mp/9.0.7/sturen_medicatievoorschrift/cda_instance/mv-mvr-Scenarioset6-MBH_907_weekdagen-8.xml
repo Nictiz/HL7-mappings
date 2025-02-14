@@ -1,77 +1,83 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                  xmlns:sdtc="urn:hl7-org:sdtc"
-                  xmlns="urn:hl7-org:v3"
-                  xmlns:hl7nl="urn:hl7-nl:v3"
-                  xmlns:pharm="urn:ihe:pharm:medication"
+<ClinicalDocument xmlns="urn:hl7-org:v3"
                   xmlns:hl7="urn:hl7-org:v3"
-                  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+                  xmlns:hl7nl="urn:hl7-nl:v3"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <realmCode code="NL"/>
-   <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
+   <typeId extension="POCD_HD000040"
+           root="2.16.840.1.113883.1.3"/>
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9237"/>
-   <id extension="someUniqueID"
+   <id extension="aaa3804e-c1e9-11ef-4593-020000000000"
        root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9240.1.2.3.999"/>
-   <code code="52981000146104"
+   <code code="440545006"
          codeSystem="2.16.840.1.113883.6.96"
          codeSystemName="SNOMED CT"
-         displayName="Medication section (record artifact)"/>
-   <title>Voorschrift S. XXX_Jankie op 24 mar 2020</title>
-   <effectiveTime value="20200324082500"/>
-   <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="normal"/>
+         displayName="voorschrift (gegevensobject)"/>
+   <title>Voorschrift S. XXX_Jankie op 20240101082500+0100</title>
+   <effectiveTime value="20240101082500+0100"/>
+   <confidentialityCode code="N"
+                        codeSystem="2.16.840.1.113883.5.25"
+                        displayName="normal"/>
    <languageCode code="nl-NL"/>
    <recordTarget>
       <patientRole>
-         <id extension="999910437" root="2.16.840.1.113883.2.4.6.3"/>
+         <id extension="999910437"
+             root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
                <given qualifier="IN">S.</given>
                <family qualifier="BR">XXX_Jankie</family>
             </name>
-            <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <administrativeGenderCode code="F"
+                                      codeSystem="2.16.840.1.113883.5.1"
+                                      displayName="Vrouw"/>
             <birthTime value="19540508"/>
          </patient>
       </patientRole>
    </recordTarget>
    <author>
-            <time value="20200324082500"/>
-            <assignedAuthor>
-               <id extension="000001111" root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
+      <time value="20240101082500+0100"/>
+      <assignedAuthor>
+         <id extension="000001111"
+             root="2.16.528.1.1007.3.1"/>
+         <code code="0100"
                codeSystem="2.16.840.1.113883.2.4.6.7"
                displayName="Huisartsen, niet nader gespecificeerd"
                codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
                codeSystemVersion="2017-12-14T00:00:00"/>
-               <assignedPerson>
-                  <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
-                  </name>
-               </assignedPerson>
-               <representedOrganization>
-                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
-                  <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
-                     <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
-                  </addr>
-               </representedOrganization>
-            </assignedAuthor>
-         </author>
+         <assignedPerson>
+            <name>
+               <given qualifier="BR">Peter</given>
+               <prefix qualifier="VV">van </prefix>
+               <family qualifier="BR">Pulver</family>
+            </name>
+         </assignedPerson>
+         <representedOrganization>
+            <id extension="00001111"
+                root="2.16.528.1.1007.3.3"/>
+            <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+            <addr use="WP">
+               <streetName>Dorpsstraat</streetName>
+               <houseNumber>1</houseNumber>
+               <postalCode>1234 AA</postalCode>
+               <city>Ons Dorp</city>
+            </addr>
+         </representedOrganization>
+      </assignedAuthor>
+   </author>
    <custodian>
       <assignedCustodian>
          <representedCustodianOrganization>
-                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
-                  <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
-                     <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
-                  </addr>
-               </representedCustodianOrganization>
+            <id extension="00001111"
+                root="2.16.528.1.1007.3.3"/>
+            <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+            <addr use="WP">
+               <streetName>Dorpsstraat</streetName>
+               <houseNumber>1</houseNumber>
+               <postalCode>1234 AA</postalCode>
+               <city>Ons Dorp</city>
+            </addr>
+         </representedCustodianOrganization>
       </assignedCustodian>
    </custodian>
    <component>
@@ -80,28 +86,30 @@
             <section>
                <text>Medicatiegegevens.</text>
                <entry>
-                  <substanceAdministration classCode="SBADM" moodCode="RQO">
+                  <substanceAdministration classCode="SBADM"
+                                           moodCode="RQO">
                      <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
                      <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
-                     <id extension="MBH_907_weekdagen_MA"
+                     <id extension="MBH_907_weekdagen_MA-JNK"
                          root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                      <code code="16076005"
                            displayName="Medicatieafspraak"
                            codeSystem="2.16.840.1.113883.6.96"
                            codeSystemName="SNOMED CT"/>
-                     <text mediaType="text/plain">Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+70D{23:59:59}&gt;, op maandag, woensdag en vrijdag, voor de nacht aanbrengen, cutaan</text>
+                     <text mediaType="text/plain">Vanaf 1 jan 2024, tot en met 11 mar 2024, op maandag, woensdag en vrijdag, voor de nacht, aanbrengen, cutaan</text>
                      <effectiveTime xsi:type="IVL_TS">
-                        <low value="20200324000000"/>
-                        <high value="20200602235959"/>
+                        <low value="20240101000000+0100"/>
+                        <high value="20240311235959+0100"/>
                      </effectiveTime>
-                     <routeCode code="7"
+                     <routeCode code="53"
                                 codeSystem="2.16.840.1.113883.2.4.4.9"
                                 displayName="cutaan"
                                 codeSystemName="G-Standaard Toedieningswegen"/>
                      <consumable>
                         <manufacturedProduct>
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
-                           <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                           <manufacturedMaterial classCode="MMAT"
+                                                 determinerCode="KIND">
                               <code code="55050"
                                     codeSystem="2.16.840.1.113883.2.4.4.10"
                                     displayName="IMIQUIMOD 50MG/G CREME"
@@ -115,9 +123,10 @@
                         </manufacturedProduct>
                      </consumable>
                      <author>
-                        <time value="20200324082500"/>
+                        <time value="20240101082500+0100"/>
                         <assignedAuthor>
-                           <id extension="000001111" root="2.16.528.1.1007.3.1"/>
+                           <id extension="000001111"
+                               root="2.16.528.1.1007.3.1"/>
                            <code code="0100"
                                  codeSystem="2.16.840.1.113883.2.4.6.7"
                                  displayName="Huisartsen, niet nader gespecificeerd"
@@ -131,7 +140,8 @@
                               </name>
                            </assignedPerson>
                            <representedOrganization>
-                              <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                              <id extension="00001111"
+                                  root="2.16.528.1.1007.3.3"/>
                               <name>Huisartsenpraktijk Pulver &amp; Partners</name>
                               <addr use="WP">
                                  <streetName>Dorpsstraat</streetName>
@@ -143,7 +153,8 @@
                         </assignedAuthor>
                      </author>
                      <entryRelationship typeCode="SPRT">
-                        <act classCode="ACT" moodCode="RQO">
+                        <act classCode="ACT"
+                             moodCode="RQO">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9085"/>
                            <code code="1128"
                                  codeSystem="2.16.840.1.113883.2.4.4.5"
@@ -152,7 +163,8 @@
                         </act>
                      </entryRelationship>
                      <entryRelationship typeCode="SPRT">
-                        <act classCode="ACT" moodCode="RQO">
+                        <act classCode="ACT"
+                             moodCode="RQO">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9085"/>
                            <code code="1018"
                                  codeSystem="2.16.840.1.113883.2.4.4.5"
@@ -162,9 +174,11 @@
                      </entryRelationship>
                      <entryRelationship typeCode="COMP">
                         <sequenceNumber value="1"/>
-                        <substanceAdministration classCode="SBADM" moodCode="RQO">
+                        <substanceAdministration classCode="SBADM"
+                                                 moodCode="RQO">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
-                           <effectiveTime xsi:type="SXPR_TS" operator="A">
+                           <effectiveTime operator="A"
+                                          xsi:type="SXPR_TS">
                               <comp xsi:type="hl7nl:PIVL_TS"
                                     operator="A"
                                     isFlexible="true"
@@ -172,7 +186,8 @@
                                  <hl7nl:phase>
                                     <hl7nl:low value="19700601"/>
                                  </hl7nl:phase>
-                                 <hl7nl:period unit="wk" value="1"/>
+                                 <hl7nl:period unit="wk"
+                                               value="1"/>
                               </comp>
                               <comp xsi:type="hl7nl:PIVL_TS"
                                     operator="I"
@@ -181,7 +196,8 @@
                                  <hl7nl:phase>
                                     <hl7nl:low value="19700603"/>
                                  </hl7nl:phase>
-                                 <hl7nl:period unit="wk" value="1"/>
+                                 <hl7nl:period unit="wk"
+                                               value="1"/>
                               </comp>
                               <comp xsi:type="hl7nl:PIVL_TS"
                                     operator="I"
@@ -190,17 +206,20 @@
                                  <hl7nl:phase>
                                     <hl7nl:low value="19700605"/>
                                  </hl7nl:phase>
-                                 <hl7nl:period unit="wk" value="1"/>
+                                 <hl7nl:period unit="wk"
+                                               value="1"/>
                               </comp>
                            </effectiveTime>
                            <consumable xsi:nil="true"/>
                         </substanceAdministration>
                      </entryRelationship>
-                     <entryRelationship typeCode="COMP" inversionInd="true">
-                        <procedure classCode="PROC" moodCode="EVN">
+                     <entryRelationship typeCode="COMP"
+                                        inversionInd="true">
+                        <procedure classCode="PROC"
+                                   moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                            <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                               extension="MBH_907_weekdagen"/>
+                               extension="MBH_907_weekdagen-JNK"/>
                            <code code="1"
                                  displayName="Medicamenteuze behandeling"
                                  codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -209,15 +228,17 @@
                   </substanceAdministration>
                </entry>
                <entry>
-                  <supply classCode="SPLY" moodCode="RQO">
+                  <supply classCode="SPLY"
+                          moodCode="RQO">
                      <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9257"/>
-                     <id extension="MBH_907_weekdagen_VV"
+                     <id extension="MBH_907_weekdagen_VV-JNK"
                          root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
                      <code codeSystemName="SNOMED CT"
                            displayName="Verstrekkingsverzoek"
                            code="52711000146108"
                            codeSystem="2.16.840.1.113883.6.96"/>
-                     <quantity value="30" unit="1">
+                     <quantity value="30"
+                               unit="1">
                         <translation value="30"
                                      code="245"
                                      displayName="stuk"
@@ -227,7 +248,8 @@
                      <product>
                         <manufacturedProduct>
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
-                           <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                           <manufacturedMaterial classCode="MMAT"
+                                                 determinerCode="KIND">
                               <code code="55050"
                                     codeSystem="2.16.840.1.113883.2.4.4.10"
                                     displayName="IMIQUIMOD 50MG/G CREME"
@@ -244,15 +266,17 @@
                         <assignedEntity>
                            <id nullFlavor="NI"/>
                            <representedOrganization>
-                              <id extension="01236578" root="2.16.528.1.1007.3.3"/>
+                              <id extension="01236578"
+                                  root="2.16.528.1.1007.3.3"/>
                               <name>Apotheek de Gulle Gaper</name>
                            </representedOrganization>
                         </assignedEntity>
                      </performer>
                      <author>
-                        <time value="20200324082500"/>
+                        <time value="20240101082500+0100"/>
                         <assignedAuthor>
-                           <id extension="000001111" root="2.16.528.1.1007.3.1"/>
+                           <id extension="000001111"
+                               root="2.16.528.1.1007.3.1"/>
                            <code code="0100"
                                  codeSystem="2.16.840.1.113883.2.4.6.7"
                                  displayName="Huisartsen, niet nader gespecificeerd"
@@ -266,7 +290,8 @@
                               </name>
                            </assignedPerson>
                            <representedOrganization>
-                              <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                              <id extension="00001111"
+                                  root="2.16.528.1.1007.3.3"/>
                               <name>Huisartsenpraktijk Pulver &amp; Partners</name>
                               <addr use="WP">
                                  <streetName>Dorpsstraat</streetName>
@@ -278,9 +303,10 @@
                         </assignedAuthor>
                      </author>
                      <entryRelationship typeCode="REFR">
-                        <substanceAdministration classCode="SBADM" moodCode="RQO">
+                        <substanceAdministration classCode="SBADM"
+                                                 moodCode="RQO">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
-                           <id extension="MBH_907_weekdagen_MA"
+                           <id extension="MBH_907_weekdagen_MA-JNK"
                                root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                            <code code="16076005"
                                  codeSystem="2.16.840.1.113883.6.96"
@@ -289,11 +315,13 @@
                            <consumable xsi:nil="true"/>
                         </substanceAdministration>
                      </entryRelationship>
-                     <entryRelationship typeCode="COMP" inversionInd="true">
-                        <procedure classCode="PROC" moodCode="EVN">
+                     <entryRelationship typeCode="COMP"
+                                        inversionInd="true">
+                        <procedure classCode="PROC"
+                                   moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                            <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                               extension="MBH_907_weekdagen"/>
+                               extension="MBH_907_weekdagen-JNK"/>
                            <code code="1"
                                  displayName="Medicamenteuze behandeling"
                                  codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>

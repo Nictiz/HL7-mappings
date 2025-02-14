@@ -36,19 +36,19 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_toedieningssnelheid_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-01-01T08:47:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2024-01-01T08:47:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-01-09T23:59:59"/>
+                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2024-01-09T23:59:59+01:00"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d1465e78" datatype="reference"/>
+                  <zorgverlener value="d1744e78" datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d1465e64" datatype="reference"/>
+                  <farmaceutisch_product value="d1744e64" datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, tot en met 9 jan 2023, toedieningssnelheid: 0.2 à 0.5 per, parenteraal"/>
+                  <omschrijving value="toedieningssnelheid: 0.2 à 0.5 ml/h, parenteraal"/>
                   <toedieningsweg code="10"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
@@ -57,11 +57,8 @@
                      <volgnummer value="1"/>
                      <dosering>
                         <toedieningssnelheid>
-                           <waarde>
-                              <minimum_waarde value="0.2"/>
-                              <maximum_waarde value="0.5"/>
-                           </waarde>
-                           <eenheid value="1" unit="ml/h"/>
+                           <minimum_waarde value="0.2" unit="ml/h"/>
+                           <maximum_waarde value="0.5" unit="ml/h"/>
                         </toedieningssnelheid>
                      </dosering>
                   </doseerinstructie>
@@ -70,12 +67,12 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_toedieningssnelheid_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-01-01T08:47:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2024-01-01T08:47:00+01:00"/>
                <auteur>
-                  <zorgverlener value="d1465e78" datatype="reference"/>
+                  <zorgverlener value="d1744e78" datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d1465e64" datatype="reference"/>
+                  <farmaceutisch_product value="d1744e64" datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
                   <aantal value="100"/>
@@ -85,7 +82,7 @@
                            displayName="milliliter"/>
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d1465e198" datatype="reference"/>
+                  <zorgaanbieder value="d1744e198" datatype="reference"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_toedieningssnelheid_MA"
@@ -94,7 +91,7 @@
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d1465e64">
+            <farmaceutisch_product id="d1744e64">
                <product_code code="94692"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -104,7 +101,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="MORFINE INFVLST 5MG/ML CAS 100ML"/>
             </farmaceutisch_product>
-            <zorgverlener id="d1465e78">
+            <zorgverlener id="d1744e78">
                <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Peter"/>
@@ -130,10 +127,10 @@
                   </telefoonnummers>
                </contactgegevens>
                <zorgaanbieder>
-                  <zorgaanbieder value="d1465e101" datatype="reference"/>
+                  <zorgaanbieder value="d1744e101" datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d1465e101">
+            <zorgaanbieder id="d1744e101">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
@@ -146,9 +143,19 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="d1465e198">
+            <zorgaanbieder id="d1744e198">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
-               <organisatie_naam value="Apotheek de Gulle Gaper"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_medicatievoorschrift>

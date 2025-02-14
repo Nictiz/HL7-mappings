@@ -48,8 +48,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- precision determines the picture of the date format, only use case for day or second. -->
         <!-- Use formatHL72VagueAdaDate for other formats, such as year / month / hour / minute -->
         <xsl:param name="precision"/>
+        
+        <!-- we are converting a hl7-datetime to ada let's convert this as precise as possible taking account of timezone if needed and not add seconds here, 
+        seonds only needed when converting to fhir -->
+        <xsl:value-of select="nf:formatHL72VagueAdaDate($input-hl7-date, $precision)"/>
+        
 
-        <xsl:variable name="yyyy" as="xs:string?">
+     <!--   <xsl:variable name="yyyy" as="xs:string?">
             <xsl:if test="string-length($input-hl7-date) ge 4">
                 <xsl:value-of select="substring($input-hl7-date, 1, 4)"/>
             </xsl:if>
@@ -75,9 +80,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:value-of select="substring($input-hl7-date, 11, 2)"/>
             </xsl:if>
         </xsl:variable>
-        <!-- http://hl7.org/fhir/datatypes.html#dateTime
+        <!-\- http://hl7.org/fhir/datatypes.html#dateTime
             Seconds must be provided due to schema type constraints but may be zero-filled and may be ignored at receiver discretion. 
-        -->
+        -\->
         <xsl:variable name="SS" as="xs:string?">
             <xsl:choose>
                 <xsl:when test="string-length($input-hl7-date) ge 14">
@@ -95,9 +100,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
         </xsl:variable>
 
-        <!-- http://hl7.org/fhir/datatypes.html#dateTime
+        <!-\- http://hl7.org/fhir/datatypes.html#dateTime
             If hours and minutes are specified, a time zone SHALL be populated.
-        -->
+        -\->
         <xsl:variable name="TZ" as="xs:string?">
             <xsl:if test="matches($input-hl7-date, '^\d+(\.\d+)')">
                 <xsl:value-of select="replace($input-hl7-date, '.*([+-]\d{2,4})$', '$1')"/>
@@ -121,7 +126,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:value-of select="$str_date"/>
             </xsl:when>
             <xsl:otherwise>
-                <!-- let's do a best effort and fall back on vague date time, even though that is unexpected here -->
+                <!-\- let's do a best effort and fall back on vague date time, even though that is unexpected here -\->
                 <xsl:value-of select="nf:formatHL72VagueAdaDate($input-hl7-date, $precision)"/>
                 <xsl:call-template name="util:logMessage">
                     <xsl:with-param name="level" select="$logWARN"/>
@@ -129,7 +134,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:function>
+-->    </xsl:function>
 
     <xd:doc>
         <xd:desc>Returns possibly vague date or dateTime string based on HL7v3 ts input string, and requested precision. <xd:p>Example nf:formatHL72VagueAdaDate(hl7:effectiveTime/@value, nf:determine_date_precision(hl7:effectiveTime/@value))</xd:p>
@@ -901,6 +906,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             <xsl:variable name="currentAddress" select="."/>
             <!-- output an address for each type, but also one address when there is no type, which is why we put a nullFlavor in that variable -->
+            <!-- however an address type is in the attribute use in HL7v3 which cannot be nullFlavored, therefore we do not want to output a nullFlavor address type -->
             <xsl:for-each select="$addressType">
                 <xsl:variable name="currentAddressType" select="."/>
                 <xsl:for-each select="$currentAddress">
@@ -1068,13 +1074,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:element>
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:element name="{$elmAddressInformation}">
-                                <!-- No address parts... submit as street -->
-                                <xsl:element name="{$elmStreet}">
-                                    <xsl:attribute name="value" select="."/>
-                                </xsl:element>
-                                <xsl:copy-of select="$currentAddressType"/>
-                            </xsl:element>
+                            <xsl:choose>
+                                <xsl:when test=". != ''">
+                                    <xsl:element name="{$elmAddressInformation}">
+                                        <!-- No address parts, but we do have an unstructured string... submit as street -->
+                                        <xsl:element name="{$elmStreet}">
+                                            <xsl:attribute name="value" select="."/>
+                                        </xsl:element>
+                                        <!-- we do not want to output a nullFlavor address type, but will output the address type otherwise -->
+                                        <xsl:copy-of select="$currentAddressType[not(@nullFlavor)]"/>
+                                    </xsl:element>
+                                </xsl:when>
+                                <xsl:when test=". = '' and $currentAddressType[not(@nullFlavor)]">
+                                    <!-- No string value in address, omit the street and only copy addressType if it does not have an artifical nullFlavor-->
+                                    <xsl:element name="{$elmAddressInformation}">
+                                        <xsl:copy-of select="$currentAddressType[not(@nullFlavor)]"/>
+                                    </xsl:element>
+                                    <xsl:call-template name="util:logMessage">
+                                        <xsl:with-param name="level" select="$logWARN"/>
+                                        <xsl:with-param name="msg">Encountered an empty <xsl:value-of select="local-name()"/> element</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:when>
+                            </xsl:choose>
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:for-each>

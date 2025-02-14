@@ -34,33 +34,9 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_SCRIPT1_MVE"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2022-12-23T08:30:00"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2024-01-01T08:30:00+01:00"/>
                <verstrekker>
-                  <zorgaanbieder value="d297e80" datatype="reference"/>
-               </verstrekker>
-               <verstrekte_hoeveelheid>
-                  <aantal value="140"/>
-                  <eenheid code="245"
-                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                           codeSystemName="G-Standaard thesaurus basiseenheden"
-                           displayName="stuk"/>
-               </verstrekte_hoeveelheid>
-               <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d297e62" datatype="reference"/>
-               </verstrekt_geneesmiddel>
-               <verbruiksduur value="2" unit="week"/>
-               <relatie_verstrekkingsverzoek>
-                  <identificatie value="MBH_300_SCRIPT1_VV"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               </relatie_verstrekkingsverzoek>
-            </medicatieverstrekking>
-            <medicatieverstrekking>
-               <identificatie value="MBH_300_SCRIPT1_MVE_WIJZIGING"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-01-08T15:00:00"/>
-               <aanschrijf_datum datatype="datetime" value="2023-01-08T15:00:00"/>
-               <verstrekker>
-                  <zorgaanbieder value="d297e80" datatype="reference"/>
+                  <zorgaanbieder value="d502e80" datatype="reference"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="112"/>
@@ -70,9 +46,33 @@
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d297e62" datatype="reference"/>
+                  <farmaceutisch_product value="d502e62" datatype="reference"/>
                </verstrekt_geneesmiddel>
-               <verbruiksduur value="14" unit="dag"/>
+               <verbruiksduur value="3" unit="week"/>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="MBH_300_SCRIPT1_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+            <medicatieverstrekking>
+               <identificatie value="MBH_300_SCRIPT1_MVE_WIJZIGING"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2024-01-21T07:30:00+01:00"/>
+               <aanschrijf_datum datatype="datetime" value="2024-01-21T07:30:00+01:00"/>
+               <verstrekker>
+                  <zorgaanbieder value="d502e80" datatype="reference"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid>
+                  <aantal value="140"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="d502e62" datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <verbruiksduur value="3" unit="week"/>
                <relatie_verstrekkingsverzoek>
                   <identificatie value="MBH_300_SCRIPT1_VV_WIJZIGING"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
@@ -80,7 +80,7 @@
             </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d297e62">
+            <farmaceutisch_product id="d502e62">
                <product_code code="3060195"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -94,9 +94,19 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="CAPECITABINE TABLET FO 500MG"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="d297e80">
+            <zorgaanbieder id="d502e80">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_medicatiegegevens>

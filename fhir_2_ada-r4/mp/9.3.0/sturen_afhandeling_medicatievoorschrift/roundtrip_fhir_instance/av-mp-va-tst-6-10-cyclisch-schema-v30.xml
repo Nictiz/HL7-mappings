@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="851b8c47-4835-11ef-2544-020000000000"/>
+   <id value="9c223863-a281-11ef-1556-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:851b8d36-4835-11ef-2544-020000000000"/>
+      <fullUrl value="urn:uuid:9c223952-a281-11ef-1556-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -18,9 +18,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2023-01-01T09:33:00+01:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf &lt;T+0D&gt;, cyclus van 28 dagen: gedurende 21 dagen 1 x per dag 1 tablet, dan 7 dagen niet, oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 1 jan 2023, cyclus van 28 dagen: steeds gedurende 21 dagen 1 maal per dag 1 stuk, oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="2023-01-01T00:00:00+01:00"/>
@@ -53,20 +54,20 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:851b8d72-4835-11ef-2544-020000000000"/>
+               <reference value="urn:uuid:9c22398e-a281-11ef-1556-020000000000"/>
                <type value="Medication"/>
                <display value="Fusidinezuur creme 20mg/g"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:851b8cbe-4835-11ef-2544-020000000000"/>
+               <reference value="urn:uuid:9c2238da-a281-11ef-1556-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:851b8cfa-4835-11ef-2544-020000000000"/>
+                  <reference value="urn:uuid:9c223916-a281-11ef-1556-020000000000"/>
                   <type value="Organization"/>
-                  <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
+                  <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
             </performer>
             <authorizingPrescription>
@@ -123,7 +124,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:851b8d54-4835-11ef-2544-020000000000"/>
+      <fullUrl value="urn:uuid:9c223970-a281-11ef-1556-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -152,20 +153,20 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:851b8d90-4835-11ef-2544-020000000000"/>
+               <reference value="urn:uuid:9c2239ac-a281-11ef-1556-020000000000"/>
                <type value="Medication"/>
                <display value="MARVELON TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:851b8cbe-4835-11ef-2544-020000000000"/>
+               <reference value="urn:uuid:9c2238da-a281-11ef-1556-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:851b8cfa-4835-11ef-2544-020000000000"/>
+                  <reference value="urn:uuid:9c223916-a281-11ef-1556-020000000000"/>
                   <type value="Organization"/>
-                  <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
+                  <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
             </performer>
             <authorizingPrescription>
@@ -199,7 +200,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:851b8cbe-4835-11ef-2544-020000000000"/>
+      <fullUrl value="urn:uuid:9c2238da-a281-11ef-1556-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -246,7 +247,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:851b8cfa-4835-11ef-2544-020000000000"/>
+      <fullUrl value="urn:uuid:9c223916-a281-11ef-1556-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -256,7 +257,7 @@
                <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
                <value value="01236578"/>
             </identifier>
-            <name value="Apotheek de Gulle Gaper"/>
+            <name value="Apotheek De Gulle Gaper"/>
             <address>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
                   <valueCodeableConcept>
@@ -290,7 +291,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:851b8d72-4835-11ef-2544-020000000000"/>
+      <fullUrl value="urn:uuid:9c22398e-a281-11ef-1556-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -318,7 +319,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:851b8d90-4835-11ef-2544-020000000000"/>
+      <fullUrl value="urn:uuid:9c2239ac-a281-11ef-1556-020000000000"/>
       <resource>
          <Medication>
             <meta>

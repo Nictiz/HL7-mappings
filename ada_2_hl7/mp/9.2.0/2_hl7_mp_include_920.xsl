@@ -13,18 +13,19 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:import href="../2_hl7_mp_include.xsl"/>
+    <xsl:import href="../../../../YATC-internal/ada-2-hl7/env/mp/2_hl7_mp_include.xsl"/>
     <xsl:import href="../../../../YATC-internal/ada-2-hl7/env/zib2020bbr/payload/ada2hl7_all-zibs.xsl"/>
 
     <!-- these imports are needed to handle the FHIR Timing datatype in HL7v3 substanceAdministration -->
+    <xsl:import href="../../../../YATC-shared/xsl/util/mp-functions-hl7v3-fhir.xsl"/>
     <xsl:import href="../../../../YATC-shared/xsl/util/mp-functions-fhir.xsl"/>
-    <xsl:import href="../../../../YATC-internal/ada-2-fhir/env/fhir/2_fhir_fhir_include.xsl"/>
-    <xsl:import href="../../../ada_2_fhir/zibs2017/payload/ext-zib-medication-repeat-period-cyclical-schedule-2.0.xsl"/>
-
+    <xsl:import href="../../../../YATC-internal/ada-2-fhir/env/zibs2017/payload/ext-zib-medication-repeat-period-cyclical-schedule-2.0.xsl"/>
+    <xsl:import href="../../../../YATC-internal/ada-2-fhir/env/zibs2017/payload/zib-instructions-for-use-2.0.xsl"/>
+    <xsl:import href="../../../../YATC-internal/ada-2-fhir/env/zibs2017/payload/zib-instructions-for-use-3.0.xsl"/>
+    <!-- AWE to make this xsl compile for now, however 9.2.0 is on the way to be deleted -->
+    <xsl:import href="../../../../YATC-internal/ada-2-fhir-r4/env/mp/9.3.0/payload/mp9_latest_package.xsl"/>
+    
     <xsl:param name="logLevel" select="$logINFO" as="xs:string"/>
-    <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
-    <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
-
 
     <xd:doc>
         <xd:desc>Voorstel Verstrekkingsverzoek</xd:desc>
@@ -153,20 +154,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- Geen id bij voorstel MA: dit is een vluchtig ding waar toch niet naar verwezen mag worden. -->
                 <code code="33633005" displayName="voorschrijven van geneesmiddel (verrichting)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                 <!-- gebruiksinstructie/omschrijving -->
-                <xsl:choose>
-                    <xsl:when test="$generateInstructionText">
-                        <text mediaType="text/plain">
-                            <xsl:value-of select="nf:gebruiksintructie-string(gebruiksinstructie)"/>
-                        </text>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:for-each select="gebruiksinstructie/omschrijving[.//(@value | @code)]">
-                            <text mediaType="text/plain">
-                                <xsl:value-of select="@value"/>
-                            </text>
-                        </xsl:for-each>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <text mediaType="text/plain">
+                    <xsl:value-of select="@value"/>
+                </text>
 
                 <!-- Gebruiksperiode -->
                 <xsl:call-template name="_handleGebruiksperiode"/>
@@ -311,20 +301,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             <!-- text -->
             <!-- gebruiksinstructie/omschrijving -->
-            <xsl:choose>
-                <xsl:when test="$generateInstructionText">
-                    <text mediaType="text/plain">
-                        <xsl:value-of select="nf:gebruiksintructie-string(gebruiksinstructie)"/>
-                    </text>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:for-each select="gebruiksinstructie/omschrijving[.//(@value | @code)]">
-                        <text mediaType="text/plain">
-                            <xsl:value-of select="@value"/>
-                        </text>
-                    </xsl:for-each>
-                </xsl:otherwise>
-            </xsl:choose>
+            <xsl:for-each select="gebruiksinstructie/omschrijving[.//(@value | @code)]">
+                <text mediaType="text/plain">
+                    <xsl:value-of select="@value"/>
+                </text>
+            </xsl:for-each>
 
             <!-- Gebruiksperiode -->
             <xsl:call-template name="_handleGebruiksperiode"/>
@@ -631,20 +612,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <code code="422037009" displayName="Toedieningsafspraak" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
             <!-- gebruiksinstructie/omschrijving -->
-            <xsl:choose>
-                <xsl:when test="$generateInstructionText">
-                    <text mediaType="text/plain">
-                        <xsl:value-of select="nf:gebruiksintructie-string(gebruiksinstructie)"/>
-                    </text>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:for-each select="gebruiksinstructie/omschrijving[.//(@value | @code)]">
-                        <text mediaType="text/plain">
-                            <xsl:value-of select="@value"/>
-                        </text>
-                    </xsl:for-each>
-                </xsl:otherwise>
-            </xsl:choose>
+            <xsl:for-each select="gebruiksinstructie/omschrijving[.//(@value | @code)]">
+                <text mediaType="text/plain">
+                    <xsl:value-of select="@value"/>
+                </text>
+            </xsl:for-each>
 
             <!-- statusCode: voor foutcorrectie -->
             <xsl:if test="geannuleerd_indicator/@value = 'true'">
@@ -1097,16 +1069,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:choose>
                             <!--   in combinatie met Weekdag. Frequentie niet opnemen als deze 1 maal per week is bij een weekdag (neem iedere maandag). -->
                             <xsl:when test="../weekdag[@value | @code] and tijdseenheid[@value = '1'][@unit = $ada-unit-week] and aantal/vaste_waarde[@value = '1']">
-                                <!-- do not output frequentie, it is once a week, which is implicit in weekday -->
-                            </xsl:when>
+                                <!-- do not output frequentie, it is once a week, which is implicit in weekday --> </xsl:when>
                             <!-- Dagdeel. Frequentie niet opnemen als deze 1 maal per dag is (neem 1 maal daags 's ochtends). -->
                             <xsl:when test="../dagdeel[@value | @code] and not(../weekdag[@value | @code]) and tijdseenheid[@value = '1'][@unit = $ada-unit-day] and aantal/vaste_waarde[@value = '1']">
-                                <!-- do not output frequentie, it is once a day, which is implicit in part of day -->
-                            </xsl:when>
+                                <!-- do not output frequentie, it is once a day, which is implicit in part of day --> </xsl:when>
                             <!-- Toedientijd(en). Frequentie niet opnemen als deze 1 maal per dag is, bijvoorbeeld "neem om 10:00 uur" of "neem om 10:00 en om 13:00 uur". -->
                             <xsl:when test="../toedientijd[@value] and not(../weekdag[@value | @code]) and tijdseenheid[@value = '1'][@unit = $ada-unit-day] and aantal/vaste_waarde[@value = '1']">
-                                <!-- do not output frequentie, it is once a day, which is implicit in time of day -->
-                            </xsl:when>
+                                <!-- do not output frequentie, it is once a day, which is implicit in time of day --> </xsl:when>
                             <!-- any other case we simply output frequentie  -->
                             <xsl:otherwise>
                                 <comp>
@@ -1336,7 +1305,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         </xsl:for-each>
     </xsl:template>
- 
+
     <xd:doc>
         <xd:desc> Verstrekking vanaf 9.1.0</xd:desc>
         <xd:param name="in">ada verstrekking</xd:param>
@@ -1469,20 +1438,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="makeIIid"/>
         </xsl:for-each>
         <code code="33633005" displayName="voorschrijven van geneesmiddel (verrichting)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
-        <xsl:choose>
-            <xsl:when test="$generateInstructionText">
-                <text mediaType="text/plain">
-                    <xsl:value-of select="nf:gebruiksintructie-string(gebruiksinstructie)"/>
-                </text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:for-each select="gebruiksinstructie/omschrijving[.//(@value | @code)]">
-                    <text mediaType="text/plain">
-                        <xsl:value-of select="@value"/>
-                    </text>
-                </xsl:for-each>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:for-each select="gebruiksinstructie/omschrijving[.//(@value | @code)]">
+            <text mediaType="text/plain">
+                <xsl:value-of select="@value"/>
+            </text>
+        </xsl:for-each>
 
         <!-- statusCode: voor foutcorrectie -->
         <!-- uitgefaseerd in 9 1.0, opnieuw toegevoegd in 9.2.0 -->
@@ -1692,20 +1652,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="makeIIid"/>
                 </xsl:for-each>
                 <code code="395067002" displayName="optimaliseren van dosering van medicatie (verrichting)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
-                <xsl:choose>
-                    <xsl:when test="$generateInstructionText">
-                        <text mediaType="text/plain">
-                            <xsl:value-of select="nf:gebruiksintructie-string(gebruiksinstructie)"/>
-                        </text>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:for-each select="gebruiksinstructie/omschrijving[.//(@value | @code)]">
-                            <text mediaType="text/plain">
-                                <xsl:value-of select="@value"/>
-                            </text>
-                        </xsl:for-each>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:for-each select="gebruiksinstructie/omschrijving[.//(@value | @code)]">
+                    <text mediaType="text/plain">
+                        <xsl:value-of select="@value"/>
+                    </text>
+                </xsl:for-each>
 
                 <!-- Gebruiksperiode -->
                 <xsl:call-template name="_handleGebruiksperiode"/>

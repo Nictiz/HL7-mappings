@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<organizer classCode="CLUSTER"
+           moodCode="EVN"
            xmlns="urn:hl7-org:v3"
-           xmlns:cda="urn:hl7-org:v3"
-           xmlns:hl7nl="urn:hl7-nl:v3"
-           xmlns:pharm="urn:ihe:pharm:medication"
-           xmlns:nf="http://www.nictiz.nl/functions"
            xmlns:hl7="urn:hl7-org:v3"
+           xmlns:nf="http://www.nictiz.nl/functions"
+           xmlns:hl7nl="urn:hl7-nl:v3"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           classCode="CLUSTER"
-           moodCode="EVN">
+           xmlns:pharm="urn:ihe:pharm:medication"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9240"/>
    <code code="95"
          displayName="Voorschrift"
@@ -17,19 +15,23 @@
    <statusCode nullFlavor="NI"/>
    <recordTarget>
       <patientRole>
-         <id extension="999910449" root="2.16.840.1.113883.2.4.6.3"/>
+         <id extension="999910449"
+             root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
                <given qualifier="IN">A.</given>
                <family qualifier="BR">XXX_Molenaars</family>
             </name>
-            <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+            <administrativeGenderCode code="M"
+                                      codeSystem="2.16.840.1.113883.5.1"
+                                      displayName="Man"/>
             <birthTime value="19540608"/>
          </patient>
       </patientRole>
    </recordTarget>
    <component typeCode="COMP">
-      <substanceAdministration classCode="SBADM" moodCode="RQO">
+      <substanceAdministration classCode="SBADM"
+                               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
          <id extension="MBH_907_Lengte_Gewicht_MA_1-MLN"
@@ -38,9 +40,9 @@
                displayName="Medicatieafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 13 nov 2020, 1 maal per dag 1 stuk, Oraal</text>
+         <text mediaType="text/plain">Vanaf 1 jan 2024, 1 maal per dag 1 stuk, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20201113000000"/>
+            <low value="20240101000000+0100"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
          <routeCode code="9"
@@ -50,7 +52,8 @@
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
                   <code code="49484"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
                         displayName="ACETYLSALICYLZUUR TABLETMSR 100MG"
@@ -64,9 +67,10 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20201113070500"/>
+            <time value="20240101070500+0100"/>
             <assignedAuthor>
-               <id extension="000001111" root="2.16.528.1.1007.3.1"/>
+               <id extension="000001111"
+                   root="2.16.528.1.1007.3.1"/>
                <code code="0100"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
                      displayName="Huisartsen, niet nader gespecificeerd"
@@ -80,7 +84,8 @@
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                  <id extension="00001111"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Huisartsenpraktijk Pulver &amp; Partners</name>
                   <addr use="WP">
                      <streetName>Dorpsstraat</streetName>
@@ -92,38 +97,51 @@
             </assignedAuthor>
          </author>
          <entryRelationship typeCode="COMP">
-            <observation classCode="OBS" moodCode="EVN">
+            <observation classCode="OBS"
+                         moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.30"/>
                <code code="8302-2"
                      codeSystem="2.16.840.1.113883.6.1"
                      codeSystemName="LOINC"
                      displayName="Body height"/>
-               <effectiveTime value="20201113070500"/>
-               <value xsi:type="PQ" value="155" unit="cm"/>
+               <effectiveTime value="20240101070500+0100"/>
+               <value xsi:type="PQ"
+                      value="155"
+                      unit="cm"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
-            <observation classCode="OBS" moodCode="EVN">
+            <observation classCode="OBS"
+                         moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.28"/>
                <code code="29463-7"
                      codeSystem="2.16.840.1.113883.6.1"
                      displayName="Body Weight"/>
-               <effectiveTime value="20201113070500"/>
-               <value xsi:type="PQ" value="54" unit="kg"/>
+               <effectiveTime value="20240101070500+0100"/>
+               <value xsi:type="PQ"
+                      value="54"
+                      unit="kg"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
-               <effectiveTime xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="true">
+               <effectiveTime xsi:type="hl7nl:PIVL_TS"
+                              operator="A"
+                              isFlexible="true">
                   <hl7nl:frequency>
-                     <hl7nl:numerator xsi:type="hl7nl:INT" value="1"/>
-                     <hl7nl:denominator xsi:type="hl7nl:PQ" value="1" unit="d"/>
+                     <hl7nl:numerator xsi:type="hl7nl:INT"
+                                      value="1"/>
+                     <hl7nl:denominator xsi:type="hl7nl:PQ"
+                                        value="1"
+                                        unit="d"/>
                   </hl7nl:frequency>
                </effectiveTime>
                <doseQuantity>
-                  <center value="1" unit="1">
+                  <center value="1"
+                          unit="1">
                      <translation value="1"
                                   code="245"
                                   displayName="stuk"
@@ -134,8 +152,10 @@
                <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                    extension="MBH_907_Lengte_Gewicht-MLN"/>
@@ -147,7 +167,8 @@
       </substanceAdministration>
    </component>
    <component typeCode="COMP">
-      <supply classCode="SPLY" moodCode="RQO">
+      <supply classCode="SPLY"
+              moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9257"/>
          <id extension="MBH_907_Lengte_Gewicht_VV_1-MLN"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
@@ -155,7 +176,8 @@
                displayName="Verstrekkingsverzoek"
                code="52711000146108"
                codeSystem="2.16.840.1.113883.6.96"/>
-         <quantity value="180" unit="1">
+         <quantity value="180"
+                   unit="1">
             <translation value="180"
                          code="245"
                          displayName="stuk"
@@ -165,7 +187,8 @@
          <product>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
                   <code code="49484"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
                         displayName="ACETYLSALICYLZUUR TABLETMSR 100MG"
@@ -182,15 +205,17 @@
             <assignedEntity>
                <id nullFlavor="NI"/>
                <representedOrganization>
-                  <id extension="01236578" root="2.16.528.1.1007.3.3"/>
+                  <id extension="01236578"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek De Gulle Gaper</name>
                </representedOrganization>
             </assignedEntity>
          </performer>
          <author>
-            <time value="20201113070500"/>
+            <time value="20240101070500+0100"/>
             <assignedAuthor>
-               <id extension="000001111" root="2.16.528.1.1007.3.1"/>
+               <id extension="000001111"
+                   root="2.16.528.1.1007.3.1"/>
                <code code="0100"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
                      displayName="Huisartsen, niet nader gespecificeerd"
@@ -204,7 +229,8 @@
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                  <id extension="00001111"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Huisartsenpraktijk Pulver &amp; Partners</name>
                   <addr use="WP">
                      <streetName>Dorpsstraat</streetName>
@@ -216,7 +242,8 @@
             </assignedAuthor>
          </author>
          <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
                <id extension="MBH_907_Lengte_Gewicht_MA_1-MLN"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -227,8 +254,10 @@
                <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                    extension="MBH_907_Lengte_Gewicht-MLN"/>

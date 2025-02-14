@@ -1,6 +1,10 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-tst-MA-Scenarioset0-v30"/>
    <type value="transaction"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
       <fullUrl value="urn:uuid:f94e165d-6a98-11ec-0000-020000000000"/>
       <resource>
@@ -12,7 +16,7 @@
                <valueDateTime value="${DATE, T, D, -20}T08:00:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 20 dagen, tot en met T + 9 dagen, 2 maal per dag 1 stuk, oraal"/>
+               <valueString value="2 maal per dag 1 stuk, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -104,7 +108,7 @@
                <valueDateTime value="${DATE, T, D, -100}T08:04:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 100 dagen, tot en met T - 72 dagen, 1 maal per dag 10 ml, oraal"/>
+               <valueString value="1 maal per dag 10 ml, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -186,7 +190,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b14c835d-6b5b-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:16323b3e-6b68-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -196,7 +200,7 @@
                <valueDateTime value="${DATE, T, D, -50}T08:10:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 50 dagen, tot en met T - 11 dagen, 2 maal per dag 50 ml, oraal"/>
+               <valueString value="2 maal per dag 50 ml, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -278,7 +282,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:89abbc4b-6b4c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:82991b3e-6aab-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -288,7 +292,7 @@
                <valueDateTime value="${DATE, T, D, -10}T08:12:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 10 dagen, tot en met T + 19 dagen, 1 maal per dag 1 stuk, oraal"/>
+               <valueString value="1 maal per dag 1 stuk, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -370,7 +374,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ee6ed55d-6b27-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c1f23b3e-6b10-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -380,7 +384,7 @@
                <valueDateTime value="${DATE, T, D, -50}T08:15:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 50 dagen, gedurende 7 dagen, 4 maal per dag 2 stuks, oraal"/>
+               <valueString value="4 maal per dag 2 stuks, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -469,7 +473,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc83e45d-6b45-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:4548030b-6b6b-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -479,7 +483,7 @@
                <valueDateTime value="${DATE, T, D, -5}T08:18:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 5 dagen, tot en met T + 1 dag, 3 maal per dag 1 stuk, oraal"/>
+               <valueString value="3 maal per dag 1 stuk, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -757,6 +761,34 @@
       </request>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:3286aae9-6a99-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="3956"/>
+                  <display value="ACETYLSALICYLZUUR TABLET 100MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="12548"/>
+                  <display value="ACETYLSALICYLZUUR TABLET 100MG"/>
+               </coding>
+               <text value="ACETYLSALICYLZUUR TABLET 100MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
       <fullUrl value="urn:uuid:53c5091d-6aef-11ec-0000-020000000000"/>
       <resource>
          <Medication>
@@ -776,6 +808,62 @@
                   <display value="IBUPROFEN TABLET 600MG"/>
                </coding>
                <text value="IBUPROFEN TABLET 600MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:f516151d-6aaf-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="353"/>
+                  <display value="OXAZEPAM TABLET 10MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="1023"/>
+                  <display value="OXAZEPAM TABLET 10MG"/>
+               </coding>
+               <text value="OXAZEPAM TABLET 10MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cfa3aee9-6b5c-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="67903"/>
+                  <display value="PARACETAMOL 500MG TABLET"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="2194"/>
+                  <display value="PARACETAMOL 500MG TABLET"/>
+               </coding>
+               <text value="PARACETAMOL 500MG TABLET"/>
             </code>
          </Medication>
       </resource>
@@ -832,90 +920,6 @@
                   <display value="VLOEIBARE VOEDING MET O.A. VITAMINE K"/>
                </coding>
                <text value="VLOEIBARE VOEDING MET O.A. VITAMINE K"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:3286aae9-6a99-11ec-0000-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="3956"/>
-                  <display value="ACETYLSALICYLZUUR TABLET 100MG"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="12548"/>
-                  <display value="ACETYLSALICYLZUUR TABLET 100MG"/>
-               </coding>
-               <text value="ACETYLSALICYLZUUR TABLET 100MG"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:cfa3aee9-6b5c-11ec-0000-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="67903"/>
-                  <display value="PARACETAMOL 500MG TABLET"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="2194"/>
-                  <display value="PARACETAMOL 500MG TABLET"/>
-               </coding>
-               <text value="PARACETAMOL 500MG TABLET"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:f516151d-6aaf-11ec-0000-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="353"/>
-                  <display value="OXAZEPAM TABLET 10MG"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="1023"/>
-                  <display value="OXAZEPAM TABLET 10MG"/>
-               </coding>
-               <text value="OXAZEPAM TABLET 10MG"/>
             </code>
          </Medication>
       </resource>

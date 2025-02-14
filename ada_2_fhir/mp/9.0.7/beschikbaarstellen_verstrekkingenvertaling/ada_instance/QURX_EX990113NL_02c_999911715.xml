@@ -1,5 +1,5 @@
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_verstrekkingenvertaling.xsd">
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_verstrekkingenvertaling.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <meta status="new"
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
@@ -8,9 +8,9 @@
    <data>
       <beschikbaarstellen_verstrekkingenvertaling app="mp-mp907"
                                                   shortName="beschikbaarstellen_verstrekkingenvertaling"
-                                                  formName="uitwisselen_verstrekkingenvertaling"
-                                                  transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.102"
-                                                  transactionEffectiveDate="2016-03-23T16:32:43"
+                                                  formName="verstrekkingenvertaling"
+                                                  transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.162"
+                                                  transactionEffectiveDate="2018-11-29T13:56:11"
                                                   prefix="mp-"
                                                   language="nl-NL"
                                                   title="Generated from HL7v3 verstrekkingenlijst 6.12 xml"
@@ -40,13 +40,16 @@
                       codeSystemName="AdministrativeGender"
                       displayName="Vrouw"/>
          </patient>
-         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092"><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
+            <!--MBH id copied from 6.12 dispense identifier-->
             <identificatie value="14606290-2dbd-11e8-b566-0800200c9a66"
                            root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
-            <toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20132"><!--afspraak_datum_tijd is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20132">
+               <!--afspraak_datum_tijd is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
                <afspraakdatum conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20133"
-                              value="T-100D"/>
+                              value="T-100D"
+                              datatype="datetime"/>
                <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22097">
                   <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20210">
                      <zorgaanbieder_identificatie_nummer value="01234567"
@@ -67,7 +70,7 @@
                </geneesmiddel_bij_toedieningsafspraak>
                <!--mp9-gebruiksinstructie-from-mp612-2-->
                <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22098">
-                  <omschrijving value="Wordt gegenereerd."
+                  <omschrijving value="zo nodig bij pijn , maximaal 6 stuks per dag"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22619"/>
                   <toedieningsweg conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22620"
                                   code="NI"
@@ -75,8 +78,13 @@
                                   displayName="geen informatie"/>
                   <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22623">
-                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22626"><!--mp9-keerdosis--><!--geen keerdosis in input-->
-                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22631"><!--mp9-vaste-frequentie-from-mp-612--><!--geen frequentie in input--></toedieningsschema>
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22626">
+                        <!--mp9-keerdosis-->
+                        <!--geen keerdosis in input-->
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22631">
+                           <!--mp9-vaste-frequentie-from-mp-612-->
+                           <!--geen frequentie in input-->
+                        </toedieningsschema>
                         <zo_nodig conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22639">
                            <criterium conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22640">
                               <code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22641"
@@ -86,7 +94,8 @@
                            </criterium>
                            <!--maximale dosering-->
                            <maximale_dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22643">
-                              <aantal value="6" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22644"/>
+                              <aantal value="6"
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22644"/>
                               <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22645"
                                        code="245"
                                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -107,7 +116,8 @@
                <datum nullFlavor="NI"
                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20272"/>
                <aanschrijfdatum value="T-100D"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22500"/>
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22500"
+                                datatype="datetime"/>
                <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20858">
                   <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19791">
                      <zorgaanbieder_identificatie_nummer value="01234567"
@@ -118,7 +128,8 @@
                   </zorgaanbieder>
                </verstrekker>
                <verstrekte_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20923">
-                  <aantal value="20" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22601"/>
+                  <aantal value="20"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22601"/>
                   <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22602"
                            code="245"
                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -135,13 +146,16 @@
                </verstrekt_geneesmiddel>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092"><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
+            <!--MBH id copied from 6.12 dispense identifier-->
             <identificatie value="13438b70-2dbe-11e8-b566-0800200c9a66"
                            root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
-            <toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20132"><!--afspraak_datum_tijd is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20132">
+               <!--afspraak_datum_tijd is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
                <afspraakdatum conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20133"
-                              value="T-107D"/>
+                              value="T-107D"
+                              datatype="datetime"/>
                <gebruiksperiode value="7"
                                 unit="dag"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22660"/>
@@ -165,7 +179,7 @@
                </geneesmiddel_bij_toedieningsafspraak>
                <!--mp9-gebruiksinstructie-from-mp612-2-->
                <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22098">
-                  <omschrijving value="Wordt gegenereerd."
+                  <omschrijving value="gedurende 7 dagen, 1 maal per 4 uur 1 stuk"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22619"/>
                   <toedieningsweg conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22620"
                                   code="NI"
@@ -173,20 +187,24 @@
                                   displayName="geen informatie"/>
                   <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22623">
-                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22626"><!--mp9-keerdosis-->
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22626">
+                        <!--mp9-keerdosis-->
                         <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22627">
                            <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22628">
-                              <vaste_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22699"/>
+                              <vaste_waarde value="1"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22699"/>
                            </aantal>
                            <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22629"
                                     code="245"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="stuk"/>
                         </keerdosis>
-                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22631"><!--mp9-vaste-frequentie-from-mp-612-->
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22631">
+                           <!--mp9-vaste-frequentie-from-mp-612-->
                            <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22632">
                               <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22633">
-                                 <vaste_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22702"/>
+                                 <vaste_waarde value="1"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22702"/>
                               </aantal>
                               <tijdseenheid value="4"
                                             unit="uur"
@@ -204,7 +222,8 @@
                <datum nullFlavor="NI"
                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20272"/>
                <aanschrijfdatum value="T-107D"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22500"/>
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22500"
+                                datatype="datetime"/>
                <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20858">
                   <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19791">
                      <zorgaanbieder_identificatie_nummer value="01234567"
@@ -215,7 +234,8 @@
                   </zorgaanbieder>
                </verstrekker>
                <verstrekte_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20923">
-                  <aantal value="40" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22601"/>
+                  <aantal value="40"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22601"/>
                   <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22602"
                            code="245"
                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -232,12 +252,16 @@
                </verstrekt_geneesmiddel>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092"><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
+            <!--MBH id copied from 6.12 dispense identifier-->
             <identificatie value="a083ca80-5772-11e8-b566-0800200c9a66"
                            root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
-            <toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20132"><!--afspraak_datum_tijd is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
-               <afspraakdatum conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20133" value="T"/>
+            <toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20132">
+               <!--afspraak_datum_tijd is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <afspraakdatum conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20133"
+                              value="T"
+                              datatype="datetime"/>
                <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22097">
                   <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20210">
                      <zorgaanbieder_identificatie_nummer value="01234567"
@@ -262,14 +286,16 @@
                         <ingredient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22294">
                            <sterkte conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22295">
                               <hoeveelheid_ingredient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22296">
-                                 <waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22964" value="10"/>
+                                 <waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22964"
+                                         value="10"/>
                                  <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22965"
                                           code="215"
                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                           displayName="gram"/>
                               </hoeveelheid_ingredient>
                               <hoeveelheid_product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22297">
-                                 <waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22966" value="100"/>
+                                 <waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22966"
+                                         value="100"/>
                                  <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22967"
                                           code="215"
                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -292,7 +318,8 @@
                                           displayName="voldoende hoeveelheid"/>
                               </hoeveelheid_ingredient>
                               <hoeveelheid_product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22297">
-                                 <waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22966" value="100"/>
+                                 <waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22966"
+                                         value="100"/>
                                  <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22967"
                                           code="215"
                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -309,7 +336,7 @@
                </geneesmiddel_bij_toedieningsafspraak>
                <!--mp9-gebruiksinstructie-from-mp612-2-->
                <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22098">
-                  <omschrijving value="Wordt gegenereerd."
+                  <omschrijving value="zo nodig"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22619"/>
                   <toedieningsweg conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22620"
                                   code="NI"
@@ -317,8 +344,13 @@
                                   displayName="geen informatie"/>
                   <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22623">
-                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22626"><!--mp9-keerdosis--><!--geen keerdosis in input-->
-                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22631"><!--mp9-vaste-frequentie-from-mp-612--><!--geen frequentie in input--></toedieningsschema>
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22626">
+                        <!--mp9-keerdosis-->
+                        <!--geen keerdosis in input-->
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22631">
+                           <!--mp9-vaste-frequentie-from-mp-612-->
+                           <!--geen frequentie in input-->
+                        </toedieningsschema>
                         <zo_nodig conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22639">
                            <criterium conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22640">
                               <code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22641"
@@ -337,7 +369,9 @@
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20271"/>
                <datum nullFlavor="NI"
                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20272"/>
-               <aanschrijfdatum value="T" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22500"/>
+               <aanschrijfdatum value="T"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22500"
+                                datatype="datetime"/>
                <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20858">
                   <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19791">
                      <zorgaanbieder_identificatie_nummer value="01234567"
@@ -348,7 +382,8 @@
                   </zorgaanbieder>
                </verstrekker>
                <verstrekte_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20923">
-                  <aantal value="100" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22601"/>
+                  <aantal value="100"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22601"/>
                   <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22602"
                            code="215"
                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -369,14 +404,16 @@
                         <ingredient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22683">
                            <sterkte conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22684">
                               <hoeveelheid_ingredient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22685">
-                                 <waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22686" value="10"/>
+                                 <waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22686"
+                                         value="10"/>
                                  <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22687"
                                           code="215"
                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                           displayName="gram"/>
                               </hoeveelheid_ingredient>
                               <hoeveelheid_product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22688">
-                                 <waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22689" value="100"/>
+                                 <waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22689"
+                                         value="100"/>
                                  <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22690"
                                           code="215"
                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -399,7 +436,8 @@
                                           displayName="voldoende hoeveelheid"/>
                               </hoeveelheid_ingredient>
                               <hoeveelheid_product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22688">
-                                 <waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22689" value="100"/>
+                                 <waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22689"
+                                         value="100"/>
                                  <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22690"
                                           code="215"
                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
