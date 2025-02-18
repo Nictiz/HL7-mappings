@@ -1,6 +1,8 @@
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatiegegevens.xsd">
-   <meta status="new" created-by="generated" last-update-by="generated"/>
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatiegegevens.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"/>
    <data>
       <sturen_medicatiegegevens app="mp-mp93"
                                 shortName="sturen_medicatiegegevens"
@@ -10,7 +12,7 @@
                                 prefix="mp-"
                                 language="nl-NL"
                                 title="Generated from HL7 FHIR medicatiegegevens"
-                                id="5b1b5f89-a281-11ef-1118-020000000000">
+                                id="a3ca2b6b-d4db-11ef-9291-020000000000">
          <patient>
             <naamgegevens>
                <initialen value="M."/>
@@ -21,21 +23,28 @@
                   <achternaam value="XXX_Pherai"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999900870" root="2.16.840.1.113883.2.4.6.3"/>
-            <geboortedatum value="1985-11-01" datatype="datetime"/>
-            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <identificatienummer value="999900870"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1985-11-01"
+                           datatype="datetime"/>
+            <geslacht code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"/>
          </patient>
          <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_wdsmtd1" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <identificatie value="MBH_300_wdsmtd1"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <medicatietoediening>
                <identificatie value="MBH_300_wdsmtd1_MTD"
                               root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
                <toedienings_product>
-                  <farmaceutisch_product value="urn-uuid-5b1b60f0-a281-11ef-1118-020000000000"
+                  <farmaceutisch_product value="urn-uuid-a3ca2c46-d4db-11ef-9291-020000000000"
                                          datatype="reference"/>
                </toedienings_product>
-               <registratie_datum_tijd value="2022-12-12T20:30:00+01:00" datatype="datetime"/>
-               <toedienings_datum_tijd value="2022-12-12T20:30:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-12T20:30:00+01:00"
+                                       datatype="datetime"/>
+               <toedienings_datum_tijd value="2022-12-12T20:30:00+01:00"
+                                       datatype="datetime"/>
                <toegediende_hoeveelheid>
                   <aantal value="2"/>
                   <eenheid code="245"
@@ -55,16 +64,20 @@
                   <identificatie value="MBH_300_wdsmtd1_TA"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                </relatie_toedieningsafspraak>
+               <relatie_wisselend_doseerschema>
+                  <identificatie value="MBH_300_wdsmtd1_WDS_opstartschema"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+               </relatie_wisselend_doseerschema>
                <toediener>
                   <zorgverlener>
-                     <zorgverlener value="urn-uuid-5b1b6028-a281-11ef-1118-020000000000"
+                     <zorgverlener value="urn-uuid-a3ca2bba-d4db-11ef-9291-020000000000"
                                    datatype="reference"/>
                   </zorgverlener>
                </toediener>
             </medicatietoediening>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-5b1b60f0-a281-11ef-1118-020000000000">
+            <farmaceutisch_product id="urn-uuid-a3ca2c46-d4db-11ef-9291-020000000000">
                <product_code code="856126"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -79,8 +92,9 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="ACENOCOUMAROL TABLET 1MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-5b1b6028-a281-11ef-1118-020000000000">
-               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+            <zorgverlener id="urn-uuid-a3ca2bba-d4db-11ef-9291-020000000000">
+               <zorgverlener_identificatienummer value="000001111"
+                                                 root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Peter"/>
                   <geslachtsnaam>
@@ -95,11 +109,12 @@
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-5b1b6096-a281-11ef-1118-020000000000"/>
+                                 value="urn-uuid-a3ca2c0a-d4db-11ef-9291-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-5b1b6096-a281-11ef-1118-020000000000">
-               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+            <zorgaanbieder id="urn-uuid-a3ca2c0a-d4db-11ef-9291-020000000000">
+               <zorgaanbieder_identificatienummer value="00001111"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>

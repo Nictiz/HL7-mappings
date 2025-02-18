@@ -1,6 +1,8 @@
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatiegegevens.xsd">
-   <meta status="new" created-by="generated" last-update-by="generated"/>
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatiegegevens.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"/>
    <data>
       <sturen_medicatiegegevens app="mp-mp93"
                                 shortName="sturen_medicatiegegevens"
@@ -10,7 +12,7 @@
                                 prefix="mp-"
                                 language="nl-NL"
                                 title="Generated from HL7 FHIR medicatiegegevens"
-                                id="5b25525f-a281-11ef-1652-020000000000">
+                                id="a35309cd-d4db-11ef-9952-020000000000">
          <patient>
             <naamgegevens>
                <initialen value="C."/>
@@ -21,9 +23,13 @@
                   <achternaam value="XXX_Coenen"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999900420" root="2.16.840.1.113883.2.4.6.3"/>
-            <geboortedatum value="1963-10-17" datatype="datetime"/>
-            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <identificatienummer value="999900420"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1963-10-17"
+                           datatype="datetime"/>
+            <geslacht code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"/>
          </patient>
          <medicamenteuze_behandeling>
             <identificatie value="MBH_300_toelichting"
@@ -31,10 +37,11 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_toelichting_MVE"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2022-12-11T09:02:00+01:00"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                                  value="2022-12-11T09:02:00+01:00"/>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-5b255312-a281-11ef-1652-020000000000"/>
+                                 value="urn-uuid-a3530a26-d4db-11ef-9952-020000000000"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="30"/>
@@ -43,7 +50,7 @@
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-5b2553a8-a281-11ef-1652-020000000000"
+                  <farmaceutisch_product value="urn-uuid-a3530a8a-d4db-11ef-9952-020000000000"
                                          datatype="reference"/>
                </verstrekt_geneesmiddel>
                <toelichting value="Extra verstrekkingsverzoek omdat patient medicatie is kwijtgeraakt"/>
@@ -59,10 +66,11 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_aanvullendeinformatiewensen_MVE"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2022-12-27T09:06:00+01:00"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                                  value="2022-12-27T09:06:00+01:00"/>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-5b255312-a281-11ef-1652-020000000000"/>
+                                 value="urn-uuid-a3530a26-d4db-11ef-9952-020000000000"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="40"/>
@@ -71,7 +79,7 @@
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-5b25538a-a281-11ef-1652-020000000000"
+                  <farmaceutisch_product value="urn-uuid-a3530a76-d4db-11ef-9952-020000000000"
                                          datatype="reference"/>
                </verstrekt_geneesmiddel>
                <medicatieverstrekking_aanvullende_informatie code="1"
@@ -84,7 +92,7 @@
             </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-5b25538a-a281-11ef-1652-020000000000">
+            <farmaceutisch_product id="urn-uuid-a3530a76-d4db-11ef-9952-020000000000">
                <product_code code="425087"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -99,7 +107,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="FENETICILLINE CAPSULE 500MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-5b2553a8-a281-11ef-1652-020000000000">
+            <farmaceutisch_product id="urn-uuid-a3530a8a-d4db-11ef-9952-020000000000">
                <product_code code="598860"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -114,8 +122,9 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="FUROSEMIDE 40MG TABLET"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="urn-uuid-5b255312-a281-11ef-1652-020000000000">
-               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+            <zorgaanbieder id="urn-uuid-a3530a26-d4db-11ef-9952-020000000000">
+               <zorgaanbieder_identificatienummer value="01236578"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>
