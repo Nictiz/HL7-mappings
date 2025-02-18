@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EpisodeOfCare xmlns="http://hl7.org/fhir">
+   <id value="22454981-ee09-11ef-1780-020000000000"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-episodeofcare"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MaternalRecord"/>
+   </meta>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="224543dd-ee09-11ef-1780-020000000000"/>
+   </identifier>
+   <status value="finished"/>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="364320009"/>
+         <display value="observatie betreffende zwangerschap (waarneembare entiteit)"/>
+      </coding>
+   </type>
+   <diagnosis>
+      <condition>
+         <reference value="Condition/2245488f-ee09-11ef-1780-020000000000"/>
+         <display value="Zwangerschap 1 Vrouw2-XXX_Swart"/>
+      </condition>
+   </diagnosis>
+   <patient>
+      <reference value="Patient/FIONA-F-XXX-SWART"/>
+      <display value="Fiona F XXX_Swart"/>
+   </patient>
+   <managingOrganization>
+      <reference value="Organization/nl-core-organization-mm-gbz-2.16.528.1.1007.3.3-08001234"/>
+      <display value="Verloskundigenpraktijk 't Groen"/>
+   </managingOrganization>
+   <period>
+      <start value="${DATE, T, D, -205}"/>
+      <end value="${DATE, T, D, -1}"/>
+   </period>
+   <careManager>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-mm-gbz-123400010800"/>
+            <display value="Gemma XXX_Groeneboom XXX_Gras || Verloskundigen, niet nader gespecificeerd || Verloskundigenpraktijk 't Groen"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/nl-core-practitioner-mm-gbz-2.16.528.1.1007.3.1-12340001"/>
+      <display value="Gemma XXX_Groeneboom XXX_Gras"/>
+   </careManager>
+</EpisodeOfCare>

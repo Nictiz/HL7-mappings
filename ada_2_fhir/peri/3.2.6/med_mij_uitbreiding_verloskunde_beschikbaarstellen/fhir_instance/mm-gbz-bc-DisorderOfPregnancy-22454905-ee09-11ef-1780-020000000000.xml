@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Condition xmlns="http://hl7.org/fhir">
+   <id value="22454905-ee09-11ef-1780-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DisorderOfPregnancy"/>
+   </meta>
+   <extension url="http://hl7.org/fhir/StructureDefinition/condition-partOf">
+      <valueReference>
+         <reference value="Condition/2245488f-ee09-11ef-1780-020000000000"/>
+         <display value="Zwangerschap 1 Vrouw2-XXX_Swart"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="224543fb-ee09-11ef-1780-020000000000"/>
+   </identifier>
+   <clinicalStatus value="active"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="173300003"/>
+         <display value="zwangerschapsstoornis (aandoening)"/>
+      </coding>
+   </category>
+   <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="22033007"/>
+      <display value="intra-uteriene groeiretardatie (aandoening)"/>
+   </coding>
+   <subject>
+      <reference value="Patient/FIONA-F-XXX-SWART"/>
+      <display value="Fiona F XXX_Swart"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/22454981-ee09-11ef-1780-020000000000"/>
+      <display value="Zwangerschap 1 Vrouw2-XXX_Swart"/>
+   </context>
+   <onsetDateTime value="${DATE, T, D, -76}"/>
+   <note>
+      <text value="tweede kind blijft erg achter in ontwikkeling"/>
+   </note>
+</Condition>
