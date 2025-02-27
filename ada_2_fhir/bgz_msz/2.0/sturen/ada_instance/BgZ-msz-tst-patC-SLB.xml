@@ -4,18 +4,18 @@
          created-by="zibsada"
          last-update-by="zibsada"
          creation-date="2024-05-29T08:53:04.237Z"
-         last-update-date="2025-02-05T17:54:42.473Z"/>
+         last-update-date="2025-02-21T08:15:14.433Z"/>
    <data>
       <sturen app="bgz2017-2.0"
               shortName="sturen"
-              formName="basisgegevensset_zorg_2017_bg_z"
+              formName="sturen"
               transactionRef="2.16.840.1.113883.2.4.3.11.60.42.4.42"
               transactionEffectiveDate="2024-03-27T16:57:34"
               versionDate="development"
               prefix="bgz2017-"
               language="nl-NL"
               title="BgZ msz patC sturen - transactie"
-              desc="&lt;div&gt;Minimale set&lt;/div&gt;"
+              desc="&lt;div&gt;Minimale set.&lt;/div&gt;"
               id="BgZ-msz-tst-patC-SLB">
          <demografie_en_identificatie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.48">
             <patient conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.74"
@@ -308,15 +308,25 @@
                                 code="active"
                                 codeSystem="2.16.840.1.113883.5.14"
                                 displayName="Actief"/>
-               <reactie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.219">
-                  <symptoom conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.220"
-                            value="6"
-                            code="126485001"
-                            codeSystem="2.16.840.1.113883.6.96"
-                            displayName="Urticaria"/>
-               </reactie>
             </allergie_intolerantie>
          </allergieen>
+         <medicatie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.620">
+            <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.997"
+                               id="bgz-msz-patC-MedAgreement1">
+               <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1.997">
+                  <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11.997">
+                     <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12.997">
+                        <patient value="bgz-msz-patC"
+                                 datatype="reference"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146.997"/>
+                     </patient>
+                  </onderwerp>
+               </zibroot>
+               <medicatieafspraak_datum_tijd value="T-44D"
+                                             datatype="datetime"
+                                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1010"/>
+            </medicatieafspraak>
+         </medicatie>
          <medische_hulpmiddelen conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.205">
             <medisch_hulpmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.331"
                                 id="bgz-msz-patC-medDevice">
@@ -555,8 +565,7 @@
             </zorgaanbieder>
          </zorgsetting>
          <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.593">
-            <metagegevens conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.594"
-                          id="bgz-msz-patC-prov1">
+            <metagegevens conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.594">
                <doel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.687">
                   <probleem value="bgz-msz-patC-problem1"
                             datatype="reference"
@@ -576,6 +585,13 @@
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.686"/>
                </actor>
             </metagegevens>
+            <farmaceutisch_product conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1037"
+                                   id="bgz-msz-patC-drug1">
+               <product_code code="2194"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             displayName="PARACETAMOL TABLET 500MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1047"/>
+            </farmaceutisch_product>
          </bouwstenen>
       </sturen>
    </data>
