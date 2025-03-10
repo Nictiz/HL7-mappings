@@ -1,0 +1,129 @@
+<Patient xmlns="http://hl7.org/fhir">
+   <id value="MICHELLE-M-D--MICHELLE-D-DERENCOURT-VERHEUL"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>Id 999996976 (BSN), <span title="Naamsamenstelling: Eigennaam gevolgd door partnernaam">Michelle M.D. D Derencourt-Verheul</span> (Michelle), Vrouw, 30 juni 1963, Meerling, <span title="Domestic partner (T - v3/MaritalStatus)">Domestic partner</span>
+         </div>
+         <div>
+            <a href="tel:+316-99990002">+316-99990002</a> (Mobiel Privé), <a href="mailto:MichelleDerenC@test.nl">MichelleDerenC@test.nl</a> (E-mail Privé)</div>
+         <div>Weena 198, 3012NJ Rotterdam, Netherlands (the) (officieel Privé (hoofd) Bezoek)</div>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+      <value value="999996976"/>
+   </identifier>
+   <name>
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+         <valueCode value="NL4"/>
+      </extension>
+      <family value="D Derencourt-Verheul">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+            <valueString value="D"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="Derencourt"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+            <valueString value="Verheul"/>
+         </extension>
+      </family>
+      <given value="Michelle">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <given value="M.D.">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="IN"/>
+         </extension>
+      </given>
+      <given value="Michelle">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="CL"/>
+         </extension>
+      </given>
+   </name>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="MC"/>
+               <display value="Mobile Phone"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="+316-99990002"/>
+      <use value="home"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="MichelleDerenC@test.nl"/>
+      <use value="home"/>
+   </telecom>
+   <gender value="female">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+               <code value="F"/>
+               <display value="Female"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </gender>
+   <birthDate value="1963-06-30"/>
+   <deceasedBoolean value="false"/>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="HP"/>
+               <display value="Officieel adres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
+         <valueBoolean value="true"/>
+      </extension>
+      <use value="home"/>
+      <type value="physical"/>
+      <line value="Weena 198">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Weena"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="198"/>
+         </extension>
+      </line>
+      <city value="Rotterdam"/>
+      <postalCode value="3012NJ"/>
+      <country value="Netherlands (the)">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:iso:std:iso:3166"/>
+                  <version value="2020-10-26T00:00:00"/>
+                  <code value="NL"/>
+                  <display value="Netherlands (the)"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+   <maritalStatus>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/MaritalStatus"/>
+         <code value="T"/>
+         <display value="Domestic partner"/>
+      </coding>
+   </maritalStatus>
+   <multipleBirthBoolean value="true"/>
+</Patient>

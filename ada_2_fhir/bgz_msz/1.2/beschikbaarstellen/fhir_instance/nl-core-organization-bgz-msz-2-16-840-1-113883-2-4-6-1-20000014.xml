@@ -1,0 +1,74 @@
+<Organization xmlns="http://hl7.org/fhir">
+   <id value="nl-core-organization-bgz-msz-2-16-840-1-113883-2-4-6-1-20000014"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Organisatie. Id: bgz-msz-patD-HealthcareProv4 (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), 20000014 (AGB-Z)</caption>
+            <tbody>
+               <tr>
+                  <th>Naam</th>
+                  <td>Ziekenhuis de grote terts</td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:021-9990110">021-9990110</a> (Vast telefoonnummer Werk)</td>
+               </tr>
+               <tr>
+                  <th>Adres</th>
+                  <td>Transfusieplein 9902, 9999ZZ de Eed (WP)</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patD-HealthcareProv4"/>
+   </identifier>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+      <value value="20000014"/>
+   </identifier>
+   <name value="Ziekenhuis de grote terts"/>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Land Line"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="021-9990110"/>
+      <use value="work"/>
+   </telecom>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="WP"/>
+               <display value="Werkadres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="work"/>
+      <line value="Transfusieplein 9902">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Transfusieplein"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="9902"/>
+         </extension>
+      </line>
+      <city value="de Eed"/>
+      <postalCode value="9999ZZ"/>
+   </address>
+</Organization>

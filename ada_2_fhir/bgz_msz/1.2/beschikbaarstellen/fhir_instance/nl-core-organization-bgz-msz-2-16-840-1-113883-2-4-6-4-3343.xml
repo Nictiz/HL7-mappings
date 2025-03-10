@@ -1,0 +1,66 @@
+<Organization xmlns="http://hl7.org/fhir">
+   <id value="nl-core-organization-bgz-msz-2-16-840-1-113883-2-4-6-4-3343"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Organisatie. Id: 3343 (UZOVI)</caption>
+            <tbody>
+               <tr>
+                  <th>Naam</th>
+                  <td>ONVZ Zorgverzekeraar</td>
+               </tr>
+               <tr>
+                  <th>Adres</th>
+                  <td>Coolsingel 231 Tijdelijk adres, 3012AG Rotterdam, Netherlands (the) (TMP)</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/uzovi"/>
+      <value value="3343"/>
+   </identifier>
+   <name value="ONVZ Zorgverzekeraar"/>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="TMP"/>
+               <display value="Tijdelijk adres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="temp"/>
+      <line value="Coolsingel 231 Tijdelijk adres">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Coolsingel"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="231"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
+            <valueString value="Tijdelijk adres"/>
+         </extension>
+      </line>
+      <city value="Rotterdam"/>
+      <postalCode value="3012AG"/>
+      <country value="Netherlands (the)">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:iso:std:iso:3166"/>
+                  <version value="2020-10-26T00:00:00"/>
+                  <code value="NL"/>
+                  <display value="Netherlands (the)"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+</Organization>

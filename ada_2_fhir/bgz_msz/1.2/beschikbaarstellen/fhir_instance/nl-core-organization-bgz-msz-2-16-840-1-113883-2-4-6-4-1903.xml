@@ -1,0 +1,93 @@
+<Organization xmlns="http://hl7.org/fhir">
+   <id value="nl-core-organization-bgz-msz-2-16-840-1-113883-2-4-6-4-1903"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Organisatie. Id: 1903 (UZOVI)</caption>
+            <tbody>
+               <tr>
+                  <th>Naam</th>
+                  <td>Doordacht Verzekeringen</td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:021-9990100">021-9990100</a> (Vast telefoonnummer Tijdelijk)<br/>
+                     <a href="mailto:test@mailtestweb.nl">test@mailtestweb.nl</a> (E-mail Werk)<br/>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Adres</th>
+                  <td>Afrikanerplein 1, 1091PN Amsterdam, Nederland (officieel Privé (hoofd) Bezoek)</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/uzovi"/>
+      <value value="1903"/>
+   </identifier>
+   <name value="Doordacht Verzekeringen"/>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Land Line"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="021-9990100"/>
+      <use value="temp"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="test@mailtestweb.nl"/>
+      <use value="work"/>
+   </telecom>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="HP"/>
+               <display value="Officieel adres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
+         <valueBoolean value="true"/>
+      </extension>
+      <use value="home"/>
+      <type value="physical"/>
+      <line value="Afrikanerplein 1">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Afrikanerplein"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="1"/>
+         </extension>
+      </line>
+      <city value="Amsterdam"/>
+      <postalCode value="1091PN"/>
+      <country value="Nederland">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.16.34"/>
+                  <version value="2020-03-31T00:00:00"/>
+                  <code value="6030"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+</Organization>
