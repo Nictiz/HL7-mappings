@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html lang="en">
+   <head>
+      <title>RelatedPerson - -relatedperson-mm-gbz-LILIANLLILIANVAN-DEN-XXX-BERGXXX-YZENDOORN</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 100%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>
+            <span title="Naamsamenstelling: Partnernaam gevolgd door eigennaam">Lilian L XXX_Yzendoorn-van den XXX_Berg</span> (Lilian), Genderidentiteit: <b>
+               <span title="niet-binair (non-binary - 2.16.840.1.113883.4.642.4.973)">niet-binair</span>
+            </b>
+         </div>
+         <div>
+            <span title="Eerste relatie/contactpersoon (1 - RoleCodeLijst (COD472-VEKT))">Eerste relatie/contactpersoon</span>, <span title="Echtgenote (WIFE - v3/RoleCode)">Echtgenote</span>, <span title="Partner (DOMPART - v3/RoleCode)">Partner</span> van Willemijn W XXX_Yzendoorn van den XXX_Berg</div>
+      </div>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 2, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-nl-core-patient-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
+{ id: 71, label: "RelatedPerson XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-nl-core-relatedperson--relatedperson-mm-gbz-LILIANLLILIANVAN-DEN-XXX-BERGXXX-YZENDOORN.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 71, to: 2 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

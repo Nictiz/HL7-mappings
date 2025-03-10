@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html lang="en">
+   <head>
+      <title>Composition - samenvatting-zwangerschap2-Vrouw1-BBC02</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 100%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <b>Example med mij uitbreiding verloskunde beschikbaarstellen</b>
+         <table>
+            <caption>Samengestelde informatie. Subject: Maaike M XXX_Ostendorf. Status: definitief<span style="display: block;">Auteur: Loes XXX_Korte</span>
+               <span style="display: block;">Auteur: Bert van XXX_Ernie</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <span title="Dossier zwangerschap en bevalling [bevinding] (document) (15508-5 - LOINC)">Dossier zwangerschap en bevalling [bevinding] (document)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>20:24:54, 10 maart 2025</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 1, label: "Composition Dossier zwangerschap en bevalling [bevinding] (document)", url: "mm-gbz-bc-TransactionComposition-samenvatting-zwangerschap2-Vrouw1-BBC02.html" }, 
+{ id: 2, label: "Organization Apotheek de 3 Bergen", url: "mm-gbz-nl-core-organization-nl-core-organization-mm-gbz-2-16-840-1-113883-2-4-6-1-1234567.html" }, 
+{ id: 3, label: "Organization Verloskundigenpraktijk Dalen", url: "mm-gbz-nl-core-organization-nl-core-organization-mm-gbz-2-16-840-1-113883-2-4-3-22-97-4-1808.html" }, 
+{ id: 4, label: "Patient XXX_Ostendorf", url: "mm-gbz-nl-core-patient-MAAIKE-M-XXX-OSTENDORF.html" }, 
+{ id: 5, label: "Practitioner van XXX_Ernie", url: "mm-gbz-nl-core-practitioner-nl-core-practitioner-mm-gbz-2-16-528-1-1007-3-1-12345678.html" }, 
+{ id: 6, label: "Practitioner XXX_Korte", url: "mm-gbz-nl-core-practitioner-nl-core-practitioner-mm-gbz-2-16-528-1-1007-3-1-1235648.html" }, 
+{ id: 7, label: "PractitionerRole huisarts", url: "mm-gbz-nl-core-practitionerrole-nl-core-practitionerrole-mm-gbz-1234567801-015.html" }, 
+{ id: 8, label: "PractitionerRole gediplomeerd verloskundige (beroep)", url: "mm-gbz-nl-core-practitionerrole-nl-core-practitionerrole-mm-gbz-1235648309453006.html" }, 
+{ id: 9, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-e2654067-6b53-11ec-0000-020000000000.html" }, 
+{ id: 10, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-3ee4d0bf-6abb-11ec-0000-020000000000.html" }, 
+{ id: 11, label: "Condition", url: "mm-gbz-bc-DisorderOfPregnancy-59feb120-6ad6-11ec-0000-020000000000.html" }, 
+{ id: 12, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-ad8ec3ec-6b19-11ec-0000-020000000000.html" }, 
+{ id: 13, label: "Procedure strippen van vliezen (verrichting)", url: "mm-gbz-bc-ObstetricProcedure236960006-e46a984a-6b4a-11ec-0000-020000000000.html" }, 
+{ id: 14, label: "Procedure geboorte (bevinding)", url: "mm-gbz-bc-Birth3950001-648a1ceb-6ad5-11ec-0000-020000000000.html" }, 
+{ id: 15, label: "Observation AB0-bloedgroep [type] in bloed", url: "mm-gbz-zib-LaboratoryTestResult-Observation883-9-stResult-Observation-mm-gbz-2dd19e19-6b5b-11ec-0000-020000000000.html" }, 
+{ id: 16, label: "Observation D Ag [aanwezigheid] in bloed", url: "mm-gbz-zib-LaboratoryTestResult-Observation1305-2-stResult-Observation-mm-gbz-2d7b2236-6b6c-11ec-0000-020000000000.html" }, 
+{ id: 17, label: "Observation Kleine c Ag [aanwezigheid] in erytrocyten", url: "mm-gbz-zib-LaboratoryTestResult-Observation1159-3-stResult-Observation-mm-gbz-3d3198e1-6b06-11ec-0000-020000000000.html" }, 
+{ id: 18, label: "Observation Hemoglobin [Moles/volume] in Venous blood", url: "mm-gbz-zib-LaboratoryTestResult-Observation93846-4-stResult-Observation-mm-gbz-9dc76851-6ab9-11ec-0000-020000000000.html" }, 
+{ id: 19, label: "Observation [#] Parity", url: "mm-gbz-zib-Pregnancy-Parity11977-6-c33f0031-6a95-11ec-0000-020000000000.html" }, 
+{ id: 20, label: "Observation [#] Pregnancies", url: "mm-gbz-zib-Pregnancy-Gravidity11996-6-c33f0032-6a95-11ec-0000-020000000000.html" }, 
+{ id: 21, label: "Observation geschatte datum van partus (waarneembare entiteit)", url: "mm-gbz-nl-core-observation161714006-c346e054-6a95-11ec-0000-020000000000.html" }, 
+{ id: 22, label: "Observation datum van einde van zwangerschap (waarneembare entiteit)", url: "mm-gbz-nl-core-observation118951000146109-c346e054-6a95-11ec-0000-020000000000.html" }, 
+{ id: 23, label: "Observation definitieve uitgerekende datum van partus (waarneembare entiteit)", url: "mm-gbz-nl-core-observation147781000146105-c346cfec-6a95-11ec-0000-020000000000.html" }, 
+{ id: 24, label: "Observation aantal levende nakomelingen (waarneembare entiteit)", url: "mm-gbz-nl-core-observation143881000146107-c33f0031-6a95-11ec-0000-020000000000.html" }, 
+{ id: 25, label: "Observation voorgeschiedenis met intra-uteriene foetale dood (situatie) ", url: "mm-gbz-nl-core-observation16216731000119106-c33f0030-6a95-11ec-0000-020000000000.html" }, 
+{ id: 26, label: "Observation plaats van voorkeur voor bevalling (waarneembare entiteit)", url: "mm-gbz-nl-core-observation142961000146102-9cdfd1a5-6af3-11ec-0000-020000000000.html" }, 
+{ id: 27, label: "Observation bevinding betreffende alcoholgebruik (bevinding)", url: "mm-gbz-zib-AlcoholUse228273003-c615ffc3-6aa8-11ec-0000-020000000000.html" }, 
+{ id: 30, label: "Observation bevinding betreffende drugsgebruik (bevinding)", url: "mm-gbz-zib-DrugUse228366006-8490a51e-6b4b-11ec-0000-020000000000.html" }, 
+{ id: 31, label: "Observation bevinding betreffende tabakgebruik en blootstelling aan tabaksrook (bevinding)", url: "mm-gbz-zib-TobaccoUse365980008-df077038-6ab2-11ec-0000-020000000000.html" }, 
+{ id: 32, label: "Observation datum van begin van eerste fase van partus (waarneembare entiteit)", url: "mm-gbz-nl-core-observation160621000146107-02ac32c0-6a96-11ec-0000-020000000000.html" }, 
+{ id: 33, label: "Observation manier waarop eerste fase van partus is begonnen (waarneembare entiteit)", url: "mm-gbz-nl-core-observation160611000146102-1039c62a-6b47-11ec-0000-020000000000.html" }, 
+{ id: 34, label: "Observation tijdstip waarop gebroken vliezen zijn geconstateerd (waarneembare entiteit)", url: "mm-gbz-nl-core-observation289251005-ff92b947-6a95-11ec-0000-020000000000.html" }, 
+{ id: 35, label: "Observation bevinding betreffende vruchtwater (bevinding)", url: "mm-gbz-nl-core-observation366334007-e4430a72-6aeb-11ec-0000-020000000000.html" }, 
+{ id: 36, label: "Observation begin van persen tijdens partus (waarneembare entiteit)", url: "mm-gbz-nl-core-observation249163006-00191573-6a96-11ec-0000-020000000000.html" }, 
+{ id: 37, label: "Observation", url: "mm-gbz-nl-core-observation-c33f2d6b-6a95-11ec-0000-020000000000.html" }, 
+{ id: 38, label: "Observation soort partus (waarneembare entiteit)", url: "mm-gbz-nl-core-observation364336006-8d662f7d-6af9-11ec-0000-020000000000.html" }, 
+{ id: 39, label: "Observation presenterend deel van foetus (waarneembare entiteit)", url: "mm-gbz-nl-core-observation271692001-b0f0b329-6af5-11ec-0000-020000000000.html" }, 
+{ id: 40, label: "Observation bevinding betreffende locatie van partus", url: "mm-gbz-nl-core-observation366344009-7b7bc424-6aa1-11ec-0000-020000000000.html" }, 
+{ id: 41, label: "Observation observatie betreffende perineum van vrouw (waarneembare entiteit)", url: "mm-gbz-nl-core-observation364297003-6606a92c-6aa6-11ec-0000-020000000000.html" }, 
+{ id: 42, label: "Observation geboorte van placenta (verrichting)", url: "mm-gbz-nl-core-observation236994008-c4540d15-6a95-11ec-0000-020000000000.html" }, 
+{ id: 43, label: "Observation datum en tijd van geboorte van placenta (waarneembare entiteit)", url: "mm-gbz-nl-core-observation136311000146100-00c99f56-6a96-11ec-0000-020000000000.html" }, 
+{ id: 44, label: "Observation compleetheid van placenta (waarneembare entiteit)", url: "mm-gbz-nl-core-observation364343000-c43f1ceb-6b46-11ec-0000-020000000000.html" }, 
+{ id: 45, label: "Observation bloedverlies durante partu (waarneembare entiteit)", url: "mm-gbz-nl-core-observation364332008-c33f2014-6a95-11ec-0000-020000000000.html" }, 
+{ id: 46, label: "Observation Blood pressure panel with all children optional", url: "mm-gbz-zib-BloodPressure85354-9-3667f135-6b2f-11ec-0000-020000000000.html" }, 
+{ id: 47, label: "Observation Body weight", url: "mm-gbz-zib-BodyWeight29463-7-c33f1b97-6a95-11ec-0000-020000000000.html" }, 
+{ id: 48, label: "Observation Body height", url: "mm-gbz-nl-core-observation8302-2-c33f1b68-6a95-11ec-0000-020000000000.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 1, to: 4 }, 
+{ from: 1, to: 5 }, 
+{ from: 1, to: 6 }, 
+{ from: 1, to: 2 }, 
+{ from: 1, to: 3 }, 
+{ from: 1, to: 4 }, 
+{ from: 1, to: 5 }, 
+{ from: 1, to: 6 }, 
+{ from: 1, to: 7 }, 
+{ from: 1, to: 8 }, 
+{ from: 1, to: 9 }, 
+{ from: 1, to: 10 }, 
+{ from: 1, to: 11 }, 
+{ from: 1, to: 12 }, 
+{ from: 1, to: 13 }, 
+{ from: 1, to: 14 }, 
+{ from: 1, to: 15 }, 
+{ from: 1, to: 16 }, 
+{ from: 1, to: 17 }, 
+{ from: 1, to: 18 }, 
+{ from: 1, to: 19 }, 
+{ from: 1, to: 24 }, 
+{ from: 1, to: 20 }, 
+{ from: 1, to: 21 }, 
+{ from: 1, to: 22 }, 
+{ from: 1, to: 21 }, 
+{ from: 1, to: 22 }, 
+{ from: 1, to: 23 }, 
+{ from: 1, to: 19 }, 
+{ from: 1, to: 24 }, 
+{ from: 1, to: 25 }, 
+{ from: 1, to: 26 }, 
+{ from: 1, to: 27 }, 
+{ from: 1, to: 30 }, 
+{ from: 1, to: 31 }, 
+{ from: 1, to: 32 }, 
+{ from: 1, to: 33 }, 
+{ from: 1, to: 34 }, 
+{ from: 1, to: 35 }, 
+{ from: 1, to: 36 }, 
+{ from: 1, to: 37 }, 
+{ from: 1, to: 38 }, 
+{ from: 1, to: 39 }, 
+{ from: 1, to: 40 }, 
+{ from: 1, to: 41 }, 
+{ from: 1, to: 42 }, 
+{ from: 1, to: 43 }, 
+{ from: 1, to: 44 }, 
+{ from: 1, to: 45 }, 
+{ from: 1, to: 46 }, 
+{ from: 1, to: 47 }, 
+{ from: 1, to: 48 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>
