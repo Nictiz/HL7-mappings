@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Procedure xmlns="http://hl7.org/fhir">
+   <id value="229251c6-fdb0-11ef-3856-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ObstetricProcedure"/>
+   </meta>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="2292495b-fdb0-11ef-3856-020000000000"/>
+   </identifier>
+   <partOf>
+      <reference value="Procedure/2292517c-fdb0-11ef-3856-020000000000"/>
+      <display value="bevalling zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+   </partOf>
+   <partOf>
+      <reference value="Procedure/229251a0-fdb0-11ef-3856-020000000000"/>
+      <display value="uitdrijvingsfase zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+   </partOf>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="386637004"/>
+         <display value="Obstetrische verrichting (verrichting)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="80801000146105"/>
+         <display value="secundaire sectio caesarea (verrichting)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG"/>
+      <display value="Willemijn W XXX_Yzendoorn van den XXX_Berg"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/229248fb-fdb0-11ef-3856-020000000000"/>
+      <display value="Zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+   </context>
+   <performedPeriod>
+      <start value="${DATE, T, D, -324}"/>
+   </performedPeriod>
+   <reasonReference>
+      <reference value="Condition/229251bf-fdb0-11ef-3856-020000000000"/>
+      <display value="probleem kindspecifieke maternale problemenVrouw-XXX_Yzendoorn"/>
+   </reasonReference>
+</Procedure>

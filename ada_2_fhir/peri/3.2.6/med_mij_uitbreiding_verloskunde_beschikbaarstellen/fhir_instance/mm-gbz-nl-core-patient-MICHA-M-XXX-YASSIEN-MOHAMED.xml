@@ -7,8 +7,8 @@
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
-         <div>Id 999901758 (BSN), <span title="Naamsamenstelling: Eigennaam">Micha M XXX_Yassien-Mohamed</span>, 23 december 1985, Geen meerling</div>
-         <div>Knolweg 1000, 9999XA STITSWERD, 146, 6030</div>
+         <div>Id 999901758 (BSN), <span title="Naamsamenstelling: Eigennaam">Micha M XXX_Yassien-Mohamed</span>, Vrouw, 23 december 1985, Geen meerling</div>
+         <div>Knolweg 1000, 9999XA STITSWERD, NL</div>
       </div>
    </text>
    <identifier>
@@ -35,6 +35,17 @@
          </extension>
       </given>
    </name>
+   <gender value="female">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+               <code value="F"/>
+               <display value="Vrouw"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </gender>
    <birthDate value="1985-12-23"/>
    <address>
       <line value="Knolweg 1000">
@@ -47,19 +58,7 @@
       </line>
       <city value="STITSWERD"/>
       <postalCode value="9999XA"/>
-      <country value="146">
-         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-            <valueCodeableConcept>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.16.34"/>
-                  <version value="2020-03-31T00:00:00"/>
-                  <code value="6030"/>
-                  <display value="Nederland"/>
-               </coding>
-            </valueCodeableConcept>
-         </extension>
-      </country>
-      <country value="6030">
+      <country value="NL">
          <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
             <valueCodeableConcept>
                <coding>

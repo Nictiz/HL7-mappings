@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Encounter xmlns="http://hl7.org/fhir">
+   <id value="2292512b-fdb0-11ef-3856-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Encounter"/>
+   </meta>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="229249bf-fdb0-11ef-3856-020000000000"/>
+   </identifier>
+   <status value="finished"/>
+   <class>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/ActCode"/>
+         <code value="FLD"/>
+         <display value="Op lokatie"/>
+      </coding>
+   </class>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="11429006"/>
+         <display value="consult (verrichting)"/>
+      </coding>
+   </type>
+   <subject>
+      <reference value="Patient/WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG"/>
+      <display value="Willemijn W XXX_Yzendoorn van den XXX_Berg"/>
+   </subject>
+   <episodeOfCare>
+      <reference value="EpisodeOfCare/229248fb-fdb0-11ef-3856-020000000000"/>
+      <display value="Zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+   </episodeOfCare>
+   <participant>
+      <individual>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-mm-gbz-1234000103.000"/>
+               <display value="Gemma XXX_Groeneboom XXX_Gras || Verloskundige || Verloskundigenpraktijk 't Groen"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-mm-gbz-2.16.528.1.1007.3.1-12340001"/>
+         <display value="Gemma XXX_Groeneboom XXX_Gras"/>
+      </individual>
+   </participant>
+   <period>
+      <start value="${DATE, T, D, -374}"/>
+   </period>
+   <diagnosis>
+      <condition>
+         <reference value="Condition/229250f5-fdb0-11ef-3856-020000000000"/>
+         <display value="Zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+      </condition>
+   </diagnosis>
+</Encounter>

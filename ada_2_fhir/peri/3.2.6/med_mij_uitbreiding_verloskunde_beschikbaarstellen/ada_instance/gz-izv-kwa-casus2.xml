@@ -4,7 +4,7 @@
          created-by="geboortezorgada"
          last-update-by="geboortezorgada"
          creation-date="2024-06-26T11:56:57.815Z"
-         last-update-date="2024-12-20T10:59:03.624Z"/>
+         last-update-date="2025-02-28T12:48:09.01Z"/>
    <data>
       <med_mij_uitbreiding_verloskunde_beschikbaarstellen app="perinatologie-326"
                                                           shortName="med_mij_uitbreiding_verloskunde_beschikbaarstellen"
@@ -119,13 +119,17 @@
                             conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3214"/>
                   <woonplaats value="STITSWERD"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3215"/>
-                  <land conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3217"
-                        value="548"
-                        code="NL"
+                  <land code="NL"
                         codeSystem="1.0.3166.1.2.2"
                         codeSystemName="ISO 3166-1 (alpha-2)"
                         codeSystemVersion="2020-10-26T00:00:00"
-                        displayName="Nederland"/>
+                        displayName="Nederland"
+                        conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3217"/>
+                  <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3219"
+                               value="3"
+                               code="PHYS"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Woon-/verblijfadres"/>
                </adresgegevens>
                <identificatienummer value="999901448"
                                     root="2.16.840.1.113883.2.4.6.3"
@@ -148,9 +152,13 @@
                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.957"/>
                <organisatie_naam value="Verloskundigenpraktijk 't Groen"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.958"/>
+               <organisatie_locatie nullFlavor="NA"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.959"/>
                <afdeling_specialisme codeSystem="2.16.840.1.113883.2.4.6.7"
-                                     codeSystemName="Vektis AGB-medische specialismen"
-                                     conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.960"/>
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.960"
+                                     code="08001234567"
+                                     displayName=" &#x9;&#xA;Verloskundigen, niet nader gespecificeerd"
+                                     codeSystemName="Vektis AGB-medische specialismen"/>
                <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3236">
                   <straat value="Groeneweg"
                           conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3237"/>
@@ -204,11 +212,10 @@
                   </geslachtsnaam_partner>
                </naamgegevens>
                <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2219"
-                            code="0800"
-                            codeSystem="2.16.840.1.113883.2.4.6.7"
-                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                            codeSystemVersion="2020-10-23T00:00:00"
-                            displayName="Verloskundigen, niet nader gespecificeerd"/>
+                            value="15"
+                            code="309453006"
+                            codeSystem="2.16.840.1.113883.6.96"
+                            displayName="gediplomeerd verloskundige (beroep)"/>
                <zorgaanbieder value="ZA1-verloskundigepraktijk"
                               datatype="reference"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1678"/>
@@ -393,7 +400,7 @@
                           conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1072"/>
             </prenatale_controle>
             <probleem_zwangerschap conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1180"
-                                   id="Probleem maternaal Probleem1">
+                                   id="maternaal_Probleem1">
                <probleem_naam conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1184"
                               value="46"
                               code="16356006"
@@ -409,7 +416,7 @@
                             conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1189"/>
             </probleem_zwangerschap>
             <probleem_zwangerschap conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1180"
-                                   id="Probleem2">
+                                   id="maternaal_Probleem2">
                <probleem_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1183"
                               value="3"
                               code="404684003"
@@ -472,79 +479,9 @@
             <zwangerschapsduur value="273"
                                conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10694"/>
             <uitdrijvingsfase conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.39">
-               <type_partus_observatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4144">
-                  <observatie_datum_tijd value="T-5D"
-                                         datatype="datetime"
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4145"/>
-                  <type_partus_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4147"
-                                      value="6"
-                                      code="11466000"
-                                      codeSystem="2.16.840.1.113883.6.96"
-                                      displayName="sectio caesarea (verrichting)"/>
-               </type_partus_observatie>
-               <werkelijke_plaats_baring_type_locatie_observatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4193">
-                  <observatie_datum_tijd value="T-5D{14:38}"
-                                         datatype="datetime"
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4194"/>
-                  <werkelijke_plaats_baring_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4196"
-                                                   value="3"
-                                                   code="56321000146103"
-                                                   codeSystem="2.16.840.1.113883.6.96"
-                                                   codeSystemName="SNOMED CT"
-                                                   displayName="geboorte in ziekenhuis (bevinding)"/>
-                  <toelichting value="geplande sectio"
-                               datatype="text"
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4204"/>
-               </werkelijke_plaats_baring_type_locatie_observatie>
-               <ziekenhuis_baring conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1587">
-                  <zorgaanbieder value="ZA1-verloskundigepraktijk"
-                                 datatype="reference"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1588"/>
-               </ziekenhuis_baring>
-               <probleem_kindspecifieke_maternale_problemen conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1591"
-                                                            id="Probleem3">
-                  <probleem_naam conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1595"
-                                 value="3"
-                                 code="15028002"
-                                 codeSystem="2.16.840.1.113883.6.96"
-                                 displayName="liggingsafwijking van foetus (bevinding)"/>
-                  <probleem_begin_datum value="T-5D"
-                                        datatype="datetime"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1596"/>
-               </probleem_kindspecifieke_maternale_problemen>
-               <verrichting_kindspecifieke_maternale_verrichtingen conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1603"
-                                                                   id="uitdrijving1verrichting1">
-                  <verrichting_start_datum value="T-5D{14:03}"
-                                           datatype="datetime"
-                                           conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1604"/>
-                  <verrichting_eind_datum value="T-5D{14:52}"
-                                          datatype="datetime"
-                                          conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1605"/>
-                  <indicatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1608">
-                     <probleem_kindspecifieke_maternale_problemen value="Probleem3"
-                                                                  datatype="reference"
-                                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1620"/>
-                  </indicatie>
-                  <verrichting_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1610"
-                                    value="3"
-                                    code="80771000146107"
-                                    codeSystem="2.16.840.1.113883.6.96"
-                                    codeSystemName="SNOMED CT"
-                                    displayName="primaire sectio caesarea (verrichting)"/>
-               </verrichting_kindspecifieke_maternale_verrichtingen>
-               <verrichting_kindspecifieke_maternale_verrichtingen conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1603"
-                                                                   id="uitdrijving1verrichting2">
-                  <verrichting_start_datum value="T-5D{14:50}"
-                                           datatype="datetime"
-                                           conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1604"/>
-                  <verrichting_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1610"
-                                    value="26"
-                                    code="698350008:370131001=133933007"
-                                    codeSystem="2.16.840.1.113883.6.96"
-                                    displayName="vitamine K toediening aan neonaat"/>
-               </verrichting_kindspecifieke_maternale_verrichtingen>
-            </uitdrijvingsfase>
-            <uitdrijvingsfase conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.39">
+               <patient value="Vrouw2-XXX_Swart"
+                        datatype="reference"
+                        conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.9685"/>
                <type_partus_observatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4144">
                   <observatie_datum_tijd value="T-5D"
                                          datatype="datetime"
@@ -619,9 +556,32 @@
                </verrichting_kindspecifieke_maternale_verrichtingen>
             </uitdrijvingsfase>
             <nageboortefase conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.40">
+               <placenta conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3884">
+                  <wijze_geboorte_placenta_observatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4218">
+                     <wijze_geboorte_placenta_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4221"
+                                                     value="4"
+                                                     code="149161000146109"
+                                                     codeSystem="2.16.840.1.113883.6.96"
+                                                     displayName="geboorte van placenta via sectio caesarea (verrichting)"/>
+                  </wijze_geboorte_placenta_observatie>
+                  <geboorte_placenta_observatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4230">
+                     <geboorte_placenta_waarde datatype="datetime"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4233"
+                                               value="T-5D{15:10}"/>
+                  </geboorte_placenta_observatie>
+                  <placenta_compleet_observatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4242">
+                     <placenta_compleet_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4245"
+                                               value="1"
+                                               code="249170006"
+                                               codeSystem="2.16.840.1.113883.6.96"
+                                               codeSystemName="SNOMED CT"
+                                               displayName="complete placenta bij partus (bevinding)"/>
+                  </placenta_compleet_observatie>
+               </placenta>
                <hoeveelheid_bloedverlies_observatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3967">
                   <hoeveelheid_bloedverlies_waarde unit="ml"
-                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1751"/>
+                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1751"
+                                                   value="500"/>
                </hoeveelheid_bloedverlies_observatie>
             </nageboortefase>
          </bevalling>

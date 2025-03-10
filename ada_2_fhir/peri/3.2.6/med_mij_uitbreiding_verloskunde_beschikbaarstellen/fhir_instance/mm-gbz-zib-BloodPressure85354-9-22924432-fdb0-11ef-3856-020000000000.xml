@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="22924432-fdb0-11ef-3856-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BloodPressure"/>
+   </meta>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="22924b59-fdb0-11ef-3856-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://hl7.org/fhir/observation-category"/>
+         <code value="vital-signs"/>
+         <display value="Vital Signs"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="85354-9"/>
+         <display value="Blood pressure panel with all children optional"/>
+      </coding>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="55284-4"/>
+         <display value="Blood pressure systolic and diastolic"/>
+      </coding>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="46973005"/>
+         <display value="bloeddrukmeting (verrichting)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG"/>
+      <display value="Willemijn W XXX_Yzendoorn van den XXX_Berg"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/229248fb-fdb0-11ef-3856-020000000000"/>
+      <display value="Zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -315}"/>
+   <component>
+      <code>
+         <coding>
+            <system value="http://loinc.org"/>
+            <code value="8480-6"/>
+            <display value="Systolic blood pressure"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="120"/>
+         <unit value="mmHg"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mm[Hg]"/>
+      </valueQuantity>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://loinc.org"/>
+            <code value="8462-4"/>
+            <display value="Diastolic blood pressure"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="70"/>
+         <unit value="mmHg"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mm[Hg]"/>
+      </valueQuantity>
+   </component>
+</Observation>

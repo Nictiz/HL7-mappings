@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="229251a8-fdb0-11ef-3856-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-BirthObservation"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focusSTU3">
+      <valueReference>
+         <reference value="Procedure/229251a0-fdb0-11ef-3856-020000000000"/>
+         <display value="uitdrijvingsfase zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="229249f1-fdb0-11ef-3856-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="364336006"/>
+         <display value="soort partus (waarneembare entiteit)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG"/>
+      <display value="Willemijn W XXX_Yzendoorn van den XXX_Berg"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/229248fb-fdb0-11ef-3856-020000000000"/>
+      <display value="Zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -324}"/>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="80801000146105"/>
+         <display value="secundaire sectio caesarea (verrichting)"/>
+      </coding>
+   </valueCodeableConcept>
+</Observation>
