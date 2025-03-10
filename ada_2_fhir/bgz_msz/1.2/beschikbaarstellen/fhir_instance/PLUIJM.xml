@@ -1,0 +1,45 @@
+<Patient xmlns="http://hl7.org/fhir">
+   <id value="PLUIJM"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>Id 999901436 (BSN), Pluijm, Man, 22 december 1985</div>
+         <div>Contactpersoon: Jansen</div>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+      <value value="999901436"/>
+   </identifier>
+   <name>
+      <family value="Pluijm">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="Pluijm"/>
+         </extension>
+      </family>
+   </name>
+   <gender value="male">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+               <code value="M"/>
+               <display value="Male"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </gender>
+   <birthDate value="1985-12-22"/>
+   <contact>
+      <name>
+         <family value="Jansen">
+            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+               <valueString value="Jansen"/>
+            </extension>
+         </family>
+      </name>
+   </contact>
+</Patient>
