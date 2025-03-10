@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Encounter xmlns="http://hl7.org/fhir">
+   <id value="1d2f8568-6b7b-11ec-0000-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Encounter"/>
+   </meta>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="f22340b1-6b44-11ec-0000-020000000000"/>
+   </identifier>
+   <status value="finished"/>
+   <class>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/ActCode"/>
+         <code value="AMB"/>
+         <display value="Poliklinisch"/>
+      </coding>
+   </class>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="11429006"/>
+         <display value="consult (verrichting)"/>
+      </coding>
+   </type>
+   <subject>
+      <reference value="Patient/MAAIKE-M-XXX-OSTENDORF"/>
+      <display value="Maaike M XXX_Ostendorf"/>
+   </subject>
+   <episodeOfCare>
+      <reference value="EpisodeOfCare/e2654067-6b53-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 Vrouw1-BBC02"/>
+   </episodeOfCare>
+   <participant>
+      <individual>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-mm-gbz-1235648309453006"/>
+               <display value="Loes XXX_Korte || gediplomeerd verloskundige (beroep) || Verloskundigenpraktijk Dalen"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-mm-gbz-2-16-528-1-1007-3-1-1235648"/>
+         <display value="Loes XXX_Korte"/>
+      </individual>
+   </participant>
+   <period>
+      <start value="${DATE, T, D, -445}"/>
+   </period>
+   <diagnosis>
+      <condition>
+         <reference value="Condition/3ee4d0bf-6abb-11ec-0000-020000000000"/>
+         <display value="Zwangerschap 2 Vrouw1-BBC02"/>
+      </condition>
+   </diagnosis>
+</Encounter>

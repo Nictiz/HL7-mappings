@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="c346e054-6a95-11ec-0000-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-PregnancyObservation"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focusSTU3">
+      <valueReference>
+         <reference value="Condition/3ee4d0bf-6abb-11ec-0000-020000000000"/>
+         <display value="Zwangerschap 2 Vrouw1-BBC02"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="2fc28dc0-6b33-11ec-0000-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="161714006"/>
+         <display value="geschatte datum van partus (waarneembare entiteit)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/MAAIKE-M-XXX-OSTENDORF"/>
+      <display value="Maaike M XXX_Ostendorf"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/e2654067-6b53-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 Vrouw1-BBC02"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -444}"/>
+   <valueDateTime value="${DATE, T, D, -225}"/>
+   <method>
+      <coding>
+         <system value="2.16.840.1.113883.6.96"/>
+         <code value="31541000146106"/>
+         <display value="aterme datum berekend door middel van diagnostische ultrasonografie"/>
+      </coding>
+   </method>
+</Observation>

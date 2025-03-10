@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="c33f0069-6a95-11ec-0000-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyWeight"/>
+   </meta>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="aa049a6e-6b47-11ec-0000-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://hl7.org/fhir/observation-category"/>
+         <code value="vital-signs"/>
+         <display value="Vital Signs"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="29463-7"/>
+         <display value="Body weight"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/FIONA-F-XXX-SWART"/>
+      <display value="Fiona F XXX_Swart"/>
+   </subject>
+   <context>
+      <reference value="Encounter/a816ee57-6b34-11ec-0000-020000000000"/>
+      <display value="prenatale controle  Vrouw2-XXX_Swart"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -205}"/>
+   <valueQuantity>
+      <value value="63"/>
+      <unit value="1"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="1"/>
+   </valueQuantity>
+   <component>
+      <code>
+         <coding>
+            <system value="http://loinc.org"/>
+            <code value="8352-7"/>
+            <display value="Kleding gedragen tijdens meting [type]"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.8.1"/>
+            <code value="MINIMAL"/>
+            <display value="Lichte kleding/ondergoed"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+</Observation>
