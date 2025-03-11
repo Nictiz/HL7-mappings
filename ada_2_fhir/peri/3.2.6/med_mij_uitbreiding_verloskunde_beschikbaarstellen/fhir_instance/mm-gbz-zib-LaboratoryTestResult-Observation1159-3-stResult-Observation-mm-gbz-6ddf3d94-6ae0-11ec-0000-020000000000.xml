@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="stResult-Observation-mm-gbz-9e7e810f-6afd-11ec-0000-020000000000"/>
+   <id value="stResult-Observation-mm-gbz-6ddf3d94-6ae0-11ec-0000-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
    </meta>
@@ -12,7 +12,7 @@
             <tbody>
                <tr>
                   <th>Bepalingdatum/tijd</th>
-                  <td>29 augustus 2024</td>
+                  <td>30 augustus 2024</td>
                </tr>
                <tr>
                   <th>Code</th>
@@ -20,9 +20,11 @@
                </tr>
                <tr>
                   <td>
-                     <span title="Hemoglobin [Moles/volume] in Venous blood (93846-4 - LOINC)">Hemoglobin [Moles/volume] in Venous blood</span>
+                     <span title="Kleine c Ag [aanwezigheid] in erytrocyten (1159-3 - LOINC)">Kleine c Ag [aanwezigheid] in erytrocyten</span>
                   </td>
-                  <td>7.3 g/dL</td>
+                  <td>
+                     <span title="Rh c Positief (733120009 - SNOMED CT)">Rh c Positief</span>
+                  </td>
                </tr>
             </tbody>
          </table>
@@ -30,7 +32,7 @@
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="5358ae1b-6ab1-11ec-0000-020000000000"/>
+      <value value="94b6ca1b-6b70-11ec-0000-020000000000"/>
    </identifier>
    <status value="final">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
@@ -53,8 +55,8 @@
    <code>
       <coding>
          <system value="http://loinc.org"/>
-         <code value="93846-4"/>
-         <display value="Hemoglobin [Moles/volume] in Venous blood"/>
+         <code value="1159-3"/>
+         <display value="Kleine c Ag [aanwezigheid] in erytrocyten"/>
       </coding>
    </code>
    <subject>
@@ -65,11 +67,12 @@
       <reference value="EpisodeOfCare/dfff28ff-6b09-11ec-0000-020000000000"/>
       <display value="Zwangerschap 1 Vrouw2-XXX_Swart"/>
    </context>
-   <effectiveDateTime value="2024-08-29"/>
-   <valueQuantity>
-      <value value="7.3"/>
-      <unit value="g/dL"/>
-      <system value="http://unitsofmeasure.org"/>
-      <code value="g/dL"/>
-   </valueQuantity>
+   <effectiveDateTime value="2024-08-30"/>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="733120009"/>
+         <display value="Rh c Positief"/>
+      </coding>
+   </valueCodeableConcept>
 </Observation>
