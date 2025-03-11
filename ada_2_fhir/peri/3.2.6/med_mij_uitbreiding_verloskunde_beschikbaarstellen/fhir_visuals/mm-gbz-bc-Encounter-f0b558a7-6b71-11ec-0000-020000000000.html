@@ -23,13 +23,15 @@
                <tr>
                   <th>Type contact</th>
                   <td>
-                     <div/>
+                     <div>
+                        <span title="Op lokatie (FLD - v3/ActCode)">Op lokatie</span>
+                     </div>
                      <span title="consult (verrichting) (11429006 - SNOMED CT)">consult (verrichting)</span>
                   </td>
                </tr>
                <tr>
                   <th>Periode</th>
-                  <td>Vanaf ${DATE, T, D, -374}</td>
+                  <td>${DATE, T, D, -374} - ${DATE, T, D, -374}</td>
                </tr>
                <tr>
                   <th>Probleem/Verrichting</th>
@@ -41,6 +43,10 @@
                      <div>Gemma XXX_Groeneboom XXX_Gras || Verloskundige || Verloskundigenpraktijk 't Groen</div>
                   </td>
                </tr>
+               <tr>
+                  <th>Zorgaanbieder</th>
+                  <td>Verloskundigenpraktijk 't Groen</td>
+               </tr>
             </tbody>
          </table>
       </div>
@@ -49,6 +55,7 @@
 var nodes = new vis.DataSet([
 { id: 2, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-nl-core-patient-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
 { id: 4, label: "Practitioner XXX_Gras-XXX_Groeneboom", url: "mm-gbz-nl-core-practitioner-nl-core-practitioner-mm-gbz-2-16-528-1-1007-3-1-12340001.html" }, 
+{ id: 6, label: "Organization Verloskundigenpraktijk 't Groen", url: "mm-gbz-nl-core-organization-nl-core-organization-mm-gbz-2-16-840-1-113883-2-4-6-1-08001234.html" }, 
 { id: 8, label: "PractitionerRole Verloskundige", url: "mm-gbz-nl-core-practitionerrole-nl-core-practitionerrole-mm-gbz-1234000103-000.html" }, 
 { id: 10, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-0934bb5f-6afa-11ec-0000-020000000000.html" }, 
 { id: 11, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-70a4e797-6aab-11ec-0000-020000000000.html" }, 
@@ -61,6 +68,7 @@ var edges = new vis.DataSet([{ from: 28, to: 2 },
 { from: 28, to: 8 }, 
 { from: 28, to: 4 }, 
 { from: 28, to: 11 }, 
+{ from: 28, to: 6 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");
