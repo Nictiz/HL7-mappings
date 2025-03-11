@@ -1,0 +1,77 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="zib-LaboratoryTestResult-Observation-bgz-msz-patB-labresult2-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Michelle M.D. Michelle D Derencourt Verheul. Id: bgz-msz-patB-labresult2 (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), Categorie: <span title="bevinding betreffende laboratoriumonderzoek (49581000146104 - SNOMED CT)">bevinding betreffende laboratoriumonderzoek</span>, <span title="Chemistry (275711006 - SNOMED CT)">Chemistry</span>, Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -2}T09:00:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Cancer Ag15-3 SerPl-aCnc (6875-9 - LOINC)">Cancer Ag15-3 SerPl-aCnc</span>
+                  </td>
+                  <td>13 [arb'U]/mL</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patB-labresult2"/>
+   </identifier>
+   <status value="final">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
+               <code value="final"/>
+               <display value="Final"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </status>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="49581000146104"/>
+         <display value="bevinding betreffende laboratoriumonderzoek"/>
+      </coding>
+   </category>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="275711006"/>
+         <display value="Chemistry"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="6875-9"/>
+         <display value="Cancer Ag15-3 SerPl-aCnc"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/MICHELLE-M-D--MICHELLE-D-DERENCOURT-VERHEUL"/>
+      <display value="Michelle M.D. Michelle D Derencourt Verheul"/>
+   </subject>
+   <effectiveDateTime value="${DATE, T, D, -2}T09:00:00+02:00"/>
+   <valueQuantity>
+      <value value="13"/>
+      <unit value="[arb'U]/mL"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="[arb'U]/mL"/>
+   </valueQuantity>
+</Observation>
