@@ -2,7 +2,7 @@
    <id value="mg-mp-mg-tst-MTD-Scenarioset16-v30"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:dec6800f-6aa0-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:b1165d5d-6b49-11ec-0000-020000000000"/>
       <resource>
          <MedicationAdministration>
             <meta>
@@ -64,6 +64,23 @@
                   <display value="Healthcare professional (role), Jantien Toedien, Verpleegkundigen, niet nader gespecificeerd, Thuiszorg Om en Bij"/>
                </actor>
             </performer>
+            <request>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="33633005"/>
+                        <display value="voorschrijven"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_redenvanafwijken_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_redenvanafwijken_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </request>
             <dosage>
                <route>
                   <coding>
@@ -171,7 +188,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a144100f-6afd-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:64b8b55d-6b1e-11ec-0000-020000000000"/>
       <resource>
          <MedicationAdministration>
             <meta>
@@ -198,11 +215,7 @@
                   <display value="toediening van medicatie"/>
                </coding>
             </category>
-            <medicationReference>
-               <reference value="urn:uuid:c5ea28e9-6ab5-11ec-0000-020000000000"/>
-               <type value="Medication"/>
-               <display value="MIRTAZAPINE MYLAN TABLET 15MG"/>
-            </medicationReference>
+            <medicationReference/>
             <subject>
                <reference value="urn:uuid:3b47cbf0-6ac7-11ec-0000-020000000000"/>
                <type value="Patient"/>
@@ -224,6 +237,23 @@
                   <display value="Patient, J XXX_Valkenet"/>
                </actor>
             </performer>
+            <request>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="33633005"/>
+                        <display value="voorschrijven"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_afwijkendeToediener_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_afwijkendeToediener_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </request>
             <dosage>
                <route>
                   <coding>
@@ -255,7 +285,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c31fb00f-6b5a-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:b9b7e55d-6aa4-11ec-0000-020000000000"/>
       <resource>
          <MedicationAdministration>
             <meta>
@@ -282,11 +312,7 @@
                   <display value="toediening van medicatie"/>
                </coding>
             </category>
-            <medicationReference>
-               <reference value="urn:uuid:c5ea28e9-6ab5-11ec-0000-020000000000"/>
-               <type value="Medication"/>
-               <display value="MIRTAZAPINE MYLAN TABLET 15MG"/>
-            </medicationReference>
+            <medicationReference/>
             <subject>
                <reference value="urn:uuid:3b47cbf0-6ac7-11ec-0000-020000000000"/>
                <type value="Patient"/>
@@ -308,6 +334,23 @@
                   <display value="Contact person, Toos de Bakker"/>
                </actor>
             </performer>
+            <request>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="33633005"/>
+                        <display value="voorschrijven"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_afwijkendeToediener_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_afwijkendeToediener_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </request>
             <dosage>
                <route>
                   <coding>
@@ -740,39 +783,6 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:80ff0804-6ab7-11ec-0000-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="613401"/>
-                  <display value="OXAZEPAM ACTAVIS TABLET 10MG"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="353"/>
-                  <display value="OXAZEPAM TABLET 10MG"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="1023"/>
-                  <display value="OXAZEPAM TABLET 10MG"/>
-               </coding>
-               <text value="OXAZEPAM ACTAVIS TABLET 10MG"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
       <fullUrl value="urn:uuid:06d4d51d-6b33-11ec-0000-020000000000"/>
       <resource>
          <Medication>
@@ -806,7 +816,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c5ea28e9-6ab5-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:80ff0804-6ab7-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -815,21 +825,21 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="1680862"/>
-                  <display value="MIRTAZAPINE MYLAN TABLET 15MG"/>
+                  <code value="613401"/>
+                  <display value="OXAZEPAM ACTAVIS TABLET 10MG"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="75221"/>
-                  <display value="MIRTAZAPINE TABLET 15MG"/>
+                  <code value="353"/>
+                  <display value="OXAZEPAM TABLET 10MG"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="93521"/>
-                  <display value="MIRTAZAPINE TABLET 15MG"/>
+                  <code value="1023"/>
+                  <display value="OXAZEPAM TABLET 10MG"/>
                </coding>
-               <text value="MIRTAZAPINE MYLAN TABLET 15MG"/>
+               <text value="OXAZEPAM ACTAVIS TABLET 10MG"/>
             </code>
          </Medication>
       </resource>

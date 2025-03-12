@@ -68,6 +68,23 @@
          <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
       </actor>
    </performer>
+   <request>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="33633005"/>
+               <display value="voorschrijven"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <type value="MedicationRequest"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_300_toedieningssnelheid_MA"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak met identificatie: MBH_300_toedieningssnelheid_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+   </request>
    <dosage>
       <route>
          <coding>
@@ -90,11 +107,5 @@
          <system value="http://unitsofmeasure.org"/>
          <code value="ml"/>
       </dose>
-      <rateQuantity>
-         <value value="0.3"/>
-         <unit value="ml/h"/>
-         <system value="http://unitsofmeasure.org"/>
-         <code value="ml/h"/>
-      </rateQuantity>
    </dosage>
 </MedicationAdministration>

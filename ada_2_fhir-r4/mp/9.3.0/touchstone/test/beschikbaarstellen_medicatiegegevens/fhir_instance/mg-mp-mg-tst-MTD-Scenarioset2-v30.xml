@@ -55,6 +55,23 @@
                   <display value="Healthcare professional (role), Jantien Toedien, Verpleegkundigen, niet nader gespecificeerd, Thuiszorg Om en Bij"/>
                </actor>
             </performer>
+            <request>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="33633005"/>
+                        <display value="voorschrijven"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_toelichting_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_toelichting_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </request>
             <note>
                <text value="In overleg met specialist"/>
             </note>
@@ -89,7 +106,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f8939f5d-6aed-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:67a5cf5d-6abf-11ec-0000-020000000000"/>
       <resource>
          <MedicationAdministration>
             <meta>
@@ -142,6 +159,23 @@
                   <display value="Healthcare professional (role), Jantien Toedien, Verpleegkundigen, niet nader gespecificeerd, Thuiszorg Om en Bij"/>
                </actor>
             </performer>
+            <request>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="33633005"/>
+                        <display value="voorschrijven"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_Toedieningsweg_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_Toedieningsweg_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </request>
             <dosage>
                <route>
                   <coding>
@@ -310,39 +344,6 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2467cc04-6b6e-11ec-0000-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="644781"/>
-                  <display value="SOFRADEX OORDRUPPELS"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="80691"/>
-                  <display value="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="79804"/>
-                  <display value="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
-               </coding>
-               <text value="SOFRADEX OORDRUPPELS"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
       <fullUrl value="urn:uuid:ff75311d-6b1a-11ec-0000-020000000000"/>
       <resource>
          <Medication>
@@ -367,6 +368,39 @@
                   <display value="FUROSEMIDE 40MG TABLET"/>
                </coding>
                <text value="FUROSEMIDE SANDOZ TABLET 40MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2467cc04-6b6e-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="644781"/>
+                  <display value="SOFRADEX OORDRUPPELS"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="80691"/>
+                  <display value="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="79804"/>
+                  <display value="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
+               </coding>
+               <text value="SOFRADEX OORDRUPPELS"/>
             </code>
          </Medication>
       </resource>
