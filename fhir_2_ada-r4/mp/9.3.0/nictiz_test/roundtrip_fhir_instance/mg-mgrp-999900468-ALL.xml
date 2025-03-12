@@ -1,18 +1,19 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="86ef999b-4835-11ef-9061-020000000000"/>
+   <id value="9d6a437d-a281-11ef-1843-020000000000"/>
    <type value="searchset"/>
    <total value="21"/>
    <entry>
-      <fullUrl value="urn:uuid:86ef9c06-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a45e8-a281-11ef-1843-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="21684011138832431199977160760051-MBH300starteindMA"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 10 dagen, tot en met T - 5 dagen, 1 maal per dag 1 stuk, oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf T - 10 dagen, tot en met T - 5 dagen (3 dagen voor opname stoppen), 1 maal per dag 1 stuk, oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.PeriodOfUse.Condition">
@@ -42,18 +43,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:86ef9e7c-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a485e-a281-11ef-1843-020000000000"/>
                <type value="Medication"/>
                <display value="METOCLOPRAMIDE TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </subject>
             <authoredOn value="${DATE, T, D, -10}T11:20:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:86ef99f4-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43d6-a281-11ef-1843-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -96,16 +97,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9c24-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a4606-a281-11ef-1843-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="21684011138832431199977160760051-MBH300startduurMA"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 20 dagen, gedurende 3 weken, 1 maal per dag 1 stuk, oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf T - 20 dagen, gedurende 3 weken, 1 maal per dag 1 stuk, oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
@@ -139,18 +141,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:86ef9eb8-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a489a-a281-11ef-1843-020000000000"/>
                <type value="Medication"/>
                <display value="LISINOPRIL 10MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </subject>
             <authoredOn value="${DATE, T, D, -20}T11:30:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:86ef99f4-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43d6-a281-11ef-1843-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -193,16 +195,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9c42-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a4624-a281-11ef-1843-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="21684011138832431199977160760051-MBH300chronischMA"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 30 dagen, 1 maal per dag 1 stuk, oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf T - 30 dagen, 1 maal per dag 1 stuk, oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="${DATE, T, D, -30}T00:00:00+02:00"/>
@@ -228,18 +231,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:86ef9ef4-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a48d6-a281-11ef-1843-020000000000"/>
                <type value="Medication"/>
                <display value="ACETYLSALICYLZUUR/PARACETAMOL/COF TAB 250/250/50MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </subject>
             <authoredOn value="${DATE, T, D, -30}T11:32:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:86ef99f4-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43d6-a281-11ef-1843-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -282,16 +285,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9c60-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a4642-a281-11ef-1843-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="21684011138832431199977160760051-MBH300startduur2MA"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 60 dagen, gedurende 28 dagen, 1 maal per dag 1 stuk, oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf T - 60 dagen, gedurende 28 dagen, 1 maal per dag 1 stuk, oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
@@ -325,18 +329,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:86ef9f30-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a4912-a281-11ef-1843-020000000000"/>
                <type value="Medication"/>
                <display value="PANTOPRAZOL TABLET MSR 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </subject>
             <authoredOn value="${DATE, T, D, -60}T11:30:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:86ef99f4-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43d6-a281-11ef-1843-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -379,16 +383,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9c7e-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a4660-a281-11ef-1843-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="21684011138832431199977160760051-MBH300dosisstuksMA"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 130 dagen, tot en met T - 101 dagen, 2 maal per dag 1 dosis, inhalatie"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf T - 130 dagen, tot en met T - 101 dagen, 2 maal per dag 1 dosis, inhalatie"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="${DATE, T, D, -130}T00:00:00+02:00"/>
@@ -415,18 +420,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:86ef9f6c-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a494e-a281-11ef-1843-020000000000"/>
                <type value="Medication"/>
                <display value="FLUTICASON INHALATIEPOEDER 100UG/DO 60DO DISKUS"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </subject>
             <authoredOn value="${DATE, T, D, -130}T11:35:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:86ef99f4-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43d6-a281-11ef-1843-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -469,7 +474,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9e40-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a4822-a281-11ef-1843-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="216840111388324311999776321-MBH300WDSstartduurWDS"/>
@@ -482,9 +487,10 @@
                   <value value="MBH_300_WDS_start_duur"/>
                </valueIdentifier>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 10 dagen, gedurende 2 weken, eerst gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 6 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 6 dagen 1 maal per dag 3 stuks, Oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf T - 10 dagen, gedurende 2 weken, eerst gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 6 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 6 dagen 1 maal per dag 3 stuks, Oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
@@ -512,18 +518,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:86ef9fa8-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a498a-a281-11ef-1843-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </subject>
             <authoredOn value="${DATE, T, D, -10}T11:30:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:86ef99f4-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43d6-a281-11ef-1843-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -698,7 +704,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9e5e-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a4840-a281-11ef-1843-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="216840111388324311999776321-MBH300WDSstartduur2WDS"/>
@@ -711,9 +717,10 @@
                   <value value="MBH_300_WDS_start_duur2"/>
                </valueIdentifier>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 15 dagen, gedurende 13 dagen, gedurende 13 dagen 1 maal per dag 1 stuk, Oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf T - 15 dagen, gedurende 13 dagen, gedurende 13 dagen 1 maal per dag 1 stuk, Oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
@@ -741,18 +748,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:86ef9fa8-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a498a-a281-11ef-1843-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </subject>
             <authoredOn value="${DATE, T, D, -15}T11:30:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:86ef9a4e-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a4430-a281-11ef-1843-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Marcha van Partners, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Itis"/>
             </requester>
@@ -809,7 +816,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9dc8-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a47aa-a281-11ef-1843-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="21684011138832431199977527110001461081-MBH300chronischVV"/>
@@ -836,23 +843,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:86ef9ef4-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a48d6-a281-11ef-1843-020000000000"/>
                <type value="Medication"/>
                <display value="ACETYLSALICYLZUUR/PARACETAMOL/COF TAB 250/250/50MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </subject>
             <authoredOn value="${DATE, T, D, -30}T11:32:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:86ef99f4-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43d6-a281-11ef-1843-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:86ef9abc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a449e-a281-11ef-1843-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -887,10 +894,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9de6-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a47c8-a281-11ef-1843-020000000000"/>
       <resource>
          <MedicationRequest>
-            <id value="86efacb6-4835-11ef-9061-020000000000"/>
+            <id value="9d6a488d-a281-11ef-1843-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-DispenseRequest"/>
             </meta>
@@ -914,23 +921,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:86ef9ef4-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a48d6-a281-11ef-1843-020000000000"/>
                <type value="Medication"/>
                <display value="ACETYLSALICYLZUUR/PARACETAMOL/COF TAB 250/250/50MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </subject>
             <authoredOn value="${DATE, T, D, -10}T11:35:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:86ef99f4-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43d6-a281-11ef-1843-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:86ef9abc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a449e-a281-11ef-1843-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -965,7 +972,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9c9c-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a467e-a281-11ef-1843-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999774220370091-MBH300starteindTA"/>
@@ -975,9 +982,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
                <valueDateTime value="${DATE, T, D, -10}T12:20:00+02:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 10 dagen, tot en met T - 5 dagen, 1 maal per dag 1 stuk, Oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf T - 10 dagen, tot en met T - 5 dagen, 1 maal per dag 1 stuk, Oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="${DATE, T, D, -10}T00:00:00+02:00"/>
@@ -1003,18 +1011,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:86ef9e9a-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a487c-a281-11ef-1843-020000000000"/>
                <type value="Medication"/>
                <display value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:86ef9abc-4835-11ef-9061-020000000000"/>
+                  <reference value="urn:uuid:9d6a449e-a281-11ef-1843-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -1066,7 +1074,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9cba-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a469c-a281-11ef-1843-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999774220370091-MBH300startduurTA"/>
@@ -1076,9 +1084,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
                <valueDateTime value="${DATE, T, D, -20}T12:30:00+02:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 20 dagen, gedurende 3 weken, 1 maal per dag 1 stuk, oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf T - 20 dagen, gedurende 3 weken, 1 maal per dag 1 stuk, oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
@@ -1111,18 +1120,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:86ef9ed6-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a48b8-a281-11ef-1843-020000000000"/>
                <type value="Medication"/>
                <display value="LISINOPRIL SANDOZ TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:86ef9abc-4835-11ef-9061-020000000000"/>
+                  <reference value="urn:uuid:9d6a449e-a281-11ef-1843-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -1174,7 +1183,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9cd8-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a46ba-a281-11ef-1843-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999774220370091-MBH300chronischTA"/>
@@ -1184,9 +1193,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
                <valueDateTime value="${DATE, T, D, -30}T12:32:00+02:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 30 dagen, 1 maal per dag 1 stuk, oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf T - 30 dagen, 1 maal per dag 1 stuk, oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="${DATE, T, D, -30}T00:00:00+02:00"/>
@@ -1211,18 +1221,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:86ef9f12-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a48f4-a281-11ef-1843-020000000000"/>
                <type value="Medication"/>
                <display value="ROTER APC TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:86ef9abc-4835-11ef-9061-020000000000"/>
+                  <reference value="urn:uuid:9d6a449e-a281-11ef-1843-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -1274,7 +1284,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9cf6-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a46d8-a281-11ef-1843-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999774220370091-MBH300startduur2TA"/>
@@ -1284,9 +1294,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
                <valueDateTime value="${DATE, T, D, -60}T12:30:00+02:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 60 dagen, gedurende 28 dagen, 1 maal per dag 1 stuk, oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf T - 60 dagen, gedurende 28 dagen, 1 maal per dag 1 stuk, oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
@@ -1319,18 +1330,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:86ef9f4e-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a4930-a281-11ef-1843-020000000000"/>
                <type value="Medication"/>
                <display value="PANTOZOL TABLET MSR 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:86ef9abc-4835-11ef-9061-020000000000"/>
+                  <reference value="urn:uuid:9d6a449e-a281-11ef-1843-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -1382,7 +1393,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9d14-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a46f6-a281-11ef-1843-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999774220370091-MBH300dosisstuksTA"/>
@@ -1392,9 +1403,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
                <valueDateTime value="${DATE, T, D, -130}T12:35:00+02:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 130 dagen, tot en met T - 101 dagen, 2 maal per dag 1 dosis, inhalatie"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf T - 130 dagen, tot en met T - 101 dagen, 2 maal per dag 1 dosis, inhalatie"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="${DATE, T, D, -130}T00:00:00+02:00"/>
@@ -1420,18 +1432,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:86ef9f8a-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a496c-a281-11ef-1843-020000000000"/>
                <type value="Medication"/>
                <display value="FLIXOTIDE DISKUS INHPDR 100MCG 60DO"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:86ef9abc-4835-11ef-9061-020000000000"/>
+                  <reference value="urn:uuid:9d6a449e-a281-11ef-1843-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -1483,7 +1495,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9e04-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a47e6-a281-11ef-1843-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="216840111388324311999773737840051-MBH300chronischMVE"/>
@@ -1509,18 +1521,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:86ef9f12-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a48f4-a281-11ef-1843-020000000000"/>
                <type value="Medication"/>
                <display value="ROTER APC TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:86ef9abc-4835-11ef-9061-020000000000"/>
+                  <reference value="urn:uuid:9d6a449e-a281-11ef-1843-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -1555,10 +1567,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9e22-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a4804-a281-11ef-1843-020000000000"/>
       <resource>
          <MedicationDispense>
-            <id value="86efad38-4835-11ef-9061-020000000000"/>
+            <id value="9d6a48c0-a281-11ef-1843-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
             </meta>
@@ -1581,18 +1593,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:86ef9f12-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a48f4-a281-11ef-1843-020000000000"/>
                <type value="Medication"/>
                <display value="ROTER APC TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:86ef9abc-4835-11ef-9061-020000000000"/>
+                  <reference value="urn:uuid:9d6a449e-a281-11ef-1843-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -1627,19 +1639,20 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9d32-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a4714-a281-11ef-1843-020000000000"/>
       <resource>
          <MedicationStatement>
             <id value="2168401113883243119997761-MBH300starteindMGB"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 10 dagen, tot en met T - 5 dagen, 1 stuk, oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf T - 10 dagen, tot en met T - 5 dagen, 1 stuk, oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:86ef99f4-4835-11ef-9061-020000000000"/>
+                  <reference value="urn:uuid:9d6a43d6-a281-11ef-1843-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
@@ -1655,7 +1668,7 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
                <valueReference>
-                  <reference value="urn:uuid:86ef9a4e-4835-11ef-9061-020000000000"/>
+                  <reference value="urn:uuid:9d6a4430-a281-11ef-1843-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Marcha van Partners, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Itis"/>
                </valueReference>
@@ -1673,12 +1686,12 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:86ef9e9a-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a487c-a281-11ef-1843-020000000000"/>
                <type value="Medication"/>
                <display value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </subject>
@@ -1736,19 +1749,20 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9d50-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a4732-a281-11ef-1843-020000000000"/>
       <resource>
          <MedicationStatement>
             <id value="2168401113883243119997761-MBH300startduurMGB"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 20 dagen, gedurende 3 weken, 1 maal per dag 1 stuk, oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf T - 20 dagen, gedurende 3 weken, 1 maal per dag 1 stuk, oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:86ef99f4-4835-11ef-9061-020000000000"/>
+                  <reference value="urn:uuid:9d6a43d6-a281-11ef-1843-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
@@ -1764,7 +1778,7 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
                <valueReference>
-                  <reference value="urn:uuid:86ef99f4-4835-11ef-9061-020000000000"/>
+                  <reference value="urn:uuid:9d6a43d6-a281-11ef-1843-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
@@ -1782,12 +1796,12 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:86ef9eb8-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a489a-a281-11ef-1843-020000000000"/>
                <type value="Medication"/>
                <display value="LISINOPRIL 10MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </subject>
@@ -1804,7 +1818,7 @@
             </effectivePeriod>
             <dateAsserted value="${DATE, T, D, -1}T12:00:00+02:00"/>
             <informationSource>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </informationSource>
@@ -1864,19 +1878,20 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9d6e-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a4750-a281-11ef-1843-020000000000"/>
       <resource>
          <MedicationStatement>
             <id value="2168401113883243119997761-MBH300chronischMGB"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 30 dagen, 1 maal per dag 1 stuk, oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf T - 30 dagen, 1 maal per dag 1 stuk, oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:86ef99f4-4835-11ef-9061-020000000000"/>
+                  <reference value="urn:uuid:9d6a43d6-a281-11ef-1843-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
@@ -1892,7 +1907,7 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
                <valueReference>
-                  <reference value="urn:uuid:86ef9be8-4835-11ef-9061-020000000000"/>
+                  <reference value="urn:uuid:9d6a45ca-a281-11ef-1843-020000000000"/>
                   <type value="Location"/>
                   <display value="Healthcare provider (location), Huisartsenpraktijk Itis"/>
                </valueReference>
@@ -1910,12 +1925,12 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:86ef9f12-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a48f4-a281-11ef-1843-020000000000"/>
                <type value="Medication"/>
                <display value="ROTER APC TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </subject>
@@ -1924,7 +1939,7 @@
             </effectivePeriod>
             <dateAsserted value="${DATE, T, D, -20}T11:43:12+02:00"/>
             <informationSource>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </informationSource>
@@ -1984,19 +1999,20 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9d8c-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a476e-a281-11ef-1843-020000000000"/>
       <resource>
          <MedicationStatement>
             <id value="2168401113883243119997761-MBH300startduur2MGB"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 60 dagen, gedurende 28 dagen, 1 maal per dag 1 stuk, oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf T - 60 dagen, gedurende 28 dagen, 1 maal per dag 1 stuk, oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:86ef99f4-4835-11ef-9061-020000000000"/>
+                  <reference value="urn:uuid:9d6a43d6-a281-11ef-1843-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
@@ -2012,7 +2028,7 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
                <valueReference>
-                  <reference value="urn:uuid:86ef99f4-4835-11ef-9061-020000000000"/>
+                  <reference value="urn:uuid:9d6a43d6-a281-11ef-1843-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
@@ -2030,12 +2046,12 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:86ef9f30-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a4912-a281-11ef-1843-020000000000"/>
                <type value="Medication"/>
                <display value="PANTOPRAZOL TABLET MSR 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </subject>
@@ -2052,7 +2068,7 @@
             </effectivePeriod>
             <dateAsserted value="${DATE, T, D, -55}T15:21:33+02:00"/>
             <informationSource>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </informationSource>
@@ -2112,19 +2128,20 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9daa-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a478c-a281-11ef-1843-020000000000"/>
       <resource>
          <MedicationStatement>
             <id value="2168401113883243119997761-MBH300dosisstuksMGB"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="2 maal per dag 1 dosis, inhalatie"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="2 maal per dag 1 dosis, inhalatie"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:86ef99f4-4835-11ef-9061-020000000000"/>
+                  <reference value="urn:uuid:9d6a43d6-a281-11ef-1843-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
@@ -2140,7 +2157,7 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
                <valueReference>
-                  <reference value="urn:uuid:86ef99f4-4835-11ef-9061-020000000000"/>
+                  <reference value="urn:uuid:9d6a43d6-a281-11ef-1843-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
@@ -2158,18 +2175,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:86ef9f6c-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a494e-a281-11ef-1843-020000000000"/>
                <type value="Medication"/>
                <display value="FLUTICASON INHALATIEPOEDER 100UG/DO 60DO DISKUS"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </subject>
             <dateAsserted value="${DATE, T, D, -100}T07:59:59+02:00"/>
             <informationSource>
-               <reference value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </informationSource>
@@ -2229,7 +2246,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef99cc-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a43ae-a281-11ef-1843-020000000000"/>
       <resource>
          <Patient>
             <id value="D.XXX-Dijks"/>
@@ -2276,7 +2293,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef99f4-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a43d6-a281-11ef-1843-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="PrcRol-2165281100731-000001111"/>
@@ -2284,12 +2301,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:86ef9a1c-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a43fe-a281-11ef-1843-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:86ef9b16-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a44f8-a281-11ef-1843-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -2308,7 +2325,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9a1c-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a43fe-a281-11ef-1843-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2165281100731-000001111"/>
@@ -2343,7 +2360,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9a4e-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a4430-a281-11ef-1843-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="PrcRol-2165281100731-000001115"/>
@@ -2351,12 +2368,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:86ef9a76-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a4458-a281-11ef-1843-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Marcha van Partners"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:86ef9b70-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a4552-a281-11ef-1843-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Itis"/>
             </organization>
@@ -2375,7 +2392,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9a76-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a4458-a281-11ef-1843-020000000000"/>
       <resource>
          <Practitioner>
             <id value="2165281100731-000001115"/>
@@ -2410,7 +2427,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9abc-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a449e-a281-11ef-1843-020000000000"/>
       <resource>
          <Organization>
             <id value="Org-2165281100733-01236578"/>
@@ -2429,7 +2446,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9b16-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a44f8-a281-11ef-1843-020000000000"/>
       <resource>
          <Organization>
             <id value="Org-2165281100733-00001111"/>
@@ -2470,7 +2487,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9b70-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a4552-a281-11ef-1843-020000000000"/>
       <resource>
          <Organization>
             <id value="Org-2165281100733-00005111"/>
@@ -2511,7 +2528,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9bca-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a45ac-a281-11ef-1843-020000000000"/>
       <resource>
          <Organization>
             <id value="Org-2165281100733-00005111-2"/>
@@ -2552,7 +2569,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9be8-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a45ca-a281-11ef-1843-020000000000"/>
       <resource>
          <Location>
             <id value="2165281100733-00005111-2"/>
@@ -2583,7 +2600,7 @@
                <postalCode value="1234ZZ"/>
             </address>
             <managingOrganization>
-               <reference value="urn:uuid:86ef9bca-4835-11ef-9061-020000000000"/>
+               <reference value="urn:uuid:9d6a45ac-a281-11ef-1843-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Itis"/>
             </managingOrganization>
@@ -2594,7 +2611,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9e7c-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a485e-a281-11ef-1843-020000000000"/>
       <resource>
          <Medication>
             <id value="216840111388324410-6947"/>
@@ -2622,7 +2639,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9e9a-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a487c-a281-11ef-1843-020000000000"/>
       <resource>
          <Medication>
             <id value="21684011138832447-560308"/>
@@ -2655,7 +2672,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9eb8-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a489a-a281-11ef-1843-020000000000"/>
       <resource>
          <Medication>
             <id value="216840111388324410-26638"/>
@@ -2683,7 +2700,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9ed6-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a48b8-a281-11ef-1843-020000000000"/>
       <resource>
          <Medication>
             <id value="21684011138832447-1506773"/>
@@ -2716,7 +2733,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9ef4-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a48d6-a281-11ef-1843-020000000000"/>
       <resource>
          <Medication>
             <id value="216840111388324410-3891"/>
@@ -2744,7 +2761,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9f12-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a48f4-a281-11ef-1843-020000000000"/>
       <resource>
          <Medication>
             <id value="21684011138832447-202185"/>
@@ -2777,7 +2794,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9f30-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a4912-a281-11ef-1843-020000000000"/>
       <resource>
          <Medication>
             <id value="216840111388324410-52272"/>
@@ -2805,7 +2822,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9f4e-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a4930-a281-11ef-1843-020000000000"/>
       <resource>
          <Medication>
             <id value="21684011138832447-1163094"/>
@@ -2838,7 +2855,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9f6c-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a494e-a281-11ef-1843-020000000000"/>
       <resource>
          <Medication>
             <id value="216840111388324410-45624"/>
@@ -2866,7 +2883,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9f8a-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a496c-a281-11ef-1843-020000000000"/>
       <resource>
          <Medication>
             <id value="21684011138832447-1029754"/>
@@ -2899,7 +2916,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86ef9fa8-4835-11ef-9061-020000000000"/>
+      <fullUrl value="urn:uuid:9d6a498a-a281-11ef-1843-020000000000"/>
       <resource>
          <Medication>
             <id value="216840111388324410-7323"/>

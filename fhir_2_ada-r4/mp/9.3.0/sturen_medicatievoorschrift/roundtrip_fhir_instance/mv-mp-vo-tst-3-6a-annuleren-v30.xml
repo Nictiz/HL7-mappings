@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="847d757f-4835-11ef-1379-020000000000"/>
+   <id value="9bbb8bb3-a281-11ef-6374-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:847d7722-4835-11ef-1379-020000000000"/>
+      <fullUrl value="urn:uuid:9bbb8d56-a281-11ef-6374-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -18,9 +18,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2023-01-01T14:10:00+01:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="wordt automatisch gegenereerd"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 8 jan 2023, tot en met 19 feb 2023, 1 maal per week 1 stuk, Oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="2023-01-08T00:00:00+01:00"/>
@@ -47,17 +48,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:847d775e-4835-11ef-1379-020000000000"/>
+               <reference value="urn:uuid:9bbb8d92-a281-11ef-6374-020000000000"/>
                <type value="Medication"/>
                <display value="MEFLOQUINE TABLET 250MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:847d75f6-4835-11ef-1379-020000000000"/>
+               <reference value="urn:uuid:9bbb8c2a-a281-11ef-6374-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:847d761e-4835-11ef-1379-020000000000"/>
+               <reference value="urn:uuid:9bbb8c52-a281-11ef-6374-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -101,7 +102,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:847d7740-4835-11ef-1379-020000000000"/>
+      <fullUrl value="urn:uuid:9bbb8d74-a281-11ef-6374-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -131,23 +132,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:847d775e-4835-11ef-1379-020000000000"/>
+               <reference value="urn:uuid:9bbb8d92-a281-11ef-6374-020000000000"/>
                <type value="Medication"/>
                <display value="MEFLOQUINE TABLET 250MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:847d75f6-4835-11ef-1379-020000000000"/>
+               <reference value="urn:uuid:9bbb8c2a-a281-11ef-6374-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <authoredOn value="2023-01-01T14:10:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:847d761e-4835-11ef-1379-020000000000"/>
+               <reference value="urn:uuid:9bbb8c52-a281-11ef-6374-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:847d76e6-4835-11ef-1379-020000000000"/>
+               <reference value="urn:uuid:9bbb8d1a-a281-11ef-6374-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -183,7 +184,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:847d75f6-4835-11ef-1379-020000000000"/>
+      <fullUrl value="urn:uuid:9bbb8c2a-a281-11ef-6374-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -233,19 +234,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:847d761e-4835-11ef-1379-020000000000"/>
+      <fullUrl value="urn:uuid:9bbb8c52-a281-11ef-6374-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:847d7646-4835-11ef-1379-020000000000"/>
+               <reference value="urn:uuid:9bbb8c7a-a281-11ef-6374-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:847d768c-4835-11ef-1379-020000000000"/>
+               <reference value="urn:uuid:9bbb8cc0-a281-11ef-6374-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -270,7 +271,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:847d7646-4835-11ef-1379-020000000000"/>
+      <fullUrl value="urn:uuid:9bbb8c7a-a281-11ef-6374-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -310,7 +311,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:847d768c-4835-11ef-1379-020000000000"/>
+      <fullUrl value="urn:uuid:9bbb8cc0-a281-11ef-6374-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -351,7 +352,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:847d76e6-4835-11ef-1379-020000000000"/>
+      <fullUrl value="urn:uuid:9bbb8d1a-a281-11ef-6374-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -395,7 +396,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:847d775e-4835-11ef-1379-020000000000"/>
+      <fullUrl value="urn:uuid:9bbb8d92-a281-11ef-6374-020000000000"/>
       <resource>
          <Medication>
             <meta>

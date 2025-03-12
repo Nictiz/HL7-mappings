@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="84920ff3-4835-11ef-1985-020000000000"/>
+   <id value="9bc8d467-a281-11ef-1372-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:84921196-4835-11ef-1985-020000000000"/>
+      <fullUrl value="urn:uuid:9bc8d60a-a281-11ef-1372-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -18,9 +18,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2023-01-01T08:57:00+01:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+27D{23:59:59}&gt;, 1 maal per dag 1 stuk zo nodig, oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 1 jan 2023, tot en met 28 jan 2023, Zo nodig 1 maal per dag 1 stuk, Oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="2023-01-01T00:00:00+01:00"/>
@@ -47,17 +48,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:849211d2-4835-11ef-1985-020000000000"/>
+               <reference value="urn:uuid:9bc8d646-a281-11ef-1372-020000000000"/>
                <type value="Medication"/>
-               <display value="ACETYLSALICYLZUUR 100MG TAB"/>
+               <display value="ACETYLSALICYLZUUR TABLET 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:8492106a-4835-11ef-1985-020000000000"/>
+               <reference value="urn:uuid:9bc8d4de-a281-11ef-1372-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:84921092-4835-11ef-1985-020000000000"/>
+               <reference value="urn:uuid:9bc8d506-a281-11ef-1372-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -108,7 +109,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:849211b4-4835-11ef-1985-020000000000"/>
+      <fullUrl value="urn:uuid:9bc8d628-a281-11ef-1372-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -138,25 +139,25 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:849211d2-4835-11ef-1985-020000000000"/>
+               <reference value="urn:uuid:9bc8d646-a281-11ef-1372-020000000000"/>
                <type value="Medication"/>
-               <display value="ACETYLSALICYLZUUR 100MG TAB"/>
+               <display value="ACETYLSALICYLZUUR TABLET 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:8492106a-4835-11ef-1985-020000000000"/>
+               <reference value="urn:uuid:9bc8d4de-a281-11ef-1372-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <authoredOn value="2023-01-01T08:57:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:84921092-4835-11ef-1985-020000000000"/>
+               <reference value="urn:uuid:9bc8d506-a281-11ef-1372-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:8492115a-4835-11ef-1985-020000000000"/>
+               <reference value="urn:uuid:9bc8d5ce-a281-11ef-1372-020000000000"/>
                <type value="Organization"/>
-               <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
+               <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
             <basedOn>
                <type value="MedicationRequest"/>
@@ -190,7 +191,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:8492106a-4835-11ef-1985-020000000000"/>
+      <fullUrl value="urn:uuid:9bc8d4de-a281-11ef-1372-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -237,19 +238,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:84921092-4835-11ef-1985-020000000000"/>
+      <fullUrl value="urn:uuid:9bc8d506-a281-11ef-1372-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:849210ba-4835-11ef-1985-020000000000"/>
+               <reference value="urn:uuid:9bc8d52e-a281-11ef-1372-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:84921100-4835-11ef-1985-020000000000"/>
+               <reference value="urn:uuid:9bc8d574-a281-11ef-1372-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -274,7 +275,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:849210ba-4835-11ef-1985-020000000000"/>
+      <fullUrl value="urn:uuid:9bc8d52e-a281-11ef-1372-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -314,7 +315,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:84921100-4835-11ef-1985-020000000000"/>
+      <fullUrl value="urn:uuid:9bc8d574-a281-11ef-1372-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -355,7 +356,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:8492115a-4835-11ef-1985-020000000000"/>
+      <fullUrl value="urn:uuid:9bc8d5ce-a281-11ef-1372-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -365,7 +366,7 @@
                <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
                <value value="01236578"/>
             </identifier>
-            <name value="Apotheek de Gulle Gaper"/>
+            <name value="Apotheek De Gulle Gaper"/>
             <address>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
                   <valueCodeableConcept>
@@ -399,7 +400,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:849211d2-4835-11ef-1985-020000000000"/>
+      <fullUrl value="urn:uuid:9bc8d646-a281-11ef-1372-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -409,7 +410,7 @@
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
                   <code value="3956"/>
-                  <display value="ACETYLSALICYLZUUR 100MG TAB"/>
+                  <display value="ACETYLSALICYLZUUR TABLET 100MG"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
@@ -417,7 +418,7 @@
                   <code value="12548"/>
                   <display value="ACETYLSALICYLZUUR TABLET 100MG"/>
                </coding>
-               <text value="ACETYLSALICYLZUUR 100MG TAB"/>
+               <text value="ACETYLSALICYLZUUR TABLET 100MG"/>
             </code>
          </Medication>
       </resource>

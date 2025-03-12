@@ -31,7 +31,7 @@
             <geboortedatum datatype="datetime" value="1963-10-16"/>
             <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
          </patient>
-         <medicamenteuze_behandeling id="d32e138">
+         <medicamenteuze_behandeling id="d32e156">
             <identificatie value="MBH_300_start_eind"
                            root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             <verstrekkingsverzoek>
@@ -58,7 +58,7 @@
             <farmaceutisch_product id="d32e58">
                <product_code code="560308"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
-                             codeSystemName="G-Standaar HPK"
+                             codeSystemName="G-Standaard HPK"
                              displayName="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
                <product_code code="6947"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
@@ -87,25 +87,39 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Apothekers"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d32e76" datatype="reference"/>
+                  <zorgaanbieder value="d32e112" datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
             <zorgaanbieder id="d32e76">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
             </zorgaanbieder>
+            <zorgaanbieder id="d32e112">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
          </bouwstenen>
          <voorstel_gegevens>
             <voorstel>
                <identificatie value="MBH_300_start_eind_voorraad_vakantie_VVV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.2"/>
-               <voorstel_datum datatype="datetime" value="2023-01-01T13:24:00"/>
+               <voorstel_datum datatype="datetime" value="2024-01-01T13:24:00+01:00"/>
                <auteur>
                   <auteur_is_zorgverlener>
                      <zorgverlener value="d32e91" datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
-               <medicamenteuze_behandeling value="d32e138" datatype="reference"/>
+               <medicamenteuze_behandeling value="d32e156" datatype="reference"/>
                <toelichting value="Tekort aan medicatie vanwege lange vakantie patiënt"/>
             </voorstel>
          </voorstel_gegevens>

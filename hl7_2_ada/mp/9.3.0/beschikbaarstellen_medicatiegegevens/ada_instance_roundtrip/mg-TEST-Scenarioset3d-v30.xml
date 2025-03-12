@@ -1,0 +1,533 @@
+<!--Generated from HL7v3 instance.--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2024-01-01T00:00:00+02:00"
+         last-update-date="2024-01-01T00:00:00+02:00"/>
+   <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
+      <beschikbaarstellen_medicatiegegevens app="mp-mp93"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.374"
+                                            transactionEffectiveDate="2022-06-30T00:00:00"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="mg-TEST-Scenarioset3d-v30"
+                                            id="mg-TEST-Scenarioset3d-v30">
+         <patient>
+            <naamgegevens>
+               <initialen value="J."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <voorvoegsels value="de "/>
+                  <achternaam value="XXX_Luzac"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900778" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime" value="1985-10-24"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_300_CorrectieToediening "
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak>
+               <identificatie value="MBH_300_CorrectieToediening_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-12-30T13:45:00+01:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2023-12-30T13:45:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" nullFlavor="NI"/>
+               </gebruiksperiode>
+               <voorschrijver>
+                  <zorgverlener value="d4869e81" datatype="reference"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="d4869e67" datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie>
+                  <omschrijving value="1 maal per dag 1 stuks, Oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuks"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <toedieningsafspraak>
+               <identificatie value="MBH_300_CorrectieToediening_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-12-30T15:30:00+01:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2023-12-30T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" nullFlavor="NI"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder value="d4869e225" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d4869e205" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie>
+                  <omschrijving value="elke dag om 13:45 1 stuks, Oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuks"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <toedientijd value="13:45:00" datatype="time"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_CorrectieToediening_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatietoediening>
+               <identificatie value="MBH_300_CorrectieToediening_MTD_normaal"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <toedienings_product>
+                  <farmaceutisch_product value="d4869e205" datatype="reference"/>
+               </toedienings_product>
+               <registratie_datum_tijd datatype="datetime" value="2023-12-30T13:45:00+01:00"/>
+               <toedienings_datum_tijd datatype="datetime" value="2023-12-30T13:45:00+01:00"/>
+               <toegediende_hoeveelheid>
+                  <aantal value="1"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuks"/>
+               </toegediende_hoeveelheid>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="Oraal"/>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_CorrectieToediening_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <relatie_toedieningsafspraak>
+                  <identificatie value="MBH_300_CorrectieToediening_TA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_toedieningsafspraak>
+               <toediener>
+                  <zorgverlener>
+                     <zorgverlener value="d4869e337" datatype="reference"/>
+                  </zorgverlener>
+               </toediener>
+            </medicatietoediening>
+            <medicatietoediening>
+               <identificatie value="MBH_300_CorrectieToediening_MTD_extraHoeveelheid"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <toedienings_product>
+                  <farmaceutisch_product value="d4869e205" datatype="reference"/>
+               </toedienings_product>
+               <registratie_datum_tijd datatype="datetime" value="2023-12-30T13:50:00+01:00"/>
+               <toedienings_datum_tijd datatype="datetime" value="2023-12-30T13:45:00+01:00"/>
+               <toegediende_hoeveelheid>
+                  <aantal value="2"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuks"/>
+               </toegediende_hoeveelheid>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="Oraal"/>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_CorrectieToediening_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <relatie_toedieningsafspraak>
+                  <identificatie value="MBH_300_CorrectieToediening_TA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_toedieningsafspraak>
+               <toediener>
+                  <zorgverlener>
+                     <zorgverlener value="d4869e337" datatype="reference"/>
+                  </zorgverlener>
+               </toediener>
+            </medicatietoediening>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_300_CorrectieOpToediening"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak>
+               <identificatie value="MBH_300_CorrectieOpToediening_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-12-28T07:45:00+01:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2023-12-29T07:45:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" nullFlavor="NI"/>
+               </gebruiksperiode>
+               <voorschrijver>
+                  <zorgverlener value="d4869e81" datatype="reference"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="d4869e579" datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie>
+                  <omschrijving value="elke dag om 07:45 1 stuk, Oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="Stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <toedientijd value="07:45:00" datatype="time"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <toedieningsafspraak>
+               <identificatie value="MBH_300_CorrectieOpToediening_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-12-28T15:45:00+01:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2023-12-29T07:45:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" nullFlavor="NI"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder value="d4869e225" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d4869e712" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie>
+                  <omschrijving value="elke dag om 07:45 2 stuks, Oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="Stuks"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <toedientijd value="07:45:00" datatype="time"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_CorrectieOpToediening_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatietoediening>
+               <identificatie value="MBH_300_CorrectieOpToediening_verkeerdehoeveelheid_MTD"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <toedienings_product>
+                  <farmaceutisch_product value="d4869e712" datatype="reference"/>
+               </toedienings_product>
+               <registratie_datum_tijd datatype="datetime" value="2023-12-29T07:45:00+01:00"/>
+               <toedienings_datum_tijd datatype="datetime" value="2023-12-29T07:45:00+01:00"/>
+               <toegediende_hoeveelheid>
+                  <aantal value="1"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="Stuk"/>
+               </toegediende_hoeveelheid>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="Oraal"/>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_CorrectieOpToediening_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <relatie_toedieningsafspraak>
+                  <identificatie value="MBH_300_CorrectieOpToediening_TA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_toedieningsafspraak>
+               <toediener>
+                  <zorgverlener>
+                     <zorgverlener value="d4869e844" datatype="reference"/>
+                  </zorgverlener>
+               </toediener>
+            </medicatietoediening>
+            <medicatietoediening>
+               <identificatie value="MBH_300_CorrectieOpToediening_correctieopregistratie_MTD"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <toedienings_product>
+                  <farmaceutisch_product value="d4869e712" datatype="reference"/>
+               </toedienings_product>
+               <registratie_datum_tijd datatype="datetime" value="2023-12-29T07:48:00+01:00"/>
+               <toedienings_datum_tijd datatype="datetime" value="2023-12-29T07:48:00+01:00"/>
+               <toegediende_hoeveelheid>
+                  <aantal value="-1"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="Stuk"/>
+               </toegediende_hoeveelheid>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="Oraal"/>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_CorrectieOpToediening_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <relatie_toedieningsafspraak>
+                  <identificatie value="MBH_300_CorrectieOpToediening_TA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_toedieningsafspraak>
+               <toediener>
+                  <zorgverlener>
+                     <zorgverlener value="d4869e844" datatype="reference"/>
+                  </zorgverlener>
+               </toediener>
+               <medicatietoediening_reden_van_afwijken code="159691000146109"
+                                                       codeSystem="2.16.840.1.113883.6.96"
+                                                       displayName="foutieve registratie van medicatie"/>
+            </medicatietoediening>
+            <medicatietoediening>
+               <identificatie value="MBH_300_CorrectieOpToediening_CorrecteHoeveelheid_MTD"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <toedienings_product>
+                  <farmaceutisch_product value="d4869e712" datatype="reference"/>
+               </toedienings_product>
+               <registratie_datum_tijd datatype="datetime" value="2023-12-29T07:49:00+01:00"/>
+               <toedienings_datum_tijd datatype="datetime" value="2023-12-29T07:49:00+01:00"/>
+               <toegediende_hoeveelheid>
+                  <aantal value="2"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="Stuks"/>
+               </toegediende_hoeveelheid>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="Oraal"/>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_CorrectieOpToediening_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <relatie_toedieningsafspraak>
+                  <identificatie value="MBH_300_CorrectieOpToediening_TA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_toedieningsafspraak>
+               <toediener>
+                  <zorgverlener>
+                     <zorgverlener value="d4869e844" datatype="reference"/>
+                  </zorgverlener>
+               </toediener>
+               <toelichting value="Correctie op verkeerd geregistreerde hoeveelheid"/>
+            </medicatietoediening>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="d4869e67">
+               <product_code code="16020"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="TRIMETHOPRIM TABLET 300MG"/>
+               <product_code code="39136"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="TRIMETHOPRIM TABLET 300MG"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d4869e205">
+               <product_code code="1089838"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="TRIMETHOPRIM CF TABLET 300MG"/>
+               <product_code code="16020"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="TRIMETHOPRIM TABLET "/>
+               <product_code code="39136"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="TRIMETHOPRIM TABLET 300MG"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d4869e579">
+               <product_code code="43044"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="PANTOPRAZOL 40MG TABLET MSR"/>
+               <product_code code="96938"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="PANTOPRAZOL 40MG TABLET MSR"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d4869e712">
+               <product_code code="1163094"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="PANTOZOL TABLET MSR 20MG"/>
+               <product_code code="52272"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="PANTOPRAZOL TABLET MSR 20MG"/>
+               <product_code code="106275"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="PANTOPRAZOL TABLET MSR 20MG"/>
+            </farmaceutisch_product>
+            <zorgverlener id="d4869e81">
+               <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Bertine"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="van "/>
+                     <achternaam value="Doorn"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder value="d4869e102" datatype="reference"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgverlener id="d4869e337">
+               <zorgverlener_identificatienummer value="222220000" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Jantien"/>
+                  <naamgebruik code="NL1"
+                               codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                               displayName="Eigen geslachtsnaam"/>
+                  <geslachtsnaam>
+                     <achternaam value="Toedien"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="9100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Verpleegkundigen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder value="d4869e355" datatype="reference"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgverlener id="d4869e844">
+               <zorgverlener_identificatienummer value="222221111" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Tanja"/>
+                  <naamgebruik code="NL1"
+                               codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                               displayName="Eigen geslachtsnaam"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="de "/>
+                     <achternaam value="Bakker"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="3400"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Trombosediensten"/>
+               <zorgaanbieder>
+                  <zorgaanbieder value="d4869e865" datatype="reference"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="d4869e102">
+               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="d4869e225">
+               <zorgaanbieder_identificatienummer value="99901111" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek Jansen en Co"/>
+            </zorgaanbieder>
+            <zorgaanbieder id="d4869e355">
+               <zorgaanbieder_identificatienummer value="11110000" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Thuiszorg Om en Bij"/>
+               <organisatie_type code="T2"
+                                 codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                 displayName="Thuiszorg"/>
+            </zorgaanbieder>
+            <zorgaanbieder id="d4869e865">
+               <zorgaanbieder_identificatienummer value="11112222" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Trombosedienst Ons Dorp"/>
+               <afdeling_specialisme code="3400"
+                                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                     codeSystemVersion="2020-10-23T00:00:00"
+                                     displayName="Trombosediensten"/>
+               <adresgegevens>
+                  <straat value="Kerkstraat"/>
+                  <huisnummer value="28"/>
+                  <huisnummerletter value="d"/>
+                  <postcode value="1332 GH"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

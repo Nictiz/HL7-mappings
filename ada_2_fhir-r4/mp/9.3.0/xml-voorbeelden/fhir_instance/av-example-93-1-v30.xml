@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="dfedfa57-4807-11ef-1777-020000000000"/>
+   <id value="a042bb7b-c2ab-11ef-1688-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:dfedfb50-4807-11ef-1777-020000000000"/>
+      <fullUrl value="urn:uuid:a042bbfc-c2ab-11ef-1688-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -28,7 +28,7 @@
                <valueDateTime value="2023-01-01T12:20:00+01:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Wordt gegenereerd"/>
+               <valueString value="1 maal per dag 1 stuk, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -64,18 +64,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:dfedfbaa-4807-11ef-1777-020000000000"/>
+               <reference value="urn:uuid:a042bc38-c2ab-11ef-1688-020000000000"/>
                <type value="Medication"/>
                <display value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dfedfad8-4807-11ef-1777-020000000000"/>
+               <reference value="urn:uuid:a042bbac-c2ab-11ef-1688-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, A. van de XXX_Boschman"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:dfedfb14-4807-11ef-1777-020000000000"/>
+                  <reference value="urn:uuid:a042bbd4-c2ab-11ef-1688-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -131,7 +131,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dfedfb6e-4807-11ef-1777-020000000000"/>
+      <fullUrl value="urn:uuid:a042bc10-c2ab-11ef-1688-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -181,18 +181,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:dfedfbaa-4807-11ef-1777-020000000000"/>
+               <reference value="urn:uuid:a042bc38-c2ab-11ef-1688-020000000000"/>
                <type value="Medication"/>
                <display value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dfedfad8-4807-11ef-1777-020000000000"/>
+               <reference value="urn:uuid:a042bbac-c2ab-11ef-1688-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, A. van de XXX_Boschman"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:dfedfb14-4807-11ef-1777-020000000000"/>
+                  <reference value="urn:uuid:a042bbd4-c2ab-11ef-1688-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -227,7 +227,7 @@
             </daysSupply>
             <whenHandedOver value="2023-01-01T12:20:00+01:00"/>
             <destination>
-               <reference value="urn:uuid:dfedfb8c-4807-11ef-1777-020000000000"/>
+               <reference value="urn:uuid:a042bc24-c2ab-11ef-1688-020000000000"/>
                <type value="Location"/>
                <display value="afleverlocatie"/>
             </destination>
@@ -242,7 +242,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dfedfad8-4807-11ef-1777-020000000000"/>
+      <fullUrl value="urn:uuid:a042bbac-c2ab-11ef-1688-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -292,7 +292,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dfedfb14-4807-11ef-1777-020000000000"/>
+      <fullUrl value="urn:uuid:a042bbd4-c2ab-11ef-1688-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -303,6 +303,31 @@
                <value value="01236578"/>
             </identifier>
             <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -311,13 +336,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dfedfbaa-4807-11ef-1777-020000000000"/>
+      <fullUrl value="urn:uuid:a042bc38-c2ab-11ef-1688-020000000000"/>
       <resource>
          <Medication>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
             <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="560308"/>
+                  <display value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
+                  <userSelected value="true"/>
+               </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
                   <code value="6947"/>
@@ -327,12 +358,6 @@
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
                   <code value="19429"/>
                   <display value="METOCLOPRAMIDE TABLET 10MG"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="560308"/>
-                  <display value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
-                  <userSelected value="true"/>
                </coding>
                <text value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
             </code>
@@ -344,7 +369,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dfedfb8c-4807-11ef-1777-020000000000"/>
+      <fullUrl value="urn:uuid:a042bc24-c2ab-11ef-1688-020000000000"/>
       <resource>
          <Location>
             <meta>

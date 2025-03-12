@@ -1,11 +1,10 @@
-<!--Generated from HL7v3 instance.-->
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<!--Generated from HL7v3 instance.--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_voorstel_medicatieafspraak.xsd">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2024-04-17T15:48:40.923+02:00"
-         last-update-date="2024-04-17T15:48:40.923+02:00"/>
+         creation-date="2024-01-01T00:00:00+02:00"
+         last-update-date="2024-01-01T00:00:00+02:00"/>
    <data>
       <sturen_voorstel_medicatieafspraak app="mp-mp93"
                                          shortName="sturen_voorstel_medicatieafspraak"
@@ -31,18 +30,18 @@
             <geboortedatum datatype="datetime" value="1963-10-16"/>
             <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
          </patient>
-         <medicamenteuze_behandeling id="d32e126">
+         <medicamenteuze_behandeling id="d32e144">
             <identificatie value="MBH_300_start_eind" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <medicatieafspraak>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-03T00:00:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-01-06T23:59:59"/>
+                  <start_datum_tijd datatype="datetime" value="2024-01-03T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2024-01-06T23:59:59+01:00"/>
                </gebruiksperiode>
                <afgesproken_geneesmiddel>
                   <farmaceutisch_product value="d32e64" datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 3 jan 2023, tot en met 6 jan 2023, 1 maal per 2 dagen 2 stuks, Oraal"/>
+                  <omschrijving value="1 maal per 2 dagen 2 stuks, Oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
@@ -86,27 +85,37 @@
             <zorgaanbieder id="d32e82">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
             <lichaamslengte>
                <lengte_waarde value="165" unit="cm"/>
-               <lengte_datum_tijd datatype="datetime" value="2023-01-01T07:05:00"/>
+               <lengte_datum_tijd datatype="datetime" value="2024-01-01T07:05:00+01:00"/>
             </lichaamslengte>
             <lichaamsgewicht>
                <gewicht_waarde value="75" unit="kg"/>
-               <gewicht_datum_tijd datatype="datetime" value="2023-01-01T07:05:00"/>
+               <gewicht_datum_tijd datatype="datetime" value="2024-01-01T07:05:00+01:00"/>
             </lichaamsgewicht>
          </bouwstenen>
          <voorstel_gegevens>
             <voorstel>
                <identificatie value="MBH_300_start_eind_lengte_gewicht_VMA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.2"/>
-               <voorstel_datum datatype="datetime" value="2023-01-01T07:10:00"/>
+               <voorstel_datum datatype="datetime" value="2024-01-01T07:10:00+01:00"/>
                <auteur>
                   <auteur_is_zorgaanbieder>
                      <zorgaanbieder value="d32e82" datatype="reference"/>
                   </auteur_is_zorgaanbieder>
                </auteur>
-               <medicamenteuze_behandeling value="d32e126" datatype="reference"/>
+               <medicamenteuze_behandeling value="d32e144" datatype="reference"/>
                <toelichting value="verhoging dosis vanwege aanhoudende misselijkheid"/>
             </voorstel>
          </voorstel_gegevens>
