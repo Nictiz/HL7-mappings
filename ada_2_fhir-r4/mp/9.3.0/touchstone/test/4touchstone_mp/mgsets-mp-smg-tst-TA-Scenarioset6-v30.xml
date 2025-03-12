@@ -1388,7 +1388,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5ca71a28-6aad-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:88f7bad6-6acf-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -1398,7 +1398,7 @@
                <valueDateTime value="${DATE, T, D, +0}T09:47:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="toedieningssnelheid: 0.2 à 0.5 ml/h, Intraveneus"/>
+               <valueString value="toedieningssnelheid: per, Intraveneus"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -1887,7 +1887,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:59ba831d-6b1f-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:681a7e04-6afd-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -1895,22 +1895,17 @@
             </meta>
             <code>
                <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="202681"/>
-                  <display value="ASPIRINE TABLET 100MG"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="1090"/>
+                  <display value="METFORMINE 500MG TABLET"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="3956"/>
-                  <display value="ACETYLSALICYLZUUR TABLET 100MG"/>
-               </coding>
-               <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="12548"/>
-                  <display value="ACETYLSALICYLZUUR TABLET 100MG"/>
+                  <code value="3816"/>
+                  <display value="METFORMINE 500MG TABLET"/>
                </coding>
-               <text value="ASPIRINE TABLET 100MG"/>
+               <text value="METFORMINE 500MG TABLET"/>
             </code>
          </Medication>
       </resource>
@@ -1944,6 +1939,67 @@
                   <display value="AMOXICILLINE DISPERTABLET 500MG"/>
                </coding>
                <text value="AMOXICILLINE DISPER SANDOZ TABLET 500MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:e3bcb51d-6abb-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="16705"/>
+                  <display value="Fusidinezuur creme 20mg/g"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="73466"/>
+                  <display value="Fusidinezuur creme 20mg/g"/>
+               </coding>
+               <text value="Fusidinezuur creme 20mg/g"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:59ba831d-6b1f-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="202681"/>
+                  <display value="ASPIRINE TABLET 100MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="3956"/>
+                  <display value="ACETYLSALICYLZUUR TABLET 100MG"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="12548"/>
+                  <display value="ACETYLSALICYLZUUR TABLET 100MG"/>
+               </coding>
+               <text value="ASPIRINE TABLET 100MG"/>
             </code>
          </Medication>
       </resource>
@@ -2052,34 +2108,6 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e3bcb51d-6abb-11ec-0000-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="16705"/>
-                  <display value="Fusidinezuur creme 20mg/g"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="73466"/>
-                  <display value="Fusidinezuur creme 20mg/g"/>
-               </coding>
-               <text value="Fusidinezuur creme 20mg/g"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
       <fullUrl value="urn:uuid:e90360e9-6b63-11ec-0000-020000000000"/>
       <resource>
          <Medication>
@@ -2137,34 +2165,6 @@
                   <display value="IMIQUIMOD 50MG/G CREME"/>
                </coding>
                <text value="ALDARA CREME 50MG/G IN SACHET"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:681a7e04-6afd-11ec-0000-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="1090"/>
-                  <display value="METFORMINE 500MG TABLET"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="3816"/>
-                  <display value="METFORMINE 500MG TABLET"/>
-               </coding>
-               <text value="METFORMINE 500MG TABLET"/>
             </code>
          </Medication>
       </resource>
