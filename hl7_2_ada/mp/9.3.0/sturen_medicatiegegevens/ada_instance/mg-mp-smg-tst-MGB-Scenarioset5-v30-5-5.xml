@@ -1,11 +1,13 @@
-<!--Generated from HL7v3 instance.--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatiegegevens.xsd">
+<!--Generated from HL7v3 instance.-->
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatiegegevens.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2024-01-01T00:00:00+02:00"
-         last-update-date="2024-01-01T00:00:00+02:00"/>
-   <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
+         creation-date="2025-03-17T08:50:28.0262217+01:00"
+         last-update-date="2025-03-17T08:50:28.0262217+01:00"/>
+   <data>
+      <!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
       <sturen_medicatiegegevens app="mp-mp93"
                                 shortName="sturen_medicatiegegevens"
                                 formName="medicatiegegevens"
@@ -25,9 +27,13 @@
                   <achternaam value="XXX_Raamsdonk"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999900924" root="2.16.840.1.113883.2.4.6.3"/>
-            <geboortedatum datatype="datetime" value="1985-11-06"/>
-            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+            <identificatienummer value="999900924"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime"
+                           value="1985-11-06"/>
+            <geslacht code="M"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Man"/>
          </patient>
          <medicamenteuze_behandeling>
             <identificatie value="MBH_300_zelfzorgmedicatie"
@@ -35,14 +41,18 @@
             <medicatiegebruik>
                <identificatie value="MBH_300_zelfzorgmedicatie_MGB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <medicatiegebruik_datum_tijd datatype="datetime" value="2023-10-13T20:30:10+02:00"/>
+               <medicatiegebruik_datum_tijd datatype="datetime"
+                                            value="2023-10-13T20:30:10+02:00"/>
                <gebruik_indicator value="true"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-10-03T00:00:00+02:00"/>
-                  <tijds_duur value="10" unit="dag"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2023-10-03T00:00:00+02:00"/>
+                  <tijds_duur value="10"
+                              unit="dag"/>
                </gebruiksperiode>
                <gebruiksproduct>
-                  <farmaceutisch_product value="d2213e64" datatype="reference"/>
+                  <farmaceutisch_product value="d14680e64"
+                                         datatype="reference"/>
                </gebruiksproduct>
                <gebruiksinstructie>
                   <omschrijving value="1 maal per dag 1 stuk, oraal"/>
@@ -67,8 +77,20 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir"
+                                             xmlns:pharm="urn:ihe:pharm:medication">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -79,7 +101,7 @@
             </medicatiegebruik>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d2213e64">
+            <farmaceutisch_product id="d14680e64">
                <product_specificatie>
                   <product_naam value="Prevalin oogdruppels"/>
                </product_specificatie>

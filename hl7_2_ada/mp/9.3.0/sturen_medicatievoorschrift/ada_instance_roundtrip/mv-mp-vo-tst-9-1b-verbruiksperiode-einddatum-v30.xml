@@ -1,10 +1,11 @@
-<!--Generated from HL7v3 instance.--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd">
+<!--Generated from HL7v3 instance.-->
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2024-01-01T00:00:00+02:00"
-         last-update-date="2024-01-01T00:00:00+02:00"/>
+         creation-date="2025-03-17T08:55:10.6176817+01:00"
+         last-update-date="2025-03-17T08:55:10.6176817+01:00"/>
    <data>
       <sturen_medicatievoorschrift app="mp-mp93"
                                    shortName="sturen_medicatievoorschrift"
@@ -26,9 +27,13 @@
                   <achternaam value="XXX_Nederveen"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999900833" root="2.16.840.1.113883.2.4.6.3"/>
-            <geboortedatum datatype="datetime" value="1985-10-28"/>
-            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <identificatienummer value="999900833"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime"
+                           value="1985-10-28"/>
+            <geslacht code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"/>
          </patient>
          <medicamenteuze_behandeling>
             <identificatie value="MBH_300_distributievorm_GDS"
@@ -36,16 +41,21 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_distributievorm_GDS_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2024-01-01T11:01:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2024-01-01T11:01:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2024-07-19T23:59:59+02:00"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2024-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2024-07-19T23:59:59+02:00"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d2366e79" datatype="reference"/>
+                  <zorgverlener value="d179827e79"
+                                datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d2366e65" datatype="reference"/>
+                  <farmaceutisch_product value="d179827e65"
+                                         datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
                   <omschrijving value="1 maal per dag 1 stuk, Oraal"/>
@@ -70,8 +80,19 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -80,18 +101,23 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_distributievorm_GDS_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2024-01-01T11:01:00+01:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime"
+                                                value="2024-01-01T11:01:00+01:00"/>
                <auteur>
-                  <zorgverlener value="d2366e79" datatype="reference"/>
+                  <zorgverlener value="d179827e79"
+                                datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d2366e65" datatype="reference"/>
+                  <farmaceutisch_product value="d179827e65"
+                                         datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <verbruiksperiode>
-                  <eind_datum_tijd datatype="datetime" value="2024-07-19T23:59:59+02:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2024-07-19T23:59:59+02:00"/>
                </verbruiksperiode>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d2366e212" datatype="reference"/>
+                  <zorgaanbieder value="d179827e212"
+                                 datatype="reference"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_distributievorm_GDS_MA"
@@ -100,7 +126,7 @@
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d2366e65">
+            <farmaceutisch_product id="d179827e65">
                <product_code code="48291"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -110,8 +136,9 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="MIZOLASTINE TABLET MGA  10MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="d2366e79">
-               <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
+            <zorgverlener id="d179827e79">
+               <zorgverlener_identificatienummer value="000001112"
+                                                 root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Bertine"/>
                   <geslachtsnaam>
@@ -136,11 +163,13 @@
                   </telefoonnummers>
                </contactgegevens>
                <zorgaanbieder>
-                  <zorgaanbieder value="d2366e102" datatype="reference"/>
+                  <zorgaanbieder value="d179827e102"
+                                 datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d2366e102">
-               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+            <zorgaanbieder id="d179827e102">
+               <zorgaanbieder_identificatienummer value="00001111"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>
@@ -152,8 +181,9 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="d2366e212">
-               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+            <zorgaanbieder id="d179827e212">
+               <zorgaanbieder_identificatienummer value="01236578"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>

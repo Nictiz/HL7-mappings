@@ -1,10 +1,11 @@
-<!--Generated from HL7v3 instance.--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_afhandeling_medicatievoorschrift.xsd">
+<!--Generated from HL7v3 instance.-->
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_afhandeling_medicatievoorschrift.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2024-01-01T00:00:00+02:00"
-         last-update-date="2024-01-01T00:00:00+02:00"/>
+         creation-date="2025-03-17T08:55:14.343298+01:00"
+         last-update-date="2025-03-17T08:55:14.343298+01:00"/>
    <data>
       <sturen_afhandeling_medicatievoorschrift app="mp-mp93"
                                                shortName="sturen_afhandeling_medicatievoorschrift"
@@ -27,28 +28,38 @@
                   <achternaam value="XXX_Luzac"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999900778" root="2.16.840.1.113883.2.4.6.3"/>
-            <geboortedatum datatype="datetime" value="1985-10-24"/>
-            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <identificatienummer value="999900778"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime"
+                           value="1985-10-24"/>
+            <geslacht code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"/>
          </patient>
          <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_TAwijzigen" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <identificatie value="MBH_300_TAwijzigen"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <toedieningsafspraak>
                <identificatie value="MBH_300_TAwijzigen_TA_anderePRK"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2024-01-01T12:35:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2024-01-01T12:35:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
-                  <tijds_duur value="18" unit="dag"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2024-01-01T00:00:00+01:00"/>
+                  <tijds_duur value="18"
+                              unit="dag"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d938e86" datatype="reference"/>
+                  <zorgaanbieder value="d182339e86"
+                                 datatype="reference"/>
                </verstrekker>
                <toedieningsafspraak_reden_wijzigen_of_staken code="182856006"
                                                              codeSystem="2.16.840.1.113883.6.96"
                                                              displayName="geneesmiddel niet voorradig"/>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d938e68" datatype="reference"/>
+                  <farmaceutisch_product value="d182339e68"
+                                         datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
                   <omschrijving value="2 maal per dag 1 stuk, oraal"/>
@@ -73,8 +84,19 @@
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="2"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -91,19 +113,24 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_TAwijzigen_TA_techstaken"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2024-01-01T12:30:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2024-01-01T12:30:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2024-01-01T23:59:59+01:00"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2024-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2024-01-01T23:59:59+01:00"/>
                </gebruiksperiode>
                <toedieningsafspraak_stop_type code="410546004"
                                               codeSystem="2.16.840.1.113883.6.96"
                                               displayName="stopgezet"/>
                <verstrekker>
-                  <zorgaanbieder value="d938e86" datatype="reference"/>
+                  <zorgaanbieder value="d182339e86"
+                                 datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d938e233" datatype="reference"/>
+                  <farmaceutisch_product value="d182339e233"
+                                         datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
                   <omschrijving value="1 maal per dag 1 stuk, Oraal"/>
@@ -128,8 +155,19 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -146,9 +184,11 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_TAwijzigen_MVE_anderePRK"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2024-01-01T12:36:00+01:00"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                                  value="2024-01-01T12:36:00+01:00"/>
                <verstrekker>
-                  <zorgaanbieder value="d938e86" datatype="reference"/>
+                  <zorgaanbieder value="d182339e86"
+                                 datatype="reference"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="28"/>
@@ -158,7 +198,8 @@
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d938e392" datatype="reference"/>
+                  <farmaceutisch_product value="d182339e392"
+                                         datatype="reference"/>
                </verstrekt_geneesmiddel>
                <relatie_verstrekkingsverzoek>
                   <identificatie value="MBH_300_TAwijzigen_VV"
@@ -167,7 +208,7 @@
             </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d938e68">
+            <farmaceutisch_product id="d182339e68">
                <product_code code="52272"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -177,7 +218,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="PANTOPRAZOL TABLET MSR 20MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d938e233">
+            <farmaceutisch_product id="d182339e233">
                <product_code code="878421"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -191,7 +232,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="PANTOPRAZOL 40MG TABLET MSR"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d938e392">
+            <farmaceutisch_product id="d182339e392">
                <product_code code="1163094"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -205,8 +246,9 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="PANTOPRAZOL TABLET MSR 20MG"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="d938e86">
-               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+            <zorgaanbieder id="d182339e86">
+               <zorgaanbieder_identificatienummer value="01236578"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>

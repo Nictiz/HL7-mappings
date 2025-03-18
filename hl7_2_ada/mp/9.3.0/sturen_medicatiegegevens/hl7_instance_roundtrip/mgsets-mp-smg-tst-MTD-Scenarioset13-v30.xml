@@ -1,7 +1,7 @@
-<organizer xmlns:pharm="urn:ihe:pharm:medication"
+<organizer classCode="CLUSTER"
+           moodCode="EVN"
            xmlns="urn:hl7-org:v3"
-           classCode="CLUSTER"
-           moodCode="EVN">
+           xmlns:pharm="urn:ihe:pharm:medication">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9411"/>
    <code code="102"
          displayName="Medicatiegegevens"
@@ -10,19 +10,23 @@
    <statusCode nullFlavor="NI"/>
    <recordTarget>
       <patientRole>
-         <id extension="999900638" root="2.16.840.1.113883.2.4.6.3"/>
+         <id extension="999900638"
+             root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
                <given qualifier="IN">H.</given>
                <family qualifier="BR">XXX_Hoek</family>
             </name>
-            <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+            <administrativeGenderCode code="M"
+                                      codeSystem="2.16.840.1.113883.5.1"
+                                      displayName="Man"/>
             <birthTime value="19631105"/>
          </patient>
       </patientRole>
    </recordTarget>
    <component typeCode="COMP">
-      <substanceAdministration classCode="SBADM" moodCode="EVN">
+      <substanceAdministration classCode="SBADM"
+                               moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9406"/>
          <id extension="MBH_300_contactepisode_MTD1"
              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
@@ -36,7 +40,8 @@
                     displayName="ORAAL"
                     codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
          <doseQuantity>
-            <center value="2" unit="1">
+            <center value="2"
+                    unit="1">
                <translation value="2"
                             code="245"
                             displayName="stuk"
@@ -47,7 +52,8 @@
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
                   <code code="856126"
                         codeSystem="2.16.840.1.113883.2.4.4.7"
                         displayName="ACENOCOUMAROL CF TABLET 1MG"
@@ -67,7 +73,8 @@
          <performer>
             <time nullFlavor="NI"/>
             <assignedEntity>
-               <id extension="000001111" root="2.16.528.1.1007.3.1"/>
+               <id extension="000001111"
+                   root="2.16.528.1.1007.3.1"/>
                <code code="0100"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
                      displayName="Huisartsen, niet nader gespecificeerd"
@@ -81,7 +88,8 @@
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                  <id extension="00001111"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Huisartsenpraktijk Pulver &amp; Partners</name>
                   <addr use="WP">
                      <streetName>Dorpsstraat</streetName>
@@ -99,7 +107,8 @@
             </assignedAuthor>
          </author>
          <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
                <id extension="MBH_300_contactepisode_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -107,11 +116,13 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
                <id extension="MBH_300_contactepisode_TA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
@@ -119,11 +130,13 @@
                      code="422037009"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9381"/>
                <id extension="MBH_300_QA1_WDS1"
                    root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
@@ -131,11 +144,14 @@
                      displayName="optimaliseren van dosering van medicatie (verrichting)"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                    extension="MBH_300_contactepisode"/>
@@ -145,13 +161,15 @@
             </procedure>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
-            <encounter classCode="ENC" moodCode="EVN">
+            <encounter classCode="ENC"
+                       moodCode="EVN">
                <id extension="MBH_300_contactepisode_CONTACT2"
                    root="2.16.840.1.113883.2.4.3.11.999.66.2709"/>
             </encounter>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
-            <act classCode="ACT" moodCode="EVN">
+            <act classCode="ACT"
+                 moodCode="EVN">
                <id extension="MBH_300_contactepisode_EPISODE1"
                    root="2.16.840.1.113883.2.4.3.11.999.66.9200"/>
                <code code="CONC"

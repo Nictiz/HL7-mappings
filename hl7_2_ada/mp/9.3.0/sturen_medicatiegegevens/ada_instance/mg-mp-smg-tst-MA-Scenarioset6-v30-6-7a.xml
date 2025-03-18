@@ -1,11 +1,13 @@
-<!--Generated from HL7v3 instance.--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatiegegevens.xsd">
+<!--Generated from HL7v3 instance.-->
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatiegegevens.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2024-01-01T00:00:00+02:00"
-         last-update-date="2024-01-01T00:00:00+02:00"/>
-   <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
+         creation-date="2025-03-17T08:50:26.0731587+01:00"
+         last-update-date="2025-03-17T08:50:26.0731587+01:00"/>
+   <data>
+      <!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
       <sturen_medicatiegegevens app="mp-mp93"
                                 shortName="sturen_medicatiegegevens"
                                 formName="medicatiegegevens"
@@ -25,9 +27,13 @@
                   <achternaam value="XXX_Hemsbergen"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999900602" root="2.16.840.1.113883.2.4.6.3"/>
-            <geboortedatum datatype="datetime" value="1963-11-02"/>
-            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <identificatienummer value="999900602"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime"
+                           value="1963-11-02"/>
+            <geslacht code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"/>
          </patient>
          <medicamenteuze_behandeling>
             <identificatie value="MBH_300_tijdstippen_flexibel"
@@ -35,16 +41,21 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_tijdstippen_flexibel_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2024-01-01T08:24:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2024-01-01T08:24:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2024-01-15T23:59:59+01:00"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2024-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2024-01-15T23:59:59+01:00"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d1732e78" datatype="reference"/>
+                  <zorgverlener value="d13455e78"
+                                datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d1732e64" datatype="reference"/>
+                  <farmaceutisch_product value="d13455e64"
+                                         datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
                   <omschrijving value="elke dag om 08:00, 14:00 en 20:00 1 stuk, oraal"/>
@@ -65,10 +76,27 @@
                                     codeSystemName="G-Standaard thesaurus basiseenheden"/>
                         </keerdosis>
                         <toedieningsschema>
-                           <toedientijd value="08:00:00" datatype="time"/>
-                           <toedientijd value="14:00:00" datatype="time"/>
-                           <toedientijd value="20:00:00" datatype="time"/>
+                           <toedientijd value="08:00:00"
+                                        datatype="time"/>
+                           <toedientijd value="14:00:00"
+                                        datatype="time"/>
+                           <toedientijd value="20:00:00"
+                                        datatype="time"/>
                            <is_flexibel value="true"/>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir"
+                                             xmlns:pharm="urn:ihe:pharm:medication">
+                                 <repeat>
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                       <valueBoolean value="false"/>
+                                    </extension>
+                                    <timeOfDay value="08:00:00"/>
+                                    <timeOfDay value="14:00:00"/>
+                                    <timeOfDay value="20:00:00"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -76,7 +104,7 @@
             </medicatieafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d1732e64">
+            <farmaceutisch_product id="d13455e64">
                <product_code code="1090"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -86,8 +114,9 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="METFORMINE 500MG TABLET"/>
             </farmaceutisch_product>
-            <zorgverlener id="d1732e78">
-               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+            <zorgverlener id="d13455e78">
+               <zorgverlener_identificatienummer value="000001111"
+                                                 root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Peter"/>
                   <geslachtsnaam>
@@ -101,11 +130,13 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d1732e99" datatype="reference"/>
+                  <zorgaanbieder value="d13455e99"
+                                 datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d1732e99">
-               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+            <zorgaanbieder id="d13455e99">
+               <zorgaanbieder_identificatienummer value="00001111"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>

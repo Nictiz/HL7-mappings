@@ -1,19 +1,13 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="721a5c28-00c2-11f0-1802-020000000000"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
-   </meta>
-   <type value="transaction"/>
+   <id value="27d73943-00dd-11f0-1447-020000000000"/>
+   <type value="searchset"/>
+   <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:721a5d34-00c2-11f0-1802-020000000000"/>
+      <fullUrl value="urn:uuid:27d73a09-00dd-11f0-1447-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
-               <tag>
-                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
-                  <code value="actionable"/>
-               </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2022-12-02T11:32:00+01:00"/>
@@ -46,17 +40,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:721a5d52-00c2-11f0-1802-020000000000"/>
+               <reference value="urn:uuid:27d73a1d-00dd-11f0-1447-020000000000"/>
                <type value="Medication"/>
                <display value="APACOF 250/250/50MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:721a5c62-00c2-11f0-1802-020000000000"/>
+               <reference value="urn:uuid:27d73973-00dd-11f0-1447-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, A. van de XXX_Boschman"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:721a5c8a-00c2-11f0-1802-020000000000"/>
+               <reference value="urn:uuid:27d73991-00dd-11f0-1447-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -485,13 +479,12 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationRequest"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:721a5c62-00c2-11f0-1802-020000000000"/>
+      <fullUrl value="urn:uuid:27d73973-00dd-11f0-1447-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -499,11 +492,7 @@
             </meta>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                     <valueCode value="masked"/>
-                  </extension>
-               </value>
+               <value value="999912100"/>
             </identifier>
             <name>
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
@@ -539,25 +528,24 @@
             <birthDate value="1964-01-08"/>
          </Patient>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Patient"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:721a5c8a-00c2-11f0-1802-020000000000"/>
+      <fullUrl value="urn:uuid:27d73991-00dd-11f0-1447-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:721a5cb2-00c2-11f0-1802-020000000000"/>
+               <reference value="urn:uuid:27d739af-00dd-11f0-1447-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:721a5cf8-00c2-11f0-1802-020000000000"/>
+               <reference value="urn:uuid:27d739e1-00dd-11f0-1447-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -571,13 +559,12 @@
             </specialty>
          </PractitionerRole>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="PractitionerRole"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:721a5cb2-00c2-11f0-1802-020000000000"/>
+      <fullUrl value="urn:uuid:27d739af-00dd-11f0-1447-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -606,13 +593,12 @@
             </name>
          </Practitioner>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Practitioner"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:721a5cf8-00c2-11f0-1802-020000000000"/>
+      <fullUrl value="urn:uuid:27d739e1-00dd-11f0-1447-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -647,13 +633,12 @@
             </address>
          </Organization>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:721a5d52-00c2-11f0-1802-020000000000"/>
+      <fullUrl value="urn:uuid:27d73a1d-00dd-11f0-1447-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -675,9 +660,8 @@
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
 </Bundle>

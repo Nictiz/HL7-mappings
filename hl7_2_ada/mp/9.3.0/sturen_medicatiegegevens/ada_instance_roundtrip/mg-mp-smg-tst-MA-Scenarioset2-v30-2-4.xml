@@ -1,11 +1,13 @@
-<!--Generated from HL7v3 instance.--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatiegegevens.xsd">
+<!--Generated from HL7v3 instance.-->
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatiegegevens.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2024-01-01T00:00:00+02:00"
-         last-update-date="2024-01-01T00:00:00+02:00"/>
-   <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
+         creation-date="2025-03-17T08:54:40.2622694+01:00"
+         last-update-date="2025-03-17T08:54:40.2622694+01:00"/>
+   <data>
+      <!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
       <sturen_medicatiegegevens app="mp-mp93"
                                 shortName="sturen_medicatiegegevens"
                                 formName="medicatiegegevens"
@@ -25,9 +27,13 @@
                   <achternaam value="XXX_Coenen"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999900420" root="2.16.840.1.113883.2.4.6.3"/>
-            <geboortedatum datatype="datetime" value="1963-10-17"/>
-            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <identificatienummer value="999900420"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime"
+                           value="1963-10-17"/>
+            <geslacht code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"/>
          </patient>
          <medicamenteuze_behandeling>
             <identificatie value="MBH_300_aanvullendeinformatiewensen"
@@ -35,16 +41,21 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_aanvullendeinformatiewensen_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-12-27T08:06:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2023-12-27T08:06:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-12-28T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2024-01-06T23:59:59+01:00"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2023-12-28T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2024-01-06T23:59:59+01:00"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d1156e78" datatype="reference"/>
+                  <zorgverlener value="d157427e78"
+                                datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d1156e64" datatype="reference"/>
+                  <farmaceutisch_product value="d157427e64"
+                                         datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
                   <omschrijving value="elke dag om 19:00 1 stuk - let op, tijden exact aanhouden, Oraal"/>
@@ -65,8 +76,21 @@
                                     codeSystemName="G-Standaardthesaurus basiseenheden"/>
                         </keerdosis>
                         <toedieningsschema>
-                           <toedientijd value="19:00:00" datatype="time"/>
+                           <toedientijd value="19:00:00"
+                                        datatype="time"/>
                            <is_flexibel value="false"/>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir"
+                                             xmlns:pharm="urn:ihe:pharm:medication">
+                                 <repeat>
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                       <valueBoolean value="true"/>
+                                    </extension>
+                                    <timeOfDay value="19:00:00"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -77,7 +101,7 @@
             </medicatieafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d1156e64">
+            <farmaceutisch_product id="d157427e64">
                <product_code code="17205"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -87,8 +111,9 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="FENETICILLINE CAPSULE 500MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="d1156e78">
-               <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
+            <zorgverlener id="d157427e78">
+               <zorgverlener_identificatienummer value="000001112"
+                                                 root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Bertine"/>
                   <geslachtsnaam>
@@ -102,11 +127,13 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d1156e99" datatype="reference"/>
+                  <zorgaanbieder value="d157427e99"
+                                 datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d1156e99">
-               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+            <zorgaanbieder id="d157427e99">
+               <zorgaanbieder_identificatienummer value="00001111"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>

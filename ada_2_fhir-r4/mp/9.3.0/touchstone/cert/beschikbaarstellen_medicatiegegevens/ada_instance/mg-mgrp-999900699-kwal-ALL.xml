@@ -260,6 +260,85 @@
             </verstrekkingsverzoek>
             <toedieningsafspraak comment=""
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.294">
+               <identificatie value="MBH_300_SCRIPT5_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
+               <registratie_datum_tijd value="T-1D{09:00:00}"
+                                       datatype="datetime"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1481"/>
+               <gebruiksperiode comment=""
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334">
+                  <start_datum_tijd value="T-1D{00:00:00}"
+                                    datatype="datetime"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.335"/>
+                  <tijds_duur value="6"
+                              unit="dag"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.337"/>
+               </gebruiksperiode>
+               <verstrekker comment=""
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.295">
+                  <zorgaanbieder datatype="reference"
+                                 value="APOTHEEK_DE_GULLE_GAPER"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.296"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak comment=""
+                                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297">
+                  <farmaceutisch_product datatype="reference"
+                                         value="HPK_TEMAZEPAM_611662"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.298"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment=""
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.299">
+                  <omschrijving value="1 maal per dag 1 stuk, Oraal"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.301"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.303"/>
+                  <doseerinstructie comment=""
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.304">
+                     <dosering comment=""
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.307">
+                        <keerdosis comment=""
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.316">
+                           <aantal comment=""
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.575">
+                              <nominale_waarde value="1"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.319"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.576"/>
+                        </keerdosis>
+                        <toedieningsschema comment=""
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.323">
+                           <frequentie comment=""
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.324">
+                              <aantal comment=""
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.578">
+                                 <nominale_waarde value="1"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.327"/>
+                              </aantal>
+                              <tijdseenheid unit="dag"
+                                            value="1"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.579"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak comment=""
+                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.338">
+                  <identificatie value="MBH_300_SCRIPT5_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.565"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <toedieningsafspraak comment=""
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.294">
                <identificatie value="MBH_300_SCRIPT5_TA_STAKEN"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
@@ -352,85 +431,6 @@
                                  root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1381"/>
                </relatie_toedieningsafspraak>
-            </toedieningsafspraak>
-            <toedieningsafspraak comment=""
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.294">
-               <identificatie value="MBH_300_SCRIPT5_TA"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
-               <registratie_datum_tijd value="T{09:00:00}"
-                                       datatype="datetime"
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1481"/>
-               <gebruiksperiode comment=""
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334">
-                  <start_datum_tijd value="T-1D{00:00:00}"
-                                    datatype="datetime"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.335"/>
-                  <tijds_duur value="6"
-                              unit="dag"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.337"/>
-               </gebruiksperiode>
-               <verstrekker comment=""
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.295">
-                  <zorgaanbieder datatype="reference"
-                                 value="APOTHEEK_DE_GULLE_GAPER"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.296"/>
-               </verstrekker>
-               <geneesmiddel_bij_toedieningsafspraak comment=""
-                                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297">
-                  <farmaceutisch_product datatype="reference"
-                                         value="HPK_TEMAZEPAM_611662"
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.298"/>
-               </geneesmiddel_bij_toedieningsafspraak>
-               <gebruiksinstructie comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.299">
-                  <omschrijving value="1 maal per dag 1 stuk, Oraal"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.301"/>
-                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  code="9"
-                                  displayName="Oraal"
-                                  codeSystemName="G-Standaard Toedieningswegen"
-                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.303"/>
-                  <doseerinstructie comment=""
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.304">
-                     <dosering comment=""
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.307">
-                        <keerdosis comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.316">
-                           <aantal comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.575">
-                              <nominale_waarde value="1"
-                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.319"/>
-                           </aantal>
-                           <eenheid code="245"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaardthesaurus basiseenheden"
-                                    displayName="stuk"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.576"/>
-                        </keerdosis>
-                        <toedieningsschema comment=""
-                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.323">
-                           <frequentie comment=""
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.324">
-                              <aantal comment=""
-                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.578">
-                                 <nominale_waarde value="1"
-                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.327"/>
-                              </aantal>
-                              <tijdseenheid unit="dag"
-                                            value="1"
-                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.579"/>
-                           </frequentie>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-               <relatie_medicatieafspraak comment=""
-                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.338">
-                  <identificatie value="MBH_300_SCRIPT5_MA"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.565"/>
-               </relatie_medicatieafspraak>
             </toedieningsafspraak>
             <medicatieverstrekking comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.346">

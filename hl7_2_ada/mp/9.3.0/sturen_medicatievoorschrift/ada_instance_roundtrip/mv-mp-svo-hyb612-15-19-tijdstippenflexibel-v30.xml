@@ -1,0 +1,222 @@
+<!--Generated from HL7v3 instance.-->
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2025-03-17T08:55:02.6782619+01:00"
+         last-update-date="2025-03-17T08:55:02.6782619+01:00"/>
+   <data>
+      <sturen_medicatievoorschrift app="mp-mp93"
+                                   shortName="sturen_medicatievoorschrift"
+                                   formName="sturen_medicatievoorschrift"
+                                   transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.395"
+                                   transactionEffectiveDate="2022-06-30T00:00:00"
+                                   versionDate=""
+                                   prefix="mp-"
+                                   language="nl-NL"
+                                   title="mv-mp-svo-hyb612-15-19-tijdstippenflexibel-v30"
+                                   id="mv-mp-svo-hyb612-15-19-tijdstippenflexibel-v30">
+         <patient>
+            <naamgegevens>
+               <initialen value="L."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <voorvoegsels value="van de "/>
+                  <achternaam value="XXX_Meijsz"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <adresgegevens>
+               <straat value="Knolweg"/>
+               <huisnummer value="1003"/>
+               <postcode value="9999 ZA"/>
+               <woonplaats value="Apeldoorn"/>
+               <land code="NL"
+                     codeSystem="1.0.3166.1.2.2"
+                     codeSystemVersion="2020-10-26T00:00:00"
+                     codeSystemName="ISO 3166-1 (alpha-2)"
+                     displayName="Nederland"/>
+               <adres_soort code="PHYS"
+                            codeSystem="2.16.840.1.113883.5.1119"
+                            displayName="Woon-/verblijfadres"/>
+            </adresgegevens>
+            <identificatienummer value="999900821"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime"
+                           value="1985-10-27"/>
+            <geslacht code="M"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Man"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_hyb_vo_tijdstp_flex"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak>
+               <identificatie value="MBH_hyb_vo_tijdstp_flex_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2024-01-01T08:24:00+01:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2024-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2024-01-15T23:59:59+01:00"/>
+               </gebruiksperiode>
+               <voorschrijver>
+                  <zorgverlener value="d173676e100"
+                                datatype="reference"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="d173676e86"
+                                         datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie>
+                  <omschrijving value="elke dag om 08:00, 14:00 en 20:00 1 stuk, oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="oraal"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <toedientijd value="08:00:00"
+                                        datatype="time"/>
+                           <toedientijd value="14:00:00"
+                                        datatype="time"/>
+                           <toedientijd value="20:00:00"
+                                        datatype="time"/>
+                           <is_flexibel value="true"/>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                       <valueBoolean value="false"/>
+                                    </extension>
+                                    <timeOfDay value="08:00:00"/>
+                                    <timeOfDay value="14:00:00"/>
+                                    <timeOfDay value="20:00:00"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek>
+               <identificatie value="MBH_hyb_vo_tijdstp_flex_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime"
+                                                value="2024-01-01T08:24:00+01:00"/>
+               <auteur>
+                  <zorgverlener value="d173676e100"
+                                datatype="reference"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product value="d173676e86"
+                                         datatype="reference"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid>
+                  <aantal value="45"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker>
+                  <zorgaanbieder value="d173676e238"
+                                 datatype="reference"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_hyb_vo_tijdstp_flex_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="d173676e86">
+               <product_code code="1090"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="METFORMINE 500MG TABLET"/>
+               <product_code code="3816"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="METFORMINE 500MG TABLET"/>
+            </farmaceutisch_product>
+            <zorgverlener id="d173676e100">
+               <zorgverlener_identificatienummer value="000001113"
+                                                 root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Jan"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="de "/>
+                     <achternaam value="Dokter"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="01.015"
+                            codeSystem="2.16.840.1.113883.2.4.15.111"
+                            codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                            displayName="Huisarts"/>
+               <contactgegevens>
+                  <telefoonnummers>
+                     <telefoonnummer value="0215645000"/>
+                     <telecom_type code="UNK"
+                                   codeSystem="2.16.840.1.113883.5.1008"
+                                   displayName="unknown"/>
+                     <nummer_soort code="WP"
+                                   codeSystem="2.16.840.1.113883.5.1119"
+                                   displayName="Work place"/>
+                  </telefoonnummers>
+               </contactgegevens>
+               <zorgaanbieder>
+                  <zorgaanbieder value="d173676e123"
+                                 datatype="reference"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="d173676e123">
+               <zorgaanbieder_identificatienummer value="00005111"
+                                                  root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Itis"/>
+               <adresgegevens>
+                  <straat value="Langelaan"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234 ZZ"/>
+                  <woonplaats value="Onze Stad"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="d173676e238">
+               <zorgaanbieder_identificatienummer value="01236578"
+                                                  root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
+      </sturen_medicatievoorschrift>
+   </data>
+</adaxml>

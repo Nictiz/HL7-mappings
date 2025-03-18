@@ -1,10 +1,11 @@
-<!--Generated from HL7v3 instance.--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_afhandeling_medicatievoorschrift.xsd">
+<!--Generated from HL7v3 instance.-->
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_afhandeling_medicatievoorschrift.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2024-01-01T00:00:00+02:00"
-         last-update-date="2024-01-01T00:00:00+02:00"/>
+         creation-date="2025-03-17T08:55:11.7842025+01:00"
+         last-update-date="2025-03-17T08:55:11.7842025+01:00"/>
    <data>
       <sturen_afhandeling_medicatievoorschrift app="mp-mp93"
                                                shortName="sturen_afhandeling_medicatievoorschrift"
@@ -26,25 +27,35 @@
                   <achternaam value="XXX_Smit"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999910966" root="2.16.840.1.113883.2.4.6.3"/>
-            <geboortedatum datatype="datetime" value="1954-08-24"/>
-            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+            <identificatienummer value="999910966"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime"
+                           value="1954-08-24"/>
+            <geslacht code="M"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Man"/>
          </patient>
          <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_script4" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <identificatie value="MBH_300_script4"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <toedieningsafspraak>
                <identificatie value="MBH_300_script4_TA_GDS"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-12-26T11:40:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2023-12-26T11:40:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-12-26T11:30:00+01:00"/>
-                  <tijds_duur value="10" unit="dag"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2023-12-26T11:30:00+01:00"/>
+                  <tijds_duur value="10"
+                              unit="dag"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d206e85" datatype="reference"/>
+                  <zorgaanbieder value="d180587e85"
+                                 datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d206e65" datatype="reference"/>
+                  <farmaceutisch_product value="d180587e65"
+                                         datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
                   <omschrijving value="eerst gedurende 3 dagen elke dag om 08:00 en 22:00 2 stuks, dan gedurende 7 dagen elke dag om 08:00, 14:00 en 22:00 1 stuk, vóór het eten, oraal"/>
@@ -57,7 +68,8 @@
                                           displayName="overig"
                                           originalText="vóór het eten"/>
                   <doseerinstructie>
-                     <doseerduur value="3" unit="dag"/>
+                     <doseerduur value="3"
+                                 unit="dag"/>
                      <volgnummer value="1"/>
                      <dosering>
                         <keerdosis>
@@ -70,13 +82,31 @@
                                     codeSystemName="G-Standaard thesaurus basiseenheden"/>
                         </keerdosis>
                         <toedieningsschema>
-                           <toedientijd value="08:00:00" datatype="time"/>
-                           <toedientijd value="22:00:00" datatype="time"/>
+                           <toedientijd value="08:00:00"
+                                        datatype="time"/>
+                           <toedientijd value="22:00:00"
+                                        datatype="time"/>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <boundsDuration>
+                                       <value value="3"/>
+                                       <unit value="dag"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="d"/>
+                                    </boundsDuration>
+                                    <timeOfDay value="08:00:00"/>
+                                    <timeOfDay value="22:00:00"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
                   <doseerinstructie>
-                     <doseerduur value="7" unit="dag"/>
+                     <doseerduur value="7"
+                                 unit="dag"/>
                      <volgnummer value="2"/>
                      <dosering>
                         <keerdosis>
@@ -89,9 +119,28 @@
                                     codeSystemName="G-Standaard thesaurus basiseenheden"/>
                         </keerdosis>
                         <toedieningsschema>
-                           <toedientijd value="08:00:00" datatype="time"/>
-                           <toedientijd value="14:00:00" datatype="time"/>
-                           <toedientijd value="22:00:00" datatype="time"/>
+                           <toedientijd value="08:00:00"
+                                        datatype="time"/>
+                           <toedientijd value="14:00:00"
+                                        datatype="time"/>
+                           <toedientijd value="22:00:00"
+                                        datatype="time"/>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <boundsDuration>
+                                       <value value="7"/>
+                                       <unit value="dag"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="d"/>
+                                    </boundsDuration>
+                                    <timeOfDay value="08:00:00"/>
+                                    <timeOfDay value="14:00:00"/>
+                                    <timeOfDay value="22:00:00"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -108,16 +157,21 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_script4_TA_los"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-12-26T11:40:01+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2023-12-26T11:40:01+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-12-26T11:30:00+01:00"/>
-                  <tijds_duur value="10" unit="dag"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2023-12-26T11:30:00+01:00"/>
+                  <tijds_duur value="10"
+                              unit="dag"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d206e85" datatype="reference"/>
+                  <zorgaanbieder value="d180587e85"
+                                 datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d206e65" datatype="reference"/>
+                  <farmaceutisch_product value="d180587e65"
+                                         datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
                   <omschrijving value="eerst gedurende 3 dagen Bij pijn elke dag om 14:00 2 stuks , maximaal 6 stuks per dag, dan gedurende 7 dagen Bij pijn elke dag om 14:00 1 stuk , maximaal 4 stuks per dag, vóór het eten, oraal"/>
@@ -130,7 +184,8 @@
                                           displayName="overig"
                                           originalText="vóór het eten"/>
                   <doseerinstructie>
-                     <doseerduur value="3" unit="dag"/>
+                     <doseerduur value="3"
+                                 unit="dag"/>
                      <volgnummer value="1"/>
                      <dosering>
                         <keerdosis>
@@ -143,7 +198,22 @@
                                     codeSystemName="G-Standaard thesaurus basiseenheden"/>
                         </keerdosis>
                         <toedieningsschema>
-                           <toedientijd value="14:00:00" datatype="time"/>
+                           <toedientijd value="14:00:00"
+                                        datatype="time"/>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <boundsDuration>
+                                       <value value="3"/>
+                                       <unit value="dag"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="d"/>
+                                    </boundsDuration>
+                                    <timeOfDay value="14:00:00"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                         <zo_nodig>
                            <criterium code="1028"
@@ -155,13 +225,15 @@
                                        displayName="stuks"
                                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </maximale_dosering>
                         </zo_nodig>
                      </dosering>
                   </doseerinstructie>
                   <doseerinstructie>
-                     <doseerduur value="7" unit="dag"/>
+                     <doseerduur value="7"
+                                 unit="dag"/>
                      <volgnummer value="2"/>
                      <dosering>
                         <keerdosis>
@@ -174,7 +246,22 @@
                                     codeSystemName="G-Standaard thesaurus basiseenheden"/>
                         </keerdosis>
                         <toedieningsschema>
-                           <toedientijd value="14:00:00" datatype="time"/>
+                           <toedientijd value="14:00:00"
+                                        datatype="time"/>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <boundsDuration>
+                                       <value value="7"/>
+                                       <unit value="dag"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="d"/>
+                                    </boundsDuration>
+                                    <timeOfDay value="14:00:00"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                         <zo_nodig>
                            <criterium code="1028"
@@ -186,7 +273,8 @@
                                        displayName="Stuk"
                                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </maximale_dosering>
                         </zo_nodig>
                      </dosering>
@@ -200,20 +288,24 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_script4_MVE_GDS"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-12-26T11:40:00+01:00"/>
-               <aanschrijf_datum datatype="datetime" value="2023-12-26T11:40:00+01:00"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                                  value="2023-12-26T11:40:00+01:00"/>
+               <aanschrijf_datum datatype="datetime"
+                                 value="2023-12-26T11:40:00+01:00"/>
                <verstrekker>
-                  <zorgaanbieder value="d206e85" datatype="reference"/>
+                  <zorgaanbieder value="d180587e85"
+                                 datatype="reference"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
-                  <aantal value="39"/>
+                  <aantal value="33"/>
                   <eenheid code="245"
                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                            codeSystemName="G-Standaard thesaurus basiseenheden"
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d206e65" datatype="reference"/>
+                  <farmaceutisch_product value="d180587e65"
+                                         datatype="reference"/>
                </verstrekt_geneesmiddel>
                <distributievorm code="1"
                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8"
@@ -226,10 +318,13 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_script4_MVE_los"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-12-26T11:40:01+01:00"/>
-               <aanschrijf_datum datatype="datetime" value="2023-12-26T11:40:00+01:00"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                                  value="2023-12-26T11:40:00+01:00"/>
+               <aanschrijf_datum datatype="datetime"
+                                 value="2023-12-26T11:40:00+01:00"/>
                <verstrekker>
-                  <zorgaanbieder value="d206e85" datatype="reference"/>
+                  <zorgaanbieder value="d180587e85"
+                                 datatype="reference"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="13"/>
@@ -239,7 +334,8 @@
                            displayName="stuks"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d206e65" datatype="reference"/>
+                  <farmaceutisch_product value="d180587e65"
+                                         datatype="reference"/>
                </verstrekt_geneesmiddel>
                <afleverlocatie value="&#xA;                   &#xA;                   thuisadres &#xA;                &#xA;               "/>
                <toelichting value="Let op, kloppen. De bel doet het niet."/>
@@ -250,7 +346,7 @@
             </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d206e65">
+            <farmaceutisch_product id="d180587e65">
                <product_code code="630586"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -263,8 +359,9 @@
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              displayName="DICLOFENAC-NATRIUM TABLET MSR 25MG"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="d206e85">
-               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+            <zorgaanbieder id="d180587e85">
+               <zorgaanbieder_identificatienummer value="01236578"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>
