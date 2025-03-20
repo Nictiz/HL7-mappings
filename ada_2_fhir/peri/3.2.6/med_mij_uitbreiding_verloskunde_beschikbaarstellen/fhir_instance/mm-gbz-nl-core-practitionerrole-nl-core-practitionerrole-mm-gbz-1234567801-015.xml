@@ -22,13 +22,18 @@
                      <span title="huisarts (01.015 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">huisarts</span>
                   </td>
                </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:0705223026">0705223026</a> (Vast telefoonnummer)</td>
+               </tr>
             </tbody>
          </table>
       </div>
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="ce863ede-6b24-11ec-0000-020000000000"/>
+      <value value="fb0642c2-6b47-11ec-0000-020000000000"/>
    </identifier>
    <practitioner>
       <reference value="Practitioner/nl-core-practitioner-mm-gbz-2-16-528-1-1007-3-1-12345678"/>
@@ -41,4 +46,17 @@
          <display value="huisarts"/>
       </coding>
    </specialty>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Vast telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="0705223026"/>
+   </telecom>
 </PractitionerRole>

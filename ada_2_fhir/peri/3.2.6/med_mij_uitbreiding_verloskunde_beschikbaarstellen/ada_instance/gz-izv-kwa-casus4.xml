@@ -4,7 +4,7 @@
          created-by="geboortezorgada"
          last-update-by="geboortezorgada"
          creation-date="2024-07-29T10:32:58.285Z"
-         last-update-date="2025-03-07T10:11:39.023Z"/>
+         last-update-date="2025-03-13T09:54:05.765Z"/>
    <data>
       <med_mij_uitbreiding_verloskunde_beschikbaarstellen app="perinatologie-326"
                                                           shortName="med_mij_uitbreiding_verloskunde_beschikbaarstellen"
@@ -200,7 +200,7 @@
                                codeSystem="2.16.840.1.113883.5.1119"
                                displayName="Woon-/verblijfadres"/>
                </adresgegevens>
-               <identificatienummer value="999901187"
+               <identificatienummer value="999901188"
                                     root="2.16.840.1.113883.2.4.6.3"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.682"/>
                <geboortedatum value="1985-11-29"
@@ -241,6 +241,19 @@
                                         displayName="Vrouw"/>
                <meerling_indicator value="false"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.685"/>
+            </patient>
+            <patient conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.675"
+                     id="Patient-Foetus">
+               <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3197">
+                  <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3202">
+                     <achternaam value="XXX_Yzendoorn"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3204"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <identificatienummer root="2.16.840.1.113883.2.4.6.3"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.682"/>
+               <geboren_indicator value="false"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.9861"/>
             </patient>
             <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.956"
                            id="ZA1_Groen">
@@ -652,6 +665,12 @@
             </trisomie_in_de_anamneseq_observatie>
             <voornemens_vrouw conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1712">
                <voorgenomen_plaats_baring_tijdens_zwangerschap_observatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2252">
+                  <voorgenomen_plaats_baring_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2255"
+                                                    value="3"
+                                                    code="285201006"
+                                                    codeSystem="2.16.840.1.113883.6.96"
+                                                    codeSystemName="SNOMED CT"
+                                                    displayName="ziekenhuisomgeving (omgeving)"/>
                   <voorkeursziekenhuis conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2938">
                      <zorgaanbieder value="ZA2-Erasmus"
                                     datatype="reference"
@@ -967,6 +986,13 @@
                </hoeveelheid_bloedverlies_observatie>
             </nageboortefase>
          </bevalling>
+         <foetus conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10803">
+            <demografische_gegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10804">
+               <patient value="Patient-Foetus"
+                        datatype="reference"
+                        conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10805"/>
+            </demografische_gegevens>
+         </foetus>
          <kind conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1404">
             <demografische_gegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1754">
                <patient value="Patient-Kind"
@@ -1141,8 +1167,7 @@
                                       value="6"
                                       code="278292003"
                                       codeSystem="2.16.840.1.113883.6.96"
-                                      codeSystemName="SNOMED CT"
-                                      displayName="echografische beeldvorming (kwalificatiewaarde)"/>
+                                      displayName="echografie (kwalificatiewaarde)"/>
                         <acdatum_begin_tijd value="T-330D"
                                             datatype="datetime"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3519"/>

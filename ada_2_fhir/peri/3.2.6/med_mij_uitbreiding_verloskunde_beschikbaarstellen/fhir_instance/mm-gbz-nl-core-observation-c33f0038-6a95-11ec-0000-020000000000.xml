@@ -5,9 +5,41 @@
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MaternalObservation"/>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
    </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 2 Vrouw-XXX_Yzendoorn</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -320}</td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="observeren (kwalificatiewaarde) (129268004 - SNOMED CT)">observeren (kwalificatiewaarde)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>Aantal kraamverbanden (Waarde)</td>
+                  <td>8</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="80b22288-6ab7-11ec-0000-020000000000"/>
+      <value value="3bbcd400-6b3d-11ec-0000-020000000000"/>
    </identifier>
    <status value="final"/>
    <code>
@@ -24,13 +56,10 @@
    <effectiveDateTime value="${DATE, T, D, -320}"/>
    <valueQuantity>
       <value value="8"/>
-      <unit value="1"/>
-      <system value="http://unitsofmeasure.org"/>
-      <code value="1"/>
    </valueQuantity>
    <method>
       <coding>
-         <system value="2.16.840.1.113883.6.96"/>
+         <system value="http://snomed.info/sct"/>
          <code value="129268004"/>
          <display value="observeren (kwalificatiewaarde)"/>
       </coding>

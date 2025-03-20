@@ -4,7 +4,7 @@
          created-by="geboortezorgada"
          last-update-by="geboortezorgada"
          creation-date="2024-06-27T14:58:29.197Z"
-         last-update-date="2025-03-05T14:27:59.343Z"/>
+         last-update-date="2025-03-11T09:46:23.605Z"/>
    <data>
       <med_mij_uitbreiding_verloskunde_beschikbaarstellen app="perinatologie-326"
                                                           shortName="med_mij_uitbreiding_verloskunde_beschikbaarstellen"
@@ -133,7 +133,8 @@
                                      codeSystem="2.16.840.1.113883.2.4.6.7"
                                      codeSystemName="Vektis AGB-medische specialismen"
                                      displayName="Verloskundigen, niet nader gespecificeerd"
-                                     conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.960"/>
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.960"
+                                     codeSystemVersion="2.16.840.1.113883.2.4.6.7"/>
                <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3236">
                   <straat value="In de lucht"
                           conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3237"/>
@@ -177,10 +178,16 @@
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.958"/>
                <afdeling_specialisme codeSystem="2.16.840.1.113883.2.4.6.7"
                                      codeSystemName="Vektis AGB-medische specialismen"
-                                     conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.960"/>
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.960"
+                                     code="0200"
+                                     codeSystemVersion="2.16.840.1.113883.2.4.6.7"
+                                     displayName="Apothekers"/>
                <organisatie_type codeSystem="2.16.840.1.113883.2.4.15.1060"
                                  codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.965"/>
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.965"
+                                 code="J8"
+                                 codeSystemVersion="2.16.840.1.113883.2.4.15.1060"
+                                 displayName="Openbare apotheek"/>
             </zorgaanbieder>
             <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.956"
                            id="ZA3_Huisartsenpraktijk">
@@ -191,9 +198,35 @@
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.958"/>
                <afdeling_specialisme codeSystem="2.16.840.1.113883.2.4.6.7"
                                      codeSystemName="Vektis AGB-medische specialismen"
-                                     conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.960"/>
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.960"
+                                     code="0101"
+                                     codeSystemVersion="2.16.840.1.113883.2.4.6.7"
+                                     displayName="Huisarts"/>
                <organisatie_type codeSystem="2.16.840.1.113883.2.4.15.1060"
                                  codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.965"
+                                 code="Z3"
+                                 codeSystemVersion="2.16.840.1.113883.2.4.15.1060"
+                                 displayName="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
+            </zorgaanbieder>
+            <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.956"
+                           id="ZA4_Ziekenhuis">
+               <zorgaanbieder_identificatienummer value="1264574"
+                                                  root="2.16.528.1.1007.3.3"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.957"/>
+               <organisatie_naam value="Ziekenhuis de Belofte"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.958"/>
+               <afdeling_specialisme code="0307"
+                                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                                     codeSystemName="Vektis AGB-medische specialismen"
+                                     codeSystemVersion="2.16.840.1.113883.2.4.6.7"
+                                     displayName="Obstetrie en gynaecologie"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.960"/>
+               <organisatie_type code="V4"
+                                 codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                 codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
+                                 codeSystemVersion="2.16.840.1.113883.2.4.15.1060"
+                                 displayName="Ziekenhuis"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.965"/>
             </zorgaanbieder>
             <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.978"
@@ -302,6 +335,18 @@
                         datatype="reference"
                         conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1434"/>
             </demografische_gegevens>
+            <betrokken_zorgverlener_zorginstelling conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1673">
+               <huisarts conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1674">
+                  <zorgverlener value="ZV2_XXX_Bert"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1675"/>
+               </huisarts>
+               <apotheek conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1676">
+                  <zorgaanbieder value="ZA1-Apotheek"
+                                 datatype="reference"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1677"/>
+               </apotheek>
+            </betrokken_zorgverlener_zorginstelling>
          </vrouw>
          <zwangerschapsgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.25">
             <coordinerend_zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1699">
