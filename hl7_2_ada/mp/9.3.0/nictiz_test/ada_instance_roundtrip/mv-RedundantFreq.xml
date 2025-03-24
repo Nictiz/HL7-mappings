@@ -1,11 +1,11 @@
 <!--Generated from HL7v3 instance.-->
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd">
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2025-03-14T09:59:57.861+01:00"
-         last-update-date="2025-03-14T09:59:57.861+01:00"/>
+         creation-date="2025-03-19T10:16:16.4459155+01:00"
+         last-update-date="2025-03-19T10:16:16.4459155+01:00"/>
    <data>
       <sturen_medicatievoorschrift app="mp-mp93"
                                    shortName="sturen_medicatievoorschrift"
@@ -15,8 +15,8 @@
                                    versionDate=""
                                    prefix="mp-"
                                    language="nl-NL"
-                                   title="RedundantFreq"
-                                   id="RedundantFreq">
+                                   title="mv-RedundantFreq"
+                                   id="mv-RedundantFreq">
          <patient>
             <naamgegevens>
                <initialen value="A."/>
@@ -28,25 +28,35 @@
                   <achternaam value="XXX_Boschman"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999912100" root="2.16.840.1.113883.2.4.6.3"/>
-            <geboortedatum datatype="datetime" value="1964-01-08"/>
-            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+            <identificatienummer value="999912100"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime"
+                           value="1964-01-08"/>
+            <geslacht code="M"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Man"/>
          </patient>
          <medicamenteuze_behandeling>
-            <identificatie value="RedundantFreq" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <identificatie value="RedundantFreq"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <medicatieafspraak>
                <identificatie value="MBH_920_mv_example-1-MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2022-12-02T11:32:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2022-12-02T11:32:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2022-12-02T00:00:00"/>
-                  <eind_datum_tijd datatype="datetime" nullFlavor="NI"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2022-12-02T00:00:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   nullFlavor="NI"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d32e38" datatype="reference"/>
+                  <zorgverlener value="d188074e82"
+                                datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d32e33" datatype="reference"/>
+                  <farmaceutisch_product value="d188074e68"
+                                         datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
                   <omschrijving value="Vanaf 2 dec 2022, 1 maal per dag 1 stuk, Oraal"/>
@@ -55,7 +65,8 @@
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                   displayName="Oraal"/>
                   <doseerinstructie>
-                     <doseerduur value="1" unit="dag"/>
+                     <doseerduur value="1"
+                                 unit="dag"/>
                      <volgnummer value="1"/>
                      <dosering>
                         <keerdosis>
@@ -72,11 +83,14 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
-                           <toedientijd value="08:00:00" datatype="time"/>
+                           <toedientijd value="08:00:00"
+                                        datatype="time"/>
                            <adaextension>
-                              <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir">
                                  <repeat>
                                     <boundsDuration>
                                        <value value="1"/>
@@ -95,7 +109,8 @@
                      </dosering>
                   </doseerinstructie>
                   <doseerinstructie>
-                     <doseerduur value="2" unit="dag"/>
+                     <doseerduur value="2"
+                                 unit="dag"/>
                      <volgnummer value="2"/>
                      <dosering>
                         <keerdosis>
@@ -112,12 +127,16 @@
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
-                           <toedientijd value="08:00:00" datatype="time"/>
-                           <toedientijd value="14:30:00" datatype="time"/>
+                           <toedientijd value="08:00:00"
+                                        datatype="time"/>
+                           <toedientijd value="14:30:00"
+                                        datatype="time"/>
                            <adaextension>
-                              <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir">
                                  <repeat>
                                     <boundsDuration>
                                        <value value="2"/>
@@ -137,7 +156,8 @@
                      </dosering>
                   </doseerinstructie>
                   <doseerinstructie>
-                     <doseerduur value="3" unit="dag"/>
+                     <doseerduur value="3"
+                                 unit="dag"/>
                      <volgnummer value="3"/>
                      <dosering>
                         <keerdosis>
@@ -154,13 +174,17 @@
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
-                           <toedientijd value="08:00:00" datatype="time"/>
-                           <toedientijd value="14:30:00" datatype="time"/>
+                           <toedientijd value="08:00:00"
+                                        datatype="time"/>
+                           <toedientijd value="14:30:00"
+                                        datatype="time"/>
                            <is_flexibel value="false"/>
                            <adaextension>
-                              <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir">
                                  <repeat>
                                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                        <valueBoolean value="true"/>
@@ -183,7 +207,8 @@
                      </dosering>
                   </doseerinstructie>
                   <doseerinstructie>
-                     <doseerduur value="4" unit="dag"/>
+                     <doseerduur value="4"
+                                 unit="dag"/>
                      <volgnummer value="4"/>
                      <dosering>
                         <keerdosis>
@@ -200,14 +225,19 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="4" unit="uur"/>
+                              <tijdseenheid value="4"
+                                            unit="uur"/>
                            </frequentie>
-                           <toedientijd value="08:00:00" datatype="time"/>
-                           <toedientijd value="14:30:00" datatype="time"/>
-                           <toedientijd value="19:30:00" datatype="time"/>
+                           <toedientijd value="08:00:00"
+                                        datatype="time"/>
+                           <toedientijd value="14:30:00"
+                                        datatype="time"/>
+                           <toedientijd value="19:30:00"
+                                        datatype="time"/>
                            <is_flexibel value="false"/>
                            <adaextension>
-                              <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir">
                                  <repeat>
                                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                        <valueBoolean value="true"/>
@@ -231,7 +261,8 @@
                      </dosering>
                   </doseerinstructie>
                   <doseerinstructie>
-                     <doseerduur value="5" unit="dag"/>
+                     <doseerduur value="5"
+                                 unit="dag"/>
                      <volgnummer value="5"/>
                      <dosering>
                         <keerdosis>
@@ -245,9 +276,11 @@
                         </keerdosis>
                         <toedieningsschema>
                            <is_flexibel value="false"/>
-                           <interval value="4" unit="uur"/>
+                           <interval value="4"
+                                     unit="uur"/>
                            <adaextension>
-                              <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir">
                                  <repeat>
                                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                        <valueBoolean value="true"/>
@@ -268,7 +301,8 @@
                      </dosering>
                   </doseerinstructie>
                   <doseerinstructie>
-                     <doseerduur value="6" unit="dag"/>
+                     <doseerduur value="6"
+                                 unit="dag"/>
                      <volgnummer value="6"/>
                      <dosering>
                         <keerdosis>
@@ -282,9 +316,11 @@
                         </keerdosis>
                         <toedieningsschema>
                            <is_flexibel value="false"/>
-                           <interval value="4" unit="uur"/>
+                           <interval value="4"
+                                     unit="uur"/>
                            <adaextension>
-                              <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir">
                                  <repeat>
                                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                        <valueBoolean value="true"/>
@@ -304,7 +340,8 @@
                      </dosering>
                   </doseerinstructie>
                   <doseerinstructie>
-                     <doseerduur value="7" unit="dag"/>
+                     <doseerduur value="7"
+                                 unit="dag"/>
                      <volgnummer value="7"/>
                      <dosering>
                         <keerdosis>
@@ -321,7 +358,8 @@
                               <aantal>
                                  <nominale_waarde value="3"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="week"/>
+                              <tijdseenheid value="1"
+                                            unit="week"/>
                            </frequentie>
                            <weekdag code="307145004"
                                     displayName="maandag"
@@ -333,7 +371,8 @@
                                     displayName="vrijdag"
                                     codeSystem="2.16.840.1.113883.6.96"/>
                            <adaextension>
-                              <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir">
                                  <repeat>
                                     <boundsDuration>
                                        <value value="7"/>
@@ -354,7 +393,8 @@
                      </dosering>
                   </doseerinstructie>
                   <doseerinstructie>
-                     <doseerduur value="8" unit="dag"/>
+                     <doseerduur value="8"
+                                 unit="dag"/>
                      <volgnummer value="8"/>
                      <dosering>
                         <keerdosis>
@@ -371,7 +411,8 @@
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
                            <dagdeel code="73775008"
                                     displayName="'s ochtends"
@@ -380,7 +421,8 @@
                                     displayName="'s avonds"
                                     codeSystem="2.16.840.1.113883.6.96"/>
                            <adaextension>
-                              <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir">
                                  <repeat>
                                     <boundsDuration>
                                        <value value="8"/>
@@ -400,7 +442,8 @@
                      </dosering>
                   </doseerinstructie>
                   <doseerinstructie>
-                     <doseerduur value="9" unit="dag"/>
+                     <doseerduur value="9"
+                                 unit="dag"/>
                      <volgnummer value="9"/>
                      <dosering>
                         <keerdosis>
@@ -417,7 +460,8 @@
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
                            <dagdeel code="73775008"
                                     displayName="'s ochtends"
@@ -427,7 +471,8 @@
                                     codeSystem="2.16.840.1.113883.6.96"/>
                            <is_flexibel value="false"/>
                            <adaextension>
-                              <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir">
                                  <repeat>
                                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                        <valueBoolean value="true"/>
@@ -450,7 +495,8 @@
                      </dosering>
                   </doseerinstructie>
                   <doseerinstructie>
-                     <doseerduur value="10" unit="dag"/>
+                     <doseerduur value="10"
+                                 unit="dag"/>
                      <volgnummer value="10"/>
                      <dosering>
                         <keerdosis>
@@ -467,11 +513,13 @@
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="4" unit="uur"/>
+                              <tijdseenheid value="4"
+                                            unit="uur"/>
                            </frequentie>
                            <is_flexibel value="false"/>
                            <adaextension>
-                              <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir">
                                  <repeat>
                                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                        <valueBoolean value="true"/>
@@ -495,7 +543,7 @@
             </medicatieafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d32e33">
+            <farmaceutisch_product id="d188074e68">
                <product_code code="3891"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -505,8 +553,9 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="ACETYLSALICYLZUUR/PARACETAMOL/COF TAB 250/250/50MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="d32e38">
-               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+            <zorgverlener id="d188074e82">
+               <zorgverlener_identificatienummer value="000001111"
+                                                 root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Peter"/>
                   <geslachtsnaam>
@@ -520,11 +569,13 @@
                             codeSystemVersion="2017-12-14T00:00:00"
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d32e50" datatype="reference"/>
+                  <zorgaanbieder value="d188074e103"
+                                 datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d32e50">
-               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+            <zorgaanbieder id="d188074e103">
+               <zorgaanbieder_identificatienummer value="00001111"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>
