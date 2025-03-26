@@ -49,11 +49,19 @@ var nodes = new vis.DataSet([
 { id: 5, label: "Patient XXX_Ostendorf", url: "mm-gbz-nl-core-patient-MAAIKE-M-XXX-OSTENDORF.html" }, 
 { id: 10, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-090fc807-6b79-11ec-0000-020000000000.html" }, 
 { id: 11, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-3ee4d0bf-6abb-11ec-0000-020000000000.html" }, 
+{ id: 21, label: "Observation bevinding betreffende alcoholgebruik (bevinding)", url: "mm-gbz-zib-AlcoholUse228273003-c615ffc3-6aa8-11ec-0000-020000000000.html" }, 
+{ id: 24, label: "Observation bevinding betreffende drugsgebruik (bevinding)", url: "mm-gbz-zib-DrugUse228366006-8490a51e-6b4b-11ec-0000-020000000000.html" }, 
+{ id: 44, label: "Observation Blood pressure panel with all children optional", url: "mm-gbz-zib-BloodPressure85354-9-3667f135-6b2f-11ec-0000-020000000000.html" }, 
+{ id: 45, label: "Observation Body weight", url: "mm-gbz-zib-BodyWeight29463-7-3a7a17ac-6b5d-11ec-0000-020000000000.html" }, 
 { id: 49, label: "Observation zwangerschapsduur (waarneembare entiteit)", url: "mm-gbz-zib-Pregnancy-Duration57036006-c33f006e-6a95-11ec-0000-020000000000.html" }, 
 ]);
 
 // create an array with edges
 var edges = new vis.DataSet([{ from: 49, to: 11 }, 
+{ from: 49, to: 45 }, 
+{ from: 49, to: 44 }, 
+{ from: 49, to: 21 }, 
+{ from: 49, to: 24 }, 
 { from: 49, to: 5 }, 
 { from: 49, to: 10 }, 
 ]);
