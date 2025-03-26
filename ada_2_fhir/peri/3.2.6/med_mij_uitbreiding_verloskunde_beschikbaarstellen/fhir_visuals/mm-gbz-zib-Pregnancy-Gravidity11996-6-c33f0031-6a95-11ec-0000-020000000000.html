@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html lang="en">
    <head>
-      <title>Observation - 1d878bc0-6b50-11ec-0000-020000000000</title>
+      <title>Observation - c33f0031-6a95-11ec-0000-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -19,15 +19,11 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Observatie/bepaling. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Status: definitief</caption>
+               <caption>Observatie/bepaling. Subject: Micha M XXX_Yassien-Mohamed. Status: definitief</caption>
                <tbody>
                   <tr>
                      <th>Context</th>
-                     <td>Zwangerschap 2 Vrouw-XXX_Yzendoorn</td>
-                  </tr>
-                  <tr>
-                     <th>Bepalingdatum/tijd</th>
-                     <td>${DATE, T, D, -324}</td>
+                     <td>Zwangerschap 1 Vrouw-XXX_Yassien-Mohamed</td>
                   </tr>
                   <tr>
                      <th>Code</th>
@@ -35,35 +31,35 @@
                   </tr>
                   <tr>
                      <td>
-                        <span title="datum van begin van eerste fase van partus (waarneembare entiteit) (160621000146107 - SNOMED CT)">datum van begin van eerste fase van partus (waarneembare entiteit)</span>
+                        <span title="[#] Pregnancies (11996-6 - LOINC)">[#] Pregnancies</span>
                      </td>
-                     <td>Vanaf ${DATE, T, D, -324}T13:05:00+02:00</td>
+                     <td>1</td>
                   </tr>
                </tbody>
             </table>
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Observation datum van begin van eerste fase van partus (waarneembare entiteit)</b>
+         <b>Resources pointing to 'this' resource - Observation [#] Pregnancies</b>
       </p>
       <ul>
          <li>
-            <a href="mm-gbz-bc-TransactionComposition-samenvatting-zwangerschap2-Vrouw-XXX_Yzendoorn.html">Composition Dossier zwangerschap en bevalling [bevinding] (document)</a>
+            <a href="mm-gbz-bc-TransactionComposition-samenvatting-zwangerschap1-Vrouw-XXX_Yassien-Mohamed.html">Composition Dossier zwangerschap en bevalling [bevinding] (document)</a>
          </li>
       </ul>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 2, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-nl-core-patient-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
-{ id: 11, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-0934bb5f-6afa-11ec-0000-020000000000.html" }, 
-{ id: 16, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-0f431cf2-6b11-11ec-0000-020000000000.html" }, 
-{ id: 36, label: "Observation datum van begin van eerste fase van partus (waarneembare entiteit)", url: "mm-gbz-nl-core-observation160621000146107-1d878bc0-6b50-11ec-0000-020000000000.html" }, 
+{ id: 6, label: "Patient XXX_Yassien-Mohamed", url: "mm-gbz-nl-core-patient-MICHA-M-XXX-YASSIEN-MOHAMED.html" }, 
+{ id: 11, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-8c617027-6aa5-11ec-0000-020000000000.html" }, 
+{ id: 12, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-77a6de1d-6aaa-11ec-0000-020000000000.html" }, 
+{ id: 14, label: "Observation [#] Pregnancies", url: "mm-gbz-zib-Pregnancy-Gravidity11996-6-c33f0031-6a95-11ec-0000-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 36, to: 16 }, 
-{ from: 36, to: 2 }, 
-{ from: 36, to: 11 }, 
+var edges = new vis.DataSet([{ from: 14, to: 12 }, 
+{ from: 14, to: 6 }, 
+{ from: 14, to: 11 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

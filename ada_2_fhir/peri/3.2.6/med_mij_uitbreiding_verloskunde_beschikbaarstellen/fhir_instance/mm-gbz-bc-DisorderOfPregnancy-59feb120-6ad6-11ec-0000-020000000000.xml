@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Condition xmlns="http://hl7.org/fhir">
+   <id value="59feb120-6ad6-11ec-0000-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DisorderOfPregnancy"/>
+   </meta>
+   <extension url="http://hl7.org/fhir/StructureDefinition/condition-partOf">
+      <valueReference>
+         <reference value="Condition/3ee4d0bf-6abb-11ec-0000-020000000000"/>
+         <display value="Zwangerschap 2 XXX_Ostendorf"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="3f3a879e-6b46-11ec-0000-020000000000"/>
+   </identifier>
+   <clinicalStatus value="active"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="173300003"/>
+         <display value="zwangerschapsstoornis (aandoening)"/>
+      </coding>
+   </category>
+   <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="307534009"/>
+      <display value="urineweginfectie tijdens zwangerschap (aandoening)"/>
+   </coding>
+   <subject>
+      <reference value="Patient/MAAIKE-M-XXX-OSTENDORF"/>
+      <display value="Maaike M XXX_Ostendorf"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/090fc807-6b79-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 XXX_Ostendorf"/>
+   </context>
+   <onsetDateTime value="${DATE, T, D, -445}"/>
+</Condition>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html lang="en">
+   <head>
+      <title>EpisodeOfCare - 8c617027-6aa5-11ec-0000-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Zorgepisode. Patiënt: Micha M XXX_Yassien-Mohamed. Status: voltooid</caption>
+               <tbody>
+                  <tr>
+                     <th>Type</th>
+                     <td>
+                        <span title="observatie betreffende zwangerschap (waarneembare entiteit) (364320009 - SNOMED CT)">observatie betreffende zwangerschap (waarneembare entiteit)</span>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Periode</th>
+                     <td>${DATE, T, D, -455} - ${DATE, T, D, -199}</td>
+                  </tr>
+                  <tr>
+                     <th>Zorgmanager</th>
+                     <td>Loes XXX_Korte || Verloskundigen, niet nader gespecificeerd || Verloskundigenpraktijk Dalen, Verloskundigenpraktijk Dalen</td>
+                  </tr>
+                  <tr>
+                     <th>Diagnose</th>
+                     <td>Zwangerschap 1 Vrouw-XXX_Yassien-Mohamed</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)</b>
+      </p>
+      <ul>
+         <li>
+            <a href="mm-gbz-bc-TransactionComposition-samenvatting-zwangerschap1-Vrouw-XXX_Yassien-Mohamed.html">Composition Dossier zwangerschap en bevalling [bevinding] (document)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-Pregnancy118185001-77a6de1d-6aaa-11ec-0000-020000000000.html">Condition bevinding betreffende zwangerschap (bevinding)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-Pregnancy-Parity11977-6-c33f0030-6a95-11ec-0000-020000000000.html">Observation [#] Parity</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-Pregnancy-Gravidity11996-6-c33f0031-6a95-11ec-0000-020000000000.html">Observation [#] Pregnancies</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation161714006-c346cfec-6a95-11ec-0000-020000000000.html">Observation geschatte datum van partus (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-Pregnancy-DateLastMenstruation-c347697c-6a95-11ec-0000-020000000000.html">Observation</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-Encounter-a07ea2e8-6b00-11ec-0000-020000000000.html">Encounter consult (verrichting)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-Encounter-5b6c6a60-6acd-11ec-0000-020000000000.html">Encounter consult (verrichting)</a>
+         </li>
+      </ul>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 2, label: "Organization Verloskundigenpraktijk Dalen", url: "mm-gbz-nl-core-organization-nl-core-organization-mm-gbz-2-16-840-1-113883-2-4-6-1-45678912.html" }, 
+{ id: 6, label: "Patient XXX_Yassien-Mohamed", url: "mm-gbz-nl-core-patient-MICHA-M-XXX-YASSIEN-MOHAMED.html" }, 
+{ id: 7, label: "Practitioner XXX_Korte", url: "mm-gbz-nl-core-practitioner-nl-core-practitioner-mm-gbz-2-16-528-1-1007-3-1-1235648.html" }, 
+{ id: 9, label: "PractitionerRole Verloskundigen, niet nader gespecificeerd", url: "mm-gbz-nl-core-practitionerrole-nl-core-practitionerrole-mm-gbz-12356480800.html" }, 
+{ id: 11, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-8c617027-6aa5-11ec-0000-020000000000.html" }, 
+{ id: 12, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-77a6de1d-6aaa-11ec-0000-020000000000.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 11, to: 12 }, 
+{ from: 11, to: 6 }, 
+{ from: 11, to: 2 }, 
+{ from: 11, to: 9 }, 
+{ from: 11, to: 7 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>
