@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="c346d040-6a95-11ec-0000-020000000000"/>
+   <id value="1d878bc0-6b50-11ec-0000-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DeliveryObservation"/>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
@@ -16,14 +16,18 @@
                   <td>Zwangerschap 2 Vrouw-XXX_Yzendoorn</td>
                </tr>
                <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -324}</td>
+               </tr>
+               <tr>
                   <th>Code</th>
                   <th>Waarde</th>
                </tr>
                <tr>
                   <td>
-                     <span title="datum en tijd van geboorte van placenta (waarneembare entiteit) (136311000146100 - SNOMED CT)">datum en tijd van geboorte van placenta (waarneembare entiteit)</span>
+                     <span title="datum van begin van eerste fase van partus (waarneembare entiteit) (160621000146107 - SNOMED CT)">datum van begin van eerste fase van partus (waarneembare entiteit)</span>
                   </td>
-                  <td>${DATE, T, D, -324}</td>
+                  <td>Vanaf ${DATE, T, D, -324}T13:05:00+02:00</td>
                </tr>
             </tbody>
          </table>
@@ -37,14 +41,14 @@
    </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="57e51cd1-6acb-11ec-0000-020000000000"/>
+      <value value="f1bb320d-6aca-11ec-0000-020000000000"/>
    </identifier>
    <status value="final"/>
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="136311000146100"/>
-         <display value="datum en tijd van geboorte van placenta (waarneembare entiteit)"/>
+         <code value="160621000146107"/>
+         <display value="datum van begin van eerste fase van partus (waarneembare entiteit)"/>
       </coding>
    </code>
    <subject>
@@ -55,5 +59,16 @@
       <reference value="EpisodeOfCare/0934bb5f-6afa-11ec-0000-020000000000"/>
       <display value="Zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
    </context>
-   <valueDateTime value="${DATE, T, D, -324}"/>
+   <effectiveDateTime value="${DATE, T, D, -324}"/>
+   <valuePeriod>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/period-duration">
+         <valueDuration>
+            <value value="3"/>
+            <unit value="h"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="h"/>
+         </valueDuration>
+      </extension>
+      <start value="${DATE, T, D, -324}T13:05:00+02:00"/>
+   </valuePeriod>
 </Observation>

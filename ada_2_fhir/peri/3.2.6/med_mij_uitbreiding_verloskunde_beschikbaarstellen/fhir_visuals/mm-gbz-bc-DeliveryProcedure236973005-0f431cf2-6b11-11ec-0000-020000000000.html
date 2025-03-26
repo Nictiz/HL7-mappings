@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html lang="en">
    <head>
-      <title>Procedure - 21e1c8f0-6b26-11ec-0000-020000000000</title>
+      <title>Procedure - 0f431cf2-6b11-11ec-0000-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -23,7 +23,7 @@
                <tbody>
                   <tr>
                      <td>
-                        <span title="vaginaal toucher (verrichting) (51597003 - SNOMED CT)">vaginaal toucher (verrichting)</span>
+                        <span title="verlossing (verrichting) (236973005 - SNOMED CT)">verlossing (verrichting)</span>
                      </td>
                      <td/>
                   </tr>
@@ -36,11 +36,53 @@
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Procedure vaginaal toucher (verrichting)</b>
+         <b>Resources pointing to 'this' resource - Procedure verlossing (verrichting)</b>
       </p>
       <ul>
          <li>
             <a href="mm-gbz-bc-TransactionComposition-samenvatting-zwangerschap2-Vrouw-XXX_Yzendoorn.html">Composition Dossier zwangerschap en bevalling [bevinding] (document)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ObstetricProcedure241491007-3383842e-6b5a-11ec-0000-020000000000.html">Procedure echografie van foetus (verrichting)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ObstetricProcedure51597003-21e1c8f0-6b26-11ec-0000-020000000000.html">Procedure vaginaal toucher (verrichting)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-Birth3950001-7d8379d9-6b35-11ec-0000-020000000000.html">Procedure geboorte (bevinding)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ObstetricProcedure80801000146105-bcdd58ed-6aa7-11ec-0000-020000000000.html">Procedure secundaire sectio caesarea (verrichting)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation160621000146107-1d878bc0-6b50-11ec-0000-020000000000.html">Observation datum van begin van eerste fase van partus (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation289251005-c346d040-6a95-11ec-0000-020000000000.html">Observation tijdstip waarop gebroken vliezen zijn geconstateerd (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation236994008-2ed2e50f-6afd-11ec-0000-020000000000.html">Observation geboorte van placenta (verrichting)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation136311000146100-c346d040-6a95-11ec-0000-020000000000.html">Observation datum en tijd van geboorte van placenta (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation364343000-bd261457-6b01-11ec-0000-020000000000.html">Observation compleetheid van placenta (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation168123008-c5076345-6a95-11ec-0000-020000000000.html">Observation monster ingestuurd voor onderzoek (situatie)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation726566009-34f90ee3-6a96-11ec-0000-020000000000.html">Observation Pathology biopsy report (record artifact)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation364351002-a4a9e0d7-6aea-11ec-0000-020000000000.html">Observation compleetheid van vruchtvliezen (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation249191003-af9f7f49-6aca-11ec-0000-020000000000.html">Observation aantal bloedvaten in navelstreng (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation364332008-c4c91adb-6a95-11ec-0000-020000000000.html">Observation bloedverlies durante partu (waarneembare entiteit)</a>
          </li>
       </ul>
       <div id="mynetwork"> </div>
@@ -50,14 +92,12 @@ var nodes = new vis.DataSet([
 { id: 11, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-0934bb5f-6afa-11ec-0000-020000000000.html" }, 
 { id: 12, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-70a4e797-6aab-11ec-0000-020000000000.html" }, 
 { id: 16, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-0f431cf2-6b11-11ec-0000-020000000000.html" }, 
-{ id: 17, label: "Procedure vaginaal toucher (verrichting)", url: "mm-gbz-bc-ObstetricProcedure51597003-21e1c8f0-6b26-11ec-0000-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 17, to: 16 }, 
-{ from: 17, to: 2 }, 
-{ from: 17, to: 11 }, 
-{ from: 17, to: 12 }, 
+var edges = new vis.DataSet([{ from: 16, to: 2 }, 
+{ from: 16, to: 11 }, 
+{ from: 16, to: 12 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");
