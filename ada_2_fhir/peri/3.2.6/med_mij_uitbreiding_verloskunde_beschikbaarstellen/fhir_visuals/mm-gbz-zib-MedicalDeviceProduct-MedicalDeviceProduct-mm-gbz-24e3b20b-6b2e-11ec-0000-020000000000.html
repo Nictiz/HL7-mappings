@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html lang="en">
    <head>
-      <title>Observation - 2ed2e50f-6afd-11ec-0000-020000000000</title>
+      <title>Device - MedicalDeviceProduct-mm-gbz-24e3b20b-6b2e-11ec-0000-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -19,26 +19,17 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Observatie/bepaling. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Status: definitief</caption>
+               <caption>Apparaat/Systeem. Patiënt: Willemijn W XXX_Yzendoorn van den XXX_Berg. Status: actief</caption>
+               <tfoot>
+                  <tr>
+                     <td colspan="2">Urinekatheter wegens overloopblaas/urine retentie</td>
+                  </tr>
+               </tfoot>
                <tbody>
                   <tr>
-                     <th>Context</th>
-                     <td>Zwangerschap 2 Vrouw-XXX_Yzendoorn</td>
-                  </tr>
-                  <tr>
-                     <th>Bepalingdatum/tijd</th>
-                     <td>${DATE, T, D, -324}</td>
-                  </tr>
-                  <tr>
-                     <th>Code</th>
-                     <th>Waarde</th>
-                  </tr>
-                  <tr>
+                     <th>Type</th>
                      <td>
-                        <span title="geboorte van placenta (verrichting) (236994008 - SNOMED CT)">geboorte van placenta (verrichting)</span>
-                     </td>
-                     <td>
-                        <span title="geboorte van placenta via sectio caesarea (verrichting) (149161000146109 - SNOMED CT)">geboorte van placenta via sectio caesarea (verrichting)</span>
+                        <span title="urinekatheter (fysiek object) (20568009 - SNOMED CT)">urinekatheter (fysiek object)</span>
                      </td>
                   </tr>
                </tbody>
@@ -46,29 +37,22 @@
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Observation geboorte van placenta (verrichting)</b>
+         <b>Resources pointing to 'this' resource - Device urinekatheter (fysiek object)</b>
       </p>
       <ul>
          <li>
-            <a href="mm-gbz-bc-TransactionComposition-samenvatting-zwangerschap2-Vrouw-XXX_Yzendoorn.html">Composition Dossier zwangerschap en bevalling [bevinding] (document)</a>
-         </li>
-         <li>
-            <a href="mm-gbz-zib-Pregnancy-Duration57036006-c33f154a-6a95-11ec-0000-020000000000.html">Observation zwangerschapsduur (waarneembare entiteit)</a>
+            <a href="mm-gbz-zib-MedicalDevice-zib-MedicalDevice-mm-gbz-24e3b20b-6b2e-11ec-0000-020000000000.html">DeviceUseStatement</a>
          </li>
       </ul>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
 { id: 2, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-nl-core-patient-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
-{ id: 11, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-0934bb5f-6afa-11ec-0000-020000000000.html" }, 
-{ id: 16, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-a0894f22-6adc-11ec-0000-020000000000.html" }, 
-{ id: 43, label: "Observation geboorte van placenta (verrichting)", url: "mm-gbz-nl-core-observation236994008-2ed2e50f-6afd-11ec-0000-020000000000.html" }, 
+{ id: 76, label: "Device urinekatheter (fysiek object)", url: "mm-gbz-zib-MedicalDeviceProduct-MedicalDeviceProduct-mm-gbz-24e3b20b-6b2e-11ec-0000-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 43, to: 16 }, 
-{ from: 43, to: 2 }, 
-{ from: 43, to: 11 }, 
+var edges = new vis.DataSet([{ from: 76, to: 2 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="b1fae269-6aad-11ec-0000-020000000000"/>
+   <id value="6611a999-6aa6-11ec-0000-020000000000"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-FetusObservation"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DeliveryObservation"/>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
    </meta>
    <text>
@@ -16,19 +16,15 @@
                   <td>Zwangerschap 2 Vrouw-XXX_Yzendoorn</td>
                </tr>
                <tr>
-                  <th>Bepalingdatum/tijd</th>
-                  <td>${DATE, T, D, -324}</td>
-               </tr>
-               <tr>
                   <th>Code</th>
                   <th>Waarde</th>
                </tr>
                <tr>
                   <td>
-                     <span title="presenterend deel van foetus (waarneembare entiteit) (271692001 - SNOMED CT)">presenterend deel van foetus (waarneembare entiteit)</span>
+                     <span title="manier waarop eerste fase van partus is begonnen (waarneembare entiteit) (160611000146102 - SNOMED CT)">manier waarop eerste fase van partus is begonnen (waarneembare entiteit)</span>
                   </td>
                   <td>
-                     <span title="achterhoofdsligging met achterhoofd achter (bevinding) (37235006 - SNOMED CT)">achterhoofdsligging met achterhoofd achter (bevinding)</span>
+                     <span title="spontaan begin van partus (bevinding) (84457005 - SNOMED CT)">spontaan begin van partus (bevinding)</span>
                   </td>
                </tr>
             </tbody>
@@ -37,20 +33,20 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focusSTU3">
       <valueReference>
-         <reference value="Procedure/b8f09680-6aff-11ec-0000-020000000000"/>
-         <display value="uitdrijvingsfase zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+         <reference value="Procedure/a0894f22-6adc-11ec-0000-020000000000"/>
+         <display value="bevalling zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
       </valueReference>
    </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="58a1b04b-6ad2-11ec-0000-020000000000"/>
+      <value value="dc444486-6b07-11ec-0000-020000000000"/>
    </identifier>
    <status value="final"/>
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="271692001"/>
-         <display value="presenterend deel van foetus (waarneembare entiteit)"/>
+         <code value="160611000146102"/>
+         <display value="manier waarop eerste fase van partus is begonnen (waarneembare entiteit)"/>
       </coding>
    </code>
    <subject>
@@ -61,12 +57,11 @@
       <reference value="EpisodeOfCare/0934bb5f-6afa-11ec-0000-020000000000"/>
       <display value="Zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
    </context>
-   <effectiveDateTime value="${DATE, T, D, -324}"/>
    <valueCodeableConcept>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="37235006"/>
-         <display value="achterhoofdsligging met achterhoofd achter (bevinding)"/>
+         <code value="84457005"/>
+         <display value="spontaan begin van partus (bevinding)"/>
       </coding>
    </valueCodeableConcept>
 </Observation>

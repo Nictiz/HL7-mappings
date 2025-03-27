@@ -8,6 +8,8 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <div>Id 999901758 (BSN), <span title="Naamsamenstelling: Eigennaam">Micha M XXX_Yassien-Mohamed</span>, Vrouw, 23 december 1985, Geen meerling</div>
+         <div>
+            <a href="tel:0705321689">0705321689</a> (Vast telefoonnummer)</div>
          <div>Knolweg 1000, 9999XA STITSWERD, NL</div>
          <div>Voorkeursapotheek: Apotheek de 3 Bergen</div>
       </div>
@@ -17,6 +19,15 @@
          <reference value="Organization/nl-core-organization-mm-gbz-2-16-840-1-113883-2-4-6-1-1234567"/>
          <display value="Apotheek de 3 Bergen"/>
       </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-patient-ethnicity">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.13.28"/>
+            <code value="3"/>
+            <display value="Noord-Afrikaans"/>
+         </coding>
+      </valueCodeableConcept>
    </extension>
    <identifier>
       <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
@@ -42,6 +53,19 @@
          </extension>
       </given>
    </name>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Vast telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="0705321689"/>
+   </telecom>
    <gender value="female">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
          <valueCodeableConcept>

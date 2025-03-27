@@ -11,12 +11,14 @@
             <span title="Naamsamenstelling: Eigennaam">Jasper XXX_Yzendoorn</span>
          </div>
          <div>
+            <a href="tel:0653946815">0653946815</a> (,  mobile)</div>
+         <div>
             <span title="Zoon (SONC - v3/RoleCode)">Zoon</span> van Mieke XXX_Yzendoorn</div>
       </div>
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="721ab7c6-6adc-11ec-0000-020000000000"/>
+      <value value="d67dbfd0-6b63-11ec-0000-020000000000"/>
    </identifier>
    <patient>
       <reference value="Patient/MIEKE-XXX-YZENDOORN"/>
@@ -44,4 +46,18 @@
          </extension>
       </given>
    </name>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="MC"/>
+               <display value="Mobiel telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="0653946815"/>
+      <use value="mobile"/>
+   </telecom>
 </RelatedPerson>

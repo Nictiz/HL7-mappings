@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html lang="en">
    <head>
-      <title>Device - MedicalDeviceProduct-mm-gbz-3af5620b-6a9d-11ec-0000-020000000000</title>
+      <title>Condition - 74c95c0a-6abf-11ec-0000-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -19,15 +19,10 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Apparaat/Systeem. Patiënt: Willemijn W XXX_Yzendoorn van den XXX_Berg. Status: actief</caption>
-               <tfoot>
-                  <tr>
-                     <td colspan="2">Urinekatheter wegens overloopblaas/urine retentie</td>
-                  </tr>
-               </tfoot>
+               <caption>Aandoening. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Categorie: <span title="zwangerschapsstoornis (aandoening) (173300003 - SNOMED CT)">zwangerschapsstoornis (aandoening)</span>, Status: actief</caption>
                <tbody>
                   <tr>
-                     <th>Type</th>
+                     <th>Code</th>
                      <td/>
                   </tr>
                </tbody>
@@ -35,22 +30,26 @@
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Device</b>
+         <b>Resources pointing to 'this' resource - Condition</b>
       </p>
       <ul>
          <li>
-            <a href="mm-gbz-zib-MedicalDevice-zib-MedicalDevice-mm-gbz-3af5620b-6a9d-11ec-0000-020000000000.html">DeviceUseStatement</a>
+            <a href="mm-gbz-bc-TransactionComposition-samenvatting-zwangerschap2-Vrouw-XXX_Yzendoorn.html">Composition Dossier zwangerschap en bevalling [bevinding] (document)</a>
          </li>
       </ul>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
 { id: 2, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-nl-core-patient-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
-{ id: 74, label: "Device", url: "mm-gbz-zib-MedicalDeviceProduct-MedicalDeviceProduct-mm-gbz-3af5620b-6a9d-11ec-0000-020000000000.html" }, 
+{ id: 11, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-0934bb5f-6afa-11ec-0000-020000000000.html" }, 
+{ id: 12, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-01da2e9a-6ae2-11ec-0000-020000000000.html" }, 
+{ id: 13, label: "Condition", url: "mm-gbz-bc-DisorderOfPregnancy-74c95c0a-6abf-11ec-0000-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 74, to: 2 }, 
+var edges = new vis.DataSet([{ from: 13, to: 12 }, 
+{ from: 13, to: 2 }, 
+{ from: 13, to: 11 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");
