@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html lang="en">
    <head>
-      <title>Patient - XXX-YZENDOORN</title>
+      <title>BodySite - 528e50c0-6b41-11ec-0000-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -18,25 +18,36 @@
    <body>
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
-            <div>XXX_Yzendoorn</div>
+            <table>
+               <caption>BodySite. Patiënt: Willemijn W XXX_Yzendoorn van den XXX_Berg. </caption>
+               <tbody>
+                  <tr>
+                     <th>Code</th>
+                     <td>
+                        <span title="gehele foetus (lichaamsstructuur) (83418008 - SNOMED CT)">gehele foetus (lichaamsstructuur)</span>
+                        <div>Geboren als: Mieke XXX_Yzendoorn</div>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Patient XXX_Yzendoorn</b>
+         <b>Resources pointing to 'this' resource - BodySite gehele foetus (lichaamsstructuur)</b>
       </p>
-      <ul>
-         <li>
-            <a href="mm-gbz-bc-TransactionComposition-samenvatting-zwangerschap2-Vrouw-XXX_Yzendoorn.html">Composition Dossier zwangerschap en bevalling [bevinding] (document)</a>
-         </li>
-      </ul>
+      <div> - none</div>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 3, label: "Patient XXX_Yzendoorn", url: "mm-gbz-nl-core-patient-XXX-YZENDOORN.html" }, 
+{ id: 2, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-nl-core-patient-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
+{ id: 3, label: "Patient XXX_Yzendoorn", url: "mm-gbz-nl-core-patient-MIEKE-XXX-YZENDOORN.html" }, 
+{ id: 77, label: "BodySite gehele foetus (lichaamsstructuur)", url: "mm-gbz-bc-Fetus83418008-528e50c0-6b41-11ec-0000-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([]);
+var edges = new vis.DataSet([{ from: 77, to: 3 }, 
+{ from: 77, to: 2 }, 
+]);
 // create a network
 var container = document.getElementById("mynetwork");
 var data = {
