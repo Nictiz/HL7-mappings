@@ -1,0 +1,134 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <id value="zib-Procedure-bgz-msz-bgz-msz-patD-procedure3"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Fatima Saïda F.S.K. Fatima Al Ksar el Kebir Çelik. Id: bgz-msz-patD-procedure3 (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), Categorie: , Status: voltooid<span style="display: block;">Uitvoerende (<span title="Responsible Party (RESP - v3/ParticipationType)">Responsible Party</span>): Perpe P.M.T. Peer Tuum || Cardiothoracaal chirurg || Ziekenhuis de Kleine Pomp</span>
+               <span style="display: block;">Uitvoerende: Ziekenhuis de Kleine Pomp</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="percutane implantatie van pulmonalisklep (787162002 - SNOMED CT)">percutane implantatie van pulmonalisklep</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: 14 november 1988</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="implantatie (129336009 - SNOMED CT)">implantatie</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Gebaseerd op</th>
+                  <td>percutane implantatie van pulmonalisklep</td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="pulmonaalklep (39057004 - SNOMED CT)">pulmonaalklep</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>kortademigheid bij milde inspanning, Pulmonalisklepinsufficiëntie</td>
+               </tr>
+               <tr>
+                  <th>apparaat</th>
+                  <td>Pulmonary valve bioprosthesis (physical object) klep</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="129336009"/>
+            <display value="implantatie"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patD-procedure3"/>
+   </identifier>
+   <basedOn>
+      <reference value="ProcedureRequest/zib-ProcedureRequest-bgz-msz-bgz-msz-patD-procedure3"/>
+      <display value="percutane implantatie van pulmonalisklep"/>
+   </basedOn>
+   <status value="completed"/>
+   <category>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="787162002"/>
+         <display value="percutane implantatie van pulmonalisklep"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/FATIMA-SAIDA-F-S-K--FATIMA-AL-KSAR-EL-KEBIR-ELIK"/>
+      <display value="Fatima Saïda F.S.K. Fatima Al Ksar el Kebir Çelik"/>
+   </subject>
+   <performedPeriod>
+      <start value="1988-11-14"/>
+      <end value="1988-11-14"/>
+   </performedPeriod>
+   <performer>
+      <actor>
+         <reference value="Organization/nl-core-organization-bgz-msz-2-16-840-1-113883-2-4-6-1-20000011"/>
+         <display value="Ziekenhuis de Kleine Pomp"/>
+      </actor>
+   </performer>
+   <performer>
+      <role>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="RESP"/>
+            <display value="Responsible Party"/>
+         </coding>
+      </role>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-bgz-msz-1000001101-01120000011"/>
+               <display value="Perpe P.M.T. Peer Tuum || Cardiothoracaal chirurg || Ziekenhuis de Kleine Pomp"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-528-1-1007-3-1-10000011"/>
+         <display value="Perpe P.M.T. Peer Tuum"/>
+      </actor>
+   </performer>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-bgz-msz-bgz-msz-patD-problem2"/>
+      <display value="kortademigheid bij milde inspanning"/>
+   </reasonReference>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-bgz-msz-bgz-msz-patD-problem3"/>
+      <display value="Pulmonalisklepinsufficiëntie"/>
+   </reasonReference>
+   <bodySite>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="39057004"/>
+         <display value="pulmonaalklep"/>
+      </coding>
+   </bodySite>
+   <focalDevice>
+      <manipulated>
+         <reference value="Device/zib-MedicalDeviceProduct-bgz-msz-bgz-msz-patD-medDevice1"/>
+         <display value="Pulmonary valve bioprosthesis (physical object) klep"/>
+      </manipulated>
+   </focalDevice>
+</Procedure>

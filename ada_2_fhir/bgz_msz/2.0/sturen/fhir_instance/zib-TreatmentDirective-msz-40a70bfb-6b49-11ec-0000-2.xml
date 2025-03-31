@@ -1,0 +1,75 @@
+<Consent xmlns="http://hl7.org/fhir">
+   <id value="zib-TreatmentDirective-msz-40a70bfb-6b49-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Toestemming. Patiënt: Michelle M.D. Michelle D Derencourt Verheul. Categorie: <span title="behandelaanwijzing (11291000146105 - SNOMED CT)">behandelaanwijzing</span>, Status: actief</caption>
+            <tbody>
+               <tr>
+                  <th>Geldigheidsperiode</th>
+                  <td>Vanaf 7 juli 2007</td>
+               </tr>
+               <tr>
+                  <th>Reanimatie</th>
+                  <td>
+                     <span title="Nee (NEE - 2.16.840.1.113883.2.4.3.11.60.40.4)">Nee</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Bron </th>
+                  <td>WilsverklaringType: Niet reanimeren verklaring</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-Treatment">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="Anders"/>
+         </coding>
+         <text value="Reanimatie"/>
+      </valueCodeableConcept>
+   </extension>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-TreatmentPermitted">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4"/>
+            <code value="NEE"/>
+            <display value="Nee"/>
+         </coding>
+      </valueCodeableConcept>
+   </modifierExtension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="fb0eb1d9-6b25-11ec-0000-2"/>
+   </identifier>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="11291000146105"/>
+         <display value="behandelaanwijzing"/>
+      </coding>
+   </category>
+   <patient>
+      <reference value="Patient/MICHELLE-M-D--MICHELLE-D-DERENCOURT-VERHEUL"/>
+      <display value="Michelle M.D. Michelle D Derencourt Verheul"/>
+   </patient>
+   <period>
+      <start value="2007-07-07"/>
+   </period>
+   <sourceReference>
+      <reference value="Consent/zib-AdvanceDirective-msz-c3be0b15-6b5b-11ec-0000-2"/>
+      <display value="WilsverklaringType: Niet reanimeren verklaring"/>
+   </sourceReference>
+   <policy>
+      <uri value="http://wetten.overheid.nl/"/>
+   </policy>
+</Consent>
