@@ -1,0 +1,53 @@
+<ProcedureRequest xmlns="http://hl7.org/fhir">
+   <id value="zib-ProcedureRequest-msz-dd3e81ae-6b6a-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichtingaanvraag. Subject: Michelle M.D. Michelle D Derencourt Verheul. Status: onbekend<span style="display: block;">Intentie: plan</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td/>
+                  <td>
+                     <div>Wanneer: Vanaf ${DATE, T, D, +120}</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td/>
+               </tr>
+               <tr>
+                  <td>Deel van lichaam</td>
+                  <td>
+                     <span title="MRI van thorax (6007000 - SNOMED CT)">MRI van thorax</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="32f441d1-6b6a-11ec-0000-2"/>
+   </identifier>
+   <status value="unknown"/>
+   <intent value="plan"/>
+   <subject>
+      <reference value="Patient/MICHELLE-M-D--MICHELLE-D-DERENCOURT-VERHEUL"/>
+      <display value="Michelle M.D. Michelle D Derencourt Verheul"/>
+   </subject>
+   <occurrencePeriod>
+      <start value="${DATE, T, D, +120}"/>
+   </occurrencePeriod>
+   <bodySite>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="6007000"/>
+         <display value="MRI van thorax"/>
+      </coding>
+   </bodySite>
+</ProcedureRequest>
