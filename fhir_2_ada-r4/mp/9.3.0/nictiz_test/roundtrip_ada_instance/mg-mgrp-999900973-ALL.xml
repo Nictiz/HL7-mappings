@@ -1,6 +1,8 @@
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
-   <meta status="new" created-by="generated" last-update-by="generated"/>
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -10,7 +12,7 @@
                                             prefix="mp-"
                                             language="nl-NL"
                                             title="Generated from HL7 FHIR medicatiegegevens"
-                                            id="8725ea23-4835-11ef-9435-020000000000">
+                                            id="b3449d86-0efe-11f0-1445-020000000000">
          <patient>
             <naamgegevens>
                <initialen value="M."/>
@@ -22,25 +24,32 @@
                   <achternaam value="XXX_Roelofs"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999900973" root="2.16.840.1.113883.2.4.6.3"/>
-            <geboortedatum value="1985-11-10" datatype="datetime"/>
-            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+            <identificatienummer value="999900973"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1985-11-10"
+                           datatype="datetime"/>
+            <geslacht code="M"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Man"/>
          </patient>
          <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_wdsmtd1" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <identificatie value="MBH_300_wdsmtd1"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <medicatieafspraak>
                <identificatie value="MBH_300_wdsmtd1_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <medicatieafspraak_datum_tijd value="T-20D{08:00:00}" datatype="datetime"/>
+               <medicatieafspraak_datum_tijd value="2021-12-12T08:00:00+01:00"
+                                             datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="T-20D{00:00:00}" datatype="datetime"/>
+                  <start_datum_tijd value="2021-12-12T00:00:00+01:00"
+                                    datatype="datetime"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="urn-uuid-8725ea7c-4835-11ef-9435-020000000000"
+                  <zorgverlener value="urn-uuid-b3449dd5-0efe-11f0-1445-020000000000"
                                 datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-8725ed60-4835-11ef-9435-020000000000"
+                  <farmaceutisch_product value="urn-uuid-b3449fd3-0efe-11f0-1445-020000000000"
                                          datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
@@ -59,13 +68,16 @@
             <wisselend_doseerschema>
                <identificatie value="MBH_300_wdsmtd1_WDS_opstartschema"
                               root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-               <wisselend_doseerschema_datum_tijd value="T-20D{08:00:00}" datatype="datetime"/>
+               <wisselend_doseerschema_datum_tijd value="2021-12-12T08:00:00+01:00"
+                                                  datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="T-20D{00:00:00}" datatype="datetime"/>
-                  <eind_datum_tijd value="T-15D{23:59:59}" datatype="datetime"/>
+                  <start_datum_tijd value="2021-12-12T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2021-12-17T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-8725ed60-4835-11ef-9435-020000000000"
+                  <farmaceutisch_product value="urn-uuid-b3449fd3-0efe-11f0-1445-020000000000"
                                          datatype="reference"/>
                </afgesproken_geneesmiddel>
                <relatie_medicatieafspraak>
@@ -73,7 +85,7 @@
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_medicatieafspraak>
                <auteur>
-                  <zorgverlener value="urn-uuid-8725ea7c-4835-11ef-9435-020000000000"
+                  <zorgverlener value="urn-uuid-b3449dd5-0efe-11f0-1445-020000000000"
                                 datatype="reference"/>
                </auteur>
                <gebruiksinstructie>
@@ -83,7 +95,8 @@
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                   displayName="Oraal"/>
                   <doseerinstructie>
-                     <doseerduur value="3" unit="dag"/>
+                     <doseerduur value="3"
+                                 unit="dag"/>
                      <volgnummer value="1"/>
                      <dosering>
                         <keerdosis>
@@ -100,15 +113,37 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
-                           <toedientijd value="20:00:00" datatype="time"/>
+                           <toedientijd value="20:00:00"
+                                        datatype="time"/>
                            <is_flexibel value="true"/>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                       <valueBoolean value="false"/>
+                                    </extension>
+                                    <boundsDuration>
+                                       <value value="3"/>
+                                       <unit value="dag"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="d"/>
+                                    </boundsDuration>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                    <timeOfDay value="20:00:00"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
                   <doseerinstructie>
-                     <doseerduur value="3" unit="dag"/>
+                     <doseerduur value="3"
+                                 unit="dag"/>
                      <volgnummer value="2"/>
                      <dosering>
                         <keerdosis>
@@ -125,10 +160,31 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
-                           <toedientijd value="20:00:00" datatype="time"/>
+                           <toedientijd value="20:00:00"
+                                        datatype="time"/>
                            <is_flexibel value="true"/>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                       <valueBoolean value="false"/>
+                                    </extension>
+                                    <boundsDuration>
+                                       <value value="3"/>
+                                       <unit value="dag"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="d"/>
+                                    </boundsDuration>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                    <timeOfDay value="20:00:00"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -137,13 +193,16 @@
             <wisselend_doseerschema>
                <identificatie value="MBH_300_wdsmtd1_WDS_trombosedienst"
                               root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-               <wisselend_doseerschema_datum_tijd value="T-15D{14:30:00}" datatype="datetime"/>
+               <wisselend_doseerschema_datum_tijd value="2021-12-17T14:30:00+01:00"
+                                                  datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="T-14D{00:00:00}" datatype="datetime"/>
-                  <eind_datum_tijd value="T-5D{23:59:59}" datatype="datetime"/>
+                  <start_datum_tijd value="2021-12-18T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2021-12-27T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-8725ed60-4835-11ef-9435-020000000000"
+                  <farmaceutisch_product value="urn-uuid-b3449fd3-0efe-11f0-1445-020000000000"
                                          datatype="reference"/>
                </afgesproken_geneesmiddel>
                <relatie_medicatieafspraak>
@@ -155,7 +214,7 @@
                                  root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
                </relatie_wisselend_doseerschema>
                <auteur>
-                  <zorgverlener value="urn-uuid-8725ead6-4835-11ef-9435-020000000000"
+                  <zorgverlener value="urn-uuid-b3449e1b-0efe-11f0-1445-020000000000"
                                 datatype="reference"/>
                </auteur>
                <gebruiksinstructie>
@@ -164,9 +223,11 @@
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                   displayName="Oraal"/>
-                  <herhaalperiode_cyclisch_schema value="5" unit="dag"/>
+                  <herhaalperiode_cyclisch_schema value="5"
+                                                  unit="dag"/>
                   <doseerinstructie>
-                     <doseerduur value="2" unit="dag"/>
+                     <doseerduur value="2"
+                                 unit="dag"/>
                      <volgnummer value="1"/>
                      <dosering>
                         <keerdosis>
@@ -183,17 +244,38 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
                            <dagdeel code="3157002"
-                                    codeSystem="2.16.840.1.113883.6.96"
-                                    displayName="'s avonds"/>
+                                    displayName="'s avonds"
+                                    codeSystem="2.16.840.1.113883.6.96"/>
                            <is_flexibel value="true"/>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                       <valueBoolean value="false"/>
+                                    </extension>
+                                    <boundsDuration>
+                                       <value value="2"/>
+                                       <unit value="dag"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="d"/>
+                                    </boundsDuration>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                    <when value="EVE"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
                   <doseerinstructie>
-                     <doseerduur value="2" unit="dag"/>
+                     <doseerduur value="2"
+                                 unit="dag"/>
                      <volgnummer value="2"/>
                      <dosering>
                         <keerdosis>
@@ -210,17 +292,38 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
                            <dagdeel code="3157002"
-                                    codeSystem="2.16.840.1.113883.6.96"
-                                    displayName="'s avonds"/>
+                                    displayName="'s avonds"
+                                    codeSystem="2.16.840.1.113883.6.96"/>
                            <is_flexibel value="true"/>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                       <valueBoolean value="false"/>
+                                    </extension>
+                                    <boundsDuration>
+                                       <value value="2"/>
+                                       <unit value="dag"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="d"/>
+                                    </boundsDuration>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                    <when value="EVE"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
                   <doseerinstructie>
-                     <doseerduur value="1" unit="dag"/>
+                     <doseerduur value="1"
+                                 unit="dag"/>
                      <volgnummer value="3"/>
                      <dosering>
                         <keerdosis>
@@ -237,12 +340,32 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
                            <dagdeel code="3157002"
-                                    codeSystem="2.16.840.1.113883.6.96"
-                                    displayName="'s avonds"/>
+                                    displayName="'s avonds"
+                                    codeSystem="2.16.840.1.113883.6.96"/>
                            <is_flexibel value="true"/>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                       <valueBoolean value="false"/>
+                                    </extension>
+                                    <boundsDuration>
+                                       <value value="1"/>
+                                       <unit value="dag"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="d"/>
+                                    </boundsDuration>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                    <when value="EVE"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -251,17 +374,20 @@
             <wisselend_doseerschema>
                <identificatie value="MBH_300_wdsmtd1_WDS_technischestop"
                               root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-               <wisselend_doseerschema_datum_tijd value="T-7D{10:30:00}" datatype="datetime"/>
+               <wisselend_doseerschema_datum_tijd value="2021-12-25T10:30:00+01:00"
+                                                  datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="T-14D{00:00:00}" datatype="datetime"/>
-                  <eind_datum_tijd value="T-7D{23:59:59}" datatype="datetime"/>
+                  <start_datum_tijd value="2021-12-18T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2021-12-25T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <wisselend_doseerschema_stop_type code="410546004"
                                                  codeSystem="2.16.840.1.113883.6.96"
                                                  codeSystemName="SNOMED CT"
                                                  displayName="stopgezet"/>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-8725ed60-4835-11ef-9435-020000000000"
+                  <farmaceutisch_product value="urn-uuid-b3449fd3-0efe-11f0-1445-020000000000"
                                          datatype="reference"/>
                </afgesproken_geneesmiddel>
                <relatie_medicatieafspraak>
@@ -273,7 +399,7 @@
                                  root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
                </relatie_wisselend_doseerschema>
                <auteur>
-                  <zorgverlener value="urn-uuid-8725ead6-4835-11ef-9435-020000000000"
+                  <zorgverlener value="urn-uuid-b3449e1b-0efe-11f0-1445-020000000000"
                                 datatype="reference"/>
                </auteur>
                <gebruiksinstructie>
@@ -282,9 +408,11 @@
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                   displayName="Oraal"/>
-                  <herhaalperiode_cyclisch_schema value="5" unit="dag"/>
+                  <herhaalperiode_cyclisch_schema value="5"
+                                                  unit="dag"/>
                   <doseerinstructie>
-                     <doseerduur value="2" unit="dag"/>
+                     <doseerduur value="2"
+                                 unit="dag"/>
                      <volgnummer value="1"/>
                      <dosering>
                         <keerdosis>
@@ -301,17 +429,38 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
                            <dagdeel code="3157002"
-                                    codeSystem="2.16.840.1.113883.6.96"
-                                    displayName="'s avonds"/>
+                                    displayName="'s avonds"
+                                    codeSystem="2.16.840.1.113883.6.96"/>
                            <is_flexibel value="true"/>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                       <valueBoolean value="false"/>
+                                    </extension>
+                                    <boundsDuration>
+                                       <value value="2"/>
+                                       <unit value="dag"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="d"/>
+                                    </boundsDuration>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                    <when value="EVE"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
                   <doseerinstructie>
-                     <doseerduur value="2" unit="dag"/>
+                     <doseerduur value="2"
+                                 unit="dag"/>
                      <volgnummer value="2"/>
                      <dosering>
                         <keerdosis>
@@ -328,17 +477,38 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
                            <dagdeel code="3157002"
-                                    codeSystem="2.16.840.1.113883.6.96"
-                                    displayName="'s avonds"/>
+                                    displayName="'s avonds"
+                                    codeSystem="2.16.840.1.113883.6.96"/>
                            <is_flexibel value="true"/>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                       <valueBoolean value="false"/>
+                                    </extension>
+                                    <boundsDuration>
+                                       <value value="2"/>
+                                       <unit value="dag"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="d"/>
+                                    </boundsDuration>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                    <when value="EVE"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
                   <doseerinstructie>
-                     <doseerduur value="1" unit="dag"/>
+                     <doseerduur value="1"
+                                 unit="dag"/>
                      <volgnummer value="3"/>
                      <dosering>
                         <keerdosis>
@@ -355,12 +525,32 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
                            <dagdeel code="3157002"
-                                    codeSystem="2.16.840.1.113883.6.96"
-                                    displayName="'s avonds"/>
+                                    displayName="'s avonds"
+                                    codeSystem="2.16.840.1.113883.6.96"/>
                            <is_flexibel value="true"/>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                       <valueBoolean value="false"/>
+                                    </extension>
+                                    <boundsDuration>
+                                       <value value="1"/>
+                                       <unit value="dag"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="d"/>
+                                    </boundsDuration>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                    <when value="EVE"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -369,17 +559,20 @@
             <wisselend_doseerschema>
                <identificatie value="MBH_300_wdsmtd1_WDS_verhoging"
                               root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-               <wisselend_doseerschema_datum_tijd value="T-7D{10:30:00}" datatype="datetime"/>
+               <wisselend_doseerschema_datum_tijd value="2021-12-25T10:30:00+01:00"
+                                                  datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="T-6D{00:00:00}" datatype="datetime"/>
-                  <eind_datum_tijd value="T+3D{23:59:59}" datatype="datetime"/>
+                  <start_datum_tijd value="2021-12-26T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2022-01-04T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <reden_wijzigen_of_staken code="58848006"
                                          codeSystem="2.16.840.1.113883.6.96"
                                          codeSystemName="SNOMED CT"
                                          displayName="gebrek aan geneesmiddeleffect"/>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-8725ed60-4835-11ef-9435-020000000000"
+                  <farmaceutisch_product value="urn-uuid-b3449fd3-0efe-11f0-1445-020000000000"
                                          datatype="reference"/>
                </afgesproken_geneesmiddel>
                <relatie_medicatieafspraak>
@@ -391,7 +584,7 @@
                                  root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
                </relatie_wisselend_doseerschema>
                <auteur>
-                  <zorgverlener value="urn-uuid-8725ead6-4835-11ef-9435-020000000000"
+                  <zorgverlener value="urn-uuid-b3449e1b-0efe-11f0-1445-020000000000"
                                 datatype="reference"/>
                </auteur>
                <gebruiksinstructie>
@@ -400,9 +593,11 @@
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                   displayName="oraal"/>
-                  <herhaalperiode_cyclisch_schema value="5" unit="dag"/>
+                  <herhaalperiode_cyclisch_schema value="5"
+                                                  unit="dag"/>
                   <doseerinstructie>
-                     <doseerduur value="3" unit="dag"/>
+                     <doseerduur value="3"
+                                 unit="dag"/>
                      <volgnummer value="1"/>
                      <dosering>
                         <keerdosis>
@@ -419,15 +614,37 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
-                           <toedientijd value="19:00:00" datatype="time"/>
+                           <toedientijd value="19:00:00"
+                                        datatype="time"/>
                            <is_flexibel value="true"/>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                       <valueBoolean value="false"/>
+                                    </extension>
+                                    <boundsDuration>
+                                       <value value="3"/>
+                                       <unit value="dag"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="d"/>
+                                    </boundsDuration>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                    <timeOfDay value="19:00:00"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
                   <doseerinstructie>
-                     <doseerduur value="2" unit="dag"/>
+                     <doseerduur value="2"
+                                 unit="dag"/>
                      <volgnummer value="2"/>
                      <dosering>
                         <keerdosis>
@@ -444,10 +661,31 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
-                           <toedientijd value="19:00:00" datatype="time"/>
+                           <toedientijd value="19:00:00"
+                                        datatype="time"/>
                            <is_flexibel value="true"/>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                       <valueBoolean value="false"/>
+                                    </extension>
+                                    <boundsDuration>
+                                       <value value="2"/>
+                                       <unit value="dag"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="d"/>
+                                    </boundsDuration>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                    <timeOfDay value="19:00:00"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -458,11 +696,13 @@
                <identificatie value="MBH_300_wdsmtd1_MTD1"
                               root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
                <toedienings_product>
-                  <farmaceutisch_product value="urn-uuid-8725ed60-4835-11ef-9435-020000000000"
+                  <farmaceutisch_product value="urn-uuid-b3449fd3-0efe-11f0-1445-020000000000"
                                          datatype="reference"/>
                </toedienings_product>
-               <toedienings_datum_tijd value="T-20D{20:30:00}" datatype="datetime"/>
-               <afgesproken_datum_tijd value="T-20D{20:00:00}" datatype="datetime"/>
+               <toedienings_datum_tijd value="2021-12-12T20:30:00+01:00"
+                                       datatype="datetime"/>
+               <afgesproken_datum_tijd value="2021-12-12T20:00:00+01:00"
+                                       datatype="datetime"/>
                <toegediende_hoeveelheid>
                   <aantal value="1"/>
                   <eenheid code="245"
@@ -481,7 +721,7 @@
                </relatie_wisselend_doseerschema>
                <toediener>
                   <mantelzorger>
-                     <contactpersoon value="urn-uuid-8725ed42-4835-11ef-9435-020000000000"
+                     <contactpersoon value="urn-uuid-b3449fbf-0efe-11f0-1445-020000000000"
                                      datatype="reference"/>
                   </mantelzorger>
                </toediener>
@@ -490,11 +730,13 @@
                <identificatie value="MBH_300_wdsmtd1_MTD2"
                               root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
                <toedienings_product>
-                  <farmaceutisch_product value="urn-uuid-8725ed60-4835-11ef-9435-020000000000"
+                  <farmaceutisch_product value="urn-uuid-b3449fd3-0efe-11f0-1445-020000000000"
                                          datatype="reference"/>
                </toedienings_product>
-               <toedienings_datum_tijd value="T-19D{20:00:00}" datatype="datetime"/>
-               <afgesproken_datum_tijd value="T-19D{20:00:00}" datatype="datetime"/>
+               <toedienings_datum_tijd value="2021-12-13T20:00:00+01:00"
+                                       datatype="datetime"/>
+               <afgesproken_datum_tijd value="2021-12-13T20:00:00+01:00"
+                                       datatype="datetime"/>
                <toegediende_hoeveelheid>
                   <aantal value="1"/>
                   <eenheid code="245"
@@ -513,7 +755,7 @@
                </relatie_wisselend_doseerschema>
                <toediener>
                   <zorgaanbieder>
-                     <zorgaanbieder value="urn-uuid-8725ebf8-4835-11ef-9435-020000000000"
+                     <zorgaanbieder value="urn-uuid-b3449ee3-0efe-11f0-1445-020000000000"
                                     datatype="reference"/>
                   </zorgaanbieder>
                </toediener>
@@ -526,11 +768,13 @@
                <identificatie value="MBH_300_wdsmtd1_MTD3"
                               root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
                <toedienings_product>
-                  <farmaceutisch_product value="urn-uuid-8725ed60-4835-11ef-9435-020000000000"
+                  <farmaceutisch_product value="urn-uuid-b3449fd3-0efe-11f0-1445-020000000000"
                                          datatype="reference"/>
                </toedienings_product>
-               <toedienings_datum_tijd value="T-17D{20:00:00}" datatype="datetime"/>
-               <afgesproken_datum_tijd value="T-17D{20:00:00}" datatype="datetime"/>
+               <toedienings_datum_tijd value="2021-12-15T20:00:00+01:00"
+                                       datatype="datetime"/>
+               <afgesproken_datum_tijd value="2021-12-15T20:00:00+01:00"
+                                       datatype="datetime"/>
                <toegediende_hoeveelheid>
                   <aantal value="1"/>
                   <eenheid code="245"
@@ -549,7 +793,7 @@
                </relatie_wisselend_doseerschema>
                <toediener>
                   <zorgaanbieder>
-                     <zorgaanbieder value="urn-uuid-8725ebf8-4835-11ef-9435-020000000000"
+                     <zorgaanbieder value="urn-uuid-b3449ee3-0efe-11f0-1445-020000000000"
                                     datatype="reference"/>
                   </zorgaanbieder>
                </toediener>
@@ -563,11 +807,13 @@
                <identificatie value="MBH_300_wdsmtd1_MTD4"
                               root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
                <toedienings_product>
-                  <farmaceutisch_product value="urn-uuid-8725ed60-4835-11ef-9435-020000000000"
+                  <farmaceutisch_product value="urn-uuid-b3449fd3-0efe-11f0-1445-020000000000"
                                          datatype="reference"/>
                </toedienings_product>
-               <toedienings_datum_tijd value="T-16D{20:05:00}" datatype="datetime"/>
-               <afgesproken_datum_tijd value="T-16D{20:00:00}" datatype="datetime"/>
+               <toedienings_datum_tijd value="2021-12-16T20:05:00+01:00"
+                                       datatype="datetime"/>
+               <afgesproken_datum_tijd value="2021-12-16T20:00:00+01:00"
+                                       datatype="datetime"/>
                <toegediende_hoeveelheid>
                   <aantal value="0"/>
                   <eenheid code="245"
@@ -586,7 +832,7 @@
                </relatie_wisselend_doseerschema>
                <toediener>
                   <zorgaanbieder>
-                     <zorgaanbieder value="urn-uuid-8725ebf8-4835-11ef-9435-020000000000"
+                     <zorgaanbieder value="urn-uuid-b3449ee3-0efe-11f0-1445-020000000000"
                                     datatype="reference"/>
                   </zorgaanbieder>
                </toediener>
@@ -597,7 +843,7 @@
             </medicatietoediening>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <contactpersoon id="urn-uuid-8725ed42-4835-11ef-9435-020000000000">
+            <contactpersoon id="urn-uuid-b3449fbf-0efe-11f0-1445-020000000000">
                <naamgegevens>
                   <voornamen value="Toos"/>
                   <geslachtsnaam>
@@ -607,9 +853,10 @@
                </naamgegevens>
                <rol code="100001"
                     codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.23.1"
+                    codeSystemName="ExtraRolcodes"
                     displayName="Mantelzorger"/>
             </contactpersoon>
-            <farmaceutisch_product id="urn-uuid-8725ed60-4835-11ef-9435-020000000000">
+            <farmaceutisch_product id="urn-uuid-b3449fd3-0efe-11f0-1445-020000000000">
                <product_code code="7323"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -620,8 +867,9 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="ACENOCOUMAROL TABLET 1MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-8725ea7c-4835-11ef-9435-020000000000">
-               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+            <zorgverlener id="urn-uuid-b3449dd5-0efe-11f0-1445-020000000000">
+               <zorgverlener_identificatienummer value="000001111"
+                                                 root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Peter"/>
                   <geslachtsnaam>
@@ -636,11 +884,12 @@
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-8725eb44-4835-11ef-9435-020000000000"/>
+                                 value="urn-uuid-b3449e6b-0efe-11f0-1445-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgverlener id="urn-uuid-8725ead6-4835-11ef-9435-020000000000">
-               <zorgverlener_identificatienummer value="222221111" root="2.16.528.1.1007.3.1"/>
+            <zorgverlener id="urn-uuid-b3449e1b-0efe-11f0-1445-020000000000">
+               <zorgverlener_identificatienummer value="222221111"
+                                                 root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Tanja"/>
                   <geslachtsnaam>
@@ -655,11 +904,12 @@
                             displayName="Trombosediensten"/>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-8725eb9e-4835-11ef-9435-020000000000"/>
+                                 value="urn-uuid-b3449ea7-0efe-11f0-1445-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-8725eb44-4835-11ef-9435-020000000000">
-               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+            <zorgaanbieder id="urn-uuid-b3449e6b-0efe-11f0-1445-020000000000">
+               <zorgaanbieder_identificatienummer value="00001111"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>
@@ -671,8 +921,9 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="urn-uuid-8725eb9e-4835-11ef-9435-020000000000">
-               <zorgaanbieder_identificatienummer value="11112222" root="2.16.528.1.1007.3.3"/>
+            <zorgaanbieder id="urn-uuid-b3449ea7-0efe-11f0-1445-020000000000">
+               <zorgaanbieder_identificatienummer value="11112222"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Trombosedienst Ons Dorp"/>
                <afdeling_specialisme code="3400"
                                      codeSystem="2.16.840.1.113883.2.4.6.7"
@@ -687,8 +938,9 @@
                   <woonplaats value="Ons Dorp"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="urn-uuid-8725ebf8-4835-11ef-9435-020000000000">
-               <zorgaanbieder_identificatienummer value="11110000" root="2.16.528.1.1007.3.3"/>
+            <zorgaanbieder id="urn-uuid-b3449ee3-0efe-11f0-1445-020000000000">
+               <zorgaanbieder_identificatienummer value="11110000"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Thuiszorg Om en Bij"/>
                <organisatie_type code="T2"
                                  codeSystem="2.16.840.1.113883.2.4.15.1060"
