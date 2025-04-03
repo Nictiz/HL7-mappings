@@ -4,7 +4,7 @@
          created-by="zibsada"
          last-update-by="zibsada"
          creation-date="2024-06-05T14:17:13.308Z"
-         last-update-date="2025-03-16T17:58:23.613Z"/>
+         last-update-date="2025-04-02T07:22:35.453Z"/>
    <data>
       <sturen app="bgz2017-2.0"
               shortName="sturen"
@@ -181,6 +181,13 @@
                <datum_overlijden datatype="datetime"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.86"
                                  value="2018-07-01"/>
+               <huisartsgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1202">
+                  <huisarts conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1204">
+                     <zorgverlener value="bgz-msz-patD-healthProf2"
+                                   datatype="reference"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1207"/>
+                  </huisarts>
+               </huisartsgegevens>
             </patient>
             <burgerlijke_staat_rc conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.300"
                                   id="bgz-msz-patD-marital1">
@@ -1854,6 +1861,26 @@
                </reden_contact>
             </contact>
          </contacten>
+         <zorgsetting conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.50">
+            <zorgverlener value="bgz-msz-patD-healthProf1"
+                          datatype="reference"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1209"/>
+            <zorgverlener value="bgz-msz-patD-healthProf3"
+                          datatype="reference"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1209"/>
+            <zorgverlener value="bgz-msz-patD-healthProf4"
+                          datatype="reference"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1209"/>
+            <zorgaanbieder value="bgz-msz-patD-healthcareProv1"
+                           datatype="reference"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1208"/>
+            <zorgaanbieder value="bgz-msz-patD-healthcareProv3"
+                           datatype="reference"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1208"/>
+            <zorgaanbieder value="bgz-msz-patD-healthcareProv4"
+                           datatype="reference"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1208"/>
+         </zorgsetting>
          <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.593">
             <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.51"
                           id="bgz-msz-patD-healthProf1">
@@ -1867,37 +1894,26 @@
                              conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.143"/>
                   <roepnaam value="Peer"
                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.144"/>
-                  <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.145"
-                               value="1"
-                               code="NL1"
-                               codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
-                               displayName="Eigen geslachtsnaam"/>
                   <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.146">
                      <achternaam value="Tuum"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.148"/>
                   </geslachtsnaam>
                </naamgegevens>
-               <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.55"
-                            code="01.011"
+               <specialisme code="01.011"
                             codeSystem="2.16.840.1.113883.2.4.15.111"
-                            codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
-                            codeSystemVersion="2022-06-27T00:00:00"
-                            displayName="Cardiothoracaal chirurg"/>
+                            displayName="Cardiothoracaal chirurg"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.55"/>
                <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.152">
                   <straat value="Zorgpad"
                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.153"/>
-                  <huisnummer value="9990"
+                  <huisnummer value="990"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.154"/>
                   <postcode value="9999 ZZ"
                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.158"/>
                   <woonplaats value="de Eed"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.159"/>
-                  <land conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.161"
-                        code="NL"
-                        codeSystem="1.0.3166.1.2.2"
-                        codeSystemName="ISO 3166-1 (alpha-2)"
-                        codeSystemVersion="2020-10-26T00:00:00"
-                        displayName="Nederland"/>
+                  <land code="Nederland"
+                        conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.161"/>
                   <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.163"
                                value="5"
                                code="WP"
@@ -1929,11 +1945,6 @@
                                   displayName="Zakelijk e-mailadres"/>
                   </email_adressen>
                </contactgegevens>
-               <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.560">
-                  <zorgaanbieder value="bgz-msz-patD-healthcareProv1"
-                                 datatype="reference"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.561"/>
-               </zorgaanbieder>
                <zorgverleners_rol conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.62"
                                   value="1"
                                   code="RESP"
