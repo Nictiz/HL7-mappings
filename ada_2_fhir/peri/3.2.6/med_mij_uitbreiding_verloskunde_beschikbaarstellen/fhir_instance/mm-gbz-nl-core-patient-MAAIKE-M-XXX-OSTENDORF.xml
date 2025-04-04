@@ -10,7 +10,8 @@
          <div>Id 999910413 (BSN), <span title="Naamsamenstelling: Eigennaam">Maaike XXX_Ostendorf</span>, Vrouw, 2 mei 1985</div>
          <div>
             <a href="tel:0613243546">0613243546</a> (Mobiel Privé), <a href="mailto:hallo@e-mail.com">hallo@e-mail.com</a> (E-mail Privé)</div>
-         <div>Knolweg 1002, 9999ZZ Stitswerd Stitswerd, 6030 (Bezoek)</div>
+         <div>Knolweg 1002, 9999ZZ Stitswerd Stitswerd, NL (Bezoek)</div>
+         <div>Huisarts: Bert van XXX_Ernie || huisarts || Huisartenpraktijk Hulp</div>
          <div>Voorkeursapotheek: Apotheek de 3 Bergen</div>
       </div>
    </text>
@@ -109,16 +110,27 @@
       <city value="Stitswerd"/>
       <district value="Stitswerd"/>
       <postalCode value="9999ZZ"/>
-      <country value="6030">
+      <country value="NL">
          <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
             <valueCodeableConcept>
                <coding>
                   <system value="urn:iso:std:iso:3166"/>
-                  <code value="6030"/>
+                  <version value="2.16.840.1.113883.2.4.4.16.34"/>
+                  <code value="NL"/>
                   <display value="Nederland"/>
                </coding>
             </valueCodeableConcept>
          </extension>
       </country>
    </address>
+   <generalPractitioner>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-mm-gbz-1234567801-015"/>
+            <display value="Bert van XXX_Ernie || huisarts || Huisartenpraktijk Hulp"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/nl-core-practitioner-mm-gbz-2-16-528-1-1007-3-1-12345678"/>
+      <display value="Bert van XXX_Ernie"/>
+   </generalPractitioner>
 </Patient>

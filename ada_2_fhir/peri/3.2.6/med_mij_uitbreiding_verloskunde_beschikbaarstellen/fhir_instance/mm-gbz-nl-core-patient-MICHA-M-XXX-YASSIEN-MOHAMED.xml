@@ -11,6 +11,7 @@
          <div>
             <a href="tel:0705321689">0705321689</a> (Vast telefoonnummer)</div>
          <div>Knolweg 1000, 9999XA STITSWERD, NL</div>
+         <div>Huisarts: Bert van XXX_Ernie || huisarts || Huisartsenpraktijk Sesam</div>
          <div>Voorkeursapotheek: Apotheek de 3 Bergen</div>
       </div>
    </text>
@@ -94,9 +95,9 @@
          <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
             <valueCodeableConcept>
                <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.16.34"/>
-                  <version value="2020-03-31T00:00:00"/>
-                  <code value="6030"/>
+                  <system value="urn:iso:std:iso:3166"/>
+                  <version value="2.16.840.1.113883.2.4.4.16.34"/>
+                  <code value="NL"/>
                   <display value="Nederland"/>
                </coding>
             </valueCodeableConcept>
@@ -104,4 +105,14 @@
       </country>
    </address>
    <multipleBirthBoolean value="false"/>
+   <generalPractitioner>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-mm-gbz-1234567801-015"/>
+            <display value="Bert van XXX_Ernie || huisarts || Huisartsenpraktijk Sesam"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/nl-core-practitioner-mm-gbz-2-16-528-1-1007-3-1-12345678"/>
+      <display value="Bert van XXX_Ernie"/>
+   </generalPractitioner>
 </Patient>
