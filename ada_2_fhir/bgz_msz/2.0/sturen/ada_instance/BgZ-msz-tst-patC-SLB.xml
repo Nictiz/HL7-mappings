@@ -4,7 +4,7 @@
          created-by="zibsada"
          last-update-by="zibsada"
          creation-date="2024-05-29T08:53:04.237Z"
-         last-update-date="2025-04-01T11:49:37.774Z"/>
+         last-update-date="2025-04-09T04:21:47.975Z"/>
    <data>
       <sturen app="bgz2017-2.0"
               shortName="sturen"
@@ -123,26 +123,6 @@
                                      conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.245"/>
             </wilsverklaring>
          </behandelrestricties>
-         <contactpersonen conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.228">
-            <contactpersoon conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.252"
-                            id="bgz-msz-patC-contactperson1">
-               <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1.252">
-                  <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11.252">
-                     <patient conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1365">
-                        <patient value="bgz-msz-patC"
-                                 datatype="reference"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1836"/>
-                     </patient>
-                  </onderwerp>
-               </zibroot>
-               <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.261">
-                  <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.266">
-                     <achternaam value="Jansen"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.268"/>
-                  </geslachtsnaam>
-               </naamgegevens>
-            </contactpersoon>
-         </contactpersonen>
          <klachten_en_diagnoses conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.49">
             <probleem conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.131"
                       id="bgz-msz-patC-problem1">
@@ -310,6 +290,76 @@
                                 displayName="Actief"/>
             </allergie_intolerantie>
          </allergieen>
+         <medicatie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2733">
+            <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1860"
+                               id="bgz-msz-patC-medAgreement1">
+               <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2765">
+                  <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2781">
+                     <patient value="bgz-msz-patC"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2787"/>
+                  </onderwerp>
+               </zibroot>
+               <afspraakdatum value="T-44D"
+                              datatype="datetime"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1862"/>
+               <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1939">
+                  <product value="bgz-msz-patC-drug1"
+                           datatype="reference"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2749"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1955">
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1957"/>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2130"
+                                 id="bgz-msz-patC-adminAgreement1">
+               <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2788">
+                  <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2804">
+                     <patient value="bgz-msz-patC"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2853"/>
+                  </onderwerp>
+               </zibroot>
+               <afspraakdatum value="T-44D"
+                              datatype="datetime"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2132"/>
+               <geneesmiddel_bij_toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2164">
+                  <product value="bgz-msz-patC-drug1"
+                           datatype="reference"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2752"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2180">
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2182"/>
+               </gebruiksinstructie>
+            </toedieningsafspraak>
+            <medicatie_gebruik conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2285"
+                               id="bgz-msz-patC-medUse1">
+               <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2810">
+                  <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2847">
+                     <patient value="bgz-msz-patC"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2854"/>
+                  </onderwerp>
+               </zibroot>
+               <registratiedatum value="T-44D"
+                                 datatype="datetime"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2287"/>
+               <gebruik_indicator value="false"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2288"/>
+               <volgens_afspraak_indicator value="false"
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2289"/>
+               <gebruiks_product conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2292">
+                  <product value="bgz-msz-patC-drug1"
+                           datatype="reference"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2755"/>
+               </gebruiks_product>
+            </medicatie_gebruik>
+         </medicatie>
          <medische_hulpmiddelen conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.205">
             <medisch_hulpmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.331"
                                 id="bgz-msz-patC-medDevice">
@@ -497,15 +547,14 @@
                </reden_contact>
             </contact>
          </contacten>
-         <zorgsetting conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.50">
-            <zorgverlener value="bgz-msz-patC-healthProf1"
-                          datatype="reference"
-                          conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1209"/>
-            <zorgaanbieder value="bgz-msz-patC-healthcareProv1"
-                           datatype="reference"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1208"/>
-         </zorgsetting>
          <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.593">
+            <product conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2734"
+                     id="bgz-msz-patC-drug1">
+               <product_code code="2194"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             displayName="PARACETAMOL TABLET 500MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2735"/>
+            </product>
             <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.51"
                           id="bgz-msz-patC-healthProf1">
                <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1.51">
@@ -574,13 +623,6 @@
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.686"/>
                </actor>
             </metagegevens>
-            <farmaceutisch_product conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1037"
-                                   id="bgz-msz-patC-drug1">
-               <product_code code="2194"
-                             codeSystem="2.16.840.1.113883.2.4.4.1"
-                             displayName="PARACETAMOL TABLET 500MG"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1047"/>
-            </farmaceutisch_product>
          </bouwstenen>
       </sturen>
    </data>
