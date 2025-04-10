@@ -1,5 +1,5 @@
 <MedicationRequest xmlns="http://hl7.org/fhir">
-   <id value="zib-MedicationAgreement-msz-8f915859-6b3f-11ec-0000-2"/>
+   <id value="zib-MedicationAgreement-msz-f5e4d919-6abd-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
    </meta>
@@ -15,10 +15,6 @@
                   <td/>
                </tr>
                <tr>
-                  <th>Reden</th>
-                  <td>fractuur van enkel</td>
-               </tr>
-               <tr>
                   <th>Gebruiksduur</th>
                   <td>15 dag</td>
                </tr>
@@ -26,7 +22,11 @@
                   <th>Doseerinstructie</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Instructie: 2</div>
+                     <div>Instructie: <ul>
+                           <li>2</li>
+                           <li>2</li>
+                        </ul>
+                     </div>
                      <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
                      </div>
                   </td>
@@ -44,11 +44,11 @@
       </valueDuration>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-      <valueString value="Vanaf &lt;T-45D&gt;, 15 dagen, 4 maal per dag 2 stuk, oraal, met voldoende water innemen"/>
+      <valueString value="Vanaf &lt;T-45D&gt;, 15 dagen, 3 maal per dag 1 stuk, oraal, met voldoende water innemen, bij voorkeur bij maaltijd innemen."/>
    </extension>
    <identifier>
       <system value="urn:ietf:rfc:3986"/>
-      <value value="146e5862-6b24-11ec-0000-2"/>
+      <value value="3b13c162-6b13-11ec-0000-2"/>
    </identifier>
    <intent value="order"/>
    <category>
@@ -64,12 +64,16 @@
       <reference value="Patient/JAN-ADRIANUS-J-A-K--JAN-KOOYMAN"/>
       <display value="Jan Adrianus J.A.K. Jan Kooyman"/>
    </subject>
-   <reasonReference>
-      <reference value="Condition/zib-Problem-msz-8be29365-6ae7-11ec-0000-2"/>
-      <display value="fractuur van enkel"/>
-   </reasonReference>
    <dosageInstruction>
       <sequence value="1"/>
+      <additionalInstruction>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="Other"/>
+         </coding>
+         <text value="2"/>
+      </additionalInstruction>
       <additionalInstruction>
          <coding>
             <system value="http://hl7.org/fhir/v3/NullFlavor"/>

@@ -4,7 +4,7 @@
          created-by="zibsada"
          last-update-by="zibsada"
          creation-date="2024-06-05T14:17:13.308Z"
-         last-update-date="2025-04-09T04:23:05.331Z"/>
+         last-update-date="2025-04-10T05:49:07.592Z"/>
    <data>
       <sturen app="bgz2017-2.0"
               shortName="sturen"
@@ -190,6 +190,11 @@
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1207"/>
                   </huisarts>
                </huisartsgegevens>
+               <eerste_contactpersoon conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2757">
+                  <contactpersoon value="bgz-msz-patD-Contactperson1"
+                                  datatype="reference"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2758"/>
+               </eerste_contactpersoon>
             </patient>
             <burgerlijke_staat_rc conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.300"
                                   id="bgz-msz-patD-marital1">
@@ -922,9 +927,41 @@
                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2749"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1955">
+                  <omschrijving value="3 keer per dag 0 of 1 stuk"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1956"/>
                   <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1957"/>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1960">
+                     <volgnummer value="1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1961"/>
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1963">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1964">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1965">
+                              <min value="0"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1966"/>
+                              <max value="1"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1968"/>
+                           </aantal>
+                           <eenheid code="ST"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="STUK"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1969"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1971">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1972">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1973">
+                                 <vaste_waarde value="3"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1975"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1977"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
                </gebruiksinstructie>
             </medicatieafspraak>
             <toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2130"
@@ -1904,7 +1941,103 @@
                </reden_contact>
             </contact>
          </contacten>
+         <zorgsetting conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.50">
+            <zorgteam conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2762">
+               <zorgverlener value="bgz-msz-patD-healthProf1"
+                             datatype="reference"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1209"/>
+               <zorgaanbieder value="bgz-msz-patD-healthcareProv1"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1208"/>
+            </zorgteam>
+            <zorgteam conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2762">
+               <zorgverlener value="bgz-msz-patD-healthProf3"
+                             datatype="reference"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1209"/>
+               <zorgaanbieder value="bgz-msz-patD-healthcareProv3"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1208"/>
+            </zorgteam>
+         </zorgsetting>
          <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.593">
+            <contactpersoon conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.252"
+                            id="bgz-msz-patD-Contactperson1">
+               <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.261">
+                  <voornamen value="Fictief Kimliği belirsiz"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.262"/>
+                  <initialen value="F.K.B.Ş."
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.263"/>
+                  <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.265"
+                               value="1"
+                               code="NL1"
+                               codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                               displayName="Eigen geslachtsnaam"/>
+                  <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.266">
+                     <voorvoegsels value="bir"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.267"/>
+                     <achternaam value="şahıs"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.268"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.272">
+                  <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.273">
+                     <telefoonnummer value="021-9990007"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.274"/>
+                     <telecom_type conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.275"
+                                   value="1"
+                                   code="LL"
+                                   codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.22.1"
+                                   displayName="Vast telefoonnummer"/>
+                     <nummer_soort conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.276"
+                                   value="1"
+                                   code="HP"
+                                   codeSystem="2.16.840.1.113883.5.1119"
+                                   displayName="Telefoonnummer thuis"/>
+                  </telefoonnummers>
+                  <email_adressen conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.277">
+                     <email_adres value="birşahıs@postnl.nl"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.278"/>
+                     <email_soort conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.279"
+                                  value="2"
+                                  code="WP"
+                                  codeSystem="2.16.840.1.113883.5.1119"
+                                  displayName="Zakelijk e-mailadres"/>
+                  </email_adressen>
+               </contactgegevens>
+               <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.280">
+                  <straat value="Knolweg"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.281"/>
+                  <huisnummer value="1013"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.282"/>
+                  <huisnummerletter value="b"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.283"/>
+                  <aanduiding_bij_nummer conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.285"
+                                         value="2"
+                                         code="by"
+                                         codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.3"
+                                         displayName="Bij"/>
+                  <postcode value="9999 ZZ"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.286"/>
+                  <woonplaats value="Stitswerd"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.287"/>
+                  <gemeente value="Het Hogeland"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.288"/>
+                  <land conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.289"
+                        value="157"
+                        code="NL"
+                        codeSystem="1.0.3166.1.2.2"
+                        codeSystemName="ISO 3166-1 (alpha-2)"
+                        codeSystemVersion="2020-10-26T00:00:00"
+                        displayName="Nederland"/>
+                  <additionele_informatie value="huis met gele deur"
+                                          conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.290"/>
+                  <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.291"
+                               value="3"
+                               code="PHYS"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Woon-/verblijfadres"/>
+               </adresgegevens>
+            </contactpersoon>
             <product conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2734"
                      id="bgz-msz-patD-drug1">
                <product_code code="17469"

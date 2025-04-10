@@ -1,5 +1,5 @@
 <MedicationRequest xmlns="http://hl7.org/fhir">
-   <id value="zib-MedicationAgreement-msz-8f915859-6b3f-11ec-0000-2"/>
+   <id value="zib-MedicationAgreement-msz-71678a11-6ac1-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
    </meta>
@@ -7,7 +7,7 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Medicatieafspraak. Subject: Jan Adrianus J.A.K. Jan Kooyman. Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+            <caption>Medicatieafspraak. Subject: Michelle M.D. Michelle D Derencourt Verheul. Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
             </caption>
             <tbody>
                <tr>
@@ -16,39 +16,29 @@
                </tr>
                <tr>
                   <th>Reden</th>
-                  <td>fractuur van enkel</td>
-               </tr>
-               <tr>
-                  <th>Gebruiksduur</th>
-                  <td>15 dag</td>
+                  <td>osteoporose</td>
                </tr>
                <tr>
                   <th>Doseerinstructie</th>
                   <td>
-                     <div>Volgnummer: 1</div>
-                     <div>Instructie: 2</div>
-                     <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                     <div>Instructie: <ul>
+                           <li>2</li>
+                           <li>2</li>
+                        </ul>
                      </div>
+                     <div>Toedieningsweg: NI (G-Standaard thesaurus subtabel 0007)</div>
                   </td>
                </tr>
             </tbody>
          </table>
       </div>
    </text>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
-      <valueDuration>
-         <value value="15"/>
-         <unit value="dag"/>
-         <system value="http://unitsofmeasure.org"/>
-         <code value="d"/>
-      </valueDuration>
-   </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-      <valueString value="Vanaf &lt;T-45D&gt;, 15 dagen, 4 maal per dag 2 stuk, oraal, met voldoende water innemen"/>
+      <valueString value="1 maal per week 1 stuk, oraal, Innemen bij het opstaan 's ochtends, ten minste een half uur voor het eerste eten of drinken of de eerste geneesmiddelen van die dag, Bij het vergeten in te nemen van de wekelijkse drank, deze de volgende ochtend innemen."/>
    </extension>
    <identifier>
       <system value="urn:ietf:rfc:3986"/>
-      <value value="146e5862-6b24-11ec-0000-2"/>
+      <value value="404ca562-6ace-11ec-0000-2"/>
    </identifier>
    <intent value="order"/>
    <category>
@@ -61,15 +51,22 @@
    </category>
    <medicationReference/>
    <subject>
-      <reference value="Patient/JAN-ADRIANUS-J-A-K--JAN-KOOYMAN"/>
-      <display value="Jan Adrianus J.A.K. Jan Kooyman"/>
+      <reference value="Patient/MICHELLE-M-D--MICHELLE-D-DERENCOURT-VERHEUL"/>
+      <display value="Michelle M.D. Michelle D Derencourt Verheul"/>
    </subject>
    <reasonReference>
-      <reference value="Condition/zib-Problem-msz-8be29365-6ae7-11ec-0000-2"/>
-      <display value="fractuur van enkel"/>
+      <reference value="Condition/zib-Problem-msz-49a3c536-6b14-11ec-0000-2"/>
+      <display value="osteoporose"/>
    </reasonReference>
    <dosageInstruction>
-      <sequence value="1"/>
+      <additionalInstruction>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="Other"/>
+         </coding>
+         <text value="2"/>
+      </additionalInstruction>
       <additionalInstruction>
          <coding>
             <system value="http://hl7.org/fhir/v3/NullFlavor"/>
@@ -81,8 +78,7 @@
       <route>
          <coding>
             <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-            <code value="9"/>
-            <display value="Oraal"/>
+            <code value="NI"/>
          </coding>
       </route>
    </dosageInstruction>

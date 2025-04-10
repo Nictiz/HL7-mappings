@@ -1,5 +1,5 @@
 <MedicationRequest xmlns="http://hl7.org/fhir">
-   <id value="zib-MedicationAgreement-msz-8f915859-6b3f-11ec-0000-2"/>
+   <id value="zib-MedicationAgreement-msz-f2155b3d-6b58-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
    </meta>
@@ -7,7 +7,7 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Medicatieafspraak. Subject: Jan Adrianus J.A.K. Jan Kooyman. Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+            <caption>Medicatieafspraak. Subject: Michelle M.D. Michelle D Derencourt Verheul. Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
             </caption>
             <tbody>
                <tr>
@@ -15,18 +15,18 @@
                   <td/>
                </tr>
                <tr>
-                  <th>Reden</th>
-                  <td>fractuur van enkel</td>
-               </tr>
-               <tr>
                   <th>Gebruiksduur</th>
-                  <td>15 dag</td>
+                  <td>10 dag</td>
                </tr>
                <tr>
                   <th>Doseerinstructie</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Instructie: 2</div>
+                     <div>Instructie: <ul>
+                           <li>2</li>
+                           <li>2</li>
+                        </ul>
+                     </div>
                      <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
                      </div>
                   </td>
@@ -37,18 +37,18 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
       <valueDuration>
-         <value value="15"/>
+         <value value="10"/>
          <unit value="dag"/>
          <system value="http://unitsofmeasure.org"/>
          <code value="d"/>
       </valueDuration>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-      <valueString value="Vanaf &lt;T-45D&gt;, 15 dagen, 4 maal per dag 2 stuk, oraal, met voldoende water innemen"/>
+      <valueString value="Vanaf &lt;T-2D&gt;, 10 dagen, 3 keer per dag 1 stuk, oraal, op een lege maag innemen minstens 1 uur vóór of 2 uur na de maaltijd, niet meteen gaan liggen nu inname van Fluclaxacilline."/>
    </extension>
    <identifier>
       <system value="urn:ietf:rfc:3986"/>
-      <value value="146e5862-6b24-11ec-0000-2"/>
+      <value value="600ce6e2-6aaa-11ec-0000-2"/>
    </identifier>
    <intent value="order"/>
    <category>
@@ -61,15 +61,19 @@
    </category>
    <medicationReference/>
    <subject>
-      <reference value="Patient/JAN-ADRIANUS-J-A-K--JAN-KOOYMAN"/>
-      <display value="Jan Adrianus J.A.K. Jan Kooyman"/>
+      <reference value="Patient/MICHELLE-M-D--MICHELLE-D-DERENCOURT-VERHEUL"/>
+      <display value="Michelle M.D. Michelle D Derencourt Verheul"/>
    </subject>
-   <reasonReference>
-      <reference value="Condition/zib-Problem-msz-8be29365-6ae7-11ec-0000-2"/>
-      <display value="fractuur van enkel"/>
-   </reasonReference>
    <dosageInstruction>
       <sequence value="1"/>
+      <additionalInstruction>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="Other"/>
+         </coding>
+         <text value="2"/>
+      </additionalInstruction>
       <additionalInstruction>
          <coding>
             <system value="http://hl7.org/fhir/v3/NullFlavor"/>

@@ -4,7 +4,7 @@
          created-by="zibsada"
          last-update-by="zibsada"
          creation-date="2024-05-29T08:53:04.237Z"
-         last-update-date="2025-04-09T04:21:47.975Z"/>
+         last-update-date="2025-04-09T11:37:00.115Z"/>
    <data>
       <sturen app="bgz2017-2.0"
               shortName="sturen"
@@ -46,6 +46,11 @@
                          code="M"
                          codeSystem="2.16.840.1.113883.5.1"
                          displayName="Man"/>
+               <eerste_contactpersoon conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2757">
+                  <contactpersoon value="bgz-msz-patC-contactperson1"
+                                  datatype="reference"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2758"/>
+               </eerste_contactpersoon>
             </patient>
          </demografie_en_identificatie>
          <financiele_informatie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.226">
@@ -547,7 +552,23 @@
                </reden_contact>
             </contact>
          </contacten>
+         <zorgsetting conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.50">
+            <zorgteam conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2762">
+               <zorgaanbieder value="bgz-msz-patC-healthcareProv1"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1208"/>
+            </zorgteam>
+         </zorgsetting>
          <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.593">
+            <contactpersoon conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.252"
+                            id="bgz-msz-patC-contactperson1">
+               <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.261">
+                  <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.266">
+                     <achternaam value="Jansen"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.268"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+            </contactpersoon>
             <product conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2734"
                      id="bgz-msz-patC-drug1">
                <product_code code="2194"
@@ -557,15 +578,6 @@
             </product>
             <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.51"
                           id="bgz-msz-patC-healthProf1">
-               <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1.51">
-                  <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11.51">
-                     <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12.51">
-                        <patient value="bgz-msz-patC"
-                                 datatype="reference"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146.51"/>
-                     </patient>
-                  </onderwerp>
-               </zibroot>
                <zorgverlener_identificatienummer value="10000017"
                                                  root="2.16.840.1.113883.2.4.6.1"
                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.52"/>
@@ -585,15 +597,6 @@
             </zorgverlener>
             <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.63"
                            id="bgz-msz-patC-healthcareProv1">
-               <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1.63">
-                  <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11.63">
-                     <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12.63">
-                        <patient value="bgz-msz-patC"
-                                 datatype="reference"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146.63"/>
-                     </patient>
-                  </onderwerp>
-               </zibroot>
                <organisatie_naam value="Ziekenhuis het Witte Hart"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.65"/>
                <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.182">

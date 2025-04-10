@@ -4,7 +4,7 @@
          created-by="zibsada"
          last-update-by="zibsada"
          creation-date="2024-04-25T08:34:47.885Z"
-         last-update-date="2025-04-08T14:59:50.787Z"/>
+         last-update-date="2025-04-10T05:35:58.942Z"/>
    <data>
       <sturen app="bgz2017-2.0"
               shortName="sturen"
@@ -108,6 +108,11 @@
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1207"/>
                   </huisarts>
                </huisartsgegevens>
+               <eerste_contactpersoon conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2757">
+                  <contactpersoon value="bgz-msz-patA-ContactPerson1"
+                                  datatype="reference"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2758"/>
+               </eerste_contactpersoon>
             </patient>
             <burgerlijke_staat_rc conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.300"
                                   id="bgz-msz-patA-marital">
@@ -1083,7 +1088,7 @@
                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2749"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1955">
-                  <omschrijving value="Vanaf &lt;T-45D&gt;, tot en met &lt;T-30D&gt;, 4 maal per dag 1 stuk, oraal, met voldoende water innemen"
+                  <omschrijving value="Vanaf &lt;T-45D&gt;, 15 dagen, 4 maal per dag 2 stuk, oraal, met voldoende water innemen"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1956"/>
                   <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
@@ -1112,9 +1117,15 @@
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1969"/>
                         </keerdosis>
                         <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1971">
-                           <interval value="6"
-                                     unit="uur"
-                                     conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1978"/>
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1972">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1973">
+                                 <vaste_waarde value="4"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1975"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1977"/>
+                           </frequentie>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -1141,6 +1152,8 @@
                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2749"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1955">
+                  <omschrijving value="Vanaf &lt;T-45D&gt;, 15 dagen, 3 maal per dag 1 stuk, oraal, met voldoende water innemen, bij voorkeur bij maaltijd innemen."
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1956"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
@@ -1174,9 +1187,15 @@
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1969"/>
                         </keerdosis>
                         <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1971">
-                           <interval value="8"
-                                     unit="uur"
-                                     conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1978"/>
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1972">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1973">
+                                 <vaste_waarde value="3"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1975"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1977"/>
+                           </frequentie>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -1203,6 +1222,8 @@
                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2752"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2180">
+                  <omschrijving value="Vanaf &lt;T-45D&gt;, 15 dagen, 4 maal per dag 2 stuk"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2181"/>
                   <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2182"/>
@@ -1211,7 +1232,27 @@
                                  unit="dag"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2187"/>
                      <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2188">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2189">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2190">
+                              <vaste_waarde value="2"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2192"/>
+                           </aantal>
+                           <eenheid code="ST"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="STUK"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2194"/>
+                        </keerdosis>
                         <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2196">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2197">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2198">
+                                 <vaste_waarde value="4"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2200"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2202"/>
+                           </frequentie>
                            <toedientijd value="T-45D"
                                         datatype="datetime"
                                         conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2204"/>
@@ -1987,7 +2028,97 @@
                            displayName="Ander ziekenhuis"/>
             </contact>
          </contacten>
+         <zorgsetting conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.50">
+            <zorgteam conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2762">
+               <zorgverlener value="bgz-msz-patA-healthProf2"
+                             datatype="reference"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1209"/>
+               <zorgverlener value="bgz-msz-patA-healthProf3"
+                             datatype="reference"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1209"/>
+               <zorgaanbieder value="bgz-msz-patA-healthcareProv2"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1208"/>
+            </zorgteam>
+         </zorgsetting>
          <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.593">
+            <contactpersoon conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.252"
+                            id="bgz-msz-patA-ContactPerson1">
+               <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.261">
+                  <voornamen value="Peter"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.262"/>
+                  <initialen value="P.K."
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.263"/>
+                  <roepnaam value="Peter"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.264"/>
+                  <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.266">
+                     <achternaam value="Kooyman"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.268"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.272">
+                  <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.273">
+                     <telefoonnummer value="+316-99990003"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.274"/>
+                     <telecom_type conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.275"
+                                   value="3"
+                                   code="MC"
+                                   codeSystem="2.16.840.1.113883.5.1119"
+                                   displayName="Mobiel telefoonnummer"/>
+                     <nummer_soort conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.276"
+                                   value="1"
+                                   code="HP"
+                                   codeSystem="2.16.840.1.113883.5.1119"
+                                   displayName="Telefoonnummer thuis"/>
+                  </telefoonnummers>
+                  <email_adressen conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.277">
+                     <email_adres value="peter.kooyman.post@test.nl"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.278"/>
+                     <email_soort conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.279"
+                                  value="1"
+                                  code="HP"
+                                  codeSystem="2.16.840.1.113883.5.1119"
+                                  displayName="Privé e-mailadres"/>
+                  </email_adressen>
+               </contactgegevens>
+               <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.280">
+                  <straat value="Knolweg"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.281"/>
+                  <huisnummer value="1002"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.282"/>
+                  <aanduiding_bij_nummer conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.285"
+                                         value="1"
+                                         code="to"
+                                         codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.3"
+                                         displayName="Tegenover"/>
+                  <postcode value="9999 ZZ"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.286"/>
+                  <woonplaats value="Stitswerd"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.287"/>
+                  <land conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.289"
+                        value="157"
+                        code="NL"
+                        codeSystem="1.0.3166.1.2.2"
+                        codeSystemName="ISO 3166-1 (alpha-2)"
+                        codeSystemVersion="2020-10-26T00:00:00"
+                        displayName="Nederland"/>
+                  <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.291"
+                               value="3"
+                               code="PHYS"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Woon-/verblijfadres"/>
+               </adresgegevens>
+               <rol conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.259"
+                    value="1"
+                    code="1"
+                    codeSystem="2.16.840.1.113883.2.4.3.11.22.472"
+                    displayName="Eerste relatie/contactpersoon"/>
+               <relatie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.260"
+                        value="29"
+                        code="SONC"
+                        codeSystem="2.16.840.1.113883.5.111"
+                        displayName="Zoon"/>
+            </contactpersoon>
             <product conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2734"
                      id="bgz-msz-patA-drug1">
                <product_code code="2194"
