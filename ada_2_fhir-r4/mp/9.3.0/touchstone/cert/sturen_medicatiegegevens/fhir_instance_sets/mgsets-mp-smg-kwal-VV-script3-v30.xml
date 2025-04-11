@@ -2,7 +2,7 @@
    <id value="mgsets-mp-smg-kwal-VV-script3-v30"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:1eed4289-6b30-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:a74cf289-6af2-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -28,9 +28,9 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:6afab504-6ac5-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:ef288f04-6b33-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO"/>
+               <display value="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO FL 250DO"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:22f07e1e-6b17-11ec-0000-020000000000"/>
@@ -44,7 +44,7 @@
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -194,7 +194,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -205,6 +205,31 @@
                <value value="01236578"/>
             </identifier>
             <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -254,7 +279,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6afab504-6ac5-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:ef288f04-6b33-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -263,8 +288,8 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="72206"/>
-                  <display value="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO"/>
+                  <code value="72214"/>
+                  <display value="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO FL 250DO"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
@@ -272,7 +297,7 @@
                   <code value="119431"/>
                   <display value="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO"/>
                </coding>
-               <text value="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO"/>
+               <text value="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO FL 250DO"/>
             </code>
          </Medication>
       </resource>

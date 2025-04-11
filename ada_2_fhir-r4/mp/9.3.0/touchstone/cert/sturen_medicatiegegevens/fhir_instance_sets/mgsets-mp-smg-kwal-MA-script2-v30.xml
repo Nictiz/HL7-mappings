@@ -2,14 +2,17 @@
    <id value="mgsets-mp-smg-kwal-MA-script2-v30"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:7cb8712b-6b53-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:a4f1cb3e-6aee-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, -40}T10:31:00+02:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 40 dagen, Volgens schema trombosedienst, Oraal"/>
+               <valueString value="Volgens schema trombosedienst, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -45,7 +48,6 @@
                <type value="Patient"/>
                <display value="Patient, M. van XXX_Noordman"/>
             </subject>
-            <authoredOn value="${DATE, T, D, -40}T10:31:00+02:00"/>
             <requester>
                <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>

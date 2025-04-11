@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="mp-vm-tst-lengte-gewicht-v30"/>
+   <id value="9c619d87-a281-11ef-1887-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-ProposalMedicationAgreement-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f1175-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9c619e80-a281-11ef-1887-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -15,13 +15,14 @@
                   <code value="actionable"/>
                </tag>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T + 2 dagen, tot en met T + 5 dagen, 1 maal per 2 dagen 2 stuks, Oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 3 jan 2023, tot en met 6 jan 2023, 1 maal per 2 dagen 2 stuks, Oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="${DATE, T, D, +2}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, +5}T23:59:59+02:00"/>
+                  <start value="2023-01-03T00:00:00+01:00"/>
+                  <end value="2023-01-06T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -31,11 +32,11 @@
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
-               <valueString value="verhoging dosis"/>
+               <valueString value="verhoging dosis vanwege aanhoudende misselijkheid"/>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.2"/>
-               <value value="MBH_300_start_eind_VMA"/>
+               <value value="MBH_300_start_eind_lengte_gewicht_VMA"/>
             </identifier>
             <status value="active"/>
             <intent value="plan"/>
@@ -47,20 +48,20 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f1553-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9c619e9e-a281-11ef-1887-020000000000"/>
                <type value="Medication"/>
                <display value="METOCLOPRAMIDE TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f2200-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9c619e08-a281-11ef-1887-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
-            <authoredOn value="${DATE, T, D, +0}T07:10:00+02:00"/>
+            <authoredOn value="2023-01-01T07:10:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:c33f0b00-6a95-11ec-0000-020000000000"/>
-               <type value="PractitionerRole"/>
-               <display value="Healthcare professional (role), Marcha van Partners, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Itis"/>
+               <reference value="urn:uuid:9c619e44-a281-11ef-1887-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </requester>
             <dosageInstruction>
                <timing>
@@ -102,7 +103,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f2200-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9c619e08-a281-11ef-1887-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -149,74 +150,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0b00-6a95-11ec-0000-020000000000"/>
-      <resource>
-         <PractitionerRole>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
-            </meta>
-            <practitioner>
-               <reference value="urn:uuid:c33f096e-6a95-11ec-0000-020000000000"/>
-               <type value="Practitioner"/>
-               <display value="Healthcare professional (person), Marcha van Partners"/>
-            </practitioner>
-            <organization>
-               <reference value="urn:uuid:c33f1b2d-6a95-11ec-0000-020000000000"/>
-               <type value="Organization"/>
-               <display value="Healthcare provider (organization), Huisartsenpraktijk Itis"/>
-            </organization>
-            <specialty>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
-                  <version value="2020-10-23T00:00:00"/>
-                  <code value="0100"/>
-                  <display value="Huisartsen, niet nader gespecificeerd"/>
-               </coding>
-            </specialty>
-         </PractitionerRole>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="PractitionerRole"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:c33f096e-6a95-11ec-0000-020000000000"/>
-      <resource>
-         <Practitioner>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
-               <value value="000001115"/>
-            </identifier>
-            <name>
-               <use value="official"/>
-               <text value="Marcha van Partners"/>
-               <family value="van Partners">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
-                     <valueString value="van"/>
-                  </extension>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="Partners"/>
-                  </extension>
-               </family>
-               <given value="Marcha">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                     <valueCode value="BR"/>
-                  </extension>
-               </given>
-            </name>
-         </Practitioner>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Practitioner"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:c33f1b2d-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9c619e44-a281-11ef-1887-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -224,9 +158,34 @@
             </meta>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="00005111"/>
+               <value value="01236578"/>
             </identifier>
-            <name value="Huisartsenpraktijk Itis"/>
+            <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -235,7 +194,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1553-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9c619e9e-a281-11ef-1887-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -263,7 +222,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0b7b-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9c619ec6-a281-11ef-1887-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -285,11 +244,11 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:c33f2200-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9c619e08-a281-11ef-1887-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
-            <effectiveDateTime value="${DATE, T, D, +0}T07:05:00+02:00"/>
+            <effectiveDateTime value="2023-01-01T07:05:00+01:00"/>
             <valueQuantity>
                <value value="165"/>
                <unit value="cm"/>
@@ -304,7 +263,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0b5c-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9c619eee-a281-11ef-1887-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -326,11 +285,11 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:c33f2200-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9c619e08-a281-11ef-1887-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
-            <effectiveDateTime value="${DATE, T, D, +0}T07:05:00+02:00"/>
+            <effectiveDateTime value="2023-01-01T07:05:00+01:00"/>
             <valueQuantity>
                <value value="75"/>
                <unit value="kg"/>

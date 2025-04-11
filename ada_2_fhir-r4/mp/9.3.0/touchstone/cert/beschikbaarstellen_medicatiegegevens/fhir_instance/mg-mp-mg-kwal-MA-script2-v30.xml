@@ -1,15 +1,22 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-kwal-MA-script2-v30"/>
    <type value="transaction"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
-      <fullUrl value="urn:uuid:7cb8712b-6b53-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:a4f1cb3e-6aee-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, -40}T10:31:00+02:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 40 dagen, Volgens schema trombosedienst, Oraal"/>
+               <valueString value="Volgens schema trombosedienst, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -41,11 +48,10 @@
                <display value="ACENOCOUMAROL TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ab7a4dfe-6b04-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:8f8c8dfe-6b19-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Oorschot"/>
             </subject>
-            <authoredOn value="${DATE, T, D, -40}T10:31:00+02:00"/>
             <requester>
                <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
@@ -79,7 +85,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ab7a4dfe-6b04-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:8f8c8dfe-6b19-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -117,7 +123,7 @@
                   </valueCodeableConcept>
                </extension>
             </gender>
-            <birthDate value="1985-01-31"/>
+            <birthDate value="1985-10-31"/>
          </Patient>
       </resource>
       <request>

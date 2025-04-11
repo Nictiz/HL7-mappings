@@ -1,15 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--Generated from ada instance with title: "av-mp-va-tst-9-3-afleverlocatie-v30" and id: "av-mp-va-tst-9-3-afleverlocatie-v30".-->
-<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns="urn:hl7-org:v3"
-           xmlns:cda="urn:hl7-org:v3"
-           xmlns:hl7nl="urn:hl7-nl:v3"
-           xmlns:pharm="urn:ihe:pharm:medication"
-           xmlns:sdtc="urn:hl7-org:sdtc"
-           xmlns:hl7="urn:hl7-org:v3"
-           xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd"
+<!--Generated from ada instance with title: "av-mp-va-tst-9-3-afleverlocatie-v30" and id: "av-mp-va-tst-9-3-afleverlocatie-v30".--><organizer xmlns="urn:hl7-org:v3"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            classCode="CLUSTER"
-           moodCode="EVN">
+           moodCode="EVN"
+           xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9420"/>
    <code code="131"
          displayName="Afhandelen voorschrift"
@@ -39,10 +32,10 @@
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 2 jan 2023, tot en met 11 jan 2023, 3 maal per dag 1 stuk, Oraal</text>
+         <text mediaType="text/plain">3 maal per dag 1 stuk, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20230102000000"/>
-            <high value="20230111235959"/>
+            <low value="20240102000000+0100"/>
+            <high value="20240111235959+0100"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -52,29 +45,36 @@
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="425087"
+                  <code code="2842246"
                         codeSystem="2.16.840.1.113883.2.4.4.7"
-                        displayName="BROXIL CAPSULE 500MG"
+                        displayName="MODAFINIL FOCUS TABLET 200MG"
                         codeSystemName="G-Standaard HPK">
-                     <translation code="17205"
+                     <translation code="199311"
                                   codeSystem="2.16.840.1.113883.2.4.4.10"
-                                  displayName="FENETICILLINE CAPSULE 500MG"
+                                  displayName="MODAFINIL TABLET 200MG"
                                   codeSystemName="G-Standaard PRK"/>
-                     <translation code="41092"
+                     <translation code="179051"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="FENETICILLINE 500MG CAPSULE"
+                                  displayName="MODAFINIL TABLET 200MG"
                                   codeSystemName="G-Standaard GPK"/>
                   </code>
                </manufacturedMaterial>
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20230101120700"/>
+            <time value="20240101120700+0100"/>
             <assignedAuthor>
                <id nullFlavor="NI"/>
                <representedOrganization>
                   <id extension="01236578" root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek De Gulle Gaper</name>
+                  <addr use="WP">
+                     <streetName>Dorpsstraat</streetName>
+                     <houseNumber>12</houseNumber>
+                     <buildingNumberSuffix>A</buildingNumberSuffix>
+                     <postalCode>1234 AA</postalCode>
+                     <city>Ons Dorp</city>
+                  </addr>
                </representedOrganization>
             </assignedAuthor>
          </author>
@@ -134,7 +134,7 @@
                code="373784005"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <effectiveTime value="20230101120700"/>
+         <effectiveTime value="20240101120700+0100"/>
          <quantity value="30" unit="1">
             <translation value="30"
                          code="245"
@@ -146,17 +146,17 @@
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="425087"
+                  <code code="2842246"
                         codeSystem="2.16.840.1.113883.2.4.4.7"
-                        displayName="BROXIL CAPSULE 500MG"
+                        displayName="MODAFINIL FOCUS TABLET 200MG"
                         codeSystemName="G-Standaard HPK">
-                     <translation code="17205"
+                     <translation code="199311"
                                   codeSystem="2.16.840.1.113883.2.4.4.10"
-                                  displayName="FENETICILLINE CAPSULE 500MG"
+                                  displayName="MODAFINIL TABLET 200MG"
                                   codeSystemName="G-Standaard PRK"/>
-                     <translation code="41092"
+                     <translation code="179051"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="FENETICILLINE 500MG CAPSULE"
+                                  displayName="MODAFINIL TABLET 200MG"
                                   codeSystemName="G-Standaard GPK"/>
                   </code>
                </manufacturedMaterial>
@@ -168,6 +168,13 @@
                <representedOrganization>
                   <id extension="01236578" root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek De Gulle Gaper</name>
+                  <addr use="WP">
+                     <streetName>Dorpsstraat</streetName>
+                     <houseNumber>12</houseNumber>
+                     <buildingNumberSuffix>A</buildingNumberSuffix>
+                     <postalCode>1234 AA</postalCode>
+                     <city>Ons Dorp</city>
+                  </addr>
                </representedOrganization>
             </assignedEntity>
          </performer>
@@ -175,7 +182,9 @@
             <participantRole classCode="SDLOC">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9091"/>
                <addr>
-                  <desc>Dorpsrand 200,1256ZZ Ons Dorp</desc>
+                  <desc>
+                   Dorpsrand 200,1256ZZ Ons Dorp 
+               </desc>
                </addr>
             </participantRole>
          </participant>
@@ -186,7 +195,7 @@
                      displayName="Aanschrijfdatum"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
                      codeSystemName="MP Observaties"/>
-               <value xsi:type="TS" value="20230101110700"/>
+               <value xsi:type="TS" value="20240101110700+0100"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="REFR">

@@ -5,7 +5,7 @@
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:d10f0b3e-6b5a-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:83ca325b-6b67-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -15,8 +15,11 @@
                   <code value="actionable"/>
                </tag>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, +0}T18:12:00+02:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T, tot en met T om 15:00 uur, 3 maal per dag 1 stuk, Oraal, onderbroken"/>
+               <valueString value="3 maal per dag 1 stuk, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -62,7 +65,6 @@
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
-            <authoredOn value="${DATE, T, D, +0}T18:12:00+02:00"/>
             <requester>
                <reference value="urn:uuid:fbd0582e-6b5a-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
@@ -307,7 +309,7 @@
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
                   <code value="41092"/>
-                  <display value="FENETICILLINE 500MG CAPSULE"/>
+                  <display value="FENETICILLINE CAPSULE 500MG"/>
                </coding>
                <text value="FENETICILLINE CAPSULE 500MG"/>
             </code>

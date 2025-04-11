@@ -11,10 +11,9 @@
                                                prefix="mp-"
                                                language="nl-NL"
                                                title="Generated from HL7 FHIR sturen_afhandeling_medicatievoorschrift"
-                                               id="av-mp-va-tst-11-1-externdoseerschema-v30">
+                                               id="5beeafd3-a281-11ef-3325-020000000000">
          <patient>
             <naamgegevens>
-               <ongestructureerde_naam value="M. XXX_Pherai"/>
                <initialen value="M."/>
                <naamgebruik code="NL1"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
@@ -32,20 +31,20 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_wdsmtd1_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <toedieningsafspraak_datum_tijd value="T+0D{09:00:00}" datatype="datetime"/>
+               <registratie_datum_tijd value="2023-01-01T09:00:00+01:00" datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="T-20D{00:00:00}" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-12T00:00:00+01:00" datatype="datetime"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-98d231d8-6b0c-11ec-0000-020000000000"/>
+                                 value="urn-uuid-5beeb086-a281-11ef-3325-020000000000"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
                   <farmaceutisch_product datatype="reference"
-                                         value="urn-uuid-d6d3451d-6ae0-11ec-0000-020000000000"/>
+                                         value="urn-uuid-5beeb0fe-a281-11ef-3325-020000000000"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf T - 20 dagen, Volgens schema trombosedienst, Oraal"/>
+                  <omschrijving value="Vanaf 12 dec 2022, Volgens schema trombosedienst, Oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
@@ -64,10 +63,10 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_wdsmtd1_MVE"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="T+0D{09:00:00}"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-01-01T09:00:00+01:00"/>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-98d231d8-6b0c-11ec-0000-020000000000"/>
+                                 value="urn-uuid-5beeb086-a281-11ef-3325-020000000000"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="60"/>
@@ -76,7 +75,7 @@
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-d6d3451d-6ae0-11ec-0000-020000000000"
+                  <farmaceutisch_product value="urn-uuid-5beeb0fe-a281-11ef-3325-020000000000"
                                          datatype="reference"/>
                </verstrekt_geneesmiddel>
                <relatie_verstrekkingsverzoek>
@@ -86,7 +85,7 @@
             </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-d6d3451d-6ae0-11ec-0000-020000000000">
+            <farmaceutisch_product id="urn-uuid-5beeb0fe-a281-11ef-3325-020000000000">
                <product_code code="856126"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -101,9 +100,19 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="ACENOCOUMAROL TABLET 1MG"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="urn-uuid-98d231d8-6b0c-11ec-0000-020000000000">
+            <zorgaanbieder id="urn-uuid-5beeb086-a281-11ef-3325-020000000000">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_afhandeling_medicatievoorschrift>

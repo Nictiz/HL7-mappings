@@ -1,15 +1,19 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-kwal-MGB-script3-v30"/>
    <type value="transaction"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
-      <fullUrl value="urn:uuid:407f4cbd-6b1b-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:173adcbd-6b6c-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 1 dag, tot en met T - 1 dag, Bij pijn 2 mg/dosis , maximaal 3 mg/dosis per dag, 1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts., oromucosaal"/>
+               <valueString value="Bij pijn 2 doses , maximaal 3 doses per dag, 1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts., oromucosaal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                <valueReference>
@@ -47,9 +51,9 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:d11cb91d-6b50-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:ef288f04-6b33-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="NITROGLYCERINE SDZ OROMUC SPRAY"/>
+               <display value="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO FL 250DO"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:2328b5be-6ac1-11ec-0000-020000000000"/>
@@ -57,8 +61,8 @@
                <display value="Patient, H. van de XXX_Kamphuis"/>
             </subject>
             <effectivePeriod>
-               <start value="${DATE, T, D, -1}T00:00:00+02:00"/>
-               <end value="${DATE, T, D, -1}T23:59:59+02:00"/>
+               <start value="${DATE, T, D, -5}T00:00:00+02:00"/>
+               <end value="${DATE, T, D, +15}T23:59:59+02:00"/>
             </effectivePeriod>
             <dateAsserted value="${DATE, T, D, +1}T09:15:00+02:00"/>
             <informationSource>
@@ -111,15 +115,15 @@
                      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                         <valueQuantity>
                            <value value="2"/>
-                           <unit value="mg/dosis"/>
+                           <unit value="dosis"/>
                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                           <code value="303"/>
+                           <code value="208"/>
                         </valueQuantity>
                      </extension>
                      <value value="2"/>
-                     <unit value="mg/dosis"/>
+                     <unit value="dosis"/>
                      <system value="http://unitsofmeasure.org"/>
-                     <code value="[drp]"/>
+                     <code value="1"/>
                   </doseQuantity>
                </doseAndRate>
                <maxDosePerPeriod>
@@ -127,15 +131,15 @@
                      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                         <valueQuantity>
                            <value value="3"/>
-                           <unit value="mg/dosis"/>
+                           <unit value="dosis"/>
                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                           <code value="303"/>
+                           <code value="208"/>
                         </valueQuantity>
                      </extension>
                      <value value="3"/>
-                     <unit value="mg/dosis"/>
+                     <unit value="dosis"/>
                      <system value="http://unitsofmeasure.org"/>
-                     <code value="[drp]"/>
+                     <code value="1"/>
                   </numerator>
                   <denominator>
                      <value value="1"/>
@@ -311,7 +315,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d11cb91d-6b50-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:ef288f04-6b33-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -319,22 +323,17 @@
             </meta>
             <code>
                <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="1822454"/>
-                  <display value="NITROGLYCERINE SDZ OROMUC SPRAY"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="72206"/>
-                  <display value="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO"/>
+                  <code value="72214"/>
+                  <display value="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO FL 250DO"/>
+                  <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
                   <code value="119431"/>
                   <display value="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO"/>
                </coding>
-               <text value="NITROGLYCERINE SDZ OROMUC SPRAY"/>
+               <text value="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO FL 250DO"/>
             </code>
          </Medication>
       </resource>

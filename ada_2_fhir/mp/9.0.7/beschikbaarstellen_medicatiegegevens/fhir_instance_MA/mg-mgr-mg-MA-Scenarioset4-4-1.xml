@@ -1,7 +1,8 @@
-<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Bundle xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="c33f1ad8-6a95-11ec-0000-020000000000"/>
+        xmlns="http://hl7.org/fhir">
+   <id value="8b0125ea-6b14-11ec-0000-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +10,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:c33f222e-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:f09dcbc5-6aa6-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -19,7 +20,9 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Medicatieafspraak. Subject: A. XXX_Molenaars. Id: MBH_907_Lengte_Gewicht_MA_1-MLN (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                     <caption>Medicatieafspraak. Subject: A. XXX_Molenaars. Id: MBH_907_Lengte_Gewicht_MA_1-MLN (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: 
+<span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, 
+<span style="display: block;">Intentie: aanvraag</span>
                         <span style="display: block;">Aangevraagd door: Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
                      </caption>
                      <tbody>
@@ -50,9 +53,11 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Tekst: Vanaf T - 1 jaar, 1 maal per dag 1 stuk, Oraal</div>
-                              <div>Timing: <div>eenmalig per dag</div>
+                              <div>Timing: 
+<div>eenmalig per dag</div>
                               </div>
-                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              <div>Toedieningsweg: 
+<span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
                               </div>
                               <div>Dosering: 1 stuk</div>
                            </td>
@@ -90,15 +95,15 @@
                <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f220e-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9f2d9fbf-6aa8-11ec-0000-020000000000"/>
                <display value="A. XXX_Molenaars"/>
             </subject>
             <supportingInformation>
-               <reference value="urn:uuid:c33f1bea-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:ee72037b-6b5d-11ec-0000-020000000000"/>
                <display value="Lengte: 155 cm. Datum/tijd gemeten: T-1Y{07:05:00}"/>
             </supportingInformation>
             <supportingInformation>
-               <reference value="urn:uuid:c33f1bf1-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:8af486cd-6aae-11ec-0000-020000000000"/>
                <display value="Gewicht: 54 kg. Datum/tijd gemeten: T-1Y{07:05:00}"/>
             </supportingInformation>
             <authoredOn value="${DATE, T, Y, -1}T07:05:00+02:00"/>
@@ -106,7 +111,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:c33f2234-6a95-11ec-0000-020000000000"/>
+                        <reference value="urn:uuid:5d091430-6a99-11ec-0000-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -144,7 +149,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f220e-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9f2d9fbf-6aa8-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -153,7 +158,9 @@
             <text>
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), A. XXX_Molenaars, Man, 8 juni 1954</div>
+                  <div>Id 
+<i>afgeschermd (ontbrekend gegeven)</i> (BSN), 
+<span title="Naamsamenstelling: Eigennaam">A. XXX_Molenaars</span>, Man, 8 juni 1954</div>
                </div>
             </text>
             <identifier>
@@ -208,6 +215,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 000001111 (UZI-NR-PERS), Peter van Pulver</div>
+                  <div>Dorpsstraat 1, 1234AA Ons Dorp (WP)</div>
                </div>
             </text>
             <identifier>
@@ -229,6 +237,28 @@
                   </extension>
                </given>
             </name>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Practitioner>
       </resource>
       <search>
@@ -294,7 +324,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f2234-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:5d091430-6a99-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -388,7 +418,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1bea-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:ee72037b-6b5d-11ec-0000-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -398,7 +428,9 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Observatie/bepaling. Subject: A. XXX_Molenaars. Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief<span style="display: block;">Uitvoerende: onbekend</span>
+                     <caption>Observatie/bepaling. Subject: A. XXX_Molenaars. Categorie: 
+<span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief
+<span style="display: block;">Uitvoerende: onbekend</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -435,7 +467,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:c33f220e-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9f2d9fbf-6aa8-11ec-0000-020000000000"/>
                <display value="A. XXX_Molenaars"/>
             </subject>
             <effectiveDateTime value="${DATE, T, Y, -1}T07:05:00+02:00"/>
@@ -458,7 +490,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1bf1-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:8af486cd-6aae-11ec-0000-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -468,7 +500,9 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Observatie/bepaling. Subject: A. XXX_Molenaars. Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief<span style="display: block;">Uitvoerende: onbekend</span>
+                     <caption>Observatie/bepaling. Subject: A. XXX_Molenaars. Categorie: 
+<span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief
+<span style="display: block;">Uitvoerende: onbekend</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -505,7 +539,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:c33f220e-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9f2d9fbf-6aa8-11ec-0000-020000000000"/>
                <display value="A. XXX_Molenaars"/>
             </subject>
             <effectiveDateTime value="${DATE, T, Y, -1}T07:05:00+02:00"/>

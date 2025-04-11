@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="av-mp-va-tst-6-8-weekdagen-v30"/>
+   <id value="8bbc8d8b-c2ac-11ef-1555-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:781d8f0d-6b23-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:8bbc8e0c-c2ac-11ef-1555-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -15,11 +15,11 @@
                   <code value="actionable"/>
                </tag>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2023-01-01T09:25:00+01:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 1 jan 2023, tot en met 12 mar 2023, op maandag, woensdag en vrijdag, voor de nacht, aanbrengen, cutaan"/>
+               <valueString value="op maandag, woensdag en vrijdag, voor de nacht, aanbrengen, cutaan"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -46,20 +46,20 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:2779fd1d-6b45-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:8bbc8e34-c2ac-11ef-1555-020000000000"/>
                <type value="Medication"/>
                <display value="ALDARA CREME 50MG/G IN SACHET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:839f5efe-6b41-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:8bbc8dbc-c2ac-11ef-1555-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:8bbc8de4-c2ac-11ef-1555-020000000000"/>
                   <type value="Organization"/>
-                  <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
+                  <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
             </performer>
             <authorizingPrescription>
@@ -108,7 +108,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d7cabfa7-6aee-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:8bbc8e20-c2ac-11ef-1555-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -137,20 +137,20 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:2779fd1d-6b45-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:8bbc8e34-c2ac-11ef-1555-020000000000"/>
                <type value="Medication"/>
                <display value="ALDARA CREME 50MG/G IN SACHET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:839f5efe-6b41-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:8bbc8dbc-c2ac-11ef-1555-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:8bbc8de4-c2ac-11ef-1555-020000000000"/>
                   <type value="Organization"/>
-                  <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
+                  <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
             </performer>
             <authorizingPrescription>
@@ -184,7 +184,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:839f5efe-6b41-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:8bbc8dbc-c2ac-11ef-1555-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -231,7 +231,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:8bbc8de4-c2ac-11ef-1555-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -241,7 +241,32 @@
                <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
                <value value="01236578"/>
             </identifier>
-            <name value="Apotheek de Gulle Gaper"/>
+            <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -250,7 +275,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2779fd1d-6b45-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:8bbc8e34-c2ac-11ef-1555-020000000000"/>
       <resource>
          <Medication>
             <meta>

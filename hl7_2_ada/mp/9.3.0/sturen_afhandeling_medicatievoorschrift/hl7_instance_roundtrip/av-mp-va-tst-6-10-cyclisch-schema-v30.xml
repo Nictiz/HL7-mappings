@@ -1,15 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--Generated from ada instance with title: "av-mp-va-tst-6-10-cyclisch-schema-v30" and id: "av-mp-va-tst-6-10-cyclisch-schema-v30".-->
-<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns="urn:hl7-org:v3"
-           xmlns:cda="urn:hl7-org:v3"
-           xmlns:hl7nl="urn:hl7-nl:v3"
-           xmlns:pharm="urn:ihe:pharm:medication"
-           xmlns:sdtc="urn:hl7-org:sdtc"
-           xmlns:hl7="urn:hl7-org:v3"
-           xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd"
+<!--Generated from ada instance with title: "av-mp-va-tst-6-10-cyclisch-schema-v30" and id: "av-mp-va-tst-6-10-cyclisch-schema-v30".--><organizer xmlns="urn:hl7-org:v3"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            classCode="CLUSTER"
-           moodCode="EVN">
+           moodCode="EVN"
+           xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9420"/>
    <code code="131"
          displayName="Afhandelen voorschrift"
@@ -39,9 +32,9 @@
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 1 jan 2023, cyclus van 28 dagen: steeds gedurende 21 dagen 1 maal per dag 1 stuk, oraal</text>
+         <text mediaType="text/plain">cyclus van 28 dagen: steeds gedurende 21 dagen 1 maal per dag 1 stuk, oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20230101000000"/>
+            <low value="20240101000000+0100"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
          <routeCode code="9"
@@ -65,12 +58,19 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20230101093300"/>
+            <time value="20240101093300+0100"/>
             <assignedAuthor>
                <id nullFlavor="NI"/>
                <representedOrganization>
                   <id extension="01236578" root="2.16.528.1.1007.3.3"/>
-                  <name>Apotheek de Gulle Gaper</name>
+                  <name>Apotheek De Gulle Gaper</name>
+                  <addr use="WP">
+                     <streetName>Dorpsstraat</streetName>
+                     <houseNumber>12</houseNumber>
+                     <buildingNumberSuffix>A</buildingNumberSuffix>
+                     <postalCode>1234 AA</postalCode>
+                     <city>Ons Dorp</city>
+                  </addr>
                </representedOrganization>
             </assignedAuthor>
          </author>
@@ -79,7 +79,7 @@
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
-                  <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-RepeatPeriodCyclicalSchedule">
+                  <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
                      <valueDuration>
                         <value value="28"/>
                         <unit value="dag"/>
@@ -144,7 +144,7 @@
                code="373784005"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <effectiveTime value="20230101093300"/>
+         <effectiveTime value="20240101093300+0100"/>
          <quantity value="126" unit="1">
             <translation value="126"
                          code="245"
@@ -177,7 +177,14 @@
                <id nullFlavor="NI"/>
                <representedOrganization>
                   <id extension="01236578" root="2.16.528.1.1007.3.3"/>
-                  <name>Apotheek de Gulle Gaper</name>
+                  <name>Apotheek De Gulle Gaper</name>
+                  <addr use="WP">
+                     <streetName>Dorpsstraat</streetName>
+                     <houseNumber>12</houseNumber>
+                     <buildingNumberSuffix>A</buildingNumberSuffix>
+                     <postalCode>1234 AA</postalCode>
+                     <city>Ons Dorp</city>
+                  </addr>
                </representedOrganization>
             </assignedEntity>
          </performer>

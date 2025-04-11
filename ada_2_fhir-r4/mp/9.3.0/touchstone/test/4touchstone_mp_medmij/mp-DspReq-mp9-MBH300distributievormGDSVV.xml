@@ -1,0 +1,59 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="mp-DspReq-mp9-MBH300distributievormGDSVV"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-DispenseRequest"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_300_distributievorm_GDS"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+      <value value="MBH_300_distributievorm_GDS_VV"/>
+   </identifier>
+   <status value="unknown"/>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="52711000146108"/>
+         <display value="verstrekkingsverzoek"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/mp-PhPrd-mp9-216840111388324410-48291"/>
+      <type value="Medication"/>
+      <display value="MIZOLASTINE TABLET MGA 10MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-M-vandeXXX-Tewarie"/>
+      <type value="Patient"/>
+      <display value="Patient, M. van de XXX_Tewarie"/>
+   </subject>
+   <authoredOn value="${DATE, T, D, -9}T11:01:00+02:00"/>
+   <requester>
+      <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-PrcRol-2165281100731-000001112"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+   </requester>
+   <performer>
+      <reference value="Organization/nl-core-HPrv-Org-mp9-Org-2165281100733-01236578"/>
+      <type value="Organization"/>
+      <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+   </performer>
+   <basedOn>
+      <type value="MedicationRequest"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_300_distributievorm_GDS_MA"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak  met identificatie: MBH_300_distributievorm_GDS_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+   </basedOn>
+   <dispenseRequest>
+      <validityPeriod>
+         <end value="${DATE, T, D, +200}T23:59:59+02:00"/>
+      </validityPeriod>
+   </dispenseRequest>
+</MedicationRequest>

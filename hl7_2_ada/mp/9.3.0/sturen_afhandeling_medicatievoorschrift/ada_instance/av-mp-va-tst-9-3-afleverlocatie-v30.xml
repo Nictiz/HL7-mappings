@@ -1,11 +1,10 @@
-<!--Generated from HL7v3 instance.-->
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<!--Generated from HL7v3 instance.--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_afhandeling_medicatievoorschrift.xsd">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2023-11-02T15:23:33.971003+01:00"
-         last-update-date="2023-11-02T15:23:33.971003+01:00"/>
+         creation-date="2024-01-01T00:00:00+02:00"
+         last-update-date="2024-01-01T00:00:00+02:00"/>
    <data>
       <sturen_afhandeling_medicatievoorschrift app="mp-mp93"
                                                shortName="sturen_afhandeling_medicatievoorschrift"
@@ -37,19 +36,19 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_afleverlocatie_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <toedieningsafspraak_datum_tijd datatype="datetime" value="2023-01-01T12:07:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2024-01-01T12:07:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-02T00:00:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-01-11T23:59:59"/>
+                  <start_datum_tijd datatype="datetime" value="2024-01-02T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2024-01-11T23:59:59+01:00"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d629e40" datatype="reference"/>
+                  <zorgaanbieder value="d1737e84" datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d629e32" datatype="reference"/>
+                  <farmaceutisch_product value="d1737e64" datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 2 jan 2023, tot en met 11 jan 2023, 3 maal per dag 1 stuk, Oraal"/>
+                  <omschrijving value="3 maal per dag 1 stuk, Oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
@@ -85,23 +84,22 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_afleverlocatie_MVE"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-01-01T12:07:00"/>
-               <aanschrijf_datum datatype="datetime" value="2023-01-01T11:07:00"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2024-01-01T12:07:00+01:00"/>
+               <aanschrijf_datum datatype="datetime" value="2024-01-01T11:07:00+01:00"/>
                <verstrekker>
-                  <zorgaanbieder value="d629e40" datatype="reference"/>
+                  <zorgaanbieder value="d1737e84" datatype="reference"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="30"/>
-                  <eenheid value="30"
-                           code="245"
+                  <eenheid code="245"
                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                            codeSystemName="G-Standaard thesaurus basiseenheden"
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d629e32" datatype="reference"/>
+                  <farmaceutisch_product value="d1737e64" datatype="reference"/>
                </verstrekt_geneesmiddel>
-               <afleverlocatie value="Dorpsrand 200,1256ZZ Ons Dorp"/>
+               <afleverlocatie value="&#xA;                   Dorpsrand 200,1256ZZ Ons Dorp &#xA;               "/>
                <relatie_verstrekkingsverzoek>
                   <identificatie value="MBH_300_afleverlocatie_VV"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
@@ -109,23 +107,33 @@
             </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d629e32">
-               <product_code code="425087"
+            <farmaceutisch_product id="d1737e64">
+               <product_code code="2842246"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
-                             displayName="BROXIL CAPSULE 500MG"/>
-               <product_code code="17205"
+                             displayName="MODAFINIL FOCUS TABLET 200MG"/>
+               <product_code code="199311"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
-                             displayName="FENETICILLINE CAPSULE 500MG"/>
-               <product_code code="41092"
+                             displayName="MODAFINIL TABLET 200MG"/>
+               <product_code code="179051"
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              codeSystemName="G-Standaard GPK"
-                             displayName="FENETICILLINE 500MG CAPSULE"/>
+                             displayName="MODAFINIL TABLET 200MG"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="d629e40">
+            <zorgaanbieder id="d1737e84">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_afhandeling_medicatievoorschrift>

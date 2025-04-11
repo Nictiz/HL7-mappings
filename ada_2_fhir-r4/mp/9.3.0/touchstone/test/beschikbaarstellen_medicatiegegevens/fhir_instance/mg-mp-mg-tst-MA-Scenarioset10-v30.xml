@@ -1,15 +1,22 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-tst-MA-Scenarioset10-v30"/>
    <type value="transaction"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
-      <fullUrl value="urn:uuid:a18a4e5d-6aae-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:d5ad8b3e-6a97-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, -170}T13:00:00+02:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 170 dagen, tot en met T - 21 dagen, 1 maal per dag 1 stuk, Oraal"/>
+               <valueString value="1 maal per dag 1 stuk, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -46,7 +53,6 @@
                <type value="Patient"/>
                <display value="Patient, J. XXX_Bree"/>
             </subject>
-            <authoredOn value="${DATE, T, D, -170}T13:00:00+02:00"/>
             <requester>
                <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
@@ -92,14 +98,17 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b537fc5d-6b3e-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:d3643bbb-6b05-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, +0}T13:05:00+02:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T, tot en met T + 150 dagen, 1 maal per dag 1 stuk, Oraal"/>
+               <valueString value="1 maal per dag 1 stuk, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -136,7 +145,6 @@
                <type value="Patient"/>
                <display value="Patient, J. XXX_Bree"/>
             </subject>
-            <authoredOn value="${DATE, T, D, +0}T13:05:00+02:00"/>
             <requester>
                <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
@@ -337,39 +345,6 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:66088204-6abd-11ec-0000-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="2214350"/>
-                  <display value="XARELTO TABLET FILMOMHULD 20MG"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="100153"/>
-                  <display value="RIVAROXABAN TABLET 20MG"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="138363"/>
-                  <display value="RIVAROXABAN TABLET 20MG"/>
-               </coding>
-               <text value="XARELTO TABLET FILMOMHULD 20MG"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
       <fullUrl value="urn:uuid:b48b051d-6afe-11ec-0000-020000000000"/>
       <resource>
          <Medication>
@@ -399,6 +374,39 @@
                   <display value="INDAPAMIDE 2,5MG TABLET"/>
                </coding>
                <text value="INDAPAMIDE PCH TABET OMHULD 2,5MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:66088204-6abd-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="2214350"/>
+                  <display value="XARELTO TABLET FILMOMHULD 20MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="100153"/>
+                  <display value="RIVAROXABAN TABLET 20MG"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="138363"/>
+                  <display value="RIVAROXABAN TABLET 20MG"/>
+               </coding>
+               <text value="XARELTO TABLET FILMOMHULD 20MG"/>
             </code>
          </Medication>
       </resource>

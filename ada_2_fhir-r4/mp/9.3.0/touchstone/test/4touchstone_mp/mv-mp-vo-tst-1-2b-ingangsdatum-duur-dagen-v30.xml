@@ -15,8 +15,11 @@
                   <code value="actionable"/>
                </tag>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, +0}T11:30:00+02:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T, gedurende 28 dagen, 1 maal per dag 1 stuk, oraal"/>
+               <valueString value="1 maal per dag 1 stuk, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -53,14 +56,13 @@
             <medicationReference>
                <reference value="urn:uuid:6b7d6104-6b5e-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="PANTOPRAZOL TABLET MSR 20MG"/>
+               <display value="PANTOPRAZOL 20MG TABLET MSR"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:5faee092-6b61-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
-            <authoredOn value="${DATE, T, D, +0}T11:30:00+02:00"/>
             <requester>
                <reference value="urn:uuid:7af79824-6ac8-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
@@ -138,7 +140,7 @@
             <medicationReference>
                <reference value="urn:uuid:6b7d6104-6b5e-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="PANTOPRAZOL TABLET MSR 20MG"/>
+               <display value="PANTOPRAZOL 20MG TABLET MSR"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:5faee092-6b61-11ec-0000-020000000000"/>
@@ -152,7 +154,7 @@
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -353,7 +355,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -364,6 +366,31 @@
                <value value="01236578"/>
             </identifier>
             <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -382,15 +409,15 @@
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
                   <code value="52272"/>
-                  <display value="PANTOPRAZOL TABLET MSR 20MG"/>
+                  <display value="PANTOPRAZOL 20MG TABLET MSR"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
                   <code value="106275"/>
-                  <display value="PANTOPRAZOL TABLET MSR 20MG"/>
+                  <display value="PANTOPRAZOL 20MG TABLET MSR"/>
                </coding>
-               <text value="PANTOPRAZOL TABLET MSR 20MG"/>
+               <text value="PANTOPRAZOL 20MG TABLET MSR"/>
             </code>
          </Medication>
       </resource>

@@ -1,6 +1,7 @@
-<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Bundle xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+        xmlns="http://hl7.org/fhir">
    <id value="MO-XXX-LEV-TEST-C"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
@@ -12,7 +13,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:c33f0486-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6ea87454-6a9f-11ec-0000-020000000000"/>
       <resource>
          <List>
             <meta>
@@ -37,7 +38,7 @@
                <text value="Medicatieoverzicht"/>
             </code>
             <subject>
-               <reference value="urn:uuid:c33f0c2b-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:8764a33a-6b5c-11ec-0000-020000000000"/>
                <display value="L. XXX-LEV-TEST-C"/>
             </subject>
             <date value="${DATE, T, D, +0}"/>
@@ -52,7 +53,7 @@
             </source>
             <entry>
                <item>
-                  <reference value="urn:uuid:c33f0c4d-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:df649471-6ada-11ec-0000-020000000000"/>
                   <display value="Medicatieafspraak identifier: value='tsMBH_907_aanvullendeinformatiewensen_MA_onderbreken-LTC', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
@@ -63,7 +64,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0c4d-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:df649471-6ada-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -73,12 +74,15 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Medicatieafspraak. Subject: L. XXX-LEV-TEST-C. Id: tsMBH_907_aanvullendeinformatiewensen_MA_onderbreken-LTC (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                     <caption>Medicatieafspraak. Subject: L. XXX-LEV-TEST-C. Id: tsMBH_907_aanvullendeinformatiewensen_MA_onderbreken-LTC (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: 
+<span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, 
+<span style="display: block;">Intentie: aanvraag</span>
                         <span style="display: block;">Aangevraagd door: Bert van Dam || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Van Dam</span>
                      </caption>
                      <tbody>
                         <tr>
-                           <th colspan="2">Medicatie is gestopt: <span title="Tijdelijk (1 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1)">Tijdelijk</span>
+                           <th colspan="2">Medicatie is gestopt: 
+<span title="Tijdelijk (1 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1)">Tijdelijk</span>
                            </th>
                         </tr>
                         <tr>
@@ -119,9 +123,11 @@
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Tekst: Vanaf T - 10 dagen, tot en met T - 2 dagen, 1 maal per dag 1 stuk, Oraal, tijdelijk gestopt</div>
-                              <div>Timing: <div>eenmalig per dag</div>
+                              <div>Timing: 
+<div>eenmalig per dag</div>
                               </div>
-                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              <div>Toedieningsweg: 
+<span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
                               </div>
                               <div>Dosering: 1 stuk</div>
                            </td>
@@ -187,7 +193,7 @@
                <display value="PANTOPRAZOL TABLET MSR 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f0c2b-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:8764a33a-6b5c-11ec-0000-020000000000"/>
                <display value="L. XXX-LEV-TEST-C"/>
             </subject>
             <authoredOn value="${DATE, T, D, -2}T18:12:00+02:00"/>
@@ -195,7 +201,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:c33f0c5b-6a95-11ec-0000-020000000000"/>
+                        <reference value="urn:uuid:be542890-6aa4-11ec-0000-020000000000"/>
                         <display value="Bert van Dam || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Van Dam"/>
                      </valueReference>
                   </extension>
@@ -240,7 +246,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0c2b-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:8764a33a-6b5c-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -249,7 +255,9 @@
             <text>
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), L. XXX-LEV-TEST-C, Vrouw, 3 maart 1950</div>
+                  <div>Id 
+<i>afgeschermd (ontbrekend gegeven)</i> (BSN), 
+<span title="Naamsamenstelling: Eigennaam">L. XXX-LEV-TEST-C</span>, Vrouw, 3 maart 1950</div>
                </div>
             </text>
             <identifier>
@@ -304,6 +312,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 000001117 (UZI-NR-PERS), Bert van Dam</div>
+                  <div>Hazepad 2, 1234BB Mijn Dorp (WP)</div>
                </div>
             </text>
             <identifier>
@@ -325,6 +334,28 @@
                   </extension>
                </given>
             </name>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Hazepad 2">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Hazepad"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="2"/>
+                  </extension>
+               </line>
+               <city value="Mijn Dorp"/>
+               <postalCode value="1234BB"/>
+            </address>
          </Practitioner>
       </resource>
       <search>
@@ -457,7 +488,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0c5b-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:be542890-6aa4-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>

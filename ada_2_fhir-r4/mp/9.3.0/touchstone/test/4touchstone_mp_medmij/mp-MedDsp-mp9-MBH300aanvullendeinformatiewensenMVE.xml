@@ -3,6 +3,15 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
    </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.MedicationDispenseAdditionalInformation">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2052"/>
+            <code value="1"/>
+            <display value="Aantal bewust gewijzigd"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
       <valueIdentifier>
          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
@@ -49,13 +58,13 @@
    <quantity>
       <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
          <valueQuantity>
-            <value value="30"/>
+            <value value="40"/>
             <unit value="stuk"/>
             <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
             <code value="245"/>
          </valueQuantity>
       </extension>
-      <value value="30"/>
+      <value value="40"/>
       <unit value="stuk"/>
       <system value="http://unitsofmeasure.org"/>
       <code value="1"/>

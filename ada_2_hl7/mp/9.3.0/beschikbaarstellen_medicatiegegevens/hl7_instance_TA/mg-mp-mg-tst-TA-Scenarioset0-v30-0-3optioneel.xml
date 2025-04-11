@@ -12,6 +12,18 @@
       <patientRole>
          <id extension="999901084"
              root="2.16.840.1.113883.2.4.6.3"/>
+         <addr use="PHYS">
+            <streetName>krommeweg</streetName>
+            <houseNumber>1001</houseNumber>
+            <buildingNumberSuffix>A</buildingNumberSuffix>
+            <postalCode>1234 QQ</postalCode>
+            <city>Ons Dorp</city>
+            <country code="NL"
+                     codeSystem="1.0.3166.1.2.2"
+                     displayName="Nederland"
+                     codeSystemName="ISO 3166-1 (alpha-2)"
+                     codeSystemVersion="2020-10-26T00:00:00">Nederland</country>
+         </addr>
          <patient>
             <name>
                <given qualifier="IN">R.</given>
@@ -36,11 +48,11 @@
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 22 dec 2022, tot en met 20 jan 2023, 1 maal per dag 1 stuk, oraal</text>
+         <text mediaType="text/plain">1 maal per dag 1 stuk, oraal</text>
          <effectiveTime xsi:type="IVL_TS"
                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <low value="20221222000000"/>
-            <high value="20230120235959"/>
+            <low value="20231222000000+0100"/>
+            <high value="20240120235959+0100"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -68,13 +80,20 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20221222091200"/>
+            <time value="20231222091200+0100"/>
             <assignedAuthor>
                <id nullFlavor="NI"/>
                <representedOrganization>
                   <id extension="01236578"
                       root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek De Gulle Gaper</name>
+                  <addr use="WP">
+                     <streetName>Dorpsstraat</streetName>
+                     <houseNumber>12</houseNumber>
+                     <buildingNumberSuffix>A</buildingNumberSuffix>
+                     <postalCode>1234 AA</postalCode>
+                     <city>Ons Dorp</city>
+                  </addr>
                </representedOrganization>
             </assignedAuthor>
          </author>

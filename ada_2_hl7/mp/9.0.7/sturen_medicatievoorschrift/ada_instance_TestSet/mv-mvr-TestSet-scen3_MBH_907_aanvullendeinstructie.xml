@@ -1,5 +1,5 @@
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../../sturen_medicatievoorschrift/ada_schemas/ada_sturen_medicatievoorschrift.xsd">
+<adaxml xsi:noNamespaceSchemaLocation="../../../9.0.7/sturen_medicatievoorschrift/ada_schemas/ada_sturen_medicatievoorschrift.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <meta status="new"
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
@@ -17,22 +17,27 @@
                                    title="TESTSUITE  Medicatievoorschriften Scenarioset 3 (Staken Wijzigen) - MBH_907_aanvullendeinstructie"
                                    desc="&lt;div&gt;&lt;span style=&#34;font-family: sans-serif; font-size: 14px; background-color: #f9f9f9;&#34;&gt;Stop-medicatieafspraak, met reden staken&lt;/span&gt;&lt;br style=&#34;font-family: sans-serif; font-size: 14px; background-color: #f9f9f9;&#34;&gt;&lt;span style=&#34;font-family: sans-serif; font-size: 14px; background-color: #f9f9f9; color: #ff0000;&#34;&gt;LET OP: stop medicatieafspraak van scenario 2.1&lt;/span&gt;&lt;/div&gt;"
                                    id="mv-mvr-TestSet-scen3_MBH_907_aanvullendeinstructie">
-         <scenario-nr value="3.1" conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.2"/>
+         <scenario-nr value="3.1"
+                      conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.2"/>
          <systeemrol conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.5"
                      value="1"
                      code="1"
                      codeSystem="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.5.1.20201207000000"
                      displayName="Beide"/>
          <!--Patient found in instance with id: mg-Testset2 and title: id: TESTSUITE Medicatiegegevens Testset 2-->
-         <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798" comment="">
-            <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799" comment="">
-               <initialen value="D. " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19801"/>
+         <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798"
+                  comment="">
+            <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799"
+                          comment="">
+               <initialen value="D. "
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19801"/>
                <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19803"
                             value="1"
                             code="NL1"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
                             displayName="Eigen geslachtsnaam"/>
-               <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19804" comment="">
+               <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19804"
+                              comment="">
                   <achternaam value="XXX-CSC-Smoketest-B"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19806"/>
                </geslachtsnaam>
@@ -54,17 +59,18 @@
             <identificatie value="tsMBH_907_aanvullendeinstructie-CSB"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
-            <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580" comment="">
-               <gebruiksperiode_start value="T+0D{00:00:00}"
+            <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580"
+                               comment="">
+               <gebruiksperiode_start value="2024-01-01T00:00:00+01:00"
                                       conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.1"
                                       datatype="datetime"/>
-               <gebruiksperiode_eind value="T+1D{23:59:59}"
+               <gebruiksperiode_eind value="2024-01-02T23:59:59+01:00"
                                      conceptId="2.16.840.1.113883.2.4.3.11.999.77.11.1.9580.2"
                                      datatype="datetime"/>
                <identificatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"
                               value="tsMBH_907_aanvullendeinstructie_MA_staken-CSB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <afspraakdatum value="T{18:00:00}"
+               <afspraakdatum value="2024-01-01T18:00:00+01:00"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19757"
                               datatype="datetime"/>
                <stoptype conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19954"
@@ -72,22 +78,31 @@
                          code="2"
                          codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
                          displayName="Definitief"/>
-               <relatie_naar_afspraak_of_gebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23238" comment="">
+               <relatie_naar_afspraak_of_gebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23238"
+                                                 comment="">
                   <identificatie value="tsMBH_907_aanvullendeinstructie_MA-CSB"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23239"/>
                </relatie_naar_afspraak_of_gebruik>
-               <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.1030" comment="">
-                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19835" comment="">
+               <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.1030"
+                              comment="">
+                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19835"
+                                comment="">
                      <zorgverlener_identificatienummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19836"
                                                        value="000001117"
                                                        root="2.16.528.1.1007.3.1"/>
-                     <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19837" comment="">
-                        <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19838" comment="">
-                           <voornamen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19839" value="Bert"/>
-                           <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19843" comment="">
-                              <voorvoegsels conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19844" value="van "/>
-                              <achternaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19845" value="Dam"/>
+                     <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19837"
+                                   comment="">
+                        <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19838"
+                                      comment="">
+                           <voornamen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19839"
+                                      value="Bert"/>
+                           <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19843"
+                                          comment="">
+                              <voorvoegsels conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19844"
+                                            value="van "/>
+                              <achternaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19845"
+                                          value="Dam"/>
                            </geslachtsnaam>
                         </naamgegevens>
                      </naamgegevens>
@@ -97,16 +112,19 @@
                                   codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
                                   codeSystemVersion="2017-12-14T00:00:00"
                                   displayName="Huisartsen, niet nader gespecificeerd"/>
-                     <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19871" comment="">
+                     <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19871"
+                                    comment="">
                         <zorgaanbieder_identificatienummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19873"
                                                            value="00001116"
                                                            root="2.16.528.1.1007.3.3"/>
                         <organisatie_naam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19874"
                                           value="Huisartsenpraktijk Staden"/>
-                        <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19885" comment="">
+                        <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19885"
+                                       comment="">
                            <straat value="Hazepad"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19886"/>
-                           <huisnummer value="2" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19887"/>
+                           <huisnummer value="2"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19887"/>
                            <postcode value="1234BB"
                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19891"/>
                            <woonplaats value="Mijn Stad"
@@ -120,13 +138,15 @@
                      </zorgaanbieder>
                   </zorgverlener>
                </voorschrijver>
-               <reden_wijzigen_of_staken conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22094"
-                                         value="6"
-                                         code="58848006"
-                                         codeSystem="2.16.840.1.113883.6.96"
-                                         displayName="Geen of onvoldoende effect"/>
-               <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19925" comment="">
-                  <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22603" comment="">
+               <reden_wijzigen_of_staken code="5"
+                                         codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"
+                                         displayName="Geen of onvoldoende effect"
+                                         codeSystemName="Reden Medicatieafspraak of -gebruik"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22094"/>
+               <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19925"
+                                         comment="">
+                  <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22603"
+                           comment="">
                      <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22604"
                                    code="6939"
                                    codeSystem="2.16.840.1.113883.2.4.4.10"
@@ -139,9 +159,10 @@
                                    displayName="Acetylsalicylzuur tabletmsr 100mg"/>
                   </product>
                </afgesproken_geneesmiddel>
-               <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23240" comment="">
+               <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23240"
+                                   comment="">
                   <omschrijving conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23241"
-                                value="Vanaf &lt;T-1M{00:00:00}&gt; t/m &lt;T+1M{23:59:59}&gt;, 1 maal per dag 1 stuk, rectaal, Niet in combinatie met alcohol gebruiken"/>
+                                value="Vanaf 1 jan 2024, tot en met 2 jan 2024, 1 maal per dag 1 stuk, Niet in combinatie met alcohol gebruiken, Rectaal, definitief gestopt"/>
                   <toedieningsweg conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23242"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   code="12"
@@ -153,11 +174,16 @@
                                           code="OTH"
                                           codeSystem="2.16.840.1.113883.5.1008"
                                           displayName="overig"/>
-                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23245" comment="">
-                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23248" comment="">
-                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23249" comment="">
-                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23250" comment="">
-                              <vaste_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23252"/>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23245"
+                                    comment="">
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23248"
+                               comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23249"
+                                   comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23250"
+                                   comment="">
+                              <vaste_waarde value="1"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23252"/>
                            </aantal>
                            <eenheid code="245"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -165,10 +191,14 @@
                                     displayName="stuk"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23254"/>
                         </keerdosis>
-                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23256" comment="">
-                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23257" comment="">
-                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23258" comment="">
-                                 <vaste_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23260" value="1"/>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23256"
+                                           comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23257"
+                                       comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23258"
+                                      comment="">
+                                 <vaste_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23260"
+                                               value="1"/>
                               </aantal>
                               <tijdseenheid unit="dag"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23262"

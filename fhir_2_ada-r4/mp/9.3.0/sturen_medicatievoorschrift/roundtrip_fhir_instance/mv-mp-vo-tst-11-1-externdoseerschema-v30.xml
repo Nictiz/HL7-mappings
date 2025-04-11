@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="mv-mp-vo-tst-11-1-externdoseerschema-v30"/>
+   <id value="9baead49-a281-11ef-1944-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f25fc-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9baeaeec-a281-11ef-1944-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -15,12 +15,16 @@
                   <code value="actionable"/>
                </tag>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 20 dagen, Volgens schema trombosedienst, Oraal"/>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="2023-01-01T08:00:00+01:00"/>
             </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 12 dec 2022, Volgens schema trombosedienst, Oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="${DATE, T, D, -20}T00:00:00+02:00"/>
+                  <start value="2022-12-12"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -43,18 +47,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f1537-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9baeaf28-a281-11ef-1944-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f2207-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9baeadc0-a281-11ef-1944-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Pherai"/>
             </subject>
-            <authoredOn value="${DATE, T, D, +0}T08:00:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:c33f20c4-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9baeade8-a281-11ef-1944-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -83,7 +86,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f24f3-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9baeaf0a-a281-11ef-1944-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -113,23 +116,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f1537-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9baeaf28-a281-11ef-1944-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f2207-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9baeadc0-a281-11ef-1944-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Pherai"/>
             </subject>
-            <authoredOn value="${DATE, T, D, +0}T08:00:00+02:00"/>
+            <authoredOn value="2023-01-01T08:00:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:c33f20c4-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9baeade8-a281-11ef-1944-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:c33f1aa8-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9baeaeb0-a281-11ef-1944-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -165,7 +168,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f2207-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9baeadc0-a281-11ef-1944-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -212,19 +215,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f20c4-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9baeade8-a281-11ef-1944-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:c33f1f32-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9baeae10-a281-11ef-1944-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:c33f0406-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9baeae56-a281-11ef-1944-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -249,7 +252,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1f32-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9baeae10-a281-11ef-1944-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -289,7 +292,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0406-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9baeae56-a281-11ef-1944-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -330,7 +333,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1aa8-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9baeaeb0-a281-11ef-1944-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -341,6 +344,31 @@
                <value value="01236578"/>
             </identifier>
             <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -349,7 +377,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1537-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9baeaf28-a281-11ef-1944-020000000000"/>
       <resource>
          <Medication>
             <meta>

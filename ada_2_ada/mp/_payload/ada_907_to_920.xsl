@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet exclude-result-prefixes="#all" version="2.0" xmlns:nfa2a="http://www.nictiz.nl/functions/ada2ada" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xsl:import href="ada_2_ada_mp.xsl"/>
-    <xsl:import href="../../../util/uuid.xsl"/>
-    <xsl:import href="../../../util/mp-functions.xsl"/>
-    <xsl:import href="../../../util/datetime.xsl"/>
+    <xsl:import href="../../../../YATC-shared/xsl/util/uuid.xsl"/>
+    <xsl:import href="../../../../YATC-shared/xsl/util/mp-functions.xsl"/>
+    <xsl:import href="../../../../YATC-shared/xsl/util/datetime.xsl"/>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
 
@@ -262,7 +262,7 @@
     </xd:doc>
     <xsl:template match="toedieningsafspraak/aanvullende_informatie" mode="ada907_2_920">
         <!-- code to string datatype -->
-        <toedieningsafspraak_aanvullende_informatie value="{nfa2a:code-2-string(.)}"/>        
+        <toedieningsafspraak_aanvullende_informatie value="{nfa2a:code-2-string(.)}"/>
     </xsl:template>
 
     <xd:doc>
@@ -434,14 +434,25 @@
         <xd:desc> replacement of terminology codes for reden wijzigen staken </xd:desc>
     </xd:doc>
     <xsl:template match="reden_wijzigen_of_staken | reden_wijzigen_of_stoppen_gebruik" mode="ada907_2_920">
-        <xsl:copy>
-            <xsl:apply-templates select="@*" mode="#current"/>
-            <xsl:for-each select="$mapRedenwijzigenstaken[mp907[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp920]">
-                <xsl:copy-of select="mp920/@*"/>
-                <!-- but we do want to keep the original displayName, if present -->
-                <xsl:if test="string-length(@displayName) gt 0"><xsl:copy-of select="@displayName"></xsl:copy-of></xsl:if>
-            </xsl:for-each>
-        </xsl:copy>
+
+        <xsl:choose>
+            <xsl:when test="@code = '266709005' and @codeSystem = $oidSNOMEDCT"/>
+            <xsl:when test="parent::medicatieafspraak and @code = '13' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2'"/>
+            <xsl:otherwise>
+                <xsl:copy>
+                    <xsl:apply-templates select="@*" mode="#current"/>
+                    <xsl:for-each select="$mapRedenwijzigenstaken[mp907[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp920]">
+                        <xsl:copy-of select="mp920/@*"/>
+                        <!-- but we do want to keep the original displayName, if present -->
+                        <xsl:if test="string-length(@displayName) gt 0">
+                            <xsl:copy-of select="@displayName"/>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:copy>
+            </xsl:otherwise>
+        </xsl:choose>
+
+
     </xsl:template>
 
     <xd:doc>
@@ -508,8 +519,23 @@
     <!--<xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatie_gebruik)/stoptype" mode="ada907_2_920">-->
     <!-- Match expression was not XSLT2 compliant. Changed to: -->
     <xsl:template match="medicatieafspraak/stoptype | toedieningsafspraak/stoptype | medicatie_gebruik/stoptype" mode="ada907_2_920">
+
+        <xsl:variable name="theStopType" select="$stoptypeMap[@code = current()/@code][@codeSystem = current()/@codeSystem]/@stoptype"/>
+        <xsl:variable name="theStopType920" select="$stoptypeMap[@stoptype = $theStopType][@version = '920']"/>
+
         <xsl:element name="{concat(local-name(..), '_stop_type')}">
-            <xsl:apply-templates select="@* | node()" mode="#current"/>
+            <xsl:choose>
+                <xsl:when test="$theStopType920">
+                    <xsl:apply-templates select="$theStopType920/(@code | @codeSystem | @codeSystemName | @displayName | @originalText)" mode="#current"/>
+                    <!-- but we do want to keep the original displayName, if present -->
+                    <xsl:if test="string-length(@displayName) gt 0">
+                        <xsl:copy-of select="@displayName"/>
+                    </xsl:if>                    
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="@* | node()" mode="#current"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:element>
     </xsl:template>
 
@@ -617,7 +643,9 @@
             <xsl:for-each select="$mapContactpersoonRol[mp907[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp920]">
                 <xsl:copy-of select="mp920/@*"/>
                 <!-- but we do want to keep the original displayName, if present -->
-                <xsl:if test="string-length(@displayName) gt 0"><xsl:copy-of select="@displayName"></xsl:copy-of></xsl:if>
+                <xsl:if test="string-length(@displayName) gt 0">
+                    <xsl:copy-of select="@displayName"/>
+                </xsl:if>
             </xsl:for-each>
         </rol>
     </xsl:template>
@@ -734,7 +762,7 @@
             <xsl:apply-templates select="@* | node()" mode="#current"/>
         </nominale_waarde>
     </xsl:template>
-  
+
     <xd:doc>
         <xd:desc> name change for max | waarde/max</xd:desc>
     </xd:doc>

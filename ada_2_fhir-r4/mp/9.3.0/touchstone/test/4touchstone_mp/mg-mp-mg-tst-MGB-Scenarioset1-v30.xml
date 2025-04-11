@@ -1,15 +1,19 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-tst-MGB-Scenarioset1-v30"/>
    <type value="transaction"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
-      <fullUrl value="urn:uuid:b62fccbd-6b2e-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:03665cbd-6aa3-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 10 dagen, tot en met T - 5 dagen, 1 stuk, oraal"/>
+               <valueString value="1 stuk, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                <valueReference>
@@ -116,14 +120,14 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:3e304cbd-6aa4-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:a74d9427-6b1f-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 20 dagen, gedurende 3 weken, 1 maal per dag 1 stuk, oraal"/>
+               <valueString value="1 maal per dag 1 stuk, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                <valueReference>
@@ -244,14 +248,14 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:05109327-6b5f-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:18732cbd-6b0b-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 30 dagen, 1 maal per dag 1 stuk, oraal"/>
+               <valueString value="1 maal per dag 1 stuk, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                <valueReference>
@@ -364,14 +368,14 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:1137ecbd-6b06-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:7e658d26-6ab1-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 60 dagen, gedurende 28 dagen, 1 maal per dag 1 stuk, oraal"/>
+               <valueString value="1 maal per dag 1 stuk, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                <valueReference>
@@ -411,7 +415,7 @@
             <medicationReference>
                <reference value="urn:uuid:6b7d6104-6b5e-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="PANTOPRAZOL TABLET MSR 20MG"/>
+               <display value="PANTOPRAZOL 20MG TABLET MSR"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:4c764878-6b0d-11ec-0000-020000000000"/>
@@ -492,7 +496,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e88f0a06-6b06-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:91118e06-6b48-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -546,6 +550,10 @@
                <type value="Patient"/>
                <display value="Patient, D. XXX_Dijks"/>
             </subject>
+            <effectivePeriod>
+               <start value="${DATE, T, D, -130}T00:00:00+02:00"/>
+               <end value="${DATE, T, D, -101}T23:59:59+02:00"/>
+            </effectivePeriod>
             <dateAsserted value="${DATE, T, D, -100}T07:59:59+02:00"/>
             <informationSource>
                <reference value="urn:uuid:4c764878-6b0d-11ec-0000-020000000000"/>
@@ -872,95 +880,6 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f543951d-6b24-11ec-0000-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="560308"/>
-                  <display value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="6947"/>
-                  <display value="METOCLOPRAMIDE TABLET 10MG"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="19429"/>
-                  <display value="METOCLOPRAMIDE TABLET 10MG"/>
-               </coding>
-               <text value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:6b7d6104-6b5e-11ec-0000-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="52272"/>
-                  <display value="PANTOPRAZOL TABLET MSR 20MG"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="106275"/>
-                  <display value="PANTOPRAZOL TABLET MSR 20MG"/>
-               </coding>
-               <text value="PANTOPRAZOL TABLET MSR 20MG"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:dc02ff1d-6a9c-11ec-0000-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="26638"/>
-                  <display value="LISINOPRIL 10MG TABLET"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="71587"/>
-                  <display value="LISINOPRIL 10MG TABLET"/>
-               </coding>
-               <text value="LISINOPRIL 10MG TABLET"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
       <fullUrl value="urn:uuid:abb8231d-6b39-11ec-0000-020000000000"/>
       <resource>
          <Medication>
@@ -1013,6 +932,95 @@
                   <display value="FLUTICASON INHALATIEPOEDER 100UG/DO"/>
                </coding>
                <text value="FLUTICASON INHALATIEPOEDER 100UG/DO 60DO DISKUS"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:dc02ff1d-6a9c-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="26638"/>
+                  <display value="LISINOPRIL 10MG TABLET"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="71587"/>
+                  <display value="LISINOPRIL 10MG TABLET"/>
+               </coding>
+               <text value="LISINOPRIL 10MG TABLET"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:f543951d-6b24-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="560308"/>
+                  <display value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="6947"/>
+                  <display value="METOCLOPRAMIDE TABLET 10MG"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="19429"/>
+                  <display value="METOCLOPRAMIDE TABLET 10MG"/>
+               </coding>
+               <text value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:6b7d6104-6b5e-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="52272"/>
+                  <display value="PANTOPRAZOL 20MG TABLET MSR"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="106275"/>
+                  <display value="PANTOPRAZOL 20MG TABLET MSR"/>
+               </coding>
+               <text value="PANTOPRAZOL 20MG TABLET MSR"/>
             </code>
          </Medication>
       </resource>

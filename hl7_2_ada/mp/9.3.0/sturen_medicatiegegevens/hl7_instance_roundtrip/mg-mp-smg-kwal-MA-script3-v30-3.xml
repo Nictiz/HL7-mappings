@@ -1,16 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model phase="#ALL" href="file:/C:/SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_mgb.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns:hl7nl="urn:hl7-nl:v3"
-           xmlns:pharm="urn:ihe:pharm:medication"
-           xmlns:f="http://hl7.org/fhir"
-           xmlns:sdtc="urn:hl7-org:sdtc"
-           xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+<organizer xmlns:pharm="urn:ihe:pharm:medication"
            xmlns="urn:hl7-org:v3"
            classCode="CLUSTER"
-           moodCode="EVN"
-           xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd">
+           moodCode="EVN">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9411"/>
    <code code="102"
          displayName="Medicatiegegevens"
@@ -40,10 +31,10 @@
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 27 dec 2022, tot en met 16 jan 2023, Bij pijn 1 à 2 mg/dosis , maximaal 3 mg/dosis per dag, 1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. . Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts., oromucosaal</text>
-         <effectiveTime xsi:type="IVL_TS">
-            <low value="20221227000000"/>
-            <high value="20230116235900"/>
+         <text mediaType="text/plain">Bij pijn 1 à 2 doses , maximaal 3 doses per dag, 1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts., oromucosaal</text>
+         <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
+            <low value="20231227000000+0100"/>
+            <high value="20240116235900+0100"/>
          </effectiveTime>
          <routeCode code="34"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -53,9 +44,9 @@
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="72206"
+                  <code code="72214"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO"
+                        displayName="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO FL 250DO"
                         codeSystemName="G-Standaard PRK">
                      <translation code="119431"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
@@ -66,7 +57,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20221227081500"/>
+            <time value="20231227081500+0100"/>
             <assignedAuthor>
                <id extension="000001112" root="2.16.528.1.1007.3.1"/>
                <code code="0100"
@@ -97,7 +88,7 @@
             <act classCode="ACT" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9085"/>
                <code nullFlavor="OTH">
-                  <originalText>1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. . Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts.</originalText>
+                  <originalText>1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts.</originalText>
                </code>
             </act>
          </entryRelationship>
@@ -107,7 +98,8 @@
                <code code="11"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
                      displayName="Aanvullende informatie Medicatieafspraak"/>
-               <value xsi:type="CE"
+               <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xsi:type="CE"
                       code="3"
                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"
                       displayName="Bewust afwijkende toedieningsweg"/>
@@ -118,32 +110,32 @@
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <doseQuantity>
-                  <low value="1" unit="[drp]">
+                  <low value="1" unit="1">
                      <translation value="1"
-                                  code="303"
-                                  displayName="mg/dosis"
+                                  code="208"
+                                  displayName="dosis"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </low>
-                  <high value="2" unit="[drp]">
+                  <high value="2" unit="1">
                      <translation value="2"
-                                  code="303"
-                                  displayName="mg/dosis"
+                                  code="208"
+                                  displayName="dosis"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </high>
                </doseQuantity>
                <maxDoseQuantity>
-                  <numerator value="3" unit="[drp]">
+                  <numerator value="3" unit="1">
                      <translation value="3"
-                                  code="303"
-                                  displayName="mg/dosis"
+                                  code="208"
+                                  displayName="dosis"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </numerator>
                   <denominator value="1" unit="d"/>
                </maxDoseQuantity>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
                <precondition>
                   <criterion>
                      <code code="1028"

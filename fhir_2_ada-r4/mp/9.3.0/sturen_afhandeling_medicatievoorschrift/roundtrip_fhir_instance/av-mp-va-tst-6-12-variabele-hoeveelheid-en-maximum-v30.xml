@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="av-mp-va-tst-6-12-variabele-hoeveelheid-en-maximum-v30"/>
+   <id value="9c2364a9-a281-11ef-1590-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f0bed-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9c236598-a281-11ef-1590-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -15,16 +15,17 @@
                   <code value="actionable"/>
                </tag>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="${DATE, T, D, +0}T09:45:00+02:00"/>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="2023-01-01T09:45:00+01:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T, tot en met T + 21 dagen, Bij hoest 1 à 2 stuks , maximaal 6 stuks per dag, oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 1 jan 2023, tot en met 22 jan 2023, Bij hoest 1 à 2 stuks , maximaal 6 stuks per dag, oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, +21}T23:59:59+02:00"/>
+                  <start value="2023-01-01T00:00:00+01:00"/>
+                  <end value="2023-01-22T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -46,20 +47,20 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f1ba0-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9c2365d4-a281-11ef-1590-020000000000"/>
                <type value="Medication"/>
                <display value="CODEINEFOSFAAT PCH TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f243f-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9c236520-a281-11ef-1590-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c33f1aa8-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:9c23655c-a281-11ef-1590-020000000000"/>
                   <type value="Organization"/>
-                  <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
+                  <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
             </performer>
             <authorizingPrescription>
@@ -148,7 +149,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f02b1-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9c2365b6-a281-11ef-1590-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -177,20 +178,20 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f1ba0-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9c2365d4-a281-11ef-1590-020000000000"/>
                <type value="Medication"/>
                <display value="CODEINEFOSFAAT PCH TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f243f-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9c236520-a281-11ef-1590-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c33f1aa8-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:9c23655c-a281-11ef-1590-020000000000"/>
                   <type value="Organization"/>
-                  <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
+                  <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
             </performer>
             <authorizingPrescription>
@@ -215,7 +216,7 @@
                <system value="http://unitsofmeasure.org"/>
                <code value="1"/>
             </quantity>
-            <whenHandedOver value="${DATE, T, D, +0}T09:45:00+02:00"/>
+            <whenHandedOver value="2023-01-01T09:45:00+01:00"/>
          </MedicationDispense>
       </resource>
       <request>
@@ -224,7 +225,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f243f-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9c236520-a281-11ef-1590-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -271,7 +272,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1aa8-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9c23655c-a281-11ef-1590-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -281,7 +282,32 @@
                <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
                <value value="01236578"/>
             </identifier>
-            <name value="Apotheek de Gulle Gaper"/>
+            <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -290,7 +316,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1ba0-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9c2365d4-a281-11ef-1590-020000000000"/>
       <resource>
          <Medication>
             <meta>

@@ -5,7 +5,7 @@
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:dd7ebb9b-6ac2-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:2432885d-6adb-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -15,8 +15,11 @@
                   <code value="actionable"/>
                </tag>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, +0}T13:00:00+02:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 49 dagen, tot en met T, 1 maal per dag 1 stuk, Oraal, onderbroken"/>
+               <valueString value="1 maal per dag 1 stuk, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -62,7 +65,6 @@
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
-            <authoredOn value="${DATE, T, D, +0}T13:00:00+02:00"/>
             <requester>
                <reference value="urn:uuid:ea3fd558-6ab1-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>

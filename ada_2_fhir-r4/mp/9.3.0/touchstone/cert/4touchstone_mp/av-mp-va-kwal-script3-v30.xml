@@ -15,14 +15,11 @@
                   <code value="actionable"/>
                </tag>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdditionalInformation">
-               <valueString value="Gebruiksinstructie gegeven"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="${DATE, T, D, +0}T09:15:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 5 dagen, tot en met T + 15 dagen, Bij pijn 1 à 2 spray, 1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. . Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts., oromucosaal"/>
+               <valueString value="Bij pijn 1 à 2 doses , maximaal 3 doses per dag, 1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts., oromucosaal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -49,9 +46,9 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:d11cb91d-6b50-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:0e7b40e9-6aec-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="NITROGLYCERINE SDZ OROMUC SPRAY"/>
+               <display value="NITROLINGUAL OROMUCOSALE SPRAY 0,4MG/DO FLAC 250DO"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:22f07e1e-6b17-11ec-0000-020000000000"/>
@@ -60,7 +57,7 @@
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -80,7 +77,7 @@
                      <code value="OTH"/>
                      <display value="overig"/>
                   </coding>
-                  <text value="1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. . Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts."/>
+                  <text value="1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts."/>
                </additionalInstruction>
                <asNeededCodeableConcept>
                   <coding>
@@ -102,32 +99,54 @@
                         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                            <valueQuantity>
                               <value value="1"/>
-                              <unit value="Spray"/>
+                              <unit value="dosis"/>
                               <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                              <code value="303"/>
+                              <code value="208"/>
                            </valueQuantity>
                         </extension>
                         <value value="1"/>
-                        <unit value="Spray"/>
+                        <unit value="dosis"/>
                         <system value="http://unitsofmeasure.org"/>
-                        <code value="[drp]"/>
+                        <code value="1"/>
                      </low>
                      <high>
                         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                            <valueQuantity>
                               <value value="2"/>
-                              <unit value="Spray"/>
+                              <unit value="dosis"/>
                               <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                              <code value="303"/>
+                              <code value="208"/>
                            </valueQuantity>
                         </extension>
                         <value value="2"/>
-                        <unit value="Spray"/>
+                        <unit value="dosis"/>
                         <system value="http://unitsofmeasure.org"/>
-                        <code value="[drp]"/>
+                        <code value="1"/>
                      </high>
                   </doseRange>
                </doseAndRate>
+               <maxDosePerPeriod>
+                  <numerator>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="3"/>
+                           <unit value="dosis"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="208"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="3"/>
+                     <unit value="dosis"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </numerator>
+                  <denominator>
+                     <value value="1"/>
+                     <unit value="dag"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="d"/>
+                  </denominator>
+               </maxDosePerPeriod>
             </dosageInstruction>
          </MedicationDispense>
       </resource>
@@ -137,7 +156,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:3b3ff1a7-6b07-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c8bb83dd-6b04-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -166,9 +185,9 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:d11cb91d-6b50-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:0e7b40e9-6aec-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="NITROGLYCERINE SDZ OROMUC SPRAY"/>
+               <display value="NITROLINGUAL OROMUCOSALE SPRAY 0,4MG/DO FLAC 250DO"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:22f07e1e-6b17-11ec-0000-020000000000"/>
@@ -177,7 +196,7 @@
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -260,7 +279,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -271,6 +290,31 @@
                <value value="01236578"/>
             </identifier>
             <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -279,7 +323,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d11cb91d-6b50-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:0e7b40e9-6aec-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -288,21 +332,21 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="1822454"/>
-                  <display value="NITROGLYCERINE SDZ OROMUC SPRAY"/>
+                  <code value="704369"/>
+                  <display value="NITROLINGUAL OROMUCOSALE SPRAY 0,4MG/DO FLAC 250DO"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="72206"/>
-                  <display value="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO"/>
+                  <code value="72214"/>
+                  <display value="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO FL 250DO"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
                   <code value="119431"/>
                   <display value="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO"/>
                </coding>
-               <text value="NITROGLYCERINE SDZ OROMUC SPRAY"/>
+               <text value="NITROLINGUAL OROMUCOSALE SPRAY 0,4MG/DO FLAC 250DO"/>
             </code>
          </Medication>
       </resource>
