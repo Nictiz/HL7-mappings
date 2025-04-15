@@ -8,6 +8,7 @@
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
             <caption>Verrichtingaanvraag. Subject: Jan Adrianus J.A.K. Jan Kooyman. Status: onbekend<span style="display: block;">Intentie: plan</span>
+               <span style="display: block;">Aangevraagd door: </span>
             </caption>
             <tbody>
                <tr>
@@ -21,7 +22,7 @@
                <tr>
                   <th>Beoogde uitvoerende</th>
                   <td>
-                     <div>Ziekenhuis de Aandacht</div>
+                     <div/>
                   </td>
                </tr>
                <tr>
@@ -60,9 +61,18 @@
       <start value="${DATE, T, D, -45}T20:00:00+02:00"/>
       <end value="${DATE, T, D, -45}T21:00:00+02:00"/>
    </occurrencePeriod>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference/>
+         </extension>
+      </agent>
+   </requester>
    <performer>
-      <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000002"/>
-      <display value="Ziekenhuis de Aandacht"/>
+      <actor>
+         <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000002"/>
+         <display value="Ziekenhuis de Aandacht"/>
+      </actor>
    </performer>
    <bodySite>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">

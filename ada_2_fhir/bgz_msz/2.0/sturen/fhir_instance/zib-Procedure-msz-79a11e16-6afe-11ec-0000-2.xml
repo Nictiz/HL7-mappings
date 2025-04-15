@@ -7,7 +7,9 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Verrichting. Subject: Fatima Saïda F.S.K. Fatima Al Ksar el Kebir Çelik. Categorie: , Status: is bezig</caption>
+            <caption>Verrichting. Subject: Fatima Saïda F.S.K. Fatima Al Ksar el Kebir Çelik. Categorie: , Status: is bezig<span style="display: block;">Uitvoerende (<span title="Hoofdbehandelaar (RESP - v3/ParticipationType)">Hoofdbehandelaar</span>): Perpe P.M.T. Peer Tuum<span style="display: block;">Zorgverlenerrol: Cardiothoracaal chirurg</span>
+               </span>
+            </caption>
             <tbody>
                <tr>
                   <td>
@@ -82,6 +84,25 @@
       <start value="1976-01"/>
       <end value="1976-01"/>
    </performedPeriod>
+   <performer>
+      <role>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="RESP"/>
+            <display value="Hoofdbehandelaar"/>
+         </coding>
+      </role>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-msz-1000001101-011"/>
+               <display value="Cardiothoracaal chirurg"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000011"/>
+         <display value="Perpe P.M.T. Peer Tuum"/>
+      </actor>
+   </performer>
    <bodySite>
       <coding>
          <system value="http://snomed.info/sct"/>

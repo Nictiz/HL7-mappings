@@ -7,7 +7,9 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Verrichting. Subject: Michelle M.D. Michelle D Derencourt Verheul. Categorie: <span title="chirurgische ingreep (387713003 - SNOMED CT)">chirurgische ingreep</span>, Status: is bezig</caption>
+            <caption>Verrichting. Subject: Michelle M.D. Michelle d Derencourt Verheul. Categorie: <span title="chirurgische ingreep (387713003 - SNOMED CT)">chirurgische ingreep</span>, Status: is bezig<span style="display: block;">Uitvoerende: Zaza Z. Zaza Bedachtzaam<span style="display: block;">Zorgverlenerrol: Chirurg</span>
+               </span>
+            </caption>
             <tbody>
                <tr>
                   <td>
@@ -50,9 +52,21 @@
    </code>
    <subject>
       <reference value="Patient/MICHELLE-M-D--MICHELLE-D-DERENCOURT-VERHEUL"/>
-      <display value="Michelle M.D. Michelle D Derencourt Verheul"/>
+      <display value="Michelle M.D. Michelle d Derencourt Verheul"/>
    </subject>
    <performedPeriod>
       <start value="${DATE, T, D, -11}"/>
    </performedPeriod>
+   <performer>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0014141401-014"/>
+               <display value="Chirurg"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00141414"/>
+         <display value="Zaza Z. Zaza Bedachtzaam"/>
+      </actor>
+   </performer>
 </Procedure>
