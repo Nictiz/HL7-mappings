@@ -25,13 +25,12 @@
                   <td>${DATE, T, D, -445} - ${DATE, T, D, -445}</td>
                </tr>
                <tr>
+                  <th>Reden</th>
+                  <td/>
+               </tr>
+               <tr>
                   <th>Probleem/Verrichting</th>
-                  <td>
-                     <ul>
-                        <li>verrichting zwangerschap zwangerschap 2 XXX_Ostendorf</li>
-                        <li>Zwangerschap 2 XXX_Ostendorf</li>
-                     </ul>
-                  </td>
+                  <td>Zwangerschap 2 XXX_Ostendorf</td>
                </tr>
                <tr>
                   <th>Participant</th>
@@ -93,12 +92,14 @@
       <start value="${DATE, T, D, -445}"/>
       <end value="${DATE, T, D, -445}"/>
    </period>
-   <diagnosis>
-      <condition>
-         <reference value="Procedure/d9b9f871-6b38-11ec-0000-020000000000"/>
-         <display value="verrichting zwangerschap zwangerschap 2 XXX_Ostendorf"/>
-      </condition>
-   </diagnosis>
+   <reason>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-encounter-reasonreference">
+         <valueReference>
+            <reference value="Procedure/d9b9f871-6b38-11ec-0000-020000000000"/>
+            <display value="verrichting zwangerschap zwangerschap 2 XXX_Ostendorf"/>
+         </valueReference>
+      </extension>
+   </reason>
    <diagnosis>
       <condition>
          <reference value="Condition/6abe24ea-6b20-11ec-0000-020000000000"/>
