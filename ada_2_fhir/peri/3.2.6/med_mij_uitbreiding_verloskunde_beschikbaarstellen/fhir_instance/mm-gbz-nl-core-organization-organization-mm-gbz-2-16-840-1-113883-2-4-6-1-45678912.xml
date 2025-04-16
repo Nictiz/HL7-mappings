@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Organization xmlns="http://hl7.org/fhir">
+   <id value="organization-mm-gbz-2-16-840-1-113883-2-4-6-1-45678912"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Organisatie. Id: 45678912 (AGB-Z), 321654897 (URA), 1808 (urn:oid:2.16.840.1.113883.2.4.3.22.98.1)</caption>
+            <tbody>
+               <tr>
+                  <th>Naam</th>
+                  <td>Verloskundigenpraktijk Dalen</td>
+               </tr>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <div>
+                        <span title="Verloskundigen, niet nader gespecificeerd (0800 - AGB-medisch specialisme)">Verloskundigen, niet nader gespecificeerd</span>
+                     </div>
+                     <div>
+                        <span title="Verloskundigenpraktijk (G3 - organization-type)">Verloskundigenpraktijk</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Adres</th>
+                  <td>In de lucht 3 B, 3333ZA Utrecht Utrecht, NL (WP)</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+      <value value="45678912"/>
+   </identifier>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+      <value value="321654897"/>
+   </identifier>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.22.98.1"/>
+      <value value="1808"/>
+   </identifier>
+   <type>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+         <version value="2.16.840.1.113883.2.4.6.7"/>
+         <code value="0800"/>
+         <display value="Verloskundigen, niet nader gespecificeerd"/>
+      </coding>
+   </type>
+   <type>
+      <coding>
+         <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+         <code value="G3"/>
+         <display value="Verloskundigenpraktijk"/>
+      </coding>
+   </type>
+   <name value="Verloskundigenpraktijk Dalen"/>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="WP"/>
+               <display value="Werkadres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="work"/>
+      <line value="In de lucht 3 B">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="In de lucht"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="3"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+            <valueString value="B"/>
+         </extension>
+      </line>
+      <city value="Utrecht"/>
+      <district value="Utrecht"/>
+      <postalCode value="3333ZA"/>
+      <country value="NL">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:iso:std:iso:3166"/>
+                  <version value="2020-10-26T00:00:00"/>
+                  <code value="NL"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+</Organization>

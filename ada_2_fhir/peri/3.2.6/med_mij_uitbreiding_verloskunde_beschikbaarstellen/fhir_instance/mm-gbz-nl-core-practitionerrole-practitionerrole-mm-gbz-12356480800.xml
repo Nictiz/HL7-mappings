@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PractitionerRole xmlns="http://hl7.org/fhir">
+   <id value="practitionerrole-mm-gbz-12356480800"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgverlenerrol. </caption>
+            <tbody>
+               <tr>
+                  <th>Zorgverlener</th>
+                  <td>
+                     <div>Loes XXX_Korte</div>
+                     <div>Verloskundigenpraktijk Dalen</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Specialisme</th>
+                  <td>
+                     <span title="Verloskundigen, niet nader gespecificeerd (0800 - AGB-medisch specialisme)">Verloskundigen, niet nader gespecificeerd</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:0698765432">0698765432</a> (Mobiel Werk)</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="34dfe5a0-6b57-11ec-0000-020000000000"/>
+   </identifier>
+   <practitioner>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-1235648"/>
+      <display value="Loes XXX_Korte"/>
+   </practitioner>
+   <organization>
+      <reference value="Organization/organization-mm-gbz-2-16-840-1-113883-2-4-6-1-45678912"/>
+      <display value="Verloskundigenpraktijk Dalen"/>
+   </organization>
+   <specialty>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+         <version value="2020-10-23T00:00:00"/>
+         <code value="0800"/>
+         <display value="Verloskundigen, niet nader gespecificeerd"/>
+      </coding>
+   </specialty>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="MC"/>
+               <display value="Mobiel telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="0698765432"/>
+      <use value="work"/>
+   </telecom>
+</PractitionerRole>

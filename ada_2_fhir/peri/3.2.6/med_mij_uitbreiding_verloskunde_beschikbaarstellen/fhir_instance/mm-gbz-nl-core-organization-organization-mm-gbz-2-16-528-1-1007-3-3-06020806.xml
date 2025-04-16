@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Organization xmlns="http://hl7.org/fhir">
+   <id value="organization-mm-gbz-2-16-528-1-1007-3-3-06020806"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Organisatie. Id: 06020806 (URA)</caption>
+            <tbody>
+               <tr>
+                  <th>Naam</th>
+                  <td>Erasmus MC, Sophia kinderziekenhuis</td>
+               </tr>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <div>
+                        <span title="Obstetrie en gynaecologie (0307 - AGB-medisch specialisme)">Obstetrie en gynaecologie</span>
+                     </div>
+                     <div>
+                        <span title="Universitair Medisch Centrum (V5 - organization-type)">Universitair Medisch Centrum</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:(010)7040116">(010) 704 01 16</a> (Vast telefoonnummer Werk)<br/>
+                     <a href="mailto:nietbestaand@erasmusmc.nl">nietbestaand@erasmusmc.nl</a> (E-mail Werk)<br/>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Adres</th>
+                  <td>Dr. Molewaterplein 60, 3015GJ Rotterdam Rotterdam, NL (WP)</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+      <value value="06020806"/>
+   </identifier>
+   <type>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+         <code value="0307"/>
+         <display value="Obstetrie en gynaecologie"/>
+      </coding>
+   </type>
+   <type>
+      <coding>
+         <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+         <code value="V5"/>
+         <display value="Universitair Medisch Centrum"/>
+      </coding>
+   </type>
+   <name value="Erasmus MC, Sophia kinderziekenhuis"/>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Vast telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="(010) 704 01 16"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="nietbestaand@erasmusmc.nl"/>
+      <use value="work"/>
+   </telecom>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="WP"/>
+               <display value="Werkadres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="work"/>
+      <line value="Dr. Molewaterplein 60">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Dr. Molewaterplein"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="60"/>
+         </extension>
+      </line>
+      <city value="Rotterdam"/>
+      <district value="Rotterdam"/>
+      <postalCode value="3015GJ"/>
+      <country value="NL">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:iso:std:iso:3166"/>
+                  <version value="2020-10-26T00:00:00"/>
+                  <code value="NL"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+</Organization>
