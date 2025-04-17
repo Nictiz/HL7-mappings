@@ -4,7 +4,7 @@
          created-by="zibsada"
          last-update-by="zibsada"
          creation-date="2024-04-25T08:34:47.885Z"
-         last-update-date="2025-04-16T16:52:09.632Z"/>
+         last-update-date="2025-04-17T11:51:40.622Z"/>
    <data>
       <sturen app="bgz2017-2.0"
               shortName="sturen"
@@ -117,9 +117,6 @@
             <burgerlijke_staat_rc id="bgz-msz-patA-marital"
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.300">
                <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1260">
-                  <identificatienummer value="bgz-msz-patA-marital"
-                                       root="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1261"/>
                   <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1276">
                      <patient conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1277">
                         <patient value="bgz-msz-patA"
@@ -1262,7 +1259,7 @@
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2754"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2164">
-                  <product value="bgz-msz-patA-drug1"
+                  <product value="bgz-msz-patA-drug3"
                            datatype="reference"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2752"/>
                </geneesmiddel_bij_toedieningsafspraak>
@@ -1329,7 +1326,7 @@
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2754"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2164">
-                  <product value="bgz-msz-patA-drug2"
+                  <product value="bgz-msz-patA-drug4"
                            datatype="reference"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2752"/>
                </geneesmiddel_bij_toedieningsafspraak>
@@ -1367,6 +1364,11 @@
                <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2308">
                   <omschrijving value="Geen instructie"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2309"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  displayName="Oraal"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2310"/>
                </gebruiksinstructie>
                <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2509">
                   <auteur_is_patient value="true"
@@ -1395,6 +1397,11 @@
                <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2308">
                   <omschrijving value="Geen instructie"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2309"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2310"
+                                  code="9"
+                                  displayName="Oraal"/>
                </gebruiksinstructie>
                <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2509">
                   <auteur_is_patient value="true"
@@ -2205,16 +2212,30 @@
             </contactpersoon>
             <product id="bgz-msz-patA-drug1"
                      conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2734">
-               <product_code code="2194"
-                             codeSystem="2.16.840.1.113883.2.4.4.1"
+               <product_code code="67903"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
                              displayName="PARACETAMOL TABLET 500MG"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2735"/>
             </product>
             <product id="bgz-msz-patA-drug2"
                      conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2734">
-               <product_code code="88668"
-                             codeSystem="2.16.840.1.113883.2.4.4.1"
+               <product_code code="35475"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
                              displayName="TRAMADOL CAPSULE 50MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2735"/>
+            </product>
+            <product conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2734"
+                     id="bgz-msz-patA-drug3">
+               <product_code code="2456451"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             displayName="PARACETAMOL HTP TABLET 500MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2735"/>
+            </product>
+            <product conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2734"
+                     id="bgz-msz-patA-drug4">
+               <product_code code="1112740"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             displayName="TRAMADOL HCL CF CAPSULE 50MG"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2735"/>
             </product>
             <zorgverlener id="bgz-msz-patA-healthProf1"

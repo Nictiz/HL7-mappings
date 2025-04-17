@@ -24,10 +24,11 @@
                <tr>
                   <th>Doseerinstructie</th>
                   <td>
-                     <div>Instructie: 2</div>
+                     <div>Instructie: Alleen bij klachten, ma t/m do WEL, vr t/m zo NIET</div>
                      <div>Zo nodig: 12</div>
                      <div>Toedieningsweg: <span title="cutaan (53 - G-Standaard thesaurus subtabel 0007)">cutaan</span>
                      </div>
+                     <div>Max dosering: 1 STUK / 1 dag (per period)</div>
                   </td>
                </tr>
             </tbody>
@@ -75,9 +76,9 @@
          <coding>
             <system value="http://hl7.org/fhir/v3/NullFlavor"/>
             <code value="OTH"/>
-            <display value="Other"/>
+            <display value="overig"/>
          </coding>
-         <text value="2"/>
+         <text value="Alleen bij klachten, ma t/m do WEL, vr t/m zo NIET"/>
       </additionalInstruction>
       <asNeededCodeableConcept>
          <coding>
@@ -94,5 +95,19 @@
             <display value="cutaan"/>
          </coding>
       </route>
+      <maxDosePerPeriod>
+         <numerator>
+            <value value="1"/>
+            <unit value="STUK"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="ST"/>
+         </numerator>
+         <denominator>
+            <value value="1"/>
+            <unit value="dag"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="d"/>
+         </denominator>
+      </maxDosePerPeriod>
    </dosageInstruction>
 </MedicationRequest>

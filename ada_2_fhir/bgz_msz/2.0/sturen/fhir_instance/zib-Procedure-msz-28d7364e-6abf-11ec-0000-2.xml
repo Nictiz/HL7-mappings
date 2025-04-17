@@ -7,8 +7,7 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Verrichting. Subject: Michelle M.D. Michelle d Derencourt Verheul. Categorie: <span title="chirurgische ingreep (387713003 - SNOMED CT)">chirurgische ingreep</span>, Status: voltooid<span style="display: block;">Uitvoerende: Huisartsenpraktijk Betrokken</span>
-               <span style="display: block;">Uitvoerende: Zaza Z. Zaza Bedachtzaam<span style="display: block;">Zorgverlenerrol: Chirurg</span>
+            <caption>Verrichting. Subject: Michelle M.D. Michelle d Derencourt Verheul. Categorie: <span title="chirurgische ingreep (387713003 - SNOMED CT)">chirurgische ingreep</span>, Status: voltooid<span style="display: block;">Uitvoerende: Huisartsenpraktijk Betrokken, Zaza Z. Zaza Bedachtzaam<span style="display: block;">Zorgverlenerrol: Chirurg</span>
                </span>
             </caption>
             <tbody>
@@ -97,22 +96,18 @@
       <end value="${DATE, T, D, -9}T12:00:00+02:00"/>
    </performedPeriod>
    <performer>
-      <actor>
-         <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000004"/>
-         <display value="Huisartsenpraktijk Betrokken"/>
-      </actor>
+      <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000004"/>
+      <display value="Huisartsenpraktijk Betrokken"/>
    </performer>
    <performer>
-      <actor>
-         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-            <valueReference>
-               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0014141401-014"/>
-               <display value="Chirurg"/>
-            </valueReference>
-         </extension>
-         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00141414"/>
-         <display value="Zaza Z. Zaza Bedachtzaam"/>
-      </actor>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-msz-0014141401-014"/>
+            <display value="Chirurg"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00141414"/>
+      <display value="Zaza Z. Zaza Bedachtzaam"/>
    </performer>
    <bodySite>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">

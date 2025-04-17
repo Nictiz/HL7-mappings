@@ -1,5 +1,5 @@
 <MedicationStatement xmlns="http://hl7.org/fhir">
-   <id value="zib-MedicationUse-msz-890271fa-6b4b-11ec-0000-2"/>
+   <id value="zib-MedicationUse-msz-8358a06f-6ac2-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
    </meta>
@@ -13,6 +13,13 @@
                <tr>
                   <th>Informant</th>
                   <td>T-45D{15:00}</td>
+               </tr>
+               <tr>
+                  <th>Dosering</th>
+                  <td>
+                     <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                     </div>
+                  </td>
                </tr>
                <tr>
                   <th>Medicatie gebruikt</th>
@@ -36,7 +43,7 @@
    </extension>
    <identifier>
       <system value="urn:ietf:rfc:3986"/>
-      <value value="09dff431-6b14-11ec-0000-2"/>
+      <value value="dd6f62cd-6aa1-11ec-0000-2"/>
    </identifier>
    <status value="active"/>
    <category>
@@ -53,4 +60,13 @@
       <display value="Jan Adrianus J.A.K. Jan Kooyman"/>
    </subject>
    <taken value="y"/>
+   <dosage>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+   </dosage>
 </MedicationStatement>

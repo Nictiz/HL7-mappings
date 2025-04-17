@@ -1,5 +1,5 @@
 <MedicationRequest xmlns="http://hl7.org/fhir">
-   <id value="zib-MedicationAgreement-msz-d0cbcee9-6af9-11ec-0000-2"/>
+   <id value="zib-MedicationAgreement-msz-16630769-6b14-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
    </meta>
@@ -14,14 +14,17 @@
             <tbody>
                <tr>
                   <th>Gemaakt</th>
-                  <td>22 juni 2008</td>
+                  <td>10:01:01, 22 juni 2008</td>
                </tr>
                <tr>
                   <th>Doseerinstructie</th>
                   <td>
                      <div>Volgnummer: 1</div>
+                     <div>Timing: <div>3 maal per dag</div>
+                     </div>
                      <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
                      </div>
+                     <div>Dosering: 0 STUK - 1 STUK</div>
                   </td>
                </tr>
             </tbody>
@@ -33,7 +36,7 @@
    </extension>
    <identifier>
       <system value="urn:ietf:rfc:3986"/>
-      <value value="7fce0762-6b3c-11ec-0000-2"/>
+      <value value="68d333a2-6b50-11ec-0000-2"/>
    </identifier>
    <intent value="order"/>
    <category>
@@ -48,7 +51,7 @@
       <reference value="Patient/FATIMA-SAIDA-F-S-K--FATIMA-AL-KSAR-EL-KEBIR-ELIK"/>
       <display value="Fatima Saïda F.S.K. Fatima Al Ksar el Kebir Çelik"/>
    </subject>
-   <authoredOn value="2008-06-22"/>
+   <authoredOn value="2008-06-22T10:01:01+02:00"/>
    <requester>
       <agent>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
@@ -63,6 +66,13 @@
    </requester>
    <dosageInstruction>
       <sequence value="1"/>
+      <timing>
+         <repeat>
+            <frequency value="3"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
       <route>
          <coding>
             <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
@@ -70,5 +80,19 @@
             <display value="Oraal"/>
          </coding>
       </route>
+      <doseRange>
+         <low>
+            <value value="0"/>
+            <unit value="STUK"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="ST"/>
+         </low>
+         <high>
+            <value value="1"/>
+            <unit value="STUK"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="ST"/>
+         </high>
+      </doseRange>
    </dosageInstruction>
 </MedicationRequest>

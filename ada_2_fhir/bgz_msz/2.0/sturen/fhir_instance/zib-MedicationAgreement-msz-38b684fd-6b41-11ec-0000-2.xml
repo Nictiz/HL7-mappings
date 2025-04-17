@@ -25,12 +25,15 @@
                   <td>
                      <div>Volgnummer: 1</div>
                      <div>Instructie: <ul>
-                           <li>2</li>
-                           <li>2</li>
+                           <li>op een lege maag innemen minstens 1 uur vóór of 2 uur na de maaltijd</li>
+                           <li>niet meteen gaan liggen nu inname van Fluclaxacilline</li>
                         </ul>
+                     </div>
+                     <div>Timing: <div>3 maal per dag</div>
                      </div>
                      <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
                      </div>
+                     <div>Dosering: 1 STUK</div>
                   </td>
                </tr>
             </tbody>
@@ -84,18 +87,25 @@
          <coding>
             <system value="http://hl7.org/fhir/v3/NullFlavor"/>
             <code value="OTH"/>
-            <display value="Other"/>
+            <display value="overig"/>
          </coding>
-         <text value="2"/>
+         <text value="op een lege maag innemen minstens 1 uur vóór of 2 uur na de maaltijd"/>
       </additionalInstruction>
       <additionalInstruction>
          <coding>
             <system value="http://hl7.org/fhir/v3/NullFlavor"/>
             <code value="OTH"/>
-            <display value="Other"/>
+            <display value="overig"/>
          </coding>
-         <text value="2"/>
+         <text value="niet meteen gaan liggen nu inname van Fluclaxacilline"/>
       </additionalInstruction>
+      <timing>
+         <repeat>
+            <frequency value="3"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
       <route>
          <coding>
             <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
@@ -103,5 +113,11 @@
             <display value="Oraal"/>
          </coding>
       </route>
+      <doseQuantity>
+         <value value="1"/>
+         <unit value="STUK"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="ST"/>
+      </doseQuantity>
    </dosageInstruction>
 </MedicationRequest>
