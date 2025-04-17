@@ -96,18 +96,22 @@
       <end value="${DATE, T, D, -9}T12:00:00+02:00"/>
    </performedPeriod>
    <performer>
-      <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000004"/>
-      <display value="Huisartsenpraktijk Betrokken"/>
+      <actor>
+         <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000004"/>
+         <display value="Huisartsenpraktijk Betrokken"/>
+      </actor>
    </performer>
    <performer>
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-         <valueReference>
-            <reference value="PractitionerRole/nl-core-practitionerrole-msz-0014141401-014"/>
-            <display value="Chirurg"/>
-         </valueReference>
-      </extension>
-      <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00141414"/>
-      <display value="Zaza Z. Zaza Bedachtzaam"/>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0014141401-014"/>
+               <display value="Chirurg"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00141414"/>
+         <display value="Zaza Z. Zaza Bedachtzaam"/>
+      </actor>
    </performer>
    <bodySite>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
