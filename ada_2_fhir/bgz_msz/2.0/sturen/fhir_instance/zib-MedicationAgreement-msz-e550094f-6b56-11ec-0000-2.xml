@@ -1,0 +1,92 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="zib-MedicationAgreement-msz-e550094f-6b56-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Medicatieafspraak. Subject: Michelle M.D. Michelle d Derencourt Verheul. Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: </span>
+            </caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">bij contacteczeem</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>10:10:01, 15 oktober 2018</td>
+               </tr>
+               <tr>
+                  <th>Doseerinstructie</th>
+                  <td>
+                     <div>Instructie: 2</div>
+                     <div>Zo nodig: 12</div>
+                     <div>Toedieningsweg: <span title="cutaan (53 - G-Standaard thesaurus subtabel 0007)">cutaan</span>
+                     </div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
+      <valueString value="Vanaf 2018-10-15, 1 maal per dag 1 stuk, alleen bij klachten, ma t/m do WEL, vr t/m zo NIET"/>
+   </extension>
+   <identifier>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="5e68a6e2-6adb-11ec-0000-2"/>
+   </identifier>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="Prescription (procedure)"/>
+      </coding>
+      <text value="Medicatieafspraak"/>
+   </category>
+   <subject>
+      <reference value="Patient/MICHELLE-M-D--MICHELLE-D-DERENCOURT-VERHEUL"/>
+      <display value="Michelle M.D. Michelle d Derencourt Verheul"/>
+   </subject>
+   <authoredOn value="2018-10-15T10:10:01+02:00"/>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference/>
+         </extension>
+      </agent>
+   </requester>
+   <note>
+      <text value="bij contacteczeem"/>
+   </note>
+   <dosageInstruction>
+      <additionalInstruction>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="Other"/>
+         </coding>
+         <text value="2"/>
+      </additionalInstruction>
+      <asNeededCodeableConcept>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="overig"/>
+         </coding>
+         <text value="12"/>
+      </asNeededCodeableConcept>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="53"/>
+            <display value="cutaan"/>
+         </coding>
+      </route>
+   </dosageInstruction>
+</MedicationRequest>

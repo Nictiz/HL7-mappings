@@ -4,7 +4,7 @@
          created-by="zibsada"
          last-update-by="zibsada"
          creation-date="2024-06-05T14:17:13.308Z"
-         last-update-date="2025-04-16T08:30:42.853Z"/>
+         last-update-date="2025-04-16T17:23:36.596Z"/>
    <data>
       <sturen app="bgz2017-2.0"
               shortName="sturen"
@@ -877,6 +877,11 @@
                                    codeSystem="2.16.840.1.113883.6.96"
                                    displayName="koemelk"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.212"/>
+               <symptoom conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.220"
+                         value="7"
+                         code="40275004"
+                         codeSystem="2.16.840.1.113883.6.96"
+                         displayName="Contactdermatitis"/>
                <begin_datum_tijd value="1979"
                                  datatype="datetime"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.215"/>
@@ -903,6 +908,11 @@
                                    codeSystem="2.16.840.1.113883.6.96"
                                    displayName="dihydroabietylalcohol"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.212"/>
+               <symptoom conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.220"
+                         value="7"
+                         code="40275004"
+                         codeSystem="2.16.840.1.113883.6.96"
+                         displayName="Contactdermatitis"/>
                <begin_datum_tijd value="2000-04-16"
                                  datatype="datetime"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.215"/>
@@ -928,6 +938,11 @@
                <afspraakdatum value="2008-06-22"
                               datatype="datetime"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1862"/>
+               <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1873">
+                  <zorgverlener value="bgz-msz-patD-healthProf2"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2750"/>
+               </voorschrijver>
                <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1939">
                   <product value="bgz-msz-patD-drug1"
                            datatype="reference"
@@ -938,7 +953,9 @@
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1956"/>
                   <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
-                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1957"/>
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1957"
+                                  code="9"
+                                  displayName="Oraal"/>
                   <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1960">
                      <volgnummer value="1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1961"/>
@@ -994,6 +1011,8 @@
                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2752"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2180">
+                  <omschrijving value="Oraal"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2181"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
@@ -1022,6 +1041,44 @@
                            datatype="reference"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2755"/>
                </gebruiks_product>
+               <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2308">
+                  <omschrijving value="3 keer per dag 0 of 1 stuk"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2309"/>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2313">
+                     <volgnummer value="1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2314"/>
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2316">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2317">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2318">
+                              <min value="0"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2319"/>
+                              <max value="1"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2321"/>
+                           </aantal>
+                           <eenheid code="ST"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="STUK"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2322"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2324">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2325">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2326">
+                                 <vaste_waarde value="3"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2328"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2330"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2509">
+                  <auteur_is_patient value="true"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2535"/>
+               </auteur>
             </medicatie_gebruik>
          </medicatie>
          <medische_hulpmiddelen conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.205">
@@ -1395,6 +1452,11 @@
                                 datatype="quantity"
                                 unit="L/L"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.439"/>
+                  <test_uitslag_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.440"
+                                       value="2"
+                                       code="preliminary"
+                                       codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                                       displayName="Voorlopig"/>
                   <referentie_bovengrens value="0.50"
                                          datatype="quantity"
                                          unit="L/L"
@@ -1422,6 +1484,11 @@
                                 datatype="quantity"
                                 unit="10*3/uL"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.439"/>
+                  <test_uitslag_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.440"
+                                       value="3"
+                                       code="final"
+                                       codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                                       displayName="Definitief"/>
                   <referentie_bovengrens value="400"
                                          datatype="quantity"
                                          unit="10*3/uL"
@@ -1441,6 +1508,11 @@
                           codeSystemName="Logical Observation Identifier Names and Codes"
                           displayName="Compleet bloedbeeld panel in bloed d.m.v. geautomatiseerde telling"
                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.462"/>
+               <resultaat_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.463"
+                                 value="3"
+                                 code="final"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                                 displayName="Definitief"/>
                <toelichting value="Bloedbeeld"
                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.464"/>
                <resultaat_type conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.465"
@@ -1556,6 +1628,11 @@
                                 datatype="reference"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.429"/>
                </uitvoerder>
+               <verrichting_categorie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.755"
+                                      value="1"
+                                      code="387713003"
+                                      codeSystem="2.16.840.1.113883.6.96"
+                                      displayName="chirurgische ingreep"/>
             </verrichting>
             <verrichting id="bgz-msz-patD-procedure2"
                          conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.387">
@@ -1588,6 +1665,11 @@
                                 datatype="reference"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.428"/>
                </aanvrager>
+               <verrichting_categorie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.755"
+                                      value="3"
+                                      code="71388002"
+                                      codeSystem="2.16.840.1.113883.6.96"
+                                      displayName="verrichting"/>
             </verrichting>
             <verrichting id="bgz-msz-patD-procedure3"
                          conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.387">
@@ -1661,6 +1743,11 @@
                                 datatype="reference"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.428"/>
                </aanvrager>
+               <verrichting_categorie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.755"
+                                      value="1"
+                                      code="387713003"
+                                      codeSystem="2.16.840.1.113883.6.96"
+                                      displayName="chirurgische ingreep"/>
             </verrichting>
             <verrichting id="bgz-msz-patD-procedure4"
                          conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.387">
@@ -1689,6 +1776,11 @@
                                 datatype="reference"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.428"/>
                </aanvrager>
+               <verrichting_categorie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.755"
+                                      value="3"
+                                      code="71388002"
+                                      codeSystem="2.16.840.1.113883.6.96"
+                                      displayName="verrichting"/>
             </verrichting>
             <verrichting id="bgz-msz-patD-procedure5"
                          conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.387">
@@ -1727,6 +1819,11 @@
                                       datatype="reference"
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.432"/>
                </medisch_hulpmiddel>
+               <verrichting_categorie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.755"
+                                      value="1"
+                                      code="387713003"
+                                      codeSystem="2.16.840.1.113883.6.96"
+                                      displayName="chirurgische ingreep"/>
             </verrichting>
          </verrichtingen>
          <contacten conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.210">
