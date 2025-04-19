@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html lang="en">
    <head>
-      <title>Observation - 00c99f56-6a96-11ec-0000-020000000000</title>
+      <title>Observation - df077038-6ab2-11ec-0000-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -23,7 +23,7 @@
                <tbody>
                   <tr>
                      <th>Context</th>
-                     <td>Zwangerschap 2 XXX_Ostendorf</td>
+                     <td>prenatale controle T-445D XXX_Ostendorf</td>
                   </tr>
                   <tr>
                      <th>Code</th>
@@ -31,38 +31,40 @@
                   </tr>
                   <tr>
                      <td>
-                        <span title="datum en tijd van geboorte van placenta (waarneembare entiteit) (136311000146100 - SNOMED CT)">datum en tijd van geboorte van placenta (waarneembare entiteit)</span>
+                        <span title="bevinding betreffende tabakgebruik en blootstelling aan tabaksrook (bevinding) (365980008 - SNOMED CT)">bevinding betreffende tabakgebruik en blootstelling aan tabaksrook (bevinding)</span>
                      </td>
-                     <td>${DATE, T, D, -225}T13:15:00+02:00</td>
+                     <td>
+                        <span title="heeft nooit gerookt (266919005 - SNOMED CT)">heeft nooit gerookt</span>
+                     </td>
                   </tr>
                </tbody>
             </table>
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Observation datum en tijd van geboorte van placenta (waarneembare entiteit)</b>
+         <b>Resources pointing to 'this' resource - Observation bevinding betreffende tabakgebruik en blootstelling aan tabaksrook (bevinding)</b>
       </p>
       <ul>
          <li>
             <a href="mm-gbz-bc-TransactionComposition-samenvatting-zwangerschap2-XXX_Ostendorf.html">Composition Dossier zwangerschap en bevalling [bevinding] (document)</a>
          </li>
          <li>
-            <a href="mm-gbz-zib-Pregnancy-Duration57036006-c33f1b0d-6a95-11ec-0000-020000000000.html">Observation zwangerschapsduur (waarneembare entiteit)</a>
+            <a href="mm-gbz-zib-Pregnancy-Duration57036006-c33f19e1-6a95-11ec-0000-020000000000.html">Observation zwangerschapsduur (waarneembare entiteit)</a>
          </li>
       </ul>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
 { id: 6, label: "Patient XXX_Ostendorf", url: "mm-gbz-nl-core-patient-MAAIKE-M-XXX-OSTENDORF.html" }, 
-{ id: 11, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-090fc807-6b79-11ec-0000-020000000000.html" }, 
-{ id: 15, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-ad8ec3ec-6b19-11ec-0000-020000000000.html" }, 
-{ id: 41, label: "Observation datum en tijd van geboorte van placenta (waarneembare entiteit)", url: "mm-gbz-nl-core-observation136311000146100-00c99f56-6a96-11ec-0000-020000000000.html" }, 
+{ id: 12, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-6abe24ea-6b20-11ec-0000-020000000000.html" }, 
+{ id: 23, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-a698c16f-6b72-11ec-0000-020000000000.html" }, 
+{ id: 26, label: "Observation bevinding betreffende tabakgebruik en blootstelling aan tabaksrook (bevinding)", url: "mm-gbz-zib-TobaccoUse365980008-df077038-6ab2-11ec-0000-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 41, to: 15 }, 
-{ from: 41, to: 6 }, 
-{ from: 41, to: 11 }, 
+var edges = new vis.DataSet([{ from: 26, to: 12 }, 
+{ from: 26, to: 6 }, 
+{ from: 26, to: 23 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

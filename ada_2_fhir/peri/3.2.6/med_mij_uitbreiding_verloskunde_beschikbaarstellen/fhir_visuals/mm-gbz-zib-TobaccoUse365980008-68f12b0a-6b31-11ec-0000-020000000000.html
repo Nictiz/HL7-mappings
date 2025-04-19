@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html lang="en">
    <head>
-      <title>Observation - 3141a898-6a96-11ec-0000-020000000000</title>
+      <title>Observation - 68f12b0a-6b31-11ec-0000-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -23,7 +23,11 @@
                <tbody>
                   <tr>
                      <th>Context</th>
-                     <td>Zwangerschap 1 XXX_Swart</td>
+                     <td>prenatale controle T-207D XXX_Swart</td>
+                  </tr>
+                  <tr>
+                     <th>Bepalingdatum/tijd</th>
+                     <td>Vanaf 1 juni 2019</td>
                   </tr>
                   <tr>
                      <th>Code</th>
@@ -31,38 +35,54 @@
                   </tr>
                   <tr>
                      <td>
-                        <span title="datum en tijd van geboorte van placenta (waarneembare entiteit) (136311000146100 - SNOMED CT)">datum en tijd van geboorte van placenta (waarneembare entiteit)</span>
+                        <span title="bevinding betreffende tabakgebruik en blootstelling aan tabaksrook (bevinding) (365980008 - SNOMED CT)">bevinding betreffende tabakgebruik en blootstelling aan tabaksrook (bevinding)</span>
                      </td>
-                     <td>${DATE, T, D, -10}T11:38:00+02:00</td>
+                     <td>
+                        <span title="rookt soms sigaretten (230059006 - SNOMED CT)">rookt soms sigaretten</span>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span title="Type of tobacco used (observable entity) (53661000146106 - SNOMED CT)">Type of tobacco used (observable entity)</span>
+                     </td>
+                     <td>
+                        <span title="gebruiker van elektronische sigaret (722499006 - SNOMED CT)">gebruiker van elektronische sigaret</span>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span title="Tobacco smoking consumption (observable entity) (266918002 - SNOMED CT)">Tobacco smoking consumption (observable entity)</span>
+                     </td>
+                     <td>6 keer per dag inhaleren</td>
                   </tr>
                </tbody>
             </table>
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Observation datum en tijd van geboorte van placenta (waarneembare entiteit)</b>
+         <b>Resources pointing to 'this' resource - Observation bevinding betreffende tabakgebruik en blootstelling aan tabaksrook (bevinding)</b>
       </p>
       <ul>
          <li>
             <a href="mm-gbz-bc-TransactionComposition-samenvatting-zwangerschap1-XXX_Swart.html">Composition Dossier zwangerschap en bevalling [bevinding] (document)</a>
          </li>
          <li>
-            <a href="mm-gbz-zib-Pregnancy-Duration57036006-c33f1a5a-6a95-11ec-0000-020000000000.html">Observation zwangerschapsduur (waarneembare entiteit)</a>
+            <a href="mm-gbz-zib-Pregnancy-Duration57036006-c33f1923-6a95-11ec-0000-020000000000.html">Observation zwangerschapsduur (waarneembare entiteit)</a>
          </li>
       </ul>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
 { id: 2, label: "Patient XXX_Swart", url: "mm-gbz-nl-core-patient-FIONA-F-XXX-SWART.html" }, 
-{ id: 11, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-9da7fe7f-6aad-11ec-0000-020000000000.html" }, 
-{ id: 18, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-823b3241-6b35-11ec-0000-020000000000.html" }, 
-{ id: 54, label: "Observation datum en tijd van geboorte van placenta (waarneembare entiteit)", url: "mm-gbz-nl-core-observation136311000146100-3141a898-6a96-11ec-0000-020000000000.html" }, 
+{ id: 12, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-2f1c3698-6b05-11ec-0000-020000000000.html" }, 
+{ id: 40, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-c28c144f-6adb-11ec-0000-020000000000.html" }, 
+{ id: 43, label: "Observation bevinding betreffende tabakgebruik en blootstelling aan tabaksrook (bevinding)", url: "mm-gbz-zib-TobaccoUse365980008-68f12b0a-6b31-11ec-0000-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 54, to: 18 }, 
-{ from: 54, to: 2 }, 
-{ from: 54, to: 11 }, 
+var edges = new vis.DataSet([{ from: 43, to: 12 }, 
+{ from: 43, to: 2 }, 
+{ from: 43, to: 40 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");
