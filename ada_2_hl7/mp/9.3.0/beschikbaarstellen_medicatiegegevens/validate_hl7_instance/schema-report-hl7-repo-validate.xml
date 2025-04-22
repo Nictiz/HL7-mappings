@@ -1,10 +1,30 @@
-<validation-results detection-count="0"
+<validation-results detection-count="2"
                     validation-step-name="schema-validate-hl7-beschikbaarstellen_medicatiegegevens"
                     href-schema="YATC-internal/ada-2-hl7/env/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20231017/mp-xml-20231017T223005/schemas_codeGen_flat/organizer.xsd"
                     validation-type="schema"
-                    timestamp="2024-12-24T19:09:58.88+01:00">
-   <validation detection-count="0"
-               href="HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-bouwstenen-v30.xml"/>
+                    timestamp="2025-03-28T16:16:31.94+01:00">
+   <validation detection-count="1"
+               href="HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-bouwstenen-patients-v30.xml">
+      <report xmlns="http://www.xproc.org/ns/xvrl">
+         <metadata>
+            <timestamp>2025-03-28T16:15:33.75+01:00</timestamp>
+            <document href="HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-bouwstenen-patients-v30.xml"/>
+            <schema href="YATC-internal/ada-2-hl7/env/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20231017/mp-xml-20231017T223005/schemas_codeGen_flat/organizer.xsd"
+                    schematypens="http://www.w3.org/2001/XMLSchema"/>
+            <validator name="com.sun.org.apache.xerces.internal.jaxp.validation.XMLSchemaFactory"/>
+         </metadata>
+         <detection severity="error">
+            <location line="5"
+                      xpath="/Q{urn:hl7-org:v3}organizer[1]/text()[4]"/>
+            <message>cvc-complex-type.2.4.b: The content of element 'organizer' is not complete. One of '{"urn:hl7-org:v3":effectiveTime, "urn:hl7-org:v3":recordTarget}' is expected.</message>
+         </detection>
+         <digest fatal-error-count="0"
+                 error-count="1"
+                 warning-count="0"
+                 info-count="0"
+                 valid="false"/>
+      </report>
+   </validation>
    <validation detection-count="0"
                href="HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-CONS-Scenarioset12a-v30.xml"/>
    <validation detection-count="0"
@@ -14,11 +34,41 @@
    <validation detection-count="0"
                href="HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-CONS-Scenarioset12d-v30.xml"/>
    <validation detection-count="0"
+               href="HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-CONS-Scenarioset12e-v30.xml"/>
+   <validation detection-count="0"
+               href="HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-CONS-Scenarioset12patient-v30.xml"/>
+   <validation detection-count="0"
                href="HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15a-v30.xml"/>
    <validation detection-count="0"
                href="HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15b-v30.xml"/>
    <validation detection-count="0"
                href="HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15c-v30.xml"/>
+   <validation detection-count="0"
+               href="HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset16-v30.xml"/>
+   <validation detection-count="0"
+               href="HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset17-v30.xml"/>
+   <validation detection-count="1"
+               href="HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenset17patient-v30.xml">
+      <report xmlns="http://www.xproc.org/ns/xvrl">
+         <metadata>
+            <timestamp>2025-03-28T16:15:43.32+01:00</timestamp>
+            <document href="HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenset17patient-v30.xml"/>
+            <schema href="YATC-internal/ada-2-hl7/env/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20231017/mp-xml-20231017T223005/schemas_codeGen_flat/organizer.xsd"
+                    schematypens="http://www.w3.org/2001/XMLSchema"/>
+            <validator name="com.sun.org.apache.xerces.internal.jaxp.validation.XMLSchemaFactory"/>
+         </metadata>
+         <detection severity="error">
+            <location line="7"
+                      xpath="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}recordTarget[1]/Q{urn:hl7-org:v3}patientRole[1]/Q{urn:hl7-org:v3}addr[1]"/>
+            <message>cvc-complex-type.2.4.a: Invalid content was found starting with element '{"urn:hl7-org:v3":addr}'. One of '{"urn:hl7-org:v3":realmCode, "urn:hl7-org:v3":typeId, "urn:hl7-org:v3":templateId, "urn:hl7-org:v3":id}' is expected.</message>
+         </detection>
+         <digest fatal-error-count="0"
+                 error-count="1"
+                 warning-count="0"
+                 info-count="0"
+                 valid="false"/>
+      </report>
+   </validation>
    <validation detection-count="0"
                href="HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-KWAL-script0-v30.xml"/>
    <validation detection-count="0"

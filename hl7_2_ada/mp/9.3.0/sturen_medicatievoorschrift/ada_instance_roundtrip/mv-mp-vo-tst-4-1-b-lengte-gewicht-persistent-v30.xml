@@ -1,10 +1,11 @@
-<!--Generated from HL7v3 instance.--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd">
+<!--Generated from HL7v3 instance.-->
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2024-01-01T00:00:00+02:00"
-         last-update-date="2024-01-01T00:00:00+02:00"/>
+         creation-date="2025-03-19T10:16:06.0397011+01:00"
+         last-update-date="2025-03-19T10:16:06.0397011+01:00"/>
    <data>
       <sturen_medicatievoorschrift app="mp-mp93"
                                    shortName="sturen_medicatievoorschrift"
@@ -26,9 +27,13 @@
                   <achternaam value="XXX_Doppen"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999900511" root="2.16.840.1.113883.2.4.6.3"/>
-            <geboortedatum datatype="datetime" value="1963-10-24"/>
-            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+            <identificatienummer value="999900511"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime"
+                           value="1963-10-24"/>
+            <geslacht code="M"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Man"/>
          </patient>
          <medicamenteuze_behandeling>
             <identificatie value="MBH_300_VOS_Lengte_Gewicht"
@@ -36,16 +41,21 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_VOS_Lengte_Gewicht_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2024-01-01T10:00:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2024-01-01T10:00:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
-                  <tijds_duur value="2" unit="week"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2024-01-01T00:00:00+01:00"/>
+                  <tijds_duur value="2"
+                              unit="week"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d1540e79" datatype="reference"/>
+                  <zorgverlener value="d181190e79"
+                                datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d1540e65" datatype="reference"/>
+                  <farmaceutisch_product value="d181190e65"
+                                         datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
                   <omschrijving value="1 maal per dag 1 stuk, oraal"/>
@@ -70,8 +80,19 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -79,7 +100,7 @@
             </medicatieafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d1540e65">
+            <farmaceutisch_product id="d181190e65">
                <product_code code="100145"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -89,8 +110,9 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="RIVAROXABAN TABLET 15MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="d1540e79">
-               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+            <zorgverlener id="d181190e79">
+               <zorgverlener_identificatienummer value="000001111"
+                                                 root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Peter"/>
                   <geslachtsnaam>
@@ -115,11 +137,13 @@
                   </telefoonnummers>
                </contactgegevens>
                <zorgaanbieder>
-                  <zorgaanbieder value="d1540e102" datatype="reference"/>
+                  <zorgaanbieder value="d181190e102"
+                                 datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d1540e102">
-               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+            <zorgaanbieder id="d181190e102">
+               <zorgaanbieder_identificatienummer value="00001111"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>
@@ -132,15 +156,20 @@
                </adresgegevens>
             </zorgaanbieder>
             <lichaamslengte>
-               <identificatie value="test-id-lengte" root="2.16.840.1.113883.2.4.3.11.999.77.23023.1"/>
-               <lengte_waarde value="164" unit="cm"/>
-               <lengte_datum_tijd datatype="datetime" value="2024-01-01T07:05:00+01:00"/>
+               <identificatie value="test-id-lengte"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.23023.1"/>
+               <lengte_waarde value="164"
+                              unit="cm"/>
+               <lengte_datum_tijd datatype="datetime"
+                                  value="2024-01-01T07:05:00+01:00"/>
             </lichaamslengte>
             <lichaamsgewicht>
                <identificatie value="test-id-gewicht"
                               root="2.16.840.1.113883.2.4.3.11.999.77.23028.1"/>
-               <gewicht_waarde value="98" unit="kg"/>
-               <gewicht_datum_tijd datatype="datetime" value="2024-01-01T07:05:00+01:00"/>
+               <gewicht_waarde value="98"
+                               unit="kg"/>
+               <gewicht_datum_tijd datatype="datetime"
+                                   value="2024-01-01T07:05:00+01:00"/>
             </lichaamsgewicht>
          </bouwstenen>
       </sturen_medicatievoorschrift>

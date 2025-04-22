@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="9c24030f-a281-11ef-1130-020000000000"/>
+   <id value="ab7a3a1f-0efe-11f0-1304-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:9c2403fe-a281-11ef-1130-020000000000"/>
+      <fullUrl value="urn:uuid:ab7a3aa0-0efe-11f0-1304-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -18,10 +18,9 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2023-01-01T09:47:00+01:00"/>
             </extension>
-            <f:extension xmlns:f="http://hl7.org/fhir"
-                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <f:valueString value="Vanaf 1 jan 2023, tot en met 9 jan 2023, toedieningssnelheid: 0.2 à 0.5 per, Intraveneus"/>
-            </f:extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="toedieningssnelheid: 0.2 à 0.5 ml/h, Intraveneus"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="2023-01-01T00:00:00+01:00"/>
@@ -47,18 +46,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:9c24043a-a281-11ef-1130-020000000000"/>
+               <reference value="urn:uuid:ab7a3ac8-0efe-11f0-1304-020000000000"/>
                <type value="Medication"/>
                <display value="MORFINE HCL 3WATER INFVLST 5MG/ML CASS 100ML AHZ"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:9c240386-a281-11ef-1130-020000000000"/>
+               <reference value="urn:uuid:ab7a3a50-0efe-11f0-1304-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:9c2403c2-a281-11ef-1130-020000000000"/>
+                  <reference value="urn:uuid:ab7a3a78-0efe-11f0-1304-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -79,6 +78,22 @@
                      <display value="Intraveneus"/>
                   </coding>
                </route>
+               <doseAndRate>
+                  <rateRange>
+                     <low>
+                        <value value="0.2"/>
+                        <unit value="ml/h"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="ml/h"/>
+                     </low>
+                     <high>
+                        <value value="0.5"/>
+                        <unit value="ml/h"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="ml/h"/>
+                     </high>
+                  </rateRange>
+               </doseAndRate>
             </dosageInstruction>
          </MedicationDispense>
       </resource>
@@ -88,7 +103,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9c24041c-a281-11ef-1130-020000000000"/>
+      <fullUrl value="urn:uuid:ab7a3ab4-0efe-11f0-1304-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -117,18 +132,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:9c24043a-a281-11ef-1130-020000000000"/>
+               <reference value="urn:uuid:ab7a3ac8-0efe-11f0-1304-020000000000"/>
                <type value="Medication"/>
                <display value="MORFINE HCL 3WATER INFVLST 5MG/ML CASS 100ML AHZ"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:9c240386-a281-11ef-1130-020000000000"/>
+               <reference value="urn:uuid:ab7a3a50-0efe-11f0-1304-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:9c2403c2-a281-11ef-1130-020000000000"/>
+                  <reference value="urn:uuid:ab7a3a78-0efe-11f0-1304-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -164,7 +179,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9c240386-a281-11ef-1130-020000000000"/>
+      <fullUrl value="urn:uuid:ab7a3a50-0efe-11f0-1304-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -211,7 +226,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9c2403c2-a281-11ef-1130-020000000000"/>
+      <fullUrl value="urn:uuid:ab7a3a78-0efe-11f0-1304-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -255,7 +270,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9c24043a-a281-11ef-1130-020000000000"/>
+      <fullUrl value="urn:uuid:ab7a3ac8-0efe-11f0-1304-020000000000"/>
       <resource>
          <Medication>
             <meta>

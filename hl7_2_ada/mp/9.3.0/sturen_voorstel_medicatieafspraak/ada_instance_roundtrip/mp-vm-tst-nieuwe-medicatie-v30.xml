@@ -1,10 +1,11 @@
-<!--Generated from HL7v3 instance.--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_voorstel_medicatieafspraak.xsd">
+<!--Generated from HL7v3 instance.-->
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_voorstel_medicatieafspraak.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2024-01-01T00:00:00+02:00"
-         last-update-date="2024-01-01T00:00:00+02:00"/>
+         creation-date="2025-03-19T10:16:15.1865859+01:00"
+         last-update-date="2025-03-19T10:16:15.1865859+01:00"/>
    <data>
       <sturen_voorstel_medicatieafspraak app="mp-mp93"
                                          shortName="sturen_voorstel_medicatieafspraak"
@@ -26,18 +27,25 @@
                   <achternaam value="XXX_Brugge"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999900419" root="2.16.840.1.113883.2.4.6.3"/>
-            <geboortedatum datatype="datetime" value="1963-10-16"/>
-            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+            <identificatienummer value="999900419"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime"
+                           value="1963-10-16"/>
+            <geslacht code="M"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Man"/>
          </patient>
          <medicamenteuze_behandeling id="mbh-1">
             <medicatieafspraak>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2024-01-02T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2024-01-11T23:59:59+01:00"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2024-01-02T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2024-01-11T23:59:59+01:00"/>
                </gebruiksperiode>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d46e64" datatype="reference"/>
+                  <farmaceutisch_product value="d187408e64"
+                                         datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
                   <omschrijving value="1 maal per dag 1 à 2 stuks, Oraal"/>
@@ -63,8 +71,19 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -72,7 +91,7 @@
             </medicatieafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d46e64">
+            <farmaceutisch_product id="d187408e64">
                <product_code code="33154"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -82,8 +101,9 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="IBUPROFEN 800MG TABLET MGA"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="d46e82">
-               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+            <zorgaanbieder id="d187408e82">
+               <zorgaanbieder_identificatienummer value="01236578"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>
@@ -101,13 +121,16 @@
             <voorstel>
                <identificatie value="Nieuw_voorstel_VMA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.2"/>
-               <voorstel_datum datatype="datetime" value="2024-01-01T08:45:00+01:00"/>
+               <voorstel_datum datatype="datetime"
+                               value="2024-01-01T08:45:00+01:00"/>
                <auteur>
                   <auteur_is_zorgaanbieder>
-                     <zorgaanbieder value="d46e82" datatype="reference"/>
+                     <zorgaanbieder value="d187408e82"
+                                    datatype="reference"/>
                   </auteur_is_zorgaanbieder>
                </auteur>
-               <medicamenteuze_behandeling value="mbh-1" datatype="reference"/>
+               <medicamenteuze_behandeling value="mbh-1"
+                                           datatype="reference"/>
                <toelichting value="extra pijn medicatie starten voor pijnverlichting"/>
             </voorstel>
          </voorstel_gegevens>

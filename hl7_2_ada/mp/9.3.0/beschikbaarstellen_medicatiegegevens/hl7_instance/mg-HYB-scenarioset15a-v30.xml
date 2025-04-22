@@ -41,7 +41,7 @@
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
-         <id extension="MBH_300_hybride_voorschrift_basale_inhoud_MA"
+         <id extension="MBH_hyb_vo_bsl_inhd_MA"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
@@ -77,29 +77,28 @@
          <author>
             <time value="20240101112000+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -119,7 +118,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_basale_inhoud"/>
+                   extension="MBH_hyb_vo_bsl_inhd"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -131,7 +130,7 @@
       <supply classCode="SPLY"
               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
-         <id extension="MBH_300_hybride_voorschrift_basale_inhoud_VV"
+         <id extension="MBH_hyb_vo_bsl_inhd_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
          <code code="52711000146108"
                displayName="Verstrekkingsverzoek"
@@ -182,38 +181,45 @@
          <author>
             <time value="20240101112000+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
          </author>
+         <participant typeCode="DST">
+            <participantRole classCode="SDLOC">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9091"/>
+               <addr>
+                  <desc>Dorpstraat 10, 1234 AB Ons Dorp</desc>
+               </addr>
+            </participantRole>
+         </participant>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_hybride_voorschrift_basale_inhoud_MA"
+               <id extension="MBH_hyb_vo_bsl_inhd_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
@@ -229,7 +235,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_basale_inhoud"/>
+                   extension="MBH_hyb_vo_bsl_inhd"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -242,7 +248,7 @@
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
-         <id extension="MBH_300_hybride_voorschrift_variabelefrequentie_MA"
+         <id extension="MBH_hyb_vo_varblfreq_MA"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
@@ -278,29 +284,28 @@
          <author>
             <time value="20240101083900+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -340,7 +345,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_variabelefrequentie"/>
+                   extension="MBH_hyb_vo_varblfreq"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -352,7 +357,7 @@
       <supply classCode="SPLY"
               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
-         <id extension="MBH_300_hybride_voorschrift_variabelefrequentie_VV"
+         <id extension="MBH_hyb_vo_varblfreq_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
          <code code="52711000146108"
                displayName="Verstrekkingsverzoek"
@@ -403,29 +408,28 @@
          <author>
             <time value="20240101084000+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -434,7 +438,7 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_hybride_voorschrift_variabelefrequentie_MA"
+               <id extension="MBH_hyb_vo_varblfreq_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
@@ -450,7 +454,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_variabelefrequentie"/>
+                   extension="MBH_hyb_vo_varblfreq"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -463,7 +467,7 @@
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
-         <id extension="MBH_300_hybride_voorschrift_interval_MA"
+         <id extension="MBH_hyb_vo_intrvl_MA"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
@@ -499,29 +503,28 @@
          <author>
             <time value="20240101090000+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -563,7 +566,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_interval"/>
+                   extension="MBH_hyb_vo_intrvl"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -575,7 +578,7 @@
       <supply classCode="SPLY"
               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
-         <id extension="MBH_300_hybride_voorschrift_interval_VV"
+         <id extension="MBH_hyb_vo_intrvl_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
          <code code="52711000146108"
                displayName="Verstrekkingsverzoek"
@@ -626,29 +629,28 @@
          <author>
             <time value="20240101090500+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -657,7 +659,7 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_hybride_voorschrift_interval_MA"
+               <id extension="MBH_hyb_vo_intrvl_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
@@ -673,7 +675,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_interval"/>
+                   extension="MBH_hyb_vo_intrvl"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -686,7 +688,7 @@
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
-         <id extension="MBH_300_hybride_voorschrift_herhalingen_MA"
+         <id extension="MBH_hyb_vo_hrhlngn_MA"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
@@ -722,29 +724,28 @@
          <author>
             <time value="20240101085800+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -783,7 +784,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_herhalingen"/>
+                   extension="MBH_hyb_vo_hrhlngn"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -795,7 +796,7 @@
       <supply classCode="SPLY"
               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
-         <id extension="MBH_300_hybride_voorschrift_herhalingen_VV"
+         <id extension="MBH_hyb_vo_hrhlngn_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
          <code code="52711000146108"
                displayName="Verstrekkingsverzoek"
@@ -847,29 +848,28 @@
          <author>
             <time value="20240101085900+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -878,7 +878,7 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_hybride_voorschrift_herhalingen_MA"
+               <id extension="MBH_hyb_vo_hrhlngn_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
@@ -894,7 +894,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_herhalingen"/>
+                   extension="MBH_hyb_vo_hrhlngn"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -907,7 +907,7 @@
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
-         <id extension="MBH_300_hybride_voorschrift_weekdag_MA"
+         <id extension="MBH_hyb_vo_wkdg_MA"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
@@ -922,7 +922,7 @@
          <routeCode code="53"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
                     displayName="Cutaan"
-                    codeSystemName="G-"/>
+                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
@@ -943,29 +943,28 @@
          <author>
             <time value="20240101082500+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -1016,7 +1015,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_weekdag"/>
+                   extension="MBH_hyb_vo_wkdg"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -1028,7 +1027,7 @@
       <supply classCode="SPLY"
               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
-         <id extension="MBH_300_hybride_voorschrift_weekdag_VV"
+         <id extension="MBH_hyb_vo_wkdg_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
          <code code="52711000146108"
                displayName="Verstrekkingsverzoek"
@@ -1079,38 +1078,45 @@
          <author>
             <time value="20240101082500+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
          </author>
+         <participant typeCode="DST">
+            <participantRole classCode="SDLOC">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9091"/>
+               <addr>
+                  <desc>Dorpstraat 10, 1234 AB Ons Dorp</desc>
+               </addr>
+            </participantRole>
+         </participant>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_hybride_voorschrift_weekdag_MA"
+               <id extension="MBH_hyb_vo_wkdg_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
@@ -1126,7 +1132,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_weekdag"/>
+                   extension="MBH_hyb_vo_wkdg"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -1139,7 +1145,7 @@
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
-         <id extension="MBH_300_hybride_voorschrift_magistraalalleingredienten_MA"
+         <id extension="MBH_hyb_vo_mgstrlalleingrdntn_MA"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
@@ -1231,29 +1237,28 @@
          <author>
             <time value="20240101121000+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -1280,7 +1285,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_magistraalalleingredienten"/>
+                   extension="MBH_hyb_vo_mgstrlalleingrdntn"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -1292,7 +1297,7 @@
       <supply classCode="SPLY"
               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
-         <id extension="MBH_300_hybride_voorschrift_magistraalalleingredienten_VV"
+         <id extension="MBH_hyb_vo_mgstrlalleingrdntn_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
          <code code="52711000146108"
                displayName="Verstrekkingsverzoek"
@@ -1399,29 +1404,28 @@
          <author>
             <time value="20240101120000+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -1430,7 +1434,7 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_hybride_voorschrift_magistraalalleingredienten_MA"
+               <id extension="MBH_hyb_vo_mgstrlalleingrdntn_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
@@ -1446,7 +1450,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_magistraalalleingredienten"/>
+                   extension="MBH_hyb_vo_mgstrlalleingrdntn"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -1459,7 +1463,7 @@
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
-         <id extension="MBH_300_hybride_voorschrift_dagdeel_MA"
+         <id extension="MBH_hyb_vo_dgdl_MA"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
@@ -1495,29 +1499,28 @@
          <author>
             <time value="20240101082500+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -1557,7 +1560,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.4.7"
-                   extension="MBH_300_hybride_voorschrift_dagdeel"/>
+                   extension="MBH_hyb_vo_dgdl"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -1569,7 +1572,7 @@
       <supply classCode="SPLY"
               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
-         <id extension="MBH_300_hybride_voorschrift_dagdeel_VV"
+         <id extension="MBH_hyb_vo_dgdl_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
          <code code="52711000146108"
                displayName="Verstrekkingsverzoek"
@@ -1620,29 +1623,28 @@
          <author>
             <time value="20240101082700+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -1651,7 +1653,7 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_hybride_voorschrift_dagdeel_MA"
+               <id extension="MBH_hyb_vo_dgdl_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
@@ -1667,7 +1669,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.4.7"
-                   extension="MBH_300_hybride_voorschrift_dagdeel"/>
+                   extension="MBH_hyb_vo_dgdl"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -1680,7 +1682,7 @@
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
-         <id extension="MBH_300_hybride_voorschrift_cyclischschema_MA"
+         <id extension="MBH_hyb_vo_cyclschma_MA"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
@@ -1716,29 +1718,28 @@
          <author>
             <time value="20240101083300+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -1791,7 +1792,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_cyclischschema"/>
+                   extension="MBH_hyb_vo_cyclschma"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -1803,7 +1804,7 @@
       <supply classCode="SPLY"
               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
-         <id extension="MBH_300_hybride_voorschrift_cyclischschema_VV"
+         <id extension="MBH_hyb_vo_cyclschma_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
          <code code="52711000146108"
                displayName="Verstrekkingsverzoek"
@@ -1854,29 +1855,28 @@
          <author>
             <time value="20240101083300+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -1885,7 +1885,7 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_hybride_voorschrift_cyclischschema_MA"
+               <id extension="MBH_hyb_vo_cyclschma_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
@@ -1901,7 +1901,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_cyclischschema"/>
+                   extension="MBH_hyb_vo_cyclschma"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -1914,7 +1914,7 @@
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
-         <id extension="MBH_300_hybride_voorschrift_afbouwschema_MA"
+         <id extension="MBH_hyb_vo_afbwschm_MA"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
@@ -1950,29 +1950,28 @@
          <author>
             <time value="20240101084000+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -2085,7 +2084,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_afbouwschema"/>
+                   extension="MBH_hyb_vo_afbwschm"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -2097,7 +2096,7 @@
       <supply classCode="SPLY"
               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
-         <id extension="MBH_300_hybride_voorschrift_afbouwschema_VV"
+         <id extension="MBH_hyb_vo_afbwschm_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
          <code code="52711000146108"
                displayName="Verstrekkingsverzoek"
@@ -2148,29 +2147,28 @@
          <author>
             <time value="20240101084000+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -2179,7 +2177,7 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_hybride_voorschrift_afbouwschema_MA"
+               <id extension="MBH_hyb_vo_afbwschm_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
@@ -2195,7 +2193,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_afbouwschema"/>
+                   extension="MBH_hyb_vo_afbwschm"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
