@@ -10,6 +10,10 @@
          <div>
             <a href="tel:+316-99990001">+316-99990001</a> (Mobiel Privé), <a href="mailto:JanKooymanPost@test.nl">JanKooymanPost@test.nl</a> (E-mail Privé)</div>
          <div>Coolsingel 231 in verband met verhuizing, 3012AG Rotterdam, Nederland (TMP)</div>
+         <div>
+            <span title="Zoon (SONC - v3/RoleCode)">Zoon</span>, <span title="Eerste relatie/contactpersoon (1 - RoleCodeLijst (COD472-VEKT))">Eerste relatie/contactpersoon</span>: Peter P.K. Kooyman (Peter)<div>
+               <a href="tel:+316-99990003">+316-99990003</a> (Mobiel Privé), <a href="mailto:peter.kooyman.post@test.nl">peter.kooyman.post@test.nl</a> (E-mail Privé), Knolweg 1002 to, 9999ZZ Stitswerd, Nederland (Bezoek)</div>
+         </div>
          <div>Huisarts: Meindert M. Meindert Aanmoedigend<div>Zorgverlenerrol: Huisarts</div>
          </div>
       </div>
@@ -113,6 +117,101 @@
       </country>
    </address>
    <multipleBirthBoolean value="false"/>
+   <contact>
+      <relationship>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/RoleCode"/>
+            <code value="SONC"/>
+            <display value="Zoon"/>
+         </coding>
+      </relationship>
+      <relationship>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
+            <code value="1"/>
+            <display value="Eerste relatie/contactpersoon"/>
+         </coding>
+      </relationship>
+      <name>
+         <family value="Kooyman">
+            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+               <valueString value="Kooyman"/>
+            </extension>
+         </family>
+         <given value="Peter">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+               <valueCode value="BR"/>
+            </extension>
+         </given>
+         <given value="P.K.">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+               <valueCode value="IN"/>
+            </extension>
+         </given>
+         <given value="Peter">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+               <valueCode value="CL"/>
+            </extension>
+         </given>
+      </name>
+      <telecom>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                  <code value="MC"/>
+                  <display value="Mobiel telefoonnummer"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+         <system value="phone"/>
+         <value value="+316-99990003"/>
+         <use value="home"/>
+      </telecom>
+      <telecom>
+         <system value="email"/>
+         <value value="peter.kooyman.post@test.nl"/>
+         <use value="home"/>
+      </telecom>
+      <address>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                  <code value="PHYS"/>
+                  <display value="Woon-/verblijfadres"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+         <use value="home"/>
+         <type value="physical"/>
+         <line value="Knolweg 1002 to">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+               <valueString value="Knolweg"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+               <valueString value="1002"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
+               <valueString value="to"/>
+            </extension>
+         </line>
+         <city value="Stitswerd"/>
+         <postalCode value="9999ZZ"/>
+         <country value="Nederland">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:iso:std:iso:3166"/>
+                     <version value="2020-10-26T00:00:00"/>
+                     <code value="NL"/>
+                     <display value="Nederland"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
+         </country>
+      </address>
+   </contact>
    <generalPractitioner>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
          <valueReference>

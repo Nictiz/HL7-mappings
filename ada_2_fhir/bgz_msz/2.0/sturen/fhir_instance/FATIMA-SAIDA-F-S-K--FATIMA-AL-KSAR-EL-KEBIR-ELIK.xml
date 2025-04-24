@@ -11,6 +11,11 @@
             <a href="tel:06-99990100">06-99990100</a> (Mobiel Privé), <a href="tel:021-9990100">021-9990100</a> (Vast telefoonnummer Tijdelijk), <a href="mailto:test2@testweb.nl">test2@testweb.nl</a> (E-mail Privé), <a href="mailto:test@testweb.nl">test@testweb.nl</a> (E-mail Werk)</div>
          <div>Afrikanerplein 1 Naam woning: De Derde Viool, 1091PN Amsterdam Amsterdam, Nederland (officieel Privé (hoofd) Bezoek)<br/>Knolweg 1002 C IV Tijdelijk adres tijdens het vervangen van de fundering to, 9999ZZ Stitswerd Het Hogeland, Nederland (TMP)<br/>Knolweg 1002 D, (WP)<br/>
          </div>
+         <div>
+            <span title="Zwager (BROINLAW - v3/RoleCode)">Zwager</span>, <span title="Eerste relatie/contactpersoon (1 - RoleCodeLijst (COD472-VEKT))">Eerste relatie/contactpersoon</span>: <span title="Naamsamenstelling: Eigennaam">Fictief Kimliği belirsiz F.K.B.Ş. bir şahıs</span>
+            <div>
+               <a href="tel:021-9990007">021-9990007</a> (Vast telefoonnummer Privé), <a href="mailto:birşahıs@postnl.nl">birşahıs@postnl.nl</a> (E-mail Werk), Knolweg 1013 b huis met gele deur by, 9999ZZ Stitswerd Het Hogeland, Nederland (Bezoek)</div>
+         </div>
          <div>Huisarts: Hip Plato Orpheus H.P.O Crates van Kos<div>Zorgverlenerrol: Huisarts</div>, Zaterdagdokter<div>Zorgverlenerrol: Huisarts</div>
          </div>
       </div>
@@ -214,6 +219,109 @@
       </line>
    </address>
    <multipleBirthBoolean value="true"/>
+   <contact>
+      <relationship>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/RoleCode"/>
+            <code value="BROINLAW"/>
+            <display value="Zwager"/>
+         </coding>
+      </relationship>
+      <relationship>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
+            <code value="1"/>
+            <display value="Eerste relatie/contactpersoon"/>
+         </coding>
+      </relationship>
+      <name>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+            <valueCode value="NL1"/>
+         </extension>
+         <family value="bir şahıs">
+            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+               <valueString value="bir"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+               <valueString value="şahıs"/>
+            </extension>
+         </family>
+         <given value="Fictief Kimliği belirsiz">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+               <valueCode value="BR"/>
+            </extension>
+         </given>
+         <given value="F.K.B.Ş.">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+               <valueCode value="IN"/>
+            </extension>
+         </given>
+      </name>
+      <telecom>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+                  <code value="LL"/>
+                  <display value="Vast telefoonnummer"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+         <system value="phone"/>
+         <value value="021-9990007"/>
+         <use value="home"/>
+      </telecom>
+      <telecom>
+         <system value="email"/>
+         <value value="birşahıs@postnl.nl"/>
+         <use value="work"/>
+      </telecom>
+      <address>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                  <code value="PHYS"/>
+                  <display value="Woon-/verblijfadres"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+         <use value="home"/>
+         <type value="physical"/>
+         <line value="Knolweg 1013 b huis met gele deur by">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+               <valueString value="Knolweg"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+               <valueString value="1013"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+               <valueString value="b"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
+               <valueString value="huis met gele deur"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
+               <valueString value="by"/>
+            </extension>
+         </line>
+         <city value="Stitswerd"/>
+         <district value="Het Hogeland"/>
+         <postalCode value="9999ZZ"/>
+         <country value="Nederland">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:iso:std:iso:3166"/>
+                     <version value="2020-10-26T00:00:00"/>
+                     <code value="NL"/>
+                     <display value="Nederland"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
+         </country>
+      </address>
+   </contact>
    <generalPractitioner>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
          <valueReference>
