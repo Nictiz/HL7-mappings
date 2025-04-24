@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
    <!-- Source: gz-izv-kwa-casus1 -->
-   <id value="e4430a72-6aeb-11ec-0000-020000000000"/>
+   <id value="6606a933-6aa6-11ec-0000-020000000000"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DeliveryObservation"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-PerinealAssessment"/>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
    </meta>
    <text>
@@ -22,10 +22,16 @@
                </tr>
                <tr>
                   <td>
-                     <span title="bevinding betreffende vruchtwater (bevinding) (366334007 - SNOMED CT)">bevinding betreffende vruchtwater (bevinding)</span>
+                     <span title="bevinding betreffende bekkenregio van romp (bevinding) (609625009 - SNOMED CT)">bevinding betreffende bekkenregio van romp (bevinding)</span>
+                  </td>
+                  <td/>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="observatie betreffende perineum van vrouw (waarneembare entiteit) (364297003 - SNOMED CT)">observatie betreffende perineum van vrouw (waarneembare entiteit)</span>
                   </td>
                   <td>
-                     <span title="helder vruchtwater (bevinding) (168090003 - SNOMED CT)">helder vruchtwater (bevinding)</span>
+                     <span title="letsel van perineum bij vrouw (aandoening) (286554000 - SNOMED CT)">letsel van perineum bij vrouw (aandoening)</span>
                   </td>
                </tr>
             </tbody>
@@ -40,14 +46,14 @@
    </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="47171d31-6b77-11ec-0000-020000000000"/>
+      <value value="0d497b0a-6b6d-11ec-0000-020000000000"/>
    </identifier>
    <status value="final"/>
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="366334007"/>
-         <display value="bevinding betreffende vruchtwater (bevinding)"/>
+         <code value="609625009"/>
+         <display value="bevinding betreffende bekkenregio van romp (bevinding)"/>
       </coding>
    </code>
    <subject>
@@ -58,11 +64,20 @@
       <reference value="EpisodeOfCare/090fc807-6b79-11ec-0000-020000000000"/>
       <display value="Zwangerschap 2 XXX_Ostendorf"/>
    </context>
-   <valueCodeableConcept>
-      <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="168090003"/>
-         <display value="helder vruchtwater (bevinding)"/>
-      </coding>
-   </valueCodeableConcept>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="364297003"/>
+            <display value="observatie betreffende perineum van vrouw (waarneembare entiteit)"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="286554000"/>
+            <display value="letsel van perineum bij vrouw (aandoening)"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
 </Observation>
