@@ -72,22 +72,22 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 2, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-nl-core-patient-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
-{ id: 4, label: "Practitioner XXX_Gras-XXX_Groeneboom", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-12340001.html" }, 
-{ id: 6, label: "Organization Verloskundigenpraktijk 't Groen", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-840-1-113883-2-4-6-1-08001234.html" }, 
-{ id: 8, label: "PractitionerRole Verloskundige", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-1234000103-000.html" }, 
-{ id: 10, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-7846eb5f-6acb-11ec-0000-020000000000.html" }, 
+{ id: 1, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-nl-core-patient-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
+{ id: 5, label: "Organization Verloskundigenpraktijk 't Groen", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-840-1-113883-2-4-6-1-08001234.html" }, 
+{ id: 7, label: "Practitioner XXX_Gras-XXX_Groeneboom", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-12340001.html" }, 
+{ id: 9, label: "PractitionerRole Verloskundige", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-1234000103-000.html" }, 
 { id: 11, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-da15412f-6b0e-11ec-0000-020000000000.html" }, 
-{ id: 46, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-1e3774a7-6b1f-11ec-0000-020000000000.html" }, 
+{ id: 12, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-7846eb5f-6acb-11ec-0000-020000000000.html" }, 
+{ id: 41, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-1e3774a7-6b1f-11ec-0000-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 46, to: 2 }, 
-{ from: 46, to: 10 }, 
-{ from: 46, to: 8 }, 
-{ from: 46, to: 4 }, 
-{ from: 46, to: 11 }, 
-{ from: 46, to: 6 }, 
+var edges = new vis.DataSet([{ from: 41, to: 1 }, 
+{ from: 41, to: 12 }, 
+{ from: 41, to: 9 }, 
+{ from: 41, to: 7 }, 
+{ from: 41, to: 11 }, 
+{ from: 41, to: 5 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

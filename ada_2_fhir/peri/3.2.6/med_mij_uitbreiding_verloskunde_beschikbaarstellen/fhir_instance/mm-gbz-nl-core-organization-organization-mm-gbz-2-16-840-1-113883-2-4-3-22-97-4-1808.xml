@@ -24,6 +24,13 @@
                   </td>
                </tr>
                <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:0659689761">0659689761</a> (Mobiel Werk)<br/>
+                     <a href="mailto:info@verloskundigenpraktijkdalen.test">info@verloskundigenpraktijkdalen.test</a> (E-mail Werk)<br/>
+                  </td>
+               </tr>
+               <tr>
                   <th>Adres</th>
                   <td>In de lucht 3 B, 3333ZA Utrecht Utrecht, NL</td>
                </tr>
@@ -58,6 +65,25 @@
       </coding>
    </type>
    <name value="Verloskundigenpraktijk Dalen"/>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="MC"/>
+               <display value="Mobiel telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="0659689761"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="info@verloskundigenpraktijkdalen.test"/>
+      <use value="work"/>
+   </telecom>
    <address>
       <line value="In de lucht 3 B">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
@@ -78,7 +104,7 @@
             <valueCodeableConcept>
                <coding>
                   <system value="urn:iso:std:iso:3166"/>
-                  <version value="2.16.840.1.113883.2.4.4.16.34"/>
+                  <version value="2020-10-26T00:00:00"/>
                   <code value="NL"/>
                   <display value="Nederland"/>
                </coding>

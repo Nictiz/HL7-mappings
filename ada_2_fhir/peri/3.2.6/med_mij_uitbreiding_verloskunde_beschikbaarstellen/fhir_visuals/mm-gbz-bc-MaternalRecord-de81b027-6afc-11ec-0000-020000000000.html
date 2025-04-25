@@ -48,9 +48,6 @@
       </p>
       <ul>
          <li>
-            <a href="mm-gbz-bc-TransactionComposition-samenvatting-zwangerschap1-XXX_Yassien-Mohamed.html">Composition Dossier zwangerschap en bevalling [bevinding] (document)</a>
-         </li>
-         <li>
             <a href="mm-gbz-zib-Pregnancy118185001-77a6de1d-6aaa-11ec-0000-020000000000.html">Condition bevinding betreffende zwangerschap (bevinding)</a>
          </li>
          <li>
@@ -75,20 +72,20 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 2, label: "Organization Verloskundigenpraktijk Dalen", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-840-1-113883-2-4-6-1-45678912.html" }, 
-{ id: 6, label: "Patient XXX_Yassien-Mohamed", url: "mm-gbz-nl-core-patient-MICHA-M-XXX-YASSIEN-MOHAMED.html" }, 
-{ id: 7, label: "PractitionerRole Verloskundigen, niet nader gespecificeerd", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-12356480800.html" }, 
-{ id: 8, label: "Practitioner XXX_Korte", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-1235648.html" }, 
+{ id: 1, label: "Organization Verloskundigenpraktijk Dalen", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-840-1-113883-2-4-6-1-45678912.html" }, 
+{ id: 5, label: "Patient XXX_Yassien-Mohamed", url: "mm-gbz-nl-core-patient-MICHA-M-XXX-YASSIEN-MOHAMED.html" }, 
+{ id: 6, label: "PractitionerRole Verloskundigen, niet nader gespecificeerd", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-12356480800.html" }, 
+{ id: 7, label: "Practitioner XXX_Korte", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-1235648.html" }, 
+{ id: 10, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-77a6de1d-6aaa-11ec-0000-020000000000.html" }, 
 { id: 11, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-de81b027-6afc-11ec-0000-020000000000.html" }, 
-{ id: 12, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-77a6de1d-6aaa-11ec-0000-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 11, to: 12 }, 
+var edges = new vis.DataSet([{ from: 11, to: 10 }, 
+{ from: 11, to: 5 }, 
+{ from: 11, to: 1 }, 
 { from: 11, to: 6 }, 
-{ from: 11, to: 2 }, 
 { from: 11, to: 7 }, 
-{ from: 11, to: 8 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

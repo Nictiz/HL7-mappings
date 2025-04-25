@@ -40,9 +40,6 @@
       </p>
       <ul>
          <li>
-            <a href="mm-gbz-bc-TransactionComposition-samenvatting-zwangerschap2-XXX_Ostendorf.html">Composition Dossier zwangerschap en bevalling [bevinding] (document)</a>
-         </li>
-         <li>
             <a href="mm-gbz-nl-core-observation249163006-809d9c6e-6aa5-11ec-0000-020000000000.html">Observation begin van persen tijdens partus (waarneembare entiteit)</a>
          </li>
          <li>
@@ -61,18 +58,18 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 6, label: "Patient XXX_Ostendorf", url: "mm-gbz-nl-core-patient-MAAIKE-M-XXX-OSTENDORF.html" }, 
-{ id: 11, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-090fc807-6b79-11ec-0000-020000000000.html" }, 
-{ id: 12, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-6abe24ea-6b20-11ec-0000-020000000000.html" }, 
-{ id: 15, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-ad8ec3ec-6b19-11ec-0000-020000000000.html" }, 
-{ id: 17, label: "Procedure geboorte (bevinding)", url: "mm-gbz-bc-Birth3950001-e2378a58-6b76-11ec-0000-020000000000.html" }, 
+{ id: 5, label: "Patient XXX_Ostendorf", url: "mm-gbz-nl-core-patient-MAAIKE-M-XXX-OSTENDORF.html" }, 
+{ id: 11, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-6abe24ea-6b20-11ec-0000-020000000000.html" }, 
+{ id: 20, label: "Encounter verlossing (verrichting)", url: "mm-gbz-bc-ChildBirthAssistance-eb9ad928-6b1d-11ec-0000-020000000000.html" }, 
+{ id: 52, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-ad8ec3ec-6b19-11ec-0000-020000000000.html" }, 
+{ id: 54, label: "Procedure geboorte (bevinding)", url: "mm-gbz-bc-Birth3950001-e2378a58-6b76-11ec-0000-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 17, to: 15 }, 
-{ from: 17, to: 6 }, 
-{ from: 17, to: 11 }, 
-{ from: 17, to: 12 }, 
+var edges = new vis.DataSet([{ from: 54, to: 52 }, 
+{ from: 54, to: 5 }, 
+{ from: 54, to: 20 }, 
+{ from: 54, to: 11 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");
