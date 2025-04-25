@@ -7,8 +7,9 @@
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
-         <div>Id 12340001 (UZI-NR-PERS), <span title="Naamsamenstelling: Partnernaam gevolgd door eigennaam">Gemma XXX_Gras-XXX_Groeneboom</span>
-         </div>
+         <div>Id 12340001 (UZI-NR-PERS), <span title="Naamsamenstelling: Eigennaam gevolgd door partnernaam">Gemma XXX_Groeneboom-XXX_Gras</span> (Gemma)</div>
+         <div>
+            <a href="tel:06321659861">06321659861</a> (,  mobile)</div>
       </div>
    </text>
    <identifier>
@@ -17,10 +18,10 @@
    </identifier>
    <name>
       <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
-         <valueCode value="NL3"/>
+         <valueCode value="NL4"/>
       </extension>
-      <text value="Gemma XXX_Gras-XXX_Groeneboom"/>
-      <family value="XXX_Gras-XXX_Groeneboom">
+      <text value="Gemma XXX_Groeneboom-XXX_Gras"/>
+      <family value="XXX_Groeneboom-XXX_Gras">
          <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
             <valueString value="XXX_Groeneboom"/>
          </extension>
@@ -30,8 +31,22 @@
       </family>
       <given value="Gemma">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-            <valueCode value="BR"/>
+            <valueCode value="CL"/>
          </extension>
       </given>
    </name>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="MC"/>
+               <display value="Mobiel telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="06321659861"/>
+      <use value="mobile"/>
+   </telecom>
 </Practitioner>

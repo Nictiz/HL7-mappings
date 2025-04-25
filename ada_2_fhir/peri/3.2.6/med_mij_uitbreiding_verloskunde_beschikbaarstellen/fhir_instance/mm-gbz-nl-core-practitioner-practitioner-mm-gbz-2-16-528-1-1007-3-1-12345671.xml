@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Practitioner xmlns="http://hl7.org/fhir">
+   <id value="practitioner-mm-gbz-2-16-528-1-1007-3-1-12345671"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>Id 12345671 (UZI-NR-PERS), <span title="Naamsamenstelling: Eigennaam">HDE van Levenslust</span> (Henrik)</div>
+         <div>
+            <a href="tel:0705223025">0705223025</a> (Vast telefoonnummer)</div>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+      <value value="12345671"/>
+   </identifier>
+   <name>
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+         <valueCode value="NL1"/>
+      </extension>
+      <text value="HDE van Levenslust"/>
+      <family value="van Levenslust">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+            <valueString value="van"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="Levenslust"/>
+         </extension>
+      </family>
+      <given value="HDE">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="IN"/>
+         </extension>
+      </given>
+      <given value="Henrik">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="CL"/>
+         </extension>
+      </given>
+   </name>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Vast telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="0705223025"/>
+   </telecom>
+</Practitioner>

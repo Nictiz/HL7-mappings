@@ -10,7 +10,7 @@
          <div>Id 999901758 (BSN), <span title="Naamsamenstelling: Eigennaam">Micha XXX_Yassien-Mohamed</span>, Vrouw, 23 december 1985, <i>Overleden ${DATE, T, D, -260}</i>, Geen meerling</div>
          <div>
             <a href="tel:0705321689">0705321689</a> (Vast telefoonnummer)</div>
-         <div>Knolweg 1000, 9999XA STITSWERD, NL</div>
+         <div>Knolweg 1000, 9999XA STITSWERD, NL (Bezoek)</div>
          <div>Huisarts: Bert van XXX_Ernie || Huisarts || Huisartsenpraktijk Sesam</div>
          <div>Voorkeursapotheek: Apotheek de 3 Bergen</div>
       </div>
@@ -82,6 +82,17 @@
    <birthDate value="1985-12-23"/>
    <deceasedDateTime value="${DATE, T, D, -260}"/>
    <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="PHYS"/>
+               <display value="Woon-/verblijfadres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="home"/>
+      <type value="physical"/>
       <line value="Knolweg 1000">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
             <valueString value="Knolweg"/>

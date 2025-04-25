@@ -25,6 +25,15 @@
                      </div>
                   </td>
                </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:05649787458">05649787458</a> (Vast telefoonnummer)</td>
+               </tr>
+               <tr>
+                  <th>Adres</th>
+                  <td>Ernstweg 44, 8888XX STITSWERD</td>
+               </tr>
             </tbody>
          </table>
       </div>
@@ -49,4 +58,29 @@
       </coding>
    </type>
    <name value="Huisartsenpraktijk Sesam"/>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Vast telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="05649787458"/>
+   </telecom>
+   <address>
+      <line value="Ernstweg 44">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Ernstweg"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="44"/>
+         </extension>
+      </line>
+      <city value="STITSWERD"/>
+      <postalCode value="8888XX"/>
+   </address>
 </Organization>

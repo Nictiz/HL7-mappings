@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patient xmlns="http://hl7.org/fhir">
+   <id value="LILIANNE-L-XXX-SWART"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>
+            <span title="Naamsamenstelling: Eigennaam">Lilianne XXX_Swart</span>, Vrouw, Meerling</div>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="3735b172-6b05-11ec-0000-020000000000"/>
+   </identifier>
+   <name>
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+         <valueCode value="NL1"/>
+      </extension>
+      <text value="Lilianne XXX_Swart"/>
+      <family value="XXX_Swart">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="XXX_Swart"/>
+         </extension>
+      </family>
+      <given value="Lilianne">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <given value="L">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="IN"/>
+         </extension>
+      </given>
+   </name>
+   <gender value="female">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+               <code value="F"/>
+               <display value="Vrouw"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </gender>
+   <multipleBirthBoolean value="true"/>
+</Patient>

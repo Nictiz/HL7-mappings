@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html lang="en">
+   <head>
+      <title>Patient - LILIANNE-L-XXX-SWART</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <div>
+               <span title="Naamsamenstelling: Eigennaam">Lilianne XXX_Swart</span>, Vrouw, Meerling</div>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Patient XXX_Swart</b>
+      </p>
+      <ul>
+         <li>
+            <a href="mm-gbz-nl-core-observation8339-4-39a04891-6b05-11ec-0000-020000000000.html">Observation Lichaamsgewicht^bij geboorte [massa] d.m.v. meting</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-BodyHeight89269-5-6dfe3b1f-6b04-11ec-0000-020000000000.html">Observation Body height Measured --at birth</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-HeadCircumference169876006-db7cbf72-6b5e-11ec-0000-020000000000.html">Observation hoofdomtrek bij geboorte (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-ApgarScore9272-6-b0ec9151-6ae3-11ec-0000-020000000000.html">Observation 1 minute Apgar Score</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-ApgarScore9274-2-18499c51-6b32-11ec-0000-020000000000.html">Observation 5 minute Apgar Score</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-ApgarScore9271-8-18499c51-6b32-11ec-0000-020000000000.html">Observation 10 minute Apgar Score</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation364528001-85c96712-6ada-11ec-0000-020000000000.html">Observation observatie betreffende huid (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation364403006-ef81a91f-6ac3-11ec-0000-020000000000.html">Observation observatie betreffende hoofd-halsregio (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation364434005-ef81a91f-6ac3-11ec-0000-020000000000.html">Observation aspect van thorax (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation364446009-ef81a91f-6ac3-11ec-0000-020000000000.html">Observation algemene kenmerken van abdomen (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation364415005-ef81a91f-6ac3-11ec-0000-020000000000.html">Observation observatie betreffende wervelkolom (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation363799009-ef81a91f-6ac3-11ec-0000-020000000000.html">Observation kenmerk van extremiteit (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation364204002-ef81a91f-6ac3-11ec-0000-020000000000.html">Observation observatie betreffende geslachtsorgaan (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation363820009-ef81a91f-6ac3-11ec-0000-020000000000.html">Observation observatie betreffende neurologie (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-Birth3950001-dfa59d1f-6aa2-11ec-0000-020000000000.html">Procedure geboorte (bevinding)</a>
+         </li>
+      </ul>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 13, label: "Patient XXX_Swart", url: "mm-gbz-nl-core-patient-LILIANNE-L-XXX-SWART.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>
