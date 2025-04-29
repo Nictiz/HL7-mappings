@@ -1,0 +1,207 @@
+<?xml-model href="file:/C:/SourceTree/SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20200122/mp-xml-20200122T161947/schematron_closed_warnings/mp-medverslstresp.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
+<!--Generated from ada instance with title: "TEST Scenarioset 6 Variabele hoeveelheid 2" and id: "av-mp-va-tst-6-6-variabele-hoeveelheid-2-v30".-->
+<QURX_IN990113NL xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SourceTree/SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20200122/mp-xml-20200122T161947/schemas/QURX_IN990113NL.xsd"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns="urn:hl7-org:v3">
+   <id extension="TOBEGENERATED"
+       root="2.16.840.1.113883.2.4.6.6.1.1"/>
+   <creationTime value="20250429093031.963+0200"/>
+   <versionCode code="NICTIZEd2005-Okt"/>
+   <interactionId extension="QURX_IN990113NL"
+                  root="2.16.840.1.113883.1.6"/>
+   <profileId root="2.16.840.1.113883.2.4.3.11.1"
+              extension="810"/>
+   <processingCode code="P"/>
+   <processingModeCode code="T"/>
+   <acceptAckCode code="NE"/>
+   <acknowledgement typeCode="AA">
+      <targetMessage>
+         <id extension="0123456789"
+             root="2.16.528.1.1007.3.3.1234567.1"/>
+      </targetMessage>
+   </acknowledgement>
+   <receiver>
+      <device>
+         <id extension="01234567"
+             root="2.16.840.1.113883.2.4.6.6"/>
+      </device>
+   </receiver>
+   <sender>
+      <device>
+         <id extension="1"
+             root="2.16.840.1.113883.2.4.6.6"/>
+      </device>
+   </sender>
+   <ControlActProcess moodCode="EVN">
+      <authorOrPerformer typeCode="AUT">
+         <participant>
+            <AssignedDevice>
+               <id extension="009876543"
+                   root="2.16.528.1.1007.3.2"/>
+               <id extension="00765432"
+                   root="2.16.840.1.113883.2.4.6.6"/>
+               <Organization>
+                  <id extension="01234567"
+                      root="2.16.528.1.1007.3.3"/>
+                  <name>Apotheek De Gulle Gaper</name>
+               </Organization>
+            </AssignedDevice>
+         </participant>
+      </authorOrPerformer>
+      <subject>
+         <MedicationDispenseList>
+            <code code="MEDLIST"
+                  codeSystem="2.16.840.1.113883.5.4"/>
+            <subject>
+               <Patient>
+                  <id extension="999900602"
+                      root="2.16.840.1.113883.2.4.6.3"/>
+                  <statusCode code="active"/>
+                  <Person>
+                     <name>
+                        <given qualifier="IN">G. .</given>
+                        <family qualifier="BR">XXX_Hemsbergen</family>
+                     </name>
+                     <administrativeGenderCode code="F"
+                                               codeSystem="2.16.840.1.113883.5.1"
+                                               displayName="Vrouw"/>
+                     <birthTime value="19631102"/>
+                  </Person>
+               </Patient>
+            </subject>
+            <component>
+               <medicationDispenseEvent>
+                  <id extension="MBH_300_variabelehoeveelheid2_MVE"
+                      root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="20240101091800+0100"/>
+                  <quantity value="450"
+                            unit="ml">
+                     <translation value="450"
+                                  code="233"
+                                  displayName="milliliter"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </quantity>
+                  <performer>
+                     <assignedPerson>
+                        <id nullFlavor="MSK"/>
+                     </assignedPerson>
+                  </performer>
+                  <product>
+                     <dispensedMedication>
+                        <MedicationKind classCode="MMAT"
+                                        determinerCode="KIND">
+                           <code code="261815"
+                                 codeSystem="2.16.840.1.113883.2.4.4.7"
+                                 displayName="WATERSTOFPEROXIDE 3% CONC VOOR MONDSP FNA MR"
+                                 codeSystemName="G-Standaard HPK">
+                              <translation code="72664"
+                                           codeSystem="2.16.840.1.113883.2.4.4.10"
+                                           displayName="WATERSTOFPEROXIDE CONC VOOR MONDSPOELING 30MG/ML"
+                                           codeSystemName="G-Standaard PRK"/>
+                              <translation code="119903"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1"
+                                           displayName="WATERSTOFPEROXIDE CONC VOOR MONDSPOELING 30MG/ML"
+                                           codeSystemName="G-Standaard GPK"/>
+                           </code>
+                        </MedicationKind>
+                        <directTargetOf typeCode="DIR">
+                           <prescription>
+                              <id extension="MBH_300_variabelehoeveelheid2_MA"
+                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                              <statusCode nullFlavor="UNK"/>
+                           </prescription>
+                        </directTargetOf>
+                        <therapeuticAgentOf>
+                           <medicationAdministrationRequest classCode="SBADM"
+                                                            moodCode="RQO">
+                              <text mediaType="text/plain">2 maal per dag 10 à 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen, OROMUCOSAAL</text>
+                              <statusCode code="active"/>
+                              <effectiveTime xsi:type="SXPR_TS">
+                                 <comp xsi:type="IVL_TS">
+                                    <low value="20240101000000.000+0100"/>
+                                    <high value="20240129235959.000+0100"/>
+                                 </comp>
+                                 <comp xsi:type="PIVL_TS"
+                                       operator="A">
+                                    <period value="0.5"
+                                            unit="d"/>
+                                 </comp>
+                              </effectiveTime>
+                              <routeCode code="34"
+                                         codeSystem="2.16.840.1.113883.2.4.4.9"
+                                         displayName="OROMUCOSAAL"
+                                         codeSystemName="G-Standaard Toedieningswegen"/>
+                              <doseQuantity>
+                                 <low value="10"
+                                      unit="ml">
+                                    <translation value="10"
+                                                 code="233"
+                                                 displayName="milliliter"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                                 </low>
+                                 <high value="15"
+                                       unit="ml">
+                                    <translation value="15"
+                                                 code="233"
+                                                 displayName="milliliter"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                                 </high>
+                              </doseQuantity>
+                              <support2 typeCode="SPRT">
+                                 <medicationAdministrationInstruction>
+                                    <code code="27"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          displayName="Eerst oplossen in water"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"/>
+                                 </medicationAdministrationInstruction>
+                              </support2>
+                              <support2 typeCode="SPRT">
+                                 <medicationAdministrationInstruction>
+                                    <code code="69"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          displayName="mond spoelen, daarna uitspugen"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"/>
+                                 </medicationAdministrationInstruction>
+                              </support2>
+                           </medicationAdministrationRequest>
+                        </therapeuticAgentOf>
+                     </dispensedMedication>
+                  </product>
+                  <responsibleParty>
+                     <assignedCareProvider>
+                        <id nullFlavor="NI"/>
+                        <code code="17.000"
+                              codeSystem="2.16.840.1.113883.2.4.15.111"
+                              displayName="Apotheker"/>
+                        <representedOrganization>
+                           <id extension="01236578"
+                               root="2.16.528.1.1007.3.3"/>
+                           <name>Apotheek De Gulle Gaper</name>
+                           <addr use="WP">
+                              <streetName>Dorpsstraat</streetName>
+                              <houseNumber>12</houseNumber>
+                              <buildingNumberSuffix>A</buildingNumberSuffix>
+                              <postalCode>1234 AA</postalCode>
+                              <city>Ons Dorp</city>
+                           </addr>
+                        </representedOrganization>
+                     </assignedCareProvider>
+                  </responsibleParty>
+               </medicationDispenseEvent>
+            </component>
+         </MedicationDispenseList>
+      </subject>
+      <queryAck>
+         <queryId extension="TOBEGENERATED"
+                  root="1.2.3.999"/>
+         <queryResponseCode code="OK"/>
+         <resultTotalQuantity value="1"/>
+         <resultCurrentQuantity value="1"/>
+         <resultRemainingQuantity value="0"/>
+      </queryAck>
+   </ControlActProcess>
+</QURX_IN990113NL>

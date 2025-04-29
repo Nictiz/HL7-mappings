@@ -1,0 +1,183 @@
+<?xml-model href="file:/C:/SourceTree/SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20200122/mp-xml-20200122T161947/schematron_closed_warnings/mp-medverslstresp.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
+<!--Generated from ada instance with title: "TEST Scenarioset 10 HPK geneesmiddel" and id: "av-mp-va-tst-10-1-hpk-geneesmiddel-v30".-->
+<QURX_IN990113NL xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SourceTree/SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20200122/mp-xml-20200122T161947/schemas/QURX_IN990113NL.xsd"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns="urn:hl7-org:v3">
+   <id extension="TOBEGENERATED"
+       root="2.16.840.1.113883.2.4.6.6.1.1"/>
+   <creationTime value="20250429093017.596+0200"/>
+   <versionCode code="NICTIZEd2005-Okt"/>
+   <interactionId extension="QURX_IN990113NL"
+                  root="2.16.840.1.113883.1.6"/>
+   <profileId root="2.16.840.1.113883.2.4.3.11.1"
+              extension="810"/>
+   <processingCode code="P"/>
+   <processingModeCode code="T"/>
+   <acceptAckCode code="NE"/>
+   <acknowledgement typeCode="AA">
+      <targetMessage>
+         <id extension="0123456789"
+             root="2.16.528.1.1007.3.3.1234567.1"/>
+      </targetMessage>
+   </acknowledgement>
+   <receiver>
+      <device>
+         <id extension="01234567"
+             root="2.16.840.1.113883.2.4.6.6"/>
+      </device>
+   </receiver>
+   <sender>
+      <device>
+         <id extension="1"
+             root="2.16.840.1.113883.2.4.6.6"/>
+      </device>
+   </sender>
+   <ControlActProcess moodCode="EVN">
+      <authorOrPerformer typeCode="AUT">
+         <participant>
+            <AssignedDevice>
+               <id extension="009876543"
+                   root="2.16.528.1.1007.3.2"/>
+               <id extension="00765432"
+                   root="2.16.840.1.113883.2.4.6.6"/>
+               <Organization>
+                  <id extension="01234567"
+                      root="2.16.528.1.1007.3.3"/>
+                  <name>Apotheek De Gulle Gaper</name>
+               </Organization>
+            </AssignedDevice>
+         </participant>
+      </authorOrPerformer>
+      <subject>
+         <MedicationDispenseList>
+            <code code="MEDLIST"
+                  codeSystem="2.16.840.1.113883.5.4"/>
+            <subject>
+               <Patient>
+                  <id extension="999900845"
+                      root="2.16.840.1.113883.2.4.6.3"/>
+                  <statusCode code="active"/>
+                  <Person>
+                     <name>
+                        <given qualifier="IN">M.</given>
+                        <family qualifier="BR">XXX_Niesing</family>
+                     </name>
+                     <administrativeGenderCode code="M"
+                                               codeSystem="2.16.840.1.113883.5.1"
+                                               displayName="Man"/>
+                     <birthTime value="19851029"/>
+                  </Person>
+               </Patient>
+            </subject>
+            <component>
+               <medicationDispenseEvent>
+                  <id extension="MBH_300_HPKvoorschrijven_MVE"
+                      root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="20240101140000+0100"/>
+                  <quantity value="150"
+                            unit="1">
+                     <translation value="150"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </quantity>
+                  <performer>
+                     <assignedPerson>
+                        <id nullFlavor="MSK"/>
+                     </assignedPerson>
+                  </performer>
+                  <product>
+                     <dispensedMedication>
+                        <MedicationKind classCode="MMAT"
+                                        determinerCode="KIND">
+                           <code code="2214350"
+                                 codeSystem="2.16.840.1.113883.2.4.4.7"
+                                 displayName="XARELTO TABLET FILMOMHULD 20MG"
+                                 codeSystemName="G-Standaard HPK">
+                              <translation code="100153"
+                                           codeSystem="2.16.840.1.113883.2.4.4.10"
+                                           displayName="RIVAROXABAN TABLET 20MG"
+                                           codeSystemName="G-Standaard PRK"/>
+                              <translation code="138363"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1"
+                                           displayName="RIVAROXABAN TABLET 20MG"
+                                           codeSystemName="G-Standaard GPK"/>
+                           </code>
+                        </MedicationKind>
+                        <directTargetOf typeCode="DIR">
+                           <prescription>
+                              <id extension="MBH_300_HPKvoorschrijven_MA"
+                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                              <statusCode nullFlavor="UNK"/>
+                           </prescription>
+                        </directTargetOf>
+                        <therapeuticAgentOf>
+                           <medicationAdministrationRequest classCode="SBADM"
+                                                            moodCode="RQO">
+                              <text mediaType="text/plain">1 maal per dag 1 stuk, Oraal</text>
+                              <statusCode code="active"/>
+                              <effectiveTime xsi:type="SXPR_TS">
+                                 <comp xsi:type="IVL_TS">
+                                    <low value="20240101000000.000+0100"/>
+                                    <high value="20240530235959.000+0200"/>
+                                 </comp>
+                                 <comp xsi:type="PIVL_TS"
+                                       operator="A">
+                                    <period value="1"
+                                            unit="d"/>
+                                 </comp>
+                              </effectiveTime>
+                              <routeCode code="9"
+                                         codeSystem="2.16.840.1.113883.2.4.4.9"
+                                         displayName="Oraal"
+                                         codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                              <doseQuantity>
+                                 <center value="1"
+                                         unit="1">
+                                    <translation value="1"
+                                                 code="245"
+                                                 displayName="stuk"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                                 </center>
+                              </doseQuantity>
+                           </medicationAdministrationRequest>
+                        </therapeuticAgentOf>
+                     </dispensedMedication>
+                  </product>
+                  <responsibleParty>
+                     <assignedCareProvider>
+                        <id nullFlavor="NI"/>
+                        <code code="17.000"
+                              codeSystem="2.16.840.1.113883.2.4.15.111"
+                              displayName="Apotheker"/>
+                        <representedOrganization>
+                           <id extension="01236578"
+                               root="2.16.528.1.1007.3.3"/>
+                           <name>Apotheek De Gulle Gaper</name>
+                           <addr use="WP">
+                              <streetName>Dorpsstraat</streetName>
+                              <houseNumber>12</houseNumber>
+                              <buildingNumberSuffix>A</buildingNumberSuffix>
+                              <postalCode>1234 AA</postalCode>
+                              <city>Ons Dorp</city>
+                           </addr>
+                        </representedOrganization>
+                     </assignedCareProvider>
+                  </responsibleParty>
+               </medicationDispenseEvent>
+            </component>
+         </MedicationDispenseList>
+      </subject>
+      <queryAck>
+         <queryId extension="TOBEGENERATED"
+                  root="1.2.3.999"/>
+         <queryResponseCode code="OK"/>
+         <resultTotalQuantity value="1"/>
+         <resultCurrentQuantity value="1"/>
+         <resultRemainingQuantity value="0"/>
+      </queryAck>
+   </ControlActProcess>
+</QURX_IN990113NL>

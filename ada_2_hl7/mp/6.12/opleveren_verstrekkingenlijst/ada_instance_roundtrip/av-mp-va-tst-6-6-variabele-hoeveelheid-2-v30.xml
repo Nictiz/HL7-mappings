@@ -1,0 +1,142 @@
+<!--Generated from HL7v3 verstrekkingenlijst 6.12 xml with message id (QURX_IN990113NL/id) root: 2.16.840.1.113883.2.4.6.6.1.1 and extension: TOBEGENERATED.-->
+<adaxml xsi:noNamespaceSchemaLocation="../../beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2025-04-29T09:31:14.2563397+02:00"
+         last-update-date="2025-04-29T09:31:14.2563397+02:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app=""
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.374"
+                                            transactionEffectiveDate="2022-06-30T00:00:00"
+                                            prefix=""
+                                            language=""
+                                            title="Generated from HL7v3 verstrekkingenlijst 6.12 xml"
+                                            id="av-mp-va-tst-6-6-variabele-hoeveelheid-2-v30.xml">
+         <patient>
+            <naamgegevens>
+               <initialen value="G."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Hemsbergen"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900602"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime"
+                           value="1963-11-02"/>
+            <geslacht code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="72664"
+                           root="2.16.840.1.113883.2.4.3.11.61.2"/>
+            <toedieningsafspraak>
+               <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
+                              value="MBH_300_variabelehoeveelheid2_MVE"/>
+               <!--registratie_datum_tijd is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2024-01-01T09:18:00+01:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2024-01-01T00:00:00.000+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2024-01-29T23:59:59.000+01:00"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder value="d5257e218"
+                                 datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d5257e130"
+                                         datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="2 maal per dag 10 à 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen, OROMUCOSAAL"/>
+                  <toedieningsweg code="34"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  displayName="OROMUCOSAAL"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <aanvullende_instructie code="27"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          displayName="Eerst oplossen in water"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"/>
+                  <aanvullende_instructie code="69"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          displayName="mond spoelen, daarna uitspugen"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"/>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering>
+                        <!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <minimum_waarde value="10"/>
+                              <maximum_waarde value="15"/>
+                           </aantal>
+                           <eenheid code="233"
+                                    displayName="milliliter"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <!--mp9-vaste-frequentie-from-mp-612-->
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_variabelehoeveelheid2_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="d5257e130">
+               <product_code code="261815"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             displayName="WATERSTOFPEROXIDE 3% CONC VOOR MONDSP FNA MR"
+                             codeSystemName="G-Standaard HPK"/>
+               <product_code code="72664"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="WATERSTOFPEROXIDE CONC VOOR MONDSPOELING 30MG/ML"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="119903"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             displayName="WATERSTOFPEROXIDE CONC VOOR MONDSPOELING 30MG/ML"
+                             codeSystemName="G-Standaard GPK"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="d5257e218">
+               <zorgaanbieder_identificatienummer value="01236578"
+                                                  root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

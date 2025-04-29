@@ -1,0 +1,126 @@
+<!--Generated from HL7v3 verstrekkingenlijst 6.12 xml with message id (QURX_IN990113NL/id) root: 2.16.840.1.113883.2.4.6.6.1.1 and extension: TOBEGENERATED.-->
+<adaxml xsi:noNamespaceSchemaLocation="../../beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2025-04-29T09:31:01.4645146+02:00"
+         last-update-date="2025-04-29T09:31:01.4645146+02:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app=""
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.374"
+                                            transactionEffectiveDate="2022-06-30T00:00:00"
+                                            prefix=""
+                                            language=""
+                                            title="Generated from HL7v3 verstrekkingenlijst 6.12 xml"
+                                            id="av-mp-va-tst-2-4-aanvullendeinformatie-v30.xml">
+         <patient>
+            <naamgegevens>
+               <initialen value="C."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Coenen"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900420"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime"
+                           value="1963-10-17"/>
+            <geslacht code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="17205"
+                           root="2.16.840.1.113883.2.4.3.11.61.2"/>
+            <toedieningsafspraak>
+               <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
+                              value="MBH_300_aanvullendeinformatiewensen_MVE"/>
+               <!--registratie_datum_tijd is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2023-12-27T09:06:00+01:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2023-12-28T00:00:00.000+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2024-01-06T23:59:59.000+01:00"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder value="d4514e201"
+                                 datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d4514e130"
+                                         datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="elke dag om 19:00 1 stuk - let op, exacte toedientijd(en), Oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <!--mp9-doseerinstructie-from-mp612-tijden-->
+                  <doseerinstructie>
+                     <dosering>
+                        <!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <toedientijd value="19:00:00"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_aanvullendeinformatiewensen_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="d4514e130">
+               <product_code code="425087"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             displayName="BROXIL CAPSULE 500MG"
+                             codeSystemName="G-Standaard HPK"/>
+               <product_code code="17205"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="FENETICILLINE CAPSULE 500MG"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="41092"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             displayName="FENETICILLINE CAPSULE 500MG"
+                             codeSystemName="G-Standaard GPK"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="d4514e201">
+               <zorgaanbieder_identificatienummer value="01236578"
+                                                  root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

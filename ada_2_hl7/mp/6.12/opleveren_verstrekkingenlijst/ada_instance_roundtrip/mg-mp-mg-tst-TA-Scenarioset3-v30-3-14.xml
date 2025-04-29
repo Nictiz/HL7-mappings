@@ -1,0 +1,114 @@
+<!--Generated from HL7v3 verstrekkingenlijst 6.12 xml with message id (QURX_IN990113NL/id) root: 2.16.840.1.113883.2.4.6.6.1.1 and extension: TOBEGENERATED.-->
+<adaxml xsi:noNamespaceSchemaLocation="../../beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2025-04-29T09:31:33.6501082+02:00"
+         last-update-date="2025-04-29T09:31:33.6501082+02:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app=""
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.374"
+                                            transactionEffectiveDate="2022-06-30T00:00:00"
+                                            prefix=""
+                                            language=""
+                                            title="Generated from HL7v3 verstrekkingenlijst 6.12 xml"
+                                            id="mg-mp-mg-tst-TA-Scenarioset3-v30-3-14.xml">
+         <patient>
+            <naamgegevens>
+               <initialen value="C."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Dongen"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900493"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime"
+                           value="1963-10-23"/>
+            <geslacht code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="52272"
+                           root="2.16.840.1.113883.2.4.3.11.61.2"/>
+            <toedieningsafspraak>
+               <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
+                              value="MBH_300_CorrectieOpToediening_TA"/>
+               <!--registratie_datum_tijd is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2023-12-28T15:45:00+01:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2023-12-29T07:45:00.000+01:00"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder value="d6434e196"
+                                 datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d6434e127"
+                                         datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="elke dag om 07:45 2 stuks, Oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                  <!--mp9-doseerinstructie-from-mp612-tijden-->
+                  <doseerinstructie>
+                     <dosering>
+                        <!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="Stuks"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <toedientijd value="07:45:00"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_CorrectieOpToediening_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="d6434e127">
+               <product_code code="1163094"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             displayName="PANTOZOL TABLET MSR 20MG"
+                             codeSystemName="G-Standaard HPK"/>
+               <product_code code="52272"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="PANTOPRAZOL TABLET MSR 20MG"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="106275"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             displayName="PANTOPRAZOL TABLET MSR 20MG"
+                             codeSystemName="G-Standaard GPK"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="d6434e196">
+               <zorgaanbieder_identificatienummer value="99901111"
+                                                  root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek Jansen en Co"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>
