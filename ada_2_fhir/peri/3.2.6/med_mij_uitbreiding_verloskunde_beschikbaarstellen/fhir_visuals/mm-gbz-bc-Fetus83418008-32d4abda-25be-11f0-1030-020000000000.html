@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html lang="en">
+   <head>
+      <title>BodySite - 32d4abda-25be-11f0-1030-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>BodySite. Patiënt: Willemijn W XXX_Yzendoorn van den XXX_Berg. </caption>
+               <tbody>
+                  <tr>
+                     <th>Code</th>
+                     <td>
+                        <span title="gehele foetus (lichaamsstructuur) (83418008 - SNOMED CT)">gehele foetus (lichaamsstructuur)</span>
+                        <div>Geboren als: Kind Mieke XXX_Yzendoorn</div>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - BodySite gehele foetus (lichaamsstructuur)</b>
+      </p>
+      <ul>
+         <li>
+            <a href="mm-gbz-nl-core-observation370379002-32d49038-25be-11f0-1030-020000000000.html">Observation bevinding betreffende prenatale echografie (bevinding)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation11979-2-32d49043-25be-11f0-1030-020000000000.html">Observation Fetal Abdomen Circumference US</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-HeadCircumference363812007-32d49050-25be-11f0-1030-020000000000.html">Observation hoofdomtrek (waarneembare entiteit)</a>
+         </li>
+      </ul>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 1, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-nl-core-patient-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
+{ id: 2, label: "Patient XXX_Yzendoorn", url: "mm-gbz-nl-core-patient-MIEKE-XXX-YZENDOORN.html" }, 
+{ id: 74, label: "BodySite gehele foetus (lichaamsstructuur)", url: "mm-gbz-bc-Fetus83418008-32d4abda-25be-11f0-1030-020000000000.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 74, to: 2 }, 
+{ from: 74, to: 1 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

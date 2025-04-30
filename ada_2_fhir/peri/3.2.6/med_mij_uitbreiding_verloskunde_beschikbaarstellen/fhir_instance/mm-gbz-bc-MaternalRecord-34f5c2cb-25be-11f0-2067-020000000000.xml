@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EpisodeOfCare xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-kwa-casus1 -->
+   <id value="34f5c2cb-25be-11f0-2067-020000000000"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-episodeofcare"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MaternalRecord"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgepisode. Patiënt: Maaike M XXX_Ostendorf. Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <span title="observatie betreffende zwangerschap (waarneembare entiteit) (364320009 - SNOMED CT)">observatie betreffende zwangerschap (waarneembare entiteit)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>${DATE, T, D, -446} - ${DATE, T, D, -190}</td>
+               </tr>
+               <tr>
+                  <th>Zorgmanager</th>
+                  <td>Loes XXX_Korte || gediplomeerd verloskundige (beroep) || Verloskundigenpraktijk Dalen, Verloskundigenpraktijk Dalen</td>
+               </tr>
+               <tr>
+                  <th>Diagnose</th>
+                  <td>Zwangerschap 2 XXX_Ostendorf</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="34f5ba6b-25be-11f0-2067-020000000000"/>
+   </identifier>
+   <status value="finished"/>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="364320009"/>
+         <display value="observatie betreffende zwangerschap (waarneembare entiteit)"/>
+      </coding>
+   </type>
+   <diagnosis>
+      <condition>
+         <reference value="Condition/34f5cd96-25be-11f0-2067-020000000000"/>
+         <display value="Zwangerschap 2 XXX_Ostendorf"/>
+      </condition>
+   </diagnosis>
+   <patient>
+      <reference value="Patient/MAAIKE-M-XXX-OSTENDORF"/>
+      <display value="Maaike M XXX_Ostendorf"/>
+   </patient>
+   <managingOrganization>
+      <reference value="Organization/organization-mm-gbz-2.16.840.1.113883.2.4.3.22.97.4-1808"/>
+      <display value="Verloskundigenpraktijk Dalen"/>
+   </managingOrganization>
+   <period>
+      <start value="${DATE, T, D, -446}"/>
+      <end value="${DATE, T, D, -190}"/>
+   </period>
+   <careManager>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/practitionerrole-mm-gbz-1235648309453006"/>
+            <display value="Loes XXX_Korte || gediplomeerd verloskundige (beroep) || Verloskundigenpraktijk Dalen"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2.16.528.1.1007.3.1-1235648"/>
+      <display value="Loes XXX_Korte"/>
+   </careManager>
+</EpisodeOfCare>
