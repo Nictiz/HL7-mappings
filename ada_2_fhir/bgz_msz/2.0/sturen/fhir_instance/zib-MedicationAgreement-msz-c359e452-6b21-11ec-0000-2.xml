@@ -1,5 +1,5 @@
 <MedicationRequest xmlns="http://hl7.org/fhir">
-   <id value="zib-MedicationAgreement-msz-ae4b92d2-6b6b-11ec-0000-2"/>
+   <id value="zib-MedicationAgreement-msz-c359e452-6b21-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
    </meta>
@@ -24,16 +24,12 @@
                   <th>Doseerinstructie</th>
                   <td>
                      <div>Volgnummer: 1</div>
-                     <div>Instructie: <ul>
-                           <li>met voldoende water innemen</li>
-                           <li>bij voorkeur bij maaltijd innemen</li>
-                        </ul>
-                     </div>
-                     <div>Timing: <div>3 maal per dag</div>
+                     <div>Instructie: met voldoende water innemen.</div>
+                     <div>Timing: <div>4 maal per dag</div>
                      </div>
                      <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
                      </div>
-                     <div>Dosering: 1 STUK</div>
+                     <div>Dosering: 2 STUK</div>
                   </td>
                </tr>
             </tbody>
@@ -49,11 +45,11 @@
       </valueDuration>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-      <valueString value="Vanaf &lt;T-45D&gt;, 15 dagen, 3 maal per dag 1 stuk, oraal, met voldoende water innemen, bij voorkeur bij maaltijd innemen."/>
+      <valueString value="Vanaf &lt;T-45D&gt;, 15 dagen, 4 maal per dag 2 stuk, oraal, met voldoende water innemen"/>
    </extension>
    <identifier>
       <system value="urn:ietf:rfc:3986"/>
-      <value value="74da7b22-6ac6-11ec-0000-2"/>
+      <value value="eec5f262-6b01-11ec-0000-2"/>
    </identifier>
    <intent value="order"/>
    <category>
@@ -89,19 +85,11 @@
             <code value="OTH"/>
             <display value="overig"/>
          </coding>
-         <text value="met voldoende water innemen"/>
-      </additionalInstruction>
-      <additionalInstruction>
-         <coding>
-            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
-            <code value="OTH"/>
-            <display value="overig"/>
-         </coding>
-         <text value="bij voorkeur bij maaltijd innemen"/>
+         <text value="met voldoende water innemen."/>
       </additionalInstruction>
       <timing>
          <repeat>
-            <frequency value="3"/>
+            <frequency value="4"/>
             <period value="1"/>
             <periodUnit value="d"/>
          </repeat>
@@ -114,7 +102,7 @@
          </coding>
       </route>
       <doseQuantity>
-         <value value="1"/>
+         <value value="2"/>
          <unit value="STUK"/>
          <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
          <code value="ST"/>
