@@ -1,7 +1,8 @@
 <organizer classCode="CLUSTER"
            moodCode="EVN"
            xmlns="urn:hl7-org:v3"
-           xmlns:pharm="urn:ihe:pharm:medication">
+           xmlns:pharm="urn:ihe:pharm:medication"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9411"/>
    <code code="102"
          displayName="Medicatiegegevens"
@@ -41,15 +42,14 @@
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
-         <id extension="MBH_300_hybride_voorschrift_basale_inhoud_MA"
+         <id extension="MBH_hyb_vo_bsl_inhd_MA"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Volgens uitleg gebruiken, oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high value="20240116235959+0100"/>
          </effectiveTime>
@@ -77,29 +77,29 @@
          <author>
             <time value="20240101112000+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -119,7 +119,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_basale_inhoud"/>
+                   extension="MBH_hyb_vo_bsl_inhd"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -131,7 +131,7 @@
       <supply classCode="SPLY"
               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
-         <id extension="MBH_300_hybride_voorschrift_basale_inhoud_VV"
+         <id extension="MBH_hyb_vo_bsl_inhd_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
          <code code="52711000146108"
                displayName="Verstrekkingsverzoek"
@@ -182,45 +182,52 @@
          <author>
             <time value="20240101112000+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
          </author>
+         <participant typeCode="DST">
+            <participantRole classCode="SDLOC">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9091"/>
+               <addr>
+                  <desc>Dorpstraat 10, 1234 AB Ons Dorp</desc>
+               </addr>
+            </participantRole>
+         </participant>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_hybride_voorschrift_basale_inhoud_MA"
+               <id extension="MBH_hyb_vo_bsl_inhd_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -229,7 +236,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_basale_inhoud"/>
+                   extension="MBH_hyb_vo_bsl_inhd"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -242,15 +249,14 @@
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
-         <id extension="MBH_300_hybride_voorschrift_variabelefrequentie_MA"
+         <id extension="MBH_hyb_vo_varblfreq_MA"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">1 à 2 maal per dag 1 stuk, oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
@@ -278,29 +284,29 @@
          <author>
             <time value="20240101083900+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -311,7 +317,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <frequency value="1"/>
@@ -330,8 +335,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -340,7 +344,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_variabelefrequentie"/>
+                   extension="MBH_hyb_vo_varblfreq"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -352,7 +356,7 @@
       <supply classCode="SPLY"
               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
-         <id extension="MBH_300_hybride_voorschrift_variabelefrequentie_VV"
+         <id extension="MBH_hyb_vo_varblfreq_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
          <code code="52711000146108"
                displayName="Verstrekkingsverzoek"
@@ -403,29 +407,29 @@
          <author>
             <time value="20240101084000+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -434,14 +438,13 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_hybride_voorschrift_variabelefrequentie_MA"
+               <id extension="MBH_hyb_vo_varblfreq_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -450,7 +453,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_variabelefrequentie"/>
+                   extension="MBH_hyb_vo_varblfreq"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -463,15 +466,14 @@
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
-         <id extension="MBH_300_hybride_voorschrift_interval_MA"
+         <id extension="MBH_hyb_vo_intrvl_MA"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">iedere 8 uur 1 stuk - gelijke tussenpozen aanhouden, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high value="20240108235900+0100"/>
          </effectiveTime>
@@ -499,29 +501,29 @@
          <author>
             <time value="20240101090000+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -532,7 +534,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
@@ -553,8 +554,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -563,7 +563,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_interval"/>
+                   extension="MBH_hyb_vo_intrvl"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -575,7 +575,7 @@
       <supply classCode="SPLY"
               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
-         <id extension="MBH_300_hybride_voorschrift_interval_VV"
+         <id extension="MBH_hyb_vo_intrvl_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
          <code code="52711000146108"
                displayName="Verstrekkingsverzoek"
@@ -626,29 +626,29 @@
          <author>
             <time value="20240101090500+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -657,14 +657,13 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_hybride_voorschrift_interval_MA"
+               <id extension="MBH_hyb_vo_intrvl_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -673,7 +672,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_interval"/>
+                   extension="MBH_hyb_vo_intrvl"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -686,15 +685,14 @@
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
-         <id extension="MBH_300_hybride_voorschrift_herhalingen_MA"
+         <id extension="MBH_hyb_vo_hrhlngn_MA"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">1 maal per dag 1 stuk, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
@@ -722,29 +720,29 @@
          <author>
             <time value="20240101085800+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -755,7 +753,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <frequency value="1"/>
@@ -773,8 +770,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -783,7 +779,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_herhalingen"/>
+                   extension="MBH_hyb_vo_hrhlngn"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -795,7 +791,7 @@
       <supply classCode="SPLY"
               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
-         <id extension="MBH_300_hybride_voorschrift_herhalingen_VV"
+         <id extension="MBH_hyb_vo_hrhlngn_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
          <code code="52711000146108"
                displayName="Verstrekkingsverzoek"
@@ -847,29 +843,29 @@
          <author>
             <time value="20240101085900+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -878,14 +874,13 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_hybride_voorschrift_herhalingen_MA"
+               <id extension="MBH_hyb_vo_hrhlngn_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -894,7 +889,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_herhalingen"/>
+                   extension="MBH_hyb_vo_hrhlngn"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -907,22 +902,21 @@
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
-         <id extension="MBH_300_hybride_voorschrift_weekdag_MA"
+         <id extension="MBH_hyb_vo_wkdg_MA"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">op maandag, woensdag en vrijdag 3 maal per week 1 stuk, voor de nacht aanbrengen, Cutaan</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high value="20240116235959+0100"/>
          </effectiveTime>
          <routeCode code="53"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
                     displayName="Cutaan"
-                    codeSystemName="G-"/>
+                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
@@ -943,29 +937,29 @@
          <author>
             <time value="20240101082500+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -985,7 +979,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <frequency value="3"/>
@@ -1006,8 +999,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1016,7 +1008,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_weekdag"/>
+                   extension="MBH_hyb_vo_wkdg"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -1028,7 +1020,7 @@
       <supply classCode="SPLY"
               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
-         <id extension="MBH_300_hybride_voorschrift_weekdag_VV"
+         <id extension="MBH_hyb_vo_wkdg_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
          <code code="52711000146108"
                displayName="Verstrekkingsverzoek"
@@ -1079,45 +1071,52 @@
          <author>
             <time value="20240101082500+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
          </author>
+         <participant typeCode="DST">
+            <participantRole classCode="SDLOC">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9091"/>
+               <addr>
+                  <desc>Dorpstraat 10, 1234 AB Ons Dorp</desc>
+               </addr>
+            </participantRole>
+         </participant>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_hybride_voorschrift_weekdag_MA"
+               <id extension="MBH_hyb_vo_wkdg_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1126,7 +1125,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_weekdag"/>
+                   extension="MBH_hyb_vo_wkdg"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -1139,15 +1138,14 @@
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
-         <id extension="MBH_300_hybride_voorschrift_magistraalalleingredienten_MA"
+         <id extension="MBH_hyb_vo_mgstrlalleingrdntn_MA"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Zo nodig, cutaan</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high value="20240201235959+0100"/>
          </effectiveTime>
@@ -1167,8 +1165,7 @@
                      <pharm:quantity>
                         <numerator xsi:type="PQ"
                                    value="10"
-                                   unit="g"
-                                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                                   unit="g">
                            <translation value="10"
                                         code="215"
                                         displayName="gram"
@@ -1177,8 +1174,7 @@
                         </numerator>
                         <denominator xsi:type="PQ"
                                      value="100"
-                                     unit="g"
-                                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                                     unit="g">
                            <translation value="100"
                                         code="215"
                                         displayName="gram"
@@ -1198,8 +1194,7 @@
                      <pharm:quantity>
                         <numerator xsi:type="PQ"
                                    value="90"
-                                   unit="g"
-                                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                                   unit="g">
                            <translation value="90"
                                         code="215"
                                         displayName="gram"
@@ -1208,8 +1203,7 @@
                         </numerator>
                         <denominator xsi:type="PQ"
                                      value="100"
-                                     unit="g"
-                                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                                     unit="g">
                            <translation value="100"
                                         code="215"
                                         displayName="gram"
@@ -1231,29 +1225,29 @@
          <author>
             <time value="20240101121000+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -1263,8 +1257,7 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
                <precondition>
                   <criterion>
                      <code code="1137"
@@ -1280,7 +1273,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_magistraalalleingredienten"/>
+                   extension="MBH_hyb_vo_mgstrlalleingrdntn"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -1292,7 +1285,7 @@
       <supply classCode="SPLY"
               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
-         <id extension="MBH_300_hybride_voorschrift_magistraalalleingredienten_VV"
+         <id extension="MBH_hyb_vo_mgstrlalleingrdntn_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
          <code code="52711000146108"
                displayName="Verstrekkingsverzoek"
@@ -1318,8 +1311,7 @@
                      <pharm:quantity>
                         <numerator xsi:type="PQ"
                                    value="10"
-                                   unit="g"
-                                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                                   unit="g">
                            <translation value="10"
                                         code="215"
                                         displayName="gram"
@@ -1328,8 +1320,7 @@
                         </numerator>
                         <denominator xsi:type="PQ"
                                      value="100"
-                                     unit="g"
-                                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                                     unit="g">
                            <translation value="100"
                                         code="215"
                                         displayName="gram"
@@ -1349,8 +1340,7 @@
                      <pharm:quantity>
                         <numerator xsi:type="PQ"
                                    value="90"
-                                   unit="g"
-                                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                                   unit="g">
                            <translation value="90"
                                         code="215"
                                         displayName="gram"
@@ -1359,8 +1349,7 @@
                         </numerator>
                         <denominator xsi:type="PQ"
                                      value="100"
-                                     unit="g"
-                                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                                     unit="g">
                            <translation value="100"
                                         code="215"
                                         displayName="gram"
@@ -1399,29 +1388,29 @@
          <author>
             <time value="20240101120000+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -1430,14 +1419,13 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_hybride_voorschrift_magistraalalleingredienten_MA"
+               <id extension="MBH_hyb_vo_mgstrlalleingrdntn_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1446,7 +1434,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_magistraalalleingredienten"/>
+                   extension="MBH_hyb_vo_mgstrlalleingrdntn"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -1459,15 +1447,14 @@
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
-         <id extension="MBH_300_hybride_voorschrift_dagdeel_MA"
+         <id extension="MBH_hyb_vo_dgdl_MA"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">1 maal per dag 1 stuk 's avonds, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
@@ -1495,29 +1482,29 @@
          <author>
             <time value="20240101082500+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -1528,7 +1515,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <frequency value="1"/>
@@ -1547,8 +1533,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1557,7 +1542,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.4.7"
-                   extension="MBH_300_hybride_voorschrift_dagdeel"/>
+                   extension="MBH_hyb_vo_dgdl"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -1569,7 +1554,7 @@
       <supply classCode="SPLY"
               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
-         <id extension="MBH_300_hybride_voorschrift_dagdeel_VV"
+         <id extension="MBH_hyb_vo_dgdl_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
          <code code="52711000146108"
                displayName="Verstrekkingsverzoek"
@@ -1620,29 +1605,29 @@
          <author>
             <time value="20240101082700+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -1651,14 +1636,13 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_hybride_voorschrift_dagdeel_MA"
+               <id extension="MBH_hyb_vo_dgdl_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1667,7 +1651,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.4.7"
-                   extension="MBH_300_hybride_voorschrift_dagdeel"/>
+                   extension="MBH_hyb_vo_dgdl"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -1680,15 +1664,14 @@
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
-         <id extension="MBH_300_hybride_voorschrift_cyclischschema_MA"
+         <id extension="MBH_hyb_vo_cyclschma_MA"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">cyclus van 28 dagen: steeds gedurende 21 dagen 1 maal per dag 1 stuk, oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
@@ -1716,29 +1699,29 @@
          <author>
             <time value="20240101083300+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -1749,7 +1732,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
                      <valueDuration>
@@ -1781,8 +1763,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1791,7 +1772,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_cyclischschema"/>
+                   extension="MBH_hyb_vo_cyclschma"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -1803,7 +1784,7 @@
       <supply classCode="SPLY"
               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
-         <id extension="MBH_300_hybride_voorschrift_cyclischschema_VV"
+         <id extension="MBH_hyb_vo_cyclschma_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
          <code code="52711000146108"
                displayName="Verstrekkingsverzoek"
@@ -1854,29 +1835,29 @@
          <author>
             <time value="20240101083300+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -1885,14 +1866,13 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_hybride_voorschrift_cyclischschema_MA"
+               <id extension="MBH_hyb_vo_cyclschma_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1901,7 +1881,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_cyclischschema"/>
+                   extension="MBH_hyb_vo_cyclschma"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -1914,15 +1894,14 @@
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
-         <id extension="MBH_300_hybride_voorschrift_afbouwschema_MA"
+         <id extension="MBH_hyb_vo_afbwschm_MA"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">eerst gedurende 2 weken 1 maal per dag 3 gram, dan gedurende 3 weken 1 maal per dag 2 gram, dan gedurende 6 dagen 1 maal per dag 1 gram, cutaan</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high value="20240211235959+0100"/>
          </effectiveTime>
@@ -1950,29 +1929,29 @@
          <author>
             <time value="20240101084000+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -1983,7 +1962,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -2007,8 +1985,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -2017,7 +1994,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -2041,8 +2017,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -2051,7 +2026,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -2075,8 +2049,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -2085,7 +2058,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_afbouwschema"/>
+                   extension="MBH_hyb_vo_afbwschm"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -2097,7 +2070,7 @@
       <supply classCode="SPLY"
               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
-         <id extension="MBH_300_hybride_voorschrift_afbouwschema_VV"
+         <id extension="MBH_hyb_vo_afbwschm_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
          <code code="52711000146108"
                displayName="Verstrekkingsverzoek"
@@ -2148,29 +2121,29 @@
          <author>
             <time value="20240101084000+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
+               <id extension="000001113"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="00005111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Huisartsenpraktijk Itis</name>
                   <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
+                     <streetName>Langelaan</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
+                     <postalCode>1234 ZZ</postalCode>
+                     <city>Onze Stad</city>
                   </addr>
                </representedOrganization>
             </assignedAuthor>
@@ -2179,14 +2152,13 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_hybride_voorschrift_afbouwschema_MA"
+               <id extension="MBH_hyb_vo_afbwschm_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -2195,7 +2167,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_voorschrift_afbouwschema"/>
+                   extension="MBH_hyb_vo_afbwschm"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>

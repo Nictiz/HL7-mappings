@@ -1,11 +1,13 @@
-<!--Generated from HL7v3 instance.--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatiegegevens.xsd">
+<!--Generated from HL7v3 instance.-->
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatiegegevens.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2024-01-01T00:00:00+02:00"
-         last-update-date="2024-01-01T00:00:00+02:00"/>
-   <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
+         creation-date="2025-04-30T14:01:55.076+02:00"
+         last-update-date="2025-04-30T14:01:55.076+02:00"/>
+   <data>
+      <!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
       <sturen_medicatiegegevens app="mp-mp93"
                                 shortName="sturen_medicatiegegevens"
                                 formName="medicatiegegevens"
@@ -25,9 +27,13 @@
                   <achternaam value="XXX_Hess"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999900614" root="2.16.840.1.113883.2.4.6.3"/>
-            <geboortedatum datatype="datetime" value="1963-11-03"/>
-            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+            <identificatienummer value="999900614"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime"
+                           value="1963-11-03"/>
+            <geslacht code="M"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Man"/>
          </patient>
          <medicamenteuze_behandeling>
             <identificatie value="MBH_300_magistraalalleingredienten"
@@ -35,16 +41,21 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_magistraalalleingredienten_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2024-01-01T12:00:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2024-01-01T12:00:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2024-02-01T23:59:59+01:00"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2024-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2024-02-01T23:59:59+01:00"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d6303e123" datatype="reference"/>
+                  <zorgverlener value="d23958e123"
+                                datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d6303e64" datatype="reference"/>
+                  <farmaceutisch_product value="d23958e64"
+                                         datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
                   <omschrijving value="Zo nodig, cutaan"/>
@@ -71,16 +82,21 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_magistraalactieveingredient_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2024-01-01T12:05:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2024-01-01T12:05:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2024-01-02T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2024-03-11T23:59:59+01:00"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2024-01-02T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2024-03-11T23:59:59+01:00"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d6303e123" datatype="reference"/>
+                  <zorgverlener value="d23958e123"
+                                datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d6303e235" datatype="reference"/>
+                  <farmaceutisch_product value="d23958e235"
+                                         datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
                   <omschrijving value="1 maal per dag, cutaan"/>
@@ -96,8 +112,20 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir"
+                                             xmlns:pharm="urn:ihe:pharm:medication">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -110,16 +138,21 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_magistraal90miljoennr_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2024-01-01T12:08:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2024-01-01T12:08:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2024-01-31T23:59:59+01:00"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2024-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2024-01-31T23:59:59+01:00"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d6303e123" datatype="reference"/>
+                  <zorgverlener value="d23958e123"
+                                datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d6303e388" datatype="reference"/>
+                  <farmaceutisch_product value="d23958e388"
+                                         datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
                   <omschrijving value="1 maal per dag, cutaan"/>
@@ -135,8 +168,20 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir"
+                                             xmlns:pharm="urn:ihe:pharm:medication">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -149,16 +194,21 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_vrijetekstproduct_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-12-31T14:52:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2023-12-31T14:52:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-12-31T00:00:00+01:00"/>
-                  <tijds_duur value="12" unit="week"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2023-12-31T00:00:00+01:00"/>
+                  <tijds_duur value="12"
+                              unit="week"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d6303e123" datatype="reference"/>
+                  <zorgverlener value="d23958e123"
+                                datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d6303e541" datatype="reference"/>
+                  <farmaceutisch_product value="d23958e541"
+                                         datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
                   <omschrijving value="1 maal per 3 weken 1 stuk, Intraveneus"/>
@@ -183,8 +233,20 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="3" unit="week"/>
+                              <tijdseenheid value="3"
+                                            unit="week"/>
                            </frequentie>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir"
+                                             xmlns:pharm="urn:ihe:pharm:medication">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="3"/>
+                                    <periodUnit value="wk"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -192,7 +254,7 @@
             </medicatieafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d6303e64">
+            <farmaceutisch_product id="d23958e64">
                <product_code code="OTH"
                              codeSystem="2.16.840.1.113883.5.1008"
                              displayName="overig"/>
@@ -245,7 +307,7 @@
                   </ingredient>
                </product_specificatie>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d6303e235">
+            <farmaceutisch_product id="d23958e235">
                <product_code code="OTH"
                              codeSystem="2.16.840.1.113883.5.1008"
                              displayName="overig"/>
@@ -276,7 +338,7 @@
                   </ingredient>
                </product_specificatie>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d6303e388">
+            <farmaceutisch_product id="d23958e388">
                <product_code code="90000001"
                              codeSystem="2.16.840.1.113883.2.4.3.11.9999.77.90000000.1.1111"
                              codeSystemName="2.16.840.1.113883.2.4.3.11.999.77.90000000.1.1111"
@@ -308,7 +370,7 @@
                   </ingredient>
                </product_specificatie>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d6303e541">
+            <farmaceutisch_product id="d23958e541">
                <product_code code="OTH"
                              codeSystem="2.16.840.1.113883.5.1008"
                              displayName="overig"/>
@@ -317,8 +379,9 @@
                   <omschrijving value="Titel: Jemperli (Dostarlimab-gxly) 500 mg/10 mL"/>
                </product_specificatie>
             </farmaceutisch_product>
-            <zorgverlener id="d6303e123">
-               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+            <zorgverlener id="d23958e123">
+               <zorgverlener_identificatienummer value="000001111"
+                                                 root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Peter"/>
                   <geslachtsnaam>
@@ -332,11 +395,13 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d6303e144" datatype="reference"/>
+                  <zorgaanbieder value="d23958e144"
+                                 datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d6303e144">
-               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+            <zorgaanbieder id="d23958e144">
+               <zorgaanbieder_identificatienummer value="00001111"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>

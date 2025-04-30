@@ -43,6 +43,17 @@
                      type="screenshot_type_2_16_840_1_113883_2_4_3_11_999_77_2_4_1_3"
                      minOccurs="0"
                      maxOccurs="1"/>
+         <xs:element name="patient_ref-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId"
+                             fixed="1.999.2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="patient_ref"
+                     type="patient_ref_type_1_999_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_1"
+                     minOccurs="0"
+                     maxOccurs="1"/>
          <xs:element name="patient-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1"/>
@@ -51,7 +62,7 @@
          </xs:element>
          <xs:element name="patient"
                      type="patient_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_1"
-                     minOccurs="1"
+                     minOccurs="0"
                      maxOccurs="1"/>
          <xs:element name="medicamenteuze_behandeling-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
@@ -174,6 +185,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="naamgegevens_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_2">
@@ -4469,7 +4481,7 @@
          <xs:element name="reden_wijzigen_of_stoppen_gebruik"
                      type="reden_wijzigen_of_stoppen_gebruik_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_409"
                      minOccurs="0"
-                     maxOccurs="unbounded"/>
+                     maxOccurs="1"/>
          <xs:element name="toelichting-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.410"/>
@@ -7027,6 +7039,27 @@
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.3"/>
       <xs:attribute name="value" type="xs:string"/>
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="text"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: PatientRef - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="patient_ref_type_1_999_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_1">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId"
+                    fixed="1.999.2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="reference"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -11310,7 +11343,7 @@
       <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: FinancieleIndicatiecode - 0..1 R</xs:documentation>
+      <xs:documentation>Type for concept item: FinanciëleIndicatiecode - 0..1 R</xs:documentation>
    </xs:annotation>
    <xs:complexType name="financiele_indicatiecode_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_592">
       <xs:sequence>
@@ -14957,7 +14990,7 @@
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: RedenWijzigenOfStoppenGebruik - 0..* R</xs:documentation>
+      <xs:documentation>Type for concept item: RedenWijzigenOfStoppenGebruik - 0..1 R</xs:documentation>
    </xs:annotation>
    <xs:complexType name="reden_wijzigen_of_stoppen_gebruik_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_409">
       <xs:sequence>
