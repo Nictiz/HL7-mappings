@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EpisodeOfCare xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-kwa-casus3 -->
+   <id value="25fcb6ef-2699-11f0-8922-020000000000"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-episodeofcare"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MaternalRecord"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgepisode. Patiënt: Micha M XXX_Yassien-Mohamed. Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <span title="observatie betreffende zwangerschap (waarneembare entiteit) (364320009 - SNOMED CT)">observatie betreffende zwangerschap (waarneembare entiteit)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>${DATE, T, D, -455} - ${DATE, T, D, -260}</td>
+               </tr>
+               <tr>
+                  <th>Zorgmanager</th>
+                  <td>Loes XXX_Korte || Verloskundigen, niet nader gespecificeerd || Verloskundigenpraktijk Dalen, Verloskundigenpraktijk Dalen</td>
+               </tr>
+               <tr>
+                  <th>Diagnose</th>
+                  <td>Zwangerschap 1 XXX_Yassien-Mohamed</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="25fcc6f9-2699-11f0-8922-020000000000"/>
+   </identifier>
+   <status value="finished"/>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="364320009"/>
+         <display value="observatie betreffende zwangerschap (waarneembare entiteit)"/>
+      </coding>
+   </type>
+   <diagnosis>
+      <condition>
+         <reference value="Condition/25fcc661-2699-11f0-8922-020000000000"/>
+         <display value="Zwangerschap 1 XXX_Yassien-Mohamed"/>
+      </condition>
+   </diagnosis>
+   <patient>
+      <reference value="Patient/MICHA-M-XXX-YASSIEN-MOHAMED"/>
+      <display value="Micha M XXX_Yassien-Mohamed"/>
+   </patient>
+   <managingOrganization>
+      <reference value="Organization/organization-mm-gbz-2.16.840.1.113883.2.4.6.1-45678912"/>
+      <display value="Verloskundigenpraktijk Dalen"/>
+   </managingOrganization>
+   <period>
+      <start value="${DATE, T, D, -455}"/>
+      <end value="${DATE, T, D, -260}"/>
+   </period>
+   <careManager>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/practitionerrole-mm-gbz-12356480800"/>
+            <display value="Loes XXX_Korte || Verloskundigen, niet nader gespecificeerd || Verloskundigenpraktijk Dalen"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2.16.528.1.1007.3.1-1235648"/>
+      <display value="Loes XXX_Korte"/>
+   </careManager>
+</EpisodeOfCare>

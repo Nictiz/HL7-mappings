@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html lang="en">
+   <head>
+      <title>Procedure - 25416a15-2699-11f0-1146-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Verrichting. Subject: Kind Lilianne L XXX_Swart. Categorie: <span title="Obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">Obstetrische verrichting (verrichting)</span>, Status: voltooid<span style="display: block;">Uitvoerende: Erasmus MC, Sophia kinderziekenhuis</span>
+               </caption>
+               <tbody>
+                  <tr>
+                     <td>
+                        <span title="geboorte (bevinding) (3950001 - SNOMED CT)">geboorte (bevinding)</span>
+                     </td>
+                     <td/>
+                  </tr>
+                  <tr>
+                     <th>Reden</th>
+                     <td>Zwangerschap 1 XXX_Swart</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Procedure geboorte (bevinding)</b>
+      </p>
+      <ul>
+         <li>
+            <a href="mm-gbz-nl-core-observation364336006-25416a19-2699-11f0-1146-020000000000.html">Observation soort partus (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation271692001-25416a20-2699-11f0-1146-020000000000.html">Observation presenterend deel van foetus (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation366344009-25416a25-2699-11f0-1146-020000000000.html">Observation bevinding betreffende locatie van partus</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-Pregnancy-Duration57036006-254169bb-2699-11f0-1146-020000000000.html">Observation zwangerschapsduur (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ObstetricProcedure80771000146107-25416a32-2699-11f0-1146-020000000000.html">Procedure primaire sectio caesarea (verrichting)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ObstetricProcedure698350008370131001=133933007-25416a3b-2699-11f0-1146-020000000000.html">Procedure vitamine K toediening aan neonaat</a>
+         </li>
+      </ul>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 2, label: "Organization Erasmus MC, Sophia kinderziekenhuis", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2.16.528.1.1007.3.3-06020806.html" }, 
+{ id: 13, label: "Patient XXX_Swart", url: "mm-gbz-nl-core-patient-LILIANNE-L-XXX-SWART.html" }, 
+{ id: 14, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-25416918-2699-11f0-1146-020000000000.html" }, 
+{ id: 15, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-254161ab-2699-11f0-1146-020000000000.html" }, 
+{ id: 81, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-254169b7-2699-11f0-1146-020000000000.html" }, 
+{ id: 83, label: "Procedure geboorte (bevinding)", url: "mm-gbz-bc-Birth3950001-25416a15-2699-11f0-1146-020000000000.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 83, to: 81 }, 
+{ from: 83, to: 13 }, 
+{ from: 83, to: 15 }, 
+{ from: 83, to: 2 }, 
+{ from: 83, to: 14 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>
