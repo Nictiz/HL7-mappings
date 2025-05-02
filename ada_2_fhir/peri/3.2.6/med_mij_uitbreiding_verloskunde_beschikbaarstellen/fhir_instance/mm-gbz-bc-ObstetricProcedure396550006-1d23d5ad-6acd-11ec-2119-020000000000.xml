@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Procedure xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-kwa-casus2 -->
+   <id value="1d23d5ad-6acd-11ec-2119-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ObstetricProcedure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Fiona F XXX_Swart. Categorie: <span title="Obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">Obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="bloedonderzoek (verrichting) (396550006 - SNOMED CT)">bloedonderzoek (verrichting)</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: Vanaf ${DATE, T, D, -207}</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>Zwangerschap 1 XXX_Swart</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="1d23d5ad-6acd-11ec-2119-020000000000"/>
+   </identifier>
+   <partOf>
+      <reference value="Procedure/3834f287-6aa8-11ec-2123-020000000000"/>
+      <display value="bevalling zwangerschap 1 XXX_Swart"/>
+   </partOf>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="386637004"/>
+         <display value="Obstetrische verrichting (verrichting)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="396550006"/>
+         <display value="bloedonderzoek (verrichting)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/FIONA-F-XXX-SWART"/>
+      <display value="Fiona F XXX_Swart"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/8b4a1a6f-6b0c-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Swart"/>
+   </context>
+   <performedPeriod>
+      <start value="${DATE, T, D, -207}"/>
+   </performedPeriod>
+   <reasonReference>
+      <reference value="Condition/e0d93b0f-6b66-11ec-2334-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Swart"/>
+   </reasonReference>
+</Procedure>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html lang="en">
+   <head>
+      <title>Encounter - 369ddb1f-6b33-11ec-1275-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Contact. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Status: voltooid</caption>
+               <tbody>
+                  <tr>
+                     <th>Type contact</th>
+                     <td>
+                        <div>
+                           <span title="Op lokatie (FLD - v3/ActCode)">Op lokatie</span>
+                        </div>
+                        <span title="consult (verrichting) (11429006 - SNOMED CT)">consult (verrichting)</span>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Periode</th>
+                     <td>${DATE, T, D, -374} - ${DATE, T, D, -374}</td>
+                  </tr>
+                  <tr>
+                     <th>Probleem/Verrichting</th>
+                     <td>Zwangerschap 2 Vrouw-XXX_Yzendoorn</td>
+                  </tr>
+                  <tr>
+                     <th>Participant</th>
+                     <td>
+                        <div>Gemma XXX_Groeneboom XXX_Gras || Verloskundige || Verloskundigenpraktijk 't Groen</div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Zorgaanbieder</th>
+                     <td>Verloskundigenpraktijk 't Groen</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Encounter consult (verrichting)</b>
+      </p>
+      <ul>
+         <li>
+            <a href="mm-gbz-nl-core-observation364618000-b1e145bf-6ab0-11ec-2213-020000000000.html">Observation bewegingspatroon van foetus (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation364265003-76f90ee2-6b73-11ec-2404-020000000000.html">Observation hoogte van uterus gravidus (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation249062004-c050bc96-6aee-11ec-2406-020000000000.html">Observation ligging van foetus (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation364611006-27e02a7f-6add-11ec-2407-020000000000.html">Observation indaling van foetus ten opzichte van spinae ischiadicae (waarneembare entiteit)</a>
+         </li>
+      </ul>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 1, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-nl-core-patient-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
+{ id: 5, label: "Organization Verloskundigenpraktijk 't Groen", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-840-1-113883-2-4-6-1-08001234.html" }, 
+{ id: 7, label: "Practitioner XXX_Gras-XXX_Groeneboom", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-12340001.html" }, 
+{ id: 9, label: "PractitionerRole Verloskundige", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-1234000103-000.html" }, 
+{ id: 11, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-8e9592ff-6aab-11ec-2334-020000000000.html" }, 
+{ id: 12, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-42e2c1ff-6b25-11ec-0000-020000000000.html" }, 
+{ id: 15, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-369ddb1f-6b33-11ec-1275-020000000000.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 15, to: 1 }, 
+{ from: 15, to: 12 }, 
+{ from: 15, to: 9 }, 
+{ from: 15, to: 7 }, 
+{ from: 15, to: 11 }, 
+{ from: 15, to: 5 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

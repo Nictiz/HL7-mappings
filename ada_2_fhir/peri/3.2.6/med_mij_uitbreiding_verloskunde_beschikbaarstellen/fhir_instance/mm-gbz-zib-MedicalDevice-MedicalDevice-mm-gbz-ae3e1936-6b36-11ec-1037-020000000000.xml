@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DeviceUseStatement xmlns="http://hl7.org/fhir">
+   <id value="MedicalDevice-mm-gbz-ae3e1936-6b36-11ec-1037-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Beschrijving apparaatgebruik. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Status: actief</caption>
+            <tbody>
+               <tr>
+                  <th>Apparaat/Systeem</th>
+                  <td>urinekatheter (fysiek object) Urinekatheter wegens overloopblaas/urine retentie</td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>Blaasfunctie</td>
+               </tr>
+               <tr>
+                  <th>Gebruiksperiode</th>
+                  <td>${DATE, T, D, -320} - ${DATE, T, D, -320}</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/deviceUseStatement-reasonReferenceSTU3">
+      <valueReference>
+         <reference value="Observation/BladderFunction-mm-gbz-d225f1f6-6b5f-11ec-2275-020000000000"/>
+         <display value="Blaasfunctie"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="5c271cb5-6b78-11ec-0000-020000000000"/>
+   </identifier>
+   <status value="active"/>
+   <subject>
+      <reference value="Patient/WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG"/>
+      <display value="Willemijn W XXX_Yzendoorn van den XXX_Berg"/>
+   </subject>
+   <whenUsed>
+      <start value="${DATE, T, D, -320}"/>
+      <end value="${DATE, T, D, -320}"/>
+   </whenUsed>
+   <device>
+      <reference value="Device/MedicalDeviceProduct-mm-gbz-ae3e1936-6b36-11ec-1037-020000000000"/>
+      <display value="urinekatheter (fysiek object) Urinekatheter wegens overloopblaas/urine retentie"/>
+   </device>
+</DeviceUseStatement>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-kwa-casus2 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/zwangerschapsgegevens/prenatale_controle/leven_voelen_observatie -->
+   <id value="38e436bf-6b35-11ec-2213-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-PregnancyObservation"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Fiona F XXX_Swart. Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>prenatale controle T-70D XXX_Swart</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -70}T14:20:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="bevinding gerapporteerd door patiënt of andere bron van voorgeschiedenis (bevinding) (418799008 - SNOMED CT)">bevinding gerapporteerd door patiënt of andere bron van voorgeschiedenis (bevinding)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="bewegingspatroon van foetus (waarneembare entiteit) (364618000 - SNOMED CT)">bewegingspatroon van foetus (waarneembare entiteit)</span>
+                  </td>
+                  <td>
+                     <span title="foetale bewegingen aanwezig (bevinding) (289431008 - SNOMED CT)">foetale bewegingen aanwezig (bevinding)</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
+      <valueReference>
+         <reference value="Condition/e0d93b0f-6b66-11ec-2334-020000000000"/>
+         <display value="Zwangerschap 1 XXX_Swart"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="38e436bf-6b35-11ec-2213-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="364618000"/>
+         <display value="bewegingspatroon van foetus (waarneembare entiteit)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/FIONA-F-XXX-SWART"/>
+      <display value="Fiona F XXX_Swart"/>
+   </subject>
+   <context>
+      <reference value="Encounter/ec3d4f8f-6aef-11ec-1275-020000000000"/>
+      <display value="prenatale controle T-70D XXX_Swart"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -70}T14:20:00+02:00"/>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="289431008"/>
+         <display value="foetale bewegingen aanwezig (bevinding)"/>
+      </coding>
+   </valueCodeableConcept>
+   <method>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="418799008"/>
+         <display value="bevinding gerapporteerd door patiënt of andere bron van voorgeschiedenis (bevinding)"/>
+      </coding>
+   </method>
+</Observation>
