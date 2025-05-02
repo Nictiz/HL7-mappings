@@ -1,4 +1,4 @@
-<adaxml xsi:noNamespaceSchemaLocation="../../../projects/perinatologie-326/schemas/ada_med_mij_uitbreiding_verloskunde_beschikbaarstellen.xsd"
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_med_mij_uitbreiding_verloskunde_beschikbaarstellen.xsd"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <meta status="new"
          created-by="geboortezorgada"
@@ -1406,6 +1406,23 @@
                <patient value="Patient-Foetus"
                         datatype="reference"
                         conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10283"/>
+               <foetale_monitoring_ctg conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1767">
+                  <uterusactiviteit conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.11.1483" datatype="reference" value="Maternale_uterusactiviteit1"/>
+                  <foetale_monitoring_moment conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3916" datatype="code" value="1" code="1156675004" codeSystem="2.16.840.1.113883.6.96" displayName="foetale periode ante partum (kwalificatiewaarde)"/>
+                  <tijds_interval conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1768" datatype="reference" value="Tijdinterval1"/>
+                  <foetale_hartslag_hartfrequentie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1783">
+                  </foetale_hartslag_hartfrequentie>
+                  <basis_hart_frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3909" datatype="quantity" value="100" unit="/min"/>
+                  <foetale_acceleraties conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3910" datatype="boolean" value="false"/>
+                  <foetale_deceleraties conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3911" datatype="code" value="1" code="113551000146106" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="ongecompliceerde deceleratie van foetale hartfrequentie (bevinding)"/>
+                  <foetale_hart_frequentie_variabiliteit conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3912" datatype="code" value="1" code="427565006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="afwezigheid van variabiliteit van foetale hartfrequentie (bevinding)"/>
+                  <foetale_monitoring_methode conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3915" datatype="code" value="1" code="81855008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="inwendig monitoren van foetus tijdens bevalling (regime/therapie)"/>
+                  <conclusie_figo conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3913" datatype="code" value="1" code="289342000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="patroon op cardiotocogram normaal (bevinding)"/>
+                  <conclusie_fisher conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3914" datatype="count" value="10"/>
+                  <beoordelaar conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3907">
+                     <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3908" datatype="reference" value="ZV2_Egelinks"/>
+                  </beoordelaar>
+               </foetale_monitoring_ctg>
                <echoscopie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1209">
                   <echografische_bevindingen_algemeen_observatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.8918">
                      <observatie_datum_tijd value="T-330D"
@@ -1462,7 +1479,7 @@
                </echoscopie>
             </foetusspecifieke_onderzoeksgegevens>
             <maternale_onderzoeksgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1124">
-               <uterusactiviteit conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1766">
+               <uterusactiviteit conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1766" id="Maternale_uterusactiviteit1">
                   <uterus_activiteit_frequentie value="180"
                                                 unit="/s"
                                                 conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3900"/>
@@ -1827,6 +1844,10 @@
                                 codeSystem="2.16.840.1.113883.6.96"
                                 displayName="bilateraal"/>
                </anatomische_locatie>
+               <tijds_interval id="Tijdinterval1" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1333">
+                  <start_datum_tijd datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1334" value="T-314D"/>
+                  <eind_datum_tijd datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1335" value="T-314D"/>
+               </tijds_interval>
             </subbouwstenen>
             <metingen conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1059">
                <bloeddruk id="Bloeddruk1_Vrouw"
