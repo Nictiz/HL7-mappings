@@ -1,12 +1,12 @@
-<start timestamp="2025-03-28T16:36:17.2436522+01:00"
-       detection-count="0"
+<start timestamp="2025-05-06T15:09:32.2913711+02:00"
+       detection-count="4"
        document-count="28">
    <validation href-original-report="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/validate_hl7_instance/schema-report-hl7-validate.xml"
                detection-count="0"
                validation-step-name="schema-validate-hl7-xml-voorbeelden"
                href-schema="YATC-internal/ada-2-hl7/env/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20231017/mp-xml-20231017T223005/schemas_codeGen_flat/organizer.xsd"
                validation-type="schema"
-               timestamp="2025-03-28T16:22:30.52+01:00"
+               timestamp="2025-05-06T15:02:08.12+02:00"
                document-count="14">
       <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/hl7_instance/av-example-93-1-v30.xml"
             detection-count="0">
@@ -70,7 +70,7 @@
                validation-step-name="schematron-validate-hl7-xml-voorbeelden-sturen_afhandeling_medicatievoorschrift"
                href-schema="YATC-internal/ada-2-hl7/env/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_av.sch"
                validation-type="schematron"
-               timestamp="2025-03-28T16:32:30.08+01:00"
+               timestamp="2025-05-06T15:07:32.55+02:00"
                document-count="1">
       <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/hl7_instance/av-example-93-1-v30.xml"
             detection-count="0">
@@ -82,7 +82,7 @@
                validation-step-name="schematron-validate-hl7-xml-voorbeelden-avma"
                href-schema="YATC-internal/ada-2-hl7/env/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_avma.sch"
                validation-type="schematron"
-               timestamp="2025-03-28T16:34:51.86+01:00"
+               timestamp="2025-05-06T15:08:46.96+02:00"
                document-count="1">
       <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/hl7_instance/avma-example-93-1-v30.xml"
             detection-count="0">
@@ -94,7 +94,7 @@
                validation-step-name="schematron-validate-hl7-xml-voorbeelden-sturen_antwoord_voorstel_verstrekkingsverzoek"
                href-schema="YATC-internal/ada-2-hl7/env/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_avvv.sch"
                validation-type="schematron"
-               timestamp="2025-03-28T16:32:39.01+01:00"
+               timestamp="2025-05-06T15:07:37.94+02:00"
                document-count="1">
       <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/hl7_instance/avvv-example-93-1-v30.xml"
             detection-count="0">
@@ -106,7 +106,7 @@
                validation-step-name="schematron-validate-hl7-xml-voorbeelden-bouwstenen-1"
                href-schema="YATC-internal/ada-2-hl7/env/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_mg_ma.sch"
                validation-type="schematron"
-               timestamp="2025-03-28T16:35:19.46+01:00"
+               timestamp="2025-05-06T15:09:01.57+02:00"
                document-count="1">
       <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/hl7_instance/bsma-example-930-1.xml"
             detection-count="0">
@@ -114,15 +114,31 @@
       </file>
    </validation>
    <validation href-original-report="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/validate_hl7_instance/schematron-report-hl7-validate-bouwstenen-2.xml"
-               detection-count="0"
+               detection-count="2"
                validation-step-name="schematron-validate-hl7-xml-voorbeelden-bouwstenen-2"
                href-schema="YATC-internal/ada-2-hl7/env/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_mg_wds.sch"
                validation-type="schematron"
-               timestamp="2025-03-28T16:35:26.6+01:00"
+               timestamp="2025-05-06T15:09:05.85+02:00"
                document-count="1">
       <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/hl7_instance/bswds-example-930-1.xml"
-            detection-count="0">
-         <pass/>
+            detection-count="2">
+         <fail>
+            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[1]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]/Q{urn:hl7-org:v3}code[1]"
+                                role="warning"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9413-2022-11-18T132644.html"
+                                test="not(.)"
+                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+               <svrl:text>(MPHL7WisselendDoseerschemaOrganizer2)/d184687e6-true-d184731e0: dit element '
+code' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9414'] | hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] | hl7:value[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.50-2022-12-16T102010.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor] (rule-reference: d184687e6-true-d184731e0)</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[1]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
+                                role="error"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
+                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
+                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
+            </svrl:failed-assert>
+         </fail>
       </file>
    </validation>
    <validation href-original-report="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/validate_hl7_instance/schematron-report-hl7-validate-bouwstenen-3.xml"
@@ -130,7 +146,7 @@
                validation-step-name="schematron-validate-hl7-xml-voorbeelden-bouwstenen-3"
                href-schema="YATC-internal/ada-2-hl7/env/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_mg_vv.sch"
                validation-type="schematron"
-               timestamp="2025-03-28T16:35:33.35+01:00"
+               timestamp="2025-05-06T15:09:09.63+02:00"
                document-count="1">
       <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/hl7_instance/bsvv-example-930-1.xml"
             detection-count="0">
@@ -142,7 +158,7 @@
                validation-step-name="schematron-validate-hl7-xml-voorbeelden-bouwstenen-4"
                href-schema="YATC-internal/ada-2-hl7/env/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_mg_ta.sch"
                validation-type="schematron"
-               timestamp="2025-03-28T16:35:41.9+01:00"
+               timestamp="2025-05-06T15:09:13.56+02:00"
                document-count="1">
       <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/hl7_instance/bsta-example-930-1.xml"
             detection-count="0">
@@ -154,7 +170,7 @@
                validation-step-name="schematron-validate-hl7-xml-voorbeelden-bouwstenen-5"
                href-schema="YATC-internal/ada-2-hl7/env/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_mg_mve.sch"
                validation-type="schematron"
-               timestamp="2025-03-28T16:35:46.82+01:00"
+               timestamp="2025-05-06T15:09:16.72+02:00"
                document-count="1">
       <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/hl7_instance/bsmve-example-930-1.xml"
             detection-count="0">
@@ -166,7 +182,7 @@
                validation-step-name="schematron-validate-hl7-xml-voorbeelden-bouwstenen-6"
                href-schema="YATC-internal/ada-2-hl7/env/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_mg_mgb.sch"
                validation-type="schematron"
-               timestamp="2025-03-28T16:36:04.31+01:00"
+               timestamp="2025-05-06T15:09:26.41+02:00"
                document-count="1">
       <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/hl7_instance/bsmgb-example-930-1.xml"
             detection-count="0">
@@ -178,7 +194,7 @@
                validation-step-name="schematron-validate-hl7-xml-voorbeelden-bouwstenen-7"
                href-schema="YATC-internal/ada-2-hl7/env/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_mg_mtd.sch"
                validation-type="schematron"
-               timestamp="2025-03-28T16:36:15.36+01:00"
+               timestamp="2025-05-06T15:09:31.79+02:00"
                document-count="1">
       <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/hl7_instance/bsmtd-example-930-1.xml"
             detection-count="0">
@@ -186,15 +202,31 @@
       </file>
    </validation>
    <validation href-original-report="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/validate_hl7_instance/schematron-report-hl7-validate-mg.xml"
-               detection-count="0"
+               detection-count="2"
                validation-step-name="schematron-validate-hl7-xml-voorbeelden-beschikbaarstellen_medicatiegegevens"
                href-schema="YATC-internal/ada-2-hl7/env/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_mgb.sch"
                validation-type="schematron"
-               timestamp="2025-03-28T16:32:07.84+01:00"
+               timestamp="2025-05-06T15:07:19.23+02:00"
                document-count="1">
       <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/hl7_instance/mg-example-93-1-v30.xml"
-            detection-count="0">
-         <pass/>
+            detection-count="2">
+         <fail>
+            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[2]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]/Q{urn:hl7-org:v3}code[1]"
+                                role="warning"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9411-2022-11-18T091239.html"
+                                test="not(.)"
+                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+               <svrl:text>(MPHL7MedicatiegegevensOrganizer7)/d160968e6-true-d161012e0: dit element '
+code' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9414'] | hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] | hl7:value[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.50-2022-12-16T102010.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor] (rule-reference: d160968e6-true-d161012e0)</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[2]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
+                                role="error"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
+                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
+                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
+            </svrl:failed-assert>
+         </fail>
       </file>
    </validation>
    <validation href-original-report="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/validate_hl7_instance/schematron-report-hl7-validate-mv.xml"
@@ -202,7 +234,7 @@
                validation-step-name="schematron-validate-hl7-xml-voorbeelden-sturen_medicatievoorschrift"
                href-schema="YATC-internal/ada-2-hl7/env/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_vos.sch"
                validation-type="schematron"
-               timestamp="2025-03-28T16:33:42.23+01:00"
+               timestamp="2025-05-06T15:08:15.69+02:00"
                document-count="1">
       <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/hl7_instance/mv-example-93-1-v30.xml"
             detection-count="0">
@@ -214,7 +246,7 @@
                validation-step-name="schematron-validate-hl7-xml-voorbeelden-sturen_voorstel_medicatieafspraak"
                href-schema="YATC-internal/ada-2-hl7/env/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_vma.sch"
                validation-type="schematron"
-               timestamp="2025-03-28T16:34:39.69+01:00"
+               timestamp="2025-05-06T15:08:41.3+02:00"
                document-count="1">
       <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/hl7_instance/vma-example-93-1-v30.xml"
             detection-count="0">
@@ -226,7 +258,7 @@
                validation-step-name="schematron-validate-hl7-xml-voorbeelden-sturen_voorstel_verstrekkingsverzoek"
                href-schema="YATC-internal/ada-2-hl7/env/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_vvv.sch"
                validation-type="schematron"
-               timestamp="2025-03-28T16:35:08.95+01:00"
+               timestamp="2025-05-06T15:08:55.19+02:00"
                document-count="1">
       <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/hl7_instance/vvv-example-93-1-v30.xml"
             detection-count="0">
