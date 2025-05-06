@@ -632,6 +632,19 @@
                                        displayName="niet-binair"
                                        conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10802"/>
                </partner>
+               <gezinssituatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1714">
+                  <burgerlijke_staat_rc conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2690" datatype="reference" value="burgerlijkestaat1"/>
+                  <aantal_kinderen conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1718" datatype="count" value="2"/>
+                  <aantal_kinderen_inwonend conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1719" datatype="count" value="2"/>
+                  <zorgtaak conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1720" datatype="string" value="Geen"/>
+                  <kind conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1721">
+                     <geboortedatum conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1722" value="T-365D"/>
+                     <inwonend conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1723" value="true" datatype="boolean"/>
+                  </kind>
+                  <kind conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1721">
+                     <inwonend conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1723" value="false" datatype="boolean"/>
+                  </kind>
+               </gezinssituatie>
                <woonsituatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1725">
                   <woning_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1727"
                                value="3"
@@ -639,6 +652,13 @@
                                codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.13.1"
                                displayName="Eengezinswoning"/>
                </woonsituatie>
+               <opleiding conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2581">
+                  <schooltype conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2582" datatype="code"  code="02" codeSystem="2.16.840.1.113883.2.4.4.30.20" displayName="Lager Algemeen Onderwijs"></schooltype>
+               </opleiding>
+               <participatie_in_maatschappij conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.692">
+                  <sociaal_netwerk conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.693" value="Heeft veel aanloop van buren." datatype="text"/>
+                  <arbeidssituatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.695" value="ICT-er" datatype="text"/>
+               </participatie_in_maatschappij>
             </demografische_gegevens>
             <betrokken_zorgverlener_zorginstelling conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1673">
                <huisarts conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1674">
@@ -703,7 +723,31 @@
                   </familielid>
                </familieanamnese>
             </anamnese>
+            <bloedonderzoek>
+               <laboratorium_test_bloedgroep conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1139" datatype="reference" value="bloedgroep1"/>
+               <laboratorium_test_rhesus_d conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1151" datatype="reference" value="rhesusd1"/>
+               <laboratorium_test_rhesus_c conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1163" datatype="reference" value="rhesusc1"/>
+            </bloedonderzoek>
          </vrouw>
+         <gezin>
+            <taalvaardigheid conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2911" datatype="reference" value="taalvaardigheid_gezin1"/>
+            <taalvaardigheid conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2911" datatype="reference" value="taalvaardigheid_gezin2"/>
+            <sociaal_netwerk conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2913" value="true" datatype="boolean"/>
+            <beoordeling_gezinssituatie_observatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2914">
+               <beoordeling_gezinssituatie_datum_tijd datatype="datetime" value="T-314D" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2915"/>
+               <instabiele_gezinssituatie_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2917" value="valt wel mee" datatype="text"/>
+               <zorgelijke_gezinssituatie_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2919" value="gaat oke" datatype="text"/>
+               <intoxicaties_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2921" datatype="text" value="soms"/>
+               <observatie_methode conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2923" value="1" code="418799008" codeSystem="2.16.840.1.113883.6.96" displayName="bevinding gerapporteerd door patiënt of andere bron van voorgeschiedenis (bevinding)" datatype="code"/>
+               <toelichting datatype="text" value="toelichting" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2922"/>
+            </beoordeling_gezinssituatie_observatie>
+            <probleem_infectieziekten_gezin conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10556">
+               <probleem_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10559" datatype="code" value="1" code="282291009" codeSystem="2.16.840.1.113883.6.96" displayName="interpretatie van diagnose"/>
+               <probleem_naam conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10560" datatype="code" value="1" code="73211009" codeSystem="2.16.840.1.113883.6.96" displayName="Diabetes mellitus (aandoening)"/>
+               <probleem_begin_datum conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10561" datatype="datetime" value="T-314D"/>
+               <probleem_status conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10563" datatype="code" value="1" code="55561003" codeSystem="2.16.840.1.113883.6.96" displayName="Active"/>
+            </probleem_infectieziekten_gezin>
+         </gezin>
          <zwangerschapsgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.25">
             <identificatie_van_de_zwangerschap value="1354685795"
                                                conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1698"/>
@@ -853,6 +897,13 @@
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4082"/>
                         </anatomische_locatie_meting>
                      </indaling_foetusmeting>
+                     <foetale_hartslag_hartfrequentie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1776">
+                        <hartfrequentie_datum_tijd conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1778" value="T-314D" datatype="datetime"/>
+                        <hartfrequentie_waarde datatype="quantity" value="100" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1777" unit="/s"/>
+                        <hartslag_meet_methode conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1779" datatype="code" value="1" code="408806008" codeSystem="2.16.840.1.113883.6.96" displayName="monitoren van foetale hart met handdoppler (regime/therapie)"/>
+                        <hartslag_regelmatigheid conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1781" datatype="code" value="1" code="289443009" codeSystem="2.16.840.1.113883.6.96" displayName="regelmatig hartritme van foetus (bevinding)"/>
+                        <interpretatie_frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1782" datatype="code" value="1" code="421656001" codeSystem="2.16.840.1.113883.6.96" displayName="basishartfrequentie bradycardie bij foetus (bevinding)"/>
+                     </foetale_hartslag_hartfrequentie>
                   </bevindingen_foetus>
                </uitwendig_onderzoek>
             </prenatale_controle>
@@ -1411,6 +1462,11 @@
                   <foetale_monitoring_moment conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3916" datatype="code" value="1" code="1156675004" codeSystem="2.16.840.1.113883.6.96" displayName="foetale periode ante partum (kwalificatiewaarde)"/>
                   <tijds_interval conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1768" datatype="reference" value="Tijdinterval1"/>
                   <foetale_hartslag_hartfrequentie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1783">
+                     <hartfrequentie_datum_tijd conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1778" value="T-314D" datatype="datetime"/>
+                     <hartfrequentie_waarde datatype="quantity" value="100" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1777" unit="/s"/>
+                     <hartslag_meet_methode conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1779" datatype="code" value="1" code="408806008" codeSystem="2.16.840.1.113883.6.96" displayName="monitoren van foetale hart met handdoppler (regime/therapie)"/>
+                     <hartslag_regelmatigheid conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1781" datatype="code" value="1" code="289443009" codeSystem="2.16.840.1.113883.6.96" displayName="regelmatig hartritme van foetus (bevinding)"/>
+                     <interpretatie_frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1782" datatype="code" value="1" code="421656001" codeSystem="2.16.840.1.113883.6.96" displayName="basishartfrequentie bradycardie bij foetus (bevinding)"/>
                   </foetale_hartslag_hartfrequentie>
                   <basis_hart_frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3909" datatype="quantity" value="100" unit="/min"/>
                   <foetale_acceleraties conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3910" datatype="boolean" value="false"/>
@@ -1476,6 +1532,15 @@
                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3630"/>
                      </foetale_schedelomvang>
                   </biometrie>
+                  <bevindingen>
+                     <foetale_hartslag_hartfrequentie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1784">
+                        <hartfrequentie_datum_tijd conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1778" value="T-314D" datatype="datetime"/>
+                        <hartfrequentie_waarde datatype="quantity" value="100" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1777" unit="/s"/>
+                        <hartslag_meet_methode conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1779" datatype="code" value="1" code="408806008" codeSystem="2.16.840.1.113883.6.96" displayName="monitoren van foetale hart met handdoppler (regime/therapie)"/>
+                        <hartslag_regelmatigheid conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1781" datatype="code" value="1" code="289443009" codeSystem="2.16.840.1.113883.6.96" displayName="regelmatig hartritme van foetus (bevinding)"/>
+                        <interpretatie_frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1782" datatype="code" value="1" code="421656001" codeSystem="2.16.840.1.113883.6.96" displayName="basishartfrequentie bradycardie bij foetus (bevinding)"/>
+                     </foetale_hartslag_hartfrequentie>
+                  </bevindingen>
                </echoscopie>
             </foetusspecifieke_onderzoeksgegevens>
             <maternale_onderzoeksgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1124">
@@ -1517,6 +1582,20 @@
                   </beoordelaar>
                </uterusactiviteit>
                <urine_bloed_en_aanvullende_onderzoeken conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1125">
+                  <psie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1126">
+                     <laboratorium_test_bloedgroep conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1128" id="bloedgroep1">
+                        <test_code value="1" code="883-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="ABO group [Type] in Blood" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1129" datatype="code"/>
+                        <test_uitslag value="1" code="112144000" codeSystem="2.16.840.1.113883.6.96" displayName="bloedgroep A (bevinding)" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1132" datatype="code"/>
+                     </laboratorium_test_bloedgroep>
+                     <laboratorium_test_rhesus_d conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1140" id="rhesusd1">
+                        <test_code value="5" code="29893-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="HIV 1 As [aanwezigheid] in serum of plasma d.m.v. immunoassay" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1141" datatype="code"/>
+                        <test_uitslag code="165746003" codeSystem="2.16.840.1.113883.6.96" displayName="RhD-negatief (bevinding)" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1144" datatype="code"/>
+                     </laboratorium_test_rhesus_d>
+                     <laboratorium_test_rhesus_c conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1152" id="rhesusc1">
+                        <test_code value="5" code="29893-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="HIV 1 As [aanwezigheid] in serum of plasma d.m.v. immunoassay" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1153" datatype="code"></test_code>
+                        <test_uitslag code="733120009" codeSystem="2.16.840.1.113883.6.96" displayName="fenotype c-positief (bevinding)" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1156" datatype="code"></test_uitslag>
+                     </laboratorium_test_rhesus_c>
+                  </psie>
                   <laboratorium_test_hb id="Ca4_LaboratoriumTest_Hb1"
                                         conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2379">
                      <test_code conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2380"
@@ -1785,6 +1864,7 @@
                <bloeddruk value="Bloeddruk1_Vrouw"
                           datatype="reference"
                           conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4326"/>
+               <laboratorium_test_hb conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4328" datatype="reference" value="Ca4_LaboratoriumTest_Hb1"/>
             </nacontrole>
          </postnatale_fase>
          <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.926">
@@ -1871,6 +1951,23 @@
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2795"/>
                </lichaamstemperatuur>
             </metingen>
+            <patienten_context conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2584">
+               <burgerlijke_staat_rc conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2688" id="burgerlijkestaat1">
+                  <burgerlijke_staat conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2689" datatype="code" code="M" codeSystem="2.16.840.1.113883.5.2" displayName="Married"/>
+               </burgerlijke_staat_rc>
+               <taalvaardigheid conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2904" id="taalvaardigheid_gezin1">
+                  <communicatie_taal conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2905" code="de-DE" codeSystem="1.0.639.1" displayName="Duits-Duitsland"/>
+                  <taalvaardigheid_begrijpen value="1" code="E" codeSystem="2.16.840.1.113883.5.61" displayName="Excellent" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2906"/>
+                  <taalvaardigheid_spreken value="1" code="E" codeSystem="2.16.840.1.113883.5.61" displayName="Excellent" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2907"/>
+                  <taalvaardigheid_lezen value="1" code="E" codeSystem="2.16.840.1.113883.5.61" displayName="Excellent" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2908"/>
+               </taalvaardigheid>
+               <taalvaardigheid conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2904" id="taalvaardigheid_gezin2">
+                  <communicatie_taal conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2905" code="fr-FR" codeSystem="1.0.639.1" displayName="Frans-Frankrijk"/>
+                  <taalvaardigheid_begrijpen value="1" code="E" codeSystem="2.16.840.1.113883.5.61" displayName="Excellent" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2906"/>
+                  <taalvaardigheid_spreken value="1" code="E" codeSystem="2.16.840.1.113883.5.61" displayName="Excellent" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2907"/>
+                  <taalvaardigheid_lezen value="1" code="E" codeSystem="2.16.840.1.113883.5.61" displayName="Excellent" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2908"/>
+               </taalvaardigheid>
+            </patienten_context>
          </bouwstenen>
       </med_mij_uitbreiding_verloskunde_beschikbaarstellen>
    </data>
