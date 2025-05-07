@@ -1,18 +1,18 @@
 <Patient xmlns="http://hl7.org/fhir">
-   <id value="JAN-ADRIANUS-J-A-K--JAN-KOOYMAN"/>
+   <id value="JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/BgZ-Patient"/>
    </meta>
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
-         <div>Id 999991346 (BSN), <span title="Naamsamenstelling: Eigennaam">Jan Adrianus J.A.K. Kooyman</span> (Jan), Man, 4 maart 1950, Geen meerling</div>
+         <div>Id 999909587 (BSN), <span title="Naamsamenstelling: Eigennaam">Jan Adrianus J.A.H. van Houten</span> (Jan), Man, 25 juli 1954, Geen meerling</div>
          <div>
-            <a href="tel:+316-99990001">+316-99990001</a> (Mobiel Privé), <a href="mailto:JanKooymanPost@test.nl">JanKooymanPost@test.nl</a> (E-mail Privé)</div>
-         <div>Coolsingel 231 in verband met verhuizing, 3012AG Rotterdam, Nederland (TMP)</div>
+            <a href="tel:+316-99990001">+316-99990001</a> (Mobiel Privé), <a href="mailto:JanHoutenPost@test.nl">JanHoutenPost@test.nl</a> (E-mail Privé)</div>
+         <div>Knolweg 1000 het groene huis, 9999XA STITSWERD, Nederland (Bezoek)</div>
          <div>
-            <span title="Zoon (SONC - v3/RoleCode)">Zoon</span>, <span title="Eerste relatie/contactpersoon (1 - RoleCodeLijst (COD472-VEKT))">Eerste relatie/contactpersoon</span>: Peter P.K. Kooyman (Peter)<div>
-               <a href="tel:+316-99990003">+316-99990003</a> (Mobiel Privé), <a href="mailto:peter.kooyman.post@test.nl">peter.kooyman.post@test.nl</a> (E-mail Privé), Knolweg 1002 to, 9999ZZ Stitswerd, Nederland (Bezoek)</div>
+            <span title="Zoon (SONC - v3/RoleCode)">Zoon</span>, <span title="Eerste relatie/contactpersoon (1 - RoleCodeLijst (COD472-VEKT))">Eerste relatie/contactpersoon</span>: Peter P.H. van Houten (Peter)<div>
+               <a href="tel:+316-99990003">+316-99990003</a> (Mobiel Privé), <a href="mailto:peter.houten.post@test.nl">peter.houten.post@test.nl</a> (E-mail Privé), Knolweg 1002 to, 9999ZZ Stitswerd, Nederland (Bezoek)</div>
          </div>
          <div>Huisarts: Meindert M. Meindert Aanmoedigend<div>Zorgverlenerrol: Huisarts</div>
          </div>
@@ -20,15 +20,18 @@
    </text>
    <identifier>
       <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-      <value value="999991346"/>
+      <value value="999909587"/>
    </identifier>
    <name>
       <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
          <valueCode value="NL1"/>
       </extension>
-      <family value="Kooyman">
+      <family value="van Houten">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+            <valueString value="van"/>
+         </extension>
          <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-            <valueString value="Kooyman"/>
+            <valueString value="Houten"/>
          </extension>
       </family>
       <given value="Jan Adrianus">
@@ -36,7 +39,7 @@
             <valueCode value="BR"/>
          </extension>
       </given>
-      <given value="J.A.K.">
+      <given value="J.A.H.">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
             <valueCode value="IN"/>
          </extension>
@@ -63,7 +66,7 @@
    </telecom>
    <telecom>
       <system value="email"/>
-      <value value="JanKooymanPost@test.nl"/>
+      <value value="JanHoutenPost@test.nl"/>
       <use value="home"/>
    </telecom>
    <gender value="male">
@@ -77,32 +80,33 @@
          </valueCodeableConcept>
       </extension>
    </gender>
-   <birthDate value="1950-03-04"/>
+   <birthDate value="1954-07-25"/>
    <deceasedBoolean value="false"/>
    <address>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
          <valueCodeableConcept>
             <coding>
                <system value="http://hl7.org/fhir/v3/AddressUse"/>
-               <code value="TMP"/>
-               <display value="Tijdelijk adres"/>
+               <code value="PHYS"/>
+               <display value="Woon-/verblijfadres"/>
             </coding>
          </valueCodeableConcept>
       </extension>
-      <use value="temp"/>
-      <line value="Coolsingel 231 in verband met verhuizing">
+      <use value="home"/>
+      <type value="physical"/>
+      <line value="Knolweg 1000 het groene huis">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
-            <valueString value="Coolsingel"/>
+            <valueString value="Knolweg"/>
          </extension>
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-            <valueString value="231"/>
+            <valueString value="1000"/>
          </extension>
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
-            <valueString value="in verband met verhuizing"/>
+            <valueString value="het groene huis"/>
          </extension>
       </line>
-      <city value="Rotterdam"/>
-      <postalCode value="3012AG"/>
+      <city value="STITSWERD"/>
+      <postalCode value="9999XA"/>
       <country value="Nederland">
          <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
             <valueCodeableConcept>
@@ -133,9 +137,12 @@
          </coding>
       </relationship>
       <name>
-         <family value="Kooyman">
+         <family value="van Houten">
+            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+               <valueString value="van"/>
+            </extension>
             <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-               <valueString value="Kooyman"/>
+               <valueString value="Houten"/>
             </extension>
          </family>
          <given value="Peter">
@@ -143,7 +150,7 @@
                <valueCode value="BR"/>
             </extension>
          </given>
-         <given value="P.K.">
+         <given value="P.H.">
             <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
                <valueCode value="IN"/>
             </extension>
@@ -170,7 +177,7 @@
       </telecom>
       <telecom>
          <system value="email"/>
-         <value value="peter.kooyman.post@test.nl"/>
+         <value value="peter.houten.post@test.nl"/>
          <use value="home"/>
       </telecom>
       <address>

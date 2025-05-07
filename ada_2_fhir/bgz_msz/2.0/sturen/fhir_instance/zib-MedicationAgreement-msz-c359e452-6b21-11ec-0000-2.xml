@@ -7,11 +7,15 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Medicatieafspraak. Subject: Jan Adrianus J.A.K. Jan Kooyman. Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+            <caption>Medicatieafspraak. Subject: Jan Adrianus J.A.H. Jan van Houten. Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
                <span style="display: block;">Aangevraagd door: Beendokter B. Beendokter Aangenaam<span style="display: block;">Zorgverlenerrol: Orthopedisch chirurg</span>
                </span>
             </caption>
             <tbody>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>Type medicatie: PARACETAMOL TABLET 500MG</td>
+               </tr>
                <tr>
                   <th>Gemaakt</th>
                   <td>${DATE, T, D, -45}</td>
@@ -60,9 +64,13 @@
       </coding>
       <text value="Medicatieafspraak"/>
    </category>
+   <medicationReference>
+      <reference value="Medication/zib-Product-msz-1aa30579-6b58-11ec-0000-2"/>
+      <display value="Type medicatie: PARACETAMOL TABLET 500MG"/>
+   </medicationReference>
    <subject>
-      <reference value="Patient/JAN-ADRIANUS-J-A-K--JAN-KOOYMAN"/>
-      <display value="Jan Adrianus J.A.K. Jan Kooyman"/>
+      <reference value="Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN"/>
+      <display value="Jan Adrianus J.A.H. Jan van Houten"/>
    </subject>
    <authoredOn value="${DATE, T, D, -45}"/>
    <requester>
