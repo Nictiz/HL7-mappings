@@ -1,7 +1,7 @@
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="zib-DrugUse-msz-fc547c0d-6b73-11ec-0000-2"/>
+   <id value="zib-TobaccoUse-msz-05f69b0f-6ac1-11ec-0000-2"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DrugUse"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-TobaccoUse"/>
    </meta>
    <text>
       <status value="extensions"/>
@@ -10,13 +10,13 @@
             <caption>Observatie/bepaling. Subject: Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik. Status: definitief</caption>
             <tfoot>
                <tr>
-                  <td colspan="2">Afhankelijkheid is ontstaan tijdens studie.</td>
+                  <td colspan="2">Echtgenoot rookt pijp in huis.</td>
                </tr>
             </tfoot>
             <tbody>
                <tr>
                   <th>Bepalingdatum/tijd</th>
-                  <td>1994-06 - 1999</td>
+                  <td>2002 - 2015</td>
                </tr>
                <tr>
                   <th>Code</th>
@@ -24,33 +24,31 @@
                </tr>
                <tr>
                   <td>
-                     <span title="bevinding betreffende drugsgebruik (228366006 - SNOMED CT)">bevinding betreffende drugsgebruik</span>
+                     <span title="bevinding betreffende tabakgebruik en blootstelling aan tabaksrook (365980008 - SNOMED CT)">bevinding betreffende tabakgebruik en blootstelling aan tabaksrook</span>
                   </td>
                   <td>
-                     <span title="heeft in het verleden drugs gebruikt (44870007 - SNOMED CT)">heeft in het verleden drugs gebruikt</span>
+                     <span title="Rookt passief (43381005 - SNOMED CT)">Rookt passief</span>
                   </td>
                </tr>
                <tr>
                   <td>
-                     <span title="drug of geneesmiddel (410942007 - SNOMED CT)">drug of geneesmiddel</span>
+                     <span title="type tabak gebruikt (53661000146106 - SNOMED CT)">type tabak gebruikt</span>
                   </td>
                   <td>
-                     <span title="Methadon (387286002 - SNOMED CT)">Methadon</span>
+                     <span title="Rookt pijp (82302008 - SNOMED CT)">Rookt pijp</span>
                   </td>
                </tr>
                <tr>
                   <td>
-                     <span title="toedieningsweg (410675002 - SNOMED CT)">toedieningsweg</span>
+                     <span title="hoeveelheid en type tabak gerookt (266918002 - SNOMED CT)">hoeveelheid en type tabak gerookt</span>
                   </td>
-                  <td>
-                     <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
-                  </td>
+                  <td>1 /d</td>
                </tr>
                <tr>
                   <td>
-                     <span title="Frequency of drug misuse (228390007 - SNOMED CT)">Frequency of drug misuse</span>
+                     <span title="pakjaren (401201003 - SNOMED CT)">pakjaren</span>
                   </td>
-                  <td>60 mg per dag</td>
+                  <td>2 {PackYears}</td>
                </tr>
             </tbody>
          </table>
@@ -60,8 +58,8 @@
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="228366006"/>
-         <display value="bevinding betreffende drugsgebruik"/>
+         <code value="365980008"/>
+         <display value="bevinding betreffende tabakgebruik en blootstelling aan tabaksrook"/>
       </coding>
    </code>
    <subject>
@@ -69,30 +67,30 @@
       <display value="Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik"/>
    </subject>
    <effectivePeriod>
-      <start value="1994-06"/>
-      <end value="1999"/>
+      <start value="2002"/>
+      <end value="2015"/>
    </effectivePeriod>
    <valueCodeableConcept>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="44870007"/>
-         <display value="heeft in het verleden drugs gebruikt"/>
+         <code value="43381005"/>
+         <display value="Rookt passief"/>
       </coding>
    </valueCodeableConcept>
-   <comment value="Afhankelijkheid is ontstaan tijdens studie."/>
+   <comment value="Echtgenoot rookt pijp in huis."/>
    <component>
       <code>
          <coding>
             <system value="http://snomed.info/sct"/>
-            <code value="410942007"/>
-            <display value="drug of geneesmiddel"/>
+            <code value="53661000146106"/>
+            <display value="type tabak gebruikt"/>
          </coding>
       </code>
       <valueCodeableConcept>
          <coding>
             <system value="http://snomed.info/sct"/>
-            <code value="387286002"/>
-            <display value="Methadon"/>
+            <code value="82302008"/>
+            <display value="Rookt pijp"/>
          </coding>
       </valueCodeableConcept>
    </component>
@@ -100,26 +98,29 @@
       <code>
          <coding>
             <system value="http://snomed.info/sct"/>
-            <code value="410675002"/>
-            <display value="toedieningsweg"/>
+            <code value="266918002"/>
+            <display value="hoeveelheid en type tabak gerookt"/>
          </coding>
       </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-            <code value="9"/>
-            <display value="oraal"/>
-         </coding>
-      </valueCodeableConcept>
+      <valueQuantity>
+         <value value="1"/>
+         <unit value="/d"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="/d"/>
+      </valueQuantity>
    </component>
    <component>
       <code>
          <coding>
             <system value="http://snomed.info/sct"/>
-            <code value="228390007"/>
-            <display value="Frequency of drug misuse"/>
+            <code value="401201003"/>
+            <display value="pakjaren"/>
          </coding>
       </code>
-      <valueString value="60 mg per dag"/>
+      <valueQuantity>
+         <value value="2"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="{PackYears}"/>
+      </valueQuantity>
    </component>
 </Observation>

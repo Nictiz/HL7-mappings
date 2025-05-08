@@ -1,13 +1,14 @@
-<Procedure xmlns="http://hl7.org/fhir">
-   <id value="BgZ-Procedure-msz-8e85d30e-6b0c-11ec-0000-2"/>
+<ProcedureRequest xmlns="http://hl7.org/fhir">
+   <id value="zib-ProcedureRequest-msz-c333410e-6b2a-11ec-0000-2"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/BgZ-Procedure"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest"/>
    </meta>
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Verrichting. Subject: Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik. Categorie: <span title="chirurgische ingreep (387713003 - SNOMED CT)">chirurgische ingreep</span>, Status: voltooid<span style="display: block;">Uitvoerende: Ziekenhuis de Kleine Pomp, Perpe P.M.T. Peer Tuum<span style="display: block;">Zorgverlenerrol: Cardiothoracaal chirurg</span>, Haar Scherp<span style="display: block;">Zorgverlenerrol: Cardioloog</span>
+            <caption>Verrichtingaanvraag. Subject: Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik. Status: onbekend<span style="display: block;">Intentie: plan</span>
+               <span style="display: block;">Aangevraagd door: Haar Scherp<span style="display: block;">Zorgverlenerrol: Cardioloog</span>
                </span>
             </caption>
             <tbody>
@@ -16,21 +17,22 @@
                      <span title="percutane implantatie van pulmonalisklep (787162002 - SNOMED CT)">percutane implantatie van pulmonalisklep</span>
                   </td>
                   <td>
-                     <div>Uitgevoerd: 14 november 1988</div>
+                     <div>Wanneer: 14 juni 1999</div>
                   </td>
                </tr>
                <tr>
-                  <th>Methode</th>
+                  <th>Beoogde uitvoerende</th>
                   <td>
-                     <span title="insertie (71861002 - SNOMED CT)">insertie</span>
+                     <div>Perpe P.M.T. Peer Tuum<div>Zorgverlenerrol: Cardiothoracaal chirurg</div>, Haar Scherp<div>Zorgverlenerrol: Cardioloog</div>
+                     </div>
                   </td>
                </tr>
                <tr>
-                  <th>Gebaseerd op</th>
-                  <td>percutane implantatie van pulmonalisklep</td>
+                  <th>Reden</th>
+                  <td/>
                </tr>
                <tr>
-                  <th>Deel van lichaam</th>
+                  <td>Deel van lichaam</td>
                   <td>
                      <span title="pulmonaalklep (39057004 - SNOMED CT)">pulmonaalklep</span>
                   </td>
@@ -39,27 +41,8 @@
          </table>
       </div>
    </text>
-   <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
-      <valueCodeableConcept>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="71861002"/>
-            <display value="insertie"/>
-         </coding>
-      </valueCodeableConcept>
-   </extension>
-   <basedOn>
-      <reference value="ProcedureRequest/zib-ProcedureRequest-msz-8e85d30e-6b0c-11ec-0000-2"/>
-      <display value="percutane implantatie van pulmonalisklep"/>
-   </basedOn>
-   <status value="completed"/>
-   <category>
-      <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="387713003"/>
-         <display value="chirurgische ingreep"/>
-      </coding>
-   </category>
+   <status value="unknown"/>
+   <intent value="plan"/>
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
@@ -71,24 +54,23 @@
       <reference value="Patient/GHANIYA-SAIDA-G-S-N--GHAN-NOERMOHAMED-ELIK"/>
       <display value="Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik"/>
    </subject>
-   <performedPeriod>
-      <start value="1988-11-14"/>
-      <end value="1988-11-14"/>
-   </performedPeriod>
+   <occurrencePeriod>
+      <start value="1999-06-14"/>
+      <end value="1999-06-14"/>
+   </occurrencePeriod>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-msz-1000001201-010"/>
+               <display value="Cardioloog"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000012"/>
+         <display value="Haar Scherp"/>
+      </agent>
+   </requester>
    <performer>
-      <actor>
-         <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000011"/>
-         <display value="Ziekenhuis de Kleine Pomp"/>
-      </actor>
-   </performer>
-   <performer>
-      <role>
-         <coding>
-            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
-            <code value="RESP"/>
-            <display value="Hoofdbehandelaar"/>
-         </coding>
-      </role>
       <actor>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
             <valueReference>
@@ -119,4 +101,4 @@
          <display value="pulmonaalklep"/>
       </coding>
    </bodySite>
-</Procedure>
+</ProcedureRequest>

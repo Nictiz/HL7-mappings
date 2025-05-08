@@ -1,5 +1,5 @@
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="zib-DrugUse-msz-ec00fb0f-6b5b-11ec-0000-2"/>
+   <id value="zib-DrugUse-msz-7aebd08d-6af3-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DrugUse"/>
    </meta>
@@ -8,10 +8,15 @@
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
             <caption>Observatie/bepaling. Subject: Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik. Status: definitief</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Afhankelijkheid is ontstaan tijdens studie.</td>
+               </tr>
+            </tfoot>
             <tbody>
                <tr>
                   <th>Bepalingdatum/tijd</th>
-                  <td>Vanaf 1987</td>
+                  <td>2004-06 - 2009</td>
                </tr>
                <tr>
                   <th>Code</th>
@@ -22,7 +27,7 @@
                      <span title="bevinding betreffende drugsgebruik (228366006 - SNOMED CT)">bevinding betreffende drugsgebruik</span>
                   </td>
                   <td>
-                     <span title="gebruikt drugs (361055000 - SNOMED CT)">gebruikt drugs</span>
+                     <span title="heeft in het verleden drugs gebruikt (44870007 - SNOMED CT)">heeft in het verleden drugs gebruikt</span>
                   </td>
                </tr>
                <tr>
@@ -30,7 +35,7 @@
                      <span title="drug of geneesmiddel (410942007 - SNOMED CT)">drug of geneesmiddel</span>
                   </td>
                   <td>
-                     <span title="Laxans (372800002 - SNOMED CT)">Laxans</span>
+                     <span title="Methadon (387286002 - SNOMED CT)">Methadon</span>
                   </td>
                </tr>
                <tr>
@@ -43,15 +48,9 @@
                </tr>
                <tr>
                   <td>
-                     <span title="toedieningsweg (410675002 - SNOMED CT)">toedieningsweg</span>
-                  </td>
-                  <td>rectaal</td>
-               </tr>
-               <tr>
-                  <td>
                      <span title="Frequency of drug misuse (228390007 - SNOMED CT)">Frequency of drug misuse</span>
                   </td>
-                  <td>Om de dag</td>
+                  <td>60 mg per dag</td>
                </tr>
             </tbody>
          </table>
@@ -70,15 +69,17 @@
       <display value="Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik"/>
    </subject>
    <effectivePeriod>
-      <start value="1987"/>
+      <start value="2004-06"/>
+      <end value="2009"/>
    </effectivePeriod>
    <valueCodeableConcept>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="361055000"/>
-         <display value="gebruikt drugs"/>
+         <code value="44870007"/>
+         <display value="heeft in het verleden drugs gebruikt"/>
       </coding>
    </valueCodeableConcept>
+   <comment value="Afhankelijkheid is ontstaan tijdens studie."/>
    <component>
       <code>
          <coding>
@@ -90,8 +91,8 @@
       <valueCodeableConcept>
          <coding>
             <system value="http://snomed.info/sct"/>
-            <code value="372800002"/>
-            <display value="Laxans"/>
+            <code value="387286002"/>
+            <display value="Methadon"/>
          </coding>
       </valueCodeableConcept>
    </component>
@@ -115,27 +116,10 @@
       <code>
          <coding>
             <system value="http://snomed.info/sct"/>
-            <code value="410675002"/>
-            <display value="toedieningsweg"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
-            <code value="OTH"/>
-            <display value="Anders"/>
-         </coding>
-         <text value="rectaal"/>
-      </valueCodeableConcept>
-   </component>
-   <component>
-      <code>
-         <coding>
-            <system value="http://snomed.info/sct"/>
             <code value="228390007"/>
             <display value="Frequency of drug misuse"/>
          </coding>
       </code>
-      <valueString value="Om de dag"/>
+      <valueString value="60 mg per dag"/>
    </component>
 </Observation>
