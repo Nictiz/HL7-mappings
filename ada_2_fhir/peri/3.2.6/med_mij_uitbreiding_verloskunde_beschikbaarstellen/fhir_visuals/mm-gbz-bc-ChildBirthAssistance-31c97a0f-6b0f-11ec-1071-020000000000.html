@@ -30,6 +30,12 @@
                         <span title="verlossing (verrichting) (236973005 - SNOMED CT)">verlossing (verrichting)</span>
                      </td>
                   </tr>
+                  <tr>
+                     <th>Participant</th>
+                     <td>
+                        <div>Aanpakker kind, Supervisor - Loes XXX_Korte || gediplomeerd verloskundige (beroep) || Verloskundigenpraktijk Dalen</div>
+                     </td>
+                  </tr>
                </tbody>
             </table>
          </div>
@@ -93,14 +99,18 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 5, label: "Patient XXX_Ostendorf", url: "mm-gbz-nl-core-patient-MAAIKE-M-XXX-OSTENDORF.html" }, 
-{ id: 12, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-f0eb00a7-6b73-11ec-0000-020000000000.html" }, 
-{ id: 21, label: "Encounter verlossing (verrichting)", url: "mm-gbz-bc-ChildBirthAssistance-31c97a0f-6b0f-11ec-1071-020000000000.html" }, 
+{ id: 5, label: "Patient XXX_Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-XXX-OSTENDORF.html" }, 
+{ id: 8, label: "Practitioner XXX_Korte", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-12356489.html" }, 
+{ id: 9, label: "PractitionerRole gediplomeerd verloskundige (beroep)", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-123564890800.html" }, 
+{ id: 13, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-f0eb00a7-6b73-11ec-0000-020000000000.html" }, 
+{ id: 22, label: "Encounter verlossing (verrichting)", url: "mm-gbz-bc-ChildBirthAssistance-31c97a0f-6b0f-11ec-1071-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 21, to: 5 }, 
-{ from: 21, to: 12 }, 
+var edges = new vis.DataSet([{ from: 22, to: 5 }, 
+{ from: 22, to: 13 }, 
+{ from: 22, to: 9 }, 
+{ from: 22, to: 8 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

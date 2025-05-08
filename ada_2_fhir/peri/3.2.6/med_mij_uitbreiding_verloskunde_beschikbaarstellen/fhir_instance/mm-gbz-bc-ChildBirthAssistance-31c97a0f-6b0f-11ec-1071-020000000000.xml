@@ -21,6 +21,12 @@
                      <span title="verlossing (verrichting) (236973005 - SNOMED CT)">verlossing (verrichting)</span>
                   </td>
                </tr>
+               <tr>
+                  <th>Participant</th>
+                  <td>
+                     <div>Aanpakker kind, Supervisor - Loes XXX_Korte || gediplomeerd verloskundige (beroep) || Verloskundigenpraktijk Dalen</div>
+                  </td>
+               </tr>
             </tbody>
          </table>
       </div>
@@ -59,4 +65,32 @@
       <reference value="EpisodeOfCare/f0eb00a7-6b73-11ec-0000-020000000000"/>
       <display value="Zwangerschap 2 XXX_Ostendorf"/>
    </episodeOfCare>
+   <participant>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="anders"/>
+         </coding>
+         <text value="Aanpakker kind"/>
+      </type>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="anders"/>
+         </coding>
+         <text value="Supervisor"/>
+      </type>
+      <individual>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/practitionerrole-mm-gbz-123564890800"/>
+               <display value="Loes XXX_Korte || gediplomeerd verloskundige (beroep) || Verloskundigenpraktijk Dalen"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-12356489"/>
+         <display value="Loes XXX_Korte"/>
+      </individual>
+   </participant>
 </Encounter>

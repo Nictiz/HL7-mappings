@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Patient xmlns="http://hl7.org/fhir">
-   <id value="FIONA-F-XXX-SWART"/>
+   <id value="MICHA-M-XXX-YASSIEN-MOHAMED"/>
    <meta>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Woman"/>
    </meta>
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
-         <div>Id 999901448 (BSN), <span title="Naamsamenstelling: Eigennaam">Fiona XXX_Swart</span>, Vrouw, 23 december 1985, Geen meerling</div>
+         <div>Id 999901758 (BSN), <span title="Naamsamenstelling: Eigennaam">Micha XXX_Yassien-Mohamed</span>, Vrouw, 23 december 1985, <i>Overleden ${DATE, T, D, -260}</i>, Geen meerling</div>
          <div>
-            <a href="tel:0655223366">0655223366</a> (,  mobile)</div>
+            <a href="tel:0705321689">0705321689</a> (Vast telefoonnummer)</div>
          <div>Knolweg 1000, 9999XA STITSWERD, NL (Bezoek)</div>
-         <div>Huisarts: HDE Henrik van Levenslust || Huisarts || Huisartsenpraktijk Hulp</div>
+         <div>Huisarts: Bert van XXX_Ernie || Huisarts || Huisartsenpraktijk Sesam</div>
          <div>Voorkeursapotheek: Apotheek de 3 Bergen</div>
       </div>
    </text>
@@ -25,31 +26,31 @@
       <valueCodeableConcept>
          <coding>
             <system value="urn:oid:2.16.840.1.113883.2.4.4.13.28"/>
-            <code value="12"/>
-            <display value="Kaukasisch"/>
+            <code value="3"/>
+            <display value="Noord-Afrikaans"/>
          </coding>
       </valueCodeableConcept>
    </extension>
    <identifier>
       <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-      <value value="999901448"/>
+      <value value="999901758"/>
    </identifier>
    <name>
       <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
          <valueCode value="NL1"/>
       </extension>
-      <text value="Fiona XXX_Swart"/>
-      <family value="XXX_Swart">
+      <text value="Micha XXX_Yassien-Mohamed"/>
+      <family value="XXX_Yassien-Mohamed">
          <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-            <valueString value="XXX_Swart"/>
+            <valueString value="XXX_Yassien-Mohamed"/>
          </extension>
       </family>
-      <given value="Fiona">
+      <given value="Micha">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
             <valueCode value="BR"/>
          </extension>
       </given>
-      <given value="F">
+      <given value="M">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
             <valueCode value="IN"/>
          </extension>
@@ -59,15 +60,14 @@
       <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
          <valueCodeableConcept>
             <coding>
-               <system value="http://hl7.org/fhir/v3/AddressUse"/>
-               <code value="MC"/>
-               <display value="Mobiel telefoonnummer"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Vast telefoonnummer"/>
             </coding>
          </valueCodeableConcept>
       </extension>
       <system value="phone"/>
-      <value value="0655223366"/>
-      <use value="mobile"/>
+      <value value="0705321689"/>
    </telecom>
    <gender value="female">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
@@ -81,6 +81,7 @@
       </extension>
    </gender>
    <birthDate value="1985-12-23"/>
+   <deceasedDateTime value="${DATE, T, D, -260}"/>
    <address>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
          <valueCodeableConcept>
@@ -120,11 +121,11 @@
    <generalPractitioner>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
          <valueReference>
-            <reference value="PractitionerRole/practitionerrole-mm-gbz-1234567101-015"/>
-            <display value="HDE Henrik van Levenslust || Huisarts || Huisartsenpraktijk Hulp"/>
+            <reference value="PractitionerRole/practitionerrole-mm-gbz-12345678801-015"/>
+            <display value="Bert van XXX_Ernie || Huisarts || Huisartsenpraktijk Sesam"/>
          </valueReference>
       </extension>
-      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-12345671"/>
-      <display value="HDE Henrik van Levenslust"/>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-123456788"/>
+      <display value="Bert van XXX_Ernie"/>
    </generalPractitioner>
 </Patient>

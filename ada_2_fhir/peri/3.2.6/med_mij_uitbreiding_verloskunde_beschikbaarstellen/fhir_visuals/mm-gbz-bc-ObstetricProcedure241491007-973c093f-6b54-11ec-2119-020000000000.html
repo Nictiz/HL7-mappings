@@ -19,7 +19,8 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Verrichting. Subject: Maaike M XXX_Ostendorf. Categorie: <span title="Obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">Obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+               <caption>Verrichting. Subject: Maaike M XXX_Ostendorf. Categorie: <span title="Obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">Obstetrische verrichting (verrichting)</span>, Status: voltooid<span style="display: block;">Uitvoerende: Loes XXX_Korte || gediplomeerd verloskundige (beroep) || Verloskundigenpraktijk Dalen (uit naam van: Verloskundigenpraktijk Dalen)</span>
+               </caption>
                <tbody>
                   <tr>
                      <td>
@@ -28,6 +29,10 @@
                      <td>
                         <div>Uitgevoerd: ${DATE, T, D, -445} - ${DATE, T, D, -445}</div>
                      </td>
+                  </tr>
+                  <tr>
+                     <th>Locatie</th>
+                     <td>Verloskundigenpraktijk Dalen</td>
                   </tr>
                   <tr>
                      <th>Reden</th>
@@ -51,18 +56,26 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 5, label: "Patient XXX_Ostendorf", url: "mm-gbz-nl-core-patient-MAAIKE-M-XXX-OSTENDORF.html" }, 
-{ id: 11, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-73009ab7-6b6e-11ec-2334-020000000000.html" }, 
-{ id: 12, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-f0eb00a7-6b73-11ec-0000-020000000000.html" }, 
-{ id: 50, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-73ccb26b-6b3f-11ec-2123-020000000000.html" }, 
-{ id: 54, label: "Procedure echografie van foetus (verrichting)", url: "mm-gbz-bc-ObstetricProcedure241491007-973c093f-6b54-11ec-2119-020000000000.html" }, 
+{ id: 2, label: "Organization Verloskundigenpraktijk Dalen", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-840-1-113883-2-4-3-22-97-4-1808.html" }, 
+{ id: 5, label: "Patient XXX_Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-XXX-OSTENDORF.html" }, 
+{ id: 8, label: "Practitioner XXX_Korte", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-12356489.html" }, 
+{ id: 9, label: "PractitionerRole gediplomeerd verloskundige (beroep)", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-123564890800.html" }, 
+{ id: 11, label: "Location", url: "mm-gbz-nl-core-location-location-mm-gbz-2-16-840-1-113883-2-4-3-22-97-4-1808.html" }, 
+{ id: 12, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-73009ab7-6b6e-11ec-2334-020000000000.html" }, 
+{ id: 13, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-f0eb00a7-6b73-11ec-0000-020000000000.html" }, 
+{ id: 51, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-73ccb26b-6b3f-11ec-2123-020000000000.html" }, 
+{ id: 55, label: "Procedure echografie van foetus (verrichting)", url: "mm-gbz-bc-ObstetricProcedure241491007-973c093f-6b54-11ec-2119-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 54, to: 50 }, 
-{ from: 54, to: 5 }, 
-{ from: 54, to: 12 }, 
-{ from: 54, to: 11 }, 
+var edges = new vis.DataSet([{ from: 55, to: 51 }, 
+{ from: 55, to: 5 }, 
+{ from: 55, to: 13 }, 
+{ from: 55, to: 9 }, 
+{ from: 55, to: 8 }, 
+{ from: 55, to: 2 }, 
+{ from: 55, to: 11 }, 
+{ from: 55, to: 12 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

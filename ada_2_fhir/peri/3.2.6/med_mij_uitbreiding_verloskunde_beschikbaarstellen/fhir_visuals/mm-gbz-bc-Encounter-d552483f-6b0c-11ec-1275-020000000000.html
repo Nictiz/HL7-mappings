@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html lang="en">
    <head>
-      <title>Encounter - 53b3af70-6b21-11ec-1275-020000000000</title>
+      <title>Encounter - d552483f-6b0c-11ec-1275-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -34,6 +34,12 @@
                      <th>Periode</th>
                      <td>${DATE, T, D, -320} - ${DATE, T, D, -320}</td>
                   </tr>
+                  <tr>
+                     <th>Participant</th>
+                     <td>
+                        <div>Aanpakker kind - Gemma XXX_Groeneboom XXX_Gras || Verloskundige || Verloskundigenpraktijk 't Groen</div>
+                     </td>
+                  </tr>
                </tbody>
             </table>
          </div>
@@ -45,14 +51,18 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 2, label: "Patient XXX_Yzendoorn", url: "mm-gbz-nl-core-patient-MIEKE-XXX-YZENDOORN.html" }, 
-{ id: 12, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-42e2c1ff-6b25-11ec-0000-020000000000.html" }, 
-{ id: 16, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-53b3af70-6b21-11ec-1275-020000000000.html" }, 
+{ id: 2, label: "Patient XXX_Yzendoorn", url: "mm-gbz-bc-Child-MIEKE-XXX-YZENDOORN.html" }, 
+{ id: 9, label: "Practitioner XXX_Groeneboom-XXX_Gras", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-123400011.html" }, 
+{ id: 11, label: "PractitionerRole Verloskundige", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-12340001103-000.html" }, 
+{ id: 14, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-14d1a1ff-6b66-11ec-0000-020000000000.html" }, 
+{ id: 18, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-d552483f-6b0c-11ec-1275-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 16, to: 2 }, 
-{ from: 16, to: 12 }, 
+var edges = new vis.DataSet([{ from: 18, to: 2 }, 
+{ from: 18, to: 14 }, 
+{ from: 18, to: 11 }, 
+{ from: 18, to: 9 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

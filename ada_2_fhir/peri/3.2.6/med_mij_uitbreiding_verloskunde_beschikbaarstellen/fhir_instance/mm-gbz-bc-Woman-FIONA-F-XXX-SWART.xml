@@ -1,48 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Patient xmlns="http://hl7.org/fhir">
-   <id value="WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG"/>
+   <id value="FIONA-F-XXX-SWART"/>
    <meta>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Woman"/>
    </meta>
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
-         <div>Id 999901188 (BSN), <span title="Naamsamenstelling: Eigennaam gevolgd door partnernaam">Willemijn XXX_Yzendoorn-van den XXX_Berg</span>, Vrouw, 29 november 1985, <span title="Married (M - v3/MaritalStatus)">Married</span>
-         </div>
+         <div>Id 999901448 (BSN), <span title="Naamsamenstelling: Eigennaam">Fiona XXX_Swart</span>, Vrouw, 23 december 1985, Geen meerling</div>
+         <div>
+            <a href="tel:0655223366">0655223366</a> (,  mobile)</div>
          <div>Knolweg 1000, 9999XA STITSWERD, NL (Bezoek)</div>
+         <div>Huisarts: HDE Henrik van Levenslust || Huisarts || Huisartsenpraktijk Hulp</div>
+         <div>Voorkeursapotheek: Apotheek de 3 Bergen</div>
       </div>
    </text>
+   <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-preferred-pharmacy">
+      <valueReference>
+         <reference value="Organization/organization-mm-gbz-2-16-840-1-113883-2-4-6-1-1234567"/>
+         <display value="Apotheek de 3 Bergen"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-patient-ethnicity">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.13.28"/>
+            <code value="12"/>
+            <display value="Kaukasisch"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
    <identifier>
       <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-      <value value="999901188"/>
+      <value value="999901448"/>
    </identifier>
    <name>
       <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
-         <valueCode value="NL4"/>
+         <valueCode value="NL1"/>
       </extension>
-      <text value="Willemijn XXX_Yzendoorn-van den XXX_Berg"/>
-      <family value="XXX_Yzendoorn-van den XXX_Berg">
+      <text value="Fiona XXX_Swart"/>
+      <family value="XXX_Swart">
          <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-            <valueString value="XXX_Yzendoorn"/>
-         </extension>
-         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
-            <valueString value="van den"/>
-         </extension>
-         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
-            <valueString value="XXX_Berg"/>
+            <valueString value="XXX_Swart"/>
          </extension>
       </family>
-      <given value="Willemijn">
+      <given value="Fiona">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
             <valueCode value="BR"/>
          </extension>
       </given>
-      <given value="W">
+      <given value="F">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
             <valueCode value="IN"/>
          </extension>
       </given>
    </name>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="MC"/>
+               <display value="Mobiel telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="0655223366"/>
+      <use value="mobile"/>
+   </telecom>
    <gender value="female">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
          <valueCodeableConcept>
@@ -54,7 +81,7 @@
          </valueCodeableConcept>
       </extension>
    </gender>
-   <birthDate value="1985-11-29"/>
+   <birthDate value="1985-12-23"/>
    <address>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
          <valueCodeableConcept>
@@ -90,11 +117,15 @@
          </extension>
       </country>
    </address>
-   <maritalStatus>
-      <coding>
-         <system value="http://hl7.org/fhir/v3/MaritalStatus"/>
-         <code value="M"/>
-         <display value="Married"/>
-      </coding>
-   </maritalStatus>
+   <multipleBirthBoolean value="false"/>
+   <generalPractitioner>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/practitionerrole-mm-gbz-1234567101-015"/>
+            <display value="HDE Henrik van Levenslust || Huisarts || Huisartsenpraktijk Hulp"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-12345671"/>
+      <display value="HDE Henrik van Levenslust"/>
+   </generalPractitioner>
 </Patient>

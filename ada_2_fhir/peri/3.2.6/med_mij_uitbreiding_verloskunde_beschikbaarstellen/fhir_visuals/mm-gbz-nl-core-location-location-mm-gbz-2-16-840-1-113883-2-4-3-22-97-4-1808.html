@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html lang="en">
    <head>
-      <title>Encounter - 285ae0df-6b6e-11ec-1275-020000000000</title>
+      <title>Location - location-mm-gbz-2-16-840-1-113883-2-4-3-22-97-4-1808</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -19,40 +19,44 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Contact. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Status: voltooid</caption>
+               <caption>Locatie. Id: 1808 (urn:oid:2.16.840.1.113883.2.4.3.22.97.4), 45678912 (AGB-Z), 321654897 (URA)</caption>
                <tbody>
                   <tr>
-                     <th>Type contact</th>
+                     <th>Naam</th>
+                     <td/>
+                  </tr>
+                  <tr>
+                     <th>Contactgegevens</th>
                      <td>
-                        <div>
-                           <span title="Thuis (HH - v3/ActCode)">Thuis</span>
-                        </div>
-                        <span title="consult (verrichting) (11429006 - SNOMED CT)">consult (verrichting)</span>
+                        <a href="tel:0659689761">0659689761</a> (Mobiel Werk)<br/>
+                        <a href="mailto:info@verloskundigenpraktijkdalen.test">info@verloskundigenpraktijkdalen.test</a> (E-mail Werk)<br/>
                      </td>
                   </tr>
                   <tr>
-                     <th>Periode</th>
-                     <td>${DATE, T, D, -315} - ${DATE, T, D, -315}</td>
+                     <th>Adres</th>
+                     <td>In de lucht 3 B, 3333ZA Utrecht Utrecht, NL</td>
                   </tr>
                </tbody>
             </table>
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Encounter consult (verrichting)</b>
+         <b>Resources pointing to 'this' resource - Location</b>
       </p>
-      <div> - none</div>
+      <ul>
+         <li>
+            <a href="mm-gbz-bc-ObstetricProcedure241491007-973c093f-6b54-11ec-2119-020000000000.html">Procedure echografie van foetus (verrichting)</a>
+         </li>
+      </ul>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 1, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-nl-core-patient-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
-{ id: 12, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-42e2c1ff-6b25-11ec-0000-020000000000.html" }, 
-{ id: 17, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-285ae0df-6b6e-11ec-1275-020000000000.html" }, 
+{ id: 2, label: "Organization Verloskundigenpraktijk Dalen", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-840-1-113883-2-4-3-22-97-4-1808.html" }, 
+{ id: 11, label: "Location", url: "mm-gbz-nl-core-location-location-mm-gbz-2-16-840-1-113883-2-4-3-22-97-4-1808.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 17, to: 1 }, 
-{ from: 17, to: 12 }, 
+var edges = new vis.DataSet([{ from: 11, to: 2 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

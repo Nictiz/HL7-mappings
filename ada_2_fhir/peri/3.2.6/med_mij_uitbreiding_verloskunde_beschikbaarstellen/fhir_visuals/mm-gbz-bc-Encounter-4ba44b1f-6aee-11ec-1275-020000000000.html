@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html lang="en">
    <head>
-      <title>Encounter - 369ddb1f-6b33-11ec-1275-020000000000</title>
+      <title>Encounter - 4ba44b1f-6aee-11ec-1275-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -39,6 +39,12 @@
                      <td>Zwangerschap 2 Vrouw-XXX_Yzendoorn</td>
                   </tr>
                   <tr>
+                     <th>Participant</th>
+                     <td>
+                        <div>Aanpakker kind - Gemma XXX_Groeneboom XXX_Gras || Verloskundige || Verloskundigenpraktijk 't Groen</div>
+                     </td>
+                  </tr>
+                  <tr>
                      <th>Zorgaanbieder</th>
                      <td>Verloskundigenpraktijk 't Groen</td>
                   </tr>
@@ -66,18 +72,22 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 1, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-nl-core-patient-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
+{ id: 1, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-bc-Woman-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
 { id: 5, label: "Organization Verloskundigenpraktijk 't Groen", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-840-1-113883-2-4-6-1-08001234.html" }, 
-{ id: 11, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-8e9592ff-6aab-11ec-2334-020000000000.html" }, 
-{ id: 12, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-42e2c1ff-6b25-11ec-0000-020000000000.html" }, 
-{ id: 15, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-369ddb1f-6b33-11ec-1275-020000000000.html" }, 
+{ id: 9, label: "Practitioner XXX_Groeneboom-XXX_Gras", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-123400011.html" }, 
+{ id: 11, label: "PractitionerRole Verloskundige", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-12340001103-000.html" }, 
+{ id: 13, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-8e9592ff-6aab-11ec-2334-020000000000.html" }, 
+{ id: 14, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-14d1a1ff-6b66-11ec-0000-020000000000.html" }, 
+{ id: 17, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-4ba44b1f-6aee-11ec-1275-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 15, to: 1 }, 
-{ from: 15, to: 12 }, 
-{ from: 15, to: 11 }, 
-{ from: 15, to: 5 }, 
+var edges = new vis.DataSet([{ from: 17, to: 1 }, 
+{ from: 17, to: 14 }, 
+{ from: 17, to: 11 }, 
+{ from: 17, to: 9 }, 
+{ from: 17, to: 13 }, 
+{ from: 17, to: 5 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

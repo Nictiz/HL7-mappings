@@ -19,14 +19,17 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Verrichting. Subject: Kind Jan J XXX_Swart. Categorie: <span title="Obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">Obstetrische verrichting (verrichting)</span>, Status: voltooid<span style="display: block;">Uitvoerende: Erasmus MC, Sophia kinderziekenhuis</span>
-               </caption>
+               <caption>Verrichting. Subject: Kind Jan J XXX_Swart. Categorie: <span title="Obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">Obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
                <tbody>
                   <tr>
                      <td>
                         <span title="geboorte (bevinding) (3950001 - SNOMED CT)">geboorte (bevinding)</span>
                      </td>
                      <td/>
+                  </tr>
+                  <tr>
+                     <th>Locatie</th>
+                     <td>Erasmus MC, Sophia kinderziekenhuis</td>
                   </tr>
                   <tr>
                      <th>Reden</th>
@@ -65,20 +68,20 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 2, label: "Organization Erasmus MC, Sophia kinderziekenhuis", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-528-1-1007-3-3-06020806.html" }, 
-{ id: 12, label: "Patient XXX_Swart", url: "mm-gbz-nl-core-patient-JAN-J-XXX-SWART.html" }, 
-{ id: 14, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-e0d93b0f-6b66-11ec-2334-020000000000.html" }, 
-{ id: 15, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-8b4a1a6f-6b0c-11ec-0000-020000000000.html" }, 
-{ id: 91, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-3834f287-6aa8-11ec-2123-020000000000.html" }, 
-{ id: 92, label: "Procedure geboorte (bevinding)", url: "mm-gbz-bc-Birth3950001-4d3ee11f-6b16-11ec-2123-020000000000.html" }, 
+{ id: 12, label: "Patient XXX_Swart", url: "mm-gbz-bc-Child-JAN-J-XXX-SWART.html" }, 
+{ id: 14, label: "Location", url: "mm-gbz-nl-core-location-location-mm-gbz-2-16-528-1-1007-3-3-06020806.html" }, 
+{ id: 15, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-e0d93b0f-6b66-11ec-2334-020000000000.html" }, 
+{ id: 16, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-8b4a1a6f-6b0c-11ec-0000-020000000000.html" }, 
+{ id: 92, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-3834f287-6aa8-11ec-2123-020000000000.html" }, 
+{ id: 93, label: "Procedure geboorte (bevinding)", url: "mm-gbz-bc-Birth3950001-4d3ee11f-6b16-11ec-2123-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 92, to: 91 }, 
-{ from: 92, to: 12 }, 
-{ from: 92, to: 15 }, 
-{ from: 92, to: 2 }, 
-{ from: 92, to: 14 }, 
+var edges = new vis.DataSet([{ from: 93, to: 92 }, 
+{ from: 93, to: 12 }, 
+{ from: 93, to: 16 }, 
+{ from: 93, to: 14 }, 
+{ from: 93, to: 15 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

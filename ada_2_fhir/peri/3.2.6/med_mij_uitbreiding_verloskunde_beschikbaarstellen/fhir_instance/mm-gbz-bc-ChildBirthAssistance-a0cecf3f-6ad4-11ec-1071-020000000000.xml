@@ -23,7 +23,15 @@
                </tr>
                <tr>
                   <th>Periode</th>
-                  <td> tot ${DATE, T, D, -324}T20:00:00+02:00</td>
+                  <td>${DATE, T, D, -324}T10:40:00+02:00 - ${DATE, T, D, -324}T20:00:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Participant</th>
+                  <td>
+                     <div>
+                        <span title="Hoofdbehandelaar (RESP - v3/ParticipationType)">Hoofdbehandelaar</span>, Supervisor - Eduard XXX_Egelinks || Gynaecoloog || Erasmus MC, Sophia kinderziekenhuis</div>
+                     <div>Aanpakker kind - Gemma XXX_Groeneboom XXX_Gras || Verloskundige || Verloskundigenpraktijk 't Groen</div>
+                  </td>
                </tr>
             </tbody>
          </table>
@@ -60,15 +68,58 @@
       <display value="Willemijn W XXX_Yzendoorn van den XXX_Berg"/>
    </subject>
    <episodeOfCare>
-      <reference value="EpisodeOfCare/42e2c1ff-6b25-11ec-0000-020000000000"/>
+      <reference value="EpisodeOfCare/14d1a1ff-6b66-11ec-0000-020000000000"/>
       <display value="Zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
    </episodeOfCare>
-   <period>
-      <start>
-         <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-            <valueCode value="unknown"/>
+   <participant>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="RESP"/>
+            <display value="Hoofdbehandelaar"/>
+         </coding>
+      </type>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="anders"/>
+         </coding>
+         <text value="Supervisor"/>
+      </type>
+      <individual>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/practitionerrole-mm-gbz-98765432201-046"/>
+               <display value="Eduard XXX_Egelinks || Gynaecoloog || Erasmus MC, Sophia kinderziekenhuis"/>
+            </valueReference>
          </extension>
-      </start>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-987654322"/>
+         <display value="Eduard XXX_Egelinks"/>
+      </individual>
+   </participant>
+   <participant>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="anders"/>
+         </coding>
+         <text value="Aanpakker kind"/>
+      </type>
+      <individual>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/practitionerrole-mm-gbz-12340001103-000"/>
+               <display value="Gemma XXX_Groeneboom XXX_Gras || Verloskundige || Verloskundigenpraktijk 't Groen"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-123400011"/>
+         <display value="Gemma XXX_Groeneboom XXX_Gras"/>
+      </individual>
+   </participant>
+   <period>
+      <start value="${DATE, T, D, -324}T10:40:00+02:00"/>
       <end value="${DATE, T, D, -324}T20:00:00+02:00"/>
    </period>
 </Encounter>

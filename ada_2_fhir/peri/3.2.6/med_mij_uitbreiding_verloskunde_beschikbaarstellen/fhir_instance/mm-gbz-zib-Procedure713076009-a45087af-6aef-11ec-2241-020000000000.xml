@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Procedure xmlns="http://hl7.org/fhir">
    <!-- Source: gz-izv-kwa-casus4 -->
-   <id value="9971e47a-6b01-11ec-2241-020000000000"/>
+   <id value="a45087af-6aef-11ec-2241-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
@@ -10,7 +10,8 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Verrichting. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Categorie: <span title="Obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">Obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+            <caption>Verrichting. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Categorie: <span title="Obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">Obstetrische verrichting (verrichting)</span>, Status: voltooid<span style="display: block;">Uitvoerende: Gemma XXX_Groeneboom XXX_Gras || Verloskundige || Verloskundigenpraktijk 't Groen (uit naam van: Verloskundigenpraktijk 't Groen)</span>
+            </caption>
             <tbody>
                <tr>
                   <td>
@@ -30,7 +31,7 @@
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="9971e47a-6b01-11ec-2241-020000000000"/>
+      <value value="a45087af-6aef-11ec-2241-020000000000"/>
    </identifier>
    <partOf>
       <reference value="Procedure/b6353a4f-6b23-11ec-2123-020000000000"/>
@@ -56,13 +57,29 @@
       <display value="Willemijn W XXX_Yzendoorn van den XXX_Berg"/>
    </subject>
    <context>
-      <reference value="EpisodeOfCare/42e2c1ff-6b25-11ec-0000-020000000000"/>
+      <reference value="EpisodeOfCare/14d1a1ff-6b66-11ec-0000-020000000000"/>
       <display value="Zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
    </context>
    <performedPeriod>
       <start value="${DATE, T, D, -527}"/>
       <end value="${DATE, T, D, -527}"/>
    </performedPeriod>
+   <performer>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/practitionerrole-mm-gbz-12340001103-000"/>
+               <display value="Gemma XXX_Groeneboom XXX_Gras || Verloskundige || Verloskundigenpraktijk 't Groen"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-123400011"/>
+         <display value="Gemma XXX_Groeneboom XXX_Gras"/>
+      </actor>
+      <onBehalfOf>
+         <reference value="Organization/organization-mm-gbz-2-16-840-1-113883-2-4-6-1-08001234"/>
+         <display value="Verloskundigenpraktijk 't Groen"/>
+      </onBehalfOf>
+   </performer>
    <reasonReference>
       <reference value="Condition/8e9592ff-6aab-11ec-2334-020000000000"/>
       <display value="Zwangerschap 2 Vrouw-XXX_Yzendoorn"/>

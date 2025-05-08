@@ -19,7 +19,8 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Observatie/bepaling. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Status: definitief</caption>
+               <caption>Observatie/bepaling. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Status: definitief<span style="display: block;">Uitvoerende: Gemma XXX_Groeneboom XXX_Gras || Verloskundige || Verloskundigenpraktijk 't Groen</span>
+               </caption>
                <tbody>
                   <tr>
                      <th>Context</th>
@@ -92,16 +93,20 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 1, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-nl-core-patient-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
-{ id: 11, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-8e9592ff-6aab-11ec-2334-020000000000.html" }, 
-{ id: 12, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-42e2c1ff-6b25-11ec-0000-020000000000.html" }, 
-{ id: 89, label: "Observation contractietoestand van uterus (waarneembare entiteit)", url: "mm-gbz-nl-core-observation364277008-5ddb947f-6b78-11ec-2176-020000000000.html" }, 
+{ id: 1, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-bc-Woman-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
+{ id: 9, label: "Practitioner XXX_Groeneboom-XXX_Gras", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-123400011.html" }, 
+{ id: 11, label: "PractitionerRole Verloskundige", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-12340001103-000.html" }, 
+{ id: 13, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-8e9592ff-6aab-11ec-2334-020000000000.html" }, 
+{ id: 14, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-14d1a1ff-6b66-11ec-0000-020000000000.html" }, 
+{ id: 91, label: "Observation contractietoestand van uterus (waarneembare entiteit)", url: "mm-gbz-nl-core-observation364277008-5ddb947f-6b78-11ec-2176-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 89, to: 11 }, 
-{ from: 89, to: 1 }, 
-{ from: 89, to: 12 }, 
+var edges = new vis.DataSet([{ from: 91, to: 13 }, 
+{ from: 91, to: 1 }, 
+{ from: 91, to: 14 }, 
+{ from: 91, to: 11 }, 
+{ from: 91, to: 9 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");
