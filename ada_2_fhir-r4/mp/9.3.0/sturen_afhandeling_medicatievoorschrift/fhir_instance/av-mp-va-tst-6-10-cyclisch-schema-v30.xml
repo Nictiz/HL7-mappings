@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="a42ead76-0beb-11f0-1753-020000000000"/>
+   <id value="84aa0e51-2bf0-11f0-5633-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:a42eadf7-0beb-11f0-1753-020000000000"/>
+      <fullUrl value="urn:uuid:84aa0ed2-2bf0-11f0-5633-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -53,18 +53,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:a42eae33-0beb-11f0-1753-020000000000"/>
+               <reference value="urn:uuid:84a9e7ea-2bf0-11f0-5633-020000000000"/>
                <type value="Medication"/>
                <display value="Fusidinezuur creme 20mg/g"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:a42eada7-0beb-11f0-1753-020000000000"/>
+               <reference value="urn:uuid:84aa0e82-2bf0-11f0-5633-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:a42eadcf-0beb-11f0-1753-020000000000"/>
+                  <reference value="urn:uuid:84aa0eaa-2bf0-11f0-5633-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -123,7 +123,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a42eae0b-0beb-11f0-1753-020000000000"/>
+      <fullUrl value="urn:uuid:84a9e7d6-2bf0-11f0-5633-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -152,18 +152,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:a42eae1f-0beb-11f0-1753-020000000000"/>
+               <reference value="urn:uuid:84a9e7fe-2bf0-11f0-5633-020000000000"/>
                <type value="Medication"/>
                <display value="MARVELON TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:a42eada7-0beb-11f0-1753-020000000000"/>
+               <reference value="urn:uuid:84aa0e82-2bf0-11f0-5633-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:a42eadcf-0beb-11f0-1753-020000000000"/>
+                  <reference value="urn:uuid:84aa0eaa-2bf0-11f0-5633-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -199,7 +199,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a42eada7-0beb-11f0-1753-020000000000"/>
+      <fullUrl value="urn:uuid:84aa0e82-2bf0-11f0-5633-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -246,7 +246,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a42eadcf-0beb-11f0-1753-020000000000"/>
+      <fullUrl value="urn:uuid:84aa0eaa-2bf0-11f0-5633-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -290,7 +290,35 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a42eae1f-0beb-11f0-1753-020000000000"/>
+      <fullUrl value="urn:uuid:84a9e7ea-2bf0-11f0-5633-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="16705"/>
+                  <display value="Fusidinezuur creme 20mg/g"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="73466"/>
+                  <display value="Fusidinezuur creme 20mg/g"/>
+               </coding>
+               <text value="Fusidinezuur creme 20mg/g"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:84a9e7fe-2bf0-11f0-5633-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -314,34 +342,6 @@
                   <display value="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"/>
                </coding>
                <text value="MARVELON TABLET"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:a42eae33-0beb-11f0-1753-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="16705"/>
-                  <display value="Fusidinezuur creme 20mg/g"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="73466"/>
-                  <display value="Fusidinezuur creme 20mg/g"/>
-               </coding>
-               <text value="Fusidinezuur creme 20mg/g"/>
             </code>
          </Medication>
       </resource>

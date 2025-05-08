@@ -1,7 +1,8 @@
 <organizer classCode="CLUSTER"
            moodCode="EVN"
            xmlns="urn:hl7-org:v3"
-           xmlns:pharm="urn:ihe:pharm:medication">
+           xmlns:pharm="urn:ihe:pharm:medication"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9411"/>
    <code code="102"
          displayName="Medicatiegegevens"
@@ -48,8 +49,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Zo nodig 1 maal per dag 1 stuk, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high value="20240128235959+0100"/>
          </effectiveTime>
@@ -82,7 +82,8 @@
                <code code="01.015"
                      codeSystem="2.16.840.1.113883.2.4.15.111"
                      displayName="Huisarts"
-                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
                      <given qualifier="BR">Jan</given>
@@ -109,7 +110,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <frequency value="1"/>
@@ -127,8 +127,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
                <precondition>
                   <criterion>
                      <code code="1137"
@@ -212,7 +211,8 @@
                <code code="01.015"
                      codeSystem="2.16.840.1.113883.2.4.15.111"
                      displayName="Huisarts"
-                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
                      <given qualifier="BR">Jan</given>
@@ -243,8 +243,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -273,8 +272,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Volgens schema trombosedienst, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101084500+0100"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
@@ -307,7 +305,8 @@
                <code code="01.015"
                      codeSystem="2.16.840.1.113883.2.4.15.111"
                      displayName="Huisarts"
-                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
                      <given qualifier="BR">Jan</given>
@@ -362,8 +361,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">eerst gedurende 1 dag maal per dag 6 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 2 stuks, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
@@ -424,7 +422,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -447,8 +444,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -457,7 +453,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -481,8 +476,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -491,7 +485,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -512,8 +505,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -526,8 +518,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -604,7 +595,8 @@
                <code code="01.015"
                      codeSystem="2.16.840.1.113883.2.4.15.111"
                      displayName="Huisarts"
-                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
                      <given qualifier="BR">Jan</given>
@@ -635,8 +627,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -665,8 +656,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">4 maal per dag 1 stuk, oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240103000000+0100"/>
             <width value="14"
                    unit="d"/>
@@ -700,7 +690,8 @@
                <code code="01.015"
                      codeSystem="2.16.840.1.113883.2.4.15.111"
                      displayName="Huisarts"
-                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
                      <given qualifier="BR">Jan</given>
@@ -727,7 +718,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <frequency value="4"/>
@@ -745,8 +735,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -823,7 +812,8 @@
                <code code="01.015"
                      codeSystem="2.16.840.1.113883.2.4.15.111"
                      displayName="Huisarts"
-                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
                      <given qualifier="BR">Jan</given>
@@ -854,8 +844,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -884,8 +873,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">toedieningssnelheid: 0.2 à 0.5 ml/h, parenteraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high value="20240109235959+0100"/>
          </effectiveTime>
@@ -918,7 +906,8 @@
                <code code="01.015"
                      codeSystem="2.16.840.1.113883.2.4.15.111"
                      displayName="Huisarts"
-                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
                      <given qualifier="BR">Jan</given>
@@ -950,8 +939,7 @@
                   <high value="0.5"
                         unit="ml/h"/>
                </rateQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1028,7 +1016,8 @@
                <code code="01.015"
                      codeSystem="2.16.840.1.113883.2.4.15.111"
                      displayName="Huisarts"
-                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
                      <given qualifier="BR">Jan</given>
@@ -1059,8 +1048,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1089,8 +1077,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">1 maal per dag 1 stuk gedurende 16 uur, transdermaal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
@@ -1123,7 +1110,8 @@
                <code code="01.015"
                      codeSystem="2.16.840.1.113883.2.4.15.111"
                      displayName="Huisarts"
-                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
                      <given qualifier="BR">Jan</given>
@@ -1150,7 +1138,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <duration value="16"/>
@@ -1170,8 +1157,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1248,7 +1234,8 @@
                <code code="01.015"
                      codeSystem="2.16.840.1.113883.2.4.15.111"
                      displayName="Huisarts"
-                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
                      <given qualifier="BR">Jan</given>
@@ -1279,8 +1266,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1309,8 +1295,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">3 maal per dag 1 à 2 stuks, oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high value="20240129235959+0100"/>
          </effectiveTime>
@@ -1343,7 +1328,8 @@
                <code code="01.015"
                      codeSystem="2.16.840.1.113883.2.4.15.111"
                      displayName="Huisarts"
-                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
                      <given qualifier="BR">Jan</given>
@@ -1370,7 +1356,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <frequency value="3"/>
@@ -1396,8 +1381,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </high>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1474,7 +1458,8 @@
                <code code="01.015"
                      codeSystem="2.16.840.1.113883.2.4.15.111"
                      displayName="Huisarts"
-                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
                      <given qualifier="BR">Jan</given>
@@ -1505,8 +1490,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1535,8 +1519,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Bij hoest minimaal 1 maal per 6 uur 1 à 2 stuks , maximaal 6 stuks per dag, oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high value="20240122235959+0100"/>
          </effectiveTime>
@@ -1569,7 +1552,8 @@
                <code code="01.015"
                      codeSystem="2.16.840.1.113883.2.4.15.111"
                      displayName="Huisarts"
-                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
                      <given qualifier="BR">Jan</given>
@@ -1596,7 +1580,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <frequency value="1"/>
@@ -1634,8 +1617,7 @@
                   <denominator value="1"
                                unit="d"/>
                </maxDoseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
                <precondition>
                   <criterion>
                      <code code="1387"
@@ -1719,7 +1701,8 @@
                <code code="01.015"
                      codeSystem="2.16.840.1.113883.2.4.15.111"
                      displayName="Huisarts"
-                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
                      <given qualifier="BR">Jan</given>
@@ -1750,8 +1733,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1780,8 +1762,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">3 maal per dag, cutaan</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high value="20240129235959+0100"/>
          </effectiveTime>
@@ -1814,7 +1795,8 @@
                <code code="01.015"
                      codeSystem="2.16.840.1.113883.2.4.15.111"
                      displayName="Huisarts"
-                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
                      <given qualifier="BR">Jan</given>
@@ -1841,7 +1823,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <frequency value="3"/>
@@ -1849,8 +1830,7 @@
                      <periodUnit value="d"/>
                   </repeat>
                </effectiveTime>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1927,7 +1907,8 @@
                <code code="01.015"
                      codeSystem="2.16.840.1.113883.2.4.15.111"
                      displayName="Huisarts"
-                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
                      <given qualifier="BR">Jan</given>
@@ -1958,8 +1939,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1988,8 +1968,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">2 maal per dag 0.5 stuk, oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high value="20240129235959+0100"/>
          </effectiveTime>
@@ -2022,7 +2001,8 @@
                <code code="01.015"
                      codeSystem="2.16.840.1.113883.2.4.15.111"
                      displayName="Huisarts"
-                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
                      <given qualifier="BR">Jan</given>
@@ -2049,7 +2029,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <frequency value="2"/>
@@ -2067,8 +2046,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -2145,7 +2123,8 @@
                <code code="01.015"
                      codeSystem="2.16.840.1.113883.2.4.15.111"
                      displayName="Huisarts"
-                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"/>
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
                <assignedPerson>
                   <name>
                      <given qualifier="BR">Jan</given>
@@ -2176,8 +2155,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
