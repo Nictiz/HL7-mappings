@@ -9,6 +9,22 @@
          codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4"
          codeSystemName="ART DECOR transacties"/>
    <statusCode nullFlavor="NI"/>
+   <recordTarget>
+      <patientRole>
+         <id extension="999909459"
+             root="2.16.840.1.113883.2.4.6.3"/>
+         <patient>
+            <name>
+               <given qualifier="IN">N.</given>
+               <family qualifier="BR">XXX_Slagters</family>
+            </name>
+            <administrativeGenderCode code="M"
+                                      codeSystem="2.16.840.1.113883.5.1"
+                                      displayName="Man"/>
+            <birthTime value="19540725"/>
+         </patient>
+      </patientRole>
+   </recordTarget>
    <component typeCode="COMP">
       <substanceAdministration classCode="SBADM"
                                moodCode="RQO">
@@ -239,7 +255,7 @@
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">1 maal per dag 1 stuk, Oraal</text>
+         <text mediaType="text/plain">4 maal per dag 2 stuks, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
             <low value="20240101090000+0100"/>
             <high value="20240131235959+0100"/>
@@ -253,17 +269,13 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
                <manufacturedMaterial classCode="MMAT"
                                      determinerCode="KIND">
-                  <code code="2397943"
-                        codeSystem="2.16.840.1.113883.2.4.4.7"
-                        displayName="ENALAPRIL MALEAAT TEVA TABLET 5MG"
-                        codeSystemName="G-Standaard HPK">
-                     <translation code="23698"
-                                  codeSystem="2.16.840.1.113883.2.4.4.10"
-                                  displayName="ENALAPRIL TABLET 10MG"
-                                  codeSystemName="G-Standaard PRK"/>
-                     <translation code="55387"
+                  <code code="67903"
+                        codeSystem="2.16.840.1.113883.2.4.4.10"
+                        displayName="PARACETAMOL 500MG TABLET"
+                        codeSystemName="G-Standaard PRK">
+                     <translation code="2194"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="ENALAPRIL TABLET 10MG"
+                                  displayName="PARACETAMOL 500MG TABLET"
                                   codeSystemName="G-Standaard GPK"/>
                   </code>
                </manufacturedMaterial>
@@ -295,15 +307,15 @@
                <effectiveTime xsi:type="Timing"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
-                     <frequency value="1"/>
+                     <frequency value="4"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="1"
+                  <center value="2"
                           unit="1">
-                     <translation value="1"
+                     <translation value="2"
                                   code="245"
                                   displayName="stuk"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -319,7 +331,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.61.2"
-                   extension="21083"/>
+                   extension="67903"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -422,7 +434,7 @@
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9416"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9415"/>
-         <id extension="2115468"
+         <id extension="MBH_hybmp9_MBHgen_MA612ID_TA"
              root="2.16.840.1.113883.2.4.3.11.61.3"/>
          <code code="422037009"
                displayName="Toedieningsafspraak"
