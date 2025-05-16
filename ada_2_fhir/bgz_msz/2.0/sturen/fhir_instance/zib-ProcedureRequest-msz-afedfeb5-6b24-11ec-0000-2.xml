@@ -1,0 +1,72 @@
+<ProcedureRequest xmlns="http://hl7.org/fhir">
+   <id value="zib-ProcedureRequest-msz-afedfeb5-6b24-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichtingaanvraag. Subject: Michelle M.B. Michelle Bergzoon Verheul. Status: onbekend<span style="display: block;">Intentie: plan</span>
+               <span style="display: block;">Aangevraagd door: Huisdokter H. Huisdokter Behulpzaam<span style="display: block;">Zorgverlenerrol: Huisarts</span>
+               </span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="intraveneuze trombolyse (77381000146102 - SNOMED CT)">intraveneuze trombolyse</span>
+                  </td>
+                  <td>
+                     <div>Wanneer: 1 juli 2010</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Beoogde uitvoerende</th>
+                  <td>
+                     <div>Huisartsenpraktijk Betrokken</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td/>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <status value="unknown"/>
+   <intent value="plan"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="77381000146102"/>
+         <display value="intraveneuze trombolyse"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL"/>
+      <display value="Michelle M.B. Michelle Bergzoon Verheul"/>
+   </subject>
+   <occurrencePeriod>
+      <start value="2010-07-01"/>
+      <end value="2010-07-01"/>
+   </occurrencePeriod>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0013131301-015"/>
+               <display value="Huisarts"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00131313"/>
+         <display value="Huisdokter H. Huisdokter Behulpzaam"/>
+      </agent>
+   </requester>
+   <performer>
+      <actor>
+         <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000004"/>
+         <display value="Huisartsenpraktijk Betrokken"/>
+      </actor>
+   </performer>
+</ProcedureRequest>

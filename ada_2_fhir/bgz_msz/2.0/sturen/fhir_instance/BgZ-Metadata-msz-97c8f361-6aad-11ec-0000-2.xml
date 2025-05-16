@@ -1,0 +1,56 @@
+<Provenance xmlns="http://hl7.org/fhir">
+   <id value="BgZ-Metadata-msz-97c8f361-6aad-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/BgZ-Metadata"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Provenance. </caption>
+            <tbody>
+               <tr>
+                  <th>Doel</th>
+                  <td>fractuur van enkel, Bovendruk: 130 mm[Hg] Onderdruk: 79 mm[Hg]. Datum/tijd gemeten: T-43D{10:00}</td>
+               </tr>
+               <tr>
+                  <th>Registratiedatum</th>
+                  <td>${DATE, T, D, -45}T15:00:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Activiteit</th>
+                  <td>
+                     <span title="create (CREATE - v3/DataOperation)">create</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Actor</th>
+                  <td>
+                     <div>Wie: Ziekenhuis de Aandacht</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <target>
+      <reference value="Condition/BgZ-Problem-msz-4c1fb8c9-6b65-11ec-0000-2"/>
+      <display value="fractuur van enkel"/>
+   </target>
+   <target>
+      <reference value="Observation/zib-BloodPressure-msz-a05bf7e1-6b55-11ec-0000-2"/>
+      <display value="Bovendruk: 130 mm[Hg] Onderdruk: 79 mm[Hg]. Datum/tijd gemeten: T-43D{10:00}"/>
+   </target>
+   <recorded value="${DATE, T, D, -45}T15:00:00+02:00"/>
+   <activity>
+      <system value="http://hl7.org/fhir/v3/DataOperation"/>
+      <code value="CREATE"/>
+      <display value="create"/>
+   </activity>
+   <agent>
+      <whoReference>
+         <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000002"/>
+         <display value="Ziekenhuis de Aandacht"/>
+      </whoReference>
+   </agent>
+</Provenance>

@@ -1,0 +1,231 @@
+<Patient xmlns="http://hl7.org/fhir">
+   <id value="MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/BgZ-Patient"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>Id 999911259 (BSN), <span title="Naamsamenstelling: Eigennaam gevolgd door partnernaam">Michelle M.B. Bergzoon-Verheul</span> (Michelle), Vrouw, 1 augustus 1964, Meerling</div>
+         <div>
+            <a href="tel:+316-99990002">+316-99990002</a> (Mobiel Privé), <a href="mailto:MichelleBergzoon@test.nl">MichelleBergzoon@test.nl</a> (E-mail Privé)</div>
+         <div>Knolweg 1003, 9999ZA STITSWERD Het Hogeland, Nederland (Bezoek)</div>
+         <div>
+            <span title="Partner (DOMPART - v3/RoleCode)">Partner</span>, <span title="Eerste relatie/contactpersoon (1 - RoleCodeLijst (COD472-VEKT))">Eerste relatie/contactpersoon</span>: Peter P.V. Verheul-Bergzoon (Peer)<div>
+               <a href="tel:06-99990008">06-99990008</a> (Mobiel Privé), <a href="mailto:peer@verheul.org">peer@verheul.org</a> (E-mail Privé), Knolweg 1000, 9999XA Stitswerd Het Hogeland, Nederland (officieel Privé (hoofd) Bezoek)</div>
+         </div>
+         <div>Huisarts: Huisdokter H. Huisdokter Behulpzaam<div>Zorgverlenerrol: Huisarts</div>
+         </div>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+      <value value="999911259"/>
+   </identifier>
+   <name>
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+         <valueCode value="NL4"/>
+      </extension>
+      <family value="Bergzoon-Verheul">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="Bergzoon"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+            <valueString value="Verheul"/>
+         </extension>
+      </family>
+      <given value="Michelle">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <given value="M.B.">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="IN"/>
+         </extension>
+      </given>
+      <given value="Michelle">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="CL"/>
+         </extension>
+      </given>
+   </name>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="MC"/>
+               <display value="Mobiel telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="+316-99990002"/>
+      <use value="home"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="MichelleBergzoon@test.nl"/>
+      <use value="home"/>
+   </telecom>
+   <gender value="female">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+               <code value="F"/>
+               <display value="Vrouw"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </gender>
+   <birthDate value="1964-08-01"/>
+   <deceasedBoolean value="false"/>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="PHYS"/>
+               <display value="Woon-/verblijfadres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="home"/>
+      <type value="physical"/>
+      <line value="Knolweg 1003">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Knolweg"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="1003"/>
+         </extension>
+      </line>
+      <city value="STITSWERD"/>
+      <district value="Het Hogeland"/>
+      <postalCode value="9999ZA"/>
+      <country value="Nederland">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:iso:std:iso:3166"/>
+                  <version value="2020-10-26T00:00:00"/>
+                  <code value="NL"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+   <multipleBirthBoolean value="true"/>
+   <contact>
+      <relationship>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/RoleCode"/>
+            <code value="DOMPART"/>
+            <display value="Partner"/>
+         </coding>
+      </relationship>
+      <relationship>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
+            <code value="1"/>
+            <display value="Eerste relatie/contactpersoon"/>
+         </coding>
+      </relationship>
+      <name>
+         <family value="Verheul-Bergzoon">
+            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+               <valueString value="Verheul"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+               <valueString value="Bergzoon"/>
+            </extension>
+         </family>
+         <given value="Peter">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+               <valueCode value="BR"/>
+            </extension>
+         </given>
+         <given value="P.V.">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+               <valueCode value="IN"/>
+            </extension>
+         </given>
+         <given value="Peer">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+               <valueCode value="CL"/>
+            </extension>
+         </given>
+      </name>
+      <telecom>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                  <code value="MC"/>
+                  <display value="Mobiel telefoonnummer"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+         <system value="phone"/>
+         <value value="06-99990008"/>
+         <use value="home"/>
+      </telecom>
+      <telecom>
+         <system value="email"/>
+         <value value="peer@verheul.org"/>
+         <use value="home"/>
+      </telecom>
+      <address>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                  <code value="HP"/>
+                  <display value="Officieel adres"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+         <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
+            <valueBoolean value="true"/>
+         </extension>
+         <use value="home"/>
+         <type value="physical"/>
+         <line value="Knolweg 1000">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+               <valueString value="Knolweg"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+               <valueString value="1000"/>
+            </extension>
+         </line>
+         <city value="Stitswerd"/>
+         <district value="Het Hogeland"/>
+         <postalCode value="9999XA"/>
+         <country value="Nederland">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.16.34"/>
+                     <version value="2020-03-31T00:00:00"/>
+                     <code value="6030"/>
+                     <display value="Nederland"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
+         </country>
+      </address>
+   </contact>
+   <generalPractitioner>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-msz-0013131301-015"/>
+            <display value="Huisarts"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00131313"/>
+      <display value="Huisdokter H. Huisdokter Behulpzaam"/>
+   </generalPractitioner>
+</Patient>

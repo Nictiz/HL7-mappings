@@ -1,0 +1,77 @@
+<DeviceUseStatement xmlns="http://hl7.org/fhir">
+   <id value="zib-MedicalDevice-msz-991e9342-6a98-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Beschrijving apparaatgebruik. Subject: Jan Adrianus J.A.H. Jan van Houten. Status: actief</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Apparaat niet zichtbaar</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Apparaat/Systeem</th>
+                  <td>gehoorapparaat Gehoorapparaat</td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="gehele rechter oor (25577004 - SNOMED CT)">gehele rechter oor</span>
+                     <span title="Rechts (24028007 - SNOMED CT)">Rechts</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Geïniteerd of geïmplanteerd door</th>
+                  <td>Huisartsenpraktijk van aanpakken - Noord</td>
+               </tr>
+               <tr>
+                  <th>Gebruiksperiode</th>
+                  <td>Vanaf 8 maart 2012</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Organization">
+      <valueReference>
+         <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000001"/>
+         <display value="Huisartsenpraktijk van aanpakken - Noord"/>
+      </valueReference>
+   </extension>
+   <status value="active"/>
+   <subject>
+      <reference value="Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN"/>
+      <display value="Jan Adrianus J.A.H. Jan van Houten"/>
+   </subject>
+   <whenUsed>
+      <start value="2012-03-08"/>
+   </whenUsed>
+   <device>
+      <reference value="Device/zib-MedicalDeviceProduct-msz-991e9342-6a98-11ec-0000-2"/>
+      <display value="gehoorapparaat Gehoorapparaat"/>
+   </device>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="24028007"/>
+               <display value="Rechts"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="25577004"/>
+         <display value="gehele rechter oor"/>
+      </coding>
+   </bodySite>
+   <note>
+      <text value="Apparaat niet zichtbaar"/>
+   </note>
+</DeviceUseStatement>

@@ -1,0 +1,127 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="zib-MedicationAgreement-msz-2b9f02d2-6b17-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Medicatieafspraak. Subject: Jan Adrianus J.A.H. Jan van Houten. Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: Beendokter B. Beendokter Aangenaam<span style="display: block;">Zorgverlenerrol: Orthopedisch chirurg</span>
+               </span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>Type medicatie: TRAMADOL CAPSULE 50MG</td>
+               </tr>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>${DATE, T, D, -45}</td>
+               </tr>
+               <tr>
+                  <th>Gebruiksduur</th>
+                  <td>15 dag</td>
+               </tr>
+               <tr>
+                  <th>Doseerinstructie</th>
+                  <td>
+                     <div>Volgnummer: 1</div>
+                     <div>Instructie: <ul>
+                           <li>met voldoende water innemen</li>
+                           <li>bij voorkeur bij maaltijd innemen</li>
+                        </ul>
+                     </div>
+                     <div>Timing: <div>3 maal per dag</div>
+                     </div>
+                     <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                     </div>
+                     <div>Dosering: 1 STUK</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+      <valueDuration>
+         <value value="15"/>
+         <unit value="dag"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="d"/>
+      </valueDuration>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
+      <valueString value="Vanaf &lt;T-45D&gt;, 15 dagen, 3 maal per dag 1 stuk, oraal, met voldoende water innemen, bij voorkeur bij maaltijd innemen."/>
+   </extension>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="Prescription (procedure)"/>
+      </coding>
+      <text value="Medicatieafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/zib-Product-msz-33e35a59-6b47-11ec-0000-2"/>
+      <display value="Type medicatie: TRAMADOL CAPSULE 50MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN"/>
+      <display value="Jan Adrianus J.A.H. Jan van Houten"/>
+   </subject>
+   <authoredOn value="${DATE, T, D, -45}"/>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-msz-1000000301-032"/>
+               <display value="Orthopedisch chirurg"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000003"/>
+         <display value="Beendokter B. Beendokter Aangenaam"/>
+      </agent>
+   </requester>
+   <dosageInstruction>
+      <sequence value="1"/>
+      <additionalInstruction>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="overig"/>
+         </coding>
+         <text value="met voldoende water innemen"/>
+      </additionalInstruction>
+      <additionalInstruction>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="overig"/>
+         </coding>
+         <text value="bij voorkeur bij maaltijd innemen"/>
+      </additionalInstruction>
+      <timing>
+         <repeat>
+            <frequency value="3"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseQuantity>
+         <value value="1"/>
+         <unit value="STUK"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="ST"/>
+      </doseQuantity>
+   </dosageInstruction>
+</MedicationRequest>

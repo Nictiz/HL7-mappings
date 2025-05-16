@@ -1,0 +1,113 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="zib-MedicationAgreement-msz-e245ea05-6b45-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Medicatieafspraak. Subject: Michelle M.B. Michelle Bergzoon Verheul. Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: Zaza Z. Zaza Bedachtzaam<span style="display: block;">Zorgverlenerrol: Chirurg</span>
+               </span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>Type medicatie: ALENDRONINEZUUR DRANK 70MG=100ML (0,7MG/ML) FL</td>
+               </tr>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>10:10:01, 2 juli 2012</td>
+               </tr>
+               <tr>
+                  <th>Doseerinstructie</th>
+                  <td>
+                     <div>Instructie: <ul>
+                           <li>Innemen bij het opstaan, ten minste een half uur voor het eerste eten of drinken of de eerste geneesmiddelen van die dag</li>
+                           <li>Bij het vergeten in te nemen van de wekelijkse drank, deze de volgende ochtend innemen</li>
+                        </ul>
+                     </div>
+                     <div>Timing: <div>eenmalig per week</div>
+                     </div>
+                     <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                     </div>
+                     <div>Dosering: 1 STUK</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
+      <valueString value="1 maal per week 1 stuk, oraal, Innemen bij het opstaan 's ochtends, ten minste een half uur voor het eerste eten of drinken of de eerste geneesmiddelen van die dag, Bij het vergeten in te nemen van de wekelijkse drank, deze de volgende ochtend innemen."/>
+   </extension>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="Prescription (procedure)"/>
+      </coding>
+      <text value="Medicatieafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/zib-Product-msz-dd3ff04f-6b55-11ec-0000-2"/>
+      <display value="Type medicatie: ALENDRONINEZUUR DRANK 70MG=100ML (0,7MG/ML) FL"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL"/>
+      <display value="Michelle M.B. Michelle Bergzoon Verheul"/>
+   </subject>
+   <authoredOn value="2012-07-02T10:10:01+02:00"/>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0014141401-014"/>
+               <display value="Chirurg"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00141414"/>
+         <display value="Zaza Z. Zaza Bedachtzaam"/>
+      </agent>
+   </requester>
+   <dosageInstruction>
+      <additionalInstruction>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="overig"/>
+         </coding>
+         <text value="Innemen bij het opstaan, ten minste een half uur voor het eerste eten of drinken of de eerste geneesmiddelen van die dag"/>
+      </additionalInstruction>
+      <additionalInstruction>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="overig"/>
+         </coding>
+         <text value="Bij het vergeten in te nemen van de wekelijkse drank, deze de volgende ochtend innemen"/>
+      </additionalInstruction>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="wk"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseQuantity>
+         <value value="1"/>
+         <unit value="STUK"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="ST"/>
+      </doseQuantity>
+   </dosageInstruction>
+</MedicationRequest>

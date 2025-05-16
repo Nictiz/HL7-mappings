@@ -1,0 +1,95 @@
+<ProcedureRequest xmlns="http://hl7.org/fhir">
+   <id value="zib-ProcedureRequest-msz-ec9ba309-6add-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichtingaanvraag. Subject: Jan Adrianus J.A.H. Jan van Houten. Status: onbekend<span style="display: block;">Intentie: plan</span>
+               <span style="display: block;">Aangevraagd door: Beendokter B. Beendokter Aangenaam<span style="display: block;">Zorgverlenerrol: Orthopedisch chirurg</span>
+               </span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="operatie met gebruik van externe fixateur (239613002 - SNOMED CT)">operatie met gebruik van externe fixateur</span>
+                  </td>
+                  <td>
+                     <div>Wanneer: ${DATE, T, D, -45}T20:00:00+02:00 - ${DATE, T, D, -45}T21:00:00+02:00</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Beoogde uitvoerende</th>
+                  <td>
+                     <div>Ziekenhuis de Aandacht</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td/>
+               </tr>
+               <tr>
+                  <td>Deel van lichaam</td>
+                  <td>
+                     <span title="structuur van enkelgewricht (70258002 - SNOMED CT)">structuur van enkelgewricht</span>
+                     <span title="Links (7771000 - SNOMED CT)">Links</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <status value="unknown"/>
+   <intent value="plan"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="239613002"/>
+         <display value="operatie met gebruik van externe fixateur"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN"/>
+      <display value="Jan Adrianus J.A.H. Jan van Houten"/>
+   </subject>
+   <occurrencePeriod>
+      <start value="${DATE, T, D, -45}T20:00:00+02:00"/>
+      <end value="${DATE, T, D, -45}T21:00:00+02:00"/>
+   </occurrencePeriod>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-msz-1000000301-032"/>
+               <display value="Orthopedisch chirurg"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000003"/>
+         <display value="Beendokter B. Beendokter Aangenaam"/>
+      </agent>
+   </requester>
+   <performer>
+      <actor>
+         <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000002"/>
+         <display value="Ziekenhuis de Aandacht"/>
+      </actor>
+   </performer>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="70258002"/>
+         <display value="structuur van enkelgewricht"/>
+      </coding>
+   </bodySite>
+</ProcedureRequest>

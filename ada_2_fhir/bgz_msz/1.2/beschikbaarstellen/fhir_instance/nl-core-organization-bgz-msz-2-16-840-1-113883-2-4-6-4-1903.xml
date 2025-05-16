@@ -16,13 +16,13 @@
                <tr>
                   <th>Contactgegevens</th>
                   <td>
-                     <a href="tel:021-9990101">021-9990101</a> (Vast telefoonnummer Werk)<br/>
-                     <a href="mailto:info@testdoordacht.nl">info@testdoordacht.nl</a> (E-mail Werk)<br/>
+                     <a href="tel:021-9990100">021-9990100</a> (Vast telefoonnummer Tijdelijk)<br/>
+                     <a href="mailto:test@mailtestweb.nl">test@mailtestweb.nl</a> (E-mail Werk)<br/>
                   </td>
                </tr>
                <tr>
                   <th>Adres</th>
-                  <td>Knolweg 1013, 9999ZZ Stitswerd Het Hogeland, Nederland (WP)</td>
+                  <td>Afrikanerplein 1, 1091PN Amsterdam, Nederland (officieel Privé (hoofd) Bezoek)</td>
                </tr>
             </tbody>
          </table>
@@ -44,12 +44,12 @@
          </valueCodeableConcept>
       </extension>
       <system value="phone"/>
-      <value value="021-9990101"/>
-      <use value="work"/>
+      <value value="021-9990100"/>
+      <use value="temp"/>
    </telecom>
    <telecom>
       <system value="email"/>
-      <value value="info@testdoordacht.nl"/>
+      <value value="test@mailtestweb.nl"/>
       <use value="work"/>
    </telecom>
    <address>
@@ -57,23 +57,26 @@
          <valueCodeableConcept>
             <coding>
                <system value="http://hl7.org/fhir/v3/AddressUse"/>
-               <code value="WP"/>
-               <display value="Werkadres"/>
+               <code value="HP"/>
+               <display value="Officieel adres"/>
             </coding>
          </valueCodeableConcept>
       </extension>
-      <use value="work"/>
-      <line value="Knolweg 1013">
+      <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
+         <valueBoolean value="true"/>
+      </extension>
+      <use value="home"/>
+      <type value="physical"/>
+      <line value="Afrikanerplein 1">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
-            <valueString value="Knolweg"/>
+            <valueString value="Afrikanerplein"/>
          </extension>
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-            <valueString value="1013"/>
+            <valueString value="1"/>
          </extension>
       </line>
-      <city value="Stitswerd"/>
-      <district value="Het Hogeland"/>
-      <postalCode value="9999ZZ"/>
+      <city value="Amsterdam"/>
+      <postalCode value="1091PN"/>
       <country value="Nederland">
          <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
             <valueCodeableConcept>

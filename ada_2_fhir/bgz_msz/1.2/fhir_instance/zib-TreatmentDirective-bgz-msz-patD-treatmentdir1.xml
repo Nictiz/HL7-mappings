@@ -1,0 +1,99 @@
+<Consent xmlns="http://hl7.org/fhir">
+   <id value="zib-TreatmentDirective-bgz-msz-patD-treatmentdir1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Toestemming. Patiënt: Fatima Saïda F.S.K. Fatima Al Ksar el Kebir Çelik. Id: bgz-msz-patD-treatmentdir (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), Categorie: <span title="behandelaanwijzing (11291000146105 - SNOMED CT)">behandelaanwijzing</span>, Status: actief</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Bezwaren i.v.m. levensovertuiging. Jaarlijks evalueren met patiënt. De uitgewisselde tekst moet de volgende zes speciale karakters, gescheiden door schuine streepjes, bevatten: é/è/ë/ü/ê/ç.</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Geldigheidsperiode</th>
+                  <td>12 november 1999 - 11 november 2000</td>
+               </tr>
+               <tr>
+                  <th>Beperking i.v.m. levensovertuiging</th>
+                  <td>
+                     <span title="Ja, maar met beperkingen (JA_MAAR - 2.16.840.1.113883.2.4.3.11.60.40.4)">Ja, maar met beperkingen</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Niet toegestaan tenzij</th>
+                  <td>
+                     <div>
+                        <b>Behandelrestrictie</b>
+                        <div>Geen behandeling met materiaal van varkens.</div>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Bron </th>
+                  <td>Behandelverbod</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/Comment">
+      <valueString value="Bezwaren i.v.m. levensovertuiging. Jaarlijks evalueren met patiënt. De uitgewisselde tekst moet de volgende zes speciale karakters, gescheiden door schuine streepjes, bevatten: é/è/ë/ü/ê/ç."/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-Treatment">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="Other"/>
+         </coding>
+         <text value="Beperking i.v.m. levensovertuiging"/>
+      </valueCodeableConcept>
+   </extension>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-TreatmentPermitted">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4"/>
+            <code value="JA_MAAR"/>
+            <display value="Ja, maar met beperkingen"/>
+         </coding>
+      </valueCodeableConcept>
+   </modifierExtension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patD-treatmentdir"/>
+   </identifier>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="11291000146105"/>
+         <display value="behandelaanwijzing"/>
+      </coding>
+   </category>
+   <patient>
+      <reference value="Patient/FATIMA-SAIDA-F-S-K--FATIMA-AL-KSAR-EL-KEBIR-ELIK"/>
+      <display value="Fatima Saïda F.S.K. Fatima Al Ksar el Kebir Çelik"/>
+   </patient>
+   <period>
+      <start value="1999-11-12"/>
+      <end value="2000-11-11"/>
+   </period>
+   <sourceReference>
+      <reference value="Consent/zib-AdvanceDirective-bgz-msz-bgz-msz-patD-advdir"/>
+      <display value="Behandelverbod"/>
+   </sourceReference>
+   <policy>
+      <uri value="http://wetten.overheid.nl/"/>
+   </policy>
+   <except>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-Restrictions">
+         <valueString value="Geen behandeling met materiaal van varkens."/>
+      </extension>
+      <type value="deny"/>
+   </except>
+</Consent>

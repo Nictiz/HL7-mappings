@@ -1,0 +1,102 @@
+<MedicationStatement xmlns="http://hl7.org/fhir">
+   <id value="zib-MedicationUse-msz-ce81fbbe-6b56-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>MedicationStatement. Subject: Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik. Categorie: <span title="Medicatiegebruik (6 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.3)">Medicatiegebruik</span>, Status: actief<span style="display: block;">Auteur: Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>Type medicatie: IBUPROFEN TABLET 600MG</td>
+               </tr>
+               <tr>
+                  <th>Informant</th>
+                  <td>23:00:00, 22 juni 2008</td>
+               </tr>
+               <tr>
+                  <th>Dosering</th>
+                  <td>
+                     <div>Volgnummer: 1</div>
+                     <div>Timing: <div>3 maal per dag</div>
+                     </div>
+                     <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                     </div>
+                     <div>Dosering: 0 STUK - 1 STUK</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Medicatie gebruikt</th>
+                  <td>ja</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-AsAgreedIndicator">
+      <valueBoolean value="true"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+      <valueReference>
+         <reference value="Patient/GHANIYA-SAIDA-G-S-N--GHAN-NOERMOHAMED-ELIK"/>
+         <display value="Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
+      <valueString value="3 keer per dag 0 of 1 stuk"/>
+   </extension>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+         <code value="6"/>
+         <display value="Medicatiegebruik"/>
+      </coding>
+      <text value="Medicatiegebruik"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/zib-Product-msz-4287f19d-6b59-11ec-0000-2"/>
+      <display value="Type medicatie: IBUPROFEN TABLET 600MG"/>
+   </medicationReference>
+   <dateAsserted value="2008-06-22T23:00:00+02:00"/>
+   <subject>
+      <reference value="Patient/GHANIYA-SAIDA-G-S-N--GHAN-NOERMOHAMED-ELIK"/>
+      <display value="Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik"/>
+   </subject>
+   <taken value="y"/>
+   <dosage>
+      <sequence value="1"/>
+      <timing>
+         <repeat>
+            <frequency value="3"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseRange>
+         <low>
+            <value value="0"/>
+            <unit value="STUK"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="ST"/>
+         </low>
+         <high>
+            <value value="1"/>
+            <unit value="STUK"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="ST"/>
+         </high>
+      </doseRange>
+   </dosage>
+</MedicationStatement>

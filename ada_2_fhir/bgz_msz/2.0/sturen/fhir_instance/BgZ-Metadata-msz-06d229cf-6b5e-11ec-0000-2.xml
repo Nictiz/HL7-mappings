@@ -1,0 +1,52 @@
+<Provenance xmlns="http://hl7.org/fhir">
+   <id value="BgZ-Metadata-msz-06d229cf-6b5e-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/BgZ-Metadata"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Provenance. </caption>
+            <tbody>
+               <tr>
+                  <th>Doel</th>
+                  <td>Bovendruk: 128 mm[Hg] Onderdruk: 85 mm[Hg]. Datum/tijd gemeten: 09 OCT, 2023 16:00</td>
+               </tr>
+               <tr>
+                  <th>Registratiedatum</th>
+                  <td>${DATE, T, D, -22}T15:05:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Activiteit</th>
+                  <td>
+                     <span title="create (CREATE - v3/DataOperation)">create</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Actor</th>
+                  <td>
+                     <div>Wie: Ziekenhuis Mammazorg - Mammapoli</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <target>
+      <reference value="Observation/zib-BloodPressure-msz-a0edd1cf-6b69-11ec-0000-2"/>
+      <display value="Bovendruk: 128 mm[Hg] Onderdruk: 85 mm[Hg]. Datum/tijd gemeten: 09 OCT, 2023 16:00"/>
+   </target>
+   <recorded value="${DATE, T, D, -22}T15:05:00+02:00"/>
+   <activity>
+      <system value="http://hl7.org/fhir/v3/DataOperation"/>
+      <code value="CREATE"/>
+      <display value="create"/>
+   </activity>
+   <agent>
+      <whoReference>
+         <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000005"/>
+         <display value="Ziekenhuis Mammazorg - Mammapoli"/>
+      </whoReference>
+   </agent>
+</Provenance>
