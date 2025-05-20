@@ -15,7 +15,7 @@
                                             language="nl-NL"
                                             title="TEST Medicatiegegevens Scenarioset 17c MP9 (MP9 Hybride)"
                                             desc="Het MP9 AIS systeem maakt op basis van een MP6.12 voorschrift met een vooraankondiging ID een MP9 TA aan met de vooraankondigingID in de TA/RelatieMA."
-                                            id="mg-mp-mg-hybmp9-TA-Scenarioset17c-17-3">
+                                            id="mg-mp-mg-hybmp9-MVE-Scenarioset17c-17-3">
          <scenario-nr value="17.3"
                       conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2.1.1"/>
          <systeemrol conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.6"
@@ -60,58 +60,37 @@
             <identificatie value="6947"
                            root="2.16.840.1.113883.2.4.3.11.61.2"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
-            <toedieningsafspraak comment=""
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.294">
-               <identificatie value="MBH_hybmp9_MBHgen_MA612ID_TA"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
-               <registratie_datum_tijd value="2024-01-01T11:20:00+01:00"
-                                       datatype="datetime"
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1481"/>
-               <gebruiksperiode comment=""
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334">
-                  <start_datum_tijd value="2024-01-01T11:20:00+01:00"
-                                    datatype="datetime"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.335"/>
-                  <eind_datum_tijd value="2024-01-16T23:59:59+01:00"
-                                   datatype="datetime"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.336"/>
-               </gebruiksperiode>
-               <verstrekker comment=""
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.295">
+            <medicatieverstrekking conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.346"
+                                   comment="">
+               <identificatie value="MBH_hybmp9_MBHgen_MA612ID_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.361"/>
+               <medicatieverstrekkings_datum_tijd value="2024-01-01T11:20:00+01:00"
+                                                  datatype="datetime"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.353"/>
+               <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.347"
+                            comment="">
                   <zorgaanbieder value="APOTHEEK_DE_GULLE_GAPER"
                                  datatype="reference"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.296"/>
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.348"/>
                </verstrekker>
-               <geneesmiddel_bij_toedieningsafspraak comment=""
-                                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297">
+               <verstrekte_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.358"
+                                       comment="">
+                  <aantal value="16"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.700"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.701"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.351"
+                                       comment="">
                   <farmaceutisch_product value="HPK_METOCLOPRAMIDE_2115468"
                                          datatype="reference"
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.298"/>
-               </geneesmiddel_bij_toedieningsafspraak>
-               <gebruiksinstructie comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.299">
-                  <omschrijving value="Volgens uitleg gebruiken, Oraal"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.301"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen"
-                                  displayName="Oraal"
-                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.303"/>
-                  <aanvullende_instructie originalText="Volgens uitleg gebruiken"
-                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.300"
-                                          value="2"
-                                          code="OTH"
-                                          codeSystem="2.16.840.1.113883.5.1008"
-                                          displayName="overig"/>
-               </gebruiksinstructie>
-               <relatie_medicatieafspraak comment=""
-                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.338">
-                  <identificatie value="MBH_hyb_vo_bsl_inhd_MA"
-                                 root="2.16.528.1.1007.3.3.11111.1"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.565"/>
-               </relatie_medicatieafspraak>
-            </toedieningsafspraak>
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.352"/>
+               </verstrekt_geneesmiddel>
+            </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <bouwstenen comment=""
                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">

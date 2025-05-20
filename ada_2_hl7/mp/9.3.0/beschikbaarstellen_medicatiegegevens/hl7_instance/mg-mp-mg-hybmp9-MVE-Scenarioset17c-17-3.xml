@@ -25,27 +25,25 @@
       </patientRole>
    </recordTarget>
    <component typeCode="COMP">
-      <substanceAdministration classCode="SBADM"
-                               moodCode="RQO">
-         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9416"/>
-         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9415"/>
-         <id extension="MBH_hybmp9_MBHgen_MA612ID_TA"
-             root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-         <code code="422037009"
-               displayName="Toedieningsafspraak"
+      <supply classCode="SPLY"
+              moodCode="EVN">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9364"/>
+         <id extension="MBH_hybmp9_MBHgen_MA612ID_MVE"
+             root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+         <code displayName="Verstrekking"
+               code="373784005"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Volgens uitleg gebruiken, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <low value="20240101112000+0100"/>
-            <high value="20240116235959+0100"/>
-         </effectiveTime>
-         <routeCode code="9"
-                    codeSystem="2.16.840.1.113883.2.4.4.9"
-                    displayName="Oraal"
-                    codeSystemName="G-Standaard Toedieningswegen"/>
-         <consumable>
+         <effectiveTime value="20240101112000+0100"/>
+         <quantity value="16"
+                   unit="1">
+            <translation value="16"
+                         code="245"
+                         displayName="stuk"
+                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                         codeSystemName="G-Standaard thesaurus basiseenheden"/>
+         </quantity>
+         <product>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
                <manufacturedMaterial classCode="MMAT"
@@ -65,10 +63,9 @@
                   </code>
                </manufacturedMaterial>
             </manufacturedProduct>
-         </consumable>
-         <author>
-            <time value="20240101112000+0100"/>
-            <assignedAuthor>
+         </product>
+         <performer>
+            <assignedEntity>
                <id nullFlavor="NI"/>
                <representedOrganization>
                   <id extension="01236578"
@@ -82,31 +79,8 @@
                      <city>Ons Dorp</city>
                   </addr>
                </representedOrganization>
-            </assignedAuthor>
-         </author>
-         <entryRelationship typeCode="SPRT">
-            <act classCode="ACT"
-                 moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9085"/>
-               <code nullFlavor="OTH">
-                  <originalText>Volgens uitleg gebruiken</originalText>
-               </code>
-            </act>
-         </entryRelationship>
-         <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM"
-                                     moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_hyb_vo_bsl_inhd_MA"
-                   root="2.16.528.1.1007.3.3.11111.1"/>
-               <code code="33633005"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"
-                     displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-            </substanceAdministration>
-         </entryRelationship>
+            </assignedEntity>
+         </performer>
          <entryRelationship typeCode="COMP"
                             inversionInd="true">
             <procedure classCode="PROC"
@@ -119,6 +93,6 @@
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
             </procedure>
          </entryRelationship>
-      </substanceAdministration>
+      </supply>
    </component>
 </organizer>
