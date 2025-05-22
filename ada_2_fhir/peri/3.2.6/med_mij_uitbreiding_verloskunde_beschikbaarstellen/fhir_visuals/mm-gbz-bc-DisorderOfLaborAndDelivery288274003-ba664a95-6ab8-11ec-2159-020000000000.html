@@ -1,6 +1,6 @@
 <html lang="en">
    <head>
-      <title>Condition - 7b9a287f-6ae0-11ec-2149-020000000000</title>
+      <title>Condition - ba664a95-6ab8-11ec-2159-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -18,11 +18,13 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Aandoening. Subject: Kind Mieke XXX_Yzendoorn. Categorie: <span title="aandoening van foetus of neonaat (aandoening) (414025005 - SNOMED CT)">aandoening van foetus of neonaat (aandoening)</span>, Status: actief</caption>
+               <caption>Aandoening. Subject: Kind Mieke XXX_Yzendoorn. Categorie: <span title="aandoening durante partu (aandoening) (362972006 - SNOMED CT)">aandoening durante partu (aandoening)</span>, Status: actief</caption>
                <tbody>
                   <tr>
                      <th>Code</th>
-                     <td/>
+                     <td>
+                        <span title="foetale nood durante partu (bevinding) (288274003 - SNOMED CT)">foetale nood durante partu (bevinding)</span>
+                     </td>
                   </tr>
                   <tr>
                      <th>Eerste symptomen</th>
@@ -33,20 +35,29 @@
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Condition</b>
+         <b>Resources pointing to 'this' resource - Condition foetale nood durante partu (bevinding)</b>
       </p>
-      <div> - none</div>
+      <ul>
+         <li>
+            <a href="mm-gbz-zib-Pregnancy-Duration57036006-1d638062-6b49-11ec-1069-020000000000.html">Observation zwangerschapsduur (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ObstetricProcedure80801000146105-e550de2e-6aba-11ec-2160-020000000000.html">Procedure secundaire sectio caesarea (verrichting)</a>
+         </li>
+      </ul>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
 { id: 2, label: "Patient XXX_Yzendoorn", url: "mm-gbz-bc-Child-MIEKE-XXX-YZENDOORN.html" }, 
-{ id: 15, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-14d1a1ff-6b66-11ec-0000-020000000000.html" }, 
-{ id: 23, label: "Condition", url: "mm-gbz-bc-DisorderOfChild-7b9a287f-6ae0-11ec-2149-020000000000.html" }, 
+{ id: 21, label: "Condition foetale nood durante partu (bevinding)", url: "mm-gbz-bc-DisorderOfLaborAndDelivery288274003-ba664a95-6ab8-11ec-2159-020000000000.html" }, 
+{ id: 25, label: "Encounter verlossing (verrichting)", url: "mm-gbz-bc-ChildBirthAssistance-a0cecf3f-6ad4-11ec-1071-020000000000.html" }, 
+{ id: 96, label: "Procedure geboorte (bevinding)", url: "mm-gbz-bc-Birth3950001-51e522ef-6b5e-11ec-2123-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 23, to: 2 }, 
-{ from: 23, to: 15 }, 
+var edges = new vis.DataSet([{ from: 21, to: 96 }, 
+{ from: 21, to: 2 }, 
+{ from: 21, to: 25 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

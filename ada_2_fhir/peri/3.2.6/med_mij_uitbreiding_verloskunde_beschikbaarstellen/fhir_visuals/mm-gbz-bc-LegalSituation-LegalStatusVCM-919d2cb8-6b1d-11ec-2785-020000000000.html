@@ -1,6 +1,6 @@
 <html lang="en">
    <head>
-      <title>Observation - e20e2e86-6aee-11ec-2362-020000000000</title>
+      <title>Condition - 919d2cb8-6b1d-11ec-2785-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -18,55 +18,33 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Observatie/bepaling. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Status: definitief</caption>
+               <caption>Aandoening. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Categorie: <span title="juridische status van patiënt (waarneembare entiteit) (303186005 - SNOMED CT)">juridische status van patiënt (waarneembare entiteit)</span>, Status: actief</caption>
                <tbody>
                   <tr>
-                     <th>Context</th>
-                     <td>Zwangerschap 2 Vrouw-XXX_Yzendoorn</td>
-                  </tr>
-                  <tr>
-                     <th>Bepalingdatum/tijd</th>
-                     <td>${DATE, T, D, -330}</td>
-                  </tr>
-                  <tr>
-                     <th>Methode</th>
-                     <td>
-                        <span title="Meten van schedelomvang m.b.v. echografisch onderzoek (31561000146107 - SNOMED CT)">Meten van schedelomvang m.b.v. echografisch onderzoek</span>
-                     </td>
-                  </tr>
-                  <tr>
                      <th>Code</th>
-                     <th>Waarde</th>
-                  </tr>
-                  <tr>
                      <td>
-                        <span title="hoofdomtrek (waarneembare entiteit) (363812007 - SNOMED CT)">hoofdomtrek (waarneembare entiteit)</span>
+                        <span title="Vrouw Machtiging tot voortzetting van de crisismaatregel (VCM - 2.16.840.1.113883.2.4.3.11.60.40.4.23.2)">Vrouw Machtiging tot voortzetting van de crisismaatregel</span>
                      </td>
-                     <td>341 mm</td>
                   </tr>
                </tbody>
             </table>
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Observation hoofdomtrek (waarneembare entiteit)</b>
+         <b>Resources pointing to 'this' resource - Condition Vrouw Machtiging tot voortzetting van de crisismaatregel</b>
       </p>
       <div> - none</div>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
 { id: 1, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-bc-Woman-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
-{ id: 14, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-8e9592ff-6aab-11ec-2334-020000000000.html" }, 
 { id: 15, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-14d1a1ff-6b66-11ec-0000-020000000000.html" }, 
-{ id: 84, label: "BodySite gehele foetus (lichaamsstructuur)", url: "mm-gbz-bc-Fetus83418008-55992d6f-6b62-11ec-1267-020000000000.html" }, 
-{ id: 87, label: "Observation hoofdomtrek (waarneembare entiteit)", url: "mm-gbz-zib-HeadCircumference363812007-e20e2e86-6aee-11ec-2362-020000000000.html" }, 
+{ id: 18, label: "Condition Vrouw Machtiging tot voortzetting van de crisismaatregel", url: "mm-gbz-bc-LegalSituation-LegalStatusVCM-919d2cb8-6b1d-11ec-2785-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 87, to: 14 }, 
-{ from: 87, to: 84 }, 
-{ from: 87, to: 1 }, 
-{ from: 87, to: 15 }, 
+var edges = new vis.DataSet([{ from: 18, to: 1 }, 
+{ from: 18, to: 15 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

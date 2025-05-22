@@ -1,6 +1,6 @@
 <Condition xmlns="http://hl7.org/fhir">
    <!-- Source: gz-izv-kwa-casus2 -->
-   <id value="bdeb176f-6afa-11ec-2118-020000000000"/>
+   <id value="8824f65a-6ad7-11ec-2118-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DisorderOfPregnancy"/>
@@ -12,17 +12,19 @@
             <caption>Aandoening. Subject: Fiona F XXX_Swart. Categorie: <span title="zwangerschapsstoornis (aandoening) (173300003 - SNOMED CT)">zwangerschapsstoornis (aandoening)</span>, Status: actief</caption>
             <tfoot>
                <tr>
-                  <td colspan="2">tweede kind blijft erg achter in ontwikkeling</td>
+                  <td colspan="2">mw.door verwijzen naar Sophia</td>
                </tr>
             </tfoot>
             <tbody>
                <tr>
                   <th>Code</th>
-                  <td/>
+                  <td>
+                     <span title="meerlingzwangerschap (aandoening) (16356006 - SNOMED CT)">meerlingzwangerschap (aandoening)</span>
+                  </td>
                </tr>
                <tr>
                   <th>Eerste symptomen</th>
-                  <td>${DATE, T, D, -70}</td>
+                  <td>${DATE, T, D, -207}</td>
                </tr>
             </tbody>
          </table>
@@ -36,7 +38,7 @@
    </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="bdeb176f-6afa-11ec-2118-020000000000"/>
+      <value value="8824f65a-6ad7-11ec-2118-020000000000"/>
    </identifier>
    <clinicalStatus value="active"/>
    <category>
@@ -46,11 +48,13 @@
          <display value="zwangerschapsstoornis (aandoening)"/>
       </coding>
    </category>
-   <coding>
-      <system value="http://snomed.info/sct"/>
-      <code value="22033007"/>
-      <display value="intra-uteriene groeiretardatie (aandoening)"/>
-   </coding>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16356006"/>
+         <display value="meerlingzwangerschap (aandoening)"/>
+      </coding>
+   </code>
    <subject>
       <reference value="Patient/FIONA-F-XXX-SWART"/>
       <display value="Fiona F XXX_Swart"/>
@@ -59,8 +63,8 @@
       <reference value="EpisodeOfCare/8b4a1a6f-6b0c-11ec-0000-020000000000"/>
       <display value="Zwangerschap 1 XXX_Swart"/>
    </context>
-   <onsetDateTime value="${DATE, T, D, -70}"/>
+   <onsetDateTime value="${DATE, T, D, -207}"/>
    <note>
-      <text value="tweede kind blijft erg achter in ontwikkeling"/>
+      <text value="mw.door verwijzen naar Sophia"/>
    </note>
 </Condition>

@@ -281,6 +281,24 @@
                <geboren_indicator value="false"
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.9861"/>
             </patient>
+            <juridische_situatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7858" id="juridische_situatie_foetus">
+               <!--<juridische_status conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7859" value="5" code="RM" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.23.2" displayName="Foetus Rechterlijke machtiging" />-->
+               <vertegenwoordiging conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7860" value="1" code="6" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.23.3" displayName="Foetus Voogdij"/>
+               <datum_aanvang conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7861" value="T-537D"/>
+               <datum_einde conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7862" value="T-337D"/>
+            </juridische_situatie>
+            <juridische_situatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7858" id="juridische_situatie_kind">
+               <juridische_status conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7859" value="8" code="VMM" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.23.2" displayName="Kind Voorwaardelijke machtiging voor jongvolwassenen met een verstandelijke beperking (VMM)"/>
+               <vertegenwoordiging conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7860" value="2" code="7" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.23.3" displayName="Kind Bewindvoering"/>
+               <datum_aanvang conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7861" value="T-537D"/>
+               <datum_einde conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7862" value="T-337D"/>
+            </juridische_situatie>
+            <juridische_situatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7858" id="juridische_situatie_vrouw">
+               <juridische_status conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7859" value="11" code="VCM" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.23.2" displayName="Vrouw Machtiging tot voortzetting van de crisismaatregel"/>
+               <vertegenwoordiging conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7860" value="5" code="10" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.23.3" displayName="Vrouw Zaakwaarneming"/>
+               <datum_aanvang conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7861" value="T-537D"/>
+               <datum_einde conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7862" value="T-337D"/>
+            </juridische_situatie>
             <zorgaanbieder id="ZA1_Groen"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.956">
                <zorgaanbieder_identificatienummer value="08001234"
@@ -567,6 +585,7 @@
                <patient value="Vrouw-XXX_Yzendoorn"
                         datatype="reference"
                         conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1434"/>
+               <juridische_situatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10567" datatype="reference" value="juridische_situatie_vrouw"/>
                <partner conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.900">
                   <contactpersoon value="Contactpersoon"
                                   datatype="reference"
@@ -609,13 +628,22 @@
                                        displayName="manueel verwijderen van achtergebleven placenta (verrichting)"/>
                   </verrichting_algemene_anamnese>
                </algemene_anamnese>
+               <psychische_enof_sociale_problemen conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1099">
+                  <juridische_situatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3331">
+                     <juridische_status conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3332" value="1" code="OTS" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.23.2" displayName="Anamnese Onder toezichtstelling (ots)"/>
+                     <vertegenwoordiging conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3333" value="4" code="9" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.23.3" displayName="Anamnese Onder curatele stelling"/>
+                     <datum_aanvang conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3334" value="T-537D"/>
+                     <datum_einde conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3335" value="T-337D"/>
+                  </juridische_situatie>
+               </psychische_enof_sociale_problemen>
                <relevante_allergieen conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1110">
                   <veroorzakende_stof conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1111"
                                       value="2"
                                       code="1003755004"
                                       codeSystem="2.16.840.1.113883.6.96"
                                       displayName="latexallergie"/>
-               </relevante_allergieen>
+               </relevante_allergieen> 
+               
                <familieanamnese conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1112">
                   <datum value="T-527D"
                          datatype="datetime"
@@ -1097,6 +1125,7 @@
                <patient value="Patient-Foetus"
                         datatype="reference"
                         conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10805"/>
+               <juridische_situatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10806" datatype="reference" value="juridische_situatie_foetus"/>
             </demografische_gegevens>
          </foetus>
          <kind conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1404">
@@ -1104,6 +1133,7 @@
                <patient value="Patient-Kind"
                         datatype="reference"
                         conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1378"/>
+               <juridische_situatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10566" datatype="reference" value="juridische_situatie_kind"/>
                <contactpersoon value="Contactpersoon2-Zoon"
                                datatype="reference"
                                conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1405"/>
