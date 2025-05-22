@@ -6,13 +6,7 @@ Even though it does contain some functionality for wrappers, it only properly co
 The 'simple dataset xml format' is based on ADA format, more information about ADA can be found here:
 https://www.art-decor.org/mediawiki/index.php/ADA_Walkthrough. It is not necessary to read all this to use the conversion xslt's. 
 The xsd of the ada format is included in the folder "ada_schemas".
-A complete empty xml instance in the ada format is included in the folder "ada_new".
 
-The folder "sturen_medicatievoorschrift/wrapper contains the stylesheet that does the conversion including VZVZ wrappers (for LSP): sturen_medicatievoorschrift_wrapper.xsl. It is based on an input xml with the necessary parameters for wrappers. An example input xml for the wrapper xslt is provided.
-
-The folder "sturen_medicatievoorschrift/payload" contains the stylesheet that does the conversion for the payload: "sturen_medicatievoorschrift_9_to_612.xsl"
-This xslt uses the "../../../mp_include.xsl" which is meant to be reused by other/different transactions and/or standard versions (such as 'beschikbaarstellen medicatiegegevens' or 'medicatieoverzicht' or MP-9 CDA or MP-9 FHIR formats).
-The mp_include.xsl uses in its turn the ../../../../hl7/hl7_include.xsl which contains some hl7-specific stuff that can be reused over different domains (such as Geboortezorg).
 
 The folder 'ada_instance' contains sample ada instance file(s). They are in no way functionally valid (i.e. the situation can probably not be validated in real life). The folder hl7_instance contains the result of the conversion for these sample files.
 
