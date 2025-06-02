@@ -30,7 +30,7 @@
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
-         <id extension="MBH_hybmp9_MBHspec_ID_MA"
+         <id extension="MBH_hybmp9_MBHspec_MA_TA_MA"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
@@ -124,7 +124,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_hybmp9_MBHspec_ID"/>
+                   extension="MBH_hybmp9_MBHspec_MA_TA"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -137,8 +137,8 @@
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9416"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9415"/>
-         <id extension="MBH_hybmp9_MBHspec_ID_TA"
-             root="1.3.6.1.4.1.58606.1.1.2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+         <id extension="MBH_hybmp9_MBHspec_MA_TA_TA"
+             root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
          <code code="422037009"
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
@@ -221,7 +221,7 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_hybmp9_MBHspec_ID_MA"
+               <id extension="MBH_hybmp9_MBHspec_MA_TA_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
@@ -236,7 +236,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_hybmp9_MBHspec_ID"/>
+                   extension="MBH_hybmp9_MBHspec_MA_TA"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -250,7 +250,7 @@
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9416"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9415"/>
          <id extension="MBH_hybmp9_MBHgen_ID_TA"
-             root="1.3.6.1.4.1.58606.1.1.2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+             root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
          <code code="422037009"
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
@@ -317,7 +317,7 @@
                           unit="1">
                      <translation value="2"
                                   code="245"
-                                  displayName="stuk"
+                                  displayName="stuks"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
@@ -435,7 +435,7 @@
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9416"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9415"/>
          <id extension="MBH_hybmp9_MBHgen_MA612ID_TA"
-             root="2.16.840.1.113883.2.4.3.11.61.3"/>
+             root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
          <code code="422037009"
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
@@ -497,6 +497,19 @@
                </code>
             </act>
          </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
+               <id extension="MBH_hyb_vo_bsl_inhd_MA"
+                   root="2.16.528.1.1007.3.3.11111.1"/>
+               <code code="33633005"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"
+                     displayName="Medicatieafspraak"/>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
          <entryRelationship typeCode="COMP"
                             inversionInd="true">
             <procedure classCode="PROC"
@@ -510,5 +523,76 @@
             </procedure>
          </entryRelationship>
       </substanceAdministration>
+   </component>
+   <component typeCode="COMP">
+      <supply classCode="SPLY"
+              moodCode="EVN">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9364"/>
+         <id extension="MBH_hybmp9_MBHgen_MA612ID_MVE"
+             root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+         <code displayName="Verstrekking"
+               code="373784005"
+               codeSystem="2.16.840.1.113883.6.96"
+               codeSystemName="SNOMED CT"/>
+         <effectiveTime value="20240101112000+0100"/>
+         <quantity value="16"
+                   unit="1">
+            <translation value="16"
+                         code="245"
+                         displayName="stuk"
+                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                         codeSystemName="G-Standaard thesaurus basiseenheden"/>
+         </quantity>
+         <product>
+            <manufacturedProduct>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
+                  <code code="2115468"
+                        codeSystem="2.16.840.1.113883.2.4.4.7"
+                        displayName="METOCLOPRAMIDE HCL ACCORD TABLET 10MG"
+                        codeSystemName="G-Standaard HPK">
+                     <translation code="6947"
+                                  codeSystem="2.16.840.1.113883.2.4.4.10"
+                                  displayName="METOCLOPRAMIDE TABLET 10MG"
+                                  codeSystemName="G-Standaard PRK"/>
+                     <translation code="19429"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1"
+                                  displayName="METOCLOPRAMIDE TABLET 10MG"
+                                  codeSystemName="G-Standaard GPK"/>
+                  </code>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </product>
+         <performer>
+            <assignedEntity>
+               <id nullFlavor="NI"/>
+               <representedOrganization>
+                  <id extension="01236578"
+                      root="2.16.528.1.1007.3.3"/>
+                  <name>Apotheek De Gulle Gaper</name>
+                  <addr use="WP">
+                     <streetName>Dorpsstraat</streetName>
+                     <houseNumber>12</houseNumber>
+                     <buildingNumberSuffix>A</buildingNumberSuffix>
+                     <postalCode>1234 AA</postalCode>
+                     <city>Ons Dorp</city>
+                  </addr>
+               </representedOrganization>
+            </assignedEntity>
+         </performer>
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="2.16.840.1.113883.2.4.3.11.61.2"
+                   extension="6947"/>
+               <code code="1"
+                     displayName="Medicamenteuze behandeling"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </supply>
    </component>
 </organizer>
