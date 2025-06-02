@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2025-03-19T10:15:46.7920128+01:00"
-         last-update-date="2025-03-19T10:15:46.7920128+01:00"/>
+         creation-date="2025-06-02T15:15:42.1779034+02:00"
+         last-update-date="2025-06-02T15:15:42.1779034+02:00"/>
    <data>
       <!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
       <sturen_medicatiegegevens app="mp-mp93"
@@ -50,15 +50,15 @@
                                    value="2024-01-06T23:59:59+01:00"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d166790e84"
+                  <zorgaanbieder value="d163982e84"
                                  datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d166790e64"
+                  <farmaceutisch_product value="d163982e64"
                                          datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
-                  <omschrijving value="elke dag om 19:00 1 stuk - let op, tijden exact aanhouden, Oraal"/>
+                  <omschrijving value="elke dag om 19:00 1 stuk - let op, exacte toedientijd(en), Oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
@@ -79,18 +79,6 @@
                            <toedientijd value="19:00:00"
                                         datatype="time"/>
                            <is_flexibel value="false"/>
-                           <adaextension>
-                              <effectiveTime xsi:type="Timing"
-                                             xmlns="http://hl7.org/fhir"
-                                             xmlns:pharm="urn:ihe:pharm:medication">
-                                 <repeat>
-                                    <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                                       <valueBoolean value="true"/>
-                                    </extension>
-                                    <timeOfDay value="19:00:00"/>
-                                 </repeat>
-                              </effectiveTime>
-                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -103,7 +91,7 @@
             </toedieningsafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d166790e64">
+            <farmaceutisch_product id="d163982e64">
                <product_code code="425087"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -117,7 +105,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="FENETICILLINE CAPSULE 500MG"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="d166790e84">
+            <zorgaanbieder id="d163982e84">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>

@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2025-04-30T14:00:33.968+02:00"
-         last-update-date="2025-04-30T14:00:33.968+02:00"/>
+         creation-date="2025-06-02T14:56:08.0375768+02:00"
+         last-update-date="2025-06-02T14:56:08.0375768+02:00"/>
    <data>
       <!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
@@ -17,11 +17,30 @@
                                             language="nl-NL"
                                             title="mg-HYB-scenarioset19-v30"
                                             id="mg-HYB-scenarioset19-v30">
+         <patient>
+            <naamgegevens>
+               <initialen value="J."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <voorvoegsels value="van "/>
+                  <achternaam value="XXX_Dijken"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999909344"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime"
+                           value="1963-09-18"/>
+            <geslacht code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"/>
+         </patient>
          <medicamenteuze_behandeling>
-            <identificatie value="MBH_hybmp9_duplicMBHs_MA_TAMP9_PRK"
+            <identificatie value="MBH_hybmp9_duplicMBHspec_MA_TAMP9_PRK"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <medicatieafspraak>
-               <identificatie value="MBH_hybmp9_duplicMBHs_MA_TAMP9_PRK_MA2"
+               <identificatie value="MBH_hybmp9_duplicMBHspec_MA_TAMP9_PRK_MA2"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <registratie_datum_tijd datatype="datetime"
                                        value="2023-12-29T09:00:00+01:00"/>
@@ -32,15 +51,15 @@
                                    nullFlavor="NI"/>
                </gebruiksperiode>
                <relatie_medicatieafspraak>
-                  <identificatie value="MBH_hybmp9_duplicMBHs_MA_TAMP9_PRK_MA1"
+                  <identificatie value="MBH_hybmp9_duplicMBHspec_MA_TAMP9_PRK_MA1"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_medicatieafspraak>
                <voorschrijver>
-                  <zorgverlener value="d2669e54"
+                  <zorgverlener value="d2632e81"
                                 datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d2669e40"
+                  <farmaceutisch_product value="d2632e67"
                                          datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
@@ -69,17 +88,6 @@
                               <tijdseenheid value="1"
                                             unit="dag"/>
                            </frequentie>
-                           <adaextension>
-                              <effectiveTime xsi:type="Timing"
-                                             xmlns="http://hl7.org/fhir"
-                                             xmlns:pharm="urn:ihe:pharm:medication">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </effectiveTime>
-                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -87,8 +95,8 @@
             </medicatieafspraak>
          </medicamenteuze_behandeling>
          <medicamenteuze_behandeling>
-            <identificatie value="1544977"
-                           root="2.16.840.1.113883.2.4.3.11.61.3"/>
+            <identificatie value="60054"
+                           root="2.16.840.1.113883.2.4.3.11.61.2"/>
             <toedieningsafspraak>
                <identificatie value="MBH_hybmp9_duplicMBHgen_MA_TAMP9_PRK_TA"
                               root="1.3.6.1.4.1.58606.1.1.2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
@@ -101,11 +109,11 @@
                                    nullFlavor="NI"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d2669e212"
+                  <zorgaanbieder value="d2632e240"
                                  datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d2669e192"
+                  <farmaceutisch_product value="d2632e220"
                                          datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
@@ -134,17 +142,6 @@
                               <tijdseenheid value="1"
                                             unit="dag"/>
                            </frequentie>
-                           <adaextension>
-                              <effectiveTime xsi:type="Timing"
-                                             xmlns="http://hl7.org/fhir"
-                                             xmlns:pharm="urn:ihe:pharm:medication">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </effectiveTime>
-                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -156,10 +153,10 @@
             </toedieningsafspraak>
          </medicamenteuze_behandeling>
          <medicamenteuze_behandeling>
-            <identificatie value="MBH_hybmp9_duplicMBHs_MA_TAMP9_ID"
+            <identificatie value="MBH_hybmp9_duplicMBHspec_MA_TAMP9_ID"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <medicatieafspraak>
-               <identificatie value="MBH_hybmp9_duplicMBHs_MA_TAMP9_ID_MA"
+               <identificatie value="MBH_hybmp9_duplicMBHspec_MA_TAMP9_ID_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <registratie_datum_tijd datatype="datetime"
                                        value="2023-12-29T09:00:00+01:00"/>
@@ -174,11 +171,11 @@
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_medicatieafspraak>
                <voorschrijver>
-                  <zorgverlener value="d2669e54"
+                  <zorgverlener value="d2632e81"
                                 datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d2669e333"
+                  <farmaceutisch_product value="d2632e360"
                                          datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
@@ -207,17 +204,6 @@
                               <tijdseenheid value="1"
                                             unit="dag"/>
                            </frequentie>
-                           <adaextension>
-                              <effectiveTime xsi:type="Timing"
-                                             xmlns="http://hl7.org/fhir"
-                                             xmlns:pharm="urn:ihe:pharm:medication">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </effectiveTime>
-                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -225,8 +211,8 @@
             </medicatieafspraak>
          </medicamenteuze_behandeling>
          <medicamenteuze_behandeling>
-            <identificatie value="2397943"
-                           root="2.16.840.1.113883.2.4.3.11.61.3"/>
+            <identificatie value="23698"
+                           root="2.16.840.1.113883.2.4.3.11.61.2"/>
             <toedieningsafspraak>
                <identificatie value="MBH_hybmp9_duplicMBHgen_MA_TAMP9_ID_TA"
                               root="1.3.6.1.4.1.58606.1.2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
@@ -239,11 +225,11 @@
                                    nullFlavor="NI"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d2669e212"
+                  <zorgaanbieder value="d2632e240"
                                  datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d2669e485"
+                  <farmaceutisch_product value="d2632e512"
                                          datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
@@ -272,17 +258,6 @@
                               <tijdseenheid value="1"
                                             unit="dag"/>
                            </frequentie>
-                           <adaextension>
-                              <effectiveTime xsi:type="Timing"
-                                             xmlns="http://hl7.org/fhir"
-                                             xmlns:pharm="urn:ihe:pharm:medication">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </effectiveTime>
-                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -294,10 +269,10 @@
             </toedieningsafspraak>
          </medicamenteuze_behandeling>
          <medicamenteuze_behandeling>
-            <identificatie value="MBH_hybmp9_duplicMBHs_MA_TAMP9_verPRK"
+            <identificatie value="MBH_hybmp9_duplicMBHspec_MA_TAMP9_verPRK"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <medicatieafspraak>
-               <identificatie value="MBH_hybmp9_duplicMBHs_MA_TAMP9_verPRK_MA2"
+               <identificatie value="MBH_hybmp9_duplicMBHspec_MA_TAMP9_verPRK_MA2"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
                <registratie_datum_tijd datatype="datetime"
                                        value="2023-12-29T09:00:00+01:00"/>
@@ -308,15 +283,15 @@
                                    nullFlavor="NI"/>
                </gebruiksperiode>
                <relatie_medicatieafspraak>
-                  <identificatie value="MBH_hybmp9_duplicMBHs_MA_TAMP9_verPRK_MA1"
+                  <identificatie value="MBH_hybmp9_duplicMBHspec_MA_TAMP9_verPRK_MA1"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
                </relatie_medicatieafspraak>
                <voorschrijver>
-                  <zorgverlener value="d2669e54"
+                  <zorgverlener value="d2632e81"
                                 datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d2669e625"
+                  <farmaceutisch_product value="d2632e652"
                                          datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
@@ -345,17 +320,6 @@
                               <tijdseenheid value="1"
                                             unit="dag"/>
                            </frequentie>
-                           <adaextension>
-                              <effectiveTime xsi:type="Timing"
-                                             xmlns="http://hl7.org/fhir"
-                                             xmlns:pharm="urn:ihe:pharm:medication">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </effectiveTime>
-                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -363,8 +327,8 @@
             </medicatieafspraak>
          </medicamenteuze_behandeling>
          <medicamenteuze_behandeling>
-            <identificatie value="1651544"
-                           root="2.16.840.1.113883.2.4.3.11.61.3"/>
+            <identificatie value="31089"
+                           root="2.16.840.1.113883.2.4.3.11.61.2"/>
             <toedieningsafspraak>
                <identificatie value="MBH_hybmp9_duplicMBHgen_MA_TAMP9_verPRK_TA"
                               root="1.3.6.1.4.1.58606.1.2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
@@ -377,11 +341,11 @@
                                    nullFlavor="NI"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d2669e212"
+                  <zorgaanbieder value="d2632e240"
                                  datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d2669e777"
+                  <farmaceutisch_product value="d2632e804"
                                          datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
@@ -410,17 +374,6 @@
                               <tijdseenheid value="1"
                                             unit="dag"/>
                            </frequentie>
-                           <adaextension>
-                              <effectiveTime xsi:type="Timing"
-                                             xmlns="http://hl7.org/fhir"
-                                             xmlns:pharm="urn:ihe:pharm:medication">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </effectiveTime>
-                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -432,7 +385,7 @@
             </toedieningsafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d2669e40">
+            <farmaceutisch_product id="d2632e67">
                <product_code code="60054"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -442,7 +395,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="OMEPRAZOL CAPSULE MSR 10MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d2669e192">
+            <farmaceutisch_product id="d2632e220">
                <product_code code="1544977"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -456,7 +409,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="OMEPRAZOL CAPSULE MSR 10MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d2669e333">
+            <farmaceutisch_product id="d2632e360">
                <product_code code="21083"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -466,7 +419,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="ENALAPRIL TABLET 10MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d2669e485">
+            <farmaceutisch_product id="d2632e512">
                <product_code code="2397943"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -480,7 +433,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="ENALAPRIL TABLET 10MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d2669e625">
+            <farmaceutisch_product id="d2632e652">
                <product_code code="67814"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -490,7 +443,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="SIMVASTATINE TABLET FO 20MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d2669e777">
+            <farmaceutisch_product id="d2632e804">
                <product_code code="1651544"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -504,7 +457,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="PRAVASTATINE TABLET 20MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="d2669e54">
+            <zorgverlener id="d2632e81">
                <zorgverlener_identificatienummer value="000001111"
                                                  root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
@@ -520,11 +473,11 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d2669e75"
+                  <zorgaanbieder value="d2632e102"
                                  datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d2669e75">
+            <zorgaanbieder id="d2632e102">
                <zorgaanbieder_identificatienummer value="00001111"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
@@ -538,7 +491,7 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="d2669e212">
+            <zorgaanbieder id="d2632e240">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>

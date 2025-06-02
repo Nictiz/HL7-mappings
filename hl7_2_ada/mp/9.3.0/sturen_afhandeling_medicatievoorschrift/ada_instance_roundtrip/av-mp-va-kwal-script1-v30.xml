@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2025-03-19T10:16:08.9586298+01:00"
-         last-update-date="2025-03-19T10:16:08.9586298+01:00"/>
+         creation-date="2025-06-02T15:17:16.8580704+02:00"
+         last-update-date="2025-06-02T15:17:16.8580704+02:00"/>
    <data>
       <sturen_afhandeling_medicatievoorschrift app="mp-mp93"
                                                shortName="sturen_afhandeling_medicatievoorschrift"
@@ -50,15 +50,15 @@
                               unit="week"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d183277e85"
+                  <zorgaanbieder value="d180624e85"
                                  datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d183277e65"
+                  <farmaceutisch_product value="d180624e65"
                                          datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
-                  <omschrijving value="cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 4 stuks - let op, tijden exact aanhouden, Oraal"/>
+                  <omschrijving value="cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 4 stuks - let op, exacte toedientijd(en), Oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
@@ -85,32 +85,6 @@
                            <toedientijd value="21:00:00"
                                         datatype="time"/>
                            <is_flexibel value="false"/>
-                           <adaextension>
-                              <effectiveTime xsi:type="Timing"
-                                             xmlns="http://hl7.org/fhir">
-                                 <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
-                                    <valueDuration>
-                                       <value value="21"/>
-                                       <unit value="dag"/>
-                                       <system value="http://unitsofmeasure.org"/>
-                                       <code value="d"/>
-                                    </valueDuration>
-                                 </modifierExtension>
-                                 <repeat>
-                                    <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                                       <valueBoolean value="true"/>
-                                    </extension>
-                                    <boundsDuration>
-                                       <value value="14"/>
-                                       <unit value="dag"/>
-                                       <system value="http://unitsofmeasure.org"/>
-                                       <code value="d"/>
-                                    </boundsDuration>
-                                    <timeOfDay value="09:00:00"/>
-                                    <timeOfDay value="21:00:00"/>
-                                 </repeat>
-                              </effectiveTime>
-                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -126,7 +100,7 @@
                <medicatieverstrekkings_datum_tijd datatype="datetime"
                                                   value="2024-01-01T08:30:00+01:00"/>
                <verstrekker>
-                  <zorgaanbieder value="d183277e85"
+                  <zorgaanbieder value="d180624e85"
                                  datatype="reference"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
@@ -137,7 +111,7 @@
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d183277e65"
+                  <farmaceutisch_product value="d180624e65"
                                          datatype="reference"/>
                </verstrekt_geneesmiddel>
                <verbruiksduur value="3"
@@ -149,7 +123,7 @@
             </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d183277e65">
+            <farmaceutisch_product id="d180624e65">
                <product_code code="3060195"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -163,7 +137,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="CAPECITABINE TABLET FO 500MG"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="d183277e85">
+            <zorgaanbieder id="d180624e85">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>

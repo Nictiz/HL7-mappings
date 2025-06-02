@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2025-03-19T10:15:42.4312239+01:00"
-         last-update-date="2025-03-19T10:15:42.4312239+01:00"/>
+         creation-date="2025-06-02T15:15:24.0263189+02:00"
+         last-update-date="2025-06-02T15:15:24.0263189+02:00"/>
    <data>
       <!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
       <sturen_medicatiegegevens app="mp-mp93"
@@ -52,11 +52,11 @@
                                    value="2024-01-08T15:00:00+01:00"/>
                </gebruiksperiode>
                <gebruiksproduct>
-                  <farmaceutisch_product value="d164127e62"
+                  <farmaceutisch_product value="d161296e62"
                                          datatype="reference"/>
                </gebruiksproduct>
                <gebruiksinstructie>
-                  <omschrijving value="elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, tijden exact aanhouden"/>
+                  <omschrijving value="elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, exacte toedientijd(en)"/>
                   <doseerinstructie>
                      <volgnummer value="1"/>
                      <dosering>
@@ -77,20 +77,6 @@
                            <toedientijd value="15:00:00"
                                         datatype="time"/>
                            <is_flexibel value="false"/>
-                           <adaextension>
-                              <effectiveTime xsi:type="Timing"
-                                             xmlns="http://hl7.org/fhir"
-                                             xmlns:pharm="urn:ihe:pharm:medication">
-                                 <repeat>
-                                    <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                                       <valueBoolean value="true"/>
-                                    </extension>
-                                    <timeOfDay value="09:00:00"/>
-                                    <timeOfDay value="12:00:00"/>
-                                    <timeOfDay value="15:00:00"/>
-                                 </repeat>
-                              </effectiveTime>
-                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -100,7 +86,7 @@
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_medicatieafspraak>
                <voorschrijver>
-                  <zorgverlener value="d164127e208"
+                  <zorgverlener value="d161296e208"
                                 datatype="reference"/>
                </voorschrijver>
                <informant>
@@ -108,14 +94,14 @@
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener value="d164127e208"
+                     <zorgverlener value="d161296e208"
                                    datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d164127e62">
+            <farmaceutisch_product id="d161296e62">
                <product_code code="1090"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -125,7 +111,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="METFORMINE 500MG TABLET"/>
             </farmaceutisch_product>
-            <zorgverlener id="d164127e208">
+            <zorgverlener id="d161296e208">
                <zorgverlener_identificatienummer value="000001111"
                                                  root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
@@ -141,11 +127,11 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d164127e229"
+                  <zorgaanbieder value="d161296e229"
                                  datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d164127e229">
+            <zorgaanbieder id="d161296e229">
                <zorgaanbieder_identificatienummer value="00001111"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
