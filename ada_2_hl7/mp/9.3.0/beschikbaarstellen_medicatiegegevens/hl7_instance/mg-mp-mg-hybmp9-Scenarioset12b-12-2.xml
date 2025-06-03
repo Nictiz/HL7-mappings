@@ -10,81 +10,86 @@
    <statusCode nullFlavor="NI"/>
    <recordTarget>
       <patientRole>
-         <id extension="999909368"
+         <id extension="999909071"
              root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
-               <given qualifier="IN">M.</given>
-               <prefix qualifier="VV">de </prefix>
-               <family qualifier="BR">XXX_Neve</family>
+               <given qualifier="IN">G.</given>
+               <family qualifier="BR">XXX_Lucassen</family>
             </name>
             <administrativeGenderCode code="F"
                                       codeSystem="2.16.840.1.113883.5.1"
                                       displayName="Vrouw"/>
-            <birthTime value="19540725"/>
+            <birthTime value="19630918"/>
          </patient>
       </patientRole>
    </recordTarget>
    <component typeCode="COMP">
       <substanceAdministration classCode="SBADM"
-                               moodCode="RQO">
-         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9416"/>
-         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9415"/>
-         <id extension="2.16.528.1.1007.3.3.22222.1.MBH_hybmp9_duplicMBHgen_MA_TA612_ID_BTDTA"
-             root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-         <code code="422037009"
-               displayName="Toedieningsafspraak"
+                               moodCode="EVN"
+                               negationInd="false">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9444"/>
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9442"/>
+         <id extension="MBH_hybmp9_MBHgen_OTC_MGB_MGB"
+             root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+         <code code="422979000"
+               displayName="bevinding betreffende gedrag met betrekking tot medicatieregime (bevinding)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">3 maal per dag 4 stuks, Oraal</text>
+         <text mediaType="text/plain">3 maal per dag 2 stuks, Oraal</text>
          <effectiveTime xsi:type="IVL_TS"
                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <low value="20231225080000+0100"/>
-            <high value="20240108080000+0100"/>
+            <low value="20240101080000+0100"/>
+            <high value="20240108235959+0100"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
                     displayName="Oraal"
-                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                    codeSystemName="G-Standaard Toedieningswegen"/>
          <consumable>
             <manufacturedProduct>
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9363"/>
                <manufacturedMaterial classCode="MMAT"
                                      determinerCode="KIND">
-                  <code code="2597039"
+                  <code code="2907798"
                         codeSystem="2.16.840.1.113883.2.4.4.7"
-                        displayName="IBUPROFEN SAM TABLET OMHULD 200MG"
+                        displayName="PARACETAMOL HTP HUISMERK TABLET 500MG"
                         codeSystemName="G-Standaard HPK">
-                     <translation code="27251"
+                     <translation code="67903"
                                   codeSystem="2.16.840.1.113883.2.4.4.10"
-                                  displayName="IBUPROFEN TABLET 200MG"
+                                  displayName="PARACETAMOL TABLET 500MG"
                                   codeSystemName="G-Standaard PRK"/>
-                     <translation code="50997"
+                     <translation code="2194"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="IBUPROFEN TABLET 200MG"
+                                  displayName="PARACETAMOL TABLET 500MG"
                                   codeSystemName="G-Standaard GPK"/>
                   </code>
                </manufacturedMaterial>
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20231225080000+0100"/>
+            <time value="20240101080000+0100"/>
             <assignedAuthor>
-               <id nullFlavor="NI"/>
-               <representedOrganization>
-                  <id extension="01236578"
-                      root="2.16.528.1.1007.3.3"/>
-                  <name>Apotheek De Gulle Gaper</name>
-                  <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
-                     <houseNumber>12</houseNumber>
-                     <buildingNumberSuffix>A</buildingNumberSuffix>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
-                  </addr>
-               </representedOrganization>
+               <id extension="999909071"
+                   root="2.16.840.1.113883.2.4.6.3"/>
+               <code code="ONESELF"
+                     displayName="Self"
+                     codeSystem="2.16.840.1.113883.5.111"
+                     codeSystemName="RoleCode"/>
             </assignedAuthor>
          </author>
+         <entryRelationship typeCode="COMP">
+            <observation classCode="OBS"
+                         moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9189"/>
+               <code displayName="Gebruikindicator"
+                     code="15"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
+               <value xsi:type="BL"
+                      value="true"
+                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            </observation>
+         </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM"
@@ -100,9 +105,9 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="4"
+                  <center value="2"
                           unit="1">
-                     <translation value="4"
+                     <translation value="2"
                                   code="245"
                                   displayName="stuks"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -113,27 +118,13 @@
                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM"
-                                     moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MP612_migratieMA_TA612_ID_MP612ID!1"
-                   root="2.16.528.1.1007.3.3.11111.1"/>
-               <code code="33633005"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"
-                     displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-            </substanceAdministration>
-         </entryRelationship>
          <entryRelationship typeCode="COMP"
                             inversionInd="true">
             <procedure classCode="PROC"
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.61.2"
-                   extension="27251"/>
+                   extension="MBH_hybmp9_MBHgen_OTC_MGB"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
