@@ -604,6 +604,23 @@
                                displayName="Eengezinswoning"/>
                </woonsituatie>
             </demografische_gegevens>
+            <behandel_aanwijzing conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10401">
+               <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10402" value="2" code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.25.1" displayName="Anders"/>
+               <behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10403" value="3" code="40617009" codeSystem="2.16.840.1.113883.6.96" displayName="kunstmatige beademing"/>
+               <specificatie_anders conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10404" datatype="string" value="Voor intubatie eerst overleg met echtgenote"/>
+               <meest_recente_bespreekdatum conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10405" datatype="datetime" value="T-21D"/>
+               <datum_beeindigd conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10406" datatype="datetime" value="T-20D"/>
+               <reden_beeindigd conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10407" datatype="string" value="Zomaar"/>
+               <wilsverklaring conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10408">
+                  <wilsverklaring conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10432" datatype="reference" value="wilsverklaring_1"/>
+               </wilsverklaring>
+               <afspraak_partij conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10410">
+                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10415">
+                     <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10420" datatype="reference" value="ZV1_Groeneboom"/>
+                  </zorgverlener>
+               </afspraak_partij>
+               <toelichting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10417" datatype="text" value="Behandelaanwijzing toelichting"/>
+            </behandel_aanwijzing>
             <betrokken_zorgverlener_zorginstelling conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1673">
                <huisarts conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1674">
                   <zorgverlener datatype="reference"
@@ -1823,6 +1840,16 @@
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2795"/>
                </lichaamstemperatuur>
             </metingen>
+            <patienten_context conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2584">
+               <wilsverklaring conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10423" id="wilsverklaring_1">
+                  <wilsverklaring_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10424" datatype="code" value="1" code="NR" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.14.1" displayName="Niet reanimeren verklaring"/>
+                  <wilsverklaring_datum conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10425" datatype="datetime" value="T-205D"/>
+                  <vertegenwoordiger conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10428">
+                     <contactpersoon conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10429" datatype="reference" value="Contactpersoon"/>
+                  </vertegenwoordiger>
+                  <wilsverklaring_document conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10430" datatype="blob" value="QmFzZTY0IGRvY3VtZW50"/>
+               </wilsverklaring>
+            </patienten_context>
          </bouwstenen>
       </med_mij_uitbreiding_verloskunde_beschikbaarstellen>
    </data>

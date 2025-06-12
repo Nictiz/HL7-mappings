@@ -18,7 +18,7 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Aandoening. Subject: . Categorie: <span title="juridische status van patiënt (waarneembare entiteit) (303186005 - SNOMED CT)">juridische status van patiënt (waarneembare entiteit)</span>, Status: actief</caption>
+               <caption>Aandoening. Subject: Foetus XXX_Yzendoorn. Categorie: <span title="juridische status van patiënt (waarneembare entiteit) (303186005 - SNOMED CT)">juridische status van patiënt (waarneembare entiteit)</span>, Status: actief</caption>
                <tbody>
                   <tr>
                      <th>Code</th>
@@ -37,12 +37,14 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 15, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-14d1a1ff-6b66-11ec-0000-020000000000.html" }, 
-{ id: 16, label: "Condition Foetus Voogdij", url: "mm-gbz-bc-LegalSituation-LegalStatus6-a6f99938-6b0a-11ec-2785-020000000000.html" }, 
+{ id: 3, label: "Patient XXX_Yzendoorn", url: "mm-gbz-bc-Child-XXX-YZENDOORN.html" }, 
+{ id: 16, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-14d1a1ff-6b66-11ec-0000-020000000000.html" }, 
+{ id: 17, label: "Condition Foetus Voogdij", url: "mm-gbz-bc-LegalSituation-LegalStatus6-a6f99938-6b0a-11ec-2785-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 16, to: 15 }, 
+var edges = new vis.DataSet([{ from: 17, to: 3 }, 
+{ from: 17, to: 16 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

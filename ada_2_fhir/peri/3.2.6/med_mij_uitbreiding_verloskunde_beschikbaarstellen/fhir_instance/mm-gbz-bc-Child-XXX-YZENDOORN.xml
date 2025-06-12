@@ -1,0 +1,47 @@
+<Patient xmlns="http://hl7.org/fhir">
+   <id value="XXX-YZENDOORN"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Child"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>XXX_Yzendoorn</div>
+      </div>
+   </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/patient-fetalStatus">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://hl7.org/fhir/patient-fetalstatus"/>
+            <value value="potential-for-live-birth"/>
+            <display value="Potential For Live Birth"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <extension url="http://hl7.org/fhir/StructureDefinition/patient-bornStatus">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://hl7.org/fhir/patient-bornstatus"/>
+            <value value="unborn"/>
+            <display value="Unborn"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="a6793010-6b08-11ec-0000-020000000000"/>
+   </identifier>
+   <name>
+      <family value="XXX_Yzendoorn">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="XXX_Yzendoorn"/>
+         </extension>
+      </family>
+   </name>
+   <birthDate>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="not-applicable"/>
+      </extension>
+   </birthDate>
+</Patient>
