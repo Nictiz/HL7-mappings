@@ -1,0 +1,92 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-tes-casus9999 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/kind/demografische_gegevens/gezinssituatie_kind -->
+   <id value="d74d858f-6acd-11ec-2292-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-FamilySituationChild"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Kind Lucas L Lucas De Kleine. Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 2 P1-Maaike</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>GezinssituatieKind</td>
+                  <td/>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="bevinding betreffende gezinssamenstelling (bevinding) (365481000 - SNOMED CT)">bevinding betreffende gezinssamenstelling (bevinding)</span>
+                  </td>
+                  <td>
+                     <span title="woont met moeder (224139006 - SNOMED CT)">woont met moeder</span>
+                  </td>
+               </tr>
+               <tr>
+                  <td>AantalBroersEnZussen</td>
+                  <td>1</td>
+               </tr>
+               <tr>
+                  <td>BroerOfZus</td>
+                  <td>${DATE, T, D, -916}</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <!-- adaChild -->
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="d74d858f-6acd-11ec-2292-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <text value="GezinssituatieKind"/>
+   </code>
+   <subject>
+      <reference value="Patient/LUCAS-L-LUCAS-DE-KLEINE"/>
+      <display value="Kind Lucas L Lucas De Kleine"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/24eb4a5f-6b11-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 P1-Maaike"/>
+   </context>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="365481000"/>
+            <display value="bevinding betreffende gezinssamenstelling (bevinding)"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="224139006"/>
+            <display value="woont met moeder"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <text value="AantalBroersEnZussen"/>
+      </code>
+      <valueQuantity>
+         <value value="1"/>
+      </valueQuantity>
+   </component>
+   <component>
+      <code>
+         <text value="BroerOfZus"/>
+      </code>
+      <valueDateTime value="${DATE, T, D, -916}"/>
+   </component>
+</Observation>

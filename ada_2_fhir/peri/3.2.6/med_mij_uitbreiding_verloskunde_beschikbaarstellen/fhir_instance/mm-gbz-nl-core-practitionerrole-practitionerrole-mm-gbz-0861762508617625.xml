@@ -1,0 +1,75 @@
+<PractitionerRole xmlns="http://hl7.org/fhir">
+   <id value="practitionerrole-mm-gbz-0861762508617625"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgverlenerrol. </caption>
+            <tbody>
+               <tr>
+                  <th>Zorgverlener</th>
+                  <td>
+                     <div>Anne Marie AM Anne Naaktgeboren Kleinsma</div>
+                     <div>Verloskundigenpraktijk ter Wereld - Stitswerd</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Specialisme</th>
+                  <td>
+                     <span title="Verloskundige (08617625 - AGB-medisch specialisme)">Verloskundige</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <div>
+                        <a href="tel:0207138077">0207138077</a> (Vast telefoonnummer)</div>
+                     <div>
+                        <a href="mailto:veloskundigepraktijkterwereld@mail.info">veloskundigepraktijkterwereld@mail.info</a> (E-mail Werk)</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="6a6e42d8-6b2d-11ec-0000-020000000000"/>
+   </identifier>
+   <practitioner>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-08617625"/>
+      <display value="Anne Marie AM Anne Naaktgeboren Kleinsma"/>
+   </practitioner>
+   <organization>
+      <reference value="Organization/organization-mm-gbz-2-16-528-1-1007-3-3-08009999"/>
+      <display value="Verloskundigenpraktijk ter Wereld - Stitswerd"/>
+   </organization>
+   <specialty>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+         <code value="08617625"/>
+         <display value="Verloskundige"/>
+      </coding>
+   </specialty>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Vast telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="0207138077"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="veloskundigepraktijkterwereld@mail.info"/>
+      <use value="work"/>
+   </telecom>
+</PractitionerRole>

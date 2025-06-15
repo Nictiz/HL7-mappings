@@ -1,0 +1,112 @@
+<html lang="en">
+   <head>
+      <title>ProcedureRequest - 5261095f-6b7c-11ec-2241-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Verrichtingaanvraag. Subject: Maaike M Maaike Ostendorf. Status: onbekend<span style="display: block;">Intentie: plan</span>
+                  <span style="display: block;">Aangevraagd door: Anne Marie AM Anne Naaktgeboren Kleinsma || Verloskundige || Verloskundigenpraktijk ter Wereld</span>
+               </caption>
+               <tbody>
+                  <tr>
+                     <td>
+                        <span title="echografie voor foetale presentatie (verrichting) (169228004 - SNOMED CT)">echografie voor foetale presentatie (verrichting)</span>
+                     </td>
+                     <td>
+                        <div>Wanneer: ${DATE, T, D, -146} - ${DATE, T, D, -146}</div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Beoogde uitvoerende</th>
+                     <td>
+                        <div>Type: <span title="Behandelaar (ATND - v3/ParticipationType)">Behandelaar</span>
+                        </div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Reden</th>
+                     <td/>
+                  </tr>
+                  <tr>
+                     <td>Deel van lichaam</td>
+                     <td>
+                        <span title="structuur van abdominopelviene holte en/of inhoud van abdominopelviene holte en/of voorwand van buik (lichaamsstructuur) (818983003 - SNOMED CT)">structuur van abdominopelviene holte en/of inhoud van abdominopelviene holte en/of voorwand van buik (lichaamsstructuur)</span>
+                        <span title="Rechts en links (51440002 - SNOMED CT)">Rechts en links</span>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - ProcedureRequest echografie voor foetale presentatie (verrichting)</b>
+      </p>
+      <div> - none</div>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
+{ id: 10, label: "Practitioner Kleinsma-Naaktgeboren", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-08617625.html" }, 
+{ id: 12, label: "PractitionerRole Verloskundige", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-0861762508617625.html" }, 
+{ id: 222, label: "ProcedureRequest echografie voor foetale presentatie (verrichting)", url: "mm-gbz-zib-ProcedureRequest169228004-5261095f-6b7c-11ec-2241-020000000000.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 222, to: 1 }, 
+{ from: 222, to: 12 }, 
+{ from: 222, to: 10 }, 
+{ from: 222, to: 12 }, 
+{ from: 222, to: 10 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

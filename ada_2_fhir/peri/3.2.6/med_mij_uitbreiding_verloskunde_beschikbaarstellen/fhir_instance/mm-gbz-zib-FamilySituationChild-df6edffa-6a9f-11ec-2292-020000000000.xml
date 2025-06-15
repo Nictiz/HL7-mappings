@@ -1,0 +1,115 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-kwa-casus4 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/kind/demografische_gegevens/gezinssituatie_kind -->
+   <id value="df6edffa-6a9f-11ec-2292-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-FamilySituationChild"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Kind Mieke XXX_Yzendoorn. Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 2 Vrouw-XXX_Yzendoorn</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>GezinssituatieKind</td>
+                  <td/>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="bevinding betreffende gezinssamenstelling (bevinding) (365481000 - SNOMED CT)">bevinding betreffende gezinssamenstelling (bevinding)</span>
+                  </td>
+                  <td>
+                     <span title="woont met familie (160756002 - SNOMED CT)">woont met familie</span>
+                  </td>
+               </tr>
+               <tr>
+                  <td>OuderVerzorger</td>
+                  <td>Lilian L Lilian van den XXX_Berg XXX_Yzendoorn</td>
+               </tr>
+               <tr>
+                  <td>AantalBroersEnZussen</td>
+                  <td>1</td>
+               </tr>
+               <tr>
+                  <td>BroerOfZus</td>
+                  <td>14 december 2002 (Jasper XXX_Yzendoorn)</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <!-- adaChild -->
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="df6edffa-6a9f-11ec-2292-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <text value="GezinssituatieKind"/>
+   </code>
+   <subject>
+      <reference value="Patient/MIEKE-XXX-YZENDOORN"/>
+      <display value="Kind Mieke XXX_Yzendoorn"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/14d1a1ff-6b66-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+   </context>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="365481000"/>
+            <display value="bevinding betreffende gezinssamenstelling (bevinding)"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="160756002"/>
+            <display value="woont met familie"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <!--ouder_verzorger/contactpersoon -->
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-FamilySituationChild-RelatedPerson">
+         <valueReference>
+            <reference value="RelatedPerson/relatedperson-mm-gbz-9b9fa72a-6b21-11ec-1294-020000000000"/>
+            <display value="Lilian L Lilian van den XXX_Berg XXX_Yzendoorn"/>
+         </valueReference>
+      </extension>
+      <code>
+         <text value="OuderVerzorger"/>
+      </code>
+   </component>
+   <component>
+      <code>
+         <text value="AantalBroersEnZussen"/>
+      </code>
+      <valueQuantity>
+         <value value="1"/>
+      </valueQuantity>
+   </component>
+   <component>
+      <!--broer_of_zus/contactpersoon -->
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-FamilySituationChild-RelatedPerson">
+         <valueReference>
+            <reference value="RelatedPerson/relatedperson-mm-gbz-JASPERXXX-YZENDOORN"/>
+            <display value="Jasper XXX_Yzendoorn"/>
+         </valueReference>
+      </extension>
+      <code>
+         <text value="BroerOfZus"/>
+      </code>
+      <valueDateTime value="2002-12-14"/>
+   </component>
+</Observation>

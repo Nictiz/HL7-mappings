@@ -1,0 +1,112 @@
+<html lang="en">
+   <head>
+      <title>ProcedureRequest - 5b343d5f-6ad6-11ec-2160-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Verrichtingaanvraag. Subject: Maaike M Maaike Ostendorf. Status: onbekend<span style="display: block;">Intentie: plan</span>
+                  <span style="display: block;">Aangevraagd door: Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis</span>
+               </caption>
+               <tbody>
+                  <tr>
+                     <td>
+                        <span title="opname op intensivecareafdeling gespecialiseerd in neonaten (verrichting) (830077005 - SNOMED CT)">opname op intensivecareafdeling gespecialiseerd in neonaten (verrichting)</span>
+                     </td>
+                     <td>
+                        <div>Wanneer: ${DATE, T, D, -53} - ${DATE, T, D, -53}</div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Beoogde uitvoerende</th>
+                     <td>
+                        <div>Type: <span title="Hoofdbehandelaar (RESP - v3/ParticipationType)">Hoofdbehandelaar</span>
+                        </div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Reden</th>
+                     <td/>
+                  </tr>
+                  <tr>
+                     <td>Deel van lichaam</td>
+                     <td>
+                        <span title="structuur van uterus (lichaamsstructuur) (35039007 - SNOMED CT)">structuur van uterus (lichaamsstructuur)</span>
+                        <span title="Rechts en links (51440002 - SNOMED CT)">Rechts en links</span>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - ProcedureRequest opname op intensivecareafdeling gespecialiseerd in neonaten (verrichting)</b>
+      </p>
+      <div> - none</div>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
+{ id: 11, label: "Practitioner De Jong", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167.html" }, 
+{ id: 13, label: "PractitionerRole Gynaecoloog", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-0307316703073167.html" }, 
+{ id: 220, label: "ProcedureRequest opname op intensivecareafdeling gespecialiseerd in neonaten (verrichting)", url: "mm-gbz-zib-ProcedureRequest830077005-5b343d5f-6ad6-11ec-2160-020000000000.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 220, to: 1 }, 
+{ from: 220, to: 13 }, 
+{ from: 220, to: 11 }, 
+{ from: 220, to: 13 }, 
+{ from: 220, to: 11 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

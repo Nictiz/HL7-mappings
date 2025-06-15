@@ -1,0 +1,61 @@
+<Condition xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-kwa-casus4 -->
+   <id value="2318d9ce-6b5f-11ec-2230-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DisorderPostPartum"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Aandoening. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Categorie: <span title="aandoening tijdens kraamperiode (aandoening) (362973001 - SNOMED CT)">aandoening tijdens kraamperiode (aandoening)</span>, Status: actief</caption>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="endometritis (aandoening) (78623009 - SNOMED CT)">endometritis (aandoening)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>${DATE, T, D, -324}</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/condition-partOf">
+      <valueReference>
+         <identifier/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="2318d9ce-6b5f-11ec-2230-020000000000"/>
+   </identifier>
+   <clinicalStatus value="active"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="362973001"/>
+         <display value="aandoening tijdens kraamperiode (aandoening)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="78623009"/>
+         <display value="endometritis (aandoening)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG"/>
+      <display value="Willemijn W XXX_Yzendoorn van den XXX_Berg"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/14d1a1ff-6b66-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+   </context>
+   <onsetDateTime value="${DATE, T, D, -324}"/>
+</Condition>

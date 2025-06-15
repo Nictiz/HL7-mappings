@@ -1,0 +1,100 @@
+<html lang="en">
+   <head>
+      <title>Procedure - d945a21f-6b71-11ec-2108-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Verrichting. Subject: Maaike M Maaike Ostendorf. Categorie: <span title="Obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">Obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+               <tbody>
+                  <tr>
+                     <td>
+                        <span title="operatie van darm (verrichting) (34853001 - SNOMED CT)">operatie van darm (verrichting)</span>
+                     </td>
+                     <td>
+                        <div>Uitgevoerd: 3 augustus 2001</div>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Procedure operatie van darm (verrichting)</b>
+      </p>
+      <ul>
+         <li>
+            <a href="mm-gbz-nl-core-observation177037000-65773a1f-6b12-11ec-2789-020000000000.html">Observation eicelaspiratie (verrichting)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation236894009-8faab87d-6b48-11ec-2789-020000000000.html">Observation transfer van ingevroren embryo (verrichting)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation75456002-65773a1f-6b12-11ec-2789-020000000000.html">Observation embryotransfer (verrichting)</a>
+         </li>
+      </ul>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
+{ id: 15, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-24eb4a5f-6b11-11ec-0000-020000000000.html" }, 
+{ id: 207, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-424379bf-6aa3-11ec-2123-020000000000.html" }, 
+{ id: 209, label: "Procedure operatie van darm (verrichting)", url: "mm-gbz-zib-Procedure34853001-d945a21f-6b71-11ec-2108-020000000000.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 209, to: 207 }, 
+{ from: 209, to: 1 }, 
+{ from: 209, to: 15 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

@@ -1,0 +1,112 @@
+<html lang="en">
+   <head>
+      <title>Observation - LabTestRes-Obs-mm-gbz-737797af-6ac1-11ec-2162-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Observatie/bepaling. Subject: Maaike M Maaike Ostendorf. Categorie: <span title="bevinding betreffende laboratoriumonderzoek (49581000146104 - SNOMED CT)">bevinding betreffende laboratoriumonderzoek</span>, Status: definitief</caption>
+               <tfoot>
+                  <tr>
+                     <td colspan="4">Mogelijk infectie/inflammatie</td>
+                  </tr>
+               </tfoot>
+               <tbody>
+                  <tr>
+                     <th>Bepalingdatum/tijd</th>
+                     <td colspan="3">${DATE, T, D, -53}T18:53:00+02:00</td>
+                  </tr>
+                  <tr>
+                     <th>Methode</th>
+                     <td colspan="3">
+                        <span title="bepaling van C-reactieve proteïne (verrichting) (55235003 - SNOMED CT)">bepaling van C-reactieve proteïne (verrichting)</span>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Code</th>
+                     <th>Waarde</th>
+                     <th>Interpretatie</th>
+                     <th>Referentiewaarden</th>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span title="C reactief proteïne [massa/volume] in serum of plasma (1988-5 - LOINC)">C reactief proteïne [massa/volume] in serum of plasma</span>
+                     </td>
+                     <td>13</td>
+                     <td>
+                        <span title="High (H - v2/0078)">High</span>
+                     </td>
+                     <td>
+                        <div>
+                           <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span> 0 - 10</div>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Observation C reactief proteïne [massa/volume] in serum of plasma</b>
+      </p>
+      <div> - none</div>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
+{ id: 66, label: "Observation C reactief proteïne [massa/volume] in serum of plasma", url: "mm-gbz-zib-LaboratoryTestResult-Observation1988-5-LabTestRes-Obs-mm-gbz-737797af-6ac1-11ec-2162-020000000000.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 66, to: 1 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

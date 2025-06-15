@@ -1,0 +1,126 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-tes-casus9999 -->
+   <id value="eb2c5b6f-6b3d-11ec-1071-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ChildBirthAssistance"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: Maaike M Maaike Ostendorf. Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div>
+                        <span title="Klinisch (IMP - v3/ActCode)">Klinisch</span>
+                     </div>
+                     <span title="begeleiden van bevalling (verrichting) (236973005 - SNOMED CT)">begeleiden van bevalling (verrichting)</span>, <span title="verlossing (verrichting) (236973005 - SNOMED CT)">verlossing (verrichting)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>${DATE, T, D, -53}T08:29:00+02:00 - ${DATE, T, D, -52}T13:44:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Participant</th>
+                  <td>
+                     <div>
+                        <span title="Hoofdbehandelaar (RESP - v3/ParticipationType)">Hoofdbehandelaar</span>, Aanpakker kind, Supervisor - Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Zorgaanbieder</th>
+                  <td>Stitswerd Ziekenhuis - Stitswerd</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="eb2c5b6f-6b3d-11ec-1071-020000000000"/>
+   </identifier>
+   <status value="finished"/>
+   <class>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActCode"/>
+               <code value="IMP"/>
+               <display value="Klinisch"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="http://hl7.org/fhir/v3/ActCode"/>
+      <code value="IMP"/>
+      <display value="Klinisch"/>
+   </class>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="236973005"/>
+         <display value="begeleiden van bevalling (verrichting)"/>
+      </coding>
+   </type>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="236973005"/>
+         <display value="verlossing (verrichting)"/>
+      </coding>
+   </type>
+   <subject>
+      <reference value="Patient/MAAIKE-M-MAAIKE-OSTENDORF"/>
+      <display value="Maaike M Maaike Ostendorf"/>
+   </subject>
+   <episodeOfCare>
+      <reference value="EpisodeOfCare/24eb4a5f-6b11-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 P1-Maaike"/>
+   </episodeOfCare>
+   <participant>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="RESP"/>
+            <display value="Hoofdbehandelaar"/>
+         </coding>
+      </type>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="anders"/>
+         </coding>
+         <text value="Aanpakker kind"/>
+      </type>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="anders"/>
+         </coding>
+         <text value="Supervisor"/>
+      </type>
+      <individual>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/practitionerrole-mm-gbz-0307316703073167"/>
+               <display value="Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167"/>
+         <display value="Suzan S Suzan De Jong"/>
+      </individual>
+   </participant>
+   <period>
+      <start value="${DATE, T, D, -53}T08:29:00+02:00"/>
+      <end value="${DATE, T, D, -52}T13:44:00+02:00"/>
+   </period>
+   <serviceProvider>
+      <reference value="Organization/organization-mm-gbz-2-16-528-1-1007-3-3-06019999"/>
+      <display value="Stitswerd Ziekenhuis - Stitswerd"/>
+   </serviceProvider>
+</Encounter>

@@ -1,0 +1,85 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-tes-casus9999 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/zwangerschapsgegevens/prenatale_controle/actuele_aantal_levende_foetus_observatie -->
+   <id value="08e1388a-6b23-11ec-2214-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-PregnancyObservation"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Maaike M Maaike Ostendorf. Status: definitief</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">1 overleden foetus</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>prenatale controle T-146D{12:31} P1-Maaike</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -146}T13:02:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="echografie (kwalificatiewaarde) (278292003 - SNOMED CT)">echografie (kwalificatiewaarde)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="aantal levende foetussen (waarneembare entiteit) (142931000146106 - SNOMED CT)">aantal levende foetussen (waarneembare entiteit)</span>
+                  </td>
+                  <td>1</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
+      <valueReference>
+         <reference value="Condition/1970564f-6aba-11ec-2334-020000000000"/>
+         <display value="Zwangerschap 2 P1-Maaike"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="08e1388a-6b23-11ec-2214-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="142931000146106"/>
+         <display value="aantal levende foetussen (waarneembare entiteit)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/MAAIKE-M-MAAIKE-OSTENDORF"/>
+      <display value="Maaike M Maaike Ostendorf"/>
+   </subject>
+   <context>
+      <reference value="Encounter/8bb5b91f-6aed-11ec-1275-020000000000"/>
+      <display value="prenatale controle T-146D{12:31} P1-Maaike"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -146}T13:02:00+02:00"/>
+   <valueQuantity>
+      <value value="1"/>
+   </valueQuantity>
+   <comment value="1 overleden foetus"/>
+   <method>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="278292003"/>
+         <display value="echografie (kwalificatiewaarde)"/>
+      </coding>
+   </method>
+</Observation>
