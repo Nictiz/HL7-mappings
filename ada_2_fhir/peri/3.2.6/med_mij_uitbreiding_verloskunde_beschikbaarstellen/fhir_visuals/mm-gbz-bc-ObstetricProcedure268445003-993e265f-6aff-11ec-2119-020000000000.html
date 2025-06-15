@@ -30,6 +30,23 @@
                      </td>
                   </tr>
                   <tr>
+                     <th>Methode</th>
+                     <td>
+                        <span title="obstetrische echografie (verrichting) (268445003 - SNOMED CT)">obstetrische echografie (verrichting)</span>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Gebaseerd op</th>
+                     <td>verrichting zwangerschap zwangerschap 2 P1-Maaike</td>
+                  </tr>
+                  <tr>
+                     <th>Deel van lichaam</th>
+                     <td>
+                        <span title="structuur van uterus (lichaamsstructuur) (35039007 - SNOMED CT)">structuur van uterus (lichaamsstructuur)</span>
+                        <span title="Rechts en links (51440002 - SNOMED CT)">Rechts en links</span>
+                     </td>
+                  </tr>
+                  <tr>
                      <th>Locatie</th>
                      <td>Verloskundigenpraktijk ter Wereld - Stitswerd</td>
                   </tr>
@@ -57,10 +74,13 @@ var nodes = new vis.DataSet([
 { id: 15, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-24eb4a5f-6b11-11ec-0000-020000000000.html" }, 
 { id: 206, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-424379bf-6aa3-11ec-2123-020000000000.html" }, 
 { id: 209, label: "Procedure obstetrische echografie (verrichting)", url: "mm-gbz-bc-ObstetricProcedure268445003-993e265f-6aff-11ec-2119-020000000000.html" }, 
+{ id: 210, label: "ProcedureRequest obstetrische echografie (verrichting)", url: "mm-gbz-zib-ProcedureRequest268445003-993e265f-6aff-11ec-2119-020000000000.html" }, 
+{ id: 216, label: "Device verloskundig en gynaecologisch echografiesysteem (fysiek object)", url: "mm-gbz-zib-MedicalDeviceProduct-MedicalDeviceProduct-mm-gbz-4f84048f-6b5e-11ec-1037-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 209, to: 206 }, 
+var edges = new vis.DataSet([{ from: 209, to: 210 }, 
+{ from: 209, to: 206 }, 
 { from: 209, to: 1 }, 
 { from: 209, to: 15 }, 
 { from: 209, to: 12 }, 
@@ -68,6 +88,7 @@ var edges = new vis.DataSet([{ from: 209, to: 206 },
 { from: 209, to: 6 }, 
 { from: 209, to: 8 }, 
 { from: 209, to: 14 }, 
+{ from: 209, to: 216 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

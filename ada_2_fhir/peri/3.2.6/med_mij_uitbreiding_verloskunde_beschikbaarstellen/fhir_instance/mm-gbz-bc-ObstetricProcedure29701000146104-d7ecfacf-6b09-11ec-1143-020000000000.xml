@@ -19,10 +19,32 @@
                      <div>Uitgevoerd: ${DATE, T, D, -53}T15:34:00+02:00 - ${DATE, T, D, -53}T15:39:00+02:00</div>
                   </td>
                </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="doorlopende intracutane hechting van huid (verrichting) (29701000146104 - SNOMED CT)">doorlopende intracutane hechting van huid (verrichting)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="structuur van perineum (lichaamsstructuur) (38864007 - SNOMED CT)">structuur van perineum (lichaamsstructuur)</span>
+                     <span title="Rechts en links (51440002 - SNOMED CT)">Rechts en links</span>
+                  </td>
+               </tr>
             </tbody>
          </table>
       </div>
    </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="29701000146104"/>
+            <display value="doorlopende intracutane hechting van huid (verrichting)"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
       <value value="d7ecfacf-6b09-11ec-1143-020000000000"/>
@@ -58,4 +80,20 @@
       <start value="${DATE, T, D, -53}T15:34:00+02:00"/>
       <end value="${DATE, T, D, -53}T15:39:00+02:00"/>
    </performedPeriod>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="51440002"/>
+               <display value="Rechts en links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="38864007"/>
+         <display value="structuur van perineum (lichaamsstructuur)"/>
+      </coding>
+   </bodySite>
 </Procedure>

@@ -3,7 +3,6 @@
    <id value="142b7f7f-6ab5-11ec-2231-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
    </meta>
    <text>
       <status value="extensions"/>
@@ -21,6 +20,23 @@
                   </td>
                </tr>
                <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="resectie van poliep (verrichting) (82035006 - SNOMED CT)">resectie van poliep (verrichting)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Gebaseerd op</th>
+                  <td>verrichting postpartum complicatie zwangerschap 2 P1-Maaike</td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="structuur van cervix uteri (lichaamsstructuur) (71252005 - SNOMED CT)">structuur van cervix uteri (lichaamsstructuur)</span>
+                     <span title="Rechts (24028007 - SNOMED CT)">Rechts</span>
+                  </td>
+               </tr>
+               <tr>
                   <th>Locatie</th>
                   <td>Stitswerd Ziekenhuis - Stitswerd</td>
                </tr>
@@ -28,10 +44,23 @@
          </table>
       </div>
    </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="82035006"/>
+            <display value="resectie van poliep (verrichting)"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
       <value value="142b7f7f-6ab5-11ec-2231-020000000000"/>
    </identifier>
+   <basedOn>
+      <reference value="ProcedureRequest/142b7f7f-6ab5-11ec-2231-020000000000"/>
+      <display value="verrichting postpartum complicatie zwangerschap 2 P1-Maaike"/>
+   </basedOn>
    <partOf>
       <reference value="Procedure/424379bf-6aa3-11ec-2123-020000000000"/>
       <display value="bevalling zwangerschap 2 P1-Maaike"/>
@@ -93,4 +122,20 @@
       <reference value="Location/location-mm-gbz-0cc94b5f-6b04-11ec-1295-020000000000"/>
       <display value="Stitswerd Ziekenhuis - Stitswerd"/>
    </location>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="24028007"/>
+               <display value="Rechts"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="71252005"/>
+         <display value="structuur van cervix uteri (lichaamsstructuur)"/>
+      </coding>
+   </bodySite>
 </Procedure>

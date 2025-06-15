@@ -30,6 +30,23 @@
                      </td>
                   </tr>
                   <tr>
+                     <th>Methode</th>
+                     <td>
+                        <span title="zuurstoftherapie (verrichting) (57485005 - SNOMED CT)">zuurstoftherapie (verrichting)</span>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Gebaseerd op</th>
+                     <td>verrichting ondersteuning opvang zwangerschap 2 P1-Maaike</td>
+                  </tr>
+                  <tr>
+                     <th>Deel van lichaam</th>
+                     <td>
+                        <span title="structuur van linker en rechter uitwendig neusgat (lichaamsstructuur) (244506005 - SNOMED CT)">structuur van linker en rechter uitwendig neusgat (lichaamsstructuur)</span>
+                        <span title="Rechts en links (51440002 - SNOMED CT)">Rechts en links</span>
+                     </td>
+                  </tr>
+                  <tr>
                      <th>Locatie</th>
                      <td>Stitswerd Ziekenhuis - Stitswerd</td>
                   </tr>
@@ -51,17 +68,19 @@ var nodes = new vis.DataSet([
 { id: 13, label: "PractitionerRole Gynaecoloog", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-0307316703073167.html" }, 
 { id: 15, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-24eb4a5f-6b11-11ec-0000-020000000000.html" }, 
 { id: 206, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-424379bf-6aa3-11ec-2123-020000000000.html" }, 
-{ id: 214, label: "Procedure zuurstoftherapie (verrichting)", url: "mm-gbz-zib-Procedure57485005-01e9d23f-6b1e-11ec-2309-020000000000.html" }, 
+{ id: 213, label: "ProcedureRequest zuurstoftherapie (verrichting)", url: "mm-gbz-zib-ProcedureRequest57485005-01e9d23f-6b1e-11ec-2309-020000000000.html" }, 
+{ id: 222, label: "Procedure zuurstoftherapie (verrichting)", url: "mm-gbz-zib-Procedure57485005-01e9d23f-6b1e-11ec-2309-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 214, to: 206 }, 
-{ from: 214, to: 1 }, 
-{ from: 214, to: 15 }, 
-{ from: 214, to: 13 }, 
-{ from: 214, to: 11 }, 
-{ from: 214, to: 7 }, 
-{ from: 214, to: 9 }, 
+var edges = new vis.DataSet([{ from: 222, to: 213 }, 
+{ from: 222, to: 206 }, 
+{ from: 222, to: 1 }, 
+{ from: 222, to: 15 }, 
+{ from: 222, to: 13 }, 
+{ from: 222, to: 11 }, 
+{ from: 222, to: 7 }, 
+{ from: 222, to: 9 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

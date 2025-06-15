@@ -19,10 +19,32 @@
                      <div>Uitgevoerd: ${DATE, T, D, -53} - ${DATE, T, D, -53}</div>
                   </td>
                </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="manuele postpartumexploratie van uterus (verrichting) (49149002 - SNOMED CT)">manuele postpartumexploratie van uterus (verrichting)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="structuur van uterus (lichaamsstructuur) (35039007 - SNOMED CT)">structuur van uterus (lichaamsstructuur)</span>
+                     <span title="Rechts en links (51440002 - SNOMED CT)">Rechts en links</span>
+                  </td>
+               </tr>
             </tbody>
          </table>
       </div>
    </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="49149002"/>
+            <display value="manuele postpartumexploratie van uterus (verrichting)"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
       <value value="8539798f-6b7b-11ec-1144-020000000000"/>
@@ -58,4 +80,20 @@
       <start value="${DATE, T, D, -53}"/>
       <end value="${DATE, T, D, -53}"/>
    </performedPeriod>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="51440002"/>
+               <display value="Rechts en links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="35039007"/>
+         <display value="structuur van uterus (lichaamsstructuur)"/>
+      </coding>
+   </bodySite>
 </Procedure>

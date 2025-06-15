@@ -30,6 +30,17 @@
                      </td>
                   </tr>
                   <tr>
+                     <th>Gebaseerd op</th>
+                     <td>verrichting maternaal zwangerschap 2 P1-Maaike</td>
+                  </tr>
+                  <tr>
+                     <th>Deel van lichaam</th>
+                     <td>
+                        <span title="structuur van amnionholte (lichaamsstructuur) (65022003 - SNOMED CT)">structuur van amnionholte (lichaamsstructuur)</span>
+                        <span title="Rechts en links (51440002 - SNOMED CT)">Rechts en links</span>
+                     </td>
+                  </tr>
+                  <tr>
                      <th>Locatie</th>
                      <td>Stitswerd Ziekenhuis - Stitswerd</td>
                   </tr>
@@ -59,19 +70,23 @@ var nodes = new vis.DataSet([
 { id: 13, label: "PractitionerRole Gynaecoloog", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-0307316703073167.html" }, 
 { id: 14, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-1970564f-6aba-11ec-2334-020000000000.html" }, 
 { id: 206, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-424379bf-6aa3-11ec-2123-020000000000.html" }, 
-{ id: 210, label: "Procedure inleiden van partus met oxytocine (verrichting)", url: "mm-gbz-bc-ObstetricProcedure177135005-9eb2bbff-6b0e-11ec-2154-020000000000.html" }, 
-{ id: 225, label: "Encounter begeleiden van bevalling (verrichting)", url: "mm-gbz-bc-Encounter-f2ba733f-6af7-11ec-1275-020000000000.html" }, 
+{ id: 211, label: "ProcedureRequest inleiden van partus met oxytocine (verrichting)", url: "mm-gbz-zib-ProcedureRequest177135005-9eb2bbff-6b0e-11ec-2154-020000000000.html" }, 
+{ id: 217, label: "Device infuuspomp (fysiek object)", url: "mm-gbz-zib-MedicalDeviceProduct-MedicalDeviceProduct-mm-gbz-4c3fba3f-6b40-11ec-1037-020000000000.html" }, 
+{ id: 218, label: "Procedure inleiden van partus met oxytocine (verrichting)", url: "mm-gbz-bc-ObstetricProcedure177135005-9eb2bbff-6b0e-11ec-2154-020000000000.html" }, 
+{ id: 227, label: "Encounter begeleiden van bevalling (verrichting)", url: "mm-gbz-bc-Encounter-f2ba733f-6af7-11ec-1275-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 210, to: 206 }, 
-{ from: 210, to: 1 }, 
-{ from: 210, to: 225 }, 
-{ from: 210, to: 13 }, 
-{ from: 210, to: 11 }, 
-{ from: 210, to: 7 }, 
-{ from: 210, to: 9 }, 
-{ from: 210, to: 14 }, 
+var edges = new vis.DataSet([{ from: 218, to: 211 }, 
+{ from: 218, to: 206 }, 
+{ from: 218, to: 1 }, 
+{ from: 218, to: 227 }, 
+{ from: 218, to: 13 }, 
+{ from: 218, to: 11 }, 
+{ from: 218, to: 7 }, 
+{ from: 218, to: 9 }, 
+{ from: 218, to: 14 }, 
+{ from: 218, to: 217 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

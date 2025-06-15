@@ -3,7 +3,6 @@
    <id value="d945a21f-6b71-11ec-2108-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
    </meta>
    <text>
       <status value="extensions"/>
@@ -19,10 +18,36 @@
                      <div>Uitgevoerd: 3 augustus 2001</div>
                   </td>
                </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="laparoscopische resectie van caecum en terminaal ileum (verrichting) (118311000146109 - SNOMED CT)">laparoscopische resectie van caecum en terminaal ileum (verrichting)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="structuur van pars terminalis ilei (lichaamsstructuur) (85774003 - SNOMED CT)">structuur van pars terminalis ilei (lichaamsstructuur)</span>
+                     <span title="Rechts (24028007 - SNOMED CT)">Rechts</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>probleem algemene anamnese P1-Maaike</td>
+               </tr>
             </tbody>
          </table>
       </div>
    </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="118311000146109"/>
+            <display value="laparoscopische resectie van caecum en terminaal ileum (verrichting)"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
       <value value="d945a21f-6b71-11ec-2108-020000000000"/>
@@ -58,4 +83,24 @@
       <start value="2001-08-03"/>
       <end value="2001-08-03"/>
    </performedPeriod>
+   <reasonReference>
+      <reference value="Condition/7f1945af-6aac-11ec-1291-020000000000"/>
+      <display value="probleem algemene anamnese P1-Maaike"/>
+   </reasonReference>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="24028007"/>
+               <display value="Rechts"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="85774003"/>
+         <display value="structuur van pars terminalis ilei (lichaamsstructuur)"/>
+      </coding>
+   </bodySite>
 </Procedure>

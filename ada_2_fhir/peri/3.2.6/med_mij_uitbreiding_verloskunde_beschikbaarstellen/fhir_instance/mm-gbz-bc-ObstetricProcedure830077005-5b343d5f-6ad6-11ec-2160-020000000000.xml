@@ -21,6 +21,23 @@
                   </td>
                </tr>
                <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="opname op intensivecareafdeling gespecialiseerd in neonaten (verrichting) (830077005 - SNOMED CT)">opname op intensivecareafdeling gespecialiseerd in neonaten (verrichting)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Gebaseerd op</th>
+                  <td>verrichting kindspecifieke maternale verrichtingen zwangerschap 2 P1-Maaike</td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="structuur van uterus (lichaamsstructuur) (35039007 - SNOMED CT)">structuur van uterus (lichaamsstructuur)</span>
+                     <span title="Rechts en links (51440002 - SNOMED CT)">Rechts en links</span>
+                  </td>
+               </tr>
+               <tr>
                   <th>Locatie</th>
                   <td>Stitswerd Ziekenhuis - Stitswerd</td>
                </tr>
@@ -32,10 +49,23 @@
          </table>
       </div>
    </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="830077005"/>
+            <display value="opname op intensivecareafdeling gespecialiseerd in neonaten (verrichting)"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
       <value value="5b343d5f-6ad6-11ec-2160-020000000000"/>
    </identifier>
+   <basedOn>
+      <reference value="ProcedureRequest/5b343d5f-6ad6-11ec-2160-020000000000"/>
+      <display value="verrichting kindspecifieke maternale verrichtingen zwangerschap 2 P1-Maaike"/>
+   </basedOn>
    <partOf>
       <reference value="Procedure/424379bf-6aa3-11ec-2123-020000000000"/>
       <display value="bevalling zwangerschap 2 P1-Maaike"/>
@@ -102,4 +132,20 @@
       <reference value="Condition/28c850cf-6aba-11ec-2159-020000000000"/>
       <display value="probleem kindspecifieke maternale problemen P1-Maaike"/>
    </reasonReference>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="51440002"/>
+               <display value="Rechts en links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="35039007"/>
+         <display value="structuur van uterus (lichaamsstructuur)"/>
+      </coding>
+   </bodySite>
 </Procedure>

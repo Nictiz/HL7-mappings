@@ -28,6 +28,23 @@
                         <div>Uitgevoerd: 3 augustus 2001</div>
                      </td>
                   </tr>
+                  <tr>
+                     <th>Methode</th>
+                     <td>
+                        <span title="laparoscopische resectie van caecum en terminaal ileum (verrichting) (118311000146109 - SNOMED CT)">laparoscopische resectie van caecum en terminaal ileum (verrichting)</span>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Deel van lichaam</th>
+                     <td>
+                        <span title="structuur van pars terminalis ilei (lichaamsstructuur) (85774003 - SNOMED CT)">structuur van pars terminalis ilei (lichaamsstructuur)</span>
+                        <span title="Rechts (24028007 - SNOMED CT)">Rechts</span>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Reden</th>
+                     <td>probleem algemene anamnese P1-Maaike</td>
+                  </tr>
                </tbody>
             </table>
          </div>
@@ -51,6 +68,7 @@
 var nodes = new vis.DataSet([
 { id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
 { id: 15, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-24eb4a5f-6b11-11ec-0000-020000000000.html" }, 
+{ id: 21, label: "Condition ziekte van Crohn (aandoening)", url: "mm-gbz-zib-Problem34000006-7f1945af-6aac-11ec-1291-020000000000.html" }, 
 { id: 206, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-424379bf-6aa3-11ec-2123-020000000000.html" }, 
 { id: 208, label: "Procedure operatie van darm (verrichting)", url: "mm-gbz-zib-Procedure34853001-d945a21f-6b71-11ec-2108-020000000000.html" }, 
 ]);
@@ -59,6 +77,7 @@ var nodes = new vis.DataSet([
 var edges = new vis.DataSet([{ from: 208, to: 206 }, 
 { from: 208, to: 1 }, 
 { from: 208, to: 15 }, 
+{ from: 208, to: 21 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

@@ -3,7 +3,6 @@
    <id value="01e9d23f-6b1e-11ec-2309-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
    </meta>
    <text>
       <status value="extensions"/>
@@ -21,6 +20,23 @@
                   </td>
                </tr>
                <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="zuurstoftherapie (verrichting) (57485005 - SNOMED CT)">zuurstoftherapie (verrichting)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Gebaseerd op</th>
+                  <td>verrichting ondersteuning opvang zwangerschap 2 P1-Maaike</td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="structuur van linker en rechter uitwendig neusgat (lichaamsstructuur) (244506005 - SNOMED CT)">structuur van linker en rechter uitwendig neusgat (lichaamsstructuur)</span>
+                     <span title="Rechts en links (51440002 - SNOMED CT)">Rechts en links</span>
+                  </td>
+               </tr>
+               <tr>
                   <th>Locatie</th>
                   <td>Stitswerd Ziekenhuis - Stitswerd</td>
                </tr>
@@ -28,10 +44,23 @@
          </table>
       </div>
    </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="57485005"/>
+            <display value="zuurstoftherapie (verrichting)"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
       <value value="01e9d23f-6b1e-11ec-2309-020000000000"/>
    </identifier>
+   <basedOn>
+      <reference value="ProcedureRequest/01e9d23f-6b1e-11ec-2309-020000000000"/>
+      <display value="verrichting ondersteuning opvang zwangerschap 2 P1-Maaike"/>
+   </basedOn>
    <partOf>
       <reference value="Procedure/424379bf-6aa3-11ec-2123-020000000000"/>
       <display value="bevalling zwangerschap 2 P1-Maaike"/>
@@ -90,4 +119,20 @@
       <reference value="Location/location-mm-gbz-0cc94b5f-6b04-11ec-1295-020000000000"/>
       <display value="Stitswerd Ziekenhuis - Stitswerd"/>
    </location>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="51440002"/>
+               <display value="Rechts en links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="244506005"/>
+         <display value="structuur van linker en rechter uitwendig neusgat (lichaamsstructuur)"/>
+      </coding>
+   </bodySite>
 </Procedure>

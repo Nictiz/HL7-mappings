@@ -3,7 +3,6 @@
    <id value="5261095f-6b7c-11ec-2241-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
    </meta>
    <text>
       <status value="extensions"/>
@@ -18,6 +17,23 @@
                   </td>
                   <td>
                      <div>Uitgevoerd: ${DATE, T, D, -146} - ${DATE, T, D, -146}</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="echografie voor foetale presentatie (verrichting) (169228004 - SNOMED CT)">echografie voor foetale presentatie (verrichting)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Gebaseerd op</th>
+                  <td>verrichting onderzoek zwangerschap 2 P1-Maaike</td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="structuur van abdominopelviene holte en/of inhoud van abdominopelviene holte en/of voorwand van buik (lichaamsstructuur) (818983003 - SNOMED CT)">structuur van abdominopelviene holte en/of inhoud van abdominopelviene holte en/of voorwand van buik (lichaamsstructuur)</span>
+                     <span title="Rechts en links (51440002 - SNOMED CT)">Rechts en links</span>
                   </td>
                </tr>
                <tr>
@@ -36,10 +52,23 @@
          </table>
       </div>
    </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="169228004"/>
+            <display value="echografie voor foetale presentatie (verrichting)"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
       <value value="5261095f-6b7c-11ec-2241-020000000000"/>
    </identifier>
+   <basedOn>
+      <reference value="ProcedureRequest/5261095f-6b7c-11ec-2241-020000000000"/>
+      <display value="verrichting onderzoek zwangerschap 2 P1-Maaike"/>
+   </basedOn>
    <partOf>
       <reference value="Procedure/424379bf-6aa3-11ec-2123-020000000000"/>
       <display value="bevalling zwangerschap 2 P1-Maaike"/>
@@ -102,6 +131,22 @@
       <reference value="Condition/1970564f-6aba-11ec-2334-020000000000"/>
       <display value="Zwangerschap 2 P1-Maaike"/>
    </reasonReference>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="51440002"/>
+               <display value="Rechts en links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="818983003"/>
+         <display value="structuur van abdominopelviene holte en/of inhoud van abdominopelviene holte en/of voorwand van buik (lichaamsstructuur)"/>
+      </coding>
+   </bodySite>
    <report>
       <reference value="DiagnosticReport/TextResult-mm-gbz-8723a158-6b7d-11ec-2786-020000000000"/>
       <display value="Tekst_uitslag echografie"/>
