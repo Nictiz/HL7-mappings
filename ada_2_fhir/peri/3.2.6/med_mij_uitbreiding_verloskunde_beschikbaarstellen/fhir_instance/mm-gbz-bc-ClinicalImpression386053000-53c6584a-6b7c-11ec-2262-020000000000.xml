@@ -1,0 +1,74 @@
+<ClinicalImpression xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-tes-casus9999 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/zorgverlening/conclusie_professioneel_onderzoek -->
+   <id value="53c6584a-6b7c-11ec-2262-020000000000"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/bc-ClinicalImpression"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-clinicalimpression-management">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="370858005"/>
+            <display value="volgen van klinisch zorgpad (regime/therapie)"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="53c6584a-6b7c-11ec-2262-020000000000"/>
+   </identifier>
+   <status value="completed"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="386053000"/>
+         <display value="beoordeling (verrichting)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/MAAIKE-M-MAAIKE-OSTENDORF"/>
+      <display value="Maaike M Maaike Ostendorf"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/24eb4a5f-6b11-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 P1-Maaike"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -146}T13:14:00+02:00"/>
+   <performer>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/practitionerrole-mm-gbz-0861762508617625"/>
+            <display value="Anne Marie AM Anne Naaktgeboren Kleinsma || Verloskundige || Verloskundigenpraktijk ter Wereld"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-08617625"/>
+      <display value="Anne Marie AM Anne Naaktgeboren Kleinsma"/>
+   </performer>
+   <investigation>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="271992004"/>
+            <display value="obstetrisch onderzoek (verrichting)"/>
+         </coding>
+      </code>
+      <item>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-clinicalimpression-procedure">
+            <valueReference>
+               <reference value="Procedure/5261095f-6b7c-11ec-2241-020000000000"/>
+               <display value="verrichting onderzoek zwangerschap 2 P1-Maaike"/>
+            </valueReference>
+         </extension>
+      </item>
+   </investigation>
+   <summary value="foetus B overleden"/>
+   <finding>
+      <itemCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="47200007"/>
+            <display value="hoogrisicozwangerschap (bevinding)"/>
+         </coding>
+      </itemCodeableConcept>
+   </finding>
+</ClinicalImpression>

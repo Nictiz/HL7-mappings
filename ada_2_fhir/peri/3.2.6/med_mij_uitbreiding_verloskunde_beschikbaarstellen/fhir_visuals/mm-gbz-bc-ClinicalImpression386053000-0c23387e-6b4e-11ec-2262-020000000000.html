@@ -1,6 +1,6 @@
 <html lang="en">
    <head>
-      <title>Procedure - a02f847a-6b10-11ec-2241-020000000000</title>
+      <title>ClinicalImpression - 0c23387e-6b4e-11ec-2262-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -15,50 +15,24 @@
                                 }</style>
    </head>
    <body>
+      <p/>
       <p>
-         <div xmlns="http://www.w3.org/1999/xhtml">
-            <table>
-               <caption>Verrichting. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Categorie: <span title="Obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">Obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
-               <tbody>
-                  <tr>
-                     <td>
-                        <span title="prenatale risico-evaluatie (verrichting) (713076009 - SNOMED CT)">prenatale risico-evaluatie (verrichting)</span>
-                     </td>
-                     <td>
-                        <div>Uitgevoerd: ${DATE, T, D, -527} - ${DATE, T, D, -527}</div>
-                     </td>
-                  </tr>
-                  <tr>
-                     <th>Reden</th>
-                     <td>Zwangerschap 2 Vrouw-XXX_Yzendoorn</td>
-                  </tr>
-               </tbody>
-            </table>
-         </div>
+         <b>Resources pointing to 'this' resource - ClinicalImpression beoordeling (verrichting)</b>
       </p>
-      <p>
-         <b>Resources pointing to 'this' resource - Procedure prenatale risico-evaluatie (verrichting)</b>
-      </p>
-      <ul>
-         <li>
-            <a href="mm-gbz-bc-ClinicalImpression386053000-0c23387e-6b4e-11ec-2262-020000000000.html">ClinicalImpression beoordeling (verrichting)</a>
-         </li>
-      </ul>
+      <div> - none</div>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
 { id: 1, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-bc-Woman-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
-{ id: 15, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-8e9592ff-6aab-11ec-2334-020000000000.html" }, 
 { id: 16, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-14d1a1ff-6b66-11ec-0000-020000000000.html" }, 
-{ id: 91, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-b6353a4f-6b23-11ec-2123-020000000000.html" }, 
 { id: 97, label: "Procedure prenatale risico-evaluatie (verrichting)", url: "mm-gbz-zib-Procedure713076009-a02f847a-6b10-11ec-2241-020000000000.html" }, 
+{ id: 107, label: "ClinicalImpression beoordeling (verrichting)", url: "mm-gbz-bc-ClinicalImpression386053000-0c23387e-6b4e-11ec-2262-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 97, to: 91 }, 
-{ from: 97, to: 1 }, 
-{ from: 97, to: 16 }, 
-{ from: 97, to: 15 }, 
+var edges = new vis.DataSet([{ from: 107, to: 1 }, 
+{ from: 107, to: 16 }, 
+{ from: 107, to: 97 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");
