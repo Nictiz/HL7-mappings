@@ -1,0 +1,41 @@
+<ReferralRequest xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-kwa-casus4 -->
+   <id value="f81debff-6b05-11ec-2887-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ReferralRequest"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-referralrequest-contacttype">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="169711001+11429006"/>
+            <display value="prenatale intake (verrichting)+consult (verrichting)"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="f81debff-6b05-11ec-2887-020000000000"/>
+   </identifier>
+   <status value="active"/>
+   <intent value="order"/>
+   <subject>
+      <reference value="Patient/WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG"/>
+      <display value="Willemijn W XXX_Yzendoorn van den XXX_Berg"/>
+   </subject>
+   <authoredOn value="${DATE, T, D, -527}"/>
+   <requester>
+      <agent>
+         <reference value="Organization/organization-mm-gbz-2-16-840-1-113883-2-4-6-1-08001234"/>
+         <display value="Verloskundigenpraktijk 't Groen"/>
+      </agent>
+   </requester>
+   <recipient>
+      <reference value="Organization/organization-mm-gbz-2-16-840-1-113883-2-4-6-1-06020806"/>
+      <display value="Erasmus MC, Sophia kinderziekenhuis"/>
+   </recipient>
+   <reasonReference>
+      <reference value="Procedure/49646dfa-6b05-11ec-2108-020000000000"/>
+      <display value="verrichting algemene anamnese zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+   </reasonReference>
+</ReferralRequest>

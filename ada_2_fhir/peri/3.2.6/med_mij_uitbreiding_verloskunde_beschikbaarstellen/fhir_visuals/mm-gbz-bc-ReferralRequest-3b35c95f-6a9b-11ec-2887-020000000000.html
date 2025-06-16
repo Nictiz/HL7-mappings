@@ -1,0 +1,84 @@
+<html lang="en">
+   <head>
+      <title>ReferralRequest - 3b35c95f-6a9b-11ec-2887-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p/>
+      <p>
+         <b>Resources pointing to 'this' resource - ReferralRequest overdracht van zorg (verrichting)</b>
+      </p>
+      <div> - none</div>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
+{ id: 6, label: "Organization Verloskundigenpraktijk ter Wereld - Stitswerd", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-528-1-1007-3-3-08009999.html" }, 
+{ id: 7, label: "Organization Stitswerd Ziekenhuis - Stitswerd", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-528-1-1007-3-3-06019999.html" }, 
+{ id: 10, label: "ReferralRequest overdracht van zorg (verrichting)", url: "mm-gbz-bc-ReferralRequest-3b35c95f-6a9b-11ec-2887-020000000000.html" }, 
+{ id: 19, label: "Condition meerlingzwangerschap (aandoening)", url: "mm-gbz-bc-DisorderOfPregnancy16356006-5c2986df-6b2a-11ec-2118-020000000000.html" }, 
+{ id: 23, label: "Condition intra-uteriene vruchtdood (bevinding)", url: "mm-gbz-zib-Problem59291004-73ef00cf-6b24-11ec-2888-020000000000.html" }, 
+{ id: 24, label: "Condition ziekte van Crohn (aandoening)", url: "mm-gbz-zib-Problem34000006-7f1945af-6aac-11ec-1291-020000000000.html" }, 
+{ id: 80, label: "Observation", url: "mm-gbz-nl-core-observation-e3a00d6a-6b29-11ec-2917-020000000000.html" }, 
+{ id: 213, label: "Procedure operatie van darm (verrichting)", url: "mm-gbz-zib-Procedure34853001-d945a21f-6b71-11ec-2108-020000000000.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 10, to: 1 }, 
+{ from: 10, to: 6 }, 
+{ from: 10, to: 7 }, 
+{ from: 10, to: 23 }, 
+{ from: 10, to: 24 }, 
+{ from: 10, to: 213 }, 
+{ from: 10, to: 19 }, 
+{ from: 10, to: 80 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

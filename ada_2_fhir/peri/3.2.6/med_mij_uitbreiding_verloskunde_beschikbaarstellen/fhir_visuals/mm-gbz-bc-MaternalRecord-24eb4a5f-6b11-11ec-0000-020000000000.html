@@ -65,6 +65,9 @@
             <a href="mm-gbz-zib-Problem459168005-8d1b4c0f-6afe-11ec-2885-020000000000.html">Condition monochoriale diamniotische tweelingzwangerschap (bevinding)</a>
          </li>
          <li>
+            <a href="mm-gbz-zib-Problem59291004-73ef00cf-6b24-11ec-2888-020000000000.html">Condition intra-uteriene vruchtdood (bevinding)</a>
+         </li>
+         <li>
             <a href="mm-gbz-zib-Problem34000006-7f1945af-6aac-11ec-1291-020000000000.html">Condition ziekte van Crohn (aandoening)</a>
          </li>
          <li>
@@ -159,6 +162,9 @@
          </li>
          <li>
             <a href="mm-gbz-nl-core-observation443464003-1ceea1ba-6aaa-11ec-1089-020000000000.html">Observation behandelen met laagmoleculairgewicht heparine (verrichting)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation-e3a00d6a-6b29-11ec-2917-020000000000.html">Observation</a>
          </li>
          <li>
             <a href="mm-gbz-zib-FamilySituationChild-b11a5b4b-6b3c-11ec-2292-020000000000.html">Observation</a>
@@ -490,18 +496,18 @@
 var nodes = new vis.DataSet([
 { id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
 { id: 7, label: "Organization Stitswerd Ziekenhuis - Stitswerd", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-528-1-1007-3-3-06019999.html" }, 
-{ id: 11, label: "Practitioner De Jong", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167.html" }, 
-{ id: 13, label: "PractitionerRole Gynaecoloog", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-0307316703073167.html" }, 
-{ id: 14, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-1970564f-6aba-11ec-2334-020000000000.html" }, 
-{ id: 15, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-24eb4a5f-6b11-11ec-0000-020000000000.html" }, 
+{ id: 11, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-1970564f-6aba-11ec-2334-020000000000.html" }, 
+{ id: 12, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-24eb4a5f-6b11-11ec-0000-020000000000.html" }, 
+{ id: 15, label: "Practitioner De Jong", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167.html" }, 
+{ id: 16, label: "PractitionerRole Gynaecoloog", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-0307316703073167.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 15, to: 14 }, 
-{ from: 15, to: 1 }, 
-{ from: 15, to: 7 }, 
-{ from: 15, to: 13 }, 
-{ from: 15, to: 11 }, 
+var edges = new vis.DataSet([{ from: 12, to: 11 }, 
+{ from: 12, to: 1 }, 
+{ from: 12, to: 7 }, 
+{ from: 12, to: 16 }, 
+{ from: 12, to: 15 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");
