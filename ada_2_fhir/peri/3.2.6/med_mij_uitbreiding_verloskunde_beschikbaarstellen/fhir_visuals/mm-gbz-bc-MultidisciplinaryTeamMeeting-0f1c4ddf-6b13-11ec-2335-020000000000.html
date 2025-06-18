@@ -1,6 +1,6 @@
 <html lang="en">
    <head>
-      <title>Observation - d31157b0-6b08-11ec-2334-020000000000</title>
+      <title>Encounter - 0f1c4ddf-6b13-11ec-2335-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -18,47 +18,41 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Observatie/bepaling. Subject: Fiona F XXX_Swart. Status: definitief</caption>
+               <caption>Contact. Subject: Maaike M Maaike Ostendorf. Status: onbekend</caption>
                <tbody>
                   <tr>
-                     <th>Context</th>
-                     <td>Zwangerschap 1 XXX_Swart</td>
-                  </tr>
-                  <tr>
-                     <th>Code</th>
-                     <th>Waarde</th>
-                  </tr>
-                  <tr>
+                     <th>Type contact</th>
                      <td>
-                        <span title="[#] Pregnancies (11996-6 - LOINC)">[#] Pregnancies</span>
+                        <div/>
                      </td>
-                     <td>1</td>
+                  </tr>
+                  <tr>
+                     <th>Periode</th>
+                     <td>Vanaf ${DATE, T, D, -145}</td>
                   </tr>
                </tbody>
             </table>
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Observation [#] Pregnancies</b>
+         <b>Resources pointing to 'this' resource - Encounter</b>
       </p>
       <ul>
          <li>
-            <a href="mm-gbz-zib-Pregnancy-Duration57036006-cc04e58a-6b68-11ec-2334-020000000000.html">Observation zwangerschapsduur (waarneembare entiteit)</a>
+            <a href="mm-gbz-bc-MultidisciplinaryTeamMeeting-Plan-6beadf85-6b1b-11ec-2337-020000000000.html">CarePlan</a>
          </li>
       </ul>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 5, label: "Patient XXX_Swart", url: "mm-gbz-bc-Woman-FIONA-F-XXX-SWART.html" }, 
-{ id: 17, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-e0d93b0f-6b66-11ec-2334-020000000000.html" }, 
-{ id: 18, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-8b4a1a6f-6b0c-11ec-0000-020000000000.html" }, 
-{ id: 58, label: "Observation [#] Pregnancies", url: "mm-gbz-zib-Pregnancy-Gravidity11996-6-d31157b0-6b08-11ec-2334-020000000000.html" }, 
+{ id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
+{ id: 12, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-24eb4a5f-6b11-11ec-0000-020000000000.html" }, 
+{ id: 234, label: "Encounter", url: "mm-gbz-bc-MultidisciplinaryTeamMeeting-0f1c4ddf-6b13-11ec-2335-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 58, to: 17 }, 
-{ from: 58, to: 5 }, 
-{ from: 58, to: 18 }, 
+var edges = new vis.DataSet([{ from: 234, to: 1 }, 
+{ from: 234, to: 12 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");
