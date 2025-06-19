@@ -47,12 +47,14 @@
 var nodes = new vis.DataSet([
 { id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
 { id: 12, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-24eb4a5f-6b11-11ec-0000-020000000000.html" }, 
-{ id: 234, label: "Encounter", url: "mm-gbz-bc-MultidisciplinaryTeamMeeting-0f1c4ddf-6b13-11ec-2335-020000000000.html" }, 
+{ id: 25, label: "Condition intra-uteriene vruchtdood (bevinding)", url: "mm-gbz-zib-Problem59291004-8057b0cf-6b6d-11ec-2884-020000000000.html" }, 
+{ id: 236, label: "Encounter", url: "mm-gbz-bc-MultidisciplinaryTeamMeeting-0f1c4ddf-6b13-11ec-2335-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 234, to: 1 }, 
-{ from: 234, to: 12 }, 
+var edges = new vis.DataSet([{ from: 236, to: 1 }, 
+{ from: 236, to: 12 }, 
+{ from: 236, to: 25 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");
