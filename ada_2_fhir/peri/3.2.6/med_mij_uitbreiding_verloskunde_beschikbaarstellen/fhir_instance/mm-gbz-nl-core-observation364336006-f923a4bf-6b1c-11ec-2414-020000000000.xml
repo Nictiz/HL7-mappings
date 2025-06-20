@@ -1,0 +1,73 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-kwa-casus4 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/bevalling/uitdrijvingsfase/type_partus_observatie -->
+   <id value="f923a4bf-6b1c-11ec-2414-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-BirthObservation"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Kind Mieke XXX_Yzendoorn. Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>partusassistentie contact Thuis Vrouw-XXX_Yzendoorn</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -324}</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="soort partus (waarneembare entiteit) (364336006 - SNOMED CT)">soort partus (waarneembare entiteit)</span>
+                  </td>
+                  <td>
+                     <span title="secundaire sectio caesarea (verrichting) (80801000146105 - SNOMED CT)">secundaire sectio caesarea (verrichting)</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
+      <valueReference>
+         <reference value="Procedure/ec528aff-6b4c-11ec-2123-020000000000"/>
+         <display value="uitdrijvingsfase zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+      </valueReference>
+   </extension>
+   <!-- adaChild -->
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="f923a4bf-6b1c-11ec-2414-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="364336006"/>
+         <display value="soort partus (waarneembare entiteit)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/MIEKE-XXX-YZENDOORN"/>
+      <display value="Kind Mieke XXX_Yzendoorn"/>
+   </subject>
+   <context>
+      <reference value="Encounter/a0cecf3f-6ad4-11ec-1071-020000000000"/>
+      <display value="partusassistentie contact Thuis Vrouw-XXX_Yzendoorn"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -324}"/>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="80801000146105"/>
+         <display value="secundaire sectio caesarea (verrichting)"/>
+      </coding>
+   </valueCodeableConcept>
+</Observation>

@@ -1,0 +1,100 @@
+<html lang="en">
+   <head>
+      <title>Patient - LEONIE-L-XXX-OSSE</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <div>Id 999901710 (BSN), <span title="Naamsamenstelling: Eigennaam">Leonie XXX_Osse</span>, Vrouw, 13 juni 1998</div>
+            <div>
+               <a href="tel:06-12345678">06-12345678</a> (Mobiel), <a href="mailto:l.osse@test.nl">l.osse@test.nl</a> (E-mail Privé)</div>
+            <div>Knolweg 1000, 9999XA STITSWERD, NL (Bezoek)</div>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Patient XXX_Osse</b>
+      </p>
+      <ul>
+         <li>
+            <a href="mm-gbz-bc-ReferralRequest-33fe0a01-6b6b-11ec-2887-020000000000.html">ReferralRequest</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-Pregnancy118185001-3cc38e5b-6ac9-11ec-2334-020000000000.html">Condition bevinding betreffende zwangerschap (bevinding)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-MaternalRecord-d0510907-6af3-11ec-0000-020000000000.html">EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-Pregnancy-Parity11977-6-a0f9852a-6b49-11ec-2334-020000000000.html">Observation [#] Parity</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-Pregnancy-Gravidity11996-6-7eeea4de-6af8-11ec-2334-020000000000.html">Observation [#] Pregnancies</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation161714006-1f55c413-6b6f-11ec-2334-020000000000.html">Observation geschatte datum van partus (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-Fetus83418008-7f96aada-6ada-11ec-1267-020000000000.html">BodySite gehele foetus (lichaamsstructuur)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-Procedure143701000146108-6e8bd802-6abf-11ec-2241-020000000000.html">Procedure structureel echoscopisch onderzoek tijdens tweede trimester (verrichting)</a>
+         </li>
+      </ul>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 1, label: "Patient XXX_Osse", url: "mm-gbz-bc-Woman-LEONIE-L-XXX-OSSE.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

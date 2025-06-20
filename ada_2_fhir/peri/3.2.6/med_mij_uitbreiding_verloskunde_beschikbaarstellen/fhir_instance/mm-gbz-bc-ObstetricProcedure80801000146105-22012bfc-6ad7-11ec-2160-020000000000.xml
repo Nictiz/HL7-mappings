@@ -1,0 +1,72 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-kwa-casus4 -->
+   <id value="22012bfc-6ad7-11ec-2160-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ObstetricProcedure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Categorie: <span title="Obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">Obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="secundaire sectio caesarea (verrichting) (80801000146105 - SNOMED CT)">secundaire sectio caesarea (verrichting)</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: Vanaf ${DATE, T, D, -324}</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>probleem kindspecifieke maternale problemen Patient-Kind</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="22012bfc-6ad7-11ec-2160-020000000000"/>
+   </identifier>
+   <partOf>
+      <reference value="Procedure/b6353a4f-6b23-11ec-2123-020000000000"/>
+      <display value="bevalling zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+   </partOf>
+   <partOf>
+      <reference value="Procedure/ec528aff-6b4c-11ec-2123-020000000000"/>
+      <display value="uitdrijvingsfase zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+   </partOf>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="386637004"/>
+         <display value="Obstetrische verrichting (verrichting)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="80801000146105"/>
+         <display value="secundaire sectio caesarea (verrichting)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG"/>
+      <display value="Willemijn W XXX_Yzendoorn van den XXX_Berg"/>
+   </subject>
+   <context>
+      <reference value="Encounter/a0cecf3f-6ad4-11ec-1071-020000000000"/>
+      <display value="partusassistentie contact Thuis Vrouw-XXX_Yzendoorn"/>
+   </context>
+   <performedPeriod>
+      <start value="${DATE, T, D, -324}"/>
+   </performedPeriod>
+   <reasonReference>
+      <reference value="Condition/8f7c279f-6a99-11ec-2159-020000000000"/>
+      <display value="probleem kindspecifieke maternale problemen Patient-Kind"/>
+   </reasonReference>
+</Procedure>

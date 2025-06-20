@@ -1,0 +1,122 @@
+<html lang="en">
+   <head>
+      <title>Procedure - be71a8c7-6ae9-11ec-2123-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Verrichting. Subject: Kind Jan J XXX_Swart. Categorie: <span title="Obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">Obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+               <tbody>
+                  <tr>
+                     <td>
+                        <span title="geboorte (bevinding) (3950001 - SNOMED CT)">geboorte (bevinding)</span>
+                     </td>
+                     <td/>
+                  </tr>
+                  <tr>
+                     <th>Locatie</th>
+                     <td>Erasmus MC, Sophia kinderziekenhuis</td>
+                  </tr>
+                  <tr>
+                     <th>Reden</th>
+                     <td>Zwangerschap 1 XXX_Swart</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Procedure geboorte (bevinding)</b>
+      </p>
+      <ul>
+         <li>
+            <a href="mm-gbz-nl-core-observation364336006-13c7eb36-6ae2-11ec-2414-020000000000.html">Observation soort partus (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation271692001-06e003cf-6aaa-11ec-2416-020000000000.html">Observation presenterend deel van foetus (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-nl-core-observation366344009-9d2d4702-6b27-11ec-2419-020000000000.html">Observation bevinding betreffende locatie van partus</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-Pregnancy-Duration57036006-52b61e9f-6b4a-11ec-1069-020000000000.html">Observation zwangerschapsduur (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ObstetricProcedure80771000146107-8703f6b8-6b2c-11ec-2160-020000000000.html">Procedure primaire sectio caesarea (verrichting)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ObstetricProcedure243140006-0f8b0d70-6b2d-11ec-2160-020000000000.html">Procedure inflatie van long door intermitterende compressie van reservoirballon</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ObstetricProcedure698350008370131001=133933007-dd9e5db8-6b42-11ec-2160-020000000000.html">Procedure vitamine K toediening aan neonaat</a>
+         </li>
+      </ul>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 12, label: "Patient XXX_Swart", url: "mm-gbz-bc-Child-JAN-J-XXX-SWART.html" }, 
+{ id: 15, label: "Location", url: "mm-gbz-nl-core-location-location-mm-gbz-2-16-528-1-1007-3-3-06020806.html" }, 
+{ id: 17, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-e0d93b0f-6b66-11ec-2334-020000000000.html" }, 
+{ id: 18, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-8b4a1a6f-6b0c-11ec-0000-020000000000.html" }, 
+{ id: 92, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-3834f287-6aa8-11ec-2123-020000000000.html" }, 
+{ id: 93, label: "Procedure geboorte (bevinding)", url: "mm-gbz-bc-Birth3950001-be71a8c7-6ae9-11ec-2123-020000000000.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 93, to: 92 }, 
+{ from: 93, to: 12 }, 
+{ from: 93, to: 18 }, 
+{ from: 93, to: 15 }, 
+{ from: 93, to: 17 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

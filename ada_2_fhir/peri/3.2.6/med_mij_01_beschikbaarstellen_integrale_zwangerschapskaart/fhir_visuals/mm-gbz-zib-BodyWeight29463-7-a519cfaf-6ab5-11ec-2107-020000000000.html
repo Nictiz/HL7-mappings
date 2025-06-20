@@ -1,0 +1,102 @@
+<html lang="en">
+   <head>
+      <title>Observation - a519cfaf-6ab5-11ec-2107-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Observatie/bepaling. Subject: Hanna H XXX_Kooij. Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
+               <tbody>
+                  <tr>
+                     <th>Context</th>
+                     <td>prenatale controle T-6D Vrouw1</td>
+                  </tr>
+                  <tr>
+                     <th>Bepalingdatum/tijd</th>
+                     <td>${DATE, T, D, -6}</td>
+                  </tr>
+                  <tr>
+                     <th>Code</th>
+                     <th>Waarde</th>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span title="Body weight (29463-7 - LOINC)">Body weight</span>
+                     </td>
+                     <td>78 kg</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Observation Body weight</b>
+      </p>
+      <ul>
+         <li>
+            <a href="mm-gbz-zib-Pregnancy-Duration57036006-88706ac4-6b66-11ec-2702-020000000000.html">Observation zwangerschapsduur (waarneembare entiteit)</a>
+         </li>
+      </ul>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 1, label: "Patient XXX_Kooij", url: "mm-gbz-bc-Woman-HANNA-H-XXX-KOOIJ.html" }, 
+{ id: 28, label: "Observation Body weight", url: "mm-gbz-zib-BodyWeight29463-7-a519cfaf-6ab5-11ec-2107-020000000000.html" }, 
+{ id: 36, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-92503e42-6b73-11ec-1275-020000000000.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 28, to: 1 }, 
+{ from: 28, to: 36 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

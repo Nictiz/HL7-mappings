@@ -1,0 +1,125 @@
+<html lang="en">
+   <head>
+      <title>Encounter - b61d2df6-6af1-11ec-1275-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Contact. Subject: Hanna H XXX_Kooij. Status: voltooid</caption>
+               <tbody>
+                  <tr>
+                     <th>Type contact</th>
+                     <td>
+                        <div>
+                           <span title="Poliklinisch (AMB - v3/ActCode)">Poliklinisch</span>
+                        </div>
+                        <span title="consult (verrichting) (11429006 - SNOMED CT)">consult (verrichting)</span>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Periode</th>
+                     <td>${DATE, T, D, -139} - ${DATE, T, D, -139}</td>
+                  </tr>
+                  <tr>
+                     <th>Probleem/Verrichting</th>
+                     <td>Zwangerschap 3 Vrouw1</td>
+                  </tr>
+                  <tr>
+                     <th>Participant</th>
+                     <td>
+                        <div>Gemma XXX_Groeneboom XXX_Gras || Verloskundige || Verloskundigenpraktijk 't Groen</div>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Encounter consult (verrichting)</b>
+      </p>
+      <ul>
+         <li>
+            <a href="mm-gbz-zib-AlcoholUse228273003-600b48ef-6aff-11ec-1212-020000000000.html">Observation bevinding betreffende alcoholgebruik (bevinding)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-DrugUse228366006-ed4ae042-6ac7-11ec-1211-020000000000.html">Observation bevinding betreffende drugsgebruik (bevinding)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-TobaccoUse365980008-caec60e6-6b26-11ec-2224-020000000000.html">Observation bevinding betreffende tabakgebruik en blootstelling aan tabaksrook (bevinding)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-BloodPressure85354-9-33a7fa6f-6b08-11ec-2106-020000000000.html">Observation Blood pressure panel with all children optional</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-BodyWeight29463-7-e25a6a80-6afd-11ec-2107-020000000000.html">Observation Body weight</a>
+         </li>
+      </ul>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 1, label: "Patient XXX_Kooij", url: "mm-gbz-bc-Woman-HANNA-H-XXX-KOOIJ.html" }, 
+{ id: 3, label: "Practitioner XXX_Groeneboom-XXX_Gras", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-12340001.html" }, 
+{ id: 4, label: "PractitionerRole Verloskundige", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-1234000103-000.html" }, 
+{ id: 5, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-d1799aaf-6b7b-11ec-2334-020000000000.html" }, 
+{ id: 6, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-ba94bb6f-6b78-11ec-0000-020000000000.html" }, 
+{ id: 35, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-b61d2df6-6af1-11ec-1275-020000000000.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 35, to: 1 }, 
+{ from: 35, to: 6 }, 
+{ from: 35, to: 4 }, 
+{ from: 35, to: 3 }, 
+{ from: 35, to: 5 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>
