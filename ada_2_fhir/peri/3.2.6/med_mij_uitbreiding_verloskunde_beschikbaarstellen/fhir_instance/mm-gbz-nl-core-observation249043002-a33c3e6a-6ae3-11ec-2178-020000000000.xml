@@ -1,22 +1,23 @@
 <Observation xmlns="http://hl7.org/fhir">
-   <!-- Source: gz-ize-kwa-casus2 /adaxml/data/med_mij_echo_beschikbaarstellen/medisch_onderzoek/foetusspecifieke_onderzoeksgegevens/echoscopie/bevindingen/foetale_hartslag_hartfrequentie -->
-   <id value="41d41583-6b08-11ec-2178-020000000000"/>
+   <!-- Source: gz-izv-tes-casus9999 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/medisch_onderzoek/foetusspecifieke_onderzoeksgegevens/foetale_monitoring_ctg/foetale_hartslag_hartfrequentie -->
+   <id value="a33c3e6a-6ae3-11ec-2178-020000000000"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-HeartRate"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-FetalHeartRate"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
    </meta>
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Observatie/bepaling. Subject: Kind XXX_Osse. Status: definitief</caption>
+            <caption>Observatie/bepaling. Subject: Kind Daniel Mateo DM Daniel De Kleine. Status: definitief</caption>
             <tbody>
                <tr>
                   <th>Context</th>
-                  <td>Zwangerschap 2 XXX_Osse_Vrouw</td>
+                  <td>Zwangerschap 2 P1-Maaike</td>
                </tr>
                <tr>
                   <th>Bepalingdatum/tijd</th>
-                  <td>${DATE, T, D, -3}</td>
+                  <td>${DATE, T, D, -146}T12:58:00+02:00</td>
                </tr>
                <tr>
                   <th>Methode</th>
@@ -32,7 +33,7 @@
                   <td>
                      <span title="foetale hartfrequentie (waarneembare entiteit) (249043002 - SNOMED CT)">foetale hartfrequentie (waarneembare entiteit)</span>
                   </td>
-                  <td>140</td>
+                  <td>145</td>
                </tr>
                <tr>
                   <td>
@@ -48,20 +49,14 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
       <valueReference>
-         <reference value="Condition/c8cdd3f7-6b7c-11ec-2334-020000000000"/>
-         <display value="Zwangerschap 2 XXX_Osse_Vrouw"/>
-      </valueReference>
-   </extension>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
-      <valueReference>
-         <reference value="BodySite/cbb5dafb-6b4f-11ec-1267-020000000000"/>
-         <display value="foetus van Leonie L XXX_Osse"/>
+         <reference value="BodySite/ec2cf4ff-6b5d-11ec-1267-020000000000"/>
+         <display value="foetus van Maaike M Maaike Ostendorf"/>
       </valueReference>
    </extension>
    <!-- adaChild -->
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="41d41583-6b08-11ec-2178-020000000000"/>
+      <value value="a33c3e6a-6ae3-11ec-2178-020000000000"/>
    </identifier>
    <status value="final"/>
    <code>
@@ -72,16 +67,16 @@
       </coding>
    </code>
    <subject>
-      <reference value="Patient/XXX-OSSE"/>
-      <display value="Kind XXX_Osse"/>
+      <reference value="Patient/DANIEL-MATEO-DM-DANIEL-DE-KLEINE"/>
+      <display value="Kind Daniel Mateo DM Daniel De Kleine"/>
    </subject>
    <context>
-      <reference value="EpisodeOfCare/eadc3c53-6b19-11ec-0000-020000000000"/>
-      <display value="Zwangerschap 2 XXX_Osse_Vrouw"/>
+      <reference value="EpisodeOfCare/24eb4a5f-6b11-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 P1-Maaike"/>
    </context>
-   <effectiveDateTime value="${DATE, T, D, -3}"/>
+   <effectiveDateTime value="${DATE, T, D, -146}T12:58:00+02:00"/>
    <valueQuantity>
-      <value value="140"/>
+      <value value="145"/>
    </valueQuantity>
    <method>
       <coding>

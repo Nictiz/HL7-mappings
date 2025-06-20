@@ -1,6 +1,6 @@
 <html lang="en">
    <head>
-      <title>Observation - c7b9061f-6b33-11ec-2784-020000000000</title>
+      <title>Observation - 08fa07ca-6b41-11ec-2177-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -18,20 +18,25 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Observatie/bepaling. Subject: Kind Daniel Mateo DM Daniel De Kleine. Status: definitief</caption>
+               <caption>Observatie/bepaling. Subject: Maaike M Maaike Ostendorf. Status: definitief</caption>
+               <tfoot>
+                  <tr>
+                     <td colspan="2">Levende foetus</td>
+                  </tr>
+               </tfoot>
                <tbody>
                   <tr>
                      <th>Context</th>
-                     <td>Zwangerschap 2 P1-Maaike</td>
+                     <td>prenatale controle T-146D{12:31} P1-Maaike</td>
                   </tr>
                   <tr>
                      <th>Bepalingdatum/tijd</th>
-                     <td>${DATE, T, D, -146}</td>
+                     <td>${DATE, T, D, -146}T13:09:00+02:00</td>
                   </tr>
                   <tr>
                      <th>Methode</th>
                      <td>
-                        <span title="echografie (kwalificatiewaarde) (278292003 - SNOMED CT)">echografie (kwalificatiewaarde)</span>
+                        <span title="Echo (408808009 - SNOMED CT)">Echo</span>
                      </td>
                   </tr>
                   <tr>
@@ -39,9 +44,17 @@
                      <th>Waarde</th>
                   </tr>
                   <tr>
-                     <td>SonomarkerWaarde</td>
                      <td>
-                        <span title="Sonomarker geconstateerd (2 - 2.16.840.1.113883.2.4.4.13.54)">Sonomarker geconstateerd</span>
+                        <span title="foetale hartfrequentie (waarneembare entiteit) (249043002 - SNOMED CT)">foetale hartfrequentie (waarneembare entiteit)</span>
+                     </td>
+                     <td>123 bpm</td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span title="foetaal hartritme (waarneembare entiteit) (249044008 - SNOMED CT)">foetaal hartritme (waarneembare entiteit)</span>
+                     </td>
+                     <td>
+                        <span title="regelmatig hartritme van foetus (bevinding) (289443009 - SNOMED CT)">regelmatig hartritme van foetus (bevinding)</span>
                      </td>
                   </tr>
                </tbody>
@@ -49,22 +62,24 @@
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Observation</b>
+         <b>Resources pointing to 'this' resource - Observation foetale hartfrequentie (waarneembare entiteit)</b>
       </p>
-      <div> - none</div>
+      <ul>
+         <li>
+            <a href="mm-gbz-zib-Pregnancy-Duration57036006-0a8a011c-6acb-11ec-2702-020000000000.html">Observation zwangerschapsduur (waarneembare entiteit)</a>
+         </li>
+      </ul>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 2, label: "Patient De Kleine", url: "mm-gbz-bc-Child-DANIEL-MATEO-DM-DANIEL-DE-KLEINE.html" }, 
-{ id: 12, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-24eb4a5f-6b11-11ec-0000-020000000000.html" }, 
-{ id: 184, label: "BodySite gehele foetus (lichaamsstructuur)", url: "mm-gbz-bc-Fetus83418008-ec2cf4ff-6b5d-11ec-1267-020000000000.html" }, 
-{ id: 197, label: "Observation", url: "mm-gbz-nl-core-observation-c7b9061f-6b33-11ec-2784-020000000000.html" }, 
+{ id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
+{ id: 136, label: "Observation foetale hartfrequentie (waarneembare entiteit)", url: "mm-gbz-nl-core-observation249043002-08fa07ca-6b41-11ec-2177-020000000000.html" }, 
+{ id: 236, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-8bb5b91f-6aed-11ec-1275-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 197, to: 184 }, 
-{ from: 197, to: 2 }, 
-{ from: 197, to: 12 }, 
+var edges = new vis.DataSet([{ from: 136, to: 1 }, 
+{ from: 136, to: 236 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");
