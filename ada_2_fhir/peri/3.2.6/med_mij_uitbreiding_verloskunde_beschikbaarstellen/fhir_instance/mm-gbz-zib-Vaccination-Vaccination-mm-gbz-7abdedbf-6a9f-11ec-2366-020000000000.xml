@@ -1,0 +1,89 @@
+<Immunization xmlns="http://hl7.org/fhir">
+   <id value="Vaccination-mm-gbz-7abdedbf-6a9f-11ec-2366-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Vaccination"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Vaccinatie. Patiënt: Maaike M Maaike Ostendorf. Status: voltooid</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Door verloskundige ipv huisarts</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>
+                     <span title="Boostrix (58160-842-11 - G-Standaard GPK)">Boostrix</span>
+                  </th>
+                  <td>
+                     <div>Toegediend: ja (${DATE, T, D, -146})</div>
+                     <div>Gemeld door uitvoerende: nee</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>
+                     <span title="Behandelaar (ATND - v3/ParticipationType)">Behandelaar</span>
+                  </th>
+                  <td>Anne Marie AM Anne Naaktgeboren Kleinsma || Verloskundige || Verloskundigenpraktijk ter Wereld</td>
+               </tr>
+               <tr>
+                  <th>Vaccinatiedetails</th>
+                  <td>
+                     <div>Dosering: 0.5 ml</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="74852d13-6ab9-11ec-0000-020000000000"/>
+   </identifier>
+   <status value="completed"/>
+   <notGiven value="false"/>
+   <vaccineCode>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+         <code value="58160-842-11"/>
+         <display value="Boostrix"/>
+      </coding>
+   </vaccineCode>
+   <patient>
+      <reference value="Patient/MAAIKE-M-MAAIKE-OSTENDORF"/>
+      <display value="Maaike M Maaike Ostendorf"/>
+   </patient>
+   <date value="${DATE, T, D, -146}"/>
+   <primarySource value="false"/>
+   <doseQuantity>
+      <value value="0.5"/>
+      <unit value="ml"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="ml"/>
+   </doseQuantity>
+   <practitioner>
+      <role>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="ATND"/>
+            <display value="Behandelaar"/>
+         </coding>
+      </role>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/practitionerrole-mm-gbz-0861762508617625"/>
+               <display value="Anne Marie AM Anne Naaktgeboren Kleinsma || Verloskundige || Verloskundigenpraktijk ter Wereld"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-08617625"/>
+         <display value="Anne Marie AM Anne Naaktgeboren Kleinsma"/>
+      </actor>
+   </practitioner>
+   <note>
+      <text value="Door verloskundige ipv huisarts"/>
+   </note>
+</Immunization>
