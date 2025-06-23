@@ -10,50 +10,55 @@
    <statusCode nullFlavor="NI"/>
    <recordTarget>
       <patientRole>
-         <id extension="999909423"
+         <id extension="999909083"
              root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
-               <given qualifier="IN">M.</given>
-               <family qualifier="BR">XXX_Meeuwisse</family>
+               <given qualifier="IN">G.</given>
+               <prefix qualifier="VV">de </prefix>
+               <family qualifier="BR">XXX_Jongman</family>
             </name>
-            <administrativeGenderCode code="F"
+            <administrativeGenderCode code="M"
                                       codeSystem="2.16.840.1.113883.5.1"
-                                      displayName="Vrouw"/>
-            <birthTime value="19540725"/>
+                                      displayName="Man"/>
+            <birthTime value="19630918"/>
          </patient>
       </patientRole>
    </recordTarget>
    <component typeCode="COMP">
       <substanceAdministration classCode="SBADM"
                                moodCode="RQO">
-         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
-         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
-         <id extension="MBH_hyb612_TA_MVE_basaal_MA"
-             root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-         <code code="33633005"
-               displayName="voorschrijven van geneesmiddel (verrichting)"
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9416"/>
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9415"/>
+         <id extension="2.16.528.1.1007.3.3.22222.1.MBH_hybmp9_duplicMBHgen_MA_TA612_PRK_BTDTA"
+             root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+         <code code="422037009"
+               displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">3 maal per dag 1 stuk, Oraal</text>
+         <text mediaType="text/plain">4 maal per dag 1 stuk, Oraal</text>
          <effectiveTime xsi:type="IVL_TS"
                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <low value="20240101100000+0100"/>
-            <high value="20240114235959+0100"/>
+            <low value="20231225080000+0100"/>
+            <high value="20240108080000+0100"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
                     displayName="Oraal"
-                    codeSystemName="G-Standaard Toedieningswegen"/>
+                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
                <manufacturedMaterial classCode="MMAT"
                                      determinerCode="KIND">
-                  <code code="67903"
-                        codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="PARACETAMOL 500MG TABLET"
-                        codeSystemName="G-Standaard PRK">
+                  <code code="1026291"
+                        codeSystem="2.16.840.1.113883.2.4.4.7"
+                        displayName="PARACETAMOL AURO TABLET 500MG"
+                        codeSystemName="G-Standaard HPK">
+                     <translation code="67903"
+                                  codeSystem="2.16.840.1.113883.2.4.4.10"
+                                  displayName="PARACETAMOL 500MG TABLET"
+                                  codeSystemName="G-Standaard PRK"/>
                      <translation code="2194"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
                                   displayName="PARACETAMOL 500MG TABLET"
@@ -63,29 +68,17 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20240101100000+0100"/>
+            <time value="20231225080000+0100"/>
             <assignedAuthor>
-               <id extension="000001111"
-                   root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
-               <assignedPerson>
-                  <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
-                  </name>
-               </assignedPerson>
+               <id nullFlavor="NI"/>
                <representedOrganization>
-                  <id extension="00001111"
+                  <id extension="01236578"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <name>Apotheek De Gulle Gaper</name>
                   <addr use="WP">
                      <streetName>Dorpsstraat</streetName>
-                     <houseNumber>1</houseNumber>
+                     <houseNumber>12</houseNumber>
+                     <buildingNumberSuffix>A</buildingNumberSuffix>
                      <postalCode>1234 AA</postalCode>
                      <city>Ons Dorp</city>
                   </addr>
@@ -101,7 +94,7 @@
                               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
-                     <frequency value="3"/>
+                     <frequency value="4"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
                   </repeat>
@@ -111,11 +104,25 @@
                           unit="1">
                      <translation value="1"
                                   code="245"
-                                  displayName="Stuk"
+                                  displayName="stuk"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
+               <consumable xsi:nil="true"
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
+               <id extension="MP612_GeenRelatie_MA_TA612_PRK_PrescriptionID"
+                   root="2.16.528.1.1007.3.3.11111.1"/>
+               <code code="33633005"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"
+                     displayName="Medicatieafspraak"/>
                <consumable xsi:nil="true"
                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
             </substanceAdministration>
@@ -125,8 +132,8 @@
             <procedure classCode="PROC"
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_hyb612_TA_MVE_basaal"/>
+               <id root="2.16.840.1.113883.2.4.3.11.61.2"
+                   extension="67903"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>

@@ -3,8 +3,8 @@
    <meta status="new"
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
-         creation-date="2025-05-23T08:48:03.486Z"
-         last-update-date="2025-05-23T10:56:45.247Z"/>
+         creation-date="2025-06-12T13:39:30.493Z"
+         last-update-date="2025-06-23T08:15:07.963Z"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -13,10 +13,10 @@
                                             transactionEffectiveDate="2022-06-30T00:00:00"
                                             prefix="mp-"
                                             language="nl-NL"
-                                            title="TEST Medicatiegegevens Scenarioset 12a (MP9 Hybride)"
-                                            desc="Het PGO creëert een MGB met een specifieke MBH-id wanneer een MA vanuit een ander XIS (MP9) zijn ontvangen. "
-                                            id="mg-mp-mg-hybmp9-MGB-Scenarioset12a-12-1">
-         <scenario-nr value="12.1"
+                                            title="TEST Medicatiegegevens Scenarioset 20a (MP9 Hybride)"
+                                            desc="PGO toont aan dat op basis van een ontvangen TA met generieke MBH-id een MGB wordt aangemaakt met dezelfde MBH-id, zodat gevalideerd kan worden dat de MBH-id correct is overgenomen."
+                                            id="mg-mp-mg-hybmp9-MGB-Scenarioset20a-20-1">
+         <scenario-nr value="20.1"
                       conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2.1.1"/>
          <systeemrol conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.6"
                      value="3"
@@ -25,11 +25,11 @@
                      displayName="Beschikbaarstellend"/>
          <!--Patient found in instance with id: mg-bouwstenen_patients_hybr-v30 and title: id: Bouwstenen to be reused voor hybride instances-->
          <patient comment=""
-                  id="XXX_ALKEMA_999909101_19630918_HYB"
+                  id="XXX_JONGMAN_999909083_19630918_HYB"
                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1">
             <naamgegevens comment=""
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.2">
-               <initialen value="H"
+               <initialen value="G"
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.4"/>
                <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"
                             value="1"
@@ -38,11 +38,13 @@
                             displayName="Eigen geslachtsnaam"/>
                <geslachtsnaam comment=""
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.7">
-                  <achternaam value="XXX_Alkema"
+                  <voorvoegsels value="de"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.8"/>
+                  <achternaam value="XXX_Jongman"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.9"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999909101"
+            <identificatienummer value="999909083"
                                  root="2.16.840.1.113883.2.4.6.3"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.35"/>
             <geboortedatum value="1963-09-18"
@@ -54,36 +56,41 @@
                       codeSystem="2.16.840.1.113883.5.1"
                       displayName="Man"/>
          </patient>
-         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_hybmp9_MBHspec_MA_MGB-->
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.61.2-67903-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
-            <identificatie value="MBH_hybmp9_MBHspec_MA_MGB"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+            <identificatie value="67903"
+                           root="2.16.840.1.113883.2.4.3.11.61.2"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
             <medicatiegebruik comment=""
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.362">
-               <identificatie value="MBH_hybmp9_MBHspec_MA_MGB_MGB"
+               <identificatie value="MBH_hybmp9_MBHgen_TAenMGB_MGB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.411"/>
-               <medicatiegebruik_datum_tijd value="2023-12-30T08:00:00+01:00"
+               <medicatiegebruik_datum_tijd value="2024-01-01T09:00:00+01:00"
                                             datatype="datetime"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.400"/>
                <gebruik_indicator value="true"
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.406"/>
+               <volgens_afspraak_indicator value="true"
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.405"/>
                <gebruiksperiode comment=""
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.401">
-                  <start_datum_tijd value="2023-12-30T08:00:00+01:00"
+                  <start_datum_tijd value="2023-12-25T09:00:00+01:00"
                                     datatype="datetime"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.402"/>
+                  <eind_datum_tijd value="2024-01-01T09:00:00+01:00"
+                                   datatype="datetime"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.403"/>
                </gebruiksperiode>
                <gebruiksproduct comment=""
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.365">
-                  <farmaceutisch_product value="HPK_IBUPROFEN_2597039"
+                  <farmaceutisch_product value="HPK_PARACETAMOL_1026291"
                                          datatype="reference"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.366"/>
                </gebruiksproduct>
                <gebruiksinstructie comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.367">
-                  <omschrijving value="3 maal per dag 1 stuk, Oraal"
+                  <omschrijving value="4 maal per dag 1 stuk, Oraal"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.369"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -113,7 +120,7 @@
                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.392">
                               <aantal comment=""
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.569">
-                                 <nominale_waarde value="3"
+                                 <nominale_waarde value="4"
                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.395"/>
                               </aantal>
                               <tijdseenheid value="1"
@@ -124,12 +131,12 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-               <relatie_medicatieafspraak comment=""
-                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.413">
-                  <identificatie value="MBH_hybmp9_MBHspec_MA_MGB_MA"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.414"/>
-               </relatie_medicatieafspraak>
+               <relatie_toedieningsafspraak comment=""
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1329">
+                  <identificatie value="2.16.528.1.1007.3.3.22222.1.MBH_hybmp9_duplicMBHgen_MA_TA612_PRK_BTDTA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.415"/>
+               </relatie_toedieningsafspraak>
                <auteur comment=""
                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.623">
                   <auteur_is_patient value="true"
@@ -139,23 +146,23 @@
          </medicamenteuze_behandeling>
          <bouwstenen comment=""
                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">
-            <farmaceutisch_product comment=""
-                                   id="HPK_IBUPROFEN_2597039"
+            <farmaceutisch_product id="HPK_PARACETAMOL_1026291"
+                                   comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
-               <product_code code="2597039"
+               <product_code code="1026291"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
-                             displayName="IBUPROFEN SAM TABLET OMHULD 200MG"
+                             displayName="PARACETAMOL AURO TABLET 500MG"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="27251"
+               <product_code code="67903"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="PARACETAMOL 500MG TABLET"
                              codeSystemName="G-Standaard PRK"
-                             displayName="IBUPROFEN TABLET 200MG"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="50997"
+               <product_code code="2194"
                              codeSystem="2.16.840.1.113883.2.4.4.1"
-                             displayName="IBUPROFEN TABLET 200MG"
                              codeSystemName="G-Standaard GPK"
+                             displayName="PARACETAMOL 500MG TABLET"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
          </bouwstenen>
