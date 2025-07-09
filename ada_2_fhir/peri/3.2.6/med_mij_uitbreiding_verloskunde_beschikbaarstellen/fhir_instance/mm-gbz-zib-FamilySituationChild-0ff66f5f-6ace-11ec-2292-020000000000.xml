@@ -1,6 +1,6 @@
 <Observation xmlns="http://hl7.org/fhir">
    <!-- Source: gz-izv-tes-casus9999 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/kind/demografische_gegevens/gezinssituatie_kind -->
-   <id value="d74d858f-6acd-11ec-2292-020000000000"/>
+   <id value="0ff66f5f-6ace-11ec-2292-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-FamilySituationChild"/>
    </meta>
@@ -27,8 +27,12 @@
                      <span title="bevinding betreffende gezinssamenstelling (bevinding) (365481000 - SNOMED CT)">bevinding betreffende gezinssamenstelling (bevinding)</span>
                   </td>
                   <td>
-                     <span title="woont met moeder (224139006 - SNOMED CT)">woont met moeder</span>
+                     <i>anders (ontbrekend gegeven)</i>
                   </td>
+               </tr>
+               <tr>
+                  <td>OuderVerzorger</td>
+                  <td>Maaike M Maaike Ostendorf</td>
                </tr>
                <tr>
                   <td>AantalBroersEnZussen</td>
@@ -45,7 +49,7 @@
    <!-- adaChild -->
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="d74d858f-6acd-11ec-2292-020000000000"/>
+      <value value="0ff66f5f-6ace-11ec-2292-020000000000"/>
    </identifier>
    <status value="final"/>
    <code>
@@ -68,12 +72,22 @@
          </coding>
       </code>
       <valueCodeableConcept>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="224139006"/>
-            <display value="woont met moeder"/>
-         </coding>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+            <valueCode value="OTH"/>
+         </extension>
       </valueCodeableConcept>
+   </component>
+   <component>
+      <!--ouder_verzorger/contactpersoon -->
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-FamilySituationChild-RelatedPerson">
+         <valueReference>
+            <reference value="RelatedPerson/relatedperson-mm-gbz-8d993536-6aef-11ec-1267-020000000000"/>
+            <display value="Maaike M Maaike Ostendorf"/>
+         </valueReference>
+      </extension>
+      <code>
+         <text value="OuderVerzorger"/>
+      </code>
    </component>
    <component>
       <code>

@@ -1,6 +1,6 @@
 <html lang="en">
    <head>
-      <title>Observation - LabTestRes-Obs-mm-gbz-dc811a7c-6af1-11ec-2164-020000000000</title>
+      <title>Condition - ae6b64af-6ab6-11ec-2253-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -18,36 +18,37 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Observatie/bepaling. Subject: Fiona F XXX_Swart. Categorie: <span title="bevinding betreffende laboratoriumonderzoek (49581000146104 - SNOMED CT)">bevinding betreffende laboratoriumonderzoek</span>, Status: <i>onbekend (ontbrekend gegeven)</i>
-               </caption>
+               <caption>Aandoening. Subject: Maaike M Maaike Ostendorf. Categorie: <span title="Codering van dit element ontbreekt in ART-DECOR terminology association (probleem_hbpathie - 2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2535)">Codering van dit element ontbreekt in ART-DECOR terminology association</span>, Status: actief</caption>
                <tbody>
                   <tr>
                      <th>Code</th>
-                     <th>Waarde</th>
+                     <td>
+                        <span title="bètathalassemie (aandoening) (65959000 - SNOMED CT)">bètathalassemie (aandoening)</span>
+                     </td>
                   </tr>
                   <tr>
-                     <td>
-                        <span title="Hepatitis B-virusoppervlakte Ag [eenheden/volume] in serum (58452-4 - LOINC)">Hepatitis B-virusoppervlakte Ag [eenheden/volume] in serum</span>
-                     </td>
-                     <td>0 k[arb'U]/L</td>
+                     <th>Eerste symptomen</th>
+                     <td>${DATE, T, D, -146}</td>
                   </tr>
                </tbody>
             </table>
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Observation Hepatitis B-virusoppervlakte Ag [eenheden/volume] in serum</b>
+         <b>Resources pointing to 'this' resource - Condition bètathalassemie (aandoening)</b>
       </p>
       <div> - none</div>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 5, label: "Patient XXX_Swart", url: "mm-gbz-bc-Woman-FIONA-F-XXX-SWART.html" }, 
-{ id: 24, label: "Observation Hepatitis B-virusoppervlakte Ag [eenheden/volume] in serum", url: "mm-gbz-zib-LaboratoryTestResult-Observation58452-4-LabTestRes-Obs-mm-gbz-dc811a7c-6af1-11ec-2164-020000000000.html" }, 
+{ id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
+{ id: 15, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-24eb4a5f-6b11-11ec-0000-020000000000.html" }, 
+{ id: 47, label: "Condition bètathalassemie (aandoening)", url: "mm-gbz-zib-Problem65959000-ae6b64af-6ab6-11ec-2253-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 24, to: 5 }, 
+var edges = new vis.DataSet([{ from: 47, to: 1 }, 
+{ from: 47, to: 15 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

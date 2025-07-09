@@ -1,5 +1,5 @@
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="LabTestRes-Obs-mm-gbz-056fbecd-6b30-11ec-2112-020000000000"/>
+   <id value="LabTestRes-Obs-mm-gbz-a992cb5c-6af8-11ec-2164-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
    </meta>
@@ -16,11 +16,9 @@
                </tr>
                <tr>
                   <td>
-                     <span title="ABO group [Type] in Blood (883-9 - LOINC)">ABO group [Type] in Blood</span>
+                     <span title="Hepatitis B-virusoppervlakte Ag [eenheden/volume] in serum (58452-4 - LOINC)">Hepatitis B-virusoppervlakte Ag [eenheden/volume] in serum</span>
                   </td>
-                  <td>
-                     <span title="bloedgroep O (bevinding) (58460004 - SNOMED CT)">bloedgroep O (bevinding)</span>
-                  </td>
+                  <td>0 k[arb'U]/L</td>
                </tr>
             </tbody>
          </table>
@@ -28,7 +26,7 @@
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="946c72e7-6af6-11ec-0000-020000000000"/>
+      <value value="0c062aff-6acf-11ec-0000-020000000000"/>
    </identifier>
    <status>
       <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
@@ -45,19 +43,18 @@
    <code>
       <coding>
          <system value="http://loinc.org"/>
-         <code value="883-9"/>
-         <display value="ABO group [Type] in Blood"/>
+         <code value="58452-4"/>
+         <display value="Hepatitis B-virusoppervlakte Ag [eenheden/volume] in serum"/>
       </coding>
    </code>
    <subject>
       <reference value="Patient/FIONA-F-XXX-SWART"/>
       <display value="Fiona F XXX_Swart"/>
    </subject>
-   <valueCodeableConcept>
-      <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="58460004"/>
-         <display value="bloedgroep O (bevinding)"/>
-      </coding>
-   </valueCodeableConcept>
+   <valueQuantity>
+      <value value="0"/>
+      <unit value="k[arb'U]/L"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="k[arb'U]/L"/>
+   </valueQuantity>
 </Observation>

@@ -4,7 +4,7 @@
          created-by="geboortezorgada"
          last-update-by="geboortezorgada"
          creation-date="2025-05-16T09:36:24.446Z"
-         last-update-date="2025-06-19T07:01:00.019Z"/>
+         last-update-date="2025-06-23T14:44:34.908Z"/>
    <data>
       <med_mij_uitbreiding_verloskunde_beschikbaarstellen app="perinatologie-326"
                                                           shortName="med_mij_uitbreiding_verloskunde_beschikbaarstellen"
@@ -1312,7 +1312,8 @@
                <activiteit value="Verwijzing bekkenfysiotherapie"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3860"/>
             </zorg_afspraak>
-            <conclusie_professioneel_onderzoek conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2623">
+            <conclusie_professioneel_onderzoek id="CPO1_foetusB"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2623">
                <conclusie_datum_tijd value="T-146D{13:14}"
                                      datatype="datetime"
                                      conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2624"/>
@@ -3071,6 +3072,9 @@
                <overlijdens_indicator value="false"
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1847"/>
             </maternale_sterfte>
+            <conclusie_professioneel_onderzoek value="CPO1_foetusB"
+                                               datatype="reference"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3881"/>
             <bijlage conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2142">
                <media value="Media1-bevalplan"
                       datatype="reference"
@@ -4638,10 +4642,15 @@
                         conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1378"/>
                <gezinssituatie_kind conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2924">
                   <gezinssamenstelling_kind conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2925"
-                                            value="1"
-                                            code="224139006"
-                                            codeSystem="2.16.840.1.113883.6.96"
-                                            displayName="woont met moeder"/>
+                                            value="12"
+                                            code="OTH"
+                                            codeSystem="2.16.840.1.113883.5.1008"
+                                            displayName="Anders"/>
+                  <ouder_verzorger conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2926">
+                     <patient value="P1-Maaike"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11026"/>
+                  </ouder_verzorger>
                   <aantal_broers_en_zussen value="1"
                                            conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2932"/>
                   <broer_of_zus conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2933">
@@ -5726,7 +5735,10 @@
                                        codeSystem="2.16.840.1.113883.6.96"
                                        displayName="Diagnose"/>
                         <probleem_naam datatype="code"
-                                       value="alfa"
+                                       code="65959000"
+                                       codeSystem="2.16.840.1.113883.6.96"
+                                       codeSystemName="SNOMED CT"
+                                       displayName="bètathalassemie (aandoening)"
                                        conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2539"/>
                         <probleem_begin_datum value="T-146D"
                                               datatype="datetime"
@@ -6710,7 +6722,8 @@
          </postnatale_fase>
          <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.926">
             <behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1528">
-               <verrichting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1529">
+               <verrichting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1529"
+                            id="">
                   <verrichting_start_datum value="T-53D"
                                            datatype="datetime"
                                            conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1530"/>
@@ -6765,11 +6778,6 @@
                   <eind_datum value="T-146D"
                               datatype="datetime"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10532"/>
-                  <indicatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10380">
-                     <probleem datatype="reference"
-                               nullFlavor="NAV"
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10381"/>
-                  </indicatie>
                   <anatomische_locatie code="35039007"
                                        codeSystem="2.16.840.1.113883.6.96"
                                        codeSystemName="SNOMED Clinical Terms"
@@ -6810,11 +6818,6 @@
                   <eind_datum value="T-53D"
                               datatype="datetime"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10532"/>
-                  <indicatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10380">
-                     <probleem datatype="reference"
-                               nullFlavor="NAV"
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10381"/>
-                  </indicatie>
                   <anatomische_locatie code="421466002"
                                        codeSystem="2.16.840.1.113883.6.96"
                                        codeSystemName="SNOMED Clinical Terms"
