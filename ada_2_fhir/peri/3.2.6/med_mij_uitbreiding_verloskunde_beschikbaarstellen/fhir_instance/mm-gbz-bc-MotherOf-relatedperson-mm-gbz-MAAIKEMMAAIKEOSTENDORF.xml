@@ -2,6 +2,7 @@
    <id value="relatedperson-mm-gbz-MAAIKEMMAAIKEOSTENDORF"/>
    <meta>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MotherOf"/>
    </meta>
    <text>
       <status value="extensions"/>
@@ -11,6 +12,8 @@
          <div>
             <a href="tel:0688226644">0688226644</a> (Mobiel Privé), <a href="mailto:Saar@emails.info">Saar@emails.info</a> (E-mail Privé)</div>
          <div>Knolweg 1002, 9999ZZ Stitswerd Stitswerd, NL (Bezoek)</div>
+         <div>
+            <span title="Moeder (MTH - v3/RoleCode)">Moeder</span> van Kind Daniel Mateo DM Daniel De Kleine</div>
       </div>
    </text>
    <identifier>
@@ -21,6 +24,13 @@
       <reference value="Patient/DANIEL-MATEO-DM-DANIEL-DE-KLEINE"/>
       <display value="Kind Daniel Mateo DM Daniel De Kleine"/>
    </patient>
+   <relationship>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/RoleCode"/>
+         <code value="MTH"/>
+         <display value="Moeder"/>
+      </coding>
+   </relationship>
    <name>
       <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
          <valueCode value="NL1"/>
