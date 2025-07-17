@@ -1,0 +1,66 @@
+<PractitionerRole xmlns="http://hl7.org/fhir">
+   <id value="practitionerrole-mm-gbz-1234567101-015129347305"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgverlenerrol. </caption>
+            <tbody>
+               <tr>
+                  <th>Zorgverlener</th>
+                  <td>
+                     <div>HDE Henrik van Levenslust</div>
+                     <div>Huisartsenpraktijk Hulp</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Specialisme</th>
+                  <td>
+                     <span title="Huisarts (01.015 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Huisarts</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:0705223025">0705223025</a> (Vast telefoonnummer)</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="220e67e8-6b28-11ec-0000-020000000000"/>
+   </identifier>
+   <practitioner>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-12345671"/>
+      <display value="HDE Henrik van Levenslust"/>
+   </practitioner>
+   <organization>
+      <reference value="Organization/organization-mm-gbz-2-16-528-1-1007-3-3-129347305"/>
+      <display value="Huisartsenpraktijk Hulp"/>
+   </organization>
+   <specialty>
+      <coding>
+         <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+         <code value="01.015"/>
+         <display value="Huisarts"/>
+      </coding>
+   </specialty>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Vast telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="0705223025"/>
+   </telecom>
+</PractitionerRole>

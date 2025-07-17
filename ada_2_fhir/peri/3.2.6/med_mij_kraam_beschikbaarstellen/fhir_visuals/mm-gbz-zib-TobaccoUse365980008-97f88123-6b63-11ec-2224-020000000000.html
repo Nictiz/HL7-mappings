@@ -21,6 +21,10 @@
                <caption>Observatie/bepaling. Subject: Linda L XXX_Hollanders. Status: definitief</caption>
                <tbody>
                   <tr>
+                     <th>Context</th>
+                     <td>Zwangerschap 2 XXX_Hollanders_Vrouw</td>
+                  </tr>
+                  <tr>
                      <th>Code</th>
                      <th>Waarde</th>
                   </tr>
@@ -44,11 +48,13 @@
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
 { id: 1, label: "Patient XXX_Hollanders", url: "mm-gbz-bc-Woman-LINDA-L-XXX-HOLLANDERS.html" }, 
+{ id: 16, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-95b12773-6ada-11ec-0000-020000000000.html" }, 
 { id: 33, label: "Observation bevinding betreffende tabakgebruik en blootstelling aan tabaksrook (bevinding)", url: "mm-gbz-zib-TobaccoUse365980008-97f88123-6b63-11ec-2224-020000000000.html" }, 
 ]);
 
 // create an array with edges
 var edges = new vis.DataSet([{ from: 33, to: 1 }, 
+{ from: 33, to: 16 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

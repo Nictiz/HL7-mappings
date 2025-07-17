@@ -64,17 +64,19 @@
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
 { id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
-{ id: 18, label: "Practitioner De Jong", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167.html" }, 
-{ id: 19, label: "PractitionerRole Gynaecoloog", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-0307316703073167.html" }, 
+{ id: 17, label: "Practitioner De Jong", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167.html" }, 
+{ id: 18, label: "PractitionerRole Gynaecoloog", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-030731670307316706019999.html" }, 
 { id: 225, label: "ProcedureRequest opname op intensivecareafdeling gespecialiseerd in neonaten (verrichting)", url: "mm-gbz-zib-ProcedureRequest830077005-d608ab5f-6ac8-11ec-2160-020000000000.html" }, 
+{ id: 240, label: "Encounter begeleiden van bevalling (verrichting)", url: "mm-gbz-bc-Encounter-f2ba733f-6af7-11ec-1275-020000000000.html" }, 
 ]);
 
 // create an array with edges
 var edges = new vis.DataSet([{ from: 225, to: 1 }, 
-{ from: 225, to: 19 }, 
+{ from: 225, to: 240 }, 
 { from: 225, to: 18 }, 
-{ from: 225, to: 19 }, 
+{ from: 225, to: 17 }, 
 { from: 225, to: 18 }, 
+{ from: 225, to: 17 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

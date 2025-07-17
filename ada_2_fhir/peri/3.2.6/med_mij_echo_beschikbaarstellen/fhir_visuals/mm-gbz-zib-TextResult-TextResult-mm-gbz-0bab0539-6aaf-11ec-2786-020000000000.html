@@ -21,6 +21,10 @@
                <caption>Diagnostisch verslag. Subject: Kind XXX_Osse. Status: definitief</caption>
                <tbody>
                   <tr>
+                     <th>Context</th>
+                     <td>Zwangerschap 1 XXX_Osse_Vrouw</td>
+                  </tr>
+                  <tr>
                      <th>Code</th>
                      <td/>
                   </tr>
@@ -48,11 +52,13 @@
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
 { id: 2, label: "Patient XXX_Osse", url: "mm-gbz-bc-Child-XXX-OSSE.html" }, 
+{ id: 8, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-d0510907-6af3-11ec-0000-020000000000.html" }, 
 { id: 33, label: "DiagnosticReport", url: "mm-gbz-zib-TextResult-TextResult-mm-gbz-0bab0539-6aaf-11ec-2786-020000000000.html" }, 
 ]);
 
 // create an array with edges
 var edges = new vis.DataSet([{ from: 33, to: 2 }, 
+{ from: 33, to: 8 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

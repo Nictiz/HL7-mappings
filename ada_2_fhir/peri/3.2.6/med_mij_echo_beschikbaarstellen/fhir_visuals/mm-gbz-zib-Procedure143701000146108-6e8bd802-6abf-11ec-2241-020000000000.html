@@ -54,21 +54,21 @@
 var nodes = new vis.DataSet([
 { id: 1, label: "Patient XXX_Osse", url: "mm-gbz-bc-Woman-LEONIE-L-XXX-OSSE.html" }, 
 { id: 6, label: "Location", url: "mm-gbz-nl-core-location-location-mm-gbz-2-16-840-1-113883-2-4-6-1-90012345.html" }, 
-{ id: 8, label: "Practitioner XXX_Groot", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-8452962.html" }, 
+{ id: 8, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-d0510907-6af3-11ec-0000-020000000000.html" }, 
 { id: 9, label: "PractitionerRole", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-8452962.html" }, 
-{ id: 10, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-3cc38e5b-6ac9-11ec-2334-020000000000.html" }, 
-{ id: 11, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-d0510907-6af3-11ec-0000-020000000000.html" }, 
+{ id: 10, label: "Practitioner XXX_Groot", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-8452962.html" }, 
+{ id: 11, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-3cc38e5b-6ac9-11ec-2334-020000000000.html" }, 
 { id: 32, label: "Procedure structureel echoscopisch onderzoek tijdens tweede trimester (verrichting)", url: "mm-gbz-zib-Procedure143701000146108-6e8bd802-6abf-11ec-2241-020000000000.html" }, 
 { id: 33, label: "DiagnosticReport", url: "mm-gbz-zib-TextResult-TextResult-mm-gbz-0bab0539-6aaf-11ec-2786-020000000000.html" }, 
 ]);
 
 // create an array with edges
 var edges = new vis.DataSet([{ from: 32, to: 1 }, 
-{ from: 32, to: 11 }, 
-{ from: 32, to: 9 }, 
 { from: 32, to: 8 }, 
-{ from: 32, to: 6 }, 
+{ from: 32, to: 9 }, 
 { from: 32, to: 10 }, 
+{ from: 32, to: 6 }, 
+{ from: 32, to: 11 }, 
 { from: 32, to: 33 }, 
 ]);
 // create a network

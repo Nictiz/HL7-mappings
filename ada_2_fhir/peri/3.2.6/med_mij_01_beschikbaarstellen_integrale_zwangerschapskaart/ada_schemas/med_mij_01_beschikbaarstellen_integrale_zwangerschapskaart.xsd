@@ -94,6 +94,16 @@
                      type="bouwstenen_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_926"
                      minOccurs="0"
                      maxOccurs="1"/>
+         <xs:element name="prullenbak-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.11.1429"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="prullenbak"
+                     type="prullenbak_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_11_1429"
+                     minOccurs="0"
+                     maxOccurs="unbounded"/>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="hidden" fixed="true"/>
@@ -2094,16 +2104,6 @@
                      type="demografische_gegevens_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1713"
                      minOccurs="1"
                      maxOccurs="1"/>
-         <xs:element name="bloedonderzoek-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1127"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="bloedonderzoek"
-                     type="bloedonderzoek_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1127"
-                     minOccurs="0"
-                     maxOccurs="unbounded"/>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="hidden" fixed="true"/>
@@ -2143,56 +2143,6 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1713"/>
-      <xs:attribute name="comment" type="xs:string" use="optional"/>
-   </xs:complexType>
-   <xs:complexType name="bloedonderzoek_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1127">
-      <xs:annotation>
-         <xs:documentation>Type for concept group: Bloedonderzoek</xs:documentation>
-      </xs:annotation>
-      <xs:sequence>
-         <xs:element name="laboratorium_test_bloedgroep-start"
-                     minOccurs="0"
-                     maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1139"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="laboratorium_test_bloedgroep"
-                     type="laboratorium_test_bloedgroep_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1139"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-         <xs:element name="laboratorium_test_rhesus_d-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1151"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="laboratorium_test_rhesus_d"
-                     type="laboratorium_test_rhesus_d_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1151"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-         <xs:element name="laboratorium_test_rhesus_c-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1163"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="laboratorium_test_rhesus_c"
-                     type="laboratorium_test_rhesus_c_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1163"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1127"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="zwangerschapsgegevens_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_25">
@@ -8096,6 +8046,84 @@
       <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
+   <xs:complexType name="prullenbak_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_11_1429">
+      <xs:annotation>
+         <xs:documentation>Type for concept group: Prullenbak</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="bloedonderzoek-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1127"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="bloedonderzoek"
+                     type="bloedonderzoek_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1127"
+                     minOccurs="0"
+                     maxOccurs="unbounded"/>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.11.1429"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="bloedonderzoek_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1127">
+      <xs:annotation>
+         <xs:documentation>Type for concept group: Bloedonderzoek</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="laboratorium_test_bloedgroep-start"
+                     minOccurs="0"
+                     maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1139"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="laboratorium_test_bloedgroep"
+                     type="laboratorium_test_bloedgroep_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1139"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="laboratorium_test_rhesus_d-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1151"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="laboratorium_test_rhesus_d"
+                     type="laboratorium_test_rhesus_d_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1151"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="laboratorium_test_rhesus_c-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1163"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="laboratorium_test_rhesus_c"
+                     type="laboratorium_test_rhesus_c_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1163"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1127"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
+   </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: ContactType - 1..1 R</xs:documentation>
    </xs:annotation>
@@ -8209,7 +8237,7 @@
                </xs:enumeration>
                <xs:enumeration value="2">
                   <xs:annotation>
-                     <xs:documentation>prenataal huisbezoek door kraamzorg (regime/therapie) </xs:documentation>
+                     <xs:documentation>prenataal huisbezoek door kraamzorg (regime/therapie)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="3">
@@ -8279,7 +8307,7 @@
                </xs:enumeration>
                <xs:enumeration value="16">
                   <xs:annotation>
-                     <xs:documentation> follow-upconsult na opname op neonatale intensive care (verrichting) </xs:documentation>
+                     <xs:documentation>follow-upconsult na opname op neonatale intensive care (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
             </xs:restriction>
@@ -9508,7 +9536,7 @@
                </xs:enumeration>
                <xs:enumeration value="11">
                   <xs:annotation>
-                     <xs:documentation>psychiatrisch ziekenhuis (omgeving) </xs:documentation>
+                     <xs:documentation>psychiatrisch ziekenhuis (omgeving)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="12">
@@ -9637,7 +9665,7 @@
                </xs:enumeration>
                <xs:enumeration value="10">
                   <xs:annotation>
-                     <xs:documentation>psychiatrisch ziekenhuis (omgeving) </xs:documentation>
+                     <xs:documentation>psychiatrisch ziekenhuis (omgeving)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="11">
@@ -19125,66 +19153,6 @@
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: LaboratoriumTest_Bloedgroep - 0..1 R</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="laboratorium_test_bloedgroep_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1139">
-      <xs:sequence>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1139"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="reference"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>Type for concept item: LaboratoriumTest_Rhesus D - 0..1 R</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="laboratorium_test_rhesus_d_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1151">
-      <xs:sequence>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1151"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="reference"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>Type for concept item: LaboratoriumTest_Rhesus c - 0..1 R</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="laboratorium_test_rhesus_c_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1163">
-      <xs:sequence>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1163"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="reference"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
-   </xs:complexType>
-   <xs:annotation>
       <xs:documentation>Type for concept item: Zorgverlener - 1..1 R</xs:documentation>
    </xs:annotation>
    <xs:complexType name="zorgverlener_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_9662">
@@ -21602,27 +21570,27 @@
                </xs:enumeration>
                <xs:enumeration value="3">
                   <xs:annotation>
-                     <xs:documentation>fundus uteri ter hoogte van symphysis pubis (bevinding) </xs:documentation>
+                     <xs:documentation>fundus uteri ter hoogte van symphysis pubis (bevinding)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="4">
                   <xs:annotation>
-                     <xs:documentation>fundus van uterus boven symphysis pubis (bevinding) </xs:documentation>
+                     <xs:documentation>fundus van uterus boven symphysis pubis (bevinding)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="5">
                   <xs:annotation>
-                     <xs:documentation>fundus van uterus onder navel (bevinding) </xs:documentation>
+                     <xs:documentation>fundus van uterus onder navel (bevinding)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="6">
                   <xs:annotation>
-                     <xs:documentation> fundus uteri ter hoogte van navel (bevinding) </xs:documentation>
+                     <xs:documentation>fundus uteri ter hoogte van navel (bevinding)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="7">
                   <xs:annotation>
-                     <xs:documentation> fundus uteri boven navel (bevinding) </xs:documentation>
+                     <xs:documentation>fundus uteri boven navel (bevinding)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="8">
@@ -21632,7 +21600,7 @@
                </xs:enumeration>
                <xs:enumeration value="9">
                   <xs:annotation>
-                     <xs:documentation> fundus uteri onder xifoïd (bevinding) </xs:documentation>
+                     <xs:documentation>fundus uteri onder xifoïd (bevinding)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="10">
@@ -22688,7 +22656,7 @@
                </xs:enumeration>
                <xs:enumeration value="18">
                   <xs:annotation>
-                     <xs:documentation> intra-uteriene groeiretardatie (aandoening)</xs:documentation>
+                     <xs:documentation>intra-uteriene groeiretardatie (aandoening)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="19">
@@ -25007,130 +24975,135 @@
                </xs:enumeration>
                <xs:enumeration value="16">
                   <xs:annotation>
-                     <xs:documentation>episiotomie mediolateraal links (verrichting)</xs:documentation>
+                     <xs:documentation>defibulatie van labia minora tijdens tweede fase van partus voor faciliteren van vaginale verlossing (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="17">
                   <xs:annotation>
-                     <xs:documentation>episiotomie mediolateraal rechts (verrichting)</xs:documentation>
+                     <xs:documentation>episiotomie mediolateraal links (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="18">
                   <xs:annotation>
-                     <xs:documentation>mediane episiotomie (verrichting)</xs:documentation>
+                     <xs:documentation>episiotomie mediolateraal rechts (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="19">
                   <xs:annotation>
-                     <xs:documentation>pijnbeleid (verrichting)</xs:documentation>
+                     <xs:documentation>mediane episiotomie (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="20">
                   <xs:annotation>
-                     <xs:documentation>epidurale anesthesie (verrichting)</xs:documentation>
+                     <xs:documentation>pijnbeleid (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="21">
                   <xs:annotation>
-                     <xs:documentation>intrathecale anesthesie (verrichting)</xs:documentation>
+                     <xs:documentation>epidurale anesthesie (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="22">
                   <xs:annotation>
-                     <xs:documentation>algehele anesthesie (verrichting)</xs:documentation>
+                     <xs:documentation>intrathecale anesthesie (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="23">
                   <xs:annotation>
-                     <xs:documentation>toedienen van morfinomimeticum (verrichting)</xs:documentation>
+                     <xs:documentation>algehele anesthesie (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="24">
                   <xs:annotation>
-                     <xs:documentation>analgesie met lachgas en zuurstof durante partu (verrichting)</xs:documentation>
+                     <xs:documentation>toedienen van morfinomimeticum (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="25">
                   <xs:annotation>
-                     <xs:documentation>transcutane elektrische zenuwstimulatie (regime/therapie)</xs:documentation>
+                     <xs:documentation>analgesie met lachgas en zuurstof durante partu (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="26">
                   <xs:annotation>
-                     <xs:documentation>Sterile water injection (procedure)</xs:documentation>
+                     <xs:documentation>transcutane elektrische zenuwstimulatie (regime/therapie)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="27">
                   <xs:annotation>
-                     <xs:documentation>toediening van sedativum (verrichting)</xs:documentation>
+                     <xs:documentation>Sterile water injection (procedure)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="28">
                   <xs:annotation>
-                     <xs:documentation>bijstimulatie durante partu (verrichting)</xs:documentation>
+                     <xs:documentation>toediening van sedativum (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="29">
                   <xs:annotation>
-                     <xs:documentation>sectio caesarea (verrichting)</xs:documentation>
+                     <xs:documentation>bijstimulatie durante partu (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="30">
                   <xs:annotation>
-                     <xs:documentation>manuele postpartumexploratie van uterus (verrichting)</xs:documentation>
+                     <xs:documentation>sectio caesarea (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="31">
                   <xs:annotation>
-                     <xs:documentation>toediening van medicatie (verrichting)</xs:documentation>
+                     <xs:documentation>manuele postpartumexploratie van uterus (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="32">
                   <xs:annotation>
-                     <xs:documentation>hechten van perineum van vrouw (verrichting)</xs:documentation>
+                     <xs:documentation>toediening van medicatie (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="33">
                   <xs:annotation>
-                     <xs:documentation>doorlopende intracutane hechting van huid (verrichting)</xs:documentation>
+                     <xs:documentation>hechten van perineum van vrouw (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="34">
                   <xs:annotation>
-                     <xs:documentation>doorlopende transcutane hechting van huid (verrichting)</xs:documentation>
+                     <xs:documentation>doorlopende intracutane hechting van huid (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="35">
                   <xs:annotation>
-                     <xs:documentation>geknoopte intracutane hechting van huid (verrichting)</xs:documentation>
+                     <xs:documentation>doorlopende transcutane hechting van huid (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="36">
                   <xs:annotation>
-                     <xs:documentation>geknoopte transcutane hechting van huid (verrichting)</xs:documentation>
+                     <xs:documentation>geknoopte intracutane hechting van huid (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="37">
                   <xs:annotation>
-                     <xs:documentation>toedienen van anti-D-immunoglobuline (verrichting)</xs:documentation>
+                     <xs:documentation>geknoopte transcutane hechting van huid (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="38">
                   <xs:annotation>
-                     <xs:documentation>toedienen van humaan anti-D-immunoglobuline (verrichting)</xs:documentation>
+                     <xs:documentation>toedienen van anti-D-immunoglobuline (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="39">
                   <xs:annotation>
-                     <xs:documentation>Overig</xs:documentation>
+                     <xs:documentation>toedienen van humaan anti-D-immunoglobuline (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="40">
                   <xs:annotation>
-                     <xs:documentation>VerrichtingTypeGeboortezorgCodelijst</xs:documentation>
+                     <xs:documentation>Overig</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="41">
+                  <xs:annotation>
+                     <xs:documentation>VerrichtingTypeGeboortezorgCodelijst</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="42">
                   <xs:annotation>
                      <xs:documentation>Referentieset met obstetrische verrichtingen</xs:documentation>
                   </xs:annotation>
@@ -26333,7 +26306,7 @@
                </xs:enumeration>
                <xs:enumeration value="7">
                   <xs:annotation>
-                     <xs:documentation>afwijking bij zwangerschap (aandoening) </xs:documentation>
+                     <xs:documentation>afwijking bij zwangerschap (aandoening)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="8">
@@ -33292,6 +33265,66 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="preferred" type="BooleanOrEmpty"/>
       <xs:attribute name="originalText" type="xs:string"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: LaboratoriumTest_Bloedgroep - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="laboratorium_test_bloedgroep_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1139">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1139"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="reference"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: LaboratoriumTest_Rhesus D - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="laboratorium_test_rhesus_d_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1151">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1151"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="reference"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: LaboratoriumTest_Rhesus c - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="laboratorium_test_rhesus_c_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1163">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1163"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="reference"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:complexType name="adaextension_type">
       <xs:sequence>
