@@ -1,6 +1,6 @@
 <html lang="en">
    <head>
-      <title>Condition - a3a99d5f-6b2b-11ec-2260-020000000000</title>
+      <title>Observation - 62fdd556-6aee-11ec-2340-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -18,52 +18,47 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Aandoening. Subject: Maaike M Maaike Ostendorf. Categorie: <span title="Codering van dit element ontbreekt in ART-DECOR terminology association (probleem_misbruik_geweld - 2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2600)">Codering van dit element ontbreekt in ART-DECOR terminology association</span>, Status: actief</caption>
-               <tfoot>
-                  <tr>
-                     <td colspan="2">ex-partner</td>
-                  </tr>
-               </tfoot>
+               <caption>Observatie/bepaling. Subject: Maaike M Maaike Ostendorf. Status: definitief</caption>
                <tbody>
                   <tr>
-                     <th>Code</th>
+                     <th>Context</th>
+                     <td>Zwangerschap 2 P1-Maaike</td>
+                  </tr>
+                  <tr>
+                     <th>Methode</th>
                      <td>
-                        <span title="voorgeschiedenis met huiselijk geweld (situatie) (412732008 - SNOMED CT)">voorgeschiedenis met huiselijk geweld (situatie)</span>
+                        <span title="bepalen (kwalificatiewaarde) (129266000 - SNOMED CT)">bepalen (kwalificatiewaarde)</span>
                      </td>
                   </tr>
                   <tr>
-                     <th>Eerste symptomen</th>
-                     <td>${DATE, T, D, -1357}</td>
+                     <th>Code</th>
+                     <th>Waarde</th>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span title="consanguiniteit (bevinding) (842009 - SNOMED CT)">consanguiniteit (bevinding)</span>
+                     </td>
+                     <td>nee</td>
                   </tr>
                </tbody>
             </table>
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Condition voorgeschiedenis met huiselijk geweld (situatie)</b>
+         <b>Resources pointing to 'this' resource - Observation consanguiniteit (bevinding)</b>
       </p>
-      <ul>
-         <li>
-            <a href="mm-gbz-bc-Encounter-8bb5b91f-6aed-11ec-1275-020000000000.html">Encounter consult (verrichting)</a>
-         </li>
-         <li>
-            <a href="mm-gbz-bc-Encounter-f2ba733f-6af7-11ec-1275-020000000000.html">Encounter begeleiden van bevalling (verrichting)</a>
-         </li>
-         <li>
-            <a href="mm-gbz-bc-Encounter-437f890f-6aa2-11ec-1275-020000000000.html">Encounter maternaal postnataal onderzoek 6 weken na bevalling (verrichting)</a>
-         </li>
-      </ul>
+      <div> - none</div>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
 { id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
 { id: 14, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-24eb4a5f-6b11-11ec-0000-020000000000.html" }, 
-{ id: 32, label: "Condition voorgeschiedenis met huiselijk geweld (situatie)", url: "mm-gbz-zib-problem412732008-a3a99d5f-6b2b-11ec-2260-020000000000.html" }, 
+{ id: 84, label: "Observation consanguiniteit (bevinding)", url: "mm-gbz-nl-core-observation842009-62fdd556-6aee-11ec-2340-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 32, to: 1 }, 
-{ from: 32, to: 14 }, 
+var edges = new vis.DataSet([{ from: 84, to: 1 }, 
+{ from: 84, to: 14 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

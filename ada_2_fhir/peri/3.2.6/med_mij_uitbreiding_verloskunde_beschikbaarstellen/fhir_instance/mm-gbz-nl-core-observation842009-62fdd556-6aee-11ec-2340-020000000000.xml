@@ -1,21 +1,35 @@
-<Condition xmlns="http://hl7.org/fhir">
-   <!-- Source: gz-izv-tes-casus9999 -->
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-tes-casus9999 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/vrouw/anamnese/consanguiniteit_observatie -->
    <id value="62fdd556-6aee-11ec-2340-020000000000"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MaternalObservation"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
    </meta>
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Aandoening. Subject: Maaike M Maaike Ostendorf. Categorie: <span title="Codering van dit element ontbreekt in ART-DECOR terminology association (consanguiniteit_observatie - 2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3407)">Codering van dit element ontbreekt in ART-DECOR terminology association</span>, Status: actief</caption>
+            <caption>Observatie/bepaling. Subject: Maaike M Maaike Ostendorf. Status: definitief</caption>
             <tbody>
                <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 2 P1-Maaike</td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="bepalen (kwalificatiewaarde) (129266000 - SNOMED CT)">bepalen (kwalificatiewaarde)</span>
+                  </td>
+               </tr>
+               <tr>
                   <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
                   <td>
                      <span title="consanguiniteit (bevinding) (842009 - SNOMED CT)">consanguiniteit (bevinding)</span>
                   </td>
+                  <td>nee</td>
                </tr>
             </tbody>
          </table>
@@ -25,14 +39,7 @@
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
       <value value="62fdd556-6aee-11ec-2340-020000000000"/>
    </identifier>
-   <clinicalStatus value="active"/>
-   <category>
-      <coding>
-         <system value="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3407"/>
-         <code value="consanguiniteit_observatie"/>
-         <display value="Codering van dit element ontbreekt in ART-DECOR terminology association"/>
-      </coding>
-   </category>
+   <status value="final"/>
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
@@ -48,4 +55,12 @@
       <reference value="EpisodeOfCare/24eb4a5f-6b11-11ec-0000-020000000000"/>
       <display value="Zwangerschap 2 P1-Maaike"/>
    </context>
-</Condition>
+   <valueBoolean value="false"/>
+   <method>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="129266000"/>
+         <display value="bepalen (kwalificatiewaarde)"/>
+      </coding>
+   </method>
+</Observation>
