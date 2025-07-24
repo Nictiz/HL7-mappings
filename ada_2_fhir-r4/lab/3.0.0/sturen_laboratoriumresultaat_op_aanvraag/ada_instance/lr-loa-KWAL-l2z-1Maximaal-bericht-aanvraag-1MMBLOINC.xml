@@ -8,19 +8,20 @@
          creation-date="2024-07-23T10:50:50.95Z"
          last-update-date="2024-07-26T11:45:44.684Z"/>
    <data>
-      <sturen_laboratoriumresultaten app="lab"
-                                     shortName="sturen_laboratoriumresultaten"
-                                     formName="sturen_laboratoriumresultaten"
-                                     transactionRef="2.16.840.1.113883.2.4.3.11.60.25.4.28"
-                                     transactionEffectiveDate="2022-03-03T00:00:00"
-                                     prefix="lab-"
-                                     language="nl-NL"
-                                     title="1. KWAL L2Z Maximaal bericht op aanvraag"
-                                     desc="Deze kwalificatie omvat het uitwisselen van een maximaal bericht voor Medisch Microbiologie, gecodeerd in LOINC."
-                                     id="lr-loa-KWAL-l2z-1Maximaal-bericht-aanvraag-1MMBLOINC">
+      <sturen_laboratoriumresultaat_op_aanvraag app="lab"
+                                                shortName="sturen_laboratoriumresultaat_op_aanvraag"
+                                                formName="sturen_laboratoriumresultaten_op_aanvraag"
+                                                transactionRef="2.16.840.1.113883.2.4.3.11.60.25.4.35"
+                                                transactionEffectiveDate="2022-11-28T16:53:30"
+                                                prefix="lab-"
+                                                language="nl-NL"
+                                                title="1. KWAL L2Z Maximaal bericht op aanvraag"
+                                                desc="Deze kwalificatie omvat het uitwisselen van een maximaal bericht voor Medisch Microbiologie, gecodeerd in LOINC."
+                                                id="lr-loa-KWAL-l2z-1Maximaal-bericht-aanvraag-1MMBLOINC">
          <scenario-nr value="1 MMB LOINC"
                       conceptId="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.2.1.1"/>
-         <!--Patient found in instance with id: loa-KWAL-MMB-LOINC-v30 and title: KWAL REPO Scenarioset 2a (ResultatenMicrobiologie_LOINC)-->
+         <!--Patient found in instance with id: loa-KWAL-KC-LOINC-v30 and title: KWAL REPO Scenarioset 1b
+(ResultatenKlinischChemie_LOINC)-->
          <patientgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4302">
             <patient conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4303"
                      comment="">
@@ -28,7 +29,7 @@
                              comment="">
                   <voornamen value="Elise"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4305"/>
-                  <initialen value="E."
+                  <initialen value="E"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4306"/>
                   <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4309"
                                  comment="">
@@ -49,6 +50,26 @@
                          displayName="Vrouw"/>
             </patient>
          </patientgegevens>
+         <aanvraaggegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4410"
+                           comment="">
+            <aanvraag_datum_tijd value="T-5D"
+                                 datatype="datetime"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4472"/>
+            <aanvraagnummer value="123457"
+                            root="2.16.840.1.113883.2.4.3.11.60.40.3.22.2"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4473"/>
+            <reden_aanvraag value="Patiënt heeft koorts, spierpijn van het gehele lichaam en hoofdpijn. Daarnaast heeft de patiënt last van droge hoest en dyspneu. Géén keelpijn of neusverkoudheid aanwezig."
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4474"/>
+            <vraagstelling code="94309-2"
+                           codeSystem="2.16.840.1.113883.6.1"
+                           displayName="SARS-CoV-2 RNA"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4475"/>
+            <status conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4476"
+                    value="8"
+                    code="completed"
+                    codeSystem="2.16.840.1.113883.5.14"
+                    displayName="completed"/>
+         </aanvraaggegevens>
          <!--No override for beschikbaarstellende_partij, partij found in instance with id:  and title: -->
          <!--laboratorium_uitslag found in instance with id: loa-KWAL-MMB-LOINC-v30 and title: KWAL REPO Scenarioset 2a (ResultatenMicrobiologie_LOINC)-->
          <onderzoeksresultaat conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4253"
@@ -152,6 +173,6 @@
                </uitvoerder>
             </laboratorium_uitslag>
          </onderzoeksresultaat>
-      </sturen_laboratoriumresultaten>
+      </sturen_laboratoriumresultaat_op_aanvraag>
    </data>
 </adaxml>

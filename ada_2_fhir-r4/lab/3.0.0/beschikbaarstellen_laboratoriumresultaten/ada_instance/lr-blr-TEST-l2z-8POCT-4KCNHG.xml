@@ -6,23 +6,47 @@
          created-by="labuitwisselingada"
          last-update-by="labuitwisselingada"
          creation-date="2024-09-13T08:29:15.008Z"
-         last-update-date="2024-09-23T11:18:20.168Z"/>
+         last-update-date="2025-07-22T09:01:59.227Z"/>
    <data>
-      <sturen_laboratoriumresultaten app="lab"
-                                     shortName="sturen_laboratoriumresultaten"
-                                     formName="sturen_laboratoriumresultaten"
-                                     transactionRef="2.16.840.1.113883.2.4.3.11.60.25.4.28"
-                                     transactionEffectiveDate="2022-03-03T00:00:00"
-                                     prefix="lab-"
-                                     language="nl-NL"
-                                     title="8. TEST L2Z Point of Care Test"
-                                     desc="Deze test omvat het beschikbaar stellen of raadplegen van een laboratoriumresultaat verkregen middels een Point of Care Test voor Klinisch chemie gecodeerd in NHG."
-                                     id="lr-blr-TEST-l2z-8POCT-4KCNHG">
+      <beschikbaarstellen_laboratoriumresultaten app="lab"
+                                                 shortName="beschikbaarstellen_laboratoriumresultaten"
+                                                 formName="beschikbaarstellen_laboratoriumresultaten"
+                                                 transactionRef="2.16.840.1.113883.2.4.3.11.60.25.4.31"
+                                                 transactionEffectiveDate="2022-03-03T00:00:00"
+                                                 prefix="lab-"
+                                                 language="nl-NL"
+                                                 title="8. TEST L2Z Point of Care Test"
+                                                 desc="Deze test omvat het beschikbaar stellen of raadplegen van een laboratoriumresultaat verkregen middels een Point of Care Test voor Klinisch chemie gecodeerd in NHG."
+                                                 id="lr-blr-TEST-l2z-8POCT-4KCNHG">
          <scenario-nr value="4 KC NHG"
                       conceptId="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.2.1.1"/>
-         <!--Patient found in instance with id:  and title: -->
-         <patientgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4302"/>
-         <!--No override for beschikbaarstellende_partij, partij found in instance with id: blr-TEST-Scenarioset1b-v30 and title: TEST REPO Scenarioset 1b (ResultatenKlinischChemie_LOINC)-->
+         <!--Patient found in instance with id: sl-KWAL-KC-LOINC-v30 and title: KWALIFICATIE REPO ResultatenKlinischChemie_LOINC-->
+         <patientgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4302">
+            <patient conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4303">
+               <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4304">
+                  <initialen value="E."
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4306"/>
+                  <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4309">
+                     <achternaam value="XXX_Doppen"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4311"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <identificatienummer value="999900511"
+                                    root="2.16.840.1.113883.2.4.6.3"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4337"/>
+               <geboortedatum value="1963-10-24T00:00:00"
+                              datatype="datetime"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4338"/>
+               <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4339"
+                         value="2"
+                         code="M"
+                         codeSystem="2.16.840.1.113883.5.1"
+                         displayName="Man"/>
+               <meerling_indicator nullFlavor="NA"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4340"/>
+            </patient>
+         </patientgegevens>
+         <!--No override for beschikbaarstellende_partij, partij found in instance with id: blr-TEST-Scenarioset1a-v30 and title: TEST REPO Scenarioset 1a (ResultatenKlinischChemie_NHG)-->
          <beschikbaarstellende_partij conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4179"
                                       comment="">
             <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4221"
@@ -149,6 +173,6 @@
                </uitvoerder>
             </laboratorium_uitslag>
          </onderzoeksresultaat>
-      </sturen_laboratoriumresultaten>
+      </beschikbaarstellen_laboratoriumresultaten>
    </data>
 </adaxml>

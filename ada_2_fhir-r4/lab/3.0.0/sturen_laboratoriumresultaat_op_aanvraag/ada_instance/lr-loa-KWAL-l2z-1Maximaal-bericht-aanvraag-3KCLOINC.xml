@@ -8,19 +8,20 @@
          creation-date="2024-07-23T10:50:50.95Z"
          last-update-date="2024-07-26T11:45:44.684Z"/>
    <data>
-      <sturen_laboratoriumresultaten app="lab"
-                                     shortName="sturen_laboratoriumresultaten"
-                                     formName="sturen_laboratoriumresultaten"
-                                     transactionRef="2.16.840.1.113883.2.4.3.11.60.25.4.28"
-                                     transactionEffectiveDate="2022-03-03T00:00:00"
-                                     prefix="lab-"
-                                     language="nl-NL"
-                                     title="1. KWAL L2Z Maximaal bericht op aanvraag"
-                                     desc="Deze kwalificatie omvat het uitwisselen van een maximaal bericht voor Klinisch Chemie, gecodeerd in LOINC."
-                                     id="lr-loa-KWAL-l2z-1Maximaal-bericht-aanvraag-3KCLOINC">
+      <sturen_laboratoriumresultaat_op_aanvraag app="lab"
+                                                shortName="sturen_laboratoriumresultaat_op_aanvraag"
+                                                formName="sturen_laboratoriumresultaten_op_aanvraag"
+                                                transactionRef="2.16.840.1.113883.2.4.3.11.60.25.4.35"
+                                                transactionEffectiveDate="2022-11-28T16:53:30"
+                                                prefix="lab-"
+                                                language="nl-NL"
+                                                title="1. KWAL L2Z Maximaal bericht op aanvraag"
+                                                desc="Deze kwalificatie omvat het uitwisselen van een maximaal bericht voor Klinisch Chemie, gecodeerd in LOINC."
+                                                id="lr-loa-KWAL-l2z-1Maximaal-bericht-aanvraag-3KCLOINC">
          <scenario-nr value="3 KC LOINC"
                       conceptId="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.2.1.1"/>
-         <!--Patient found in instance with id: loa-KWAL-MMB-LOINC-v30 and title: KWAL REPO Scenarioset 2a (ResultatenMicrobiologie_LOINC)-->
+         <!--Patient found in instance with id: loa-KWAL-KC-LOINC-v30 and title: KWAL REPO Scenarioset 1b
+(ResultatenKlinischChemie_LOINC)-->
          <patientgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4302">
             <patient conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4303"
                      comment="">
@@ -28,7 +29,7 @@
                              comment="">
                   <voornamen value="Elise"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4305"/>
-                  <initialen value="E."
+                  <initialen value="E"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4306"/>
                   <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4309"
                                  comment="">
@@ -49,6 +50,76 @@
                          displayName="Vrouw"/>
             </patient>
          </patientgegevens>
+         <aanvraaggegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4410"
+                           comment="">
+            <aanvraag_datum_tijd value="T-5D"
+                                 datatype="datetime"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4472"/>
+            <aanvraagnummer value="123456"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4473"
+                            root="2.16.840.1.113883.2.4.3.11.60.40.3.22.2"/>
+            <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4478"
+                          comment="">
+               <zorgverlener_identificatienummer value="000001111"
+                                                 root="2.16.528.1.1007.3.1"
+                                                 conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4479"/>
+               <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4480"
+                             comment="">
+                  <voornamen value="Peter"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4481"/>
+                  <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4485"
+                                 comment="">
+                     <voorvoegsels value="van"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4486"/>
+                     <achternaam value="Pulver"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4487"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4492"
+                            value="16"
+                            code="01.016"
+                            codeSystem="2.16.840.1.113883.2.4.15.111"
+                            codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                            codeSystemVersion="2024-01-29T00:00:00"
+                            displayName="Internist"/>
+               <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4494"
+                              comment="">
+                  <straat value="Dorpstraat"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4495"/>
+                  <huisnummer value="1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4496"/>
+                  <postcode value="1234 AA"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4500"/>
+                  <woonplaats value="Ons Dorp"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4501"/>
+                  <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4505"
+                               value="5"
+                               code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+               <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4506"
+                                comment="">
+                  <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4507"
+                                   comment="">
+                     <telefoonnummer value="099-12345678"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4508"/>
+                  </telefoonnummers>
+               </contactgegevens>
+            </zorgverlener>
+            <reden_aanvraag value="Patiënt is erg moe. Zweet veel en heeft duizeligheidsklachten. Daarnaast heeft de patiënt trillende handen en heel veel honger."
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4474"/>
+            <vraagstelling code="51596-5"
+                           codeSystem="2.16.840.1.113883.6.1"
+                           codeSystemName="LOINC"
+                           displayName="Glucose [mol/volume] in capillair bloed"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4475"/>
+            <status conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4476"
+                    value="8"
+                    code="completed"
+                    codeSystem="2.16.840.1.113883.5.14"
+                    displayName="completed"/>
+         </aanvraaggegevens>
          <!--No override for beschikbaarstellende_partij, partij found in instance with id:  and title: -->
          <!--laboratorium_uitslag found in instance with id: loa-KWAL-KC-LOINC-v30 and title: KWAL REPO Scenarioset 1b
 (ResultatenKlinischChemie_LOINC)-->
@@ -176,6 +247,6 @@
                </uitvoerder>
             </laboratorium_uitslag>
          </onderzoeksresultaat>
-      </sturen_laboratoriumresultaten>
+      </sturen_laboratoriumresultaat_op_aanvraag>
    </data>
 </adaxml>
