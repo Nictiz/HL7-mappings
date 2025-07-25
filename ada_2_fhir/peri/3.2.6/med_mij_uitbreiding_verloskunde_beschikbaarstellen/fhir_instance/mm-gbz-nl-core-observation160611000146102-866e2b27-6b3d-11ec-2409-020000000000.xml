@@ -24,7 +24,11 @@
                      <span title="manier waarop eerste fase van partus is begonnen (waarneembare entiteit) (160611000146102 - SNOMED CT)">manier waarop eerste fase van partus is begonnen (waarneembare entiteit)</span>
                   </td>
                   <td>
-                     <i>geen informatie (ontbrekend gegeven)</i>
+                     <div>
+                        <i>
+                           <span title="geen informatie (NI - v3/NullFlavor)">geen informatie</span>
+                        </i>
+                     </div>
                   </td>
                </tr>
             </tbody>
@@ -57,9 +61,11 @@
       <reference value="EpisodeOfCare/8b4a1a6f-6b0c-11ec-0000-020000000000"/>
       <display value="Zwangerschap 1 XXX_Swart"/>
    </context>
-   <valueCodeableConcept>
-      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-         <valueCode value="NI"/>
-      </extension>
-   </valueCodeableConcept>
+   <dataAbsentReason>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+         <code value="NI"/>
+         <display value="geen informatie"/>
+      </coding>
+   </dataAbsentReason>
 </Observation>

@@ -39,7 +39,11 @@
                      <span title="wond na sectio caesarea (afwijkende morfologie) (31781000146105 - SNOMED CT)">wond na sectio caesarea (afwijkende morfologie)</span>
                   </td>
                   <td>
-                     <i>anders (ontbrekend gegeven)</i>
+                     <div>
+                        <i>
+                           <span title="Overig (OTH - v3/NullFlavor)">Overig</span>
+                        </i>
+                     </div>
                   </td>
                </tr>
             </tbody>
@@ -67,11 +71,13 @@
       <display value="Zwangerschap 2 P1-Maaike"/>
    </context>
    <effectiveDateTime value="${DATE, T, D, -9}"/>
-   <valueCodeableConcept>
-      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-         <valueCode value="OTH"/>
-      </extension>
-   </valueCodeableConcept>
+   <dataAbsentReason>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+         <code value="OTH"/>
+         <display value="Overig"/>
+      </coding>
+   </dataAbsentReason>
    <comment value="Niet van toepassing"/>
    <method>
       <coding>

@@ -24,7 +24,11 @@
                      <span title="tijdstip waarop gebroken vliezen zijn geconstateerd (waarneembare entiteit) (289251005 - SNOMED CT)">tijdstip waarop gebroken vliezen zijn geconstateerd (waarneembare entiteit)</span>
                   </td>
                   <td>
-                     <i>n.v.t. (ontbrekend gegeven)</i>
+                     <div>
+                        <i>
+                           <span title="Not Applicable (not-performed - http://terminology.hl7.org/CodeSystem/data-absent-reason)">Not Applicable</span>
+                        </i>
+                     </div>
                   </td>
                </tr>
             </tbody>
@@ -57,9 +61,11 @@
       <reference value="EpisodeOfCare/8b4a1a6f-6b0c-11ec-0000-020000000000"/>
       <display value="Zwangerschap 1 XXX_Swart"/>
    </context>
-   <valueDateTime>
-      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-         <valueCode value="NA"/>
-      </extension>
-   </valueDateTime>
+   <dataAbsentReason>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/data-absent-reason"/>
+         <code value="not-performed"/>
+         <display value="Not Applicable"/>
+      </coding>
+   </dataAbsentReason>
 </Observation>

@@ -33,7 +33,11 @@
                      <span title="huilen (waarneembare entiteit) (28263002 - SNOMED CT)">huilen (waarneembare entiteit)</span>
                   </td>
                   <td>
-                     <i>anders (ontbrekend gegeven)</i>
+                     <div>
+                        <i>
+                           <span title="anders (OTH - v3/NullFlavor)">anders</span>
+                        </i>
+                     </div>
                   </td>
                </tr>
             </tbody>
@@ -62,10 +66,12 @@
       <display value="Zwangerschap 1 XXX_Zhanganak_Vrouw"/>
    </context>
    <effectiveDateTime value="${DATE, T, D, -107}"/>
-   <valueCodeableConcept>
-      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-         <valueCode value="OTH"/>
-      </extension>
-   </valueCodeableConcept>
+   <dataAbsentReason>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+         <code value="OTH"/>
+         <display value="anders"/>
+      </coding>
+   </dataAbsentReason>
    <comment value="Kreunend"/>
 </Observation>

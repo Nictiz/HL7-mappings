@@ -39,7 +39,11 @@
                      <span title="voorlichten over slaap (verrichting) (1263932002 - SNOMED CT)">voorlichten over slaap (verrichting)</span>
                   </td>
                   <td>
-                     <i>n.v.t. (ontbrekend gegeven)</i>
+                     <div>
+                        <i>
+                           <span title="Not Applicable (not-performed - http://terminology.hl7.org/CodeSystem/data-absent-reason)">Not Applicable</span>
+                        </i>
+                     </div>
                   </td>
                </tr>
             </tbody>
@@ -67,11 +71,13 @@
       <display value="Zwangerschap 2 P1-Maaike"/>
    </context>
    <effectiveDateTime value="${DATE, T, D, -5}"/>
-   <valueString>
-      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-         <valueCode value="NA"/>
-      </extension>
-   </valueString>
+   <dataAbsentReason>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/data-absent-reason"/>
+         <code value="not-performed"/>
+         <display value="Not Applicable"/>
+      </coding>
+   </dataAbsentReason>
    <comment value="Ivm overlijden kind geen voorlichting gegeven"/>
    <method>
       <coding>
