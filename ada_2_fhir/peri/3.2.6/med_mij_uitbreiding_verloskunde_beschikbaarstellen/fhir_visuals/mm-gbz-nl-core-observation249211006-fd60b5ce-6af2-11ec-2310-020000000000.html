@@ -35,6 +35,17 @@
                      </td>
                   </tr>
                   <tr>
+                     <th>Gerelateerd</th>
+                     <td>
+                        <ul>
+                           <li>has-member - bloedverlies kraambed lochia waarde Vrouw-XXX_Yzendoorn</li>
+                           <li>has-member - aantal kraamverbanden waarde Vrouw-XXX_Yzendoorn</li>
+                           <li>has-member - lochia foetide riekendq waarde Vrouw-XXX_Yzendoorn</li>
+                           <li>has-member - grote stolsels in lochia waarde Vrouw-XXX_Yzendoorn</li>
+                        </ul>
+                     </td>
+                  </tr>
+                  <tr>
                      <th>Code</th>
                      <th>Waarde</th>
                   </tr>
@@ -43,30 +54,6 @@
                         <span title="bevinding betreffende lochia (bevinding) (249211006 - SNOMED CT)">bevinding betreffende lochia (bevinding)</span>
                      </td>
                      <td/>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span title="bevinding betreffende hoeveelheid lochia (bevinding) (366299003 - SNOMED CT)">bevinding betreffende hoeveelheid lochia (bevinding)</span>
-                     </td>
-                     <td>
-                        <span title="grote hoeveelheid van lochia (bevinding) (289580000 - SNOMED CT)">grote hoeveelheid van lochia (bevinding)</span>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>Aantal kraamverbanden (Waarde)</td>
-                     <td>8</td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span title="stinkende lochia (bevinding) (276375002 - SNOMED CT)">stinkende lochia (bevinding)</span>
-                     </td>
-                     <td>ja</td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span title="grote bloedstolsels in lochia (bevinding) (146381000146107 - SNOMED CT)">grote bloedstolsels in lochia (bevinding)</span>
-                     </td>
-                     <td>ja</td>
                   </tr>
                </tbody>
             </table>
@@ -82,11 +69,19 @@ var nodes = new vis.DataSet([
 { id: 1, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-bc-Woman-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
 { id: 11, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-14d1a1ff-6b66-11ec-0000-020000000000.html" }, 
 { id: 72, label: "Observation bevinding betreffende lochia (bevinding)", url: "mm-gbz-nl-core-observation249211006-fd60b5ce-6af2-11ec-2310-020000000000.html" }, 
+{ id: 80, label: "Observation bevinding betreffende hoeveelheid lochia (bevinding)", url: "mm-gbz-nl-core-observation366299003-c948404f-6b42-11ec-2311-020000000000.html" }, 
+{ id: 81, label: "Observation", url: "mm-gbz-nl-core-observation-6c165f1f-6b42-11ec-2311-020000000000.html" }, 
+{ id: 82, label: "Observation stinkende lochia (bevinding)", url: "mm-gbz-nl-core-observation276375002-4ae4f58f-6aa8-11ec-2311-020000000000.html" }, 
+{ id: 83, label: "Observation grote bloedstolsels in lochia (bevinding)", url: "mm-gbz-nl-core-observation146381000146107-b3fc558f-6b08-11ec-2311-020000000000.html" }, 
 ]);
 
 // create an array with edges
 var edges = new vis.DataSet([{ from: 72, to: 1 }, 
 { from: 72, to: 11 }, 
+{ from: 72, to: 80 }, 
+{ from: 72, to: 81 }, 
+{ from: 72, to: 82 }, 
+{ from: 72, to: 83 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

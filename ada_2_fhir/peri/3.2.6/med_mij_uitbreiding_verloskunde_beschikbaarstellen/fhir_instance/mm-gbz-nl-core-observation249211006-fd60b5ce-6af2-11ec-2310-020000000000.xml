@@ -26,6 +26,17 @@
                   </td>
                </tr>
                <tr>
+                  <th>Gerelateerd</th>
+                  <td>
+                     <ul>
+                        <li>has-member - bloedverlies kraambed lochia waarde Vrouw-XXX_Yzendoorn</li>
+                        <li>has-member - aantal kraamverbanden waarde Vrouw-XXX_Yzendoorn</li>
+                        <li>has-member - lochia foetide riekendq waarde Vrouw-XXX_Yzendoorn</li>
+                        <li>has-member - grote stolsels in lochia waarde Vrouw-XXX_Yzendoorn</li>
+                     </ul>
+                  </td>
+               </tr>
+               <tr>
                   <th>Code</th>
                   <th>Waarde</th>
                </tr>
@@ -34,30 +45,6 @@
                      <span title="bevinding betreffende lochia (bevinding) (249211006 - SNOMED CT)">bevinding betreffende lochia (bevinding)</span>
                   </td>
                   <td/>
-               </tr>
-               <tr>
-                  <td>
-                     <span title="bevinding betreffende hoeveelheid lochia (bevinding) (366299003 - SNOMED CT)">bevinding betreffende hoeveelheid lochia (bevinding)</span>
-                  </td>
-                  <td>
-                     <span title="grote hoeveelheid van lochia (bevinding) (289580000 - SNOMED CT)">grote hoeveelheid van lochia (bevinding)</span>
-                  </td>
-               </tr>
-               <tr>
-                  <td>Aantal kraamverbanden (Waarde)</td>
-                  <td>8</td>
-               </tr>
-               <tr>
-                  <td>
-                     <span title="stinkende lochia (bevinding) (276375002 - SNOMED CT)">stinkende lochia (bevinding)</span>
-                  </td>
-                  <td>ja</td>
-               </tr>
-               <tr>
-                  <td>
-                     <span title="grote bloedstolsels in lochia (bevinding) (146381000146107 - SNOMED CT)">grote bloedstolsels in lochia (bevinding)</span>
-                  </td>
-                  <td>ja</td>
                </tr>
             </tbody>
          </table>
@@ -91,46 +78,32 @@
          <display value="observeren (kwalificatiewaarde)"/>
       </coding>
    </method>
-   <component>
-      <code>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="366299003"/>
-            <display value="bevinding betreffende hoeveelheid lochia (bevinding)"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="289580000"/>
-            <display value="grote hoeveelheid van lochia (bevinding)"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
-   <component>
-      <code>
-         <text value="Aantal kraamverbanden (Waarde)"/>
-      </code>
-      <valueString value="8"/>
-   </component>
-   <component>
-      <code>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="276375002"/>
-            <display value="stinkende lochia (bevinding)"/>
-         </coding>
-      </code>
-      <valueBoolean value="true"/>
-   </component>
-   <component>
-      <code>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="146381000146107"/>
-            <display value="grote bloedstolsels in lochia (bevinding)"/>
-         </coding>
-      </code>
-      <valueBoolean value="true"/>
-   </component>
+   <related>
+      <type value="has-member"/>
+      <target>
+         <reference value="Observation/c948404f-6b42-11ec-2311-020000000000"/>
+         <display value="bloedverlies kraambed lochia waarde Vrouw-XXX_Yzendoorn"/>
+      </target>
+   </related>
+   <related>
+      <type value="has-member"/>
+      <target>
+         <reference value="Observation/6c165f1f-6b42-11ec-2311-020000000000"/>
+         <display value="aantal kraamverbanden waarde Vrouw-XXX_Yzendoorn"/>
+      </target>
+   </related>
+   <related>
+      <type value="has-member"/>
+      <target>
+         <reference value="Observation/4ae4f58f-6aa8-11ec-2311-020000000000"/>
+         <display value="lochia foetide riekendq waarde Vrouw-XXX_Yzendoorn"/>
+      </target>
+   </related>
+   <related>
+      <type value="has-member"/>
+      <target>
+         <reference value="Observation/b3fc558f-6b08-11ec-2311-020000000000"/>
+         <display value="grote stolsels in lochia waarde Vrouw-XXX_Yzendoorn"/>
+      </target>
+   </related>
 </Observation>
