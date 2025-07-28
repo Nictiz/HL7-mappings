@@ -54,7 +54,7 @@
          <CareProvisionRequest xmlns="">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.10000"/>
             <id extension="123456788"
-                nullFlavor="UNC"
+                root="2.16.528.1.1007.3.3.1111.999.2"
                 xmlns="urn:hl7-org:v3"/>
             <code code="CPHC"
                   codeSystem="2.16.840.1.113883.5.4"
@@ -72,11 +72,11 @@
                <careProvisionEvent moodCode="EVN"
                                    xmlns="urn:hl7-org:v3">
                   <id extension="123456788"
-                      nullFlavor="UNC"/>
+                      root="2.16.528.1.1007.3.3.1111.999.2"/>
                   <code codeSystem="2.16.840.1.113883.5.4"
                         code="CPHC"
                         displayName="certified public health and general preventive medicine care"/>
-                  <statusCode code="active"/>
+                  <statusCode code="completed"/>
                   <effectiveTime>
                      <high value="20200607213533"/>
                   </effectiveTime>
@@ -103,7 +103,7 @@
                                                      code="F"
                                                      codeSystem="2.16.840.1.113883.5.1"
                                                      displayName="Vrouwelijk"/>
-                           <birthTime value="20101013"/>
+                           <birthTime value="19860101"/>
                         </patientPerson>
                      </patient>
                   </subject>
@@ -111,7 +111,7 @@
                      <time nullFlavor="UNK"/>
                      <assignedEntity classCode="ASSIGNED">
                         <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
-                        <id extension="12345679"
+                        <id extension="{$orgId}"
                             root="2.16.528.1.1007.3.3"/>
                      </assignedEntity>
                   </author>
@@ -133,11 +133,11 @@
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Toestemming gegevensuitwisseling RVP"/>
                         <author typeCode="AUT">
-                           <time value="20100101"/>
+                           <time value="19860601"/>
                            <responsibleParty classCode="CON">
                               <code xsi:type="CV"
                                     code="03"
-                                    codeSystem="2.16.840.1.113883.2.4.3.11.60.100.12.691"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.435"
                                     displayName="Gezaghebbende (Geen toestemming van andere gezaghebbende vereist)"/>
                               <agentPerson classCode="PSN"
                                            determinerCode="INSTANCE">
@@ -160,7 +160,7 @@
                                     displayName="Toestemmingswijze gegevensuitwisseling RVP"/>
                               <value xsi:type="CV"
                                      code="02"
-                                     codeSystem="2.16.840.1.113883.2.4.3.11.60.100.12.678"
+                                     codeSystem="2.16.840.1.113883.2.4.4.40.423"
                                      displayName="Mondeling"/>
                            </annotation>
                         </subjectOf>
@@ -181,12 +181,12 @@
                      <encounter classCode="ENC"
                                 moodCode="EVN">
                         <id extension="03"
-                            nullFlavor="UNC"/>
+                            root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code code="41"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contact 12 tot 18 jaar"/>
                         <statusCode code="completed"/>
-                        <effectiveTime value="20231013"/>
+                        <effectiveTime value="19990101"/>
                         <reasonCode code="34"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.373"
                                     displayName="Bewegingsapparaat"/>
@@ -255,19 +255,19 @@
                      <encounter classCode="ENC"
                                 moodCode="EVN">
                         <id extension="01"
-                            nullFlavor="UNC"/>
+                            root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code code="37"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contact week 2 t/m 6 maanden"/>
                         <statusCode code="completed"/>
-                        <effectiveTime value="20101213"/>
+                        <effectiveTime value="19860301"/>
                         <reasonCode code="09"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.373"
                                     displayName="Gewicht"/>
                         <escort typeCode="ESC">
                            <responsibleParty classCode="ASSIGNED">
                               <code code="14"
-                                    codeSystem="2.16.840.1.113883.2.4.3.11.60.100.12.193"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.421"
                                     displayName="Jeugdbeschermer (voorheen gezinsvoogd)"/>
                               <agentPerson nullFlavor="NI"/>
                            </responsibleParty>
@@ -316,14 +316,14 @@
                      <encounter classCode="ENC"
                                 moodCode="EVN">
                         <id extension="02"
-                            nullFlavor="UNC"/>
+                            root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code code="39"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contact 1 tot 4 jaar"/>
                         <statusCode code="completed"/>
-                        <effectiveTime value="20131013"/>
+                        <effectiveTime value="19890101"/>
                         <reasonCode code="51"
-                                    codeSystem="2.16.840.1.113883.2.4.3.11.60.100.12.619"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.373"
                                     displayName="Ouder-kindrelatie"/>
                         <escort typeCode="ESC">
                            <responsibleParty classCode="ASSIGNED">
@@ -371,7 +371,7 @@
                                           displayName="Vorm activiteit"/>
                                     <value xsi:type="CV"
                                            code="07"
-                                           codeSystem="2.16.840.1.113883.2.4.3.11.60.100.12.679"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.424"
                                            displayName="Inloopspreekuur"/>
                                  </observation>
                               </component>
@@ -400,10 +400,23 @@
                         <code code="1197"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Status in zorg"/>
-                        <effectiveTime value="20101113"/>
+                        <effectiveTime value="19860201"/>
                         <reasonCode code="01"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.376"
                                     displayName="Regulier"/>
+                     </careStatus>
+                  </subjectOf>
+                  <subjectOf typeCode="SUBJ"
+                             contextConductionInd="false">
+                     <careStatus classCode="STC"
+                                 moodCode="EVN">
+                        <code code="487"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Zorgbeëindiging"/>
+                        <effectiveTime value="20000101"/>
+                        <reasonCode code="01"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.82"
+                                    displayName="Overdracht naar een andere JGZ-organisatie"/>
                      </careStatus>
                   </subjectOf>
                </careProvisionEvent>
