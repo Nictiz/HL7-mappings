@@ -4,7 +4,7 @@
          created-by="geboortezorgada"
          last-update-by="geboortezorgada"
          creation-date="2025-05-16T09:36:24.446Z"
-         last-update-date="2025-06-23T14:44:34.908Z"/>
+         last-update-date="2025-07-25T07:42:41.765Z"/>
    <data>
       <med_mij_uitbreiding_verloskunde_beschikbaarstellen app="perinatologie-326"
                                                           shortName="med_mij_uitbreiding_verloskunde_beschikbaarstellen"
@@ -2272,8 +2272,7 @@
                                conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1672"/>
                <body_mass_index_bmi_meting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3427">
                   <bmiwaarde value="18.7"
-                             datatype="count"
-                             ordinal="18.7"
+                             datatype="quantity"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3429"/>
                   <meet_methode conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3430"
                                 value="5"
@@ -2292,17 +2291,6 @@
                                conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3435"/>
                </body_mass_index_bmi_meting>
             </metingen>
-            <bloedonderzoek conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1127">
-               <laboratorium_test_bloedgroep value="Lab1-bloedgroep"
-                                             datatype="reference"
-                                             conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1139"/>
-               <laboratorium_test_rhesus_d value="Lab2-rhesd"
-                                           datatype="reference"
-                                           conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1151"/>
-               <laboratorium_test_rhesus_c value="Lab3-rhesc"
-                                           datatype="reference"
-                                           conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1163"/>
-            </bloedonderzoek>
          </vrouw>
          <gezin conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2902">
             <taalvaardigheid value="Taal1-vrouw"
@@ -2653,11 +2641,33 @@
                   </waarneming_gebruik>
                </alcohol_gebruik>
                <drugs_gebruik conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.112">
+                  <toelichting value="Recreatief"
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.117"/>
                   <drugs_gebruik_status conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.119"
-                                        value="3"
-                                        code="228368007"
+                                        value="4"
+                                        code="44870007"
                                         codeSystem="2.16.840.1.113883.6.96"
-                                        displayName="heeft nooit drugs gebruikt"/>
+                                        displayName="heeft drugs gebruikt in het verleden"/>
+                  <drugs_of_geneesmiddel_soort conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.118"
+                                               value="7"
+                                               code="288459003"
+                                               codeSystem="2.16.840.1.113883.6.96"
+                                               displayName="ecstasy"/>
+                  <toedieningsweg conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.120"
+                                  value="1"
+                                  code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  displayName="oraal"/>
+                  <waarneming_gebruik conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.113">
+                     <start_datum value="T-4433D"
+                                  datatype="datetime"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.114"/>
+                     <stop_datum value="T-4343D"
+                                 datatype="datetime"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.115"/>
+                     <hoeveelheid value="3"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.116"/>
+                  </waarneming_gebruik>
                </drugs_gebruik>
                <tabak_gebruik conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2243">
                   <toelichting value="Vader rookt sigaretten (buiten)"
@@ -3066,6 +3076,7 @@
                                          datatype="datetime"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7889"/>
                <leeftijd_eiceldonor value="29"
+                                    unit="a"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7890"/>
             </eiceldonatie>
             <maternale_sterfte conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1846">
@@ -3293,44 +3304,6 @@
                                       codeSystemName="SNOMED CT"
                                       displayName="observeren (kwalificatiewaarde)"/>
                </aard_vruchtwater_observatie>
-               <partusassistentie_contact conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10710">
-                  <contact_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10711"
-                                value="5"
-                                code="IMP"
-                                codeSystem="2.16.840.1.113883.5.4"
-                                displayName="Klinisch"/>
-                  <contact_soort conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10735"
-                                 value="10"
-                                 code="236973005"
-                                 codeSystem="2.16.840.1.113883.6.96"
-                                 codeSystemName="SNOMED CT"
-                                 displayName="begeleiden van bevalling (verrichting)"/>
-                  <contact_met conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10712">
-                     <zorgverlener value="ZV2_dejong"
-                                   datatype="reference"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10801"/>
-                  </contact_met>
-                  <locatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10714">
-                     <zorgaanbieder value="ZA2_kraamafdeling"
-                                    datatype="reference"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10734"/>
-                  </locatie>
-                  <partus_stadium_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10738"
-                                         value="1"
-                                         code="6893006"
-                                         codeSystem="2.16.840.1.113883.6.96"
-                                         codeSystemName="SNOMED CT"
-                                         displayName="eerste fase van bevalling (bevinding)"/>
-                  <oproep_datum_tijd value="T-53D{08:30}"
-                                     datatype="datetime"
-                                     conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10726"/>
-                  <aankomst_datum_tijd value="T-53D{08:29}"
-                                       datatype="datetime"
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10716"/>
-                  <eind_datum_tijd value="T-52D{13:44}"
-                                   datatype="datetime"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10717"/>
-               </partusassistentie_contact>
             </ontsluitingsfase>
             <uitdrijvingsfase conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.39">
                <patient value="P1-Maaike"
@@ -3369,19 +3342,6 @@
                                       codeSystemName="SNOMED CT"
                                       displayName="bepalen (kwalificatiewaarde)"/>
                </type_partus_observatie>
-               <top_nav_prenataal_onderzoekq_observatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4157">
-                  <observatie_datum_tijd value="T-53D{09:03}"
-                                         datatype="datetime"
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4158"/>
-                  <topnav_prenataal_onderzoek_waarde value="false"
-                                                     conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4160"/>
-                  <observatie_methode conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4161"
-                                      value="2"
-                                      code="129268004"
-                                      codeSystem="2.16.840.1.113883.6.96"
-                                      codeSystemName="SNOMED CT"
-                                      displayName="observeren (kwalificatiewaarde)"/>
-               </top_nav_prenataal_onderzoekq_observatie>
                <ligging_kind_observatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4169">
                   <observatie_datum_tijd value="T-53D{14:08}"
                                          datatype="datetime"
@@ -4935,7 +4895,8 @@
                                   codeSystem="2.16.840.1.113883.6.96"
                                   codeSystemName="SNOMED CT"
                                   displayName="patroon op cardiotocogram normaal (bevinding)"/>
-                  <conclusie_fisher value="suboptimaal"
+                  <conclusie_fisher value="3"
+                                    datatype="count"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3914"/>
                   <beoordelaar conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3907">
                      <zorgverlener value="ZV1_naaktgeboren"
@@ -5007,6 +4968,57 @@
                      </foetale_schedelomvang>
                   </biometrie>
                   <bevindingen conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2451">
+                     <foetale_hartslag_hartfrequentie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1784">
+                        <hartfrequentie_datum_tijd value="T-146D{12:58}"
+                                                   datatype="datetime"
+                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10964"/>
+                        <hartfrequentie_waarde value="132"
+                                               unit="bpm"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10965"/>
+                        <hartslag_meet_methode conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10966"
+                                               value="2"
+                                               code="408808009"
+                                               codeSystem="2.16.840.1.113883.6.96"
+                                               displayName="Echo"/>
+                        <hartslag_regelmatigheid conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10967"
+                                                 value="1"
+                                                 code="289443009"
+                                                 codeSystem="2.16.840.1.113883.6.96"
+                                                 displayName="regelmatig hartritme van foetus (bevinding)"/>
+                        <interpretatie_frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10968"
+                                                  value="2"
+                                                  code="278084002"
+                                                  codeSystem="2.16.840.1.113883.6.96"
+                                                  displayName="normale basishartfrequentie van foetus (bevinding)"/>
+                     </foetale_hartslag_hartfrequentie>
+                     <ligging_foetus_meting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7789">
+                        <ligging_foetus_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10951"
+                                               value="5"
+                                               code="7721000146107"
+                                               codeSystem="2.16.840.1.113883.6.96"
+                                               displayName="instabiel"/>
+                        <meet_methode conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10952"
+                                      value="8"
+                                      code="278292003"
+                                      codeSystem="2.16.840.1.113883.6.96"
+                                      displayName="echografie (kwalificatiewaarde)"/>
+                        <meet_datum_begin_tijd value="T-146D{12:59}"
+                                               datatype="datetime"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10953"/>
+                        <meet_datum_eind_tijd value="T-146D{13:07}"
+                                              datatype="datetime"
+                                              conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10954"/>
+                        <toelichting value="Levende foetus snel zichtbaar"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10955"/>
+                        <anatomische_locatie_meting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10956">
+                           <locatie code="35039007"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED Clinical Terms"
+                                    displayName="structuur van uterus (lichaamsstructuur)"
+                                    preferred="true"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10957"/>
+                        </anatomische_locatie_meting>
+                     </ligging_foetus_meting>
                      <beweging_foetus_observatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2404">
                         <beweging_foetus_datum_tijd value="T-146D{12:59}"
                                                     datatype="datetime"
@@ -5735,11 +5747,12 @@
                                        codeSystem="2.16.840.1.113883.6.96"
                                        displayName="Diagnose"/>
                         <probleem_naam datatype="code"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2539"
+                                       value="3"
                                        code="65959000"
                                        codeSystem="2.16.840.1.113883.6.96"
                                        codeSystemName="SNOMED CT"
-                                       displayName="bètathalassemie (aandoening)"
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2539"/>
+                                       displayName="beta"/>
                         <probleem_begin_datum value="T-146D"
                                               datatype="datetime"
                                               conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2540"/>
@@ -5781,6 +5794,7 @@
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10210"/>
                         <test_uitslag value="4.6"
                                       datatype="quantity"
+                                      unit="mmol/L"
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10213"/>
                      </laboratorium_test_glucose>
                   </diabetes_diagnostiek>
@@ -6722,8 +6736,8 @@
          </postnatale_fase>
          <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.926">
             <behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1528">
-               <verrichting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1529"
-                            id="">
+               <verrichting id="Verr2-exploratie"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1529">
                   <verrichting_start_datum value="T-53D"
                                            datatype="datetime"
                                            conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1530"/>

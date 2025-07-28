@@ -4,7 +4,7 @@
          created-by="geboortezorgada"
          last-update-by="geboortezorgada"
          creation-date="2024-07-29T10:32:58.285Z"
-         last-update-date="2025-06-19T12:09:59.133Z"/>
+         last-update-date="2025-07-18T11:52:19.731Z"/>
    <data>
       <med_mij_uitbreiding_verloskunde_beschikbaarstellen app="perinatologie-326"
                                                           shortName="med_mij_uitbreiding_verloskunde_beschikbaarstellen"
@@ -484,7 +484,7 @@
                                   value="1"
                                   code="RESP"
                                   codeSystem="2.16.840.1.113883.5.90"
-                                  displayName="Hoofdbehandelaar"/>
+                                  displayName="Hoofdbehandelaar "/>
             </zorgverlener>
          </administratief>
          <zorgverlening conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1314">
@@ -839,6 +839,7 @@
                                          datatype="datetime"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7889"/>
                <leeftijd_eiceldonor value="25"
+                                    unit="a"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7890"/>
             </eiceldonatie>
          </zwangerschapsgegevens>
@@ -909,30 +910,6 @@
                                            codeSystemName="SNOMED CT"
                                            displayName="helder vruchtwater (bevinding)"/>
                </aard_vruchtwater_observatie>
-               <partusassistentie_contact conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10710">
-                  <contact_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10711"
-                                value="4"
-                                code="HH"
-                                codeSystem="2.16.840.1.113883.5.4"
-                                displayName="Thuis"/>
-                  <contact_met conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10712">
-                     <zorgverlener value="ZV2_Egelinks"
-                                   datatype="reference"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10801"/>
-                  </contact_met>
-                  <partus_stadium_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10738"
-                                         value="1"
-                                         code="6893006"
-                                         codeSystem="2.16.840.1.113883.6.96"
-                                         codeSystemName="SNOMED CT"
-                                         displayName="eerste fase van bevalling (bevinding)"/>
-                  <aankomst_datum_tijd value="T-324D{10:40}"
-                                       datatype="datetime"
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10716"/>
-                  <eind_datum_tijd value="T-324D{20:00}"
-                                   datatype="datetime"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10717"/>
-               </partusassistentie_contact>
             </ontsluitingsfase>
             <uitdrijvingsfase conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.39">
                <patient value="Patient-Kind"
@@ -1404,6 +1381,31 @@
                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3630"/>
                      </foetale_schedelomvang>
                   </biometrie>
+                  <bevindingen conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2451">
+                     <foetale_hartslag_hartfrequentie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1784">
+                        <hartfrequentie_datum_tijd value="T-330D"
+                                                   datatype="datetime"
+                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10964"/>
+                        <hartfrequentie_waarde value="140"
+                                               unit="bpm"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10965"/>
+                        <hartslag_meet_methode conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10966"
+                                               value="2"
+                                               code="408808009"
+                                               codeSystem="2.16.840.1.113883.6.96"
+                                               displayName="Echo"/>
+                        <hartslag_regelmatigheid conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10967"
+                                                 value="1"
+                                                 code="289443009"
+                                                 codeSystem="2.16.840.1.113883.6.96"
+                                                 displayName="regelmatig hartritme van foetus (bevinding)"/>
+                        <interpretatie_frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10968"
+                                                  value="2"
+                                                  code="278084002"
+                                                  codeSystem="2.16.840.1.113883.6.96"
+                                                  displayName="normale basishartfrequentie van foetus (bevinding)"/>
+                     </foetale_hartslag_hartfrequentie>
+                  </bevindingen>
                </echoscopie>
             </foetusspecifieke_onderzoeksgegevens>
             <maternale_onderzoeksgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1124">

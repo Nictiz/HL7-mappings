@@ -1,6 +1,6 @@
 <html lang="en">
    <head>
-      <title>Observation - f3115c3c-6b2f-11ec-2415-020000000000</title>
+      <title>Observation - 76f8294f-6b79-11ec-2778-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -18,20 +18,27 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Observatie/bepaling. Subject: Maaike M Maaike Ostendorf. Status: definitief</caption>
+               <caption>Observatie/bepaling. Subject: Kind Daniel Mateo DM Daniel De Kleine. Status: definitief</caption>
+               <tfoot>
+                  <tr>
+                     <td colspan="2">Levende foetus snel zichtbaar</td>
+                  </tr>
+               </tfoot>
                <tbody>
                   <tr>
                      <th>Context</th>
-                     <td>opname en ontslag T-53D{08:36} P1-Maaike</td>
-                  </tr>
-                  <tr>
-                     <th>Bepalingdatum/tijd</th>
-                     <td>${DATE, T, D, -53}T09:03:00+02:00</td>
+                     <td>Zwangerschap 2 P1-Maaike</td>
                   </tr>
                   <tr>
                      <th>Methode</th>
                      <td>
-                        <span title="observeren (kwalificatiewaarde) (129268004 - SNOMED CT)">observeren (kwalificatiewaarde)</span>
+                        <span title="echografie (kwalificatiewaarde) (278292003 - SNOMED CT)">echografie (kwalificatiewaarde)</span>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Deel van lichaam</th>
+                     <td>
+                        <span title="structuur van uterus (lichaamsstructuur) (35039007 - SNOMED CT)">structuur van uterus (lichaamsstructuur)</span>
                      </td>
                   </tr>
                   <tr>
@@ -40,31 +47,37 @@
                   </tr>
                   <tr>
                      <td>
-                        <span title="afbreken van zwangerschap (verrichting) (386639001 - SNOMED CT)">afbreken van zwangerschap (verrichting)</span>
+                        <span title="ligging van foetus (waarneembare entiteit) (249062004 - SNOMED CT)">ligging van foetus (waarneembare entiteit)</span>
                      </td>
-                     <td>nee</td>
+                     <td>
+                        <span title="instabiel (7721000146107 - SNOMED CT)">instabiel</span>
+                     </td>
                   </tr>
                </tbody>
             </table>
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Observation afbreken van zwangerschap (verrichting)</b>
+         <b>Resources pointing to 'this' resource - Observation ligging van foetus (waarneembare entiteit)</b>
       </p>
-      <div> - none</div>
+      <ul>
+         <li>
+            <a href="mm-gbz-bc-PregnancyUltraSound169228004-82f10a5f-6ae8-11ec-2120-020000000000.html">DiagnosticReport echografie voor foetale presentatie (verrichting)</a>
+         </li>
+      </ul>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
-{ id: 149, label: "Observation afbreken van zwangerschap (verrichting)", url: "mm-gbz-nl-core-observation386639001-f3115c3c-6b2f-11ec-2415-020000000000.html" }, 
-{ id: 224, label: "Procedure geboorte (bevinding)", url: "mm-gbz-bc-Birth3950001-f9b3864f-6a9d-11ec-2123-020000000000.html" }, 
-{ id: 244, label: "Encounter begeleiden van bevalling (verrichting)", url: "mm-gbz-bc-Encounter-f2ba733f-6af7-11ec-1275-020000000000.html" }, 
+{ id: 6, label: "Patient De Kleine", url: "mm-gbz-bc-Child-DANIEL-MATEO-DM-DANIEL-DE-KLEINE.html" }, 
+{ id: 14, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-24eb4a5f-6b11-11ec-0000-020000000000.html" }, 
+{ id: 48, label: "BodySite gehele foetus (lichaamsstructuur)", url: "mm-gbz-bc-Fetus83418008-ec2cf4ff-6b5d-11ec-1267-020000000000.html" }, 
+{ id: 198, label: "Observation ligging van foetus (waarneembare entiteit)", url: "mm-gbz-nl-core-observation249062004-76f8294f-6b79-11ec-2778-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 149, to: 224 }, 
-{ from: 149, to: 1 }, 
-{ from: 149, to: 244 }, 
+var edges = new vis.DataSet([{ from: 198, to: 48 }, 
+{ from: 198, to: 6 }, 
+{ from: 198, to: 14 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

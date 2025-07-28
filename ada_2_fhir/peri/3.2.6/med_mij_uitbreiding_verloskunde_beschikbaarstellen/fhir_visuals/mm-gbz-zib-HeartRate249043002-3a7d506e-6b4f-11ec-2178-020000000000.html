@@ -1,6 +1,6 @@
 <html lang="en">
    <head>
-      <title>Observation - 382a96cf-6b4d-11ec-2427-020000000000</title>
+      <title>Observation - 3a7d506e-6b4f-11ec-2178-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -26,7 +26,13 @@
                   </tr>
                   <tr>
                      <th>Bepalingdatum/tijd</th>
-                     <td>${DATE, T, D, -324}</td>
+                     <td>${DATE, T, D, -330}</td>
+                  </tr>
+                  <tr>
+                     <th>Methode</th>
+                     <td>
+                        <span title="Echo (408808009 - SNOMED CT)">Echo</span>
+                     </td>
                   </tr>
                   <tr>
                      <th>Code</th>
@@ -34,10 +40,16 @@
                   </tr>
                   <tr>
                      <td>
-                        <span title="compleetheid van vruchtvliezen (waarneembare entiteit) (364351002 - SNOMED CT)">compleetheid van vruchtvliezen (waarneembare entiteit)</span>
+                        <span title="foetale hartfrequentie (waarneembare entiteit) (249043002 - SNOMED CT)">foetale hartfrequentie (waarneembare entiteit)</span>
+                     </td>
+                     <td>140 bpm</td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span title="foetaal hartritme (waarneembare entiteit) (249044008 - SNOMED CT)">foetaal hartritme (waarneembare entiteit)</span>
                      </td>
                      <td>
-                        <span title="vruchtvliezen compleet (bevinding) (249181009 - SNOMED CT)">vruchtvliezen compleet (bevinding)</span>
+                        <span title="regelmatig hartritme van foetus (bevinding) (289443009 - SNOMED CT)">regelmatig hartritme van foetus (bevinding)</span>
                      </td>
                   </tr>
                </tbody>
@@ -45,11 +57,11 @@
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Observation compleetheid van vruchtvliezen (waarneembare entiteit)</b>
+         <b>Resources pointing to 'this' resource - Observation foetale hartfrequentie (waarneembare entiteit)</b>
       </p>
       <ul>
          <li>
-            <a href="mm-gbz-zib-Pregnancy-Duration57036006-1d638062-6b49-11ec-1069-020000000000.html">Observation zwangerschapsduur (waarneembare entiteit)</a>
+            <a href="mm-gbz-bc-PregnancyUltraSound713076009-ef3175bf-6b51-11ec-2120-020000000000.html">DiagnosticReport prenatale risico-evaluatie (verrichting)</a>
          </li>
       </ul>
       <div id="mynetwork"> </div>
@@ -57,14 +69,14 @@
 var nodes = new vis.DataSet([
 { id: 1, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-bc-Woman-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
 { id: 11, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-14d1a1ff-6b66-11ec-0000-020000000000.html" }, 
-{ id: 66, label: "Observation compleetheid van vruchtvliezen (waarneembare entiteit)", url: "mm-gbz-nl-core-observation364351002-382a96cf-6b4d-11ec-2427-020000000000.html" }, 
-{ id: 96, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-b6353a4f-6b23-11ec-2123-020000000000.html" }, 
+{ id: 84, label: "BodySite gehele foetus (lichaamsstructuur)", url: "mm-gbz-bc-Fetus83418008-55992d6f-6b62-11ec-1267-020000000000.html" }, 
+{ id: 88, label: "Observation foetale hartfrequentie (waarneembare entiteit)", url: "mm-gbz-zib-HeartRate249043002-3a7d506e-6b4f-11ec-2178-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 66, to: 96 }, 
-{ from: 66, to: 1 }, 
-{ from: 66, to: 11 }, 
+var edges = new vis.DataSet([{ from: 88, to: 84 }, 
+{ from: 88, to: 1 }, 
+{ from: 88, to: 11 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

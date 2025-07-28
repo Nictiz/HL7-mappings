@@ -66,18 +66,18 @@
 var nodes = new vis.DataSet([
 { id: 2, label: "Patient XXX_Yzendoorn", url: "mm-gbz-bc-Child-MIEKE-XXX-YZENDOORN.html" }, 
 { id: 9, label: "Location", url: "mm-gbz-nl-core-location-location-mm-gbz-c912c24f-6b4b-11ec-1295-020000000000.html" }, 
+{ id: 11, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-14d1a1ff-6b66-11ec-0000-020000000000.html" }, 
 { id: 16, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-8e9592ff-6aab-11ec-2334-020000000000.html" }, 
-{ id: 95, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-b6353a4f-6b23-11ec-2123-020000000000.html" }, 
-{ id: 96, label: "Procedure geboorte (bevinding)", url: "mm-gbz-bc-Birth3950001-ec528aff-6b4c-11ec-2123-020000000000.html" }, 
-{ id: 105, label: "Encounter verlossing (verrichting)", url: "mm-gbz-bc-ChildBirthAssistance-a0cecf3f-6ad4-11ec-1071-020000000000.html" }, 
+{ id: 96, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-b6353a4f-6b23-11ec-2123-020000000000.html" }, 
+{ id: 97, label: "Procedure geboorte (bevinding)", url: "mm-gbz-bc-Birth3950001-ec528aff-6b4c-11ec-2123-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 96, to: 95 }, 
-{ from: 96, to: 2 }, 
-{ from: 96, to: 105 }, 
-{ from: 96, to: 9 }, 
-{ from: 96, to: 16 }, 
+var edges = new vis.DataSet([{ from: 97, to: 96 }, 
+{ from: 97, to: 2 }, 
+{ from: 97, to: 11 }, 
+{ from: 97, to: 9 }, 
+{ from: 97, to: 16 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

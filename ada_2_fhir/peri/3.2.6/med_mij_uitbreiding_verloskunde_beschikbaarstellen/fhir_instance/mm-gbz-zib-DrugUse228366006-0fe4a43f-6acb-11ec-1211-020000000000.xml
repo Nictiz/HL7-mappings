@@ -1,6 +1,6 @@
 <Observation xmlns="http://hl7.org/fhir">
    <!-- Source: gz-izv-tes-casus9999 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/zwangerschapsgegevens/prenatale_controle/drugs_gebruik -->
-   <id value="20d4a48f-6aac-11ec-1211-020000000000"/>
+   <id value="0fe4a43f-6acb-11ec-1211-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DrugUse"/>
    </meta>
@@ -9,6 +9,11 @@
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
             <caption>Observatie/bepaling. Subject: Maaike M Maaike Ostendorf. Status: definitief</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Recreatief</td>
+               </tr>
+            </tfoot>
             <tbody>
                <tr>
                   <th>Context</th>
@@ -23,7 +28,13 @@
                      <span title="bevinding betreffende drugsgebruik (bevinding) (228366006 - SNOMED CT)">bevinding betreffende drugsgebruik (bevinding)</span>
                   </td>
                   <td>
-                     <span title="heeft nooit drugs gebruikt (228368007 - SNOMED CT)">heeft nooit drugs gebruikt</span>
+                     <span title="heeft drugs gebruikt in het verleden (44870007 - SNOMED CT)">heeft drugs gebruikt in het verleden</span>
+                  </td>
+               </tr>
+               <tr>
+                  <td>DrugsOfGeneesmiddelSoort</td>
+                  <td>
+                     <span title="ecstasy (288459003 - SNOMED CT)">ecstasy</span>
                   </td>
                </tr>
             </tbody>
@@ -32,7 +43,7 @@
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="20d4a48f-6aac-11ec-1211-020000000000"/>
+      <value value="0fe4a43f-6acb-11ec-1211-020000000000"/>
    </identifier>
    <status value="final"/>
    <code>
@@ -53,8 +64,21 @@
    <valueCodeableConcept>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="228368007"/>
-         <display value="heeft nooit drugs gebruikt"/>
+         <code value="44870007"/>
+         <display value="heeft drugs gebruikt in het verleden"/>
       </coding>
    </valueCodeableConcept>
+   <comment value="Recreatief"/>
+   <component>
+      <code>
+         <text value="DrugsOfGeneesmiddelSoort"/>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="288459003"/>
+            <display value="ecstasy"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
 </Observation>

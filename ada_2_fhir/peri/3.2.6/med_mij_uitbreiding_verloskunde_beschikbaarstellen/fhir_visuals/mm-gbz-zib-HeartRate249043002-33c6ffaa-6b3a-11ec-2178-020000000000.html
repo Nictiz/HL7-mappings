@@ -1,6 +1,6 @@
 <html lang="en">
    <head>
-      <title>Encounter - eb2c5b6f-6b3d-11ec-1071-020000000000</title>
+      <title>Observation - 33c6ffaa-6b3a-11ec-2178-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -18,57 +18,65 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Contact. Subject: Maaike M Maaike Ostendorf. Status: voltooid</caption>
+               <caption>Observatie/bepaling. Subject: Kind Daniel Mateo DM Daniel De Kleine. Status: definitief</caption>
                <tbody>
                   <tr>
-                     <th>Type contact</th>
+                     <th>Context</th>
+                     <td>Zwangerschap 2 P1-Maaike</td>
+                  </tr>
+                  <tr>
+                     <th>Bepalingdatum/tijd</th>
+                     <td>${DATE, T, D, -146}T12:58:00+02:00</td>
+                  </tr>
+                  <tr>
+                     <th>Methode</th>
                      <td>
-                        <div>
-                           <span title="Klinisch (IMP - v3/ActCode)">Klinisch</span>
-                        </div>
-                        <span title="begeleiden van bevalling (verrichting) (236973005 - SNOMED CT)">begeleiden van bevalling (verrichting)</span>, <span title="verlossing (verrichting) (236973005 - SNOMED CT)">verlossing (verrichting)</span>
+                        <span title="Echo (408808009 - SNOMED CT)">Echo</span>
                      </td>
                   </tr>
                   <tr>
-                     <th>Periode</th>
-                     <td>${DATE, T, D, -53}T08:29:00+02:00 - ${DATE, T, D, -52}T13:44:00+02:00</td>
+                     <th>Code</th>
+                     <th>Waarde</th>
                   </tr>
                   <tr>
-                     <th>Participant</th>
                      <td>
-                        <div>
-                           <span title="Hoofdbehandelaar (RESP - v3/ParticipationType)">Hoofdbehandelaar</span>, Aanpakker kind, Supervisor - Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis</div>
+                        <span title="foetale hartfrequentie (waarneembare entiteit) (249043002 - SNOMED CT)">foetale hartfrequentie (waarneembare entiteit)</span>
                      </td>
+                     <td>132 bpm</td>
                   </tr>
                   <tr>
-                     <th>Zorgaanbieder</th>
-                     <td>Stitswerd Ziekenhuis - Stitswerd</td>
+                     <td>
+                        <span title="foetaal hartritme (waarneembare entiteit) (249044008 - SNOMED CT)">foetaal hartritme (waarneembare entiteit)</span>
+                     </td>
+                     <td>
+                        <span title="regelmatig hartritme van foetus (bevinding) (289443009 - SNOMED CT)">regelmatig hartritme van foetus (bevinding)</span>
+                     </td>
                   </tr>
                </tbody>
             </table>
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Encounter begeleiden van bevalling (verrichting)</b>
+         <b>Resources pointing to 'this' resource - Observation foetale hartfrequentie (waarneembare entiteit)</b>
       </p>
-      <div> - none</div>
+      <ul>
+         <li>
+            <a href="mm-gbz-bc-PregnancyUltraSound169228004-82f10a5f-6ae8-11ec-2120-020000000000.html">DiagnosticReport echografie voor foetale presentatie (verrichting)</a>
+         </li>
+      </ul>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
-{ id: 10, label: "Organization Stitswerd Ziekenhuis - Stitswerd", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-528-1-1007-3-3-06019999.html" }, 
+{ id: 6, label: "Patient De Kleine", url: "mm-gbz-bc-Child-DANIEL-MATEO-DM-DANIEL-DE-KLEINE.html" }, 
 { id: 14, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-24eb4a5f-6b11-11ec-0000-020000000000.html" }, 
-{ id: 17, label: "Practitioner De Jong", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167.html" }, 
-{ id: 18, label: "PractitionerRole Gynaecoloog", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-030731670307316706019999.html" }, 
-{ id: 247, label: "Encounter begeleiden van bevalling (verrichting)", url: "mm-gbz-bc-ChildBirthAssistance-eb2c5b6f-6b3d-11ec-1071-020000000000.html" }, 
+{ id: 48, label: "BodySite gehele foetus (lichaamsstructuur)", url: "mm-gbz-bc-Fetus83418008-ec2cf4ff-6b5d-11ec-1267-020000000000.html" }, 
+{ id: 197, label: "Observation foetale hartfrequentie (waarneembare entiteit)", url: "mm-gbz-zib-HeartRate249043002-33c6ffaa-6b3a-11ec-2178-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 247, to: 1 }, 
-{ from: 247, to: 14 }, 
-{ from: 247, to: 18 }, 
-{ from: 247, to: 17 }, 
-{ from: 247, to: 10 }, 
+var edges = new vis.DataSet([{ from: 197, to: 48 }, 
+{ from: 197, to: 6 }, 
+{ from: 197, to: 14 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

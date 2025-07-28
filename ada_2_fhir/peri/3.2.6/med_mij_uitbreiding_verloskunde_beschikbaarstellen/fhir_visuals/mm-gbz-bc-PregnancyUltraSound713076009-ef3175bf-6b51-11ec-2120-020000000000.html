@@ -1,6 +1,6 @@
 <html lang="en">
    <head>
-      <title>DiagnosticReport - cd55d5bf-6af4-11ec-2120-020000000000</title>
+      <title>DiagnosticReport - ef3175bf-6b51-11ec-2120-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -46,6 +46,10 @@
                      <th>Resultaat</th>
                      <td>foetale schedelomvang Patient-Foetus</td>
                   </tr>
+                  <tr>
+                     <th>Resultaat</th>
+                     <td>foetale hartslag hartfrequentie Patient-Foetus</td>
+                  </tr>
                </tbody>
             </table>
          </div>
@@ -62,7 +66,8 @@ var nodes = new vis.DataSet([
 { id: 85, label: "Observation interpretatie van echografie", url: "mm-gbz-nl-core-observation290201000146101-162f7dbf-6b39-11ec-2891-020000000000.html" }, 
 { id: 86, label: "Observation Fetal Abdomen Circumference US", url: "mm-gbz-nl-core-observation11979-2-787efb9f-6b29-11ec-2351-020000000000.html" }, 
 { id: 87, label: "Observation hoofdomtrek (waarneembare entiteit)", url: "mm-gbz-zib-HeadCircumference363812007-e20e2e86-6aee-11ec-2362-020000000000.html" }, 
-{ id: 110, label: "DiagnosticReport prenatale risico-evaluatie (verrichting)", url: "mm-gbz-bc-PregnancyUltraSound713076009-cd55d5bf-6af4-11ec-2120-020000000000.html" }, 
+{ id: 88, label: "Observation foetale hartfrequentie (waarneembare entiteit)", url: "mm-gbz-zib-HeartRate249043002-3a7d506e-6b4f-11ec-2178-020000000000.html" }, 
+{ id: 110, label: "DiagnosticReport prenatale risico-evaluatie (verrichting)", url: "mm-gbz-bc-PregnancyUltraSound713076009-ef3175bf-6b51-11ec-2120-020000000000.html" }, 
 ]);
 
 // create an array with edges
@@ -71,6 +76,7 @@ var edges = new vis.DataSet([{ from: 110, to: 1 },
 { from: 110, to: 85 }, 
 { from: 110, to: 86 }, 
 { from: 110, to: 87 }, 
+{ from: 110, to: 88 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");
