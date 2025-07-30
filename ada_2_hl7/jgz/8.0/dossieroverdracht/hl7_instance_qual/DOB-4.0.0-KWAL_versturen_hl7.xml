@@ -2,11 +2,13 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xmlns="urn:hl7-org:v3"
                    xmlns:hl7="urn:hl7-org:v3"
+                   xmlns:util="urn:hl7:utilities"
+                   xmlns:nf="http://www.nictiz.nl/functions"
                    xmlns:xs="http://www.w3.org/2001/XMLSchema"
                    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
-   <id extension="1243567"
-       root="2.16.528.1.1007.3.3.12345678.1"/>
-   <creationTime value="20000101000000"/>
+   <id extension="{$messageId}"
+       root="{$messageIdRoot}"/>
+   <creationTime value="{current-dateTime()}"/>
    <versionCode code="NICTIZEd2005-Okt"/>
    <interactionId extension="REPC_IN902120NL04"
                   root="2.16.840.1.113883.1.6"/>
@@ -106,7 +108,7 @@
                                                      code="M"
                                                      codeSystem="2.16.840.1.113883.5.1"
                                                      displayName="Mannelijk"/>
-                           <birthTime value="19850101"/>
+                           <birthTime value="{format-dateTime(current-dateTime() - xs:yearMonthDuration(P15Y), '[Y0001]-[M01]-[D01]')}"/>
                         </patientPerson>
                      </patient>
                   </subject>
@@ -124,7 +126,7 @@
                         <code code="03"
                               codeSystem="2.16.840.1.113883.2.4.4.40.303"
                               displayName="Verwijsbrief"/>
-                        <effectiveTime value="20000101"/>
+                        <effectiveTime value="{format-dateTime(current-dateTime(), '[Y0001]-[M01]-[D01]')}"/>
                      </document>
                   </appendage>
                   <authorization typeCode="AUTH"
@@ -136,7 +138,7 @@
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Toestemming gegevensuitwisseling RVP"/>
                         <author typeCode="AUT">
-                           <time value="19850601"/>
+                           <time value="{format-dateTime(current-dateTime() - xs:yearMonthDuration(P15Y) + xs:yearMonthDuration(P5M), '[Y0001]-[M01]-[D01]')}"/>
                            <responsibleParty classCode="CON">
                               <code xsi:type="CV"
                                     code="03"
@@ -178,7 +180,7 @@
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contact 4 tot 12 jaar"/>
                         <statusCode code="completed"/>
-                        <effectiveTime value="19960101"/>
+                        <effectiveTime value="{format-dateTime(current-dateTime() - xs:yearMonthDuration(P15Y) + xs:yearMonthDuration(P11Y), '[Y0001]-[M01]-[D01]')}"/>
                         <reasonCode code="34"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.373"
                                     displayName="Bewegingsapparaat"/>
@@ -947,7 +949,7 @@
                                     <code code="1345"
                                           codeSystem="2.16.840.1.113883.2.4.4.40.267"
                                           displayName="Bijzonderheden SPP"/>
-                                    <effectiveTime value="19960101"/>
+                                    <effectiveTime value="{format-dateTime(current-dateTime() - xs:yearMonthDuration(P15Y) + xs:yearMonthDuration(P11Y), '[Y0001]-[M01]-[D01]')}"/>
                                     <value xsi:type="ST">Geen bijzonderheden</value>
                                     <methodCode code="14"
                                                 codeSystem="2.16.840.1.113883.2.4.4.40.387"
@@ -1265,7 +1267,7 @@
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contact week 2 t/m 6 maanden"/>
                         <statusCode code="completed"/>
-                        <effectiveTime value="19850201"/>
+                        <effectiveTime value="{format-dateTime(current-dateTime() - xs:yearMonthDuration(P15Y) + xs:yearMonthDuration(P1M), '[Y0001]-[M01]-[D01]')}"/>
                         <reasonCode code="51"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.373"
                                     displayName="Ouder-kindrelatie"/>
@@ -1989,7 +1991,7 @@ mrollen</value>
                               <code code="IMMUNIZ"
                                     codeSystem="2.16.840.1.113883.5.4"
                                     displayName="Immunization"/>
-                              <effectiveTime value="20000101"/>
+                              <effectiveTime value="{format-dateTime(current-dateTime(), '[Y0001]-[M01]-[D01]')}"/>
                               <consumable typeCode="CSM">
                                  <medication classCode="ADMM">
                                     <administrableMedicine classCode="MMAT"
@@ -2034,7 +2036,7 @@ mrollen</value>
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contact 1 tot 4 jaar"/>
                         <statusCode code="completed"/>
-                        <effectiveTime value="19870101"/>
+                        <effectiveTime value="{format-dateTime(current-dateTime() - xs:yearMonthDuration(P15Y) + xs:yearMonthDuration(P2Y), '[Y0001]-[M01]-[D01]')}"/>
                         <reasonCode code="12"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.373"
                                     displayName="Spraak- taalontwikkeling"/>
@@ -2478,7 +2480,7 @@ mrollen</value>
                         <code code="1197"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Status in zorg"/>
-                        <effectiveTime value="19850106"/>
+                        <effectiveTime value="{format-dateTime(current-dateTime() - xs:yearMonthDuration(P15Y) + xs:dayTimeDuration(P5D), '[Y0001]-[M01]-[D01]')}"/>
                         <reasonCode code="01"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.376"
                                     displayName="Regulier"/>
@@ -2491,7 +2493,7 @@ mrollen</value>
                         <code code="487"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Zorgbeëindiging"/>
-                        <effectiveTime value="20000101"/>
+                        <effectiveTime value="{format-dateTime(current-dateTime(), '[Y0001]-[M01]-[D01]')}"/>
                         <reasonCode code="01"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.82"
                                     displayName="Overdracht naar een andere JGZ-organisatie"/>
