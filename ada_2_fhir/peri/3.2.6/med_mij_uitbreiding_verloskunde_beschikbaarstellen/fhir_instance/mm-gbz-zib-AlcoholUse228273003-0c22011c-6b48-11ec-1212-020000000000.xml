@@ -76,13 +76,6 @@
    </valueCodeableConcept>
    <comment value="Sinds afspraak huisarts bekend dat ze zwanger is en toen gestopt"/>
    <component>
-      <dataAbsentReason>
-         <coding>
-            <system value="http://terminology.hl7.org/CodeSystem/data-absent-reason"/>
-            <code value="not-performed"/>
-            <display value="Not Applicable"/>
-         </coding>
-      </dataAbsentReason>
       <code>
          <coding>
             <system value="http://snomed.info/sct"/>
@@ -90,10 +83,12 @@
             <display value="inname van alcoholische drank (waarneembare entiteit)"/>
          </coding>
       </code>
-      <valueQuantity>
-         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-            <valueCode value="NA"/>
-         </extension>
-      </valueQuantity>
+      <dataAbsentReason>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/data-absent-reason"/>
+            <code value="not-performed"/>
+            <display value="Not Applicable"/>
+         </coding>
+      </dataAbsentReason>
    </component>
 </Observation>

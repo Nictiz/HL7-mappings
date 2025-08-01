@@ -123,13 +123,6 @@
       </valueCodeableConcept>
    </component>
    <component>
-      <dataAbsentReason>
-         <coding>
-            <system value="http://terminology.hl7.org/CodeSystem/data-absent-reason"/>
-            <code value="unknown"/>
-            <display value="Asked But Unknown"/>
-         </coding>
-      </dataAbsentReason>
       <code>
          <coding>
             <system value="http://snomed.info/sct"/>
@@ -137,13 +130,6 @@
             <display value="Tobacco smoking consumption (observable entity)"/>
          </coding>
       </code>
-      <valueQuantity>
-         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-            <valueCode value="ASKU"/>
-         </extension>
-      </valueQuantity>
-   </component>
-   <component>
       <dataAbsentReason>
          <coding>
             <system value="http://terminology.hl7.org/CodeSystem/data-absent-reason"/>
@@ -151,6 +137,8 @@
             <display value="Asked But Unknown"/>
          </coding>
       </dataAbsentReason>
+   </component>
+   <component>
       <code>
          <coding>
             <system value="http://snomed.info/sct"/>
@@ -158,10 +146,12 @@
             <display value="Cigarette pack-years (observable entity)"/>
          </coding>
       </code>
-      <valueQuantity>
-         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-            <valueCode value="ASKU"/>
-         </extension>
-      </valueQuantity>
+      <dataAbsentReason>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/data-absent-reason"/>
+            <code value="unknown"/>
+            <display value="Asked But Unknown"/>
+         </coding>
+      </dataAbsentReason>
    </component>
 </Observation>

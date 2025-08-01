@@ -27,7 +27,6 @@
                      <span title="bevinding betreffende gezinssamenstelling (bevinding) (365481000 - SNOMED CT)">bevinding betreffende gezinssamenstelling (bevinding)</span>
                   </td>
                   <td>
-                     <i>anders (ontbrekend gegeven)</i>
                      <div>
                         <i>
                            <span title="Anders (OTH - v3/NullFlavor)">Anders</span>
@@ -73,13 +72,6 @@
       <display value="Zwangerschap 2 P1-Maaike"/>
    </context>
    <component>
-      <dataAbsentReason>
-         <coding>
-            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
-            <code value="OTH"/>
-            <display value="Anders"/>
-         </coding>
-      </dataAbsentReason>
       <code>
          <coding>
             <system value="http://snomed.info/sct"/>
@@ -87,11 +79,13 @@
             <display value="bevinding betreffende gezinssamenstelling (bevinding)"/>
          </coding>
       </code>
-      <valueCodeableConcept>
-         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-            <valueCode value="OTH"/>
-         </extension>
-      </valueCodeableConcept>
+      <dataAbsentReason>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="Anders"/>
+         </coding>
+      </dataAbsentReason>
    </component>
    <component>
       <!--ouder_verzorger/contactpersoon -->
