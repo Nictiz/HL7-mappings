@@ -20,6 +20,10 @@
                   <td>prenatale controle T-146D{12:31} P1-Maaike</td>
                </tr>
                <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td> tot ${DATE, T, D, -147}</td>
+               </tr>
+               <tr>
                   <th>Code</th>
                   <th>Waarde</th>
                </tr>
@@ -67,6 +71,14 @@
       <reference value="Encounter/8bb5b91f-6aed-11ec-1275-020000000000"/>
       <display value="prenatale controle T-146D{12:31} P1-Maaike"/>
    </context>
+   <effectivePeriod>
+      <start>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+            <valueCode value="ASKU"/>
+         </extension>
+      </start>
+      <end value="${DATE, T, D, -147}"/>
+   </effectivePeriod>
    <valueCodeableConcept>
       <coding>
          <system value="http://snomed.info/sct"/>
