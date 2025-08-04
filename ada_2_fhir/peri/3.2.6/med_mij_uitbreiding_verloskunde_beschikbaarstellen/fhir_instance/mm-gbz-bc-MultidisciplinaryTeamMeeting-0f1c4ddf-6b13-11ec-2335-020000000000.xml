@@ -14,12 +14,17 @@
                <tr>
                   <th>Type contact</th>
                   <td>
-                     <div/>
-                  </td>
+                     <div>
+                        <span title="multidisciplinair overleg (verrichting) (384682003 - 2.16.840.1.113883.6.96)">multidisciplinair overleg (verrichting)</span>
+                     </div>Overdracht</td>
                </tr>
                <tr>
                   <th>Periode</th>
                   <td>Vanaf ${DATE, T, D, -145}</td>
+               </tr>
+               <tr>
+                  <th>Probleem/Verrichting</th>
+                  <td>probleem P1-Maaike</td>
                </tr>
             </tbody>
          </table>
@@ -31,13 +36,13 @@
    </identifier>
    <status value="unknown"/>
    <class>
-      <coding>
-         <system value="2.16.840.1.113883.6.96"/>
-         <code value="384682003"/>
-         <display value="multidisciplinair overleg (verrichting)"/>
-      </coding>
+      <system value="2.16.840.1.113883.6.96"/>
+      <code value="384682003"/>
+      <display value="multidisciplinair overleg (verrichting)"/>
    </class>
-   <type value="Overdracht"/>
+   <type>
+      <text value="Overdracht"/>
+   </type>
    <subject>
       <reference value="Patient/MAAIKE-M-MAAIKE-OSTENDORF"/>
       <display value="Maaike M Maaike Ostendorf"/>
@@ -49,10 +54,10 @@
    <period>
       <start value="${DATE, T, D, -145}"/>
    </period>
-   <dianogsis>
+   <diagnosis>
       <condition>
          <reference value="Condition/8057b0cf-6b6d-11ec-2884-020000000000"/>
          <display value="probleem P1-Maaike"/>
       </condition>
-   </dianogsis>
+   </diagnosis>
 </Encounter>
