@@ -1,6 +1,6 @@
 <Observation xmlns="http://hl7.org/fhir">
-   <!-- Source: gz-ize-kwa-casus1 /adaxml/data/med_mij_echo_beschikbaarstellen/medisch_onderzoek/foetusspecifieke_onderzoeksgegevens/echoscopie/bevindingen/sonomarkers_observatie -->
-   <id value="7224b919-6ad1-11ec-2784-020000000000"/>
+   <!-- Source: gz-ize-kwa-casus1 /adaxml/data/med_mij_echo_beschikbaarstellen/medisch_onderzoek/foetusspecifieke_onderzoeksgegevens/echoscopie/bevindingen/orgaansysteem_foetus_observatie -->
+   <id value="6e3c3392-6b00-11ec-2783-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-FetusObservation"/>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
@@ -30,9 +30,11 @@
                   <th>Waarde</th>
                </tr>
                <tr>
-                  <td>SonomarkerWaarde</td>
                   <td>
-                     <span title="Geen sonomarker geconstateerd (1 - 2.16.840.1.113883.2.4.4.13.54)">Geen sonomarker geconstateerd</span>
+                     <span title="structuur van wervelkolom (lichaamsstructuur)+structuur van medulla spinalis (lichaamsstructuur) (421060004+2748008 - SNOMED CT)">structuur van wervelkolom (lichaamsstructuur)+structuur van medulla spinalis (lichaamsstructuur)</span>
+                  </td>
+                  <td>
+                     <span title="Verdenking afwijking (2 - 2.16.840.1.113883.2.4.4.13.55)">Verdenking afwijking</span>
                   </td>
                </tr>
             </tbody>
@@ -47,11 +49,15 @@
    </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="7224b919-6ad1-11ec-2784-020000000000"/>
+      <value value="6e3c3392-6b00-11ec-2783-020000000000"/>
    </identifier>
    <status value="final"/>
    <code>
-      <text value="SonomarkerWaarde"/>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="421060004+2748008"/>
+         <display value="structuur van wervelkolom (lichaamsstructuur)+structuur van medulla spinalis (lichaamsstructuur)"/>
+      </coding>
    </code>
    <subject>
       <reference value="Patient/LEONIE-L-XXX-OSSE"/>
@@ -64,9 +70,9 @@
    <effectiveDateTime value="${DATE, T, D, -570}"/>
    <valueCodeableConcept>
       <coding>
-         <system value="urn:oid:2.16.840.1.113883.2.4.4.13.54"/>
-         <code value="1"/>
-         <display value="Geen sonomarker geconstateerd"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.13.55"/>
+         <code value="2"/>
+         <display value="Verdenking afwijking"/>
       </coding>
    </valueCodeableConcept>
    <method>
