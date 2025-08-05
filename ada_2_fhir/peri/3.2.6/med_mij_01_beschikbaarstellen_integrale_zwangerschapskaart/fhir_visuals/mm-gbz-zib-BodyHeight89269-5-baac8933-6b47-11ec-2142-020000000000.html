@@ -1,6 +1,6 @@
 <html lang="en">
    <head>
-      <title>Observation - e3f03286-6af2-11ec-2106-020000000000</title>
+      <title>Observation - baac8933-6b47-11ec-2142-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -18,15 +18,11 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Observatie/bepaling. Subject: Jamila J XXX_Kwee. Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
+               <caption>Observatie/bepaling. Subject: Kind F Frida XXX_Kwee. Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
                <tbody>
                   <tr>
                      <th>Context</th>
-                     <td>prenatale controle T-76D XXX_Kwee_Vrouw</td>
-                  </tr>
-                  <tr>
-                     <th>Bepalingdatum/tijd</th>
-                     <td>${DATE, T, D, -76}</td>
+                     <td>Zwangerschap 1 XXX_Kwee_Vrouw</td>
                   </tr>
                   <tr>
                      <th>Code</th>
@@ -34,45 +30,29 @@
                   </tr>
                   <tr>
                      <td>
-                        <span title="Blood pressure panel with all children optional (85354-9 - LOINC)">Blood pressure panel with all children optional</span>
+                        <span title="Body height Measured --at birth (89269-5 - LOINC)">Body height Measured --at birth</span>
                      </td>
-                     <td/>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span title="Systolic blood pressure (8480-6 - LOINC)">Systolic blood pressure</span>
-                     </td>
-                     <td>115</td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span title="Diastolic blood pressure (8462-4 - LOINC)">Diastolic blood pressure</span>
-                     </td>
-                     <td>75</td>
+                     <td>48 cm</td>
                   </tr>
                </tbody>
             </table>
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Observation Blood pressure panel with all children optional</b>
+         <b>Resources pointing to 'this' resource - Observation Body height Measured --at birth</b>
       </p>
-      <ul>
-         <li>
-            <a href="mm-gbz-zib-Pregnancy-Duration57036006-60e7a8c6-6aff-11ec-2702-020000000000.html">Observation zwangerschapsduur (waarneembare entiteit)</a>
-         </li>
-      </ul>
+      <div> - none</div>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 1, label: "Patient XXX_Kwee", url: "mm-gbz-bc-Woman-JAMILA-J-XXX-KWEE.html" }, 
-{ id: 56, label: "Observation Blood pressure panel with all children optional", url: "mm-gbz-zib-BloodPressure85354-9-e3f03286-6af2-11ec-2106-020000000000.html" }, 
-{ id: 75, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-51f62ba6-6b5b-11ec-1275-020000000000.html" }, 
+{ id: 2, label: "Patient XXX_Kwee", url: "mm-gbz-bc-Child-F-FRIDA-XXX-KWEE.html" }, 
+{ id: 9, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-c934f973-6b23-11ec-0000-020000000000.html" }, 
+{ id: 27, label: "Observation Body height Measured --at birth", url: "mm-gbz-zib-BodyHeight89269-5-baac8933-6b47-11ec-2142-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 56, to: 1 }, 
-{ from: 56, to: 75 }, 
+var edges = new vis.DataSet([{ from: 27, to: 2 }, 
+{ from: 27, to: 9 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

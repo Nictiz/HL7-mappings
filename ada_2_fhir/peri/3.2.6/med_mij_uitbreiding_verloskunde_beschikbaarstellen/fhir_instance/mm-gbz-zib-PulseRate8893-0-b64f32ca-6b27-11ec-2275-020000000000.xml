@@ -1,14 +1,14 @@
 <Observation xmlns="http://hl7.org/fhir">
-   <!-- Source: gz-izv-kwa-casus4 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/kind/lichamelijk_onderzoek_kind/lichaamslengte -->
-   <id value="17378d46-6b35-11ec-2142-020000000000"/>
+   <!-- Source: gz-izv-kwa-casus4 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/postnatale_fase/kraamweek/vrouw/controles_moeder/polsfrequentie -->
+   <id value="b64f32ca-6b27-11ec-2275-020000000000"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyHeight"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-PulseRate"/>
    </meta>
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Observatie/bepaling. Subject: Kind Mieke XXX_Yzendoorn. Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
+            <caption>Observatie/bepaling. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
             <tbody>
                <tr>
                   <th>Context</th>
@@ -16,7 +16,7 @@
                </tr>
                <tr>
                   <th>Bepalingdatum/tijd</th>
-                  <td>${DATE, T, D, -324}</td>
+                  <td>${DATE, T, D, -320}</td>
                </tr>
                <tr>
                   <th>Code</th>
@@ -24,18 +24,17 @@
                </tr>
                <tr>
                   <td>
-                     <span title="Body height Measured --at birth (89269-5 - LOINC)">Body height Measured --at birth</span>
+                     <span title="Heart rate Peripheral artery by Palpation (8893-0 - LOINC)">Heart rate Peripheral artery by Palpation</span>
                   </td>
-                  <td>48</td>
+                  <td>102 /min</td>
                </tr>
             </tbody>
          </table>
       </div>
    </text>
-   <!-- adaChild -->
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="17378d46-6b35-11ec-2142-020000000000"/>
+      <value value="b64f32ca-6b27-11ec-2275-020000000000"/>
    </identifier>
    <status value="final"/>
    <category>
@@ -48,20 +47,23 @@
    <code>
       <coding>
          <system value="http://loinc.org"/>
-         <code value="89269-5"/>
-         <display value="Body height Measured --at birth"/>
+         <code value="8893-0"/>
+         <display value="Heart rate Peripheral artery by Palpation"/>
       </coding>
    </code>
    <subject>
-      <reference value="Patient/MIEKE-XXX-YZENDOORN"/>
-      <display value="Kind Mieke XXX_Yzendoorn"/>
+      <reference value="Patient/WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG"/>
+      <display value="Willemijn W XXX_Yzendoorn van den XXX_Berg"/>
    </subject>
    <context>
       <reference value="EpisodeOfCare/14d1a1ff-6b66-11ec-0000-020000000000"/>
       <display value="Zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
    </context>
-   <effectiveDateTime value="${DATE, T, D, -324}"/>
+   <effectiveDateTime value="${DATE, T, D, -320}"/>
    <valueQuantity>
-      <value value="48"/>
+      <value value="102"/>
+      <unit value="/min"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="/min"/>
    </valueQuantity>
 </Observation>

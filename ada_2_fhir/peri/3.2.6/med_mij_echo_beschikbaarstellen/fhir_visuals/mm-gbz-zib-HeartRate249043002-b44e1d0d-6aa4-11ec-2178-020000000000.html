@@ -1,6 +1,6 @@
 <html lang="en">
    <head>
-      <title>Observation - 964452fc-6b75-11ec-2177-020000000000</title>
+      <title>Observation - b44e1d0d-6aa4-11ec-2178-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -18,20 +18,15 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Observatie/bepaling. Subject: Maaike M Maaike Ostendorf. Status: definitief</caption>
-               <tfoot>
-                  <tr>
-                     <td colspan="2">Overleden foetus</td>
-                  </tr>
-               </tfoot>
+               <caption>Observatie/bepaling. Subject: Leonie L XXX_Osse. Status: definitief</caption>
                <tbody>
                   <tr>
                      <th>Context</th>
-                     <td>prenatale controle T-146D{12:31} P1-Maaike</td>
+                     <td>Zwangerschap 2 XXX_Osse_Vrouw</td>
                   </tr>
                   <tr>
                      <th>Bepalingdatum/tijd</th>
-                     <td>${DATE, T, D, -146}T13:09:00+02:00</td>
+                     <td>${DATE, T, D, -3}</td>
                   </tr>
                   <tr>
                      <th>Methode</th>
@@ -47,7 +42,15 @@
                      <td>
                         <span title="foetale hartfrequentie (waarneembare entiteit) (249043002 - SNOMED CT)">foetale hartfrequentie (waarneembare entiteit)</span>
                      </td>
-                     <td>0</td>
+                     <td>140 /min</td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span title="foetaal hartritme (waarneembare entiteit) (249044008 - SNOMED CT)">foetaal hartritme (waarneembare entiteit)</span>
+                     </td>
+                     <td>
+                        <span title="regelmatig hartritme van foetus (bevinding) (289443009 - SNOMED CT)">regelmatig hartritme van foetus (bevinding)</span>
+                     </td>
                   </tr>
                </tbody>
             </table>
@@ -58,20 +61,22 @@
       </p>
       <ul>
          <li>
-            <a href="mm-gbz-zib-Pregnancy-Duration57036006-0a8a011c-6acb-11ec-2702-020000000000.html">Observation zwangerschapsduur (waarneembare entiteit)</a>
+            <a href="mm-gbz-bc-PregnancyUltraSound169228004-0b532cc3-6b36-11ec-2120-020000000000.html">DiagnosticReport echografie voor foetale presentatie (verrichting)</a>
          </li>
       </ul>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
-{ id: 146, label: "Observation foetale hartfrequentie (waarneembare entiteit)", url: "mm-gbz-nl-core-observation249043002-964452fc-6b75-11ec-2177-020000000000.html" }, 
-{ id: 251, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-8bb5b91f-6aed-11ec-1275-020000000000.html" }, 
+{ id: 1, label: "Patient XXX_Osse", url: "mm-gbz-bc-Woman-LEONIE-L-XXX-OSSE.html" }, 
+{ id: 8, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-eadc3c53-6b19-11ec-0000-020000000000.html" }, 
+{ id: 12, label: "BodySite gehele foetus (lichaamsstructuur)", url: "mm-gbz-bc-Fetus83418008-cbb5dafb-6b4f-11ec-1267-020000000000.html" }, 
+{ id: 18, label: "Observation foetale hartfrequentie (waarneembare entiteit)", url: "mm-gbz-zib-HeartRate249043002-b44e1d0d-6aa4-11ec-2178-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 146, to: 1 }, 
-{ from: 146, to: 251 }, 
+var edges = new vis.DataSet([{ from: 18, to: 12 }, 
+{ from: 18, to: 1 }, 
+{ from: 18, to: 8 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

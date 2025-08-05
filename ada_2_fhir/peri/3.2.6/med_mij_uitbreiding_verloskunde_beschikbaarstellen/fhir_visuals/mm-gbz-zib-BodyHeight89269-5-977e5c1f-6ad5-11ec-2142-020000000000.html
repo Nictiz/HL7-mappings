@@ -1,6 +1,6 @@
 <html lang="en">
    <head>
-      <title>Observation - e390f6c6-6b07-11ec-2142-020000000000</title>
+      <title>Observation - 977e5c1f-6ad5-11ec-2142-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -18,11 +18,15 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Observatie/bepaling. Subject: Kind F Frida XXX_Kwee. Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
+               <caption>Observatie/bepaling. Subject: Kind Mieke XXX_Yzendoorn. Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
                <tbody>
                   <tr>
                      <th>Context</th>
-                     <td>Zwangerschap 1 XXX_Kwee_Vrouw</td>
+                     <td>Zwangerschap 2 Vrouw-XXX_Yzendoorn</td>
+                  </tr>
+                  <tr>
+                     <th>Bepalingdatum/tijd</th>
+                     <td>${DATE, T, D, -324}</td>
                   </tr>
                   <tr>
                      <th>Code</th>
@@ -32,7 +36,7 @@
                      <td>
                         <span title="Body height Measured --at birth (89269-5 - LOINC)">Body height Measured --at birth</span>
                      </td>
-                     <td>48</td>
+                     <td>48 cm</td>
                   </tr>
                </tbody>
             </table>
@@ -45,14 +49,14 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 2, label: "Patient XXX_Kwee", url: "mm-gbz-bc-Child-F-FRIDA-XXX-KWEE.html" }, 
-{ id: 9, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-c934f973-6b23-11ec-0000-020000000000.html" }, 
-{ id: 27, label: "Observation Body height Measured --at birth", url: "mm-gbz-zib-BodyHeight89269-5-e390f6c6-6b07-11ec-2142-020000000000.html" }, 
+{ id: 2, label: "Patient XXX_Yzendoorn", url: "mm-gbz-bc-Child-MIEKE-XXX-YZENDOORN.html" }, 
+{ id: 11, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-14d1a1ff-6b66-11ec-0000-020000000000.html" }, 
+{ id: 28, label: "Observation Body height Measured --at birth", url: "mm-gbz-zib-BodyHeight89269-5-977e5c1f-6ad5-11ec-2142-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 27, to: 2 }, 
-{ from: 27, to: 9 }, 
+var edges = new vis.DataSet([{ from: 28, to: 2 }, 
+{ from: 28, to: 11 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

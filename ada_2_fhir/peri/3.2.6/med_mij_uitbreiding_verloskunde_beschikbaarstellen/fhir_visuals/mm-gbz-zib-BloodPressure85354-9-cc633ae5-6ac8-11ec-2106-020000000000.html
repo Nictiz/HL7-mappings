@@ -1,6 +1,6 @@
 <html lang="en">
    <head>
-      <title>Observation - 7792504f-6aea-11ec-2275-020000000000</title>
+      <title>Observation - cc633ae5-6ac8-11ec-2106-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -26,7 +26,7 @@
                   </tr>
                   <tr>
                      <th>Bepalingdatum/tijd</th>
-                     <td>${DATE, T, D, -320}</td>
+                     <td>${DATE, T, D, -315}</td>
                   </tr>
                   <tr>
                      <th>Code</th>
@@ -34,16 +34,28 @@
                   </tr>
                   <tr>
                      <td>
-                        <span title="Heart rate Peripheral artery by Palpation (8893-0 - LOINC)">Heart rate Peripheral artery by Palpation</span>
+                        <span title="Blood pressure panel with all children optional (85354-9 - LOINC)">Blood pressure panel with all children optional</span>
                      </td>
-                     <td>102</td>
+                     <td/>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span title="Systolic blood pressure (8480-6 - LOINC)">Systolic blood pressure</span>
+                     </td>
+                     <td>120 mm[Hg]</td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span title="Diastolic blood pressure (8462-4 - LOINC)">Diastolic blood pressure</span>
+                     </td>
+                     <td>70 mm[Hg]</td>
                   </tr>
                </tbody>
             </table>
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Observation Heart rate Peripheral artery by Palpation</b>
+         <b>Resources pointing to 'this' resource - Observation Blood pressure panel with all children optional</b>
       </p>
       <div> - none</div>
       <div id="mynetwork"> </div>
@@ -51,12 +63,12 @@
 var nodes = new vis.DataSet([
 { id: 1, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-bc-Woman-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
 { id: 11, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-14d1a1ff-6b66-11ec-0000-020000000000.html" }, 
-{ id: 70, label: "Observation Heart rate Peripheral artery by Palpation", url: "mm-gbz-zib-PulseRate8893-0-7792504f-6aea-11ec-2275-020000000000.html" }, 
+{ id: 91, label: "Observation Blood pressure panel with all children optional", url: "mm-gbz-zib-BloodPressure85354-9-cc633ae5-6ac8-11ec-2106-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 70, to: 1 }, 
-{ from: 70, to: 11 }, 
+var edges = new vis.DataSet([{ from: 91, to: 1 }, 
+{ from: 91, to: 11 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");
