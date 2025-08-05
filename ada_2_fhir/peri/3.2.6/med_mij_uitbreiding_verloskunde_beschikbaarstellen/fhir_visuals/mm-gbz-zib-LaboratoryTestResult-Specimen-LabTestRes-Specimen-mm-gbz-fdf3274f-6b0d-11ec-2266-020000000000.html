@@ -18,7 +18,7 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Specimen. Subject: . Id: 20250611-6745</caption>
+               <caption>Specimen. Subject: Maaike M Maaike Ostendorf. Id: 20250611-6745</caption>
                <tbody>
                   <tr>
                      <th>Type</th>
@@ -61,11 +61,13 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
+{ id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
 { id: 78, label: "Specimen veneus bloed (monster)", url: "mm-gbz-zib-LaboratoryTestResult-Specimen-LabTestRes-Specimen-mm-gbz-fdf3274f-6b0d-11ec-2266-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([]);
+var edges = new vis.DataSet([{ from: 78, to: 1 }, 
+]);
 // create a network
 var container = document.getElementById("mynetwork");
 var data = {
