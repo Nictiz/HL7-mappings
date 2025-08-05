@@ -8,7 +8,7 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Observatie/bepaling. Subject: Maaike M Maaike Ostendorf. Status: definitief</caption>
+            <caption>Observatie/bepaling. Subject: Maaike M Maaike Ostendorf. Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
             <tbody>
                <tr>
                   <th>Context</th>
@@ -32,7 +32,7 @@
                   <td>
                      <span title="hoofdomtrek (waarneembare entiteit) (363812007 - SNOMED CT)">hoofdomtrek (waarneembare entiteit)</span>
                   </td>
-                  <td>220 mm</td>
+                  <td>22 cm</td>
                </tr>
             </tbody>
          </table>
@@ -49,11 +49,24 @@
       <value value="8aa59f62-6ae4-11ec-2362-020000000000"/>
    </identifier>
    <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://hl7.org/fhir/observation-category"/>
+         <code value="vital-signs"/>
+         <display value="Vital Signs"/>
+      </coding>
+   </category>
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
          <code value="363812007"/>
          <display value="hoofdomtrek (waarneembare entiteit)"/>
+      </coding>
+      <!-- FHIR Vital Signs -->
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="9843-4"/>
+         <display value="Fronto-occipitale omtrek [afmeting] in hoofd"/>
       </coding>
       <!-- zib-HeadCircumference -->
       <coding>
@@ -72,10 +85,10 @@
    </context>
    <effectiveDateTime value="${DATE, T, D, -146}T13:10:00+02:00"/>
    <valueQuantity>
-      <value value="220"/>
-      <unit value="mm"/>
+      <value value="22"/>
+      <unit value="cm"/>
       <system value="http://unitsofmeasure.org"/>
-      <code value="mm"/>
+      <code value="cm"/>
    </valueQuantity>
    <method>
       <coding>
