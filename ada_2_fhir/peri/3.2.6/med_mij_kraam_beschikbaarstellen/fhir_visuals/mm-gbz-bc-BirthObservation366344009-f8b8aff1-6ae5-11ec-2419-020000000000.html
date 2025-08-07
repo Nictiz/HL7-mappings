@@ -1,0 +1,102 @@
+<html lang="en">
+   <head>
+      <title>Observation - f8b8aff1-6ae5-11ec-2419-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Observatie/bepaling. Subject: Kind Lisa L XXX_Hollanders. Status: definitief</caption>
+               <tbody>
+                  <tr>
+                     <th>Context</th>
+                     <td>partusassistentie contact Dagopname XXX_Hollanders_Vrouw</td>
+                  </tr>
+                  <tr>
+                     <th>Bepalingdatum/tijd</th>
+                     <td>${DATE, T, D, -112}</td>
+                  </tr>
+                  <tr>
+                     <th>Code</th>
+                     <th>Waarde</th>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span title="bevinding betreffende locatie van partus (366344009 - SNOMED CT)">bevinding betreffende locatie van partus</span>
+                     </td>
+                     <td>
+                        <span title="geboorte in ziekenhuis (bevinding) (56321000146103 - SNOMED CT)">geboorte in ziekenhuis (bevinding)</span>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Observation bevinding betreffende locatie van partus</b>
+      </p>
+      <div> - none</div>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 2, label: "Patient XXX_Hollanders", url: "mm-gbz-bc-Child-LISA-L-XXX-HOLLANDERS.html" }, 
+{ id: 42, label: "Observation bevinding betreffende locatie van partus", url: "mm-gbz-bc-BirthObservation366344009-f8b8aff1-6ae5-11ec-2419-020000000000.html" }, 
+{ id: 59, label: "Procedure geboorte (bevinding)", url: "mm-gbz-bc-Birth3950001-eb227a2d-6b38-11ec-2123-020000000000.html" }, 
+{ id: 61, label: "Encounter ondersteuning durante partu (regime/therapie)", url: "mm-gbz-bc-ChildBirthAssistance-6032c783-6b01-11ec-1071-020000000000.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 42, to: 59 }, 
+{ from: 42, to: 2 }, 
+{ from: 42, to: 61 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>
