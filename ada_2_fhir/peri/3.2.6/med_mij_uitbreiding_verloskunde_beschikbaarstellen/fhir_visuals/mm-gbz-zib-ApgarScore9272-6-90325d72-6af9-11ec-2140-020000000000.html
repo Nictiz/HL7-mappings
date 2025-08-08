@@ -1,6 +1,6 @@
 <html lang="en">
    <head>
-      <title>Observation - cb64acc7-6a95-11ec-2966-020000000000</title>
+      <title>Observation - 90325d72-6af9-11ec-2140-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -25,21 +25,25 @@
                      <td>Zwangerschap 1 XXX_Swart</td>
                   </tr>
                   <tr>
+                     <th>Bepalingdatum/tijd</th>
+                     <td>${DATE, T, D, -10}T11:41:00+02:00</td>
+                  </tr>
+                  <tr>
                      <th>Code</th>
                      <th>Waarde</th>
                   </tr>
                   <tr>
                      <td>
-                        <span title="5 minute Apgar Score (9274-2 - LOINC)">5 minute Apgar Score</span>
+                        <span title="1 minute Apgar Score (9272-6 - LOINC)">1 minute Apgar Score</span>
                      </td>
-                     <td>10</td>
+                     <td>7</td>
                   </tr>
                </tbody>
             </table>
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Observation 5 minute Apgar Score</b>
+         <b>Resources pointing to 'this' resource - Observation 1 minute Apgar Score</b>
       </p>
       <div> - none</div>
       <div id="mynetwork"> </div>
@@ -47,12 +51,12 @@
 var nodes = new vis.DataSet([
 { id: 12, label: "Patient XXX_Swart", url: "mm-gbz-bc-Child-JAN-J-XXX-SWART.html" }, 
 { id: 17, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-8b4a1a6f-6b0c-11ec-0000-020000000000.html" }, 
-{ id: 36, label: "Observation 5 minute Apgar Score", url: "mm-gbz-zib-ApgarScore9274-2-cb64acc7-6a95-11ec-2966-020000000000.html" }, 
+{ id: 35, label: "Observation 1 minute Apgar Score", url: "mm-gbz-zib-ApgarScore9272-6-90325d72-6af9-11ec-2140-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 36, to: 12 }, 
-{ from: 36, to: 17 }, 
+var edges = new vis.DataSet([{ from: 35, to: 12 }, 
+{ from: 35, to: 17 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

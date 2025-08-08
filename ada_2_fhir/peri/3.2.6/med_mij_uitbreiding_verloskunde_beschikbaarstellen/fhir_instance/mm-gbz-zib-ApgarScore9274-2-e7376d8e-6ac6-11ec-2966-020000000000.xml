@@ -1,6 +1,6 @@
 <Observation xmlns="http://hl7.org/fhir">
    <!-- Source: gz-izv-kwa-casus2 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/kind/lichamelijk_onderzoek_kind/bevindingen/algemene_indruk/apgar_score5min -->
-   <id value="cb64acc7-6a95-11ec-2966-020000000000"/>
+   <id value="e7376d8e-6ac6-11ec-2966-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ApgarScore"/>
    </meta>
@@ -8,11 +8,15 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Observatie/bepaling. Subject: Kind Jan J XXX_Swart. Status: definitief</caption>
+            <caption>Observatie/bepaling. Subject: Kind Lilianne L XXX_Swart. Status: definitief</caption>
             <tbody>
                <tr>
                   <th>Context</th>
                   <td>Zwangerschap 1 XXX_Swart</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -10}T11:55:00+02:00</td>
                </tr>
                <tr>
                   <th>Code</th>
@@ -22,7 +26,7 @@
                   <td>
                      <span title="5 minute Apgar Score (9274-2 - LOINC)">5 minute Apgar Score</span>
                   </td>
-                  <td>10</td>
+                  <td>9</td>
                </tr>
             </tbody>
          </table>
@@ -31,7 +35,7 @@
    <!-- adaChild -->
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="cb64acc7-6a95-11ec-2966-020000000000"/>
+      <value value="e7376d8e-6ac6-11ec-2966-020000000000"/>
    </identifier>
    <status value="final"/>
    <code>
@@ -42,14 +46,15 @@
       </coding>
    </code>
    <subject>
-      <reference value="Patient/JAN-J-XXX-SWART"/>
-      <display value="Kind Jan J XXX_Swart"/>
+      <reference value="Patient/LILIANNE-L-XXX-SWART"/>
+      <display value="Kind Lilianne L XXX_Swart"/>
    </subject>
    <context>
       <reference value="EpisodeOfCare/8b4a1a6f-6b0c-11ec-0000-020000000000"/>
       <display value="Zwangerschap 1 XXX_Swart"/>
    </context>
+   <effectiveDateTime value="${DATE, T, D, -10}T11:55:00+02:00"/>
    <valueQuantity>
-      <value value="10"/>
+      <value value="9"/>
    </valueQuantity>
 </Observation>
