@@ -1,0 +1,91 @@
+<Location xmlns="http://hl7.org/fhir">
+   <id value="location-mm-gbz-2-16-840-1-113883-2-4-6-1-08001234"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-location"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Locatie. Id: 08001234 (AGB-Z)</caption>
+            <tbody>
+               <tr>
+                  <th>Naam</th>
+                  <td/>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:0685749685">0685749685</a> (Mobiel)<br/>
+                     <a href="mailto:verloskundigenpraktijktgroen@test.nu">verloskundigenpraktijktgroen@test.nu</a> (E-mail)<br/>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Adres</th>
+                  <td>Groeneweg 1000, 1234ZZ STITSWERD, NL (WP)</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+      <value value="08001234"/>
+   </identifier>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="MC"/>
+               <display value="Mobiel telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="0685749685"/>
+      <use value="mobile"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="verloskundigenpraktijktgroen@test.nu"/>
+   </telecom>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="WP"/>
+               <display value="Werkadres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="work"/>
+      <line value="Groeneweg 1000">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Groeneweg"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="1000"/>
+         </extension>
+      </line>
+      <city value="STITSWERD"/>
+      <postalCode value="1234ZZ"/>
+      <country value="NL">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:iso:std:iso:3166"/>
+                  <version value="2020-10-26T00:00:00"/>
+                  <code value="NL"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+   <managingOrganization>
+      <reference value="Organization/organization-mm-gbz-2-16-840-1-113883-2-4-6-1-08001234"/>
+      <display value="Verloskundigenpraktijk 't Groen"/>
+   </managingOrganization>
+</Location>

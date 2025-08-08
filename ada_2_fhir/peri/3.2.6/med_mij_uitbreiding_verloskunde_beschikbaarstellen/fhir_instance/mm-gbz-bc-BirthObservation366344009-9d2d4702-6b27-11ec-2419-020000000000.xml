@@ -1,0 +1,79 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-kwa-casus2 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/bevalling/uitdrijvingsfase/werkelijke_plaats_baring_type_locatie_observatie -->
+   <id value="9d2d4702-6b27-11ec-2419-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-BirthObservation"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Kind Jan J XXX_Swart. Status: definitief</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">geplande sectio</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 1 XXX_Swart</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -10}T11:38:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="bevinding betreffende locatie van partus (366344009 - SNOMED CT)">bevinding betreffende locatie van partus</span>
+                  </td>
+                  <td>
+                     <span title="geboorte in ziekenhuis (bevinding) (56321000146103 - SNOMED CT)">geboorte in ziekenhuis (bevinding)</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
+      <valueReference>
+         <reference value="Procedure/be71a8c7-6ae9-11ec-2123-020000000000"/>
+         <display value="uitdrijvingsfase zwangerschap 1 XXX_Swart"/>
+      </valueReference>
+   </extension>
+   <!-- adaChild -->
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="9d2d4702-6b27-11ec-2419-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="366344009"/>
+         <display value="bevinding betreffende locatie van partus"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/JAN-J-XXX-SWART"/>
+      <display value="Kind Jan J XXX_Swart"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/8b4a1a6f-6b0c-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Swart"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -10}T11:38:00+02:00"/>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="56321000146103"/>
+         <display value="geboorte in ziekenhuis (bevinding)"/>
+      </coding>
+   </valueCodeableConcept>
+   <comment value="geplande sectio"/>
+</Observation>

@@ -1,0 +1,128 @@
+<html lang="en">
+   <head>
+      <title>Patient - JAN-J-XXX-SWART</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <div>
+               <span title="Naamsamenstelling: Eigennaam">Jan XXX_Swart</span>, Man, Meerling</div>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Patient XXX_Swart</b>
+      </p>
+      <ul>
+         <li>
+            <a href="mm-gbz-zib-BodyWeight8339-4-87372447-6b25-11ec-2141-020000000000.html">Observation Lichaamsgewicht^bij geboorte [massa] d.m.v. meting</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-BodyHeight89269-5-59566c25-6b13-11ec-2142-020000000000.html">Observation Lichaamslengte^bij geboorte [afmeting] d.m.v. meting</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-HeadCircumference9843-4-5af6bdde-6ab5-11ec-2142-020000000000.html">Observation Fronto-occipitale omtrek [afmeting] in hoofd</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-ApgarScore9272-6-916a2730-6b74-11ec-2140-020000000000.html">Observation 1 minute Apgar Score</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-ApgarScore9274-2-cb64acc7-6a95-11ec-2966-020000000000.html">Observation 5 minute Apgar Score</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-ApgarScore9271-8-cb64acc7-6a95-11ec-2967-020000000000.html">Observation 10 minute Apgar Score</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ChildObservation364528001-2f850c43-6b32-11ec-2296-020000000000.html">Observation observatie betreffende huid (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ChildObservation364403006-85d3fc43-6b51-11ec-2296-020000000000.html">Observation observatie betreffende hoofd-halsregio (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ChildObservation364434005-94aedc43-6abf-11ec-2297-020000000000.html">Observation aspect van thorax (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ChildObservation364446009-11571c43-6b28-11ec-2307-020000000000.html">Observation algemene kenmerken van abdomen (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ChildObservation364415005-e1156c43-6a9a-11ec-2307-020000000000.html">Observation observatie betreffende wervelkolom (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ChildObservation363799009-17cffc43-6aa1-11ec-2308-020000000000.html">Observation kenmerk van extremiteit (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ChildObservation364204002-6edcdc43-6b48-11ec-2304-020000000000.html">Observation observatie betreffende geslachtsorgaan (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ChildObservation363820009-144b7c43-6b58-11ec-2308-020000000000.html">Observation observatie betreffende neurologie (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-BirthObservation364336006-13c7eb36-6ae2-11ec-2414-020000000000.html">Observation soort partus (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-FetusObservation271692001-06e003cf-6aaa-11ec-2416-020000000000.html">Observation presenterend deel van foetus (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-BirthObservation366344009-9d2d4702-6b27-11ec-2419-020000000000.html">Observation bevinding betreffende locatie van partus</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-Birth3950001-be71a8c7-6ae9-11ec-2123-020000000000.html">Procedure geboorte (bevinding)</a>
+         </li>
+      </ul>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 12, label: "Patient XXX_Swart", url: "mm-gbz-bc-Child-JAN-J-XXX-SWART.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

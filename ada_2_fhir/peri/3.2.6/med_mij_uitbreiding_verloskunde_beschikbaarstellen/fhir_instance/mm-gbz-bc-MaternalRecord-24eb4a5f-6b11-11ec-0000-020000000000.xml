@@ -1,0 +1,75 @@
+<EpisodeOfCare xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-tes-casus9999 -->
+   <id value="24eb4a5f-6b11-11ec-0000-020000000000"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-episodeofcare"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MaternalRecord"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgepisode. Patiënt: Maaike M Maaike Ostendorf. Id: 764757, Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <span title="observatie betreffende zwangerschap (waarneembare entiteit) (364320009 - SNOMED CT)">observatie betreffende zwangerschap (waarneembare entiteit)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>${DATE, T, D, -146} - ${DATE, T, D, -9}</td>
+               </tr>
+               <tr>
+                  <th>Zorgmanager</th>
+                  <td>Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis, Stitswerd Ziekenhuis - Stitswerd</td>
+               </tr>
+               <tr>
+                  <th>Diagnose</th>
+                  <td>Zwangerschap 2 P1-Maaike</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <value value="764757"/>
+   </identifier>
+   <status value="finished"/>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="364320009"/>
+         <display value="observatie betreffende zwangerschap (waarneembare entiteit)"/>
+      </coding>
+   </type>
+   <diagnosis>
+      <condition>
+         <reference value="Condition/1970564f-6aba-11ec-2334-020000000000"/>
+         <display value="Zwangerschap 2 P1-Maaike"/>
+      </condition>
+   </diagnosis>
+   <patient>
+      <reference value="Patient/MAAIKE-M-MAAIKE-OSTENDORF"/>
+      <display value="Maaike M Maaike Ostendorf"/>
+   </patient>
+   <managingOrganization>
+      <reference value="Organization/organization-mm-gbz-2-16-528-1-1007-3-3-06019999"/>
+      <display value="Stitswerd Ziekenhuis - Stitswerd"/>
+   </managingOrganization>
+   <period>
+      <start value="${DATE, T, D, -146}"/>
+      <end value="${DATE, T, D, -9}"/>
+   </period>
+   <careManager>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/practitionerrole-mm-gbz-030731670307316706019999"/>
+            <display value="Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167"/>
+      <display value="Suzan S Suzan De Jong"/>
+   </careManager>
+</EpisodeOfCare>

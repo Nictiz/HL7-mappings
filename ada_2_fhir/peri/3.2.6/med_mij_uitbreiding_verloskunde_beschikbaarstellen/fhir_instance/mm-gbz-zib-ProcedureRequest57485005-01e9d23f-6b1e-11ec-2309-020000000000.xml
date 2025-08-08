@@ -1,0 +1,115 @@
+<ProcedureRequest xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-tes-casus9999 -->
+   <id value="01e9d23f-6b1e-11ec-2309-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichtingaanvraag. Subject: Maaike M Maaike Ostendorf. Status: onbekend<span style="display: block;">Intentie: plan</span>
+               <span style="display: block;">Aangevraagd door: Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="zuurstoftherapie (verrichting) (57485005 - SNOMED CT)">zuurstoftherapie (verrichting)</span>
+                  </td>
+                  <td>
+                     <div>Wanneer: ${DATE, T, D, -53} - ${DATE, T, D, -48}</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Beoogde uitvoerende</th>
+                  <td>
+                     <div>Type: <span title="Hoofdbehandelaar (RESP - v3/ParticipationType)">Hoofdbehandelaar</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td/>
+               </tr>
+               <tr>
+                  <td>Deel van lichaam</td>
+                  <td>
+                     <span title="structuur van linker en rechter uitwendig neusgat (lichaamsstructuur) (244506005 - SNOMED CT)">structuur van linker en rechter uitwendig neusgat (lichaamsstructuur)</span>
+                     <span title="Rechts en links (51440002 - SNOMED CT)">Rechts en links</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="01e9d23f-6b1e-11ec-2309-020000000000"/>
+   </identifier>
+   <status value="unknown"/>
+   <intent value="plan"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="57485005"/>
+         <display value="zuurstoftherapie (verrichting)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/MAAIKE-M-MAAIKE-OSTENDORF"/>
+      <display value="Maaike M Maaike Ostendorf"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/24eb4a5f-6b11-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 P1-Maaike"/>
+   </context>
+   <occurrencePeriod>
+      <start value="${DATE, T, D, -53}"/>
+      <end value="${DATE, T, D, -48}"/>
+   </occurrencePeriod>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/practitionerrole-mm-gbz-030731670307316706019999"/>
+               <display value="Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167"/>
+         <display value="Suzan S Suzan De Jong"/>
+      </agent>
+   </requester>
+   <performerType>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+         <code value="RESP"/>
+         <display value="Hoofdbehandelaar"/>
+      </coding>
+   </performerType>
+   <performer>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/practitionerrole-mm-gbz-030731670307316706019999"/>
+            <display value="Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167"/>
+      <display value="Suzan S Suzan De Jong"/>
+   </performer>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="51440002"/>
+               <display value="Rechts en links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="244506005"/>
+         <display value="structuur van linker en rechter uitwendig neusgat (lichaamsstructuur)"/>
+      </coding>
+   </bodySite>
+</ProcedureRequest>

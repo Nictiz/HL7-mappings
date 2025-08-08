@@ -1,0 +1,148 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-tes-casus9999 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/bouwstenen/klinische_context/voedingspatroon_zuigeling -->
+   <id value="66399def-6b4d-11ec-2793-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-FeedingPatternInfant"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Kind Daniel Mateo DM Daniel De Kleine. Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 2 P1-Maaike</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -52}</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Finding of infant feeding pattern (289145007 - SNOMED CT)">Finding of infant feeding pattern</span>
+                  </td>
+                  <td/>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="type bijvoeding voor zuigeling (waarneembare entiteit) (158451000146107 - SNOMED CT)">type bijvoeding voor zuigeling (waarneembare entiteit)</span>
+                  </td>
+                  <td>
+                     <div>ja</div>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="frequentie van voeding van zuigeling (waarneembare entiteit) (364653007 - SNOMED CT)">frequentie van voeding van zuigeling (waarneembare entiteit)</span>
+                  </td>
+                  <td>9 keer per dag</td>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Infant food type (109021000146107 - SNOMED CT)">Infant food type</span>
+                  </td>
+                  <td>
+                     <span title="kunstvoeding (substantie) (386127005 - SNOMED CT)">kunstvoeding (substantie)</span>
+                     <span title="zuigeling krijgt voeding via pipet (bevinding) (160671000146106 - SNOMED CT)">zuigeling krijgt voeding via pipet (bevinding)</span>, 200 ml, 30 min</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <!-- adaChild -->
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="66399def-6b4d-11ec-2793-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="289145007"/>
+         <display value="Finding of infant feeding pattern"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/DANIEL-MATEO-DM-DANIEL-DE-KLEINE"/>
+      <display value="Kind Daniel Mateo DM Daniel De Kleine"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/24eb4a5f-6b11-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 P1-Maaike"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -52}"/>
+   <component>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-component-valueBooleanSTU3">
+         <valueBoolean value="true"/>
+      </extension>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="158451000146107"/>
+            <display value="type bijvoeding voor zuigeling (waarneembare entiteit)"/>
+         </coding>
+      </code>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="364653007"/>
+            <display value="frequentie van voeding van zuigeling (waarneembare entiteit)"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="9"/>
+         <unit value="keer per dag"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="{keer per dag}"/>
+      </valueQuantity>
+   </component>
+   <component>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-FeedingPatternInfant-FeedingMethod">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="160671000146106"/>
+               <display value="zuigeling krijgt voeding via pipet (bevinding)"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-feedingpatterninfant-feedingquantity">
+         <valueQuantity>
+            <value value="200"/>
+            <unit value="ml"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="ml"/>
+         </valueQuantity>
+      </extension>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-feedingpatterninfant-feedingduration">
+         <valueQuantity>
+            <value value="30"/>
+            <unit value="min"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="min"/>
+         </valueQuantity>
+      </extension>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="109021000146107"/>
+            <display value="Infant food type"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="386127005"/>
+            <display value="kunstvoeding (substantie)"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+</Observation>

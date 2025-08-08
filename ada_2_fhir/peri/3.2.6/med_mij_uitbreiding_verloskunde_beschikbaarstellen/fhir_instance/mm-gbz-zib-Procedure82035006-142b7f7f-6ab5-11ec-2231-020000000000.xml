@@ -1,0 +1,138 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-tes-casus9999 -->
+   <id value="142b7f7f-6ab5-11ec-2231-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Maaike M Maaike Ostendorf. Categorie: <span title="Obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">Obstetrische verrichting (verrichting)</span>, Status: voltooid<span style="display: block;">Uitvoerende: Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis (uit naam van: Stitswerd Ziekenhuis - Stitswerd)</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="resectie van poliep (verrichting) (82035006 - SNOMED CT)">resectie van poliep (verrichting)</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: ${DATE, T, D, -9} - ${DATE, T, D, -9}</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="resectie van poliep (verrichting) (82035006 - SNOMED CT)">resectie van poliep (verrichting)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Gebaseerd op</th>
+                  <td>verrichting postpartum complicatie zwangerschap 2 P1-Maaike</td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="structuur van cervix uteri (lichaamsstructuur) (71252005 - SNOMED CT)">structuur van cervix uteri (lichaamsstructuur)</span>
+                     <span title="Rechts (24028007 - SNOMED CT)">Rechts</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Locatie</th>
+                  <td>Stitswerd Ziekenhuis - Stitswerd</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="82035006"/>
+            <display value="resectie van poliep (verrichting)"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="142b7f7f-6ab5-11ec-2231-020000000000"/>
+   </identifier>
+   <basedOn>
+      <reference value="ProcedureRequest/142b7f7f-6ab5-11ec-2231-020000000000"/>
+      <display value="verrichting postpartum complicatie zwangerschap 2 P1-Maaike"/>
+   </basedOn>
+   <partOf>
+      <reference value="Procedure/424379bf-6aa3-11ec-2123-020000000000"/>
+      <display value="bevalling zwangerschap 2 P1-Maaike"/>
+   </partOf>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="386637004"/>
+         <display value="Obstetrische verrichting (verrichting)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="82035006"/>
+         <display value="resectie van poliep (verrichting)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/MAAIKE-M-MAAIKE-OSTENDORF"/>
+      <display value="Maaike M Maaike Ostendorf"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/24eb4a5f-6b11-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 P1-Maaike"/>
+   </context>
+   <performedPeriod>
+      <start value="${DATE, T, D, -9}"/>
+      <end value="${DATE, T, D, -9}"/>
+   </performedPeriod>
+   <performer>
+      <role>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="RESP"/>
+            <display value="Hoofdbehandelaar"/>
+         </coding>
+      </role>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/practitionerrole-mm-gbz-030731670307316706019999"/>
+               <display value="Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167"/>
+         <display value="Suzan S Suzan De Jong"/>
+      </actor>
+      <onBehalfOf>
+         <reference value="Organization/organization-mm-gbz-2-16-528-1-1007-3-3-06019999"/>
+         <display value="Stitswerd Ziekenhuis - Stitswerd"/>
+      </onBehalfOf>
+   </performer>
+   <location>
+      <reference value="Location/location-mm-gbz-0cc94b5f-6b04-11ec-1295-020000000000"/>
+      <display value="Stitswerd Ziekenhuis - Stitswerd"/>
+   </location>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="24028007"/>
+               <display value="Rechts"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="71252005"/>
+         <display value="structuur van cervix uteri (lichaamsstructuur)"/>
+      </coding>
+   </bodySite>
+</Procedure>

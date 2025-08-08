@@ -1,0 +1,55 @@
+<Practitioner xmlns="http://hl7.org/fhir">
+   <id value="practitioner-mm-gbz-2-16-528-1-1007-3-1-123456788"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>Id 123456788 (UZI-NR-PERS), Id 987654321 (AGB-Z), <span title="Naamsamenstelling: Eigennaam">Bert van XXX_Ernie</span>
+         </div>
+         <div>
+            <a href="tel:07056459854">07056459854</a> (Vast telefoonnummer)</div>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+      <value value="123456788"/>
+   </identifier>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+      <value value="987654321"/>
+   </identifier>
+   <name>
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+         <valueCode value="NL1"/>
+      </extension>
+      <text value="Bert van XXX_Ernie"/>
+      <family value="van XXX_Ernie">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+            <valueString value="van"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="XXX_Ernie"/>
+         </extension>
+      </family>
+      <given value="Bert">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+   </name>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Vast telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="07056459854"/>
+   </telecom>
+</Practitioner>

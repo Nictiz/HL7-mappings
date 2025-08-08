@@ -1,0 +1,110 @@
+<html lang="en">
+   <head>
+      <title>Observation - 05f8897c-6aa9-11ec-2702-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Observatie/bepaling. Subject: Fiona F XXX_Swart. Status: definitief</caption>
+               <tbody>
+                  <tr>
+                     <th>Context</th>
+                     <td>Zwangerschap 1 XXX_Swart</td>
+                  </tr>
+                  <tr>
+                     <th>Code</th>
+                     <th>Waarde</th>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span title="zwangerschapsduur (57036006 - SNOMED CT)">zwangerschapsduur</span>
+                     </td>
+                     <td>71 d</td>
+                  </tr>
+                  <tr>
+                     <th>Ondersteunende informatie</th>
+                     <td>lichaamsgewicht XXX_Swart, bloeddruk XXX_Swart, alcohol gebruik XXX_Swart, drugs gebruik XXX_Swart, tabak gebruik XXX_Swart</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Observation zwangerschapsduur</b>
+      </p>
+      <div> - none</div>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 5, label: "Patient XXX_Swart", url: "mm-gbz-bc-Woman-FIONA-F-XXX-SWART.html" }, 
+{ id: 17, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-8b4a1a6f-6b0c-11ec-0000-020000000000.html" }, 
+{ id: 18, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-e0d93b0f-6b66-11ec-2334-020000000000.html" }, 
+{ id: 61, label: "Observation bevinding betreffende alcoholgebruik (bevinding)", url: "mm-gbz-zib-AlcoholUse228273003-32150a8f-6b26-11ec-1212-020000000000.html" }, 
+{ id: 62, label: "Observation bevinding betreffende drugsgebruik (bevinding)", url: "mm-gbz-zib-DrugUse228366006-949cc8bf-6b11-11ec-1211-020000000000.html" }, 
+{ id: 63, label: "Observation bevinding betreffende tabakgebruik en blootstelling aan tabaksrook (bevinding)", url: "mm-gbz-zib-TobaccoUse365980008-68398867-6b07-11ec-2224-020000000000.html" }, 
+{ id: 86, label: "Observation Blood pressure panel with all children optional", url: "mm-gbz-zib-BloodPressure85354-9-3f3d4046-6ac3-11ec-2106-020000000000.html" }, 
+{ id: 88, label: "Observation Body weight", url: "mm-gbz-zib-BodyWeight29463-7-0332ec90-6af5-11ec-2107-020000000000.html" }, 
+{ id: 90, label: "Observation zwangerschapsduur", url: "mm-gbz-zib-Pregnancy-Duration57036006-05f8897c-6aa9-11ec-2702-020000000000.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 90, to: 18 }, 
+{ from: 90, to: 88 }, 
+{ from: 90, to: 86 }, 
+{ from: 90, to: 61 }, 
+{ from: 90, to: 62 }, 
+{ from: 90, to: 63 }, 
+{ from: 90, to: 5 }, 
+{ from: 90, to: 17 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

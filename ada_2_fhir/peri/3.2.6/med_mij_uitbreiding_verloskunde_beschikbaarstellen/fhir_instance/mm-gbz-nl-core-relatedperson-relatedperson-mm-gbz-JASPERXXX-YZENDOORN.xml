@@ -1,0 +1,54 @@
+<RelatedPerson xmlns="http://hl7.org/fhir">
+   <id value="relatedperson-mm-gbz-JASPERXXX-YZENDOORN"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>
+            <span title="Naamsamenstelling: Eigennaam">Jasper XXX_Yzendoorn</span>, 14 december 2002</div>
+         <div>
+            <a href="tel:0653946815">0653946815</a> (Mobiel)</div>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="8c27d4fc-6aef-11ec-0000-020000000000"/>
+   </identifier>
+   <patient>
+      <reference value="Patient/MIEKE-XXX-YZENDOORN"/>
+      <display value="Kind Mieke XXX_Yzendoorn"/>
+   </patient>
+   <name>
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+         <valueCode value="NL1"/>
+      </extension>
+      <text value="Jasper XXX_Yzendoorn"/>
+      <family value="XXX_Yzendoorn">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="XXX_Yzendoorn"/>
+         </extension>
+      </family>
+      <given value="Jasper">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+   </name>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="MC"/>
+               <display value="Mobiel telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="0653946815"/>
+      <use value="mobile"/>
+   </telecom>
+   <birthDate value="2002-12-14"/>
+</RelatedPerson>

@@ -1,0 +1,73 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-kwa-casus2 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/bevalling/uitdrijvingsfase/type_partus_observatie -->
+   <id value="731671ab-6b3f-11ec-2414-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-BirthObservation"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Kind Lilianne L XXX_Swart. Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 1 XXX_Swart</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -10}T11:48:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="soort partus (waarneembare entiteit) (364336006 - SNOMED CT)">soort partus (waarneembare entiteit)</span>
+                  </td>
+                  <td>
+                     <span title="sectio caesarea (verrichting) (11466000 - SNOMED CT)">sectio caesarea (verrichting)</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
+      <valueReference>
+         <reference value="Procedure/6965feaf-6a9e-11ec-2123-020000000000"/>
+         <display value="uitdrijvingsfase zwangerschap 1 XXX_Swart"/>
+      </valueReference>
+   </extension>
+   <!-- adaChild -->
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="731671ab-6b3f-11ec-2414-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="364336006"/>
+         <display value="soort partus (waarneembare entiteit)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/LILIANNE-L-XXX-SWART"/>
+      <display value="Kind Lilianne L XXX_Swart"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/8b4a1a6f-6b0c-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Swart"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -10}T11:48:00+02:00"/>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="11466000"/>
+         <display value="sectio caesarea (verrichting)"/>
+      </coding>
+   </valueCodeableConcept>
+</Observation>
