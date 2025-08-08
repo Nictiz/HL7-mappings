@@ -1,6 +1,6 @@
 <html lang="en">
    <head>
-      <title>Observation - 9fa5f054-6aff-11ec-2142-020000000000</title>
+      <title>Observation - e3a00d6a-6b29-11ec-2917-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -18,7 +18,7 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Observatie/bepaling. Subject: Kind Lucas L Lucas De Kleine. Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
+               <caption>Observatie/bepaling. Subject: Maaike M Maaike Ostendorf. Status: definitief</caption>
                <tbody>
                   <tr>
                      <th>Context</th>
@@ -26,12 +26,12 @@
                   </tr>
                   <tr>
                      <th>Bepalingdatum/tijd</th>
-                     <td>${DATE, T, D, -53}T15:31:00+02:00</td>
+                     <td>${DATE, T, D, -146}T12:57:00+02:00</td>
                   </tr>
                   <tr>
                      <th>Methode</th>
                      <td>
-                        <span title="Meten van schedelomvang m.b.v. meetlint (31551000146109 - SNOMED CT)">Meten van schedelomvang m.b.v. meetlint</span>
+                        <span title="bevinding gerapporteerd door patiënt of andere bron van voorgeschiedenis (bevinding) (418799008 - SNOMED CT)">bevinding gerapporteerd door patiënt of andere bron van voorgeschiedenis (bevinding)</span>
                      </td>
                   </tr>
                   <tr>
@@ -40,29 +40,33 @@
                   </tr>
                   <tr>
                      <td>
-                        <span title="hoofdomtrek bij geboorte (waarneembare entiteit) (169876006 - SNOMED CT)">hoofdomtrek bij geboorte (waarneembare entiteit)</span>
+                        <span title="hoeveelheid lochia (waarneembare entiteit) (249212004 - SNOMED CT)">hoeveelheid lochia (waarneembare entiteit)</span>
                      </td>
-                     <td>20 cm</td>
+                     <td>33 ml</td>
                   </tr>
                </tbody>
             </table>
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Observation hoofdomtrek bij geboorte (waarneembare entiteit)</b>
+         <b>Resources pointing to 'this' resource - Observation hoeveelheid lochia (waarneembare entiteit)</b>
       </p>
-      <div> - none</div>
+      <ul>
+         <li>
+            <a href="mm-gbz-bc-ReferralRequest-3b35c95f-6a9b-11ec-2887-020000000000.html">ReferralRequest overdracht van zorg (verrichting)</a>
+         </li>
+      </ul>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 7, label: "Patient De Kleine", url: "mm-gbz-bc-Child-LUCAS-L-LUCAS-DE-KLEINE.html" }, 
+{ id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
 { id: 14, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-24eb4a5f-6b11-11ec-0000-020000000000.html" }, 
-{ id: 101, label: "Observation hoofdomtrek bij geboorte (waarneembare entiteit)", url: "mm-gbz-zib-HeadCircumference169876006-9fa5f054-6aff-11ec-2142-020000000000.html" }, 
+{ id: 91, label: "Observation hoeveelheid lochia (waarneembare entiteit)", url: "mm-gbz-bc-DeliveryObservation249212004-e3a00d6a-6b29-11ec-2917-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 101, to: 7 }, 
-{ from: 101, to: 14 }, 
+var edges = new vis.DataSet([{ from: 91, to: 1 }, 
+{ from: 91, to: 14 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

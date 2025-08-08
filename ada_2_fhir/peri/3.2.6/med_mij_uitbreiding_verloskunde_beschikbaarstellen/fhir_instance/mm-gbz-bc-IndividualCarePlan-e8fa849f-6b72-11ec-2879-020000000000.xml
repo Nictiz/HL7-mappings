@@ -10,6 +10,7 @@
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
             <caption>Zorgplan. Subject: Maaike M Maaike Ostendorf. Status: actief<span style="display: block;">Intentie: plan</span>
+               <span style="display: block;">Auteur: Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis</span>
             </caption>
             <tbody>
                <tr>
@@ -21,7 +22,7 @@
                   <td>${DATE, T, D, -146} - ${DATE, T, D, -9}</td>
                </tr>
                <tr>
-                  <th>Coördinator</th>
+                  <th>Auteur</th>
                   <td>Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis</td>
                </tr>
                <tr>
@@ -36,16 +37,14 @@
          </table>
       </div>
    </text>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-careplan-coordinator">
-      <valueReference>
-         <reference value="PractitionerRole/practitionerrole-mm-gbz-030731670307316706019999"/>
-         <display value="Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis"/>
-      </valueReference>
-   </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
       <value value="e8fa849f-6b72-11ec-2879-020000000000"/>
    </identifier>
+   <basedOn>
+      <reference value="CarePlan/3c37899f-6b29-11ec-2384-020000000000"/>
+      <display value="zorgverlening zorg_afspraak monochoriale diamniotische tweelingzwangerschap (bevinding) van P1-Maaike"/>
+   </basedOn>
    <status value="active"/>
    <intent value="plan"/>
    <subject>
@@ -60,6 +59,19 @@
       <start value="${DATE, T, D, -146}"/>
       <end value="${DATE, T, D, -9}"/>
    </period>
+   <author>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-careplan-isCasemanager">
+         <valueBoolean value="true"/>
+      </extension>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/practitionerrole-mm-gbz-030731670307316706019999"/>
+            <display value="Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167"/>
+      <display value="Suzan S Suzan De Jong"/>
+   </author>
    <careTeam>
       <reference value="CareTeam/c0f3420f-6aa2-11ec-2338-020000000000"/>
       <display value="zorgverlening zorg_team ZorgTeamPtOstendorf van P1-Maaike"/>

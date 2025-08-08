@@ -1,6 +1,6 @@
 <Observation xmlns="http://hl7.org/fhir">
-   <!-- Source: gz-izv-kwa-casus4 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/zwangerschapsgegevens/eiceldonatie/leeftijd_eiceldonor -->
-   <id value="73adf5a9-6aee-11ec-2789-020000000000"/>
+   <!-- Source: gz-izv-tes-casus9999 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/zwangerschapsgegevens/eiceldonatie/leeftijd_eiceldonor -->
+   <id value="fc11785e-6aff-11ec-2789-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DonorObservation"/>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
@@ -9,19 +9,21 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Observatie/bepaling. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Status: definitief</caption>
+            <caption>Observatie/bepaling. Subject: Maaike M Maaike Ostendorf. Status: definitief</caption>
             <tbody>
                <tr>
                   <th>Context</th>
-                  <td>Zwangerschap 2 Vrouw-XXX_Yzendoorn</td>
+                  <td>Zwangerschap 2 P1-Maaike</td>
                </tr>
                <tr>
                   <th>Code</th>
                   <th>Waarde</th>
                </tr>
                <tr>
-                  <td>Leeftijd eiceldonor</td>
-                  <td>25 a</td>
+                  <td>
+                     <span title="huidige chronologische leeftijd (waarneembare entiteit) (424144002 - SNOMED CT)">huidige chronologische leeftijd (waarneembare entiteit)</span>
+                  </td>
+                  <td>29 a</td>
                </tr>
             </tbody>
          </table>
@@ -40,10 +42,10 @@
             </valueCodeableConcept>
          </extension>
          <patient>
-            <reference value="Patient/WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG"/>
-            <display value="Willemijn W XXX_Yzendoorn van den XXX_Berg"/>
+            <reference value="Patient/MAAIKE-M-MAAIKE-OSTENDORF"/>
+            <display value="Maaike M Maaike Ostendorf"/>
          </patient>
-         <birthDate value="1986-07-29"/>
+         <birthDate value="${DATE, T, D, -10876}"/>
       </RelatedPerson>
    </contained>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
@@ -54,22 +56,26 @@
    </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="73adf5a9-6aee-11ec-2789-020000000000"/>
+      <value value="fc11785e-6aff-11ec-2789-020000000000"/>
    </identifier>
    <status value="final"/>
    <code>
-      <text value="Leeftijd eiceldonor"/>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="424144002"/>
+         <display value="huidige chronologische leeftijd (waarneembare entiteit)"/>
+      </coding>
    </code>
    <subject>
-      <reference value="Patient/WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG"/>
-      <display value="Willemijn W XXX_Yzendoorn van den XXX_Berg"/>
+      <reference value="Patient/MAAIKE-M-MAAIKE-OSTENDORF"/>
+      <display value="Maaike M Maaike Ostendorf"/>
    </subject>
    <context>
-      <reference value="EpisodeOfCare/14d1a1ff-6b66-11ec-0000-020000000000"/>
-      <display value="Zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+      <reference value="EpisodeOfCare/24eb4a5f-6b11-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 P1-Maaike"/>
    </context>
    <valueQuantity>
-      <value value="25"/>
+      <value value="29"/>
       <unit value="a"/>
       <system value="http://unitsofmeasure.org"/>
       <code value="a"/>

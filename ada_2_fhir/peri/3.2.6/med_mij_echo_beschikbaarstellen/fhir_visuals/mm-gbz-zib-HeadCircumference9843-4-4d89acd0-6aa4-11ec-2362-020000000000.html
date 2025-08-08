@@ -1,6 +1,6 @@
 <html lang="en">
    <head>
-      <title>Observation - e3a00d6a-6b29-11ec-2917-020000000000</title>
+      <title>Observation - 4d89acd0-6aa4-11ec-2362-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -18,20 +18,20 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Observatie/bepaling. Subject: Maaike M Maaike Ostendorf. Status: definitief</caption>
+               <caption>Observatie/bepaling. Subject: Merthe M XXX_Kooijman. Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
                <tbody>
                   <tr>
                      <th>Context</th>
-                     <td>Zwangerschap 2 P1-Maaike</td>
+                     <td>Zwangerschap 1 XXX_Kooijman_Vrouw</td>
                   </tr>
                   <tr>
                      <th>Bepalingdatum/tijd</th>
-                     <td>${DATE, T, D, -146}T12:57:00+02:00</td>
+                     <td>${DATE, T, D, -13}</td>
                   </tr>
                   <tr>
                      <th>Methode</th>
                      <td>
-                        <span title="bevinding gerapporteerd door patiënt of andere bron van voorgeschiedenis (bevinding) (418799008 - SNOMED CT)">bevinding gerapporteerd door patiënt of andere bron van voorgeschiedenis (bevinding)</span>
+                        <span title="Meten van schedelomvang m.b.v. echografisch onderzoek (31561000146107 - SNOMED CT)">Meten van schedelomvang m.b.v. echografisch onderzoek</span>
                      </td>
                   </tr>
                   <tr>
@@ -39,32 +39,36 @@
                      <th>Waarde</th>
                   </tr>
                   <tr>
-                     <td>HoeveelheidBloedverliesWaarde</td>
-                     <td>33 ml</td>
+                     <td>
+                        <span title="Fronto-occipitale omtrek [afmeting] in hoofd (9843-4 - LOINC)">Fronto-occipitale omtrek [afmeting] in hoofd</span>
+                     </td>
+                     <td>7.4 cm</td>
                   </tr>
                </tbody>
             </table>
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Observation</b>
+         <b>Resources pointing to 'this' resource - Observation Fronto-occipitale omtrek [afmeting] in hoofd</b>
       </p>
       <ul>
          <li>
-            <a href="mm-gbz-bc-ReferralRequest-3b35c95f-6a9b-11ec-2887-020000000000.html">ReferralRequest overdracht van zorg (verrichting)</a>
+            <a href="mm-gbz-bc-PregnancyUltraSound133601000146101-015da85f-6b5a-11ec-2120-020000000000.html">DiagnosticReport echografie ter bepaling van geschatte datum van partus (verrichting)</a>
          </li>
       </ul>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
-{ id: 14, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-24eb4a5f-6b11-11ec-0000-020000000000.html" }, 
-{ id: 91, label: "Observation", url: "mm-gbz-bc-DeliveryObservation-e3a00d6a-6b29-11ec-2917-020000000000.html" }, 
+{ id: 1, label: "Patient XXX_Kooijman", url: "mm-gbz-bc-Woman-MERTHE-M-XXX-KOOIJMAN.html" }, 
+{ id: 7, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-6188717b-6b7b-11ec-0000-020000000000.html" }, 
+{ id: 11, label: "BodySite gehele foetus (lichaamsstructuur)", url: "mm-gbz-bc-Fetus83418008-0f2dfafb-6a9d-11ec-1267-020000000000.html" }, 
+{ id: 13, label: "Observation Fronto-occipitale omtrek [afmeting] in hoofd", url: "mm-gbz-zib-HeadCircumference9843-4-4d89acd0-6aa4-11ec-2362-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 91, to: 1 }, 
-{ from: 91, to: 14 }, 
+var edges = new vis.DataSet([{ from: 13, to: 11 }, 
+{ from: 13, to: 1 }, 
+{ from: 13, to: 7 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");
