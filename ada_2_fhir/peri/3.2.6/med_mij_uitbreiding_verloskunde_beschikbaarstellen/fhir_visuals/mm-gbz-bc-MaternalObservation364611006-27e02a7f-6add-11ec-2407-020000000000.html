@@ -18,7 +18,8 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Observatie/bepaling. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Status: definitief</caption>
+               <caption>Observatie/bepaling. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Status: definitief<span style="display: block;">Uitvoerende: Gemma XXX_Groeneboom XXX_Gras || Verloskundige || Verloskundigenpraktijk 't Groen</span>
+               </caption>
                <tbody>
                   <tr>
                      <th>Context</th>
@@ -33,7 +34,7 @@
                         <span title="indaling van foetus ten opzichte van spinae ischiadicae (waarneembare entiteit) (364611006 - SNOMED CT)">indaling van foetus ten opzichte van spinae ischiadicae (waarneembare entiteit)</span>
                      </td>
                      <td>
-                        <span title="indalen van foetus niet te beoordelen (bevinding) (55821000146102 - SNOMED CT)">indalen van foetus niet te beoordelen (bevinding)</span>
+                        <span title="Niet te beoordelen (55821000146102 - SNOMED CT)">Niet te beoordelen</span>
                      </td>
                   </tr>
                </tbody>
@@ -52,15 +53,19 @@
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
 { id: 1, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-bc-Woman-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
+{ id: 12, label: "PractitionerRole Verloskundige", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-12340001103-00008001234.html" }, 
+{ id: 13, label: "Practitioner XXX_Groeneboom-XXX_Gras", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-123400011.html" }, 
 { id: 16, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-8e9592ff-6aab-11ec-2334-020000000000.html" }, 
 { id: 52, label: "Observation indaling van foetus ten opzichte van spinae ischiadicae (waarneembare entiteit)", url: "mm-gbz-bc-MaternalObservation364611006-27e02a7f-6add-11ec-2407-020000000000.html" }, 
-{ id: 103, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-4ba44b1f-6aee-11ec-1275-020000000000.html" }, 
+{ id: 104, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-4ba44b1f-6aee-11ec-1275-020000000000.html" }, 
 ]);
 
 // create an array with edges
 var edges = new vis.DataSet([{ from: 52, to: 16 }, 
 { from: 52, to: 1 }, 
-{ from: 52, to: 103 }, 
+{ from: 52, to: 104 }, 
+{ from: 52, to: 12 }, 
+{ from: 52, to: 13 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

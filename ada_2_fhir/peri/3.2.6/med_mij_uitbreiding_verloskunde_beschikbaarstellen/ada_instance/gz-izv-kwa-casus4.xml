@@ -4,7 +4,7 @@
          created-by="geboortezorgada"
          last-update-by="geboortezorgada"
          creation-date="2024-07-29T10:32:58.285Z"
-         last-update-date="2025-07-18T11:52:19.731Z"/>
+         last-update-date="2025-08-11T11:55:29.021Z"/>
    <data>
       <med_mij_uitbreiding_verloskunde_beschikbaarstellen app="perinatologie-326"
                                                           shortName="med_mij_uitbreiding_verloskunde_beschikbaarstellen"
@@ -118,7 +118,7 @@
                                codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
                                displayName="Geslachtsnaam partner gevolgd door eigen geslachtsnaam"/>
                   <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3304">
-                     <voorvoegsels value="van den "
+                     <voorvoegsels value="van den"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3305"/>
                      <achternaam value="XXX_Berg"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3306"/>
@@ -180,6 +180,57 @@
                                    displayName="Mobiel telefoonnummer"/>
                   </telefoonnummers>
                </contactgegevens>
+            </contactpersoon>
+            <contactpersoon id="Contactpersoon-moeder"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.947">
+               <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3299">
+                  <voornamen value="Lilian"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3300"/>
+                  <initialen value="L"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3301"/>
+                  <roepnaam value="Lilian"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3302"/>
+                  <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3303"
+                               value="4"
+                               code="NL4"
+                               codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                               displayName="Eigen geslachtsnaam gevolgd door geslachtsnaam partner"/>
+                  <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3304">
+                     <voorvoegsels value="van den"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3305"/>
+                     <achternaam value="XXX_Berg"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3306"/>
+                  </geslachtsnaam>
+                  <geslachtsnaam_partner conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3307">
+                     <achternaam_partner value="XXX_Yzendoorn"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3309"/>
+                  </geslachtsnaam_partner>
+               </naamgegevens>
+               <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3310">
+                  <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3311">
+                     <telefoonnummer value="0614586923"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3312"/>
+                     <telecom_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3313"
+                                   value="3"
+                                   code="MC"
+                                   codeSystem="2.16.840.1.113883.5.1119"
+                                   displayName="Mobiel telefoonnummer"/>
+                  </telefoonnummers>
+                  <email_adressen conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3315">
+                     <email_adres value="l.vandenberg@test.nl"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3316"/>
+                  </email_adressen>
+               </contactgegevens>
+               <rol conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.954"
+                    value="1"
+                    code="1"
+                    codeSystem="2.16.840.1.113883.2.4.3.11.22.472"
+                    displayName="Eerste relatie/contactpersoon"/>
+               <relatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.955"
+                        value="23"
+                        code="MTH"
+                        codeSystem="2.16.840.1.113883.5.111"
+                        displayName="Moeder"/>
             </contactpersoon>
             <patient id="Vrouw-XXX_Yzendoorn"
                      conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.675">
@@ -789,7 +840,7 @@
                                                 code="55821000146102"
                                                 codeSystem="2.16.840.1.113883.6.96"
                                                 codeSystemName="SNOMED CT"
-                                                displayName="indalen van foetus niet te beoordelen (bevinding)"/>
+                                                displayName="Niet te beoordelen"/>
                         <meet_datum_begin_tijd value="T-374D"
                                                datatype="datetime"
                                                conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4078"/>
@@ -1092,7 +1143,7 @@
                                             codeSystem="2.16.840.1.113883.6.96"
                                             displayName="woont met familie"/>
                   <ouder_verzorger conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2926">
-                     <contactpersoon value="Contactpersoon"
+                     <contactpersoon value="Contactpersoon-moeder"
                                      datatype="reference"
                                      conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10499"/>
                   </ouder_verzorger>
@@ -1395,7 +1446,7 @@
                                                value="2"
                                                code="408808009"
                                                codeSystem="2.16.840.1.113883.6.96"
-                                               displayName="monitoren van foetale hart door echocardiografie (regime/therapie)"/>
+                                               displayName="Echo"/>
                         <hartslag_regelmatigheid conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10967"
                                                  value="1"
                                                  code="289443009"
@@ -1559,7 +1610,7 @@
                                          value="1"
                                          code="167605001"
                                          codeSystem="2.16.840.1.113883.6.96"
-                                         displayName="kleur van feces normaal"/>
+                                         displayName="Normaal"/>
                      </darmfunctie>
                      <lochia_observatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3108">
                         <observatie_datum_tijd value="T-320D"

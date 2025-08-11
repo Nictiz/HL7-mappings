@@ -8,11 +8,16 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Observatie/bepaling. Subject: Maaike M XXX_Ostendorf. Status: definitief</caption>
+            <caption>Observatie/bepaling. Subject: Maaike M XXX_Ostendorf. Status: definitief<span style="display: block;">Uitvoerende: Loes XXX_Korte || gediplomeerd verloskundige (beroep) || Verloskundigenpraktijk Dalen</span>
+            </caption>
             <tbody>
                <tr>
                   <th>Context</th>
                   <td>prenatale controle T-445D XXX_Ostendorf</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -445}</td>
                </tr>
                <tr>
                   <th>Code</th>
@@ -50,6 +55,17 @@
       <reference value="Encounter/7b035f27-6b20-11ec-1275-020000000000"/>
       <display value="prenatale controle T-445D XXX_Ostendorf"/>
    </context>
+   <effectiveDateTime value="${DATE, T, D, -445}"/>
+   <performer>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/practitionerrole-mm-gbz-123564890800321654897"/>
+            <display value="Loes XXX_Korte || gediplomeerd verloskundige (beroep) || Verloskundigenpraktijk Dalen"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-12356489"/>
+      <display value="Loes XXX_Korte"/>
+   </performer>
    <valueCodeableConcept>
       <coding>
          <system value="http://snomed.info/sct"/>

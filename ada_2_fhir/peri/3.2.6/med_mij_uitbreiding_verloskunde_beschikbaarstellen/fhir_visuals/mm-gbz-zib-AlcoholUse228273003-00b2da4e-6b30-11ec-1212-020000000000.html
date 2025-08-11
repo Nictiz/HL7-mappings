@@ -18,11 +18,16 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Observatie/bepaling. Subject: Maaike M XXX_Ostendorf. Status: definitief</caption>
+               <caption>Observatie/bepaling. Subject: Maaike M XXX_Ostendorf. Status: definitief<span style="display: block;">Uitvoerende: Loes XXX_Korte || gediplomeerd verloskundige (beroep) || Verloskundigenpraktijk Dalen</span>
+               </caption>
                <tbody>
                   <tr>
                      <th>Context</th>
                      <td>prenatale controle T-445D XXX_Ostendorf</td>
+                  </tr>
+                  <tr>
+                     <th>Bepalingdatum/tijd</th>
+                     <td>${DATE, T, D, -445}</td>
                   </tr>
                   <tr>
                      <th>Code</th>
@@ -52,6 +57,8 @@
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
 { id: 5, label: "Patient XXX_Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-XXX-OSTENDORF.html" }, 
+{ id: 8, label: "Practitioner XXX_Korte", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-12356489.html" }, 
+{ id: 9, label: "PractitionerRole gediplomeerd verloskundige (beroep)", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-123564890800321654897.html" }, 
 { id: 25, label: "Observation bevinding betreffende alcoholgebruik (bevinding)", url: "mm-gbz-zib-AlcoholUse228273003-00b2da4e-6b30-11ec-1212-020000000000.html" }, 
 { id: 59, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-7b035f27-6b20-11ec-1275-020000000000.html" }, 
 ]);
@@ -59,6 +66,8 @@ var nodes = new vis.DataSet([
 // create an array with edges
 var edges = new vis.DataSet([{ from: 25, to: 5 }, 
 { from: 25, to: 59 }, 
+{ from: 25, to: 9 }, 
+{ from: 25, to: 8 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

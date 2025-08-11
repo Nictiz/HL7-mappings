@@ -18,7 +18,8 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Observatie/bepaling. Subject: Maaike M Maaike Ostendorf. Status: definitief</caption>
+               <caption>Observatie/bepaling. Subject: Maaike M Maaike Ostendorf. Status: definitief<span style="display: block;">Uitvoerende: Anne Marie AM Anne Naaktgeboren Kleinsma || Verloskundige || Verloskundigenpraktijk ter Wereld</span>
+               </caption>
                <tfoot>
                   <tr>
                      <td colspan="2">Vader rookt sigaretten (buiten)</td>
@@ -93,13 +94,17 @@
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
 { id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
+{ id: 15, label: "PractitionerRole Verloskundige", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-086176250861762508009999.html" }, 
+{ id: 16, label: "Practitioner Kleinsma-Naaktgeboren", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-08617625.html" }, 
 { id: 121, label: "Observation bevinding betreffende tabakgebruik en blootstelling aan tabaksrook (bevinding)", url: "mm-gbz-zib-TobaccoUse365980008-7e40d65f-6afe-11ec-2224-020000000000.html" }, 
-{ id: 251, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-8bb5b91f-6aed-11ec-1275-020000000000.html" }, 
+{ id: 259, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-8bb5b91f-6aed-11ec-1275-020000000000.html" }, 
 ]);
 
 // create an array with edges
 var edges = new vis.DataSet([{ from: 121, to: 1 }, 
-{ from: 121, to: 251 }, 
+{ from: 121, to: 259 }, 
+{ from: 121, to: 15 }, 
+{ from: 121, to: 16 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

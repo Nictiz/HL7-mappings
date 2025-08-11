@@ -18,7 +18,8 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Observatie/bepaling. Subject: Jamila J XXX_Kwee. Status: definitief</caption>
+               <caption>Observatie/bepaling. Subject: Jamila J XXX_Kwee. Status: definitief<span style="display: block;">Uitvoerende: Eduard XXX_Egelinks XXX_Gras || Gynaecoloog || Erasmus MC, Sophia kinderziekenhuis</span>
+               </caption>
                <tfoot>
                   <tr>
                      <td colspan="2">gestopt op advies verloskundige</td>
@@ -69,6 +70,8 @@
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
 { id: 1, label: "Patient XXX_Kwee", url: "mm-gbz-bc-Woman-JAMILA-J-XXX-KWEE.html" }, 
+{ id: 6, label: "Practitioner XXX_Egelinks-XXX_Gras", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-98765432.html" }, 
+{ id: 7, label: "PractitionerRole Gynaecoloog", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-9876543201-04606020806.html" }, 
 { id: 44, label: "Observation bevinding betreffende tabakgebruik en blootstelling aan tabaksrook (bevinding)", url: "mm-gbz-zib-TobaccoUse365980008-091dff51-6b5f-11ec-2224-020000000000.html" }, 
 { id: 74, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-4c771da6-6b6b-11ec-1275-020000000000.html" }, 
 ]);
@@ -76,6 +79,8 @@ var nodes = new vis.DataSet([
 // create an array with edges
 var edges = new vis.DataSet([{ from: 44, to: 1 }, 
 { from: 44, to: 74 }, 
+{ from: 44, to: 7 }, 
+{ from: 44, to: 6 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

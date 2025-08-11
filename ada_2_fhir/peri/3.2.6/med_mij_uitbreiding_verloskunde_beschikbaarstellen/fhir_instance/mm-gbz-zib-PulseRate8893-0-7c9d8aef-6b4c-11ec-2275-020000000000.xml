@@ -8,11 +8,12 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Observatie/bepaling. Subject: Maaike M Maaike Ostendorf. Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
+            <caption>Observatie/bepaling. Subject: Maaike M Maaike Ostendorf. Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief<span style="display: block;">Uitvoerende: Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis</span>
+            </caption>
             <tbody>
                <tr>
                   <th>Context</th>
-                  <td>Zwangerschap 2 P1-Maaike</td>
+                  <td>opname en ontslag T-53D{08:36} P1-Maaike</td>
                </tr>
                <tr>
                   <th>Bepalingdatum/tijd</th>
@@ -56,10 +57,20 @@
       <display value="Maaike M Maaike Ostendorf"/>
    </subject>
    <context>
-      <reference value="EpisodeOfCare/24eb4a5f-6b11-11ec-0000-020000000000"/>
-      <display value="Zwangerschap 2 P1-Maaike"/>
+      <reference value="Encounter/f2ba733f-6af7-11ec-1275-020000000000"/>
+      <display value="opname en ontslag T-53D{08:36} P1-Maaike"/>
    </context>
    <effectiveDateTime value="${DATE, T, D, -52}T11:12:00+02:00"/>
+   <performer>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/practitionerrole-mm-gbz-030731670307316706019999"/>
+            <display value="Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167"/>
+      <display value="Suzan S Suzan De Jong"/>
+   </performer>
    <valueQuantity>
       <value value="82"/>
       <unit value="/min"/>

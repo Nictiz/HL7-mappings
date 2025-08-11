@@ -9,11 +9,12 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Observatie/bepaling. Subject: Kind Joris. Status: definitief</caption>
+            <caption>Observatie/bepaling. Subject: Kind Joris. Status: definitief<span style="display: block;">Uitvoerende: Carolien XXX_Meijer || kraamverzorgende (beroep) || Kraamzorg Het Blije Ei</span>
+            </caption>
             <tbody>
                <tr>
                   <th>Context</th>
-                  <td>Zwangerschap 1 XXX_Zhanganak_Vrouw</td>
+                  <td>controles kind T-107D XXX_Zhanganak_Vrouw</td>
                </tr>
                <tr>
                   <th>Bepalingdatum/tijd</th>
@@ -51,9 +52,19 @@
       <display value="Kind Joris"/>
    </subject>
    <context>
-      <reference value="EpisodeOfCare/f720ebe3-6b47-11ec-0000-020000000000"/>
-      <display value="Zwangerschap 1 XXX_Zhanganak_Vrouw"/>
+      <reference value="Encounter/52e660eb-6a9b-11ec-1275-020000000000"/>
+      <display value="controles kind T-107D XXX_Zhanganak_Vrouw"/>
    </context>
    <effectiveDateTime value="${DATE, T, D, -107}"/>
+   <performer>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/practitionerrole-mm-gbz-12345678115153100014610833112345"/>
+            <display value="Carolien XXX_Meijer || kraamverzorgende (beroep) || Kraamzorg Het Blije Ei"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-123456781"/>
+      <display value="Carolien XXX_Meijer"/>
+   </performer>
    <valueString value="Rommelig"/>
 </Observation>

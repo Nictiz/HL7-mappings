@@ -18,11 +18,12 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Observatie/bepaling. Subject: Kind Daniel Mateo DM Daniel De Kleine. Status: definitief</caption>
+               <caption>Observatie/bepaling. Subject: Kind Daniel Mateo DM Daniel De Kleine. Status: definitief<span style="display: block;">Uitvoerende: Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis</span>
+               </caption>
                <tbody>
                   <tr>
                      <th>Context</th>
-                     <td>Zwangerschap 2 P1-Maaike</td>
+                     <td>opname en ontslag T-53D{08:36} P1-Maaike</td>
                   </tr>
                   <tr>
                      <th>Bepalingdatum/tijd</th>
@@ -58,13 +59,17 @@
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
 { id: 6, label: "Patient De Kleine", url: "mm-gbz-bc-Child-DANIEL-MATEO-DM-DANIEL-DE-KLEINE.html" }, 
-{ id: 14, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-24eb4a5f-6b11-11ec-0000-020000000000.html" }, 
+{ id: 17, label: "Practitioner De Jong", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167.html" }, 
+{ id: 18, label: "PractitionerRole Gynaecoloog", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-030731670307316706019999.html" }, 
 { id: 176, label: "Observation huilen (waarneembare entiteit)", url: "mm-gbz-bc-ChildObservation28263002-a289fb7a-6aee-11ec-2990-020000000000.html" }, 
+{ id: 260, label: "Encounter verlossing (verrichting)", url: "mm-gbz-bc-Encounter-f2ba733f-6af7-11ec-1275-020000000000.html" }, 
 ]);
 
 // create an array with edges
 var edges = new vis.DataSet([{ from: 176, to: 6 }, 
-{ from: 176, to: 14 }, 
+{ from: 176, to: 260 }, 
+{ from: 176, to: 18 }, 
+{ from: 176, to: 17 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

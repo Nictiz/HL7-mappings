@@ -18,11 +18,12 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Observatie/bepaling. Subject: Kind Joris. Status: definitief</caption>
+               <caption>Observatie/bepaling. Subject: Kind Joris. Status: definitief<span style="display: block;">Uitvoerende: Carolien XXX_Meijer || kraamverzorgende (beroep) || Kraamzorg Het Blije Ei</span>
+               </caption>
                <tbody>
                   <tr>
                      <th>Context</th>
-                     <td>Zwangerschap 1 XXX_Zhanganak_Vrouw</td>
+                     <td>controles kind T-107D XXX_Zhanganak_Vrouw</td>
                   </tr>
                   <tr>
                      <th>Bepalingdatum/tijd</th>
@@ -52,13 +53,17 @@
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
 { id: 2, label: "Patient", url: "mm-gbz-bc-Child-JORIS.html" }, 
-{ id: 13, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-f720ebe3-6b47-11ec-0000-020000000000.html" }, 
-{ id: 43, label: "Observation observatie betreffende ademhaling (waarneembare entiteit)", url: "mm-gbz-bc-ChildObservation364062005-918c5793-6ac7-11ec-2996-020000000000.html" }, 
+{ id: 9, label: "Practitioner XXX_Meijer", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-123456781.html" }, 
+{ id: 11, label: "PractitionerRole kraamverzorgende (beroep)", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-12345678115153100014610833112345.html" }, 
+{ id: 44, label: "Observation observatie betreffende ademhaling (waarneembare entiteit)", url: "mm-gbz-bc-ChildObservation364062005-918c5793-6ac7-11ec-2996-020000000000.html" }, 
+{ id: 62, label: "Encounter", url: "mm-gbz-bc-Encounter-52e660eb-6a9b-11ec-1275-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 43, to: 2 }, 
-{ from: 43, to: 13 }, 
+var edges = new vis.DataSet([{ from: 44, to: 2 }, 
+{ from: 44, to: 62 }, 
+{ from: 44, to: 11 }, 
+{ from: 44, to: 9 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");
