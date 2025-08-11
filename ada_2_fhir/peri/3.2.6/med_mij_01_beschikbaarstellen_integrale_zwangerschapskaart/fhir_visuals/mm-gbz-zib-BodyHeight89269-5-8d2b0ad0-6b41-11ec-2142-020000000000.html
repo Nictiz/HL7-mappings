@@ -45,14 +45,14 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 2, label: "Patient XXX_Kooij", url: "mm-gbz-bc-Child-EDUARD-ED-XXX-KOOIJ.html" }, 
-{ id: 7, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-92cdaed3-6af7-11ec-0000-020000000000.html" }, 
-{ id: 11, label: "Observation Lichaamslengte^bij geboorte [afmeting] d.m.v. meting", url: "mm-gbz-zib-BodyHeight89269-5-8d2b0ad0-6b41-11ec-2142-020000000000.html" }, 
+{ id: 2, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-92cdaed3-6af7-11ec-0000-020000000000.html" }, 
+{ id: 7, label: "Observation Lichaamslengte^bij geboorte [afmeting] d.m.v. meting", url: "mm-gbz-zib-BodyHeight89269-5-8d2b0ad0-6b41-11ec-2142-020000000000.html" }, 
+{ id: 24, label: "Patient XXX_Kooij", url: "mm-gbz-bc-Child-EDUARD-ED-XXX-KOOIJ.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 11, to: 2 }, 
-{ from: 11, to: 7 }, 
+var edges = new vis.DataSet([{ from: 7, to: 24 }, 
+{ from: 7, to: 2 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

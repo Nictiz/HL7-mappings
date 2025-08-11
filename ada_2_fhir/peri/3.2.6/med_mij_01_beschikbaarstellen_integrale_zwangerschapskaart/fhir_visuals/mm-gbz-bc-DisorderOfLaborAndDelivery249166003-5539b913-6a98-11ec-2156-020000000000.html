@@ -41,16 +41,16 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 1, label: "Patient XXX_Kooij", url: "mm-gbz-bc-Woman-HANNA-H-XXX-KOOIJ.html" }, 
-{ id: 7, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-92cdaed3-6af7-11ec-0000-020000000000.html" }, 
-{ id: 9, label: "Condition niet vorderende uitdrijving", url: "mm-gbz-bc-DisorderOfLaborAndDelivery249166003-5539b913-6a98-11ec-2156-020000000000.html" }, 
-{ id: 28, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-05bb4fa3-6a9a-11ec-2123-020000000000.html" }, 
+{ id: 2, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-92cdaed3-6af7-11ec-0000-020000000000.html" }, 
+{ id: 23, label: "Patient XXX_Kooij", url: "mm-gbz-bc-Woman-HANNA-H-XXX-KOOIJ.html" }, 
+{ id: 28, label: "Condition niet vorderende uitdrijving", url: "mm-gbz-bc-DisorderOfLaborAndDelivery249166003-5539b913-6a98-11ec-2156-020000000000.html" }, 
+{ id: 29, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-05bb4fa3-6a9a-11ec-2123-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 9, to: 28 }, 
-{ from: 9, to: 1 }, 
-{ from: 9, to: 7 }, 
+var edges = new vis.DataSet([{ from: 28, to: 29 }, 
+{ from: 28, to: 23 }, 
+{ from: 28, to: 2 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

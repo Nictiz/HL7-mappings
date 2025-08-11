@@ -50,18 +50,18 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 1, label: "Patient XXX_Zhanganak-XXX_Visser", url: "mm-gbz-bc-Woman-KIM-K-XXX-ZHANGANAK-XXX-VISSER.html" }, 
-{ id: 9, label: "Practitioner XXX_Meijer", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-123456781.html" }, 
-{ id: 11, label: "PractitionerRole kraamverzorgende (beroep)", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-12345678115153100014610833112345.html" }, 
-{ id: 14, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-f720ebe3-6b47-11ec-0000-020000000000.html" }, 
-{ id: 61, label: "Encounter prenataal huisbezoek door kraamzorg (regime/therapie)", url: "mm-gbz-bc-Encounter-7b82e263-6aff-11ec-1275-020000000000.html" }, 
+{ id: 1, label: "Encounter prenataal huisbezoek door kraamzorg (regime/therapie)", url: "mm-gbz-bc-Encounter-7b82e263-6aff-11ec-1275-020000000000.html" }, 
+{ id: 2, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-f720ebe3-6b47-11ec-0000-020000000000.html" }, 
+{ id: 7, label: "PractitionerRole kraamverzorgende (beroep)", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-12345678115153100014610833112345.html" }, 
+{ id: 8, label: "Practitioner XXX_Meijer", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-123456781.html" }, 
+{ id: 57, label: "Patient XXX_Zhanganak-XXX_Visser", url: "mm-gbz-bc-Woman-KIM-K-XXX-ZHANGANAK-XXX-VISSER.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 61, to: 1 }, 
-{ from: 61, to: 14 }, 
-{ from: 61, to: 11 }, 
-{ from: 61, to: 9 }, 
+var edges = new vis.DataSet([{ from: 1, to: 57 }, 
+{ from: 1, to: 2 }, 
+{ from: 1, to: 7 }, 
+{ from: 1, to: 8 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

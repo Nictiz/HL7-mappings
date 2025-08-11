@@ -79,30 +79,30 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
-{ id: 9, label: "Organization Verloskundigenpraktijk ter Wereld - Stitswerd", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-528-1-1007-3-3-08009999.html" }, 
-{ id: 11, label: "Location Stitswerd", url: "mm-gbz-nl-core-location-location-mm-gbz-2-16-528-1-1007-3-3-08009999.html" }, 
-{ id: 14, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-24eb4a5f-6b11-11ec-0000-020000000000.html" }, 
-{ id: 15, label: "PractitionerRole Verloskundige", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-086176250861762508009999.html" }, 
-{ id: 16, label: "Practitioner Kleinsma-Naaktgeboren", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-08617625.html" }, 
-{ id: 19, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-1970564f-6aba-11ec-2334-020000000000.html" }, 
-{ id: 239, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-424379bf-6aa3-11ec-2123-020000000000.html" }, 
-{ id: 247, label: "ProcedureRequest echografie voor foetale presentatie (verrichting)", url: "mm-gbz-zib-ProcedureRequest169228004-5261095f-6b7c-11ec-2241-020000000000.html" }, 
-{ id: 256, label: "Procedure echografie voor foetale presentatie (verrichting)", url: "mm-gbz-zib-Procedure169228004-5261095f-6b7c-11ec-2241-020000000000.html" }, 
-{ id: 257, label: "DiagnosticReport echografie", url: "mm-gbz-zib-TextResult16310003-TextResult-mm-gbz-eb07a05f-6b41-11ec-2786-020000000000.html" }, 
+{ id: 4, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-24eb4a5f-6b11-11ec-0000-020000000000.html" }, 
+{ id: 6, label: "Organization Verloskundigenpraktijk ter Wereld - Stitswerd", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-528-1-1007-3-3-08009999.html" }, 
+{ id: 8, label: "PractitionerRole Verloskundige", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-086176250861762508009999.html" }, 
+{ id: 9, label: "Practitioner Kleinsma-Naaktgeboren", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-08617625.html" }, 
+{ id: 12, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-1970564f-6aba-11ec-2334-020000000000.html" }, 
+{ id: 70, label: "Location Stitswerd", url: "mm-gbz-nl-core-location-location-mm-gbz-2-16-528-1-1007-3-3-08009999.html" }, 
+{ id: 259, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
+{ id: 268, label: "ProcedureRequest echografie voor foetale presentatie (verrichting)", url: "mm-gbz-zib-ProcedureRequest169228004-5261095f-6b7c-11ec-2241-020000000000.html" }, 
+{ id: 270, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-424379bf-6aa3-11ec-2123-020000000000.html" }, 
+{ id: 279, label: "Procedure echografie voor foetale presentatie (verrichting)", url: "mm-gbz-zib-Procedure169228004-5261095f-6b7c-11ec-2241-020000000000.html" }, 
+{ id: 280, label: "DiagnosticReport echografie", url: "mm-gbz-zib-TextResult16310003-TextResult-mm-gbz-eb07a05f-6b41-11ec-2786-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 256, to: 247 }, 
-{ from: 256, to: 239 }, 
-{ from: 256, to: 1 }, 
-{ from: 256, to: 14 }, 
-{ from: 256, to: 15 }, 
-{ from: 256, to: 16 }, 
-{ from: 256, to: 9 }, 
-{ from: 256, to: 11 }, 
-{ from: 256, to: 19 }, 
-{ from: 256, to: 257 }, 
+var edges = new vis.DataSet([{ from: 279, to: 268 }, 
+{ from: 279, to: 270 }, 
+{ from: 279, to: 259 }, 
+{ from: 279, to: 4 }, 
+{ from: 279, to: 8 }, 
+{ from: 279, to: 9 }, 
+{ from: 279, to: 6 }, 
+{ from: 279, to: 70 }, 
+{ from: 279, to: 12 }, 
+{ from: 279, to: 280 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

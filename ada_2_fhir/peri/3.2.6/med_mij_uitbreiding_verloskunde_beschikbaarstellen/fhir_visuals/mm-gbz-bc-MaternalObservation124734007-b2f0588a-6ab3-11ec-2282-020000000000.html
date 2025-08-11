@@ -52,18 +52,18 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
-{ id: 17, label: "Practitioner De Jong", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167.html" }, 
-{ id: 18, label: "PractitionerRole Gynaecoloog", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-030731670307316706019999.html" }, 
-{ id: 172, label: "Observation bevinding betreffende perineum (bevinding)", url: "mm-gbz-bc-MaternalObservation124734007-b2f0588a-6ab3-11ec-2282-020000000000.html" }, 
-{ id: 260, label: "Encounter verlossing (verrichting)", url: "mm-gbz-bc-Encounter-f2ba733f-6af7-11ec-1275-020000000000.html" }, 
+{ id: 10, label: "Practitioner De Jong", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167.html" }, 
+{ id: 11, label: "PractitionerRole Gynaecoloog", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-030731670307316706019999.html" }, 
+{ id: 46, label: "Encounter verlossing (verrichting)", url: "mm-gbz-bc-Encounter-f2ba733f-6af7-11ec-1275-020000000000.html" }, 
+{ id: 194, label: "Observation bevinding betreffende perineum (bevinding)", url: "mm-gbz-bc-MaternalObservation124734007-b2f0588a-6ab3-11ec-2282-020000000000.html" }, 
+{ id: 259, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 172, to: 1 }, 
-{ from: 172, to: 260 }, 
-{ from: 172, to: 18 }, 
-{ from: 172, to: 17 }, 
+var edges = new vis.DataSet([{ from: 194, to: 259 }, 
+{ from: 194, to: 46 }, 
+{ from: 194, to: 11 }, 
+{ from: 194, to: 10 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

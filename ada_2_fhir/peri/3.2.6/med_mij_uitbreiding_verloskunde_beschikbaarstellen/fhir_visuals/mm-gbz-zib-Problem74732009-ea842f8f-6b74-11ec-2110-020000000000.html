@@ -46,9 +46,6 @@
       </p>
       <ul>
          <li>
-            <a href="mm-gbz-bc-ReferralRequest-3b35c95f-6a9b-11ec-2887-020000000000.html">ReferralRequest overdracht van zorg (verrichting)</a>
-         </li>
-         <li>
             <a href="mm-gbz-bc-Encounter-8bb5b91f-6aed-11ec-1275-020000000000.html">Encounter consult (verrichting)</a>
          </li>
          <li>
@@ -57,18 +54,21 @@
          <li>
             <a href="mm-gbz-bc-Encounter-437f890f-6aa2-11ec-1275-020000000000.html">Encounter maternaal postnataal onderzoek 6 weken na partus (verrichting)</a>
          </li>
+         <li>
+            <a href="mm-gbz-bc-ReferralRequest-3b35c95f-6a9b-11ec-2887-020000000000.html">ReferralRequest overdracht van zorg (verrichting)</a>
+         </li>
       </ul>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
-{ id: 14, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-24eb4a5f-6b11-11ec-0000-020000000000.html" }, 
-{ id: 30, label: "Condition psychische stoornis (aandoening)", url: "mm-gbz-zib-Problem74732009-ea842f8f-6b74-11ec-2110-020000000000.html" }, 
+{ id: 4, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-24eb4a5f-6b11-11ec-0000-020000000000.html" }, 
+{ id: 23, label: "Condition psychische stoornis (aandoening)", url: "mm-gbz-zib-Problem74732009-ea842f8f-6b74-11ec-2110-020000000000.html" }, 
+{ id: 259, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 30, to: 1 }, 
-{ from: 30, to: 14 }, 
+var edges = new vis.DataSet([{ from: 23, to: 259 }, 
+{ from: 23, to: 4 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

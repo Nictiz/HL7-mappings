@@ -56,18 +56,18 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 5, label: "Patient XXX_Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-XXX-OSTENDORF.html" }, 
-{ id: 8, label: "Practitioner XXX_Korte", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-12356489.html" }, 
-{ id: 9, label: "PractitionerRole gediplomeerd verloskundige (beroep)", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-123564890800321654897.html" }, 
-{ id: 25, label: "Observation bevinding betreffende alcoholgebruik (bevinding)", url: "mm-gbz-zib-AlcoholUse228273003-00b2da4e-6b30-11ec-1212-020000000000.html" }, 
-{ id: 59, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-7b035f27-6b20-11ec-1275-020000000000.html" }, 
+{ id: 1, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-7b035f27-6b20-11ec-1275-020000000000.html" }, 
+{ id: 9, label: "Practitioner XXX_Korte", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-12356489.html" }, 
+{ id: 10, label: "PractitionerRole gediplomeerd verloskundige (beroep)", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-123564890800321654897.html" }, 
+{ id: 18, label: "Observation bevinding betreffende alcoholgebruik (bevinding)", url: "mm-gbz-zib-AlcoholUse228273003-00b2da4e-6b30-11ec-1212-020000000000.html" }, 
+{ id: 43, label: "Patient XXX_Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-XXX-OSTENDORF.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 25, to: 5 }, 
-{ from: 25, to: 59 }, 
-{ from: 25, to: 9 }, 
-{ from: 25, to: 8 }, 
+var edges = new vis.DataSet([{ from: 18, to: 43 }, 
+{ from: 18, to: 1 }, 
+{ from: 18, to: 10 }, 
+{ from: 18, to: 9 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

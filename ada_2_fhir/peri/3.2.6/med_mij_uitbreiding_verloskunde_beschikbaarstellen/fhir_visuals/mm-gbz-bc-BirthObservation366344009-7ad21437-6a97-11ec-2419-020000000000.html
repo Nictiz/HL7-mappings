@@ -51,16 +51,16 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 5, label: "Patient XXX_Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-XXX-OSTENDORF.html" }, 
-{ id: 39, label: "Observation bevinding betreffende locatie van partus", url: "mm-gbz-bc-BirthObservation366344009-7ad21437-6a97-11ec-2419-020000000000.html" }, 
-{ id: 54, label: "Procedure geboorte (bevinding)", url: "mm-gbz-bc-Birth3950001-e95374d3-6b68-11ec-2123-020000000000.html" }, 
-{ id: 60, label: "Encounter verlossing (verrichting)", url: "mm-gbz-bc-ChildBirthAssistance-31c97a0f-6b0f-11ec-1071-020000000000.html" }, 
+{ id: 11, label: "Encounter verlossing (verrichting)", url: "mm-gbz-bc-ChildBirthAssistance-31c97a0f-6b0f-11ec-1071-020000000000.html" }, 
+{ id: 32, label: "Observation bevinding betreffende locatie van partus", url: "mm-gbz-bc-BirthObservation366344009-7ad21437-6a97-11ec-2419-020000000000.html" }, 
+{ id: 43, label: "Patient XXX_Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-XXX-OSTENDORF.html" }, 
+{ id: 55, label: "Procedure geboorte (bevinding)", url: "mm-gbz-bc-Birth3950001-e95374d3-6b68-11ec-2123-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 39, to: 54 }, 
-{ from: 39, to: 5 }, 
-{ from: 39, to: 60 }, 
+var edges = new vis.DataSet([{ from: 32, to: 55 }, 
+{ from: 32, to: 43 }, 
+{ from: 32, to: 11 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

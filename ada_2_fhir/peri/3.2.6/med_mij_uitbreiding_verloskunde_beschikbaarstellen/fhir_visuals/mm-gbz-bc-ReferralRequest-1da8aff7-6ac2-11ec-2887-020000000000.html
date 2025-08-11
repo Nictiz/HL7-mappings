@@ -51,20 +51,20 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 1, label: "Organization Verloskundigenpraktijk 't Groen", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-528-1-1007-3-3-08001234.html" }, 
-{ id: 2, label: "Organization Erasmus MC, Sophia kinderziekenhuis", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-528-1-1007-3-3-06020806.html" }, 
-{ id: 5, label: "Patient XXX_Swart", url: "mm-gbz-bc-Woman-FIONA-F-XXX-SWART.html" }, 
-{ id: 16, label: "ReferralRequest overdracht van zorg (verrichting)", url: "mm-gbz-bc-ReferralRequest-1da8aff7-6ac2-11ec-2887-020000000000.html" }, 
-{ id: 17, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-8b4a1a6f-6b0c-11ec-0000-020000000000.html" }, 
-{ id: 19, label: "Condition meerlingzwangerschap (bevinding)", url: "mm-gbz-bc-DisorderOfPregnancy16356006-8824f65a-6ad7-11ec-2118-020000000000.html" }, 
+{ id: 2, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-8b4a1a6f-6b0c-11ec-0000-020000000000.html" }, 
+{ id: 3, label: "Organization Verloskundigenpraktijk 't Groen", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-528-1-1007-3-3-08001234.html" }, 
+{ id: 4, label: "Organization Erasmus MC, Sophia kinderziekenhuis", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-528-1-1007-3-3-06020806.html" }, 
+{ id: 15, label: "Condition meerlingzwangerschap (bevinding)", url: "mm-gbz-bc-DisorderOfPregnancy16356006-8824f65a-6ad7-11ec-2118-020000000000.html" }, 
+{ id: 86, label: "Patient XXX_Swart", url: "mm-gbz-bc-Woman-FIONA-F-XXX-SWART.html" }, 
+{ id: 104, label: "ReferralRequest overdracht van zorg (verrichting)", url: "mm-gbz-bc-ReferralRequest-1da8aff7-6ac2-11ec-2887-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 16, to: 5 }, 
-{ from: 16, to: 17 }, 
-{ from: 16, to: 1 }, 
-{ from: 16, to: 2 }, 
-{ from: 16, to: 19 }, 
+var edges = new vis.DataSet([{ from: 104, to: 86 }, 
+{ from: 104, to: 2 }, 
+{ from: 104, to: 3 }, 
+{ from: 104, to: 4 }, 
+{ from: 104, to: 15 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

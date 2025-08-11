@@ -67,30 +67,30 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
-{ id: 10, label: "Organization Stitswerd Ziekenhuis - Stitswerd", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-528-1-1007-3-3-06019999.html" }, 
-{ id: 12, label: "Location Stitswerd", url: "mm-gbz-nl-core-location-location-mm-gbz-0cc94b5f-6b04-11ec-1295-020000000000.html" }, 
-{ id: 17, label: "Practitioner De Jong", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167.html" }, 
-{ id: 18, label: "PractitionerRole Gynaecoloog", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-030731670307316706019999.html" }, 
-{ id: 19, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-1970564f-6aba-11ec-2334-020000000000.html" }, 
-{ id: 239, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-424379bf-6aa3-11ec-2123-020000000000.html" }, 
-{ id: 244, label: "ProcedureRequest inleiden van partus met oxytocine (verrichting)", url: "mm-gbz-zib-ProcedureRequest177135005-9eb2bbff-6b0e-11ec-2154-020000000000.html" }, 
-{ id: 250, label: "Device infuuspomp (fysiek object)", url: "mm-gbz-zib-MedicalDeviceProduct-MedicalDeviceProduct-mm-gbz-4c3fba3f-6b40-11ec-1037-020000000000.html" }, 
-{ id: 251, label: "Procedure inleiden van partus met oxytocine (verrichting)", url: "mm-gbz-bc-ObstetricProcedure177135005-9eb2bbff-6b0e-11ec-2154-020000000000.html" }, 
-{ id: 260, label: "Encounter verlossing (verrichting)", url: "mm-gbz-bc-Encounter-f2ba733f-6af7-11ec-1275-020000000000.html" }, 
+{ id: 7, label: "Organization Stitswerd Ziekenhuis - Stitswerd", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-528-1-1007-3-3-06019999.html" }, 
+{ id: 10, label: "Practitioner De Jong", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167.html" }, 
+{ id: 11, label: "PractitionerRole Gynaecoloog", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-030731670307316706019999.html" }, 
+{ id: 12, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-1970564f-6aba-11ec-2334-020000000000.html" }, 
+{ id: 46, label: "Encounter verlossing (verrichting)", url: "mm-gbz-bc-Encounter-f2ba733f-6af7-11ec-1275-020000000000.html" }, 
+{ id: 71, label: "Location Stitswerd", url: "mm-gbz-nl-core-location-location-mm-gbz-0cc94b5f-6b04-11ec-1295-020000000000.html" }, 
+{ id: 74, label: "Device infuuspomp (fysiek object)", url: "mm-gbz-zib-MedicalDeviceProduct-MedicalDeviceProduct-mm-gbz-4c3fba3f-6b40-11ec-1037-020000000000.html" }, 
+{ id: 259, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
+{ id: 265, label: "ProcedureRequest inleiden van partus met oxytocine (verrichting)", url: "mm-gbz-zib-ProcedureRequest177135005-9eb2bbff-6b0e-11ec-2154-020000000000.html" }, 
+{ id: 270, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-424379bf-6aa3-11ec-2123-020000000000.html" }, 
+{ id: 274, label: "Procedure inleiden van partus met oxytocine (verrichting)", url: "mm-gbz-bc-ObstetricProcedure177135005-9eb2bbff-6b0e-11ec-2154-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 251, to: 244 }, 
-{ from: 251, to: 239 }, 
-{ from: 251, to: 1 }, 
-{ from: 251, to: 260 }, 
-{ from: 251, to: 18 }, 
-{ from: 251, to: 17 }, 
-{ from: 251, to: 10 }, 
-{ from: 251, to: 12 }, 
-{ from: 251, to: 19 }, 
-{ from: 251, to: 250 }, 
+var edges = new vis.DataSet([{ from: 274, to: 265 }, 
+{ from: 274, to: 270 }, 
+{ from: 274, to: 259 }, 
+{ from: 274, to: 46 }, 
+{ from: 274, to: 11 }, 
+{ from: 274, to: 10 }, 
+{ from: 274, to: 7 }, 
+{ from: 274, to: 71 }, 
+{ from: 274, to: 12 }, 
+{ from: 274, to: 74 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

@@ -88,20 +88,20 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 1, label: "Patient XXX_Hollanders", url: "mm-gbz-bc-Woman-LINDA-L-XXX-HOLLANDERS.html" }, 
-{ id: 5, label: "Organization Medisch Centrum Hartevreugde", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-840-1-113883-2-4-6-1-08767234.html" }, 
+{ id: 2, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-95b12773-6ada-11ec-0000-020000000000.html" }, 
+{ id: 4, label: "Organization Medisch Centrum Hartevreugde", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-840-1-113883-2-4-6-1-08767234.html" }, 
+{ id: 7, label: "Encounter ondersteuning durante partu (regime/therapie)", url: "mm-gbz-bc-ChildBirthAssistance-6032c783-6b01-11ec-1071-020000000000.html" }, 
 { id: 11, label: "Practitioner XXX_Meijer", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-123456781.html" }, 
-{ id: 14, label: "PractitionerRole kraamverzorgende (beroep)", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-12345678115153100014610833112345.html" }, 
-{ id: 16, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-95b12773-6ada-11ec-0000-020000000000.html" }, 
-{ id: 60, label: "Encounter ondersteuning durante partu (regime/therapie)", url: "mm-gbz-bc-ChildBirthAssistance-6032c783-6b01-11ec-1071-020000000000.html" }, 
+{ id: 13, label: "PractitionerRole kraamverzorgende (beroep)", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-12345678115153100014610833112345.html" }, 
+{ id: 54, label: "Patient XXX_Hollanders", url: "mm-gbz-bc-Woman-LINDA-L-XXX-HOLLANDERS.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 60, to: 1 }, 
-{ from: 60, to: 16 }, 
-{ from: 60, to: 14 }, 
-{ from: 60, to: 11 }, 
-{ from: 60, to: 5 }, 
+var edges = new vis.DataSet([{ from: 7, to: 54 }, 
+{ from: 7, to: 2 }, 
+{ from: 7, to: 13 }, 
+{ from: 7, to: 11 }, 
+{ from: 7, to: 4 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

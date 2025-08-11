@@ -69,21 +69,21 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
-{ id: 2, label: "RelatedPerson van het Geld", url: "mm-gbz-nl-core-relatedperson-relatedperson-mm-gbz-FINANCEFFINVAN-HETGELD.html" }, 
-{ id: 17, label: "Practitioner De Jong", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167.html" }, 
-{ id: 18, label: "PractitionerRole Gynaecoloog", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-030731670307316706019999.html" }, 
-{ id: 268, label: "Consent", url: "mm-gbz-bc-TreatmentDirective-c-TreatmentDirective-mm-gbz-b9244e5f-6b67-11ec-1040-020000000000.html" }, 
-{ id: 269, label: "Consent", url: "mm-gbz-zib-AdvanceDirective-AdvanceDirective-mm-gbz-40ea6028-6b58-11ec-1042-020000000000.html" }, 
+{ id: 1, label: "Consent", url: "mm-gbz-zib-AdvanceDirective-AdvanceDirective-mm-gbz-40ea6028-6b58-11ec-1042-020000000000.html" }, 
+{ id: 10, label: "Practitioner De Jong", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167.html" }, 
+{ id: 11, label: "PractitionerRole Gynaecoloog", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-030731670307316706019999.html" }, 
+{ id: 53, label: "RelatedPerson van het Geld", url: "mm-gbz-nl-core-relatedperson-relatedperson-mm-gbz-FINANCEFFINVAN-HETGELD.html" }, 
+{ id: 259, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
+{ id: 283, label: "Consent", url: "mm-gbz-bc-TreatmentDirective-c-TreatmentDirective-mm-gbz-b9244e5f-6b67-11ec-1040-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 268, to: 1 }, 
-{ from: 268, to: 1 }, 
-{ from: 268, to: 2 }, 
-{ from: 268, to: 18 }, 
-{ from: 268, to: 17 }, 
-{ from: 268, to: 269 }, 
+var edges = new vis.DataSet([{ from: 283, to: 259 }, 
+{ from: 283, to: 259 }, 
+{ from: 283, to: 53 }, 
+{ from: 283, to: 11 }, 
+{ from: 283, to: 10 }, 
+{ from: 283, to: 1 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

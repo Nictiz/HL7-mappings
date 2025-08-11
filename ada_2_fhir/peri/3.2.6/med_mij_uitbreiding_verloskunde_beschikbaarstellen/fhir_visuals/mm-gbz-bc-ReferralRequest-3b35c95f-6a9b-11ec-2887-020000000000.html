@@ -66,30 +66,30 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 1, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
-{ id: 9, label: "Organization Verloskundigenpraktijk ter Wereld - Stitswerd", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-528-1-1007-3-3-08009999.html" }, 
-{ id: 10, label: "Organization Stitswerd Ziekenhuis - Stitswerd", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-528-1-1007-3-3-06019999.html" }, 
-{ id: 13, label: "ReferralRequest overdracht van zorg (verrichting)", url: "mm-gbz-bc-ReferralRequest-3b35c95f-6a9b-11ec-2887-020000000000.html" }, 
-{ id: 14, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-24eb4a5f-6b11-11ec-0000-020000000000.html" }, 
-{ id: 22, label: "Condition meerlingzwangerschap (bevinding)", url: "mm-gbz-bc-DisorderOfPregnancy16356006-5c2986df-6b2a-11ec-2118-020000000000.html" }, 
-{ id: 27, label: "Condition intra-uteriene vruchtdood (bevinding)", url: "mm-gbz-zib-Problem59291004-73ef00cf-6b24-11ec-2888-020000000000.html" }, 
-{ id: 29, label: "Condition ziekte van Crohn (aandoening)", url: "mm-gbz-zib-Problem34000006-7f1945af-6aac-11ec-1291-020000000000.html" }, 
-{ id: 30, label: "Condition psychische stoornis (aandoening)", url: "mm-gbz-zib-Problem74732009-ea842f8f-6b74-11ec-2110-020000000000.html" }, 
-{ id: 91, label: "Observation hoeveelheid lochia (waarneembare entiteit)", url: "mm-gbz-bc-MaternalObservation249212004-e3a00d6a-6b29-11ec-2917-020000000000.html" }, 
-{ id: 241, label: "Procedure operatie van darm (verrichting)", url: "mm-gbz-zib-Procedure34853001-d945a21f-6b71-11ec-2108-020000000000.html" }, 
+{ id: 4, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-24eb4a5f-6b11-11ec-0000-020000000000.html" }, 
+{ id: 6, label: "Organization Verloskundigenpraktijk ter Wereld - Stitswerd", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-528-1-1007-3-3-08009999.html" }, 
+{ id: 7, label: "Organization Stitswerd Ziekenhuis - Stitswerd", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-528-1-1007-3-3-06019999.html" }, 
+{ id: 15, label: "Condition meerlingzwangerschap (bevinding)", url: "mm-gbz-bc-DisorderOfPregnancy16356006-5c2986df-6b2a-11ec-2118-020000000000.html" }, 
+{ id: 20, label: "Condition intra-uteriene vruchtdood (bevinding)", url: "mm-gbz-zib-Problem59291004-73ef00cf-6b24-11ec-2888-020000000000.html" }, 
+{ id: 22, label: "Condition ziekte van Crohn (aandoening)", url: "mm-gbz-zib-Problem34000006-7f1945af-6aac-11ec-1291-020000000000.html" }, 
+{ id: 23, label: "Condition psychische stoornis (aandoening)", url: "mm-gbz-zib-Problem74732009-ea842f8f-6b74-11ec-2110-020000000000.html" }, 
+{ id: 113, label: "Observation hoeveelheid lochia (waarneembare entiteit)", url: "mm-gbz-bc-MaternalObservation249212004-e3a00d6a-6b29-11ec-2917-020000000000.html" }, 
+{ id: 259, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
+{ id: 272, label: "Procedure operatie van darm (verrichting)", url: "mm-gbz-zib-Procedure34853001-d945a21f-6b71-11ec-2108-020000000000.html" }, 
+{ id: 282, label: "ReferralRequest overdracht van zorg (verrichting)", url: "mm-gbz-bc-ReferralRequest-3b35c95f-6a9b-11ec-2887-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 13, to: 1 }, 
-{ from: 13, to: 14 }, 
-{ from: 13, to: 9 }, 
-{ from: 13, to: 10 }, 
-{ from: 13, to: 27 }, 
-{ from: 13, to: 29 }, 
-{ from: 13, to: 241 }, 
-{ from: 13, to: 22 }, 
-{ from: 13, to: 30 }, 
-{ from: 13, to: 91 }, 
+var edges = new vis.DataSet([{ from: 282, to: 259 }, 
+{ from: 282, to: 4 }, 
+{ from: 282, to: 6 }, 
+{ from: 282, to: 7 }, 
+{ from: 282, to: 20 }, 
+{ from: 282, to: 22 }, 
+{ from: 282, to: 272 }, 
+{ from: 282, to: 15 }, 
+{ from: 282, to: 23 }, 
+{ from: 282, to: 113 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

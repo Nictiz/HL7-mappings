@@ -71,22 +71,22 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 1, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-bc-Woman-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
-{ id: 6, label: "Organization Verloskundigenpraktijk 't Groen", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-840-1-113883-2-4-6-1-08001234.html" }, 
-{ id: 11, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-14d1a1ff-6b66-11ec-0000-020000000000.html" }, 
-{ id: 12, label: "PractitionerRole Verloskundige", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-12340001103-00008001234.html" }, 
-{ id: 13, label: "Practitioner XXX_Groeneboom-XXX_Gras", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-123400011.html" }, 
-{ id: 16, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-8e9592ff-6aab-11ec-2334-020000000000.html" }, 
-{ id: 104, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-4ba44b1f-6aee-11ec-1275-020000000000.html" }, 
+{ id: 2, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-4ba44b1f-6aee-11ec-1275-020000000000.html" }, 
+{ id: 3, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-14d1a1ff-6b66-11ec-0000-020000000000.html" }, 
+{ id: 4, label: "Organization Verloskundigenpraktijk 't Groen", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-840-1-113883-2-4-6-1-08001234.html" }, 
+{ id: 6, label: "PractitionerRole Verloskundige", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-12340001103-00008001234.html" }, 
+{ id: 7, label: "Practitioner XXX_Groeneboom-XXX_Gras", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-123400011.html" }, 
+{ id: 97, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-bc-Woman-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
+{ id: 101, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-8e9592ff-6aab-11ec-2334-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 104, to: 1 }, 
-{ from: 104, to: 11 }, 
-{ from: 104, to: 12 }, 
-{ from: 104, to: 13 }, 
-{ from: 104, to: 16 }, 
-{ from: 104, to: 6 }, 
+var edges = new vis.DataSet([{ from: 2, to: 97 }, 
+{ from: 2, to: 3 }, 
+{ from: 2, to: 6 }, 
+{ from: 2, to: 7 }, 
+{ from: 2, to: 101 }, 
+{ from: 2, to: 4 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

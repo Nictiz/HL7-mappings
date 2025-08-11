@@ -53,14 +53,14 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 1, label: "Patient XXX_Kooij", url: "mm-gbz-bc-Woman-HANNA-H-XXX-KOOIJ.html" }, 
-{ id: 29, label: "Observation Lichaamsgewicht [massa]", url: "mm-gbz-zib-BodyWeight29463-7-a519cfaf-6ab5-11ec-2107-020000000000.html" }, 
-{ id: 37, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-92503e42-6b73-11ec-1275-020000000000.html" }, 
+{ id: 6, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-92503e42-6b73-11ec-1275-020000000000.html" }, 
+{ id: 28, label: "Observation Lichaamsgewicht [massa]", url: "mm-gbz-zib-BodyWeight29463-7-a519cfaf-6ab5-11ec-2107-020000000000.html" }, 
+{ id: 29, label: "Patient XXX_Kooij", url: "mm-gbz-bc-Woman-HANNA-H-XXX-KOOIJ.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 29, to: 1 }, 
-{ from: 29, to: 37 }, 
+var edges = new vis.DataSet([{ from: 28, to: 29 }, 
+{ from: 28, to: 6 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

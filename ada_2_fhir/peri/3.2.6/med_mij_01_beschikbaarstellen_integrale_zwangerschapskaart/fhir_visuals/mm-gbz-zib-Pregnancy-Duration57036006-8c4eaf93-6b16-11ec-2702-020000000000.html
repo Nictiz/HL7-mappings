@@ -49,20 +49,20 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 1, label: "Patient XXX_Kooij", url: "mm-gbz-bc-Woman-HANNA-H-XXX-KOOIJ.html" }, 
-{ id: 6, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-78b27a33-6ae8-11ec-2334-020000000000.html" }, 
-{ id: 7, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-92cdaed3-6af7-11ec-0000-020000000000.html" }, 
-{ id: 25, label: "Observation Bloeddruk panel waarvan alle leden optioneel in arterieel vaatstelsel", url: "mm-gbz-zib-BloodPressure85354-9-a1492593-6ab9-11ec-2106-020000000000.html" }, 
-{ id: 26, label: "Observation Lichaamsgewicht [massa]", url: "mm-gbz-zib-BodyWeight29463-7-cfef97d0-6ac6-11ec-2107-020000000000.html" }, 
-{ id: 27, label: "Observation zwangerschapsduur", url: "mm-gbz-zib-Pregnancy-Duration57036006-8c4eaf93-6b16-11ec-2702-020000000000.html" }, 
+{ id: 2, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-92cdaed3-6af7-11ec-0000-020000000000.html" }, 
+{ id: 21, label: "Observation Bloeddruk panel waarvan alle leden optioneel in arterieel vaatstelsel", url: "mm-gbz-zib-BloodPressure85354-9-a1492593-6ab9-11ec-2106-020000000000.html" }, 
+{ id: 22, label: "Observation Lichaamsgewicht [massa]", url: "mm-gbz-zib-BodyWeight29463-7-cfef97d0-6ac6-11ec-2107-020000000000.html" }, 
+{ id: 23, label: "Patient XXX_Kooij", url: "mm-gbz-bc-Woman-HANNA-H-XXX-KOOIJ.html" }, 
+{ id: 25, label: "Observation zwangerschapsduur", url: "mm-gbz-zib-Pregnancy-Duration57036006-8c4eaf93-6b16-11ec-2702-020000000000.html" }, 
+{ id: 26, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-78b27a33-6ae8-11ec-2334-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 27, to: 6 }, 
-{ from: 27, to: 26 }, 
-{ from: 27, to: 25 }, 
-{ from: 27, to: 1 }, 
-{ from: 27, to: 7 }, 
+var edges = new vis.DataSet([{ from: 25, to: 26 }, 
+{ from: 25, to: 22 }, 
+{ from: 25, to: 21 }, 
+{ from: 25, to: 23 }, 
+{ from: 25, to: 2 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

@@ -61,20 +61,20 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 1, label: "Patient XXX_Kooij", url: "mm-gbz-bc-Woman-HANNA-H-XXX-KOOIJ.html" }, 
+{ id: 1, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-54524ac3-6b52-11ec-1275-020000000000.html" }, 
+{ id: 2, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-92cdaed3-6af7-11ec-0000-020000000000.html" }, 
+{ id: 3, label: "PractitionerRole Verloskundige", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-1234000103-00008001234.html" }, 
 { id: 4, label: "Practitioner XXX_Groeneboom-XXX_Gras", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-12340001.html" }, 
-{ id: 5, label: "PractitionerRole Verloskundige", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-1234000103-00008001234.html" }, 
-{ id: 6, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-78b27a33-6ae8-11ec-2334-020000000000.html" }, 
-{ id: 7, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-92cdaed3-6af7-11ec-0000-020000000000.html" }, 
-{ id: 32, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-54524ac3-6b52-11ec-1275-020000000000.html" }, 
+{ id: 23, label: "Patient XXX_Kooij", url: "mm-gbz-bc-Woman-HANNA-H-XXX-KOOIJ.html" }, 
+{ id: 26, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-78b27a33-6ae8-11ec-2334-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 32, to: 1 }, 
-{ from: 32, to: 7 }, 
-{ from: 32, to: 5 }, 
-{ from: 32, to: 4 }, 
-{ from: 32, to: 6 }, 
+var edges = new vis.DataSet([{ from: 1, to: 23 }, 
+{ from: 1, to: 2 }, 
+{ from: 1, to: 3 }, 
+{ from: 1, to: 4 }, 
+{ from: 1, to: 26 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");
