@@ -11416,7 +11416,7 @@
       <xs:attribute name="unit">
          <xs:simpleType>
             <xs:restriction base="xs:string">
-               <xs:enumeration value="mm"/>
+               <xs:enumeration value="cm"/>
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
@@ -11481,7 +11481,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3630"/>
-      <xs:attribute name="value" type="VariableDate"/>
+      <xs:attribute name="value" type="VariableVagueDateTime"/>
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="datetime"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
@@ -11686,7 +11686,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3546"/>
-      <xs:attribute name="value" type="VariableDate"/>
+      <xs:attribute name="value" type="VariableVagueDateTime"/>
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="datetime"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
@@ -12960,11 +12960,27 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10965"/>
-      <xs:attribute name="value" type="xs:decimal"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:union memberTypes="hartfrequentie_waarde_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10965 empty_string"/>
+         </xs:simpleType>
+      </xs:attribute>
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="quantity"/>
-      <xs:attribute name="unit" type="xs:string"/>
+      <xs:attribute name="unit">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:enumeration value="/min"/>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: HartfrequentieWaarde: quantity</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="hartfrequentie_waarde_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10965">
+      <xs:restriction base="xs:decimal"/>
+   </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: HartslagMeetMethode - 0..1 R</xs:documentation>
    </xs:annotation>
@@ -14875,7 +14891,7 @@
                </xs:enumeration>
                <xs:enumeration value="2">
                   <xs:annotation>
-                     <xs:documentation>afwezigheid van bloedvat in navelstreng (aandoening)</xs:documentation>
+                     <xs:documentation>enkele navelstrengarterie (aandoening)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="3">

@@ -8277,7 +8277,7 @@
                </xs:enumeration>
                <xs:enumeration value="10">
                   <xs:annotation>
-                     <xs:documentation>begeleiden van bevalling (verrichting)</xs:documentation>
+                     <xs:documentation>verlossing (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="11">
@@ -8302,7 +8302,7 @@
                </xs:enumeration>
                <xs:enumeration value="15">
                   <xs:annotation>
-                     <xs:documentation>maternaal postnataal onderzoek 6 weken na bevalling (verrichting)</xs:documentation>
+                     <xs:documentation>maternaal postnataal onderzoek 6 weken na partus (verrichting)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="16">
@@ -19633,22 +19633,22 @@
                </xs:enumeration>
                <xs:enumeration value="1">
                   <xs:annotation>
-                     <xs:documentation>monochoriale tweelingzwangerschap (aandoening)</xs:documentation>
+                     <xs:documentation>monochoriale tweelingzwangerschap (bevinding)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="2">
                   <xs:annotation>
-                     <xs:documentation>monochoriale monoamniotische tweelingzwangerschap (aandoening)</xs:documentation>
+                     <xs:documentation>monochoriale monoamniotische tweelingzwangerschap (bevinding)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="3">
                   <xs:annotation>
-                     <xs:documentation>monochoriale diamniotische tweelingzwangerschap (aandoening)</xs:documentation>
+                     <xs:documentation>monochoriale diamniotische tweelingzwangerschap (bevinding)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="4">
                   <xs:annotation>
-                     <xs:documentation>dichoriale diamniotische tweelingzwangerschap (aandoening)</xs:documentation>
+                     <xs:documentation>dichoriale diamniotische tweelingzwangerschap (bevinding)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
             </xs:restriction>
@@ -22206,11 +22206,27 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1777"/>
-      <xs:attribute name="value" type="xs:decimal"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:union memberTypes="hartfrequentie_waarde_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1777 "/>
+         </xs:simpleType>
+      </xs:attribute>
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="quantity"/>
-      <xs:attribute name="unit" type="xs:string"/>
+      <xs:attribute name="unit">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:enumeration value="/min"/>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: HartfrequentieWaarde: quantity</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="hartfrequentie_waarde_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1777">
+      <xs:restriction base="xs:decimal"/>
+   </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: HartslagMeetMethode - 1..1 R</xs:documentation>
    </xs:annotation>
@@ -22796,7 +22812,7 @@
                </xs:enumeration>
                <xs:enumeration value="46">
                   <xs:annotation>
-                     <xs:documentation>meerlingzwangerschap (aandoening)</xs:documentation>
+                     <xs:documentation>meerlingzwangerschap (bevinding)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="47">
@@ -27377,12 +27393,6 @@
       <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: SchedelomvangMeetmethode: code</xs:documentation>
-   </xs:annotation>
-   <xs:simpleType name="schedelomvang_meetmethode_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1430">
-      <xs:restriction base="xs:string"/>
-   </xs:simpleType>
-   <xs:annotation>
       <xs:documentation>Type for concept item: Toelichting - 0..1 R</xs:documentation>
    </xs:annotation>
    <xs:complexType name="toelichting_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1431">
@@ -27481,23 +27491,17 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1410"/>
-      <xs:attribute name="value">
-         <xs:simpleType>
-            <xs:union memberTypes="apgar_score_totaal_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1410 "/>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="ordinal"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="ordinal" type="xs:decimal"/>
+      <xs:attribute name="preferred" type="BooleanOrEmpty"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: ApgarScoreTotaal: count</xs:documentation>
-   </xs:annotation>
-   <xs:simpleType name="apgar_score_totaal_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1410">
-      <xs:restriction base="xs:nonNegativeInteger">
-         <xs:minInclusive value="0"/>
-         <xs:maxInclusive value="10"/>
-      </xs:restriction>
-   </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: ApgarScoreTotaal - 1..1 R</xs:documentation>
    </xs:annotation>
@@ -27514,23 +27518,17 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.9665"/>
-      <xs:attribute name="value">
-         <xs:simpleType>
-            <xs:union memberTypes="apgar_score_totaal_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_9665 "/>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="ordinal"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="ordinal" type="xs:decimal"/>
+      <xs:attribute name="preferred" type="BooleanOrEmpty"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: ApgarScoreTotaal: count</xs:documentation>
-   </xs:annotation>
-   <xs:simpleType name="apgar_score_totaal_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_9665">
-      <xs:restriction base="xs:nonNegativeInteger">
-         <xs:minInclusive value="0"/>
-         <xs:maxInclusive value="10"/>
-      </xs:restriction>
-   </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: ApgarScoreTotaal - 1..1 R</xs:documentation>
    </xs:annotation>
@@ -27547,23 +27545,17 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.9674"/>
-      <xs:attribute name="value">
-         <xs:simpleType>
-            <xs:union memberTypes="apgar_score_totaal_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_9674 "/>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="ordinal"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="ordinal" type="xs:decimal"/>
+      <xs:attribute name="preferred" type="BooleanOrEmpty"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: ApgarScoreTotaal: count</xs:documentation>
-   </xs:annotation>
-   <xs:simpleType name="apgar_score_totaal_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_9674">
-      <xs:restriction base="xs:nonNegativeInteger">
-         <xs:minInclusive value="0"/>
-         <xs:maxInclusive value="10"/>
-      </xs:restriction>
-   </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: VerrichtingStartDatum - 1..1 R</xs:documentation>
    </xs:annotation>
@@ -28604,7 +28596,7 @@
                </xs:enumeration>
                <xs:enumeration value="10">
                   <xs:annotation>
-                     <xs:documentation>hepatitis-B-oppervlakteantigeen negatief (bevinding)</xs:documentation>
+                     <xs:documentation>hepatitis-B-oppervlakteantigeen niet aangetoond (bevinding)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="11">
@@ -28748,7 +28740,7 @@
                </xs:enumeration>
                <xs:enumeration value="3">
                   <xs:annotation>
-                     <xs:documentation>humaan immunodeficiëntievirus negatief (bevinding)</xs:documentation>
+                     <xs:documentation>humaan immunodeficiëntievirus niet aangetoond (bevinding)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="4">
@@ -32016,11 +32008,27 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1065"/>
-      <xs:attribute name="value" type="xs:decimal"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:union memberTypes="systolische_bloeddruk_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1065 "/>
+         </xs:simpleType>
+      </xs:attribute>
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="quantity"/>
-      <xs:attribute name="unit" type="xs:string"/>
+      <xs:attribute name="unit">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:enumeration value="mm[Hg]"/>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: SystolischeBloeddruk: quantity</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="systolische_bloeddruk_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1065">
+      <xs:restriction base="xs:decimal"/>
+   </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: DiastolischeBloeddruk - 1..1 R</xs:documentation>
    </xs:annotation>
@@ -32037,11 +32045,27 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1066"/>
-      <xs:attribute name="value" type="xs:decimal"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:union memberTypes="diastolische_bloeddruk_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1066 "/>
+         </xs:simpleType>
+      </xs:attribute>
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="quantity"/>
-      <xs:attribute name="unit" type="xs:string"/>
+      <xs:attribute name="unit">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:enumeration value="mm[Hg]"/>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: DiastolischeBloeddruk: quantity</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="diastolische_bloeddruk_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1066">
+      <xs:restriction base="xs:decimal"/>
+   </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: GemiddeldeBloeddruk - 0..1 R</xs:documentation>
    </xs:annotation>
@@ -32058,11 +32082,27 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1067"/>
-      <xs:attribute name="value" type="xs:decimal"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:union memberTypes="gemiddelde_bloeddruk_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1067 empty_string"/>
+         </xs:simpleType>
+      </xs:attribute>
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="quantity"/>
-      <xs:attribute name="unit" type="xs:string"/>
+      <xs:attribute name="unit">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:enumeration value="mm[Hg]"/>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: GemiddeldeBloeddruk: quantity</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="gemiddelde_bloeddruk_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1067">
+      <xs:restriction base="xs:decimal"/>
+   </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: BloeddrukDatumTijd - 1..1 R</xs:documentation>
    </xs:annotation>
