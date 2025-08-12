@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="ab4e2e1d-0beb-11f0-1130-020000000000"/>
+   <id value="6dcfb317-7767-11f0-1419-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ab4e2e9e-0beb-11f0-1130-020000000000"/>
+      <fullUrl value="urn:uuid:6dcfb398-7767-11f0-1419-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -16,15 +16,15 @@
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
-               <valueDateTime value="2023-01-01T12:01:00+01:00"/>
+               <valueDateTime value="2024-01-01T12:01:00+01:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="1 maal per dag 1 stuk, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2023-01-01T00:00:00+01:00"/>
-                  <end value="2023-07-20T23:59:59+02:00"/>
+                  <start value="2024-01-01T00:00:00+01:00"/>
+                  <end value="2024-07-19T23:59:59+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -55,18 +55,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ab4e2ec6-0beb-11f0-1130-020000000000"/>
+               <reference value="urn:uuid:6dcfb3c0-7767-11f0-1419-020000000000"/>
                <type value="Medication"/>
                <display value="MIZOLLEN TABLET MGA 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ab4e2e4e-0beb-11f0-1130-020000000000"/>
+               <reference value="urn:uuid:6dcfb348-7767-11f0-1419-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ab4e2e76-0beb-11f0-1130-020000000000"/>
+                  <reference value="urn:uuid:6dcfb370-7767-11f0-1419-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -119,7 +119,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ab4e2eb2-0beb-11f0-1130-020000000000"/>
+      <fullUrl value="urn:uuid:6dcfb3ac-7767-11f0-1419-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -157,18 +157,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ab4e2ec6-0beb-11f0-1130-020000000000"/>
+               <reference value="urn:uuid:6dcfb3c0-7767-11f0-1419-020000000000"/>
                <type value="Medication"/>
                <display value="MIZOLLEN TABLET MGA 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ab4e2e4e-0beb-11f0-1130-020000000000"/>
+               <reference value="urn:uuid:6dcfb348-7767-11f0-1419-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ab4e2e76-0beb-11f0-1130-020000000000"/>
+                  <reference value="urn:uuid:6dcfb370-7767-11f0-1419-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -184,18 +184,24 @@
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                   <valueQuantity>
-                     <value value="100"/>
+                     <value value="14"/>
                      <unit value="stuk"/>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                      <code value="245"/>
                   </valueQuantity>
                </extension>
-               <value value="100"/>
+               <value value="14"/>
                <unit value="stuk"/>
                <system value="http://unitsofmeasure.org"/>
                <code value="1"/>
             </quantity>
-            <whenHandedOver value="2023-01-01T12:01:00+01:00"/>
+            <daysSupply>
+               <value value="14"/>
+               <unit value="dag"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="dag"/>
+            </daysSupply>
+            <whenHandedOver value="2024-01-01T12:01:00+01:00"/>
          </MedicationDispense>
       </resource>
       <request>
@@ -204,7 +210,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ab4e2e4e-0beb-11f0-1130-020000000000"/>
+      <fullUrl value="urn:uuid:6dcfb348-7767-11f0-1419-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -251,7 +257,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ab4e2e76-0beb-11f0-1130-020000000000"/>
+      <fullUrl value="urn:uuid:6dcfb370-7767-11f0-1419-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -295,7 +301,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ab4e2ec6-0beb-11f0-1130-020000000000"/>
+      <fullUrl value="urn:uuid:6dcfb3c0-7767-11f0-1419-020000000000"/>
       <resource>
          <Medication>
             <meta>

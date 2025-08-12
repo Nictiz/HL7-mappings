@@ -1,12 +1,12 @@
-<start timestamp="2025-03-28T16:46:10.3646901+01:00"
-       detection-count="0"
+<start timestamp="2025-08-12T12:31:46.853307+02:00"
+       detection-count="1"
        document-count="44">
-   <validation href-original-report="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_fhir-r4/mp/9.3.0/sturen_medicatiegegevens/validate_fhir_instance/schematron-validation-results.xml"
-               detection-count="0"
+   <validation href-original-report="file:/C:/GitHub/NICTIZ/HL7-mappings/ada_2_fhir-r4/mp/9.3.0/sturen_medicatiegegevens/validate_fhir_instance/schematron-validation-results.xml"
+               detection-count="1"
                validation-step-name="Validation 4/11"
                href-schema="YATC-internal/ada-2-fhir-r4/env/fhir-schematrons/bundle.sch"
                validation-type="schematron"
-               timestamp="2025-03-28T16:46:03.66+01:00"
+               timestamp="2025-08-12T12:31:34.56+02:00"
                document-count="44">
       <file name="HL7-mappings/ada_2_fhir-r4/mp/9.3.0/sturen_medicatiegegevens/fhir_instance/mgsets-mp-smg-tst-MA-Scenarioset1-v30.xml"
             detection-count="0">
@@ -153,8 +153,14 @@
          <pass/>
       </file>
       <file name="HL7-mappings/ada_2_fhir-r4/mp/9.3.0/sturen_medicatiegegevens/fhir_instance/mgsets-mp-smg-tst-VV-Scenarioset9-v30.xml"
-            detection-count="0">
-         <pass/>
+            detection-count="1">
+         <fail>
+            <svrl:failed-assert location="/Q{http://hl7.org/fhir}Bundle[1]"
+                                test="(f:type/@value = 'history') or (count(for $entry in f:entry[f:resource] return $entry[count(parent::f:Bundle/f:entry[f:fullUrl/@value=$entry/f:fullUrl/@value and ((not(f:resource/*/f:meta/f:versionId/@value) and not($entry/f:resource/*/f:meta/f:versionId/@value)) or f:resource/*/f:meta/f:versionId/@value=$entry/f:resource/*/f:meta/f:versionId/@value)])!=1])=0)"
+                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+               <svrl:text>bdl-7: FullUrl must be unique in a bundle, or else entries with the same fullUrl must have different meta.versionId (except in history bundles)</svrl:text>
+            </svrl:failed-assert>
+         </fail>
       </file>
       <file name="HL7-mappings/ada_2_fhir-r4/mp/9.3.0/sturen_medicatiegegevens/fhir_instance/mgsets-mp-smg-tst-WDS-Scenarioset1-v30.xml"
             detection-count="0">

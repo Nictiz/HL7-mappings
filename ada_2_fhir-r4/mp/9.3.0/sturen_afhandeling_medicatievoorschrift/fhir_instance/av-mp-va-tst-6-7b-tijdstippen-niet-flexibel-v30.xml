@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="a8175670-0beb-11f0-1301-020000000000"/>
+   <id value="693eae5a-7767-11f0-1718-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:a81756f1-0beb-11f0-1301-020000000000"/>
+      <fullUrl value="urn:uuid:693eaedb-7767-11f0-1718-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -16,15 +16,15 @@
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
-               <valueDateTime value="2023-01-01T10:15:00+01:00"/>
+               <valueDateTime value="2024-01-01T10:15:00+01:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, tijden exact aanhouden, oraal"/>
+               <valueString value="elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, exacte toedientijd(en), oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2023-01-01T00:00:00+01:00"/>
-                  <end value="2023-01-08T23:59:59+01:00"/>
+                  <start value="2024-01-01T00:00:00+01:00"/>
+                  <end value="2024-01-08T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -46,18 +46,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:a8175719-0beb-11f0-1301-020000000000"/>
+               <reference value="urn:uuid:693eaf03-7767-11f0-1718-020000000000"/>
                <type value="Medication"/>
-               <display value="METFORMINE 500MG TABLET"/>
+               <display value="METFORMINE HCL PCH TABLET 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:a81756a1-0beb-11f0-1301-020000000000"/>
+               <reference value="urn:uuid:693eae8b-7767-11f0-1718-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:a81756c9-0beb-11f0-1301-020000000000"/>
+                  <reference value="urn:uuid:693eaeb3-7767-11f0-1718-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -113,7 +113,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a8175705-0beb-11f0-1301-020000000000"/>
+      <fullUrl value="urn:uuid:693eaeef-7767-11f0-1718-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -142,18 +142,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:a817572d-0beb-11f0-1301-020000000000"/>
+               <reference value="urn:uuid:693eaf03-7767-11f0-1718-020000000000"/>
                <type value="Medication"/>
                <display value="METFORMINE HCL PCH TABLET 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:a81756a1-0beb-11f0-1301-020000000000"/>
+               <reference value="urn:uuid:693eae8b-7767-11f0-1718-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:a81756c9-0beb-11f0-1301-020000000000"/>
+                  <reference value="urn:uuid:693eaeb3-7767-11f0-1718-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -180,7 +180,7 @@
                <system value="http://unitsofmeasure.org"/>
                <code value="1"/>
             </quantity>
-            <whenHandedOver value="2023-01-01T10:17:00+01:00"/>
+            <whenHandedOver value="2024-01-01T10:17:00+01:00"/>
          </MedicationDispense>
       </resource>
       <request>
@@ -189,7 +189,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a81756a1-0beb-11f0-1301-020000000000"/>
+      <fullUrl value="urn:uuid:693eae8b-7767-11f0-1718-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -236,7 +236,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a81756c9-0beb-11f0-1301-020000000000"/>
+      <fullUrl value="urn:uuid:693eaeb3-7767-11f0-1718-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -280,35 +280,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a8175719-0beb-11f0-1301-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="1090"/>
-                  <display value="METFORMINE 500MG TABLET"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="3816"/>
-                  <display value="METFORMINE 500MG TABLET"/>
-               </coding>
-               <text value="METFORMINE 500MG TABLET"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:a817572d-0beb-11f0-1301-020000000000"/>
+      <fullUrl value="urn:uuid:693eaf03-7767-11f0-1718-020000000000"/>
       <resource>
          <Medication>
             <meta>

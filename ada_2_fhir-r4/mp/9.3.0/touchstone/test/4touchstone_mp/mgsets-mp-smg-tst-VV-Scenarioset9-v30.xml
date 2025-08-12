@@ -39,7 +39,7 @@
             </subject>
             <authoredOn value="${DATE, T, D, +0}T11:00:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:4560482e-6aec-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:ebbef824-6b1b-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -107,7 +107,7 @@
             </subject>
             <authoredOn value="${DATE, T, D, -50}T11:05:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:4560482e-6aec-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:ebbef824-6b1b-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -186,7 +186,7 @@
             </subject>
             <authoredOn value="${DATE, T, D, +0}T11:07:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:4560482e-6aec-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:ebbef824-6b1b-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -271,7 +271,7 @@
             </subject>
             <authoredOn value="${DATE, T, D, -9}T11:01:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:4560482e-6aec-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:ebbef824-6b1b-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -338,7 +338,7 @@
             </subject>
             <authoredOn value="${DATE, T, D, +0}T11:02:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:4560482e-6aec-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:ebbef824-6b1b-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -389,9 +389,11 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.FinancialIndicationCode">
                <valueCodeableConcept>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-                     <valueCode value="OTH"/>
-                  </extension>
+                  <coding>
+                     <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+                     <code value="OTH"/>
+                     <display value="overig"/>
+                  </coding>
                   <text value="B2"/>
                </valueCodeableConcept>
             </extension>
@@ -420,7 +422,7 @@
             </subject>
             <authoredOn value="${DATE, T, D, +0}T11:35:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:4560482e-6aec-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:ebbef824-6b1b-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -461,7 +463,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4959da89-6ade-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:3cfbf0a1-6a9c-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -477,7 +479,85 @@
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
                <value value="MBH_300_geannuleerd_indicator_VV"/>
             </identifier>
-            <status value="entered-in-error"/>
+            <status value="unknown"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="52711000146108"/>
+                  <display value="verstrekkingsverzoek"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:9a19bd1d-6b59-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="FINASTERIDE TABLET 5MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:eb74c70e-6ab7-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, M. XXX_Nederveen"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, +0}T13:00:00+02:00"/>
+            <requester>
+               <reference value="urn:uuid:fdf54558-6b5e-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </requester>
+            <performer>
+               <reference value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+            </performer>
+            <basedOn>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_geannuleerd_indicator_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak  met identificatie: MBH_300_geannuleerd_indicator_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </basedOn>
+            <dispenseRequest>
+               <quantity>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                     <valueQuantity>
+                        <value value="180"/>
+                        <unit value="stuk"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="245"/>
+                     </valueQuantity>
+                  </extension>
+                  <value value="180"/>
+                  <unit value="stuk"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="1"/>
+               </quantity>
+            </dispenseRequest>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:3cfbf0a1-6a9c-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-DispenseRequest"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_geannuleerd_indicator"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <value value="MBH_300_geannuleerd_indicator_VV"/>
+            </identifier>
+            <status value="unknown"/>
             <intent value="order"/>
             <category>
                <coding>
@@ -586,14 +666,14 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4560482e-6aec-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:ebbef824-6b1b-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:a57e4824-6aa3-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:8e771558-6a96-11ec-0000-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
@@ -618,7 +698,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a57e4824-6aa3-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:8e771558-6a96-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
             <meta>

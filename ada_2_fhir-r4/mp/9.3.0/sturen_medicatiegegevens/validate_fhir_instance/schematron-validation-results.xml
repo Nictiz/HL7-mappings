@@ -1,8 +1,8 @@
-<validation-results detection-count="0"
+<validation-results detection-count="1"
                     validation-step-name="Validation 4/11"
                     href-schema="YATC-internal/ada-2-fhir-r4/env/fhir-schematrons/bundle.sch"
                     validation-type="schematron"
-                    timestamp="2025-03-28T16:46:03.66+01:00">
+                    timestamp="2025-08-12T12:31:34.56+02:00">
    <validation detection-count="0"
                href="HL7-mappings/ada_2_fhir-r4/mp/9.3.0/sturen_medicatiegegevens/fhir_instance/mgsets-mp-smg-tst-MA-Scenarioset1-v30.xml"/>
    <validation detection-count="0"
@@ -75,8 +75,23 @@
                href="HL7-mappings/ada_2_fhir-r4/mp/9.3.0/sturen_medicatiegegevens/fhir_instance/mgsets-mp-smg-tst-VV-Scenarioset2-v30.xml"/>
    <validation detection-count="0"
                href="HL7-mappings/ada_2_fhir-r4/mp/9.3.0/sturen_medicatiegegevens/fhir_instance/mgsets-mp-smg-tst-VV-Scenarioset7-v30.xml"/>
-   <validation detection-count="0"
-               href="HL7-mappings/ada_2_fhir-r4/mp/9.3.0/sturen_medicatiegegevens/fhir_instance/mgsets-mp-smg-tst-VV-Scenarioset9-v30.xml"/>
+   <validation detection-count="1"
+               href="HL7-mappings/ada_2_fhir-r4/mp/9.3.0/sturen_medicatiegegevens/fhir_instance/mgsets-mp-smg-tst-VV-Scenarioset9-v30.xml">
+      <svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                              xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                              xmlns:schxslt="https://doi.org/10.5281/zenodo.1495494"
+                              xmlns:schxslt-api="https://doi.org/10.5281/zenodo.1495494#api"
+                              xmlns:f="http://hl7.org/fhir"
+                              xmlns:h="http://www.w3.org/1999/xhtml"
+                              xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                              xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                              xmlns:error="https://doi.org/10.5281/zenodo.1495494#error">
+         <svrl:failed-assert location="/Q{http://hl7.org/fhir}Bundle[1]"
+                             test="(f:type/@value = 'history') or (count(for $entry in f:entry[f:resource] return $entry[count(parent::f:Bundle/f:entry[f:fullUrl/@value=$entry/f:fullUrl/@value and ((not(f:resource/*/f:meta/f:versionId/@value) and not($entry/f:resource/*/f:meta/f:versionId/@value)) or f:resource/*/f:meta/f:versionId/@value=$entry/f:resource/*/f:meta/f:versionId/@value)])!=1])=0)">
+            <svrl:text>bdl-7: FullUrl must be unique in a bundle, or else entries with the same fullUrl must have different meta.versionId (except in history bundles)</svrl:text>
+         </svrl:failed-assert>
+      </svrl:schematron-output>
+   </validation>
    <validation detection-count="0"
                href="HL7-mappings/ada_2_fhir-r4/mp/9.3.0/sturen_medicatiegegevens/fhir_instance/mgsets-mp-smg-tst-WDS-Scenarioset1-v30.xml"/>
    <validation detection-count="0"

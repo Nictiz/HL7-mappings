@@ -1,25 +1,22 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="7c86aaa5-0beb-11f0-9257-020000000000"/>
+   <id value="1bf7a0cb-7767-11f0-4541-020000000000"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:7c86ab26-0beb-11f0-9257-020000000000"/>
+      <fullUrl value="urn:uuid:1bf7a14c-7767-11f0-4541-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.RequestDate">
-               <valueDateTime value="2023-01-01T11:07:00+01:00"/>
-            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_afleverlocatie"/>
+                  <value value="MBH_300_logistiekeverbruiksperiode_start_eind"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <value value="MBH_300_afleverlocatie_MVE"/>
+               <value value="MBH_300_logistiekeverbruiksperiode_start_eind_MVE"/>
             </identifier>
             <status value="completed"/>
             <category>
@@ -30,18 +27,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:7c86abda-0beb-11f0-9257-020000000000"/>
+               <reference value="urn:uuid:1bf7a1ec-7767-11f0-4541-020000000000"/>
                <type value="Medication"/>
-               <display value="MODAFINIL FOCUS TABLET 200MG"/>
+               <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:7c86aad6-0beb-11f0-9257-020000000000"/>
+               <reference value="urn:uuid:1bf7a0fc-7767-11f0-4541-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:7c86aafe-0beb-11f0-9257-020000000000"/>
+                  <reference value="urn:uuid:1bf7a124-7767-11f0-4541-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -50,30 +47,31 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-                  <value value="MBH_300_afleverlocatie_VV"/>
+                  <value value="MBH_300_logistiekeverbruiksperiode_start_eind_VV"/>
                </identifier>
-               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_afleverlocatie_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_logistiekeverbruiksperiode_start_eind_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
             </authorizingPrescription>
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                   <valueQuantity>
-                     <value value="30"/>
+                     <value value="100"/>
                      <unit value="stuk"/>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                      <code value="245"/>
                   </valueQuantity>
                </extension>
-               <value value="30"/>
+               <value value="100"/>
                <unit value="stuk"/>
                <system value="http://unitsofmeasure.org"/>
                <code value="1"/>
             </quantity>
-            <whenHandedOver value="2023-01-01T12:07:00+01:00"/>
-            <destination>
-               <reference value="urn:uuid:7c86ab9e-0beb-11f0-9257-020000000000"/>
-               <type value="Location"/>
-               <display value="afleverlocatie"/>
-            </destination>
+            <daysSupply>
+               <value value="100"/>
+               <unit value="dag"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="dag"/>
+            </daysSupply>
+            <whenHandedOver value="2024-01-01T12:00:00+01:00"/>
          </MedicationDispense>
       </resource>
       <request>
@@ -82,7 +80,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7c86ab3a-0beb-11f0-9257-020000000000"/>
+      <fullUrl value="urn:uuid:1bf7a160-7767-11f0-4541-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -116,18 +114,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:7c86abc6-0beb-11f0-9257-020000000000"/>
+               <reference value="urn:uuid:1bf7a214-7767-11f0-4541-020000000000"/>
                <type value="Medication"/>
                <display value="MIZOLLEN TABLET MGA 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:7c86aad6-0beb-11f0-9257-020000000000"/>
+               <reference value="urn:uuid:1bf7a0fc-7767-11f0-4541-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:7c86aafe-0beb-11f0-9257-020000000000"/>
+                  <reference value="urn:uuid:1bf7a124-7767-11f0-4541-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -143,18 +141,24 @@
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                   <valueQuantity>
-                     <value value="100"/>
+                     <value value="14"/>
                      <unit value="stuk"/>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                      <code value="245"/>
                   </valueQuantity>
                </extension>
-               <value value="100"/>
+               <value value="14"/>
                <unit value="stuk"/>
                <system value="http://unitsofmeasure.org"/>
                <code value="1"/>
             </quantity>
-            <whenHandedOver value="2022-12-23T12:01:00+01:00"/>
+            <daysSupply>
+               <value value="14"/>
+               <unit value="dag"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="dag"/>
+            </daysSupply>
+            <whenHandedOver value="2023-12-23T12:01:00+01:00"/>
          </MedicationDispense>
       </resource>
       <request>
@@ -163,7 +167,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7c86ab4e-0beb-11f0-9257-020000000000"/>
+      <fullUrl value="urn:uuid:1bf7a174-7767-11f0-4541-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -188,18 +192,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:7c86abee-0beb-11f0-9257-020000000000"/>
+               <reference value="urn:uuid:1bf7a23c-7767-11f0-4541-020000000000"/>
                <type value="Medication"/>
                <display value="PARACETAMOL PCH TABLET 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:7c86aad6-0beb-11f0-9257-020000000000"/>
+               <reference value="urn:uuid:1bf7a0fc-7767-11f0-4541-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:7c86aafe-0beb-11f0-9257-020000000000"/>
+                  <reference value="urn:uuid:1bf7a124-7767-11f0-4541-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -215,13 +219,13 @@
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                   <valueQuantity>
-                     <value value="100"/>
+                     <value value="50"/>
                      <unit value="stuk"/>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                      <code value="245"/>
                   </valueQuantity>
                </extension>
-               <value value="100"/>
+               <value value="50"/>
                <unit value="stuk"/>
                <system value="http://unitsofmeasure.org"/>
                <code value="1"/>
@@ -232,7 +236,7 @@
                <system value="http://unitsofmeasure.org"/>
                <code value="dag"/>
             </daysSupply>
-            <whenHandedOver value="2023-01-01T12:02:00+01:00"/>
+            <whenHandedOver value="2024-01-01T12:02:00+01:00"/>
          </MedicationDispense>
       </resource>
       <request>
@@ -241,7 +245,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7c86ab62-0beb-11f0-9257-020000000000"/>
+      <fullUrl value="urn:uuid:1bf7a188-7767-11f0-4541-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -266,18 +270,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:7c86abb2-0beb-11f0-9257-020000000000"/>
+               <reference value="urn:uuid:1bf7a200-7767-11f0-4541-020000000000"/>
                <type value="Medication"/>
                <display value="FUROSEMIDE APOTEX TABLET 40MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:7c86aad6-0beb-11f0-9257-020000000000"/>
+               <reference value="urn:uuid:1bf7a0fc-7767-11f0-4541-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:7c86aafe-0beb-11f0-9257-020000000000"/>
+                  <reference value="urn:uuid:1bf7a124-7767-11f0-4541-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -304,7 +308,7 @@
                <system value="http://unitsofmeasure.org"/>
                <code value="1"/>
             </quantity>
-            <whenHandedOver value="2022-11-12T12:05:00+01:00"/>
+            <whenHandedOver value="2023-11-12T12:05:00+01:00"/>
          </MedicationDispense>
       </resource>
       <request>
@@ -313,7 +317,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7c86ab76-0beb-11f0-9257-020000000000"/>
+      <fullUrl value="urn:uuid:1bf7a19c-7767-11f0-4541-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -338,18 +342,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:7c86abb2-0beb-11f0-9257-020000000000"/>
+               <reference value="urn:uuid:1bf7a200-7767-11f0-4541-020000000000"/>
                <type value="Medication"/>
                <display value="FUROSEMIDE APOTEX TABLET 40MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:7c86aad6-0beb-11f0-9257-020000000000"/>
+               <reference value="urn:uuid:1bf7a0fc-7767-11f0-4541-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:7c86aafe-0beb-11f0-9257-020000000000"/>
+                  <reference value="urn:uuid:1bf7a124-7767-11f0-4541-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -376,7 +380,7 @@
                <system value="http://unitsofmeasure.org"/>
                <code value="1"/>
             </quantity>
-            <whenHandedOver value="2022-12-12T10:24:05+01:00"/>
+            <whenHandedOver value="2023-12-12T10:24:05+01:00"/>
          </MedicationDispense>
       </resource>
       <request>
@@ -385,7 +389,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7c86ab8a-0beb-11f0-9257-020000000000"/>
+      <fullUrl value="urn:uuid:1bf7a1b0-7767-11f0-4541-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -410,18 +414,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:7c86abb2-0beb-11f0-9257-020000000000"/>
+               <reference value="urn:uuid:1bf7a200-7767-11f0-4541-020000000000"/>
                <type value="Medication"/>
                <display value="FUROSEMIDE APOTEX TABLET 40MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:7c86aad6-0beb-11f0-9257-020000000000"/>
+               <reference value="urn:uuid:1bf7a0fc-7767-11f0-4541-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:7c86aafe-0beb-11f0-9257-020000000000"/>
+                  <reference value="urn:uuid:1bf7a124-7767-11f0-4541-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -448,7 +452,7 @@
                <system value="http://unitsofmeasure.org"/>
                <code value="1"/>
             </quantity>
-            <whenHandedOver value="2023-01-11T09:46:48+01:00"/>
+            <whenHandedOver value="2024-01-11T09:46:48+01:00"/>
          </MedicationDispense>
       </resource>
       <request>
@@ -457,7 +461,87 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7c86aad6-0beb-11f0-9257-020000000000"/>
+      <fullUrl value="urn:uuid:1bf7a1c4-7767-11f0-4541-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.RequestDate">
+               <valueDateTime value="2024-01-01T11:07:00+01:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_afleverlocatie"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <value value="MBH_300_afleverlocatie_MVE"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="373784005"/>
+                  <display value="verstrekken van medicatie"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:1bf7a228-7767-11f0-4541-020000000000"/>
+               <type value="Medication"/>
+               <display value="MODAFINIL FOCUS TABLET 200MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:1bf7a0fc-7767-11f0-4541-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, M. XXX_Nederveen"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:1bf7a124-7767-11f0-4541-020000000000"/>
+                  <type value="Organization"/>
+                  <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                  <value value="MBH_300_afleverlocatie_VV"/>
+               </identifier>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_afleverlocatie_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+            </authorizingPrescription>
+            <quantity>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                  <valueQuantity>
+                     <value value="30"/>
+                     <unit value="stuk"/>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                     <code value="245"/>
+                  </valueQuantity>
+               </extension>
+               <value value="30"/>
+               <unit value="stuk"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="1"/>
+            </quantity>
+            <whenHandedOver value="2024-01-01T12:07:00+01:00"/>
+            <destination>
+               <reference value="urn:uuid:1bf7a1d8-7767-11f0-4541-020000000000"/>
+               <type value="Location"/>
+               <display value="afleverlocatie"/>
+            </destination>
+         </MedicationDispense>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:1bf7a0fc-7767-11f0-4541-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -504,7 +588,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7c86aafe-0beb-11f0-9257-020000000000"/>
+      <fullUrl value="urn:uuid:1bf7a124-7767-11f0-4541-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -548,7 +632,40 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7c86abb2-0beb-11f0-9257-020000000000"/>
+      <fullUrl value="urn:uuid:1bf7a1ec-7767-11f0-4541-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="1110837"/>
+                  <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="49484"/>
+                  <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="103039"/>
+                  <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+               </coding>
+               <text value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:1bf7a200-7767-11f0-4541-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -581,7 +698,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7c86abc6-0beb-11f0-9257-020000000000"/>
+      <fullUrl value="urn:uuid:1bf7a214-7767-11f0-4541-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -614,7 +731,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7c86abda-0beb-11f0-9257-020000000000"/>
+      <fullUrl value="urn:uuid:1bf7a228-7767-11f0-4541-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -647,7 +764,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7c86abee-0beb-11f0-9257-020000000000"/>
+      <fullUrl value="urn:uuid:1bf7a23c-7767-11f0-4541-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -680,7 +797,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7c86ab9e-0beb-11f0-9257-020000000000"/>
+      <fullUrl value="urn:uuid:1bf7a1d8-7767-11f0-4541-020000000000"/>
       <resource>
          <Location>
             <meta>
