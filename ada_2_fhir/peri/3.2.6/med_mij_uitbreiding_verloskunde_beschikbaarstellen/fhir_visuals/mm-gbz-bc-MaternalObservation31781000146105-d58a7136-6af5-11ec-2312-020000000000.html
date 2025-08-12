@@ -30,6 +30,10 @@
                      <td>${DATE, T, D, -320}</td>
                   </tr>
                   <tr>
+                     <th>Gerelateerd</th>
+                     <td>has-member - sectiowond normaal Vrouw-XXX_Yzendoorn</td>
+                  </tr>
+                  <tr>
                      <th>Code</th>
                      <th>Waarde</th>
                   </tr>
@@ -54,14 +58,16 @@ var nodes = new vis.DataSet([
 { id: 7, label: "Practitioner XXX_Groeneboom-XXX_Gras", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-123400011.html" }, 
 { id: 10, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-d552483f-6b0c-11ec-1275-020000000000.html" }, 
 { id: 88, label: "Observation wond na sectio caesarea (afwijkende morfologie)", url: "mm-gbz-bc-MaternalObservation31781000146105-d58a7136-6af5-11ec-2312-020000000000.html" }, 
-{ id: 97, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-bc-Woman-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
+{ id: 89, label: "Observation", url: "mm-gbz-bc-MaternalObservation-54409136-6aec-11ec-1066-020000000000.html" }, 
+{ id: 98, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-bc-Woman-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 88, to: 97 }, 
+var edges = new vis.DataSet([{ from: 88, to: 98 }, 
 { from: 88, to: 10 }, 
 { from: 88, to: 6 }, 
 { from: 88, to: 7 }, 
+{ from: 88, to: 89 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");
