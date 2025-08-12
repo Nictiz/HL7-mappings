@@ -1,0 +1,249 @@
+<?xml-model href="../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schematron_closed_warnings/mp-medvoors.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
+<PORX_IN932000NL xsi:schemaLocation="urn:hl7-org:v3 ../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/PORX_IN932000NL.xsd"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns="urn:hl7-org:v3"
+                 xmlns:hl7="urn:hl7-org:v3"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <id extension="2BGeneratedID"
+       root="2.16.840.1.113883.2.4.3.11.999.77.3"/>
+   <creationTime value="20240101000000"/>
+   <versionCode code="NICTIZEd2005-Okt"/>
+   <interactionId extension="PORX_IN932000NL"
+                  root="2.16.840.1.113883.1.6"/>
+   <profileId root="2.16.840.1.113883.2.4.3.11.1"
+              extension="810"/>
+   <processingCode code="P"/>
+   <processingModeCode code="T"/>
+   <acceptAckCode code="AL"/>
+   <attentionLine>
+      <keyWordText code="PATID"
+                   codeSystem="2.16.840.1.113883.2.4.15.1">Patient.id</keyWordText>
+      <value extension="012345672"
+             root="2.16.840.1.113883.2.4.6.3"
+             xsi:type="II"/>
+   </attentionLine>
+   <receiver typeCode="RCV">
+      <device classCode="DEV"
+              determinerCode="INSTANCE">
+         <id extension="2BFilledWithRealValue"
+             root="2.16.840.1.113883.2.4.6.6"/>
+         <name>AIS van openbare apotheek De Gulle Gaper</name>
+      </device>
+   </receiver>
+   <sender typeCode="SND">
+      <device classCode="DEV"
+              determinerCode="INSTANCE">
+         <id extension="2BFilledWithRealValue"
+             root="2.16.840.1.113883.2.4.6.6"/>
+         <name>EVS van ziekenhuis Medisch Centrum Oost</name>
+      </device>
+   </sender>
+   <ControlActProcess classCode="CACT"
+                      moodCode="EVN">
+      <authorOrPerformer typeCode="AUT">
+         <participant>
+            <AssignedPerson>
+               <id extension="000001113"
+                   root="2.16.528.1.1007.3.1"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
+               <assignedPrincipalChoiceList>
+                  <assignedPerson classCode="PSN"
+                                  determinerCode="INSTANCE">
+                     <name>
+                        <given qualifier="BR">Jan</given>
+                        <prefix qualifier="VV">de </prefix>
+                        <family qualifier="BR">Dokter</family>
+                     </name>
+                  </assignedPerson>
+               </assignedPrincipalChoiceList>
+               <Organization classCode="ORG"
+                             determinerCode="INSTANCE">
+                  <id extension="00005111"
+                      root="2.16.528.1.1007.3.3"/>
+                  <name>Huisartsenpraktijk Itis</name>
+                  <addr>
+                     <city>Onze Stad</city>
+                  </addr>
+               </Organization>
+            </AssignedPerson>
+         </participant>
+      </authorOrPerformer>
+      <overseer typeCode="RESP">
+         <AssignedPerson>
+            <id extension="000001113"
+                root="2.16.528.1.1007.3.1"/>
+            <code code="01.015"
+                  codeSystem="2.16.840.1.113883.2.4.15.111"
+                  displayName="Huisarts"
+                  codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                  codeSystemVersion="2024-01-29T00:00:00"/>
+            <assignedPrincipalChoiceList>
+               <assignedPerson classCode="PSN"
+                               determinerCode="INSTANCE">
+                  <name>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
+                  </name>
+               </assignedPerson>
+            </assignedPrincipalChoiceList>
+            <Organization classCode="ORG"
+                          determinerCode="INSTANCE">
+               <id extension="00005111"
+                   root="2.16.528.1.1007.3.3"/>
+               <name>Huisartsenpraktijk Itis</name>
+               <addr>
+                  <city>Onze Stad</city>
+               </addr>
+            </Organization>
+         </AssignedPerson>
+      </overseer>
+      <!--Generated from ada instance with title: "Hybride Verbruiksperiode met keerdosis Scenarioset 1.29" and id: "mv-mp-svo-hyb612-1-29-verbruiksperiodekeerdosis-v30".-->
+      <subject>
+         <prescription classCode="SBADM"
+                       moodCode="RQO">
+            <id root="1.3.6.1.4.1.58606.1.3.2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                extension="MBH_hyb_vo_Vrbrksprde_krds_MA!MBH_hyb_vo_Vrbrksprde_krds_VV"/>
+            <statusCode code="active"/>
+            <subject typeCode="SBJ">
+               <Patient>
+                  <id extension="999900821"
+                      root="2.16.840.1.113883.2.4.6.3"/>
+                  <addr use="PHYS">
+                     <streetName>Knolweg</streetName>
+                     <houseNumber>1003</houseNumber>
+                     <postalCode>9999 ZA</postalCode>
+                     <city>Apeldoorn</city>
+                     <country code="NL"
+                              codeSystem="1.0.3166.1.2.2"
+                              displayName="Nederland"
+                              codeSystemName="ISO 3166-1 (alpha-2)"
+                              codeSystemVersion="2020-10-26T00:00:00"/>
+                  </addr>
+                  <statusCode code="active"/>
+                  <Person>
+                     <name>
+                        <given qualifier="IN">L.</given>
+                        <prefix qualifier="VV">van de </prefix>
+                        <family qualifier="BR">XXX_Meijsz</family>
+                     </name>
+                     <administrativeGenderCode code="M"
+                                               codeSystem="2.16.840.1.113883.5.1"
+                                               displayName="Man"/>
+                     <birthTime value="19851027"/>
+                  </Person>
+               </Patient>
+            </subject>
+            <author typeCode="AUT">
+               <time value="20240101095700+0100"/>
+               <AssignedPerson classCode="ASSIGNED">
+                  <id extension="000001113"
+                      root="2.16.528.1.1007.3.1"/>
+                  <code code="01.015"
+                        codeSystem="2.16.840.1.113883.2.4.15.111"
+                        displayName="Huisarts"
+                        codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                        codeSystemVersion="2024-01-29T00:00:00"/>
+                  <assignee>
+                     <assigneePerson classCode="PSN"
+                                     determinerCode="INSTANCE">
+                        <name>
+                           <given qualifier="BR">Jan</given>
+                           <prefix qualifier="VV">de </prefix>
+                           <family qualifier="BR">Dokter</family>
+                        </name>
+                     </assigneePerson>
+                  </assignee>
+                  <!--The message template (9043) incorrectly defines representedOrganization, however the xsd only accepts Organization-->
+                  <!--Closed warnings schematron messages for this element should be ignored.-->
+                  <Organization classCode="ORG"
+                                determinerCode="INSTANCE">
+                     <id extension="00005111"
+                         root="2.16.528.1.1007.3.3"/>
+                     <name>Huisartsenpraktijk Itis</name>
+                     <addr use="WP">
+                        <streetName>Langelaan</streetName>
+                        <houseNumber>1</houseNumber>
+                        <postalCode>1234 ZZ</postalCode>
+                        <city>Onze Stad</city>
+                     </addr>
+                  </Organization>
+               </AssignedPerson>
+            </author>
+            <directTarget typeCode="DIR">
+               <prescribedMedication>
+                  <MedicationKind classCode="MMAT"
+                                  determinerCode="KIND">
+                     <code code="8060"
+                           codeSystem="2.16.840.1.113883.2.4.4.10"
+                           displayName="DICLOFENAC-NATRIUM TABLET MSR 25MG"
+                           codeSystemName="G-Standaard PRK">
+                        <translation code="22276"
+                                     codeSystem="2.16.840.1.113883.2.4.4.1"
+                                     displayName="DICLOFENAC-NATRIUM TABLET MSR 25MG"
+                                     codeSystemName="G-Standaard GPK"/>
+                     </code>
+                  </MedicationKind>
+                  <productOf>
+                     <medicationDispenseRequest>
+                        <id extension="MBH_hyb_vo_Vrbrksprde_krds_VV"
+                            root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                        <statusCode nullFlavor="NA"/>
+                        <expectedUseTime>
+                           <width value="5"
+                                  unit="d"/>
+                        </expectedUseTime>
+                        <performer typeCode="PRF">
+                           <assignedPerson>
+                              <representedOrganization>
+                                 <id extension="01236578"
+                                     root="2.16.528.1.1007.3.3"/>
+                                 <name>Apotheek De Gulle Gaper</name>
+                              </representedOrganization>
+                           </assignedPerson>
+                        </performer>
+                     </medicationDispenseRequest>
+                  </productOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">1 maal per dag 2 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <width value="5"
+                                     unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="2"
+                                   unit="1">
+                              <translation value="2"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+               </prescribedMedication>
+            </directTarget>
+         </prescription>
+      </subject>
+   </ControlActProcess>
+</PORX_IN932000NL>
