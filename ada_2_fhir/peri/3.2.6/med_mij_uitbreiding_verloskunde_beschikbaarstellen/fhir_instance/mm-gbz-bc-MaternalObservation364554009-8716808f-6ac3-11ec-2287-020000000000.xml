@@ -52,7 +52,10 @@
                   <td>
                      <span title="infectiestatus (waarneembare entiteit) (405009004 - SNOMED CT)">infectiestatus (waarneembare entiteit)</span>
                   </td>
-                  <td>nee</td>
+                  <td>
+                     <span title="No (N - v2/0136)">No</span>
+                     <div>nee</div>
+                  </td>
                </tr>
                <tr>
                   <td>
@@ -75,8 +78,10 @@
       </div>
    </text>
    <extension url="http://hl7.org/fhir/StructureDefinition/event-reasonReference">
-      <reference value="Condition/8716808f-6ac3-11ec-2287-020000000000"/>
-      <display value="perineumwond wond P1-Maaike"/>
+      <valueReference>
+         <reference value="Condition/8716808f-6ac3-11ec-2287-020000000000"/>
+         <display value="perineumwond wond P1-Maaike"/>
+      </valueReference>
    </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
@@ -138,6 +143,9 @@
       </valueCodeableConcept>
    </component>
    <component>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-component-valueBooleanSTU3">
+         <valueBoolean value="false"/>
+      </extension>
       <code>
          <coding>
             <system value="http://snomed.info/sct"/>
@@ -145,7 +153,13 @@
             <display value="infectiestatus (waarneembare entiteit)"/>
          </coding>
       </code>
-      <valueBoolean value="false"/>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://hl7.org/fhir/v2/0136"/>
+            <code value="N"/>
+            <display value="No"/>
+         </coding>
+      </valueCodeableConcept>
    </component>
    <component>
       <code>
