@@ -1,6 +1,6 @@
 <html lang="en">
    <head>
-      <title>Observation - 7c274d5f-6acb-11ec-1066-020000000000</title>
+      <title>Condition - 8716808f-6ac3-11ec-2287-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -18,52 +18,39 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Observatie/bepaling. Subject: Maaike M Maaike Ostendorf. Status: definitief<span style="display: block;">Uitvoerende: Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis</span>
-               </caption>
+               <caption>Aandoening. Subject: Maaike M Maaike Ostendorf. Status: actief</caption>
                <tbody>
                   <tr>
-                     <th>Context</th>
-                     <td>opname en ontslag T-53D{08:36} P1-Maaike</td>
-                  </tr>
-                  <tr>
-                     <th>Bepalingdatum/tijd</th>
-                     <td>${DATE, T, D, -53}T08:36:00+02:00</td>
-                  </tr>
-                  <tr>
                      <th>Code</th>
-                     <th>Waarde</th>
+                     <td>Perineumwond (Wond)</td>
                   </tr>
                   <tr>
-                     <td>Perineumwond normaal</td>
-                     <td>ja</td>
+                     <th>Eerste symptomen</th>
+                     <td>${DATE, T, D, -53}</td>
                   </tr>
                </tbody>
             </table>
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Observation</b>
+         <b>Resources pointing to 'this' resource - Condition</b>
       </p>
       <ul>
          <li>
-            <a href="mm-gbz-bc-MaternalObservation-8716808f-6ac3-11ec-2287-020000000000.html">Observation</a>
+            <a href="mm-gbz-bc-MaternalObservation364554009-8716808f-6ac3-11ec-2287-020000000000.html">Observation Wound observable (observable entity)</a>
          </li>
       </ul>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 10, label: "Practitioner De Jong", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167.html" }, 
-{ id: 11, label: "PractitionerRole Gynaecoloog", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-030731670307316706019999.html" }, 
-{ id: 46, label: "Encounter verlossing (verrichting)", url: "mm-gbz-bc-Encounter-f2ba733f-6af7-11ec-1275-020000000000.html" }, 
-{ id: 217, label: "Observation", url: "mm-gbz-bc-MaternalObservation-7c274d5f-6acb-11ec-1066-020000000000.html" }, 
-{ id: 256, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
+{ id: 39, label: "Condition", url: "mm-gbz-zib-Wound-8716808f-6ac3-11ec-2287-020000000000.html" }, 
+{ id: 47, label: "Encounter verlossing (verrichting)", url: "mm-gbz-bc-Encounter-f2ba733f-6af7-11ec-1275-020000000000.html" }, 
+{ id: 251, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 217, to: 256 }, 
-{ from: 217, to: 46 }, 
-{ from: 217, to: 11 }, 
-{ from: 217, to: 10 }, 
+var edges = new vis.DataSet([{ from: 39, to: 251 }, 
+{ from: 39, to: 47 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

@@ -1,6 +1,6 @@
 <html lang="en">
    <head>
-      <title>Observation - 7046739f-6b4c-11ec-2287-020000000000</title>
+      <title>Observation - 8716808f-6ac3-11ec-2287-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -30,8 +30,32 @@
                      <td>${DATE, T, D, -53}T08:36:00+02:00</td>
                   </tr>
                   <tr>
+                     <th>Deel van lichaam</th>
+                     <td>
+                        <span title="structuur van perineum (lichaamsstructuur) (38864007 - SNOMED CT)">structuur van perineum (lichaamsstructuur)</span>
+                     </td>
+                  </tr>
+                  <tr>
                      <th>Code</th>
                      <th>Waarde</th>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span title="Wound observable (observable entity) (364554009 - SNOMED CT)">Sectiowond</span>
+                     </td>
+                     <td/>
+                  </tr>
+                  <tr>
+                     <td>Perineumwond normaal</td>
+                     <td>
+                        <div>ja</div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>WondWeefsel</td>
+                     <td>
+                        <span title="Rode wond (ROOD - 2.16.840.1.113883.2.4.3.11.60.40.4.7.2)">Rode wond</span>
+                     </td>
                   </tr>
                   <tr>
                      <td>
@@ -39,33 +63,47 @@
                      </td>
                      <td>nee</td>
                   </tr>
+                  <tr>
+                     <td>
+                        <span title="vochtigheid van verwonding (waarneembare entiteit) (298007001 - SNOMED CT)">vochtigheid van verwonding (waarneembare entiteit)</span>
+                     </td>
+                     <td>
+                        <span title="Vochtige wond (VOCHTIG - 2.16.840.1.113883.2.4.3.11.60.40.4.7.3)">Vochtige wond</span>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span title="bevinding betreffende rand van wond (bevinding) (449747006 - SNOMED CT)">bevinding betreffende rand van wond (bevinding)</span>
+                     </td>
+                     <td>
+                        <span title="Irritatie (367466007 - SNOMED CT)">Irritatie</span>
+                     </td>
+                  </tr>
                </tbody>
             </table>
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Observation infectiestatus (waarneembare entiteit)</b>
+         <b>Resources pointing to 'this' resource - Observation Wound observable (observable entity)</b>
       </p>
-      <ul>
-         <li>
-            <a href="mm-gbz-bc-MaternalObservation-8716808f-6ac3-11ec-2287-020000000000.html">Observation</a>
-         </li>
-      </ul>
+      <div> - none</div>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
 { id: 10, label: "Practitioner De Jong", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167.html" }, 
 { id: 11, label: "PractitionerRole Gynaecoloog", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-030731670307316706019999.html" }, 
-{ id: 46, label: "Encounter verlossing (verrichting)", url: "mm-gbz-bc-Encounter-f2ba733f-6af7-11ec-1275-020000000000.html" }, 
-{ id: 219, label: "Observation infectiestatus (waarneembare entiteit)", url: "mm-gbz-bc-MaternalObservation405009004-7046739f-6b4c-11ec-2287-020000000000.html" }, 
-{ id: 256, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
+{ id: 39, label: "Condition", url: "mm-gbz-zib-Wound-8716808f-6ac3-11ec-2287-020000000000.html" }, 
+{ id: 47, label: "Encounter verlossing (verrichting)", url: "mm-gbz-bc-Encounter-f2ba733f-6af7-11ec-1275-020000000000.html" }, 
+{ id: 217, label: "Observation Wound observable (observable entity)", url: "mm-gbz-bc-MaternalObservation364554009-8716808f-6ac3-11ec-2287-020000000000.html" }, 
+{ id: 251, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 219, to: 256 }, 
-{ from: 219, to: 46 }, 
-{ from: 219, to: 11 }, 
-{ from: 219, to: 10 }, 
+var edges = new vis.DataSet([{ from: 217, to: 39 }, 
+{ from: 217, to: 251 }, 
+{ from: 217, to: 47 }, 
+{ from: 217, to: 11 }, 
+{ from: 217, to: 10 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");
