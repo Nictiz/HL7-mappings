@@ -1,90 +1,17 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<Bundle xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<Bundle schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd"
         xmlns="http://hl7.org/fhir">
-   <id value="MO-Hansman"/>
+   <id value="Bundle-MedicationOverview-4ff36a09-7901-11f0-2090-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
    </meta>
    <type value="searchset"/>
    <total value="1"/>
-   <link>
-      <relation value="self"/>
-      <url value="http://dummy.nictiz.nl/dummyquery"/>
-   </link>
    <entry>
-      <fullUrl value="urn:uuid:50f13100-7901-11f0-8442-020000000000"/>
-      <resource>
-         <List>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-Verification">
-               <extension url="VerificationPatient">
-                  <valueBoolean value="true"/>
-               </extension>
-               <extension url="VerificationPatientDate">
-                  <valueDateTime value="2024-02-13T14:15:17+01:00"/>
-               </extension>
-               <extension url="VerificationHealthProfessional">
-                  <valueBoolean value="true"/>
-               </extension>
-               <extension url="VerificationHealthProfessionalDate">
-                  <valueDateTime value="2024-02-13T14:15:17+01:00"/>
-               </extension>
-            </extension>
-            <status value="current"/>
-            <mode value="snapshot"/>
-            <code>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="11181000146103"/>
-                  <display value="Actual medication overview (record artifact)"/>
-               </coding>
-               <text value="Medicatieoverzicht"/>
-            </code>
-            <subject>
-               <reference value="urn:uuid:50f10e07-7901-11f0-8442-020000000000"/>
-               <display value="Joris Hansman"/>
-            </subject>
-            <date value="2016-06-23T14:15:18+02:00"/>
-            <source>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-SourceOrganization">
-                  <valueReference>
-                     <reference value="urn:uuid:50f13108-7901-11f0-8442-020000000000"/>
-                     <display value="Ziekenhuis zus en zo"/>
-                  </valueReference>
-               </extension>
-               <display value="Ziekenhuis zus en zo"/>
-            </source>
-            <entry>
-               <item>
-                  <reference value="urn:uuid:50f11bdc-7901-11f0-8442-020000000000"/>
-                  <display value="Medicatieafspraak identifier: value='#MB_01h#MA_01', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
-               </item>
-            </entry>
-            <entry>
-               <item>
-                  <reference value="urn:uuid:50f13037-7901-11f0-8442-020000000000"/>
-                  <display value="Toedieningsafspraak identifier: value='1546339-f6753t65r', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1'"/>
-               </item>
-            </entry>
-            <entry>
-               <item>
-                  <reference value="urn:uuid:50f13081-7901-11f0-8442-020000000000"/>
-                  <display value="Medicatiegebruik identifier: value='#MB_01i1#GE_01', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1'"/>
-               </item>
-            </entry>
-         </List>
-      </resource>
-      <search>
-         <mode value="match"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:50f11bdc-7901-11f0-8442-020000000000"/>
+      <fullUrl value="urn:uuid:4ff36fd0-7901-11f0-2090-020000000000"/>
       <resource>
          <MedicationRequest>
+            <id value="zib-MedicationAgreement-mp9-MB-01hMA-01"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
             </meta>
@@ -163,11 +90,11 @@
                <text value="Medicatieafspraak"/>
             </category>
             <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.6939"/>
+               <reference value="Medication/zib-Product-mp9-2.16.840.1.113883.2.4.4.10-6939"/>
                <display value="Metoclopramide zetpil 20mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:50f10e07-7901-11f0-8442-020000000000"/>
+               <reference value="Patient/JORIS-HANSMAN"/>
                <display value="Joris Hansman"/>
             </subject>
             <authoredOn value="2024-01-01T10:54:23+01:00"/>
@@ -175,11 +102,11 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:50f11be2-7901-11f0-8442-020000000000"/>
+                        <reference value="PractitionerRole/nl-core-practitionerrole-mp9-01234567801.016URANUMMER"/>
                         <display value="Dr Jansen || Internist || Ziekenhuis zus en zo"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.12345678"/>
+                  <reference value="Practitioner/nl-core-practitioner-mp9-2.16.528.1.1007.3.1-012345678"/>
                   <display value="Dr Jansen"/>
                </agent>
             </requester>
@@ -221,9 +148,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:50f13037-7901-11f0-8442-020000000000"/>
+      <fullUrl value="urn:uuid:4ff3816f-7901-11f0-2090-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="zib-AdministrationAgreement-mp9-1546339-f6753t65r"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
             </meta>
@@ -317,16 +245,16 @@
                <text value="Toedieningsafspraak"/>
             </category>
             <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.8.14983265"/>
+               <reference value="Medication/zib-Product-mp9-2.16.840.1.113883.2.4.4.8-14983265"/>
                <display value="PRIMPERAN ZETPIL 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:50f10e07-7901-11f0-8442-020000000000"/>
+               <reference value="Patient/JORIS-HANSMAN"/>
                <display value="Joris Hansman"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:oid:2.16.528.1.1007.3.3.22343221"/>
+                  <reference value="Organization/nl-core-organization-mp9-2.16.528.1.1007.3.3-22343221"/>
                   <display value="Apotheek Boomsma"/>
                </actor>
             </performer>
@@ -365,9 +293,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:50f13081-7901-11f0-8442-020000000000"/>
+      <fullUrl value="urn:uuid:4ff381b9-7901-11f0-2090-020000000000"/>
       <resource>
          <MedicationStatement>
+            <id value="zib-MedicationUse-mp9-MB-01i1GE-01"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
             </meta>
@@ -431,7 +360,7 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:50f130dc-7901-11f0-8442-020000000000"/>
+                  <reference value="PractitionerRole/l-core-practitionerrole-mp9-4ff38214-7901-11f0-2090-020000000000"/>
                   <display value="Dr Jansen || Internist || Ziekenhuis zus en zo"/>
                </valueReference>
             </extension>
@@ -458,7 +387,7 @@
                <text value="Medicatiegebruik"/>
             </category>
             <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.67903"/>
+               <reference value="Medication/zib-Product-mp9-2.16.840.1.113883.2.4.4.10-67903"/>
                <display value="PARACETAMOL TABLET 500MG"/>
             </medicationReference>
             <effectivePeriod>
@@ -474,7 +403,7 @@
             </effectivePeriod>
             <dateAsserted value="2024-02-13"/>
             <subject>
-               <reference value="urn:uuid:50f10e07-7901-11f0-8442-020000000000"/>
+               <reference value="Patient/JORIS-HANSMAN"/>
                <display value="Joris Hansman"/>
             </subject>
             <derivedFrom>
@@ -545,9 +474,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:50f10e07-7901-11f0-8442-020000000000"/>
+      <fullUrl value="urn:uuid:4ff36a11-7901-11f0-2090-020000000000"/>
       <resource>
          <Patient>
+            <id value="JORIS-HANSMAN"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
             </meta>
@@ -606,6 +536,7 @@
       <fullUrl value="urn:oid:2.16.528.1.1007.3.1.12345678"/>
       <resource>
          <Practitioner>
+            <id value="nl-core-practitioner-mp9-2.16.528.1.1007.3.1-012345678"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
             </meta>
@@ -656,9 +587,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:50f11bf5-7901-11f0-8442-020000000000"/>
+      <fullUrl value="urn:uuid:4ff36fe9-7901-11f0-2090-020000000000"/>
       <resource>
          <Organization>
+            <id value="nl-core-organization-mp9-1.2.3.4-URANUMMER"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
@@ -714,9 +646,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:50f130f1-7901-11f0-8442-020000000000"/>
+      <fullUrl value="urn:uuid:4ff38229-7901-11f0-2090-020000000000"/>
       <resource>
          <Organization>
+            <id value="nl-core-organization-mp9-4ff38229-7901-11f0-2090-020000000000"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
@@ -746,9 +679,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:50f13108-7901-11f0-8442-020000000000"/>
+      <fullUrl value="urn:uuid:4ff38240-7901-11f0-2090-020000000000"/>
       <resource>
          <Organization>
+            <id value="nl-core-organization-mp9-4ff38240-7901-11f0-2090-020000000000"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
@@ -814,6 +748,7 @@
       <fullUrl value="urn:oid:2.16.528.1.1007.3.3.22343221"/>
       <resource>
          <Organization>
+            <id value="nl-core-organization-mp9-2.16.528.1.1007.3.3-22343221"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
@@ -843,9 +778,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:50f11be2-7901-11f0-8442-020000000000"/>
+      <fullUrl value="urn:uuid:4ff36fd6-7901-11f0-2090-020000000000"/>
       <resource>
          <PractitionerRole>
+            <id value="nl-core-practitionerrole-mp9-01234567801.016URANUMMER"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
@@ -873,11 +809,11 @@
                </div>
             </text>
             <practitioner>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.12345678"/>
+               <reference value="Practitioner/nl-core-practitioner-mp9-2.16.528.1.1007.3.1-012345678"/>
                <display value="Dr Jansen"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:50f11bf5-7901-11f0-8442-020000000000"/>
+               <reference value="Organization/nl-core-organization-mp9-1.2.3.4-URANUMMER"/>
                <display value="Ziekenhuis zus en zo"/>
             </organization>
             <specialty>
@@ -894,9 +830,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:50f130dc-7901-11f0-8442-020000000000"/>
+      <fullUrl value="urn:uuid:4ff38214-7901-11f0-2090-020000000000"/>
       <resource>
          <PractitionerRole>
+            <id value="l-core-practitionerrole-mp9-4ff38214-7901-11f0-2090-020000000000"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
@@ -924,11 +861,11 @@
                </div>
             </text>
             <practitioner>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.12345678"/>
+               <reference value="Practitioner/nl-core-practitioner-mp9-2.16.528.1.1007.3.1-012345678"/>
                <display value="Dr Jansen"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:50f130f1-7901-11f0-8442-020000000000"/>
+               <reference value="Organization/nl-core-organization-mp9-4ff38229-7901-11f0-2090-020000000000"/>
                <display value="Ziekenhuis zus en zo"/>
             </organization>
             <specialty>
@@ -948,6 +885,7 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.6939"/>
       <resource>
          <Medication>
+            <id value="zib-Product-mp9-2.16.840.1.113883.2.4.4.10-6939"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
@@ -990,6 +928,7 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.8.14983265"/>
       <resource>
          <Medication>
+            <id value="zib-Product-mp9-2.16.840.1.113883.2.4.4.8-14983265"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
@@ -1042,6 +981,7 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.67903"/>
       <resource>
          <Medication>
+            <id value="zib-Product-mp9-2.16.840.1.113883.2.4.4.10-67903"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
@@ -1078,6 +1018,76 @@
       </resource>
       <search>
          <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:4ff38238-7901-11f0-2090-020000000000"/>
+      <resource>
+         <List>
+            <id value="d94016e352"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-Verification">
+               <extension url="VerificationPatient">
+                  <valueBoolean value="true"/>
+               </extension>
+               <extension url="VerificationPatientDate">
+                  <valueDateTime value="2024-02-13T14:15:17+01:00"/>
+               </extension>
+               <extension url="VerificationHealthProfessional">
+                  <valueBoolean value="true"/>
+               </extension>
+               <extension url="VerificationHealthProfessionalDate">
+                  <valueDateTime value="2024-02-13T14:15:17+01:00"/>
+               </extension>
+            </extension>
+            <status value="current"/>
+            <mode value="snapshot"/>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="11181000146103"/>
+                  <display value="Actual medication overview (record artifact)"/>
+               </coding>
+               <text value="Medicatieoverzicht"/>
+            </code>
+            <subject>
+               <reference value="Patient/JORIS-HANSMAN"/>
+               <display value="Joris Hansman"/>
+            </subject>
+            <date value="2016-06-23T14:15:18+02:00"/>
+            <source>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-SourceOrganization">
+                  <valueReference>
+                     <reference value="Organization/nl-core-organization-mp9-4ff38240-7901-11f0-2090-020000000000"/>
+                     <display value="Ziekenhuis zus en zo"/>
+                  </valueReference>
+               </extension>
+               <display value="Ziekenhuis zus en zo"/>
+            </source>
+            <entry>
+               <item>
+                  <reference value="MedicationRequest/zib-MedicationAgreement-mp9-MB-01hMA-01"/>
+                  <display value="Medicatieafspraak identifier: value='#MB_01h#MA_01', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
+               </item>
+            </entry>
+            <entry>
+               <item>
+                  <reference value="MedicationDispense/zib-AdministrationAgreement-mp9-1546339-f6753t65r"/>
+                  <display value="Toedieningsafspraak identifier: value='1546339-f6753t65r', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1'"/>
+               </item>
+            </entry>
+            <entry>
+               <item>
+                  <reference value="MedicationStatement/zib-MedicationUse-mp9-MB-01i1GE-01"/>
+                  <display value="Medicatiegebruik identifier: value='#MB_01i1#GE_01', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1'"/>
+               </item>
+            </entry>
+         </List>
+      </resource>
+      <search>
+         <mode value="match"/>
       </search>
    </entry>
 </Bundle>
