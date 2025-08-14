@@ -2,7 +2,7 @@
    <id value="lr-slr-KWAL-l2z-3Meesturen-met-ander-bericht-MO-3KCLOINC"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:63c6c32a-6889-11f0-1212-020000000000"/>
+      <fullUrl value="urn:uuid:d7b8f2e7-7917-11f0-5195-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -34,13 +34,13 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:63c6c2ee-6889-11f0-1212-020000000000"/>
+               <reference value="urn:uuid:d7b8f283-7917-11f0-5195-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, H. XXX_Smit"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, -30}"/>
             <performer>
-               <reference value="urn:uuid:63c6c302-6889-11f0-1212-020000000000"/>
+               <reference value="urn:uuid:d7b8f2bf-7917-11f0-5195-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
             </performer>
@@ -54,7 +54,7 @@
                <text value="Waarde is te laag. Stadium 4 nierfalen, ernstige nierfunctiestoornis."/>
             </interpretation>
             <specimen>
-               <reference value="urn:uuid:63c6c352-6889-11f0-1212-020000000000"/>
+               <reference value="urn:uuid:d7b8f30f-7917-11f0-5195-020000000000"/>
                <type value="Specimen"/>
                <display value="monster"/>
             </specimen>
@@ -74,7 +74,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:63c6c366-6889-11f0-1212-020000000000"/>
+      <fullUrl value="urn:uuid:d7b8f323-7917-11f0-5195-020000000000"/>
       <resource>
          <Device>
             <meta>
@@ -85,7 +85,7 @@
                <type value="other"/>
             </deviceName>
             <patient>
-               <reference value="urn:uuid:63c6c2ee-6889-11f0-1212-020000000000"/>
+               <reference value="urn:uuid:d7b8f283-7917-11f0-5195-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, H. XXX_Smit"/>
             </patient>
@@ -97,7 +97,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:63c6c352-6889-11f0-1212-020000000000"/>
+      <fullUrl value="urn:uuid:d7b8f30f-7917-11f0-5195-020000000000"/>
       <resource>
          <Specimen>
             <meta>
@@ -115,7 +115,7 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:63c6c366-6889-11f0-1212-020000000000"/>
+               <reference value="urn:uuid:d7b8f323-7917-11f0-5195-020000000000"/>
                <type value="Device"/>
                <display value="bron_monster"/>
             </subject>
@@ -131,7 +131,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:63c6c302-6889-11f0-1212-020000000000"/>
+      <fullUrl value="urn:uuid:d7b8f2bf-7917-11f0-5195-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -193,7 +193,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:63c6c2ee-6889-11f0-1212-020000000000"/>
+      <fullUrl value="urn:uuid:d7b8f283-7917-11f0-5195-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -237,6 +237,59 @@
       <request>
          <method value="POST"/>
          <url value="Patient"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:d7b8f297-7917-11f0-5195-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00001111"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <version value="2023-04-14T00:00:00"/>
+                  <code value="Z3"/>
+                  <display value="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
+               </coding>
+            </type>
+            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            <telecom>
+               <system value="phone"/>
+               <value value="099-12345678"/>
+            </telecom>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
       </request>
    </entry>
 </Bundle>

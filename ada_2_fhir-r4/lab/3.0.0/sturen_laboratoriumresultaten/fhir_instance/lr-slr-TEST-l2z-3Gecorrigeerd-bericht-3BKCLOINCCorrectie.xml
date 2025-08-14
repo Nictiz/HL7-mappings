@@ -2,7 +2,7 @@
    <id value="lr-slr-TEST-l2z-3Gecorrigeerd-bericht-3BKCLOINCCorrectie"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:68a9725f-6889-11f0-1055-020000000000"/>
+      <fullUrl value="urn:uuid:dc15462b-7917-11f0-1820-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -34,13 +34,13 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:68a97223-6889-11f0-1055-020000000000"/>
+               <reference value="urn:uuid:dc1545c7-7917-11f0-1820-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, -10}"/>
             <performer>
-               <reference value="urn:uuid:68a97237-6889-11f0-1055-020000000000"/>
+               <reference value="urn:uuid:dc154603-7917-11f0-1820-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Trombosedienst Ons Dorp"/>
             </performer>
@@ -66,7 +66,7 @@
                <text value="Gecorrigeerde uitslag op eerder uitgevoerd onderzoek. Machine was stuk."/>
             </interpretation>
             <specimen>
-               <reference value="urn:uuid:68a97287-6889-11f0-1055-020000000000"/>
+               <reference value="urn:uuid:dc154653-7917-11f0-1820-020000000000"/>
                <type value="Specimen"/>
                <display value="monster"/>
             </specimen>
@@ -92,7 +92,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:68a97287-6889-11f0-1055-020000000000"/>
+      <fullUrl value="urn:uuid:dc154653-7917-11f0-1820-020000000000"/>
       <resource>
          <Specimen>
             <meta>
@@ -110,7 +110,7 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:68a97223-6889-11f0-1055-020000000000"/>
+               <reference value="urn:uuid:dc1545c7-7917-11f0-1820-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
@@ -134,7 +134,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:68a97237-6889-11f0-1055-020000000000"/>
+      <fullUrl value="urn:uuid:dc154603-7917-11f0-1820-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -190,7 +190,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:68a97223-6889-11f0-1055-020000000000"/>
+      <fullUrl value="urn:uuid:dc1545c7-7917-11f0-1820-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -198,7 +198,7 @@
             </meta>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="999900511"/>
+               <value value="999999511"/>
             </identifier>
             <name>
                <use value="official"/>
@@ -231,6 +231,71 @@
       <request>
          <method value="POST"/>
          <url value="Patient"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:dc1545db-7917-11f0-1820-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00001111"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <version value="2023-04-14T00:00:00"/>
+                  <code value="Z3"/>
+                  <display value="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
+               </coding>
+            </type>
+            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            <telecom>
+               <system value="phone"/>
+               <value value="099-12345678"/>
+            </telecom>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+               <country value="Nederland">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="urn:iso:std:iso:3166"/>
+                           <version value="2020-10-26T00:00:00"/>
+                           <code value="NL"/>
+                           <display value="Nederland"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </country>
+            </address>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
       </request>
    </entry>
 </Bundle>

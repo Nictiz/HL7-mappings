@@ -2,7 +2,7 @@
    <id value="lr-slr-TEST-l2z-4Bericht-met-meerdere-aparte-resultaten-2MMBNHG"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:6a09e516-6889-11f0-6307-020000000000"/>
+      <fullUrl value="urn:uuid:dd4d6240-7917-11f0-9356-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -31,13 +31,13 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:6a09e4da-6889-11f0-6307-020000000000"/>
+               <reference value="urn:uuid:dd4d61dc-7917-11f0-9356-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, Elise Erelies"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, -3}"/>
             <performer>
-               <reference value="urn:uuid:6a09e4ee-6889-11f0-6307-020000000000"/>
+               <reference value="urn:uuid:dd4d6218-7917-11f0-9356-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Microbiologisch Lab Flagel"/>
             </performer>
@@ -52,7 +52,7 @@
                <text value="COVID aanwezig"/>
             </interpretation>
             <specimen>
-               <reference value="urn:uuid:6a09e566-6889-11f0-6307-020000000000"/>
+               <reference value="urn:uuid:dd4d6290-7917-11f0-9356-020000000000"/>
                <type value="Specimen"/>
                <display value="monster"/>
             </specimen>
@@ -64,7 +64,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6a09e52a-6889-11f0-6307-020000000000"/>
+      <fullUrl value="urn:uuid:dd4d6254-7917-11f0-9356-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -93,12 +93,12 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:6a09e4da-6889-11f0-6307-020000000000"/>
+               <reference value="urn:uuid:dd4d61dc-7917-11f0-9356-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, Elise Erelies"/>
             </subject>
             <performer>
-               <reference value="urn:uuid:6a09e4ee-6889-11f0-6307-020000000000"/>
+               <reference value="urn:uuid:dd4d6218-7917-11f0-9356-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Microbiologisch Lab Flagel"/>
             </performer>
@@ -117,7 +117,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6a09e566-6889-11f0-6307-020000000000"/>
+      <fullUrl value="urn:uuid:dd4d6290-7917-11f0-9356-020000000000"/>
       <resource>
          <Specimen>
             <meta>
@@ -135,7 +135,7 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:6a09e4da-6889-11f0-6307-020000000000"/>
+               <reference value="urn:uuid:dd4d61dc-7917-11f0-9356-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, Elise Erelies"/>
             </subject>
@@ -157,7 +157,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6a09e4ee-6889-11f0-6307-020000000000"/>
+      <fullUrl value="urn:uuid:dd4d6218-7917-11f0-9356-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -226,7 +226,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6a09e4da-6889-11f0-6307-020000000000"/>
+      <fullUrl value="urn:uuid:dd4d61dc-7917-11f0-9356-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -267,6 +267,55 @@
       <request>
          <method value="POST"/>
          <url value="Patient"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:dd4d61f0-7917-11f0-9356-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00005111"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <version value="2023-04-14T00:00:00"/>
+                  <code value="Z3"/>
+                  <display value="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
+               </coding>
+            </type>
+            <name value="Huisartsenpraktijk Itis"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Langelaan 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Langelaan"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Onze Stad"/>
+               <postalCode value="1234ZZ"/>
+            </address>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
       </request>
    </entry>
 </Bundle>

@@ -2,7 +2,7 @@
    <id value="lr-slr-KWAL-l2z-2Gecorrigeerd-bericht-2AMMBNHGBasis"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:61c8c2a7-6889-11f0-7699-020000000000"/>
+      <fullUrl value="urn:uuid:d5c32058-7917-11f0-1542-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -31,13 +31,13 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:61c8c26b-6889-11f0-7699-020000000000"/>
+               <reference value="urn:uuid:d5c31ff4-7917-11f0-1542-020000000000"/>
                <type value="Patient"/>
-               <display value="Patient, Patricia XXX_Sacht"/>
+               <display value="Patient, Elise Erelies"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, -3}"/>
             <performer>
-               <reference value="urn:uuid:61c8c27f-6889-11f0-7699-020000000000"/>
+               <reference value="urn:uuid:d5c32030-7917-11f0-1542-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Microbiologisch Lab Flagel"/>
             </performer>
@@ -52,7 +52,7 @@
                <text value="Covid aanwezig"/>
             </interpretation>
             <specimen>
-               <reference value="urn:uuid:61c8c2cf-6889-11f0-7699-020000000000"/>
+               <reference value="urn:uuid:d5c32080-7917-11f0-1542-020000000000"/>
                <type value="Specimen"/>
                <display value="monster"/>
             </specimen>
@@ -64,7 +64,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:61c8c2cf-6889-11f0-7699-020000000000"/>
+      <fullUrl value="urn:uuid:d5c32080-7917-11f0-1542-020000000000"/>
       <resource>
          <Specimen>
             <meta>
@@ -82,9 +82,9 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:61c8c26b-6889-11f0-7699-020000000000"/>
+               <reference value="urn:uuid:d5c31ff4-7917-11f0-1542-020000000000"/>
                <type value="Patient"/>
-               <display value="Patient, Patricia XXX_Sacht"/>
+               <display value="Patient, Elise Erelies"/>
             </subject>
             <collection>
                <collectedDateTime value="${DATE, T, D, -4}"/>
@@ -104,7 +104,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:61c8c27f-6889-11f0-7699-020000000000"/>
+      <fullUrl value="urn:uuid:d5c32030-7917-11f0-1542-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -173,7 +173,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:61c8c26b-6889-11f0-7699-020000000000"/>
+      <fullUrl value="urn:uuid:d5c31ff4-7917-11f0-1542-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -181,17 +181,17 @@
             </meta>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="999901011"/>
+               <value value="99999114"/>
             </identifier>
             <name>
                <use value="official"/>
-               <text value="Patricia XXX_Sacht"/>
-               <family value="XXX_Sacht">
+               <text value="Elise Erelies"/>
+               <family value="Erelies">
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="XXX_Sacht"/>
+                     <valueString value="Erelies"/>
                   </extension>
                </family>
-               <given value="Patricia">
+               <given value="Elise">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
                      <valueCode value="BR"/>
                   </extension>
@@ -208,12 +208,61 @@
                   </valueCodeableConcept>
                </extension>
             </gender>
-            <birthDate value="2000-11-13"/>
+            <birthDate value="1950-11-01"/>
          </Patient>
       </resource>
       <request>
          <method value="POST"/>
          <url value="Patient"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:d5c32008-7917-11f0-1542-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00005111"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <version value="2023-04-14T00:00:00"/>
+                  <code value="Z3"/>
+                  <display value="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
+               </coding>
+            </type>
+            <name value="Huisartsenpraktijk Itis"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Langelaan 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Langelaan"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Onze Stad"/>
+               <postalCode value="1234ZZ"/>
+            </address>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
       </request>
    </entry>
 </Bundle>
