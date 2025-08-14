@@ -6,10 +6,10 @@
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
-         <div>Id 999911247 (BSN), M van de XXX_Daalen (Martin), Man, 1 augustus 1964</div>
+         <div>Id 999911247 (BSN), <span title="Naamsamenstelling: Eigennaam">M van de XXX_Daalen</span> (Martin), Man, 1 augustus 1964</div>
          <div>
             <a href="tel:0595-987654">0595-987654</a> (Tel Privé)</div>
-         <div>Knolweg 1002, 9999ZZ Stitswerd (Post)</div>
+         <div>Knolweg 1002, 9999ZZ Stitswerd, NL (Post)</div>
       </div>
    </text>
    <identifier>
@@ -20,6 +20,7 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
          <valueCode value="NL1"/>
       </extension>
+      <text value="M van de XXX_Daalen"/>
       <family value="van de XXX_Daalen">
          <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
             <valueString value="van de"/>
@@ -91,5 +92,16 @@
       </line>
       <city value="Stitswerd"/>
       <postalCode value="9999ZZ"/>
+      <country value="NL">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.16.34"/>
+                  <code value="6030"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
    </address>
 </Patient>
