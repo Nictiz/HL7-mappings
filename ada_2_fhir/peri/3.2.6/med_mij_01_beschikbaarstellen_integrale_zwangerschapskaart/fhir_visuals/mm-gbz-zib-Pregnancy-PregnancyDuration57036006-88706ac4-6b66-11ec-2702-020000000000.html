@@ -1,0 +1,106 @@
+<html lang="en">
+   <head>
+      <title>Observation - 88706ac4-6b66-11ec-2702-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Observatie/bepaling. Subject: Hanna H XXX_Kooij. Status: definitief</caption>
+               <tbody>
+                  <tr>
+                     <th>Context</th>
+                     <td>Zwangerschap 3 Vrouw1</td>
+                  </tr>
+                  <tr>
+                     <th>Code</th>
+                     <th>Waarde</th>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span title="zwangerschapsduur (57036006 - SNOMED CT)">zwangerschapsduur</span>
+                     </td>
+                     <td>180 d</td>
+                  </tr>
+                  <tr>
+                     <th>Ondersteunende informatie</th>
+                     <td>leven voelen observatie Vrouw1, lichaamsgewicht Vrouw1, bloeddruk Vrouw1</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Observation zwangerschapsduur</b>
+      </p>
+      <div> - none</div>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 2, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-ba94bb6f-6b78-11ec-0000-020000000000.html" }, 
+{ id: 23, label: "Observation bewegingspatroon van foetus (waarneembare entiteit)", url: "mm-gbz-bc-PregnancyObservation364618000-bacf4aef-6a9d-11ec-2213-020000000000.html" }, 
+{ id: 26, label: "Observation Bloeddruk panel waarvan alle leden optioneel in arterieel vaatstelsel", url: "mm-gbz-zib-BloodPressure85354-9-2c3b6d42-6b7e-11ec-2106-020000000000.html" }, 
+{ id: 28, label: "Observation Lichaamsgewicht [massa]", url: "mm-gbz-zib-BodyWeight29463-7-a519cfaf-6ab5-11ec-2107-020000000000.html" }, 
+{ id: 29, label: "Patient XXX_Kooij", url: "mm-gbz-bc-Woman-HANNA-H-XXX-KOOIJ.html" }, 
+{ id: 31, label: "Observation zwangerschapsduur", url: "mm-gbz-zib-Pregnancy-PregnancyDuration57036006-88706ac4-6b66-11ec-2702-020000000000.html" }, 
+{ id: 32, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-d1799aaf-6b7b-11ec-2334-020000000000.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 31, to: 32 }, 
+{ from: 31, to: 23 }, 
+{ from: 31, to: 28 }, 
+{ from: 31, to: 26 }, 
+{ from: 31, to: 29 }, 
+{ from: 31, to: 2 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>
