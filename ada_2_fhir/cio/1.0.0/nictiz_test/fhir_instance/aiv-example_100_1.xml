@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="933ff15d-1086-11ec-4479-020000000000"/>
+   <id value="a5b0df1f-790e-11f0-2030-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:933fdef6-1086-11ec-4479-020000000000"/>
+      <fullUrl value="urn:uuid:a5b0f11c-790e-11f0-2030-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
@@ -19,7 +19,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Allergie/intolerantie. Patiënt: Joris Hansman. Id: aiv-example_100_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / bevestigd<span style="display: block;">Ingevoerd door: I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum</span>
+                     <caption>Allergie/intolerantie. Patiënt: Joris Hansman. Id: aiv-example_100_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: medicatie, Status: actief / bevestigd<span style="display: block;">Ingevoerd door: I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -30,11 +30,11 @@
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>9 augustus 2021 - Joris Hansman</td>
+                           <td>15 juli 2025 - Joris Hansman</td>
                         </tr>
                         <tr>
                            <th>Eerste symptomen</th>
-                           <td>20 juli 2021</td>
+                           <td>25 juni 2025</td>
                         </tr>
                      </tbody>
                   </table>
@@ -62,7 +62,7 @@
                      <coding>
                         <system value="http://snomed.info/sct"/>
                         <code value="419511003"/>
-                        <display value="neiging tot ongewenste reactie op geneesmiddel"/>
+                        <display value="neiging tot ongewenste reactie op medicatie en/of drug"/>
                      </coding>
                   </valueCodeableConcept>
                </extension>
@@ -75,15 +75,15 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:933ff165-1086-11ec-4479-020000000000"/>
+               <reference value="urn:uuid:a5b0df23-790e-11f0-2030-020000000000"/>
                <display value="Joris Hansman"/>
             </patient>
-            <onsetDateTime value="2021-07-20"/>
-            <assertedDate value="2021-08-09"/>
+            <onsetDateTime value="2025-06-25"/>
+            <assertedDate value="2025-07-15"/>
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:933fdf20-1086-11ec-4479-020000000000"/>
+                     <reference value="urn:uuid:a5b0f12b-790e-11f0-2030-020000000000"/>
                      <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde || Test Medisch Centrum"/>
                   </valueReference>
                </extension>
@@ -91,7 +91,7 @@
                <display value="I.N. ter Nist"/>
             </recorder>
             <asserter>
-               <reference value="urn:uuid:933ff165-1086-11ec-4479-020000000000"/>
+               <reference value="urn:uuid:a5b0df23-790e-11f0-2030-020000000000"/>
                <display value="Joris Hansman"/>
             </asserter>
          </AllergyIntolerance>
@@ -101,7 +101,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:933ff165-1086-11ec-4479-020000000000"/>
+      <fullUrl value="urn:uuid:a5b0df23-790e-11f0-2030-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -110,7 +110,7 @@
             <text>
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), Joris Hansman, Man, 12 mei 1984</div>
+                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), <span title="Naamsamenstelling: Eigennaam">Hansman Joris</span>, Man, 12 mei 1984</div>
                </div>
             </text>
             <identifier>
@@ -125,6 +125,7 @@
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
                   <valueCode value="NL1"/>
                </extension>
+               <text value="Hansman Joris"/>
                <family value="Hansman">
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
                      <valueString value="Hansman"/>
@@ -164,8 +165,9 @@
             <text>
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id 111111112 (UZI-NR-PERS), I.N. ter Nist</div>
-                  <div>Valkendael 45 1 hoog, 6245HK Maastricht (WP)</div>
+                  <div>Id 111111112 (UZI-NR-PERS), <span title="Naamsamenstelling: Eigennaam">ter Nist I.N.</span>
+                  </div>
+                  <div>Valkendael 45 1 hoog, 6245HK Maastricht, NL (WP)</div>
                </div>
             </text>
             <identifier>
@@ -176,6 +178,7 @@
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
                   <valueCode value="NL1"/>
                </extension>
+               <text value="ter Nist I.N."/>
                <family value="ter Nist">
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
                      <valueString value="ter"/>
@@ -214,6 +217,17 @@
                </line>
                <city value="Maastricht"/>
                <postalCode value="6245HK"/>
+               <country value="NL">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.16.34"/>
+                           <code value="6030"/>
+                           <display value="Nederland"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </country>
             </address>
          </Practitioner>
       </resource>
@@ -231,8 +245,9 @@
             <text>
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id 222222223 (UZI-NR-PERS), O. Orthopeed</div>
-                  <div>Valkendael 45 2 hoog, 6245HK Maastricht (WP)</div>
+                  <div>Id 222222223 (UZI-NR-PERS), <span title="Naamsamenstelling: Eigennaam">Orthopeed O.</span>
+                  </div>
+                  <div>Valkendael 45 2 hoog, 6245HK Maastricht, NL (WP)</div>
                </div>
             </text>
             <identifier>
@@ -243,6 +258,7 @@
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
                   <valueCode value="NL1"/>
                </extension>
+               <text value="Orthopeed O."/>
                <family value="Orthopeed">
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
                      <valueString value="Orthopeed"/>
@@ -278,6 +294,17 @@
                </line>
                <city value="Maastricht"/>
                <postalCode value="6245HK"/>
+               <country value="NL">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.16.34"/>
+                           <code value="6030"/>
+                           <display value="Nederland"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </country>
             </address>
          </Practitioner>
       </resource>
@@ -295,8 +322,9 @@
             <text>
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id 333333334 (UZI-NR-PERS), S. Calpel</div>
-                  <div>Valkendael 45 3 hoog, 6245HK Maastricht (WP)</div>
+                  <div>Id 333333334 (UZI-NR-PERS), <span title="Naamsamenstelling: Eigennaam">Calpel S.</span>
+                  </div>
+                  <div>Valkendael 45 3 hoog, 6245HK Maastricht, NL (WP)</div>
                </div>
             </text>
             <identifier>
@@ -307,6 +335,7 @@
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
                   <valueCode value="NL1"/>
                </extension>
+               <text value="Calpel S."/>
                <family value="Calpel">
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
                      <valueString value="Calpel"/>
@@ -342,6 +371,17 @@
                </line>
                <city value="Maastricht"/>
                <postalCode value="6245HK"/>
+               <country value="NL">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.16.34"/>
+                           <code value="6030"/>
+                           <display value="Nederland"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </country>
             </address>
          </Practitioner>
       </resource>
@@ -374,7 +414,7 @@
                         </tr>
                         <tr>
                            <th>Adres</th>
-                           <td>Valkendael 45, 6245HK Maastricht (WP)</td>
+                           <td>Valkendael 45, 6245HK Maastricht, NL (WP)</td>
                         </tr>
                      </tbody>
                   </table>
@@ -413,6 +453,17 @@
                </line>
                <city value="Maastricht"/>
                <postalCode value="6245HK"/>
+               <country value="NL">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.16.34"/>
+                           <code value="6030"/>
+                           <display value="Nederland"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </country>
             </address>
          </Organization>
       </resource>
@@ -421,7 +472,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:933fdf20-1086-11ec-4479-020000000000"/>
+      <fullUrl value="urn:uuid:a5b0f12b-790e-11f0-2030-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -473,7 +524,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:933fe974-1086-11ec-4479-020000000000"/>
+      <fullUrl value="urn:uuid:a5b0f13e-790e-11f0-2030-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -525,7 +576,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:933fe99e-1086-11ec-4479-020000000000"/>
+      <fullUrl value="urn:uuid:a5b0f150-790e-11f0-2030-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -577,7 +628,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:933fe9e2-1086-11ec-4479-020000000000"/>
+      <fullUrl value="urn:uuid:a5b0f16d-790e-11f0-2030-020000000000"/>
       <resource>
          <RelatedPerson>
             <meta>
@@ -586,10 +637,11 @@
             <text>
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Peter P.J. van den Herik (Peter)</div>
                   <div>
-                     <a href="tel:06-12345670">06-12345670</a> (Tel Mobiel), <a href="mailto:pjvandenherik123@hotmail.com">pjvandenherik123@hotmail.com</a> (E-mail Privé)</div>
-                  <div>Knolweg 1001 b, 9999XX Stitswerd (Bezoek)</div>
+                     <span title="Naamsamenstelling: Eigennaam">van den Herik Peter P.J.</span> (Peter)</div>
+                  <div>
+                     <a href="tel:06-12345670">06-12345670</a> (Mobiel Werk), <a href="mailto:pjvandenherik123@hotmail.com">pjvandenherik123@hotmail.com</a> (E-mail Privé)</div>
+                  <div>Knolweg 1001 b, 9999XX Stitswerd, NL (Bezoek)</div>
                   <div>
                      <span title="Eerste relatie/contactpersoon (1 - RoleCodeLijst (COD472-VEKT))">Eerste relatie/contactpersoon</span> van Joris Hansman</div>
                </div>
@@ -604,13 +656,14 @@
                </valueCodeableConcept>
             </extension>
             <patient>
-               <reference value="urn:uuid:933ff165-1086-11ec-4479-020000000000"/>
+               <reference value="urn:uuid:a5b0df23-790e-11f0-2030-020000000000"/>
                <display value="Joris Hansman"/>
             </patient>
             <name>
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
                   <valueCode value="NL1"/>
                </extension>
+               <text value="van den Herik Peter P.J."/>
                <family value="van den Herik">
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
                      <valueString value="van den"/>
@@ -642,44 +695,23 @@
                </given>
             </name>
             <telecom>
-               <system value="phone">
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-                     <valueCodeableConcept>
-                        <coding>
-                           <system value="http://hl7.org/fhir/v3/AddressUse"/>
-                           <code value="MC"/>
-                           <display value="Mobiel telefoonnummer"/>
-                        </coding>
-                     </valueCodeableConcept>
-                  </extension>
-               </system>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="MC"/>
+                        <display value="Mobiel telefoonnummer"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <system value="phone"/>
                <value value="06-12345670"/>
-               <use value="mobile">
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-                     <valueCodeableConcept>
-                        <coding>
-                           <system value="http://hl7.org/fhir/v3/AddressUse"/>
-                           <code value="WP"/>
-                           <display value="Zakelijk telefoonnummer"/>
-                        </coding>
-                     </valueCodeableConcept>
-                  </extension>
-               </use>
+               <use value="work"/>
             </telecom>
             <telecom>
                <system value="email"/>
                <value value="pjvandenherik123@hotmail.com"/>
-               <use value="home">
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-                     <valueCodeableConcept>
-                        <coding>
-                           <system value="http://hl7.org/fhir/v3/AddressUse"/>
-                           <code value="HP"/>
-                           <display value="Privé e-mailadres"/>
-                        </coding>
-                     </valueCodeableConcept>
-                  </extension>
-               </use>
+               <use value="home"/>
             </telecom>
             <address>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
@@ -690,9 +722,6 @@
                         <display value="Woon-/verblijfadres"/>
                      </coding>
                   </valueCodeableConcept>
-               </extension>
-               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
-                  <valueCode value="PHYS"/>
                </extension>
                <use value="home"/>
                <type value="physical"/>
@@ -709,6 +738,17 @@
                </line>
                <city value="Stitswerd"/>
                <postalCode value="9999XX"/>
+               <country value="NL">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.16.34"/>
+                           <code value="6030"/>
+                           <display value="Nederland"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </country>
             </address>
          </RelatedPerson>
       </resource>

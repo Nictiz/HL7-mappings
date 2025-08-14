@@ -1,0 +1,46 @@
+<Patient xmlns="http://hl7.org/fhir">
+   <id value="DE-GROOT"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), <span title="Naamsamenstelling: Partnernaam">de Groot</span>, Man, 9 juli 1925, Geen meerling</div>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+      <value>
+         <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+            <valueCode value="masked"/>
+         </extension>
+      </value>
+   </identifier>
+   <name>
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+         <valueCode value="NL2"/>
+      </extension>
+      <family value="de Groot">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
+            <valueString value="de "/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+            <valueString value="Groot"/>
+         </extension>
+      </family>
+   </name>
+   <gender value="male">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+               <code value="M"/>
+               <display value="man"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </gender>
+   <birthDate value="1925-07-09"/>
+   <multipleBirthBoolean value="false"/>
+</Patient>
