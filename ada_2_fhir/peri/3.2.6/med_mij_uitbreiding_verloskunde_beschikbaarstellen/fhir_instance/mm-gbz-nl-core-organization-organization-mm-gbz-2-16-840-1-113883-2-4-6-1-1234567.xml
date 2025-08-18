@@ -17,7 +17,7 @@
                   <th>Type</th>
                   <td>
                      <div>
-                        <span title="Apothekers (0200 - AGB-medisch specialisme)">Apothekers</span>
+                        <span title="Apotheker (0200 - AGB-medisch specialisme)">Apotheker</span>
                      </div>
                      <div>
                         <span title="Openbare apotheek (J8 - organization-type)">Openbare apotheek</span>
@@ -27,13 +27,13 @@
                <tr>
                   <th>Contactgegevens</th>
                   <td>
-                     <a href="tel:0326584657">0326584657</a> (Vast telefoonnummer)<br/>
+                     <a href="tel:0326584657">0326584657</a> (Vast telefoonnummer Werk)<br/>
                      <a href="mailto:info@apotheekdedriebergen.test">info@apotheekdedriebergen.test</a> (E-mail Werk)<br/>
                   </td>
                </tr>
                <tr>
                   <th>Adres</th>
-                  <td>Wegizstraat 25, 8888XX STITSWERD, NL</td>
+                  <td>Wegizstraat 25, 8888XX STITSWERD (Vakantieadres)</td>
                </tr>
             </tbody>
          </table>
@@ -46,9 +46,9 @@
    <type>
       <coding>
          <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
-         <version value="2.16.840.1.113883.2.4.6.7"/>
+         <version value="2.16.840.1.113883.2.4.6.1"/>
          <code value="0200"/>
-         <display value="Apothekers"/>
+         <display value="Apotheker"/>
       </coding>
    </type>
    <type>
@@ -71,6 +71,7 @@
       </extension>
       <system value="phone"/>
       <value value="0326584657"/>
+      <use value="work"/>
    </telecom>
    <telecom>
       <system value="email"/>
@@ -78,6 +79,16 @@
       <use value="work"/>
    </telecom>
    <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="HV"/>
+               <display value="Vakantie adres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="temp"/>
       <line value="Wegizstraat 25">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
             <valueString value="Wegizstraat"/>
@@ -88,17 +99,5 @@
       </line>
       <city value="STITSWERD"/>
       <postalCode value="8888XX"/>
-      <country value="NL">
-         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-            <valueCodeableConcept>
-               <coding>
-                  <system value="urn:iso:std:iso:3166"/>
-                  <version value="2020-10-26T00:00:00"/>
-                  <code value="NL"/>
-                  <display value="Nederland"/>
-               </coding>
-            </valueCodeableConcept>
-         </extension>
-      </country>
    </address>
 </Organization>
