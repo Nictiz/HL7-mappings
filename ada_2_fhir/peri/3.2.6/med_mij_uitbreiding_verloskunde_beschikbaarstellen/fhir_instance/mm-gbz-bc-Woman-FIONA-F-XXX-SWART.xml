@@ -7,7 +7,7 @@
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
-         <div>Id 999901448 (BSN), <span title="Naamsamenstelling: Eigennaam">Fiona F XXX_Swart</span>, Vrouw, 23 december 1985, Geen meerling</div>
+         <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), <span title="Naamsamenstelling: Eigennaam">Fiona F XXX_Swart</span>, Vrouw, 23 december 1985, Geen meerling</div>
          <div>
             <a href="tel:0655223366">0655223366</a> (Mobiel)</div>
          <div>Knolweg 1000, 9999XA STITSWERD, NL (Bezoek)</div>
@@ -32,7 +32,11 @@
    </extension>
    <identifier>
       <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-      <value value="999901448"/>
+      <value>
+         <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+            <valueCode value="masked"/>
+         </extension>
+      </value>
    </identifier>
    <name>
       <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
