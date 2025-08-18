@@ -8,7 +8,7 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Aandoening. Subject: Kind Daniel Mateo DM Daniel De Kleine. Status: actief</caption>
+            <caption>Aandoening. Subject: Kind Daniel Mateo DM Daniel De Kleine. Status: actief / bevestigd</caption>
             <tbody>
                <tr>
                   <th>Code</th>
@@ -18,6 +18,10 @@
                   <th>Eerste symptomen</th>
                   <td>${DATE, T, D, -53}</td>
                </tr>
+               <tr>
+                  <th>Oplossing/remissie</th>
+                  <td>${DATE, T, D, -48}</td>
+               </tr>
             </tbody>
          </table>
       </div>
@@ -26,7 +30,28 @@
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
       <value value="005a0cdf-6ad5-11ec-2305-020000000000"/>
    </identifier>
-   <clinicalStatus value="active"/>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="55561003"/>
+               <display value="Actueel"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus value="confirmed">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="410605003"/>
+               <display value="Bevestigd"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </verificationStatus>
    <code>
       <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
          <valueCode value="OTH"/>
@@ -42,4 +67,5 @@
       <display value="Zwangerschap 2 P1-Maaike"/>
    </context>
    <onsetDateTime value="${DATE, T, D, -53}"/>
+   <abatementDateTime value="${DATE, T, D, -48}"/>
 </Condition>

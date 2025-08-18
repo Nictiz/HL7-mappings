@@ -9,7 +9,7 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Aandoening. Subject: Maaike M Maaike Ostendorf. Categorie: <span title="zwangerschapsstoornis (aandoening) (173300003 - SNOMED CT)">zwangerschapsstoornis (aandoening)</span>, Status: actief</caption>
+            <caption>Aandoening. Subject: Maaike M Maaike Ostendorf. Categorie: <span title="zwangerschapsstoornis (aandoening) (173300003 - SNOMED CT)">zwangerschapsstoornis (aandoening)</span>, Status: actief / bevestigd</caption>
             <tbody>
                <tr>
                   <th>Code</th>
@@ -20,6 +20,10 @@
                <tr>
                   <th>Eerste symptomen</th>
                   <td>${DATE, T, D, -321}</td>
+               </tr>
+               <tr>
+                  <th>Oplossing/remissie</th>
+                  <td>${DATE, T, D, -53}</td>
                </tr>
             </tbody>
          </table>
@@ -35,7 +39,28 @@
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
       <value value="5c2986df-6b2a-11ec-2118-020000000000"/>
    </identifier>
-   <clinicalStatus value="active"/>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="55561003"/>
+               <display value="Actueel"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus value="confirmed">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="410605003"/>
+               <display value="Bevestigd"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </verificationStatus>
    <category>
       <coding>
          <system value="http://snomed.info/sct"/>
@@ -59,4 +84,5 @@
       <display value="Zwangerschap 2 P1-Maaike"/>
    </context>
    <onsetDateTime value="${DATE, T, D, -321}"/>
+   <abatementDateTime value="${DATE, T, D, -53}"/>
 </Condition>

@@ -9,7 +9,7 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Aandoening. Subject: Maaike M Maaike Ostendorf. Categorie: <span title="aandoening durante partu (aandoening) (362972006 - SNOMED CT)">aandoening durante partu (aandoening)</span>, Status: actief</caption>
+            <caption>Aandoening. Subject: Maaike M Maaike Ostendorf. Categorie: <span title="aandoening durante partu (aandoening) (362972006 - SNOMED CT)">aandoening durante partu (aandoening)</span>, Status: actief / bevestigd</caption>
             <tbody>
                <tr>
                   <th>Code</th>
@@ -19,6 +19,10 @@
                </tr>
                <tr>
                   <th>Eerste symptomen</th>
+                  <td>${DATE, T, D, -53}</td>
+               </tr>
+               <tr>
+                  <th>Oplossing/remissie</th>
                   <td>${DATE, T, D, -53}</td>
                </tr>
             </tbody>
@@ -35,7 +39,28 @@
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
       <value value="9805489f-6b7c-11ec-2156-020000000000"/>
    </identifier>
-   <clinicalStatus value="active"/>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="55561003"/>
+               <display value="Actueel"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus value="confirmed">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="410605003"/>
+               <display value="Bevestigd"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </verificationStatus>
    <category>
       <coding>
          <system value="http://snomed.info/sct"/>
@@ -59,4 +84,5 @@
       <display value="opname en ontslag T-53D{08:36} P1-Maaike"/>
    </context>
    <onsetDateTime value="${DATE, T, D, -53}"/>
+   <abatementDateTime value="${DATE, T, D, -53}"/>
 </Condition>
