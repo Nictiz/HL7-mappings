@@ -1,164 +1,117 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schematron_closed_warnings//mp-medverslstresp.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
-<QURX_IN990113NL xmlns="urn:hl7-org:v3"
-                 xmlns:hl7="urn:hl7-org:v3"
-                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xsi:schemaLocation="urn:hl7-org:v3 ../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/QURX_IN990113NL.xsd">
-   <id extension="2BGeneratedID" root="2.16.840.1.113883.2.4.3.11.999.77.3"/>
-   <creationTime value="20240101000000"/>
-   <versionCode code="NICTIZEd2005-Okt"/>
-   <interactionId extension="QURX_IN990113NL" root="2.16.840.1.113883.1.6"/>
-   <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
-   <processingCode code="P"/>
-   <processingModeCode code="T"/>
-   <acceptAckCode code="NE"/>
-   <acknowledgement typeCode="AA">
-      <targetMessage>
-         <id extension="0123456789" root="2.16.528.1.1007.3.3.1234567.1"/>
-      </targetMessage>
-   </acknowledgement>
-   <receiver typeCode="RCV">
-      <device classCode="DEV" determinerCode="INSTANCE">
-         <id extension="2BFilledWithRealValue" root="2.16.840.1.113883.2.4.6.6"/>
-         <name>AIS van openbare apotheek De Gulle Gaper</name>
-      </device>
-   </receiver>
-   <sender typeCode="SND">
-      <device classCode="DEV" determinerCode="INSTANCE">
-         <id extension="1" root="2.16.840.1.113883.2.4.6.6"/>
-      </device>
-   </sender>
-   <ControlActProcess classCode="CACT" moodCode="EVN">
-      <authorOrPerformer typeCode="AUT">
-         <participant>
-            <AssignedDevice>
-               <id extension="009876543" root="2.16.528.1.1007.3.2"/>
-               <id extension="00765432" root="2.16.840.1.113883.2.4.6.6"/>
-               <Organization classCode="ORG" determinerCode="INSTANCE">
-                  <id extension="01236578" root="2.16.528.1.1007.3.3"/>
-                  <name>Apotheek De Gulle Gaper</name>
-                  <addr>
-                     <city>Ons Dorp</city>
-                  </addr>
-               </Organization>
-            </AssignedDevice>
-         </participant>
-      </authorOrPerformer>
+<subject xmlns="urn:hl7-org:v3">
+   <MedicationDispenseList>
+      <code code="MEDLIST"
+            codeSystem="2.16.840.1.113883.5.4"/>
       <subject>
-         <MedicationDispenseList>
-            <code code="MEDLIST" codeSystem="2.16.840.1.113883.5.4"/>
-            <subject>
-               <Patient>
-                  <id extension="999912100" root="2.16.840.1.113883.2.4.6.3"/>
-                  <statusCode code="active"/>
-                  <Person>
-                     <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
-                     <birthTime value="19640108"/>
-                  </Person>
-               </Patient>
-            </subject>
-            <component>
-               <medicationDispenseEvent>
-                  <id extension="MBH_hyb612_mg-sch-fout-1-TA1"
-                      root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-                  <statusCode code="completed"/>
-                  <effectiveTime value="20250101100000+0100"/>
-                  <quantity value="42" unit="1">
-                     <translation value="42"
-                                  code="245"
-                                  displayName="Stuks"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                  </quantity>
-                  <performer>
-                     <assignedPerson>
-                        <id nullFlavor="MSK"/>
-                     </assignedPerson>
-                  </performer>
-                  <product>
-                     <dispensedMedication>
-                        <MedicationKind classCode="MMAT" determinerCode="KIND">
-                           <code code="1026291"
-                                 codeSystem="2.16.840.1.113883.2.4.4.7"
-                                 displayName="PARACETAMOL AURO TABLET 500MG"
-                                 codeSystemName="G-Standaard HPK">
-                              <translation code="67903"
-                                           codeSystem="2.16.840.1.113883.2.4.4.10"
-                                           displayName="PARACETAMOL 500MG TABLET"
-                                           codeSystemName="G-Standaard PRK"/>
-                              <translation code="2194"
-                                           codeSystem="2.16.840.1.113883.2.4.4.1"
-                                           displayName="PARACETAMOL 500MG TABLET"
-                                           codeSystemName="G-Standaard GPK"/>
-                           </code>
-                        </MedicationKind>
-                        <directTargetOf typeCode="DIR">
-                           <prescription>
-                              <id extension="MBH_hyb612_mg-sch-fout-1-TA1-MA1"
-                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                              <statusCode nullFlavor="UNK"/>
-                           </prescription>
-                        </directTargetOf>
-                        <therapeuticAgentOf>
-                           <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
-                              <text mediaType="text/plain">Vanaf 1 jan 2025, tot en met 14 jan 2025, 3 maal per dag 1 stuk, Oraal</text>
-                              <statusCode code="active"/>
-                              <effectiveTime xsi:type="SXPR_TS">
-                                 <comp xsi:type="IVL_TS">
-                                    <low value="20250101100000.000+0100"/>
-                                    <high value="20250114235959.000+0100"/>
-                                 </comp>
-                                 <comp xsi:type="PIVL_TS" operator="A">
-                                    <period value="0.3333" unit="d"/>
-                                 </comp>
-                              </effectiveTime>
-                              <routeCode code="9"
-                                         codeSystem="2.16.840.1.113883.2.4.4.9"
-                                         displayName="Oraal"
-                                         codeSystemName="G-Standaard Toedieningswegen"/>
-                              <doseQuantity>
-                                 <center value="1" unit="1">
-                                    <translation value="1"
-                                                 code="245"
-                                                 displayName="Stuk"
-                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                                 </center>
-                              </doseQuantity>
-                           </medicationAdministrationRequest>
-                        </therapeuticAgentOf>
-                     </dispensedMedication>
-                  </product>
-                  <responsibleParty>
-                     <assignedCareProvider>
-                        <id nullFlavor="NI"/>
-                        <code code="17.000"
-                              codeSystem="2.16.840.1.113883.2.4.15.111"
-                              displayName="Apotheker"/>
-                        <representedOrganization>
-                           <id extension="01236578" root="2.16.528.1.1007.3.3"/>
-                           <name>Apotheek De Gulle Gaper</name>
-                           <addr use="WP">
-                              <streetName>Dorpsstraat</streetName>
-                              <houseNumber>12</houseNumber>
-                              <buildingNumberSuffix>A</buildingNumberSuffix>
-                              <postalCode>1234 AA</postalCode>
-                              <city>Ons Dorp</city>
-                           </addr>
-                        </representedOrganization>
-                     </assignedCareProvider>
-                  </responsibleParty>
-               </medicationDispenseEvent>
-            </component>
-         </MedicationDispenseList>
+         <Patient>
+            <id extension="999912100"
+                root="2.16.840.1.113883.2.4.6.3"/>
+            <statusCode code="active"/>
+            <Person>
+               <administrativeGenderCode code="M"
+                                         codeSystem="2.16.840.1.113883.5.1"
+                                         displayName="Man"/>
+               <birthTime value="19640108"/>
+            </Person>
+         </Patient>
       </subject>
-      <queryAck>
-         <queryId extension="0123456789" root="2.16.528.1.1007.3.3.1234567.2"/>
-         <queryResponseCode code="OK"/>
-         <resultTotalQuantity value="1"/>
-         <resultCurrentQuantity value="1"/>
-         <resultRemainingQuantity value="0"/>
-      </queryAck>
-   </ControlActProcess>
-</QURX_IN990113NL>
+      <component>
+         <medicationDispenseEvent>
+            <id extension="MBH_hyb612_mg-sch-fout-1-TA1"
+                root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            <statusCode code="completed"/>
+            <effectiveTime value="T+0D{10:00:00}"/>
+            <quantity value="42"
+                      unit="1">
+               <translation value="42"
+                            code="245"
+                            displayName="Stuks"
+                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                            codeSystemName="G-Standaard thesaurus basiseenheden"/>
+            </quantity>
+            <performer>
+               <assignedPerson>
+                  <id nullFlavor="MSK"/>
+               </assignedPerson>
+            </performer>
+            <product>
+               <dispensedMedication>
+                  <MedicationKind classCode="MMAT"
+                                  determinerCode="KIND">
+                     <code code="1026291"
+                           codeSystem="2.16.840.1.113883.2.4.4.7"
+                           displayName="PARACETAMOL AURO TABLET 500MG"
+                           codeSystemName="G-Standaard HPK">
+                        <translation code="67903"
+                                     codeSystem="2.16.840.1.113883.2.4.4.10"
+                                     displayName="PARACETAMOL 500MG TABLET"
+                                     codeSystemName="G-Standaard PRK"/>
+                        <translation code="2194"
+                                     codeSystem="2.16.840.1.113883.2.4.4.1"
+                                     displayName="PARACETAMOL 500MG TABLET"
+                                     codeSystemName="G-Standaard GPK"/>
+                     </code>
+                  </MedicationKind>
+                  <directTargetOf typeCode="DIR">
+                     <prescription>
+                        <id extension="MBH_hyb612_mg-sch-fout-1-TA1-MA1"
+                            root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                        <statusCode nullFlavor="UNK"/>
+                     </prescription>
+                  </directTargetOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">3 maal per dag 1 stuk, Oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS"
+                                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                           <comp xsi:type="IVL_TS"/>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="0.3333"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="Oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen"/>
+                        <doseQuantity>
+                           <center value="1"
+                                   unit="1">
+                              <translation value="1"
+                                           code="245"
+                                           displayName="Stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+               </dispensedMedication>
+            </product>
+            <responsibleParty>
+               <assignedCareProvider>
+                  <id nullFlavor="NI"/>
+                  <code code="17.000"
+                        codeSystem="2.16.840.1.113883.2.4.15.111"
+                        displayName="Apotheker"/>
+                  <representedOrganization>
+                     <id extension="01236578"
+                         root="2.16.528.1.1007.3.3"/>
+                     <name>Apotheek De Gulle Gaper</name>
+                     <addr use="WP">
+                        <streetName>Dorpsstraat</streetName>
+                        <houseNumber>12</houseNumber>
+                        <buildingNumberSuffix>A</buildingNumberSuffix>
+                        <postalCode>1234 AA</postalCode>
+                        <city>Ons Dorp</city>
+                     </addr>
+                  </representedOrganization>
+               </assignedCareProvider>
+            </responsibleParty>
+         </medicationDispenseEvent>
+      </component>
+   </MedicationDispenseList>
+</subject>
