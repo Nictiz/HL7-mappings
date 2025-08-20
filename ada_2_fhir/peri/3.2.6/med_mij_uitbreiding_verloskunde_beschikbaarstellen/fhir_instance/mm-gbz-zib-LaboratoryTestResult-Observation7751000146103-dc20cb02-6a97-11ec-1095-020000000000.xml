@@ -2,14 +2,13 @@
    <!-- Source: gz-izv-tes-casus9999 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/medisch_onderzoek/maternale_onderzoeksgegevens/urine_bloed_en_aanvullende_onderzoeken/nipt/uitgevoerde_test_nipt (peri32-dataelement-10950) -->
    <id value="dc20cb02-6a97-11ec-1095-020000000000"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MaternalObservation"/>
-      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
    </meta>
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Observatie/bepaling. Subject: Maaike M Maaike Ostendorf. Status: definitief</caption>
+            <caption>Observatie/bepaling. Subject: Maaike M Maaike Ostendorf. Categorie: <span title="Laboratory (laboratory - observation-category)">Laboratory</span>, Status: definitief</caption>
             <tbody>
                <tr>
                   <th>Context</th>
@@ -44,6 +43,18 @@
       <value value="dc20cb02-6a97-11ec-1095-020000000000"/>
    </identifier>
    <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://hl7.org/fhir/observation-category"/>
+         <code value="laboratory"/>
+         <display value="Laboratory"/>
+      </coding>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="49581000146104"/>
+         <display value="bevinding betreffende laboratoriumonderzoek"/>
+      </coding>
+   </category>
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
