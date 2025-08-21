@@ -2,7 +2,7 @@
    <id value="lr-blr-TEST-l2z-2Minimaal-bericht-3KCLOINC"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:e3a10cad-7917-11f0-4737-020000000000"/>
+      <fullUrl value="urn:uuid:7f7d05c7-7e6c-11f0-2171-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -13,9 +13,9 @@
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.1"/>
-               <value value="99999"/>
+               <value value="22222"/>
             </identifier>
-            <status value="unknown"/>
+            <status value="final"/>
             <category>
                <coding>
                   <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
@@ -31,14 +31,15 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:e3a10c49-7917-11f0-4737-020000000000"/>
+               <reference value="urn:uuid:7f7d0563-7e6c-11f0-2171-020000000000"/>
                <type value="Patient"/>
-               <display value="Patient, E. Erelies"/>
+               <display value="Patient, E. XXX_Doppen"/>
             </subject>
+            <effectiveDateTime value="${DATE, T, D, -13}"/>
             <performer>
-               <reference value="urn:uuid:e3a10c85-7917-11f0-4737-020000000000"/>
+               <reference value="urn:uuid:7f7d059f-7e6c-11f0-2171-020000000000"/>
                <type value="Organization"/>
-               <display value="Healthcare provider (organization), Trombosedienst Ons Dorp"/>
+               <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
             </performer>
             <valueQuantity>
                <value value="5.4"/>
@@ -54,7 +55,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e3a10c85-7917-11f0-4737-020000000000"/>
+      <fullUrl value="urn:uuid:7f7d059f-7e6c-11f0-2171-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -62,17 +63,17 @@
             </meta>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="11112222"/>
+               <value value="00003333"/>
             </identifier>
             <type>
                <coding>
                   <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
                   <version value="2023-04-14T00:00:00"/>
-                  <code value="TD"/>
-                  <display value="Trombosedienst"/>
+                  <code value="L1"/>
+                  <display value="Laboratorium"/>
                </coding>
             </type>
-            <name value="Trombosedienst Ons Dorp"/>
+            <name value="Klinisch chemisch Lab 't Proefje"/>
             <telecom>
                <system value="phone">
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
@@ -86,7 +87,47 @@
                   </extension>
                </system>
                <value value="06-11122266"/>
+               <use value="work"/>
             </telecom>
+            <telecom>
+               <system value="email"/>
+               <value value="tproefje@lab.nl"/>
+               <use value="work"/>
+            </telecom>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Hoofdstraat 23">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Hoofdstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="23"/>
+                  </extension>
+               </line>
+               <city value="Zorgstad"/>
+               <postalCode value="1234AA"/>
+               <country value="Nederland">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="urn:iso:std:iso:3166"/>
+                           <version value="2020-10-26T00:00:00"/>
+                           <code value="NL"/>
+                           <display value="Nederland"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </country>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -95,7 +136,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e3a10c49-7917-11f0-4737-020000000000"/>
+      <fullUrl value="urn:uuid:7f7d0563-7e6c-11f0-2171-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -107,10 +148,10 @@
             </identifier>
             <name>
                <use value="official"/>
-               <text value="E. Erelies"/>
-               <family value="Erelies">
+               <text value="E. XXX_Doppen"/>
+               <family value="XXX_Doppen">
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="Erelies"/>
+                     <valueString value="XXX_Doppen"/>
                   </extension>
                </family>
                <given value="E.">
@@ -136,37 +177,6 @@
       <request>
          <method value="POST"/>
          <url value="Patient"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:e3a10c5d-7917-11f0-4737-020000000000"/>
-      <resource>
-         <Organization>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="00003333"/>
-            </identifier>
-            <type>
-               <coding>
-                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
-                  <version value="2023-04-14T00:00:00"/>
-                  <code value="L1"/>
-                  <display value="Laboratorium"/>
-               </coding>
-            </type>
-            <name value="Klinisch chemisch Lab 't Proefje"/>
-            <telecom>
-               <system value="phone"/>
-               <value value="06-11122233"/>
-            </telecom>
-         </Organization>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
       </request>
    </entry>
 </Bundle>

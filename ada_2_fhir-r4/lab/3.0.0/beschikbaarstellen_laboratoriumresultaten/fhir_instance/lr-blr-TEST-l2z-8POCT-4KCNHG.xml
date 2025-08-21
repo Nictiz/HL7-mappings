@@ -2,12 +2,15 @@
    <id value="lr-blr-TEST-l2z-8POCT-4KCNHG"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:e4620890-7917-11f0-2000-020000000000"/>
+      <fullUrl value="urn:uuid:80dbca58-7e6c-11f0-1690-020000000000"/>
       <resource>
          <Observation>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+               <valueBoolean value="true"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
                <valueString value="111333"/>
             </extension>
@@ -31,12 +34,12 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:e462082c-7917-11f0-2000-020000000000"/>
+               <reference value="urn:uuid:80dbc9f4-7e6c-11f0-1690-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
             <performer>
-               <reference value="urn:uuid:e4620868-7917-11f0-2000-020000000000"/>
+               <reference value="urn:uuid:80dbca30-7e6c-11f0-1690-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Trombosedienst Ons Dorp"/>
             </performer>
@@ -50,7 +53,7 @@
                <text value="Hoog"/>
             </interpretation>
             <specimen>
-               <reference value="urn:uuid:e46208b8-7917-11f0-2000-020000000000"/>
+               <reference value="urn:uuid:80dbca80-7e6c-11f0-1690-020000000000"/>
                <type value="Specimen"/>
                <display value="monster"/>
             </specimen>
@@ -86,7 +89,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e46208b8-7917-11f0-2000-020000000000"/>
+      <fullUrl value="urn:uuid:80dbca80-7e6c-11f0-1690-020000000000"/>
       <resource>
          <Specimen>
             <meta>
@@ -104,7 +107,7 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:e462082c-7917-11f0-2000-020000000000"/>
+               <reference value="urn:uuid:80dbc9f4-7e6c-11f0-1690-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
@@ -116,7 +119,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e4620868-7917-11f0-2000-020000000000"/>
+      <fullUrl value="urn:uuid:80dbca30-7e6c-11f0-1690-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -162,7 +165,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e462082c-7917-11f0-2000-020000000000"/>
+      <fullUrl value="urn:uuid:80dbc9f4-7e6c-11f0-1690-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -206,7 +209,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e4620840-7917-11f0-2000-020000000000"/>
+      <fullUrl value="urn:uuid:80dbca08-7e6c-11f0-1690-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -226,8 +229,24 @@
             </type>
             <name value="Klinisch chemisch Lab 't Proefje"/>
             <telecom>
-               <system value="phone"/>
+               <system value="phone">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                           <code value="MC"/>
+                           <display value="Mobiel telefoonnummer"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </system>
                <value value="06-11122233"/>
+               <use value="work"/>
+            </telecom>
+            <telecom>
+               <system value="email"/>
+               <value value="tproefje@lab.nl"/>
+               <use value="work"/>
             </telecom>
             <address>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
