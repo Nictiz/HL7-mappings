@@ -8,8 +8,7 @@
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
             <caption>Verrichtingaanvraag. Subject: Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik. Status: onbekend<span style="display: block;">Intentie: plan</span>
-               <span style="display: block;">Aangevraagd door: Haar Scherp<span style="display: block;">Zorgverlenerrol: Cardioloog</span>
-               </span>
+               <span style="display: block;">Aangevraagd door: Haar Scherp || Cardioloog</span>
             </caption>
             <tbody>
                <tr>
@@ -23,13 +22,14 @@
                <tr>
                   <th>Beoogde uitvoerende</th>
                   <td>
-                     <div>Perpe P.M.T. Peer Tuum<div>Zorgverlenerrol: Cardiothoracaal chirurg</div>, Haar Scherp<div>Zorgverlenerrol: Cardioloog</div>
+                     <div>Type: <span title="Hoofdbehandelaar (RESP - v3/ParticipationType)">Hoofdbehandelaar</span>
                      </div>
+                     <div>Perpe P.M.T. Peer Tuum || Cardiothoracaal chirurg, Haar Scherp || Cardioloog</div>
                   </td>
                </tr>
                <tr>
                   <th>Reden</th>
-                  <td/>
+                  <td>kortademigheid bij milde inspanning, pulmonalisklepinsufficiëntie</td>
                </tr>
                <tr>
                   <td>Deel van lichaam</td>
@@ -63,37 +63,48 @@
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
             <valueReference>
                <reference value="PractitionerRole/nl-core-practitionerrole-msz-1000001201-010"/>
-               <display value="Cardioloog"/>
+               <display value="Haar Scherp || Cardioloog"/>
             </valueReference>
          </extension>
          <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000012"/>
          <display value="Haar Scherp"/>
       </agent>
    </requester>
+   <performerType>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+         <code value="RESP"/>
+         <display value="Hoofdbehandelaar"/>
+      </coding>
+   </performerType>
    <performer>
-      <actor>
-         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-            <valueReference>
-               <reference value="PractitionerRole/nl-core-practitionerrole-msz-1000001101-011"/>
-               <display value="Cardiothoracaal chirurg"/>
-            </valueReference>
-         </extension>
-         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000011"/>
-         <display value="Perpe P.M.T. Peer Tuum"/>
-      </actor>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-msz-1000001101-011"/>
+            <display value="Perpe P.M.T. Peer Tuum || Cardiothoracaal chirurg"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000011"/>
+      <display value="Perpe P.M.T. Peer Tuum"/>
    </performer>
    <performer>
-      <actor>
-         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-            <valueReference>
-               <reference value="PractitionerRole/nl-core-practitionerrole-msz-1000001201-010"/>
-               <display value="Cardioloog"/>
-            </valueReference>
-         </extension>
-         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000012"/>
-         <display value="Haar Scherp"/>
-      </actor>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-msz-1000001201-010"/>
+            <display value="Haar Scherp || Cardioloog"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000012"/>
+      <display value="Haar Scherp"/>
    </performer>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-msz-243db94d-6b63-11ec-0000-2"/>
+      <display value="kortademigheid bij milde inspanning"/>
+   </reasonReference>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-msz-923572cd-6b05-11ec-0000-2"/>
+      <display value="pulmonalisklepinsufficiëntie"/>
+   </reasonReference>
    <bodySite>
       <coding>
          <system value="http://snomed.info/sct"/>

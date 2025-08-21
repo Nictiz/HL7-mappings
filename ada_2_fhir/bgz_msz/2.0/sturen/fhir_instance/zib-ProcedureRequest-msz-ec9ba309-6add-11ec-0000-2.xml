@@ -8,8 +8,7 @@
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
             <caption>Verrichtingaanvraag. Subject: Jan Adrianus J.A.H. Jan van Houten. Status: onbekend<span style="display: block;">Intentie: plan</span>
-               <span style="display: block;">Aangevraagd door: Beendokter B. Beendokter Aangenaam<span style="display: block;">Zorgverlenerrol: Orthopedisch chirurg</span>
-               </span>
+               <span style="display: block;">Aangevraagd door: Beendokter B. Beendokter Aangenaam || Orthopedisch chirurg</span>
             </caption>
             <tbody>
                <tr>
@@ -28,7 +27,7 @@
                </tr>
                <tr>
                   <th>Reden</th>
-                  <td/>
+                  <td>fractuur van enkel</td>
                </tr>
                <tr>
                   <td>Deel van lichaam</td>
@@ -63,7 +62,7 @@
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
             <valueReference>
                <reference value="PractitionerRole/nl-core-practitionerrole-msz-1000000301-032"/>
-               <display value="Orthopedisch chirurg"/>
+               <display value="Beendokter B. Beendokter Aangenaam || Orthopedisch chirurg"/>
             </valueReference>
          </extension>
          <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000003"/>
@@ -71,11 +70,13 @@
       </agent>
    </requester>
    <performer>
-      <actor>
-         <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000002"/>
-         <display value="Ziekenhuis de Aandacht"/>
-      </actor>
+      <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000002"/>
+      <display value="Ziekenhuis de Aandacht"/>
    </performer>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-msz-4c1fb8c9-6b65-11ec-0000-2"/>
+      <display value="fractuur van enkel"/>
+   </reasonReference>
    <bodySite>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
          <valueCodeableConcept>

@@ -8,8 +8,7 @@
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
             <caption>Medicatieafspraak. Subject: Michelle M.B. Michelle Bergzoon Verheul. Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
-               <span style="display: block;">Aangevraagd door: Huisdokter H. Huisdokter Behulpzaam<span style="display: block;">Zorgverlenerrol: Huisarts</span>
-               </span>
+               <span style="display: block;">Aangevraagd door: Huisdokter H. Huisdokter Behulpzaam || Huisarts || Huisartsenpraktijk Betrokken</span>
             </caption>
             <tfoot>
                <tr>
@@ -19,11 +18,15 @@
             <tbody>
                <tr>
                   <th>Medicatie</th>
-                  <td>Type medicatie: CALCIUMCARB/COLECALC KAUWTB 1,25G/400IE (500MG CA)</td>
+                  <td>CALCIUMCARB/COLECALC KAUWTB 1,25G/400IE (500MG CA)</td>
                </tr>
                <tr>
                   <th>Gemaakt</th>
                   <td>10:10:01, 3 juli 2012</td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>osteoporose</td>
                </tr>
                <tr>
                   <th>Doseerinstructie</th>
@@ -51,8 +54,8 @@
       <text value="Medicatieafspraak"/>
    </category>
    <medicationReference>
-      <reference value="Medication/zib-Product-msz-65a08885-6abd-11ec-0000-2"/>
-      <display value="Type medicatie: CALCIUMCARB/COLECALC KAUWTB 1,25G/400IE (500MG CA)"/>
+      <reference value="Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-58807"/>
+      <display value="CALCIUMCARB/COLECALC KAUWTB 1,25G/400IE (500MG CA)"/>
    </medicationReference>
    <subject>
       <reference value="Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL"/>
@@ -63,14 +66,18 @@
       <agent>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
             <valueReference>
-               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0013131301-015"/>
-               <display value="Huisarts"/>
+               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0013131301-01520000004"/>
+               <display value="Huisdokter H. Huisdokter Behulpzaam || Huisarts || Huisartsenpraktijk Betrokken"/>
             </valueReference>
          </extension>
          <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00131313"/>
          <display value="Huisdokter H. Huisdokter Behulpzaam"/>
       </agent>
    </requester>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-msz-31bf4dcf-6b18-11ec-0000-2"/>
+      <display value="osteoporose"/>
+   </reasonReference>
    <note>
       <text value="Vanaf 2012-07-03"/>
    </note>

@@ -26,6 +26,12 @@
                   <th>Gebruiksperiode</th>
                   <td>Vanaf ${DATE, T, D, -43}</td>
                </tr>
+               <tr>
+                  <th>Indicatie</th>
+                  <td>
+                     <div>fractuur van enkel</div>
+                  </td>
+               </tr>
             </tbody>
          </table>
       </div>
@@ -48,6 +54,14 @@
       <reference value="Device/zib-MedicalDeviceProduct-msz-17d02da2-6b4a-11ec-0000-2"/>
       <display value="bekrachtigde niet-inklapbare rolstoel door gebruiker bestuurd gemotoriseerde rolstoel"/>
    </device>
+   <indication>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Problem">
+         <valueReference>
+            <reference value="Condition/zib-Problem-msz-4c1fb8c9-6b65-11ec-0000-2"/>
+            <display value="fractuur van enkel"/>
+         </valueReference>
+      </extension>
+   </indication>
    <note>
       <text value="Mag been even niet belasten."/>
    </note>

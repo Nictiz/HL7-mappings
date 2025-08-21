@@ -1,0 +1,115 @@
+<ProcedureRequest xmlns="http://hl7.org/fhir">
+   <id value="zib-ProcedureRequest-msz-c0b2df96-6b45-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichtingaanvraag. Subject: Olivia Madelief O.M.W. Olijf de Wilson Çelik. Status: onbekend<span style="display: block;">Intentie: plan</span>
+               <span style="display: block;">Aangevraagd door: Haar Scherp || Cardioloog</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="percutane implantatie van pulmonalisklep (787162002 - SNOMED CT)">percutane implantatie van pulmonalisklep</span>
+                  </td>
+                  <td>
+                     <div>Wanneer: 15 februari 1999</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Beoogde uitvoerende</th>
+                  <td>
+                     <div>Type: <span title="Hoofdbehandelaar (RESP - v3/ParticipationType)">Hoofdbehandelaar</span>
+                     </div>
+                     <div>Perpe P.M.T. Peer Tuum || Cardiothoracaal chirurg, Haar Scherp || Cardioloog</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>kortademigheid bij milde inspanning, pulmonalisklepinsufficiëntie</td>
+               </tr>
+               <tr>
+                  <td>Deel van lichaam</td>
+                  <td>
+                     <span title="pulmonaalklep (39057004 - SNOMED CT)">pulmonaalklep</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <status value="unknown"/>
+   <intent value="plan"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="787162002"/>
+         <display value="percutane implantatie van pulmonalisklep"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/OLIVIA-MADELIEF-O-M-W--OLIJF-DE-WILSON-ELIK"/>
+      <display value="Olivia Madelief O.M.W. Olijf de Wilson Çelik"/>
+   </subject>
+   <occurrencePeriod>
+      <start value="1999-02-15"/>
+      <end value="1999-02-15"/>
+   </occurrencePeriod>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-msz-1000001201-010"/>
+               <display value="Haar Scherp || Cardioloog"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000012"/>
+         <display value="Haar Scherp"/>
+      </agent>
+   </requester>
+   <performerType>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+         <code value="RESP"/>
+         <display value="Hoofdbehandelaar"/>
+      </coding>
+   </performerType>
+   <performer>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-msz-1000001101-011"/>
+            <display value="Perpe P.M.T. Peer Tuum || Cardiothoracaal chirurg"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000011"/>
+      <display value="Perpe P.M.T. Peer Tuum"/>
+   </performer>
+   <performer>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-msz-1000001201-010"/>
+            <display value="Haar Scherp || Cardioloog"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000012"/>
+      <display value="Haar Scherp"/>
+   </performer>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-msz-e13d88a5-6b56-11ec-0000-2"/>
+      <display value="kortademigheid bij milde inspanning"/>
+   </reasonReference>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-msz-fc5be44f-6b5d-11ec-0000-2"/>
+      <display value="pulmonalisklepinsufficiëntie"/>
+   </reasonReference>
+   <bodySite>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="39057004"/>
+         <display value="pulmonaalklep"/>
+      </coding>
+   </bodySite>
+</ProcedureRequest>

@@ -8,8 +8,7 @@
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
             <caption>Verrichtingaanvraag. Subject: Michelle M.B. Michelle Bergzoon Verheul. Status: onbekend<span style="display: block;">Intentie: plan</span>
-               <span style="display: block;">Aangevraagd door: Meindert M. Meindert Principale<span style="display: block;">Zorgverlenerrol: Internist-Oncoloog</span>
-               </span>
+               <span style="display: block;">Aangevraagd door: Meindert M. Meindert Principale || Internist-Oncoloog || Ziekenhuis Mammazorg</span>
             </caption>
             <tbody>
                <tr>
@@ -23,13 +22,12 @@
                <tr>
                   <th>Beoogde uitvoerende</th>
                   <td>
-                     <div>Zaza Z. Zaza Bedachtzaam<div>Zorgverlenerrol: Chirurg</div>
-                     </div>
+                     <div>Zaza Z. Zaza Bedachtzaam || Chirurg || Ziekenhuis Mammazorg</div>
                   </td>
                </tr>
                <tr>
                   <th>Reden</th>
-                  <td/>
+                  <td>maligne neoplasma van mamma</td>
                </tr>
             </tbody>
          </table>
@@ -55,8 +53,8 @@
       <agent>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
             <valueReference>
-               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0015151501-016"/>
-               <display value="Internist-Oncoloog"/>
+               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0015151501-01620000005"/>
+               <display value="Meindert M. Meindert Principale || Internist-Oncoloog || Ziekenhuis Mammazorg"/>
             </valueReference>
          </extension>
          <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00151515"/>
@@ -64,15 +62,17 @@
       </agent>
    </requester>
    <performer>
-      <actor>
-         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-            <valueReference>
-               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0014141401-014"/>
-               <display value="Chirurg"/>
-            </valueReference>
-         </extension>
-         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00141414"/>
-         <display value="Zaza Z. Zaza Bedachtzaam"/>
-      </actor>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-msz-0014141401-01420000005"/>
+            <display value="Zaza Z. Zaza Bedachtzaam || Chirurg || Ziekenhuis Mammazorg"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00141414"/>
+      <display value="Zaza Z. Zaza Bedachtzaam"/>
    </performer>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-msz-74fb0875-6b10-11ec-0000-2"/>
+      <display value="maligne neoplasma van mamma"/>
+   </reasonReference>
 </ProcedureRequest>

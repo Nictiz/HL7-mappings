@@ -1,0 +1,105 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <id value="zib-Encounter-msz-BGZ-MSZ-PATB-ENCOUNTER22000-07-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: Michelle M.B. Michelle Bergzoon Verheul. Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div>
+                        <span title="SEH (EMER - v3/ActCode)">SEH</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>1 juli 2000</td>
+               </tr>
+               <tr>
+                  <th>Probleem/Verrichting</th>
+                  <td>Verrichtingtype: intraveneuze trombolyse</td>
+               </tr>
+               <tr>
+                  <th>Participant</th>
+                  <td>
+                     <div>
+                        <span title="Hoofdbehandelaar (RESP - v3/ParticipationType)">Hoofdbehandelaar</span> - Meindert M. Meindert Principale || Internist-Oncoloog || Ziekenhuis Mammazorg</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Opnamegegevens</th>
+                  <td>
+                     <ul>
+                        <li>Ontslagwijze: <span title="Instelling voor revalidatie (80522000 - SNOMED CT)">Instelling voor revalidatie</span>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <status value="finished"/>
+   <class>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActCode"/>
+               <code value="EMER"/>
+               <display value="SEH"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="http://hl7.org/fhir/v3/ActCode"/>
+      <code value="EMER"/>
+      <display value="SEH"/>
+   </class>
+   <subject>
+      <reference value="Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL"/>
+      <display value="Michelle M.B. Michelle Bergzoon Verheul"/>
+   </subject>
+   <participant>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="RESP"/>
+            <display value="Hoofdbehandelaar"/>
+         </coding>
+      </type>
+      <individual>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0015151501-01620000005"/>
+               <display value="Meindert M. Meindert Principale || Internist-Oncoloog || Ziekenhuis Mammazorg"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00151515"/>
+         <display value="Meindert M. Meindert Principale"/>
+      </individual>
+   </participant>
+   <period>
+      <start value="2000-07-01"/>
+      <end value="2000-07-01"/>
+   </period>
+   <diagnosis>
+      <condition>
+         <reference value="Procedure/zib-Procedure-msz-afedfeb5-6b24-11ec-0000-2"/>
+         <display value="Verrichtingtype: intraveneuze trombolyse"/>
+      </condition>
+   </diagnosis>
+   <hospitalization>
+      <dischargeDisposition>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="80522000"/>
+            <display value="Instelling voor revalidatie"/>
+         </coding>
+      </dischargeDisposition>
+   </hospitalization>
+</Encounter>

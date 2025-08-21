@@ -1,0 +1,108 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="b-LaboratoryTestResult-Observation-msz-af020fd0-6acf-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Olivia Madelief O.M.W. Olijf de Wilson Çelik. Categorie: <span title="Laboratory (laboratory - observation-category)">Laboratory</span>, Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td colspan="3">10:30:00, 22 februari 2008</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+                  <th>Interpretatie</th>
+                  <th>Referentiewaarden</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Hemoglobine [mol/volume] in bloed (59260-0 - LOINC)">Hemoglobine [mol/volume] in bloed</span>
+                  </td>
+                  <td>9.20 mmol/L</td>
+                  <td>
+                     <span title="Intermediate (I - v2/0078)">Intermediate</span>
+                  </td>
+                  <td>
+                     <div>
+                        <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span> 7.5 mmol/L - 10 mmol/L</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <status value="final">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
+               <code value="final"/>
+               <display value="Definitief"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </status>
+   <category>
+      <coding>
+         <system value="http://hl7.org/fhir/observation-category"/>
+         <code value="laboratory"/>
+         <display value="Laboratory"/>
+      </coding>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="49581000146104"/>
+         <display value="bevinding betreffende laboratoriumonderzoek"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="59260-0"/>
+         <display value="Hemoglobine [mol/volume] in bloed"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/OLIVIA-MADELIEF-O-M-W--OLIJF-DE-WILSON-ELIK"/>
+      <display value="Olivia Madelief O.M.W. Olijf de Wilson Çelik"/>
+   </subject>
+   <effectiveDateTime value="2008-02-22T10:30:00+01:00"/>
+   <valueQuantity>
+      <value value="9.20"/>
+      <unit value="mmol/L"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="mmol/L"/>
+   </valueQuantity>
+   <interpretation>
+      <coding>
+         <system value="http://hl7.org/fhir/v2/0078"/>
+         <code value="I"/>
+         <display value="Intermediate"/>
+      </coding>
+   </interpretation>
+   <referenceRange>
+      <low>
+         <value value="7.5"/>
+         <unit value="mmol/L"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mmol/L"/>
+      </low>
+      <high>
+         <value value="10"/>
+         <unit value="mmol/L"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mmol/L"/>
+      </high>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/referencerange-meaning"/>
+            <code value="normal"/>
+            <display value="Normal Range"/>
+         </coding>
+      </type>
+   </referenceRange>
+</Observation>

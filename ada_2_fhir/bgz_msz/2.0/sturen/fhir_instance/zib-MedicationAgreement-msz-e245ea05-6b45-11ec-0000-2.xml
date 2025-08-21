@@ -8,17 +8,20 @@
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
             <caption>Medicatieafspraak. Subject: Michelle M.B. Michelle Bergzoon Verheul. Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
-               <span style="display: block;">Aangevraagd door: Zaza Z. Zaza Bedachtzaam<span style="display: block;">Zorgverlenerrol: Chirurg</span>
-               </span>
+               <span style="display: block;">Aangevraagd door: Zaza Z. Zaza Bedachtzaam || Chirurg || Ziekenhuis Mammazorg</span>
             </caption>
             <tbody>
                <tr>
                   <th>Medicatie</th>
-                  <td>Type medicatie: ALENDRONINEZUUR DRANK 70MG=100ML (0,7MG/ML) FL</td>
+                  <td>ALENDRONINEZUUR DRANK 70MG=100ML (0,7MG/ML) FL</td>
                </tr>
                <tr>
                   <th>Gemaakt</th>
                   <td>10:10:01, 2 juli 2012</td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>osteoporose</td>
                </tr>
                <tr>
                   <th>Doseerinstructie</th>
@@ -52,8 +55,8 @@
       <text value="Medicatieafspraak"/>
    </category>
    <medicationReference>
-      <reference value="Medication/zib-Product-msz-dd3ff04f-6b55-11ec-0000-2"/>
-      <display value="Type medicatie: ALENDRONINEZUUR DRANK 70MG=100ML (0,7MG/ML) FL"/>
+      <reference value="Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10--129933"/>
+      <display value="ALENDRONINEZUUR DRANK 70MG=100ML (0,7MG/ML) FL"/>
    </medicationReference>
    <subject>
       <reference value="Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL"/>
@@ -64,14 +67,18 @@
       <agent>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
             <valueReference>
-               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0014141401-014"/>
-               <display value="Chirurg"/>
+               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0014141401-01420000005"/>
+               <display value="Zaza Z. Zaza Bedachtzaam || Chirurg || Ziekenhuis Mammazorg"/>
             </valueReference>
          </extension>
          <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00141414"/>
          <display value="Zaza Z. Zaza Bedachtzaam"/>
       </agent>
    </requester>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-msz-31bf4dcf-6b18-11ec-0000-2"/>
+      <display value="osteoporose"/>
+   </reasonReference>
    <dosageInstruction>
       <additionalInstruction>
          <coding>

@@ -1,0 +1,108 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <id value="zib-Procedure-msz-ec9ba309-6add-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Jan Adrianus J.A.H. Jan van Houten. Categorie: <span title="chirurgische ingreep (387713003 - SNOMED CT)">chirurgische ingreep</span>, Status: voltooid<span style="display: block;">Uitvoerende: Ziekenhuis de Aandacht</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="operatie met gebruik van externe fixateur (239613002 - SNOMED CT)">operatie met gebruik van externe fixateur</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: ${DATE, T, D, -45}T20:00:00+02:00 - ${DATE, T, D, -45}T21:00:00+02:00</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="immobilisatie (129371009 - SNOMED CT)">immobilisatie</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Gebaseerd op</th>
+                  <td>operatie met gebruik van externe fixateur</td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="structuur van enkelgewricht (70258002 - SNOMED CT)">structuur van enkelgewricht</span>
+                     <span title="Links (7771000 - SNOMED CT)">Links</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>fractuur van enkel</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="129371009"/>
+            <display value="immobilisatie"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <basedOn>
+      <reference value="ProcedureRequest/zib-ProcedureRequest-msz-ec9ba309-6add-11ec-0000-2"/>
+      <display value="operatie met gebruik van externe fixateur"/>
+   </basedOn>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="387713003"/>
+         <display value="chirurgische ingreep"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="239613002"/>
+         <display value="operatie met gebruik van externe fixateur"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN"/>
+      <display value="Jan Adrianus J.A.H. Jan van Houten"/>
+   </subject>
+   <performedPeriod>
+      <start value="${DATE, T, D, -45}T20:00:00+02:00"/>
+      <end value="${DATE, T, D, -45}T21:00:00+02:00"/>
+   </performedPeriod>
+   <performer>
+      <actor>
+         <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000002"/>
+         <display value="Ziekenhuis de Aandacht"/>
+      </actor>
+   </performer>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-msz-4c1fb8c9-6b65-11ec-0000-2"/>
+      <display value="fractuur van enkel"/>
+   </reasonReference>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="70258002"/>
+         <display value="structuur van enkelgewricht"/>
+      </coding>
+   </bodySite>
+</Procedure>

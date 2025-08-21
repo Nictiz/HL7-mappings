@@ -30,8 +30,19 @@
                   <td>Ziekenhuis Mammazorg - Mammapoli</td>
                </tr>
                <tr>
+                  <th>Indicatie door</th>
+                  <td>Huisdokter H. Huisdokter Behulpzaam</td>
+               </tr>
+               <tr>
                   <th>Gebruiksperiode</th>
                   <td>Vanaf 2011-02</td>
+               </tr>
+               <tr>
+                  <th>Indicatie</th>
+                  <td>
+                     <div>CVA</div>
+                     <div>spasticiteit als laat gevolg van CVA</div>
+                  </td>
                </tr>
             </tbody>
          </table>
@@ -41,6 +52,12 @@
       <valueReference>
          <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000005"/>
          <display value="Ziekenhuis Mammazorg - Mammapoli"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Practitioner">
+      <valueReference>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00131313"/>
+         <display value="Huisdokter H. Huisdokter Behulpzaam"/>
       </valueReference>
    </extension>
    <status value="active"/>
@@ -55,6 +72,22 @@
       <reference value="Device/zib-MedicalDeviceProduct-msz-4781d9e6-6b37-11ec-0000-2"/>
       <display value="polsbrace armondersteuning bij eten en drinken en computerwerk"/>
    </device>
+   <indication>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Problem">
+         <valueReference>
+            <reference value="Condition/zib-Problem-msz-5b64cf75-6b76-11ec-0000-2"/>
+            <display value="CVA"/>
+         </valueReference>
+      </extension>
+   </indication>
+   <indication>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Problem">
+         <valueReference>
+            <reference value="Condition/zib-Problem-msz-cef4f3cf-6b67-11ec-0000-2"/>
+            <display value="spasticiteit als laat gevolg van CVA"/>
+         </valueReference>
+      </extension>
+   </indication>
    <bodySite>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
          <valueCodeableConcept>
