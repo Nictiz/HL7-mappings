@@ -4569,16 +4569,16 @@
                      type="beoordeling_gezinssituatie_observatie_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_2914"
                      minOccurs="0"
                      maxOccurs="unbounded"/>
-         <xs:element name="probleem_infectieziekten_gezin-start"
+         <xs:element name="infectieziekten_gezin_observatie-start"
                      minOccurs="0"
                      maxOccurs="1">
             <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10556"/>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11069"/>
                <xs:attribute name="hidden" fixed="true"/>
             </xs:complexType>
          </xs:element>
-         <xs:element name="probleem_infectieziekten_gezin"
-                     type="probleem_infectieziekten_gezin_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10556"
+         <xs:element name="infectieziekten_gezin_observatie"
+                     type="infectieziekten_gezin_observatie_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_11069"
                      minOccurs="0"
                      maxOccurs="unbounded"/>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
@@ -4668,79 +4668,71 @@
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2914"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
-   <xs:complexType name="probleem_infectieziekten_gezin_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10556">
+   <xs:complexType name="infectieziekten_gezin_observatie_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_11069">
       <xs:annotation>
-         <xs:documentation>Type for concept group: Probleem infectieziekte(n) Gezin</xs:documentation>
+         <xs:documentation>Type for concept group: Infectieziekte(n) Gezin (Observatie)</xs:documentation>
       </xs:annotation>
       <xs:sequence>
-         <xs:element name="probleem_type-start" minOccurs="0" maxOccurs="1">
+         <xs:element name="observatie_datum_tijd-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10559"/>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11070"/>
                <xs:attribute name="hidden" fixed="true"/>
             </xs:complexType>
          </xs:element>
-         <xs:element name="probleem_type"
-                     type="probleem_type_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10559"
+         <xs:element name="observatie_datum_tijd"
+                     type="observatie_datum_tijd_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_11070"
                      minOccurs="0"
                      maxOccurs="1"/>
-         <xs:element name="probleem_naam-start" minOccurs="0" maxOccurs="1">
+         <xs:element name="observatie_naam-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10560"/>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11071"/>
                <xs:attribute name="hidden" fixed="true"/>
             </xs:complexType>
          </xs:element>
-         <xs:element name="probleem_naam"
-                     type="probleem_naam_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10560"
+         <xs:element name="observatie_naam"
+                     type="observatie_naam_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_11071"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="infectieziekte_gezin_waarde-start"
+                     minOccurs="0"
+                     maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11072"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="infectieziekte_gezin_waarde"
+                     type="infectieziekte_gezin_waarde_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_11072"
                      minOccurs="1"
                      maxOccurs="1"/>
-         <xs:element name="probleem_begin_datum-start" minOccurs="0" maxOccurs="1">
+         <xs:element name="observatie_methode-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10561"/>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11073"/>
                <xs:attribute name="hidden" fixed="true"/>
             </xs:complexType>
          </xs:element>
-         <xs:element name="probleem_begin_datum"
-                     type="probleem_begin_datum_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10561"
+         <xs:element name="observatie_methode"
+                     type="observatie_methode_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_11073"
                      minOccurs="0"
                      maxOccurs="1"/>
-         <xs:element name="probleem_eind_datum-start" minOccurs="0" maxOccurs="1">
+         <xs:element name="observatie_specimen-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10562"/>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11074"/>
                <xs:attribute name="hidden" fixed="true"/>
             </xs:complexType>
          </xs:element>
-         <xs:element name="probleem_eind_datum"
-                     type="probleem_eind_datum_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10562"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-         <xs:element name="probleem_status-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10563"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="probleem_status"
-                     type="probleem_status_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10563"
-                     minOccurs="1"
-                     maxOccurs="1"/>
-         <xs:element name="verificatie_status-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10564"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="verificatie_status"
-                     type="verificatie_status_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10564"
+         <xs:element name="observatie_specimen"
+                     type="observatie_specimen_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_11074"
                      minOccurs="0"
                      maxOccurs="1"/>
          <xs:element name="toelichting-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10565"/>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11078"/>
                <xs:attribute name="hidden" fixed="true"/>
             </xs:complexType>
          </xs:element>
          <xs:element name="toelichting"
-                     type="toelichting_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10565"
+                     type="toelichting_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_11078"
                      minOccurs="0"
                      maxOccurs="1"/>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
@@ -4753,7 +4745,7 @@
                      minOccurs="0"
                      maxOccurs="1"/>
       </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10556"/>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11069"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="zwangerschapsgegevens_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_25">
@@ -4912,7 +4904,7 @@
          <xs:element name="voorgenomen_voeding_observatie"
                      type="voorgenomen_voeding_observatie_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_2279"
                      minOccurs="1"
-                     maxOccurs="1"/>
+                     maxOccurs="unbounded"/>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="hidden" fixed="true"/>
@@ -6316,7 +6308,7 @@
    </xs:complexType>
    <xs:complexType name="werkelijke_plaats_baring_type_locatie_observatie_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_4193">
       <xs:annotation>
-         <xs:documentation>Type for concept group: Werkelijke plaats baring (type locatie) (Observatie) </xs:documentation>
+         <xs:documentation>Type for concept group: Werkelijke plaats baring (type locatie) (Observatie)</xs:documentation>
       </xs:annotation>
       <xs:sequence>
          <xs:element name="observatie_datum_tijd-start" minOccurs="0" maxOccurs="1">
@@ -31449,7 +31441,7 @@
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: Geboortedatum  - 1..1 R</xs:documentation>
+      <xs:documentation>Type for concept item: Geboortedatum - 1..1 R</xs:documentation>
    </xs:annotation>
    <xs:complexType name="geboortedatum_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_7773">
       <xs:sequence>
@@ -31469,7 +31461,7 @@
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Geboortedatum : string</xs:documentation>
+      <xs:documentation>simpleType for valueDomain: Geboortedatum: string</xs:documentation>
    </xs:annotation>
    <xs:simpleType name="geboortedatum_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_7773">
       <xs:restriction base="xs:string"/>
@@ -36454,9 +36446,9 @@
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: ProbleemType - 0..1 R</xs:documentation>
+      <xs:documentation>Type for concept item: ObservatieDatumTijd - 0..1 R</xs:documentation>
    </xs:annotation>
-   <xs:complexType name="probleem_type_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10559">
+   <xs:complexType name="observatie_datum_tijd_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_11070">
       <xs:sequence>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
@@ -36468,7 +36460,59 @@
                      minOccurs="0"
                      maxOccurs="1"/>
       </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10559"/>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11070"/>
+      <xs:attribute name="value" type="VariableVagueDateTime"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="datetime"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: ObservatieDatumTijd: string</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="observatie_datum_tijd_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_11070">
+      <xs:restriction base="xs:string"/>
+   </xs:simpleType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: ObservatieNaam - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="observatie_naam_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_11071">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11071"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="code"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="preferred" type="BooleanOrEmpty"/>
+      <xs:attribute name="originalText" type="xs:string"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: InfectieziekteGezinWaarde - 1..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="infectieziekte_gezin_waarde_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_11072">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11072"/>
       <xs:attribute name="value">
          <xs:simpleType>
             <xs:restriction base="xs:string">
@@ -36482,211 +36526,97 @@
                </xs:enumeration>
                <xs:enumeration value="1">
                   <xs:annotation>
-                     <xs:documentation>interpretatie van diagnose</xs:documentation>
+                     <xs:documentation>infectie door Streptococcus pyogenes (aandoening)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="2">
                   <xs:annotation>
-                     <xs:documentation>bevinding gerapporteerd door patiënt of andere bron van voorgeschiedenis</xs:documentation>
+                     <xs:documentation>infectie door Streptococcus agalactiae (aandoening)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="3">
                   <xs:annotation>
-                     <xs:documentation>klinische bevinding</xs:documentation>
+                     <xs:documentation>herpes labialis (aandoening)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="4">
                   <xs:annotation>
-                     <xs:documentation>klacht</xs:documentation>
+                     <xs:documentation>infectie door meticillineresistente Staphylococcus aureus (aandoening)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="5">
                   <xs:annotation>
-                     <xs:documentation>bevinding van functionele prestatie en activiteit</xs:documentation>
+                     <xs:documentation>aandoening door infectie door 'Severe acute respiratory syndrome'-coronavirus 2 (aandoening)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="6">
                   <xs:annotation>
-                     <xs:documentation>complicatie</xs:documentation>
+                     <xs:documentation>bof (aandoening)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="code"/>
-      <xs:attribute name="code" type="xs:string"/>
-      <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="displayName" type="xs:string"/>
-      <xs:attribute name="preferred" type="BooleanOrEmpty"/>
-      <xs:attribute name="originalText" type="xs:string"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>Type for concept item: ProbleemNaam - 1..1 R</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="probleem_naam_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10560">
-      <xs:sequence>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10560"/>
-      <xs:attribute name="value">
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:annotation>
-                  <xs:documentation>valueSet/conceptList/concept</xs:documentation>
-               </xs:annotation>
-               <xs:enumeration value="">
+               <xs:enumeration value="7">
                   <xs:annotation>
-                     <xs:documentation>Empty</xs:documentation>
+                     <xs:documentation>herpes zoster (aandoening)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
-               <xs:enumeration value="1">
+               <xs:enumeration value="8">
                   <xs:annotation>
-                     <xs:documentation>ProbleemNaamCodelijst</xs:documentation>
+                     <xs:documentation>hepatitis A (aandoening)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="9">
+                  <xs:annotation>
+                     <xs:documentation>hepatitis B (aandoening)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="10">
+                  <xs:annotation>
+                     <xs:documentation>drager van hepatitis-B-virus (bevinding)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="11">
+                  <xs:annotation>
+                     <xs:documentation>impetigo (aandoening)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="12">
                   <xs:annotation>
-                     <xs:documentation>Oorzaak Overlijden</xs:documentation>
+                     <xs:documentation>kinkhoest (aandoening)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="13">
                   <xs:annotation>
-                     <xs:documentation>congenitale deformiteit (aandoening)</xs:documentation>
+                     <xs:documentation>infectie van luchtwegen (aandoening)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="14">
                   <xs:annotation>
-                     <xs:documentation>'respiratory distress'-syndroom bij pasgeborene (aandoening)</xs:documentation>
+                     <xs:documentation>mazelen (aandoening)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="15">
                   <xs:annotation>
-                     <xs:documentation>'respiratory distress'-syndroom met infectie bij pasgeborene (aandoening)</xs:documentation>
+                     <xs:documentation>meningitis (aandoening)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="16">
                   <xs:annotation>
-                     <xs:documentation>'respiratory distress'-syndroom met perinatale intraventriculaire bloeding bij pasgeborene (aandoening)</xs:documentation>
+                     <xs:documentation>rubella (aandoening)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="17">
                   <xs:annotation>
-                     <xs:documentation>bronchopulmonale dysplasie (aandoening)</xs:documentation>
+                     <xs:documentation>scarlatina (aandoening)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="18">
                   <xs:annotation>
-                     <xs:documentation>bronchopulmonale dysplasie met infectie (aandoening)</xs:documentation>
+                     <xs:documentation>varicella (aandoening)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="19">
                   <xs:annotation>
-                     <xs:documentation>bronchopulmonale dysplasie met hersenletsel (aandoening)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="20">
-                  <xs:annotation>
-                     <xs:documentation>aandoening door infectie (aandoening)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="21">
-                  <xs:annotation>
-                     <xs:documentation>verdenking op infectieziekte (situatie)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="22">
-                  <xs:annotation>
-                     <xs:documentation>infectieziekte aanwezig (situatie)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="23">
-                  <xs:annotation>
-                     <xs:documentation>necrotiserende enterocolitis bij pasgeborene (aandoening)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="24">
-                  <xs:annotation>
-                     <xs:documentation>necrotiserende enterocolitis met sepsis bij pasgeborene (aandoening)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="25">
-                  <xs:annotation>
-                     <xs:documentation>perinatale intestinale perforatie bij necrotiserende enterocolitis bij pasgeborene (aandoening)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="26">
-                  <xs:annotation>
-                     <xs:documentation>short bowel syndrome bij necrotiserende enterocolitis bij pasgeborene (aandoening)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="27">
-                  <xs:annotation>
-                     <xs:documentation>aandoening van zenuwstelsel (aandoening)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="28">
-                  <xs:annotation>
-                     <xs:documentation>perinatale intraventriculaire bloeding (aandoening)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="29">
-                  <xs:annotation>
-                     <xs:documentation>perinatale intraventriculaire bloeding met infectie (aandoening)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="30">
-                  <xs:annotation>
-                     <xs:documentation>cystische perinatale periventriculaire bloeding</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="31">
-                  <xs:annotation>
-                     <xs:documentation>ernstige asfyxie bij geboorte (aandoening)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="32">
-                  <xs:annotation>
-                     <xs:documentation>prematuriteit van zuigeling (aandoening)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="33">
-                  <xs:annotation>
-                     <xs:documentation>multiorgaanfalen (aandoening)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="34">
-                  <xs:annotation>
-                     <xs:documentation>stoornis van metabolisme (aandoening)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="35">
-                  <xs:annotation>
-                     <xs:documentation>foetaal letsel (aandoening)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="36">
-                  <xs:annotation>
-                     <xs:documentation>geboortetrauma (aandoening)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="37">
-                  <xs:annotation>
-                     <xs:documentation>Anders</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="38">
-                  <xs:annotation>
-                     <xs:documentation>Onbekend</xs:documentation>
+                     <xs:documentation>Overig</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
             </xs:restriction>
@@ -36702,9 +36632,9 @@
       <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: ProbleemBeginDatum - 0..1 R</xs:documentation>
+      <xs:documentation>Type for concept item: ObservatieMethode - 0..1 R</xs:documentation>
    </xs:annotation>
-   <xs:complexType name="probleem_begin_datum_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10561">
+   <xs:complexType name="observatie_methode_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_11073">
       <xs:sequence>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
@@ -36716,59 +36646,7 @@
                      minOccurs="0"
                      maxOccurs="1"/>
       </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10561"/>
-      <xs:attribute name="value" type="VariableVagueDateTime"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="datetime"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: ProbleemBeginDatum: string</xs:documentation>
-   </xs:annotation>
-   <xs:simpleType name="probleem_begin_datum_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10561">
-      <xs:restriction base="xs:string"/>
-   </xs:simpleType>
-   <xs:annotation>
-      <xs:documentation>Type for concept item: ProbleemEindDatum - 0..1 R</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="probleem_eind_datum_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10562">
-      <xs:sequence>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10562"/>
-      <xs:attribute name="value" type="VariableVagueDateTime"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="datetime"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: ProbleemEindDatum: string</xs:documentation>
-   </xs:annotation>
-   <xs:simpleType name="probleem_eind_datum_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10562">
-      <xs:restriction base="xs:string"/>
-   </xs:simpleType>
-   <xs:annotation>
-      <xs:documentation>Type for concept item: ProbleemStatus - 1..1 R</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="probleem_status_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10563">
-      <xs:sequence>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10563"/>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11073"/>
       <xs:attribute name="value">
          <xs:simpleType>
             <xs:restriction base="xs:string">
@@ -36782,76 +36660,42 @@
                </xs:enumeration>
                <xs:enumeration value="1">
                   <xs:annotation>
-                     <xs:documentation>Active</xs:documentation>
+                     <xs:documentation>bevinding gerapporteerd door patiënt of andere bron van voorgeschiedenis (bevinding)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="2">
                   <xs:annotation>
-                     <xs:documentation>Inactive</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="code"/>
-      <xs:attribute name="code" type="xs:string"/>
-      <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="displayName" type="xs:string"/>
-      <xs:attribute name="preferred" type="BooleanOrEmpty"/>
-      <xs:attribute name="originalText" type="xs:string"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>Type for concept item: VerificatieStatus - 0..1 R</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="verificatie_status_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10564">
-      <xs:sequence>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10564"/>
-      <xs:attribute name="value">
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:annotation>
-                  <xs:documentation>valueSet/conceptList/concept</xs:documentation>
-               </xs:annotation>
-               <xs:enumeration value="">
-                  <xs:annotation>
-                     <xs:documentation>Empty</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="1">
-                  <xs:annotation>
-                     <xs:documentation>Suspected</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="2">
-                  <xs:annotation>
-                     <xs:documentation>Known possible</xs:documentation>
+                     <xs:documentation>observeren (kwalificatiewaarde)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="3">
                   <xs:annotation>
-                     <xs:documentation>Confirmed present</xs:documentation>
+                     <xs:documentation>palperen (kwalificatiewaarde)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="4">
                   <xs:annotation>
-                     <xs:documentation>Known absent</xs:documentation>
+                     <xs:documentation>auscultatie (kwalificatiewaarde)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="5">
                   <xs:annotation>
-                     <xs:documentation>Unknown</xs:documentation>
+                     <xs:documentation>bepalen (kwalificatiewaarde)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="6">
+                  <xs:annotation>
+                     <xs:documentation>evaluatie (kwalificatiewaarde)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="7">
+                  <xs:annotation>
+                     <xs:documentation>echografie (kwalificatiewaarde)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="8">
+                  <xs:annotation>
+                     <xs:documentation>Anders</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
             </xs:restriction>
@@ -36867,9 +36711,9 @@
       <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: Toelichting - 0..1 R</xs:documentation>
+      <xs:documentation>Type for concept item: ObservatieSpecimen - 0..1 R</xs:documentation>
    </xs:annotation>
-   <xs:complexType name="toelichting_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10565">
+   <xs:complexType name="observatie_specimen_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_11074">
       <xs:sequence>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
@@ -36881,9 +36725,29 @@
                      minOccurs="0"
                      maxOccurs="1"/>
       </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10565"/>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11074"/>
       <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="text"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Toelichting - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="toelichting_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_11078">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11078"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="text"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -37186,17 +37050,17 @@
                </xs:enumeration>
                <xs:enumeration value="1">
                   <xs:annotation>
-                     <xs:documentation>voorgenomen voeding - borst (bevinding)</xs:documentation>
+                     <xs:documentation>moedermelk (substantie)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="2">
                   <xs:annotation>
-                     <xs:documentation>voorgenomen voeding - fles (bevinding)</xs:documentation>
+                     <xs:documentation>moedermelk van donor (substantie)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="3">
                   <xs:annotation>
-                     <xs:documentation>voorgenomen voeding - onzeker (bevinding)</xs:documentation>
+                     <xs:documentation>kunstvoeding (substantie)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
             </xs:restriction>

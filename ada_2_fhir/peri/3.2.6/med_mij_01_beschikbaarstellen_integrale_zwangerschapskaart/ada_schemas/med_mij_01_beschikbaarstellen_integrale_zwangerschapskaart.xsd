@@ -877,14 +877,16 @@
                      type="verrichting_maternaal_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1970"
                      minOccurs="0"
                      maxOccurs="1"/>
-         <xs:element name="verrichting_onderzoek-start" minOccurs="0" maxOccurs="1">
+         <xs:element name="verrichting_maternaal_onderzoek-start"
+                     minOccurs="0"
+                     maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3836"/>
                <xs:attribute name="hidden" fixed="true"/>
             </xs:complexType>
          </xs:element>
-         <xs:element name="verrichting_onderzoek"
-                     type="verrichting_onderzoek_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_3836"
+         <xs:element name="verrichting_maternaal_onderzoek"
+                     type="verrichting_maternaal_onderzoek_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_3836"
                      minOccurs="0"
                      maxOccurs="1"/>
          <xs:element name="verrichting_postpartum_complicatie-start"
@@ -5055,7 +5057,7 @@
    </xs:complexType>
    <xs:complexType name="werkelijke_plaats_baring_type_locatie_observatie_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_4193">
       <xs:annotation>
-         <xs:documentation>Type for concept group: Werkelijke plaats baring (type locatie) (Observatie) </xs:documentation>
+         <xs:documentation>Type for concept group: Werkelijke plaats baring (type locatie) (Observatie)</xs:documentation>
       </xs:annotation>
       <xs:sequence>
          <xs:element name="observatie_datum_tijd-start" minOccurs="0" maxOccurs="1">
@@ -6005,16 +6007,6 @@
          <xs:documentation>Type for concept group: Medisch onderzoek</xs:documentation>
       </xs:annotation>
       <xs:sequence>
-         <xs:element name="verrichting_onderzoek-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2416"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="verrichting_onderzoek"
-                     type="verrichting_onderzoek_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_2416"
-                     minOccurs="0"
-                     maxOccurs="1"/>
          <xs:element name="maternale_onderzoeksgegevens-start"
                      minOccurs="0"
                      maxOccurs="1">
@@ -6040,9 +6032,51 @@
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1123"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
-   <xs:complexType name="verrichting_onderzoek_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_2416">
+   <xs:complexType name="maternale_onderzoeksgegevens_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1124">
       <xs:annotation>
-         <xs:documentation>Type for concept group: Verrichting (Onderzoek)</xs:documentation>
+         <xs:documentation>Type for concept group: Maternale onderzoeksgegevens</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="verrichting_maternaal_onderzoek-start"
+                     minOccurs="0"
+                     maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2416"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="verrichting_maternaal_onderzoek"
+                     type="verrichting_maternaal_onderzoek_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_2416"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="urine_bloed_en_aanvullende_onderzoeken-start"
+                     minOccurs="0"
+                     maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1125"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="urine_bloed_en_aanvullende_onderzoeken"
+                     type="urine_bloed_en_aanvullende_onderzoeken_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1125"
+                     minOccurs="1"
+                     maxOccurs="unbounded"/>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1124"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="verrichting_maternaal_onderzoek_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_2416">
+      <xs:annotation>
+         <xs:documentation>Type for concept group: Verrichting (Maternaal onderzoek)</xs:documentation>
       </xs:annotation>
       <xs:sequence>
          <xs:element name="verrichting_start_datum-start" minOccurs="0" maxOccurs="1">
@@ -6309,36 +6343,6 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2431"/>
-      <xs:attribute name="comment" type="xs:string" use="optional"/>
-   </xs:complexType>
-   <xs:complexType name="maternale_onderzoeksgegevens_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1124">
-      <xs:annotation>
-         <xs:documentation>Type for concept group: Maternale onderzoeksgegevens</xs:documentation>
-      </xs:annotation>
-      <xs:sequence>
-         <xs:element name="urine_bloed_en_aanvullende_onderzoeken-start"
-                     minOccurs="0"
-                     maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1125"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="urine_bloed_en_aanvullende_onderzoeken"
-                     type="urine_bloed_en_aanvullende_onderzoeken_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1125"
-                     minOccurs="1"
-                     maxOccurs="unbounded"/>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1124"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="urine_bloed_en_aanvullende_onderzoeken_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1125">
@@ -9298,9 +9302,9 @@
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: Verrichting (Onderzoek) - 0..1 R</xs:documentation>
+      <xs:documentation>Type for concept item: Verrichting (Maternaal onderzoek) - 0..1 R</xs:documentation>
    </xs:annotation>
-   <xs:complexType name="verrichting_onderzoek_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_3836">
+   <xs:complexType name="verrichting_maternaal_onderzoek_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_3836">
       <xs:sequence>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
@@ -20091,7 +20095,7 @@
       <xs:restriction base="xs:string"/>
    </xs:simpleType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: FoliumzuurgebruikWaarde  - 1..1 R</xs:documentation>
+      <xs:documentation>Type for concept item: FoliumzuurgebruikWaarde - 1..1 R</xs:documentation>
    </xs:annotation>
    <xs:complexType name="foliumzuurgebruik_waarde_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1745">
       <xs:sequence>
