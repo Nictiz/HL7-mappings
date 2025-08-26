@@ -28,6 +28,10 @@
                         <div>Uitgevoerd: Vanaf ${DATE, T, D, -10}T12:15:00+02:00</div>
                      </td>
                   </tr>
+                  <tr>
+                     <th>Reden</th>
+                     <td>Zwangerschap 1 XXX_Swart</td>
+                  </tr>
                </tbody>
             </table>
          </div>
@@ -44,6 +48,7 @@
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
 { id: 2, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-8b4a1a6f-6b0c-11ec-0000-020000000000.html" }, 
+{ id: 14, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-e0d93b0f-6b66-11ec-2334-020000000000.html" }, 
 { id: 86, label: "Patient XXX_Swart", url: "mm-gbz-bc-Woman-FIONA-F-XXX-SWART.html" }, 
 { id: 93, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-3834f287-6aa8-11ec-2123-020000000000.html" }, 
 { id: 95, label: "Procedure geboorte (bevinding)", url: "mm-gbz-bc-Birth3950001-6965feaf-6a9e-11ec-2123-020000000000.html" }, 
@@ -55,6 +60,7 @@ var edges = new vis.DataSet([{ from: 103, to: 93 },
 { from: 103, to: 95 }, 
 { from: 103, to: 86 }, 
 { from: 103, to: 2 }, 
+{ from: 103, to: 14 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

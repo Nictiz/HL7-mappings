@@ -41,6 +41,10 @@
                         <span title="Rechts en links (51440002 - SNOMED CT)">Rechts en links</span>
                      </td>
                   </tr>
+                  <tr>
+                     <th>Reden</th>
+                     <td>Zwangerschap 2 P1-Maaike</td>
+                  </tr>
                </tbody>
             </table>
          </div>
@@ -52,6 +56,7 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
+{ id: 12, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-1970564f-6aba-11ec-2334-020000000000.html" }, 
 { id: 47, label: "Encounter verlossing (verrichting)", url: "mm-gbz-bc-Encounter-f2ba733f-6af7-11ec-1275-020000000000.html" }, 
 { id: 253, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
 { id: 264, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-424379bf-6aa3-11ec-2123-020000000000.html" }, 
@@ -62,6 +67,7 @@ var nodes = new vis.DataSet([
 var edges = new vis.DataSet([{ from: 271, to: 264 }, 
 { from: 271, to: 253 }, 
 { from: 271, to: 47 }, 
+{ from: 271, to: 12 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");
