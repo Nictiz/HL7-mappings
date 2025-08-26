@@ -1,0 +1,67 @@
+<PractitionerRole xmlns="http://hl7.org/fhir">
+   <id value="practitionerrole-mm-gbz-12340001103-00008001234"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgverlenerrol. </caption>
+            <tbody>
+               <tr>
+                  <th>Zorgverlener</th>
+                  <td>
+                     <div>Gemma XXX_Groeneboom XXX_Gras</div>
+                     <div>Verloskundigenpraktijk 't Groen</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Specialisme</th>
+                  <td>
+                     <span title="Verloskundige (03.000 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Verloskundige</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:0685749685">0685749685</a> (Mobiel)</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="62eea1a0-6b09-11ec-0000-020000000000"/>
+   </identifier>
+   <practitioner>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-123400011"/>
+      <display value="Gemma XXX_Groeneboom XXX_Gras"/>
+   </practitioner>
+   <organization>
+      <reference value="Organization/organization-mm-gbz-2-16-840-1-113883-2-4-6-1-08001234"/>
+      <display value="Verloskundigenpraktijk 't Groen"/>
+   </organization>
+   <specialty>
+      <coding>
+         <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+         <code value="03.000"/>
+         <display value="Verloskundige"/>
+      </coding>
+   </specialty>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="MC"/>
+               <display value="Mobiel telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="0685749685"/>
+      <use value="mobile"/>
+   </telecom>
+</PractitionerRole>

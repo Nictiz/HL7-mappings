@@ -1,0 +1,66 @@
+<PractitionerRole xmlns="http://hl7.org/fhir">
+   <id value="practitionerrole-mm-gbz-98765432201-04606020806"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgverlenerrol. </caption>
+            <tbody>
+               <tr>
+                  <th>Zorgverlener</th>
+                  <td>
+                     <div>Eduard XXX_Egelinks</div>
+                     <div>Erasmus MC, Sophia kinderziekenhuis</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Specialisme</th>
+                  <td>
+                     <span title="Gynaecoloog (01.046 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Gynaecoloog</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:0107040116">0107040116</a> (Vast telefoonnummer)</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="d7a4c608-6aa9-11ec-0000-020000000000"/>
+   </identifier>
+   <practitioner>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-987654322"/>
+      <display value="Eduard XXX_Egelinks"/>
+   </practitioner>
+   <organization>
+      <reference value="Organization/organization-mm-gbz-2-16-840-1-113883-2-4-6-1-06020806"/>
+      <display value="Erasmus MC, Sophia kinderziekenhuis"/>
+   </organization>
+   <specialty>
+      <coding>
+         <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+         <code value="01.046"/>
+         <display value="Gynaecoloog"/>
+      </coding>
+   </specialty>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Vast telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="0107040116"/>
+   </telecom>
+</PractitionerRole>
