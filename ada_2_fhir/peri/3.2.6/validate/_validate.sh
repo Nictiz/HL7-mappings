@@ -21,8 +21,9 @@ if test -f "$publisher"; then
 	#java -jar $publisher -ig . $txoption $*
       #java -jar $publisher -ig nictiz.fhir.nl.stu3.geboortezorg#1.3.3 -ig nictiz.fhir.nl.stu3.zib2017#2.2.10 -version 3.0 -recurse -debug -html-output validation.html -txLog txlog.txt -locale nl -language nl -sct 11000146104 -display-issues-are-warnings -level error `dirname $0`/../med_mij_uitbreiding_verloskunde_beschikbaarstellen/fhir_instance
       #java -jar $publisher -ig `dirname $0`/../../../../../Geboortezorg-STU3/profiles -ig nictiz.fhir.nl.stu3.zib2017#2.2.10 -version 3.0 -recurse -debug -html-output validation.html -txLog txlog.txt -locale nl -language nl -sct 11000146104 -display-issues-are-warnings -level error `dirname $0`/../med_mij_uitbreiding_verloskunde_beschikbaarstellen/fhir_instance
-	java -jar $publisher -ig `dirname $0`/../../../../../Geboortezorg-STU3/profiles -ig `dirname $0`/../../../../../Nictiz-STU3-Zib2017/Profiles\ -\ ZIB\ 2017/ -version 3.0 -recurse -debug -html-output validation.html -txLog txlog.txt -locale nl -language nl -sct 11000146104 -display-issues-are-warnings -level error `dirname $0`/../med_mij_uitbreiding_verloskunde_beschikbaarstellen/fhir_instance
-
+	validator=`java -jar $publisher | head -n 1`
+	java -jar $publisher -ig `dirname $0`/../../../../../Geboortezorg-STU3/profiles -ig `dirname $0`/../../../../../Nictiz-STU3-Zib2017/Profiles\ -\ ZIB\ 2017/ -version 3.0 -recurse -debug -output validation.xml -txLog txlog.txt -locale nl -language nl -sct 11000146104 -display-issues-are-warnings -level error `dirname $0`/../med_mij_uitbreiding_verloskunde_beschikbaarstellen/fhir_instance/*
+      java -jar `dirname $0`/../../../../../YATC-tools/saxon/saxon.jar -o:`dirname $0`/validation.html -xsl:`dirname $0`/validation.xsl `dirname $0`/validation.xml validator="$validator"
 else
 	publisher=../$publisher_jar
 	if test -f "$publisher"; then
