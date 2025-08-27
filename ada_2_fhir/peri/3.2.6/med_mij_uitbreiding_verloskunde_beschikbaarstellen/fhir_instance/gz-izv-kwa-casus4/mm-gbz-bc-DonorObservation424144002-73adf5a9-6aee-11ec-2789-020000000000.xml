@@ -29,29 +29,10 @@
          </table>
       </div>
    </text>
-   <contained>
-      <RelatedPerson>
-         <id value="donor"/>
-         <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role">
-            <valueCodeableConcept>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="430882007"/>
-                  <display value="eiceldonor (persoon)"/>
-               </coding>
-            </valueCodeableConcept>
-         </extension>
-         <patient>
-            <reference value="Patient/WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG"/>
-            <display value="Willemijn W XXX_Yzendoorn van den XXX_Berg"/>
-         </patient>
-         <birthDate value="1986-07-29"/>
-      </RelatedPerson>
-   </contained>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
       <valueReference>
-         <reference value="#donor"/>
-         <display value="Donordetails"/>
+         <reference value="RelatedPerson/relatedperson-mm-gbz-7ae2b243-6ac3-11ec-2788-020000000000"/>
+         <display value="(eiceldonor (persoon)) van Vrouw-XXX_Yzendoorn"/>
       </valueReference>
    </extension>
    <identifier>
