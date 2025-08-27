@@ -1,5 +1,5 @@
 <AllergyIntolerance xmlns="http://hl7.org/fhir">
-   <id value="zib-AllergyIntolerance-msz-233aa475-6af5-11ec-0000-2"/>
+   <id value="zib-AllergyIntolerance-msz-8f5442d5-6aa3-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
    </meta>
@@ -23,6 +23,20 @@
                <tr>
                   <th>Eerste symptomen</th>
                   <td>2024</td>
+               </tr>
+               <tr>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>matig</div>
+                           <div>
+                              <span title="Bronchospasme (4386001 - SNOMED CT)">Bronchospasme</span>
+                           </div>
+                           <div>test10</div>
+                        </li>
+                     </ul>
+                  </td>
                </tr>
             </tbody>
          </table>
@@ -55,4 +69,25 @@
    <note>
       <text value="Allergische reactie door spierontspanner tijdens narcose"/>
    </note>
+   <reaction>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="4386001"/>
+            <display value="Bronchospasme"/>
+         </coding>
+      </manifestation>
+      <description value="test10"/>
+      <severity value="moderate">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="6736007"/>
+                  <display value="Matig"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </severity>
+   </reaction>
 </AllergyIntolerance>

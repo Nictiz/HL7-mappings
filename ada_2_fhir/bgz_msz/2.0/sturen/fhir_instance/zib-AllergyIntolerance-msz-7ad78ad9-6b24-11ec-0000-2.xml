@@ -1,5 +1,5 @@
 <AllergyIntolerance xmlns="http://hl7.org/fhir">
-   <id value="zib-AllergyIntolerance-msz-8863e60f-6adb-11ec-0000-2"/>
+   <id value="zib-AllergyIntolerance-msz-7ad78ad9-6b24-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
    </meta>
@@ -23,6 +23,20 @@
                <tr>
                   <th>Eerste symptomen</th>
                   <td>1 augustus 1980</td>
+               </tr>
+               <tr>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>licht</div>
+                           <div>
+                              <span title="Anafylaxie (39579001 - SNOMED CT)">Anafylaxie</span>
+                           </div>
+                           <div>test 5</div>
+                        </li>
+                     </ul>
+                  </td>
                </tr>
             </tbody>
          </table>
@@ -55,4 +69,25 @@
    <note>
       <text value="Patiënt heeft een succesvolle desensibilisatie ondergaan."/>
    </note>
+   <reaction>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="39579001"/>
+            <display value="Anafylaxie"/>
+         </coding>
+      </manifestation>
+      <description value="test 5"/>
+      <severity value="mild">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="255604002"/>
+                  <display value="Licht"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </severity>
+   </reaction>
 </AllergyIntolerance>

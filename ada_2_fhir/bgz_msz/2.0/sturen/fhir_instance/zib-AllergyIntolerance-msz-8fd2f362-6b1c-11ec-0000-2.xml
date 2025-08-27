@@ -1,5 +1,5 @@
 <AllergyIntolerance xmlns="http://hl7.org/fhir">
-   <id value="zib-AllergyIntolerance-msz-cab1d20f-6acd-11ec-0000-2"/>
+   <id value="zib-AllergyIntolerance-msz-8fd2f362-6b1c-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
    </meta>
@@ -13,6 +13,20 @@
                   <th>Code</th>
                   <td>
                      <span title="penicilline (764146007 - SNOMED CT)">penicilline</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>ernstig</div>
+                           <div>
+                              <span title="Urticaria (126485001 - SNOMED CT)">Urticaria</span>
+                           </div>
+                           <div>test 7</div>
+                        </li>
+                     </ul>
                   </td>
                </tr>
             </tbody>
@@ -42,4 +56,25 @@
       <reference value="Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL"/>
       <display value="Michelle M.B. Michelle Bergzoon Verheul"/>
    </patient>
+   <reaction>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="126485001"/>
+            <display value="Urticaria"/>
+         </coding>
+      </manifestation>
+      <description value="test 7"/>
+      <severity value="severe">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="24484000"/>
+                  <display value="Ernstig"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </severity>
+   </reaction>
 </AllergyIntolerance>

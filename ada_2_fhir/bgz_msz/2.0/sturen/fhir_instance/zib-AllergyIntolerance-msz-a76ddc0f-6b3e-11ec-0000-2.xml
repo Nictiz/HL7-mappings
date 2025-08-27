@@ -1,5 +1,5 @@
 <AllergyIntolerance xmlns="http://hl7.org/fhir">
-   <id value="zib-AllergyIntolerance-msz-47ded2b5-6b5e-11ec-0000-2"/>
+   <id value="zib-AllergyIntolerance-msz-a76ddc0f-6b3e-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
    </meta>
@@ -18,6 +18,18 @@
                <tr>
                   <th>Eerste symptomen</th>
                   <td>2013</td>
+               </tr>
+               <tr>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>licht</div>
+                           <div>Huidirritatie</div>
+                           <div>test2</div>
+                        </li>
+                     </ul>
+                  </td>
                </tr>
             </tbody>
          </table>
@@ -47,4 +59,24 @@
       <display value="Michelle M.B. Michelle Bergzoon Verheul"/>
    </patient>
    <onsetDateTime value="2013"/>
+   <reaction>
+      <manifestation>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+            <valueCode value="OTH"/>
+         </extension>
+         <text value="Huidirritatie"/>
+      </manifestation>
+      <description value="test2"/>
+      <severity value="mild">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="255604002"/>
+                  <display value="Licht"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </severity>
+   </reaction>
 </AllergyIntolerance>

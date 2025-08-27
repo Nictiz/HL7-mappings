@@ -1,5 +1,5 @@
 <AllergyIntolerance xmlns="http://hl7.org/fhir">
-   <id value="zib-AllergyIntolerance-msz-c177b40f-6a98-11ec-0000-2"/>
+   <id value="zib-AllergyIntolerance-msz-4868340f-6b55-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
    </meta>
@@ -13,6 +13,20 @@
                   <th>Code</th>
                   <td>
                      <span title="metformine (372567009 - SNOMED CT)">metformine</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>matig</div>
+                           <div>
+                              <span title="Exantheem (271807003 - SNOMED CT)">Exantheem</span>
+                           </div>
+                           <div>test 6</div>
+                        </li>
+                     </ul>
                   </td>
                </tr>
             </tbody>
@@ -42,4 +56,25 @@
       <reference value="Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL"/>
       <display value="Michelle M.B. Michelle Bergzoon Verheul"/>
    </patient>
+   <reaction>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="271807003"/>
+            <display value="Exantheem"/>
+         </coding>
+      </manifestation>
+      <description value="test 6"/>
+      <severity value="moderate">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="6736007"/>
+                  <display value="Matig"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </severity>
+   </reaction>
 </AllergyIntolerance>
