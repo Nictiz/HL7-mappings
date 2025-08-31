@@ -40,7 +40,7 @@
                   </tr>
                   <tr>
                      <th>Ondersteunende informatie</th>
-                     <td>probleem kindspecifieke maternale problemen XXX_Kwee_Kind1, probleem kindspecifieke maternale problemen XXX_Kwee_Kind1, probleem kindspecifieke maternale problemen XXX_Kwee_Kind2, probleem kindspecifieke maternale problemen XXX_Kwee_Kind1, probleem kindspecifieke maternale problemen XXX_Kwee_Kind2, uitdrijvingsfase zwangerschap 1 XXX_Kwee_Vrouw, verrichting kindspecifieke maternale verrichtingen zwangerschap 1 XXX_Kwee_Vrouw, verrichting kindspecifieke maternale verrichtingen zwangerschap 1 XXX_Kwee_Vrouw, uitdrijvingsfase zwangerschap 1 XXX_Kwee_Vrouw, verrichting kindspecifieke maternale verrichtingen zwangerschap 1 XXX_Kwee_Vrouw, verrichting kindspecifieke maternale verrichtingen zwangerschap 1 XXX_Kwee_Vrouw, verrichting kindspecifieke maternale verrichtingen zwangerschap 1 XXX_Kwee_Vrouw</td>
+                     <td>probleem kindspecifieke maternale problemen XXX_Kwee_Kind1, probleem kindspecifieke maternale problemen XXX_Kwee_Kind2, bevalling zwangerschap 1 XXX_Kwee_Vrouw, uitdrijvingsfase zwangerschap 1 XXX_Kwee_Vrouw, verrichting kindspecifieke maternale verrichtingen zwangerschap 1 XXX_Kwee_Vrouw, verrichting kindspecifieke maternale verrichtingen zwangerschap 1 XXX_Kwee_Vrouw, uitdrijvingsfase zwangerschap 1 XXX_Kwee_Vrouw, verrichting kindspecifieke maternale verrichtingen zwangerschap 1 XXX_Kwee_Vrouw, verrichting kindspecifieke maternale verrichtingen zwangerschap 1 XXX_Kwee_Vrouw, verrichting kindspecifieke maternale verrichtingen zwangerschap 1 XXX_Kwee_Vrouw</td>
                   </tr>
                </tbody>
             </table>
@@ -55,10 +55,11 @@
 var nodes = new vis.DataSet([
 { id: 2, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-c934f973-6b23-11ec-0000-020000000000.html" }, 
 { id: 50, label: "Patient XXX_Kwee", url: "mm-gbz-bc-Woman-JAMILA-J-XXX-KWEE.html" }, 
-{ id: 55, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-55733513-6a97-11ec-2334-020000000000.html" }, 
-{ id: 58, label: "Condition liggingsafwijking van foetus (bevinding)", url: "mm-gbz-bc-DisorderOfLaborAndDelivery15028002-91a5b0c6-6af4-11ec-2159-020000000000.html" }, 
-{ id: 59, label: "Condition immaturiteit (aandoening)", url: "mm-gbz-bc-DisorderOfLaborAndDelivery276658003-bc868dd1-6adf-11ec-2159-020000000000.html" }, 
+{ id: 53, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-55733513-6a97-11ec-2334-020000000000.html" }, 
+{ id: 56, label: "Condition liggingsafwijking van foetus (bevinding)", url: "mm-gbz-bc-DisorderOfLaborAndDelivery15028002-91a5b0c6-6af4-11ec-2159-020000000000.html" }, 
+{ id: 57, label: "Condition immaturiteit (aandoening)", url: "mm-gbz-bc-DisorderOfLaborAndDelivery276658003-bc868dd1-6adf-11ec-2159-020000000000.html" }, 
 { id: 60, label: "Observation zwangerschapsduur", url: "mm-gbz-zib-Pregnancy-PregnancyDuration57036006-33b94131-6b18-11ec-1069-020000000000.html" }, 
+{ id: 61, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-311b9db3-6aec-11ec-2123-020000000000.html" }, 
 { id: 62, label: "Procedure geboorte (bevinding)", url: "mm-gbz-bc-Birth3950001-c6126413-6b20-11ec-2123-020000000000.html" }, 
 { id: 63, label: "Procedure geboorte (bevinding)", url: "mm-gbz-bc-Birth3950001-e235ae73-6b13-11ec-2123-020000000000.html" }, 
 { id: 66, label: "Procedure primaire sectio caesarea (verrichting)", url: "mm-gbz-bc-ObstetricProcedure80771000146107-7cb82506-6b38-11ec-2160-020000000000.html" }, 
@@ -69,12 +70,10 @@ var nodes = new vis.DataSet([
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 60, to: 55 }, 
-{ from: 60, to: 58 }, 
-{ from: 60, to: 58 }, 
-{ from: 60, to: 59 }, 
-{ from: 60, to: 58 }, 
-{ from: 60, to: 59 }, 
+var edges = new vis.DataSet([{ from: 60, to: 53 }, 
+{ from: 60, to: 56 }, 
+{ from: 60, to: 57 }, 
+{ from: 60, to: 61 }, 
 { from: 60, to: 62 }, 
 { from: 60, to: 66 }, 
 { from: 60, to: 67 }, 

@@ -38,6 +38,10 @@
                      </td>
                      <td>280 d</td>
                   </tr>
+                  <tr>
+                     <th>Ondersteunende informatie</th>
+                     <td>probleem maternaal XXX_Kooij_Vrouw, probleem kindspecifieke maternale problemen XXX_Kooij_Kind, bevalling zwangerschap 1 XXX_Kooij_Vrouw, verrichting maternaal zwangerschap 1 XXX_Kooij_Vrouw, verrichting maternaal zwangerschap 1 XXX_Kooij_Vrouw, uitdrijvingsfase zwangerschap 1 XXX_Kooij_Vrouw</td>
+                  </tr>
                </tbody>
             </table>
          </div>
@@ -51,14 +55,26 @@
 var nodes = new vis.DataSet([
 { id: 2, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-92cdaed3-6af7-11ec-0000-020000000000.html" }, 
 { id: 23, label: "Patient XXX_Kooij", url: "mm-gbz-bc-Woman-HANNA-H-XXX-KOOIJ.html" }, 
-{ id: 25, label: "Observation zwangerschapsduur", url: "mm-gbz-zib-Pregnancy-PregnancyDuration57036006-8c4eaf93-6b16-11ec-2702-020000000000.html" }, 
-{ id: 26, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-78b27a33-6ae8-11ec-2334-020000000000.html" }, 
+{ id: 25, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-78b27a33-6ae8-11ec-2334-020000000000.html" }, 
+{ id: 26, label: "Condition foetale nood durante partu (bevinding)", url: "mm-gbz-bc-DisorderOfLaborAndDelivery288274003-16201b04-6b77-11ec-2159-020000000000.html" }, 
+{ id: 27, label: "Condition niet vorderende uitdrijving", url: "mm-gbz-bc-DisorderOfLaborAndDelivery249166003-5539b913-6a98-11ec-2156-020000000000.html" }, 
+{ id: 28, label: "Observation zwangerschapsduur", url: "mm-gbz-zib-Pregnancy-PregnancyDuration57036006-8c4eaf93-6b16-11ec-2702-020000000000.html" }, 
+{ id: 29, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-05bb4fa3-6a9a-11ec-2123-020000000000.html" }, 
+{ id: 30, label: "Procedure geboorte (bevinding)", url: "mm-gbz-bc-Birth3950001-a083d063-6ad2-11ec-2123-020000000000.html" }, 
+{ id: 31, label: "Procedure vaginaal toucher (verrichting)", url: "mm-gbz-bc-ObstetricProcedure51597003-c15b1e63-6af0-11ec-2154-020000000000.html" }, 
+{ id: 32, label: "Procedure episiotomie mediolateraal links (verrichting)", url: "mm-gbz-bc-ObstetricProcedure114961000146100-2450eed0-6ac9-11ec-2154-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 25, to: 26 }, 
-{ from: 25, to: 23 }, 
-{ from: 25, to: 2 }, 
+var edges = new vis.DataSet([{ from: 28, to: 25 }, 
+{ from: 28, to: 27 }, 
+{ from: 28, to: 26 }, 
+{ from: 28, to: 29 }, 
+{ from: 28, to: 31 }, 
+{ from: 28, to: 32 }, 
+{ from: 28, to: 30 }, 
+{ from: 28, to: 23 }, 
+{ from: 28, to: 2 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");
