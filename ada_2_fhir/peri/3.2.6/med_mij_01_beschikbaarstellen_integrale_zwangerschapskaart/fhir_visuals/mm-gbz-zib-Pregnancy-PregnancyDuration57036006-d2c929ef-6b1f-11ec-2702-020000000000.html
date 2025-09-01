@@ -38,6 +38,10 @@
                      </td>
                      <td>47 d</td>
                   </tr>
+                  <tr>
+                     <th>Ondersteunende informatie</th>
+                     <td>prenatale controle T-139D Vrouw1</td>
+                  </tr>
                </tbody>
             </table>
          </div>
@@ -49,6 +53,7 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
+{ id: 1, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-b61d2df6-6af1-11ec-1275-020000000000.html" }, 
 { id: 2, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-ba94bb6f-6b78-11ec-0000-020000000000.html" }, 
 { id: 29, label: "Patient XXX_Kooij", url: "mm-gbz-bc-Woman-HANNA-H-XXX-KOOIJ.html" }, 
 { id: 30, label: "Observation zwangerschapsduur", url: "mm-gbz-zib-Pregnancy-PregnancyDuration57036006-d2c929ef-6b1f-11ec-2702-020000000000.html" }, 
@@ -57,6 +62,7 @@ var nodes = new vis.DataSet([
 
 // create an array with edges
 var edges = new vis.DataSet([{ from: 30, to: 32 }, 
+{ from: 30, to: 1 }, 
 { from: 30, to: 29 }, 
 { from: 30, to: 2 }, 
 ]);
