@@ -1,6 +1,6 @@
 <DiagnosticReport xmlns="http://hl7.org/fhir">
-   <!-- Source: gz-izv-tes-casus9999 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/medisch_onderzoek/foetusspecifieke_onderzoeksgegevens/echoscopie/tekst_uitslag -->
-   <id value="eb07a05f-6b41-11ec-2786-020000000000"/>
+   <!-- Source: gz-izv-tes-casus9999 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/medisch_onderzoek/foetusspecifieke_onderzoeksgegevens/echoscopie -->
+   <id value="82f10a5f-6ae8-11ec-2120-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-PregnancyUltraSound"/>
    </meta>
@@ -22,11 +22,7 @@
                </tr>
                <tr>
                   <th>Gemaakt</th>
-                  <td>${DATE, T, D, -146}T12:47:00+02:00</td>
-               </tr>
-               <tr>
-                  <th>Conclusie</th>
-                  <td>Veel complicaties</td>
+                  <td>${DATE, T, D, -146} - ${DATE, T, D, -146}</td>
                </tr>
                <tr>
                   <th>Resultaat</th>
@@ -82,19 +78,9 @@
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="eb07a05f-6b41-11ec-2786-020000000000"/>
+      <value value="82f10a5f-6ae8-11ec-2120-020000000000"/>
    </identifier>
-   <status value="final">
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-         <valueCodeableConcept>
-            <coding>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
-               <code value="final"/>
-               <display value="Definitief"/>
-            </coding>
-         </valueCodeableConcept>
-      </extension>
-   </status>
+   <status value="final"/>
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
@@ -110,7 +96,10 @@
       <reference value="EpisodeOfCare/24eb4a5f-6b11-11ec-0000-020000000000"/>
       <display value="Zwangerschap 2 P1-Maaike"/>
    </context>
-   <effectiveDateTime value="${DATE, T, D, -146}T12:47:00+02:00"/>
+   <effectivePeriod>
+      <start value="${DATE, T, D, -146}"/>
+      <end value="${DATE, T, D, -146}"/>
+   </effectivePeriod>
    <result>
       <reference value="Observation/f37fae20-6ad1-11ec-2891-020000000000"/>
       <display value="echografische bevindingen algemeen observatie P1-Maaike"/>
@@ -159,5 +148,4 @@
       <reference value="Observation/c7b9061f-6b33-11ec-2784-020000000000"/>
       <display value="sonomarkers observatie P1-Maaike"/>
    </result>
-   <conclusion value="Veel complicaties"/>
 </DiagnosticReport>
