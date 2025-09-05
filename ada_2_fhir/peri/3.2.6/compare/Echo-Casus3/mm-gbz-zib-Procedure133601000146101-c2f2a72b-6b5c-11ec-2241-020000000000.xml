@@ -1,0 +1,84 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-ize-kwa-casus3 /adaxml/data/med_mij_echo_beschikbaarstellen/medisch_onderzoek/verrichting_onderzoek (peri32-dataelement-2416) -->
+   <id value="c2f2a72b-6b5c-11ec-2241-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Merthe M XXX_Kooijman. Categorie: <span title="Obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">Obstetrische verrichting (verrichting)</span>, Status: voltooid<span style="display: block;">Uitvoerende: Helma H XXX_Groot</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="echografie ter bepaling van geschatte datum van partus (verrichting) (133601000146101 - SNOMED CT)">echografie ter bepaling van geschatte datum van partus (verrichting)</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: Vanaf ${DATE, T, D, -13}</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Locatie</th>
+                  <td>Echopraktijk Groei</td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>Zwangerschap 1 XXX_Kooijman_Vrouw</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="c2f2a72b-6b5c-11ec-2241-020000000000"/>
+   </identifier>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="386637004"/>
+         <display value="Obstetrische verrichting (verrichting)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="133601000146101"/>
+         <display value="echografie ter bepaling van geschatte datum van partus (verrichting)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/MERTHE-M-XXX-KOOIJMAN"/>
+      <display value="Merthe M XXX_Kooijman"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/6188717b-6b7b-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Kooijman_Vrouw"/>
+   </context>
+   <performedPeriod>
+      <start value="${DATE, T, D, -13}"/>
+   </performedPeriod>
+   <performer>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/practitionerrole-mm-gbz-8452962"/>
+               <display value="Helma H XXX_Groot"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-8452962"/>
+         <display value="Helma H XXX_Groot"/>
+      </actor>
+   </performer>
+   <location>
+      <reference value="Location/location-mm-gbz-2-16-840-1-113883-2-4-6-1-90012345"/>
+      <display value="Echopraktijk Groei"/>
+   </location>
+   <reasonReference>
+      <reference value="Condition/c6ab20cb-6b5e-11ec-2334-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Kooijman_Vrouw"/>
+   </reasonReference>
+</Procedure>

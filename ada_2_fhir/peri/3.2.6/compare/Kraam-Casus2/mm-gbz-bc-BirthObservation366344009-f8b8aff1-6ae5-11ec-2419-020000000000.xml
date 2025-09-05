@@ -1,0 +1,73 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izk-kwa-casus2 /adaxml/data/med_mij_kraam_beschikbaarstellen/bevalling/uitdrijvingsfase/werkelijke_plaats_baring_type_locatie_observatie (peri32-dataelement-4193) -->
+   <id value="f8b8aff1-6ae5-11ec-2419-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-BirthObservation"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Kind Lisa L XXX_Hollanders. Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 2 XXX_Hollanders_Vrouw</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -112}</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="bevinding betreffende locatie van partus (366344009 - SNOMED CT)">bevinding betreffende locatie van partus</span>
+                  </td>
+                  <td>
+                     <span title="geboorte in ziekenhuis (bevinding) (56321000146103 - SNOMED CT)">geboorte in ziekenhuis (bevinding)</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
+      <valueReference>
+         <reference value="Procedure/eb227a2d-6b38-11ec-2123-020000000000"/>
+         <display value="uitdrijvingsfase zwangerschap 2 XXX_Hollanders_Vrouw"/>
+      </valueReference>
+   </extension>
+   <!-- adaChild -->
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="f8b8aff1-6ae5-11ec-2419-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="366344009"/>
+         <display value="bevinding betreffende locatie van partus"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/LISA-L-XXX-HOLLANDERS"/>
+      <display value="Kind Lisa L XXX_Hollanders"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/95b12773-6ada-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 XXX_Hollanders_Vrouw"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -112}"/>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="56321000146103"/>
+         <display value="geboorte in ziekenhuis (bevinding)"/>
+      </coding>
+   </valueCodeableConcept>
+</Observation>

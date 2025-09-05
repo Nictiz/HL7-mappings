@@ -1,0 +1,118 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-ize-kwa-casus2 /adaxml/data/med_mij_echo_beschikbaarstellen/medisch_onderzoek/foetusspecifieke_onderzoeksgegevens/echoscopie/bevindingen/foetale_hartslag_hartfrequentie (peri32-dataelement-1784) -->
+   <id value="b44e1d0d-6aa4-11ec-2178-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-FetalHeartRate"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Leonie L XXX_Osse. Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 2 XXX_Osse_Vrouw</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -3}</td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="monitoren van foetale hart door echocardiografie (regime/therapie) (408808009 - SNOMED CT)">monitoren van foetale hart door echocardiografie (regime/therapie)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Hartslagfrequentie [aantal/tijd] (8867-4 - LOINC)">Hartslagfrequentie [aantal/tijd]</span>
+                  </td>
+                  <td>140 /min</td>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="foetaal hartritme (waarneembare entiteit) (249044008 - SNOMED CT)">foetaal hartritme (waarneembare entiteit)</span>
+                  </td>
+                  <td>
+                     <span title="regelmatig hartritme van foetus (bevinding) (289443009 - SNOMED CT)">regelmatig hartritme van foetus (bevinding)</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
+      <valueReference>
+         <reference value="BodySite/cbb5dafb-6b4f-11ec-1267-020000000000"/>
+         <display value="foetus van Leonie L XXX_Osse"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="b44e1d0d-6aa4-11ec-2178-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://hl7.org/fhir/observation-category"/>
+         <code value="vital-signs"/>
+         <display value="Vital Signs"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="8867-4"/>
+         <display value="Hartslagfrequentie [aantal/tijd]"/>
+      </coding>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="249043002"/>
+         <display value="foetale hartfrequentie (waarneembare entiteit)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/LEONIE-L-XXX-OSSE"/>
+      <display value="Leonie L XXX_Osse"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/eadc3c53-6b19-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 XXX_Osse_Vrouw"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -3}"/>
+   <valueQuantity>
+      <value value="140"/>
+      <unit value="/min"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="/min"/>
+   </valueQuantity>
+   <method>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="408808009"/>
+         <display value="monitoren van foetale hart door echocardiografie (regime/therapie)"/>
+      </coding>
+   </method>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="249044008"/>
+            <display value="foetaal hartritme (waarneembare entiteit)"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="289443009"/>
+            <display value="regelmatig hartritme van foetus (bevinding)"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+</Observation>

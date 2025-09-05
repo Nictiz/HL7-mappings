@@ -1,0 +1,65 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izk-kwa-casus2 /adaxml/data/med_mij_kraam_beschikbaarstellen/bevalling/uitdrijvingsfase (peri32-dataelement-39) -->
+   <id value="eb227a2d-6b38-11ec-2123-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Birth"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Kind Lisa L XXX_Hollanders. Categorie: <span title="Obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">Obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="geboorte (bevinding) (3950001 - SNOMED CT)">geboorte (bevinding)</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: ${DATE, T, D, -112}</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>Zwangerschap 2 XXX_Hollanders_Vrouw</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="eb227a2d-6b38-11ec-2123-020000000000"/>
+   </identifier>
+   <partOf>
+      <reference value="Procedure/d28f5c93-6b4b-11ec-2123-020000000000"/>
+      <display value="bevalling zwangerschap 2 XXX_Hollanders_Vrouw"/>
+   </partOf>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="386637004"/>
+         <display value="Obstetrische verrichting (verrichting)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="3950001"/>
+         <display value="geboorte (bevinding)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/LISA-L-XXX-HOLLANDERS"/>
+      <display value="Kind Lisa L XXX_Hollanders"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/95b12773-6ada-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 XXX_Hollanders_Vrouw"/>
+   </context>
+   <performedDateTime value="${DATE, T, D, -112}"/>
+   <reasonReference>
+      <reference value="Condition/1263f55d-6b51-11ec-2334-020000000000"/>
+      <display value="Zwangerschap 2 XXX_Hollanders_Vrouw"/>
+   </reasonReference>
+</Procedure>

@@ -1,0 +1,119 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-ize-kwa-casus1 /adaxml/data/med_mij_echo_beschikbaarstellen/medisch_onderzoek/foetusspecifieke_onderzoeksgegevens/echoscopie/echografische_bevindingen_algemeen_observatie (peri32-dataelement-8918) -->
+   <id value="d986eb0f-6b5b-11ec-2891-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-PregnancyUltraSoundGeneralFindings"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Leonie L XXX_Osse. Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 1 XXX_Osse_Vrouw</td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="echografie (kwalificatiewaarde) (278292003 - SNOMED CT)">echografie (kwalificatiewaarde)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="interpretatie van echografie (290201000146101 - SNOMED CT)">interpretatie van echografie</span>
+                  </td>
+                  <td/>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="verdenking op foetale afwijking (situatie) (609415007 - SNOMED CT)">verdenking op foetale afwijking (situatie)</span>
+                  </td>
+                  <td>
+                     <span title="Afwijking sonomarker (4 - 2.16.840.1.113883.2.4.3.22.1.2.200)">Afwijking sonomarker</span>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="advies over behandeling gegeven (situatie) (171024009 - SNOMED CT)">advies over behandeling gegeven (situatie)</span>
+                  </td>
+                  <td>
+                     <span title="Verwijzing GUO2 (4 - 2.16.840.1.113883.2.4.4.13.57)">Verwijzing GUO2</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
+      <valueReference>
+         <reference value="BodySite/7f96aada-6ada-11ec-1267-020000000000"/>
+         <display value="foetus van Leonie L XXX_Osse"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="d986eb0f-6b5b-11ec-2891-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="290201000146101"/>
+         <display value="interpretatie van echografie"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/LEONIE-L-XXX-OSSE"/>
+      <display value="Leonie L XXX_Osse"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/d0510907-6af3-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Osse_Vrouw"/>
+   </context>
+   <method>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="278292003"/>
+         <display value="echografie (kwalificatiewaarde)"/>
+      </coding>
+   </method>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="609415007"/>
+            <display value="verdenking op foetale afwijking (situatie)"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.22.1.2.200"/>
+            <code value="4"/>
+            <display value="Afwijking sonomarker"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="171024009"/>
+            <display value="advies over behandeling gegeven (situatie)"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.13.57"/>
+            <code value="4"/>
+            <display value="Verwijzing GUO2"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+</Observation>

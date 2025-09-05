@@ -1,0 +1,65 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izk-kwa-casus1 /adaxml/data/med_mij_kraam_beschikbaarstellen/bevalling/uitdrijvingsfase (peri32-dataelement-39) -->
+   <id value="e7a46a7e-6b19-11ec-2123-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Birth"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Kind Joris. Categorie: <span title="Obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">Obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="geboorte (bevinding) (3950001 - SNOMED CT)">geboorte (bevinding)</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: ${DATE, T, D, -111}</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>Zwangerschap 1 XXX_Zhanganak_Vrouw</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="e7a46a7e-6b19-11ec-2123-020000000000"/>
+   </identifier>
+   <partOf>
+      <reference value="Procedure/765d253f-6ac5-11ec-2123-020000000000"/>
+      <display value="bevalling zwangerschap 1 XXX_Zhanganak_Vrouw"/>
+   </partOf>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="386637004"/>
+         <display value="Obstetrische verrichting (verrichting)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="3950001"/>
+         <display value="geboorte (bevinding)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/JORIS"/>
+      <display value="Kind Joris"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/f720ebe3-6b47-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Zhanganak_Vrouw"/>
+   </context>
+   <performedDateTime value="${DATE, T, D, -111}"/>
+   <reasonReference>
+      <reference value="Condition/80338356-6b6f-11ec-2334-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Zhanganak_Vrouw"/>
+   </reasonReference>
+</Procedure>

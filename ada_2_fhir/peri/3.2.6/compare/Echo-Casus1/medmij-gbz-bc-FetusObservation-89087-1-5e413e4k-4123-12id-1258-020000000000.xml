@@ -1,0 +1,84 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-ize-kwa-casus1 /adaxml/data/med_mij_echo_beschikbaarstellen/medisch_onderzoek/foetusspecifieke_onderzoeksgegevens/echoscopie/biometrie/foetaal_geschat_gewicht__efw_meting (peri32-dataelement-3614) -->
+   <id value="b20db7df-6b2d-11ec-2361-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-FetusObservation"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Leonie L XXX_Osse. Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 1 XXX_Osse_Vrouw</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>Vanaf ${DATE, T, D, -570}</td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="echografie (kwalificatiewaarde) (278292003 - SNOMED CT)">echografie (kwalificatiewaarde)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Fetal Body weight estimated by US (11727-5 - LOINC)">Fetal Body weight estimated by US</span>
+                  </td>
+                  <td>320 mm</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
+      <valueReference>
+         <reference value="BodySite/7f96aada-6ada-11ec-1267-020000000000"/>
+         <display value="foetus van Leonie L XXX_Osse"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="b20db7df-6b2d-11ec-2361-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="11727-5"/>
+         <display value="Fetal Body weight estimated by US"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/LEONIE-L-XXX-OSSE"/>
+      <display value="Leonie L XXX_Osse"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/d0510907-6af3-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Osse_Vrouw"/>
+   </context>
+   <effectivePeriod>
+      <start value="${DATE, T, D, -570}"/>
+   </effectivePeriod>
+   <valueQuantity>
+      <value value="320"/>
+      <unit value="mm"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="mm"/>
+   </valueQuantity>
+   <method>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="278292003"/>
+         <display value="echografie (kwalificatiewaarde)"/>
+      </coding>
+   </method>
+</Observation>
