@@ -52,24 +52,24 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 2, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-d0510907-6af3-11ec-0000-020000000000.html" }, 
-{ id: 3, label: "PractitionerRole", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-8452962.html" }, 
-{ id: 4, label: "Practitioner XXX_Groot", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-8452962.html" }, 
-{ id: 5, label: "Location", url: "mm-gbz-nl-core-location-location-mm-gbz-2-16-840-1-113883-2-4-6-1-90012345.html" }, 
-{ id: 27, label: "Patient XXX_Osse", url: "mm-gbz-bc-Woman-LEONIE-L-XXX-OSSE.html" }, 
-{ id: 28, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-3cc38e5b-6ac9-11ec-2334-020000000000.html" }, 
-{ id: 30, label: "Procedure structureel echoscopisch onderzoek tijdens tweede trimester (verrichting)", url: "mm-gbz-zib-Procedure143701000146108-6e8bd802-6abf-11ec-2241-020000000000.html" }, 
-{ id: 31, label: "DiagnosticReport echografie", url: "mm-gbz-zib-TextResult16310003-TextResult-mm-gbz-0bab0539-6aaf-11ec-2786-020000000000.html" }, 
+{ id: 2, label: "DiagnosticReport echografie", url: "mm-gbz-bc-PregnancyUltraSound16310003-0bab0539-6aaf-11ec-2786-020000000000.html" }, 
+{ id: 3, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-d0510907-6af3-11ec-0000-020000000000.html" }, 
+{ id: 4, label: "PractitionerRole", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-8452962.html" }, 
+{ id: 5, label: "Practitioner XXX_Groot", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-8452962.html" }, 
+{ id: 6, label: "Location", url: "mm-gbz-nl-core-location-location-mm-gbz-2-16-840-1-113883-2-4-6-1-90012345.html" }, 
+{ id: 28, label: "Patient XXX_Osse", url: "mm-gbz-bc-Woman-LEONIE-L-XXX-OSSE.html" }, 
+{ id: 29, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-3cc38e5b-6ac9-11ec-2334-020000000000.html" }, 
+{ id: 31, label: "Procedure structureel echoscopisch onderzoek tijdens tweede trimester (verrichting)", url: "mm-gbz-zib-Procedure143701000146108-6e8bd802-6abf-11ec-2241-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 30, to: 27 }, 
-{ from: 30, to: 2 }, 
-{ from: 30, to: 3 }, 
-{ from: 30, to: 4 }, 
-{ from: 30, to: 5 }, 
-{ from: 30, to: 28 }, 
-{ from: 30, to: 31 }, 
+var edges = new vis.DataSet([{ from: 31, to: 28 }, 
+{ from: 31, to: 3 }, 
+{ from: 31, to: 4 }, 
+{ from: 31, to: 5 }, 
+{ from: 31, to: 6 }, 
+{ from: 31, to: 29 }, 
+{ from: 31, to: 2 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");
