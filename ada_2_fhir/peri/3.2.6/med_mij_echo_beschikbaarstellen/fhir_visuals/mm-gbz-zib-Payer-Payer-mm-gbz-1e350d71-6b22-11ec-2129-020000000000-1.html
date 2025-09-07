@@ -1,6 +1,6 @@
 <html lang="en">
    <head>
-      <title>Observation - 44bc8317-6b44-11ec-2784-020000000000</title>
+      <title>Coverage - Payer-mm-gbz-1e350d71-6b22-11ec-2129-020000000000-1</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -18,49 +18,54 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Observatie/bepaling. Subject: Merthe M XXX_Kooijman. Status: definitief</caption>
+               <caption>Verzekering/garantstelling. </caption>
                <tbody>
                   <tr>
-                     <th>Context</th>
-                     <td>Zwangerschap 1 XXX_Kooijman_Vrouw</td>
+                     <th>Type</th>
+                     <td>
+                        <span title="Basis (B - 2.16.840.1.113883.2.4.3.11.60.101.5.1)">Basis</span>
+                     </td>
                   </tr>
                   <tr>
-                     <th>Code</th>
-                     <th>Waarde</th>
+                     <th>Periode</th>
+                     <td>${DATE, T, D, -119} - ${DATE, T, D, +246}</td>
                   </tr>
                   <tr>
-                     <td>
-                        <span title="verdikte nekplooi van foetus (bevinding) (459053006 - SNOMED CT)">verdikte nekplooi van foetus (bevinding)</span>
-                     </td>
-                     <td>
-                        <span title="Geen sonomarker geconstateerd (1 - 2.16.840.1.113883.2.4.4.13.54)">Geen sonomarker geconstateerd</span>
-                     </td>
+                     <th>verzekerde</th>
+                     <td>Leonie L XXX_Osse</td>
+                  </tr>
+                  <tr>
+                     <th>Verzekerdenummer</th>
+                     <td>123456</td>
+                  </tr>
+                  <tr>
+                     <th>Betaler</th>
+                     <td>NN</td>
+                  </tr>
+                  <tr>
+                     <th>begunstigde</th>
+                     <td>Leonie L XXX_Osse</td>
                   </tr>
                </tbody>
             </table>
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Observation verdikte nekplooi van foetus (bevinding)</b>
+         <b>Resources pointing to 'this' resource - Coverage Basis</b>
       </p>
-      <ul>
-         <li>
-            <a href="mm-gbz-bc-PregnancyUltraSound133601000146101-015da85f-6b5a-11ec-2120-020000000000.html">DiagnosticReport echografie ter bepaling van geschatte datum van partus (verrichting)</a>
-         </li>
-      </ul>
+      <div> - none</div>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 1, label: "BodySite gehele foetus (lichaamsstructuur)", url: "mm-gbz-bc-Fetus83418008-0f2dfafb-6a9d-11ec-1267-020000000000.html" }, 
-{ id: 3, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-6188717b-6b7b-11ec-0000-020000000000.html" }, 
-{ id: 17, label: "Observation verdikte nekplooi van foetus (bevinding)", url: "mm-gbz-bc-FetusObservation459053006-44bc8317-6b44-11ec-2784-020000000000.html" }, 
-{ id: 18, label: "Patient XXX_Kooijman", url: "mm-gbz-bc-Woman-MERTHE-M-XXX-KOOIJMAN.html" }, 
+{ id: 7, label: "Organization NN", url: "mm-gbz-nl-core-organization-organization-mm-gbz--1235.html" }, 
+{ id: 28, label: "Coverage Basis", url: "mm-gbz-zib-Payer-Payer-mm-gbz-1e350d71-6b22-11ec-2129-020000000000-1.html" }, 
+{ id: 29, label: "Patient XXX_Osse", url: "mm-gbz-bc-Woman-LEONIE-L-XXX-OSSE.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 17, to: 1 }, 
-{ from: 17, to: 18 }, 
-{ from: 17, to: 3 }, 
+var edges = new vis.DataSet([{ from: 28, to: 29 }, 
+{ from: 28, to: 29 }, 
+{ from: 28, to: 7 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");
