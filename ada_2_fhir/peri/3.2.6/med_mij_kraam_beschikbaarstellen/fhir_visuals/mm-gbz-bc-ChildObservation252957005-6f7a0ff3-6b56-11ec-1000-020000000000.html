@@ -1,6 +1,6 @@
 <html lang="en">
    <head>
-      <title>Observation - 39d28ef4-6ac2-11ec-1001-020000000000</title>
+      <title>Observation - 6f7a0ff3-6b56-11ec-1000-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -18,11 +18,15 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Observatie/bepaling. Subject: Kind Lisa L XXX_Hollanders. Status: definitief</caption>
+               <caption>Observatie/bepaling. Subject: Kind Joris. Status: definitief</caption>
                <tbody>
                   <tr>
                      <th>Context</th>
-                     <td>Zwangerschap 2 XXX_Hollanders_Vrouw</td>
+                     <td>Zwangerschap 1 XXX_Zhanganak_Vrouw</td>
+                  </tr>
+                  <tr>
+                     <th>Bepalingdatum/tijd</th>
+                     <td>${DATE, T, D, -105}</td>
                   </tr>
                   <tr>
                      <th>Code</th>
@@ -30,29 +34,29 @@
                   </tr>
                   <tr>
                      <td>
-                        <span title="datum van gebeurtenis (waarneembare entiteit) (439771001 - SNOMED CT)">datum van gebeurtenis (waarneembare entiteit)</span>
+                        <span title="gehoortest bij kind (verrichting) (252957005 - SNOMED CT)">gehoortest bij kind (verrichting)</span>
                      </td>
-                     <td>${DATE, T, D, -107}</td>
+                     <td>ja</td>
                   </tr>
                </tbody>
             </table>
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Observation datum van gebeurtenis (waarneembare entiteit)</b>
+         <b>Resources pointing to 'this' resource - Observation gehoortest bij kind (verrichting)</b>
       </p>
       <div> - none</div>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 2, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-95b12773-6ada-11ec-0000-020000000000.html" }, 
-{ id: 41, label: "Observation datum van gebeurtenis (waarneembare entiteit)", url: "mm-gbz-bc-ChildObservation439771001-39d28ef4-6ac2-11ec-1001-020000000000.html" }, 
-{ id: 48, label: "Patient XXX_Hollanders", url: "mm-gbz-bc-Child-LISA-L-XXX-HOLLANDERS.html" }, 
+{ id: 2, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-f720ebe3-6b47-11ec-0000-020000000000.html" }, 
+{ id: 46, label: "Observation gehoortest bij kind (verrichting)", url: "mm-gbz-bc-ChildObservation252957005-6f7a0ff3-6b56-11ec-1000-020000000000.html" }, 
+{ id: 58, label: "Patient", url: "mm-gbz-bc-Child-JORIS.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 41, to: 48 }, 
-{ from: 41, to: 2 }, 
+var edges = new vis.DataSet([{ from: 46, to: 58 }, 
+{ from: 46, to: 2 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");
