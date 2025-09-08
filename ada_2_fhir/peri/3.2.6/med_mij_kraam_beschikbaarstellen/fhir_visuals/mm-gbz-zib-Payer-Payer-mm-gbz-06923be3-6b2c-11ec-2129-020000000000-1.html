@@ -1,0 +1,97 @@
+<html lang="en">
+   <head>
+      <title>Coverage - Payer-mm-gbz-06923be3-6b2c-11ec-2129-020000000000-1</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Verzekering/garantstelling. </caption>
+               <tbody>
+                  <tr>
+                     <th>Periode</th>
+                     <td>1 januari 2024 - 31 december 2025</td>
+                  </tr>
+                  <tr>
+                     <th>verzekerde</th>
+                     <td>Kim K XXX_Zhanganak XXX_Visser</td>
+                  </tr>
+                  <tr>
+                     <th>Betaler</th>
+                     <td>Veilige Haven Verzekeringen</td>
+                  </tr>
+                  <tr>
+                     <th>begunstigde</th>
+                     <td>Kim K XXX_Zhanganak XXX_Visser</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Coverage</b>
+      </p>
+      <div> - none</div>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 3, label: "Organization Veilige Haven Verzekeringen", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-840-1-113883-2-4-6-4-1000.html" }, 
+{ id: 57, label: "Coverage", url: "mm-gbz-zib-Payer-Payer-mm-gbz-06923be3-6b2c-11ec-2129-020000000000-1.html" }, 
+{ id: 58, label: "Patient XXX_Zhanganak-XXX_Visser", url: "mm-gbz-bc-Woman-KIM-K-XXX-ZHANGANAK-XXX-VISSER.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 57, to: 58 }, 
+{ from: 57, to: 58 }, 
+{ from: 57, to: 3 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>
