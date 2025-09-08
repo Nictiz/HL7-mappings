@@ -1,5 +1,5 @@
 <Location xmlns="http://hl7.org/fhir">
-   <id value="location-mm-gbz-2-16-840-1-113883-2-4-6-1-08001234"/>
+   <id value="location-mm-gbz-2-16-840-1-113883-2-4-6-1-06020806"/>
    <meta>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-location"/>
    </meta>
@@ -7,7 +7,7 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Locatie. Id: 08001234 (AGB-Z)</caption>
+            <caption>Locatie. Id: 06020806 (AGB-Z)</caption>
             <tbody>
                <tr>
                   <th>Naam</th>
@@ -16,13 +16,13 @@
                <tr>
                   <th>Contactgegevens</th>
                   <td>
-                     <a href="tel:0685749685">0685749685</a> (Mobiel)<br/>
-                     <a href="mailto:verloskundigenpraktijktgroen@test.nu">verloskundigenpraktijktgroen@test.nu</a> (E-mail)<br/>
+                     <a href="tel:0107040116">0107040116</a> (Vast telefoonnummer)<br/>
+                     <a href="mailto:info@erasmusmc.nl">info@erasmusmc.nl</a> (E-mail)<br/>
                   </td>
                </tr>
                <tr>
                   <th>Adres</th>
-                  <td>Groeneweg 1000, 1234ZZ STITSWERD, NL (WP)</td>
+                  <td>Dr. Molewaterplein 60, 3015GJ ROTTERDAM, NL (WP)</td>
                </tr>
             </tbody>
          </table>
@@ -30,25 +30,24 @@
    </text>
    <identifier>
       <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
-      <value value="08001234"/>
+      <value value="06020806"/>
    </identifier>
    <telecom>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
          <valueCodeableConcept>
             <coding>
-               <system value="http://hl7.org/fhir/v3/AddressUse"/>
-               <code value="MC"/>
-               <display value="Mobiel telefoonnummer"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Vast telefoonnummer"/>
             </coding>
          </valueCodeableConcept>
       </extension>
       <system value="phone"/>
-      <value value="0685749685"/>
-      <use value="mobile"/>
+      <value value="0107040116"/>
    </telecom>
    <telecom>
       <system value="email"/>
-      <value value="verloskundigenpraktijktgroen@test.nu"/>
+      <value value="info@erasmusmc.nl"/>
    </telecom>
    <address>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
@@ -61,16 +60,16 @@
          </valueCodeableConcept>
       </extension>
       <use value="work"/>
-      <line value="Groeneweg 1000">
+      <line value="Dr. Molewaterplein 60">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
-            <valueString value="Groeneweg"/>
+            <valueString value="Dr. Molewaterplein"/>
          </extension>
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-            <valueString value="1000"/>
+            <valueString value="60"/>
          </extension>
       </line>
-      <city value="STITSWERD"/>
-      <postalCode value="1234ZZ"/>
+      <city value="ROTTERDAM"/>
+      <postalCode value="3015GJ"/>
       <country value="NL">
          <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
             <valueCodeableConcept>
@@ -85,7 +84,7 @@
       </country>
    </address>
    <managingOrganization>
-      <reference value="Organization/organization-mm-gbz-2-16-840-1-113883-2-4-6-1-08001234"/>
-      <display value="Verloskundigenpraktijk 't Groen"/>
+      <reference value="Organization/organization-mm-gbz-2-16-840-1-113883-2-4-6-1-06020806"/>
+      <display value="Erasmus MC, Sophia kinderziekenhuis"/>
    </managingOrganization>
 </Location>
