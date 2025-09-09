@@ -8,7 +8,8 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Verrichting. Subject: Maaike M Maaike Ostendorf. Categorie: <span title="Obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">Obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+            <caption>Verrichting. Subject: Maaike M Maaike Ostendorf. Categorie: <span title="Obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">Obstetrische verrichting (verrichting)</span>, Status: voltooid<span style="display: block;">Uitvoerende: Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis (uit naam van: Stitswerd Ziekenhuis - Stitswerd), Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis (uit naam van: Stitswerd Ziekenhuis - Stitswerd)</span>
+            </caption>
             <tbody>
                <tr>
                   <td>
@@ -59,6 +60,54 @@
       <reference value="Encounter/f2ba733f-6af7-11ec-1275-020000000000"/>
       <display value="opname en ontslag T-53D{08:36} P1-Maaike"/>
    </context>
+   <performer>
+      <role>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="PRF"/>
+            <display value="performer"/>
+         </coding>
+         <text value="Aanpakker kind"/>
+      </role>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/practitionerrole-mm-gbz-03073167030706019999"/>
+               <display value="Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167"/>
+         <display value="Suzan S Suzan De Jong"/>
+      </actor>
+      <onBehalfOf>
+         <reference value="Organization/organization-mm-gbz-2-16-528-1-1007-3-3-06019999"/>
+         <display value="Stitswerd Ziekenhuis - Stitswerd"/>
+      </onBehalfOf>
+   </performer>
+   <performer>
+      <role>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="RESP"/>
+            <display value="responsible party"/>
+         </coding>
+         <text value="Supervisor"/>
+      </role>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/practitionerrole-mm-gbz-03073167030706019999"/>
+               <display value="Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167"/>
+         <display value="Suzan S Suzan De Jong"/>
+      </actor>
+      <onBehalfOf>
+         <reference value="Organization/organization-mm-gbz-2-16-528-1-1007-3-3-06019999"/>
+         <display value="Stitswerd Ziekenhuis - Stitswerd"/>
+      </onBehalfOf>
+   </performer>
    <location>
       <reference value="Location/location-mm-gbz-0cc94b5f-6b04-11ec-1295-020000000000"/>
       <display value="Stitswerd Ziekenhuis - Stitswerd"/>

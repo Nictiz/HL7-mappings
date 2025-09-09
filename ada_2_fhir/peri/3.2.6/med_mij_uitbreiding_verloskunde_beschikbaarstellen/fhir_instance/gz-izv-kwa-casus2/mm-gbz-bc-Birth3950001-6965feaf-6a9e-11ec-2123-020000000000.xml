@@ -8,7 +8,8 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Verrichting. Subject: Kind Lilianne L XXX_Swart. Categorie: <span title="Obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">Obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+            <caption>Verrichting. Subject: Kind Lilianne L XXX_Swart. Categorie: <span title="Obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">Obstetrische verrichting (verrichting)</span>, Status: voltooid<span style="display: block;">Uitvoerende: Eduard XXX_Egelinks || Gynaecoloog || Erasmus MC, Sophia kinderziekenhuis (uit naam van: Erasmus MC, Sophia kinderziekenhuis), Eduard XXX_Egelinks || Gynaecoloog || Erasmus MC, Sophia kinderziekenhuis (uit naam van: Erasmus MC, Sophia kinderziekenhuis)</span>
+            </caption>
             <tbody>
                <tr>
                   <td>
@@ -59,6 +60,54 @@
       <reference value="EpisodeOfCare/8b4a1a6f-6b0c-11ec-0000-020000000000"/>
       <display value="Zwangerschap 1 XXX_Swart"/>
    </context>
+   <performer>
+      <role>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="PRF"/>
+            <display value="performer"/>
+         </coding>
+         <text value="Aanpakker kind"/>
+      </role>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/practitionerrole-mm-gbz-98765432201-04606020806"/>
+               <display value="Eduard XXX_Egelinks || Gynaecoloog || Erasmus MC, Sophia kinderziekenhuis"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-987654322"/>
+         <display value="Eduard XXX_Egelinks"/>
+      </actor>
+      <onBehalfOf>
+         <reference value="Organization/organization-mm-gbz-2-16-528-1-1007-3-3-06020806"/>
+         <display value="Erasmus MC, Sophia kinderziekenhuis"/>
+      </onBehalfOf>
+   </performer>
+   <performer>
+      <role>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="RESP"/>
+            <display value="responsible party"/>
+         </coding>
+         <text value="Supervisor"/>
+      </role>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/practitionerrole-mm-gbz-98765432201-04606020806"/>
+               <display value="Eduard XXX_Egelinks || Gynaecoloog || Erasmus MC, Sophia kinderziekenhuis"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-987654322"/>
+         <display value="Eduard XXX_Egelinks"/>
+      </actor>
+      <onBehalfOf>
+         <reference value="Organization/organization-mm-gbz-2-16-528-1-1007-3-3-06020806"/>
+         <display value="Erasmus MC, Sophia kinderziekenhuis"/>
+      </onBehalfOf>
+   </performer>
    <location>
       <reference value="Location/location-mm-gbz-2-16-528-1-1007-3-3-06020806"/>
       <display value="Erasmus MC, Sophia kinderziekenhuis"/>

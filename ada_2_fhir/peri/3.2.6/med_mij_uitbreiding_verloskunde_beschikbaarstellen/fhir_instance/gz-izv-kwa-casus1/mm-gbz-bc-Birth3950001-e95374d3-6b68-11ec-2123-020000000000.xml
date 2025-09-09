@@ -8,7 +8,8 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Verrichting. Subject: Maaike M XXX_Ostendorf. Categorie: <span title="Obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">Obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+            <caption>Verrichting. Subject: Maaike M XXX_Ostendorf. Categorie: <span title="Obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">Obstetrische verrichting (verrichting)</span>, Status: voltooid<span style="display: block;">Uitvoerende: Loes XXX_Korte || gediplomeerd verloskundige (beroep) || Verloskundigenpraktijk Dalen (uit naam van: Verloskundigenpraktijk Dalen), Loes XXX_Korte || gediplomeerd verloskundige (beroep) || Verloskundigenpraktijk Dalen (uit naam van: Verloskundigenpraktijk Dalen)</span>
+            </caption>
             <tbody>
                <tr>
                   <td>
@@ -55,6 +56,54 @@
       <reference value="Encounter/31c97a0f-6b0f-11ec-1071-020000000000"/>
       <display value="partusassistentie contact Dagopname XXX_Ostendorf"/>
    </context>
+   <performer>
+      <role>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="PRF"/>
+            <display value="performer"/>
+         </coding>
+         <text value="Aanpakker kind"/>
+      </role>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/practitionerrole-mm-gbz-123564890800321654897"/>
+               <display value="Loes XXX_Korte || gediplomeerd verloskundige (beroep) || Verloskundigenpraktijk Dalen"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-12356489"/>
+         <display value="Loes XXX_Korte"/>
+      </actor>
+      <onBehalfOf>
+         <reference value="Organization/organization-mm-gbz-2-16-840-1-113883-2-4-3-22-97-4-1808"/>
+         <display value="Verloskundigenpraktijk Dalen"/>
+      </onBehalfOf>
+   </performer>
+   <performer>
+      <role>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="RESP"/>
+            <display value="responsible party"/>
+         </coding>
+         <text value="Supervisor"/>
+      </role>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/practitionerrole-mm-gbz-123564890800321654897"/>
+               <display value="Loes XXX_Korte || gediplomeerd verloskundige (beroep) || Verloskundigenpraktijk Dalen"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-12356489"/>
+         <display value="Loes XXX_Korte"/>
+      </actor>
+      <onBehalfOf>
+         <reference value="Organization/organization-mm-gbz-2-16-840-1-113883-2-4-3-22-97-4-1808"/>
+         <display value="Verloskundigenpraktijk Dalen"/>
+      </onBehalfOf>
+   </performer>
    <reasonReference>
       <reference value="Condition/73009ab7-6b6e-11ec-2334-020000000000"/>
       <display value="Zwangerschap 2 XXX_Ostendorf"/>

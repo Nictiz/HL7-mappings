@@ -18,7 +18,8 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Verrichting. Subject: Maaike M XXX_Ostendorf. Categorie: <span title="Obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">Obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+               <caption>Verrichting. Subject: Maaike M XXX_Ostendorf. Categorie: <span title="Obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">Obstetrische verrichting (verrichting)</span>, Status: voltooid<span style="display: block;">Uitvoerende: Loes XXX_Korte || gediplomeerd verloskundige (beroep) || Verloskundigenpraktijk Dalen (uit naam van: Verloskundigenpraktijk Dalen), Loes XXX_Korte || gediplomeerd verloskundige (beroep) || Verloskundigenpraktijk Dalen (uit naam van: Verloskundigenpraktijk Dalen)</span>
+               </caption>
                <tbody>
                   <tr>
                      <td>
@@ -57,6 +58,9 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
+{ id: 4, label: "Organization Verloskundigenpraktijk Dalen", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-840-1-113883-2-4-3-22-97-4-1808.html" }, 
+{ id: 9, label: "Practitioner XXX_Korte", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-12356489.html" }, 
+{ id: 10, label: "PractitionerRole gediplomeerd verloskundige (beroep)", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-123564890800321654897.html" }, 
 { id: 11, label: "Encounter verlossing (verrichting)", url: "mm-gbz-bc-ChildBirthAssistance-31c97a0f-6b0f-11ec-1071-020000000000.html" }, 
 { id: 44, label: "Patient XXX_Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-XXX-OSTENDORF.html" }, 
 { id: 46, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-73009ab7-6b6e-11ec-2334-020000000000.html" }, 
@@ -68,6 +72,12 @@ var nodes = new vis.DataSet([
 var edges = new vis.DataSet([{ from: 56, to: 55 }, 
 { from: 56, to: 44 }, 
 { from: 56, to: 11 }, 
+{ from: 56, to: 10 }, 
+{ from: 56, to: 9 }, 
+{ from: 56, to: 4 }, 
+{ from: 56, to: 10 }, 
+{ from: 56, to: 9 }, 
+{ from: 56, to: 4 }, 
 { from: 56, to: 46 }, 
 ]);
 // create a network
