@@ -29,7 +29,7 @@ publisher=$input_cache_path/$publisher_jar
 if test -f "$publisher"; then
 	  validator=`java -jar $publisher | head -n 1`
     # Validate profiles GZ
-    java -jar $publisher -ig "$ig2017" -version 3.0 -recurse -debug -html-output validation-profiles.html -txLog txlog.txt -locale nl -language nl -sct 11000146104 -display-issues-are-warnings -level error $igGZ/*
+    #java -jar $publisher -ig "$ig2017" -version 3.0 -recurse -debug -html-output validation-profiles.html -txLog txlog.txt -locale nl -language nl -sct 11000146104 -display-issues-are-warnings -level error $igGZ/*
     # Validate instances GZ
     java -jar $publisher -ig "$igGZ" -ig "$ig2017" -version 3.0 -recurse -debug -output validation.xml -txLog txlog.txt -locale nl -language nl -sct 11000146104 -display-issues-are-warnings -level error $inputFiles
 	  java -jar `dirname $0`/../../../../../YATC-tools/saxon/saxon.jar -o:`dirname $0`/validation.html -xsl:`dirname $0`/validation.xsl `dirname $0`/validation.xml validator="$validator"

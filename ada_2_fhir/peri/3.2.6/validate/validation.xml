@@ -1139,7 +1139,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="67"/>
+            <valueInteger value="63"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="43"/>
@@ -1159,7 +1159,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="68"/>
+            <valueInteger value="64"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="41"/>
@@ -1179,7 +1179,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="66"/>
+            <valueInteger value="62"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="21"/>
@@ -4003,7 +4003,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="58"/>
+            <valueInteger value="64"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="63"/>
@@ -6502,7 +6502,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="64"/>
+            <valueInteger value="58"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="52"/>
@@ -7288,7 +7288,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="62"/>
+            <valueInteger value="58"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="43"/>
@@ -8374,6 +8374,22 @@
                 <td/>
                 <td>TerminologyEngine</td>
               </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Observation.component[1].value.ofType(CodeableConcept).coding[0].system</td>
+                <td>Not Found</td>
+                <td>A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.8.1' could not be found, so the code cannot be validated</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Observation.component[1].value.ofType(CodeableConcept).coding[0]</td>
+                <td>Not Found</td>
+                <td>De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.8.1' is niet gevonden, dus kan de code niet worden gevalideerd</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
             </table>
           </div>
         </text>
@@ -8382,7 +8398,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="74"/>
+            <valueInteger value="82"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="66"/>
@@ -8402,7 +8418,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="82"/>
+            <valueInteger value="90"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="13"/>
@@ -8419,6 +8435,43 @@
             <text value="There are no valid display names found for the code http://loinc.org#11769-7 for language(s) 'nl'. The display is 'Body weight percentile range Categorization by comparison with standards' the default language display"/>
           </details>
           <expression value="Observation.component[0].code.coding[0].display"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="117"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="29"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="UNKNOWN_CODESYSTEM"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="not-found"/>
+          <details>
+            <text value="A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.8.1' could not be found, so the code cannot be validated"/>
+          </details>
+          <expression value="Observation.component[1].value.ofType(CodeableConcept).coding[0].system"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="117"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="29"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="not-found"/>
+          <details>
+            <text value="De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.8.1' is niet gevonden, dus kan de code niet worden gevalideerd"/>
+          </details>
+          <expression value="Observation.component[1].value.ofType(CodeableConcept).coding[0]"/>
         </issue>
       </OperationOutcome>
     </resource>
@@ -9368,7 +9421,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="62"/>
+            <valueInteger value="58"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="43"/>
@@ -10166,7 +10219,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="62"/>
+            <valueInteger value="58"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="42"/>
@@ -10391,6 +10444,14 @@
                 <td/>
                 <td>InstanceValidator</td>
               </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Observation.component[0].value.ofType(CodeableConcept).coding[0]</td>
+                <td>Not Found</td>
+                <td>De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.8.1' is niet gevonden, dus kan de code niet worden gevalideerd</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
             </table>
           </div>
         </text>
@@ -10399,7 +10460,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="62"/>
+            <valueInteger value="70"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="52"/>
@@ -10416,6 +10477,23 @@
             <text value="Ongeldige datum/tijd (${DATE, T, D, -205})"/>
           </details>
           <expression value="Observation.effective.ofType(dateTime)"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="85"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="29"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="not-found"/>
+          <details>
+            <text value="De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.8.1' is niet gevonden, dus kan de code niet worden gevalideerd"/>
+          </details>
+          <expression value="Observation.component[0].value.ofType(CodeableConcept).coding[0]"/>
         </issue>
       </OperationOutcome>
     </resource>
@@ -13063,6 +13141,14 @@
                 <td/>
                 <td>TerminologyEngine</td>
               </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Observation.component[1].value.ofType(CodeableConcept).coding[0]</td>
+                <td>Not Found</td>
+                <td>De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.8.1' is niet gevonden, dus kan de code niet worden gevalideerd</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
             </table>
           </div>
         </text>
@@ -13071,7 +13157,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="74"/>
+            <valueInteger value="82"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="66"/>
@@ -13091,7 +13177,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="82"/>
+            <valueInteger value="90"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="13"/>
@@ -13108,6 +13194,23 @@
             <text value="There are no valid display names found for the code http://loinc.org#11769-7 for language(s) 'nl'. The display is 'Body weight percentile range Categorization by comparison with standards' the default language display"/>
           </details>
           <expression value="Observation.component[0].code.coding[0].display"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="117"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="29"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="not-found"/>
+          <details>
+            <text value="De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.8.1' is niet gevonden, dus kan de code niet worden gevalideerd"/>
+          </details>
+          <expression value="Observation.component[1].value.ofType(CodeableConcept).coding[0]"/>
         </issue>
       </OperationOutcome>
     </resource>
@@ -16720,7 +16823,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="62"/>
+            <valueInteger value="58"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="43"/>
@@ -16788,6 +16891,129 @@
           <details>
             <text value="Alles OK"/>
           </details>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+                <td>
+                  <b>Bron</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>DiagnosticReport.effective.ofType(Period).start</td>
+                <td>Invalid Content</td>
+                <td>Ongeldige datum/tijd (${DATE, T, D, -527})</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>DiagnosticReport.effective.ofType(Period).end</td>
+                <td>Invalid Content</td>
+                <td>Ongeldige datum/tijd (${DATE, T, D, -527})</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>DiagnosticReport.effective.ofType(Period)</td>
+                <td>Validation rule failed</td>
+                <td>Fout bij constraint: per-1: 'If present, start SHALL have a lower value than end'Invalid date/time format: &quot;${DATE, T, D, -527}&quot; (log: Invalid date/time format: &quot;${DATE, T, D, -527}&quot;)</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../med_mij_uitbreiding_verloskunde_beschikbaarstellen/fhir_instance/gz-izv-kwa-casus4/mm-gbz-bc-PregnancyUltraSound713076009-ef3175bf-6b51-11ec-2120-020000000000.xml"/>
+        </extension>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="68"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="43"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Ongeldige datum/tijd (${DATE, T, D, -527})"/>
+          </details>
+          <expression value="DiagnosticReport.effective.ofType(Period).start"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="69"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="41"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Ongeldige datum/tijd (${DATE, T, D, -527})"/>
+          </details>
+          <expression value="DiagnosticReport.effective.ofType(Period).end"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="67"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="21"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="http://hl7.org/fhir/StructureDefinition/Period#per-1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invariant"/>
+          <details>
+            <text value="Fout bij constraint: per-1: 'If present, start SHALL have a lower value than end'Invalid date/time format: &quot;${DATE, T, D, -527}&quot; (log: Invalid date/time format: &quot;${DATE, T, D, -527}&quot;)"/>
+          </details>
+          <expression value="DiagnosticReport.effective.ofType(Period)"/>
         </issue>
       </OperationOutcome>
     </resource>
@@ -18214,126 +18440,6 @@
                 </td>
               </tr>
               <tr>
-                <td>Warning</td>
-                <td>Location.telecom[0].extension[0].value.ofType(CodeableConcept).coding[0]</td>
-                <td>Not Found</td>
-                <td>De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1' is niet gevonden, dus kan de code niet worden gevalideerd</td>
-                <td/>
-                <td>TerminologyEngine</td>
-              </tr>
-              <tr>
-                <td>Warning</td>
-                <td>Location.address.extension[0].value.ofType(CodeableConcept).coding[0].display</td>
-                <td>Invalid Content</td>
-                <td>Verkeerde weergavenaam 'Werkadres' voor http://hl7.org/fhir/v3/AddressUse#WP - moet zijn ''work place'' (voor taal/talen 'nl')</td>
-                <td/>
-                <td>TerminologyEngine</td>
-              </tr>
-              <tr>
-                <td>Warning</td>
-                <td>Location.address.country.extension[0].value.ofType(CodeableConcept).coding[0].display</td>
-                <td>Invalid Content</td>
-                <td>Wrong Display Name 'Nederland' for urn:iso:std:iso:3166#NL. Valid display is 'Netherlands' (for the language(s) 'nl')</td>
-                <td/>
-                <td>TerminologyEngine</td>
-              </tr>
-            </table>
-          </div>
-        </text>
-        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
-          <valueString value="./../med_mij_uitbreiding_verloskunde_beschikbaarstellen/fhir_instance/gz-izv-kwa-casus4/mm-gbz-nl-core-location-location-mm-gbz-c912c24f-6b4b-11ec-1295-020000000000.xml"/>
-        </extension>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="37"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="32"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="TerminologyEngine"/>
-          </extension>
-          <severity value="warning"/>
-          <code value="not-found"/>
-          <details>
-            <text value="De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1' is niet gevonden, dus kan de code niet worden gevalideerd"/>
-          </details>
-          <expression value="Location.telecom[0].extension[0].value.ofType(CodeableConcept).coding[0]"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="54"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="32"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="TerminologyEngine"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Display_Name_for__should_be_one_of__instead_of"/>
-          </extension>
-          <severity value="warning"/>
-          <code value="invalid"/>
-          <details>
-            <text value="Verkeerde weergavenaam 'Werkadres' voor http://hl7.org/fhir/v3/AddressUse#WP - moet zijn ''work place'' (voor taal/talen 'nl')"/>
-          </details>
-          <expression value="Location.address.extension[0].value.ofType(CodeableConcept).coding[0].display"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="75"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="35"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="TerminologyEngine"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Display_Name_for__should_be_one_of__instead_of"/>
-          </extension>
-          <severity value="warning"/>
-          <code value="invalid"/>
-          <details>
-            <text value="Wrong Display Name 'Nederland' for urn:iso:std:iso:3166#NL. Valid display is 'Netherlands' (for the language(s) 'nl')"/>
-          </details>
-          <expression value="Location.address.country.extension[0].value.ofType(CodeableConcept).coding[0].display"/>
-        </issue>
-      </OperationOutcome>
-    </resource>
-  </entry>
-  <entry>
-    <resource>
-      <OperationOutcome>
-        <text>
-          <status value="generated"/>
-          <div xmlns="http://www.w3.org/1999/xhtml">
-            <p class="res-header-id">
-              <b>OperationOutcome </b>
-            </p>
-            <table class="grid">
-              <tr>
-                <td>
-                  <b>Ernst</b>
-                </td>
-                <td>
-                  <b>Locatie</b>
-                </td>
-                <td>
-                  <b>Code</b>
-                </td>
-                <td>
-                  <b>Details</b>
-                </td>
-                <td>
-                  <b>Kenmerken</b>
-                </td>
-                <td>
-                  <b>Bron</b>
-                </td>
-              </tr>
-              <tr>
                 <td>Error</td>
                 <td>Observation.effective.ofType(dateTime)</td>
                 <td>Invalid Content</td>
@@ -18448,7 +18554,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="77"/>
+            <valueInteger value="71"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="43"/>
@@ -18468,7 +18574,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="78"/>
+            <valueInteger value="72"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="41"/>
@@ -18488,7 +18594,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="76"/>
+            <valueInteger value="70"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="21"/>
@@ -18508,7 +18614,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="90"/>
+            <valueInteger value="84"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="26"/>
@@ -18528,7 +18634,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="90"/>
+            <valueInteger value="84"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="26"/>
@@ -18796,7 +18902,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="66"/>
+            <valueInteger value="60"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="43"/>
@@ -18816,7 +18922,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="78"/>
+            <valueInteger value="72"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="26"/>
@@ -18836,7 +18942,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="78"/>
+            <valueInteger value="72"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="26"/>
@@ -20503,7 +20609,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="62"/>
+            <valueInteger value="56"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="52"/>
@@ -20755,7 +20861,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="66"/>
+            <valueInteger value="75"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="43"/>
@@ -21023,7 +21129,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="62"/>
+            <valueInteger value="56"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="52"/>
@@ -22399,7 +22505,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="66"/>
+            <valueInteger value="60"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="43"/>
@@ -22419,7 +22525,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="78"/>
+            <valueInteger value="72"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="26"/>
@@ -22439,7 +22545,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="78"/>
+            <valueInteger value="72"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="26"/>
@@ -24696,129 +24802,6 @@
                 </td>
               </tr>
               <tr>
-                <td>Warning</td>
-                <td>Location.telecom[0].extension[0].value.ofType(CodeableConcept).coding[0].display</td>
-                <td>Invalid Content</td>
-                <td>Verkeerde weergavenaam 'Mobiel telefoonnummer' voor http://hl7.org/fhir/v3/AddressUse#MC - moet zijn ''mobile contact)'' (voor taal/talen 'nl')</td>
-                <td/>
-                <td>TerminologyEngine</td>
-              </tr>
-              <tr>
-                <td>Warning</td>
-                <td>Location.address.extension[0].value.ofType(CodeableConcept).coding[0].display</td>
-                <td>Invalid Content</td>
-                <td>Verkeerde weergavenaam 'Werkadres' voor http://hl7.org/fhir/v3/AddressUse#WP - moet zijn ''work place'' (voor taal/talen 'nl')</td>
-                <td/>
-                <td>TerminologyEngine</td>
-              </tr>
-              <tr>
-                <td>Warning</td>
-                <td>Location.address.country.extension[0].value.ofType(CodeableConcept).coding[0].display</td>
-                <td>Invalid Content</td>
-                <td>Wrong Display Name 'Nederland' for urn:iso:std:iso:3166#NL. Valid display is 'Netherlands' (for the language(s) 'nl')</td>
-                <td/>
-                <td>TerminologyEngine</td>
-              </tr>
-            </table>
-          </div>
-        </text>
-        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
-          <valueString value="./../med_mij_uitbreiding_verloskunde_beschikbaarstellen/fhir_instance/gz-izv-kwa-casus4/mm-gbz-nl-core-location-location-mm-gbz-2-16-840-1-113883-2-4-6-1-08001234.xml"/>
-        </extension>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="37"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="32"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="TerminologyEngine"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Display_Name_for__should_be_one_of__instead_of"/>
-          </extension>
-          <severity value="warning"/>
-          <code value="invalid"/>
-          <details>
-            <text value="Verkeerde weergavenaam 'Mobiel telefoonnummer' voor http://hl7.org/fhir/v3/AddressUse#MC - moet zijn ''mobile contact)'' (voor taal/talen 'nl')"/>
-          </details>
-          <expression value="Location.telecom[0].extension[0].value.ofType(CodeableConcept).coding[0].display"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="55"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="32"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="TerminologyEngine"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Display_Name_for__should_be_one_of__instead_of"/>
-          </extension>
-          <severity value="warning"/>
-          <code value="invalid"/>
-          <details>
-            <text value="Verkeerde weergavenaam 'Werkadres' voor http://hl7.org/fhir/v3/AddressUse#WP - moet zijn ''work place'' (voor taal/talen 'nl')"/>
-          </details>
-          <expression value="Location.address.extension[0].value.ofType(CodeableConcept).coding[0].display"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="76"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="35"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="TerminologyEngine"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Display_Name_for__should_be_one_of__instead_of"/>
-          </extension>
-          <severity value="warning"/>
-          <code value="invalid"/>
-          <details>
-            <text value="Wrong Display Name 'Nederland' for urn:iso:std:iso:3166#NL. Valid display is 'Netherlands' (for the language(s) 'nl')"/>
-          </details>
-          <expression value="Location.address.country.extension[0].value.ofType(CodeableConcept).coding[0].display"/>
-        </issue>
-      </OperationOutcome>
-    </resource>
-  </entry>
-  <entry>
-    <resource>
-      <OperationOutcome>
-        <text>
-          <status value="generated"/>
-          <div xmlns="http://www.w3.org/1999/xhtml">
-            <p class="res-header-id">
-              <b>OperationOutcome </b>
-            </p>
-            <table class="grid">
-              <tr>
-                <td>
-                  <b>Ernst</b>
-                </td>
-                <td>
-                  <b>Locatie</b>
-                </td>
-                <td>
-                  <b>Code</b>
-                </td>
-                <td>
-                  <b>Details</b>
-                </td>
-                <td>
-                  <b>Kenmerken</b>
-                </td>
-                <td>
-                  <b>Bron</b>
-                </td>
-              </tr>
-              <tr>
                 <td>Error</td>
                 <td>Observation.effective.ofType(dateTime)</td>
                 <td>Invalid Content</td>
@@ -24917,7 +24900,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="61"/>
+            <valueInteger value="57"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="43"/>
@@ -24937,7 +24920,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="62"/>
+            <valueInteger value="58"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="41"/>
@@ -24957,7 +24940,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="60"/>
+            <valueInteger value="56"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="21"/>
@@ -25016,6 +24999,30 @@
                 <td/>
                 <td>InstanceValidator</td>
               </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Observation.component[0].value.ofType(CodeableConcept).coding[0].system</td>
+                <td>Not Found</td>
+                <td>A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4.13.56' could not be found, so the code cannot be validated</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Observation.component[0].value.ofType(CodeableConcept).coding[0]</td>
+                <td>Not Found</td>
+                <td>De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4.13.56' is niet gevonden, dus kan de code niet worden gevalideerd</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Observation.component[0].value.ofType(CodeableConcept)</td>
+                <td>Invalid Code</td>
+                <td>Kan niet controleren of de code in de waardelijst 'http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.90.77.11.32--20140904000000|2014-09-04T00:00:00' staat, omdat het codesysteem urn:oid:2.16.840.1.113883.2.4.4.13.56 niet is gevonden</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
             </table>
           </div>
         </text>
@@ -25024,7 +25031,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="68"/>
+            <valueInteger value="76"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="52"/>
@@ -25041,6 +25048,183 @@
             <text value="Ongeldige datum/tijd (${DATE, T, D, -330})"/>
           </details>
           <expression value="Observation.effective.ofType(dateTime)"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="92"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="29"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="UNKNOWN_CODESYSTEM"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="not-found"/>
+          <details>
+            <text value="A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4.13.56' could not be found, so the code cannot be validated"/>
+          </details>
+          <expression value="Observation.component[0].value.ofType(CodeableConcept).coding[0].system"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="92"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="29"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="not-found"/>
+          <details>
+            <text value="De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4.13.56' is niet gevonden, dus kan de code niet worden gevalideerd"/>
+          </details>
+          <expression value="Observation.component[0].value.ofType(CodeableConcept).coding[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="92"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="29"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="UNABLE_TO_CHECK_IF_THE_PROVIDED_CODES_ARE_IN_THE_VALUE_SET_CS"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="code-invalid"/>
+          <details>
+            <text value="Kan niet controleren of de code in de waardelijst 'http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.90.77.11.32--20140904000000|2014-09-04T00:00:00' staat, omdat het codesysteem urn:oid:2.16.840.1.113883.2.4.4.13.56 niet is gevonden"/>
+          </details>
+          <expression value="Observation.component[0].value.ofType(CodeableConcept)"/>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+                <td>
+                  <b>Bron</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Location.telecom[0].extension[0].value.ofType(CodeableConcept).coding[0]</td>
+                <td>Not Found</td>
+                <td>De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1' is niet gevonden, dus kan de code niet worden gevalideerd</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Location.address.extension[0].value.ofType(CodeableConcept).coding[0].display</td>
+                <td>Invalid Content</td>
+                <td>Verkeerde weergavenaam 'Werkadres' voor http://hl7.org/fhir/v3/AddressUse#WP - moet zijn ''work place'' (voor taal/talen 'nl')</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Location.address.country.extension[0].value.ofType(CodeableConcept).coding[0].display</td>
+                <td>Invalid Content</td>
+                <td>Wrong Display Name 'Nederland' for urn:iso:std:iso:3166#NL. Valid display is 'Netherlands' (for the language(s) 'nl')</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../med_mij_uitbreiding_verloskunde_beschikbaarstellen/fhir_instance/gz-izv-kwa-casus4/mm-gbz-nl-core-location-location-mm-gbz-2-16-840-1-113883-2-4-6-1-06020806.xml"/>
+        </extension>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="37"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="32"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="not-found"/>
+          <details>
+            <text value="De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1' is niet gevonden, dus kan de code niet worden gevalideerd"/>
+          </details>
+          <expression value="Location.telecom[0].extension[0].value.ofType(CodeableConcept).coding[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="54"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="32"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Display_Name_for__should_be_one_of__instead_of"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Verkeerde weergavenaam 'Werkadres' voor http://hl7.org/fhir/v3/AddressUse#WP - moet zijn ''work place'' (voor taal/talen 'nl')"/>
+          </details>
+          <expression value="Location.address.extension[0].value.ofType(CodeableConcept).coding[0].display"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="75"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="35"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Display_Name_for__should_be_one_of__instead_of"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Wrong Display Name 'Nederland' for urn:iso:std:iso:3166#NL. Valid display is 'Netherlands' (for the language(s) 'nl')"/>
+          </details>
+          <expression value="Location.address.country.extension[0].value.ofType(CodeableConcept).coding[0].display"/>
         </issue>
       </OperationOutcome>
     </resource>
@@ -25748,6 +25932,98 @@
               </tr>
               <tr>
                 <td>Warning</td>
+                <td>Coverage.type.coding[0].system</td>
+                <td>Not Found</td>
+                <td>A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.101.5.1' could not be found, so the code cannot be validated</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Coverage.type.coding[0]</td>
+                <td>Not Found</td>
+                <td>De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.101.5.1' is niet gevonden, dus kan de code niet worden gevalideerd</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../med_mij_uitbreiding_verloskunde_beschikbaarstellen/fhir_instance/gz-izv-tes-casus9999/mm-gbz-zib-Payer-Payer-mm-gbz-e2116b0f-6b20-11ec-2129-020000000000-1.xml"/>
+        </extension>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="46"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="10"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="UNKNOWN_CODESYSTEM"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="not-found"/>
+          <details>
+            <text value="A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.101.5.1' could not be found, so the code cannot be validated"/>
+          </details>
+          <expression value="Coverage.type.coding[0].system"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="46"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="10"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="not-found"/>
+          <details>
+            <text value="De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.101.5.1' is niet gevonden, dus kan de code niet worden gevalideerd"/>
+          </details>
+          <expression value="Coverage.type.coding[0]"/>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+                <td>
+                  <b>Bron</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Warning</td>
                 <td>Observation.value.ofType(CodeableConcept).coding[0].display</td>
                 <td>Invalid Content</td>
                 <td>Wrong Display Name 'eindstandige ileostoma' for http://snomed.info/sct#311412005. Valid display is one of 2 choices: 'eindstandig ileostoma' (nl) or 'eindstandig ileostoma (afwijkende morfologie)' (nl) (for the language(s) 'nl')</td>
@@ -25908,7 +26184,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="73"/>
+            <valueInteger value="67"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="52"/>
@@ -27602,7 +27878,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="96"/>
+            <valueInteger value="92"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="41"/>
@@ -27622,7 +27898,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="97"/>
+            <valueInteger value="93"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="39"/>
@@ -27642,7 +27918,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="95"/>
+            <valueInteger value="91"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="21"/>
@@ -27662,7 +27938,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="100"/>
+            <valueInteger value="96"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="13"/>
@@ -27911,6 +28187,14 @@
                 <td/>
                 <td>InstanceValidator</td>
               </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Observation.component[0].value.ofType(CodeableConcept).coding[0]</td>
+                <td>Not Found</td>
+                <td>De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.8.1' is niet gevonden, dus kan de code niet worden gevalideerd</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
             </table>
           </div>
         </text>
@@ -27919,7 +28203,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="62"/>
+            <valueInteger value="70"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="52"/>
@@ -27936,6 +28220,23 @@
             <text value="Ongeldige datum/tijd (${DATE, T, D, -144})"/>
           </details>
           <expression value="Observation.effective.ofType(dateTime)"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="85"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="29"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="not-found"/>
+          <details>
+            <text value="De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.8.1' is niet gevonden, dus kan de code niet worden gevalideerd"/>
+          </details>
+          <expression value="Observation.component[0].value.ofType(CodeableConcept).coding[0]"/>
         </issue>
       </OperationOutcome>
     </resource>
@@ -28324,7 +28625,6 @@
             <p class="res-header-id">
               <b>OperationOutcome </b>
             </p>
-            <p>Alles oké</p>
             <table class="grid">
               <tr>
                 <td>
@@ -28354,6 +28654,30 @@
                 <td/>
                 <td>TerminologyEngine</td>
               </tr>
+              <tr>
+                <td>Error</td>
+                <td>DiagnosticReport.effective.ofType(Period).start</td>
+                <td>Invalid Content</td>
+                <td>Ongeldige datum/tijd (${DATE, T, D, -146})</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>DiagnosticReport.effective.ofType(Period).end</td>
+                <td>Invalid Content</td>
+                <td>Ongeldige datum/tijd (${DATE, T, D, -146})</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>DiagnosticReport.effective.ofType(Period)</td>
+                <td>Validation rule failed</td>
+                <td>Fout bij constraint: per-1: 'If present, start SHALL have a lower value than end'Invalid date/time format: &quot;${DATE, T, D, -146}&quot; (log: Invalid date/time format: &quot;${DATE, T, D, -146}&quot;)</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
             </table>
           </div>
         </text>
@@ -28362,7 +28686,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="60"/>
+            <valueInteger value="65"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="10"/>
@@ -28379,6 +28703,66 @@
             <text value="'Manual palpation of vagina (procedure)' is the default display; the code system http://snomed.info/sct has no Display Names for the language nl"/>
           </details>
           <expression value="DiagnosticReport.code.coding[0].display"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="81"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="43"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Ongeldige datum/tijd (${DATE, T, D, -146})"/>
+          </details>
+          <expression value="DiagnosticReport.effective.ofType(Period).start"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="82"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="41"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Ongeldige datum/tijd (${DATE, T, D, -146})"/>
+          </details>
+          <expression value="DiagnosticReport.effective.ofType(Period).end"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="21"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="http://hl7.org/fhir/StructureDefinition/Period#per-1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invariant"/>
+          <details>
+            <text value="Fout bij constraint: per-1: 'If present, start SHALL have a lower value than end'Invalid date/time format: &quot;${DATE, T, D, -146}&quot; (log: Invalid date/time format: &quot;${DATE, T, D, -146}&quot;)"/>
+          </details>
+          <expression value="DiagnosticReport.effective.ofType(Period)"/>
         </issue>
       </OperationOutcome>
     </resource>
@@ -31434,6 +31818,14 @@
                 <td/>
                 <td>InstanceValidator</td>
               </tr>
+              <tr>
+                <td>Information</td>
+                <td>Observation.value.ofType(CodeableConcept)</td>
+                <td>Business Rule Violation</td>
+                <td>Reference to draft ValueSet http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.90.77.11.274--20200512160326|2020-05-12T16:03:26</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
             </table>
           </div>
         </text>
@@ -31459,6 +31851,26 @@
             <text value="Ongeldige datum/tijd (${DATE, T, D, -52})"/>
           </details>
           <expression value="Observation.effective.ofType(dateTime)"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="77"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="26"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="MSG_DRAFT"/>
+          </extension>
+          <severity value="information"/>
+          <code value="business-rule"/>
+          <details>
+            <text value="Reference to draft ValueSet http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.90.77.11.274--20200512160326|2020-05-12T16:03:26"/>
+          </details>
+          <expression value="Observation.value.ofType(CodeableConcept)"/>
         </issue>
       </OperationOutcome>
     </resource>
@@ -31509,7 +31921,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="56"/>
+            <valueInteger value="50"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="51"/>
@@ -31962,7 +32374,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="70"/>
+            <valueInteger value="64"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="52"/>
@@ -32219,7 +32631,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="62"/>
+            <valueInteger value="56"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="52"/>
@@ -32731,6 +33143,123 @@
           <details>
             <text value="Alles OK"/>
           </details>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+                <td>
+                  <b>Bron</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Warning</td>
+                <td>PractitionerRole.specialty[0].coding[0]</td>
+                <td>Not Found</td>
+                <td>De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.6.7' is niet gevonden, dus kan de code niet worden gevalideerd</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+              <tr>
+                <td>Warning</td>
+                <td>PractitionerRole.telecom[0].extension[0].value.ofType(CodeableConcept).coding[0]</td>
+                <td>Not Found</td>
+                <td>De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1' is niet gevonden, dus kan de code niet worden gevalideerd</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>PractitionerRole.specialty[0].coding[0]</td>
+                <td>Invalid Code</td>
+                <td>De gevonden code (urn:oid:2.16.840.1.113883.2.4.6.7#0800) staat niet in waardelijst 'SpecialismeAGBCodelijst' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.1.7--20171231000000|2017-12-31T00:00:00) en een code uit deze waardelijst is verplicht: De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.6.7' is niet gevonden, dus kan de code niet worden gevalideerd</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../med_mij_uitbreiding_verloskunde_beschikbaarstellen/fhir_instance/gz-izv-tes-casus9999/mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-08617625080008009999.xml"/>
+        </extension>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="50"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="15"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="not-found"/>
+          <details>
+            <text value="De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.6.7' is niet gevonden, dus kan de code niet worden gevalideerd"/>
+          </details>
+          <expression value="PractitionerRole.specialty[0].coding[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="59"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="32"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="not-found"/>
+          <details>
+            <text value="De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1' is niet gevonden, dus kan de code niet worden gevalideerd"/>
+          </details>
+          <expression value="PractitionerRole.telecom[0].extension[0].value.ofType(CodeableConcept).coding[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="51"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="15"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Terminology_TX_Confirm_4a"/>
+          </extension>
+          <severity value="error"/>
+          <code value="code-invalid"/>
+          <details>
+            <text value="De gevonden code (urn:oid:2.16.840.1.113883.2.4.6.7#0800) staat niet in waardelijst 'SpecialismeAGBCodelijst' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.1.7--20171231000000|2017-12-31T00:00:00) en een code uit deze waardelijst is verplicht: De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.6.7' is niet gevonden, dus kan de code niet worden gevalideerd"/>
+          </details>
+          <expression value="PractitionerRole.specialty[0].coding[0]"/>
         </issue>
       </OperationOutcome>
     </resource>
@@ -34200,7 +34729,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="60"/>
+            <valueInteger value="54"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="10"/>
@@ -34220,7 +34749,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="76"/>
+            <valueInteger value="70"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="58"/>
@@ -34240,7 +34769,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="77"/>
+            <valueInteger value="71"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="56"/>
@@ -34260,7 +34789,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="75"/>
+            <valueInteger value="69"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="21"/>
@@ -34327,7 +34856,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="68"/>
+            <valueInteger value="62"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="52"/>
@@ -34579,7 +35108,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="68"/>
+            <valueInteger value="62"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="52"/>
@@ -34646,7 +35175,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="70"/>
+            <valueInteger value="64"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="52"/>
@@ -34698,131 +35227,8 @@
                 </td>
               </tr>
               <tr>
-                <td>Error</td>
-                <td>EpisodeOfCare.period</td>
-                <td>Validation rule failed</td>
-                <td>Fout bij constraint: per-1: 'If present, start SHALL have a lower value than end'Invalid date/time format: &quot;${DATE, T, D, -146}&quot; (log: Invalid date/time format: &quot;${DATE, T, D, -146}&quot;)</td>
-                <td/>
-                <td>InstanceValidator</td>
-              </tr>
-              <tr>
-                <td>Error</td>
-                <td>EpisodeOfCare.period.start</td>
-                <td>Invalid Content</td>
-                <td>Ongeldige datum/tijd (${DATE, T, D, -146})</td>
-                <td/>
-                <td>InstanceValidator</td>
-              </tr>
-              <tr>
-                <td>Error</td>
-                <td>EpisodeOfCare.period.end</td>
-                <td>Invalid Content</td>
-                <td>Ongeldige datum/tijd (${DATE, T, D, -9})</td>
-                <td/>
-                <td>InstanceValidator</td>
-              </tr>
-            </table>
-          </div>
-        </text>
-        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
-          <valueString value="./../med_mij_uitbreiding_verloskunde_beschikbaarstellen/fhir_instance/gz-izv-tes-casus9999/mm-gbz-bc-MaternalRecord-24eb4a5f-6b11-11ec-0000-020000000000.xml"/>
-        </extension>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="61"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="12"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="InstanceValidator"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="http://hl7.org/fhir/StructureDefinition/EpisodeOfCare#per-1"/>
-          </extension>
-          <severity value="error"/>
-          <code value="invariant"/>
-          <details>
-            <text value="Fout bij constraint: per-1: 'If present, start SHALL have a lower value than end'Invalid date/time format: &quot;${DATE, T, D, -146}&quot; (log: Invalid date/time format: &quot;${DATE, T, D, -146}&quot;)"/>
-          </details>
-          <expression value="EpisodeOfCare.period"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="62"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="43"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="InstanceValidator"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
-          </extension>
-          <severity value="error"/>
-          <code value="invalid"/>
-          <details>
-            <text value="Ongeldige datum/tijd (${DATE, T, D, -146})"/>
-          </details>
-          <expression value="EpisodeOfCare.period.start"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="63"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="39"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="InstanceValidator"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
-          </extension>
-          <severity value="error"/>
-          <code value="invalid"/>
-          <details>
-            <text value="Ongeldige datum/tijd (${DATE, T, D, -9})"/>
-          </details>
-          <expression value="EpisodeOfCare.period.end"/>
-        </issue>
-      </OperationOutcome>
-    </resource>
-  </entry>
-  <entry>
-    <resource>
-      <OperationOutcome>
-        <text>
-          <status value="generated"/>
-          <div xmlns="http://www.w3.org/1999/xhtml">
-            <p class="res-header-id">
-              <b>OperationOutcome </b>
-            </p>
-            <table class="grid">
-              <tr>
-                <td>
-                  <b>Ernst</b>
-                </td>
-                <td>
-                  <b>Locatie</b>
-                </td>
-                <td>
-                  <b>Code</b>
-                </td>
-                <td>
-                  <b>Details</b>
-                </td>
-                <td>
-                  <b>Kenmerken</b>
-                </td>
-                <td>
-                  <b>Bron</b>
-                </td>
-              </tr>
-              <tr>
                 <td>Warning</td>
-                <td>Observation.component[0].dataAbsentReason.coding[0].display</td>
+                <td>Observation.component[0].value.ofType(CodeableConcept).coding[0].display</td>
                 <td>Invalid Content</td>
                 <td>Verkeerde weergavenaam 'Anders' voor http://hl7.org/fhir/v3/NullFlavor#OTH - moet zijn ''other'' (voor taal/talen 'nl')</td>
                 <td/>
@@ -34844,10 +35250,10 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="90"/>
+            <valueInteger value="86"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="25"/>
+            <valueInteger value="29"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
             <valueString value="TerminologyEngine"/>
@@ -34860,11 +35266,11 @@
           <details>
             <text value="Verkeerde weergavenaam 'Anders' voor http://hl7.org/fhir/v3/NullFlavor#OTH - moet zijn ''other'' (voor taal/talen 'nl')"/>
           </details>
-          <expression value="Observation.component[0].dataAbsentReason.coding[0].display"/>
+          <expression value="Observation.component[0].value.ofType(CodeableConcept).coding[0].display"/>
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="134"/>
+            <valueInteger value="130"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="51"/>
@@ -35121,6 +35527,14 @@
                 <td/>
                 <td>TerminologyEngine</td>
               </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Observation.component[1].value.ofType(CodeableConcept).coding[0]</td>
+                <td>Not Found</td>
+                <td>De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.8.1' is niet gevonden, dus kan de code niet worden gevalideerd</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
             </table>
           </div>
         </text>
@@ -35129,7 +35543,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="74"/>
+            <valueInteger value="82"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="66"/>
@@ -35149,7 +35563,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="82"/>
+            <valueInteger value="90"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="13"/>
@@ -35166,6 +35580,23 @@
             <text value="There are no valid display names found for the code http://loinc.org#11769-7 for language(s) 'nl'. The display is 'Body weight percentile range Categorization by comparison with standards' the default language display"/>
           </details>
           <expression value="Observation.component[0].code.coding[0].display"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="117"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="29"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="not-found"/>
+          <details>
+            <text value="De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.8.1' is niet gevonden, dus kan de code niet worden gevalideerd"/>
+          </details>
+          <expression value="Observation.component[1].value.ofType(CodeableConcept).coding[0]"/>
         </issue>
       </OperationOutcome>
     </resource>
@@ -38285,7 +38716,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="68"/>
+            <valueInteger value="74"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="66"/>
@@ -38305,7 +38736,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="69"/>
+            <valueInteger value="75"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="62"/>
@@ -38389,123 +38820,6 @@
             <text value="Ongeldige datum/tijd (${DATE, T, D, -53}T08:36:00+02:00)"/>
           </details>
           <expression value="Observation.effective.ofType(dateTime)"/>
-        </issue>
-      </OperationOutcome>
-    </resource>
-  </entry>
-  <entry>
-    <resource>
-      <OperationOutcome>
-        <text>
-          <status value="generated"/>
-          <div xmlns="http://www.w3.org/1999/xhtml">
-            <p class="res-header-id">
-              <b>OperationOutcome </b>
-            </p>
-            <table class="grid">
-              <tr>
-                <td>
-                  <b>Ernst</b>
-                </td>
-                <td>
-                  <b>Locatie</b>
-                </td>
-                <td>
-                  <b>Code</b>
-                </td>
-                <td>
-                  <b>Details</b>
-                </td>
-                <td>
-                  <b>Kenmerken</b>
-                </td>
-                <td>
-                  <b>Bron</b>
-                </td>
-              </tr>
-              <tr>
-                <td>Warning</td>
-                <td>PractitionerRole.specialty[0].coding[0]</td>
-                <td>Not Found</td>
-                <td>De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.6.7' is niet gevonden, dus kan de code niet worden gevalideerd</td>
-                <td/>
-                <td>TerminologyEngine</td>
-              </tr>
-              <tr>
-                <td>Warning</td>
-                <td>PractitionerRole.telecom[0].extension[0].value.ofType(CodeableConcept).coding[0]</td>
-                <td>Not Found</td>
-                <td>De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1' is niet gevonden, dus kan de code niet worden gevalideerd</td>
-                <td/>
-                <td>TerminologyEngine</td>
-              </tr>
-              <tr>
-                <td>Error</td>
-                <td>PractitionerRole.specialty[0].coding[0]</td>
-                <td>Invalid Code</td>
-                <td>De gevonden code (urn:oid:2.16.840.1.113883.2.4.6.7#08617625) staat niet in waardelijst 'SpecialismeAGBCodelijst' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.1.7--20171231000000|2017-12-31T00:00:00) en een code uit deze waardelijst is verplicht: De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.6.7' is niet gevonden, dus kan de code niet worden gevalideerd</td>
-                <td/>
-                <td>TerminologyEngine</td>
-              </tr>
-            </table>
-          </div>
-        </text>
-        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
-          <valueString value="./../med_mij_uitbreiding_verloskunde_beschikbaarstellen/fhir_instance/gz-izv-tes-casus9999/mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-086176250861762508009999.xml"/>
-        </extension>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="50"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="15"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="TerminologyEngine"/>
-          </extension>
-          <severity value="warning"/>
-          <code value="not-found"/>
-          <details>
-            <text value="De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.6.7' is niet gevonden, dus kan de code niet worden gevalideerd"/>
-          </details>
-          <expression value="PractitionerRole.specialty[0].coding[0]"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="59"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="32"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="TerminologyEngine"/>
-          </extension>
-          <severity value="warning"/>
-          <code value="not-found"/>
-          <details>
-            <text value="De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1' is niet gevonden, dus kan de code niet worden gevalideerd"/>
-          </details>
-          <expression value="PractitionerRole.telecom[0].extension[0].value.ofType(CodeableConcept).coding[0]"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="51"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="15"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="TerminologyEngine"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Terminology_TX_Confirm_4a"/>
-          </extension>
-          <severity value="error"/>
-          <code value="code-invalid"/>
-          <details>
-            <text value="De gevonden code (urn:oid:2.16.840.1.113883.2.4.6.7#08617625) staat niet in waardelijst 'SpecialismeAGBCodelijst' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.1.7--20171231000000|2017-12-31T00:00:00) en een code uit deze waardelijst is verplicht: De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.6.7' is niet gevonden, dus kan de code niet worden gevalideerd"/>
-          </details>
-          <expression value="PractitionerRole.specialty[0].coding[0]"/>
         </issue>
       </OperationOutcome>
     </resource>
@@ -38889,6 +39203,14 @@
                 <td/>
                 <td>InstanceValidator</td>
               </tr>
+              <tr>
+                <td>Information</td>
+                <td>Observation.value.ofType(CodeableConcept)</td>
+                <td>Business Rule Violation</td>
+                <td>Reference to draft ValueSet http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.90.77.11.274--20200512160326|2020-05-12T16:03:26</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
             </table>
           </div>
         </text>
@@ -38914,6 +39236,26 @@
             <text value="Ongeldige datum/tijd (${DATE, T, D, -53}T15:03:00+02:00)"/>
           </details>
           <expression value="Observation.effective.ofType(dateTime)"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="71"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="26"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="MSG_DRAFT"/>
+          </extension>
+          <severity value="information"/>
+          <code value="business-rule"/>
+          <details>
+            <text value="Reference to draft ValueSet http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.90.77.11.274--20200512160326|2020-05-12T16:03:26"/>
+          </details>
+          <expression value="Observation.value.ofType(CodeableConcept)"/>
         </issue>
       </OperationOutcome>
     </resource>
@@ -38996,7 +39338,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="96"/>
+            <valueInteger value="92"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="43"/>
@@ -39016,7 +39358,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="97"/>
+            <valueInteger value="93"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="41"/>
@@ -39036,7 +39378,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="95"/>
+            <valueInteger value="91"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="21"/>
@@ -39056,7 +39398,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="100"/>
+            <valueInteger value="96"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="13"/>
@@ -39076,7 +39418,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="132"/>
+            <valueInteger value="128"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="32"/>
@@ -39926,6 +40268,280 @@
               </tr>
               <tr>
                 <td>Warning</td>
+                <td>Immunization.vaccineCode.coding[0].system</td>
+                <td>Not Found</td>
+                <td>A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4.1' could not be found, so the code cannot be validated</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Immunization.date</td>
+                <td>Invalid Content</td>
+                <td>Ongeldige datum/tijd (${DATE, T, D, -146})</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Immunization.practitioner[0].role.coding[0].display</td>
+                <td>Invalid Content</td>
+                <td>Verkeerde weergavenaam 'Behandelaar' voor http://hl7.org/fhir/v3/ParticipationType#ATND - moet zijn ''attender'' (voor taal/talen 'nl')</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Immunization.vaccineCode.coding[0]</td>
+                <td>Invalid Code</td>
+                <td>De gevonden code (urn:oid:2.16.840.1.113883.2.4.4.1#2873826) staat niet in waardelijst 'ProductCodeGPKCodelijst' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.11.1.3--20171231000000|2017-12-31T00:00:00) en een code uit deze waardelijst is verplicht: De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4.1' is niet gevonden, dus kan de code niet worden gevalideerd</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../med_mij_uitbreiding_verloskunde_beschikbaarstellen/fhir_instance/gz-izv-tes-casus9999/mm-gbz-zib-Vaccination-Vaccination-mm-gbz-40d4d506-6b07-11ec-2366-020000000000.xml"/>
+        </extension>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="48"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="17"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="UNKNOWN_CODESYSTEM"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="not-found"/>
+          <details>
+            <text value="A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4.1' could not be found, so the code cannot be validated"/>
+          </details>
+          <expression value="Immunization.vaccineCode.coding[0].system"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="59"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="39"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Ongeldige datum/tijd (${DATE, T, D, -146})"/>
+          </details>
+          <expression value="Immunization.date"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="68"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="13"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Display_Name_for__should_be_one_of__instead_of"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Verkeerde weergavenaam 'Behandelaar' voor http://hl7.org/fhir/v3/ParticipationType#ATND - moet zijn ''attender'' (voor taal/talen 'nl')"/>
+          </details>
+          <expression value="Immunization.practitioner[0].role.coding[0].display"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="49"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="15"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Terminology_TX_Confirm_4a"/>
+          </extension>
+          <severity value="error"/>
+          <code value="code-invalid"/>
+          <details>
+            <text value="De gevonden code (urn:oid:2.16.840.1.113883.2.4.4.1#2873826) staat niet in waardelijst 'ProductCodeGPKCodelijst' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.11.1.3--20171231000000|2017-12-31T00:00:00) en een code uit deze waardelijst is verplicht: De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4.1' is niet gevonden, dus kan de code niet worden gevalideerd"/>
+          </details>
+          <expression value="Immunization.vaccineCode.coding[0]"/>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+                <td>
+                  <b>Bron</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>DiagnosticReport.effective.ofType(Period).start</td>
+                <td>Invalid Content</td>
+                <td>Ongeldige datum/tijd (${DATE, T, D, -146})</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>DiagnosticReport.effective.ofType(Period).end</td>
+                <td>Invalid Content</td>
+                <td>Ongeldige datum/tijd (${DATE, T, D, -146})</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>DiagnosticReport.effective.ofType(Period)</td>
+                <td>Validation rule failed</td>
+                <td>Fout bij constraint: per-1: 'If present, start SHALL have a lower value than end'Invalid date/time format: &quot;${DATE, T, D, -146}&quot; (log: Invalid date/time format: &quot;${DATE, T, D, -146}&quot;)</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../med_mij_uitbreiding_verloskunde_beschikbaarstellen/fhir_instance/gz-izv-tes-casus9999/mm-gbz-bc-PregnancyUltraSound169228004-82f10a5f-6ae8-11ec-2120-020000000000.xml"/>
+        </extension>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="105"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="43"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Ongeldige datum/tijd (${DATE, T, D, -146})"/>
+          </details>
+          <expression value="DiagnosticReport.effective.ofType(Period).start"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="106"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="41"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Ongeldige datum/tijd (${DATE, T, D, -146})"/>
+          </details>
+          <expression value="DiagnosticReport.effective.ofType(Period).end"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="104"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="21"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="http://hl7.org/fhir/StructureDefinition/Period#per-1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invariant"/>
+          <details>
+            <text value="Fout bij constraint: per-1: 'If present, start SHALL have a lower value than end'Invalid date/time format: &quot;${DATE, T, D, -146}&quot; (log: Invalid date/time format: &quot;${DATE, T, D, -146}&quot;)"/>
+          </details>
+          <expression value="DiagnosticReport.effective.ofType(Period)"/>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+                <td>
+                  <b>Bron</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Warning</td>
                 <td>Condition.verificationStatus.extension[0].value.ofType(CodeableConcept).coding[0].display</td>
                 <td>Invalid Content</td>
                 <td>Wrong Display Name 'Bevestigd' for http://snomed.info/sct#410605003. Valid display is one of 2 choices: 'aanwezigheid bevestigd' (nl) or 'aanwezigheid bevestigd (kwalificatiewaarde)' (nl) (for the language(s) 'nl')</td>
@@ -40188,7 +40804,7 @@
               </tr>
               <tr>
                 <td>Warning</td>
-                <td>Observation.dataAbsentReason.coding[0].display</td>
+                <td>Observation.value.ofType(CodeableConcept).coding[0].display</td>
                 <td>Invalid Content</td>
                 <td>Verkeerde weergavenaam 'Overig' voor http://hl7.org/fhir/v3/NullFlavor#OTH - moet zijn ''other'' (voor taal/talen 'nl')</td>
                 <td/>
@@ -40210,7 +40826,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="74"/>
+            <valueInteger value="70"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="50"/>
@@ -40230,10 +40846,10 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="85"/>
+            <valueInteger value="81"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="22"/>
+            <valueInteger value="26"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
             <valueString value="TerminologyEngine"/>
@@ -40246,11 +40862,11 @@
           <details>
             <text value="Verkeerde weergavenaam 'Overig' voor http://hl7.org/fhir/v3/NullFlavor#OTH - moet zijn ''other'' (voor taal/talen 'nl')"/>
           </details>
-          <expression value="Observation.dataAbsentReason.coding[0].display"/>
+          <expression value="Observation.value.ofType(CodeableConcept).coding[0].display"/>
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="93"/>
+            <valueInteger value="89"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="12"/>
@@ -40985,6 +41601,129 @@
                 </td>
               </tr>
               <tr>
+                <td>Error</td>
+                <td>EpisodeOfCare.period</td>
+                <td>Validation rule failed</td>
+                <td>Fout bij constraint: per-1: 'If present, start SHALL have a lower value than end'Invalid date/time format: &quot;${DATE, T, D, -146}&quot; (log: Invalid date/time format: &quot;${DATE, T, D, -146}&quot;)</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>EpisodeOfCare.period.start</td>
+                <td>Invalid Content</td>
+                <td>Ongeldige datum/tijd (${DATE, T, D, -146})</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>EpisodeOfCare.period.end</td>
+                <td>Invalid Content</td>
+                <td>Ongeldige datum/tijd (${DATE, T, D, -9})</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../med_mij_uitbreiding_verloskunde_beschikbaarstellen/fhir_instance/gz-izv-tes-casus9999/mm-gbz-bc-MaternalRecord-e2116b0f-6b20-11ec-0000-020000000000.xml"/>
+        </extension>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="61"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="12"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="http://hl7.org/fhir/StructureDefinition/EpisodeOfCare#per-1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invariant"/>
+          <details>
+            <text value="Fout bij constraint: per-1: 'If present, start SHALL have a lower value than end'Invalid date/time format: &quot;${DATE, T, D, -146}&quot; (log: Invalid date/time format: &quot;${DATE, T, D, -146}&quot;)"/>
+          </details>
+          <expression value="EpisodeOfCare.period"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="62"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="43"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Ongeldige datum/tijd (${DATE, T, D, -146})"/>
+          </details>
+          <expression value="EpisodeOfCare.period.start"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="63"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="39"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Ongeldige datum/tijd (${DATE, T, D, -9})"/>
+          </details>
+          <expression value="EpisodeOfCare.period.end"/>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+                <td>
+                  <b>Bron</b>
+                </td>
+              </tr>
+              <tr>
                 <td>Warning</td>
                 <td>Observation.code.coding[0].display</td>
                 <td>Invalid Content</td>
@@ -41221,7 +41960,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="83"/>
+            <valueInteger value="77"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="58"/>
@@ -41241,7 +41980,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="84"/>
+            <valueInteger value="78"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="56"/>
@@ -41261,7 +42000,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="82"/>
+            <valueInteger value="76"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="21"/>
@@ -41281,7 +42020,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="96"/>
+            <valueInteger value="90"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="26"/>
@@ -42039,6 +42778,14 @@
                 <td/>
                 <td>InstanceValidator</td>
               </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Observation.component[0].value.ofType(CodeableConcept).coding[0]</td>
+                <td>Not Found</td>
+                <td>De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.8.1' is niet gevonden, dus kan de code niet worden gevalideerd</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
             </table>
           </div>
         </text>
@@ -42047,7 +42794,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="63"/>
+            <valueInteger value="71"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="66"/>
@@ -42064,6 +42811,23 @@
             <text value="Ongeldige datum/tijd (${DATE, T, D, -53}T15:34:00+02:00)"/>
           </details>
           <expression value="Observation.effective.ofType(dateTime)"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="86"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="29"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="not-found"/>
+          <details>
+            <text value="De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.8.1' is niet gevonden, dus kan de code niet worden gevalideerd"/>
+          </details>
+          <expression value="Observation.component[0].value.ofType(CodeableConcept).coding[0]"/>
         </issue>
       </OperationOutcome>
     </resource>
@@ -42593,7 +43357,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="83"/>
+            <valueInteger value="77"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="58"/>
@@ -42613,7 +43377,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="84"/>
+            <valueInteger value="78"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="56"/>
@@ -42633,7 +43397,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="82"/>
+            <valueInteger value="76"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="21"/>
@@ -42653,7 +43417,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="96"/>
+            <valueInteger value="90"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="26"/>
@@ -42673,7 +43437,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="96"/>
+            <valueInteger value="90"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="26"/>
@@ -42772,7 +43536,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="86"/>
+            <valueInteger value="95"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="42"/>
@@ -42792,7 +43556,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="87"/>
+            <valueInteger value="96"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="40"/>
@@ -42812,7 +43576,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="85"/>
+            <valueInteger value="94"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="21"/>
@@ -42832,7 +43596,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="90"/>
+            <valueInteger value="99"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="13"/>
@@ -42852,7 +43616,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="122"/>
+            <valueInteger value="131"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="32"/>
@@ -43817,6 +44581,14 @@
                 <td/>
                 <td>InstanceValidator</td>
               </tr>
+              <tr>
+                <td>Information</td>
+                <td>Observation.value.ofType(CodeableConcept)</td>
+                <td>Business Rule Violation</td>
+                <td>Reference to draft ValueSet http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.90.77.11.274--20200512160326|2020-05-12T16:03:26</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
             </table>
           </div>
         </text>
@@ -43842,6 +44614,26 @@
             <text value="Ongeldige datum/tijd (${DATE, T, D, -53})"/>
           </details>
           <expression value="Observation.effective.ofType(dateTime)"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="77"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="26"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="MSG_DRAFT"/>
+          </extension>
+          <severity value="information"/>
+          <code value="business-rule"/>
+          <details>
+            <text value="Reference to draft ValueSet http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.90.77.11.274--20200512160326|2020-05-12T16:03:26"/>
+          </details>
+          <expression value="Observation.value.ofType(CodeableConcept)"/>
         </issue>
       </OperationOutcome>
     </resource>
@@ -44300,6 +45092,14 @@
                 <td/>
                 <td>TerminologyEngine</td>
               </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Observation.component[1].value.ofType(CodeableConcept).coding[0]</td>
+                <td>Not Found</td>
+                <td>De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.8.1' is niet gevonden, dus kan de code niet worden gevalideerd</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
             </table>
           </div>
         </text>
@@ -44308,7 +45108,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="79"/>
+            <valueInteger value="87"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="66"/>
@@ -44328,7 +45128,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="88"/>
+            <valueInteger value="96"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="13"/>
@@ -44345,6 +45145,23 @@
             <text value="There are no valid display names found for the code http://loinc.org#11769-7 for language(s) 'nl'. The display is 'Body weight percentile range Categorization by comparison with standards' the default language display"/>
           </details>
           <expression value="Observation.component[0].code.coding[0].display"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="123"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="29"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="not-found"/>
+          <details>
+            <text value="De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.8.1' is niet gevonden, dus kan de code niet worden gevalideerd"/>
+          </details>
+          <expression value="Observation.component[1].value.ofType(CodeableConcept).coding[0]"/>
         </issue>
       </OperationOutcome>
     </resource>
@@ -44668,6 +45485,123 @@
                 </td>
               </tr>
               <tr>
+                <td>Warning</td>
+                <td>PractitionerRole.specialty[0].coding[0]</td>
+                <td>Not Found</td>
+                <td>De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.6.7' is niet gevonden, dus kan de code niet worden gevalideerd</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+              <tr>
+                <td>Warning</td>
+                <td>PractitionerRole.telecom[0].extension[0].value.ofType(CodeableConcept).coding[0]</td>
+                <td>Not Found</td>
+                <td>De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1' is niet gevonden, dus kan de code niet worden gevalideerd</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>PractitionerRole.specialty[0].coding[0]</td>
+                <td>Invalid Code</td>
+                <td>De gevonden code (urn:oid:2.16.840.1.113883.2.4.6.7#0307) staat niet in waardelijst 'SpecialismeAGBCodelijst' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.1.7--20171231000000|2017-12-31T00:00:00) en een code uit deze waardelijst is verplicht: De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.6.7' is niet gevonden, dus kan de code niet worden gevalideerd</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../med_mij_uitbreiding_verloskunde_beschikbaarstellen/fhir_instance/gz-izv-tes-casus9999/mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-03073167030706019999.xml"/>
+        </extension>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="50"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="15"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="not-found"/>
+          <details>
+            <text value="De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.6.7' is niet gevonden, dus kan de code niet worden gevalideerd"/>
+          </details>
+          <expression value="PractitionerRole.specialty[0].coding[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="59"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="32"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="not-found"/>
+          <details>
+            <text value="De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1' is niet gevonden, dus kan de code niet worden gevalideerd"/>
+          </details>
+          <expression value="PractitionerRole.telecom[0].extension[0].value.ofType(CodeableConcept).coding[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="51"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="15"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Terminology_TX_Confirm_4a"/>
+          </extension>
+          <severity value="error"/>
+          <code value="code-invalid"/>
+          <details>
+            <text value="De gevonden code (urn:oid:2.16.840.1.113883.2.4.6.7#0307) staat niet in waardelijst 'SpecialismeAGBCodelijst' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.1.7--20171231000000|2017-12-31T00:00:00) en een code uit deze waardelijst is verplicht: De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.6.7' is niet gevonden, dus kan de code niet worden gevalideerd"/>
+          </details>
+          <expression value="PractitionerRole.specialty[0].coding[0]"/>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+                <td>
+                  <b>Bron</b>
+                </td>
+              </tr>
+              <tr>
                 <td>Error</td>
                 <td>ClinicalImpression.effective.ofType(dateTime)</td>
                 <td>Invalid Content</td>
@@ -44839,9 +45773,9 @@
               </tr>
               <tr>
                 <td>Warning</td>
-                <td>Observation.component[0].value.ofType(CodeableConcept).coding[0].system</td>
+                <td>Observation.component[0].value.ofType(CodeableConcept).coding[0]</td>
                 <td>Not Found</td>
-                <td>A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.22.1.2.200' could not be found, so the code cannot be validated</td>
+                <td>De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4.13.56' is niet gevonden, dus kan de code niet worden gevalideerd</td>
                 <td/>
                 <td>TerminologyEngine</td>
               </tr>
@@ -44849,15 +45783,15 @@
                 <td>Warning</td>
                 <td>Observation.component[1].value.ofType(CodeableConcept).coding[0].system</td>
                 <td>Not Found</td>
-                <td>A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4.13.57' could not be found, so the code cannot be validated</td>
+                <td>A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.22.1.2.200' could not be found, so the code cannot be validated</td>
                 <td/>
                 <td>TerminologyEngine</td>
               </tr>
               <tr>
                 <td>Warning</td>
-                <td>Observation.component[0].value.ofType(CodeableConcept).coding[0]</td>
+                <td>Observation.component[2].value.ofType(CodeableConcept).coding[0].system</td>
                 <td>Not Found</td>
-                <td>De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.22.1.2.200' is niet gevonden, dus kan de code niet worden gevalideerd</td>
+                <td>A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4.13.57' could not be found, so the code cannot be validated</td>
                 <td/>
                 <td>TerminologyEngine</td>
               </tr>
@@ -44865,7 +45799,7 @@
                 <td>Warning</td>
                 <td>Observation.component[0].value.ofType(CodeableConcept)</td>
                 <td>Invalid Code</td>
-                <td>Kan niet controleren of de code in de waardelijst 'http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.90.77.11.256--20200406125154|2020-04-06T12:51:54' staat, omdat het codesysteem urn:oid:2.16.840.1.113883.2.4.3.22.1.2.200 niet is gevonden</td>
+                <td>Kan niet controleren of de code in de waardelijst 'http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.90.77.11.32--20140904000000|2014-09-04T00:00:00' staat, omdat het codesysteem urn:oid:2.16.840.1.113883.2.4.4.13.56 niet is gevonden</td>
                 <td/>
                 <td>TerminologyEngine</td>
               </tr>
@@ -44873,13 +45807,29 @@
                 <td>Warning</td>
                 <td>Observation.component[1].value.ofType(CodeableConcept).coding[0]</td>
                 <td>Not Found</td>
-                <td>De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4.13.57' is niet gevonden, dus kan de code niet worden gevalideerd</td>
+                <td>De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.22.1.2.200' is niet gevonden, dus kan de code niet worden gevalideerd</td>
                 <td/>
                 <td>TerminologyEngine</td>
               </tr>
               <tr>
                 <td>Warning</td>
                 <td>Observation.component[1].value.ofType(CodeableConcept)</td>
+                <td>Invalid Code</td>
+                <td>Kan niet controleren of de code in de waardelijst 'http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.90.77.11.256--20200406125154|2020-04-06T12:51:54' staat, omdat het codesysteem urn:oid:2.16.840.1.113883.2.4.3.22.1.2.200 niet is gevonden</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Observation.component[2].value.ofType(CodeableConcept).coding[0]</td>
+                <td>Not Found</td>
+                <td>De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4.13.57' is niet gevonden, dus kan de code niet worden gevalideerd</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Observation.component[2].value.ofType(CodeableConcept)</td>
                 <td>Invalid Code</td>
                 <td>Kan niet controleren of de code in de waardelijst 'http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.90.77.11.257--20200406134358|2020-04-06T13:43:58' staat, omdat het codesysteem urn:oid:2.16.840.1.113883.2.4.4.13.57 niet is gevonden</td>
                 <td/>
@@ -44893,7 +45843,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="84"/>
+            <valueInteger value="92"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="67"/>
@@ -44913,7 +45863,24 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="100"/>
+            <valueInteger value="108"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="29"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="not-found"/>
+          <details>
+            <text value="De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4.13.56' is niet gevonden, dus kan de code niet worden gevalideerd"/>
+          </details>
+          <expression value="Observation.component[0].value.ofType(CodeableConcept).coding[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="124"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="29"/>
@@ -44929,11 +45896,11 @@
           <details>
             <text value="A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.22.1.2.200' could not be found, so the code cannot be validated"/>
           </details>
-          <expression value="Observation.component[0].value.ofType(CodeableConcept).coding[0].system"/>
+          <expression value="Observation.component[1].value.ofType(CodeableConcept).coding[0].system"/>
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="116"/>
+            <valueInteger value="140"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="29"/>
@@ -44949,11 +45916,31 @@
           <details>
             <text value="A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4.13.57' could not be found, so the code cannot be validated"/>
           </details>
-          <expression value="Observation.component[1].value.ofType(CodeableConcept).coding[0].system"/>
+          <expression value="Observation.component[2].value.ofType(CodeableConcept).coding[0].system"/>
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="100"/>
+            <valueInteger value="108"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="29"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="UNABLE_TO_CHECK_IF_THE_PROVIDED_CODES_ARE_IN_THE_VALUE_SET_CS"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="code-invalid"/>
+          <details>
+            <text value="Kan niet controleren of de code in de waardelijst 'http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.90.77.11.32--20140904000000|2014-09-04T00:00:00' staat, omdat het codesysteem urn:oid:2.16.840.1.113883.2.4.4.13.56 niet is gevonden"/>
+          </details>
+          <expression value="Observation.component[0].value.ofType(CodeableConcept)"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="124"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="29"/>
@@ -44966,11 +45953,11 @@
           <details>
             <text value="De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.22.1.2.200' is niet gevonden, dus kan de code niet worden gevalideerd"/>
           </details>
-          <expression value="Observation.component[0].value.ofType(CodeableConcept).coding[0]"/>
+          <expression value="Observation.component[1].value.ofType(CodeableConcept).coding[0]"/>
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="100"/>
+            <valueInteger value="124"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="29"/>
@@ -44986,11 +45973,11 @@
           <details>
             <text value="Kan niet controleren of de code in de waardelijst 'http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.90.77.11.256--20200406125154|2020-04-06T12:51:54' staat, omdat het codesysteem urn:oid:2.16.840.1.113883.2.4.3.22.1.2.200 niet is gevonden"/>
           </details>
-          <expression value="Observation.component[0].value.ofType(CodeableConcept)"/>
+          <expression value="Observation.component[1].value.ofType(CodeableConcept)"/>
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="116"/>
+            <valueInteger value="140"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="29"/>
@@ -45003,11 +45990,11 @@
           <details>
             <text value="De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4.13.57' is niet gevonden, dus kan de code niet worden gevalideerd"/>
           </details>
-          <expression value="Observation.component[1].value.ofType(CodeableConcept).coding[0]"/>
+          <expression value="Observation.component[2].value.ofType(CodeableConcept).coding[0]"/>
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="116"/>
+            <valueInteger value="140"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="29"/>
@@ -45023,7 +46010,7 @@
           <details>
             <text value="Kan niet controleren of de code in de waardelijst 'http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.90.77.11.257--20200406134358|2020-04-06T13:43:58' staat, omdat het codesysteem urn:oid:2.16.840.1.113883.2.4.4.13.57 niet is gevonden"/>
           </details>
-          <expression value="Observation.component[1].value.ofType(CodeableConcept)"/>
+          <expression value="Observation.component[2].value.ofType(CodeableConcept)"/>
         </issue>
       </OperationOutcome>
     </resource>
@@ -45192,7 +46179,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="62"/>
+            <valueInteger value="56"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="52"/>
@@ -46230,123 +47217,6 @@
               </tr>
               <tr>
                 <td>Warning</td>
-                <td>PractitionerRole.specialty[0].coding[0]</td>
-                <td>Not Found</td>
-                <td>De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.6.7' is niet gevonden, dus kan de code niet worden gevalideerd</td>
-                <td/>
-                <td>TerminologyEngine</td>
-              </tr>
-              <tr>
-                <td>Warning</td>
-                <td>PractitionerRole.telecom[0].extension[0].value.ofType(CodeableConcept).coding[0]</td>
-                <td>Not Found</td>
-                <td>De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1' is niet gevonden, dus kan de code niet worden gevalideerd</td>
-                <td/>
-                <td>TerminologyEngine</td>
-              </tr>
-              <tr>
-                <td>Error</td>
-                <td>PractitionerRole.specialty[0].coding[0]</td>
-                <td>Invalid Code</td>
-                <td>De gevonden code (urn:oid:2.16.840.1.113883.2.4.6.7#03073167) staat niet in waardelijst 'SpecialismeAGBCodelijst' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.1.7--20171231000000|2017-12-31T00:00:00) en een code uit deze waardelijst is verplicht: De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.6.7' is niet gevonden, dus kan de code niet worden gevalideerd</td>
-                <td/>
-                <td>TerminologyEngine</td>
-              </tr>
-            </table>
-          </div>
-        </text>
-        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
-          <valueString value="./../med_mij_uitbreiding_verloskunde_beschikbaarstellen/fhir_instance/gz-izv-tes-casus9999/mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-030731670307316706019999.xml"/>
-        </extension>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="50"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="15"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="TerminologyEngine"/>
-          </extension>
-          <severity value="warning"/>
-          <code value="not-found"/>
-          <details>
-            <text value="De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.6.7' is niet gevonden, dus kan de code niet worden gevalideerd"/>
-          </details>
-          <expression value="PractitionerRole.specialty[0].coding[0]"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="59"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="32"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="TerminologyEngine"/>
-          </extension>
-          <severity value="warning"/>
-          <code value="not-found"/>
-          <details>
-            <text value="De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1' is niet gevonden, dus kan de code niet worden gevalideerd"/>
-          </details>
-          <expression value="PractitionerRole.telecom[0].extension[0].value.ofType(CodeableConcept).coding[0]"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="51"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="15"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="TerminologyEngine"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Terminology_TX_Confirm_4a"/>
-          </extension>
-          <severity value="error"/>
-          <code value="code-invalid"/>
-          <details>
-            <text value="De gevonden code (urn:oid:2.16.840.1.113883.2.4.6.7#03073167) staat niet in waardelijst 'SpecialismeAGBCodelijst' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.1.7--20171231000000|2017-12-31T00:00:00) en een code uit deze waardelijst is verplicht: De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.6.7' is niet gevonden, dus kan de code niet worden gevalideerd"/>
-          </details>
-          <expression value="PractitionerRole.specialty[0].coding[0]"/>
-        </issue>
-      </OperationOutcome>
-    </resource>
-  </entry>
-  <entry>
-    <resource>
-      <OperationOutcome>
-        <text>
-          <status value="generated"/>
-          <div xmlns="http://www.w3.org/1999/xhtml">
-            <p class="res-header-id">
-              <b>OperationOutcome </b>
-            </p>
-            <table class="grid">
-              <tr>
-                <td>
-                  <b>Ernst</b>
-                </td>
-                <td>
-                  <b>Locatie</b>
-                </td>
-                <td>
-                  <b>Code</b>
-                </td>
-                <td>
-                  <b>Details</b>
-                </td>
-                <td>
-                  <b>Kenmerken</b>
-                </td>
-                <td>
-                  <b>Bron</b>
-                </td>
-              </tr>
-              <tr>
-                <td>Warning</td>
                 <td>Observation.code.coding[0].display</td>
                 <td>Invalid Content</td>
                 <td>Wrong Display Name '10 minute Apgar Score' for http://loinc.org#9271-8. Valid display is 'Score^10 min na de geboorte [functie] d.m.v. Apgar' (nl-NL) (for the language(s) 'nl')</td>
@@ -47299,7 +48169,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="96"/>
+            <valueInteger value="92"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="42"/>
@@ -47319,7 +48189,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="97"/>
+            <valueInteger value="93"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="40"/>
@@ -47339,7 +48209,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="95"/>
+            <valueInteger value="91"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="21"/>
@@ -47359,7 +48229,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="100"/>
+            <valueInteger value="96"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="13"/>
@@ -47379,7 +48249,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="132"/>
+            <valueInteger value="128"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="32"/>
@@ -47659,7 +48529,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="64"/>
+            <valueInteger value="58"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="51"/>
@@ -48580,7 +49450,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="83"/>
+            <valueInteger value="77"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="58"/>
@@ -48600,7 +49470,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="84"/>
+            <valueInteger value="78"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="56"/>
@@ -48620,7 +49490,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="82"/>
+            <valueInteger value="76"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="21"/>
@@ -48640,7 +49510,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="96"/>
+            <valueInteger value="90"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="26"/>
@@ -51146,157 +52016,6 @@
               </tr>
               <tr>
                 <td>Warning</td>
-                <td>Immunization.vaccineCode.coding[0].system</td>
-                <td>Not Found</td>
-                <td>A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4.1' could not be found, so the code cannot be validated</td>
-                <td/>
-                <td>TerminologyEngine</td>
-              </tr>
-              <tr>
-                <td>Error</td>
-                <td>Immunization.date</td>
-                <td>Invalid Content</td>
-                <td>Ongeldige datum/tijd (${DATE, T, D, -146})</td>
-                <td/>
-                <td>InstanceValidator</td>
-              </tr>
-              <tr>
-                <td>Warning</td>
-                <td>Immunization.practitioner[0].role.coding[0].display</td>
-                <td>Invalid Content</td>
-                <td>Verkeerde weergavenaam 'Behandelaar' voor http://hl7.org/fhir/v3/ParticipationType#ATND - moet zijn ''attender'' (voor taal/talen 'nl')</td>
-                <td/>
-                <td>TerminologyEngine</td>
-              </tr>
-              <tr>
-                <td>Error</td>
-                <td>Immunization.vaccineCode.coding[0]</td>
-                <td>Invalid Code</td>
-                <td>De gevonden code (urn:oid:2.16.840.1.113883.2.4.4.1#58160-842-11) staat niet in waardelijst 'ProductCodeGPKCodelijst' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.11.1.3--20171231000000|2017-12-31T00:00:00) en een code uit deze waardelijst is verplicht: De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4.1' is niet gevonden, dus kan de code niet worden gevalideerd</td>
-                <td/>
-                <td>TerminologyEngine</td>
-              </tr>
-            </table>
-          </div>
-        </text>
-        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
-          <valueString value="./../med_mij_uitbreiding_verloskunde_beschikbaarstellen/fhir_instance/gz-izv-tes-casus9999/mm-gbz-zib-Vaccination-Vaccination-mm-gbz-7abdedbf-6a9f-11ec-2366-020000000000.xml"/>
-        </extension>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="48"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="17"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="TerminologyEngine"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="UNKNOWN_CODESYSTEM"/>
-          </extension>
-          <severity value="warning"/>
-          <code value="not-found"/>
-          <details>
-            <text value="A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4.1' could not be found, so the code cannot be validated"/>
-          </details>
-          <expression value="Immunization.vaccineCode.coding[0].system"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="59"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="39"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="InstanceValidator"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
-          </extension>
-          <severity value="error"/>
-          <code value="invalid"/>
-          <details>
-            <text value="Ongeldige datum/tijd (${DATE, T, D, -146})"/>
-          </details>
-          <expression value="Immunization.date"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="68"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="13"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="TerminologyEngine"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Display_Name_for__should_be_one_of__instead_of"/>
-          </extension>
-          <severity value="warning"/>
-          <code value="invalid"/>
-          <details>
-            <text value="Verkeerde weergavenaam 'Behandelaar' voor http://hl7.org/fhir/v3/ParticipationType#ATND - moet zijn ''attender'' (voor taal/talen 'nl')"/>
-          </details>
-          <expression value="Immunization.practitioner[0].role.coding[0].display"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="49"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="15"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="TerminologyEngine"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Terminology_TX_Confirm_4a"/>
-          </extension>
-          <severity value="error"/>
-          <code value="code-invalid"/>
-          <details>
-            <text value="De gevonden code (urn:oid:2.16.840.1.113883.2.4.4.1#58160-842-11) staat niet in waardelijst 'ProductCodeGPKCodelijst' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.11.1.3--20171231000000|2017-12-31T00:00:00) en een code uit deze waardelijst is verplicht: De definitie voor CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4.1' is niet gevonden, dus kan de code niet worden gevalideerd"/>
-          </details>
-          <expression value="Immunization.vaccineCode.coding[0]"/>
-        </issue>
-      </OperationOutcome>
-    </resource>
-  </entry>
-  <entry>
-    <resource>
-      <OperationOutcome>
-        <text>
-          <status value="generated"/>
-          <div xmlns="http://www.w3.org/1999/xhtml">
-            <p class="res-header-id">
-              <b>OperationOutcome </b>
-            </p>
-            <table class="grid">
-              <tr>
-                <td>
-                  <b>Ernst</b>
-                </td>
-                <td>
-                  <b>Locatie</b>
-                </td>
-                <td>
-                  <b>Code</b>
-                </td>
-                <td>
-                  <b>Details</b>
-                </td>
-                <td>
-                  <b>Kenmerken</b>
-                </td>
-                <td>
-                  <b>Bron</b>
-                </td>
-              </tr>
-              <tr>
-                <td>Warning</td>
                 <td>Condition.verificationStatus.extension[0].value.ofType(CodeableConcept).coding[0].display</td>
                 <td>Invalid Content</td>
                 <td>Wrong Display Name 'Bevestigd' for http://snomed.info/sct#410605003. Valid display is one of 2 choices: 'aanwezigheid bevestigd' (nl) or 'aanwezigheid bevestigd (kwalificatiewaarde)' (nl) (for the language(s) 'nl')</td>
@@ -52120,7 +52839,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="101"/>
+            <valueInteger value="97"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="58"/>
@@ -52140,7 +52859,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="102"/>
+            <valueInteger value="98"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="56"/>
@@ -52160,7 +52879,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="100"/>
+            <valueInteger value="96"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="21"/>
@@ -52180,7 +52899,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="105"/>
+            <valueInteger value="101"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="13"/>
@@ -52200,7 +52919,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="137"/>
+            <valueInteger value="133"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="32"/>
@@ -52217,73 +52936,6 @@
             <text value="Wrong Display Name 'Rechts en links' for http://snomed.info/sct#51440002. Valid display is one of 3 choices: 'bilateraal' (nl), 'beiderzijds' (nl) or 'bilateraal (kwalificatiewaarde)' (nl) (for the language(s) 'nl')"/>
           </details>
           <expression value="Procedure.bodySite[0].extension[0].value.ofType(CodeableConcept).coding[0].display"/>
-        </issue>
-      </OperationOutcome>
-    </resource>
-  </entry>
-  <entry>
-    <resource>
-      <OperationOutcome>
-        <text>
-          <status value="generated"/>
-          <div xmlns="http://www.w3.org/1999/xhtml">
-            <p class="res-header-id">
-              <b>OperationOutcome </b>
-            </p>
-            <table class="grid">
-              <tr>
-                <td>
-                  <b>Ernst</b>
-                </td>
-                <td>
-                  <b>Locatie</b>
-                </td>
-                <td>
-                  <b>Code</b>
-                </td>
-                <td>
-                  <b>Details</b>
-                </td>
-                <td>
-                  <b>Kenmerken</b>
-                </td>
-                <td>
-                  <b>Bron</b>
-                </td>
-              </tr>
-              <tr>
-                <td>Error</td>
-                <td>DiagnosticReport.effective.ofType(dateTime)</td>
-                <td>Invalid Content</td>
-                <td>Ongeldige datum/tijd (${DATE, T, D, -146}T12:47:00+02:00)</td>
-                <td/>
-                <td>InstanceValidator</td>
-              </tr>
-            </table>
-          </div>
-        </text>
-        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
-          <valueString value="./../med_mij_uitbreiding_verloskunde_beschikbaarstellen/fhir_instance/gz-izv-tes-casus9999/mm-gbz-zib-TextResult16310003-TextResult-mm-gbz-eb07a05f-6b41-11ec-2786-020000000000.xml"/>
-        </extension>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="54"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="67"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="InstanceValidator"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
-          </extension>
-          <severity value="error"/>
-          <code value="invalid"/>
-          <details>
-            <text value="Ongeldige datum/tijd (${DATE, T, D, -146}T12:47:00+02:00)"/>
-          </details>
-          <expression value="DiagnosticReport.effective.ofType(dateTime)"/>
         </issue>
       </OperationOutcome>
     </resource>
@@ -53561,6 +54213,14 @@
                 <td/>
                 <td>InstanceValidator</td>
               </tr>
+              <tr>
+                <td>Information</td>
+                <td>Observation.value.ofType(CodeableConcept)</td>
+                <td>Business Rule Violation</td>
+                <td>Reference to draft ValueSet http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.90.77.11.274--20200512160326|2020-05-12T16:03:26</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
             </table>
           </div>
         </text>
@@ -53586,6 +54246,26 @@
             <text value="Ongeldige datum/tijd (${DATE, T, D, -52})"/>
           </details>
           <expression value="Observation.effective.ofType(dateTime)"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="77"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="26"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="MSG_DRAFT"/>
+          </extension>
+          <severity value="information"/>
+          <code value="business-rule"/>
+          <details>
+            <text value="Reference to draft ValueSet http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.90.77.11.274--20200512160326|2020-05-12T16:03:26"/>
+          </details>
+          <expression value="Observation.value.ofType(CodeableConcept)"/>
         </issue>
       </OperationOutcome>
     </resource>
@@ -53939,7 +54619,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="75"/>
+            <valueInteger value="69"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="52"/>
@@ -54256,7 +54936,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="83"/>
+            <valueInteger value="77"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="58"/>
@@ -54276,7 +54956,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="84"/>
+            <valueInteger value="78"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="56"/>
@@ -54296,7 +54976,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="82"/>
+            <valueInteger value="76"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="21"/>
@@ -54316,7 +54996,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="96"/>
+            <valueInteger value="90"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="26"/>
@@ -54336,7 +55016,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="96"/>
+            <valueInteger value="90"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="26"/>
@@ -54542,7 +55222,7 @@
         </extension>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="78"/>
+            <valueInteger value="72"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="58"/>
@@ -54562,7 +55242,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="79"/>
+            <valueInteger value="73"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="56"/>
@@ -54582,7 +55262,7 @@
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="77"/>
+            <valueInteger value="71"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
             <valueInteger value="21"/>
