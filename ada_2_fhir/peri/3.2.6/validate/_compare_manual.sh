@@ -44,7 +44,7 @@ mv mm-gbz-zib-HeadCircumference9843-4-cea097a7-6b22-11ec-2362-020000000000.xml m
 mv mm-gbz-zib-Pregnancy-Gravidity11996-6-7eeea4de-6af8-11ec-2334-020000000000.xml medmij-gbz-zib-Pregnancy-Gravidity161732006-76d22171-280c-4386-9e53-08ea8c8cd13b.xml
 mv mm-gbz-zib-Pregnancy-Parity11977-6-a0f9852a-6b49-11ec-2334-020000000000.xml medmij-gbz-zib-Pregnancy-Parity364325004-852770ba-c05c-4373-a814-bed3fec708a3.xml
 mv mm-gbz-zib-Pregnancy118185001-3cc38e5b-6ac9-11ec-2334-020000000000.xml medmij-gbz-zib-Pregnancy118185001-0d47bfc2-1933-14ec-1751-030000000000.xml
-mv mm-gbz-zib-Procedure143701000146108-6e8bd802-6abf-11ec-2241-020000000000.xml medmij-gbz-bc-ObstetricProcedure-0f933e4l-4113-14od-1258-020000000000.xml
+mv mm-gbz-bc-ObstetricProcedure143701000146108-6e8bd802-6abf-11ec-2241-020000000000.xml medmij-gbz-bc-ObstetricProcedure-0f933e4l-4113-14od-1258-020000000000.xml
 
 cd ../Echo-Casus2
 
@@ -71,7 +71,7 @@ mv mm-gbz-zib-Payer-Payer-mm-gbz-2940951a-6b35-11ec-2129-020000000000-1.xml medm
 mv mm-gbz-zib-Pregnancy-Gravidity11996-6-e0c60d1b-6ad3-11ec-2334-020000000000.xml medmij-gbz-zib-Pregnancy-Gravidity161732006-0d67gec5-2663-11ec-1741-020000000000.xml
 mv mm-gbz-zib-Pregnancy-Parity11977-6-a1d8cd67-6b2f-11ec-2334-020000000000.xml medmij-gbz-zib-Pregnancy-Parity364325004-0d47afc6-1963-12ec-1142-030000000000.xml
 mv mm-gbz-zib-Pregnancy118185001-c8cdd3f7-6b7c-11ec-2334-020000000000.xml medmij-gbz-zib-Pregnancy118185001-1d47bec2-2933-11ec-3743-040000000000.xml
-mv mm-gbz-zib-Procedure169228004-a42090eb-6af8-11ec-2241-020000000000.xml medmij-gbz-bc-ObstetricProcedure-1f433e4l-4223-15od-1258-020000000000.xml
+mv mm-gbz-bc-ObstetricProcedure169228004-a42090eb-6af8-11ec-2241-020000000000.xml medmij-gbz-bc-ObstetricProcedure-1f433e4l-4223-15od-1258-020000000000.xml
 
 cd ../Echo-Casus3
 
@@ -94,7 +94,7 @@ mv mm-gbz-zib-HeadCircumference9843-4-4d89acd0-6aa4-11ec-2362-020000000000.xml m
 mv mm-gbz-zib-Pregnancy-Gravidity11996-6-de1b872a-6b1b-11ec-2334-020000000000.xml medmij-gbz-zib-Pregnancy-Gravidity161732006-0d47gec7-1063-12ec-1851-090000000000.xml
 mv mm-gbz-zib-Pregnancy-Parity11977-6-d30fff81-6b08-11ec-2334-020000000000.xml medmij-gbz-zib-Pregnancy-Parity364325004-0d47a4c6-2033-21eb-1759-090000000000.xml
 mv mm-gbz-zib-Pregnancy118185001-c6ab20cb-6b5e-11ec-2334-020000000000.xml medmij-gbz-zib-Pregnancy118185001-1e48bfc2-3943-15ec-1751-030000000000.xml
-mv mm-gbz-zib-Procedure133601000146101-c2f2a72b-6b5c-11ec-2241-020000000000.xml medmij-gbz-bc-ObstetricProcedure-8ef5191b-ae29-4410-9a63-82907cdecfb6.xml
+mv mm-gbz-bc-ObstetricProcedure133601000146101-c2f2a72b-6b5c-11ec-2241-020000000000.xml medmij-gbz-bc-ObstetricProcedure-8ef5191b-ae29-4410-9a63-82907cdecfb6.xml
 
 cd ../Kraam-Casus1
 
@@ -162,6 +162,7 @@ mv mm-gbz-zib-Pregnancy-Parity11977-6-123688e3-6b11-11ec-2334-020000000000.xml	m
 mv mm-gbz-zib-Pregnancy118185001-80338356-6b6f-11ec-2334-020000000000.xml	medmij-gbz-zib-Pregnancy118185001-0d47afc5-1963-11ec-1751-020000000000.xml
 mv mm-gbz-zib-Problem708014007-ecc8b67f-6a99-11ec-2259-020000000000.xml	medmij-gbz-zib-Problem708014007-a4918b3f-2221-11ec-8161-020000000000.xml
 mv mm-gbz-zib-TobaccoUse365980008-a25bb5af-6b44-11ec-2224-020000000000.xml	medmij-gbz-zib-TobaccoUse365980008-0d47afe9-2063-11ec-1752-020000000000.xml
+mv mm-gbz-bc-MaternalObservation365469004-271feecf-6b5c-11ec-2291-020000000000.xml medmij-gbz-bc-MaternalObservation-365469004-411bac7f4-0ffe-41c4-b616-67c86577689b.xml
 
 cd ../Kraam-Casus2
 
