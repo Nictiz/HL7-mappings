@@ -1,6 +1,6 @@
 <html lang="en">
    <head>
-      <title>Procedure - aa8fe4d3-6af1-11ec-2241-020000000000</title>
+      <title>Procedure - a02f847a-6b10-11ec-2241-020000000000</title>
       <script type="text/javascript"
               src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
       <style type="text/css">
@@ -18,41 +18,45 @@
       <p>
          <div xmlns="http://www.w3.org/1999/xhtml">
             <table>
-               <caption>Verrichting. Subject: Jamila J XXX_Kwee. Categorie: <span title="obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+               <caption>Verrichting. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Categorie: <span title="obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
                <tbody>
                   <tr>
                      <td>
-                        <span title="laboratoriumonderzoek (verrichting) (15220000 - SNOMED CT)">laboratoriumonderzoek (verrichting)</span>
+                        <span title="prenatale risico-evaluatie (verrichting) (713076009 - SNOMED CT)">prenatale risico-evaluatie (verrichting)</span>
                      </td>
                      <td>
-                        <div>Uitgevoerd: ${DATE, T, D, -195} - ${DATE, T, D, -195}</div>
+                        <div>Uitgevoerd: ${DATE, T, D, -527} - ${DATE, T, D, -527}</div>
                      </td>
                   </tr>
                   <tr>
                      <th>Reden</th>
-                     <td>Zwangerschap 1 XXX_Kwee_Vrouw</td>
+                     <td>Zwangerschap 2 Vrouw-XXX_Yzendoorn</td>
                   </tr>
                </tbody>
             </table>
          </div>
       </p>
       <p>
-         <b>Resources pointing to 'this' resource - Procedure laboratoriumonderzoek (verrichting)</b>
+         <b>Resources pointing to 'this' resource - Procedure prenatale risico-evaluatie (verrichting)</b>
       </p>
-      <div> - none</div>
+      <ul>
+         <li>
+            <a href="mm-gbz-bc-ClinicalImpression386053000-0c23387e-6b4e-11ec-2262-020000000000.html">ClinicalImpression beoordeling (verrichting)</a>
+         </li>
+      </ul>
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 2, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-c934f973-6b23-11ec-0000-020000000000.html" }, 
-{ id: 50, label: "Patient XXX_Kwee", url: "mm-gbz-bc-Woman-JAMILA-J-XXX-KWEE.html" }, 
-{ id: 53, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-55733513-6a97-11ec-2334-020000000000.html" }, 
-{ id: 71, label: "Procedure laboratoriumonderzoek (verrichting)", url: "mm-gbz-zib-Procedure15220000-aa8fe4d3-6af1-11ec-2241-020000000000.html" }, 
+{ id: 3, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-14d1a1ff-6b66-11ec-0000-020000000000.html" }, 
+{ id: 87, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-8e9592ff-6aab-11ec-2334-020000000000.html" }, 
+{ id: 103, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-bc-Woman-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
+{ id: 114, label: "Procedure prenatale risico-evaluatie (verrichting)", url: "mm-gbz-bc-ObstetricProcedure713076009-a02f847a-6b10-11ec-2241-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 71, to: 50 }, 
-{ from: 71, to: 2 }, 
-{ from: 71, to: 53 }, 
+var edges = new vis.DataSet([{ from: 114, to: 103 }, 
+{ from: 114, to: 3 }, 
+{ from: 114, to: 87 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

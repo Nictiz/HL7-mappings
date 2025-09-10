@@ -1,22 +1,23 @@
 <Procedure xmlns="http://hl7.org/fhir">
-   <!-- Source: gz-ize-kwa-casus1 /adaxml/data/med_mij_echo_beschikbaarstellen/medisch_onderzoek/verrichting_onderzoek (peri32-dataelement-2416) -->
-   <id value="6e8bd802-6abf-11ec-2241-020000000000"/>
+   <!-- Source: gz-ize-kwa-casus3 /adaxml/data/med_mij_echo_beschikbaarstellen/medisch_onderzoek/verrichting_onderzoek (peri32-dataelement-2416) -->
+   <id value="c2f2a72b-6b5c-11ec-2241-020000000000"/>
    <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ObstetricProcedure"/>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
    </meta>
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Verrichting. Subject: Leonie L XXX_Osse. Categorie: <span title="obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">obstetrische verrichting (verrichting)</span>, Status: voltooid<span style="display: block;">Uitvoerende: Helma H XXX_Groot</span>
+            <caption>Verrichting. Subject: Merthe M XXX_Kooijman. Categorie: <span title="obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">obstetrische verrichting (verrichting)</span>, Status: voltooid<span style="display: block;">Uitvoerende: Helma H XXX_Groot</span>
             </caption>
             <tbody>
                <tr>
                   <td>
-                     <span title="structureel echoscopisch onderzoek tijdens tweede trimester (verrichting) (143701000146108 - SNOMED CT)">structureel echoscopisch onderzoek tijdens tweede trimester (verrichting)</span>
+                     <span title="echografie ter bepaling van geschatte datum van partus (verrichting) (133601000146101 - SNOMED CT)">echografie ter bepaling van geschatte datum van partus (verrichting)</span>
                   </td>
                   <td>
-                     <div>Uitgevoerd: Vanaf ${DATE, T, D, -570}</div>
+                     <div>Uitgevoerd: Vanaf ${DATE, T, D, -13}</div>
                   </td>
                </tr>
                <tr>
@@ -25,11 +26,7 @@
                </tr>
                <tr>
                   <th>Reden</th>
-                  <td>Zwangerschap 1 XXX_Osse_Vrouw</td>
-               </tr>
-               <tr>
-                  <th>Report</th>
-                  <td>Echoscopie Verdenking afwijking echografie</td>
+                  <td>Zwangerschap 1 XXX_Kooijman_Vrouw</td>
                </tr>
             </tbody>
          </table>
@@ -37,7 +34,7 @@
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="6e8bd802-6abf-11ec-2241-020000000000"/>
+      <value value="c2f2a72b-6b5c-11ec-2241-020000000000"/>
    </identifier>
    <status value="completed"/>
    <category>
@@ -50,20 +47,20 @@
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="143701000146108"/>
-         <display value="structureel echoscopisch onderzoek tijdens tweede trimester (verrichting)"/>
+         <code value="133601000146101"/>
+         <display value="echografie ter bepaling van geschatte datum van partus (verrichting)"/>
       </coding>
    </code>
    <subject>
-      <reference value="Patient/LEONIE-L-XXX-OSSE"/>
-      <display value="Leonie L XXX_Osse"/>
+      <reference value="Patient/MERTHE-M-XXX-KOOIJMAN"/>
+      <display value="Merthe M XXX_Kooijman"/>
    </subject>
    <context>
-      <reference value="EpisodeOfCare/d0510907-6af3-11ec-0000-020000000000"/>
-      <display value="Zwangerschap 1 XXX_Osse_Vrouw"/>
+      <reference value="EpisodeOfCare/6188717b-6b7b-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Kooijman_Vrouw"/>
    </context>
    <performedPeriod>
-      <start value="${DATE, T, D, -570}"/>
+      <start value="${DATE, T, D, -13}"/>
    </performedPeriod>
    <performer>
       <actor>
@@ -82,11 +79,7 @@
       <display value="Echopraktijk Groei"/>
    </location>
    <reasonReference>
-      <reference value="Condition/3cc38e5b-6ac9-11ec-2334-020000000000"/>
-      <display value="Zwangerschap 1 XXX_Osse_Vrouw"/>
+      <reference value="Condition/c6ab20cb-6b5e-11ec-2334-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Kooijman_Vrouw"/>
    </reasonReference>
-   <report>
-      <reference value="DiagnosticReport/815de20f-6b77-11ec-2120-020000000000"/>
-      <display value="Echoscopie Verdenking afwijking echografie"/>
-   </report>
 </Procedure>
