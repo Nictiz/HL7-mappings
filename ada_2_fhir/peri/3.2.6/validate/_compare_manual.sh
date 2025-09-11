@@ -1,17 +1,19 @@
 
 # AH: Creates Echo-Casus1 Echo-Casus2 Echo-Casus3 Kraam-Casus1 Kraam-Casus2 directories, setup with copies from generated contents using the same filename as their manually created counter parts
 # You may then use a Diff tool to compare the generated output with the manul output in ../../../../../Nictiz-testscripts/src/Geboortezorg-2-0/Cert/_reference/
+c=`pwd`
+cd `dirname $0`
+rm -rf compare
+mkdir compare
+cp -rp ../med_mij_echo_beschikbaarstellen/fhir_instance/gz-ize-kwa-casus1 compare/Echo-Casus1
+cp -rp ../med_mij_echo_beschikbaarstellen/fhir_instance/gz-ize-kwa-casus2 compare/Echo-Casus2
+cp -rp ../med_mij_echo_beschikbaarstellen/fhir_instance/gz-ize-kwa-casus3 compare/Echo-Casus3
 
-rm -rf Echo-Casus1 Echo-Casus2 Echo-Casus3 Kraam-Casus1 Kraam-Casus2
-cp -rp ../med_mij_echo_beschikbaarstellen/fhir_instance/gz-ize-kwa-casus1 Echo-Casus1
-cp -rp ../med_mij_echo_beschikbaarstellen/fhir_instance/gz-ize-kwa-casus2 Echo-Casus2
-cp -rp ../med_mij_echo_beschikbaarstellen/fhir_instance/gz-ize-kwa-casus3 Echo-Casus3
-
-cp -rp ../med_mij_kraam_beschikbaarstellen/fhir_instance/gz-izk-kwa-casus1 Kraam-Casus1
-cp -rp ../med_mij_kraam_beschikbaarstellen/fhir_instance/gz-izk-kwa-casus2 Kraam-Casus2
+cp -rp ../med_mij_kraam_beschikbaarstellen/fhir_instance/gz-izk-kwa-casus1 compare/Kraam-Casus1
+cp -rp ../med_mij_kraam_beschikbaarstellen/fhir_instance/gz-izk-kwa-casus2 compare/Kraam-Casus2
 
 echo Renaming in Echo-Casus1 ...
-cd Echo-Casus1
+cd compare/Echo-Casus1
 
 mv mm-gbz-bc-AmnioticFluid160321000146103-e7b3d5c9-6ae1-11ec-2241-020000000000.xml medmij-gbz-bc-FetusObservation-160321000146103-1a78132-1943-14rp-1287-040000000000.xml
 mv mm-gbz-bc-DisorderOfChild76916001-98e01ded-6af7-11ec-2394-020000000000.xml medmij-gbz-zib-Problem-76916001-0a42b3d2-1831-14ec-1751-030000000000.xml
