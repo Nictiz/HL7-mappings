@@ -1,0 +1,100 @@
+<DeviceUseStatement xmlns="http://hl7.org/fhir">
+   <id value="zib-MedicalDevice-msz-570944cf-6aa8-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Beschrijving apparaatgebruik. Subject: Olivia Madelief O.M.W. Olijf de Wilson Çelik. Status: actief</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Patient met tetralogie van Fallot</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Apparaat/Systeem</th>
+                  <td>Pulmonary valve bioprosthesis (physical object) klep</td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="pulmonaalklep (39057004 - SNOMED CT)">pulmonaalklep</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Geïniteerd of geïmplanteerd door</th>
+                  <td>Ziekenhuis de Kleine Pomp</td>
+               </tr>
+               <tr>
+                  <th>Indicatie door</th>
+                  <td>A.B.C.D.E. Affine Stabiel in de Benen</td>
+               </tr>
+               <tr>
+                  <th>Gebruiksperiode</th>
+                  <td>Vanaf 15 februari 1999</td>
+               </tr>
+               <tr>
+                  <th>Indicatie</th>
+                  <td>
+                     <div>pulmonalisklepinsufficiëntie</div>
+                     <div>tetralogie van Fallot</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Organization">
+      <valueReference>
+         <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000011"/>
+         <display value="Ziekenhuis de Kleine Pomp"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Practitioner">
+      <valueReference>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000014"/>
+         <display value="A.B.C.D.E. Affine Stabiel in de Benen"/>
+      </valueReference>
+   </extension>
+   <status value="active"/>
+   <subject>
+      <reference value="Patient/OLIVIA-MADELIEF-O-M-W--OLIJF-DE-WILSON-ELIK"/>
+      <display value="Olivia Madelief O.M.W. Olijf de Wilson Çelik"/>
+   </subject>
+   <whenUsed>
+      <start value="1999-02-15"/>
+   </whenUsed>
+   <device>
+      <reference value="Device/zib-MedicalDeviceProduct-msz-570944cf-6aa8-11ec-0000-2"/>
+      <display value="Pulmonary valve bioprosthesis (physical object) klep"/>
+   </device>
+   <indication>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Problem">
+         <valueReference>
+            <reference value="Condition/zib-Problem-msz-fc5be44f-6b5d-11ec-0000-2"/>
+            <display value="pulmonalisklepinsufficiëntie"/>
+         </valueReference>
+      </extension>
+   </indication>
+   <indication>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Problem">
+         <valueReference>
+            <reference value="Condition/zib-Problem-msz-aafc1925-6b4a-11ec-0000-2"/>
+            <display value="tetralogie van Fallot"/>
+         </valueReference>
+      </extension>
+   </indication>
+   <bodySite>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="39057004"/>
+         <display value="pulmonaalklep"/>
+      </coding>
+   </bodySite>
+   <note>
+      <text value="Patient met tetralogie van Fallot"/>
+   </note>
+</DeviceUseStatement>

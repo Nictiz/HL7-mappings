@@ -1,7 +1,8 @@
 <organizer classCode="CLUSTER"
            moodCode="EVN"
            xmlns="urn:hl7-org:v3"
-           xmlns:pharm="urn:ihe:pharm:medication">
+           xmlns:pharm="urn:ihe:pharm:medication"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9411"/>
    <code code="102"
          displayName="Medicatiegegevens"
@@ -10,18 +11,18 @@
    <statusCode nullFlavor="NI"/>
    <recordTarget>
       <patientRole>
-         <id extension="999900778"
+         <id extension="999908881"
              root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
-               <given qualifier="IN">J.</given>
-               <prefix qualifier="VV">de </prefix>
-               <family qualifier="BR">XXX_Luzac</family>
+               <given qualifier="BR">C</given>
+               <prefix qualifier="VV">van de </prefix>
+               <family qualifier="BR">XXX_Voortman</family>
             </name>
-            <administrativeGenderCode code="F"
+            <administrativeGenderCode code="M"
                                       codeSystem="2.16.840.1.113883.5.1"
-                                      displayName="Vrouw"/>
-            <birthTime value="19851024"/>
+                                      displayName="Man"/>
+            <birthTime value="19630918"/>
          </patient>
       </patientRole>
    </recordTarget>
@@ -29,15 +30,14 @@
       <substanceAdministration classCode="SBADM"
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9412"/>
-         <id extension="MBH_300_WDSwijziging_0dosering_startWDS"
+         <id extension="MBH_300_WDSwijziging_startWDS"
              root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
          <code code="395067002"
                displayName="optimaliseren van dosering van medicatie (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">eerst gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231227000000+0100"/>
             <width value="2"
                    unit="wk"/>
@@ -119,7 +119,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -143,8 +142,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -153,7 +151,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -177,8 +174,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -187,7 +183,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -211,8 +206,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -221,7 +215,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -245,8 +238,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -255,7 +247,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -279,8 +270,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -289,7 +279,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -313,8 +302,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -323,7 +311,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -347,8 +334,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -357,7 +343,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -381,8 +366,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -391,7 +375,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -415,8 +398,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -425,7 +407,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -449,8 +430,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -459,7 +439,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -483,8 +462,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -493,7 +471,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -517,8 +494,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -527,7 +503,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -551,8 +526,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -561,7 +535,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -585,22 +558,20 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_WDSwijziging_0dosering_MA"
+               <id extension="MBH_300_WDSwijziging_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -609,7 +580,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_WDSwijziging_0dosering"/>
+                   extension="MBH_300_WDSwijziging"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -621,15 +592,14 @@
       <substanceAdministration classCode="SBADM"
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9412"/>
-         <id extension="MBH_300_WDSwijziging_0dosering_wijzigingWDS"
+         <id extension="MBH_300_WDSwijziging_wijzigingWDS"
              root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
          <code code="395067002"
                displayName="optimaliseren van dosering van medicatie (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">eerst gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231231000000+0100"/>
             <width value="7"
                    unit="d"/>
@@ -702,8 +672,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
                <value xsi:type="CE"
-                      nullFlavor="OTH"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                      nullFlavor="OTH">
                   <originalText>Bloeding door ongeluk</originalText>
                </value>
             </observation>
@@ -714,7 +683,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -738,8 +706,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -748,7 +715,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -772,8 +738,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -782,7 +747,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -806,8 +770,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -816,7 +779,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -840,8 +802,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -850,7 +811,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -874,8 +834,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -884,7 +843,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -908,8 +866,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -918,7 +875,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -942,36 +898,33 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_WDSwijziging_0dosering_MA"
+               <id extension="MBH_300_WDSwijziging_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9381"/>
-               <id extension="MBH_300_WDSwijziging_0dosering_startWDS"
+               <id extension="MBH_300_WDSwijziging_startWDS"
                    root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
                <code code="395067002"
                      displayName="optimaliseren van dosering van medicatie (verrichting)"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -980,7 +933,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_WDSwijziging_0dosering"/>
+                   extension="MBH_300_WDSwijziging"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -992,15 +945,14 @@
       <substanceAdministration classCode="SBADM"
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9412"/>
-         <id extension="MBH_300_WDSwijziging_0dosering_techstopWDS"
+         <id extension="MBH_300_WDSwijziging_techstopWDS"
              root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
          <code code="395067002"
                displayName="optimaliseren van dosering van medicatie (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">eerst gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231227000000+0100"/>
             <high value="20231230235959+0100"/>
          </effectiveTime>
@@ -1067,15 +1019,14 @@
             <observation classCode="OBS"
                          moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9414"/>
-               <code code="410684002"
-                     displayName="status van medicamenteuze behandeling"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"/>
+               <code code="1"
+                     displayName="Stoptype"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
+                     codeSystemName="Medicatieproces observaties"/>
                <value xsi:type="CE"
                       code="410546004"
                       codeSystem="2.16.840.1.113883.6.96"
-                      displayName="stopgezet"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      displayName="stopgezet"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="SUBJ"
@@ -1096,7 +1047,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -1120,8 +1070,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -1130,7 +1079,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -1154,8 +1102,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -1164,7 +1111,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -1188,8 +1134,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -1198,7 +1143,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -1222,8 +1166,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -1232,7 +1175,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -1256,8 +1198,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -1266,7 +1207,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -1290,8 +1230,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -1300,7 +1239,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -1324,8 +1262,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -1334,7 +1271,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -1358,8 +1294,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -1368,7 +1303,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -1392,8 +1326,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -1402,7 +1335,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -1426,8 +1358,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -1436,7 +1367,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -1460,8 +1390,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -1470,7 +1399,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -1494,8 +1422,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -1504,7 +1431,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -1528,8 +1454,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -1538,7 +1463,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
@@ -1562,36 +1486,33 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_WDSwijziging_0dosering_MA"
+               <id extension="MBH_300_WDSwijziging_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9381"/>
-               <id extension="MBH_300_WDSwijziging_0dosering_startWDS"
+               <id extension="MBH_300_WDSwijziging_startWDS"
                    root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
                <code code="395067002"
                      displayName="optimaliseren van dosering van medicatie (verrichting)"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1600,7 +1521,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_WDSwijziging_0dosering"/>
+                   extension="MBH_300_WDSwijziging"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>

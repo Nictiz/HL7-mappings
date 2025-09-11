@@ -1,0 +1,146 @@
+<!--Generated from ada instance with title: "Hybride Interval Scenarioset 1.3" and id: "mv-mp-svo-hyb612-1-3-interval-v30".-->
+<subject xmlns="urn:hl7-org:v3">
+   <prescription classCode="SBADM"
+                 moodCode="RQO">
+      <id root="1.3.6.1.4.1.58606.1.3.2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+          extension="MBH_hyb_vo_intrvl_MA!MBH_hyb_vo_intrvl_VV"/>
+      <statusCode code="active"/>
+      <subject typeCode="SBJ">
+         <Patient>
+            <id extension="999900821"
+                root="2.16.840.1.113883.2.4.6.3"/>
+            <addr use="PHYS">
+               <streetName>Knolweg</streetName>
+               <houseNumber>1003</houseNumber>
+               <postalCode>9999 ZA</postalCode>
+               <city>Apeldoorn</city>
+               <country code="NL"
+                        codeSystem="1.0.3166.1.2.2"
+                        displayName="Nederland"
+                        codeSystemName="ISO 3166-1 (alpha-2)"
+                        codeSystemVersion="2020-10-26T00:00:00">Nederland</country>
+            </addr>
+            <statusCode code="active"/>
+            <Person>
+               <name>
+                  <given qualifier="IN">L.</given>
+                  <prefix qualifier="VV">van de </prefix>
+                  <family qualifier="BR">XXX_Meijsz</family>
+               </name>
+               <administrativeGenderCode code="M"
+                                         codeSystem="2.16.840.1.113883.5.1"
+                                         displayName="Man"/>
+               <birthTime value="19851027"/>
+            </Person>
+         </Patient>
+      </subject>
+      <author typeCode="AUT">
+         <time value="20240101090500+0100"/>
+         <AssignedPerson classCode="ASSIGNED">
+            <id extension="000001113"
+                root="2.16.528.1.1007.3.1"/>
+            <code code="01.015"
+                  codeSystem="2.16.840.1.113883.2.4.15.111"
+                  displayName="Huisarts"
+                  codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                  codeSystemVersion="2024-01-29T00:00:00"/>
+            <assignee>
+               <assigneePerson classCode="PSN"
+                               determinerCode="INSTANCE">
+                  <name>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
+                  </name>
+               </assigneePerson>
+            </assignee>
+            <!--The message template (9043) incorrectly defines representedOrganization, however the xsd only accepts Organization-->
+            <!--Closed warnings schematron messages for this element should be ignored.-->
+            <Organization classCode="ORG"
+                          determinerCode="INSTANCE">
+               <id extension="00005111"
+                   root="2.16.528.1.1007.3.3"/>
+               <name>Huisartsenpraktijk Itis</name>
+               <addr use="WP">
+                  <streetName>Langelaan</streetName>
+                  <houseNumber>1</houseNumber>
+                  <postalCode>1234 ZZ</postalCode>
+                  <city>Onze Stad</city>
+               </addr>
+            </Organization>
+         </AssignedPerson>
+      </author>
+      <directTarget typeCode="DIR">
+         <prescribedMedication>
+            <MedicationKind classCode="MMAT"
+                            determinerCode="KIND">
+               <code code="68519"
+                     codeSystem="2.16.840.1.113883.2.4.4.10"
+                     displayName="AMOXICILLINE DISPERTABLET 500MG"
+                     codeSystemName="G-Standaard PRK">
+                  <translation code="117080"
+                               codeSystem="2.16.840.1.113883.2.4.4.1"
+                               displayName="AMOXICILLINE DISPERTABLET 500MG"
+                               codeSystemName="G-Standaard GPK"/>
+               </code>
+            </MedicationKind>
+            <productOf>
+               <medicationDispenseRequest>
+                  <id extension="MBH_hyb_vo_intrvl_VV"
+                      root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                  <statusCode nullFlavor="NA"/>
+                  <quantity value="21"
+                            unit="1">
+                     <translation value="21"
+                                  code="245"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="stuk"/>
+                  </quantity>
+                  <performer typeCode="PRF">
+                     <assignedPerson>
+                        <representedOrganization>
+                           <id extension="01236578"
+                               root="2.16.528.1.1007.3.3"/>
+                           <name>Apotheek De Gulle Gaper</name>
+                        </representedOrganization>
+                     </assignedPerson>
+                  </performer>
+               </medicationDispenseRequest>
+            </productOf>
+            <therapeuticAgentOf>
+               <medicationAdministrationRequest classCode="SBADM"
+                                                moodCode="RQO">
+                  <text mediaType="text/plain">iedere 8 uur 1 stuk - gelijke tussenpozen aanhouden, Oraal</text>
+                  <statusCode code="active"/>
+                  <effectiveTime xsi:type="SXPR_TS"
+                                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                     <comp xsi:type="IVL_TS">
+                        <low value="20240101000000.000+0100"/>
+                        <high value="20240108235900.000+0100"/>
+                     </comp>
+                     <comp xsi:type="PIVL_TS"
+                           operator="A">
+                        <period value="8"
+                                unit="h"/>
+                     </comp>
+                  </effectiveTime>
+                  <routeCode code="9"
+                             codeSystem="2.16.840.1.113883.2.4.4.9"
+                             displayName="Oraal"
+                             codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                  <doseQuantity>
+                     <center value="1"
+                             unit="1">
+                        <translation value="1"
+                                     code="245"
+                                     displayName="stuk"
+                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                     codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </center>
+                  </doseQuantity>
+               </medicationAdministrationRequest>
+            </therapeuticAgentOf>
+         </prescribedMedication>
+      </directTarget>
+   </prescription>
+</subject>

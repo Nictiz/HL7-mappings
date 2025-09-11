@@ -1,0 +1,50 @@
+<Patient xmlns="http://hl7.org/fhir">
+   <id value="DE-BOER"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>Id 999996538 (BSN), de Boer, Man, 16 december 1984</div>
+         <div>
+
+Jansen</div>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+      <value value="999996538"/>
+   </identifier>
+   <name>
+      <family value="de Boer">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+            <valueString value="de"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="Boer"/>
+         </extension>
+      </family>
+   </name>
+   <gender value="male">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+               <code value="M"/>
+               <display value="Male"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </gender>
+   <birthDate value="1984-12-16"/>
+   <contact>
+      <name>
+         <family value="Jansen">
+            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+               <valueString value="Jansen"/>
+            </extension>
+         </family>
+      </name>
+   </contact>
+</Patient>

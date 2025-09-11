@@ -1,0 +1,93 @@
+<Consent xmlns="http://hl7.org/fhir">
+   <id value="zib-TreatmentDirective-msz-86948146-6aa2-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Toestemming. Patiënt: Michelle M.B. Michelle Bergzoon Verheul. Categorie: <span title="behandelaanwijzing (11291000146105 - SNOMED CT)">behandelaanwijzing</span>, Status: actief</caption>
+            <tbody>
+               <tr>
+                  <th>Geldigheidsperiode</th>
+                  <td>Vanaf 26 juni 2024</td>
+               </tr>
+               <tr>
+                  <th>Geverifieerd</th>
+                  <td>ja - 26 juni 2024 - <span title="Patiënt (116154003 - SNOMED CT)">Patiënt</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>
+                     <span title="Opname op intensive care (305351004 - SNOMED CT)">Opname op intensive care</span>
+                  </th>
+                  <td>
+                     <span title="Ja, maar met beperkingen (JA_MAAR - 2.16.840.1.113883.2.4.3.11.60.40.4)">Ja, maar met beperkingen</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Niet toegestaan tenzij</th>
+                  <td/>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-Verification">
+      <extension url="Verified">
+         <valueBoolean value="true"/>
+      </extension>
+      <extension url="VerifiedWith">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="116154003"/>
+               <display value="Patiënt"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="VerificationDate">
+         <valueDateTime value="2024-06-26"/>
+      </extension>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-Treatment">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="305351004"/>
+            <display value="Opname op intensive care"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-TreatmentPermitted">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4"/>
+            <code value="JA_MAAR"/>
+            <display value="Ja, maar met beperkingen"/>
+         </coding>
+      </valueCodeableConcept>
+   </modifierExtension>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="11291000146105"/>
+         <display value="behandelaanwijzing"/>
+      </coding>
+   </category>
+   <patient>
+      <reference value="Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL"/>
+      <display value="Michelle M.B. Michelle Bergzoon Verheul"/>
+   </patient>
+   <period>
+      <start value="2024-06-26"/>
+   </period>
+   <policy>
+      <uri value="http://wetten.overheid.nl/"/>
+   </policy>
+   <except>
+      <type value="deny"/>
+   </except>
+</Consent>

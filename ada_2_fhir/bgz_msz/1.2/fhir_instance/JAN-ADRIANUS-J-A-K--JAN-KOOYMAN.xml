@@ -1,0 +1,342 @@
+<Patient xmlns="http://hl7.org/fhir">
+   <id value="JAN-ADRIANUS-J-A-K--JAN-KOOYMAN"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>Id 999991346 (BSN), <span title="Naamsamenstelling: Eigennaam">Jan Adrianus J.A.K. Kooyman</span> (Jan), Man, 4 maart 1950, Geen meerling, <span title="Married (M - v3/MaritalStatus)">Married</span>
+         </div>
+         <div>
+            <a href="tel:+316-99990001">+316-99990001</a> (Mobiel Privé), <a href="mailto:JanAdrianusPost@test.nl">JanAdrianusPost@test.nl</a> (E-mail Privé)</div>
+         <div>Coolsingel 231 Tijdelijk adres, 3012AG Rotterdam, Netherlands (the) (TMP)</div>
+         <div>
+            <span title="Son (SONC - v3/RoleCode)">Son</span>, <span title="Eerste relatie/contactpersoon (1 - RoleCodeLijst (COD472-VEKT))">Eerste relatie/contactpersoon</span>
+
+Dirk D. Kooyman (Dirk)<div>
+               <a href="tel:+316-99990003">+316-99990003</a> (Mobiel Privé), <a href="mailto:dirk.KooymanPost@test.nl">dirk.KooymanPost@test.nl</a> (E-mail Privé), Knolweg 1002 to, 9999ZZ Stitswerd, Netherlands (the) (officieel Privé (hoofd) Bezoek)</div>
+         </div>
+         <div>
+            <span title="Daughter in-law (DAUINLAW - v3/RoleCode)">Daughter in-law</span>, <span title="Anders (9 - RoleCodeLijst (COD472-VEKT))">Anders</span>
+            <span title="Naamsamenstelling: Eigennaam">Els E. de Groot</span> (Els)<div>
+               <a href="tel:06-99990004">06-99990004</a> (Mobiel Privé), <a href="mailto:Els.degroot@test.nl">Els.degroot@test.nl</a> (E-mail Privé), Knolweg 1003, 9999ZA Stitswerd, Nederland (officieel Privé (hoofd) Bezoek)</div>
+         </div>
+         <div>Huisarts: Huisdokter H. Huisarts Attent || Huisarts || Huisartsenpraktijk van Aanpakken</div>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+      <value value="999991346"/>
+   </identifier>
+   <name>
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+         <valueCode value="NL1"/>
+      </extension>
+      <family value="Kooyman">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="Kooyman"/>
+         </extension>
+      </family>
+      <given value="Jan Adrianus">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <given value="J.A.K.">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="IN"/>
+         </extension>
+      </given>
+      <given value="Jan">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="CL"/>
+         </extension>
+      </given>
+   </name>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="MC"/>
+               <display value="Mobile Phone"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="+316-99990001"/>
+      <use value="home"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="JanAdrianusPost@test.nl"/>
+      <use value="home"/>
+   </telecom>
+   <gender value="male">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+               <code value="M"/>
+               <display value="Male"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </gender>
+   <birthDate value="1950-03-04"/>
+   <deceasedBoolean value="false"/>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="TMP"/>
+               <display value="Tijdelijk adres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="temp"/>
+      <line value="Coolsingel 231 Tijdelijk adres">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Coolsingel"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="231"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
+            <valueString value="Tijdelijk adres"/>
+         </extension>
+      </line>
+      <city value="Rotterdam"/>
+      <postalCode value="3012AG"/>
+      <country value="Netherlands (the)">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:iso:std:iso:3166"/>
+                  <version value="2020-10-26T00:00:00"/>
+                  <code value="NL"/>
+                  <display value="Netherlands (the)"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+   <maritalStatus>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/MaritalStatus"/>
+         <code value="M"/>
+         <display value="Married"/>
+      </coding>
+   </maritalStatus>
+   <multipleBirthBoolean value="false"/>
+   <contact>
+      <relationship>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/RoleCode"/>
+            <code value="SONC"/>
+            <display value="Son"/>
+         </coding>
+      </relationship>
+      <relationship>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
+            <code value="1"/>
+            <display value="Eerste relatie/contactpersoon"/>
+         </coding>
+      </relationship>
+      <name>
+         <family value="Kooyman">
+            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+               <valueString value="Kooyman"/>
+            </extension>
+         </family>
+         <given value="Dirk">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+               <valueCode value="BR"/>
+            </extension>
+         </given>
+         <given value="D.">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+               <valueCode value="IN"/>
+            </extension>
+         </given>
+         <given value="Dirk">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+               <valueCode value="CL"/>
+            </extension>
+         </given>
+      </name>
+      <telecom>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                  <code value="MC"/>
+                  <display value="Mobile Phone"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+         <system value="phone"/>
+         <value value="+316-99990003"/>
+         <use value="home"/>
+      </telecom>
+      <telecom>
+         <system value="email"/>
+         <value value="dirk.KooymanPost@test.nl"/>
+         <use value="home"/>
+      </telecom>
+      <address>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                  <code value="HP"/>
+                  <display value="Officieel adres"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+         <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
+            <valueBoolean value="true"/>
+         </extension>
+         <use value="home"/>
+         <type value="physical"/>
+         <line value="Knolweg 1002 to">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+               <valueString value="Knolweg"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+               <valueString value="1002"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
+               <valueString value="to"/>
+            </extension>
+         </line>
+         <city value="Stitswerd"/>
+         <postalCode value="9999ZZ"/>
+         <country value="Netherlands (the)">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:iso:std:iso:3166"/>
+                     <version value="2020-10-26T00:00:00"/>
+                     <code value="NL"/>
+                     <display value="Netherlands (the)"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
+         </country>
+      </address>
+   </contact>
+   <contact>
+      <relationship>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/RoleCode"/>
+            <code value="DAUINLAW"/>
+            <display value="Daughter in-law"/>
+         </coding>
+      </relationship>
+      <relationship>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
+            <code value="9"/>
+            <display value="Anders"/>
+         </coding>
+      </relationship>
+      <name>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+            <valueCode value="NL1"/>
+         </extension>
+         <family value="de Groot">
+            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+               <valueString value="de"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+               <valueString value="Groot"/>
+            </extension>
+         </family>
+         <given value="Els">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+               <valueCode value="BR"/>
+            </extension>
+         </given>
+         <given value="E.">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+               <valueCode value="IN"/>
+            </extension>
+         </given>
+         <given value="Els">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+               <valueCode value="CL"/>
+            </extension>
+         </given>
+      </name>
+      <telecom>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                  <code value="MC"/>
+                  <display value="Mobile Phone"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+         <system value="phone"/>
+         <value value="06-99990004"/>
+         <use value="home"/>
+      </telecom>
+      <telecom>
+         <system value="email"/>
+         <value value="Els.degroot@test.nl"/>
+         <use value="home"/>
+      </telecom>
+      <address>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                  <code value="HP"/>
+                  <display value="Officieel adres"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+         <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
+            <valueBoolean value="true"/>
+         </extension>
+         <use value="home"/>
+         <type value="physical"/>
+         <line value="Knolweg 1003">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+               <valueString value="Knolweg"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+               <valueString value="1003"/>
+            </extension>
+         </line>
+         <city value="Stitswerd"/>
+         <postalCode value="9999ZA"/>
+         <country value="Nederland">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:iso:std:iso:3166"/>
+                     <code value="NL"/>
+                     <display value="Nederland"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
+         </country>
+      </address>
+   </contact>
+   <generalPractitioner>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-bgz-msz-1000000101-01520000001"/>
+            <display value="Huisdokter H. Huisarts Attent || Huisarts || Huisartsenpraktijk van Aanpakken"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-10000001"/>
+      <display value="Huisdokter H. Huisarts Attent"/>
+   </generalPractitioner>
+</Patient>
