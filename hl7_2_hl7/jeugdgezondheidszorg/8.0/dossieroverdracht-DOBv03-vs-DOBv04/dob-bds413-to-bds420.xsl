@@ -211,7 +211,7 @@
                 <concept code="75" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Geslacht broer/zus" level="0" type="L"/>
                 <concept code="76" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Geboortedatum broer/zus" level="0" type="L"/>
                 <concept code="78" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden broer/zus" level="0" type="L"/>
-                <!--<concept code="79" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Erfelijke belasting en ouderkenmerken nagevraagd" level="0" type="L"/>-->
+                <concept code="79" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Erfelijke belasting en ouderkenmerken nagevraagd" level="0" type="L"/>
                 <concept code="80" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Erfelijk bepaalde ziekte in de familie" level="0" type="L"/>
                 <concept code="81" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Familielid" level="0" type="L"/>
                 <concept code="82" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Zwangerschapsduur" level="0" type="L"/>
@@ -277,17 +277,17 @@
                 <concept code="211" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden lies links" level="0" type="L"/>
                 <concept code="212" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bewegingsapparaat onderzocht" level="0" type="L"/>
                 <concept code="217" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden wervelkolom" level="0" type="L"/>
-                <!--<concept code="218" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Scoliose hoekmeting" level="0" type="L"/>-->
+                <concept code="218" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Scoliose hoekmeting" level="0" type="L"/>
                 <concept code="219" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden heupen" level="0" type="L"/>
                 <concept code="220" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Lichaamskant bijzonderheden heupen" level="0" type="L"/>
                 <concept code="221" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden onderste extremiteiten" level="0" type="L"/>
                 <concept code="222" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Lichaamskant bijzonderheden onderste extremiteiten" level="0" type="L"/>
                 <concept code="223" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden voet rechts" level="0" type="L"/>
-                <!--<concept code="225" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Genitalia/puberteitsontwikkeling onderzocht" level="0" type="L"/>-->
+                <concept code="225" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Genitalia/puberteitsontwikkeling onderzocht" level="0" type="L"/>
                 <concept code="228" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden genitalia/puberteitsontwikkeling" level="0" type="L"/>
-                <!--<concept code="230" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden vulva" level="0" type="L"/>-->
-                <!--<concept code="232" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden penis" level="0" type="L"/>-->
-                <!--<concept code="233" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden scrotum rechts" level="0" type="L"/>-->
+                <concept code="230" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden vulva" level="0" type="L"/>
+                <concept code="232" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden penis" level="0" type="L"/>
+                <concept code="233" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden scrotum rechts" level="0" type="L"/>
                 <concept code="234" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden groei" level="0" type="L"/>
                 <concept code="235" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Lengte" level="0" type="L"/>
                 <concept code="236" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Methode lengtemeting" level="0" type="L"/>
@@ -304,9 +304,9 @@
                 <concept code="253" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Groeicurve hoofdomtrek naar leeftijd" level="0" type="L"/>
                 <concept code="259" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Psychosociaal en cognitief functioneren onderzocht" level="0" type="L"/>
                 <concept code="265" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden psychische en sociale ontwikkeling" level="0" type="L"/>
-                <!--<concept code="268" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Motorische ontwikkeling onderzocht" level="0" type="L"/>-->
-                <!--<concept code="269" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden tonus" level="0" type="L"/>-->
-                <!--<concept code="271" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden centraal zenuwstelsel" level="0" type="L"/>-->
+                <concept code="268" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Motorische ontwikkeling onderzocht" level="0" type="L"/>
+                <concept code="269" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden tonus" level="0" type="L"/>
+                <concept code="271" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden centraal zenuwstelsel" level="0" type="L"/>
                 <concept code="276" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden motorisch functioneren" level="0" type="L"/>
                 <concept code="294" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Spraak- en taalontwikkeling onderzocht" level="0" type="L"/>
                 <concept code="301" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Meertaligheid" level="0" type="L"/>
@@ -314,19 +314,19 @@
                 <concept code="307" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Eerste/tweede taal" level="0" type="L"/>
                 <concept code="312" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Datum menarche" level="0" type="L"/>
                 <concept code="313" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Ontwikkeling genitalia jongen" level="0" type="L"/>
-                <!--<concept code="314" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Methode onderzoek ontwikkeling genitalia jongen" level="0" type="L"/>-->
+                <concept code="314" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Methode onderzoek ontwikkeling genitalia jongen" level="0" type="L"/>
                 <concept code="315" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Pubesbeharing jongen" level="0" type="L"/>
-                <!--<concept code="316" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Methode onderzoek pubesbeharing jongen" level="0" type="L"/>-->
+                <concept code="316" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Methode onderzoek pubesbeharing jongen" level="0" type="L"/>
                 <concept code="317" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Borstontwikkeling meisje" level="0" type="L"/>
-                <!--<concept code="318" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Methode onderzoek borstontwikkeling meisje" level="0" type="L"/>-->
-                <!--<concept code="321" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Lichamelijk functioneren nagevraagd" level="0" type="L"/>-->
+                <concept code="318" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Methode onderzoek borstontwikkeling meisje" level="0" type="L"/>
+                <concept code="321" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Lichamelijk functioneren nagevraagd" level="0" type="L"/>
                 <concept code="322" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden slapen/waken" level="0" type="L"/>
                 <concept code="323" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Voeding en eetgedrag" level="0" type="L"/>
                 <concept code="324" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Zindelijkheid" level="0" type="L"/>
                 <concept code="325" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden ontlasten/plassen/zindelijkheid" level="0" type="L"/>
-                <!--<concept code="328" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden gedrag/temperament" level="0" type="L"/>-->
+                <concept code="328" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden gedrag/temperament" level="0" type="L"/>
                 <concept code="330" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden lichaamsbeweging" level="0" type="L"/>
-                <!--<concept code="339" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Verhouding draaglast-draagkracht onderzocht" level="0" type="L"/>-->
+                <concept code="339" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Verhouding draaglast-draagkracht onderzocht" level="0" type="L"/>
                 <concept code="348" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Balans draaglast-draagkracht" level="0" type="L"/>
                 <concept code="349" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden verhouding draaglast-draagkracht" level="0" type="L"/>
                 <concept code="360" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Zorg ontvangen in gezin" level="0" type="L"/>
@@ -384,7 +384,7 @@
                 <concept code="494" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Soort activiteit" level="0" type="L"/>
                 <concept code="495" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Toelichting niet verschenen" level="0" type="L"/>
                 <concept code="496" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Melkvoeding op dit moment" level="0" type="L"/>
-                <!--<concept code="510" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Passief roken in huis" level="0" type="L"/>-->
+                <concept code="510" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Passief roken in huis" level="0" type="L"/>
                 <concept code="514" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Ervaren gezondheid" level="0" type="L"/>
                 <concept code="603" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitvoerende JGZ-organisatie URA" level="0" type="L"/>
                 <concept code="604" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Huisarts UZI" level="0" type="L"/>
@@ -419,7 +419,7 @@
                 <concept code="683" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bezwaar" level="0" type="L"/>
                 <concept code="686" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Reden van enting" level="0" type="L"/>
                 <concept code="688" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Andere betrokken hulpverlener UZI" level="0" type="L"/>
-                <!--<concept code="692" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="APK-kaart uitslag rechts" level="0" type="L"/>-->
+                <concept code="692" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="APK-kaart uitslag rechts" level="0" type="L"/>
                 <concept code="695" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Dossiernummer" level="0" type="L"/>
                 <concept code="696" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Dossier status" level="0" type="L"/>
                 <concept code="697" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Adres is geheim" level="0" type="L"/>
@@ -465,43 +465,43 @@
                 <concept code="746" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="A. femoralis links" level="0" type="L"/>
                 <concept code="747" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Melkvoeding op geboortedag" level="0" type="L"/>
                 <concept code="748" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Anamnese" level="0" type="L"/>
-                <!--<concept code="752" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden vrijetijdsbesteding" level="0" type="L"/>-->
-                <!--<concept code="753" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Zwemdiploma" level="0" type="L"/>-->
+                <concept code="752" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden vrijetijdsbesteding" level="0" type="L"/>
+                <concept code="753" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Zwemdiploma" level="0" type="L"/>
                 <concept code="754" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Ontvangen (para)medische zorg" level="0" type="L"/>
                 <concept code="755" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Ingrijpende gebeurtenissen" level="0" type="L"/>
-                <!--<concept code="756" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Algemene indruk verkregen" level="0" type="L"/>-->
-                <!--<concept code="757" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Interactie ouder/kind" level="0" type="L"/>-->
-                <!--<concept code="758" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Interactie kind/JGZ-professional" level="0" type="L"/>-->
-                <!--<concept code="759" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Gedrag" level="0" type="L"/>-->
-                <!--<concept code="760" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Stemming" level="0" type="L"/>-->
-                <!--<concept code="761" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Verzorging/hygiëne" level="0" type="L"/>-->
-                <!--<concept code="762" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Ziek" level="0" type="L"/>-->
-                <!--<concept code="763" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Voorkeurshouding" level="0" type="L"/>-->
-                <!--<concept code="764" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Lichaamskant voorkeurshouding" level="0" type="L"/>-->
-                <!--<concept code="765" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden kleur huid" level="0" type="L"/>-->
-                <!--<concept code="766" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Snel vermoeid" level="0" type="L"/>-->
-                <!--<concept code="767" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Snel transpireren" level="0" type="L"/>-->
-                <!--<concept code="768" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Anders" level="0" type="L"/>-->
-                <!--<concept code="770" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Seksueel actief" level="0" type="L"/>-->
-                <!--<concept code="771" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Anticonceptie" level="0" type="L"/>-->
-                <!--<concept code="772" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Adaptatie/persoonlijkheid/sociaal gedrag nagevraagd" level="0" type="L"/>-->
+                <concept code="756" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Algemene indruk verkregen" level="0" type="L"/>
+                <concept code="757" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Interactie ouder/kind" level="0" type="L"/>
+                <concept code="758" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Interactie kind/JGZ-professional" level="0" type="L"/>
+                <concept code="759" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Gedrag" level="0" type="L"/>
+                <concept code="760" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Stemming" level="0" type="L"/>
+                <concept code="761" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Verzorging/hygiëne" level="0" type="L"/>
+                <concept code="762" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Ziek" level="0" type="L"/>
+                <concept code="763" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Voorkeurshouding" level="0" type="L"/>
+                <concept code="764" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Lichaamskant voorkeurshouding" level="0" type="L"/>
+                <concept code="765" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden kleur huid" level="0" type="L"/>
+                <concept code="766" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Snel vermoeid" level="0" type="L"/>
+                <concept code="767" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Snel transpireren" level="0" type="L"/>
+                <concept code="768" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Anders" level="0" type="L"/>
+                <concept code="770" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Seksueel actief" level="0" type="L"/>
+                <concept code="771" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Anticonceptie" level="0" type="L"/>
+                <concept code="772" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Adaptatie/persoonlijkheid/sociaal gedrag nagevraagd" level="0" type="L"/>
                 <concept code="773" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden hechting" level="0" type="L"/>
                 <concept code="774" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Relatie met ouder/verzorger" level="0" type="L"/>
-                <!--<concept code="775" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden karakter/persoonlijkheid" level="0" type="L"/>-->
-                <!--<concept code="776" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden zelfbeeld" level="0" type="L"/>-->
-                <!--<concept code="777" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden stemming/angsten" level="0" type="L"/>-->
-                <!--<concept code="778" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden ontdekkingsdrang" level="0" type="L"/>-->
-                <!--<concept code="779" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden zelfstandigheid" level="0" type="L"/>-->
-                <!--<concept code="780" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden begrijpen" level="0" type="L"/>-->
-                <!--<concept code="781" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden wilsontwikkeling" level="0" type="L"/>-->
-                <!--<concept code="782" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden contact met volwassenen" level="0" type="L"/>-->
-                <!--<concept code="783" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden omgaan met nieuwe situaties" level="0" type="L"/>-->
-                <!--<concept code="784" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden geweld/delinquent gedrag" level="0" type="L"/>-->
+                <concept code="775" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden karakter/persoonlijkheid" level="0" type="L"/>
+                <concept code="776" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden zelfbeeld" level="0" type="L"/>
+                <concept code="777" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden stemming/angsten" level="0" type="L"/>
+                <concept code="778" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden ontdekkingsdrang" level="0" type="L"/>
+                <concept code="779" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden zelfstandigheid" level="0" type="L"/>
+                <concept code="780" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden begrijpen" level="0" type="L"/>
+                <concept code="781" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden wilsontwikkeling" level="0" type="L"/>
+                <concept code="782" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden contact met volwassenen" level="0" type="L"/>
+                <concept code="783" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden omgaan met nieuwe situaties" level="0" type="L"/>
+                <concept code="784" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden geweld/delinquent gedrag" level="0" type="L"/>
                 <concept code="785" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden verslavingsrisico" level="0" type="L"/>
                 <concept code="786" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Toelichting verslavingsrisico" level="0" type="L"/>
-                <!--<concept code="787" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Functioneren op school nagevraagd" level="0" type="L"/>-->
-                <!--<concept code="790" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden functioneren in de klas" level="0" type="L"/>-->
-                <!--<concept code="791" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden indruk school" level="0" type="L"/>-->
+                <concept code="787" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Functioneren op school nagevraagd" level="0" type="L"/>
+                <concept code="790" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden functioneren in de klas" level="0" type="L"/>
+                <concept code="791" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden indruk school" level="0" type="L"/>
                 <concept code="792" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden schoolverzuim" level="0" type="L"/>
                 <concept code="793" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Lichaamskant bijzonderheden hoofd" level="0" type="L"/>
                 <concept code="794" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden uiterlijk oor rechts" level="0" type="L"/>
@@ -515,8 +515,8 @@
                 <concept code="802" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden bovenste extremiteiten" level="0" type="L"/>
                 <concept code="804" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Beenlengteverschil" level="0" type="L"/>
                 <concept code="805" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden voet links" level="0" type="L"/>
-                <!--<concept code="806" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Scrotale testes" level="0" type="L"/>-->
-                <!--<concept code="807" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden anus" level="0" type="L"/>-->
+                <concept code="806" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Scrotale testes" level="0" type="L"/>
+                <concept code="807" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden anus" level="0" type="L"/>
                 <concept code="808" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden lengte ouders" level="0" type="L"/>
                 <concept code="809" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Target height" level="0" type="L"/>
                 <concept code="810" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Target Height Range" level="0" type="L"/>
@@ -524,7 +524,7 @@
                 <concept code="812" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Groeicurve gewicht naar lengte" level="0" type="L"/>
                 <concept code="813" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="BMI-curve" level="0" type="L"/>
                 <concept code="814" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden cognitieve ontwikkeling" level="0" type="L"/>
-                <!--<concept code="815" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Lateralisatie" level="0" type="L"/>-->
+                <concept code="815" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Lateralisatie" level="0" type="L"/>
                 <concept code="816" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Taalomgeving stimulerend" level="0" type="L"/>
                 <concept code="817" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Taalsignaleringsinstrument" level="0" type="L"/>
                 <concept code="818" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Beoordeling taalontwikkeling" level="0" type="L"/>
@@ -535,17 +535,17 @@
                 <concept code="823" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Beoordeling spraak- en taalontwikkeling Nederlands" level="0" type="L"/>
                 <concept code="824" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden menstruatie" level="0" type="L"/>
                 <concept code="825" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Pubesbeharing meisje" level="0" type="L"/>
-                <!--<concept code="826" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Methode onderzoek pubesbeharing meisje" level="0" type="L"/>-->
+                <concept code="826" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Methode onderzoek pubesbeharing meisje" level="0" type="L"/>
                 <concept code="827" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bedreiging fysiek milieu" level="0" type="D"/>
                 <concept code="829" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Doel" level="0" type="L"/>
                 <concept code="831" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bril/lenzen dragend" level="0" type="L"/>
-                <!--<concept code="832" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="APK-kaart uitslag links" level="0" type="L"/>-->
-                <!--<concept code="833" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="APK-TOV-kaart 3 meter uitslag rechts" level="0" type="L"/>-->
-                <!--<concept code="834" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="APK-TOV-kaart 3 meter uitslag links" level="0" type="L"/>-->
-                <!--<concept code="835" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="LH-kaart uitslag rechts" level="0" type="L"/>-->
-                <!--<concept code="836" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="LH-kaart uitslag links" level="0" type="L"/>-->
-                <!--<concept code="837" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Landolt-C-kaart uitslag rechts" level="0" type="L"/>-->
-                <!--<concept code="838" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Landolt-C-kaart uitslag links" level="0" type="L"/>-->
+                <concept code="832" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="APK-kaart uitslag links" level="0" type="L"/>
+                <concept code="833" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="APK-TOV-kaart 3 meter uitslag rechts" level="0" type="L"/>
+                <concept code="834" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="APK-TOV-kaart 3 meter uitslag links" level="0" type="L"/>
+                <concept code="835" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="LH-kaart uitslag rechts" level="0" type="L"/>
+                <concept code="836" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="LH-kaart uitslag links" level="0" type="L"/>
+                <concept code="837" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Landolt-C-kaart uitslag rechts" level="0" type="L"/>
+                <concept code="838" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Landolt-C-kaart uitslag links" level="0" type="L"/>
                 <concept code="839" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden visusbepaling" level="0" type="L"/>
                 <concept code="840" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Rode fundusreflex rechts" level="0" type="L"/>
                 <concept code="841" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Rode fundusreflex links" level="0" type="L"/>
@@ -554,7 +554,7 @@
                 <concept code="852" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Ishiharatest" level="0" type="L"/>
                 <concept code="853" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Dieptezien" level="0" type="L"/>
                 <concept code="854" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitslag oogarts/orthoptist" level="0" type="L"/>
-                <!--<concept code="855" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Hartonderzoek uitgevoerd" level="0" type="L"/>-->
+                <concept code="855" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Hartonderzoek uitgevoerd" level="0" type="L"/>
                 <concept code="856" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Geruis intensiteit" level="0" type="L"/>
                 <concept code="858" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Geruis timing" level="0" type="L"/>
                 <concept code="859" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Lokalisatie" level="0" type="L"/>
@@ -632,7 +632,7 @@
                 <concept code="935" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="36. Maakt communicatieve gebaren" level="0" type="L"/>
                 <concept code="936" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="37. Zegt 2 &#34;geluidswoorden&#34; met begrip" level="0" type="L"/>
                 <concept code="937" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="38. Begrijpt enkele dagelijks gebruikte zinnen" level="0" type="L"/>
-                <concept code="938" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="39. Zegt 3 &#34;woorden&#34; met begrip" level="0" type="L"/>
+                <concept code="938" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="39. Zegt 3 &#39;woorden&#39; met begrip" level="0" type="L"/>
                 <concept code="939" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="40. Begrijpt fantasieopdrachtjes (M)" level="0" type="L"/>
                 <concept code="940" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="41. Zegt &#34;zinnen&#34; van 2 woorden" level="0" type="L"/>
                 <concept code="941" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="42. Wijst 6 lichaamsdelen aan bij pop" level="0" type="L"/>
@@ -912,7 +912,7 @@
                 <concept code="1341" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Screeningsinstrument psychosociale problematiek" level="0" type="L"/>
                 <concept code="1342" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Datum afname SPP" level="0" type="L"/>
                 <concept code="1343" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="SPP ingevuld door" level="0" type="L"/>
-                <!--<concept code="1344" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Plaats van afname SPP" level="0" type="L"/>-->
+                <concept code="1344" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Plaats van afname SPP" level="0" type="L"/>
                 <concept code="1345" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden SPP" level="0" type="L"/>
                 <concept code="1346" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Conclusie SPP" level="0" type="L"/>
                 <concept code="1349" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Datum toestemming overdracht dossier binnen JGZ" level="0" type="L"/>
@@ -931,7 +931,7 @@
                 <concept code="1374" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden zoon/dochter" level="0" type="L"/>
                 <concept code="1375" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Woonverband ID zoon/dochter" level="0" type="L"/>
                 <concept code="1377" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Activiteit ID" level="0" type="L"/>
-                <!-- <concept code="1379" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Oogonderzoek uitgevoerd" level="0" type="L"/>-->
+                <concept code="1379" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Oogonderzoek uitgevoerd" level="0" type="L"/>
                 <concept code="1380" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden melding Veilig Thuis" level="0" type="L"/>
                 <concept code="1381" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitvoerende UZI consultatie Veilig Thuis" level="0" type="L"/>
                 <concept code="1382" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Gebruikt hand" level="0" type="L"/>
@@ -939,7 +939,7 @@
                 <concept code="1384" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bedreigingen nagevraagd" level="0" type="D"/>
                 <concept code="1385" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Arts UZI toestemming aan verpleegkundige om te vaccineren" level="0" type="L"/>
                 <concept code="1392" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden testis links" level="0" type="L"/>
-                <!--<concept code="1393" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden scrotum links" level="0" type="L"/>-->
+                <concept code="1393" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden scrotum links" level="0" type="L"/>
                 <concept code="1394" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Vergewissen uitgevoerd" level="0" type="L"/>
                 <concept code="1395" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bezwaar overdracht dossier binnen JGZ" level="0" type="L"/>
                 <concept code="1396" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bron bezwaar overdracht dossier binnen JGZ" level="0" type="L"/>
@@ -964,11 +964,11 @@
                 <concept code="1415" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Verklaring tegen VGV meegegeven" level="0" type="L"/>
                 <concept code="1416" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden VGV" level="0" type="L"/>
                 <concept code="1417" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Deelname VVE" level="0" type="L"/>
-                <!--<concept code="1418" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="APK-TOV-kaart 5 meter uitslag rechts" level="0" type="L"/>-->
-                <!--<concept code="1419" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="APK-TOV-kaart 5 meter uitslag links" level="0" type="L"/>-->
-                <!--<concept code="1420" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="APK-TOV-kaart 4 meter uitslag rechts" level="0" type="L"/>-->
-                <!--<concept code="1421" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="APK-TOV-kaart 4 meter uitslag links" level="0" type="L"/>-->
-                <!--<concept code="1422" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden omgaan met broer/zus/leeftijdgenoten" level="0" type="L"/>-->
+                <concept code="1418" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="APK-TOV-kaart 5 meter uitslag rechts" level="0" type="L"/>
+                <concept code="1419" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="APK-TOV-kaart 5 meter uitslag links" level="0" type="L"/>
+                <concept code="1420" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="APK-TOV-kaart 4 meter uitslag rechts" level="0" type="L"/>
+                <concept code="1421" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="APK-TOV-kaart 4 meter uitslag links" level="0" type="L"/>
+                <concept code="1422" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden omgaan met broer/zus/leeftijdgenoten" level="0" type="L"/>
                 <concept code="1423" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Verzoeker activiteit" level="0" type="L"/>
                 <concept code="1424" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Indicatie activiteit" level="0" type="L"/>
                 <concept code="1425" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden hand links" level="0" type="L"/>
@@ -979,10 +979,10 @@
                 <concept code="1434" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Diagnose Audiologisch Centrum gehoor rechts" level="0" type="L"/>
                 <concept code="1435" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Advies Audiologisch Centrum aan ouders" level="0" type="L"/>
                 <concept code="1436" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Toelichting advies Audiologisch Centrum aan ouders" level="0" type="L"/>
-                <!--<concept code="1437" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden sensibiliteit" level="0" type="L"/>-->
-                <!--<concept code="1438" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Proef van Romberg" level="0" type="L"/>-->
-                <!--<concept code="1439" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Kruis van Reitan" level="0" type="L"/>-->
-                <!--<concept code="1440" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Menstekening" level="0" type="L"/>-->
+                <concept code="1437" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden sensibiliteit" level="0" type="L"/>
+                <concept code="1438" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Proef van Romberg" level="0" type="L"/>
+                <concept code="1439" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Kruis van Reitan" level="0" type="L"/>
+                <concept code="1440" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Menstekening" level="0" type="L"/>
                 <concept code="1441" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Verantwoordelijke JGZ-organisatie URA" level="0" type="L"/>
                 <concept code="1442" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Verantwoordelijke JGZ-professional UZI" level="0" type="D"/>
                 <concept code="1446" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Toelichting bijzonderheden heupen" level="0" type="L"/>
@@ -1034,8 +1034,8 @@
                 <concept code="1496" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Score taalsignaleringsinstrument" level="0" type="L"/>
                 <concept code="1497" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bestandsnaam" level="0" type="L"/>
                 <concept code="1498" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bestand mimetype" level="0" type="L"/>
-                <!--<concept code="1499" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Zwemles" level="0" type="L"/>-->
-                <!--<concept code="1500" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Schoolzwemmen" level="0" type="L"/>-->
+                <concept code="1499" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Zwemles" level="0" type="L"/>
+                <concept code="1500" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Schoolzwemmen" level="0" type="L"/>
                 <concept code="1501" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitvoerende JGZ-professional activiteit naam" level="0" type="L"/>
                 <concept code="1503" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Vreemdelingennummer" level="0" type="L"/>
                 <concept code="1504" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Arts BIG toestemming aan verpleegkundige om te vaccineren" level="0" type="L"/>
