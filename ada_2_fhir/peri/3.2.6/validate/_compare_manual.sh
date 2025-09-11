@@ -71,7 +71,7 @@ mv mm-gbz-zib-Payer-Payer-mm-gbz-2940951a-6b35-11ec-2129-020000000000-1.xml medm
 mv mm-gbz-zib-Pregnancy-Gravidity11996-6-e0c60d1b-6ad3-11ec-2334-020000000000.xml medmij-gbz-zib-Pregnancy-Gravidity161732006-0d67gec5-2663-11ec-1741-020000000000.xml
 mv mm-gbz-zib-Pregnancy-Parity11977-6-a1d8cd67-6b2f-11ec-2334-020000000000.xml medmij-gbz-zib-Pregnancy-Parity364325004-0d47afc6-1963-12ec-1142-030000000000.xml
 mv mm-gbz-zib-Pregnancy118185001-c8cdd3f7-6b7c-11ec-2334-020000000000.xml medmij-gbz-zib-Pregnancy118185001-1d47bec2-2933-11ec-3743-040000000000.xml
-mv mm-gbz-bc-ObstetricProcedure169228004-a42090eb-6af8-11ec-2241-020000000000.xml medmij-gbz-bc-ObstetricProcedure-1f433e4l-4223-15od-1258-020000000000.xml
+mv mm-gbz-bc-ObstetricProcedure169228004-4cbbd308-6a9c-11ec-2241-020000000000.xml medmij-gbz-bc-ObstetricProcedure-1f433e4l-4223-15od-1258-020000000000.xml
 
 cd ../Echo-Casus3
 
