@@ -5,15 +5,11 @@ c=`pwd`
 cd `dirname $0`
 rm -rf compare
 mkdir compare
-cp -rp ../med_mij_echo_beschikbaarstellen/fhir_instance/gz-ize-kwa-casus1 compare/Echo-Casus1
-cp -rp ../med_mij_echo_beschikbaarstellen/fhir_instance/gz-ize-kwa-casus2 compare/Echo-Casus2
-cp -rp ../med_mij_echo_beschikbaarstellen/fhir_instance/gz-ize-kwa-casus3 compare/Echo-Casus3
-
-cp -rp ../med_mij_kraam_beschikbaarstellen/fhir_instance/gz-izk-kwa-casus1 compare/Kraam-Casus1
-cp -rp ../med_mij_kraam_beschikbaarstellen/fhir_instance/gz-izk-kwa-casus2 compare/Kraam-Casus2
 
 echo Renaming in Echo-Casus1 ...
-cd compare/Echo-Casus1
+cd compare
+cp -rp ../../med_mij_echo_beschikbaarstellen/fhir_instance/gz-ize-kwa-casus1 Echo-Casus1
+cd Echo-Casus1
 
 mv mm-gbz-bc-AmnioticFluid160321000146103-e7b3d5c9-6ae1-11ec-2241-020000000000.xml medmij-gbz-bc-FetusObservation-160321000146103-1a78132-1943-14rp-1287-040000000000.xml
 mv mm-gbz-bc-DisorderOfChild76916001-98e01ded-6af7-11ec-2394-020000000000.xml medmij-gbz-zib-Problem-76916001-0a42b3d2-1831-14ec-1751-030000000000.xml
@@ -50,7 +46,9 @@ mv mm-gbz-zib-Pregnancy118185001-3cc38e5b-6ac9-11ec-2334-020000000000.xml medmij
 mv mm-gbz-bc-ObstetricProcedure143701000146108-6e8bd802-6abf-11ec-2241-020000000000.xml medmij-gbz-bc-ObstetricProcedure-0f933e4l-4113-14od-1258-020000000000.xml
 
 echo Renaming in Echo-Casus2 ...
-cd ../Echo-Casus2
+cd ..
+cp -rp ../../med_mij_echo_beschikbaarstellen/fhir_instance/gz-ize-kwa-casus2 Echo-Casus2
+cd Echo-Casus2
 
 mv mm-gbz-bc-AmnioticFluid160321000146103-691bd083-6b06-11ec-2241-020000000000.xml medmij-gbz-bc-FetusObservation-160321000146103-1a78132-1249-64rp-1287-040000000000.xml
 mv mm-gbz-bc-FetalHeartRate8867-4-b44e1d0d-6aa4-11ec-2178-020000000000.xml medmij-gbz-bc-FetusObservation249043002-5f617a89-2123-39ag-2255-010000000000.xml
@@ -78,7 +76,9 @@ mv mm-gbz-zib-Pregnancy118185001-c8cdd3f7-6b7c-11ec-2334-020000000000.xml medmij
 mv mm-gbz-bc-ObstetricProcedure169228004-4cbbd308-6a9c-11ec-2241-020000000000.xml medmij-gbz-bc-ObstetricProcedure-1f433e4l-4223-15od-1258-020000000000.xml
 
 echo Renaming in Echo-Casus3 ...
-cd ../Echo-Casus3
+cd ..
+cp -rp ../../med_mij_echo_beschikbaarstellen/fhir_instance/gz-ize-kwa-casus3 Echo-Casus3
+cd Echo-Casus3
 
 mv mm-gbz-bc-Fetus83418008-0f2dfafb-6a9d-11ec-1267-020000000000.xml medmij-gbz-bc-Fetus-b89db315-ddc8-43bd-8b08-7e6cb2cf5adb.xml
 mv mm-gbz-bc-FetusObservation11820-8-32c4af83-6af2-11ec-2355-020000000000.xml medmij-gbz-bc-FetusObservation-11820-8-a10ba8c4-899c-4be2-9b20-f26016cc56da.xml
@@ -102,7 +102,9 @@ mv mm-gbz-zib-Pregnancy118185001-c6ab20cb-6b5e-11ec-2334-020000000000.xml medmij
 mv mm-gbz-bc-ObstetricProcedure133601000146101-c2f2a72b-6b5c-11ec-2241-020000000000.xml medmij-gbz-bc-ObstetricProcedure-8ef5191b-ae29-4410-9a63-82907cdecfb6.xml
 
 echo Renaming in Kraam-Casus1 ...
-cd ../Kraam-Casus1
+cd ..
+cp -rp ../../med_mij_kraam_beschikbaarstellen/fhir_instance/gz-izk-kwa-casus1 Kraam-Casus1
+cd Kraam-Casus1
 
 mv mm-gbz-bc-AbilityToTakeCareOfChild129879003-944cd2ca-6b7e-11ec-2998-020000000000.xml	medmij-gbz-bc-AbilityToTakeCareOfChild-b7816n34-2191-19ec-8669-020000000000.xml
 mv mm-gbz-bc-Birth3950001-e7a46a7e-6b19-11ec-2123-020000000000.xml	medmij-gbz-bc-BirthProcedure3950001-6b971017-a6d9-11ek-1598-020000000000.xml
@@ -171,7 +173,9 @@ mv mm-gbz-zib-TobaccoUse365980008-a25bb5af-6b44-11ec-2224-020000000000.xml	medmi
 mv mm-gbz-bc-MaternalObservation365469004-271feecf-6b5c-11ec-2291-020000000000.xml medmij-gbz-bc-MaternalObservation-365469004-411bac7f4-0ffe-41c4-b616-67c86577689b.xml
 
 echo Renaming in Kraam-Casus2 ...
-cd ../Kraam-Casus2
+cd ..
+cp -rp ../../med_mij_kraam_beschikbaarstellen/fhir_instance/gz-izk-kwa-casus2 Kraam-Casus2
+cd Kraam-Casus2
 
 mv mm-gbz-bc-AbilityToTakeCareOfChild129879003-497712aa-6ac5-11ec-2998-020000000000.xml	medmij-gbz-bc-AbilityToTakeCareOfChild129879003-8b35ed8a-8d86-4b2d-ab59-f54d7d73c3d3.xml
 mv mm-gbz-bc-Birth3950001-eb227a2d-6b38-11ec-2123-020000000000.xml	medmij-gbz-bc-BirthProcedure-76999b6b-54b7-4011-ae0b-7d80e1f939d7.xml
