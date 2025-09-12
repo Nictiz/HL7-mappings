@@ -1,6 +1,8 @@
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd">
-   <meta status="new" created-by="generated" last-update-by="generated"/>
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"/>
    <data>
       <sturen_medicatievoorschrift app="mp-mp93"
                                    shortName="sturen_medicatievoorschrift"
@@ -22,9 +24,13 @@
                   <achternaam value="XXX_Hess"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999900614" root="2.16.840.1.113883.2.4.6.3"/>
-            <geboortedatum value="1963-11-03" datatype="datetime"/>
-            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+            <identificatienummer value="999900614"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1963-11-03"
+                           datatype="datetime"/>
+            <geslacht code="M"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Man"/>
          </patient>
          <medicamenteuze_behandeling>
             <identificatie value="MBH_300_magistraalactieveingredient"
@@ -32,10 +38,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_magistraalactieveingredient_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2023-01-01T12:05:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2023-01-01T12:05:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2023-01-02T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-03-12T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2023-01-02T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-03-12T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <voorschrijver>
                   <zorgverlener value="urn-uuid-5bb10844-a281-11ef-1307-020000000000"
@@ -58,8 +67,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -68,7 +87,8 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_magistraalactieveingredient_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd value="2023-01-01T12:05:00+01:00" datatype="datetime"/>
+               <verstrekkingsverzoek_datum_tijd value="2023-01-01T12:05:00+01:00"
+                                                datatype="datetime"/>
                <auteur>
                   <zorgverlener value="urn-uuid-5bb10844-a281-11ef-1307-020000000000"
                                 datatype="reference"/>
@@ -98,7 +118,8 @@
                <product_code code="OTH"
                              codeSystem="2.16.840.1.113883.5.1008"
                              codeSystemName="HL7 NullFlavor"
-                             displayName="overig"/>
+                             displayName="overig"
+                             originalText="Vaseline 20% in cetomacrogolcrème FNA"/>
                <product_specificatie>
                   <product_naam value="Vaseline 20% in cetomacrogolcrème FNA"/>
                   <omschrijving value="Titel: Vaseline 20% in cetomacrogolcrème FNA Regel 1: cetomacrogolcreme 80 gr"/>
@@ -127,7 +148,8 @@
                </product_specificatie>
             </farmaceutisch_product>
             <zorgverlener id="urn-uuid-5bb10844-a281-11ef-1307-020000000000">
-               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+               <zorgverlener_identificatienummer value="000001111"
+                                                 root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Peter"/>
                   <geslachtsnaam>
@@ -153,21 +175,9 @@
                                  value="urn-uuid-5bb108b2-a281-11ef-1307-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-5bb108b2-a281-11ef-1307-020000000000">
-               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
-               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
-               <adresgegevens>
-                  <straat value="Dorpsstraat"/>
-                  <huisnummer value="1"/>
-                  <postcode value="1234AA"/>
-                  <woonplaats value="Ons Dorp"/>
-                  <adres_soort code="WP"
-                               codeSystem="2.16.840.1.113883.5.1119"
-                               displayName="Werkadres"/>
-               </adresgegevens>
-            </zorgaanbieder>
             <zorgaanbieder id="urn-uuid-5bb1090c-a281-11ef-1307-020000000000">
-               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <zorgaanbieder_identificatienummer value="01236578"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>
