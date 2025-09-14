@@ -4,7 +4,7 @@
          created-by="geboortezorgada"
          last-update-by="geboortezorgada"
          creation-date="2024-06-26T11:46:03.146Z"
-         last-update-date="2025-09-11T09:37:54.754Z"/>
+         last-update-date="2025-09-12T10:13:40.593Z"/>
    <data>
       <med_mij_echo_beschikbaarstellen app="perinatologie-326"
                                        shortName="med_mij_echo_beschikbaarstellen"
@@ -167,30 +167,14 @@
             </zwangerschap>
          </zwangerschapsgegevens>
          <medisch_onderzoek conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1123">
-            <verrichting_onderzoek conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2416">
-               <verrichting_start_datum value="T-13D"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2417"/>
-               <verrichting_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2423"
-                                 value="5"
-                                 code="133601000146101"
-                                 codeSystem="2.16.840.1.113883.6.96"
-                                 displayName="echografie ter bepaling van geschatte datum van partus (verrichting)"/>
-               <locatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2427">
-                  <zorgaanbieder value="PraktijkGroei"
-                                 datatype="reference"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2433"/>
-               </locatie>
-               <uitvoerder conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2429">
-                  <zorgverlener value="HelmaH"
-                                datatype="reference"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2434"/>
-               </uitvoerder>
-            </verrichting_onderzoek>
             <foetusspecifieke_onderzoeksgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1208">
                <patient value="XXX_Kooijman_Foetus"
                         datatype="reference"
                         conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10283"/>
                <echoscopie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1209">
+                  <verrichting_maternaal_onderzoek value="EchoFoetaleGroei"
+                                                   datatype="reference"
+                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11098"/>
                   <biometrie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1210">
                      <foetale_buikomtrek__ac_meting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3513">
                         <acwaarde value="49"
@@ -295,6 +279,26 @@
                   </bevindingen>
                </echoscopie>
             </foetusspecifieke_onderzoeksgegevens>
+            <maternale_onderzoeksgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1124">
+               <patient value="XXX_Kooijman_Vrouw"
+                        datatype="reference"
+                        conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11027"/>
+               <verrichting_maternaal_onderzoek conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2416"
+                                                id="EchoFoetaleGroei">
+                  <verrichting_start_datum value="T-13D"
+                                           datatype="datetime"
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2417"/>
+                  <verrichting_eind_datum value="T-13D"
+                                          datatype="datetime"
+                                          conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2418"/>
+                  <verrichting_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2423"
+                                    value="6"
+                                    code="241493005"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"
+                                    displayName="echografie voor foetale groei (verrichting)"/>
+               </verrichting_maternaal_onderzoek>
+            </maternale_onderzoeksgegevens>
          </medisch_onderzoek>
       </med_mij_echo_beschikbaarstellen>
    </data>

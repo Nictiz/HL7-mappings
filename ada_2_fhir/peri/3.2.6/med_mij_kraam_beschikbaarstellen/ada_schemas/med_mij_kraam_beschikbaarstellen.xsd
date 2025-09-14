@@ -114,6 +114,16 @@
                      type="bouwstenen_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_926"
                      minOccurs="0"
                      maxOccurs="1"/>
+         <xs:element name="prullenbak-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.11.1429"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="prullenbak"
+                     type="prullenbak_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_11_1429"
+                     minOccurs="0"
+                     maxOccurs="unbounded"/>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="hidden" fixed="true"/>
@@ -10620,16 +10630,6 @@
                      type="gehoortest_waarde_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10006"
                      minOccurs="1"
                      maxOccurs="1"/>
-         <xs:element name="datum_gehoortest_waarde-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10023"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="datum_gehoortest_waarde"
-                     type="datum_gehoortest_waarde_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10023"
-                     minOccurs="1"
-                     maxOccurs="1"/>
          <xs:element name="observatie_methode-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10007"/>
@@ -10686,16 +10686,6 @@
          </xs:element>
          <xs:element name="hielprik_waarde"
                      type="hielprik_waarde_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10016"
-                     minOccurs="1"
-                     maxOccurs="1"/>
-         <xs:element name="datum_hielprik_waarde-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10024"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="datum_hielprik_waarde"
-                     type="datum_hielprik_waarde_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10024"
                      minOccurs="1"
                      maxOccurs="1"/>
          <xs:element name="setnummer_hielprik_waarde-start" minOccurs="0" maxOccurs="1">
@@ -11961,6 +11951,44 @@
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2904"/>
       <xs:attribute name="id" type="xs:ID"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="prullenbak_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_11_1429">
+      <xs:annotation>
+         <xs:documentation>Type for concept group: Prullenbak</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="datum_gehoortest_waarde-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10023"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="datum_gehoortest_waarde"
+                     type="datum_gehoortest_waarde_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10023"
+                     minOccurs="1"
+                     maxOccurs="1"/>
+         <xs:element name="datum_hielprik_waarde-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10024"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="datum_hielprik_waarde"
+                     type="datum_hielprik_waarde_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10024"
+                     minOccurs="1"
+                     maxOccurs="1"/>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.11.1429"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:annotation>
@@ -30517,125 +30545,165 @@
                </xs:enumeration>
                <xs:enumeration value="87">
                   <xs:annotation>
-                     <xs:documentation>arts</xs:documentation>
+                     <xs:documentation>arts in opleiding (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="88">
                   <xs:annotation>
-                     <xs:documentation>arts in opleiding (beroep)</xs:documentation>
+                     <xs:documentation>arts niet in opleiding tot specialist (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="89">
                   <xs:annotation>
-                     <xs:documentation>arts niet in opleiding tot specialist (beroep)</xs:documentation>
+                     <xs:documentation>huisarts in opleiding (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="90">
                   <xs:annotation>
-                     <xs:documentation>huisarts</xs:documentation>
+                     <xs:documentation>neonatoloog (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="91">
                   <xs:annotation>
-                     <xs:documentation>huisarts in opleiding (beroep)</xs:documentation>
+                     <xs:documentation>arts in opleiding tot specialist in ziekenhuis (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="92">
                   <xs:annotation>
-                     <xs:documentation>kinderarts</xs:documentation>
+                     <xs:documentation>physician assistant (beroep)+klinisch verloskundige (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="93">
                   <xs:annotation>
-                     <xs:documentation>neonatoloog (beroep)</xs:documentation>
+                     <xs:documentation>student geneeskunde (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="94">
                   <xs:annotation>
-                     <xs:documentation>gynaecoloog</xs:documentation>
+                     <xs:documentation>gediplomeerd verloskundige (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="95">
                   <xs:annotation>
-                     <xs:documentation>arts in opleiding tot specialist in ziekenhuis (beroep)</xs:documentation>
+                     <xs:documentation>eerstelijnsverloskundige (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="96">
                   <xs:annotation>
-                     <xs:documentation>physician assistant (beroep)+klinisch verloskundige (beroep)</xs:documentation>
+                     <xs:documentation>klinisch verloskundige (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="97">
                   <xs:annotation>
-                     <xs:documentation>student geneeskunde (beroep)</xs:documentation>
+                     <xs:documentation>student verloskunde (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="98">
                   <xs:annotation>
-                     <xs:documentation>gediplomeerd verloskundige (beroep)</xs:documentation>
+                     <xs:documentation>lactatiekundige (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="99">
                   <xs:annotation>
-                     <xs:documentation>eerstelijnsverloskundige (beroep)</xs:documentation>
+                     <xs:documentation>echoscopist (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="100">
                   <xs:annotation>
-                     <xs:documentation>klinisch verloskundige (beroep)</xs:documentation>
+                     <xs:documentation>gespecialiseerd verpleegkundige (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="101">
                   <xs:annotation>
-                     <xs:documentation>Verloskundigen, met bevoegdheid echoscopie</xs:documentation>
+                     <xs:documentation>kraamverzorgende (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="102">
                   <xs:annotation>
-                     <xs:documentation>student verloskunde (beroep)</xs:documentation>
+                     <xs:documentation>arts in opleiding (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="103">
                   <xs:annotation>
-                     <xs:documentation>lactatiekundige (beroep)</xs:documentation>
+                     <xs:documentation>arts niet in opleiding tot specialist (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="104">
                   <xs:annotation>
-                     <xs:documentation>echoscopist (beroep)</xs:documentation>
+                     <xs:documentation>huisarts in opleiding (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="105">
                   <xs:annotation>
-                     <xs:documentation>verpleegkundige</xs:documentation>
+                     <xs:documentation>neonatoloog (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="106">
                   <xs:annotation>
-                     <xs:documentation>gespecialiseerd verpleegkundige (beroep)</xs:documentation>
+                     <xs:documentation>arts in opleiding tot specialist in ziekenhuis (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="107">
                   <xs:annotation>
-                     <xs:documentation>kraamverzorgende (beroep)</xs:documentation>
+                     <xs:documentation>physician assistant (beroep)+klinisch verloskundige (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="108">
                   <xs:annotation>
-                     <xs:documentation>VIG-er</xs:documentation>
+                     <xs:documentation>student geneeskunde (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="109">
                   <xs:annotation>
-                     <xs:documentation>onbekend</xs:documentation>
+                     <xs:documentation>gediplomeerd verloskundige (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="110">
                   <xs:annotation>
-                     <xs:documentation>geen informatie</xs:documentation>
+                     <xs:documentation>eerstelijnsverloskundige (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="111">
+                  <xs:annotation>
+                     <xs:documentation>klinisch verloskundige (beroep)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="112">
+                  <xs:annotation>
+                     <xs:documentation>student verloskunde (beroep)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="113">
+                  <xs:annotation>
+                     <xs:documentation>lactatiekundige (beroep)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="114">
+                  <xs:annotation>
+                     <xs:documentation>echoscopist (beroep)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="115">
+                  <xs:annotation>
+                     <xs:documentation>gespecialiseerd verpleegkundige (beroep)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="116">
+                  <xs:annotation>
+                     <xs:documentation>kraamverzorgende (beroep)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="117">
+                  <xs:annotation>
+                     <xs:documentation>onbekend</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="118">
+                  <xs:annotation>
+                     <xs:documentation>geen informatie</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="119">
                   <xs:annotation>
                      <xs:documentation>SpecialismeAGBCodelijst</xs:documentation>
                   </xs:annotation>
@@ -37157,10 +37225,27 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10745"/>
-      <xs:attribute name="value" type="xs:nonNegativeInteger"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:union memberTypes="geindiceerd_aantal_uur_kraamzorg_waarde_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10745 "/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="quantity"/>
+      <xs:attribute name="unit">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:enumeration value="h"/>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: GeïndiceerdAantalUurKraamzorgWaarde: quantity</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="geindiceerd_aantal_uur_kraamzorg_waarde_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10745">
+      <xs:restriction base="xs:decimal"/>
+   </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Toelichting - 0..1 R</xs:documentation>
    </xs:annotation>
@@ -49918,32 +50003,6 @@
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: DatumGehoortestWaarde - 1..1 R</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="datum_gehoortest_waarde_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10023">
-      <xs:sequence>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10023"/>
-      <xs:attribute name="value" type="VariableVagueDateTime"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="datetime"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: DatumGehoortestWaarde: string</xs:documentation>
-   </xs:annotation>
-   <xs:simpleType name="datum_gehoortest_waarde_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10023">
-      <xs:restriction base="xs:string"/>
-   </xs:simpleType>
-   <xs:annotation>
       <xs:documentation>Type for concept item: ObservatieMethode - 0..1 R</xs:documentation>
    </xs:annotation>
    <xs:complexType name="observatie_methode_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10007">
@@ -50116,32 +50175,6 @@
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="boolean"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>Type for concept item: DatumHielprikWaarde - 1..1 R</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="datum_hielprik_waarde_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10024">
-      <xs:sequence>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10024"/>
-      <xs:attribute name="value" type="VariableVagueDateTime"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="datetime"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: DatumHielprikWaarde: string</xs:documentation>
-   </xs:annotation>
-   <xs:simpleType name="datum_hielprik_waarde_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10024">
-      <xs:restriction base="xs:string"/>
-   </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: SetnummerHielprikWaarde - 0..1 R</xs:documentation>
    </xs:annotation>
@@ -52622,6 +52655,58 @@
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="string"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: DatumGehoortestWaarde - 1..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="datum_gehoortest_waarde_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10023">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10023"/>
+      <xs:attribute name="value" type="VariableVagueDateTime"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="datetime"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: DatumGehoortestWaarde: string</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="datum_gehoortest_waarde_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10023">
+      <xs:restriction base="xs:string"/>
+   </xs:simpleType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: DatumHielprikWaarde - 1..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="datum_hielprik_waarde_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10024">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10024"/>
+      <xs:attribute name="value" type="VariableVagueDateTime"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="datetime"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: DatumHielprikWaarde: string</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="datum_hielprik_waarde_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10024">
+      <xs:restriction base="xs:string"/>
+   </xs:simpleType>
    <xs:complexType name="adaextension_type">
       <xs:sequence>
          <xs:any processContents="skip" minOccurs="0" maxOccurs="unbounded"/>

@@ -47,20 +47,20 @@
       <div id="mynetwork"> </div>
       <script type="text/javascript">// create an array with nodes
 var nodes = new vis.DataSet([
-{ id: 2, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-8b4a1a6f-6b0c-11ec-0000-020000000000.html" }, 
 { id: 14, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-e0d93b0f-6b66-11ec-2334-020000000000.html" }, 
-{ id: 86, label: "Patient XXX_Swart", url: "mm-gbz-bc-Woman-FIONA-F-XXX-SWART.html" }, 
-{ id: 93, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-3834f287-6aa8-11ec-2123-020000000000.html" }, 
-{ id: 94, label: "Procedure geboorte (bevinding)", url: "mm-gbz-bc-Birth3950001-be71a8c7-6ae9-11ec-2123-020000000000.html" }, 
-{ id: 101, label: "Procedure vitamine K toediening aan neonaat", url: "mm-gbz-bc-ObstetricProcedure698350008370131001=133933007-dd9e5db8-6b42-11ec-2160-020000000000.html" }, 
+{ id: 17, label: "Encounter consult (verrichting)", url: "mm-gbz-bc-Encounter-bb5e99cf-6af2-11ec-1275-020000000000.html" }, 
+{ id: 78, label: "Patient XXX_Swart", url: "mm-gbz-bc-Woman-FIONA-F-XXX-SWART.html" }, 
+{ id: 85, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-3834f287-6aa8-11ec-2123-020000000000.html" }, 
+{ id: 86, label: "Procedure geboorte (bevinding)", url: "mm-gbz-bc-Birth3950001-be71a8c7-6ae9-11ec-2123-020000000000.html" }, 
+{ id: 93, label: "Procedure vitamine K toediening aan neonaat", url: "mm-gbz-bc-ObstetricProcedure698350008370131001=133933007-dd9e5db8-6b42-11ec-2160-020000000000.html" }, 
 ]);
 
 // create an array with edges
-var edges = new vis.DataSet([{ from: 101, to: 93 }, 
-{ from: 101, to: 94 }, 
-{ from: 101, to: 86 }, 
-{ from: 101, to: 2 }, 
-{ from: 101, to: 14 }, 
+var edges = new vis.DataSet([{ from: 93, to: 85 }, 
+{ from: 93, to: 86 }, 
+{ from: 93, to: 78 }, 
+{ from: 93, to: 17 }, 
+{ from: 93, to: 14 }, 
 ]);
 // create a network
 var container = document.getElementById("mynetwork");

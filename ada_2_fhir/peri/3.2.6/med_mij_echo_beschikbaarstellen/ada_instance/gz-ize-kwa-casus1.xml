@@ -4,7 +4,7 @@
          created-by="geboortezorgada"
          last-update-by="geboortezorgada"
          creation-date="2024-06-26T11:45:12.866Z"
-         last-update-date="2025-09-11T09:37:39.532Z"/>
+         last-update-date="2025-09-12T10:15:17.954Z"/>
    <data>
       <med_mij_echo_beschikbaarstellen app="perinatologie-326"
                                        shortName="med_mij_echo_beschikbaarstellen"
@@ -242,32 +242,14 @@
             </zwangerschap>
          </zwangerschapsgegevens>
          <medisch_onderzoek conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1123">
-            <verrichting_onderzoek conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2416"
-                                   id="Sc1-ttseo">
-               <verrichting_start_datum value="T-570D"
-                                        datatype="datetime"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2417"/>
-               <verrichting_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2423"
-                                 value="13"
-                                 code="143701000146108"
-                                 codeSystem="2.16.840.1.113883.6.96"
-                                 displayName="structureel echoscopisch onderzoek tijdens tweede trimester (verrichting)"/>
-               <locatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2427">
-                  <zorgaanbieder value="EchopraktijkGroei"
-                                 datatype="reference"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2433"/>
-               </locatie>
-               <uitvoerder conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2429">
-                  <zorgverlener value="HelmaGrootkaart8"
-                                datatype="reference"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2434"/>
-               </uitvoerder>
-            </verrichting_onderzoek>
             <foetusspecifieke_onderzoeksgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1208">
                <patient value="XXX_Osse_Foetus"
                         datatype="reference"
                         conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10283"/>
                <echoscopie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1209">
+                  <verrichting_maternaal_onderzoek value="FoetaleGroeiEcho"
+                                                   datatype="reference"
+                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11098"/>
                   <echografische_bevindingen_algemeen_observatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.8918">
                      <observatie_methode conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.8929"
                                          value="8"
@@ -542,9 +524,9 @@
                                                datatype="datetime"
                                                conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7869"/>
                      <verrichting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7870">
-                        <verrichting_onderzoek value="Sc1-ttseo"
-                                               datatype="reference"
-                                               conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7875"/>
+                        <verrichting_maternaal_onderzoek value="FoetaleGroeiEcho"
+                                                         datatype="reference"
+                                                         conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7875"/>
                      </verrichting>
                      <tekst_uitslag_status conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7872"
                                            value="3"
@@ -561,6 +543,26 @@
                   </tekst_uitslag>
                </echoscopie>
             </foetusspecifieke_onderzoeksgegevens>
+            <maternale_onderzoeksgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1124">
+               <patient value="XXX_Osse_Vrouw"
+                        datatype="reference"
+                        conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11027"/>
+               <verrichting_maternaal_onderzoek conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2416"
+                                                id="FoetaleGroeiEcho">
+                  <verrichting_start_datum value="T-570D"
+                                           datatype="datetime"
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2417"/>
+                  <verrichting_eind_datum value="T-570D"
+                                          datatype="datetime"
+                                          conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2418"/>
+                  <verrichting_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2423"
+                                    value="6"
+                                    code="241493005"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"
+                                    displayName="echografie voor foetale groei (verrichting)"/>
+               </verrichting_maternaal_onderzoek>
+            </maternale_onderzoeksgegevens>
          </medisch_onderzoek>
       </med_mij_echo_beschikbaarstellen>
    </data>

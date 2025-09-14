@@ -94,16 +94,6 @@
                      type="bouwstenen_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_926"
                      minOccurs="0"
                      maxOccurs="1"/>
-         <xs:element name="prullenbak-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.11.1429"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="prullenbak"
-                     type="prullenbak_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_11_1429"
-                     minOccurs="0"
-                     maxOccurs="unbounded"/>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="hidden" fixed="true"/>
@@ -1751,16 +1741,6 @@
                      type="specialisme_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_2219"
                      minOccurs="1"
                      maxOccurs="1"/>
-         <xs:element name="contactgegevens-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3271"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="contactgegevens"
-                     type="contactgegevens_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_3271"
-                     minOccurs="0"
-                     maxOccurs="1"/>
          <xs:element name="zorgaanbieder-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1678"/>
@@ -1947,72 +1927,6 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3256"/>
-      <xs:attribute name="comment" type="xs:string" use="optional"/>
-   </xs:complexType>
-   <xs:complexType name="contactgegevens_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_3271">
-      <xs:annotation>
-         <xs:documentation>Type for concept group: Contactgegevens</xs:documentation>
-      </xs:annotation>
-      <xs:sequence>
-         <xs:element name="telefoonnummers-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3272"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="telefoonnummers"
-                     type="telefoonnummers_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_3272"
-                     minOccurs="0"
-                     maxOccurs="unbounded"/>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3271"/>
-      <xs:attribute name="comment" type="xs:string" use="optional"/>
-   </xs:complexType>
-   <xs:complexType name="telefoonnummers_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_3272">
-      <xs:annotation>
-         <xs:documentation>Type for concept group: Telefoonnummers</xs:documentation>
-      </xs:annotation>
-      <xs:sequence>
-         <xs:element name="telefoonnummer-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3273"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="telefoonnummer"
-                     type="telefoonnummer_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_3273"
-                     minOccurs="1"
-                     maxOccurs="1"/>
-         <xs:element name="telecom_type-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3274"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="telecom_type"
-                     type="telecom_type_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_3274"
-                     minOccurs="1"
-                     maxOccurs="1"/>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3272"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="zorgverlening_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1314">
@@ -6541,7 +6455,6 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1128"/>
-      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="laboratorium_test_rhesus_d_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1140">
@@ -6580,7 +6493,6 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1140"/>
-      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="laboratorium_test_rhesus_c_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1152">
@@ -6619,7 +6531,6 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1152"/>
-      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="laboratorium_test__hbs_ag_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1640">
@@ -8048,84 +7959,6 @@
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1073"/>
       <xs:attribute name="id" type="xs:ID"/>
-      <xs:attribute name="comment" type="xs:string" use="optional"/>
-   </xs:complexType>
-   <xs:complexType name="prullenbak_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_11_1429">
-      <xs:annotation>
-         <xs:documentation>Type for concept group: Prullenbak</xs:documentation>
-      </xs:annotation>
-      <xs:sequence>
-         <xs:element name="bloedonderzoek-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1127"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="bloedonderzoek"
-                     type="bloedonderzoek_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1127"
-                     minOccurs="0"
-                     maxOccurs="unbounded"/>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.11.1429"/>
-      <xs:attribute name="comment" type="xs:string" use="optional"/>
-   </xs:complexType>
-   <xs:complexType name="bloedonderzoek_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1127">
-      <xs:annotation>
-         <xs:documentation>Type for concept group: Bloedonderzoek</xs:documentation>
-      </xs:annotation>
-      <xs:sequence>
-         <xs:element name="laboratorium_test_bloedgroep-start"
-                     minOccurs="0"
-                     maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1139"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="laboratorium_test_bloedgroep"
-                     type="laboratorium_test_bloedgroep_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1139"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-         <xs:element name="laboratorium_test_rhesus_d-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1151"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="laboratorium_test_rhesus_d"
-                     type="laboratorium_test_rhesus_d_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1151"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-         <xs:element name="laboratorium_test_rhesus_c-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1163"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="laboratorium_test_rhesus_c"
-                     type="laboratorium_test_rhesus_c_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1163"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1127"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:annotation>
@@ -18762,206 +18595,167 @@
                </xs:enumeration>
                <xs:enumeration value="87">
                   <xs:annotation>
-                     <xs:documentation>arts</xs:documentation>
+                     <xs:documentation>arts in opleiding (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="88">
                   <xs:annotation>
-                     <xs:documentation>arts in opleiding (beroep)</xs:documentation>
+                     <xs:documentation>arts niet in opleiding tot specialist (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="89">
                   <xs:annotation>
-                     <xs:documentation>arts niet in opleiding tot specialist (beroep)</xs:documentation>
+                     <xs:documentation>huisarts in opleiding (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="90">
                   <xs:annotation>
-                     <xs:documentation>huisarts</xs:documentation>
+                     <xs:documentation>neonatoloog (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="91">
                   <xs:annotation>
-                     <xs:documentation>huisarts in opleiding (beroep)</xs:documentation>
+                     <xs:documentation>arts in opleiding tot specialist in ziekenhuis (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="92">
                   <xs:annotation>
-                     <xs:documentation>kinderarts</xs:documentation>
+                     <xs:documentation>physician assistant (beroep)+klinisch verloskundige (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="93">
                   <xs:annotation>
-                     <xs:documentation>neonatoloog (beroep)</xs:documentation>
+                     <xs:documentation>student geneeskunde (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="94">
                   <xs:annotation>
-                     <xs:documentation>gynaecoloog</xs:documentation>
+                     <xs:documentation>gediplomeerd verloskundige (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="95">
                   <xs:annotation>
-                     <xs:documentation>arts in opleiding tot specialist in ziekenhuis (beroep)</xs:documentation>
+                     <xs:documentation>eerstelijnsverloskundige (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="96">
                   <xs:annotation>
-                     <xs:documentation>physician assistant (beroep)+klinisch verloskundige (beroep)</xs:documentation>
+                     <xs:documentation>klinisch verloskundige (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="97">
                   <xs:annotation>
-                     <xs:documentation>student geneeskunde (beroep)</xs:documentation>
+                     <xs:documentation>student verloskunde (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="98">
                   <xs:annotation>
-                     <xs:documentation>gediplomeerd verloskundige (beroep)</xs:documentation>
+                     <xs:documentation>lactatiekundige (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="99">
                   <xs:annotation>
-                     <xs:documentation>eerstelijnsverloskundige (beroep)</xs:documentation>
+                     <xs:documentation>echoscopist (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="100">
                   <xs:annotation>
-                     <xs:documentation>klinisch verloskundige (beroep)</xs:documentation>
+                     <xs:documentation>gespecialiseerd verpleegkundige (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="101">
                   <xs:annotation>
-                     <xs:documentation>Verloskundigen, met bevoegdheid echoscopie</xs:documentation>
+                     <xs:documentation>kraamverzorgende (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="102">
                   <xs:annotation>
-                     <xs:documentation>student verloskunde (beroep)</xs:documentation>
+                     <xs:documentation>arts in opleiding (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="103">
                   <xs:annotation>
-                     <xs:documentation>lactatiekundige (beroep)</xs:documentation>
+                     <xs:documentation>arts niet in opleiding tot specialist (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="104">
                   <xs:annotation>
-                     <xs:documentation>echoscopist (beroep)</xs:documentation>
+                     <xs:documentation>huisarts in opleiding (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="105">
                   <xs:annotation>
-                     <xs:documentation>verpleegkundige</xs:documentation>
+                     <xs:documentation>neonatoloog (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="106">
                   <xs:annotation>
-                     <xs:documentation>gespecialiseerd verpleegkundige (beroep)</xs:documentation>
+                     <xs:documentation>arts in opleiding tot specialist in ziekenhuis (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="107">
                   <xs:annotation>
-                     <xs:documentation>kraamverzorgende (beroep)</xs:documentation>
+                     <xs:documentation>physician assistant (beroep)+klinisch verloskundige (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="108">
                   <xs:annotation>
-                     <xs:documentation>VIG-er</xs:documentation>
+                     <xs:documentation>student geneeskunde (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="109">
                   <xs:annotation>
-                     <xs:documentation>onbekend</xs:documentation>
+                     <xs:documentation>gediplomeerd verloskundige (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="110">
                   <xs:annotation>
-                     <xs:documentation>geen informatie</xs:documentation>
+                     <xs:documentation>eerstelijnsverloskundige (beroep)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="111">
                   <xs:annotation>
+                     <xs:documentation>klinisch verloskundige (beroep)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="112">
+                  <xs:annotation>
+                     <xs:documentation>student verloskunde (beroep)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="113">
+                  <xs:annotation>
+                     <xs:documentation>lactatiekundige (beroep)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="114">
+                  <xs:annotation>
+                     <xs:documentation>echoscopist (beroep)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="115">
+                  <xs:annotation>
+                     <xs:documentation>gespecialiseerd verpleegkundige (beroep)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="116">
+                  <xs:annotation>
+                     <xs:documentation>kraamverzorgende (beroep)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="117">
+                  <xs:annotation>
+                     <xs:documentation>onbekend</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="118">
+                  <xs:annotation>
+                     <xs:documentation>geen informatie</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="119">
+                  <xs:annotation>
                      <xs:documentation>SpecialismeAGBCodelijst</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="code"/>
-      <xs:attribute name="code" type="xs:string"/>
-      <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="displayName" type="xs:string"/>
-      <xs:attribute name="preferred" type="BooleanOrEmpty"/>
-      <xs:attribute name="originalText" type="xs:string"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>Type for concept item: Telefoonnummer - 1..1 R</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="telefoonnummer_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_3273">
-      <xs:sequence>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3273"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="string"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>Type for concept item: TelecomType - 1..1 R</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="telecom_type_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_3274">
-      <xs:sequence>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3274"/>
-      <xs:attribute name="value">
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:annotation>
-                  <xs:documentation>valueSet/conceptList/concept</xs:documentation>
-               </xs:annotation>
-               <xs:enumeration value="">
-                  <xs:annotation>
-                     <xs:documentation>Empty</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="1">
-                  <xs:annotation>
-                     <xs:documentation>Land Line</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="2">
-                  <xs:annotation>
-                     <xs:documentation>Fax</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="3">
-                  <xs:annotation>
-                     <xs:documentation>Mobile Phone</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="4">
-                  <xs:annotation>
-                     <xs:documentation>Pager</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
             </xs:restriction>
@@ -29187,7 +28981,7 @@
                </xs:enumeration>
                <xs:enumeration value="8">
                   <xs:annotation>
-                     <xs:documentation>Free T4 and TSH panel - Serum or Plasma</xs:documentation>
+                     <xs:documentation>Vrije T4 &amp; TSH panel in serum of plasma</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="9">
@@ -29202,17 +28996,17 @@
                </xs:enumeration>
                <xs:enumeration value="11">
                   <xs:annotation>
-                     <xs:documentation>Thyrotropin receptor Ab [Units/volume] in Serum</xs:documentation>
+                     <xs:documentation>TSH-receptor As [eenheid/volume] in serum</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="12">
                   <xs:annotation>
-                     <xs:documentation>Hemoglobin [Moles/volume] in Venous blood</xs:documentation>
+                     <xs:documentation>Hemoglobine [mol/volume] in veneus bloed</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="13">
                   <xs:annotation>
-                     <xs:documentation>Hemoglobin A1c/Hemoglobin.total in Blood by IFCC protocol</xs:documentation>
+                     <xs:documentation>Hemoglobine A1c/hemoglobine.totaal [stoffractie] in bloed d.m.v. IFCC-protocol</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="14">
@@ -29494,7 +29288,7 @@
                </xs:enumeration>
                <xs:enumeration value="8">
                   <xs:annotation>
-                     <xs:documentation>Free T4 and TSH panel - Serum or Plasma</xs:documentation>
+                     <xs:documentation>Vrije T4 &amp; TSH panel in serum of plasma</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="9">
@@ -29509,17 +29303,17 @@
                </xs:enumeration>
                <xs:enumeration value="11">
                   <xs:annotation>
-                     <xs:documentation>Thyrotropin receptor Ab [Units/volume] in Serum</xs:documentation>
+                     <xs:documentation>TSH-receptor As [eenheid/volume] in serum</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="12">
                   <xs:annotation>
-                     <xs:documentation>Hemoglobin [Moles/volume] in Venous blood</xs:documentation>
+                     <xs:documentation>Hemoglobine [mol/volume] in veneus bloed</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="13">
                   <xs:annotation>
-                     <xs:documentation>Hemoglobin A1c/Hemoglobin.total in Blood by IFCC protocol</xs:documentation>
+                     <xs:documentation>Hemoglobine A1c/hemoglobine.totaal [stoffractie] in bloed d.m.v. IFCC-protocol</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="14">
@@ -29801,7 +29595,7 @@
                </xs:enumeration>
                <xs:enumeration value="8">
                   <xs:annotation>
-                     <xs:documentation>Free T4 and TSH panel - Serum or Plasma</xs:documentation>
+                     <xs:documentation>Vrije T4 &amp; TSH panel in serum of plasma</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="9">
@@ -29816,17 +29610,17 @@
                </xs:enumeration>
                <xs:enumeration value="11">
                   <xs:annotation>
-                     <xs:documentation>Thyrotropin receptor Ab [Units/volume] in Serum</xs:documentation>
+                     <xs:documentation>TSH-receptor As [eenheid/volume] in serum</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="12">
                   <xs:annotation>
-                     <xs:documentation>Hemoglobin [Moles/volume] in Venous blood</xs:documentation>
+                     <xs:documentation>Hemoglobine [mol/volume] in veneus bloed</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="13">
                   <xs:annotation>
-                     <xs:documentation>Hemoglobin A1c/Hemoglobin.total in Blood by IFCC protocol</xs:documentation>
+                     <xs:documentation>Hemoglobine A1c/hemoglobine.totaal [stoffractie] in bloed d.m.v. IFCC-protocol</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="14">
@@ -30108,7 +29902,7 @@
                </xs:enumeration>
                <xs:enumeration value="8">
                   <xs:annotation>
-                     <xs:documentation>Free T4 and TSH panel - Serum or Plasma</xs:documentation>
+                     <xs:documentation>Vrije T4 &amp; TSH panel in serum of plasma</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="9">
@@ -30123,17 +29917,17 @@
                </xs:enumeration>
                <xs:enumeration value="11">
                   <xs:annotation>
-                     <xs:documentation>Thyrotropin receptor Ab [Units/volume] in Serum</xs:documentation>
+                     <xs:documentation>TSH-receptor As [eenheid/volume] in serum</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="12">
                   <xs:annotation>
-                     <xs:documentation>Hemoglobin [Moles/volume] in Venous blood</xs:documentation>
+                     <xs:documentation>Hemoglobine [mol/volume] in veneus bloed</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="13">
                   <xs:annotation>
-                     <xs:documentation>Hemoglobin A1c/Hemoglobin.total in Blood by IFCC protocol</xs:documentation>
+                     <xs:documentation>Hemoglobine A1c/hemoglobine.totaal [stoffractie] in bloed d.m.v. IFCC-protocol</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="14">
@@ -30415,7 +30209,7 @@
                </xs:enumeration>
                <xs:enumeration value="8">
                   <xs:annotation>
-                     <xs:documentation>Free T4 and TSH panel - Serum or Plasma</xs:documentation>
+                     <xs:documentation>Vrije T4 &amp; TSH panel in serum of plasma</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="9">
@@ -30430,17 +30224,17 @@
                </xs:enumeration>
                <xs:enumeration value="11">
                   <xs:annotation>
-                     <xs:documentation>Thyrotropin receptor Ab [Units/volume] in Serum</xs:documentation>
+                     <xs:documentation>TSH-receptor As [eenheid/volume] in serum</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="12">
                   <xs:annotation>
-                     <xs:documentation>Hemoglobin [Moles/volume] in Venous blood</xs:documentation>
+                     <xs:documentation>Hemoglobine [mol/volume] in veneus bloed</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="13">
                   <xs:annotation>
-                     <xs:documentation>Hemoglobin A1c/Hemoglobin.total in Blood by IFCC protocol</xs:documentation>
+                     <xs:documentation>Hemoglobine A1c/hemoglobine.totaal [stoffractie] in bloed d.m.v. IFCC-protocol</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="14">
@@ -30722,7 +30516,7 @@
                </xs:enumeration>
                <xs:enumeration value="8">
                   <xs:annotation>
-                     <xs:documentation>Free T4 and TSH panel - Serum or Plasma</xs:documentation>
+                     <xs:documentation>Vrije T4 &amp; TSH panel in serum of plasma</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="9">
@@ -30737,17 +30531,17 @@
                </xs:enumeration>
                <xs:enumeration value="11">
                   <xs:annotation>
-                     <xs:documentation>Thyrotropin receptor Ab [Units/volume] in Serum</xs:documentation>
+                     <xs:documentation>TSH-receptor As [eenheid/volume] in serum</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="12">
                   <xs:annotation>
-                     <xs:documentation>Hemoglobin [Moles/volume] in Venous blood</xs:documentation>
+                     <xs:documentation>Hemoglobine [mol/volume] in veneus bloed</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="13">
                   <xs:annotation>
-                     <xs:documentation>Hemoglobin A1c/Hemoglobin.total in Blood by IFCC protocol</xs:documentation>
+                     <xs:documentation>Hemoglobine A1c/hemoglobine.totaal [stoffractie] in bloed d.m.v. IFCC-protocol</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="14">
@@ -31368,7 +31162,7 @@
                </xs:enumeration>
                <xs:enumeration value="8">
                   <xs:annotation>
-                     <xs:documentation>Free T4 and TSH panel - Serum or Plasma</xs:documentation>
+                     <xs:documentation>Vrije T4 &amp; TSH panel in serum of plasma</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="9">
@@ -31383,17 +31177,17 @@
                </xs:enumeration>
                <xs:enumeration value="11">
                   <xs:annotation>
-                     <xs:documentation>Thyrotropin receptor Ab [Units/volume] in Serum</xs:documentation>
+                     <xs:documentation>TSH-receptor As [eenheid/volume] in serum</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="12">
                   <xs:annotation>
-                     <xs:documentation>Hemoglobin [Moles/volume] in Venous blood</xs:documentation>
+                     <xs:documentation>Hemoglobine [mol/volume] in veneus bloed</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="13">
                   <xs:annotation>
-                     <xs:documentation>Hemoglobin A1c/Hemoglobin.total in Blood by IFCC protocol</xs:documentation>
+                     <xs:documentation>Hemoglobine A1c/hemoglobine.totaal [stoffractie] in bloed d.m.v. IFCC-protocol</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="14">
@@ -33309,66 +33103,6 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="preferred" type="BooleanOrEmpty"/>
       <xs:attribute name="originalText" type="xs:string"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>Type for concept item: LaboratoriumTest_Bloedgroep - 0..1 R</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="laboratorium_test_bloedgroep_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1139">
-      <xs:sequence>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1139"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="reference"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>Type for concept item: LaboratoriumTest_Rhesus D - 0..1 R</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="laboratorium_test_rhesus_d_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1151">
-      <xs:sequence>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1151"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="reference"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>Type for concept item: LaboratoriumTest_Rhesus c - 0..1 R</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="laboratorium_test_rhesus_c_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1163">
-      <xs:sequence>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1163"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="reference"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:complexType name="adaextension_type">
       <xs:sequence>
