@@ -1,6 +1,8 @@
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_afhandeling_medicatievoorschrift.xsd">
-   <meta status="new" created-by="generated" last-update-by="generated"/>
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_afhandeling_medicatievoorschrift.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"/>
    <data>
       <sturen_afhandeling_medicatievoorschrift app="mp-mp93"
                                                shortName="sturen_afhandeling_medicatievoorschrift"
@@ -22,9 +24,13 @@
                   <achternaam value="XXX_Hemsbergen"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999900602" root="2.16.840.1.113883.2.4.6.3"/>
-            <geboortedatum value="1963-11-02" datatype="datetime"/>
-            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <identificatienummer value="999900602"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1963-11-02"
+                           datatype="datetime"/>
+            <geslacht code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"/>
          </patient>
          <medicamenteuze_behandeling>
             <identificatie value="MBH_300_zonderkeerdosis"
@@ -32,10 +38,13 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_zonderkeerdosis_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2023-01-01T09:12:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2023-01-01T09:12:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2023-01-01T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-01-29T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2023-01-01T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-01-29T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
@@ -62,8 +71,18 @@
                               <aantal>
                                  <nominale_waarde value="3"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="3"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -76,7 +95,8 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_zonderkeerdosis_MVE"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-01-01T09:12:00+01:00"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                                  value="2023-01-01T09:12:00+01:00"/>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
                                  value="urn-uuid-5c04072e-a281-11ef-8174-020000000000"/>
@@ -114,7 +134,8 @@
                              displayName="Cetomacrogolcreme met vaseline 10%"/>
             </farmaceutisch_product>
             <zorgaanbieder id="urn-uuid-5c04072e-a281-11ef-8174-020000000000">
-               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <zorgaanbieder_identificatienummer value="01236578"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>
