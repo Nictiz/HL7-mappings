@@ -1,0 +1,18 @@
+main branch: origin/master
+ignored issues: known-issues.yml
+igs:
+  - resources
+
+patterns:
+  mplab voorschrift instances: ada_2_fhir-r4/mp-lab/9.3.0-3.0.0/sturen_medicatievoorschrift_laboratoriumresultaten/fhir_instance/mv-mplab-*.xml
+
+steps:
+  validate mplab voorschrift instances:
+    description: Validate the voorschrift instances using the profile for voorschrift
+    patterns: mplab voorschrift instances
+    profile:
+    - http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle
+  check resource ids:
+    description: Check if the .id matches the name of the file
+    patterns:
+      - mplab voorschrift instances
