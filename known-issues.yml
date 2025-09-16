@@ -1,5 +1,5 @@
 ---
-# The issues here are deliberate deviations from the guidelines, as flagged by the qa tooling.
+# The issues here are known deviations from the validator flags, for example for when codes are only know externally.
 # For each issue documented, a reason for deviating from the guidelines is given.
 
 issues should occur: false
@@ -12,4 +12,39 @@ issues should occur: false
     Medication.code:
       - message: "None of the codings provided are in the value set 'ProductCodeCodelijsten'"
         reason: External codesystem
+    "Medication.code.coding[*].system":
+       - message: "A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4"
+         reason: External codesystem
+    MedicationRequest.dosageInstruction[*].doseAndRate[*].dose.ofType(Quantity).extension[*].value.ofType(Quantity):
+      - message: "The definition for the Code System with URI 'urn:oid:2.16.840.1.113883.2.4.4.1.900.2' doesn't provide any codes so the code cannot be validated"
+        reason: External codesystem
+      - message: "Resolved system urn:oid:2.16.840.1.113883.2.4.4.1.900.2 (v2010-01-01), but the definition doesn't include any codes, so the code has not been validated"
+        reason: External codesystem
+    MedicationRequest.dosageInstruction[*].maxDosePerPeriod.numerator.extension[*].value.ofType(Quantity):
+      - message: "The definition for the Code System with URI 'urn:oid:2.16.840.1.113883.2.4.4.1.900.2' doesn't provide any codes so the code cannot be validated"
+        reason: External codesystem
+      - message: "Resolved system urn:oid:2.16.840.1.113883.2.4.4.1.900.2 (v2010-01-01), but the definition doesn't include any codes, so the code has not been validated"
+        reason: External codesystem
+    MedicationRequest.dosageInstruction[*].route:
+      - message: "Unable to check whether the code is in the value set 'http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.9.12.1--20200901000000|2020-09-01T00:00:00'"
+        reason: External codesystem
+      - message: "A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4.9' could not be found, so the code cannot be validated; Unable to check whether the code is in the value set"
+        reason: External codesystem         
+    "*.dosageInstruction[*].route.coding[*].system":    
+      - message: "A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4.9' could not be found, so the code cannot be validated"
+        reason: External codesystem
+    "*.dosageInstruction[*].asNeeded.ofType(CodeableConcept)":    
+      - message: "A definition for CodeSystem 'https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek' could not be found, so the code cannot be validated"
+        reason: External codesystem
+      - message: "Unable to check whether the code is in the value set 'http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.9.12.4--20200901000000|2020-09-01T00:00:00' because the code system https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek was not found"
+        reason: External codesystem
+    "*.dosageInstruction[*].asNeeded.ofType(CodeableConcept).coding[*].system":    
+      - message: "A definition for CodeSystem 'https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek' could not be found, so the code cannot be validated"
+        reason: External codesystem
+
        
+ada_2_fhir-r4/mp-lab/9.3.0-3.0.0/sturen_medicatievoorschrift_laboratoriumresultaten/fhir_instance/mv-mplab-vo-tst-4-2-b-nierfunctie-loinc-zonder-panel-v30.xml:
+  ignored issues:
+    Bundle:
+      - message: "Bundle.entry:patient: max allowed = 1, but found 2 (from http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle|2.0.0-rc.2)"
+        reason: Deliberate testcase with two slightly different Patient resources
