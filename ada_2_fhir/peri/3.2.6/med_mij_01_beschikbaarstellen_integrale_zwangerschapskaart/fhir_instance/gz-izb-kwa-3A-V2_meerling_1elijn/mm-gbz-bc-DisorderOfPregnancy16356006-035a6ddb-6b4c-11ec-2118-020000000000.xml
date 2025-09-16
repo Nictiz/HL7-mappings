@@ -1,0 +1,80 @@
+<Condition xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izb-kwa-3A-V2_meerling_1elijn /adaxml/data/med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/zwangerschapsgegevens/probleem_zwangerschap (peri32-dataelement-1180) -->
+   <id value="035a6ddb-6b4c-11ec-2118-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DisorderOfPregnancy"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Aandoening. Subject: Jamila J XXX_Kwee. Categorie: <span title="zwangerschapsstoornis (aandoening) (173300003 - SNOMED CT)">zwangerschapsstoornis (aandoening)</span>, Status: actief</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">mw.door verwijzen naar Sophia</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="meerlingzwangerschap (bevinding) (16356006 - SNOMED CT)">meerlingzwangerschap (bevinding)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>${DATE, T, D, -205}</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/condition-partOf">
+      <valueReference>
+         <reference value="Condition/fd6959fe-6aae-11ec-2334-020000000000"/>
+         <display value="Zwangerschap 1 Vrouw2"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="035a6ddb-6b4c-11ec-2118-020000000000"/>
+   </identifier>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="55561003"/>
+               <display value="Actueel"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="173300003"/>
+         <display value="zwangerschapsstoornis (aandoening)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16356006"/>
+         <display value="meerlingzwangerschap (bevinding)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/JAMILA-J-XXX-KWEE"/>
+      <display value="Jamila J XXX_Kwee"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/202380db-6b0d-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 Vrouw2"/>
+   </context>
+   <onsetDateTime value="${DATE, T, D, -205}"/>
+   <note>
+      <text value="mw.door verwijzen naar Sophia"/>
+   </note>
+</Condition>

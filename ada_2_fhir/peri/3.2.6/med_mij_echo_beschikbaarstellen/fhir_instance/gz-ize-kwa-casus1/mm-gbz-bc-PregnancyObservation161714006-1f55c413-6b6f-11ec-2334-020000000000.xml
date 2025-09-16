@@ -1,0 +1,77 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-ize-kwa-casus1 /adaxml/data/med_mij_echo_beschikbaarstellen/zwangerschapsgegevens/zwangerschap/aterme_datum_items/aterme_datum (peri32-dataelement-3347) -->
+   <id value="1f55c413-6b6f-11ec-2334-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-PregnancyObservation"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Leonie L XXX_Osse. Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 1 XXX_Osse_Vrouw</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -649}</td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="aterme datum berekend door middel van diagnostische ultrasonografie (31541000146106 - SNOMED CT)">aterme datum berekend door middel van diagnostische ultrasonografie</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="geschatte datum van partus (waarneembare entiteit) (161714006 - SNOMED CT)">geschatte datum van partus (waarneembare entiteit)</span>
+                  </td>
+                  <td>${DATE, T, D, -509}</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
+      <valueReference>
+         <reference value="Condition/3cc38e5b-6ac9-11ec-2334-020000000000"/>
+         <display value="Zwangerschap 1 XXX_Osse_Vrouw"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="1f55c413-6b6f-11ec-2334-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="161714006"/>
+         <display value="geschatte datum van partus (waarneembare entiteit)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/LEONIE-L-XXX-OSSE"/>
+      <display value="Leonie L XXX_Osse"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/d0510907-6af3-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Osse_Vrouw"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -649}"/>
+   <valueDateTime value="${DATE, T, D, -509}"/>
+   <method>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="31541000146106"/>
+         <display value="aterme datum berekend door middel van diagnostische ultrasonografie"/>
+      </coding>
+   </method>
+</Observation>

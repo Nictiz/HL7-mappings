@@ -1,0 +1,57 @@
+<EpisodeOfCare xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-ize-kwa-casus3 -->
+   <id value="6188717b-6b7b-11ec-0000-020000000000"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-episodeofcare"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MaternalRecord"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgepisode. Patiënt: Merthe M XXX_Kooijman. Status: actief</caption>
+            <tbody>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <span title="observatie betreffende zwangerschap (waarneembare entiteit) (364320009 - SNOMED CT)">observatie betreffende zwangerschap (waarneembare entiteit)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>Vanaf ${DATE, T, D, -13}</td>
+               </tr>
+               <tr>
+                  <th>Diagnose</th>
+                  <td>Zwangerschap 1 XXX_Kooijman_Vrouw</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="6188717b-6b7b-11ec-0000-020000000000"/>
+   </identifier>
+   <status value="active"/>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="364320009"/>
+         <display value="observatie betreffende zwangerschap (waarneembare entiteit)"/>
+      </coding>
+   </type>
+   <diagnosis>
+      <condition>
+         <reference value="Condition/c6ab20cb-6b5e-11ec-2334-020000000000"/>
+         <display value="Zwangerschap 1 XXX_Kooijman_Vrouw"/>
+      </condition>
+   </diagnosis>
+   <patient>
+      <reference value="Patient/MERTHE-M-XXX-KOOIJMAN"/>
+      <display value="Merthe M XXX_Kooijman"/>
+   </patient>
+   <period>
+      <start value="${DATE, T, D, -13}"/>
+   </period>
+</EpisodeOfCare>

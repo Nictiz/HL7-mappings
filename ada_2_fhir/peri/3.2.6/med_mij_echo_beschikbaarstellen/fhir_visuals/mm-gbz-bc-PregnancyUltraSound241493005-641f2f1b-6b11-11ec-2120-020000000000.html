@@ -1,0 +1,140 @@
+<html lang="en">
+   <head>
+      <title>DiagnosticReport - 641f2f1b-6b11-11ec-2120-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Diagnostisch verslag. Subject: Merthe M XXX_Kooijman. Status: definitief</caption>
+               <tbody>
+                  <tr>
+                     <th>Context</th>
+                     <td>Zwangerschap 1 XXX_Kooijman_Vrouw</td>
+                  </tr>
+                  <tr>
+                     <th>Code</th>
+                     <td>
+                        <span title="echografie voor foetale groei (verrichting) (241493005 - SNOMED CT)">echografie voor foetale groei (verrichting)</span>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Gemaakt</th>
+                     <td>${DATE, T, D, -13} - ${DATE, T, D, -13}</td>
+                  </tr>
+                  <tr>
+                     <th>Resultaat</th>
+                     <td>foetale buikomtrek ac meting XXX_Kooijman_Vrouw</td>
+                  </tr>
+                  <tr>
+                     <th>Resultaat</th>
+                     <td>foetale schedelomvang XXX_Kooijman_Vrouw</td>
+                  </tr>
+                  <tr>
+                     <th>Resultaat</th>
+                     <td>foetale femurlengte fl meting XXX_Kooijman_Vrouw</td>
+                  </tr>
+                  <tr>
+                     <th>Resultaat</th>
+                     <td>foetale biparietale diameter bpd meting XXX_Kooijman_Vrouw</td>
+                  </tr>
+                  <tr>
+                     <th>Resultaat</th>
+                     <td>foetale kruin romp lengte crl meting XXX_Kooijman_Vrouw</td>
+                  </tr>
+                  <tr>
+                     <th>Resultaat</th>
+                     <td>foetale nekplooidikte nt meting XXX_Kooijman_Vrouw</td>
+                  </tr>
+                  <tr>
+                     <th>Resultaat</th>
+                     <td>sonomarkers observatie XXX_Kooijman_Vrouw</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - DiagnosticReport echografie voor foetale groei (verrichting)</b>
+      </p>
+      <ul>
+         <li>
+            <a href="mm-gbz-bc-ObstetricProcedure241493005-9b038ef5-6b16-11ec-2241-020000000000.html">Procedure echografie voor foetale groei (verrichting)</a>
+         </li>
+      </ul>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 2, label: "DiagnosticReport echografie voor foetale groei (verrichting)", url: "mm-gbz-bc-PregnancyUltraSound241493005-641f2f1b-6b11-11ec-2120-020000000000.html" }, 
+{ id: 3, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-6188717b-6b7b-11ec-0000-020000000000.html" }, 
+{ id: 7, label: "Observation Omtrek [afmeting] in abdomen^foetus d.m.v. echografische bepaling", url: "mm-gbz-bc-FetusObservation11979-2-289b9930-6ac6-11ec-2351-020000000000.html" }, 
+{ id: 8, label: "Observation Fronto-occipitale omtrek [afmeting] in hoofd", url: "mm-gbz-zib-HeadCircumference9843-4-71235839-6add-11ec-2362-020000000000.html" }, 
+{ id: 9, label: "Observation Fetal Femur diaphysis [Length] US", url: "mm-gbz-bc-FetusObservation11963-6-a6d95cbb-6aab-11ec-2353-020000000000.html" }, 
+{ id: 10, label: "Observation Fetal Head Diameter.biparietal US", url: "mm-gbz-bc-FetusObservation11820-8-32c4af83-6af2-11ec-2355-020000000000.html" }, 
+{ id: 11, label: "Observation Fetal Crown Rump length US", url: "mm-gbz-bc-FetusObservation11957-8-b5996b75-6aba-11ec-2357-020000000000.html" }, 
+{ id: 12, label: "Observation Fetal Nuchal fold Thickness US", url: "mm-gbz-bc-FetusObservation12146-7-be82cc57-6b06-11ec-2360-020000000000.html" }, 
+{ id: 13, label: "Observation verdikte nekplooi van foetus (bevinding)", url: "mm-gbz-bc-FetusObservation459053006-d3cab583-6b12-11ec-2784-020000000000.html" }, 
+{ id: 15, label: "Patient XXX_Kooijman", url: "mm-gbz-bc-Woman-MERTHE-M-XXX-KOOIJMAN.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 2, to: 15 }, 
+{ from: 2, to: 3 }, 
+{ from: 2, to: 7 }, 
+{ from: 2, to: 8 }, 
+{ from: 2, to: 9 }, 
+{ from: 2, to: 10 }, 
+{ from: 2, to: 11 }, 
+{ from: 2, to: 12 }, 
+{ from: 2, to: 13 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

@@ -1,0 +1,128 @@
+<html lang="en">
+   <head>
+      <title>Observation - e6001342-6ad7-11ec-2310-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Observatie/bepaling. Subject: Maaike M Maaike Ostendorf. Status: definitief<span style="display: block;">Uitvoerende: Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis</span>
+               </caption>
+               <tbody>
+                  <tr>
+                     <th>Context</th>
+                     <td>opname en ontslag T-53D{08:36} P1-Maaike</td>
+                  </tr>
+                  <tr>
+                     <th>Bepalingdatum/tijd</th>
+                     <td>${DATE, T, D, -52}T11:35:00+02:00</td>
+                  </tr>
+                  <tr>
+                     <th>Methode</th>
+                     <td>
+                        <span title="bevinding gerapporteerd door patiënt of andere bron van voorgeschiedenis (bevinding) (418799008 - SNOMED CT)">bevinding gerapporteerd door patiënt of andere bron van voorgeschiedenis (bevinding)</span>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Gerelateerd</th>
+                     <td>
+                        <ul>
+                           <li>has-member - bloedverlies kraambed lochia waarde P1-Maaike</li>
+                           <li>has-member - aantal kraamverbanden waarde P1-Maaike</li>
+                           <li>has-member - lochia foetide riekendq waarde P1-Maaike</li>
+                           <li>has-member - grote stolsels in lochia waarde P1-Maaike</li>
+                        </ul>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Code</th>
+                     <th>Waarde</th>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span title="bevinding betreffende lochia (bevinding) (249211006 - SNOMED CT)">bevinding betreffende lochia (bevinding)</span>
+                     </td>
+                     <td/>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Observation bevinding betreffende lochia (bevinding)</b>
+      </p>
+      <div> - none</div>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 10, label: "Practitioner De Jong", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167.html" }, 
+{ id: 11, label: "PractitionerRole Gynaecoloog", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-03073167030706019999.html" }, 
+{ id: 47, label: "Encounter verlossing (verrichting)", url: "mm-gbz-bc-Encounter-f2ba733f-6af7-11ec-1275-020000000000.html" }, 
+{ id: 194, label: "Observation bevinding betreffende lochia (bevinding)", url: "mm-gbz-bc-MaternalObservation249211006-e6001342-6ad7-11ec-2310-020000000000.html" }, 
+{ id: 218, label: "Observation bevinding betreffende hoeveelheid lochia (bevinding)", url: "mm-gbz-bc-MaternalObservation366299003-073e38db-6a9c-11ec-2311-020000000000.html" }, 
+{ id: 219, label: "Observation hoeveelheid gebruikte kraamverbanden (waarneembare entiteit)", url: "mm-gbz-bc-MaternalObservation570931000146101-2f792300-6aa7-11ec-2311-020000000000.html" }, 
+{ id: 220, label: "Observation stinkende lochia (bevinding)", url: "mm-gbz-bc-MaternalObservation276375002-7dbb137e-6aab-11ec-2311-020000000000.html" }, 
+{ id: 221, label: "Observation grote bloedstolsels in lochia (bevinding)", url: "mm-gbz-bc-MaternalObservation146381000146107-7046739f-6b4c-11ec-2311-020000000000.html" }, 
+{ id: 257, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 194, to: 257 }, 
+{ from: 194, to: 47 }, 
+{ from: 194, to: 11 }, 
+{ from: 194, to: 10 }, 
+{ from: 194, to: 218 }, 
+{ from: 194, to: 219 }, 
+{ from: 194, to: 220 }, 
+{ from: 194, to: 221 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

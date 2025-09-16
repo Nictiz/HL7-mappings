@@ -1,0 +1,126 @@
+<html lang="en">
+   <head>
+      <title>Procedure - 01e9d23f-6b1e-11ec-2309-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Verrichting. Subject: Maaike M Maaike Ostendorf. Categorie: <span title="obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">obstetrische verrichting (verrichting)</span>, Status: voltooid<span style="display: block;">Uitvoerende: Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis (uit naam van: Stitswerd Ziekenhuis - Stitswerd)</span>
+               </caption>
+               <tbody>
+                  <tr>
+                     <td>
+                        <span title="zuurstoftherapie (verrichting) (57485005 - SNOMED CT)">zuurstoftherapie (verrichting)</span>
+                     </td>
+                     <td>
+                        <div>Uitgevoerd: ${DATE, T, D, -53} - ${DATE, T, D, -48}</div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Methode</th>
+                     <td>
+                        <span title="zuurstoftherapie (verrichting) (57485005 - SNOMED CT)">zuurstoftherapie (verrichting)</span>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Gebaseerd op</th>
+                     <td>verrichting ondersteuning opvang zwangerschap 2 P1-Maaike</td>
+                  </tr>
+                  <tr>
+                     <th>Deel van lichaam</th>
+                     <td>
+                        <span title="structuur van linker en rechter uitwendig neusgat (lichaamsstructuur) (244506005 - SNOMED CT)">structuur van linker en rechter uitwendig neusgat (lichaamsstructuur)</span>
+                        <span title="Rechts en links (51440002 - SNOMED CT)">Rechts en links</span>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Locatie</th>
+                     <td>Stitswerd Ziekenhuis - Stitswerd</td>
+                  </tr>
+                  <tr>
+                     <th>Reden</th>
+                     <td>Zwangerschap 2 P1-Maaike</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Procedure zuurstoftherapie (verrichting)</b>
+      </p>
+      <div> - none</div>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 4, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-e2116b0f-6b20-11ec-0000-020000000000.html" }, 
+{ id: 7, label: "Organization Stitswerd Ziekenhuis - Stitswerd", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-528-1-1007-3-3-06019999.html" }, 
+{ id: 10, label: "Practitioner De Jong", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167.html" }, 
+{ id: 11, label: "PractitionerRole Gynaecoloog", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-03073167030706019999.html" }, 
+{ id: 12, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-1970564f-6aba-11ec-2334-020000000000.html" }, 
+{ id: 73, label: "Location Stitswerd", url: "mm-gbz-nl-core-location-location-mm-gbz-0cc94b5f-6b04-11ec-1295-020000000000.html" }, 
+{ id: 257, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
+{ id: 265, label: "ProcedureRequest zuurstoftherapie (verrichting)", url: "mm-gbz-zib-ProcedureRequest57485005-01e9d23f-6b1e-11ec-2309-020000000000.html" }, 
+{ id: 276, label: "Procedure zuurstoftherapie (verrichting)", url: "mm-gbz-zib-Procedure57485005-01e9d23f-6b1e-11ec-2309-020000000000.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 276, to: 265 }, 
+{ from: 276, to: 257 }, 
+{ from: 276, to: 4 }, 
+{ from: 276, to: 11 }, 
+{ from: 276, to: 10 }, 
+{ from: 276, to: 7 }, 
+{ from: 276, to: 73 }, 
+{ from: 276, to: 12 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

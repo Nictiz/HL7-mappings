@@ -1,0 +1,108 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izk-kwa-casus2 /adaxml/data/med_mij_kraam_beschikbaarstellen/zwangerschapsgegevens/prenatale_controle/drugs_gebruik (peri32-dataelement-112) -->
+   <id value="452307dd-6b55-11ec-1211-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DrugUse"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Linda L XXX_Hollanders. Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 2 XXX_Hollanders_Vrouw</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -450} - ${DATE, T, D, -350}</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="bevinding betreffende drugsgebruik (bevinding) (228366006 - SNOMED CT)">bevinding betreffende drugsgebruik (bevinding)</span>
+                  </td>
+                  <td>
+                     <span title="heeft drugs gebruikt in het verleden (44870007 - SNOMED CT)">heeft drugs gebruikt in het verleden</span>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="drug of geneesmiddel (substantie) (410942007 - SNOMED CT)">drug of geneesmiddel (substantie)</span>
+                  </td>
+                  <td>
+                     <span title="cannabis (398705004 - SNOMED CT)">cannabis</span>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="frequentie van drugsgebruik (228390007 - SNOMED CT)">frequentie van drugsgebruik</span>
+                  </td>
+                  <td>1 joint per week</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="452307dd-6b55-11ec-1211-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="228366006"/>
+         <display value="bevinding betreffende drugsgebruik (bevinding)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/LINDA-L-XXX-HOLLANDERS"/>
+      <display value="Linda L XXX_Hollanders"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/95b12773-6ada-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 XXX_Hollanders_Vrouw"/>
+   </context>
+   <effectivePeriod>
+      <start value="${DATE, T, D, -450}"/>
+      <end value="${DATE, T, D, -350}"/>
+   </effectivePeriod>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="44870007"/>
+         <display value="heeft drugs gebruikt in het verleden"/>
+      </coding>
+   </valueCodeableConcept>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="410942007"/>
+            <display value="drug of geneesmiddel (substantie)"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="398705004"/>
+            <display value="cannabis"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="228390007"/>
+            <display value="frequentie van drugsgebruik"/>
+         </coding>
+      </code>
+      <valueString value="1 joint per week"/>
+   </component>
+</Observation>

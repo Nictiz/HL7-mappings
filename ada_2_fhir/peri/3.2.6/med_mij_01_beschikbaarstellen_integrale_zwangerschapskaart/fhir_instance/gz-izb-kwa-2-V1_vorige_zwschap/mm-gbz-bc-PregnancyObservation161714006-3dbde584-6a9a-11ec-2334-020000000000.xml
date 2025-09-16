@@ -1,0 +1,83 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izb-kwa-2-V1_vorige_zwschap /adaxml/data/med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/zwangerschapsgegevens/zwangerschap/aterme_datum_items/aterme_datum (peri32-dataelement-3347) -->
+   <id value="3dbde584-6a9a-11ec-2334-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-PregnancyObservation"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Hanna H XXX_Kooij. Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 1 XXX_Kooij_Vrouw</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>
+                     <i>onbekend (ontbrekend gegeven)</i>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="aterme datum berekend door middel van diagnostische ultrasonografie (31541000146106 - SNOMED CT)">aterme datum berekend door middel van diagnostische ultrasonografie</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="geschatte datum van partus (waarneembare entiteit) (161714006 - SNOMED CT)">geschatte datum van partus (waarneembare entiteit)</span>
+                  </td>
+                  <td>${DATE, T, D, -587}</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
+      <valueReference>
+         <reference value="Condition/78b27a33-6ae8-11ec-2334-020000000000"/>
+         <display value="Zwangerschap 1 XXX_Kooij_Vrouw"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="3dbde584-6a9a-11ec-2334-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="161714006"/>
+         <display value="geschatte datum van partus (waarneembare entiteit)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/HANNA-H-XXX-KOOIJ"/>
+      <display value="Hanna H XXX_Kooij"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/23bb7ed3-6b26-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Kooij_Vrouw"/>
+   </context>
+   <effectiveDateTime>
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+         <valueCode value="UNK"/>
+      </extension>
+   </effectiveDateTime>
+   <valueDateTime value="${DATE, T, D, -587}"/>
+   <method>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="31541000146106"/>
+         <display value="aterme datum berekend door middel van diagnostische ultrasonografie"/>
+      </coding>
+   </method>
+</Observation>

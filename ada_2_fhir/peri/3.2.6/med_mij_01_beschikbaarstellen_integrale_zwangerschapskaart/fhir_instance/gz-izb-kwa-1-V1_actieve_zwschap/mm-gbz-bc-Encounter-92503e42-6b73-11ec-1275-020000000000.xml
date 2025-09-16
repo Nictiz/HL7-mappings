@@ -1,0 +1,79 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izb-kwa-1-V1_actieve_zwschap -->
+   <id value="92503e42-6b73-11ec-1275-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Encounter"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: Hanna H XXX_Kooij. Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div>
+                        <span title="Poliklinisch (AMB - v3/ActCode)">Poliklinisch</span>
+                     </div>
+                     <span title="consult (verrichting) (11429006 - SNOMED CT)">consult (verrichting)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>${DATE, T, D, -6} - ${DATE, T, D, -6}</td>
+               </tr>
+               <tr>
+                  <th>Probleem/Verrichting</th>
+                  <td>Zwangerschap 3 Vrouw1</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="92503e42-6b73-11ec-1275-020000000000"/>
+   </identifier>
+   <status value="finished"/>
+   <class>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActCode"/>
+               <code value="AMB"/>
+               <display value="Poliklinisch"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="http://hl7.org/fhir/v3/ActCode"/>
+      <code value="AMB"/>
+      <display value="Poliklinisch"/>
+   </class>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="11429006"/>
+         <display value="consult (verrichting)"/>
+      </coding>
+   </type>
+   <subject>
+      <reference value="Patient/HANNA-H-XXX-KOOIJ"/>
+      <display value="Hanna H XXX_Kooij"/>
+   </subject>
+   <episodeOfCare>
+      <reference value="EpisodeOfCare/ba94bb6f-6b78-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 3 Vrouw1"/>
+   </episodeOfCare>
+   <period>
+      <start value="${DATE, T, D, -6}"/>
+      <end value="${DATE, T, D, -6}"/>
+   </period>
+   <diagnosis>
+      <condition>
+         <reference value="Condition/d1799aaf-6b7b-11ec-2334-020000000000"/>
+         <display value="Zwangerschap 3 Vrouw1"/>
+      </condition>
+   </diagnosis>
+</Encounter>

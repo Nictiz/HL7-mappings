@@ -1,0 +1,65 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izb-kwa-3A-V2_meerling_1elijn /adaxml/data/med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/medisch_onderzoek/maternale_onderzoeksgegevens/verrichting_maternaal_onderzoek (peri32-dataelement-2416) -->
+   <id value="53d192d4-6adf-11ec-2241-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ObstetricProcedure"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Jamila J XXX_Kwee. Categorie: <span title="obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="echografie ter bepaling van geschatte datum van partus (verrichting) (133601000146101 - SNOMED CT)">echografie ter bepaling van geschatte datum van partus (verrichting)</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: ${DATE, T, D, -195}T11:00:00+02:00 - ${DATE, T, D, -195}T11:00:00+02:00</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>Zwangerschap 1 Vrouw2</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="53d192d4-6adf-11ec-2241-020000000000"/>
+   </identifier>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="386637004"/>
+         <display value="obstetrische verrichting (verrichting)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="133601000146101"/>
+         <display value="echografie ter bepaling van geschatte datum van partus (verrichting)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/JAMILA-J-XXX-KWEE"/>
+      <display value="Jamila J XXX_Kwee"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/202380db-6b0d-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 Vrouw2"/>
+   </context>
+   <performedPeriod>
+      <start value="${DATE, T, D, -195}T11:00:00+02:00"/>
+      <end value="${DATE, T, D, -195}T11:00:00+02:00"/>
+   </performedPeriod>
+   <reasonReference>
+      <reference value="Condition/fd6959fe-6aae-11ec-2334-020000000000"/>
+      <display value="Zwangerschap 1 Vrouw2"/>
+   </reasonReference>
+</Procedure>

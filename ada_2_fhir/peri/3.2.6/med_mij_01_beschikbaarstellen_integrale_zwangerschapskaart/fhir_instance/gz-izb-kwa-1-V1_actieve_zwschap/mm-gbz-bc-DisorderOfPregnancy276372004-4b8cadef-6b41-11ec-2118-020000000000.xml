@@ -1,0 +1,77 @@
+<Condition xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izb-kwa-1-V1_actieve_zwschap /adaxml/data/med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/zwangerschapsgegevens/probleem_zwangerschap (peri32-dataelement-1180) -->
+   <id value="4b8cadef-6b41-11ec-2118-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DisorderOfPregnancy"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Aandoening. Subject: Hanna H XXX_Kooij. Categorie: <span title="zwangerschapsstoornis (aandoening) (173300003 - SNOMED CT)">zwangerschapsstoornis (aandoening)</span>, Status: inactief</caption>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="zwakke foetale bewegingen (bevinding) (276372004 - SNOMED CT)">zwakke foetale bewegingen (bevinding)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>${DATE, T, D, -10}</td>
+               </tr>
+               <tr>
+                  <th>Oplossing/remissie</th>
+                  <td>${DATE, T, D, -6}</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/condition-partOf">
+      <valueReference>
+         <reference value="Condition/d1799aaf-6b7b-11ec-2334-020000000000"/>
+         <display value="Zwangerschap 3 Vrouw1"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="4b8cadef-6b41-11ec-2118-020000000000"/>
+   </identifier>
+   <clinicalStatus value="inactive">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="73425007"/>
+               <display value="Niet actueel"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="173300003"/>
+         <display value="zwangerschapsstoornis (aandoening)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="276372004"/>
+         <display value="zwakke foetale bewegingen (bevinding)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/HANNA-H-XXX-KOOIJ"/>
+      <display value="Hanna H XXX_Kooij"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/ba94bb6f-6b78-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 3 Vrouw1"/>
+   </context>
+   <onsetDateTime value="${DATE, T, D, -10}"/>
+   <abatementDateTime value="${DATE, T, D, -6}"/>
+</Condition>

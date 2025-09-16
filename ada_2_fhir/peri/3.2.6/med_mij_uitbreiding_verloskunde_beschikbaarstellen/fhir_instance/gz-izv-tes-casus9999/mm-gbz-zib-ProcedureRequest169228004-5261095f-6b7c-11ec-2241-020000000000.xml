@@ -1,0 +1,116 @@
+<ProcedureRequest xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-tes-casus9999 -->
+   <id value="5261095f-6b7c-11ec-2241-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichtingaanvraag. Subject: Maaike M Maaike Ostendorf. Status: onbekend<span style="display: block;">Intentie: plan</span>
+               <span style="display: block;">Aangevraagd door: Anne Marie AM Anne Naaktgeboren Kleinsma || Verloskundige || Verloskundigenpraktijk ter Wereld</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="echografie voor foetale presentatie (verrichting) (169228004 - SNOMED CT)">echografie voor foetale presentatie (verrichting)</span>
+                  </td>
+                  <td>
+                     <div>Wanneer: ${DATE, T, D, -146} - ${DATE, T, D, -146}</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Beoogde uitvoerende</th>
+                  <td>
+                     <div>Type: <span title="Behandelaar (ATND - v3/ParticipationType)">Behandelaar</span>
+                     </div>
+                     <div>Anne Marie AM Anne Naaktgeboren Kleinsma || Verloskundige || Verloskundigenpraktijk ter Wereld</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td/>
+               </tr>
+               <tr>
+                  <td>Deel van lichaam</td>
+                  <td>
+                     <span title="structuur van abdominopelviene holte en/of inhoud van abdominopelviene holte en/of voorwand van buik (lichaamsstructuur) (818983003 - SNOMED CT)">structuur van abdominopelviene holte en/of inhoud van abdominopelviene holte en/of voorwand van buik (lichaamsstructuur)</span>
+                     <span title="Rechts en links (51440002 - SNOMED CT)">Rechts en links</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="5261095f-6b7c-11ec-2241-020000000000"/>
+   </identifier>
+   <status value="unknown"/>
+   <intent value="plan"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="169228004"/>
+         <display value="echografie voor foetale presentatie (verrichting)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/MAAIKE-M-MAAIKE-OSTENDORF"/>
+      <display value="Maaike M Maaike Ostendorf"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/e2116b0f-6b20-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 P1-Maaike"/>
+   </context>
+   <occurrencePeriod>
+      <start value="${DATE, T, D, -146}"/>
+      <end value="${DATE, T, D, -146}"/>
+   </occurrencePeriod>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/practitionerrole-mm-gbz-08617625080008009999"/>
+               <display value="Anne Marie AM Anne Naaktgeboren Kleinsma || Verloskundige || Verloskundigenpraktijk ter Wereld"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-08617625"/>
+         <display value="Anne Marie AM Anne Naaktgeboren Kleinsma"/>
+      </agent>
+   </requester>
+   <performerType>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+         <code value="ATND"/>
+         <display value="Behandelaar"/>
+      </coding>
+   </performerType>
+   <performer>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/practitionerrole-mm-gbz-08617625080008009999"/>
+            <display value="Anne Marie AM Anne Naaktgeboren Kleinsma || Verloskundige || Verloskundigenpraktijk ter Wereld"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-08617625"/>
+      <display value="Anne Marie AM Anne Naaktgeboren Kleinsma"/>
+   </performer>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="51440002"/>
+               <display value="Rechts en links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="818983003"/>
+         <display value="structuur van abdominopelviene holte en/of inhoud van abdominopelviene holte en/of voorwand van buik (lichaamsstructuur)"/>
+      </coding>
+   </bodySite>
+</ProcedureRequest>

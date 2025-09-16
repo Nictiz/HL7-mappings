@@ -1,0 +1,72 @@
+<EpisodeOfCare xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-ize-kwa-casus1 -->
+   <id value="d0510907-6af3-11ec-0000-020000000000"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-episodeofcare"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MaternalRecord"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgepisode. Patiënt: Leonie L XXX_Osse. Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <span title="observatie betreffende zwangerschap (waarneembare entiteit) (364320009 - SNOMED CT)">observatie betreffende zwangerschap (waarneembare entiteit)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>${DATE, T, D, -705} - ${DATE, T, D, -509}</td>
+               </tr>
+               <tr>
+                  <th>Zorgmanager</th>
+                  <td>Helma H XXX_Groot</td>
+               </tr>
+               <tr>
+                  <th>Diagnose</th>
+                  <td>Zwangerschap 1 XXX_Osse_Vrouw</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="d0510907-6af3-11ec-0000-020000000000"/>
+   </identifier>
+   <status value="finished"/>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="364320009"/>
+         <display value="observatie betreffende zwangerschap (waarneembare entiteit)"/>
+      </coding>
+   </type>
+   <diagnosis>
+      <condition>
+         <reference value="Condition/3cc38e5b-6ac9-11ec-2334-020000000000"/>
+         <display value="Zwangerschap 1 XXX_Osse_Vrouw"/>
+      </condition>
+   </diagnosis>
+   <patient>
+      <reference value="Patient/LEONIE-L-XXX-OSSE"/>
+      <display value="Leonie L XXX_Osse"/>
+   </patient>
+   <period>
+      <start value="${DATE, T, D, -705}"/>
+      <end value="${DATE, T, D, -509}"/>
+   </period>
+   <careManager>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/practitionerrole-mm-gbz-8452962"/>
+            <display value="Helma H XXX_Groot"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-8452962"/>
+      <display value="Helma H XXX_Groot"/>
+   </careManager>
+</EpisodeOfCare>

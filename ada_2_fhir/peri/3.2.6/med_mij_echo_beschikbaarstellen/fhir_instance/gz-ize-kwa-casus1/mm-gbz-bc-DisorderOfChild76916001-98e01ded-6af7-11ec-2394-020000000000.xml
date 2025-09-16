@@ -1,0 +1,85 @@
+<Condition xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-ize-kwa-casus1 /adaxml/data/med_mij_echo_beschikbaarstellen/medisch_onderzoek/foetusspecifieke_onderzoeksgegevens/echoscopie/bevindingen/probleem_wervelkolom_ruggenmerg (peri32-dataelement-3940) -->
+   <id value="98e01ded-6af7-11ec-2394-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DisorderOfChild"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Aandoening. Subject: Leonie L XXX_Osse. Categorie: <span title="aandoening van foetus of neonaat (aandoening) (414025005 - SNOMED CT)">aandoening van foetus of neonaat (aandoening)</span>, Status: actief / voorlopig</caption>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="spina bifida occulta (aandoening) (76916001 - SNOMED CT)">spina bifida occulta (aandoening)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>${DATE, T, D, -570}</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="98e01ded-6af7-11ec-2394-020000000000"/>
+   </identifier>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="55561003"/>
+               <display value="Actueel"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus value="provisional">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="415684004"/>
+               <display value="Werk"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </verificationStatus>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="414025005"/>
+         <display value="aandoening van foetus of neonaat (aandoening)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="76916001"/>
+         <display value="spina bifida occulta (aandoening)"/>
+      </coding>
+   </code>
+   <bodySite>
+      <extension url="http://hl7.org/fhir/StructureDefinition/body-site-instance">
+         <valueReference>
+            <reference value="BodySite/7f96aada-6ada-11ec-1267-020000000000"/>
+            <display value="foetus van Leonie L XXX_Osse"/>
+         </valueReference>
+      </extension>
+   </bodySite>
+   <subject>
+      <reference value="Patient/LEONIE-L-XXX-OSSE"/>
+      <display value="Leonie L XXX_Osse"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/d0510907-6af3-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Osse_Vrouw"/>
+   </context>
+   <onsetDateTime value="${DATE, T, D, -570}"/>
+</Condition>

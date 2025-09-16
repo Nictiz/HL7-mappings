@@ -1,0 +1,111 @@
+<html lang="en">
+   <head>
+      <title>Procedure - d6dcecac-6ac5-11ec-2241-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Verrichting. Subject: Leonie L XXX_Osse. Categorie: <span title="obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">obstetrische verrichting (verrichting)</span>, Status: voltooid<span style="display: block;">Uitvoerende: Helma H XXX_Groot</span>
+               </caption>
+               <tbody>
+                  <tr>
+                     <td>
+                        <span title="echografie voor foetale presentatie (verrichting) (169228004 - SNOMED CT)">echografie voor foetale presentatie (verrichting)</span>
+                     </td>
+                     <td>
+                        <div>Uitgevoerd: ${DATE, T, D, -3} - ${DATE, T, D, -3}</div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Locatie</th>
+                     <td>Echopraktijk Groei</td>
+                  </tr>
+                  <tr>
+                     <th>Reden</th>
+                     <td>Zwangerschap 2 XXX_Osse_Vrouw</td>
+                  </tr>
+                  <tr>
+                     <th>Report</th>
+                     <td>Echoscopie</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Procedure echografie voor foetale presentatie (verrichting)</b>
+      </p>
+      <div> - none</div>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 2, label: "DiagnosticReport echografie voor foetale presentatie (verrichting)", url: "mm-gbz-bc-PregnancyUltraSound169228004-1af5007b-6aa9-11ec-2120-020000000000.html" }, 
+{ id: 3, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-eadc3c53-6b19-11ec-0000-020000000000.html" }, 
+{ id: 4, label: "PractitionerRole", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-8452962.html" }, 
+{ id: 5, label: "Practitioner XXX_Groot", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-8452962.html" }, 
+{ id: 6, label: "Location", url: "mm-gbz-nl-core-location-location-mm-gbz-2-16-840-1-113883-2-4-6-1-90012345.html" }, 
+{ id: 22, label: "Patient XXX_Osse", url: "mm-gbz-bc-Woman-LEONIE-L-XXX-OSSE.html" }, 
+{ id: 23, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-c8cdd3f7-6b7c-11ec-2334-020000000000.html" }, 
+{ id: 24, label: "Procedure echografie voor foetale presentatie (verrichting)", url: "mm-gbz-bc-ObstetricProcedure169228004-d6dcecac-6ac5-11ec-2241-020000000000.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 24, to: 22 }, 
+{ from: 24, to: 3 }, 
+{ from: 24, to: 4 }, 
+{ from: 24, to: 5 }, 
+{ from: 24, to: 6 }, 
+{ from: 24, to: 23 }, 
+{ from: 24, to: 2 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>
