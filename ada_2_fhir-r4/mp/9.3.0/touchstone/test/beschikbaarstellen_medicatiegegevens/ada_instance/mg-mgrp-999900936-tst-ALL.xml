@@ -3,8 +3,8 @@
    <meta status="new"
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
-         creation-date="2024-03-19T14:12:20.542+01:00"
-         last-update-date="2024-03-19T14:12:20.542+01:00"/>
+         creation-date="2024-03-19T14:12:17.492+01:00"
+         last-update-date="2025-04-11T10:55:09.478Z"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -18,18 +18,19 @@
                                             id="mg-mgrp-999900936-tst-ALL">
          <scenario-nr value="6"
                       conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2.1.1"/>
-         <!--Patient found in instance with id: mg-TEST-Scenarioset6Patient-v30 and title: id: TEST REPO Scenarioset 6 ALLEEN PATIENT-->
+         <!--Patient found in instance with id: mg-bouwstenen-patients-v30 and title: id: Bouwstenen to be reused over test en kwal instances-->
          <patient comment=""
+                  id="XXX_RAMBALDO_999900936"
                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1">
             <naamgegevens comment=""
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.2">
                <initialen value="M"
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.4"/>
-               <naamgebruik value="1"
+               <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"
+                            value="1"
                             code="NL1"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
-                            displayName="Eigen geslachtsnaam"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"/>
+                            displayName="Eigen geslachtsnaam"/>
                <geslachtsnaam comment=""
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.7">
                   <achternaam value="XXX_Rambaldo"
@@ -42,11 +43,11 @@
             <geboortedatum value="1985-11-07"
                            datatype="datetime"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.36"/>
-            <geslacht value="3"
+            <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"
+                      value="3"
                       code="F"
                       codeSystem="2.16.840.1.113883.5.1"
-                      displayName="Vrouw"
-                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"/>
+                      displayName="Vrouw"/>
          </patient>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_variabelefrequentie-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
@@ -1599,7 +1600,7 @@
                </afgesproken_geneesmiddel>
                <gebruiksinstructie comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.50">
-                  <omschrijving value="elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, tijden exact aanhouden, oraal"
+                  <omschrijving value="elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, exacte toedientijd(en), oraal"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.52"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -1666,13 +1667,13 @@
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak comment=""
                                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297">
-                  <farmaceutisch_product value="PRK_METFORMINE_1090"
+                  <farmaceutisch_product value="HPK_METFORMINE_693332"
                                          datatype="reference"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.298"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.299">
-                  <omschrijving value="elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, tijden exact aanhouden, oraal"
+                  <omschrijving value="elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, exacte toedientijd(en), oraal"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.301"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -1749,7 +1750,7 @@
                </gebruiksproduct>
                <gebruiksinstructie comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.367">
-                  <omschrijving value="elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, tijden exact aanhouden"
+                  <omschrijving value="elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, exacte toedientijd(en)"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.369"/>
                   <doseerinstructie comment=""
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.372">
@@ -2128,11 +2129,11 @@
                         </keerdosis>
                         <toedieningsschema comment=""
                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.74">
-                           <dagdeel value="3"
+                           <dagdeel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.80"
+                                    value="3"
                                     code="3157002"
                                     codeSystem="2.16.840.1.113883.6.96"
-                                    displayName="'s avonds"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.80"/>
+                                    displayName="'s avonds"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -2192,11 +2193,11 @@
                         </keerdosis>
                         <toedieningsschema comment=""
                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.323">
-                           <dagdeel value="3"
+                           <dagdeel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.329"
+                                    value="3"
                                     code="3157002"
                                     codeSystem="2.16.840.1.113883.6.96"
-                                    displayName="'s avonds"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.329"/>
+                                    displayName="'s avonds"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -2263,11 +2264,11 @@
                         </keerdosis>
                         <toedieningsschema comment=""
                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.391">
-                           <dagdeel value="3"
+                           <dagdeel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.397"
+                                    value="3"
                                     code="3157002"
                                     codeSystem="2.16.840.1.113883.6.96"
-                                    displayName="'s avonds"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.397"/>
+                                    displayName="'s avonds"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -2404,7 +2405,7 @@
                <geneesmiddel_bij_toedieningsafspraak comment=""
                                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297">
                   <farmaceutisch_product datatype="reference"
-                                         value="PRK_FUSIDINEZUUR_16705"
+                                         value="HPK_ETHINYLESTRADIOL_DESOGESTREL_416681"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.298"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie comment=""
@@ -3129,11 +3130,11 @@
                         </keerdosis>
                         <zo_nodig comment=""
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.71">
-                           <criterium value="11"
+                           <criterium conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.72"
+                                      value="11"
                                       code="1387"
                                       codeSystem="2.16.840.1.113883.2.4.4.5"
-                                      displayName="Bij hoest"
-                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.72"/>
+                                      displayName="Bij hoest"/>
                            <maximale_dosering comment=""
                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.73">
                               <aantal value="6"
@@ -3211,11 +3212,11 @@
                         </keerdosis>
                         <zo_nodig comment=""
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.320">
-                           <criterium value="11"
+                           <criterium conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.321"
+                                      value="11"
                                       code="1387"
                                       codeSystem="2.16.840.1.113883.2.4.4.5"
-                                      displayName="Bij hoest"
-                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.321"/>
+                                      displayName="Bij hoest"/>
                            <maximale_dosering comment=""
                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.322">
                               <aantal value="6"
@@ -3297,11 +3298,11 @@
                         </keerdosis>
                         <zo_nodig comment=""
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.388">
-                           <criterium value="11"
+                           <criterium conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.389"
+                                      value="11"
                                       code="1387"
                                       codeSystem="2.16.840.1.113883.2.4.4.5"
-                                      displayName="Bij hoest"
-                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.389"/>
+                                      displayName="Bij hoest"/>
                            <maximale_dosering comment=""
                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.390">
                               <aantal value="6"
@@ -3383,7 +3384,7 @@
                </afgesproken_geneesmiddel>
                <gebruiksinstructie comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.50">
-                  <omschrijving value="toedieningssnelheid: per, parenteraal"
+                  <omschrijving value="toedieningssnelheid: 0.2 à 0.5 ml/h, parenteraal"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.52"/>
                   <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
                                   code="10"
@@ -3438,7 +3439,7 @@
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.299">
-                  <omschrijving value="toedieningssnelheid: per, Intraveneus"
+                  <omschrijving value="toedieningssnelheid: 0.2 à 0.5 ml/h, Intraveneus"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.301"/>
                   <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
                                   code="5"
@@ -3497,7 +3498,7 @@
                </gebruiksproduct>
                <gebruiksinstructie comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.367">
-                  <omschrijving value="toedieningssnelheid: per, intraveneus"
+                  <omschrijving value="toedieningssnelheid: 0.2 à 0.5 ml/h, intraveneus"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.369"/>
                   <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
                                   code="5"
@@ -4561,6 +4562,170 @@
                </gebruiksinstructie>
             </medicatieafspraak>
          </medicamenteuze_behandeling>
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_redundantefrequentie-->
+         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
+            <identificatie value="MBH_300_redundantefrequentie"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.43"
+                               comment="">
+               <identificatie value="MBH_300_redundantefrequentie_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.194"/>
+               <registratie_datum_tijd value="T+0D{09:00:00}"
+                                       datatype="datetime"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1480"/>
+               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.84"
+                                comment="">
+                  <start_datum_tijd value="T+0D{09:00:00}"
+                                    datatype="datetime"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.629"/>
+                  <tijds_duur value="14"
+                              unit="dag"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.631"/>
+               </gebruiksperiode>
+               <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.44"
+                              comment="">
+                  <zorgverlener value="PETER_VAN_PULVER"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.45"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.48"
+                                         comment="">
+                  <farmaceutisch_product value="PRK_PREDNISON_8311"
+                                         datatype="reference"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.49"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.50"
+                                   comment="">
+                  <omschrijving value="1 maal per dag om 10:00 1 stuk, Oraal"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.52"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.54"/>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.55"
+                                    comment="">
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.58"
+                               comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.67"
+                                   comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.547"
+                                   comment="">
+                              <nominale_waarde value="1"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.70"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.552"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.74"
+                                           comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.75"
+                                       comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.554"
+                                      comment="">
+                                 <nominale_waarde value="1"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.78"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.555"/>
+                           </frequentie>
+                           <toedientijd value="10:00:00"
+                                        datatype="time"
+                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.81"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.294"
+                                 comment="">
+               <identificatie value="MBH_300_redundantefrequentie_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
+               <registratie_datum_tijd value="T+0D{09:45:00}"
+                                       datatype="datetime"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1481"/>
+               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334"
+                                comment="">
+                  <start_datum_tijd value="T+0D{09:45:00}"
+                                    datatype="datetime"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.335"/>
+                  <tijds_duur value="14"
+                              unit="dag"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.337"/>
+               </gebruiksperiode>
+               <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.295"
+                            comment="">
+                  <zorgaanbieder value="APOTHEEK_DE_GULLE_GAPER"
+                                 datatype="reference"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.296"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297"
+                                                     comment="">
+                  <farmaceutisch_product value="HPK_PREDNISON_2033682"
+                                         datatype="reference"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.298"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.299"
+                                   comment="">
+                  <omschrijving value="1 maal per dag om 10:00 1 stuk, Oraal"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.301"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.303"/>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.304"
+                                    comment="">
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.307"
+                               comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.316"
+                                   comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.575"
+                                   comment="">
+                              <nominale_waarde value="1"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.319"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.576"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.323"
+                                           comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.324"
+                                       comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.578"
+                                      comment="">
+                                 <nominale_waarde value="1"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.327"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.579"/>
+                           </frequentie>
+                           <toedientijd value="10:00:00"
+                                        datatype="time"
+                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.330"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.338"
+                                          comment="">
+                  <identificatie value="MBH_300_redundantefrequentie_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.565"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_WDS_dagdeel-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
             <identificatie value="MBH_300_WDS_dagdeel"
@@ -4871,221 +5036,574 @@
                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.694"/>
             </wisselend_doseerschema>
          </medicamenteuze_behandeling>
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_0dosering-->
+         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
+            <identificatie value="MBH_300_0dosering"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <wisselend_doseerschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.632"
+                                    comment="">
+               <identificatie value="MBH_300_0dosering_WDS"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.632.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.633"/>
+               <registratie_datum_tijd value="T-3D{11:30:00}"
+                                       datatype="datetime"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1483"/>
+               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.635"
+                                comment="">
+                  <start_datum_tijd value="T-3D{11:30:00}"
+                                    datatype="datetime"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.636"/>
+                  <tijds_duur value="13"
+                              unit="dag"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.638"/>
+               </gebruiksperiode>
+               <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1362"
+                                         comment="">
+                  <farmaceutisch_product value="PRK_ACENOCOUMAROL_7323"
+                                         datatype="reference"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1363"/>
+               </afgesproken_geneesmiddel>
+               <relatie_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.640"
+                                          comment="">
+                  <identificatie value="MBH_300_0dosering_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.641"/>
+               </relatie_medicatieafspraak>
+               <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.642"
+                       comment="">
+                  <zorgverlener value="TANJA_DE_BAKKER"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.643"/>
+               </auteur>
+               <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.646"
+                                   comment="">
+                  <omschrijving value="eerst gedurende 1 dag 1 maal per dag 6 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 0 stuks, dan gedurende 1 dag 1 maal per dag 0 stuks, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 0 stuks, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 0 stuks, dan gedurende 1 dag 1 maal per dag 1 stuk, Volgens schema trombosedienst, Oraal"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.647"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.648"/>
+                  <aanvullende_instructie originalText="Volgens schema trombosedienst"
+                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.649"
+                                          value="2"
+                                          code="OTH"
+                                          codeSystem="2.16.840.1.113883.5.1008"
+                                          displayName="overig"/>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.651"
+                                    comment="">
+                     <doseerduur value="1"
+                                 unit="dag"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.652"/>
+                     <volgnummer value="1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.653"/>
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.654"
+                               comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.655"
+                                   comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.656"
+                                   comment="">
+                              <nominale_waarde value="6"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.658"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuks"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.660"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.662"
+                                           comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.663"
+                                       comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.664"
+                                      comment="">
+                                 <nominale_waarde value="1"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.666"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.651"
+                                    comment="">
+                     <doseerduur value="1"
+                                 unit="dag"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.652"/>
+                     <volgnummer value="2"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.653"/>
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.654"
+                               comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.655"
+                                   comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.656"
+                                   comment="">
+                              <nominale_waarde value="4"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.658"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuks"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.660"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.662"
+                                           comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.663"
+                                       comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.664"
+                                      comment="">
+                                 <nominale_waarde value="1"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.666"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.651"
+                                    comment="">
+                     <doseerduur value="1"
+                                 unit="dag"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.652"/>
+                     <volgnummer value="3"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.653"/>
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.654"
+                               comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.655"
+                                   comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.656"
+                                   comment="">
+                              <nominale_waarde value="2"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.658"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuks"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.660"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.662"
+                                           comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.663"
+                                       comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.664"
+                                      comment="">
+                                 <nominale_waarde value="1"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.666"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.651"
+                                    comment="">
+                     <doseerduur value="1"
+                                 unit="dag"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.652"/>
+                     <volgnummer value="4"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.653"/>
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.654"
+                               comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.655"
+                                   comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.656"
+                                   comment="">
+                              <nominale_waarde value="1"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.658"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.660"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.662"
+                                           comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.663"
+                                       comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.664"
+                                      comment="">
+                                 <nominale_waarde value="1"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.666"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.651"
+                                    comment="">
+                     <doseerduur value="1"
+                                 unit="dag"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.652"/>
+                     <volgnummer value="5"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.653"/>
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.654"
+                               comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.655"
+                                   comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.656"
+                                   comment="">
+                              <nominale_waarde value="0"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.658"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuks"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.660"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.662"
+                                           comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.663"
+                                       comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.664"
+                                      comment="">
+                                 <nominale_waarde value="1"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.666"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.651"
+                                    comment="">
+                     <doseerduur value="1"
+                                 unit="dag"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.652"/>
+                     <volgnummer value="6"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.653"/>
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.654"
+                               comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.655"
+                                   comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.656"
+                                   comment="">
+                              <nominale_waarde value="0"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.658"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuks"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.660"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.662"
+                                           comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.663"
+                                       comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.664"
+                                      comment="">
+                                 <nominale_waarde value="1"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.666"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.651"
+                                    comment="">
+                     <doseerduur value="1"
+                                 unit="dag"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.652"/>
+                     <volgnummer value="7"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.653"/>
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.654"
+                               comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.655"
+                                   comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.656"
+                                   comment="">
+                              <nominale_waarde value="1"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.658"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.660"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.662"
+                                           comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.663"
+                                       comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.664"
+                                      comment="">
+                                 <nominale_waarde value="1"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.666"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.651"
+                                    comment="">
+                     <doseerduur value="1"
+                                 unit="dag"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.652"/>
+                     <volgnummer value="8"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.653"/>
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.654"
+                               comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.655"
+                                   comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.656"
+                                   comment="">
+                              <nominale_waarde value="2"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.658"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuks"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.660"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.662"
+                                           comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.663"
+                                       comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.664"
+                                      comment="">
+                                 <nominale_waarde value="1"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.666"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.651"
+                                    comment="">
+                     <doseerduur value="1"
+                                 unit="dag"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.652"/>
+                     <volgnummer value="9"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.653"/>
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.654"
+                               comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.655"
+                                   comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.656"
+                                   comment="">
+                              <nominale_waarde value="1"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.658"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.660"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.662"
+                                           comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.663"
+                                       comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.664"
+                                      comment="">
+                                 <nominale_waarde value="1"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.666"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.651"
+                                    comment="">
+                     <doseerduur value="1"
+                                 unit="dag"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.652"/>
+                     <volgnummer value="10"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.653"/>
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.654"
+                               comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.655"
+                                   comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.656"
+                                   comment="">
+                              <nominale_waarde value="0"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.658"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuks"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.660"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.662"
+                                           comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.663"
+                                       comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.664"
+                                      comment="">
+                                 <nominale_waarde value="1"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.666"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.651"
+                                    comment="">
+                     <doseerduur value="1"
+                                 unit="dag"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.652"/>
+                     <volgnummer value="11"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.653"/>
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.654"
+                               comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.655"
+                                   comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.656"
+                                   comment="">
+                              <nominale_waarde value="1"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.658"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.660"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.662"
+                                           comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.663"
+                                       comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.664"
+                                      comment="">
+                                 <nominale_waarde value="1"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.666"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.651"
+                                    comment="">
+                     <doseerduur value="1"
+                                 unit="dag"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.652"/>
+                     <volgnummer value="12"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.653"/>
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.654"
+                               comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.655"
+                                   comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.656"
+                                   comment="">
+                              <nominale_waarde value="0"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.658"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuks"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.660"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.662"
+                                           comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.663"
+                                       comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.664"
+                                      comment="">
+                                 <nominale_waarde value="1"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.666"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.651"
+                                    comment="">
+                     <doseerduur value="1"
+                                 unit="dag"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.652"/>
+                     <volgnummer value="13"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.653"/>
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.654"
+                               comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.655"
+                                   comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.656"
+                                   comment="">
+                              <nominale_waarde value="1"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.658"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.660"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.662"
+                                           comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.663"
+                                       comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.664"
+                                      comment="">
+                                 <nominale_waarde value="1"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.666"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <toelichting value="gemeten INR waarde: 2.4"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.694"/>
+            </wisselend_doseerschema>
+         </medicamenteuze_behandeling>
          <bouwstenen comment=""
                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">
-            <farmaceutisch_product id="PRK_CETOMACROGOLCREME_226866"
-                                   comment=""
+            <farmaceutisch_product comment=""
+                                   id="PRK_ACENOCOUMAROL_7323"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
-               <product_code code="226866"
+               <product_code code="7323"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
-                             displayName="Cetomacrogolcreme met vaseline 10%"
+                             displayName="ACENOCOUMAROL TABLET 1MG"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="195758"
+               <product_code code="20303"
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              codeSystemName="G-Standaard GPK"
-                             displayName="Cetomacrogolcreme met vaseline 10%"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-            </farmaceutisch_product>
-            <farmaceutisch_product id="PRK_CODEINE_42773"
-                                   comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
-               <product_code code="42773"
-                             codeSystem="2.16.840.1.113883.2.4.4.10"
-                             displayName="CODEINE TABLET 10MG (FOSFAAT)"
-                             codeSystemName="G-Standaard PRK"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="23086"
-                             codeSystem="2.16.840.1.113883.2.4.4.1"
-                             codeSystemName="G-Standaard GPK"
-                             displayName="CODEINE TABLET 10MG (FOSFAAT)"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-            </farmaceutisch_product>
-            <farmaceutisch_product id="PRK_MORFINE_94692"
-                                   comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
-               <product_code code="94692"
-                             codeSystem="2.16.840.1.113883.2.4.4.10"
-                             displayName="MORFINE INFVLST 5MG/ML CAS 100ML"
-                             codeSystemName="G-Standaard PRK"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="134538"
-                             codeSystem="2.16.840.1.113883.2.4.4.1"
-                             codeSystemName="G-Standaard GPK"
-                             displayName="MORFINE INFVLST 5MG/ML CAS 100ML"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-            </farmaceutisch_product>
-            <farmaceutisch_product id="PRK_NAPROXEN_20850"
-                                   comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
-               <product_code code="20850"
-                             codeSystem="2.16.840.1.113883.2.4.4.10"
-                             displayName="NAPROXEN 500MG TABLET"
-                             codeSystemName="G-Standaard PRK"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="51233"
-                             codeSystem="2.16.840.1.113883.2.4.4.1"
-                             codeSystemName="G-Standaard GPK"
-                             displayName="NAPROXEN 500MG TABLET"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-            </farmaceutisch_product>
-            <farmaceutisch_product id="PRK_NITROGLYCERINE_228427"
-                                   comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
-               <product_code code="228427"
-                             codeSystem="2.16.840.1.113883.2.4.4.10"
-                             displayName="NITROGLYCERINE PLEISTER 5MG/24UUR (DEPONIT T)"
-                             codeSystemName="G-Standaard PRK"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="196738"
-                             codeSystem="2.16.840.1.113883.2.4.4.1"
-                             codeSystemName="G-Standaard GPK"
-                             displayName="NITROGLYCERINE PLEISTER 5MG/24UUR (DEPONIT T)"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-            </farmaceutisch_product>
-            <farmaceutisch_product id="PRK_PARACETAMOL_67903"
-                                   comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
-               <product_code code="67903"
-                             codeSystem="2.16.840.1.113883.2.4.4.10"
-                             displayName="PARACETAMOL 500MG TABLET"
-                             codeSystemName="G-Standaard PRK"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="2194"
-                             codeSystem="2.16.840.1.113883.2.4.4.1"
-                             codeSystemName="G-Standaard GPK"
-                             displayName="PARACETAMOL 500MG TABLET"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-            </farmaceutisch_product>
-            <farmaceutisch_product id="PRK_METFORMINE_1090"
-                                   comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
-               <product_code code="1090"
-                             codeSystem="2.16.840.1.113883.2.4.4.10"
-                             displayName="METFORMINE 500MG TABLET"
-                             codeSystemName="G-Standaard PRK"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="3816"
-                             codeSystem="2.16.840.1.113883.2.4.4.1"
-                             codeSystemName="G-Standaard GPK"
-                             displayName="METFORMINE 500MG TABLET"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-            </farmaceutisch_product>
-            <farmaceutisch_product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260"
-                                   comment=""
-                                   id="PRK_FYTOMENADION_106720">
-               <product_code code="106720"
-                             codeSystem="2.16.840.1.113883.2.4.4.10"
-                             codeSystemName="G-Standaard PRK"
-                             displayName="FYTOMENADION TABLET 1MG"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="142697"
-                             codeSystem="2.16.840.1.113883.2.4.4.1"
-                             codeSystemName="G-Standaard GPK"
-                             displayName="FYTOMENADION TABLET 1MG"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-            </farmaceutisch_product>
-            <farmaceutisch_product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260"
-                                   comment=""
-                                   id="PRK_FENPROCOUMON_1783">
-               <product_code code="1783"
-                             codeSystem="2.16.840.1.113883.2.4.4.10"
-                             codeSystemName="G-Standaard PRK"
-                             displayName="FENPROCOUMON TABLET 3MG"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="6637"
-                             codeSystem="2.16.840.1.113883.2.4.4.1"
-                             codeSystemName="G-Standaard GPK"
-                             displayName="FENPROCOUMON TABLET 3MG"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-            </farmaceutisch_product>
-            <farmaceutisch_product id="PRK_AMOXICILLINE_68519"
-                                   comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
-               <product_code code="68519"
-                             codeSystem="2.16.840.1.113883.2.4.4.10"
-                             displayName="AMOXICILLINE DISPERTABLET 500MG"
-                             codeSystemName="G-Standaard PRK"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="117080"
-                             codeSystem="2.16.840.1.113883.2.4.4.1"
-                             codeSystemName="G-Standaard GPK"
-                             displayName="AMOXICILLINE DISPERTABLET 500MG"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-            </farmaceutisch_product>
-            <farmaceutisch_product id="HPK_AMOXICILLINE_802891"
-                                   comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
-               <product_code code="802891"
-                             codeSystem="2.16.840.1.113883.2.4.4.7"
-                             codeSystemName="G-Standaard HPK"
-                             displayName="AMOXICILLINE DISPER SANDOZ TABLET 500MG"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="68519"
-                             codeSystem="2.16.840.1.113883.2.4.4.10"
-                             displayName="AMOXICILLINE DISPERTABLET 500MG"
-                             codeSystemName="G-Standaard PRK"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="117080"
-                             codeSystem="2.16.840.1.113883.2.4.4.1"
-                             codeSystemName="G-Standaard GPK"
-                             displayName="AMOXICILLINE DISPERTABLET 500MG"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-            </farmaceutisch_product>
-            <farmaceutisch_product id="PRK_ETHINYLESTRADIOL_DESOGESTREL_16292"
-                                   comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
-               <product_code code="16292"
-                             codeSystem="2.16.840.1.113883.2.4.4.10"
-                             displayName="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"
-                             codeSystemName="G-Standaard PRK"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="39578"
-                             codeSystem="2.16.840.1.113883.2.4.4.1"
-                             codeSystemName="G-Standaard GPK"
-                             displayName="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-            </farmaceutisch_product>
-            <farmaceutisch_product id="PRK_FUSIDINEZUUR_16705"
-                                   comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
-               <product_code code="16705"
-                             codeSystem="2.16.840.1.113883.2.4.4.10"
-                             codeSystemName="G-Standaard PRK"
-                             displayName="Fusidinezuur creme 20mg/g"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="73466"
-                             codeSystem="2.16.840.1.113883.2.4.4.1"
-                             codeSystemName="G-Standaard GPK"
-                             displayName="Fusidinezuur creme 20mg/g"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-            </farmaceutisch_product>
-            <farmaceutisch_product id="PRK_IMIQUIMOD_55050"
-                                   comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
-               <product_code code="55050"
-                             codeSystem="2.16.840.1.113883.2.4.4.10"
-                             displayName="IMIQUIMOD 50MG/G CREME"
-                             codeSystemName="G-Standaard PRK"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="109398"
-                             codeSystem="2.16.840.1.113883.2.4.4.1"
-                             codeSystemName="G-Standaard GPK"
-                             displayName="IMIQUIMOD 50MG/G CREME"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-            </farmaceutisch_product>
-            <farmaceutisch_product id="PRK_MIZOLASTINE_48291"
-                                   comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
-               <product_code code="48291"
-                             codeSystem="2.16.840.1.113883.2.4.4.10"
-                             displayName="MIZOLASTINE TABLET MGA  10MG"
-                             codeSystemName="G-Standaard PRK"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="102164"
-                             codeSystem="2.16.840.1.113883.2.4.4.1"
-                             codeSystemName="G-Standaard GPK"
-                             displayName="MIZOLASTINE TABLET MGA  10MG"
+                             displayName="ACENOCOUMAROL TABLET 1MG"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
             <farmaceutisch_product id="PRK_ACETYLSALICYLZUUR_3956"
@@ -5121,6 +5639,53 @@
                              displayName="ACETYLSALICYLZUUR TABLET 100MG"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
+            <farmaceutisch_product id="PRK_AMOXICILLINE_68519"
+                                   comment=""
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="68519"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="AMOXICILLINE DISPERTABLET 500MG"
+                             codeSystemName="G-Standaard PRK"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="117080"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="AMOXICILLINE DISPERTABLET 500MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="HPK_AMOXICILLINE_802891"
+                                   comment=""
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="802891"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="AMOXICILLINE DISPER SANDOZ TABLET 500MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="68519"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="AMOXICILLINE DISPERTABLET 500MG"
+                             codeSystemName="G-Standaard PRK"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="117080"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="AMOXICILLINE DISPERTABLET 500MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="PRK_CETOMACROGOLCREME_226866"
+                                   comment=""
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="226866"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="Cetomacrogolcreme met vaseline 10%"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="195758"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="Cetomacrogolcreme met vaseline 10%"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
             <farmaceutisch_product id="HPK_CETOMACROGOLCREME_1205943"
                                    comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
@@ -5140,6 +5705,20 @@
                              displayName="Cetomacrogolcreme met vaseline 10%"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
+            <farmaceutisch_product id="PRK_CODEINE_42773"
+                                   comment=""
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="42773"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="CODEINE TABLET 10MG (FOSFAAT)"
+                             codeSystemName="G-Standaard PRK"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="23086"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="CODEINE TABLET 10MG (FOSFAAT)"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
             <farmaceutisch_product id="HPK_CODEINE_874965"
                                    comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
@@ -5157,6 +5736,39 @@
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              codeSystemName="G-Standaard GPK"
                              displayName="CODEINE TABLET 10MG (FOSFAAT)"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="PRK_ETHINYLESTRADIOL_DESOGESTREL_16292"
+                                   comment=""
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="16292"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"
+                             codeSystemName="G-Standaard PRK"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="39578"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="HPK_ETHINYLESTRADIOL_DESOGESTREL_416681"
+                                   comment=""
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="416681"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="MARVELON TABLET"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="16292"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"
+                             codeSystemName="G-Standaard PRK"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="39578"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
             <farmaceutisch_product id="PRK_EZETIMIB_SIMVASTATINE_77038"
@@ -5192,6 +5804,34 @@
                              displayName="EZETIMIB/SIMVASTATINE 10/20"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
+            <farmaceutisch_product comment=""
+                                   id="PRK_FENPROCOUMON_1783"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="1783"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="FENPROCOUMON TABLET 3MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="6637"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="FENPROCOUMON TABLET 3MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="PRK_FUSIDINEZUUR_16705"
+                                   comment=""
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="16705"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="Fusidinezuur creme 20mg/g"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="73466"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="Fusidinezuur creme 20mg/g"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
             <farmaceutisch_product id="HPK_FUSIDINEZUUR_2292556"
                                    comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
@@ -5209,6 +5849,34 @@
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              codeSystemName="G-Standaard GPK"
                              displayName="Fusidinezuur creme 20mg/g"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product comment=""
+                                   id="PRK_FYTOMENADION_106720"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="106720"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="FYTOMENADION TABLET 1MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="142697"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="FYTOMENADION TABLET 1MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="PRK_IMIQUIMOD_55050"
+                                   comment=""
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="55050"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="IMIQUIMOD 50MG/G CREME"
+                             codeSystemName="G-Standaard PRK"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="109398"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="IMIQUIMOD 50MG/G CREME"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
             <farmaceutisch_product id="HPK_IMIQUIMOD_1198521"
@@ -5230,6 +5898,20 @@
                              displayName="IMIQUIMOD 50MG/G CREME"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
+            <farmaceutisch_product id="PRK_METFORMINE_1090"
+                                   comment=""
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="1090"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="METFORMINE 500MG TABLET"
+                             codeSystemName="G-Standaard PRK"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="3816"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="METFORMINE 500MG TABLET"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
             <farmaceutisch_product id="HPK_METFORMINE_693332"
                                    comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
@@ -5247,6 +5929,20 @@
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              codeSystemName="G-Standaard GPK"
                              displayName="METFORMINE 500MG TABLET"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="PRK_MIZOLASTINE_48291"
+                                   comment=""
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="48291"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="MIZOLASTINE TABLET MGA  10MG"
+                             codeSystemName="G-Standaard PRK"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="102164"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="MIZOLASTINE TABLET MGA  10MG"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
             <farmaceutisch_product id="HPK_MIZOLASTINE_1101099"
@@ -5268,6 +5964,20 @@
                              displayName="MIZOLASTINE TABLET MGA  10MG"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
+            <farmaceutisch_product id="PRK_MORFINE_94692"
+                                   comment=""
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="94692"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="MORFINE INFVLST 5MG/ML CAS 100ML"
+                             codeSystemName="G-Standaard PRK"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="134538"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="MORFINE INFVLST 5MG/ML CAS 100ML"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
             <farmaceutisch_product id="HPK_MORFINE_2554771"
                                    comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
@@ -5285,6 +5995,20 @@
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              codeSystemName="G-Standaard GPK"
                              displayName="MORFINE INFVLST 5MG/ML CAS 100ML"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="PRK_NAPROXEN_20850"
+                                   comment=""
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="20850"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="NAPROXEN 500MG TABLET"
+                             codeSystemName="G-Standaard PRK"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="51233"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="NAPROXEN 500MG TABLET"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
             <farmaceutisch_product id="HPK_NAPROXEN_1137778"
@@ -5306,6 +6030,20 @@
                              displayName="NAPROXEN 500MG TABLET"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
+            <farmaceutisch_product id="PRK_NITROGLYCERINE_228427"
+                                   comment=""
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="228427"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="NITROGLYCERINE PLEISTER 5MG/24UUR (DEPONIT T)"
+                             codeSystemName="G-Standaard PRK"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="196738"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="NITROGLYCERINE PLEISTER 5MG/24UUR (DEPONIT T)"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
             <farmaceutisch_product id="HPK_NITROGLYCERINE_1013602"
                                    comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
@@ -5323,6 +6061,20 @@
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              codeSystemName="G-Standaard GPK"
                              displayName="NITROGLYCERINE PLEISTER 5MG/24UUR (DEPONIT T)"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="PRK_PARACETAMOL_67903"
+                                   comment=""
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="67903"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="PARACETAMOL 500MG TABLET"
+                             codeSystemName="G-Standaard PRK"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="2194"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="PARACETAMOL 500MG TABLET"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
             <farmaceutisch_product id="HPK_PARACETAMOL_1026291"
@@ -5377,6 +6129,39 @@
                              displayName="WATERSTOFPEROXIDE CONC VOOR MONDSPOELING 30MG/ML"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
+            <farmaceutisch_product comment=""
+                                   id="PRK_PREDNISON_8311"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="8311"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="PREDNISON TABLET 5MG"
+                             codeSystemName="G-Standaard PRK"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="23817"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             displayName="PREDNISON TABLET 5MG"
+                             codeSystemName="G-Standaard GPK"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product comment=""
+                                   id="HPK_PREDNISON_2033682"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="2033682"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="PREDNISON AURO TABLET 5MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="8311"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="PREDNISON TABLET 5MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="23817"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="PREDNISON TABLET 5MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
             <zorgverlener id="PETER_VAN_PULVER"
                           comment=""
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.92">
@@ -5408,33 +6193,32 @@
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.846"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.92"
-                          comment=""
-                          id="TANJA_DE_BAKKER">
+            <zorgverlener comment=""
+                          id="TANJA_DE_BAKKER"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.92">
                <zorgverlener_identificatienummer value="222221111"
                                                  root="2.16.528.1.1007.3.1"
                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.132"/>
-               <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.133"
-                             comment="">
+               <naamgegevens comment=""
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.133">
                   <voornamen value="Tanja"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.134"/>
-                  <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.138"
-                                 comment="">
+                  <geslachtsnaam comment=""
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.138">
                      <voorvoegsels value="de "
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.139"/>
                      <achternaam value="Bakker"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.140"/>
                   </geslachtsnaam>
                </naamgegevens>
-               <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.145"
-                            value="241"
-                            code="3400"
+               <specialisme code="3400"
                             codeSystem="2.16.840.1.113883.2.4.6.7"
                             codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
                             codeSystemVersion="2020-10-23T00:00:00"
-                            displayName="Trombosediensten"/>
-               <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.168"
-                              comment="">
+                            displayName="Trombosediensten"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.145"/>
+               <zorgaanbieder comment=""
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.168">
                   <zorgaanbieder value="TROMBOSEDIENST_ONS_DORP"
                                  datatype="reference"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.846"/>
@@ -5475,8 +6259,8 @@
                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.231"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.232"/>
-               <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.243"
-                              comment="">
+               <adresgegevens comment=""
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.243">
                   <straat value="Dorpsstraat"
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.244"/>
                   <huisnummer value="1"
@@ -5492,23 +6276,23 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202"
-                           comment=""
-                           id="TROMBOSEDIENST_ONS_DORP">
+            <zorgaanbieder comment=""
+                           id="TROMBOSEDIENST_ONS_DORP"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202">
                <zorgaanbieder_identificatienummer value="11112222"
                                                   root="2.16.528.1.1007.3.3"
                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.231"/>
                <organisatie_naam value="Trombosedienst Ons Dorp"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.232"/>
-               <afdeling_specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.233"
-                                     value="240"
+               <afdeling_specialisme value="240"
                                      code="3400"
                                      codeSystem="2.16.840.1.113883.2.4.6.7"
                                      codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
                                      codeSystemVersion="2020-10-23T00:00:00"
-                                     displayName="Trombosediensten"/>
-               <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.243"
-                              comment="">
+                                     displayName="Trombosediensten"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.233"/>
+               <adresgegevens comment=""
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.243">
                   <straat value="Kerkstraat"
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.244"/>
                   <huisnummer value="28"
