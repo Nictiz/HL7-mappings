@@ -5,7 +5,7 @@
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:786ba9a8-6b17-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:2d513b22-6b2d-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -15,6 +15,15 @@
                   <code value="actionable"/>
                </tag>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.ReasonModificationOrDiscontinuation">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="62014003"/>
+                     <display value="ongewenste reactie op medicatie en/of drugs"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="${DATE, T, D, +0}T09:10:00+02:00"/>
             </extension>

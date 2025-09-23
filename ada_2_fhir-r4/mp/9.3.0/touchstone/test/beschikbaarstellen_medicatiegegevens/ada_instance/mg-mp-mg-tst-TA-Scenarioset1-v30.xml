@@ -4,7 +4,7 @@
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
          creation-date="2024-03-19T14:12:23.103+01:00"
-         last-update-date="2024-03-19T14:12:23.103+01:00"/>
+         last-update-date="2025-04-15T11:13:33.958Z"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -18,18 +18,19 @@
                                             id="mg-mp-mg-tst-TA-Scenarioset1-v30">
          <scenario-nr value="1"
                       conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2.1.1"/>
-         <!--Patient found in instance with id: mg-TEST-Scenarioset1Patient-v30 and title: id: TEST REPO Scenarioset 1 ALLEEN PATIENT-->
+         <!--Patient found in instance with id: mg-bouwstenen-patients-v30 and title: id: Bouwstenen to be reused over test en kwal instances-->
          <patient comment=""
+                  id="XXX_DIJKS_999900468"
                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1">
             <naamgegevens comment=""
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.2">
                <initialen value="D."
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.4"/>
-               <naamgebruik value="1"
+               <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"
+                            value="1"
                             code="NL1"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
-                            displayName="Eigen geslachtsnaam"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"/>
+                            displayName="Eigen geslachtsnaam"/>
                <geslachtsnaam comment=""
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.7">
                   <achternaam value="XXX_Dijks"
@@ -42,11 +43,11 @@
             <geboortedatum value="1963-10-21"
                            datatype="datetime"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.36"/>
-            <geslacht value="3"
+            <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"
+                      value="3"
                       code="F"
                       codeSystem="2.16.840.1.113883.5.1"
-                      displayName="Vrouw"
-                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"/>
+                      displayName="Vrouw"/>
          </patient>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_start_eind-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
@@ -79,7 +80,7 @@
                <geneesmiddel_bij_toedieningsafspraak comment=""
                                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297">
                   <farmaceutisch_product datatype="reference"
-                                         value="HPK_METOCLOPRAMIDE_560308"
+                                         value="HPK_METOCLOPRAMIDE_2115468"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.298"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie comment=""
@@ -470,6 +471,80 @@
                </relatie_medicatieafspraak>
             </toedieningsafspraak>
          </medicamenteuze_behandeling>
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_start_criterium-->
+         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
+            <identificatie value="MBH_300_start_criterium"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.294"
+                                 comment="">
+               <identificatie value="MBH_300_start_criterium_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
+               <registratie_datum_tijd value="T{12:20:00}"
+                                       datatype="datetime"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1481"/>
+               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334"
+                                comment="">
+                  <start_datum_tijd value="T+1D{00:00:00}"
+                                    datatype="datetime"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.335"/>
+                  <tijds_duur value="3"
+                              unit="dag"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.337"/>
+                  <criterium value="3 dagen voor operatie starten"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1484"/>
+               </gebruiksperiode>
+               <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.295"
+                            comment="">
+                  <zorgaanbieder value="APOTHEEK_DE_GULLE_GAPER"
+                                 datatype="reference"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.296"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297"
+                                                     comment="">
+                  <farmaceutisch_product value="HPK_CHLOORHEXIDINE_1189921"
+                                         datatype="reference"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.298"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.299"
+                                   comment="">
+                  <omschrijving value="1 maal per dag, cutaan"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.301"/>
+                  <toedieningsweg code="53"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  displayName="cutaan"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.303"/>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.304"
+                                    comment="">
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.307"
+                               comment="">
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.323"
+                                           comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.324"
+                                       comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.578"
+                                      comment="">
+                                 <nominale_waarde value="1"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.327"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.579"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.338"
+                                          comment="">
+                  <identificatie value="MBH_300_start_criterium_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.565"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
          <bouwstenen comment=""
                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">
             <farmaceutisch_product id="HPK_ACETYLSALICYLZUUR_PARACETAMOL_COF_202185"
@@ -489,6 +564,25 @@
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              codeSystemName="G-Standaard GPK"
                              displayName="ACETYLSALICYLZUUR/PARACETAMOL/COF TAB 250/250/50MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product comment=""
+                                   id="HPK_CHLOORHEXIDINE_1189921"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="1189921"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="CHLOORHEXIDINE DIGLUCONAAT CREME 1%"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="10138"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="CHLOORHEXIDINE CREME 10MG/G"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="26603"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="CHLOORHEXIDINE CREME 10MG/G"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
             <farmaceutisch_product id="HPK_FLUTICASON_1029754"
@@ -529,13 +623,13 @@
                              displayName="LISINOPRIL 10MG TABLET"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="HPK_METOCLOPRAMIDE_560308"
+            <farmaceutisch_product id="HPK_METOCLOPRAMIDE_2115468"
                                    comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
-               <product_code code="560308"
+               <product_code code="2115468"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
-                             displayName="METOCLOPRAMIDE HCL PCH TABLET 10MG"
+                             displayName="METOCLOPRAMIDE HCL ACCORD TABLET 10MG"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
                <product_code code="6947"
                              codeSystem="2.16.840.1.113883.2.4.4.10"

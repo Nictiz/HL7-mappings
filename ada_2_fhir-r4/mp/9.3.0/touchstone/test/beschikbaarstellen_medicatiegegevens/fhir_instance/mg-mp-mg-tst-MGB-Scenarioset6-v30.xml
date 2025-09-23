@@ -1,6 +1,10 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-tst-MGB-Scenarioset6-v30"/>
    <type value="transaction"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
    <entry>
       <fullUrl value="urn:uuid:450f4536-6b0f-11ec-0000-020000000000"/>
       <resource>
@@ -90,7 +94,7 @@
                      </coding>
                   </valueCodeableConcept>
                </extension>
-               <type value="MedicationRequest"/>
+               <type value="MedicationDispense"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                   <value value="MBH_300_variabelefrequentie_TA"/>
@@ -1754,7 +1758,7 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, tijden exact aanhouden"/>
+               <valueString value="elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, exacte toedientijd(en)"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                <valueReference>
@@ -1864,14 +1868,14 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:485feb96-6ab0-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:ad18d927-6b13-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="toedieningssnelheid: per, intraveneus"/>
+               <valueString value="toedieningssnelheid: 0.2 à 0.5 ml/h, intraveneus"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                <valueReference>
@@ -2253,6 +2257,62 @@
       </request>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:3286aae9-6a99-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="3956"/>
+                  <display value="ACETYLSALICYLZUUR TABLET 100MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="12548"/>
+                  <display value="ACETYLSALICYLZUUR TABLET 100MG"/>
+               </coding>
+               <text value="ACETYLSALICYLZUUR TABLET 100MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:4ed0fa04-6b2a-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="68519"/>
+                  <display value="AMOXICILLINE DISPERTABLET 500MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="117080"/>
+                  <display value="AMOXICILLINE DISPERTABLET 500MG"/>
+               </coding>
+               <text value="AMOXICILLINE DISPERTABLET 500MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
       <fullUrl value="urn:uuid:c8fceee9-6b2e-11ec-0000-020000000000"/>
       <resource>
          <Medication>
@@ -2309,146 +2369,6 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d4136f04-6aed-11ec-0000-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="94692"/>
-                  <display value="MORFINE INFVLST 5MG/ML CAS 100ML"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="134538"/>
-                  <display value="MORFINE INFVLST 5MG/ML CAS 100ML"/>
-               </coding>
-               <text value="MORFINE INFVLST 5MG/ML CAS 100ML"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:69e4131d-6b3c-11ec-0000-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="20850"/>
-                  <display value="NAPROXEN 500MG TABLET"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="51233"/>
-                  <display value="NAPROXEN 500MG TABLET"/>
-               </coding>
-               <text value="NAPROXEN 500MG TABLET"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:cfa3aee9-6b5c-11ec-0000-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="67903"/>
-                  <display value="PARACETAMOL 500MG TABLET"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="2194"/>
-                  <display value="PARACETAMOL 500MG TABLET"/>
-               </coding>
-               <text value="PARACETAMOL 500MG TABLET"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:681a7e04-6afd-11ec-0000-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="1090"/>
-                  <display value="METFORMINE 500MG TABLET"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="3816"/>
-                  <display value="METFORMINE 500MG TABLET"/>
-               </coding>
-               <text value="METFORMINE 500MG TABLET"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:4ed0fa04-6b2a-11ec-0000-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="68519"/>
-                  <display value="AMOXICILLINE DISPERTABLET 500MG"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="117080"/>
-                  <display value="AMOXICILLINE DISPERTABLET 500MG"/>
-               </coding>
-               <text value="AMOXICILLINE DISPERTABLET 500MG"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
       <fullUrl value="urn:uuid:de65651d-6afe-11ec-0000-020000000000"/>
       <resource>
          <Medication>
@@ -2468,6 +2388,34 @@
                   <display value="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"/>
                </coding>
                <text value="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:7ea5fc04-6ae7-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="77038"/>
+                  <display value="EZETIMIB/SIMVASTATINE 10/20"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="123129"/>
+                  <display value="EZETIMIB/SIMVASTATINE 10/20"/>
+               </coding>
+               <text value="EZETIMIB/SIMVASTATINE 10/20"/>
             </code>
          </Medication>
       </resource>
@@ -2533,6 +2481,34 @@
       </request>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:681a7e04-6afd-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="1090"/>
+                  <display value="METFORMINE 500MG TABLET"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="3816"/>
+                  <display value="METFORMINE 500MG TABLET"/>
+               </coding>
+               <text value="METFORMINE 500MG TABLET"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
       <fullUrl value="urn:uuid:4afaae04-6ac4-11ec-0000-020000000000"/>
       <resource>
          <Medication>
@@ -2561,7 +2537,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:3286aae9-6a99-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:d4136f04-6aed-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -2570,16 +2546,16 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="3956"/>
-                  <display value="ACETYLSALICYLZUUR TABLET 100MG"/>
+                  <code value="94692"/>
+                  <display value="MORFINE INFVLST 5MG/ML CAS 100ML"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="12548"/>
-                  <display value="ACETYLSALICYLZUUR TABLET 100MG"/>
+                  <code value="134538"/>
+                  <display value="MORFINE INFVLST 5MG/ML CAS 100ML"/>
                </coding>
-               <text value="ACETYLSALICYLZUUR TABLET 100MG"/>
+               <text value="MORFINE INFVLST 5MG/ML CAS 100ML"/>
             </code>
          </Medication>
       </resource>
@@ -2589,7 +2565,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7ea5fc04-6ae7-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:69e4131d-6b3c-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -2598,16 +2574,16 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="77038"/>
-                  <display value="EZETIMIB/SIMVASTATINE 10/20"/>
+                  <code value="20850"/>
+                  <display value="NAPROXEN 500MG TABLET"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="123129"/>
-                  <display value="EZETIMIB/SIMVASTATINE 10/20"/>
+                  <code value="51233"/>
+                  <display value="NAPROXEN 500MG TABLET"/>
                </coding>
-               <text value="EZETIMIB/SIMVASTATINE 10/20"/>
+               <text value="NAPROXEN 500MG TABLET"/>
             </code>
          </Medication>
       </resource>
@@ -2641,6 +2617,34 @@
                   <display value="NITROGLYCERINE PLEISTER 5MG/24UUR (DEPONIT T)"/>
                </coding>
                <text value="DEPONIT T 5 PLEISTER TRANSDERMAAL 18,7MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:cfa3aee9-6b5c-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="67903"/>
+                  <display value="PARACETAMOL 500MG TABLET"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="2194"/>
+                  <display value="PARACETAMOL 500MG TABLET"/>
+               </coding>
+               <text value="PARACETAMOL 500MG TABLET"/>
             </code>
          </Medication>
       </resource>
