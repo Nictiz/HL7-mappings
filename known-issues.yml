@@ -6,45 +6,89 @@ issues should occur: false
 
 "*.xml": 
   ignored issues:
+    "*":
+      - message: "Found multiple matching profiles for urn:uuid:"
+        reason: Not a problem, usually finds a default FHIR profile and a mp/zib/nl-core profile
+    "*.specialty[*]":
+      - message: "This element does not match any known slice defined in the profile http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"
+        reason: hl7 validator bug?
+      - message: "None of the codings provided are in the value set 'Practice Setting Code Value Set'"
+        reason: External codesystem
+    "*.specialty[*].coding[*].system":
+       - message: "A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4."
+         reason: hl7 validator bug?
     Specimen.type:
       - message: "None of the codings provided are in the value set 'Monstermateriaal-en-Microorganisme-Codelijsten'"
         reason: External codesystem
+    "*Specimen/null*/.type":
+      - message: "None of the codings provided are in the value set 'Monstermateriaal-en-Microorganisme-Codelijsten'"
+        reason: External codesystem
+    "Bundle.entry[*].resource/*Observation/null*/.code":
+      - message: "None of the codings provided are in the value set 'TestCode-en-Onderzoek-Codelijsten'"
+        reason: External codesystem
+    "Bundle.entry[*].resource/*Medication/null*/.code":
+      - message: "None of the codings provided are in the value set 'ProductCodeCodelijsten'"
+        reason: External codesystem
+    "*Organization/null*/.type[*].coding[*].display":
+      - message: "'Laboratorium' is the default display; the code system http://nictiz.nl/fhir/NamingSystem/organization-type has no Display Names for the language en"
+        reason: By design
+    "*MedicationRequest/null*/.basedOn[*]":
+      - message: "This element does not match any known slice defined in the profile http://nictiz.nl/fhir/StructureDefinition/mp-DispenseRequest"
+        reason: Reference on business identifier, which the validator does not resolve (unfortunately)
     Medication.code:
       - message: "None of the codings provided are in the value set 'ProductCodeCodelijsten'"
         reason: External codesystem
-    "Medication.code.coding[*].system":
-       - message: "A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4"
+    "*.medication.ofType(Reference)":
+      - message: "Found multiple matching profiles for * among choices: http://hl7.org/fhir/StructureDefinition/Medication, http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"
+        reason: External codesystem
+    "*Observation/null*/.specimen":
+       - message: "Details for"
+         reason: pure info
+       - message: "Unable to find a match for profile"
+         reason: validator bug?
+    "*.code.coding[*].system":
+       - message: "A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4."
+         reason: hl7 validator bug?
+       - message: "A definition for CodeSystem 'https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen'"
          reason: External codesystem
-    MedicationRequest.dosageInstruction[*].doseAndRate[*].dose.ofType(Quantity).extension[*].value.ofType(Quantity):
+       - message: "A definition for CodeSystem 'https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek' could not be found, so the code cannot be validated"
+         reason: External codesystem
+    "*.extension[*].value.ofType(Quantity)":
       - message: "The definition for the Code System with URI 'urn:oid:2.16.840.1.113883.2.4.4.1.900.2' doesn't provide any codes so the code cannot be validated"
         reason: External codesystem
       - message: "Resolved system urn:oid:2.16.840.1.113883.2.4.4.1.900.2 (v2010-01-01), but the definition doesn't include any codes, so the code has not been validated"
         reason: External codesystem
-    MedicationRequest.dosageInstruction[*].maxDosePerPeriod.numerator.extension[*].value.ofType(Quantity):
+    "*.maxDosePerPeriod.numerator.extension[*].value.ofType(Quantity)":
       - message: "The definition for the Code System with URI 'urn:oid:2.16.840.1.113883.2.4.4.1.900.2' doesn't provide any codes so the code cannot be validated"
         reason: External codesystem
       - message: "Resolved system urn:oid:2.16.840.1.113883.2.4.4.1.900.2 (v2010-01-01), but the definition doesn't include any codes, so the code has not been validated"
         reason: External codesystem
-    MedicationRequest.dosageInstruction[*].route:
+    "*.route":
       - message: "Unable to check whether the code is in the value set 'http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.9.12.1--20200901000000|2020-09-01T00:00:00'"
         reason: External codesystem
       - message: "A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4.9' could not be found, so the code cannot be validated; Unable to check whether the code is in the value set"
         reason: External codesystem         
-    "*.dosageInstruction[*].route.coding[*].system":    
-      - message: "A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.4.9' could not be found, so the code cannot be validated"
-        reason: External codesystem
-    "*.dosageInstruction[*].asNeeded.ofType(CodeableConcept)":    
+    "*.route.coding[*].system":
+      - message: "A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4."
+        reason: hl7 validator bug?
+    "*.asNeeded.ofType(CodeableConcept)*":    
       - message: "A definition for CodeSystem 'https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek' could not be found, so the code cannot be validated"
         reason: External codesystem
       - message: "Unable to check whether the code is in the value set 'http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.9.12.4--20200901000000|2020-09-01T00:00:00' because the code system https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek was not found"
         reason: External codesystem
-    "*.dosageInstruction[*].asNeeded.ofType(CodeableConcept).coding[*].system":    
-      - message: "A definition for CodeSystem 'https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek' could not be found, so the code cannot be validated"
-        reason: External codesystem
+    "*.ofType(Quantity).extension[*]":
+      - message: "The extension http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation|5.3.0-ballot-tc1 is deprecated"
+        reason: Raised issue MP-2038
+    
 
-       
-ada_2_fhir-r4/mp-lab/9.3.0-3.0.0/sturen_medicatievoorschrift_laboratoriumresultaten/fhir_instance/mv-mplab-vo-tst-4-2-b-nierfunctie-loinc-zonder-panel-v30.xml:
+"ada_2_fhir-r4/mp-lab/9.3.0-3.0.0/sturen_medicatievoorschrift_laboratoriumresultaten/fhir_instance/mv-mplab-*.xml":
+  ignored issues:
+    "Bundle.entry[*]":
+      - message: "This element does not match any known slice defined in the profile http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"
+        reason: Additional resources for mp-lab usecases
+
+"ada_2_fhir-r4/mp-lab/9.3.0-3.0.0/sturen_medicatievoorschrift_laboratoriumresultaten/fhir_instance/mv-mplab-vo-tst-4-*.xml":
   ignored issues:
     Bundle:
-      - message: "Bundle.entry:patient: max allowed = 1, but found 2 (from http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle|2.0.0-rc.2)"
-        reason: Deliberate testcase with two slightly different Patient resources
+      - message: "Bundle.entry:patient: max allowed = 1, but found 2"
+        reason: Lab ada has slightly different Patient resource
