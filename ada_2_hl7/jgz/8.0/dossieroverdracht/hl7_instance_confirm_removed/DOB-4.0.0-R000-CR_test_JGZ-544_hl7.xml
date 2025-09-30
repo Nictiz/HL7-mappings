@@ -107,25 +107,52 @@
                                  contextConductionInd="false">
                      <consentEvent classCode="CONS"
                                    moodCode="EVN"
-                                   negationInd="true">
-                        <code code="1395"
+                                   negationInd="false">
+                        <code code="469"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                              displayName="Bezwaar overdracht dossier binnen JGZ"/>
+                              displayName="Toestemming aan verpleegkundige om te vaccineren"/>
                         <author typeCode="AUT">
                            <time value="20000101"/>
-                           <responsibleParty classCode="CON">
-                              <code xsi:type="CV"
-                                    code="ONESELF"
-                                    codeSystem="2.16.840.1.113883.5.111"
-                                    displayName="Cliënt/Jeugdige"/>
+                           <responsibleParty classCode="ASSIGNED">
+                              <id extension="12345678"
+                                  root="2.16.528.1.1007.3.1"/>
+                              <id extension="12345678"
+                                  root="2.16.528.1.1007.5.1"/>
+                              <id extension="12345678"
+                                  root="2.16.840.1.113883.2.4.6.1"/>
                               <agentPerson classCode="PSN"
                                            determinerCode="INSTANCE">
-                                 <name nullFlavor="NI"/>
+                                 <name>Pien</name>
                               </agentPerson>
                            </responsibleParty>
                         </author>
                      </consentEvent>
                   </authorization>
+                  <pertinentInformation>
+                     <annotationObsEvent classCode="OBS"
+                                         moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.100.41167"/>
+                        <code code="1167"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Papieren JGZ-dossier aanwezig"/>
+                        <value xsi:type="BL"
+                               value="false"/>
+                     </annotationObsEvent>
+                  </pertinentInformation>
+                  <component6 typeCode="COMP">
+                     <informationControlActEvent classCode="INFO"
+                                                 moodCode="EVN"
+                                                 negationInd="false">
+                        <code code="G088"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.393"
+                              displayName="Afschrift JGZ-dossier verstrekt"/>
+                        <text xsi:type="ST">GB</text>
+                        <effectiveTime value="20000101"/>
+                        <informationRecipient typeCode="IRCP">
+                           <patient classCode="PAT"/>
+                        </informationRecipient>
+                     </informationControlActEvent>
+                  </component6>
                   <component7 typeCode="COMP">
                      <encounter classCode="ENC"
                                 moodCode="EVN">
@@ -144,6 +171,20 @@
                               <code code="R018"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.391"
                                     displayName="Activiteit"/>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41577"/>
+                                    <code code="1577"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Vorm activiteit"/>
+                                    <value xsi:type="CV"
+                                           code="07"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.424"
+                                           displayName="Inloopspreekuur"/>
+                                 </observation>
+                              </component>
                               <component>
                                  <observation classCode="OBS"
                                               moodCode="EVN"
