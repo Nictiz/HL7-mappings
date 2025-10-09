@@ -7,18 +7,33 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Toedieningsafspraak. Subject: Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik. Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
+            <caption>Toedieningsafspraak. Subject: Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik. Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Toedieningsafspraak</span>
                <span style="display: block;">Uitvoerende: Centrum Kos de rechte rug</span>
             </caption>
             <tbody>
                <tr>
+                  <th>Gemaakt</th>
+                  <td>22 juni 2008</td>
+               </tr>
+               <tr>
                   <th>Medicatie</th>
                   <td>IBUPROFEN RIA TABLET OMHULD 600MG</td>
+               </tr>
+               <tr>
+                  <th>Doseerinstructie</th>
+                  <td>
+                     <div>Tekst: Oraal</div>
+                     <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                     </div>
+                  </td>
                </tr>
             </tbody>
          </table>
       </div>
    </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+      <valueDateTime value="2008-06-22"/>
+   </extension>
    <category>
       <coding>
          <system value="http://snomed.info/sct"/>
@@ -41,4 +56,14 @@
          <display value="Centrum Kos de rechte rug"/>
       </actor>
    </performer>
+   <dosageInstruction>
+      <text value="Oraal"/>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+   </dosageInstruction>
 </MedicationDispense>

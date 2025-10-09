@@ -1,5 +1,5 @@
 <AllergyIntolerance xmlns="http://hl7.org/fhir">
-   <id value="zib-AllergyIntolerance-msz-8fd2f362-6b1c-11ec-0000-2"/>
+   <id value="zib-AllergyIntolerance-msz-56aa9991-6b1d-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
    </meta>
@@ -24,7 +24,6 @@
                            <div>
                               <span title="Urticaria (126485001 - SNOMED CT)">Urticaria</span>
                            </div>
-                           <div>test 7</div>
                         </li>
                      </ul>
                   </td>
@@ -45,6 +44,17 @@
       </extension>
    </clinicalStatus>
    <verificationStatus value="confirmed"/>
+   <criticality value="high">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="24484000"/>
+               <display value="ernstig"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </criticality>
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
@@ -64,7 +74,6 @@
             <display value="Urticaria"/>
          </coding>
       </manifestation>
-      <description value="test 7"/>
       <severity value="severe">
          <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
             <valueCodeableConcept>
