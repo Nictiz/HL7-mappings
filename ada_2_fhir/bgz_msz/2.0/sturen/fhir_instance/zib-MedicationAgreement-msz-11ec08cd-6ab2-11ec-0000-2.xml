@@ -7,8 +7,8 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Medicatieafspraak. Subject: Michelle M.B. Michelle Bergzoon Verheul. Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
-               <span style="display: block;">Aangevraagd door: Jolanda J. Martha Cormane || Dermatoloog || Algemeen Medisch Centrum</span>
+            <caption>Medicatieafspraak. Subject: Michelle M.B. Michelle Bergzoon Verheul. Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Medicatieafspraak</span>, <span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: Jolanda J. Martha Cormane</span>
             </caption>
             <tfoot>
                <tr>
@@ -26,13 +26,14 @@
                </tr>
                <tr>
                   <th>Reden</th>
-                  <td>contacteczeem</td>
+                  <td/>
                </tr>
                <tr>
                   <th>Doseerinstructie</th>
                   <td>
+                     <div>Tekst: Vanaf 2018-10-15, 1 maal per dag 1 stuk, alleen bij klachten, ma t/m do WEL, vr t/m zo NIET</div>
                      <div>Instructie: Alleen bij klachten, ma t/m do WEL, vr t/m zo NIET</div>
-                     <div>Zo nodig: 12</div>
+                     <div>Zo nodig: Bij klachten</div>
                      <div>Toedieningsweg: <span title="cutaan (53 - G-Standaard thesaurus subtabel 0007)">cutaan</span>
                      </div>
                      <div>Max dosering: 1 STUK / 1 dag (per period)</div>
@@ -42,9 +43,6 @@
          </table>
       </div>
    </text>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-      <valueString value="Vanaf 2018-10-15, 1 maal per dag 1 stuk, alleen bij klachten, ma t/m do WEL, vr t/m zo NIET"/>
-   </extension>
    <intent value="order"/>
    <category>
       <coding>
@@ -64,25 +62,26 @@
    </subject>
    <authoredOn value="2018-10-15T10:10:01+02:00"/>
    <requester>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-msz-0017171701-01220000007"/>
+            <display value="Jolanda J. Martha Cormane || Dermatoloog || Algemeen Medisch Centrum"/>
+         </valueReference>
+      </extension>
       <agent>
-         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-            <valueReference>
-               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0017171701-01220000007"/>
-               <display value="Jolanda J. Martha Cormane || Dermatoloog || Algemeen Medisch Centrum"/>
-            </valueReference>
-         </extension>
          <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00171717"/>
          <display value="Jolanda J. Martha Cormane"/>
       </agent>
    </requester>
    <reasonReference>
       <reference value="Condition/zib-Problem-msz-9bd3ddcf-6b5e-11ec-0000-2"/>
-      <display value="contacteczeem"/>
+      <display value=""/>
    </reasonReference>
    <note>
       <text value="bij contacteczeem"/>
    </note>
    <dosageInstruction>
+      <text value="Vanaf 2018-10-15, 1 maal per dag 1 stuk, alleen bij klachten, ma t/m do WEL, vr t/m zo NIET"/>
       <additionalInstruction>
          <coding>
             <system value="http://hl7.org/fhir/v3/NullFlavor"/>
@@ -97,7 +96,7 @@
             <code value="OTH"/>
             <display value="overig"/>
          </coding>
-         <text value="12"/>
+         <text value="Bij klachten"/>
       </asNeededCodeableConcept>
       <route>
          <coding>

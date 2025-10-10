@@ -1,5 +1,5 @@
 <AllergyIntolerance xmlns="http://hl7.org/fhir">
-   <id value="zib-AllergyIntolerance-msz-8f5442d5-6aa3-11ec-0000-2"/>
+   <id value="zib-AllergyIntolerance-msz-a4f52b79-6b78-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
    </meta>
@@ -7,22 +7,15 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Allergie/intolerantie. Patiënt: Michelle M.B. Michelle Bergzoon Verheul. Status: actief / bevestigd</caption>
-            <tfoot>
-               <tr>
-                  <td colspan="2">Allergische reactie door spierontspanner tijdens narcose</td>
-               </tr>
-            </tfoot>
+            <caption>Allergie/intolerantie. Patiënt: Michelle M.B. Michelle Bergzoon Verheul. Categorie: omgeving/milieu, Status: bevestigd</caption>
             <tbody>
                <tr>
                   <th>Code</th>
-                  <td>
-                     <span title="spierrelaxans (372666009 - SNOMED CT)">spierrelaxans</span>
-                  </td>
+                  <td>graspollen</td>
                </tr>
                <tr>
                   <th>Eerste symptomen</th>
-                  <td>2024</td>
+                  <td>2000-03</td>
                </tr>
                <tr>
                   <th>Reactie</th>
@@ -31,9 +24,8 @@
                         <li>
                            <div>matig</div>
                            <div>
-                              <span title="Bronchospasme (4386001 - SNOMED CT)">Bronchospasme</span>
+                              <span title="Allergische conjunctivitis (473460002 - SNOMED CT)">Allergische conjunctivitis</span>
                            </div>
-                           <div>test10</div>
                         </li>
                      </ul>
                   </td>
@@ -42,42 +34,48 @@
          </table>
       </div>
    </text>
-   <clinicalStatus value="active">
+   <verificationStatus value="confirmed"/>
+   <category value="environment">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
          <valueCodeableConcept>
             <coding>
-               <system value="http://hl7.org/fhir/v3/ActStatus"/>
-               <code value="active"/>
-               <display value="Actief"/>
+               <system value="http://snomed.info/sct"/>
+               <code value="426232007"/>
+               <display value="omgevingsgerelateerde allergie"/>
             </coding>
          </valueCodeableConcept>
       </extension>
-   </clinicalStatus>
-   <verificationStatus value="confirmed"/>
+   </category>
+   <criticality value="high">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="6736007"/>
+               <display value="matig"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </criticality>
    <code>
-      <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="372666009"/>
-         <display value="spierrelaxans"/>
-      </coding>
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+         <valueCode value="OTH"/>
+      </extension>
+      <text value="graspollen"/>
    </code>
    <patient>
       <reference value="Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL"/>
       <display value="Michelle M.B. Michelle Bergzoon Verheul"/>
    </patient>
-   <onsetDateTime value="2024"/>
-   <note>
-      <text value="Allergische reactie door spierontspanner tijdens narcose"/>
-   </note>
+   <onsetDateTime value="2000-03"/>
    <reaction>
       <manifestation>
          <coding>
             <system value="http://snomed.info/sct"/>
-            <code value="4386001"/>
-            <display value="Bronchospasme"/>
+            <code value="473460002"/>
+            <display value="Allergische conjunctivitis"/>
          </coding>
       </manifestation>
-      <description value="test10"/>
       <severity value="moderate">
          <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
             <valueCodeableConcept>
@@ -89,5 +87,12 @@
             </valueCodeableConcept>
          </extension>
       </severity>
+      <exposureRoute>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="46713006"/>
+            <display value="nasale route"/>
+         </coding>
+      </exposureRoute>
    </reaction>
 </AllergyIntolerance>

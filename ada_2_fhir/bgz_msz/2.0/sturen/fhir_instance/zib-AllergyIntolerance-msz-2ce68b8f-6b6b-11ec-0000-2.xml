@@ -1,5 +1,5 @@
 <AllergyIntolerance xmlns="http://hl7.org/fhir">
-   <id value="zib-AllergyIntolerance-msz-71abfb8f-6b46-11ec-0000-2"/>
+   <id value="zib-AllergyIntolerance-msz-2ce68b8f-6b6b-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
    </meta>
@@ -7,7 +7,7 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Allergie/intolerantie. Patiënt: Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik. Status: actief / bevestigd</caption>
+            <caption>Allergie/intolerantie. Patiënt: Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik. Categorie: biologisch materiaal, Status: actief / bevestigd</caption>
             <tfoot>
                <tr>
                   <td colspan="2">Cosmetica allergie, mascara</td>
@@ -23,6 +23,18 @@
                <tr>
                   <th>Eerste symptomen</th>
                   <td>16 april 2010</td>
+               </tr>
+               <tr>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>
+                              <span title="Jeuk (418363000 - SNOMED CT)">Jeuk</span>
+                           </div>
+                        </li>
+                     </ul>
+                  </td>
                </tr>
             </tbody>
          </table>
@@ -40,6 +52,28 @@
       </extension>
    </clinicalStatus>
    <verificationStatus value="confirmed"/>
+   <category value="biologic">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="419199007"/>
+               <display value="allergie voor substantie"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <criticality value="high">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="6736007"/>
+               <display value="matig"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </criticality>
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
@@ -55,4 +89,13 @@
    <note>
       <text value="Cosmetica allergie, mascara"/>
    </note>
+   <reaction>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="418363000"/>
+            <display value="Jeuk"/>
+         </coding>
+      </manifestation>
+   </reaction>
 </AllergyIntolerance>

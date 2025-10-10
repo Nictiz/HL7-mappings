@@ -1,5 +1,5 @@
 <AllergyIntolerance xmlns="http://hl7.org/fhir">
-   <id value="zib-AllergyIntolerance-msz-9211edf5-6b3a-11ec-0000-2"/>
+   <id value="zib-AllergyIntolerance-msz-49fd084f-6aec-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
    </meta>
@@ -7,22 +7,25 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Allergie/intolerantie. Patiënt: Jan Adrianus J.A.H. Jan van Houten. Status: actief / bevestigd</caption>
-            <tfoot>
-               <tr>
-                  <td colspan="2">Niet allergisch voor cashewnoten.</td>
-               </tr>
-            </tfoot>
+            <caption>Allergie/intolerantie. Patiënt: Ast. Status: actief / bevestigd</caption>
             <tbody>
                <tr>
                   <th>Code</th>
                   <td>
-                     <span title="noten (13577000 - SNOMED CT)">noten</span>
+                     <span title="eiwit van kat (143491000146106 - SNOMED CT)">eiwit van kat</span>
                   </td>
                </tr>
                <tr>
-                  <th>Eerste symptomen</th>
-                  <td>29 mei 1976</td>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>
+                              <span title="Urticaria (126485001 - SNOMED CT)">Urticaria</span>
+                           </div>
+                        </li>
+                     </ul>
+                  </td>
                </tr>
             </tbody>
          </table>
@@ -43,16 +46,21 @@
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="13577000"/>
-         <display value="noten"/>
+         <code value="143491000146106"/>
+         <display value="eiwit van kat"/>
       </coding>
    </code>
    <patient>
-      <reference value="Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN"/>
-      <display value="Jan Adrianus J.A.H. Jan van Houten"/>
+      <reference value="Patient/AST"/>
+      <display value="Ast"/>
    </patient>
-   <onsetDateTime value="1976-05-29"/>
-   <note>
-      <text value="Niet allergisch voor cashewnoten."/>
-   </note>
+   <reaction>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="126485001"/>
+            <display value="Urticaria"/>
+         </coding>
+      </manifestation>
+   </reaction>
 </AllergyIntolerance>

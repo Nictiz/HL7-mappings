@@ -1,5 +1,5 @@
 <AllergyIntolerance xmlns="http://hl7.org/fhir">
-   <id value="zib-AllergyIntolerance-msz-92d5d00f-6ab1-11ec-0000-2"/>
+   <id value="zib-AllergyIntolerance-msz-7877ccb2-6b5b-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
    </meta>
@@ -7,7 +7,7 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Allergie/intolerantie. Patiënt: Michelle M.B. Michelle Bergzoon Verheul. Status: foutieve invoer</caption>
+            <caption>Allergie/intolerantie. Patiënt: Michelle M.B. Michelle Bergzoon Verheul. Categorie: biologisch materiaal, Status: foutieve invoer</caption>
             <tbody>
                <tr>
                   <th>Code</th>
@@ -24,9 +24,7 @@
                   <td>
                      <ul>
                         <li>
-                           <div>ernstig</div>
                            <div>Onbekend</div>
-                           <div>test 8</div>
                         </li>
                      </ul>
                   </td>
@@ -36,6 +34,17 @@
       </div>
    </text>
    <verificationStatus value="entered-in-error"/>
+   <category value="biologic">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="419199007"/>
+               <display value="allergie voor substantie"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
@@ -55,17 +64,12 @@
          </extension>
          <text value="Onbekend"/>
       </manifestation>
-      <description value="test 8"/>
-      <severity value="severe">
-         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-            <valueCodeableConcept>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="24484000"/>
-                  <display value="Ernstig"/>
-               </coding>
-            </valueCodeableConcept>
-         </extension>
-      </severity>
+      <exposureRoute>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="47625008"/>
+            <display value="intraveneuze route"/>
+         </coding>
+      </exposureRoute>
    </reaction>
 </AllergyIntolerance>
