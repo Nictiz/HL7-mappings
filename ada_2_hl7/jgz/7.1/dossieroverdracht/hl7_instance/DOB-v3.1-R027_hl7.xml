@@ -1,4 +1,4 @@
-<?xml-model href="../../../../../../art_decor/ada_2_test-xslt/jgz/7.1/dossieroverdracht/test_xslt_instance/DOB-v3.1-R021.sch " type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="../../../../../../art_decor/ada_2_test-xslt/jgz/7.1/dossieroverdracht/test_xslt_instance/DOB-v3.1-R027.sch " type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <REPC_IN902120NL03 xsi:schemaLocation="urn:hl7-org:v3 ../../hl7v3_schemas/REPC_IN902120NL03.xsd"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xmlns="urn:hl7-org:v3"
@@ -123,13 +123,33 @@
                   <component7 typeCode="COMP">
                      <encounter classCode="ENC"
                                 moodCode="EVN">
-                        <id extension="3"
+                        <id extension="2"
                             root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
-                        <code code="41"
+                        <code code="37"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
-                              displayName="Contact 12 tot 18 jaar"/>
+                              displayName="Contact week 2 t/m 6 maanden"/>
                         <statusCode code="completed"/>
-                        <effectiveTime value="19991101"/>
+                        <effectiveTime value="19870201"/>
+                        <reasonCode code="01"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.373"
+                                    displayName="Vaccinaties"/>
+                        <inFulfillmentOf typeCode="FLFS">
+                           <encounter classCode="ENC"
+                                      moodCode="INT">
+                              <id nullFlavor="NI"/>
+                              <code code="37"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.308"
+                                    displayName="Contact week 2 t/m 6 maanden"/>
+                              <statusCode code="completed"/>
+                              <author typeCode="AUT">
+                                 <assignedEntity1 classCode="ASSIGNED">
+                                    <code code="05"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.411"
+                                          displayName="Zorgstructuren"/>
+                                 </assignedEntity1>
+                              </author>
+                           </encounter>
+                        </inFulfillmentOf>
                         <!-- r018_activiteit -->
                         <pertinentInformation typeCode="PERT">
                            <rubricCluster classCode="CLUSTER"
@@ -147,9 +167,9 @@
                                           codeSystem="2.16.840.1.113883.2.4.4.40.267"
                                           displayName="Vorm activiteit"/>
                                     <value xsi:type="CV"
-                                           code="03"
+                                           code="07"
                                            codeSystem="2.16.840.1.113883.2.4.4.40.424"
-                                           displayName="Face-to-face, anders dan huisbezoek of inloopspreekuur"/>
+                                           displayName="Inloopspreekuur"/>
                                  </observation>
                               </component>
                               <component>
@@ -168,73 +188,85 @@
                               </component>
                            </rubricCluster>
                         </pertinentInformation>
-                        <!-- r021_functioneren -->
+                        <!-- r027_groei -->
                         <pertinentInformation>
                            <rubricCluster classCode="CLUSTER"
                                           moodCode="EVN">
-                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11021"/>
-                              <code code="R021"
+                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11027"/>
+                              <code code="R027"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Functioneren"/>
+                                    displayName="Groei"/>
                               <component>
                                  <observation classCode="OBS"
                                               moodCode="EVN"
                                               negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40321"/>
-                                    <code code="321"
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40235"/>
+                                    <code code="235"
                                           codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Lichamelijk functioneren nagevraagd"/>
-                                    <value xsi:type="BL"
-                                           value="true"/>
+                                          displayName="Lengte"/>
+                                    <value xsi:type="PQ"
+                                           value="620"
+                                           unit="mm"/>
+                                    <methodCode code="1"
+                                                codeSystem="2.16.840.1.113883.2.4.4.40.28"
+                                                displayName="Liggend gemeten"/>
                                  </observation>
                               </component>
                               <component>
                                  <observation classCode="OBS"
                                               moodCode="EVN"
                                               negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40772"/>
-                                    <code code="772"
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41614"/>
+                                    <code code="1614"
                                           codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Adaptatie/persoonlijkheid/sociaal gedrag nagevraagd"/>
-                                    <value xsi:type="BL"
-                                           value="true"/>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40774"/>
-                                    <code code="774"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Relatie met ouder/verzorger"/>
-                                    <value xsi:type="ST">goed</value>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40787"/>
-                                    <code code="787"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Functioneren op school nagevraagd"/>
-                                    <value xsi:type="BL"
-                                           value="true"/>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41601"/>
-                                    <code code="1601"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Schoolverzuim"/>
+                                          displayName="Conclusie JGZ-professional lengtegroei"/>
                                     <value xsi:type="CV"
-                                           code="01"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.432"
-                                           displayName="Onderzocht, geen bijzonderheden"/>
+                                           code="02"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.440"
+                                           displayName="Minder dan verwacht"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41616"/>
+                                    <code code="1616"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Welk groeidiagram wordt gebruikt"/>
+                                    <value xsi:type="CV"
+                                           code="04"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.443"
+                                           displayName="Hindostaans"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40245"/>
+                                    <code code="245"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Gewicht"/>
+                                    <value xsi:type="PQ"
+                                           value="7280"
+                                           unit="g"/>
+                                    <methodCode code="2"
+                                                codeSystem="2.16.840.1.113883.2.4.4.40.30"
+                                                displayName="Gewogen zonder kleren"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40252"/>
+                                    <code code="252"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Hoofdomtrek"/>
+                                    <value xsi:type="PQ"
+                                           value="430"
+                                           unit="mm"/>
                                  </observation>
                               </component>
                            </rubricCluster>

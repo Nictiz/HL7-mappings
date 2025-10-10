@@ -1,4 +1,4 @@
-<?xml-model href="../../../../../../art_decor/ada_2_test-xslt/jgz/7.1/dossieroverdracht/test_xslt_instance/DOB-v3.1-R021.sch " type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="../../../../../../art_decor/ada_2_test-xslt/jgz/7.1/dossieroverdracht/test_xslt_instance/DOB-v3.1-R038.sch " type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <REPC_IN902120NL03 xsi:schemaLocation="urn:hl7-org:v3 ../../hl7v3_schemas/REPC_IN902120NL03.xsd"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xmlns="urn:hl7-org:v3"
@@ -168,73 +168,129 @@
                               </component>
                            </rubricCluster>
                         </pertinentInformation>
-                        <!-- r021_functioneren -->
+                        <!-- r038_visus_en_oogonderzoek -->
                         <pertinentInformation>
                            <rubricCluster classCode="CLUSTER"
                                           moodCode="EVN">
-                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11021"/>
-                              <code code="R021"
+                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11038"/>
+                              <code code="R038"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Functioneren"/>
+                                    displayName="Visus- en oogonderzoek"/>
                               <component>
                                  <observation classCode="OBS"
                                               moodCode="EVN"
                                               negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40321"/>
-                                    <code code="321"
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41379"/>
+                                    <code code="1379"
                                           codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Lichamelijk functioneren nagevraagd"/>
+                                          displayName="Oogonderzoek uitgevoerd"/>
                                     <value xsi:type="BL"
                                            value="true"/>
                                  </observation>
                               </component>
                               <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40772"/>
-                                    <code code="772"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Adaptatie/persoonlijkheid/sociaal gedrag nagevraagd"/>
-                                    <value xsi:type="BL"
-                                           value="true"/>
-                                 </observation>
+                                 <groupCluster>
+                                    <code code="G117"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.393"
+                                          displayName="Visus"/>
+                                    <component>
+                                       <observation classCode="OBS"
+                                                    moodCode="EVN"
+                                                    negationInd="false">
+                                          <templateId root="2.16.840.1.113883.2.4.6.10.100.41590"/>
+                                          <code code="1590"
+                                                codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                                displayName="Soort visuskaart"/>
+                                          <value xsi:type="CV"
+                                                 code="01"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.40.427"
+                                                 displayName="LEA 4 meter"/>
+                                       </observation>
+                                    </component>
+                                    <component>
+                                       <observation classCode="OBS"
+                                                    moodCode="EVN"
+                                                    negationInd="false">
+                                          <templateId root="2.16.840.1.113883.2.4.6.10.100.41591"/>
+                                          <code code="1591"
+                                                codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                                displayName="Uitslag visus rechts"/>
+                                          <value xsi:type="CV"
+                                                 code="01"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.40.428"
+                                                 displayName="0,1"/>
+                                       </observation>
+                                    </component>
+                                    <component>
+                                       <observation classCode="OBS"
+                                                    moodCode="EVN"
+                                                    negationInd="false">
+                                          <templateId root="2.16.840.1.113883.2.4.6.10.100.41592"/>
+                                          <code code="1592"
+                                                codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                                displayName="Uitslag visus links"/>
+                                          <value xsi:type="CV"
+                                                 code="01"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.40.428"
+                                                 displayName="0,1"/>
+                                       </observation>
+                                    </component>
+                                 </groupCluster>
                               </component>
                               <component>
                                  <observation classCode="OBS"
                                               moodCode="EVN"
                                               negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40774"/>
-                                    <code code="774"
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40837"/>
+                                    <code code="837"
                                           codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Relatie met ouder/verzorger"/>
-                                    <value xsi:type="ST">goed</value>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40787"/>
-                                    <code code="787"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Functioneren op school nagevraagd"/>
-                                    <value xsi:type="BL"
-                                           value="true"/>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41601"/>
-                                    <code code="1601"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Schoolverzuim"/>
+                                          displayName="Landolt-C-kaart uitslag rechts"/>
                                     <value xsi:type="CV"
-                                           code="01"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.432"
-                                           displayName="Onderzocht, geen bijzonderheden"/>
+                                           code="11"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.332"
+                                           displayName="1,0"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40838"/>
+                                    <code code="838"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Landolt-C-kaart uitslag links"/>
+                                    <value xsi:type="CV"
+                                           code="11"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.332"
+                                           displayName="1,0"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40408"/>
+                                    <code code="408"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Conclusie visusbepaling"/>
+                                    <value xsi:type="CV"
+                                           code="1"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.333"
+                                           displayName="Voldoende"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41618"/>
+                                    <code code="1618"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Conclusie visus 3 jaar"/>
+                                    <value xsi:type="CV"
+                                           code="1"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.325"
+                                           displayName="Voldoende"/>
                                  </observation>
                               </component>
                            </rubricCluster>
