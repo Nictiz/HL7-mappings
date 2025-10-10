@@ -76,9 +76,31 @@ issues should occur: false
         reason: External codesystem
       - message: "Unable to check whether the code is in the value set 'http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.9.12.4--20200901000000|2020-09-01T00:00:00' because the code system https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek was not found"
         reason: External codesystem
+    "*.extension[*].value.ofType(CodeableConcept).coding[*].system":    
+      - message: "A definition for CodeSystem 'https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek' could not be found, so the code cannot be validated"
+        reason: External codesystem
+      - message: "Unable to check whether the code is in the value set 'http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.9.12.4--20200901000000|2020-09-01T00:00:00' because the code system https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek was not found"
+        reason: External codesystem
+    "*.extension[*].value.ofType(CodeableConcept)":    
+      - message: "A definition for CodeSystem 'https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek' could not be found, so the code cannot be validated"
+        reason: External codesystem
+      - message: "Unable to check whether the code is in the value set 'http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.9.12.4--20200901000000|2020-09-01T00:00:00' because the code system https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek was not found"
+        reason: External codesystem
     "*.ofType(Quantity).extension[*]":
       - message: "The extension http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation|5.3.0-ballot-tc1 is deprecated"
         reason: Raised issue MP-2038
+    "*.extension[*].value.ofType(Period).extension[*]":
+      - message: "This element does not match any known slice defined in the profile http://nictiz.nl/fhir/StructureDefinition/"
+        reason: hl7 validator bug?
+    "*MedicationDispense/*.category":
+      - message: "None of the codings provided are in the value set 'Medication dispense  category  codes'"
+        reason: deliberate
+    "*MedicationStatement/*.category":
+      - message: "None of the codings provided are in the value set 'Medication usage category codes'"
+        reason: deliberate
+    "Bundle":
+      - message: "No types could be determined from the search string, so the types can't be checked"
+        reason: not applicable for test instance
     
 
 "ada_2_fhir-r4/mp-lab/9.3.0-3.0.0/sturen_medicatievoorschrift_laboratoriumresultaten/fhir_instance/mv-mplab-*.xml":
