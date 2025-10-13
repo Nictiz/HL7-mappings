@@ -1,15 +1,125 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="020c40aa-7d18-11f0-9029-020000000000"/>
+   <id value="37820c14-a810-11f0-9360-020000000000"/>
    <type value="searchset"/>
-   <total value="3"/>
+   <total value="4"/>
    <link>
       <relation value="self"/>
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:020c4171-7d18-11f0-9029-020000000000"/>
+      <fullUrl value="urn:uuid:37820cdb-a810-11f0-9360-020000000000"/>
       <resource>
          <MedicationRequest>
+            <id value="37820281-a810-11f0-9360-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="2023-12-12T08:00:00+01:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="1 maal per dag 2 stuks, Oraal"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <start value="2023-12-12T00:00:00+01:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_contactepisode"/>
+               </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Context-EpisodeOfCare">
+               <valueReference>
+                  <type value="EpisodeOfCare"/>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.66.9200"/>
+                     <value value="MBH_300_contactepisode_EPISODE1"/>
+                  </identifier>
+                  <display value="relatie naar zorgepisode met identificatie: MBH_300_contactepisode_EPISODE1 || 2.16.840.1.113883.2.4.3.11.999.66.9200"/>
+               </valueReference>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_300_contactepisode_MA"/>
+            </identifier>
+            <status value="unknown"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="33633005"/>
+                  <display value="voorschrijven van geneesmiddel"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:37820d2b-a810-11f0-9360-020000000000"/>
+               <type value="Medication"/>
+               <display value="ACENOCOUMAROL TABLET 1MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:37820c45-a810-11f0-9360-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, R. XXX_Smitsz"/>
+            </subject>
+            <encounter>
+               <type value="Encounter"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.66.2709"/>
+                  <value value="MBH_300_contactepisode_CONTACT1"/>
+               </identifier>
+               <display value="relatie naar contact met identificatie: MBH_300_contactepisode_CONTACT1 || 2.16.840.1.113883.2.4.3.11.999.66.2709"/>
+            </encounter>
+            <requester>
+               <reference value="urn:uuid:37820c63-a810-11f0-9360-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </requester>
+            <dosageInstruction>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="2"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="2"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:37820cef-a810-11f0-9360-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <id value="378216b2-a810-11f0-9360-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-VariableDosingRegimen"/>
             </meta>
@@ -55,12 +165,12 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:020c41ad-7d18-11f0-9029-020000000000"/>
+               <reference value="urn:uuid:37820d2b-a810-11f0-9360-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:020c40db-7d18-11f0-9029-020000000000"/>
+               <reference value="urn:uuid:37820c45-a810-11f0-9360-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, R. XXX_Smitsz"/>
             </subject>
@@ -73,7 +183,7 @@
                <display value="relatie naar contact met identificatie: MBH_300_contactepisode_CONTACT1 || 2.16.840.1.113883.2.4.3.11.999.66.2709"/>
             </encounter>
             <requester>
-               <reference value="urn:uuid:020c40f9-7d18-11f0-9029-020000000000"/>
+               <reference value="urn:uuid:37820c63-a810-11f0-9360-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -344,9 +454,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:020c4185-7d18-11f0-9029-020000000000"/>
+      <fullUrl value="urn:uuid:37820d03-a810-11f0-9360-020000000000"/>
       <resource>
          <MedicationStatement>
+            <id value="2.16.840.1.113883.2.4.3.11.999.77.6.1-MBH-300-contactepisode-MGB"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
@@ -355,7 +466,7 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:020c40f9-7d18-11f0-9029-020000000000"/>
+                  <reference value="urn:uuid:37820c63-a810-11f0-9360-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
@@ -371,7 +482,7 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
                <valueReference>
-                  <reference value="urn:uuid:020c40f9-7d18-11f0-9029-020000000000"/>
+                  <reference value="urn:uuid:37820c63-a810-11f0-9360-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
@@ -389,12 +500,12 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:020c41ad-7d18-11f0-9029-020000000000"/>
+               <reference value="urn:uuid:37820d2b-a810-11f0-9360-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:020c40db-7d18-11f0-9029-020000000000"/>
+               <reference value="urn:uuid:37820c45-a810-11f0-9360-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, R. XXX_Smitsz"/>
             </subject>
@@ -422,7 +533,7 @@
             </effectivePeriod>
             <dateAsserted value="2023-12-22T09:56:05+01:00"/>
             <informationSource>
-               <reference value="urn:uuid:020c40db-7d18-11f0-9029-020000000000"/>
+               <reference value="urn:uuid:37820c45-a810-11f0-9360-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, R. XXX_Smitsz"/>
             </informationSource>
@@ -485,9 +596,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:020c4199-7d18-11f0-9029-020000000000"/>
+      <fullUrl value="urn:uuid:37820d17-a810-11f0-9360-020000000000"/>
       <resource>
          <MedicationAdministration>
+            <id value="37821814-a810-11f0-9360-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
             </meta>
@@ -513,12 +625,12 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:020c41c1-7d18-11f0-9029-020000000000"/>
+               <reference value="urn:uuid:37820d3f-a810-11f0-9360-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL CF TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:020c40db-7d18-11f0-9029-020000000000"/>
+               <reference value="urn:uuid:37820c45-a810-11f0-9360-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, R. XXX_Smitsz"/>
             </subject>
@@ -559,7 +671,7 @@
             <effectiveDateTime value="2023-12-12T20:30:00+01:00"/>
             <performer>
                <actor>
-                  <reference value="urn:uuid:020c40f9-7d18-11f0-9029-020000000000"/>
+                  <reference value="urn:uuid:37820c63-a810-11f0-9360-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
                </actor>
@@ -602,9 +714,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:020c40db-7d18-11f0-9029-020000000000"/>
+      <fullUrl value="urn:uuid:37820c45-a810-11f0-9360-020000000000"/>
       <resource>
          <Patient>
+            <id value="37820266-a810-11f0-9360-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -648,19 +761,20 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:020c40f9-7d18-11f0-9029-020000000000"/>
+      <fullUrl value="urn:uuid:37820c63-a810-11f0-9360-020000000000"/>
       <resource>
          <PractitionerRole>
+            <id value="3782159b-a810-11f0-9360-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:020c4117-7d18-11f0-9029-020000000000"/>
+               <reference value="urn:uuid:37820c81-a810-11f0-9360-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:020c4149-7d18-11f0-9029-020000000000"/>
+               <reference value="urn:uuid:37820cb3-a810-11f0-9360-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -679,9 +793,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:020c4117-7d18-11f0-9029-020000000000"/>
+      <fullUrl value="urn:uuid:37820c81-a810-11f0-9360-020000000000"/>
       <resource>
          <Practitioner>
+            <id value="3782159b-a810-11f0-9360-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
             </meta>
@@ -713,9 +828,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:020c4149-7d18-11f0-9029-020000000000"/>
+      <fullUrl value="urn:uuid:37820cb3-a810-11f0-9360-020000000000"/>
       <resource>
          <Organization>
+            <id value="3782187a-a810-11f0-9360-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -753,9 +869,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:020c41ad-7d18-11f0-9029-020000000000"/>
+      <fullUrl value="urn:uuid:37820d2b-a810-11f0-9360-020000000000"/>
       <resource>
          <Medication>
+            <id value="37821852-a810-11f0-9360-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
@@ -780,9 +897,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:020c41c1-7d18-11f0-9029-020000000000"/>
+      <fullUrl value="urn:uuid:37820d3f-a810-11f0-9360-020000000000"/>
       <resource>
          <Medication>
+            <id value="37821859-a810-11f0-9360-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
