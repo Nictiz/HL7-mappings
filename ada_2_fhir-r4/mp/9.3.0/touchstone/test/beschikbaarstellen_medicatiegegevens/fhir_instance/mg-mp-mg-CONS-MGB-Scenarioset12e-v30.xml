@@ -1,6 +1,7 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-CONS-MGB-Scenarioset12e-v30"/>
-   <type value="transaction"/>
+   <type value="searchset"/>
+   <total value="2"/>
    <link>
       <relation value="self"/>
       <url value="http://dummy.nictiz.nl/dummyquery"/>
@@ -9,6 +10,7 @@
       <fullUrl value="urn:uuid:390c1027-6ad6-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
+            <id value="mp-MedUse2-mp9-MBH300nieuweToekomstigeMAstartMGB"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
@@ -131,15 +133,15 @@
             </dosage>
          </MedicationStatement>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationStatement"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:e9ccbcbd-6aaa-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
+            <id value="mp-MedUse2-mp9-MBH300nieuweToekomstigeMAtoekomstMGB"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
@@ -262,15 +264,15 @@
             </dosage>
          </MedicationStatement>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationStatement"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:e8cb9ef8-6b71-11ec-0000-020000000000"/>
       <resource>
          <Patient>
+            <id value="nl-core-Patient-mp9-jXXX-Schoutens"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -309,15 +311,15 @@
             <birthDate value="1963-09-18"/>
          </Patient>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Patient"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:fdf54558-6b5e-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
+            <id value="nl-core-HPrf-PracRol-mp9-PrcRol-2165281100731-000001111"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
@@ -341,15 +343,15 @@
             </specialty>
          </PractitionerRole>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="PractitionerRole"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:9bdfc42e-6ab8-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
+            <id value="nl-core-HPrf-Prac-mp9-2165281100731-000001111"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
             </meta>
@@ -376,15 +378,15 @@
             </name>
          </Practitioner>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Practitioner"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
       <resource>
          <Organization>
+            <id value="nl-core-HPrv-Org-mp9-Org-2165281100733-00001111"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -417,15 +419,15 @@
             </address>
          </Organization>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:180c3d1d-6ac9-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="mp-PhPrd-mp9-21684011138832447-2198088"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
@@ -450,9 +452,8 @@
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
 </Bundle>

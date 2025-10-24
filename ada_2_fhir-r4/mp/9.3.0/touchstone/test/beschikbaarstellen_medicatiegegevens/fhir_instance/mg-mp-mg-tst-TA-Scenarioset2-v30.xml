@@ -1,6 +1,7 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-tst-TA-Scenarioset2-v30"/>
-   <type value="transaction"/>
+   <type value="searchset"/>
+   <total value="5"/>
    <link>
       <relation value="self"/>
       <url value="http://dummy.nictiz.nl/dummyquery"/>
@@ -9,6 +10,7 @@
       <fullUrl value="urn:uuid:53377b48-6b27-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="mp-AdmAgr-mp9-MBH300aanvullendeinstructieTA"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
             </meta>
@@ -43,9 +45,9 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:e353031d-6b40-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:b88e6d1d-6ae4-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+               <display value="ACETYLSALICYLZUUR CARDIO AUROBINDO DISP TABL 80MG"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:72cf5c78-6afc-11ec-0000-020000000000"/>
@@ -109,15 +111,15 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:8c1e1f0d-6aa2-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="mp-AdmAgr-mp9-MBH300toelichtingTA"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
             </meta>
@@ -212,15 +214,15 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:34db09c8-6b34-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="mp-AdmAgr-mp9-MBH300redenvanvoorschrijvenTA"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
             </meta>
@@ -313,15 +315,15 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:22e60232-6b7b-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="mp-AdmAgr-mp9-MBH300aanvullendeinformatiewensenTA"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
             </meta>
@@ -418,15 +420,15 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:a4877356-6b68-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="mp-AdmAgr-mp9-MBH300ToedieningswegTA"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
             </meta>
@@ -530,15 +532,15 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:72cf5c78-6afc-11ec-0000-020000000000"/>
       <resource>
          <Patient>
+            <id value="nl-core-Patient-mp9-D-XXX-Dixhoorn"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -577,15 +579,15 @@
             <birthDate value="1963-10-22"/>
          </Patient>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Patient"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
       <resource>
          <Organization>
+            <id value="nl-core-HPrv-Org-mp9-Org-2165281100733-01236578"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -621,48 +623,48 @@
             </address>
          </Organization>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e353031d-6b40-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:b88e6d1d-6ae4-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="mp-PhPrd-mp9-21684011138832447-1137891"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="1110837"/>
-                  <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+                  <code value="1137891"/>
+                  <display value="ACETYLSALICYLZUUR CARDIO AUROBINDO DISP TABL 80MG"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="49484"/>
-                  <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+                  <code value="68632"/>
+                  <display value="ACETYLSALICYLZUUR DISPERTABLET 80MG"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="103039"/>
-                  <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+                  <code value="117145"/>
+                  <display value="ACETYLSALICYLZUUR DISPERTABLET 80MG"/>
                </coding>
-               <text value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+               <text value="ACETYLSALICYLZUUR CARDIO AUROBINDO DISP TABL 80MG"/>
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:2467cc04-6b6e-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="mp-PhPrd-mp9-21684011138832447-644781"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
@@ -687,15 +689,15 @@
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:c8dcf604-6b6b-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="mp-PhPrd-mp9-21684011138832447-425087"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
@@ -720,15 +722,15 @@
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:ff75311d-6b1a-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="mp-PhPrd-mp9-21684011138832447-598860"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
@@ -753,15 +755,15 @@
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:6c0af11d-6abd-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="mp-PhPrd-mp9-21684011138832447-1421778"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
@@ -786,9 +788,8 @@
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
 </Bundle>
