@@ -12,19 +12,17 @@
    <statusCode code="completed"/>
    <recordTarget>
       <patientRole>
-         <id extension="999999114"
+         <id extension="999900511"
              root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
-               <given qualifier="BR">Elise</given>
-               <family qualifier="BR">Erelies</family>
+               <given qualifier="IN">E.</given>
+               <family qualifier="BR">XXX_Doppen</family>
             </name>
-            <administrativeGenderCode code="F"
+            <administrativeGenderCode code="M"
                                       codeSystem="2.16.840.1.113883.5.1"
-                                      displayName="Vrouw"/>
-            <birthTime value="19501101000000"/>
-            <sdtc:multipleBirthInd nullFlavor="NA"
-                                   xmlns:sdtc="urn:hl7-org:sdtc"/>
+                                      displayName="Man"/>
+            <birthTime value="19631024"/>
          </patient>
       </patientRole>
    </recordTarget>
@@ -88,6 +86,19 @@
                </representedOrganization>
             </assignedEntity>
          </performer>
+         <entryRelationship typeCode="COMP">
+            <observation classCode="OBS"
+                         moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.121.10.55"/>
+               <code code="92235-1"
+                     codeSystem="2.16.840.1.113883.6.1"
+                     displayName="Lab order result status"/>
+               <value xsi:type="CV"
+                      code="final"
+                      codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                      displayName="Definitief"/>
+            </observation>
+         </entryRelationship>
          <entryRelationship typeCode="COMP">
             <procedure classCode="PROC"
                        moodCode="EVN">
@@ -364,7 +375,7 @@
                      code="16"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
                <value xsi:type="BL"
-                      value="false"/>
+                      value="true"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">

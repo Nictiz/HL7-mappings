@@ -2,7 +2,56 @@
    <id value="lu-blr-test-min-nhg"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:2a05b77e-818b-11f0-5099-020000000000"/>
+      <fullUrl value="urn:uuid:24c15c69-b408-11f0-2210-020000000000"/>
+      <resource>
+         <DiagnosticReport>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/lu-LaboratoryTestResult-DiagnosticReport"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.25.1.1"/>
+               <value value="AG01"/>
+            </identifier>
+            <basedOn>
+               <reference value="urn:uuid:24c15c55-b408-11f0-2210-020000000000"/>
+               <type value="ServiceRequest"/>
+               <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            </basedOn>
+            <status value="unknown"/>
+            <category>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v2-0074"/>
+                  <code value="LAB"/>
+                  <display value="Laboratory"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://terminology.hl7.org/ValueSet/v3-NullFlavor"/>
+                  <code value="UNK"/>
+                  <display value="onbekend"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:24c15b6f-b408-11f0-2210-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, E. XXX_Doppen"/>
+            </subject>
+            <performer>
+               <reference value="urn:uuid:24c15c19-b408-11f0-2210-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), organisation-id in system"/>
+            </performer>
+            <result>
+               <reference value="urn:uuid:24c15c41-b408-11f0-2210-020000000000"/>
+               <type value="Observation"/>
+               <display value="laboratorium_test"/>
+            </result>
+         </DiagnosticReport>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:24c15c41-b408-11f0-2210-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -28,13 +77,13 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:2a05b71a-818b-11f0-5099-020000000000"/>
+               <reference value="urn:uuid:24c15b6f-b408-11f0-2210-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, -13}"/>
             <performer>
-               <reference value="urn:uuid:2a05b756-818b-11f0-5099-020000000000"/>
+               <reference value="urn:uuid:24c15c19-b408-11f0-2210-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), organisation-id in system"/>
             </performer>
@@ -52,7 +101,125 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2a05b756-818b-11f0-5099-020000000000"/>
+      <fullUrl value="urn:uuid:24c15c55-b408-11f0-2210-020000000000"/>
+      <resource>
+         <ServiceRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/lu-OrderData"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.25.1.1"/>
+               <value value="AG01"/>
+            </identifier>
+            <status value="completed"/>
+            <intent value="order"/>
+            <code>
+               <coding>
+                  <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen"/>
+                  <code value="111"/>
+                  <display value="bilirubine totaal"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:24c15b6f-b408-11f0-2210-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, E. XXX_Doppen"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -14}"/>
+            <requester>
+               <reference value="urn:uuid:24c15b8d-b408-11f0-2210-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
+            </requester>
+            <reasonCode>
+               <text value="Follow-up bij eerder verhoogde ALAT"/>
+            </reasonCode>
+            <note>
+               <text value="Eerder lichte stijging ALAT (54 U/L), geen geelzucht. Hercontrole op leverenzymen en bilirubine. Patiënt gebruikt sinds 3 maanden geen alcohol meer"/>
+            </note>
+         </ServiceRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="ServiceRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:24c15b8d-b408-11f0-2210-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+            </meta>
+            <practitioner>
+               <reference value="urn:uuid:24c15bab-b408-11f0-2210-020000000000"/>
+               <type value="Practitioner"/>
+               <display value="Healthcare professional (person), Peter van Pulver"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:24c15bc9-b408-11f0-2210-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <code value="0101"/>
+                  <display value="Huisartsen, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+            <telecom>
+               <system value="phone"/>
+               <value value="1645645000"/>
+            </telecom>
+         </PractitionerRole>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:24c15bab-b408-11f0-2210-020000000000"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+               <value value="00001111"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Peter van Pulver"/>
+               <family value="van Pulver">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Pulver"/>
+                  </extension>
+               </family>
+               <given value="Peter">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+            <telecom>
+               <system value="phone"/>
+               <value value="1645645000"/>
+            </telecom>
+         </Practitioner>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:24c15c19-b408-11f0-2210-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -74,7 +241,52 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2a05b71a-818b-11f0-5099-020000000000"/>
+      <fullUrl value="urn:uuid:24c15bc9-b408-11f0-2210-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00001111"/>
+            </identifier>
+            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            <telecom>
+               <system value="phone"/>
+               <value value="099-12345678"/>
+            </telecom>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpstraat 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:24c15b6f-b408-11f0-2210-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -118,7 +330,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2a05b72e-818b-11f0-5099-020000000000"/>
+      <fullUrl value="urn:uuid:24c15bf1-b408-11f0-2210-020000000000"/>
       <resource>
          <Organization>
             <meta>

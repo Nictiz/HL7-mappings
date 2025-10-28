@@ -2,7 +2,7 @@
    <id value="lr-blr-TEST-l2z-8POCT-3KCLOINC"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:11e4ed69-7e7e-11f0-1205-020000000000"/>
+      <fullUrl value="urn:uuid:de935399-b3f9-11f0-1790-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -34,12 +34,12 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:11e4ed05-7e7e-11f0-1205-020000000000"/>
+               <reference value="urn:uuid:de93535d-b3f9-11f0-1790-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
             <performer>
-               <reference value="urn:uuid:11e4ed41-7e7e-11f0-1205-020000000000"/>
+               <reference value="urn:uuid:de935371-b3f9-11f0-1790-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Trombosedienst Ons Dorp"/>
             </performer>
@@ -53,7 +53,7 @@
                <text value="Hoog!"/>
             </interpretation>
             <specimen>
-               <reference value="urn:uuid:11e4ed91-7e7e-11f0-1205-020000000000"/>
+               <reference value="urn:uuid:de9353c1-b3f9-11f0-1790-020000000000"/>
                <type value="Specimen"/>
                <display value="monster"/>
             </specimen>
@@ -71,16 +71,6 @@
                   <code value="{INR}"/>
                </high>
             </referenceRange>
-            <component>
-               <code>
-                  <coding>
-                     <system value="http://snomed.info/sct"/>
-                     <code value="405262001"/>
-                     <display value="point-of-care testing (verrichting)"/>
-                  </coding>
-               </code>
-               <valueBoolean value="true"/>
-            </component>
          </Observation>
       </resource>
       <request>
@@ -89,7 +79,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:11e4ed91-7e7e-11f0-1205-020000000000"/>
+      <fullUrl value="urn:uuid:de9353c1-b3f9-11f0-1790-020000000000"/>
       <resource>
          <Specimen>
             <meta>
@@ -107,7 +97,7 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:11e4ed05-7e7e-11f0-1205-020000000000"/>
+               <reference value="urn:uuid:de93535d-b3f9-11f0-1790-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
@@ -119,7 +109,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:11e4ed41-7e7e-11f0-1205-020000000000"/>
+      <fullUrl value="urn:uuid:de935371-b3f9-11f0-1790-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -165,7 +155,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:11e4ed05-7e7e-11f0-1205-020000000000"/>
+      <fullUrl value="urn:uuid:de93535d-b3f9-11f0-1790-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -206,87 +196,6 @@
       <request>
          <method value="POST"/>
          <url value="Patient"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:11e4ed19-7e7e-11f0-1205-020000000000"/>
-      <resource>
-         <Organization>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="00003333"/>
-            </identifier>
-            <type>
-               <coding>
-                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
-                  <version value="2023-04-14T00:00:00"/>
-                  <code value="L1"/>
-                  <display value="Laboratorium"/>
-               </coding>
-            </type>
-            <name value="Klinisch chemisch Lab 't Proefje"/>
-            <telecom>
-               <system value="phone">
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
-                     <valueCodeableConcept>
-                        <coding>
-                           <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
-                           <code value="MC"/>
-                           <display value="Mobiel telefoonnummer"/>
-                        </coding>
-                     </valueCodeableConcept>
-                  </extension>
-               </system>
-               <value value="06-11122233"/>
-               <use value="work"/>
-            </telecom>
-            <telecom>
-               <system value="email"/>
-               <value value="tproefje@lab.nl"/>
-               <use value="work"/>
-            </telecom>
-            <address>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
-                  <valueCodeableConcept>
-                     <coding>
-                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
-                        <code value="WP"/>
-                        <display value="Werkadres"/>
-                     </coding>
-                  </valueCodeableConcept>
-               </extension>
-               <use value="work"/>
-               <line value="Hoofdstraat 23">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
-                     <valueString value="Hoofdstraat"/>
-                  </extension>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-                     <valueString value="23"/>
-                  </extension>
-               </line>
-               <city value="Rotterdam"/>
-               <postalCode value="1234AA"/>
-               <country value="Nederland">
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
-                     <valueCodeableConcept>
-                        <coding>
-                           <system value="urn:iso:std:iso:3166"/>
-                           <version value="2020-10-26T00:00:00"/>
-                           <code value="NL"/>
-                           <display value="Nederland"/>
-                        </coding>
-                     </valueCodeableConcept>
-                  </extension>
-               </country>
-            </address>
-         </Organization>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
       </request>
    </entry>
 </Bundle>

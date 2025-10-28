@@ -2,7 +2,56 @@
    <id value="lr-loa-TEST-l2z-1Maximaal-bericht-aanvraag-2MMBNHG"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:149b1822-7e7e-11f0-1136-020000000000"/>
+      <fullUrl value="urn:uuid:e1ddc24c-b3f9-11f0-1715-020000000000"/>
+      <resource>
+         <DiagnosticReport>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/lu-LaboratoryTestResult-DiagnosticReport"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.3.22.2"/>
+               <value value="123457"/>
+            </identifier>
+            <basedOn>
+               <reference value="urn:uuid:e1ddc238-b3f9-11f0-1715-020000000000"/>
+               <type value="ServiceRequest"/>
+               <display value="aanvraaggegevens"/>
+            </basedOn>
+            <status value="final"/>
+            <category>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v2-0074"/>
+                  <code value="LAB"/>
+                  <display value="Laboratory"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://terminology.hl7.org/ValueSet/v3-NullFlavor"/>
+                  <code value="UNK"/>
+                  <display value="onbekend"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:e1ddc1e8-b3f9-11f0-1715-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, Elise Erelies"/>
+            </subject>
+            <performer>
+               <reference value="urn:uuid:e1ddc1fc-b3f9-11f0-1715-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Microbiologisch Lab Flagel"/>
+            </performer>
+            <result>
+               <reference value="urn:uuid:e1ddc224-b3f9-11f0-1715-020000000000"/>
+               <type value="Observation"/>
+               <display value="laboratorium_test"/>
+            </result>
+         </DiagnosticReport>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:e1ddc224-b3f9-11f0-1715-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -28,13 +77,13 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:149b17e6-7e7e-11f0-1136-020000000000"/>
+               <reference value="urn:uuid:e1ddc1e8-b3f9-11f0-1715-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, Elise Erelies"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, -3}"/>
             <performer>
-               <reference value="urn:uuid:149b17fa-7e7e-11f0-1136-020000000000"/>
+               <reference value="urn:uuid:e1ddc1fc-b3f9-11f0-1715-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Microbiologisch Lab Flagel"/>
             </performer>
@@ -49,7 +98,7 @@
                <text value="Covid aanwezig"/>
             </interpretation>
             <specimen>
-               <reference value="urn:uuid:149b184a-7e7e-11f0-1136-020000000000"/>
+               <reference value="urn:uuid:e1ddc260-b3f9-11f0-1715-020000000000"/>
                <type value="Specimen"/>
                <display value="monster"/>
             </specimen>
@@ -61,7 +110,43 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:149b184a-7e7e-11f0-1136-020000000000"/>
+      <fullUrl value="urn:uuid:e1ddc238-b3f9-11f0-1715-020000000000"/>
+      <resource>
+         <ServiceRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/lu-OrderData"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.3.22.2"/>
+               <value value="123457"/>
+            </identifier>
+            <status value="completed"/>
+            <intent value="order"/>
+            <code>
+               <coding>
+                  <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen"/>
+                  <code value="4029"/>
+                  <display value="SARS-CoV-2 RNA (COVID-19) keel (PCR) kz"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:e1ddc1e8-b3f9-11f0-1715-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, Elise Erelies"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -5}"/>
+            <reasonCode>
+               <text value="Patiënt heeft koorts, spierpijn van het gehele lichaam en hoofdpijn. Daarnaast heeft de patiënt last van droge hoest en dyspneu. Géén keelpijn of neusverkoudheid aanwezig."/>
+            </reasonCode>
+         </ServiceRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="ServiceRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:e1ddc260-b3f9-11f0-1715-020000000000"/>
       <resource>
          <Specimen>
             <meta>
@@ -79,7 +164,7 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:149b17e6-7e7e-11f0-1136-020000000000"/>
+               <reference value="urn:uuid:e1ddc1e8-b3f9-11f0-1715-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, Elise Erelies"/>
             </subject>
@@ -101,7 +186,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:149b17fa-7e7e-11f0-1136-020000000000"/>
+      <fullUrl value="urn:uuid:e1ddc1fc-b3f9-11f0-1715-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -166,7 +251,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:149b17e6-7e7e-11f0-1136-020000000000"/>
+      <fullUrl value="urn:uuid:e1ddc1e8-b3f9-11f0-1715-020000000000"/>
       <resource>
          <Patient>
             <meta>
