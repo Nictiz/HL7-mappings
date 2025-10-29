@@ -1,21 +1,22 @@
 <Patient xmlns="http://hl7.org/fhir">
    <id value="JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN"/>
    <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/BgZ-Patient"/>
    </meta>
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
-         <div>Id 999909587 (BSN), <span title="Naamsamenstelling: Eigennaam">Jan Adrianus J.A.H. van Houten</span> (Jan), Man, 25 juli 1954, Geen meerling</div>
+         <div>Id 999909587 (BSN), <span title="Naamsamenstelling: Eigennaam">Jan Adrianus J.A.H. van Houten</span> (Jan), Man, 25 juli 1954, Geen meerling, <span title="Gehuwd (M - v3/MaritalStatus)">Gehuwd</span>
+         </div>
          <div>
             <a href="tel:+316-99990001">+316-99990001</a> (Mobiel Privé), <a href="mailto:JanHoutenPost@test.nl">JanHoutenPost@test.nl</a> (E-mail Privé)</div>
-         <div>Knolweg 1000 het groene huis, 9999XA STITSWERD, Nederland (Bezoek)</div>
+         <div>Knolweg 1000 het groene huis, 9999XA STITSWERD, NL (Bezoek)</div>
          <div>
             <span title="Zoon (SONC - v3/RoleCode)">Zoon</span>, <span title="Eerste relatie/contactpersoon (1 - RoleCodeLijst (COD472-VEKT))">Eerste relatie/contactpersoon</span>: Peter P.H. van Houten (Peter)<div>
-               <a href="tel:+316-99990003">+316-99990003</a> (Mobiel Privé), <a href="mailto:peter.houten.post@test.nl">peter.houten.post@test.nl</a> (E-mail Privé), Knolweg 1002 to, 9999ZZ Stitswerd, Nederland (Bezoek)</div>
+               <a href="tel:+316-99990003">+316-99990003</a> (Mobiel Privé), <a href="mailto:peter.houten.post@test.nl">peter.houten.post@test.nl</a> (E-mail Privé), Knolweg 1002 to, 9999ZZ Stitswerd, NL (Bezoek)</div>
          </div>
-         <div>Huisarts: Meindert M. Meindert Aanmoedigend<div>Zorgverlenerrol: Huisarts</div>
-         </div>
+         <div>Huisarts: Meindert M. Meindert Aanmoedigend || Huisarts || Huisartsenpraktijk van aanpakken</div>
       </div>
    </text>
    <identifier>
@@ -26,6 +27,7 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
          <valueCode value="NL1"/>
       </extension>
+      <text value="Jan Adrianus J.A.H. van Houten"/>
       <family value="van Houten">
          <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
             <valueString value="van"/>
@@ -107,7 +109,7 @@
       </line>
       <city value="STITSWERD"/>
       <postalCode value="9999XA"/>
-      <country value="Nederland">
+      <country value="NL">
          <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
             <valueCodeableConcept>
                <coding>
@@ -120,6 +122,13 @@
          </extension>
       </country>
    </address>
+   <maritalStatus>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/MaritalStatus"/>
+         <code value="M"/>
+         <display value="Gehuwd"/>
+      </coding>
+   </maritalStatus>
    <multipleBirthBoolean value="false"/>
    <contact>
       <relationship>
@@ -137,6 +146,7 @@
          </coding>
       </relationship>
       <name>
+         <text value="Peter P.H. van Houten"/>
          <family value="van Houten">
             <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
                <valueString value="van"/>
@@ -205,7 +215,7 @@
          </line>
          <city value="Stitswerd"/>
          <postalCode value="9999ZZ"/>
-         <country value="Nederland">
+         <country value="NL">
             <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                <valueCodeableConcept>
                   <coding>
@@ -222,8 +232,8 @@
    <generalPractitioner>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
          <valueReference>
-            <reference value="PractitionerRole/nl-core-practitionerrole-msz-1000000101-015"/>
-            <display value="Huisarts"/>
+            <reference value="PractitionerRole/nl-core-practitionerrole-msz-1000000101-01520000001"/>
+            <display value="Meindert M. Meindert Aanmoedigend || Huisarts || Huisartsenpraktijk van aanpakken"/>
          </valueReference>
       </extension>
       <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000001"/>

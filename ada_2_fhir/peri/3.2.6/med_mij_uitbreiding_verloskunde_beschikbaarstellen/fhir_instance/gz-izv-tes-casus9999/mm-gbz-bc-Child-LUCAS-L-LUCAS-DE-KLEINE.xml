@@ -1,0 +1,98 @@
+<Patient xmlns="http://hl7.org/fhir">
+   <id value="LUCAS-L-LUCAS-DE-KLEINE"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Child"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>
+            <span title="Naamsamenstelling: Eigennaam">Lucas L De Kleine</span> (Lucas), Man, ${DATE, T, D, -53}, <i>Overleden ${DATE, T, D, -146}</i>, Meerling</div>
+         <div>Knolweg 1002, 9999ZZ Stitswerd Stitswerd, NL (Bezoek)</div>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="39dd862c-6b52-11ec-0000-020000000000"/>
+   </identifier>
+   <name>
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+         <valueCode value="NL1"/>
+      </extension>
+      <text value="Lucas L De Kleine"/>
+      <family value="De Kleine">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+            <valueString value="De"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="Kleine"/>
+         </extension>
+      </family>
+      <given value="Lucas">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <given value="L">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="IN"/>
+         </extension>
+      </given>
+      <given value="Lucas">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="CL"/>
+         </extension>
+      </given>
+   </name>
+   <gender value="male">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+               <code value="M"/>
+               <display value="Man"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </gender>
+   <birthDate value="${DATE, T, D, -53}"/>
+   <deceasedDateTime value="${DATE, T, D, -146}"/>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="PHYS"/>
+               <display value="Woon-/verblijfadres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="home"/>
+      <type value="physical"/>
+      <line value="Knolweg 1002">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Knolweg"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="1002"/>
+         </extension>
+      </line>
+      <city value="Stitswerd"/>
+      <district value="Stitswerd"/>
+      <postalCode value="9999ZZ"/>
+      <country value="NL">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.16.34"/>
+                  <version value="2020-03-31T00:00:00"/>
+                  <code value="6030"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+   <multipleBirthInteger value="2"/>
+</Patient>

@@ -1,0 +1,123 @@
+<html lang="en">
+   <head>
+      <title>Condition - fd6959fe-6aae-11ec-2334-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Aandoening. Subject: Jamila J XXX_Kwee. Status: inactief</caption>
+               <tbody>
+                  <tr>
+                     <th>Code</th>
+                     <td>
+                        <span title="bevinding betreffende zwangerschap (bevinding) (118185001 - SNOMED CT)">bevinding betreffende zwangerschap (bevinding)</span>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Condition bevinding betreffende zwangerschap (bevinding)</b>
+      </p>
+      <ul>
+         <li>
+            <a href="mm-gbz-bc-Encounter-db0c878e-6b0b-11ec-1275-020000000000.html">Encounter consult (verrichting)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-MaternalRecord-202380db-6b0d-11ec-0000-020000000000.html">EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-Pregnancy-Parity11977-6-c95bd36e-6b6a-11ec-2334-020000000000.html">Observation [#] Parity</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-Pregnancy-Gravidity11996-6-9c05581e-6abf-11ec-2334-020000000000.html">Observation [#] Pregnancies</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-PregnancyObservation161714006-7d13757b-6aa9-11ec-2334-020000000000.html">Observation geschatte datum van partus (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-Pregnancy-DateLastMenstruation8665-2-6f4d5054-6b05-11ec-2335-020000000000.html">Observation Datum van laatste menstruatie [datum]</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-PregnancyObservation65147003-8456043b-6b79-11ec-2171-020000000000.html">Observation tweelingzwangerschap (bevinding)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-DisorderOfPregnancy16356006-035a6ddb-6b4c-11ec-2118-020000000000.html">Condition meerlingzwangerschap (bevinding)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-Pregnancy-PregnancyDuration57036006-7a3252a4-6b4f-11ec-2702-020000000000.html">Observation zwangerschapsduur</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ObstetricProcedure396550006-89c7dad4-6acf-11ec-2119-020000000000.html">Procedure bloedonderzoek (verrichting)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ObstetricProcedure410175003-2f91aad4-6b3a-11ec-2119-020000000000.html">Procedure dieetmanagement (verrichting)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ObstetricProcedure133601000146101-53d192d4-6adf-11ec-2241-020000000000.html">Procedure echografie ter bepaling van geschatte datum van partus (verrichting)</a>
+         </li>
+      </ul>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 2, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-202380db-6b0d-11ec-0000-020000000000.html" }, 
+{ id: 18, label: "Patient XXX_Kwee", url: "mm-gbz-bc-Woman-JAMILA-J-XXX-KWEE.html" }, 
+{ id: 19, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-fd6959fe-6aae-11ec-2334-020000000000.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 19, to: 18 }, 
+{ from: 19, to: 2 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

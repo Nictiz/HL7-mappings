@@ -7,9 +7,8 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Medicatieafspraak. Subject: Michelle M.B. Michelle Bergzoon Verheul. Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
-               <span style="display: block;">Aangevraagd door: Jolanda J. Martha Cormane<span style="display: block;">Zorgverlenerrol: Dermatoloog</span>
-               </span>
+            <caption>Medicatieafspraak. Subject: Michelle M.B. Michelle Bergzoon Verheul. Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Medicatieafspraak</span>, <span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: Jolanda J. Martha Cormane</span>
             </caption>
             <tfoot>
                <tr>
@@ -19,17 +18,22 @@
             <tbody>
                <tr>
                   <th>Medicatie</th>
-                  <td>Type medicatie: MOMENTASON CREME 1MG/G</td>
+                  <td>MOMENTASON CREME 1MG/G</td>
                </tr>
                <tr>
                   <th>Gemaakt</th>
                   <td>10:10:01, 15 oktober 2018</td>
                </tr>
                <tr>
+                  <th>Reden</th>
+                  <td/>
+               </tr>
+               <tr>
                   <th>Doseerinstructie</th>
                   <td>
+                     <div>Tekst: Vanaf 2018-10-15, 1 maal per dag 1 stuk, alleen bij klachten, ma t/m do WEL, vr t/m zo NIET</div>
                      <div>Instructie: Alleen bij klachten, ma t/m do WEL, vr t/m zo NIET</div>
-                     <div>Zo nodig: 12</div>
+                     <div>Zo nodig: Bij klachten</div>
                      <div>Toedieningsweg: <span title="cutaan (53 - G-Standaard thesaurus subtabel 0007)">cutaan</span>
                      </div>
                      <div>Max dosering: 1 STUK / 1 dag (per period)</div>
@@ -39,9 +43,6 @@
          </table>
       </div>
    </text>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-      <valueString value="Vanaf 2018-10-15, 1 maal per dag 1 stuk, alleen bij klachten, ma t/m do WEL, vr t/m zo NIET"/>
-   </extension>
    <intent value="order"/>
    <category>
       <coding>
@@ -52,8 +53,8 @@
       <text value="Medicatieafspraak"/>
    </category>
    <medicationReference>
-      <reference value="Medication/zib-Product-msz-6150d14f-6aa4-11ec-0000-2"/>
-      <display value="Type medicatie: MOMENTASON CREME 1MG/G"/>
+      <reference value="Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-129224"/>
+      <display value="MOMENTASON CREME 1MG/G"/>
    </medicationReference>
    <subject>
       <reference value="Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL"/>
@@ -61,21 +62,26 @@
    </subject>
    <authoredOn value="2018-10-15T10:10:01+02:00"/>
    <requester>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-msz-0017171701-01220000007"/>
+            <display value="Jolanda J. Martha Cormane || Dermatoloog || Algemeen Medisch Centrum"/>
+         </valueReference>
+      </extension>
       <agent>
-         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-            <valueReference>
-               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0017171701-012"/>
-               <display value="Dermatoloog"/>
-            </valueReference>
-         </extension>
          <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00171717"/>
          <display value="Jolanda J. Martha Cormane"/>
       </agent>
    </requester>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-msz-9bd3ddcf-6b5e-11ec-0000-2"/>
+      <display value=""/>
+   </reasonReference>
    <note>
       <text value="bij contacteczeem"/>
    </note>
    <dosageInstruction>
+      <text value="Vanaf 2018-10-15, 1 maal per dag 1 stuk, alleen bij klachten, ma t/m do WEL, vr t/m zo NIET"/>
       <additionalInstruction>
          <coding>
             <system value="http://hl7.org/fhir/v3/NullFlavor"/>
@@ -90,7 +96,7 @@
             <code value="OTH"/>
             <display value="overig"/>
          </coding>
-         <text value="12"/>
+         <text value="Bij klachten"/>
       </asNeededCodeableConcept>
       <route>
          <coding>

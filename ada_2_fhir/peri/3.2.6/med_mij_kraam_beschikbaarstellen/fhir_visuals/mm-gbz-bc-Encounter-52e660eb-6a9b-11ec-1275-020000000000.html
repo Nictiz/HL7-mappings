@@ -1,0 +1,118 @@
+<html lang="en">
+   <head>
+      <title>Encounter - 52e660eb-6a9b-11ec-1275-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Contact. Subject: Kind Joris. Status: voltooid</caption>
+               <tbody>
+                  <tr>
+                     <th>Type contact</th>
+                     <td>
+                        <div>
+                           <span title="Thuis (HH - v3/ActCode)">Thuis</span>
+                        </div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Periode</th>
+                     <td>${DATE, T, D, -107} - ${DATE, T, D, -107}</td>
+                  </tr>
+                  <tr>
+                     <th>Participant</th>
+                     <td>
+                        <div>Carolien XXX_Meijer || kraamverzorgende (beroep) || Kraamzorg Het Blije Ei</div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Zorgaanbieder</th>
+                     <td>Kraamzorg Het Blije Ei</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Encounter</b>
+      </p>
+      <ul>
+         <li>
+            <a href="mm-gbz-bc-ChildObservation364062005-918c5793-6ac7-11ec-2996-020000000000.html">Observation observatie betreffende ademhaling (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ChildObservation404950004-4a7fdc6e-6b51-11ec-2989-020000000000.html">Observation gedrag omtrent slaap (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ChildObservation28263002-0083b76e-6a9f-11ec-2990-020000000000.html">Observation huilen (waarneembare entiteit)</a>
+         </li>
+      </ul>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 2, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-f720ebe3-6b47-11ec-0000-020000000000.html" }, 
+{ id: 5, label: "Organization Kraamzorg Het Blije Ei", url: "mm-gbz-nl-core-organization-organization-mm-gbz-2-16-840-1-113883-2-4-6-1-33112345.html" }, 
+{ id: 7, label: "PractitionerRole kraamverzorgende (beroep)", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-12345678115153100014610833112345.html" }, 
+{ id: 8, label: "Practitioner XXX_Meijer", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-123456781.html" }, 
+{ id: 11, label: "Encounter", url: "mm-gbz-bc-Encounter-52e660eb-6a9b-11ec-1275-020000000000.html" }, 
+{ id: 59, label: "Patient", url: "mm-gbz-bc-Child-JORIS.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 11, to: 59 }, 
+{ from: 11, to: 2 }, 
+{ from: 11, to: 7 }, 
+{ from: 11, to: 8 }, 
+{ from: 11, to: 5 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

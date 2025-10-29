@@ -1,0 +1,78 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izb-kwa-3B-V2_meerling_2elijn /adaxml/data/med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/bevalling/uitdrijvingsfase/werkelijke_plaats_baring_type_locatie_observatie (peri32-dataelement-4193) -->
+   <id value="50592b71-6b54-11ec-2419-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-BirthObservation"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Jamila J XXX_Kwee. Status: definitief</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">geplande sectio</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 1 XXX_Kwee_Vrouw</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -5}T14:38:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="bevinding betreffende locatie van partus (366344009 - SNOMED CT)">bevinding betreffende locatie van partus</span>
+                  </td>
+                  <td>
+                     <span title="geboorte in ziekenhuis (bevinding) (56321000146103 - SNOMED CT)">geboorte in ziekenhuis (bevinding)</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
+      <valueReference>
+         <reference value="Procedure/c6126413-6b20-11ec-2123-020000000000"/>
+         <display value="uitdrijvingsfase zwangerschap 1 XXX_Kwee_Vrouw"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="50592b71-6b54-11ec-2419-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="366344009"/>
+         <display value="bevinding betreffende locatie van partus"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/JAMILA-J-XXX-KWEE"/>
+      <display value="Jamila J XXX_Kwee"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/c934f973-6b23-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Kwee_Vrouw"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -5}T14:38:00+02:00"/>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="56321000146103"/>
+         <display value="geboorte in ziekenhuis (bevinding)"/>
+      </coding>
+   </valueCodeableConcept>
+   <comment value="geplande sectio"/>
+</Observation>

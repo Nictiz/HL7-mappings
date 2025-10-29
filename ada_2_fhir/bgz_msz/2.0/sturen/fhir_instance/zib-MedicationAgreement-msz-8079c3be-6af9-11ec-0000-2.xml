@@ -7,14 +7,13 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Medicatieafspraak. Subject: Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik. Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
-               <span style="display: block;">Aangevraagd door: Hip Plato Orpheus H.P.O Crates van Kos<span style="display: block;">Zorgverlenerrol: Huisarts</span>
-               </span>
+            <caption>Medicatieafspraak. Subject: Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik. Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Medicatieafspraak</span>, <span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: Hip Plato Orpheus H.P.O Crates van Kos</span>
             </caption>
             <tbody>
                <tr>
                   <th>Medicatie</th>
-                  <td>Type medicatie: IBUPROFEN TABLET 600MG</td>
+                  <td>IBUPROFEN TABLET 600MG</td>
                </tr>
                <tr>
                   <th>Gemaakt</th>
@@ -24,6 +23,7 @@
                   <th>Doseerinstructie</th>
                   <td>
                      <div>Volgnummer: 1</div>
+                     <div>Tekst: 3 keer per dag 0 of 1 stuk</div>
                      <div>Timing: <div>3 maal per dag</div>
                      </div>
                      <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -35,9 +35,6 @@
          </table>
       </div>
    </text>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-      <valueString value="3 keer per dag 0 of 1 stuk"/>
-   </extension>
    <intent value="order"/>
    <category>
       <coding>
@@ -48,8 +45,8 @@
       <text value="Medicatieafspraak"/>
    </category>
    <medicationReference>
-      <reference value="Medication/zib-Product-msz-4287f19d-6b59-11ec-0000-2"/>
-      <display value="Type medicatie: IBUPROFEN TABLET 600MG"/>
+      <reference value="Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-17469"/>
+      <display value="IBUPROFEN TABLET 600MG"/>
    </medicationReference>
    <subject>
       <reference value="Patient/GHANIYA-SAIDA-G-S-N--GHAN-NOERMOHAMED-ELIK"/>
@@ -57,19 +54,20 @@
    </subject>
    <authoredOn value="2008-06-22T10:01:01+02:00"/>
    <requester>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-msz-1000001001-01520000010"/>
+            <display value="Hip Plato Orpheus H.P.O Crates van Kos || Huisarts || Centrum Kos de rechte rug"/>
+         </valueReference>
+      </extension>
       <agent>
-         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-            <valueReference>
-               <reference value="PractitionerRole/nl-core-practitionerrole-msz-1000001001-015"/>
-               <display value="Huisarts"/>
-            </valueReference>
-         </extension>
          <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000010"/>
          <display value="Hip Plato Orpheus H.P.O Crates van Kos"/>
       </agent>
    </requester>
    <dosageInstruction>
       <sequence value="1"/>
+      <text value="3 keer per dag 0 of 1 stuk"/>
       <timing>
          <repeat>
             <frequency value="3"/>

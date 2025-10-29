@@ -1,21 +1,22 @@
 <Patient xmlns="http://hl7.org/fhir">
    <id value="MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL"/>
    <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/BgZ-Patient"/>
    </meta>
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
-         <div>Id 999911259 (BSN), <span title="Naamsamenstelling: Eigennaam gevolgd door partnernaam">Michelle M.B. Bergzoon-Verheul</span> (Michelle), Vrouw, 1 augustus 1964, Meerling</div>
+         <div>Id 999911259 (BSN), <span title="Naamsamenstelling: Eigennaam gevolgd door partnernaam">Michelle M.B. Bergzoon-Verheul</span> (Michelle), Vrouw, 1 augustus 1964, Meerling, <span title="Geregistreerd partnerschap (T - v3/MaritalStatus)">Geregistreerd partnerschap</span>
+         </div>
          <div>
             <a href="tel:+316-99990002">+316-99990002</a> (Mobiel Privé), <a href="mailto:MichelleBergzoon@test.nl">MichelleBergzoon@test.nl</a> (E-mail Privé)</div>
-         <div>Knolweg 1003, 9999ZA STITSWERD Het Hogeland, Nederland (Bezoek)</div>
+         <div>Knolweg 1003, 9999ZA STITSWERD Het Hogeland, NL (Bezoek)</div>
          <div>
             <span title="Partner (DOMPART - v3/RoleCode)">Partner</span>, <span title="Eerste relatie/contactpersoon (1 - RoleCodeLijst (COD472-VEKT))">Eerste relatie/contactpersoon</span>: Peter P.V. Verheul-Bergzoon (Peer)<div>
-               <a href="tel:06-99990008">06-99990008</a> (Mobiel Privé), <a href="mailto:peer@verheul.org">peer@verheul.org</a> (E-mail Privé), Knolweg 1000, 9999XA Stitswerd Het Hogeland, Nederland (officieel Privé (hoofd) Bezoek)</div>
+               <a href="tel:06-99990008">06-99990008</a> (Mobiel Privé), <a href="mailto:peer@verheul.org">peer@verheul.org</a> (E-mail Privé), Knolweg 1000, 9999XA Stitswerd Het Hogeland, NL (officieel Privé (hoofd) Bezoek)</div>
          </div>
-         <div>Huisarts: Huisdokter H. Huisdokter Behulpzaam<div>Zorgverlenerrol: Huisarts</div>
-         </div>
+         <div>Huisarts: Huisartsenpraktijk Betrokken</div>
       </div>
    </text>
    <identifier>
@@ -26,6 +27,7 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
          <valueCode value="NL4"/>
       </extension>
+      <text value="Michelle M.B. Bergzoon-Verheul"/>
       <family value="Bergzoon-Verheul">
          <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
             <valueString value="Bergzoon"/>
@@ -105,7 +107,7 @@
       <city value="STITSWERD"/>
       <district value="Het Hogeland"/>
       <postalCode value="9999ZA"/>
-      <country value="Nederland">
+      <country value="NL">
          <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
             <valueCodeableConcept>
                <coding>
@@ -118,6 +120,13 @@
          </extension>
       </country>
    </address>
+   <maritalStatus>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/MaritalStatus"/>
+         <code value="T"/>
+         <display value="Geregistreerd partnerschap"/>
+      </coding>
+   </maritalStatus>
    <multipleBirthBoolean value="true"/>
    <contact>
       <relationship>
@@ -135,6 +144,7 @@
          </coding>
       </relationship>
       <name>
+         <text value="Peter P.V. Verheul-Bergzoon"/>
          <family value="Verheul-Bergzoon">
             <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
                <valueString value="Verheul"/>
@@ -204,7 +214,7 @@
          <city value="Stitswerd"/>
          <district value="Het Hogeland"/>
          <postalCode value="9999XA"/>
-         <country value="Nederland">
+         <country value="NL">
             <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                <valueCodeableConcept>
                   <coding>
@@ -219,13 +229,7 @@
       </address>
    </contact>
    <generalPractitioner>
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-         <valueReference>
-            <reference value="PractitionerRole/nl-core-practitionerrole-msz-0013131301-015"/>
-            <display value="Huisarts"/>
-         </valueReference>
-      </extension>
-      <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00131313"/>
-      <display value="Huisdokter H. Huisdokter Behulpzaam"/>
+      <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000004"/>
+      <display value="Huisartsenpraktijk Betrokken"/>
    </generalPractitioner>
 </Patient>

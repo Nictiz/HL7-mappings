@@ -1,0 +1,99 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izb-kwa-3B-V2_meerling_2elijn /adaxml/data/med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/kind/lichamelijk_onderzoek_kind/geboortegewicht_lichaamsgewicht (peri32-dataelement-1418) -->
+   <id value="a335b3d1-6b2d-11ec-2141-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyWeight"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Kind Louis XXX_Kwee. Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 1 XXX_Kwee_Vrouw</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -5}T15:05:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Lichaamsgewicht^bij geboorte [massa] d.m.v. meting (8339-4 - LOINC)">Lichaamsgewicht^bij geboorte [massa] d.m.v. meting</span>
+                  </td>
+                  <td>2089 g</td>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Kleding gedragen tijdens meting [type] (8352-7 - LOINC)">Kleding gedragen tijdens meting [type]</span>
+                  </td>
+                  <td>
+                     <span title="Zonder kleding. (UNDRESSED - 2.16.840.1.113883.2.4.3.11.60.40.4.8.1)">Zonder kleding.</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <!-- adaChild -->
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="a335b3d1-6b2d-11ec-2141-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://hl7.org/fhir/observation-category"/>
+         <code value="vital-signs"/>
+         <display value="Vital Signs"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="8339-4"/>
+         <display value="Lichaamsgewicht^bij geboorte [massa] d.m.v. meting"/>
+      </coding>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="29463-7"/>
+         <display value="Lichaamsgewicht [massa]"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/LOUIS-XXX-KWEE"/>
+      <display value="Kind Louis XXX_Kwee"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/c934f973-6b23-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Kwee_Vrouw"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -5}T15:05:00+02:00"/>
+   <valueQuantity>
+      <value value="2089"/>
+      <unit value="g"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="g"/>
+   </valueQuantity>
+   <component>
+      <code>
+         <coding>
+            <system value="http://loinc.org"/>
+            <code value="8352-7"/>
+            <display value="Kleding gedragen tijdens meting [type]"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.8.1"/>
+            <code value="UNDRESSED"/>
+            <display value="Zonder kleding."/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+</Observation>

@@ -12,15 +12,16 @@
             <tbody>
                <tr>
                   <th>Medicatie</th>
-                  <td>Type medicatie: PARACETAMOL TABLET 500MGPARACETAMOL 500MG TABLET</td>
+                  <td>PARACETAMOL 500MG TABLET</td>
                </tr>
                <tr>
                   <th>Informant</th>
-                  <td>${DATE, T, D, -44}</td>
+                  <td>T-44D</td>
                </tr>
                <tr>
                   <th>Dosering</th>
                   <td>
+                     <div>Tekst: Oraal</div>
                      <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
                      </div>
                   </td>
@@ -42,9 +43,6 @@
          <display value="de Herder"/>
       </valueReference>
    </extension>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-      <valueString value="Oraal"/>
-   </extension>
    <status value="active"/>
    <category>
       <coding>
@@ -55,16 +53,17 @@
       <text value="Medicatiegebruik"/>
    </category>
    <medicationReference>
-      <reference value="Medication/zib-Product-msz-ff59baba-6b56-11ec-0000-2"/>
-      <display value="Type medicatie: PARACETAMOL TABLET 500MGPARACETAMOL 500MG TABLET"/>
+      <reference value="Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-67903"/>
+      <display value="PARACETAMOL 500MG TABLET"/>
    </medicationReference>
-   <dateAsserted value="${DATE, T, D, -44}"/>
+   <dateAsserted value="T-44D"/>
    <subject>
       <reference value="Patient/DE-HERDER"/>
       <display value="de Herder"/>
    </subject>
    <taken value="n"/>
    <dosage>
+      <text value="Oraal"/>
       <route>
          <coding>
             <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>

@@ -1,0 +1,101 @@
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="zib-AllergyIntolerance-msz-2ce68b8f-6b6b-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Allergie/intolerantie. Patiënt: Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik. Categorie: biologisch materiaal, Status: actief / bevestigd</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Cosmetica allergie, mascara</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="dihydroabietylalcohol (127771000146105 - SNOMED CT)">dihydroabietylalcohol</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>16 april 2010</td>
+               </tr>
+               <tr>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>
+                              <span title="Jeuk (418363000 - SNOMED CT)">Jeuk</span>
+                           </div>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActStatus"/>
+               <code value="active"/>
+               <display value="Actief"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus value="confirmed"/>
+   <category value="biologic">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="419199007"/>
+               <display value="allergie voor substantie"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <criticality value="high">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="6736007"/>
+               <display value="matig"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </criticality>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="127771000146105"/>
+         <display value="dihydroabietylalcohol"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/GHANIYA-SAIDA-G-S-N--GHAN-NOERMOHAMED-ELIK"/>
+      <display value="Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik"/>
+   </patient>
+   <onsetDateTime value="2010-04-16"/>
+   <note>
+      <text value="Cosmetica allergie, mascara"/>
+   </note>
+   <reaction>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="418363000"/>
+            <display value="Jeuk"/>
+         </coding>
+      </manifestation>
+   </reaction>
+</AllergyIntolerance>

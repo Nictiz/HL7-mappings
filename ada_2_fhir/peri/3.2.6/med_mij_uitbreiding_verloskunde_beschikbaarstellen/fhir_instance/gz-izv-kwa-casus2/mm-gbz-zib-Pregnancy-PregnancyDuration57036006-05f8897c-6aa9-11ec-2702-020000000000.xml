@@ -1,0 +1,84 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-kwa-casus2 -->
+   <id value="05f8897c-6aa9-11ec-2702-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-PregnancyDuration"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Fiona F XXX_Swart. Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 1 XXX_Swart</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -207}</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="zwangerschapsduur (57036006 - SNOMED CT)">zwangerschapsduur</span>
+                  </td>
+                  <td>71 d</td>
+               </tr>
+               <tr>
+                  <th>Ondersteunende informatie</th>
+                  <td>prenatale controle T-207D XXX_Swart, probleem zwangerschap XXX_Swart</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
+      <valueReference>
+         <reference value="Condition/e0d93b0f-6b66-11ec-2334-020000000000"/>
+         <display value="Zwangerschap 1 XXX_Swart"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/workflow-supportingInfoSTU3">
+      <valueReference>
+         <reference value="Encounter/a6dcb094-6b39-11ec-1275-020000000000"/>
+         <display value="prenatale controle T-207D XXX_Swart"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/workflow-supportingInfoSTU3">
+      <valueReference>
+         <reference value="Condition/8824f65a-6ad7-11ec-2118-020000000000"/>
+         <display value="probleem zwangerschap XXX_Swart"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="05f8897c-6aa9-11ec-2702-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="57036006"/>
+         <display value="zwangerschapsduur"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/FIONA-F-XXX-SWART"/>
+      <display value="Fiona F XXX_Swart"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/8b4a1a6f-6b0c-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Swart"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -207}"/>
+   <valueQuantity>
+      <value value="71"/>
+      <unit value="d"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="d"/>
+   </valueQuantity>
+</Observation>

@@ -1,0 +1,112 @@
+<Organization xmlns="http://hl7.org/fhir">
+   <id value="organization-mm-gbz-2-16-840-1-113883-2-4-3-22-97-4-1808"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Organisatie. Id: 1808 (urn:oid:2.16.840.1.113883.2.4.3.22.97.4), 45678912 (AGB-Z), 321654897 (URA)</caption>
+            <tbody>
+               <tr>
+                  <th>Naam</th>
+                  <td>Verloskundigenpraktijk Dalen</td>
+               </tr>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <div>0800 (AGB-medisch specialisme)</div>
+                     <div>
+                        <span title="Verloskundigenpraktijk (G3 - organization-type)">Verloskundigenpraktijk</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:0659689761">0659689761</a> (Mobiel Werk)<br/>
+                     <a href="mailto:info@verloskundigenpraktijkdalen.test">info@verloskundigenpraktijkdalen.test</a> (E-mail Werk)<br/>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Adres</th>
+                  <td>In de lucht 3 B, 3333ZA UTRECHT, NL</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.22.97.4"/>
+      <value value="1808"/>
+   </identifier>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+      <value value="45678912"/>
+   </identifier>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+      <value value="321654897"/>
+   </identifier>
+   <type>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+         <code value="0800"/>
+      </coding>
+   </type>
+   <type>
+      <coding>
+         <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+         <code value="G3"/>
+         <display value="Verloskundigenpraktijk"/>
+      </coding>
+   </type>
+   <name value="Verloskundigenpraktijk Dalen"/>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="MC"/>
+               <display value="Mobiel telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="0659689761"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="info@verloskundigenpraktijkdalen.test"/>
+      <use value="work"/>
+   </telecom>
+   <address>
+      <line value="In de lucht 3 B">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="In de lucht"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="3"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+            <valueString value="B"/>
+         </extension>
+      </line>
+      <city value="UTRECHT"/>
+      <postalCode value="3333ZA"/>
+      <country value="NL">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:iso:std:iso:3166"/>
+                  <version value="2020-10-26T00:00:00"/>
+                  <code value="NL"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+</Organization>

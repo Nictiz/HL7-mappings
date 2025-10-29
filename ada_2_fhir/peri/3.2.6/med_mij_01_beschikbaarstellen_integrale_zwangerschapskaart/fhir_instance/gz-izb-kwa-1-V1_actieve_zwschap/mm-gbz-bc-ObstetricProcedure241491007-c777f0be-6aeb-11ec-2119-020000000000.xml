@@ -1,0 +1,64 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izb-kwa-1-V1_actieve_zwschap /adaxml/data/med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/zwangerschapsgegevens/verrichting_zwangerschap (peri32-dataelement-1190) -->
+   <id value="c777f0be-6aeb-11ec-2119-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ObstetricProcedure"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Hanna H XXX_Kooij. Categorie: <span title="obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="echografie van foetus (verrichting) (241491007 - SNOMED CT)">echografie van foetus (verrichting)</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: Vanaf ${DATE, T, D, -139}</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>Zwangerschap 3 Vrouw1</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="c777f0be-6aeb-11ec-2119-020000000000"/>
+   </identifier>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="386637004"/>
+         <display value="obstetrische verrichting (verrichting)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="241491007"/>
+         <display value="echografie van foetus (verrichting)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/HANNA-H-XXX-KOOIJ"/>
+      <display value="Hanna H XXX_Kooij"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/ba94bb6f-6b78-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 3 Vrouw1"/>
+   </context>
+   <performedPeriod>
+      <start value="${DATE, T, D, -139}"/>
+   </performedPeriod>
+   <reasonReference>
+      <reference value="Condition/d1799aaf-6b7b-11ec-2334-020000000000"/>
+      <display value="Zwangerschap 3 Vrouw1"/>
+   </reasonReference>
+</Procedure>

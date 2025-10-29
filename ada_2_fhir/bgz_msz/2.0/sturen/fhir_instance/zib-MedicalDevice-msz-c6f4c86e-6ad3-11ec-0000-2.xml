@@ -24,8 +24,18 @@
                   <td>Ziekenhuis de grote terts</td>
                </tr>
                <tr>
+                  <th>Indicatie door</th>
+                  <td>A.B.C.D.E. Affine Stabiel in de Benen</td>
+               </tr>
+               <tr>
                   <th>Gebruiksperiode</th>
                   <td>Vanaf 22 juni 2008</td>
+               </tr>
+               <tr>
+                  <th>Indicatie</th>
+                  <td>
+                     <div>Fractuur van elleboog</div>
+                  </td>
                </tr>
             </tbody>
          </table>
@@ -35,6 +45,12 @@
       <valueReference>
          <reference value="Organization/nl-core-organization-msz-2-16-528-1-1007-3-3-20000014"/>
          <display value="Ziekenhuis de grote terts"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Practitioner">
+      <valueReference>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000014"/>
+         <display value="A.B.C.D.E. Affine Stabiel in de Benen"/>
       </valueReference>
    </extension>
    <status value="active"/>
@@ -49,6 +65,14 @@
       <reference value="Device/zib-MedicalDeviceProduct-msz-c6f4c86e-6ad3-11ec-0000-2"/>
       <display value="mitella voor ondersteuning van arm mitella"/>
    </device>
+   <indication>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Problem">
+         <valueReference>
+            <reference value="Condition/zib-Problem-msz-ebd44b0f-6b38-11ec-0000-2"/>
+            <display value="Fractuur van elleboog"/>
+         </valueReference>
+      </extension>
+   </indication>
    <bodySite>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
          <valueCodeableConcept>

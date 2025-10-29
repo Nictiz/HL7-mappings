@@ -1,0 +1,91 @@
+<RelatedPerson xmlns="http://hl7.org/fhir">
+   <id value="relatedperson-mm-gbz-c71587ca-6abe-11ec-1294-020000000000"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>
+            <span title="Naamsamenstelling: Eigennaam gevolgd door partnernaam">Lilian L van den XXX_Berg-XXX_Yzendoorn</span> (Lilian)</div>
+         <div>
+            <a href="tel:0614586923">0614586923</a> (Mobiel), <a href="mailto:l.vandenberg@test.nl">l.vandenberg@test.nl</a> (E-mail)</div>
+         <div>
+            <span title="Eerste relatie/contactpersoon (1 - RoleCodeLijst (COD472-VEKT))">Eerste relatie/contactpersoon</span>, <span title="Moeder (MTH - v3/RoleCode)">Moeder</span> van Kind Mieke XXX_Yzendoorn</div>
+      </div>
+   </text>
+   <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
+            <code value="1"/>
+            <display value="Eerste relatie/contactpersoon"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="1e0e49d7-6b70-11ec-0000-020000000000"/>
+   </identifier>
+   <patient>
+      <reference value="Patient/MIEKE-XXX-YZENDOORN"/>
+      <display value="Kind Mieke XXX_Yzendoorn"/>
+   </patient>
+   <relationship>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/RoleCode"/>
+         <code value="MTH"/>
+         <display value="Moeder"/>
+      </coding>
+   </relationship>
+   <name>
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+         <valueCode value="NL4"/>
+      </extension>
+      <text value="Lilian L van den XXX_Berg-XXX_Yzendoorn"/>
+      <family value="van den XXX_Berg-XXX_Yzendoorn">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+            <valueString value="van den"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="XXX_Berg"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+            <valueString value="XXX_Yzendoorn"/>
+         </extension>
+      </family>
+      <given value="Lilian">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <given value="L">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="IN"/>
+         </extension>
+      </given>
+      <given value="Lilian">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="CL"/>
+         </extension>
+      </given>
+   </name>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="MC"/>
+               <display value="Mobiel telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="0614586923"/>
+      <use value="mobile"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="l.vandenberg@test.nl"/>
+   </telecom>
+</RelatedPerson>

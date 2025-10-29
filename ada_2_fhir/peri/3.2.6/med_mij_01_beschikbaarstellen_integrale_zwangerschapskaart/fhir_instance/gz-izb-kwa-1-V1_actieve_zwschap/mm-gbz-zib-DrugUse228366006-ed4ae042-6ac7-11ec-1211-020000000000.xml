@@ -1,0 +1,71 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izb-kwa-1-V1_actieve_zwschap /adaxml/data/med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/zwangerschapsgegevens/prenatale_controle/drugs_gebruik (peri32-dataelement-112) -->
+   <id value="ed4ae042-6ac7-11ec-1211-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DrugUse"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Hanna H XXX_Kooij. Status: definitief<span style="display: block;">Uitvoerende: Gemma XXX_Groeneboom XXX_Gras || Verloskundige || Verloskundigenpraktijk 't Groen</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>prenatale controle T-139D Vrouw1</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="bevinding betreffende drugsgebruik (bevinding) (228366006 - SNOMED CT)">bevinding betreffende drugsgebruik (bevinding)</span>
+                  </td>
+                  <td>
+                     <span title="heeft nooit drugs gebruikt (228368007 - SNOMED CT)">heeft nooit drugs gebruikt</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="ed4ae042-6ac7-11ec-1211-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="228366006"/>
+         <display value="bevinding betreffende drugsgebruik (bevinding)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/HANNA-H-XXX-KOOIJ"/>
+      <display value="Hanna H XXX_Kooij"/>
+   </subject>
+   <context>
+      <reference value="Encounter/b61d2df6-6af1-11ec-1275-020000000000"/>
+      <display value="prenatale controle T-139D Vrouw1"/>
+   </context>
+   <performer>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/practitionerrole-mm-gbz-1234000103-00008001234"/>
+            <display value="Gemma XXX_Groeneboom XXX_Gras || Verloskundige || Verloskundigenpraktijk 't Groen"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-12340001"/>
+      <display value="Gemma XXX_Groeneboom XXX_Gras"/>
+   </performer>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="228368007"/>
+         <display value="heeft nooit drugs gebruikt"/>
+      </coding>
+   </valueCodeableConcept>
+</Observation>

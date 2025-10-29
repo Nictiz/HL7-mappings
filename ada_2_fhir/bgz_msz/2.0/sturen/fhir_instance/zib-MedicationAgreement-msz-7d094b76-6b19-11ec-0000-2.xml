@@ -7,18 +7,17 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Medicatieafspraak. Subject: Michelle M.B. Michelle Bergzoon Verheul. Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
-               <span style="display: block;">Aangevraagd door: Zaza Z. Zaza Bedachtzaam<span style="display: block;">Zorgverlenerrol: Chirurg</span>
-               </span>
+            <caption>Medicatieafspraak. Subject: Michelle M.B. Michelle Bergzoon Verheul. Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Medicatieafspraak</span>, <span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: Zaza Z. Zaza Bedachtzaam</span>
             </caption>
             <tbody>
                <tr>
                   <th>Medicatie</th>
-                  <td>Type medicatie: FLUCLOXACILLINE CAPSULE 500MG</td>
+                  <td>FLUCLOXACILLINE CAPSULE 500MG</td>
                </tr>
                <tr>
                   <th>Gemaakt</th>
-                  <td>${DATE, T, D, -2}</td>
+                  <td>T-2D</td>
                </tr>
                <tr>
                   <th>Gebruiksduur</th>
@@ -28,6 +27,7 @@
                   <th>Doseerinstructie</th>
                   <td>
                      <div>Volgnummer: 1</div>
+                     <div>Tekst: Vanaf &lt;T-2D&gt;, 10 dagen, 3 keer per dag 1 stuk, oraal, op een lege maag innemen minstens 1 uur vóór of 2 uur na de maaltijd, niet meteen gaan liggen nu inname van Fluclaxacilline.</div>
                      <div>Instructie: <ul>
                            <li>op een lege maag innemen minstens 1 uur vóór of 2 uur na de maaltijd</li>
                            <li>niet meteen gaan liggen nu inname van Fluclaxacilline</li>
@@ -52,9 +52,6 @@
          <code value="d"/>
       </valueDuration>
    </extension>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-      <valueString value="Vanaf &lt;T-2D&gt;, 10 dagen, 3 keer per dag 1 stuk, oraal, op een lege maag innemen minstens 1 uur vóór of 2 uur na de maaltijd, niet meteen gaan liggen nu inname van Fluclaxacilline."/>
-   </extension>
    <intent value="order"/>
    <category>
       <coding>
@@ -65,28 +62,29 @@
       <text value="Medicatieafspraak"/>
    </category>
    <medicationReference>
-      <reference value="Medication/zib-Product-msz-445bf61a-6b38-11ec-0000-2"/>
-      <display value="Type medicatie: FLUCLOXACILLINE CAPSULE 500MG"/>
+      <reference value="Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-5274"/>
+      <display value="FLUCLOXACILLINE CAPSULE 500MG"/>
    </medicationReference>
    <subject>
       <reference value="Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL"/>
       <display value="Michelle M.B. Michelle Bergzoon Verheul"/>
    </subject>
-   <authoredOn value="${DATE, T, D, -2}"/>
+   <authoredOn value="T-2D"/>
    <requester>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-msz-0014141401-01420000005"/>
+            <display value="Zaza Z. Zaza Bedachtzaam || Chirurg || Ziekenhuis Mammazorg"/>
+         </valueReference>
+      </extension>
       <agent>
-         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-            <valueReference>
-               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0014141401-014"/>
-               <display value="Chirurg"/>
-            </valueReference>
-         </extension>
          <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00141414"/>
          <display value="Zaza Z. Zaza Bedachtzaam"/>
       </agent>
    </requester>
    <dosageInstruction>
       <sequence value="1"/>
+      <text value="Vanaf &lt;T-2D&gt;, 10 dagen, 3 keer per dag 1 stuk, oraal, op een lege maag innemen minstens 1 uur vóór of 2 uur na de maaltijd, niet meteen gaan liggen nu inname van Fluclaxacilline."/>
       <additionalInstruction>
          <coding>
             <system value="http://hl7.org/fhir/v3/NullFlavor"/>

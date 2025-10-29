@@ -1,0 +1,85 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-ize-kwa-casus3 /adaxml/data/med_mij_echo_beschikbaarstellen/medisch_onderzoek/foetusspecifieke_onderzoeksgegevens/echoscopie/bevindingen/sonomarkers_observatie (peri32-dataelement-7847) -->
+   <id value="d3cab583-6b12-11ec-2784-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-FetusObservation"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Merthe M XXX_Kooijman. Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 1 XXX_Kooijman_Vrouw</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -13}</td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="echografie (kwalificatiewaarde) (278292003 - SNOMED CT)">echografie (kwalificatiewaarde)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="verdikte nekplooi van foetus (bevinding) (459053006 - SNOMED CT)">verdikte nekplooi van foetus (bevinding)</span>
+                  </td>
+                  <td>
+                     <span title="Geen sonomarker geconstateerd (1 - 2.16.840.1.113883.2.4.4.13.54)">Geen sonomarker geconstateerd</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
+      <valueReference>
+         <reference value="BodySite/0f2dfafb-6a9d-11ec-1267-020000000000"/>
+         <display value="foetus van Merthe M XXX_Kooijman"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="d3cab583-6b12-11ec-2784-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="459053006"/>
+         <display value="verdikte nekplooi van foetus (bevinding)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/MERTHE-M-XXX-KOOIJMAN"/>
+      <display value="Merthe M XXX_Kooijman"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/6188717b-6b7b-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Kooijman_Vrouw"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -13}"/>
+   <valueCodeableConcept>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.13.54"/>
+         <code value="1"/>
+         <display value="Geen sonomarker geconstateerd"/>
+      </coding>
+   </valueCodeableConcept>
+   <method>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="278292003"/>
+         <display value="echografie (kwalificatiewaarde)"/>
+      </coding>
+   </method>
+</Observation>

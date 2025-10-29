@@ -1,0 +1,72 @@
+<Condition xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izb-kwa-3B-V2_meerling_2elijn /adaxml/data/med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/bevalling/uitdrijvingsfase/probleem_kindspecifieke_maternale_problemen (peri32-dataelement-1591) -->
+   <id value="91a5b0c6-6af4-11ec-2159-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DisorderOfLaborAndDelivery"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Aandoening. Subject: Kind F Frida XXX_Kwee. Categorie: <span title="aandoening durante partu (aandoening) (362972006 - SNOMED CT)">aandoening durante partu (aandoening)</span>, Status: actief</caption>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="liggingsafwijking van foetus (bevinding) (15028002 - SNOMED CT)">liggingsafwijking van foetus (bevinding)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>${DATE, T, D, -5}</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/condition-partOf">
+      <valueReference>
+         <reference value="Procedure/c6126413-6b20-11ec-2123-020000000000"/>
+         <display value="uitdrijvingsfase zwangerschap 1 XXX_Kwee_Vrouw"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="91a5b0c6-6af4-11ec-2159-020000000000"/>
+   </identifier>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="55561003"/>
+               <display value="Actueel"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="362972006"/>
+         <display value="aandoening durante partu (aandoening)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="15028002"/>
+         <display value="liggingsafwijking van foetus (bevinding)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/F-FRIDA-XXX-KWEE"/>
+      <display value="Kind F Frida XXX_Kwee"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/c934f973-6b23-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Kwee_Vrouw"/>
+   </context>
+   <onsetDateTime value="${DATE, T, D, -5}"/>
+</Condition>

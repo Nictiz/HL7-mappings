@@ -8,8 +8,7 @@
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
             <caption>Verrichtingaanvraag. Subject: Michelle M.B. Michelle Bergzoon Verheul. Status: onbekend<span style="display: block;">Intentie: plan</span>
-               <span style="display: block;">Aangevraagd door: Huisdokter H. Huisdokter Behulpzaam<span style="display: block;">Zorgverlenerrol: Huisarts</span>
-               </span>
+               <span style="display: block;">Aangevraagd door: Huisdokter H. Huisdokter Behulpzaam || Huisarts || Huisartsenpraktijk Betrokken</span>
             </caption>
             <tbody>
                <tr>
@@ -28,7 +27,7 @@
                </tr>
                <tr>
                   <th>Reden</th>
-                  <td/>
+                  <td>CVA</td>
                </tr>
             </tbody>
          </table>
@@ -55,8 +54,8 @@
       <agent>
          <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
             <valueReference>
-               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0013131301-015"/>
-               <display value="Huisarts"/>
+               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0013131301-01520000004"/>
+               <display value="Huisdokter H. Huisdokter Behulpzaam || Huisarts || Huisartsenpraktijk Betrokken"/>
             </valueReference>
          </extension>
          <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00131313"/>
@@ -64,9 +63,11 @@
       </agent>
    </requester>
    <performer>
-      <actor>
-         <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000004"/>
-         <display value="Huisartsenpraktijk Betrokken"/>
-      </actor>
+      <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000004"/>
+      <display value="Huisartsenpraktijk Betrokken"/>
    </performer>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-msz-5b64cf75-6b76-11ec-0000-2"/>
+      <display value="CVA"/>
+   </reasonReference>
 </ProcedureRequest>

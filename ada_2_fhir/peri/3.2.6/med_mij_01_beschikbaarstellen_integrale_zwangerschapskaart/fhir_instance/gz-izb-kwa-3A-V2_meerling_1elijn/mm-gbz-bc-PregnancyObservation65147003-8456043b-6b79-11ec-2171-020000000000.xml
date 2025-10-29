@@ -1,0 +1,85 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izb-kwa-3A-V2_meerling_1elijn /adaxml/data/med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/zwangerschapsgegevens/meerling_zwangerschap_observatie (peri32-dataelement-1711) -->
+   <id value="8456043b-6b79-11ec-2171-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-PregnancyObservation"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Jamila J XXX_Kwee. Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 1 Vrouw2</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -205}</td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="echografie (kwalificatiewaarde) (278292003 - SNOMED CT)">echografie (kwalificatiewaarde)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="tweelingzwangerschap (bevinding) (65147003 - SNOMED CT)">tweelingzwangerschap (bevinding)</span>
+                  </td>
+                  <td>
+                     <span title="dichoriale diamniotische tweelingzwangerschap (bevinding) (459166009 - SNOMED CT)">dichoriale diamniotische tweelingzwangerschap (bevinding)</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
+      <valueReference>
+         <reference value="Condition/fd6959fe-6aae-11ec-2334-020000000000"/>
+         <display value="Zwangerschap 1 Vrouw2"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="8456043b-6b79-11ec-2171-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="65147003"/>
+         <display value="tweelingzwangerschap (bevinding)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/JAMILA-J-XXX-KWEE"/>
+      <display value="Jamila J XXX_Kwee"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/202380db-6b0d-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 Vrouw2"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -205}"/>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="459166009"/>
+         <display value="dichoriale diamniotische tweelingzwangerschap (bevinding)"/>
+      </coding>
+   </valueCodeableConcept>
+   <method>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="278292003"/>
+         <display value="echografie (kwalificatiewaarde)"/>
+      </coding>
+   </method>
+</Observation>

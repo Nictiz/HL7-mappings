@@ -1,6 +1,8 @@
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
-   <meta status="new" created-by="generated" last-update-by="generated"/>
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -21,9 +23,13 @@
                   <achternaam value="XXX_Dijk"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999900456" root="2.16.840.1.113883.2.4.6.3"/>
-            <geboortedatum value="1963-10-20" datatype="datetime"/>
-            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+            <identificatienummer value="999900456"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1963-10-20"
+                           datatype="datetime"/>
+            <geslacht code="M"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Man"/>
          </patient>
          <medicamenteuze_behandeling>
             <identificatie value="MBH_300_OTCmedicatie"
@@ -31,10 +37,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_OTCmedicatie_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-02T10:45:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-02T10:45:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-02T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2022-12-16T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-02T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2022-12-16T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <voorschrijver>
                   <zorgverlener value="urn-uuid-59e22a2a-a281-11ef-1766-020000000000"
@@ -66,8 +75,18 @@
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="2"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -76,10 +95,13 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_OTCmedicatie_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-12-04T14:35:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-04T14:35:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-04T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2022-12-18T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-04T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2022-12-18T00:00:00+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
@@ -111,8 +133,18 @@
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="2"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -125,11 +157,14 @@
             <medicatiegebruik>
                <identificatie value="MBH_300_OTCmedicatie_MGB_oud1"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <medicatiegebruik_datum_tijd value="2022-04-06T16:03:00+02:00" datatype="datetime"/>
+               <medicatiegebruik_datum_tijd value="2022-04-06T16:03:00+02:00"
+                                            datatype="datetime"/>
                <gebruik_indicator value="true"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-03-27T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2022-04-03T23:59:59+02:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-03-27T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2022-04-03T23:59:59+02:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <gebruiksproduct>
                   <farmaceutisch_product value="urn-uuid-59e211d4-a281-11ef-1766-020000000000"
@@ -157,8 +192,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -176,11 +221,14 @@
             <medicatiegebruik>
                <identificatie value="MBH_300_OTCmedicatie_MGB_oud2"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <medicatiegebruik_datum_tijd value="2022-08-04T11:59:00+02:00" datatype="datetime"/>
+               <medicatiegebruik_datum_tijd value="2022-08-04T11:59:00+02:00"
+                                            datatype="datetime"/>
                <gebruik_indicator value="true"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-07-30T00:00:00+02:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2022-08-07T23:59:59+02:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-07-30T00:00:00+02:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2022-08-07T23:59:59+02:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <gebruiksproduct>
                   <farmaceutisch_product value="urn-uuid-59e211d4-a281-11ef-1766-020000000000"
@@ -209,8 +257,18 @@
                               <aantal>
                                  <nominale_waarde value="3"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="3"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -228,11 +286,14 @@
             <medicatiegebruik>
                <identificatie value="MBH_300_OTCmedicatie_MGB_oud3"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <medicatiegebruik_datum_tijd value="2022-12-03T09:22:00+01:00" datatype="datetime"/>
+               <medicatiegebruik_datum_tijd value="2022-12-03T09:22:00+01:00"
+                                            datatype="datetime"/>
                <gebruik_indicator value="true"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-10-13T00:00:00+02:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2022-10-18T23:59:59+02:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-10-13T00:00:00+02:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2022-10-18T23:59:59+02:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <gebruiksproduct>
                   <farmaceutisch_product value="urn-uuid-59e211d4-a281-11ef-1766-020000000000"
@@ -260,8 +321,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -279,11 +350,14 @@
             <medicatiegebruik>
                <identificatie value="MBH_300_OTCmedicatie_MGB_nieuw"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <medicatiegebruik_datum_tijd value="2022-12-16T14:45:00+01:00" datatype="datetime"/>
+               <medicatiegebruik_datum_tijd value="2022-12-16T14:45:00+01:00"
+                                            datatype="datetime"/>
                <gebruik_indicator value="true"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-04T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2022-12-18T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-04T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2022-12-18T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <gebruiksproduct>
                   <farmaceutisch_product value="urn-uuid-59e211d4-a281-11ef-1766-020000000000"
@@ -311,8 +385,18 @@
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="2"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -337,13 +421,16 @@
             </medicatiegebruik>
          </medicamenteuze_behandeling>
          <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_NieuweMA" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <identificatie value="MBH_300_NieuweMA"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <medicatieafspraak>
                <identificatie value="MBH_300_NieuweMA_start_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-03-18T11:30:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-03-18T11:30:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-03-18T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-03-18T00:00:00+01:00"
+                                    datatype="datetime"/>
                </gebruiksperiode>
                <voorschrijver>
                   <zorgverlener value="urn-uuid-59e22a2a-a281-11ef-1766-020000000000"
@@ -375,8 +462,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -385,10 +482,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_NieuweMA_stop_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-10-23T13:45:00+02:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-10-23T13:45:00+02:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-03-18T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2022-10-22T23:59:59+02:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-03-18T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2022-10-22T23:59:59+02:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <medicatieafspraak_stop_type code="410546004"
                                             codeSystem="2.16.840.1.113883.6.96"
@@ -432,8 +532,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -442,9 +552,11 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_NieuweMA_nieuw_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-02T10:45:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-02T10:45:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-02T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-02T00:00:00+01:00"
+                                    datatype="datetime"/>
                </gebruiksperiode>
                <voorschrijver>
                   <zorgverlener value="urn-uuid-59e22a2a-a281-11ef-1766-020000000000"
@@ -476,8 +588,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -486,9 +608,11 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_NieuweMA_start_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-03-18T11:31:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-03-18T11:31:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-03-18T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-03-18T00:00:00+01:00"
+                                    datatype="datetime"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
@@ -521,8 +645,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -535,10 +669,13 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_NieuweMA_stop_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-12-07T15:55:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-07T15:55:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-03-18T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2022-10-22T23:59:59+02:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-03-18T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2022-10-22T23:59:59+02:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <toedieningsafspraak_stop_type code="410546004"
                                               codeSystem="2.16.840.1.113883.6.96"
@@ -579,8 +716,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -597,9 +744,11 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_NieuweMA_nieuw_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-12-07T15:57:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-07T15:57:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-02T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-02T00:00:00+01:00"
+                                    datatype="datetime"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
@@ -632,8 +781,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -646,10 +805,12 @@
             <medicatiegebruik>
                <identificatie value="MBH_300_NieuweMA_start_MGB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <medicatiegebruik_datum_tijd value="2022-03-18T11:32:00+01:00" datatype="datetime"/>
+               <medicatiegebruik_datum_tijd value="2022-03-18T11:32:00+01:00"
+                                            datatype="datetime"/>
                <gebruik_indicator value="true"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-03-18T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-03-18T00:00:00+01:00"
+                                    datatype="datetime"/>
                </gebruiksperiode>
                <gebruiksproduct>
                   <farmaceutisch_product value="urn-uuid-59e2117a-a281-11ef-1766-020000000000"
@@ -678,8 +839,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -705,10 +876,12 @@
             <medicatiegebruik>
                <identificatie value="MBH_300_NieuweMA_nieuw_MGB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <medicatiegebruik_datum_tijd value="2022-12-22T13:30:00+01:00" datatype="datetime"/>
+               <medicatiegebruik_datum_tijd value="2022-12-22T13:30:00+01:00"
+                                            datatype="datetime"/>
                <gebruik_indicator value="true"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-02T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-02T00:00:00+01:00"
+                                    datatype="datetime"/>
                </gebruiksperiode>
                <gebruiksproduct>
                   <farmaceutisch_product value="urn-uuid-59e2117a-a281-11ef-1766-020000000000"
@@ -737,8 +910,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -763,14 +946,18 @@
             </medicatiegebruik>
          </medicamenteuze_behandeling>
          <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_gestopt" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <identificatie value="MBH_300_gestopt"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <medicatieafspraak>
                <identificatie value="MBH_300_gestopt_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-09-01T08:00:00+02:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-09-01T08:00:00+02:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-09-01T00:00:00+02:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-06-01T23:59:59+02:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-09-01T00:00:00+02:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-06-01T23:59:59+02:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <voorschrijver>
                   <zorgverlener value="urn-uuid-59e22a84-a281-11ef-1766-020000000000"
@@ -802,8 +989,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -812,10 +1009,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_gestopt_MA_staken"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-22T18:00:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-22T18:00:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-09-01T00:00:00+02:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2022-12-22T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-09-01T00:00:00+02:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2022-12-22T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <medicatieafspraak_stop_type code="410546004"
                                             codeSystem="2.16.840.1.113883.6.96"
@@ -859,8 +1059,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -869,10 +1079,13 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_gestopt_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-09-01T09:00:00+02:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-09-01T09:00:00+02:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-09-01T00:00:00+02:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-06-01T23:59:59+02:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-09-01T00:00:00+02:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-06-01T23:59:59+02:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
@@ -904,8 +1117,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -918,10 +1141,13 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_gestopt_TA_staken"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-12-22T19:00:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-22T19:00:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-09-01T00:00:00+02:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2022-12-22T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-09-01T00:00:00+02:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2022-12-22T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <toedieningsafspraak_stop_type code="410546004"
                                               codeSystem="2.16.840.1.113883.6.96"
@@ -957,8 +1183,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -974,13 +1210,16 @@
             </toedieningsafspraak>
          </medicamenteuze_behandeling>
          <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_gewijzigd" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <identificatie value="MBH_300_gewijzigd"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <medicatieafspraak>
                <identificatie value="MBH_300_gewijzigd_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-11T08:02:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-11T08:02:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-11T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-11T00:00:00+01:00"
+                                    datatype="datetime"/>
                </gebruiksperiode>
                <voorschrijver>
                   <zorgverlener value="urn-uuid-59e22a84-a281-11ef-1766-020000000000"
@@ -1012,8 +1251,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -1022,9 +1271,11 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_gewijzigd_MA_wijziging"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-30T08:02:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-30T08:02:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-30T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-30T00:00:00+01:00"
+                                    datatype="datetime"/>
                </gebruiksperiode>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_gewijzigd_MA"
@@ -1064,8 +1315,18 @@
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="2"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -1074,10 +1335,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_gewijzigd_MA_techstaken"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-30T08:02:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-30T08:02:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-11T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2022-12-29T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-11T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2022-12-29T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <medicatieafspraak_stop_type code="410546004"
                                             codeSystem="2.16.840.1.113883.6.96"
@@ -1117,8 +1381,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -1127,9 +1401,11 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_gewijzigd_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-12-11T09:02:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-11T09:02:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-11T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-11T00:00:00+01:00"
+                                    datatype="datetime"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
@@ -1161,8 +1437,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -1175,9 +1461,11 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_gewijzigd_TA_wijziging"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-12-30T09:02:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-30T09:02:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-30T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-30T00:00:00+01:00"
+                                    datatype="datetime"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
@@ -1209,8 +1497,18 @@
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="2"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -1227,10 +1525,13 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_gewijzigd_TA_techstaken"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-12-30T09:02:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-30T09:02:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-11T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2022-12-29T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-11T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2022-12-29T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <toedieningsafspraak_stop_type code="410546004"
                                               codeSystem="2.16.840.1.113883.6.96"
@@ -1266,8 +1567,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -1288,10 +1599,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_gewijzigddoorander_MA_eigen"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-11-02T08:05:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-11-02T08:05:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-11-02T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-01-15T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-11-02T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-01-15T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <voorschrijver>
                   <zorgverlener value="urn-uuid-59e22a84-a281-11ef-1766-020000000000"
@@ -1323,8 +1637,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -1333,10 +1657,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_gewijzigddoorander_MA_wijzigingdoorander"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-29T08:10:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-29T08:10:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-29T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-01-31T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-29T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-01-31T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_gewijzigddoorander_MA_eigen"
@@ -1376,8 +1703,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -1386,10 +1723,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_gewijzigddoorander_MA_techstakendoorander"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-29T08:10:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-29T08:10:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-11-02T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2022-12-28T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-11-02T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2022-12-28T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <medicatieafspraak_stop_type code="410546004"
                                             codeSystem="2.16.840.1.113883.6.96"
@@ -1429,8 +1769,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -1439,10 +1789,13 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_gewijzigddoorander_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-11-02T09:05:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-11-02T09:05:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-11-02T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-01-15T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-11-02T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-01-15T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
@@ -1474,8 +1827,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -1488,10 +1851,13 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_gewijzigddoorander_TA_wijziging"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-12-29T09:10:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-29T09:10:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-29T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-01-31T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-29T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-01-31T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
@@ -1523,8 +1889,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -1541,10 +1917,13 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_gewijzigddoorander_TA_techstaken"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-12-29T09:10:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-29T09:10:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-11-02T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2022-12-28T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-11-02T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2022-12-28T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <toedieningsafspraak_stop_type code="410546004"
                                               codeSystem="2.16.840.1.113883.6.96"
@@ -1580,8 +1959,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -1598,12 +1987,15 @@
             <medicatiegebruik>
                <identificatie value="MBH_300_gewijzigddoorander_MGB_zv"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <medicatiegebruik_datum_tijd value="2022-12-29T08:08:00+01:00" datatype="datetime"/>
+               <medicatiegebruik_datum_tijd value="2022-12-29T08:08:00+01:00"
+                                            datatype="datetime"/>
                <gebruik_indicator value="true"/>
                <volgens_afspraak_indicator value="true"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-11-02T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2022-12-29T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-11-02T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2022-12-29T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <gebruiksproduct>
                   <farmaceutisch_product value="urn-uuid-59e20f5e-a281-11ef-1766-020000000000"
@@ -1631,8 +2023,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -1658,12 +2060,15 @@
             <medicatiegebruik>
                <identificatie value="MBH_300_gewijzigddoorander_MGB_pat"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <medicatiegebruik_datum_tijd value="2023-01-01T08:08:00+01:00" datatype="datetime"/>
+               <medicatiegebruik_datum_tijd value="2023-01-01T08:08:00+01:00"
+                                            datatype="datetime"/>
                <gebruik_indicator value="true"/>
                <volgens_afspraak_indicator value="true"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-29T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2022-12-31T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-29T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2022-12-31T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <gebruiksproduct>
                   <farmaceutisch_product value="urn-uuid-59e20f5e-a281-11ef-1766-020000000000"
@@ -1691,8 +2096,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -1716,10 +2131,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_onderbroken_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-08-01T08:06:00+02:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-08-01T08:06:00+02:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-08-01T00:00:00+02:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-01-21T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-08-01T00:00:00+02:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-01-21T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <voorschrijver>
                   <zorgverlener value="urn-uuid-59e22a84-a281-11ef-1766-020000000000"
@@ -1751,8 +2169,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -1761,10 +2189,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_onderbroken_MA_onderbreken"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-09-23T18:12:00+02:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-09-23T18:12:00+02:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-08-01T00:00:00+02:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2022-09-23T23:59:59+02:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-08-01T00:00:00+02:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2022-09-23T23:59:59+02:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <medicatieafspraak_stop_type code="385655000"
                                             codeSystem="2.16.840.1.113883.6.96"
@@ -1808,8 +2239,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -1818,10 +2259,13 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_onderbroken_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-08-01T09:06:00+02:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-08-01T09:06:00+02:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-08-01T00:00:00+02:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-01-21T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-08-01T00:00:00+02:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-01-21T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
@@ -1853,8 +2297,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -1867,10 +2321,13 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_onderbroken_TA_onderbreken"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-09-23T19:12:00+02:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-09-23T19:12:00+02:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-08-01T00:00:00+02:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2022-09-23T23:59:59+02:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-08-01T00:00:00+02:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2022-09-23T23:59:59+02:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <toedieningsafspraak_stop_type code="385655000"
                                               codeSystem="2.16.840.1.113883.6.96"
@@ -1906,8 +2363,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -1923,14 +2390,18 @@
             </toedieningsafspraak>
          </medicamenteuze_behandeling>
          <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_andermans1" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <identificatie value="MBH_300_andermans1"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <medicatieafspraak>
                <identificatie value="MBH_300_andermans1_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-22T18:05:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-22T18:05:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-23T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-01-16T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-23T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-01-16T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <voorschrijver>
                   <zorgverlener value="urn-uuid-59e22ade-a281-11ef-1766-020000000000"
@@ -1962,8 +2433,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -1972,10 +2453,13 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_andermans1_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-12-22T18:45:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-22T18:45:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-23T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-01-16T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-23T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-01-16T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
@@ -2007,8 +2491,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -2021,12 +2515,15 @@
             <medicatiegebruik>
                <identificatie value="MBH_300_andermans1_MGB_zv"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <medicatiegebruik_datum_tijd value="2023-01-01T08:08:00+01:00" datatype="datetime"/>
+               <medicatiegebruik_datum_tijd value="2023-01-01T08:08:00+01:00"
+                                            datatype="datetime"/>
                <gebruik_indicator value="true"/>
                <volgens_afspraak_indicator value="true"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-23T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-01-01T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-23T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-01-01T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <gebruiksproduct>
                   <farmaceutisch_product value="urn-uuid-59e210c6-a281-11ef-1766-020000000000"
@@ -2054,8 +2551,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -2081,12 +2588,15 @@
             <medicatiegebruik>
                <identificatie value="MBH_300_andermans1_MGB_pat"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <medicatiegebruik_datum_tijd value="2023-01-01T18:08:00+01:00" datatype="datetime"/>
+               <medicatiegebruik_datum_tijd value="2023-01-01T18:08:00+01:00"
+                                            datatype="datetime"/>
                <gebruik_indicator value="true"/>
                <volgens_afspraak_indicator value="true"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-23T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-01-01T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-23T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-01-01T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <gebruiksproduct>
                   <farmaceutisch_product value="urn-uuid-59e210c6-a281-11ef-1766-020000000000"
@@ -2114,8 +2624,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -2134,14 +2654,18 @@
             </medicatiegebruik>
          </medicamenteuze_behandeling>
          <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_andermans2" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <identificatie value="MBH_300_andermans2"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <medicatieafspraak>
                <identificatie value="MBH_300_andermans2_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-07-26T08:15:00+02:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-07-26T08:15:00+02:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-07-26T00:00:00+02:00" datatype="datetime"/>
-                  <tijds_duur value="1" unit="week"/>
+                  <start_datum_tijd value="2022-07-26T00:00:00+02:00"
+                                    datatype="datetime"/>
+                  <tijds_duur value="1"
+                              unit="week"/>
                </gebruiksperiode>
                <voorschrijver>
                   <zorgverlener value="urn-uuid-59e22ade-a281-11ef-1766-020000000000"
@@ -2173,8 +2697,18 @@
                               <aantal>
                                  <nominale_waarde value="3"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="3"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -2183,10 +2717,13 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_andermans2_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-07-26T09:15:00+02:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-07-26T09:15:00+02:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-07-26T00:00:00+02:00" datatype="datetime"/>
-                  <tijds_duur value="1" unit="week"/>
+                  <start_datum_tijd value="2022-07-26T00:00:00+02:00"
+                                    datatype="datetime"/>
+                  <tijds_duur value="1"
+                              unit="week"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
@@ -2218,8 +2755,18 @@
                               <aantal>
                                  <nominale_waarde value="3"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="3"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -2236,9 +2783,11 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_geannuleerd_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-30T18:15:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-30T18:15:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2023-01-06T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2023-01-06T00:00:00+01:00"
+                                    datatype="datetime"/>
                </gebruiksperiode>
                <voorschrijver>
                   <zorgverlener value="urn-uuid-59e22a84-a281-11ef-1766-020000000000"
@@ -2270,8 +2819,18 @@
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="2"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -2280,10 +2839,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_geannuleerd_MA_annuleren"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-31T15:30:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-31T15:30:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2023-01-06T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-01-06T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2023-01-06T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-01-06T00:00:00+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <medicatieafspraak_stop_type code="89925002"
                                             codeSystem="2.16.840.1.113883.6.96"
@@ -2327,8 +2889,18 @@
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="2"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -2337,9 +2909,11 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_geannuleerd_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-12-30T19:05:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-30T19:05:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2023-01-06T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2023-01-06T00:00:00+01:00"
+                                    datatype="datetime"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
@@ -2371,8 +2945,18 @@
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="2"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -2385,10 +2969,13 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_geannuleerd_TA_annuleren"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-12-31T16:45:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-31T16:45:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2023-01-06T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-01-06T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2023-01-06T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-01-06T00:00:00+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <toedieningsafspraak_stop_type code="89925002"
                                               codeSystem="2.16.840.1.113883.6.96"
@@ -2428,8 +3015,18 @@
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="2"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -2445,14 +3042,18 @@
             </toedieningsafspraak>
          </medicamenteuze_behandeling>
          <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_toekomstig" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <identificatie value="MBH_300_toekomstig"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <medicatieafspraak>
                <identificatie value="MBH_300_toekomstig_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-31T08:15:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-31T08:15:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2023-01-16T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-02-21T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2023-01-16T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-02-21T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <voorschrijver>
                   <zorgverlener value="urn-uuid-59e22a84-a281-11ef-1766-020000000000"
@@ -2484,8 +3085,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -2494,10 +3105,13 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_toekomstig_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-12-31T09:15:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-31T09:15:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2023-01-16T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-02-21T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2023-01-16T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-02-21T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
@@ -2529,8 +3143,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -2547,10 +3171,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_gestoptandermans_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-12T08:00:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-12T08:00:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-12T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-01-08T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-12T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-01-08T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <voorschrijver>
                   <zorgverlener value="urn-uuid-59e22a84-a281-11ef-1766-020000000000"
@@ -2582,8 +3209,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -2592,10 +3229,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_gestoptandermans_MA_staken"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-22T18:00:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-22T18:00:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-12T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2022-12-22T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-12T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2022-12-22T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <medicatieafspraak_stop_type code="410546004"
                                             codeSystem="2.16.840.1.113883.6.96"
@@ -2639,8 +3279,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -2649,10 +3299,13 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_gestoptandermans_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-12-12T09:00:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-12T09:00:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-12T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-01-08T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-12T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-01-08T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
@@ -2684,8 +3337,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -2698,10 +3361,13 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_gestoptandermans_TA_staken"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-12-22T19:00:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-22T19:00:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-12T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2022-12-22T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-12T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2022-12-22T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <toedieningsafspraak_stop_type code="410546004"
                                               codeSystem="2.16.840.1.113883.6.96"
@@ -2737,8 +3403,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -2759,9 +3435,11 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_gewijzigd_toekomst_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-21T08:20:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-21T08:20:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-21T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-21T00:00:00+01:00"
+                                    datatype="datetime"/>
                </gebruiksperiode>
                <voorschrijver>
                   <zorgverlener value="urn-uuid-59e22a84-a281-11ef-1766-020000000000"
@@ -2793,8 +3471,18 @@
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="week"/>
+                              <tijdseenheid value="1"
+                                            unit="week"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="2"/>
+                                    <period value="1"/>
+                                    <periodUnit value="wk"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -2803,9 +3491,11 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_gewijzigd_toekomst_MA_wijziging"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-31T08:10:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-31T08:10:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2023-01-03T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2023-01-03T00:00:00+01:00"
+                                    datatype="datetime"/>
                </gebruiksperiode>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_gewijzigd_toekomst_MA"
@@ -2845,8 +3535,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="week"/>
+                              <tijdseenheid value="1"
+                                            unit="week"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="wk"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -2855,10 +3555,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_gewijzigd_toekomst_MA_techstaken"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-31T08:10:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-31T08:10:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-21T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-01-02T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-21T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-01-02T00:00:00+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <medicatieafspraak_stop_type code="410546004"
                                             codeSystem="2.16.840.1.113883.6.96"
@@ -2898,8 +3601,18 @@
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="week"/>
+                              <tijdseenheid value="1"
+                                            unit="week"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="2"/>
+                                    <period value="1"/>
+                                    <periodUnit value="wk"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -2908,9 +3621,11 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_gewijzigd_toekomst_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-12-21T10:30:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-21T10:30:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-21T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-21T00:00:00+01:00"
+                                    datatype="datetime"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
@@ -2942,8 +3657,18 @@
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="week"/>
+                              <tijdseenheid value="1"
+                                            unit="week"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="2"/>
+                                    <period value="1"/>
+                                    <periodUnit value="wk"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -2956,9 +3681,11 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_gewijzigd_toekomst_TA_wijziging"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-12-31T11:10:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-31T11:10:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2023-01-03T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2023-01-03T00:00:00+01:00"
+                                    datatype="datetime"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
@@ -2994,8 +3721,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="week"/>
+                              <tijdseenheid value="1"
+                                            unit="week"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="wk"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -3012,10 +3749,13 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_gewijzigd_toekomst_TA_techstaken"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-12-31T11:10:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-31T11:10:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-21T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-01-02T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-21T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-01-02T00:00:00+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <toedieningsafspraak_stop_type code="410546004"
                                               codeSystem="2.16.840.1.113883.6.96"
@@ -3051,8 +3791,18 @@
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="week"/>
+                              <tijdseenheid value="1"
+                                            unit="week"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="2"/>
+                                    <period value="1"/>
+                                    <periodUnit value="wk"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -3073,10 +3823,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_ToekomstigEnNieuweMA_startMA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-09-25T15:11:00+02:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-09-25T15:11:00+02:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-09-25T00:00:00+02:00" datatype="datetime"/>
-                  <tijds_duur value="50" unit="dag"/>
+                  <start_datum_tijd value="2022-09-25T00:00:00+02:00"
+                                    datatype="datetime"/>
+                  <tijds_duur value="50"
+                              unit="dag"/>
                </gebruiksperiode>
                <voorschrijver>
                   <zorgverlener value="urn-uuid-59e22a2a-a281-11ef-1766-020000000000"
@@ -3108,8 +3861,18 @@
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="2"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -3118,9 +3881,11 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_ToekomstigEnNieuweMA_ToekomstMA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-10-23T14:44:00+02:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-10-23T14:44:00+02:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2023-01-11T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2023-01-11T00:00:00+01:00"
+                                    datatype="datetime"/>
                </gebruiksperiode>
                <voorschrijver>
                   <zorgverlener value="urn-uuid-59e22a2a-a281-11ef-1766-020000000000"
@@ -3152,8 +3917,18 @@
                               <aantal>
                                  <nominale_waarde value="3"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="3"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -3162,10 +3937,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_ToekomstigEnNieuweMA_stopMA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-10-30T09:13:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-10-30T09:13:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-09-25T00:00:00+02:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2022-10-30T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-09-25T00:00:00+02:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2022-10-30T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <medicatieafspraak_stop_type code="410546004"
                                             codeSystem="2.16.840.1.113883.6.96"
@@ -3205,8 +3983,18 @@
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="2"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -3215,10 +4003,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_ToekomstigEnNieuweMA_NieuwMA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-10-30T09:15:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-10-30T09:15:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-02T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-01-10T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-02T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-01-10T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_ToekomstigEnNieuweMA_startMA"
@@ -3239,7 +4030,8 @@
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                   displayName="oraal"/>
                   <doseerinstructie>
-                     <doseerduur value="39" unit="dag"/>
+                     <doseerduur value="39"
+                                 unit="dag"/>
                      <dosering>
                         <keerdosis>
                            <aantal>
@@ -3255,8 +4047,24 @@
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <boundsDuration>
+                                       <value value="39"/>
+                                       <unit value="dag"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="d"/>
+                                    </boundsDuration>
+                                    <frequency value="2"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -3265,9 +4073,11 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_ToekomstigEnNieuweMA_startTA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-09-25T15:15:00+02:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-09-25T15:15:00+02:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-09-25T00:00:00+02:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-09-25T00:00:00+02:00"
+                                    datatype="datetime"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
@@ -3299,8 +4109,18 @@
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="2"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -3313,9 +4133,11 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_ToekomstigEnNieuweMA_ToekomstTA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-10-23T14:45:00+02:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-10-23T14:45:00+02:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2023-01-11T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2023-01-11T00:00:00+01:00"
+                                    datatype="datetime"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
@@ -3347,8 +4169,18 @@
                               <aantal>
                                  <nominale_waarde value="3"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="3"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -3361,10 +4193,12 @@
             <medicatiegebruik>
                <identificatie value="MBH_300_ToekomstigEnNieuweMA_startMGB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <medicatiegebruik_datum_tijd value="2022-09-25T15:20:00+02:00" datatype="datetime"/>
+               <medicatiegebruik_datum_tijd value="2022-09-25T15:20:00+02:00"
+                                            datatype="datetime"/>
                <gebruik_indicator value="true"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-09-25T00:00:00+02:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-09-25T00:00:00+02:00"
+                                    datatype="datetime"/>
                </gebruiksperiode>
                <gebruiksproduct>
                   <farmaceutisch_product value="urn-uuid-59e21210-a281-11ef-1766-020000000000"
@@ -3392,8 +4226,18 @@
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="2"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -3422,10 +4266,12 @@
             <medicatiegebruik>
                <identificatie value="MBH_300_ToekomstigEnNieuweMA_ToekomstMGB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <medicatiegebruik_datum_tijd value="2022-10-23T14:50:00+02:00" datatype="datetime"/>
+               <medicatiegebruik_datum_tijd value="2022-10-23T14:50:00+02:00"
+                                            datatype="datetime"/>
                <gebruik_indicator value="true"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2023-01-11T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2023-01-11T00:00:00+01:00"
+                                    datatype="datetime"/>
                </gebruiksperiode>
                <gebruiksproduct>
                   <farmaceutisch_product value="urn-uuid-59e21210-a281-11ef-1766-020000000000"
@@ -3453,8 +4299,18 @@
                               <aantal>
                                  <nominale_waarde value="3"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="3"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -3487,10 +4343,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_nieuweToekomstigeMA_startMA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-12T10:01:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-12T10:01:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-12T00:00:00+01:00" datatype="datetime"/>
-                  <tijds_duur value="3" unit="week"/>
+                  <start_datum_tijd value="2022-12-12T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <tijds_duur value="3"
+                              unit="week"/>
                </gebruiksperiode>
                <voorschrijver>
                   <zorgverlener value="urn-uuid-59e22a2a-a281-11ef-1766-020000000000"
@@ -3507,7 +4366,8 @@
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                   displayName="oraal"/>
                   <doseerinstructie>
-                     <doseerduur value="3" unit="week"/>
+                     <doseerduur value="3"
+                                 unit="week"/>
                      <dosering>
                         <keerdosis>
                            <aantal>
@@ -3523,8 +4383,24 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <boundsDuration>
+                                       <value value="3"/>
+                                       <unit value="week"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="wk"/>
+                                    </boundsDuration>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -3533,10 +4409,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_nieuweToekomstigeMA_toekomstMA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-17T13:26:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-17T13:26:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2023-01-02T00:00:00+01:00" datatype="datetime"/>
-                  <tijds_duur value="1" unit="week"/>
+                  <start_datum_tijd value="2023-01-02T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <tijds_duur value="1"
+                              unit="week"/>
                </gebruiksperiode>
                <voorschrijver>
                   <zorgverlener value="urn-uuid-59e22a2a-a281-11ef-1766-020000000000"
@@ -3553,7 +4432,8 @@
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                   displayName="oraal"/>
                   <doseerinstructie>
-                     <doseerduur value="1" unit="week"/>
+                     <doseerduur value="1"
+                                 unit="week"/>
                      <dosering>
                         <keerdosis>
                            <aantal>
@@ -3569,8 +4449,24 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <boundsDuration>
+                                       <value value="1"/>
+                                       <unit value="week"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="wk"/>
+                                    </boundsDuration>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -3579,10 +4475,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_nieuweToekomstigeMA_annuleerMA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-27T15:15:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-27T15:15:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2023-01-02T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-01-02T00:00:00+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2023-01-02T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-01-02T00:00:00+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <medicatieafspraak_stop_type code="89925002"
                                             codeSystem="2.16.840.1.113883.6.96"
@@ -3607,7 +4506,8 @@
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                   displayName="oraal"/>
                   <doseerinstructie>
-                     <doseerduur value="1" unit="week"/>
+                     <doseerduur value="1"
+                                 unit="week"/>
                      <dosering>
                         <keerdosis>
                            <aantal>
@@ -3623,8 +4523,24 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <boundsDuration>
+                                       <value value="1"/>
+                                       <unit value="week"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="wk"/>
+                                    </boundsDuration>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -3633,10 +4549,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_nieuweToekomstigeMA_nieuwMA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-27T15:20:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-27T15:20:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2023-01-02T00:00:00+01:00" datatype="datetime"/>
-                  <tijds_duur value="4" unit="dag"/>
+                  <start_datum_tijd value="2023-01-02T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <tijds_duur value="4"
+                              unit="dag"/>
                </gebruiksperiode>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_nieuweToekomstigeMA_toekomstMA"
@@ -3661,7 +4580,8 @@
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                   displayName="oraal"/>
                   <doseerinstructie>
-                     <doseerduur value="4" unit="dag"/>
+                     <doseerduur value="4"
+                                 unit="dag"/>
                      <dosering>
                         <keerdosis>
                            <aantal>
@@ -3677,8 +4597,24 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <boundsDuration>
+                                       <value value="4"/>
+                                       <unit value="dag"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="d"/>
+                                    </boundsDuration>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -3687,10 +4623,13 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_nieuweToekomstigeMA_startTA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-12-12T10:05:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-12T10:05:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-12T00:00:00+01:00" datatype="datetime"/>
-                  <tijds_duur value="3" unit="week"/>
+                  <start_datum_tijd value="2022-12-12T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <tijds_duur value="3"
+                              unit="week"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
@@ -3707,7 +4646,8 @@
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                   displayName="oraal"/>
                   <doseerinstructie>
-                     <doseerduur value="3" unit="week"/>
+                     <doseerduur value="3"
+                                 unit="week"/>
                      <dosering>
                         <keerdosis>
                            <aantal>
@@ -3723,8 +4663,24 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <boundsDuration>
+                                       <value value="3"/>
+                                       <unit value="week"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="wk"/>
+                                    </boundsDuration>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -3737,10 +4693,13 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_nieuweToekomstigeMA_toekomstTA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-12-17T13:30:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-17T13:30:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2023-01-02T00:00:00+01:00" datatype="datetime"/>
-                  <tijds_duur value="1" unit="week"/>
+                  <start_datum_tijd value="2023-01-02T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <tijds_duur value="1"
+                              unit="week"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
@@ -3757,7 +4716,8 @@
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                   displayName="oraal"/>
                   <doseerinstructie>
-                     <doseerduur value="1" unit="week"/>
+                     <doseerduur value="1"
+                                 unit="week"/>
                      <dosering>
                         <keerdosis>
                            <aantal>
@@ -3773,8 +4733,24 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <boundsDuration>
+                                       <value value="1"/>
+                                       <unit value="week"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="wk"/>
+                                    </boundsDuration>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -3787,11 +4763,14 @@
             <medicatiegebruik>
                <identificatie value="MBH_300_nieuweToekomstigeMA_startMGB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <medicatiegebruik_datum_tijd value="2022-12-12T10:10:00+01:00" datatype="datetime"/>
+               <medicatiegebruik_datum_tijd value="2022-12-12T10:10:00+01:00"
+                                            datatype="datetime"/>
                <gebruik_indicator value="true"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-12T00:00:00+01:00" datatype="datetime"/>
-                  <tijds_duur value="3" unit="week"/>
+                  <start_datum_tijd value="2022-12-12T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <tijds_duur value="3"
+                              unit="week"/>
                </gebruiksperiode>
                <gebruiksproduct>
                   <farmaceutisch_product value="urn-uuid-59e20f7c-a281-11ef-1766-020000000000"
@@ -3804,7 +4783,8 @@
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                   displayName="oraal"/>
                   <doseerinstructie>
-                     <doseerduur value="3" unit="week"/>
+                     <doseerduur value="3"
+                                 unit="week"/>
                      <dosering>
                         <keerdosis>
                            <aantal>
@@ -3820,8 +4800,24 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <boundsDuration>
+                                       <value value="3"/>
+                                       <unit value="week"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="wk"/>
+                                    </boundsDuration>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -3847,11 +4843,14 @@
             <medicatiegebruik>
                <identificatie value="MBH_300_nieuweToekomstigeMA_toekomstMGB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <medicatiegebruik_datum_tijd value="2022-12-17T13:35:00+01:00" datatype="datetime"/>
+               <medicatiegebruik_datum_tijd value="2022-12-17T13:35:00+01:00"
+                                            datatype="datetime"/>
                <gebruik_indicator value="true"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2023-01-02T00:00:00+01:00" datatype="datetime"/>
-                  <tijds_duur value="1" unit="week"/>
+                  <start_datum_tijd value="2023-01-02T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <tijds_duur value="1"
+                              unit="week"/>
                </gebruiksperiode>
                <gebruiksproduct>
                   <farmaceutisch_product value="urn-uuid-59e20f7c-a281-11ef-1766-020000000000"
@@ -3864,7 +4863,8 @@
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                   displayName="oraal"/>
                   <doseerinstructie>
-                     <doseerduur value="1" unit="week"/>
+                     <doseerduur value="1"
+                                 unit="week"/>
                      <dosering>
                         <keerdosis>
                            <aantal>
@@ -3880,8 +4880,24 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <boundsDuration>
+                                       <value value="1"/>
+                                       <unit value="week"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="wk"/>
+                                    </boundsDuration>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -3911,10 +4927,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_stopMA_zonder_referentie_stopMA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-27T13:55:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-27T13:55:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-18T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2022-12-27T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-18T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2022-12-27T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <medicatieafspraak_stop_type code="410546004"
                                             codeSystem="2.16.840.1.113883.6.96"
@@ -3950,8 +4969,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -3960,10 +4989,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_stopMA_zonder_referentie_startMA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-27T13:57:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-27T13:57:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-27T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-01-03T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-27T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-01-03T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <voorschrijver>
                   <zorgverlener value="urn-uuid-59e22a2a-a281-11ef-1766-020000000000"
@@ -3995,8 +5027,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -4005,10 +5047,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_stopMA_zonder_referentie_toekomstMA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-27T14:03:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-27T14:03:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2023-01-04T00:00:00+01:00" datatype="datetime"/>
-                  <tijds_duur value="3" unit="dag"/>
+                  <start_datum_tijd value="2023-01-04T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <tijds_duur value="3"
+                              unit="dag"/>
                </gebruiksperiode>
                <voorschrijver>
                   <zorgverlener value="urn-uuid-59e22a2a-a281-11ef-1766-020000000000"
@@ -4040,8 +5085,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -4050,10 +5105,13 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_stopMA_zonder_referentie_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2022-12-18T15:14:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2022-12-18T15:14:00+01:00"
+                                       datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-18T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-01-03T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-18T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-01-03T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
@@ -4085,8 +5143,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -4095,11 +5163,14 @@
             <medicatiegebruik>
                <identificatie value="MBH_300_stopMA_zonder_referentie_MGB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <medicatiegebruik_datum_tijd value="2022-12-18T15:20:00+01:00" datatype="datetime"/>
+               <medicatiegebruik_datum_tijd value="2022-12-18T15:20:00+01:00"
+                                            datatype="datetime"/>
                <gebruik_indicator value="true"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-18T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2023-01-03T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-18T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2023-01-03T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <gebruiksproduct>
                   <farmaceutisch_product value="urn-uuid-59e2117a-a281-11ef-1766-020000000000"
@@ -4127,8 +5198,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -4153,15 +5234,19 @@
             </medicatiegebruik>
          </medicamenteuze_behandeling>
          <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_gebruik" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <identificatie value="MBH_300_gebruik"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <medicatiegebruik>
                <identificatie value="MBH_300_gebruik_MGB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <medicatiegebruik_datum_tijd value="2022-12-31T08:12:00+01:00" datatype="datetime"/>
+               <medicatiegebruik_datum_tijd value="2022-12-31T08:12:00+01:00"
+                                            datatype="datetime"/>
                <gebruik_indicator value="true"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-22T00:00:00+01:00" datatype="datetime"/>
-                  <eind_datum_tijd value="2022-12-30T23:59:59+01:00" datatype="datetime"/>
+                  <start_datum_tijd value="2022-12-22T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2022-12-30T23:59:59+01:00"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <gebruiksproduct>
                   <farmaceutisch_product value="urn-uuid-59e21102-a281-11ef-1766-020000000000"
@@ -4189,8 +5274,18 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -4398,7 +5493,8 @@
                <product_code code="OTH"
                              codeSystem="2.16.840.1.113883.5.1008"
                              codeSystemName="HL7 NullFlavor"
-                             displayName="overig"/>
+                             displayName="overig"
+                             originalText="Paracetamol 500mg"/>
                <product_specificatie>
                   <product_naam value="Paracetamol 500mg"/>
                </product_specificatie>
@@ -4523,7 +5619,8 @@
                              displayName="OMEPRAZOL CAPSULE MSR 10MG"/>
             </farmaceutisch_product>
             <zorgverlener id="urn-uuid-59e22a2a-a281-11ef-1766-020000000000">
-               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+               <zorgverlener_identificatienummer value="000001111"
+                                                 root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Peter"/>
                   <geslachtsnaam>
@@ -4542,7 +5639,8 @@
                </zorgaanbieder>
             </zorgverlener>
             <zorgverlener id="urn-uuid-59e22a84-a281-11ef-1766-020000000000">
-               <zorgverlener_identificatienummer value="000001115" root="2.16.528.1.1007.3.1"/>
+               <zorgverlener_identificatienummer value="000001115"
+                                                 root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Marcha"/>
                   <geslachtsnaam>
@@ -4561,7 +5659,8 @@
                </zorgaanbieder>
             </zorgverlener>
             <zorgverlener id="urn-uuid-59e22ade-a281-11ef-1766-020000000000">
-               <zorgverlener_identificatienummer value="000002222" root="2.16.528.1.1007.3.1"/>
+               <zorgverlener_identificatienummer value="000002222"
+                                                 root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Jan"/>
                   <geslachtsnaam>
@@ -4580,7 +5679,8 @@
                </zorgaanbieder>
             </zorgverlener>
             <zorgaanbieder id="urn-uuid-59e22b4c-a281-11ef-1766-020000000000">
-               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <zorgaanbieder_identificatienummer value="01236578"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>
@@ -4594,7 +5694,8 @@
                </adresgegevens>
             </zorgaanbieder>
             <zorgaanbieder id="urn-uuid-59e22ba6-a281-11ef-1766-020000000000">
-               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+               <zorgaanbieder_identificatienummer value="00001111"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>
@@ -4607,7 +5708,8 @@
                </adresgegevens>
             </zorgaanbieder>
             <zorgaanbieder id="urn-uuid-59e22c00-a281-11ef-1766-020000000000">
-               <zorgaanbieder_identificatienummer value="00005111" root="2.16.528.1.1007.3.3"/>
+               <zorgaanbieder_identificatienummer value="00005111"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Itis"/>
                <adresgegevens>
                   <straat value="Langelaan"/>
@@ -4620,7 +5722,8 @@
                </adresgegevens>
             </zorgaanbieder>
             <zorgaanbieder id="urn-uuid-59e22c5a-a281-11ef-1766-020000000000">
-               <zorgaanbieder_identificatienummer value="00004444" root="2.16.528.1.1007.3.3"/>
+               <zorgaanbieder_identificatienummer value="00004444"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Ziekenhuis het Gele Hart"/>
                <adresgegevens>
                   <straat value="Groenestraat"/>
@@ -4637,7 +5740,8 @@
                                  displayName="Ziekenhuis"/>
             </zorgaanbieder>
             <zorgaanbieder id="urn-uuid-59e22cb4-a281-11ef-1766-020000000000">
-               <zorgaanbieder_identificatienummer value="99901111" root="2.16.528.1.1007.3.3"/>
+               <zorgaanbieder_identificatienummer value="99901111"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek Jansen en Co"/>
             </zorgaanbieder>
          </bouwstenen>

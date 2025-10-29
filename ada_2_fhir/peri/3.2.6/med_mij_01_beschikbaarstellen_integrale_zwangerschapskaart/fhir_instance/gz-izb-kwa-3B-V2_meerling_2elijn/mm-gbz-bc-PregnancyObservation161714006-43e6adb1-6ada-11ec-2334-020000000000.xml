@@ -1,0 +1,76 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izb-kwa-3B-V2_meerling_2elijn /adaxml/data/med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/zwangerschapsgegevens/zwangerschap/aterme_datum_items/aterme_datum (peri32-dataelement-3347) -->
+   <id value="43e6adb1-6ada-11ec-2334-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-PregnancyObservation"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Jamila J XXX_Kwee. Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 1 XXX_Kwee_Vrouw</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -205}</td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>uit verwijzing verloskundigenpraktijk</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="geschatte datum van partus (waarneembare entiteit) (161714006 - SNOMED CT)">geschatte datum van partus (waarneembare entiteit)</span>
+                  </td>
+                  <td>${DATE, T, D, +10}</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
+      <valueReference>
+         <reference value="Condition/55733513-6a97-11ec-2334-020000000000"/>
+         <display value="Zwangerschap 1 XXX_Kwee_Vrouw"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="43e6adb1-6ada-11ec-2334-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="161714006"/>
+         <display value="geschatte datum van partus (waarneembare entiteit)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/JAMILA-J-XXX-KWEE"/>
+      <display value="Jamila J XXX_Kwee"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/c934f973-6b23-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Kwee_Vrouw"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -205}"/>
+   <valueDateTime value="${DATE, T, D, +10}"/>
+   <method>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+         <code value="OTH"/>
+         <display value="Anders"/>
+      </coding>
+      <text value="uit verwijzing verloskundigenpraktijk"/>
+   </method>
+</Observation>

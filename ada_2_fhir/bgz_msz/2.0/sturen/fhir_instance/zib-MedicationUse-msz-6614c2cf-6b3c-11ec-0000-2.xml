@@ -17,15 +17,16 @@
             <tbody>
                <tr>
                   <th>Medicatie</th>
-                  <td>Type medicatie: FLUCLOXACILLINE CAPSULE 500MG</td>
+                  <td>FLUCLOXACILLINE CAPSULE 500MG</td>
                </tr>
                <tr>
                   <th>Informant</th>
-                  <td>${DATE, T, D, +0}T08:00:00+02:00</td>
+                  <td>T{08:00}</td>
                </tr>
                <tr>
                   <th>Dosering</th>
                   <td>
+                     <div>Tekst: Vanaf &lt;T-2D&gt;, 10 dagen, 3 keer per dag 1 stuk, oraal, op een lege maag innemen minstens 1 uur vóór of 2 uur na de maaltijd, niet meteen gaan liggen nu inname van Fluclaxacilline.</div>
                      <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
                      </div>
                   </td>
@@ -47,9 +48,6 @@
          <display value="Michelle M.B. Michelle Bergzoon Verheul"/>
       </valueReference>
    </extension>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-      <valueString value="Vanaf &lt;T-2D&gt;, 10 dagen, 3 keer per dag 1 stuk, oraal, op een lege maag innemen minstens 1 uur vóór of 2 uur na de maaltijd, niet meteen gaan liggen nu inname van Fluclaxacilline."/>
-   </extension>
    <status value="active"/>
    <category>
       <coding>
@@ -60,10 +58,10 @@
       <text value="Medicatiegebruik"/>
    </category>
    <medicationReference>
-      <reference value="Medication/zib-Product-msz-445bf61a-6b38-11ec-0000-2"/>
-      <display value="Type medicatie: FLUCLOXACILLINE CAPSULE 500MG"/>
+      <reference value="Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-5274"/>
+      <display value="FLUCLOXACILLINE CAPSULE 500MG"/>
    </medicationReference>
-   <dateAsserted value="${DATE, T, D, +0}T08:00:00+02:00"/>
+   <dateAsserted value="T{08:00}"/>
    <subject>
       <reference value="Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL"/>
       <display value="Michelle M.B. Michelle Bergzoon Verheul"/>
@@ -73,6 +71,7 @@
       <text value="Patiënt heeft er 2 dagen kuur opzitten elders."/>
    </note>
    <dosage>
+      <text value="Vanaf &lt;T-2D&gt;, 10 dagen, 3 keer per dag 1 stuk, oraal, op een lege maag innemen minstens 1 uur vóór of 2 uur na de maaltijd, niet meteen gaan liggen nu inname van Fluclaxacilline."/>
       <route>
          <coding>
             <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>

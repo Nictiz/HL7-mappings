@@ -6,18 +6,18 @@
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
-         <div>Id 999901497 (BSN), <span title="Naamsamenstelling: Partnernaam gevolgd door eigennaam">Ghaniya Saïda G.S.N. Çelik-Noermohamed</span> (Ghan), Vrouw, 27 december 1985, <i>Overleden 1 juli 2018</i>, Meerling</div>
+         <div>Id 999901497 (BSN), <span title="Naamsamenstelling: Partnernaam gevolgd door eigennaam">Ghaniya Saïda G.S.N. Çelik-Noermohamed</span> (Ghan), Vrouw, 27 december 1985, <i>Overleden 1 juli 2018</i>, Meerling, <span title="Gehuwd (M - v3/MaritalStatus)">Gehuwd</span>
+         </div>
          <div>
             <a href="tel:06-99990100">06-99990100</a> (Mobiel Privé), <a href="tel:021-9990100">021-9990100</a> (Vast telefoonnummer Tijdelijk), <a href="mailto:test2@testweb.nl">test2@testweb.nl</a> (E-mail Privé), <a href="mailto:test@testweb.nl">test@testweb.nl</a> (E-mail Werk)</div>
-         <div>Knolweg 1000 Naam woning: De Derde Viool, 9999XA STITSWERD Het Hogeland, Nederland (Bezoek)<br/>Knolweg 1002 C IV Tijdelijk adres tijdens het vervangen van de fundering to, 9999ZZ Stitswerd Het Hogeland, Nederland (TMP)<br/>Knolweg 1002 D, (WP)<br/>
+         <div>Knolweg 1000 Naam woning: De Derde Viool, 9999XA STITSWERD Het Hogeland, NL (Bezoek)<br/>Knolweg 1002 C IV Tijdelijk adres tijdens het vervangen van de fundering to, 9999ZZ Stitswerd Het Hogeland, NL (TMP)<br/>Knolweg 1002 D, (WP)<br/>
          </div>
          <div>
             <span title="Zwager (BROINLAW - v3/RoleCode)">Zwager</span>, <span title="Eerste relatie/contactpersoon (1 - RoleCodeLijst (COD472-VEKT))">Eerste relatie/contactpersoon</span>: <span title="Naamsamenstelling: Eigennaam">Fictief Kimliği belirsiz F.K.B.Ş. bir şahıs</span>
             <div>
-               <a href="tel:021-9990007">021-9990007</a> (Vast telefoonnummer Privé), <a href="mailto:birsahis@postnl.nl">birsahis@postnl.nl</a> (E-mail Werk), Knolweg 1013 b huis met gele deur by, 9999ZZ Stitswerd Het Hogeland, Nederland (Bezoek)</div>
+               <a href="tel:021-9990007">021-9990007</a> (Vast telefoonnummer Privé), <a href="mailto:birsahis@postnl.nl">birsahis@postnl.nl</a> (E-mail Werk), Knolweg 1013 b huis met gele deur by, 9999ZZ Stitswerd Het Hogeland, NL (Bezoek)</div>
          </div>
-         <div>Huisarts: Hip Plato Orpheus H.P.O Crates van Kos<div>Zorgverlenerrol: Huisarts</div>, Zaterdagdokter<div>Zorgverlenerrol: Huisarts</div>
-         </div>
+         <div>Huisarts: Hip Plato Orpheus H.P.O Crates van Kos || Huisarts || Centrum Kos de rechte rug, Zaterdagdokter || Huisarts</div>
       </div>
    </text>
    <identifier>
@@ -28,6 +28,7 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
          <valueCode value="NL3"/>
       </extension>
+      <text value="Ghaniya Saïda G.S.N. Çelik-Noermohamed"/>
       <family value="Çelik-Noermohamed">
          <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
             <valueString value="Noermohamed"/>
@@ -129,7 +130,7 @@
       <city value="STITSWERD"/>
       <district value="Het Hogeland"/>
       <postalCode value="9999XA"/>
-      <country value="Nederland">
+      <country value="NL">
          <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
             <valueCodeableConcept>
                <coding>
@@ -176,7 +177,7 @@
       <city value="Stitswerd"/>
       <district value="Het Hogeland"/>
       <postalCode value="9999ZZ"/>
-      <country value="Nederland">
+      <country value="NL">
          <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
             <valueCodeableConcept>
                <coding>
@@ -212,6 +213,13 @@
          </extension>
       </line>
    </address>
+   <maritalStatus>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/MaritalStatus"/>
+         <code value="M"/>
+         <display value="Gehuwd"/>
+      </coding>
+   </maritalStatus>
    <multipleBirthBoolean value="true"/>
    <contact>
       <relationship>
@@ -232,6 +240,7 @@
          <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
             <valueCode value="NL1"/>
          </extension>
+         <text value="Fictief Kimliği belirsiz F.K.B.Ş. bir şahıs"/>
          <family value="bir şahıs">
             <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
                <valueString value="bir"/>
@@ -302,7 +311,7 @@
          <city value="Stitswerd"/>
          <district value="Het Hogeland"/>
          <postalCode value="9999ZZ"/>
-         <country value="Nederland">
+         <country value="NL">
             <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                <valueCodeableConcept>
                   <coding>
@@ -319,8 +328,8 @@
    <generalPractitioner>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
          <valueReference>
-            <reference value="PractitionerRole/nl-core-practitionerrole-msz-1000001001-015"/>
-            <display value="Huisarts"/>
+            <reference value="PractitionerRole/nl-core-practitionerrole-msz-1000001001-01520000010"/>
+            <display value="Hip Plato Orpheus H.P.O Crates van Kos || Huisarts || Centrum Kos de rechte rug"/>
          </valueReference>
       </extension>
       <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000010"/>
@@ -330,7 +339,7 @@
       <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
          <valueReference>
             <reference value="PractitionerRole/nl-core-practitionerrole-msz-1000001601-015"/>
-            <display value="Huisarts"/>
+            <display value="Zaterdagdokter || Huisarts"/>
          </valueReference>
       </extension>
       <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000016"/>

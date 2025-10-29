@@ -1,10 +1,8 @@
-<?xml-model phase="#ALL" href="file:/C:/SourceTree/SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_mgb.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<organizer xmlns="urn:hl7-org:v3"
-           xmlns:pharm="urn:ihe:pharm:medication"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           classCode="CLUSTER"
+<organizer classCode="CLUSTER"
            moodCode="EVN"
-           xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SourceTree/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd">
+           xmlns="urn:hl7-org:v3"
+           xmlns:pharm="urn:ihe:pharm:medication"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9411"/>
    <code code="102"
          displayName="Medicatiegegevens"
@@ -13,19 +11,23 @@
    <statusCode nullFlavor="NI"/>
    <recordTarget>
       <patientRole>
-         <id extension="999900602" root="2.16.840.1.113883.2.4.6.3"/>
+         <id extension="999900602"
+             root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
                <given qualifier="IN">G.</given>
                <family qualifier="BR">XXX_Hemsbergen</family>
             </name>
-            <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <administrativeGenderCode code="F"
+                                      codeSystem="2.16.840.1.113883.5.1"
+                                      displayName="Vrouw"/>
             <birthTime value="19631102"/>
          </patient>
       </patientRole>
    </recordTarget>
    <component typeCode="COMP">
-      <substanceAdministration classCode="SBADM" moodCode="RQO">
+      <substanceAdministration classCode="SBADM"
+                               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
          <id extension="MBH_300_toedieningssnelheid_MA"
@@ -36,8 +38,8 @@
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">toedieningssnelheid: 0.2 à 0.5 ml/h ml/min, parenteraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20230101000000+0100"/>
-            <high value="20230109235959+0100"/>
+            <low value="20240101000000+0100"/>
+            <high value="20240109235959+0100"/>
          </effectiveTime>
          <routeCode code="10"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -46,7 +48,8 @@
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
                   <code code="94692"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
                         displayName="MORFINE INFVLST 5MG/ML CAS 100ML"
@@ -60,9 +63,10 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20230101084700+0100"/>
+            <time value="20240101084700+0100"/>
             <assignedAuthor>
-               <id extension="000001111" root="2.16.528.1.1007.3.1"/>
+               <id extension="000001111"
+                   root="2.16.528.1.1007.3.1"/>
                <code code="0100"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
                      displayName="Huisartsen, niet nader gespecificeerd"
@@ -76,7 +80,8 @@
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                  <id extension="00001111"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Huisartsenpraktijk Pulver &amp; Partners</name>
                   <addr use="WP">
                      <streetName>Dorpsstraat</streetName>
@@ -89,17 +94,22 @@
          </author>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <rateQuantity>
-                  <low value="0.2" unit="ml/h"/>
-                  <high value="0.5" unit="ml/min"/>
+                  <low value="0.2"
+                       unit="ml/h"/>
+                  <high value="0.5"
+                        unit="ml/min"/>
                </rateQuantity>
                <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                    extension="MBH_300_toedieningssnelheid"/>
@@ -111,7 +121,8 @@
       </substanceAdministration>
    </component>
    <component typeCode="COMP">
-      <substanceAdministration classCode="SBADM" moodCode="RQO">
+      <substanceAdministration classCode="SBADM"
+                               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9416"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9415"/>
          <id extension="MBH_300_toedieningssnelheid_TA"
@@ -122,8 +133,8 @@
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">toedieningssnelheid: 0.2 à 0.5 ml/h, Intraveneus</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20230101000000+0100"/>
-            <high value="20230109235959+0100"/>
+            <low value="20240101000000+0100"/>
+            <high value="20240109235959+0100"/>
          </effectiveTime>
          <routeCode code="5"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -132,7 +143,8 @@
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
                   <code code="2554771"
                         codeSystem="2.16.840.1.113883.2.4.4.7"
                         displayName="MORFINE HCL 3WATER INFVLST 5MG/ML CASS 100ML AHZ"
@@ -150,11 +162,12 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20230101094700+0100"/>
+            <time value="20240101094700+0100"/>
             <assignedAuthor>
                <id nullFlavor="NI"/>
                <representedOrganization>
-                  <id extension="01236578" root="2.16.528.1.1007.3.3"/>
+                  <id extension="01236578"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek De Gulle Gaper</name>
                   <addr use="WP">
                      <streetName>Dorpsstraat</streetName>
@@ -168,17 +181,21 @@
          </author>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <rateQuantity>
-                  <low value="0.2" unit="ml/h"/>
-                  <high value="0.5" unit="ml/h"/>
+                  <low value="0.2"
+                       unit="ml/h"/>
+                  <high value="0.5"
+                        unit="ml/h"/>
                </rateQuantity>
                <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
                <id extension="MBH_300_toedieningssnelheid_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -189,8 +206,10 @@
                <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                    extension="MBH_300_toedieningssnelheid"/>
@@ -202,7 +221,9 @@
       </substanceAdministration>
    </component>
    <component typeCode="COMP">
-      <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="false">
+      <substanceAdministration classCode="SBADM"
+                               moodCode="EVN"
+                               negationInd="false">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9444"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9442"/>
          <id extension="MBH_300_toedieningssnelheid_MGB"
@@ -213,8 +234,8 @@
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">toedieningssnelheid: 0.25 ml/min, intraveneus</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20230101000000+0100"/>
-            <high value="20230109235959+0100"/>
+            <low value="20240101000000+0100"/>
+            <high value="20240109235959+0100"/>
          </effectiveTime>
          <routeCode code="5"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -223,7 +244,8 @@
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9363"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
                   <code code="94692"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
                         displayName="MORFINE INFVLST 5MG/ML CAS 100ML"
@@ -237,9 +259,10 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20230109235959+0100"/>
+            <time value="20240109235959+0100"/>
             <assignedAuthor>
-               <id extension="000001111" root="2.16.528.1.1007.3.1"/>
+               <id extension="000001111"
+                   root="2.16.528.1.1007.3.1"/>
                <code code="0100"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
                      displayName="Huisartsen, niet nader gespecificeerd"
@@ -253,7 +276,8 @@
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                  <id extension="00001111"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Huisartsenpraktijk Pulver &amp; Partners</name>
                   <addr use="WP">
                      <streetName>Dorpsstraat</streetName>
@@ -266,7 +290,8 @@
          </author>
          <informant>
             <assignedEntity>
-               <id extension="999900602" root="2.16.840.1.113883.2.4.6.3"/>
+               <id extension="999900602"
+                   root="2.16.840.1.113883.2.4.6.3"/>
                <code code="ONESELF"
                      displayName="Self"
                      codeSystem="2.16.840.1.113883.5.111"
@@ -274,36 +299,43 @@
             </assignedEntity>
          </informant>
          <entryRelationship typeCode="COMP">
-            <observation classCode="OBS" moodCode="EVN">
+            <observation classCode="OBS"
+                         moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9189"/>
                <code displayName="Gebruikindicator"
                      code="15"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
-               <value xsi:type="BL" value="true"/>
+               <value xsi:type="BL"
+                      value="true"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
-            <observation classCode="OBS" moodCode="EVN">
+            <observation classCode="OBS"
+                         moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9317"/>
                <code displayName="patient takes medication as prescribed (finding)"
                      code="112221000146107"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
-               <value xsi:type="BL" value="true"/>
+               <value xsi:type="BL"
+                      value="true"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <rateQuantity>
-                  <center value="0.25" unit="ml/min"/>
+                  <center value="0.25"
+                          unit="ml/min"/>
                </rateQuantity>
                <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="EVN">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9388"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
@@ -313,7 +345,8 @@
                <author>
                   <time nullFlavor="NI"/>
                   <assignedAuthor>
-                     <id extension="000001111" root="2.16.528.1.1007.3.1"/>
+                     <id extension="000001111"
+                         root="2.16.528.1.1007.3.1"/>
                      <code code="0100"
                            codeSystem="2.16.840.1.113883.2.4.6.7"
                            displayName="Huisartsen, niet nader gespecificeerd"
@@ -327,7 +360,8 @@
                         </name>
                      </assignedPerson>
                      <representedOrganization>
-                        <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                        <id extension="00001111"
+                            root="2.16.528.1.1007.3.3"/>
                         <name>Huisartsenpraktijk Pulver &amp; Partners</name>
                         <addr use="WP">
                            <streetName>Dorpsstraat</streetName>
@@ -341,7 +375,8 @@
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
                <id extension="MBH_300_toedieningssnelheid_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -352,8 +387,10 @@
                <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                    extension="MBH_300_toedieningssnelheid"/>
@@ -365,7 +402,8 @@
       </substanceAdministration>
    </component>
    <component typeCode="COMP">
-      <substanceAdministration classCode="SBADM" moodCode="EVN">
+      <substanceAdministration classCode="SBADM"
+                               moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9406"/>
          <id extension="MBH_300_toedieningssnelheid_MTD"
              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
@@ -373,7 +411,7 @@
                displayName="toediening van medicatie (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <effectiveTime value="20230101114939+0100"/>
+         <effectiveTime value="20240101114939+0100"/>
          <routeCode code="5"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
                     displayName="intraveneus"
@@ -393,7 +431,8 @@
             </qualifier>
          </approachSiteCode>
          <doseQuantity>
-            <center value="100" unit="ml">
+            <center value="100"
+                    unit="ml">
                <translation value="100"
                             code="233"
                             displayName="milliliter"
@@ -402,12 +441,14 @@
             </center>
          </doseQuantity>
          <rateQuantity>
-            <center value="0.3" unit="ml/h"/>
+            <center value="0.3"
+                    unit="ml/h"/>
          </rateQuantity>
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
                   <code code="2554771"
                         codeSystem="2.16.840.1.113883.2.4.4.7"
                         displayName="MORFINE HCL 3WATER INFVLST 5MG/ML CASS 100ML AHZ"
@@ -427,7 +468,8 @@
          <performer>
             <time nullFlavor="NI"/>
             <assignedEntity>
-               <id extension="000001111" root="2.16.528.1.1007.3.1"/>
+               <id extension="000001111"
+                   root="2.16.528.1.1007.3.1"/>
                <code code="0100"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
                      displayName="Huisartsen, niet nader gespecificeerd"
@@ -441,7 +483,8 @@
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                  <id extension="00001111"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Huisartsenpraktijk Pulver &amp; Partners</name>
                   <addr use="WP">
                      <streetName>Dorpsstraat</streetName>
@@ -453,13 +496,14 @@
             </assignedEntity>
          </performer>
          <author>
-            <time value="20230101114939+0100"/>
+            <time value="20240101114939+0100"/>
             <assignedAuthor>
                <id nullFlavor="NI"/>
             </assignedAuthor>
          </author>
          <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
                <id extension="MBH_300_toedieningssnelheid_TA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
@@ -470,8 +514,10 @@
                <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                    extension="MBH_300_toedieningssnelheid"/>

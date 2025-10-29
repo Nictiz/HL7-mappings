@@ -1,0 +1,125 @@
+<html lang="en">
+   <head>
+      <title>DiagnosticReport - 9fbb4d0f-6b7c-11ec-2120-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Diagnostisch verslag. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Status: definitief</caption>
+               <tbody>
+                  <tr>
+                     <th>Context</th>
+                     <td>Zwangerschap 2 Vrouw-XXX_Yzendoorn</td>
+                  </tr>
+                  <tr>
+                     <th>Code</th>
+                     <td>
+                        <span title="echografie voor foetale groei (verrichting) (241493005 - SNOMED CT)">echografie voor foetale groei (verrichting)</span>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Gemaakt</th>
+                     <td>${DATE, T, D, -330} - ${DATE, T, D, -330}</td>
+                  </tr>
+                  <tr>
+                     <th>Resultaat</th>
+                     <td>echografische bevindingen algemeen observatie Vrouw-XXX_Yzendoorn</td>
+                  </tr>
+                  <tr>
+                     <th>Resultaat</th>
+                     <td>foetale buikomtrek ac meting Vrouw-XXX_Yzendoorn</td>
+                  </tr>
+                  <tr>
+                     <th>Resultaat</th>
+                     <td>foetale schedelomvang Vrouw-XXX_Yzendoorn</td>
+                  </tr>
+                  <tr>
+                     <th>Resultaat</th>
+                     <td>foetale hartslag hartfrequentie Vrouw-XXX_Yzendoorn</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - DiagnosticReport echografie voor foetale groei (verrichting)</b>
+      </p>
+      <ul>
+         <li>
+            <a href="mm-gbz-bc-ObstetricProcedure713076009-a02f847a-6b10-11ec-2241-020000000000.html">Procedure prenatale risico-evaluatie (verrichting)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ObstetricProcedure241493005-1757908f-6b19-11ec-2241-020000000000.html">Procedure echografie voor foetale groei (verrichting)</a>
+         </li>
+      </ul>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 3, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-14d1a1ff-6b66-11ec-0000-020000000000.html" }, 
+{ id: 16, label: "DiagnosticReport echografie voor foetale groei (verrichting)", url: "mm-gbz-bc-PregnancyUltraSound241493005-9fbb4d0f-6b7c-11ec-2120-020000000000.html" }, 
+{ id: 108, label: "Observation interpretatie van echografie", url: "mm-gbz-bc-PregnancyUltraSoundGeneralFindings290201000146101-162f7dbf-6b39-11ec-2891-020000000000.html" }, 
+{ id: 109, label: "Observation Omtrek [afmeting] in abdomen^foetus d.m.v. echografische bepaling", url: "mm-gbz-bc-FetusObservation11979-2-787efb9f-6b29-11ec-2351-020000000000.html" }, 
+{ id: 110, label: "Observation Fronto-occipitale omtrek [afmeting] in hoofd", url: "mm-gbz-zib-HeadCircumference9843-4-e20e2e86-6aee-11ec-2362-020000000000.html" }, 
+{ id: 111, label: "Observation Hartslagfrequentie [aantal/tijd]", url: "mm-gbz-bc-FetalHeartRate8867-4-a2dc1f25-6b72-11ec-2178-020000000000.html" }, 
+{ id: 118, label: "Patient XXX_Yzendoorn-van den XXX_Berg", url: "mm-gbz-bc-Woman-WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 16, to: 118 }, 
+{ from: 16, to: 3 }, 
+{ from: 16, to: 108 }, 
+{ from: 16, to: 109 }, 
+{ from: 16, to: 110 }, 
+{ from: 16, to: 111 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

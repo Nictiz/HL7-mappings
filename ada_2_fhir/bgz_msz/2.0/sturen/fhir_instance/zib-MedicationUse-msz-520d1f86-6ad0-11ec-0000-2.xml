@@ -1,0 +1,101 @@
+<MedicationStatement xmlns="http://hl7.org/fhir">
+   <id value="zib-MedicationUse-msz-520d1f86-6ad0-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>MedicationStatement. Subject: Olivia Madelief O.M.W. Olijf de Wilson Çelik. Categorie: <span title="Medicatiegebruik (6 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.3)">Medicatiegebruik</span>, Status: actief<span style="display: block;">Auteur: Olivia Madelief O.M.W. Olijf de Wilson Çelik</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>IBUPROFEN TABLET 600MG</td>
+               </tr>
+               <tr>
+                  <th>Informant</th>
+                  <td>23:00:00, 22 februari 2008</td>
+               </tr>
+               <tr>
+                  <th>Dosering</th>
+                  <td>
+                     <div>Volgnummer: 1</div>
+                     <div>Tekst: 3 keer per dag 0 of 1 stuk</div>
+                     <div>Timing: <div>3 maal per dag</div>
+                     </div>
+                     <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                     </div>
+                     <div>Dosering: 0 STUK - 1 STUK</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Medicatie gebruikt</th>
+                  <td>ja</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-AsAgreedIndicator">
+      <valueBoolean value="true"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+      <valueReference>
+         <reference value="Patient/OLIVIA-MADELIEF-O-M-W--OLIJF-DE-WILSON-ELIK"/>
+         <display value="Olivia Madelief O.M.W. Olijf de Wilson Çelik"/>
+      </valueReference>
+   </extension>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+         <code value="6"/>
+         <display value="Medicatiegebruik"/>
+      </coding>
+      <text value="Medicatiegebruik"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-17469"/>
+      <display value="IBUPROFEN TABLET 600MG"/>
+   </medicationReference>
+   <dateAsserted value="2008-02-22T23:00:00+01:00"/>
+   <subject>
+      <reference value="Patient/OLIVIA-MADELIEF-O-M-W--OLIJF-DE-WILSON-ELIK"/>
+      <display value="Olivia Madelief O.M.W. Olijf de Wilson Çelik"/>
+   </subject>
+   <taken value="y"/>
+   <dosage>
+      <sequence value="1"/>
+      <text value="3 keer per dag 0 of 1 stuk"/>
+      <timing>
+         <repeat>
+            <frequency value="3"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseRange>
+         <low>
+            <value value="0"/>
+            <unit value="STUK"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="ST"/>
+         </low>
+         <high>
+            <value value="1"/>
+            <unit value="STUK"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="ST"/>
+         </high>
+      </doseRange>
+   </dosage>
+</MedicationStatement>

@@ -1,0 +1,75 @@
+<Condition xmlns="http://hl7.org/fhir">
+   <id value="zib-Problem-msz-5cbb6f2a-6b05-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Aandoening. Subject: Jan Adrianus J.A.H. Jan van Houten. Categorie: <span title="Diagnose (282291009 - SNOMED CT)">Diagnose</span>, Status: actief</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Conservatief</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="polsfractuur (31641000146105 - SNOMED CT)">polsfractuur</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>${DATE, T, D, -45}</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="55561003"/>
+               <display value="Actueel"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="282291009"/>
+         <display value="Diagnose"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="31641000146105"/>
+         <display value="polsfractuur"/>
+      </coding>
+   </code>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </bodySite>
+   <subject>
+      <reference value="Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN"/>
+      <display value="Jan Adrianus J.A.H. Jan van Houten"/>
+   </subject>
+   <onsetDateTime value="${DATE, T, D, -45}"/>
+   <note>
+      <text value="Conservatief"/>
+   </note>
+</Condition>

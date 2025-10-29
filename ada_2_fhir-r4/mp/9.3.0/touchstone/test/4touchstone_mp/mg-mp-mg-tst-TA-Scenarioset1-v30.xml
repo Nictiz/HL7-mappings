@@ -6,7 +6,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:4a525f0d-6b1f-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:58354908-6b19-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -43,9 +43,9 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:f543951d-6b24-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:7ed5e604-6b31-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
+               <display value="METOCLOPRAMIDE HCL ACCORD TABLET 10MG"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:4c764878-6b0d-11ec-0000-020000000000"/>
@@ -524,6 +524,101 @@
       </request>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:01105f0d-6b2d-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, +0}T12:20:00+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="1 maal per dag, cutaan"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
+                     <valueDuration>
+                        <value value="3"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </valueDuration>
+                  </extension>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PeriodOfUse.Condition">
+                     <valueString value="3 dagen voor operatie starten"/>
+                  </extension>
+                  <start value="${DATE, T, D, +1}T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_start_criterium"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <value value="MBH_300_start_criterium_TA"/>
+            </identifier>
+            <status value="unknown"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="toedieningsafspraak"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:267e9ee9-6b27-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="CHLOORHEXIDINE DIGLUCONAAT CREME 1%"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:4c764878-6b0d-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, D. XXX_Dijks"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
+                  <type value="Organization"/>
+                  <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_start_criterium_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_start_criterium_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </authorizingPrescription>
+            <dosageInstruction>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="53"/>
+                     <display value="cutaan"/>
+                  </coding>
+               </route>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
+   </entry>
+   <entry>
       <fullUrl value="urn:uuid:4c764878-6b0d-11ec-0000-020000000000"/>
       <resource>
          <Patient>
@@ -648,6 +743,39 @@
       </request>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:267e9ee9-6b27-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="1189921"/>
+                  <display value="CHLOORHEXIDINE DIGLUCONAAT CREME 1%"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="10138"/>
+                  <display value="CHLOORHEXIDINE CREME 10MG/G"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="26603"/>
+                  <display value="CHLOORHEXIDINE CREME 10MG/G"/>
+               </coding>
+               <text value="CHLOORHEXIDINE DIGLUCONAAT CREME 1%"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
       <fullUrl value="urn:uuid:e4eea4e9-6b56-11ec-0000-020000000000"/>
       <resource>
          <Medication>
@@ -714,7 +842,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f543951d-6b24-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:7ed5e604-6b31-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -723,8 +851,8 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="560308"/>
-                  <display value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
+                  <code value="2115468"/>
+                  <display value="METOCLOPRAMIDE HCL ACCORD TABLET 10MG"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
@@ -737,7 +865,7 @@
                   <code value="19429"/>
                   <display value="METOCLOPRAMIDE TABLET 10MG"/>
                </coding>
-               <text value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
+               <text value="METOCLOPRAMIDE HCL ACCORD TABLET 10MG"/>
             </code>
          </Medication>
       </resource>

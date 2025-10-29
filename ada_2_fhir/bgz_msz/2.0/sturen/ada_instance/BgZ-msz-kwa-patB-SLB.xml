@@ -4,7 +4,7 @@
          created-by="zibsada"
          last-update-by="zibsada"
          creation-date="2024-04-26T07:23:55.772Z"
-         last-update-date="2025-05-07T12:06:20.772Z"/>
+         last-update-date="2025-10-09T10:07:03.277Z"/>
    <data>
       <sturen app="bgz2017-2.0"
               shortName="sturen"
@@ -106,11 +106,11 @@
                <overlijdens_indicator value="false"
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.85"/>
                <huisartsgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1202">
-                  <huisarts conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1204">
-                     <zorgverlener value="bgz-msz-patB-healthProf1"
-                                   datatype="reference"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1207"/>
-                  </huisarts>
+                  <praktijk conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1203">
+                     <zorgaanbieder value="bgz-msz-patB-healthcareProv1"
+                                    datatype="reference"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1206"/>
+                  </praktijk>
                </huisartsgegevens>
                <eerste_contactpersoon conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2757">
                   <contactpersoon value="bgz-msz-patB-contactperson1"
@@ -1307,7 +1307,7 @@
          </waarschuwingen>
          <allergieen conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.204">
             <allergie_intolerantie id="bgz-msz-patB-allergy10"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.211">
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2951">
                <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1546">
                   <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1562">
                      <patient conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1563">
@@ -1320,25 +1320,51 @@
                <veroorzakende_stof code="372666009"
                                    codeSystem="2.16.840.1.113883.6.96"
                                    displayName="spierrelaxans"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.212"/>
-               <symptoom conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.220"
-                         value="5"
-                         code="4386001"
-                         codeSystem="2.16.840.1.113883.6.96"
-                         displayName="Bronchospasme"/>
-               <begin_datum_tijd value="2024"
-                                 datatype="datetime"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.215"/>
-               <allergie_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.214"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2952"/>
+               <allergie_categorie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2953"
+                                   value="2"
+                                   code="419511003"
+                                   codeSystem="2.16.840.1.113883.6.96"
+                                   displayName="Medicijn"/>
+               <allergie_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2954"
                                 value="1"
                                 code="active"
                                 codeSystem="2.16.840.1.113883.5.14"
                                 displayName="Actief"/>
+               <begin_datum_tijd value="2024"
+                                 datatype="datetime"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2955"/>
+               <mate_van_kritiek_zijn conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2956"
+                                      value="2"
+                                      code="6736007"
+                                      codeSystem="2.16.840.1.113883.6.96"
+                                      displayName="Matig"/>
                <toelichting value="Allergische reactie door spierontspanner tijdens narcose"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.218"/>
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2958"/>
+               <reactie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2959">
+                  <symptoom conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2960"
+                            value="5"
+                            code="4386001"
+                            codeSystem="2.16.840.1.113883.6.96"
+                            displayName="Bronchospasme"/>
+                  <specifieke_stof code="372495006"
+                                   codeSystem="2.16.840.1.113883.6.96"
+                                   displayName="cisatracurium"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2961"/>
+                  <ernst conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2963"
+                         value="2"
+                         code="6736007"
+                         codeSystem="2.16.840.1.113883.6.96"
+                         displayName="Matig"/>
+                  <wijze_van_blootstelling code="432054008"
+                                           codeSystem="2.16.840.1.113883.6.96"
+                                           codeSystemName="SNOMED Clinical Terms"
+                                           displayName="intraveneuze infusie van geneesmiddel"
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2964"/>
+               </reactie>
             </allergie_intolerantie>
             <allergie_intolerantie id="bgz-msz-patB-allergy1"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.211">
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2951">
                <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1546">
                   <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1562">
                      <patient conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1563">
@@ -1351,33 +1377,68 @@
                <veroorzakende_stof code="372786004"
                                    codeSystem="2.16.840.1.113883.6.96"
                                    displayName="clindamycine"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.212"/>
-               <symptoom conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.220"
-                         value="13"
-                         code="62315008"
-                         codeSystem="2.16.840.1.113883.6.96"
-                         displayName="Diarree"/>
-               <symptoom conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.220"
-                         value="6"
-                         code="126485001"
-                         codeSystem="2.16.840.1.113883.6.96"
-                         displayName="Urticaria"/>
-               <symptoom conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.220"
-                         value="8"
-                         code="418363000"
-                         codeSystem="2.16.840.1.113883.6.96"
-                         displayName="Jeuk"/>
-               <begin_datum_tijd value="2016-03"
-                                 datatype="datetime"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.215"/>
-               <allergie_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.214"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2952"/>
+               <allergie_categorie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2953"
+                                   value="2"
+                                   code="419511003"
+                                   codeSystem="2.16.840.1.113883.6.96"
+                                   displayName="Medicijn"/>
+               <allergie_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2954"
                                 value="1"
                                 code="active"
                                 codeSystem="2.16.840.1.113883.5.14"
                                 displayName="Actief"/>
+               <begin_datum_tijd value="2016-03"
+                                 datatype="datetime"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2955"/>
+               <mate_van_kritiek_zijn conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2956"
+                                      value="2"
+                                      code="6736007"
+                                      codeSystem="2.16.840.1.113883.6.96"
+                                      displayName="Matig"/>
+               <reactie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2959">
+                  <symptoom conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2960"
+                            value="13"
+                            code="62315008"
+                            codeSystem="2.16.840.1.113883.6.96"
+                            displayName="Diarree"/>
+                  <ernst conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2963"
+                         value="2"
+                         code="6736007"
+                         codeSystem="2.16.840.1.113883.6.96"
+                         displayName="Matig"/>
+                  <wijze_van_blootstelling code="26643006"
+                                           codeSystem="2.16.840.1.113883.6.96"
+                                           codeSystemName="SNOMED Clinical Terms"
+                                           displayName="orale route"
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2964"/>
+                  <reactie_tijdstip value=" 2016-03"
+                                    datatype="datetime"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2965"/>
+               </reactie>
+               <reactie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2959">
+                  <symptoom conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2960"
+                            value="6"
+                            code="126485001"
+                            codeSystem="2.16.840.1.113883.6.96"
+                            displayName="Urticaria"/>
+                  <symptoom conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2960"
+                            value="8"
+                            code="418363000"
+                            codeSystem="2.16.840.1.113883.6.96"
+                            displayName="Jeuk"/>
+                  <wijze_van_blootstelling code="26643006"
+                                           codeSystem="2.16.840.1.113883.6.96"
+                                           codeSystemName="SNOMED Clinical Terms"
+                                           displayName="orale route"
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2964"/>
+                  <reactie_tijdstip value="2016-02"
+                                    datatype="datetime"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2965"/>
+               </reactie>
             </allergie_intolerantie>
             <allergie_intolerantie id="bgz-msz-patB-allergy2"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.211">
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2951">
                <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1546">
                   <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1562">
                      <patient conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1563">
@@ -1390,24 +1451,46 @@
                <veroorzakende_stof code="260171000146104"
                                    codeSystem="2.16.840.1.113883.6.96"
                                    displayName="bruine pleister"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.212"/>
-               <symptoom originalText="Huidirritatie"
-                         conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.220"
-                         value="16"
-                         code="OTH"
-                         codeSystem="2.16.840.1.113883.5.1008"
-                         displayName="Overig"/>
-               <begin_datum_tijd value="2013"
-                                 datatype="datetime"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.215"/>
-               <allergie_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.214"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2952"/>
+               <allergie_categorie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2953"
+                                   value="4"
+                                   code="419199007"
+                                   codeSystem="2.16.840.1.113883.6.96"
+                                   displayName="Stof of product"/>
+               <allergie_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2954"
                                 value="1"
                                 code="active"
                                 codeSystem="2.16.840.1.113883.5.14"
                                 displayName="Actief"/>
+               <begin_datum_tijd value="2013"
+                                 datatype="datetime"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2955"/>
+               <mate_van_kritiek_zijn conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2956"
+                                      value="2"
+                                      code="6736007"
+                                      codeSystem="2.16.840.1.113883.6.96"
+                                      displayName="Matig"/>
+               <reactie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2959">
+                  <symptoom originalText="Huidirritatie"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2960"
+                            value="16"
+                            code="OTH"
+                            codeSystem="2.16.840.1.113883.5.1008"
+                            displayName="Overig"/>
+                  <ernst conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2963"
+                         value="2"
+                         code="6736007"
+                         codeSystem="2.16.840.1.113883.6.96"
+                         displayName="Matig"/>
+                  <wijze_van_blootstelling code="448598008"
+                                           codeSystem="2.16.840.1.113883.6.96"
+                                           codeSystemName="SNOMED Clinical Terms"
+                                           displayName="cutane route"
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2964"/>
+               </reactie>
             </allergie_intolerantie>
             <allergie_intolerantie id="bgz-msz-patB-allergy3"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.211">
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2951">
                <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1546">
                   <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1562">
                      <patient conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1563">
@@ -1420,23 +1503,47 @@
                <veroorzakende_stof code="372687004"
                                    codeSystem="2.16.840.1.113883.6.96"
                                    displayName="amoxicilline"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.212"/>
-               <symptoom conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.220"
-                         value="9"
-                         code="271807003"
-                         codeSystem="2.16.840.1.113883.6.96"
-                         displayName="Exantheem"/>
-               <begin_datum_tijd value="2012"
-                                 datatype="datetime"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.215"/>
-               <allergie_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.214"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2952"/>
+               <allergie_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2954"
                                 value="1"
                                 code="active"
                                 codeSystem="2.16.840.1.113883.5.14"
                                 displayName="Actief"/>
+               <begin_datum_tijd value="2012"
+                                 datatype="datetime"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2955"/>
+               <mate_van_kritiek_zijn conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2956"
+                                      value="3"
+                                      code="24484000"
+                                      codeSystem="2.16.840.1.113883.6.96"
+                                      displayName="Ernstig"/>
+               <laatste_reactie_datum_tijd value="2012-04-29"
+                                           datatype="datetime"
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2957"/>
+               <reactie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2959">
+                  <symptoom conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2960"
+                            value="6"
+                            code="126485001"
+                            codeSystem="2.16.840.1.113883.6.96"
+                            displayName="Urticaria"/>
+                  <specifieke_stof code="372687004"
+                                   codeSystem="2.16.840.1.113883.6.96"
+                                   displayName="amoxicilline"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2961"/>
+                  <ernst conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2963"
+                         value="2"
+                         code="6736007"
+                         codeSystem="2.16.840.1.113883.6.96"
+                         displayName="Matig"/>
+                  <wijze_van_blootstelling code="26643006"
+                                           codeSystem="2.16.840.1.113883.6.96"
+                                           codeSystemName="SNOMED Clinical Terms"
+                                           displayName="orale route"
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2964"/>
+               </reactie>
             </allergie_intolerantie>
             <allergie_intolerantie id="bgz-msz-patB-allergy4"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.211">
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2951">
                <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1546">
                   <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1562">
                      <patient conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1563">
@@ -1449,16 +1556,21 @@
                <veroorzakende_stof code="468950001"
                                    codeSystem="2.16.840.1.113883.6.96"
                                    displayName="tandpasta"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.212"/>
-               <symptoom originalText="Irritatie in de mond"
-                         conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.220"
-                         value="16"
-                         code="OTH"
-                         codeSystem="2.16.840.1.113883.5.1008"
-                         displayName="Overig"/>
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2952"/>
+               <laatste_reactie_datum_tijd value="2010-07-15"
+                                           datatype="datetime"
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2957"/>
+               <reactie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2959">
+                  <symptoom originalText="Irritatie in de mond "
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2960"
+                            value="16"
+                            code="OTH"
+                            codeSystem="2.16.840.1.113883.5.1008"
+                            displayName="Overig"/>
+               </reactie>
             </allergie_intolerantie>
             <allergie_intolerantie id="bgz-msz-patB-allergy5"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.211">
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2951">
                <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1546">
                   <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1562">
                      <patient conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1563">
@@ -1471,25 +1583,45 @@
                <veroorzakende_stof code="256440004"
                                    codeSystem="2.16.840.1.113883.6.96"
                                    displayName="gif van wesp"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.212"/>
-               <symptoom conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.220"
-                         value="1"
-                         code="39579001"
-                         codeSystem="2.16.840.1.113883.6.96"
-                         displayName="Anafylaxie"/>
-               <begin_datum_tijd value="1980-08-01"
-                                 datatype="datetime"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.215"/>
-               <allergie_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.214"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2952"/>
+               <allergie_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2954"
                                 value="2"
                                 code="completed"
                                 codeSystem="2.16.840.1.113883.5.14"
                                 displayName="Niet meer aanwezig"/>
+               <begin_datum_tijd value="1980-08-01"
+                                 datatype="datetime"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2955"/>
+               <mate_van_kritiek_zijn conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2956"
+                                      value="1"
+                                      code="255604002"
+                                      codeSystem="2.16.840.1.113883.6.96"
+                                      displayName="Licht"/>
+               <laatste_reactie_datum_tijd value="2008-08-02"
+                                           datatype="datetime"
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2957"/>
                <toelichting value="Patiënt heeft een succesvolle desensibilisatie ondergaan."
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.218"/>
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2958"/>
+               <reactie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2959">
+                  <symptoom conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2960"
+                            value="1"
+                            code="39579001"
+                            codeSystem="2.16.840.1.113883.6.96"
+                            displayName="Anafylaxie"/>
+                  <reactie_beschrijving value=" Sterk verlaagde bloeddruk."
+                                        conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2962"/>
+                  <ernst conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2963"
+                         value="3"
+                         code="24484000"
+                         codeSystem="2.16.840.1.113883.6.96"
+                         displayName="Ernstig"/>
+                  <reactie_tijdstip value="2006-08-22"
+                                    datatype="datetime"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2965"/>
+               </reactie>
             </allergie_intolerantie>
             <allergie_intolerantie id="bgz-msz-patB-allergy6"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.211">
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2951">
                <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1546">
                   <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1562">
                      <patient conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1563">
@@ -1502,20 +1634,39 @@
                <veroorzakende_stof code="372567009"
                                    codeSystem="2.16.840.1.113883.6.96"
                                    displayName="metformine"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.212"/>
-               <symptoom conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.220"
-                         value="9"
-                         code="271807003"
-                         codeSystem="2.16.840.1.113883.6.96"
-                         displayName="Exantheem"/>
-               <allergie_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.214"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2952"/>
+               <allergie_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2954"
                                 value="1"
                                 code="active"
                                 codeSystem="2.16.840.1.113883.5.14"
                                 displayName="Actief"/>
+               <mate_van_kritiek_zijn conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2956"
+                                      value="2"
+                                      code="6736007"
+                                      codeSystem="2.16.840.1.113883.6.96"
+                                      displayName="Matig"/>
+               <laatste_reactie_datum_tijd value="2007-10-20"
+                                           datatype="datetime"
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2957"/>
+               <reactie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2959">
+                  <symptoom conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2960"
+                            value="9"
+                            code="271807003"
+                            codeSystem="2.16.840.1.113883.6.96"
+                            displayName="Exantheem"/>
+                  <specifieke_stof code="372567009"
+                                   displayName="metformine "
+                                   codeSystem="2.16.840.1.113883.6.96"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2961"/>
+                  <ernst conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2963"
+                         value="2"
+                         code="6736007"
+                         codeSystem="2.16.840.1.113883.6.96"
+                         displayName="Matig"/>
+               </reactie>
             </allergie_intolerantie>
             <allergie_intolerantie id="bgz-msz-patB-allergy7"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.211">
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2951">
                <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1546">
                   <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1562">
                      <patient conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1563">
@@ -1528,20 +1679,32 @@
                <veroorzakende_stof code="764146007"
                                    codeSystem="2.16.840.1.113883.6.96"
                                    displayName="penicilline"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.212"/>
-               <symptoom conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.220"
-                         value="6"
-                         code="126485001"
-                         codeSystem="2.16.840.1.113883.6.96"
-                         displayName="Urticaria"/>
-               <allergie_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.214"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2952"/>
+               <allergie_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2954"
                                 value="1"
                                 code="active"
                                 codeSystem="2.16.840.1.113883.5.14"
                                 displayName="Actief"/>
+               <mate_van_kritiek_zijn conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2956"
+                                      value="3"
+                                      code="24484000"
+                                      codeSystem="2.16.840.1.113883.6.96"
+                                      displayName="Ernstig"/>
+               <reactie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2959">
+                  <symptoom conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2960"
+                            value="6"
+                            code="126485001"
+                            codeSystem="2.16.840.1.113883.6.96"
+                            displayName="Urticaria"/>
+                  <ernst conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2963"
+                         value="3"
+                         code="24484000"
+                         codeSystem="2.16.840.1.113883.6.96"
+                         displayName="Ernstig"/>
+               </reactie>
             </allergie_intolerantie>
             <allergie_intolerantie id="bgz-msz-patB-allergy8"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.211">
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2951">
                <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1546">
                   <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1562">
                      <patient conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1563">
@@ -1554,24 +1717,36 @@
                <veroorzakende_stof code="44588005"
                                    codeSystem="2.16.840.1.113883.6.96"
                                    displayName="jodium"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.212"/>
-               <symptoom originalText="Onbekend"
-                         conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.220"
-                         value="16"
-                         code="OTH"
-                         codeSystem="2.16.840.1.113883.5.1008"
-                         displayName="Overig"/>
-               <begin_datum_tijd value="2002"
-                                 datatype="datetime"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.215"/>
-               <allergie_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.214"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2952"/>
+               <allergie_categorie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2953"
+                                   value="4"
+                                   code="419199007"
+                                   codeSystem="2.16.840.1.113883.6.96"
+                                   displayName="Stof of product"/>
+               <allergie_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2954"
                                 value="4"
                                 code="nullified"
                                 codeSystem="2.16.840.1.113883.5.14"
                                 displayName="Foutief"/>
+               <begin_datum_tijd value="2002"
+                                 datatype="datetime"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2955"/>
+               <reactie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2959">
+                  <symptoom originalText="Onbekend"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2960"
+                            value="16"
+                            code="OTH"
+                            codeSystem="2.16.840.1.113883.5.1008"
+                            displayName="Overig"/>
+                  <wijze_van_blootstelling code="47625008"
+                                           codeSystem="2.16.840.1.113883.6.96"
+                                           codeSystemName="SNOMED Clinical Terms"
+                                           displayName="intraveneuze route "
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2964"/>
+               </reactie>
             </allergie_intolerantie>
             <allergie_intolerantie id="bgz-msz-patB-allergy9"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.211">
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2951">
                <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1546">
                   <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1562">
                      <patient conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1563">
@@ -1586,15 +1761,37 @@
                                    codeSystemName="NullFlavor"
                                    preferred="true"
                                    originalText="graspollen"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.212"/>
-               <symptoom conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.220"
-                         value="10"
-                         code="473460002"
-                         codeSystem="2.16.840.1.113883.6.96"
-                         displayName="Allergische conjunctivitis"/>
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2952"/>
+               <allergie_categorie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2953"
+                                   value="3"
+                                   code="426232007"
+                                   codeSystem="2.16.840.1.113883.6.96"
+                                   displayName="Omgeving"/>
                <begin_datum_tijd value="2000-03"
                                  datatype="datetime"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.215"/>
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2955"/>
+               <mate_van_kritiek_zijn conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2956"
+                                      value="2"
+                                      code="6736007"
+                                      codeSystem="2.16.840.1.113883.6.96"
+                                      displayName="Matig"/>
+               <reactie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2959">
+                  <symptoom conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2960"
+                            value="10"
+                            code="473460002"
+                            codeSystem="2.16.840.1.113883.6.96"
+                            displayName="Allergische conjunctivitis"/>
+                  <ernst conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2963"
+                         value="2"
+                         code="6736007"
+                         codeSystem="2.16.840.1.113883.6.96"
+                         displayName="Matig"/>
+                  <wijze_van_blootstelling code="46713006"
+                                           codeSystem="2.16.840.1.113883.6.96"
+                                           codeSystemName="SNOMED Clinical Terms"
+                                           displayName="nasale route "
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2964"/>
+               </reactie>
             </allergie_intolerantie>
          </allergieen>
          <medicatie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2733">
@@ -2272,8 +2469,8 @@
                      </patient>
                   </onderwerp>
                </zibroot>
-               <lengte_waarde value="1.71"
-                              unit="m"
+               <lengte_waarde value="171"
+                              unit="cm"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.382"/>
                <lengte_datum_tijd value="2023-11-23"
                                   datatype="datetime"
@@ -2911,7 +3108,7 @@
             </verrichting>
          </geplande_zorg_activiteit>
          <zorgsetting conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.50">
-            <zorgteam conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2762">
+            <zorg_team conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2762">
                <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2921">
                   <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2937">
                      <patient conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2938">
@@ -2926,28 +3123,28 @@
                        code="active"
                        codeSystem="2.16.840.1.113883.4.642.1.145"
                        displayName="Active"/>
-               <lid conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2945">
+               <zorg_team_lid conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2945">
                   <zorgverlener value="bgz-msz-patB-healthProf2"
                                 datatype="reference"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1209"/>
-               </lid>
-               <lid conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2945">
+               </zorg_team_lid>
+               <zorg_team_lid conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2945">
                   <zorgverlener value="bgz-msz-patB-healthProf3"
                                 datatype="reference"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1209"/>
-               </lid>
-               <lid conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2945">
+               </zorg_team_lid>
+               <zorg_team_lid conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2945">
                   <zorgverlener value="bgz-msz-patB-healthProf4"
                                 datatype="reference"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1209"/>
-               </lid>
+               </zorg_team_lid>
                <verantwoordelijke_organisatie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2946">
                   <zorgaanbieder value="bgz-msz-patB-healthcareProv2"
                                  datatype="reference"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1208"/>
                </verantwoordelijke_organisatie>
-            </zorgteam>
-            <zorgteam conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2762">
+            </zorg_team>
+            <zorg_team conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2762">
                <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2921">
                   <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2937">
                      <patient conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2938">
@@ -2957,17 +3154,17 @@
                      </patient>
                   </onderwerp>
                </zibroot>
-               <lid conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2945">
+               <zorg_team_lid conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2945">
                   <zorgverlener value="bgz-msz-patB-healthProf5"
                                 datatype="reference"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1209"/>
-               </lid>
+               </zorg_team_lid>
                <verantwoordelijke_organisatie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.2946">
                   <zorgaanbieder value="bgz-msz-patB-healthcareProv3"
                                  datatype="reference"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.1208"/>
                </verantwoordelijke_organisatie>
-            </zorgteam>
+            </zorg_team>
          </zorgsetting>
          <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.593">
             <contactpersoon id="bgz-msz-patB-contactperson1"

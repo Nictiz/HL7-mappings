@@ -1,7 +1,8 @@
 <organizer classCode="CLUSTER"
            moodCode="EVN"
            xmlns="urn:hl7-org:v3"
-           xmlns:pharm="urn:ihe:pharm:medication">
+           xmlns:pharm="urn:ihe:pharm:medication"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9411"/>
    <code code="102"
          displayName="Medicatiegegevens"
@@ -112,8 +113,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -126,8 +126,7 @@
                      code="422037009"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -148,7 +147,7 @@
       <substanceAdministration classCode="SBADM"
                                moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9406"/>
-         <id extension="mbh_300_AfwijkendeToediening_MTD_afwijkendeHoeveelheid"
+         <id extension="mbh_300_AfwijkendeToediening_MTD_afwijkendeQty"
              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
          <code code="18629005"
                displayName="toediening van medicatie (verrichting)"
@@ -231,8 +230,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
                <value xsi:type="CE"
-                      nullFlavor="OTH"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                      nullFlavor="OTH">
                   <originalText>Tensie meting uitgevoerd. Uitslag: laag-normaal. Daarom 1 stuks toegediend i.p.v. 2.</originalText>
                </value>
             </observation>
@@ -247,8 +245,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -261,8 +258,7 @@
                      code="422037009"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"

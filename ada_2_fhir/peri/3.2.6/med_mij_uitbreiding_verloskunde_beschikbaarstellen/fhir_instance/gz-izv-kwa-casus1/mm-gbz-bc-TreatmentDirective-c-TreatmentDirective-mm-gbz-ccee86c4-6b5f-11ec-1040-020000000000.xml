@@ -1,0 +1,80 @@
+<Consent xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-kwa-casus1 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/vrouw/behandel_aanwijzing -->
+   <id value="c-TreatmentDirective-mm-gbz-ccee86c4-6b5f-11ec-1040-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-TreatmentDirective"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Toestemming. Patiënt: Maaike M XXX_Ostendorf. Categorie: <span title="verrichting met expliciete context (situatie) (129125009 - SNOMED CT)">verrichting met expliciete context (situatie)</span>, Status: actief<span style="display: block;">Toestemminggevende partij: Maaike M XXX_Ostendorf</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>${DATE, T, D, -400}</td>
+               </tr>
+               <tr>
+                  <th>Toestemminggevende partij</th>
+                  <td>
+                     <ul>
+                        <li>Maaike M XXX_Ostendorf</li>
+                     </ul>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Toegestaan als</th>
+                  <td>
+                     <div>Code</div>
+                     <ul>
+                        <li>
+                           <span title="toediening van bloedproduct (116762002 - SNOMED CT)">toediening van bloedproduct</span>
+                        </li>
+                     </ul>
+                     <div>Periode</div>
+                     <ul>
+                        <li> tot ${DATE, T, D, -100}</li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="d41c4011-6b16-11ec-0000-020000000000"/>
+   </identifier>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="129125009"/>
+         <display value="verrichting met expliciete context (situatie)"/>
+      </coding>
+   </category>
+   <patient>
+      <reference value="Patient/MAAIKE-M-XXX-OSTENDORF"/>
+      <display value="Maaike M XXX_Ostendorf"/>
+   </patient>
+   <dateTime value="${DATE, T, D, -400}"/>
+   <consentingParty>
+      <reference value="Patient/MAAIKE-M-XXX-OSTENDORF"/>
+      <display value="Maaike M XXX_Ostendorf"/>
+   </consentingParty>
+   <policy>
+      <uri value="http://wetten.overheid.nl/"/>
+   </policy>
+   <except>
+      <type value="permit"/>
+      <period>
+         <end value="${DATE, T, D, -100}"/>
+      </period>
+      <code>
+         <system value="http://snomed.info/sct"/>
+         <code value="116762002"/>
+         <display value="toediening van bloedproduct"/>
+      </code>
+   </except>
+</Consent>

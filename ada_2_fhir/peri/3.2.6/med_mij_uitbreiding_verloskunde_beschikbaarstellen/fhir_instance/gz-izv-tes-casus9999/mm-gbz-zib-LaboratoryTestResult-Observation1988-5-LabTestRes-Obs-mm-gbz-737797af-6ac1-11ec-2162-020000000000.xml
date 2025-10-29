@@ -1,0 +1,132 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="LabTestRes-Obs-mm-gbz-737797af-6ac1-11ec-2162-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Maaike M Maaike Ostendorf. Categorie: <span title="Laboratory (laboratory - observation-category)">Laboratory</span>, Status: definitief</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="4">Mogelijk infectie/inflammatie</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td colspan="3">${DATE, T, D, -53}T18:53:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td colspan="3">
+                     <span title="bepaling van C-reactieve proteïne (verrichting) (55235003 - SNOMED CT)">bepaling van C-reactieve proteïne (verrichting)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+                  <th>Interpretatie</th>
+                  <th>Referentiewaarden</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="C reactief proteïne [massa/volume] in serum of plasma (1988-5 - LOINC)">C reactief proteïne [massa/volume] in serum of plasma</span>
+                  </td>
+                  <td>13 mg/L</td>
+                  <td>
+                     <span title="High (H - v2/0078)">High</span>
+                  </td>
+                  <td>
+                     <div>
+                        <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span> 0 mg/L - 10 mg/L</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="8e8689d3-6b0d-11ec-0000-020000000000"/>
+   </identifier>
+   <status value="final">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
+               <code value="final"/>
+               <display value="Definitief"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </status>
+   <category>
+      <coding>
+         <system value="http://hl7.org/fhir/observation-category"/>
+         <code value="laboratory"/>
+         <display value="Laboratory"/>
+      </coding>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="49581000146104"/>
+         <display value="bevinding betreffende laboratoriumonderzoek"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <version value="2.78 2024-08-06"/>
+         <code value="1988-5"/>
+         <display value="C reactief proteïne [massa/volume] in serum of plasma"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/MAAIKE-M-MAAIKE-OSTENDORF"/>
+      <display value="Maaike M Maaike Ostendorf"/>
+   </subject>
+   <effectiveDateTime value="${DATE, T, D, -53}T18:53:00+02:00"/>
+   <valueQuantity>
+      <value value="13"/>
+      <unit value="mg/L"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="mg/L"/>
+   </valueQuantity>
+   <interpretation>
+      <coding>
+         <system value="http://hl7.org/fhir/v2/0078"/>
+         <code value="H"/>
+         <display value="High"/>
+      </coding>
+   </interpretation>
+   <comment value="Mogelijk infectie/inflammatie"/>
+   <method>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="55235003"/>
+         <display value="bepaling van C-reactieve proteïne (verrichting)"/>
+      </coding>
+   </method>
+   <referenceRange>
+      <low>
+         <value value="0"/>
+         <unit value="mg/L"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mg/L"/>
+      </low>
+      <high>
+         <value value="10"/>
+         <unit value="mg/L"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mg/L"/>
+      </high>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/referencerange-meaning"/>
+            <code value="normal"/>
+            <display value="Normal Range"/>
+         </coding>
+      </type>
+   </referenceRange>
+</Observation>

@@ -1,7 +1,8 @@
 <organizer classCode="CLUSTER"
            moodCode="EVN"
            xmlns="urn:hl7-org:v3"
-           xmlns:pharm="urn:ihe:pharm:medication">
+           xmlns:pharm="urn:ihe:pharm:medication"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9411"/>
    <code code="102"
          displayName="Medicatiegegevens"
@@ -10,18 +11,18 @@
    <statusCode nullFlavor="NI"/>
    <recordTarget>
       <patientRole>
-         <id extension="999900778"
+         <id extension="999908881"
              root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
-               <given qualifier="IN">J.</given>
-               <prefix qualifier="VV">de </prefix>
-               <family qualifier="BR">XXX_Luzac</family>
+               <given qualifier="BR">C</given>
+               <prefix qualifier="VV">van de </prefix>
+               <family qualifier="BR">XXX_Voortman</family>
             </name>
-            <administrativeGenderCode code="F"
+            <administrativeGenderCode code="M"
                                       codeSystem="2.16.840.1.113883.5.1"
-                                      displayName="Vrouw"/>
-            <birthTime value="19851024"/>
+                                      displayName="Man"/>
+            <birthTime value="19630918"/>
          </patient>
       </patientRole>
    </recordTarget>
@@ -37,8 +38,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">elke dag om 13:45 1 stuks, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231230000000+0100"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
@@ -57,7 +57,7 @@
                         codeSystemName="G-Standaard HPK">
                      <translation code="16020"
                                   codeSystem="2.16.840.1.113883.2.4.4.10"
-                                  displayName="TRIMETHOPRIM TABLET "
+                                  displayName="TRIMETHOPRIM TABLET"
                                   codeSystemName="G-Standaard PRK"/>
                      <translation code="39136"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
@@ -84,7 +84,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <timeOfDay value="13:45:00"/>
@@ -100,8 +99,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -114,8 +112,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
