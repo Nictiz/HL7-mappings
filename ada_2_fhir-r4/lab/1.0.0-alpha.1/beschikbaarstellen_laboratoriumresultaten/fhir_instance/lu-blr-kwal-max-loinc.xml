@@ -1,0 +1,410 @@
+<Bundle xmlns="http://hl7.org/fhir">
+   <id value="lu-blr-kwal-max-loinc"/>
+   <type value="transaction"/>
+   <entry>
+      <fullUrl value="urn:uuid:78bd6e69-b4ae-11f0-2136-020000000000"/>
+      <resource>
+         <DiagnosticReport>
+            <id value="78bd66a7-b4ae-11f0-2136-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/lu-LaboratoryTestResult-DiagnosticReport"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.25.1.1"/>
+               <value value="AG03"/>
+            </identifier>
+            <basedOn>
+               <reference value="urn:uuid:78bd6e55-b4ae-11f0-2136-020000000000"/>
+               <type value="ServiceRequest"/>
+               <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            </basedOn>
+            <status value="final"/>
+            <category>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v2-0074"/>
+                  <code value="LAB"/>
+                  <display value="Laboratory"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://terminology.hl7.org/ValueSet/v3-NullFlavor"/>
+                  <code value="UNK"/>
+                  <display value="onbekend"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:78bd6d6f-b4ae-11f0-2136-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, E. XXX_Doppen"/>
+            </subject>
+            <performer>
+               <reference value="urn:uuid:78bd6e19-b4ae-11f0-2136-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), organisation-id in system"/>
+            </performer>
+            <result>
+               <reference value="urn:uuid:78bd6e41-b4ae-11f0-2136-020000000000"/>
+               <type value="Observation"/>
+               <display value="laboratorium_test"/>
+            </result>
+         </DiagnosticReport>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:78bd6e41-b4ae-11f0-2136-020000000000"/>
+      <resource>
+         <Observation>
+            <id value="78bd66ad-b4ae-11f0-2136-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
+               <value value="88888"/>
+            </identifier>
+            <status value="final"/>
+            <category>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                  <code value="laboratory"/>
+                  <display value="Laboratory"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="2829-0"/>
+                  <display value="Kalium [mol/tijd] in 24-uursurine"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:78bd6d6f-b4ae-11f0-2136-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, E. XXX_Doppen"/>
+            </subject>
+            <effectiveDateTime value="${DATE, T, D, -12}"/>
+            <performer>
+               <reference value="urn:uuid:78bd6e19-b4ae-11f0-2136-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), organisation-id in system"/>
+            </performer>
+            <valueQuantity>
+               <value value="30"/>
+               <unit value="mmol/24h"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="{mmol/24h}"/>
+            </valueQuantity>
+            <interpretation>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="11896004"/>
+                  <display value="intermediair"/>
+               </coding>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"/>
+                  <code value="I"/>
+                  <display value="Intermediate"/>
+               </coding>
+            </interpretation>
+            <interpretation>
+               <text value="kaliumuitscheiding is aan de lage kant. Binnen referentiebereik. Klinische evaluatie gewenst in context van suppletie."/>
+            </interpretation>
+            <note>
+               <text value="Onderzoek voltooid"/>
+            </note>
+            <specimen>
+               <reference value="urn:uuid:78bd6e7d-b4ae-11f0-2136-020000000000"/>
+               <type value="Specimen"/>
+               <display value="monster"/>
+            </specimen>
+            <referenceRange>
+               <low>
+                  <value value="25"/>
+                  <unit value="mmol/24h"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="{mmol/24h}"/>
+               </low>
+               <high>
+                  <value value="125"/>
+                  <unit value="mmol/24h"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="{mmol/24h}"/>
+               </high>
+            </referenceRange>
+         </Observation>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Observation"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:78bd6e55-b4ae-11f0-2136-020000000000"/>
+      <resource>
+         <ServiceRequest>
+            <id value="78bd8210-b4ae-11f0-2136-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/lu-OrderData"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.25.1.1"/>
+               <value value="AG03"/>
+            </identifier>
+            <status value="completed"/>
+            <intent value="order"/>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="2829-0"/>
+                  <display value="Kalium [mol/tijd] in 24-uursurine"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:78bd6d6f-b4ae-11f0-2136-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, E. XXX_Doppen"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -14}"/>
+            <requester>
+               <reference value="urn:uuid:78bd6d8d-b4ae-11f0-2136-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
+            </requester>
+            <reasonCode>
+               <text value="Evaluatie kaliumuitscheiding bij hypertensie en kaliumsuppletie"/>
+            </reasonCode>
+            <note>
+               <text value="Patiënt gebruikt kaliumsparend diureticum (spironolacton) én kaliumsupplementen. Beoordeeld wordt of er sprake is van kaliumretentie of verhoogde uitscheiding. Ook evaluatie therapietrouw 24-uurs verzameling."/>
+            </note>
+         </ServiceRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="ServiceRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:78bd6d8d-b4ae-11f0-2136-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <id value="78bd8216-b4ae-11f0-2136-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+            </meta>
+            <practitioner>
+               <reference value="urn:uuid:78bd6dab-b4ae-11f0-2136-020000000000"/>
+               <type value="Practitioner"/>
+               <display value="Healthcare professional (person), Peter van Pulver"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:78bd6dc9-b4ae-11f0-2136-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <code value="0101"/>
+                  <display value="Huisartsen, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+            <telecom>
+               <system value="phone"/>
+               <value value="1645645000"/>
+            </telecom>
+         </PractitionerRole>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:78bd6dab-b4ae-11f0-2136-020000000000"/>
+      <resource>
+         <Practitioner>
+            <id value="78bd8216-b4ae-11f0-2136-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+               <value value="00001111"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Peter van Pulver"/>
+               <family value="van Pulver">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Pulver"/>
+                  </extension>
+               </family>
+               <given value="Peter">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+            <telecom>
+               <system value="phone"/>
+               <value value="1645645000"/>
+            </telecom>
+         </Practitioner>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:78bd6e7d-b4ae-11f0-2136-020000000000"/>
+      <resource>
+         <Specimen>
+            <id value="78bd66c7-b4ae-11f0-2136-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
+            </meta>
+            <type>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="276833005"/>
+                  <display value="24-uurs urine"/>
+               </coding>
+            </type>
+            <subject>
+               <reference value="urn:uuid:78bd6d6f-b4ae-11f0-2136-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, E. XXX_Doppen"/>
+            </subject>
+            <collection>
+               <collectedDateTime value="${DATE, T, D, -13}"/>
+            </collection>
+            <note>
+               <text value="Monster is door patiënt zelf verzameld en ingeleverd."/>
+            </note>
+         </Specimen>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Specimen"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:78bd6e19-b4ae-11f0-2136-020000000000"/>
+      <resource>
+         <Organization>
+            <id value="78bd66d7-b4ae-11f0-2136-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <type>
+               <coding>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <version value="2024-11-14T22:13:01"/>
+                  <code value="L1"/>
+                  <display value="Laboratorium"/>
+               </coding>
+            </type>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:78bd6dc9-b4ae-11f0-2136-020000000000"/>
+      <resource>
+         <Organization>
+            <id value="78bd8231-b4ae-11f0-2136-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00001111"/>
+            </identifier>
+            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            <telecom>
+               <system value="phone"/>
+               <value value="099-12345678"/>
+            </telecom>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpstraat 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:78bd6d6f-b4ae-11f0-2136-020000000000"/>
+      <resource>
+         <Patient>
+            <id value="78bd81fc-b4ae-11f0-2136-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999900511"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="E. XXX_Doppen"/>
+               <family value="XXX_Doppen">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Doppen"/>
+                  </extension>
+               </family>
+               <given value="E.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1963-10-24"/>
+         </Patient>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
+   </entry>
+</Bundle>

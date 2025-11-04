@@ -1,14 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="lr-slr-TEST-l2z-5Ontdubbelen-bericht-2MMBNHG"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ff7c6a94-8d1f-11ef-2037-020000000000"/>
+      <fullUrl value="urn:uuid:f3ab7e77-b4ae-11f0-1945-020000000000"/>
       <resource>
          <Observation>
+            <id value="f3ab7545-b4ae-11f0-1945-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+               <valueBoolean value="true"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
                <valueString value="111666"/>
             </extension>
@@ -16,7 +19,7 @@
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.3"/>
                <value value="11111"/>
             </identifier>
-            <status value="unknown"/>
+            <status value="final"/>
             <category>
                <coding>
                   <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
@@ -32,12 +35,12 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:ff7c6a3a-8d1f-11ef-2037-020000000000"/>
+               <reference value="urn:uuid:f3ab7e3b-b4ae-11f0-1945-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, Elise Erelies"/>
             </subject>
             <performer>
-               <reference value="urn:uuid:ff7c6a58-8d1f-11ef-2037-020000000000"/>
+               <reference value="urn:uuid:f3ab7e4f-b4ae-11f0-1945-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Microbiologisch Lab Flagel"/>
             </performer>
@@ -56,9 +59,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ff7c6a58-8d1f-11ef-2037-020000000000"/>
+      <fullUrl value="urn:uuid:f3ab7e4f-b4ae-11f0-1945-020000000000"/>
       <resource>
          <Organization>
+            <id value="f3ab7553-b4ae-11f0-1945-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -125,9 +129,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ff7c6a3a-8d1f-11ef-2037-020000000000"/>
+      <fullUrl value="urn:uuid:f3ab7e3b-b4ae-11f0-1945-020000000000"/>
       <resource>
          <Patient>
+            <id value="f3ab7520-b4ae-11f0-1945-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>

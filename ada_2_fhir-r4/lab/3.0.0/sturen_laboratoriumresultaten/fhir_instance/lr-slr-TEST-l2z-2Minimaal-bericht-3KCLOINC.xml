@@ -1,14 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="lr-slr-TEST-l2z-2Minimaal-bericht-3KCLOINC"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ff6bf876-8d1f-11ef-2092-020000000000"/>
+      <fullUrl value="urn:uuid:f07b0703-b4ae-11f0-9902-020000000000"/>
       <resource>
          <Observation>
+            <id value="f07b2d8b-b4ae-11f0-9902-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+               <valueBoolean value="true"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
                <valueString value="111777"/>
             </extension>
@@ -16,7 +19,7 @@
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.1"/>
                <value value="99999"/>
             </identifier>
-            <status value="unknown"/>
+            <status value="final"/>
             <category>
                <coding>
                   <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
@@ -32,12 +35,12 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:ff6bf81c-8d1f-11ef-2092-020000000000"/>
+               <reference value="urn:uuid:f07b06c7-b4ae-11f0-9902-020000000000"/>
                <type value="Patient"/>
-               <display value="Patient, Eduardo XXX_Doppen"/>
+               <display value="Patient, E. XXX_Doppen"/>
             </subject>
             <performer>
-               <reference value="urn:uuid:ff6bf83a-8d1f-11ef-2092-020000000000"/>
+               <reference value="urn:uuid:f07b06db-b4ae-11f0-9902-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Trombosedienst Ons Dorp"/>
             </performer>
@@ -55,9 +58,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ff6bf83a-8d1f-11ef-2092-020000000000"/>
+      <fullUrl value="urn:uuid:f07b06db-b4ae-11f0-9902-020000000000"/>
       <resource>
          <Organization>
+            <id value="f07b2d99-b4ae-11f0-9902-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -111,9 +115,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ff6bf81c-8d1f-11ef-2092-020000000000"/>
+      <fullUrl value="urn:uuid:f07b06c7-b4ae-11f0-9902-020000000000"/>
       <resource>
          <Patient>
+            <id value="f07b2d68-b4ae-11f0-9902-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -123,15 +128,15 @@
             </identifier>
             <name>
                <use value="official"/>
-               <text value="Eduardo XXX_Doppen"/>
+               <text value="E. XXX_Doppen"/>
                <family value="XXX_Doppen">
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
                      <valueString value="XXX_Doppen"/>
                   </extension>
                </family>
-               <given value="Eduardo">
+               <given value="E.">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                     <valueCode value="BR"/>
+                     <valueCode value="IN"/>
                   </extension>
                </given>
             </name>

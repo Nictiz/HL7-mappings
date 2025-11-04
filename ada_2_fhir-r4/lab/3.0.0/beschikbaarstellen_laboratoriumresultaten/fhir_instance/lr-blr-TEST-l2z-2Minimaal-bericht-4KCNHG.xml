@@ -2,9 +2,10 @@
    <id value="lr-blr-TEST-l2z-2Minimaal-bericht-4KCNHG"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:3828f160-8d71-11f0-1375-020000000000"/>
+      <fullUrl value="urn:uuid:f90f77c6-b4ae-11f0-1302-020000000000"/>
       <resource>
          <Observation>
+            <id value="f90f7d38-b4ae-11f0-1302-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>
@@ -13,9 +14,9 @@
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
-               <value value="99999"/>
+               <value value="11111"/>
             </identifier>
-            <status value="unknown"/>
+            <status value="final"/>
             <category>
                <coding>
                   <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
@@ -27,16 +28,17 @@
                <coding>
                   <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen"/>
                   <code value="111"/>
-                  <display value="Bilirubine totaal"/>
+                  <display value="bilirubine totaal"/>
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:3828f0fc-8d71-11f0-1375-020000000000"/>
+               <reference value="urn:uuid:f90f778a-b4ae-11f0-1302-020000000000"/>
                <type value="Patient"/>
-               <display value="Patient, Eduardo XXX_Doppen"/>
+               <display value="Patient, E. XXX_Doppen"/>
             </subject>
+            <effectiveDateTime value="${DATE, T, D, -13}"/>
             <performer>
-               <reference value="urn:uuid:3828f138-8d71-11f0-1375-020000000000"/>
+               <reference value="urn:uuid:f90f779e-b4ae-11f0-1302-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
             </performer>
@@ -54,9 +56,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:3828f138-8d71-11f0-1375-020000000000"/>
+      <fullUrl value="urn:uuid:f90f779e-b4ae-11f0-1302-020000000000"/>
       <resource>
          <Organization>
+            <id value="f90f7d4a-b4ae-11f0-1302-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -74,10 +77,17 @@
             </type>
             <name value="Klinisch chemisch Lab 't Proefje"/>
             <telecom>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
-                  <valueString value="Bel met vragen"/>
-               </extension>
-               <system value="phone"/>
+               <system value="phone">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                           <code value="MC"/>
+                           <display value="Mobiel telefoonnummer"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </system>
                <value value="06-11122233"/>
                <use value="work"/>
             </telecom>
@@ -86,6 +96,40 @@
                <value value="tproefje@lab.nl"/>
                <use value="work"/>
             </telecom>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpstraat 23">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="23"/>
+                  </extension>
+               </line>
+               <city value="Zorgstad"/>
+               <postalCode value="1234AA"/>
+               <country value="Nederland">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="urn:iso:std:iso:3166"/>
+                           <version value="2020-10-26T00:00:00"/>
+                           <code value="NL"/>
+                           <display value="Nederland"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </country>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -94,9 +138,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:3828f0fc-8d71-11f0-1375-020000000000"/>
+      <fullUrl value="urn:uuid:f90f778a-b4ae-11f0-1302-020000000000"/>
       <resource>
          <Patient>
+            <id value="f90f7d15-b4ae-11f0-1302-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -106,15 +151,15 @@
             </identifier>
             <name>
                <use value="official"/>
-               <text value="Eduardo XXX_Doppen"/>
+               <text value="E. XXX_Doppen"/>
                <family value="XXX_Doppen">
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
                      <valueString value="XXX_Doppen"/>
                   </extension>
                </family>
-               <given value="Eduardo">
+               <given value="E.">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                     <valueCode value="BR"/>
+                     <valueCode value="IN"/>
                   </extension>
                </given>
             </name>
@@ -135,37 +180,6 @@
       <request>
          <method value="POST"/>
          <url value="Patient"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:3828f110-8d71-11f0-1375-020000000000"/>
-      <resource>
-         <Organization>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="00001111"/>
-            </identifier>
-            <type>
-               <coding>
-                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
-                  <version value="2023-04-14T00:00:00"/>
-                  <code value="Z3"/>
-                  <display value="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
-               </coding>
-            </type>
-            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
-            <telecom>
-               <system value="phone"/>
-               <value value="099-12345678"/>
-            </telecom>
-         </Organization>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
       </request>
    </entry>
 </Bundle>

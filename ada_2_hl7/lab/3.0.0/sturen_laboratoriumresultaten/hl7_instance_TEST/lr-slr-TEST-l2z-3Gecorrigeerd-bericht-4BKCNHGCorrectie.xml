@@ -16,15 +16,13 @@
              root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
-               <given qualifier="BR">Eduardo</given>
+               <given qualifier="IN">E.</given>
                <family qualifier="BR">XXX_Doppen</family>
             </name>
             <administrativeGenderCode code="M"
                                       codeSystem="2.16.840.1.113883.5.1"
                                       displayName="Man"/>
-            <birthTime value="19631024000000"/>
-            <sdtc:multipleBirthInd nullFlavor="NA"
-                                   xmlns:sdtc="urn:hl7-org:sdtc"/>
+            <birthTime value="19631024"/>
          </patient>
       </patientRole>
    </recordTarget>
@@ -196,6 +194,17 @@
                      </value>
                   </observationRange>
                </referenceRange>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <observation classCode="OBS"
+                         moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9200"/>
+               <code displayName="Kopie-indicator"
+                     code="16"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
+               <value xsi:type="BL"
+                      value="true"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">

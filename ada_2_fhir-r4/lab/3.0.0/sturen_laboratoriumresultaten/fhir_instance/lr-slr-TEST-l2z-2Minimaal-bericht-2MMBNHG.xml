@@ -1,14 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="lr-slr-TEST-l2z-2Minimaal-bericht-2MMBNHG"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ff6b5ec0-8d1f-11ef-1226-020000000000"/>
+      <fullUrl value="urn:uuid:f02a71fa-b4ae-11f0-1213-020000000000"/>
       <resource>
          <Observation>
+            <id value="f02a7458-b4ae-11f0-1213-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+               <valueBoolean value="true"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
                <valueString value="111666"/>
             </extension>
@@ -16,7 +19,7 @@
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.3"/>
                <value value="11111"/>
             </identifier>
-            <status value="unknown"/>
+            <status value="final"/>
             <category>
                <coding>
                   <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
@@ -32,12 +35,12 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:ff6b5e66-8d1f-11ef-1226-020000000000"/>
+               <reference value="urn:uuid:f02a71be-b4ae-11f0-1213-020000000000"/>
                <type value="Patient"/>
-               <display value="Patient, Eduardo XXX_Doppen"/>
+               <display value="Patient, Elise Erelies"/>
             </subject>
             <performer>
-               <reference value="urn:uuid:ff6b5e84-8d1f-11ef-1226-020000000000"/>
+               <reference value="urn:uuid:f02a71d2-b4ae-11f0-1213-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Microbiologisch Lab Flagel"/>
             </performer>
@@ -56,9 +59,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ff6b5e84-8d1f-11ef-1226-020000000000"/>
+      <fullUrl value="urn:uuid:f02a71d2-b4ae-11f0-1213-020000000000"/>
       <resource>
          <Organization>
+            <id value="f02a7466-b4ae-11f0-1213-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -125,42 +129,43 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ff6b5e66-8d1f-11ef-1226-020000000000"/>
+      <fullUrl value="urn:uuid:f02a71be-b4ae-11f0-1213-020000000000"/>
       <resource>
          <Patient>
+            <id value="f02a7433-b4ae-11f0-1213-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="999900511"/>
+               <value value="999999114"/>
             </identifier>
             <name>
                <use value="official"/>
-               <text value="Eduardo XXX_Doppen"/>
-               <family value="XXX_Doppen">
+               <text value="Elise Erelies"/>
+               <family value="Erelies">
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="XXX_Doppen"/>
+                     <valueString value="Erelies"/>
                   </extension>
                </family>
-               <given value="Eduardo">
+               <given value="Elise">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
                      <valueCode value="BR"/>
                   </extension>
                </given>
             </name>
-            <gender value="male">
+            <gender value="female">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
                   <valueCodeableConcept>
                      <coding>
                         <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
-                        <code value="M"/>
-                        <display value="Man"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
                      </coding>
                   </valueCodeableConcept>
                </extension>
             </gender>
-            <birthDate value="1963-10-24"/>
+            <birthDate value="1950-11-01"/>
          </Patient>
       </resource>
       <request>

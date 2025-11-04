@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="lr-slr-TEST-l2z-3Gecorrigeerd-bericht-1BMMBLOINCCorrectie"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ff6ddc22-8d1f-11ef-2407-020000000000"/>
+      <fullUrl value="urn:uuid:f1220a8b-b4ae-11f0-1082-020000000000"/>
       <resource>
          <Observation>
+            <id value="f1220807-b4ae-11f0-1082-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>
@@ -32,13 +32,13 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:ff6ddbc8-8d1f-11ef-2407-020000000000"/>
+               <reference value="urn:uuid:f1220a4f-b4ae-11f0-1082-020000000000"/>
                <type value="Patient"/>
-               <display value="Patient, Eduardo XXX_Doppen"/>
+               <display value="Patient, Elise Erelies"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, -2}"/>
             <performer>
-               <reference value="urn:uuid:ff6ddbe6-8d1f-11ef-2407-020000000000"/>
+               <reference value="urn:uuid:f1220a63-b4ae-11f0-1082-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Microbiologisch Lab Flagel"/>
             </performer>
@@ -53,7 +53,7 @@
                <text value="Gecorrigeerd ivm kapot systeem"/>
             </interpretation>
             <specimen>
-               <reference value="urn:uuid:ff6ddc5e-8d1f-11ef-2407-020000000000"/>
+               <reference value="urn:uuid:f1220ab3-b4ae-11f0-1082-020000000000"/>
                <type value="Specimen"/>
                <display value="monster"/>
             </specimen>
@@ -65,9 +65,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ff6ddc5e-8d1f-11ef-2407-020000000000"/>
+      <fullUrl value="urn:uuid:f1220ab3-b4ae-11f0-1082-020000000000"/>
       <resource>
          <Specimen>
+            <id value="f1220817-b4ae-11f0-1082-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
             </meta>
@@ -83,9 +84,9 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:ff6ddbc8-8d1f-11ef-2407-020000000000"/>
+               <reference value="urn:uuid:f1220a4f-b4ae-11f0-1082-020000000000"/>
                <type value="Patient"/>
-               <display value="Patient, Eduardo XXX_Doppen"/>
+               <display value="Patient, Elise Erelies"/>
             </subject>
             <collection>
                <collectedDateTime value="${DATE, T, D, -4}"/>
@@ -105,9 +106,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ff6ddbe6-8d1f-11ef-2407-020000000000"/>
+      <fullUrl value="urn:uuid:f1220a63-b4ae-11f0-1082-020000000000"/>
       <resource>
          <Organization>
+            <id value="f122082a-b4ae-11f0-1082-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -174,42 +176,43 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ff6ddbc8-8d1f-11ef-2407-020000000000"/>
+      <fullUrl value="urn:uuid:f1220a4f-b4ae-11f0-1082-020000000000"/>
       <resource>
          <Patient>
+            <id value="f12207e2-b4ae-11f0-1082-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="999900511"/>
+               <value value="999999114"/>
             </identifier>
             <name>
                <use value="official"/>
-               <text value="Eduardo XXX_Doppen"/>
-               <family value="XXX_Doppen">
+               <text value="Elise Erelies"/>
+               <family value="Erelies">
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="XXX_Doppen"/>
+                     <valueString value="Erelies"/>
                   </extension>
                </family>
-               <given value="Eduardo">
+               <given value="Elise">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
                      <valueCode value="BR"/>
                   </extension>
                </given>
             </name>
-            <gender value="male">
+            <gender value="female">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
                   <valueCodeableConcept>
                      <coding>
                         <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
-                        <code value="M"/>
-                        <display value="Man"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
                      </coding>
                   </valueCodeableConcept>
                </extension>
             </gender>
-            <birthDate value="1963-10-24"/>
+            <birthDate value="1950-11-01"/>
          </Patient>
       </resource>
       <request>

@@ -12,25 +12,23 @@
    <statusCode code="completed"/>
    <recordTarget>
       <patientRole>
-         <id extension="999900511"
+         <id extension="999999114"
              root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
-               <given qualifier="BR">Eduardo</given>
-               <family qualifier="BR">XXX_Doppen</family>
+               <given qualifier="BR">Elise</given>
+               <family qualifier="BR">Erelies</family>
             </name>
-            <administrativeGenderCode code="M"
+            <administrativeGenderCode code="F"
                                       codeSystem="2.16.840.1.113883.5.1"
-                                      displayName="Man"/>
-            <birthTime value="19631024000000"/>
-            <sdtc:multipleBirthInd nullFlavor="NA"
-                                   xmlns:sdtc="urn:hl7-org:sdtc"/>
+                                      displayName="Vrouw"/>
+            <birthTime value="19501101"/>
          </patient>
       </patientRole>
    </recordTarget>
    <participant typeCode="CST">
       <participantRole classCode="ASSIGNED">
-         <id extension="00001111"
+         <id extension="00005111"
              root="2.16.528.1.1007.3.3"/>
          <code code="Z3"
                codeSystem="2.16.840.1.113883.2.4.15.1060"
@@ -38,14 +36,14 @@
                codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
                codeSystemVersion="2023-04-14T00:00:00"/>
          <addr use="WP">
-            <streetName>Dorpsstraat</streetName>
+            <streetName>Langelaan</streetName>
             <houseNumber>1</houseNumber>
-            <postalCode>1234 AA</postalCode>
-            <city>Ons Dorp</city>
+            <postalCode>1234 ZZ</postalCode>
+            <city>Onze Stad</city>
          </addr>
          <playingEntity classCode="ORG"
                         determinerCode="INSTANCE">
-            <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+            <name>Huisartsenpraktijk Itis</name>
          </playingEntity>
       </participantRole>
    </participant>
@@ -91,6 +89,19 @@
                </representedOrganization>
             </assignedEntity>
          </performer>
+         <entryRelationship typeCode="COMP">
+            <observation classCode="OBS"
+                         moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.121.10.55"/>
+               <code code="92235-1"
+                     codeSystem="2.16.840.1.113883.6.1"
+                     displayName="Lab order result status"/>
+               <value xsi:type="CV"
+                      code="corrected"
+                      codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                      displayName="Gecorrigeerd"/>
+            </observation>
+         </entryRelationship>
          <entryRelationship typeCode="COMP">
             <procedure classCode="PROC"
                        moodCode="EVN">
@@ -173,7 +184,7 @@
                      code="16"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
                <value xsi:type="BL"
-                      value="false"/>
+                      value="true"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
