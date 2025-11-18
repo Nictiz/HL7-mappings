@@ -1537,6 +1537,23 @@
       
     <!-- R021 -->
     <xd:doc>
+        <xd:desc>Rubriek 21 vervalt indien het alleen vervallen elementen bevat.</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code/@code = 'R021']" mode="dob400">
+        <xsl:choose>
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '321' or @code = '328' or @code = '770' or @code = '771' or @code = '772' or @code = '775' or @code = '776' or @code = '777' or @code = '778' or @code = '779' or @code = '780' or @code = '782' or @code = '783' or @code = '784' or @code = '785' or @code = '786' or @code = '787' or @code = '790' or @code = '791' or @code = '1422'])]]) > 0">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob400"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Rubriek 21 is verwijderd omdat het enkele vervallen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob400"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xd:doc>
         <xd:desc>Rubriek 21:elementen 321, 328, 770-772, 775-779, 780, 782-787, 790-791, 1422 vervallen</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '321' or @code = '328' or @code = '770' or @code = '771' or @code = '772' or @code = '775' or @code = '776' or @code = '777' or @code = '778' or @code = '779' or @code = '780' or @code = '782' or @code = '783' or @code = '784' or @code = '785' or @code = '786' or @code = '787' or @code = '790' or @code = '791' or @code = '1422'
