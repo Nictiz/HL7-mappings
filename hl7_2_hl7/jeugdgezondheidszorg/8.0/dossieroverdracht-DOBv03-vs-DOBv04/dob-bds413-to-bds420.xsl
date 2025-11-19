@@ -1651,18 +1651,6 @@
     <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '218'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob400">
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is vervallen </xsl:text></xsl:comment>
     </xsl:template>
-    <!--422	Bijzonderheden testis rechts	W0250-->
-    <!--1392	Bijzonderheden testis links	W0250-->
-    
-    <xd:doc>
-        <xd:desc>Rubriek 25 - Nieuwe codes binnen waardelijst W0250 </xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.41392']/hl7:value[@code = '02' or @code = '03' or @code='04'][@codeSystem = '2.16.840.1.113883.2.4.4.40.72']" mode="dob420">
-        <value nullFlavor="OTH" 
-            codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
-            <originalText><xsl:value-of select="@displayName"/></originalText>
-        </value>
-    </xsl:template>
     
     <!-- R026 -->
     <xd:doc>
