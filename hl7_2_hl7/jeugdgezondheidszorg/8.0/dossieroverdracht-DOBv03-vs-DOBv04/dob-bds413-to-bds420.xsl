@@ -1221,75 +1221,6 @@
         </valueSet>
     </xsl:variable>
 
-    <xsl:variable name="W0188_HL7_Contactmomenten">
-        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.188.1" name="W0188_HL7_Contactmomenten" displayName="W0188 Soort contactmoment (HL7)" effectiveDate="2012-05-21T01:26:54" statusCode="final" versionLabel="310">
-            <desc language="nl-NL">Soort contactmoment. Inperking van de activiteiten tot activiteitcodes voor contactmomenten</desc>
-            <conceptList>
-                <concept code="01" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Huisbezoek 4-7 dagen" level="0" type="L"/>
-                <concept code="35" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Neonatale gehoorscreening" level="0" type="L"/>
-                <concept code="02" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Huisbezoek 2 weken" level="0" type="L"/>
-                <concept code="03" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment 4 weken" level="0" type="L"/>
-                <concept code="04" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment 8 weken" level="0" type="L"/>
-                <concept code="05" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment 3 maanden" level="0" type="L"/>
-                <concept code="06" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment 4 maanden" level="0" type="L"/>
-                <concept code="07" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment 6 maanden" level="0" type="L"/>
-                <concept code="08" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment 7,5 maand" level="0" type="L"/>
-                <concept code="09" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment 9 maanden" level="0" type="L"/>
-                <concept code="10" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment 11 maanden" level="0" type="L"/>
-                <concept code="11" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment 14 maanden" level="0" type="L"/>
-                <concept code="12" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment 18 maanden" level="0" type="L"/>
-                <concept code="13" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment 2 jaar" level="0" type="L"/>
-                <concept code="14" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment 3 jaar" level="0" type="L"/>
-                <concept code="15" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment 3,9 jaar" level="0" type="L"/>
-                <concept code="16" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment groep 2" level="0" type="L"/>
-                <concept code="17" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment groep 7" level="0" type="L"/>
-                <concept code="18" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Massavaccinatie" level="0" type="L"/>
-                <concept code="19" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment klas 2" level="0" type="L"/>
-                <concept code="20" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment speciaal onderwijs" level="0" type="L"/>
-                <concept code="21" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Huisbezoek op indicatie" level="0" type="L"/>
-                <concept code="22" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment op indicatie" level="0" type="L"/>
-                <concept code="23" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment op verzoek" level="0" type="L"/>
-                <concept code="24" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Telefonisch contactmoment" level="0" type="L"/>
-                <concept code="25" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Spreekuur (0-19)" level="0" type="L"/>
-                <concept code="26" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Groepsbijeenkomst (of groepsvoorlichting)" level="0" type="L"/>
-                <concept code="27" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Intake nieuwkomers" level="0" type="L"/>
-                <exception code="OTH" codeSystem="2.16.840.1.113883.5.1008" displayName="other" level="0" type="L">
-                    <desc language="nl-NL">Ander contactmoment</desc>
-                </exception>
-            </conceptList>
-        </valueSet>
-    </xsl:variable>
-    <xsl:variable name="W0188_HL7_Activiteiten">
-        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.188.2" name="W0188_HL7_Activiteiten" displayName="W0188 Soort activiteit (HL7)" effectiveDate="2012-05-21T01:26:54" statusCode="final" versionLabel="310">
-            <desc language="nl-NL">Soort activiteit. Inperking van de activiteiten tot activiteitcodes voor activiteiten</desc>
-            <conceptList>
-                <concept code="29" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Consultatie/inlichtingen vragen" level="0" type="L"/>
-                <concept code="34" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Bespreking zorgstructuur" level="0" type="L"/>
-                <concept code="31" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Terugkoppeling verwijzing" level="0" type="L"/>
-                <concept code="32" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Zorgcoördinatie" level="0" type="L"/>
-                <exception code="OTH" codeSystem="2.16.840.1.113883.5.1008" displayName="other" level="0" type="L">
-                    <desc language="nl-NL">Andere activiteit</desc>
-                </exception>
-            </conceptList>
-        </valueSet>
-    </xsl:variable>
-    <xsl:variable name="W0188_HL7_Registratie">
-        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.188.3" name="W0188_HL7_Registratie" displayName="W0188 Soort registratie (HL7)" effectiveDate="2012-05-21T01:26:54" statusCode="final" versionLabel="310">
-            <desc language="nl-NL">Soort registratie. Inperking van de activiteiten tot activiteitcodes voor registraties/meldingen</desc>
-            <conceptList>
-                <concept code="30" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Melding" level="0" type="L"/>
-                <concept code="33" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Uitvoering hielprik/vaccinatie buiten de organisatie" level="0" type="L"/>
-            </conceptList>
-        </valueSet>
-    </xsl:variable>
-
-    <xd:doc>
-        <xd:desc>Replace schematron with the right version</xd:desc>
-    </xd:doc>
-    <xsl:template match="processing-instruction()[contains(., 'jgz-versturenDossieroverdrachtbericht')]">
-        <xsl:processing-instruction name="xml-stylesheet"> type="text/xsl" href="../../Zorgtoepassing/Jeugdgezondheidszorg/DECOR/jgz-runtime-20200219T121823/jgz-versturenDossieroverdrachtbericht-02.xsl</xsl:processing-instruction>
-    </xsl:template>
-
     <xd:doc>
         <xd:desc>Update interactionId from REPC_IN902120NL03 to REPC_IN902120NL</xd:desc>
     </xd:doc>
@@ -1313,46 +1244,6 @@
         <xsl:copy>
             <xsl:apply-templates select="@root" mode="dob400"/>
             <xsl:apply-templates select="node()" mode="dob400"/>
-        </xsl:copy>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Conversie van nieuwe nonBDSData naar oude nonBDSData</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:nonBDSData" mode="dob400">
-        <xsl:copy>
-            <xsl:apply-templates select="@*" mode="dob400"/>
-            <xsl:apply-templates select="hl7:templateId" mode="dob400"/>
-            <xsl:apply-templates select="hl7:code" mode="dob400"/>
-            <value xmlns="urn:hl7-org:v3">
-                <xsl:value-of select="hl7:text"/>
-            </value>
-            <xsl:apply-templates select="hl7:author" mode="dob400"/>
-            <xsl:apply-templates select="hl7:pertainsTo" mode="dob400"/>
-        </xsl:copy>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Conversie van nieuwe metaData naar oude metaData</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:metaData" mode="dob400">
-        <xsl:copy>
-            <xsl:apply-templates select="@*" mode="dob400"/>
-            <xsl:apply-templates select="hl7:templateId" mode="dob400"/>
-            <xsl:apply-templates select="hl7:code" mode="dob400"/>
-            <xsl:choose>
-                <xsl:when test="hl7:value">
-                    <xsl:apply-templates select="hl7:value" mode="dob400"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <value xmlns="urn:hl7-org:v3" xsi:type="ST">
-                        <xsl:apply-templates select="hl7:text/@*" mode="dob400"/>
-                        <xsl:value-of select="hl7:text"/>
-                    </value>
-                </xsl:otherwise>
-            </xsl:choose>
-            <xsl:apply-templates select="hl7:author" mode="dob400"/>
-            <xsl:apply-templates select="hl7:pertainsTo" mode="dob400"/>
         </xsl:copy>
     </xsl:template>
 
@@ -1402,26 +1293,6 @@
                 </xsl:otherwise>
             </xsl:choose>
         </name>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Maak component1/nonBDSdata</xd:desc>
-    </xd:doc>
-    <xsl:template name="maakNonBDSData">
-        <component1 typeCode="COMP" xmlns="urn:hl7-org:v3">
-            <nonBDSData classCode="OBS" moodCode="EVN">
-                <templateId root="2.16.840.1.113883.2.4.6.10.100.10028"/>
-                <xsl:apply-templates select="hl7:code" mode="dob400"/>
-                <value>
-                    <xsl:value-of select="hl7:text"/>
-                </value>
-                <pertainsTo>
-                    <categoryInBDS>
-                        <xsl:apply-templates select="ancestor::hl7:rubricCluster/hl7:code" mode="dob400"/>
-                    </categoryInBDS>
-                </pertainsTo>
-            </nonBDSData>
-        </component1>
     </xsl:template>
 
     <xd:doc>

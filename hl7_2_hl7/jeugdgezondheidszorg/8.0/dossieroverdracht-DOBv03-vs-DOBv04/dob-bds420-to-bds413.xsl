@@ -1181,13 +1181,6 @@
     </xsl:variable>
 
     <xd:doc>
-        <xd:desc> Replace schematron with the right version </xd:desc>
-    </xd:doc>
-    <xsl:template match="processing-instruction()[contains(., 'jgz-versturenDossieroverdrachtbericht')]">
-        <xsl:processing-instruction name="xml-stylesheet"> type="text/xsl" href="../../Zorgtoepassing/Jeugdgezondheidszorg/DECOR/jgz-runtime-20200219T121823/jgz-versturenDossieroverdrachtbericht-03.xsl</xsl:processing-instruction>
-    </xsl:template>
-
-    <xd:doc>
         <xd:desc>Update root element van REPC_IN902120NL naar REPC_IN902120NL03</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:REPC_IN902120NL04">
