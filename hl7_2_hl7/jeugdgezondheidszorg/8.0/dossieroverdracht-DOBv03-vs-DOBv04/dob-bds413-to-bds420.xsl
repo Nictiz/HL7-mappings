@@ -1754,6 +1754,23 @@
     
     <!-- R038 -->
     <xd:doc>
+        <xd:desc>Rubriek 38 vervalt indien het alleen vervallen elementen bevat.</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code/@code = 'R038']" mode="dob400">
+        <xsl:choose>
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '692' or @code = '832' or @code = '833' or @code = '834' or @code = '835' or @code = '836' or @code = '837' or @code = '838' or @code = '1379' or @code = '1418' or @code = '1419' or @code = '1420' or @code = '1421'])]]) > 0">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob400"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Rubriek 38 is verwijderd omdat het enkele vervallen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob400"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xd:doc>
         <xd:desc>Rubriek 38: elementen 692, 832-838, 1379, 1418-1421 vervallen</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '692' or @code = '832' or @code = '833' or @code = '834' or @code = '835' or @code = '836' or @code = '837' or @code = '838' or @code = '1379' or @code = '1418' or @code = '1419' or @code = '1420' or @code = '1421'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob400">
