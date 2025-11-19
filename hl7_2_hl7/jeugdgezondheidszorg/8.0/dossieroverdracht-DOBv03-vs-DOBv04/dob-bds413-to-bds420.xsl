@@ -1554,7 +1554,7 @@
                 </xsl:copy>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 19 is verwijderd omdat het enkele vervallen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:comment><xsl:text>Rubriek 19 is verwijderd omdat het enkele vervallen elementen bevat.</xsl:text></xsl:comment>
                 <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob400"/>
             </xsl:otherwise>
         </xsl:choose>
@@ -1596,7 +1596,7 @@
                 </xsl:copy>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 21 is verwijderd omdat het enkele vervallen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:comment><xsl:text>Rubriek 21 is verwijderd omdat het enkele vervallen elementen bevat.</xsl:text></xsl:comment>
                 <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob400"/>
             </xsl:otherwise>
         </xsl:choose>
