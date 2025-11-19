@@ -1517,6 +1517,31 @@
         </xsl:choose>
     </xsl:template>
 
+    <!-- R012 -->
+    <xd:doc>
+        <xd:desc>Rubriek 12 vervalt indien het alleen vervallen elementen bevat.</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code/@code = 'R012']" mode="dob400">
+        <xsl:choose>
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '79'])]]) > 0">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob400"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Rubriek 19 is verwijderd omdat het enkele vervallen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob400"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Rubriek 12: element 79 vervalt</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '79'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob400">
+        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is vervallen </xsl:text></xsl:comment>
+    </xsl:template>
+    
     <!-- R019 -->
     <xd:doc>
         <xd:desc>Rubriek 19 vervalt indien het alleen vervallen elementen bevat.</xd:desc>
