@@ -1516,13 +1516,37 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    
+
     <!-- R019 -->
+    <xd:doc>
+        <xd:desc>Rubriek 19 vervalt indien het alleen vervallen elementen bevat.</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code/@code = 'R019']" mode="dob400">
+        <xsl:choose>
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '149' or @code = '150' or @code = '153' or @code = '510' or @code = '752' or @code = '753' or @code = '1412' or @code = '1499' or @code = '1500'])]]) > 0">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob400"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Rubriek 19 is verwijderd omdat het enkele vervallen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob400"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Groep G087 vervalt.</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:component[hl7:groupCluster/hl7:code/@code = 'G087']" mode="dob400">
+        <xsl:comment><xsl:text> Groep G087 vervalt.</xsl:text></xsl:comment>
+        <xsl:apply-templates select="@* | ./hl7:groupCluster/hl7:component" mode="dob400"/>
+    </xsl:template>
+    
     <xd:doc>
         <xd:desc>Rubriek 19: elementen 149, 150, 153, 510, 752, 753, 1412, 1499, 1500 vervallen</xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '149' or @code = '150' or @code = '153' or @code = '510' or @code = '752' or @code = '753' or @code = '1412' or @code = '1499' or @code = '1500'
-        ][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob400">
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '149' or @code = '150' or @code = '153' or @code = '510' or @code = '752' or @code = '753' or @code = '1412' or @code = '1499' or @code = '1500'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob400">
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is vervallen </xsl:text></xsl:comment>
     </xsl:template>
     
