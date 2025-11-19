@@ -1627,7 +1627,6 @@
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is vervallen </xsl:text></xsl:comment>
     </xsl:template>
    
-    
     <!-- R025 -->
     <xd:doc>
         <xd:desc>Rubriek 25: element 218 vervalt</xd:desc>
