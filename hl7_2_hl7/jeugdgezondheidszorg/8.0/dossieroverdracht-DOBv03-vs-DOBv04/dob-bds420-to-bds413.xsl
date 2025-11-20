@@ -5,7 +5,7 @@
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Onno Gieling, Nictiz</xd:p>
             <xd:p><xd:b>Author:</xd:b> Nathalie Nikodym, Nictiz</xd:p>
-            <xd:p><xd:b>Purpose:</xd:b> Conversie van een valide Dossieroverdrachtbericht op basis van BDS 4.2.0 (REPC_IN902120NL04) naar een valide versie op basis van BDS 4.1.0 (REPC_IN902120NL03). Regelt zelf het bijwerken van de weergavenamen bij rubrieken, groepen en elementen. Laat de weergavenamen van waarden ongemoeid.</xd:p>
+            <xd:p><xd:b>Purpose:</xd:b> Conversie van een valide Dossieroverdrachtbericht op basis van BDS 4.2.0 (REPC_IN902120NL04) naar een valide versie op basis van BDS 4.1.3 (REPC_IN902120NL03). Regelt zelf het bijwerken van de weergavenamen bij rubrieken, groepen en elementen. Laat de weergavenamen van waarden ongemoeid.</xd:p>
             <xd:p>
                 <xd:b>History:</xd:b>
             </xd:p>
