@@ -1400,7 +1400,7 @@
                 </xsl:copy>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 19 is verwijderd omdat het enkele vervallen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:comment><xsl:text> Rubriek 19 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
                 <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob400"/>
             </xsl:otherwise>
         </xsl:choose>
@@ -1425,7 +1425,7 @@
                 </xsl:copy>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 19 is verwijderd omdat het enkele vervallen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:comment><xsl:text> Rubriek 19 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
                 <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob400"/>
             </xsl:otherwise>
         </xsl:choose>
@@ -1458,7 +1458,7 @@
                 </xsl:copy>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 20 is verwijderd omdat het enkele vervallen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:comment><xsl:text> Rubriek 20 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
                 <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob400"/>
             </xsl:otherwise>
         </xsl:choose>
@@ -1484,7 +1484,7 @@
                 </xsl:copy>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 21 is verwijderd omdat het enkele vervallen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:comment><xsl:text> Rubriek 21 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
                 <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob400"/>
             </xsl:otherwise>
         </xsl:choose>
@@ -1510,7 +1510,7 @@
                 </xsl:copy>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 25 is verwijderd omdat het enkele vervallen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:comment><xsl:text> Rubriek 25 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
                 <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob400"/>
             </xsl:otherwise>
         </xsl:choose>
@@ -1535,7 +1535,7 @@
                 </xsl:copy>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 26 is verwijderd omdat het enkele vervallen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:comment><xsl:text> Rubriek 26 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
                 <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob400"/>
             </xsl:otherwise>
         </xsl:choose>
@@ -1560,7 +1560,7 @@
                 </xsl:copy>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 30 is verwijderd omdat het enkele vervallen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:comment><xsl:text> Rubriek 30 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
                 <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob400"/>
             </xsl:otherwise>
         </xsl:choose>
@@ -1585,7 +1585,7 @@
                 </xsl:copy>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 30 is verwijderd omdat het enkele vervallen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:comment><xsl:text> Rubriek 30 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
                 <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob400"/>
             </xsl:otherwise>
         </xsl:choose>
@@ -1610,7 +1610,7 @@
                 </xsl:copy>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 34 is verwijderd omdat het enkele vervallen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:comment><xsl:text> Rubriek 34 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
                 <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob400"/>
             </xsl:otherwise>
         </xsl:choose>
@@ -1635,7 +1635,7 @@
                 </xsl:copy>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 38 is verwijderd omdat het enkele vervallen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:comment><xsl:text> Rubriek 38 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
                 <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob400"/>
             </xsl:otherwise>
         </xsl:choose>
@@ -1660,7 +1660,7 @@
                 </xsl:copy>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 38 is verwijderd omdat het enkele vervallen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:comment><xsl:text> Rubriek 38 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
                 <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob400"/>
             </xsl:otherwise>
         </xsl:choose>
@@ -1685,7 +1685,7 @@
                 </xsl:copy>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 42 is verwijderd omdat het enkele vervallen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:comment><xsl:text> Rubriek 42 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
                 <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob400"/>
             </xsl:otherwise>
         </xsl:choose>
