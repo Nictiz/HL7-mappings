@@ -1700,6 +1700,40 @@
     
     <!-- R054 -->
     <xd:doc>
+        <xd:desc>Rubriek 54 vervalt indien het alleen vervallen elementen bevat.</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code/@code = 'R054']" mode="dob400">
+        <xsl:choose>
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1345'])]]) > 0 or ./hl7:rubricCluster/hl7:component/hl7:observation[not(hl7:value/@nullFlavor = 'NI') or hl7:effectiveTime or hl7:performer or hl7:methodCode]">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob400"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Rubriek 54 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob400"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Bijzonderheden SPP vervalt indien het alleen vervallen elementen bevat.</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1345'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob400">
+        <xsl:choose>
+            <xsl:when test="./hl7:observation[not(hl7:value/@nullFlavor = 'NI') or hl7:effectiveTime or hl7:performer or hl7:methodCode]">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob400"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Bijzonderheden SPP is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="./hl7:observation/hl7:location" mode="dob400"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xd:doc>
         <xd:desc>Rubriek 54: element 1344 vervalt</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:component/hl7:observation[hl7:code[@code = '1345'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]/hl7:location" mode="dob400">
