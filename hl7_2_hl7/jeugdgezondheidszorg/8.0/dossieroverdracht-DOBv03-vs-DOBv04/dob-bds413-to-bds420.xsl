@@ -1333,6 +1333,29 @@
         </xsl:choose>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>BDS-rubrieknamen, BDS-groepnamen en BDS-elementnamen bijwerken.</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:code[@codeSystem = '2.16.840.1.113883.2.4.4.40.391'] | hl7:code[@codeSystem = '2.16.840.1.113883.2.4.4.40.393'] | hl7:code[@codeSystem = '2.16.840.1.113883.2.4.4.40.267']" mode="dob413">
+        <xsl:variable name="theCode">
+            <xsl:value-of select="@code"/>
+        </xsl:variable>
+        <xsl:variable name="theCodeSystem">
+            <xsl:value-of select="@codeSystem"/>
+        </xsl:variable>
+        <xsl:copy>
+            <xsl:apply-templates select="@*" mode="dob413"/>
+            <xsl:attribute name="code">
+                <xsl:value-of select="$theCode"/>
+            </xsl:attribute>
+            <xsl:attribute name="codeSystem">
+                <xsl:value-of select="$theCodeSystem"/>
+            </xsl:attribute>
+            <xsl:copy-of select="exslt:node-set($W0639_HL7_W0646_HL7_W0647_HL7)//concept[@code = $theCode][@codeSystem = $theCodeSystem]/@displayName"/>
+            <xsl:apply-templates select="node()" mode="dob413"/>
+        </xsl:copy>
+    </xsl:template>
+    
     <!-- R012 -->
     <xd:doc>
         <xd:desc>Rubriek 12: element 79 vervalt</xd:desc>
