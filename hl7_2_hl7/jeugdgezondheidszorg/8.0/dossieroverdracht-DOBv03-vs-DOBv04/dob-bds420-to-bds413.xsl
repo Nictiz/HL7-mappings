@@ -22,7 +22,6 @@
     </xd:doc>
 
     <xsl:output indent="yes" omit-xml-declaration="yes"/>
-    <xsl:variable name="dob400date" select="'2020-05-27T00:00:00'"/>
 
     <xsl:variable name="W0639_HL7_W0646_HL7_W0647_HL7">
         <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.639" name="W0639_HL7" displayName="W0639 RubriekID (HL7) alle" effectiveDate="2020-05-27T00:00:00" statusCode="final" versionLabel="413">
@@ -1197,7 +1196,6 @@
     </xsl:template>
 
     <!-- R009 -->
-    
     <xd:doc>
         <xd:desc>voeg doc toe</xd:desc>
     </xd:doc>
