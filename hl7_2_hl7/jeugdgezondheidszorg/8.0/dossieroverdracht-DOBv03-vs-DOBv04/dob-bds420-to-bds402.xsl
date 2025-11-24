@@ -1273,11 +1273,40 @@
 
     <!-- R025 -->
     <xd:doc>
-        <xd:desc>Rubriek 25, element 1671 bestond niet in 4.0.2</xd:desc>
+        <xd:desc>Rubriek 25 bestond niet in BDS 4.0.2</xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1671'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
-        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R025'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob420">
+        <xsl:choose>
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[not(hl7:groupCluster/hl7:code[@code = 'G119'][@codeSystem='2.16.840.1.113883.2.4.4.40.393'])]) > 0">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob420"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Rubriek 25 is verwijderd omdat het enkel overgeslagen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob420"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Groep G119 'Scoliose hoekmeting' bestond niet in BDS 4.0.2</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:component[hl7:groupCluster/hl7:code[@code = 'G119'][@codeSystem='2.16.840.1.113883.2.4.4.40.393']]" mode="dob420">
+        <xsl:comment><xsl:text> Groep G119 Scoliose hoekmeting is overgeslagen.</xsl:text></xsl:comment>
+        <xsl:apply-templates select="@* | ./hl7:groupCluster/hl7:component" mode="dob420"/>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Rubriek 25, elementen 1671 'Scoliose hoekmeting' en 1691 'Lichaamskant scoliose hoekmeting' bestonden niet in 4.0.2</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:component[hl7:observation/hl7:code[@code = '1671'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]" mode="dob420">
+        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
+        <xsl:if test="./hl7:observation[hl7:code[@code = '1671'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]/hl7:targetSiteCode[@code][@codeSystem='2.16.840.1.113883.2.4.4.40.13']">
+            <xsl:comment><xsl:text> element 1691 Lichaamskant scoliose hoekmeting is overgeslagen </xsl:text></xsl:comment>
+        </xsl:if>
+    </xsl:template>
+
     <!--422	Bijzonderheden testis rechts	W0250-->
     <!--1392	Bijzonderheden testis links	W0250-->
     <xd:doc>
