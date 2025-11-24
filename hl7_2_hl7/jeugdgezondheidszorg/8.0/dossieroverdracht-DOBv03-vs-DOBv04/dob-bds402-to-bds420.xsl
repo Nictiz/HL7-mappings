@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:util="urn:hl7:utilities" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hl7="urn:hl7-org:v3" xmlns:exslt="http://exslt.org/common" exclude-result-prefixes="xs xd hl7 xsi exslt" version="1.0">
-    <xsl:import href="../../../../../YATC-shared/xsl/util/utilities.xsl"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Onno Gieling, Nictiz</xd:p>
@@ -1270,69 +1269,6 @@
         </xsl:copy>
     </xsl:template>
 
-    <xd:doc>
-        <xd:desc>Person met eventueel gestructureerde naam naar een Trivial Name = ongestructureerde naam</xd:desc>
-        <xd:param name="nm"/>
-    </xd:doc>
-    <xsl:template name="dtPNtoTN">
-        <xsl:param name="nm"/>
-        <name xmlns="urn:hl7-org:v3">
-            <xsl:choose>
-                <xsl:when test="$nm/*">
-                    <xsl:for-each select="$nm/*">
-                        <xsl:if test="not(self::hl7:validTime)">
-                            <xsl:value-of select="."/>
-                            <xsl:if test="position() != last() and not(self::hl7:prefix[contains(@qualifie, 'VV')]) and not(substring(., string-length(.), 1) = ' ')">
-                                <xsl:text> </xsl:text>
-                            </xsl:if>
-                        </xsl:if>
-                    </xsl:for-each>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="$nm"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </name>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Maakt een string van de oorspronkelijke waarde ten behoeve van nonBDSdata</xd:desc>
-        <xd:param name="in">het element met de gegevens</xd:param>
-    </xd:doc>
-    <xsl:template name="DatatypeToString">
-        <xsl:param name="in"/>
-
-        <xsl:choose>
-            <xsl:when test="$in[@displayName]">
-                <xsl:value-of select="$in/@displayName"/>
-            </xsl:when>
-            <xsl:when test="$in[@code]">
-                <xsl:value-of select="concat($in/@code, ' (', $in/@codeSystem, ')')"/>
-            </xsl:when>
-            <xsl:when test="$in[hl7:originalText]">
-                <xsl:value-of select="$in/hl7:originalText"/>
-            </xsl:when>
-            <xsl:when test="$in[@root | @extension]">
-                <xsl:value-of select="concat($in/@extension, ' (', $in/@root, ')')"/>
-            </xsl:when>
-            <xsl:when test="$in[string(@value) = 'true']">
-                <xsl:value-of select="'ja'"/>
-            </xsl:when>
-            <xsl:when test="$in[string(@value) = 'false']">
-                <xsl:value-of select="'nee'"/>
-            </xsl:when>
-            <xsl:when test="$in[@value]">
-                <xsl:value-of select="normalize-space(concat($in/@value, ' ', $in/@unit))"/>
-            </xsl:when>
-            <xsl:when test="$in[@nullFlavor]">
-                <xsl:value-of select="'onbekend'"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="$in"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    
     <xd:doc>
         <xd:desc>BDS-rubrieknamen, BDS-groepnamen en BDS-elementnamen bijwerken.</xd:desc>
     </xd:doc>
