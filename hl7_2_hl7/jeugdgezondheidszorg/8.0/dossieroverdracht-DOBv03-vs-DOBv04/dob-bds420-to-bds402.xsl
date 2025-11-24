@@ -1273,7 +1273,7 @@
 
     <!-- R025 -->
     <xd:doc>
-        <xd:desc>Rubriek 25 bestond niet in BDS 4.0.2</xd:desc>
+        <xd:desc>Rubriek 25 wordt overgeslagen in het alleen overgeslagen groepen of elementen bevat</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R025'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob420">
         <xsl:choose>
@@ -1283,7 +1283,7 @@
                 </xsl:copy>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 25 is verwijderd omdat het enkel overgeslagen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:comment><xsl:text> Rubriek 25 is overgeslagen omdat het enkel overgeslagen elementen bevat.</xsl:text></xsl:comment>
                 <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob420"/>
             </xsl:otherwise>
         </xsl:choose>
