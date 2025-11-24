@@ -1242,7 +1242,7 @@
     <xd:doc>
         <xd:desc>Rubriek 20 wordt overgeslagen als het alleen overgeslagen groepen of elementen bevat</xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R020'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob420">
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R020'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']]" mode="dob420">
         <xsl:choose>
             <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1679'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
                 <xsl:copy>
