@@ -1146,14 +1146,14 @@
         <xsl:choose>
             <!-- Condition for nullFlavor="OTH" and specific codes 16-23 -->
             <xsl:when test="@code = '16' or @code = '17' or @code = '18' or @code = '19' or @code = '20' or @code = '21' or @code = '22' or @code = '23'">
-                <value nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+                <value xsi:type="CV" nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
                     <originalText><xsl:value-of select="@displayName"/></originalText>
                 </value>
             </xsl:when>
             
             <!-- Condition for modified displayName for codes 08, 12, and 14 -->
             <xsl:when test="@code = '08' or @code = '12' or @code = '14'">
-                <value xsi:type="CV">
+                <value xsi:type="CV" xmlns="urn:hl7-org:v3">
                     <xsl:attribute name="code">
                         <xsl:value-of select="@code"/>
                     </xsl:attribute>
@@ -1178,7 +1178,7 @@
             
             <!-- Default behavior if none of the specific conditions are met -->
             <xsl:otherwise>
-                <value xsi:type="CV">
+                <value xsi:type="CV" xmlns="urn:hl7-org:v3">
                     <xsl:attribute name="code">
                         <xsl:value-of select="@code"/>
                     </xsl:attribute>
@@ -1199,8 +1199,10 @@
         <xd:desc>Rubriek 18 - Nieuwe codes binnen waardelijst W0193 </xd:desc>
     </xd:doc>
     <xsl:template match="hl7:escort/hl7:responsibleParty/hl7:code[@code = '13' or @code = '14'][@codeSystem = '2.16.840.1.113883.2.4.4.40.421']" mode="dob420">
-        <code nullFlavor="OTH" 
-              codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+        <code xsi:type="CV" 
+              nullFlavor="OTH" 
+              codeSystem="2.16.840.1.113883.5.1008" 
+              xmlns="urn:hl7-org:v3">
             <originalText>
                 <xsl:value-of select="@displayName"/>
             </originalText>
@@ -1239,7 +1241,8 @@
         <xd:desc>Rubriek 21 - Nieuwe code binnen waardelijst W0209 </xd:desc>
     </xd:doc>
     <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.40324']/hl7:value[@code = '10'][@codeSystem = '2.16.840.1.113883.2.4.4.40.46']" mode="dob420">
-        <value nullFlavor="OTH" 
+        <value xsi:type="CV"
+                nullFlavor="OTH" 
                codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
             <originalText><xsl:value-of select="@displayName"/></originalText>
         </value>
@@ -1249,7 +1252,7 @@
         <xd:desc>Rubriek 21 - Nieuwe code binnen waardelijst W0214 </xd:desc>
     </xd:doc>
     <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.41647']/hl7:value[@code = '03' or @code = '04' or @code = '05' or @code = '06' or @code = '07'][@codeSystem = '2.16.840.1.113883.2.4.4.40.313']" mode="dob420">
-        <value nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+        <value xsi:type="CV" nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
             <originalText><xsl:value-of select="@displayName"/></originalText>
         </value>
     </xsl:template>
@@ -1279,8 +1282,10 @@
         <xd:desc>Rubriek 25 - Nieuwe codes binnen waardelijst W0250 </xd:desc>
     </xd:doc>
     <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.41392']/hl7:value[@code = '05' or @code = '06'][@codeSystem = '2.16.840.1.113883.2.4.4.40.72']" mode="dob420">
-        <value nullFlavor="OTH" 
-               codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+        <value xsi:type="CV"
+               nullFlavor="OTH" 
+               codeSystem="2.16.840.1.113883.5.1008" 
+               xmlns="urn:hl7-org:v3">
             <originalText><xsl:value-of select="@displayName"/></originalText>
         </value>
     </xsl:template>
@@ -1347,7 +1352,7 @@
         <xd:desc>Rubriek 54 - Nieuwe code binnen waardelijst W0640 </xd:desc>
     </xd:doc>
     <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.41345']/hl7:methodCode[@code = '11' or @code = '12' or @code = '13' or @code = '14' or @code = '15' or @code = '16' or @code = '17'][@codeSystem = '2.16.840.1.113883.2.4.4.40.387']" mode="dob420">
-        <methodCode nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+        <methodCode xsi:type="CV" nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
             <originalText><xsl:value-of select="@displayName"/></originalText>
         </methodCode>
     </xsl:template>
@@ -1358,7 +1363,7 @@
         <xd:desc>Rubriek 47 - Nieuwe code binnen waardelijst W0619 </xd:desc>
     </xd:doc>
     <xsl:template match="hl7:encounter/hl7:reasonCode[@code = '51'][@codeSystem = '2.16.840.1.113883.2.4.4.40.373']" mode="dob420">
-        <reasonCode nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+        <reasonCode xsi:type="CV" nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
             <originalText><xsl:value-of select="@displayName"/></originalText>
         </reasonCode>
     </xsl:template>    
