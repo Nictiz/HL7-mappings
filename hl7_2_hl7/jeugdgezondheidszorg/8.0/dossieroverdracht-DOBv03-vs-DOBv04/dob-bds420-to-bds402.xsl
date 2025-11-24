@@ -1213,6 +1213,23 @@
 
     <!-- R019 -->
     <xd:doc>
+        <xd:desc>Rubriek 19 wordt overgeslagen als het alleen overgeslagen groepen of elementen bevat</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R019'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob420">
+        <xsl:choose>
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1665' or @code = '1666' or @code = '1667' or @code = '1668'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob420"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Rubriek 19 is overgeslagen omdat het enkel overgeslagen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob420"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xd:doc>
         <xd:desc>Rubriek 19, elementen 1665-1668 bestonden niet in 4.0.2</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1665' or @code = '1666' or @code = '1667' or @code = '1668'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
@@ -1247,6 +1264,23 @@
     </xsl:template>
 
     <!-- R021 -->
+    <xd:doc>
+        <xd:desc>Rubriek 21 wordt overgeslagen als het alleen overgeslagen groepen of elementen bevat</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R021'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob420">
+        <xsl:choose>
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1646' or @code = '1647' or @code = '1648'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob420"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Rubriek 21 is overgeslagen omdat het enkel overgeslagen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob420"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
     <xd:doc>
         <xd:desc>Rubriek 21, element 1646, 1647, 1648 bestonden niet in 4.0.2</xd:desc>
     </xd:doc>
@@ -1366,6 +1400,23 @@
 
     <!-- R026 -->
     <xd:doc>
+        <xd:desc>Rubriek 26 wordt overgeslagen als het alleen overgeslagen groepen of elementen bevat</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R026'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob420">
+        <xsl:choose>
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1672' or @code = '1673'or @code = '1674'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob420"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Rubriek 26 is overgeslagen omdat het enkel overgeslagen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob420"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xd:doc>
         <xd:desc>Rubriek 26, elementen 1672-1674 bestonden niet in 4.0.2</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1672' or @code = '1673' or @code = '1674'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
@@ -1374,6 +1425,23 @@
     <!--1673	Beoordeling puberteitsontwikkeling W0707-->
 
     <!-- R030 -->
+    <xd:doc>
+        <xd:desc>Rubriek 30 wordt overgeslagen als het alleen overgeslagen groepen of elementen bevat</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R030'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob420">
+        <xsl:choose>
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1656' or @code = '1657' or @code = '1658' or @code = '1659'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob420"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Rubriek 30 is overgeslagen omdat het enkel overgeslagen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob420"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
     <xd:doc>
         <xd:desc>Rubriek 30, elementen 1656-1659 bestonden niet in 4.0.2</xd:desc>
     </xd:doc>
@@ -1384,6 +1452,23 @@
     <!--1659	Bevinding(en) psychosociaal functioneren W0703-->
 
     <!-- R031 -->
+    <xd:doc>
+        <xd:desc>Rubriek 31 wordt overgeslagen als het alleen overgeslagen groepen of elementen bevat</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R031'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob420">
+        <xsl:choose>
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1675' or @code = '1676' or @code = '1677'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob420"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Rubriek 31 is overgeslagen omdat het enkel overgeslagen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob420"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
     <xd:doc>
         <xd:desc>Rubriek 31, elementen 1675-1677 bestonden niet in 4.0.2</xd:desc>
     </xd:doc>
@@ -1419,6 +1504,23 @@
 
     <!-- R041 -->
     <xd:doc>
+        <xd:desc>Rubriek 41 wordt overgeslagen als het alleen overgeslagen groepen of elementen bevat</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R041'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob420">
+        <xsl:choose>
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1682' or @code = '1683'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob420"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Rubriek 41 is overgeslagen omdat het enkel overgeslagen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob420"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xd:doc>
         <xd:desc>Rubriek 41, elementen 1682 en 1683 bestonden niet in 4.0.2</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1682' or @code = '1683'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
@@ -1428,6 +1530,23 @@
     <!--1683	Moeder heeft biological gebruikt W0711-->
 
     <!-- R042 -->
+    <xd:doc>
+        <xd:desc>Rubriek 42 wordt overgeslagen als het alleen overgeslagen groepen of elementen bevat</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R042'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob420">
+        <xsl:choose>
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1660' or @code = '1661' or @code = '1662' or @code = '1663' or @code = '1664' or @code = '1669' or @code = '1670' or @code = '1682' or @code = '1683' or @code = '1684' or @code = '1685' or @code = '1686' or @code = '1687' or @code = '1688' or @code = '1689' or @code = '1690'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob420"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Rubriek 42 is overgeslagen omdat het enkel overgeslagen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob420"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
     <xd:doc>
         <xd:desc>Rubriek 42, elementen 1660-1664, 1669, 1670 en 1684-1690 bestonden niet in 4.0.2</xd:desc>
     </xd:doc>
