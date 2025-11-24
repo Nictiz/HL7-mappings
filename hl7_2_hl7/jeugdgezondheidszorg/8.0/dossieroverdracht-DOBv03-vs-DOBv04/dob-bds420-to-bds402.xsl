@@ -1207,6 +1207,7 @@
         </code>
     </xsl:template>
     <!--1424	Indicatie activiteit W0619-->
+    <!-- zie conversie van rubriek 47 -->
     
     <!-- R019 -->
     <xd:doc>
