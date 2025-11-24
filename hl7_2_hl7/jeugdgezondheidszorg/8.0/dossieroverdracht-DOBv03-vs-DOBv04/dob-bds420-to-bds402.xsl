@@ -1134,23 +1134,27 @@
     </xd:doc>
     <xsl:template match="hl7:appendage/hl7:document/hl7:code[@code = '03' or @code = '04'][@codeSystem = '2.16.840.1.113883.2.4.4.40.303']" mode="dob420">
         <code nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
-            <originalText><xsl:value-of select="@displayName"/></originalText>
+            <originalText>
+                <xsl:value-of select="@displayName"/>
+            </originalText>
         </code>
     </xsl:template>
-    
+
     <!-- R012 -->
     <xd:doc>
         <xd:desc>Rubriek 12 - Nieuwe en gewijzigde codes binnen waardelijst W0114 </xd:desc>
     </xd:doc>
-        <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.40080']/hl7:value[@codeSystem = '2.16.840.1.113883.2.4.4.40.8']" mode="dob420">
+    <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.40080']/hl7:value[@codeSystem = '2.16.840.1.113883.2.4.4.40.8']" mode="dob420">
         <xsl:choose>
             <!-- Condition for nullFlavor="OTH" and specific codes 16-23 -->
             <xsl:when test="@code = '16' or @code = '17' or @code = '18' or @code = '19' or @code = '20' or @code = '21' or @code = '22' or @code = '23'">
                 <value xsi:type="CV" nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
-                    <originalText><xsl:value-of select="@displayName"/></originalText>
+                    <originalText>
+                        <xsl:value-of select="@displayName"/>
+                    </originalText>
                 </value>
             </xsl:when>
-            
+
             <!-- Condition for modified displayName for codes 08, 12, and 14 -->
             <xsl:when test="@code = '08' or @code = '12' or @code = '14'">
                 <value xsi:type="CV" xmlns="urn:hl7-org:v3">
@@ -1175,7 +1179,7 @@
                     </xsl:attribute>
                 </value>
             </xsl:when>
-            
+
             <!-- Default behavior if none of the specific conditions are met -->
             <xsl:otherwise>
                 <value xsi:type="CV" xmlns="urn:hl7-org:v3">
@@ -1192,17 +1196,14 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    
+
     <!-- R018 -->
     <!--731	Begeleider	W0193-->
     <xd:doc>
         <xd:desc>Rubriek 18 - Nieuwe codes binnen waardelijst W0193 </xd:desc>
     </xd:doc>
     <xsl:template match="hl7:escort/hl7:responsibleParty/hl7:code[@code = '13' or @code = '14'][@codeSystem = '2.16.840.1.113883.2.4.4.40.421']" mode="dob420">
-        <code xsi:type="CV" 
-              nullFlavor="OTH" 
-              codeSystem="2.16.840.1.113883.5.1008" 
-              xmlns="urn:hl7-org:v3">
+        <code xsi:type="CV" nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
             <originalText>
                 <xsl:value-of select="@displayName"/>
             </originalText>
@@ -1210,7 +1211,7 @@
     </xsl:template>
     <!--1424	Indicatie activiteit W0619-->
     <!-- zie conversie van rubriek 47 -->
-    
+
     <!-- R019 -->
     <xd:doc>
         <xd:desc>Rubriek 19, elementen 1665-1678 bestonden niet in 4.0.0</xd:desc>
@@ -1220,7 +1221,7 @@
     </xsl:template>
     <!--1665	In de omgeving van de jeugdige wordt wel eens of dagelijks gerookt	W0704-->
     <!--1668	Jeugdige heeft zwemdiploma	W0705-->
-    
+
     <!-- R020 -->
     <xd:doc>
         <xd:desc>Rubriek 20, element 1679 bestonden niet in 4.0.0</xd:desc>
@@ -1228,12 +1229,12 @@
     <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1679'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
     </xsl:template>
-    
+
     <!-- R021 -->
     <xd:doc>
         <xd:desc>Rubriek 21, element 1646, 1647, 1648 bestonden niet in 4.0.0</xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1646' or @code = '1647' or @code = '1648' ][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1646' or @code = '1647' or @code = '1648'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
     </xsl:template>
     <!--324	Zindelijkheid	W0209-->
@@ -1241,10 +1242,10 @@
         <xd:desc>Rubriek 21 - Nieuwe code binnen waardelijst W0209 </xd:desc>
     </xd:doc>
     <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.40324']/hl7:value[@code = '10'][@codeSystem = '2.16.840.1.113883.2.4.4.40.46']" mode="dob420">
-        <value xsi:type="CV"
-                nullFlavor="OTH" 
-               codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
-            <originalText><xsl:value-of select="@displayName"/></originalText>
+        <value xsi:type="CV" nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+            <originalText>
+                <xsl:value-of select="@displayName"/>
+            </originalText>
         </value>
     </xsl:template>
     <!--1647	Soorten genotsmiddelen/verslavingsrisico	W0214-->
@@ -1253,10 +1254,12 @@
     </xd:doc>
     <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.41647']/hl7:value[@code = '03' or @code = '04' or @code = '05' or @code = '06' or @code = '07'][@codeSystem = '2.16.840.1.113883.2.4.4.40.313']" mode="dob420">
         <value xsi:type="CV" nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
-            <originalText><xsl:value-of select="@displayName"/></originalText>
+            <originalText>
+                <xsl:value-of select="@displayName"/>
+            </originalText>
         </value>
     </xsl:template>
-    
+
     <!--1649	Seksueel functioneren W0700-->
     <!--1651	Conclusie seksueel gedrag W0701-->
 
@@ -1268,7 +1271,7 @@
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
     </xsl:template>
     <!--1678	Voorkeurshouding	W0708-->
-    
+
     <!-- R025 -->
     <xd:doc>
         <xd:desc>Rubriek 25, element 1671 bestond niet in 4.0.0</xd:desc>
@@ -1282,14 +1285,13 @@
         <xd:desc>Rubriek 25 - Nieuwe codes binnen waardelijst W0250 </xd:desc>
     </xd:doc>
     <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.41392']/hl7:value[@code = '05' or @code = '06'][@codeSystem = '2.16.840.1.113883.2.4.4.40.72']" mode="dob420">
-        <value xsi:type="CV"
-               nullFlavor="OTH" 
-               codeSystem="2.16.840.1.113883.5.1008" 
-               xmlns="urn:hl7-org:v3">
-            <originalText><xsl:value-of select="@displayName"/></originalText>
+        <value xsi:type="CV" nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+            <originalText>
+                <xsl:value-of select="@displayName"/>
+            </originalText>
         </value>
     </xsl:template>
-    
+
     <!-- R026 -->
     <xd:doc>
         <xd:desc>Rubriek 26, elementen 1672-1674 bestonden niet in 4.0.0</xd:desc>
@@ -1298,7 +1300,7 @@
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
     </xsl:template>
     <!--1673	Beoordeling puberteitsontwikkeling W0707-->
-    
+
     <!-- R030 -->
     <xd:doc>
         <xd:desc>Rubriek 30, elementen 1656-1659 bestonden niet in 4.0.0</xd:desc>
@@ -1308,7 +1310,7 @@
     </xsl:template>
     <!--1658	Beoordeling cognitieve ontwikkeling W0702-->
     <!--1659	Bevinding(en) psychosociaal functioneren W0703-->
-    
+
     <!-- R031 -->
     <xd:doc>
         <xd:desc>Rubriek 31, elementen 1675-1677 bestonden niet in 4.0.0</xd:desc>
@@ -1324,7 +1326,7 @@
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
     </xsl:template>
     <!--1680	Risicosignalen hartfunctie W0709-->
-    
+
     <!-- R041 -->
     <xd:doc>
         <xd:desc>Rubriek 41, elementen 1682 en 1683 bestonden niet in 4.0.0</xd:desc>
@@ -1334,18 +1336,19 @@
     </xsl:template>
     <!--1682	De kinderarts heeft een contra-indicatie voor vaccinatie doorgegeven W0710-->
     <!--1683	Moeder heeft biological gebruikt W0711-->
-    
+
     <!-- R042 -->
     <xd:doc>
         <xd:desc>Rubriek 42, elementen 1660-1664, 1669, 1670 en 1684-1690 bestonden niet in 4.0.0</xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1660' or @code = '1661' or @code = '1662' or @code = '1663' or @code = '1664' or @code = '1669' or @code = '1670' or @code = '1682' or @code = '1683' or @code = '1684' or @code = '1685' or @code = '1686' or @code = '1687' or @code = '1688' or @code = '1689' or @code = '1690'
-        ][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
+    <xsl:template match="
+            hl7:component[hl7:observation[hl7:code[@code = '1660' or @code = '1661' or @code = '1662' or @code = '1663' or @code = '1664' or @code = '1669' or @code = '1670' or @code = '1682' or @code = '1683' or @code = '1684' or @code = '1685' or @code = '1686' or @code = '1687' or @code = '1688' or @code = '1689' or @code = '1690'
+            ][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
     </xsl:template>
     <!--1684	Score op aanvullende vragen op ontwikkelingskenmerk 41 W0712-->
     <!--1686	Score spelvraag Van Wiechentaalonderzoek W0713-->
-    
+
     <!-- R054 -->
     <!--1341	Screeningsinstrument psychosociale problematiek	W0640-->
     <xd:doc>
@@ -1353,10 +1356,12 @@
     </xd:doc>
     <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.41345']/hl7:methodCode[@code = '11' or @code = '12' or @code = '13' or @code = '14' or @code = '15' or @code = '16' or @code = '17'][@codeSystem = '2.16.840.1.113883.2.4.4.40.387']" mode="dob420">
         <methodCode xsi:type="CV" nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
-            <originalText><xsl:value-of select="@displayName"/></originalText>
+            <originalText>
+                <xsl:value-of select="@displayName"/>
+            </originalText>
         </methodCode>
     </xsl:template>
-        
+
     <!-- R047 -->
     <!--485	Indicatie W0619-->
     <xd:doc>
@@ -1364,9 +1369,11 @@
     </xd:doc>
     <xsl:template match="hl7:encounter/hl7:reasonCode[@code = '51'][@codeSystem = '2.16.840.1.113883.2.4.4.40.373']" mode="dob420">
         <reasonCode xsi:type="CV" nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
-            <originalText><xsl:value-of select="@displayName"/></originalText>
+            <originalText>
+                <xsl:value-of select="@displayName"/>
+            </originalText>
         </reasonCode>
-    </xsl:template>    
+    </xsl:template>
 
     <xd:doc>
         <xd:desc>Skip lines consisting only of spaces</xd:desc>
