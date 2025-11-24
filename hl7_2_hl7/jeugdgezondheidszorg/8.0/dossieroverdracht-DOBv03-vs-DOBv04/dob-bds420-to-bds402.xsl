@@ -1213,7 +1213,7 @@
 
     <!-- R019 -->
     <xd:doc>
-        <xd:desc>Rubriek 19, elementen 1665-1678 bestonden niet in 4.0.0</xd:desc>
+        <xd:desc>Rubriek 19, elementen 1665-1678 bestonden niet in 4.0.2</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1665' or @code = '1666' or @code = '1667' or @code = '1668'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
@@ -1223,7 +1223,7 @@
 
     <!-- R020 -->
     <xd:doc>
-        <xd:desc>Rubriek 20, element 1679 bestonden niet in 4.0.0</xd:desc>
+        <xd:desc>Rubriek 20, element 1679 bestonden niet in 4.0.2</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1679'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
@@ -1231,7 +1231,7 @@
 
     <!-- R021 -->
     <xd:doc>
-        <xd:desc>Rubriek 21, element 1646, 1647, 1648 bestonden niet in 4.0.0</xd:desc>
+        <xd:desc>Rubriek 21, element 1646, 1647, 1648 bestonden niet in 4.0.2</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1646' or @code = '1647' or @code = '1648'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
@@ -1264,7 +1264,7 @@
 
     <!-- R023 -->
     <xd:doc>
-        <xd:desc>Rubriek 23, element 1678 bestond niet in 4.0.0</xd:desc>
+        <xd:desc>Rubriek 23, element 1678 bestond niet in 4.0.2</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1678'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
@@ -1273,7 +1273,7 @@
 
     <!-- R025 -->
     <xd:doc>
-        <xd:desc>Rubriek 25, element 1671 bestond niet in 4.0.0</xd:desc>
+        <xd:desc>Rubriek 25, element 1671 bestond niet in 4.0.2</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1671'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
@@ -1293,7 +1293,7 @@
 
     <!-- R026 -->
     <xd:doc>
-        <xd:desc>Rubriek 26, elementen 1672-1674 bestonden niet in 4.0.0</xd:desc>
+        <xd:desc>Rubriek 26, elementen 1672-1674 bestonden niet in 4.0.2</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1672' or @code = '1673' or @code = '1674'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
@@ -1302,7 +1302,7 @@
 
     <!-- R030 -->
     <xd:doc>
-        <xd:desc>Rubriek 30, elementen 1656-1659 bestonden niet in 4.0.0</xd:desc>
+        <xd:desc>Rubriek 30, elementen 1656-1659 bestonden niet in 4.0.2</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1656' or @code = '1657' or @code = '1658' or @code = '1659'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
@@ -1312,14 +1312,14 @@
 
     <!-- R031 -->
     <xd:doc>
-        <xd:desc>Rubriek 31, elementen 1675-1677 bestonden niet in 4.0.0</xd:desc>
+        <xd:desc>Rubriek 31, elementen 1675-1677 bestonden niet in 4.0.2</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1675' or @code = '1676' or @code = '1677'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
     </xsl:template>
     <!-- R039 -->
     <xd:doc>
-        <xd:desc>Rubriek 39, elementen 1680 en 1681 bestonden niet in 4.0.0</xd:desc>
+        <xd:desc>Rubriek 39, elementen 1680 en 1681 bestonden niet in 4.0.2</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1680' or @code = '1681'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
@@ -1328,7 +1328,7 @@
 
     <!-- R041 -->
     <xd:doc>
-        <xd:desc>Rubriek 41, elementen 1682 en 1683 bestonden niet in 4.0.0</xd:desc>
+        <xd:desc>Rubriek 41, elementen 1682 en 1683 bestonden niet in 4.0.2</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1682' or @code = '1683'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
@@ -1338,7 +1338,7 @@
 
     <!-- R042 -->
     <xd:doc>
-        <xd:desc>Rubriek 42, elementen 1660-1664, 1669, 1670 en 1684-1690 bestonden niet in 4.0.0</xd:desc>
+        <xd:desc>Rubriek 42, elementen 1660-1664, 1669, 1670 en 1684-1690 bestonden niet in 4.0.2</xd:desc>
     </xd:doc>
     <xsl:template match="
             hl7:component[hl7:observation[hl7:code[@code = '1660' or @code = '1661' or @code = '1662' or @code = '1663' or @code = '1664' or @code = '1669' or @code = '1670' or @code = '1682' or @code = '1683' or @code = '1684' or @code = '1685' or @code = '1686' or @code = '1687' or @code = '1688' or @code = '1689' or @code = '1690'
