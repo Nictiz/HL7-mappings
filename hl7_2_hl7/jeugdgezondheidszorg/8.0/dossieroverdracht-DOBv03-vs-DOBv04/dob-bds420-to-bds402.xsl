@@ -1196,6 +1196,23 @@
         </xsl:choose>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc>Rubriek 12 - Erfelijk bepaalde ziekte in de familie met meerdere familieleden uitsplitsen per groep en toelichting overslaan</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:component[hl7:groupCluster/hl7:code[@code = 'G019'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']]" mode="dob420">
+        <xsl:for-each select="./hl7:groupCluster[hl7:code[@code = 'G019'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']]/hl7:component[hl7:observation/hl7:code[@code = '80'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]">
+            <component xmlns="urn:hl7-org:v3">
+                <groupCluster>
+                    <xsl:apply-templates select="./../hl7:code" mode="dob420"/>
+                    <xsl:apply-templates select="." mode="dob420"/>
+                </groupCluster>
+            </component>
+        </xsl:for-each>
+        <xsl:if test="./hl7:groupCluster[hl7:code[@code = 'G019'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']]/hl7:component/hl7:observation[hl7:code[@code = '1608'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]">
+            <xsl:comment><xsl:text> element 1608 Toelichting erfelijke factor in de familie is overgeslagen</xsl:text></xsl:comment>
+        </xsl:if>
+    </xsl:template>
+    
     <!-- R018 -->
     <!--731	Begeleider	W0193-->
     <xd:doc>
