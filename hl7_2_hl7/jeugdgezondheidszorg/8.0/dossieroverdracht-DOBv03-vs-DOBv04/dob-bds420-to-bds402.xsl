@@ -1578,7 +1578,7 @@
     <!-- R054 -->
     <!--1341	Screeningsinstrument psychosociale problematiek	W0640-->
     <xd:doc>
-        <xd:desc>Rubriek 54 - Nieuwe code binnen waardelijst W0640 </xd:desc>
+        <xd:desc>Rubriek 54 - Nieuwe codes binnen waardelijst W0640 </xd:desc>
     </xd:doc>
     <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.41345']/hl7:methodCode[@code = '11' or @code = '12' or @code = '13' or @code = '14' or @code = '15' or @code = '16' or @code = '17'][@codeSystem = '2.16.840.1.113883.2.4.4.40.387']" mode="dob420">
         <methodCode xsi:type="CV" nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
