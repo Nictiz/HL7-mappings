@@ -1286,7 +1286,7 @@
     </xd:doc>
     <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R021'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob420">
         <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1646' or @code = '1647' or @code = '1648'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1649' or @code = '1650' or @code = '1651' or @code = '1646' or @code = '1647' or @code = '1648'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
                 <xsl:copy>
                     <xsl:apply-templates select="@* | node()" mode="dob420"/>
                 </xsl:copy>
@@ -1299,9 +1299,9 @@
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Rubriek 21, element 1646, 1647, 1648 bestonden niet in 4.0.2</xd:desc>
+        <xd:desc>Rubriek 21, element 1646-1651 bestonden niet in 4.0.2</xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1646' or @code = '1647' or @code = '1648'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1646' or @code = '1647' or @code = '1648' or @code = '1649' or @code = '1650' or @code = '1651'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
     </xsl:template>
     <!--324	Zindelijkheid	W0209-->
