@@ -1525,7 +1525,7 @@
     </xd:doc>
     <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R041'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob420">
         <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1682' or @code = '1683'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1644' or @code = '1645' or @code = '1682' or @code = '1683'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
                 <xsl:copy>
                     <xsl:apply-templates select="@* | node()" mode="dob420"/>
                 </xsl:copy>
@@ -1538,9 +1538,9 @@
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Rubriek 41, elementen 1682 en 1683 bestonden niet in 4.0.2</xd:desc>
+        <xd:desc>Rubriek 41, elementen 1644, 1645, 1682 en 1683 bestonden niet in 4.0.2</xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1682' or @code = '1683'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1644' or @code = '1645' or @code = '1682' or @code = '1683'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
     </xsl:template>
     <!--1682	De kinderarts heeft een contra-indicatie voor vaccinatie doorgegeven W0710-->
