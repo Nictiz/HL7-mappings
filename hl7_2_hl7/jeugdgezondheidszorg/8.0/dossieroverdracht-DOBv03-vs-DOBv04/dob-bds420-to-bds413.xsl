@@ -4,12 +4,12 @@
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Onno Gieling, Nictiz</xd:p>
             <xd:p><xd:b>Author:</xd:b> Nathalie Nikodym, Nictiz</xd:p>
-            <xd:p><xd:b>Purpose:</xd:b> Conversie van een valide Dossieroverdrachtbericht op basis van BDS 4.0.2 (REPC_IN902120NL03) naar een valide versie op basis van BDS 4.2.0 (REPC_IN902120NL04). Regelt zelf het bijwerken van de weergavenamen bij rubrieken, groepen en elementen. Laat de weergavenamen van waarden ongemoeid.</xd:p>
+            <xd:p><xd:b>Purpose:</xd:b> Conversie van een valide Dossieroverdrachtbericht op basis van BDS 4.2.0 (REPC_IN902120NL04) naar een valide versie op basis van BDS 4.1.3 (REPC_IN902120NL03). Regelt zelf het bijwerken van de weergavenamen bij rubrieken, groepen en elementen. Laat de weergavenamen van waarden ongemoeid.</xd:p>
             <xd:p>
                 <xd:b>History:</xd:b>
             </xd:p>
             <xd:ul>
-                <xd:li>xx-xx-202x - 0.1</xd:li>
+                <xd:li>01-12-2024 - 0.1</xd:li>
             </xd:ul>
             <xd:p><xd:b>License:</xd:b> Copyright © Nictiz</xd:p>
             <xd:p>This program is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.</xd:p>
@@ -23,7 +23,7 @@
     <xsl:output indent="yes" omit-xml-declaration="yes"/>
 
     <xsl:variable name="W0639_HL7_W0646_HL7_W0647_HL7">
-        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.639" name="W0639_HL7" displayName="W0639 RubriekID (HL7) alle" effectiveDate="2020-05-27T00:00:00" statusCode="draft" versionLabel="4.2.0">
+        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.639" name="W0639_HL7" displayName="W0639 RubriekID (HL7) alle" effectiveDate="2020-05-27T00:00:00" statusCode="final" versionLabel="413">
             <desc language="nl-NL">RubriekID voor alle rubrieken</desc>
             <conceptList>
                 <concept code="R002" codeSystem="2.16.840.1.113883.2.4.4.40.391" displayName="Dossierinformatie" level="0" type="L"/>
@@ -73,7 +73,7 @@
                 <concept code="R054" codeSystem="2.16.840.1.113883.2.4.4.40.391" displayName="Screeningsinstrumenten" level="0" type="L"/>
             </conceptList>
         </valueSet>
-        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.646" name="W0646_HL7" displayName="W0646 GroepID" effectiveDate="2020-05-27T00:00:00" statusCode="draft" versionLabel="4.2.0">
+        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.646" name="W0646_HL7" displayName="W0646 GroepID" effectiveDate="2020-05-27T00:00:00" statusCode="final" versionLabel="413">
             <desc language="nl-NL">GroepID</desc>
             <conceptList>
                 <concept code="G001" codeSystem="2.16.840.1.113883.2.4.4.40.393" displayName="Adres cliënt" level="0" type="L"/>
@@ -153,10 +153,9 @@
                 <!--<concept code="G116" codeSystem="2.16.840.1.113883.2.4.4.40.393" displayName="Gezagstatus ouder/verzorger" level="0" type="L"/>-->
                 <concept code="G117" codeSystem="2.16.840.1.113883.2.4.4.40.393" displayName="Visus" level="0" type="L"/>
                 <!--<concept code="G118" codeSystem="2.16.840.1.113883.2.4.4.40.393" displayName="Rota-vaccinatie" level="0" type="L"/>-->
-                <concept code="G119" codeSystem="2.16.840.1.113883.2.4.4.40.393" displayName="Scoliose hoekmeting" level="0" type="L"/>
             </conceptList>
         </valueSet>
-        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.647" name="W0647_HL7" displayName="W0647 BDS Elementen" effectiveDate="2020-05-27T00:00:00" statusCode="draft" versionLabel="4.2.0">
+        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.647" name="W0647_HL7" displayName="W0647 BDS Elementen" effectiveDate="2020-05-27T00:00:00" statusCode="final" versionLabel="413">
             <desc language="nl-NL">BDS Elementen</desc>
             <conceptList>
                 <concept code="1" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Voorvoegsel achternaam" level="0" type="L"/>
@@ -306,7 +305,7 @@
                 <concept code="268" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Motorische ontwikkeling onderzocht" level="0" type="L"/>
                 <concept code="269" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden tonus" level="0" type="L"/>
                 <concept code="271" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden centraal zenuwstelsel" level="0" type="L"/>
-                <concept code="276" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden motorisch functioneren" level="0" type="L"/>
+                <concept code="276" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden motorische ontwikkeling" level="0" type="L"/>
                 <concept code="294" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Spraak- en taalontwikkeling onderzocht" level="0" type="L"/>
                 <concept code="301" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Meertaligheid" level="0" type="L"/>
                 <concept code="302" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Taal" level="0" type="L"/>
@@ -628,15 +627,15 @@
                 <concept code="932" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="33. Zegt &#34;dada-baba&#34; of &#34;gaga&#34;" level="0" type="L"/>
                 <concept code="933" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="34. Brabbelt bij zijn spel" level="0" type="L"/>
                 <concept code="934" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="35. Reageert op mondeling verzoek" level="0" type="L"/>
-                <concept code="935" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="36. Maakt communicatieve gebaren" level="0" type="L"/>
+                <concept code="935" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="36. Zwaait &#34;dag&#34;, &#34;dag&#34;" level="0" type="L"/>
                 <concept code="936" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="37. Zegt 2 &#34;geluidswoorden&#34; met begrip" level="0" type="L"/>
                 <concept code="937" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="38. Begrijpt enkele dagelijks gebruikte zinnen" level="0" type="L"/>
-                <concept code="938" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="39. Zegt 3 &#39;woorden&#39; met begrip" level="0" type="L"/>
+                <concept code="938" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="39. Zegt 3 &#34;woorden&#34;" level="0" type="L"/>
                 <concept code="939" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="40. Begrijpt fantasieopdrachtjes (M)" level="0" type="L"/>
                 <concept code="940" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="41. Zegt &#34;zinnen&#34; van 2 woorden" level="0" type="L"/>
                 <concept code="941" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="42. Wijst 6 lichaamsdelen aan bij pop" level="0" type="L"/>
                 <concept code="942" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Opmerking bij VWO 42" level="0" type="L"/>
-                <concept code="943" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="43. Noemt zichzelf &#34;mij&#34; of &#34;ik&#34;" level="0" type="L"/>
+                <concept code="943" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="43. Noemt zichzelf &#34;mij&#34; en &#34;ik&#34;" level="0" type="L"/>
                 <concept code="944" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Opmerking bij VWO 43" level="0" type="L"/>
                 <concept code="945" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="44. Wijst 5 plaatjes aan in boek" level="0" type="L"/>
                 <concept code="946" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Opmerking bij VWO 44" level="0" type="L"/>
@@ -684,7 +683,7 @@
                 <concept code="988" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Eerste keer los lopen" level="0" type="L"/>
                 <concept code="989" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="69. Gooit bal zonder om te vallen" level="0" type="L"/>
                 <concept code="990" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Opmerking bij VWO 69" level="0" type="L"/>
-                <concept code="991" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="70. Kan hurken en weer gaan staan zonder steun en zonder hulp van de armen" level="0" type="L"/>
+                <concept code="991" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="70. Raapt vanuit hurkzit iets op" level="0" type="L"/>
                 <concept code="992" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Opmerking bij VWO 70" level="0" type="L"/>
                 <concept code="993" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="71. Schopt bal weg rechts" level="0" type="L"/>
                 <concept code="994" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="71. Schopt bal weg links" level="0" type="L"/>
@@ -1076,29 +1075,6 @@
                 <concept code="1540" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie naam toestemming gegevensuitwisseling RVP" level="0" type="L"/>
                 <concept code="1541" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Toestemmingswijze gegevensuitwisseling RVP" level="0" type="L"/>
                 <concept code="1542" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Berekende toestemming gegevensuitwisseling RVP" level="0" type="L"/>
-                <!--<concept code="1543" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Naam bron overdracht dossier binnen JGZ" level="0" type="L"/>
-                <concept code="1547" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Naam JGZ-medewerker registratie toestemming overdracht dossier binnen JGZ" level="0" type="L"/>
-                <concept code="1548" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie URA registratie toestemming overdracht dossier binnen JGZ" level="0" type="L"/>
-                <concept code="1549" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie AGB registratie toestemming overdracht dossier binnen JGZ" level="0" type="L"/>
-                <concept code="1550" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie naam registratie toestemming overdracht dossier binnen JGZ" level="0" type="L"/>
-                <concept code="1551" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Datum registratie toestemming overdracht dossier binnen JGZ" level="0" type="L"/>
-                <concept code="1552" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Naam bron toestemming aanmelding LSP" level="0" type="L"/>
-                <concept code="1553" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Naam JGZ-medewerker registratie toestemming aanmelding LSP" level="0" type="L"/>
-                <concept code="1554" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie URA registratie toestemming aanmelding LSP" level="0" type="L"/>
-                <concept code="1555" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie AGB registratie toestemming aanmelding LSP" level="0" type="L"/>
-                <concept code="1556" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie naam registratie toestemming aanmelding LSP" level="0" type="L"/>
-                <concept code="1557" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Datum registratie toestemming aanmelding LSP" level="0" type="L"/>
-                <concept code="1558" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Naam bron toestemming verstrekking informatie aan derden" level="0" type="L"/>
-                <concept code="1559" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Naam JGZ-medewerker registratie verstrekking informatie aan derden" level="0" type="L"/>
-                <concept code="1560" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie URA registratie toestemming verstrekking informatie aan derden" level="0" type="L"/>
-                <concept code="1561" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie AGB registratie toestemming verstrekking informatie aan derden" level="0" type="L"/>
-                <concept code="1562" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie naam registratie toestemming verstrekking informatie aan derden" level="0" type="L"/>
-                <concept code="1563" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Datum registratie toestemming verstrekking informatie aan derden" level="0" type="L"/>
-                <concept code="1564" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Naam bron bezwaar tegen hergebruik van geanonimiseerde dossiergegevens" level="0" type="L"/>
-                <concept code="1565" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Gezag ouder/verzorger" level="0" type="L"/>
-                <concept code="1566" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Startdatum geldigheid gezag ouder/verzorger" level="0" type="L"/>
-                <concept code="1567" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Einddatum geldigheid gezag ouder/verzorger" level="0" type="L"/>
-                <concept code="1568" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden sociale/fysieke milieu" level="0" type="L"/>-->
                 <concept code="1569" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Er zijn (blijvende) zorgen dat de opvoed- en/of opgroeisituatie van de jeugdige een bedreiging voor de veiligheid van de jeugdige kunnen vormen" level="0" type="L"/>
                 <concept code="1570" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="De (blijvende) zorgen zijn gedeeld met de jeugdige/ouder(s)/verzorger(s)" level="0" type="L"/>
                 <concept code="1571" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Reden om (blijvende) zorgen niet te delen" level="0" type="L"/>
@@ -1123,12 +1099,6 @@
                 <concept code="1590" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Soort visuskaart" level="0" type="L"/>
                 <concept code="1591" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitslag visus rechts" level="0" type="L"/>
                 <concept code="1592" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitslag visus links" level="0" type="L"/>
-                <!--<concept code="1593" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Is er een absolute contra-indicatie voor rota-vaccinatie afgegeven?" level="0" type="L"/>
-                <concept code="1594" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Absolute contra-indicatie rota-vaccinatie" level="0" type="L"/>
-                <concept code="1595" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Is er een relatieve contra-indicatie voor rota-vaccinatie afgegeven?" level="0" type="L"/>
-                <concept code="1596" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Relatieve contra-indicatie rota-vaccinatie" level="0" type="L"/>
-                <concept code="1597" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Heeft de moeder tijdens de zwangerschap een biological gebruikt?" level="0" type="L"/>
-                <concept code="1598" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Is er een detecteerbare bloedspiegel bij het kind met betrekking tot biological?" level="0" type="L"/>-->
                 <concept code="1599" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitvoerende activiteit discipline" level="0" type="L"/>
                 <concept code="1600" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Contact ivm meldcode met functie" level="0" type="L"/>
                 <concept code="1601" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Schoolverzuim" level="0" type="L"/>
@@ -1174,89 +1144,508 @@
                 <concept code="1643" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Cliënt haalt de griepvaccinatie bij de huisarts" level="0" type="L"/>
                 <concept code="1644" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Contra-indicatie om (nu) te vaccineren" level="0" type="L"/>
                 <concept code="1645" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Toelichting contra-indicatie om (nu) te vaccineren" level="0" type="L"/>
-                <concept code="1646" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Genotsmiddelen/verslavingsrisico" level="0" type="L"/>
-                <concept code="1647" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Soorten genotsmiddelen/verslavingsrisico" level="0" type="L"/>
-                <concept code="1648" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Toelichting genotsmiddelen/verslavingsrisico" level="0" type="L"/>
-                <concept code="1649" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Seksueel functioneren" level="0" type="L"/>
-                <concept code="1650" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Toelichting seksueel functioneren" level="0" type="L"/>
-                <concept code="1651" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Conclusie seksueel gedrag" level="0" type="L"/>
-                <concept code="1656" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Pyschosociaal functioneren en cognitieve ontwikkeling" level="0" type="L"/>
-                <concept code="1657" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Toelichting psychosociaal functioneren en cognitieve ontwikkeling" level="0" type="L"/>
-                <concept code="1658" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Beoordeling cognitieve ontwikkeling" level="0" type="L"/>
-                <concept code="1659" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bevinding(en) psychosociaal functioneren" level="0" type="L"/>
-                <concept code="1660" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="68a. Loopt los" level="0" type="L"/>
-                <concept code="1661" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Opmerking bij VWO 68a" level="0" type="L"/>
-                <concept code="1662" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="68b. Loopt goed los" level="0" type="L"/>
-                <concept code="1663" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Opmerking bij VWO 68b" level="0" type="L"/>
-                <concept code="1664" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="68c. Loopt soepel" level="0" type="L"/>
-                <concept code="1665" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="In de omgeving van de jeugdige wordt wel eens of dagelijks gerookt" level="0" type="L"/>
-                <concept code="1666" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Toelichting roken in omgeving van de jeugdige" level="0" type="L"/>
-                <concept code="1667" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Stoppen met roken interventie besproken" level="0" type="L"/>
-                <concept code="1668" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Jeugdige heeft zwemdiploma" level="0" type="L"/>
-                <concept code="1669" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="52. Beweegt armen evenveel" level="0" type="L"/>
-                <concept code="1670" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="53. Beweegt benen evenveel" level="0" type="L"/>
-                <concept code="1671" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Scoliose hoekmeting" level="0" type="L"/>
-                <concept code="1672" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Ligging testes" level="0" type="L"/>
-                <concept code="1673" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Beoordeling puberteitsontwikkeling" level="0" type="L"/>
-                <concept code="1674" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Genitalia/puberteitsontwikkeling" level="0" type="L"/>
-                <concept code="1675" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Motorisch functioneren" level="0" type="L"/>
-                <concept code="1676" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Zenuwstelsel" level="0" type="L"/>
-                <concept code="1677" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden zenuwstelsel" level="0" type="L"/>
-                <concept code="1678" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Voorkeurshouding" level="0" type="L"/>
-                <concept code="1679" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Algemene indruk" level="0" type="L"/>
-                <concept code="1680" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Risicosignalen hartfunctie" level="0" type="L"/>
-                <concept code="1681" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Hart- en Vaatstelsel" level="0" type="L"/>
-                <concept code="1682" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="De kinderarts heeft een contra-indicatie voor vaccinatie doorgegeven" level="0" type="L"/>
-                <concept code="1683" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Moeder heeft biological gebruikt" level="0" type="L"/>
-                <concept code="1684" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Score op aanvullende vragen op ontwikkelingskenmerk 41" level="0" type="L"/>
-                <concept code="1685" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Subscore Van Wiechen taalonderzoek 2 jaar" level="0" type="L"/>
-                <concept code="1686" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Score spelvraag Van Wiechentaalonderzoek" level="0" type="L"/>
-                <concept code="1687" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Beoordeling taalontwikkeling 2 jaar" level="0" type="L"/>
-                <concept code="1688" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Beoordeling taalontwikkeling 2,6 jaar" level="0" type="L"/>
-                <concept code="1689" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Beoordeling taalontwikkeling 3 jaar" level="0" type="L"/>
-                <concept code="1690" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Opmerking bij VWO 68c" level="0" type="L"/>
                 <concept code="5063" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="BCG litteken" level="0" type="L"/>
             </conceptList>
         </valueSet>
     </xsl:variable>
 
     <xd:doc>
-        <xd:desc>Update interactionId from REPC_IN902120NL03 to REPC_IN902120NL</xd:desc>
+        <xd:desc>Update root element van REPC_IN902120NL naar REPC_IN902120NL03</xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:REPC_IN902120NL03">
-        <REPC_IN902120NL04 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 ../schemas/REPC_IN902120NL04.xsd" xmlns="urn:hl7-org:v3">
-            <xsl:apply-templates select="node()" mode="dob402"/>
-        </REPC_IN902120NL04>
+    <xsl:template match="hl7:REPC_IN902120NL04">
+        <REPC_IN902120NL03 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 ../schemas/REPC_IN902120NL03.xsd" xmlns="urn:hl7-org:v3">
+            <xsl:apply-templates select="node()" mode="dob420"/>
+        </REPC_IN902120NL03>
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Update interactionId from REPC_IN902120NL03 to REPC_IN902120NL</xd:desc>
+        <xd:desc>Update interactionId/@extension van REPC_IN902120NL naar REPC_IN902120NL03</xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:interactionId" mode="dob402">
-        <interactionId extension="REPC_IN902120NL04" root="2.16.840.1.113883.1.6" xmlns="urn:hl7-org:v3"/>
+    <xsl:template match="hl7:interactionId" mode="dob420">
+        <interactionId extension="REPC_IN902120NL03" root="2.16.840.1.113883.1.6" xmlns="urn:hl7-org:v3"/>
+    </xsl:template>
+
+    <!-- R009 -->
+    <xd:doc>
+        <xd:desc>voeg doc toe</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:appendage/hl7:document/hl7:code[@code = '03' or @code = '04'][@codeSystem = '2.16.840.1.113883.2.4.4.40.303']" mode="dob420">
+        <code nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+            <originalText>
+                <xsl:value-of select="@displayName"/>
+            </originalText>
+        </code>
+    </xsl:template>
+
+    <!-- R012 -->
+    <xd:doc>
+        <xd:desc>Rubriek 12 - Nieuwe en gewijzigde codes binnen waardelijst W0114 </xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.40080']/hl7:value[@codeSystem = '2.16.840.1.113883.2.4.4.40.8']" mode="dob420">
+        <xsl:choose>
+            <!-- Condition for nullFlavor="OTH" and specific codes 16-23 -->
+            <xsl:when test="@code = '16' or @code = '17' or @code = '18' or @code = '19' or @code = '20' or @code = '21' or @code = '22' or @code = '23'">
+                <value xsi:type="CV" nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+                    <originalText>
+                        <xsl:value-of select="@displayName"/>
+                    </originalText>
+                </value>
+            </xsl:when>
+
+            <!-- Condition for modified displayName for codes 08, 12, and 14 -->
+            <xsl:when test="@code = '08' or @code = '12' or @code = '14'">
+                <value xsi:type="CV" xmlns="urn:hl7-org:v3">
+                    <xsl:attribute name="code">
+                        <xsl:value-of select="@code"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="codeSystem">
+                        <xsl:value-of select="@codeSystem"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="displayName">
+                        <xsl:choose>
+                            <xsl:when test="@code = '08'">
+                                <xsl:text>Slechthorendheid</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="@code = '12'">
+                                <xsl:text>Aangeboren afwijking</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="@code = '14'">
+                                <xsl:text>Psychiatrische aandoening</xsl:text>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:attribute>
+                </value>
+            </xsl:when>
+
+            <!-- Default behavior if none of the specific conditions are met -->
+            <xsl:otherwise>
+                <value xsi:type="CV" xmlns="urn:hl7-org:v3">
+                    <xsl:attribute name="code">
+                        <xsl:value-of select="@code"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="codeSystem">
+                        <xsl:value-of select="@codeSystem"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="displayName">
+                        <xsl:value-of select="@displayName"/>
+                    </xsl:attribute>
+                </value>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Voeg versiedatum aan templateId toe</xd:desc>
+        <xd:desc>Rubriek 12 - Erfelijk bepaalde ziekte in de familie met meerdere familieleden uitsplitsen per groep en toelichting overslaan</xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100.10000']" mode="dob402">
-        <xsl:copy>
-            <xsl:apply-templates select="@root" mode="dob402"/>
-            <xsl:apply-templates select="node()" mode="dob402"/>
-        </xsl:copy>
+    <xsl:template match="hl7:component[hl7:groupCluster/hl7:code[@code = 'G019'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']]" mode="dob420">
+        <xsl:for-each select="./hl7:groupCluster[hl7:code[@code = 'G019'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']]/hl7:component[hl7:observation/hl7:code[@code = '80'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]">
+            <component xmlns="urn:hl7-org:v3">
+                <groupCluster>
+                    <xsl:apply-templates select="./../hl7:code" mode="dob420"/>
+                    <xsl:apply-templates select="." mode="dob420"/>
+                </groupCluster>
+            </component>
+        </xsl:for-each>
+        <xsl:if test="./hl7:groupCluster[hl7:code[@code = 'G019'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']]/hl7:component/hl7:observation[hl7:code[@code = '1608'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]">
+            <xsl:comment><xsl:text> element 1608 Toelichting erfelijke factor in de familie is overgeslagen</xsl:text></xsl:comment>
+        </xsl:if>
+    </xsl:template>
+    
+    <!-- R018 -->
+    <!--731	Begeleider	W0193-->
+    <xd:doc>
+        <xd:desc>Rubriek 18 - Nieuwe codes binnen waardelijst W0193 </xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:escort/hl7:responsibleParty/hl7:code[@code = '13' or @code = '14'][@codeSystem = '2.16.840.1.113883.2.4.4.40.421']" mode="dob420">
+        <code xsi:type="CV" nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+            <originalText>
+                <xsl:value-of select="@displayName"/>
+            </originalText>
+        </code>
+    </xsl:template>
+    <!--1424	Indicatie activiteit W0619-->
+    <xd:doc>
+        <xd:desc>Rubriek 18 - Nieuwe code binnen waardelijst W0619 </xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:encounter/hl7:reasonCode[@code = '51'][@codeSystem = '2.16.840.1.113883.2.4.4.40.373']" mode="dob420">
+        <reasonCode xsi:type="CV" nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+            <originalText>
+                <xsl:value-of select="@displayName"/>
+            </originalText>
+        </reasonCode>
+    </xsl:template>
+
+    <!-- R019 -->
+    <xd:doc>
+        <xd:desc>Rubriek 19 wordt overgeslagen als het alleen overgeslagen groepen of elementen bevat</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R019'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob420">
+        <xsl:choose>
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1665' or @code = '1666' or @code = '1667' or @code = '1668'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob420"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Rubriek 19 is overgeslagen omdat het enkel overgeslagen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob420"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Rubriek 19, elementen 1665-1668 bestonden niet in 4.0.2</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1665' or @code = '1666' or @code = '1667' or @code = '1668'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
+        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
+    </xsl:template>
+    <!--1665	In de omgeving van de jeugdige wordt wel eens of dagelijks gerookt	W0704-->
+    <!--1668	Jeugdige heeft zwemdiploma	W0705-->
+
+    <!-- R020 -->
+    <xd:doc>
+        <xd:desc>Rubriek 20 wordt overgeslagen als het alleen overgeslagen groepen of elementen bevat</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R020'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']]" mode="dob420">
+        <xsl:choose>
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1679'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob420"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Rubriek 20 is overgeslagen omdat het enkel overgeslagen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob420"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Rubriek 20, element 1679 bestonden niet in 4.0.2</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1679'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
+        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
+    </xsl:template>
+
+    <!-- R021 -->
+    <xd:doc>
+        <xd:desc>Rubriek 21 wordt overgeslagen als het alleen overgeslagen groepen of elementen bevat</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R021'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob420">
+        <xsl:choose>
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1649' or @code = '1650' or @code = '1651' or @code = '1646' or @code = '1647' or @code = '1648'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob420"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Rubriek 21 is overgeslagen omdat het enkel overgeslagen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob420"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Rubriek 21, element 1646-1651 bestonden niet in 4.0.2</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1646' or @code = '1647' or @code = '1648' or @code = '1649' or @code = '1650' or @code = '1651'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
+        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
+    </xsl:template>
+    <!--324	Zindelijkheid	W0209-->
+    <xd:doc>
+        <xd:desc>Rubriek 21 - Nieuwe code binnen waardelijst W0209 </xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.40324']/hl7:value[@code = '10'][@codeSystem = '2.16.840.1.113883.2.4.4.40.46']" mode="dob420">
+        <value xsi:type="CV" nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+            <originalText>
+                <xsl:value-of select="@displayName"/>
+            </originalText>
+        </value>
+    </xsl:template>
+    <!--1647	Soorten genotsmiddelen/verslavingsrisico	W0214-->
+    <xd:doc>
+        <xd:desc>Rubriek 21 - Nieuwe code binnen waardelijst W0214 </xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.41647']/hl7:value[@code = '03' or @code = '04' or @code = '05' or @code = '06' or @code = '07'][@codeSystem = '2.16.840.1.113883.2.4.4.40.313']" mode="dob420">
+        <value xsi:type="CV" nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+            <originalText>
+                <xsl:value-of select="@displayName"/>
+            </originalText>
+        </value>
+    </xsl:template>
+
+    <!--1649	Seksueel functioneren W0700-->
+    <!--1651	Conclusie seksueel gedrag W0701-->
+
+    <!-- R023 -->
+    <xd:doc>
+        <xd:desc>Rubriek 23 wordt overgeslagen als het alleen overgeslagen groepen of elementen bevat</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R023'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob420">
+        <xsl:choose>
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1678'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob420"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Rubriek 23 is overgeslagen omdat het enkel overgeslagen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob420"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Rubriek 23, element 1678 bestond niet in 4.0.2</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1678'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
+        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
+    </xsl:template>
+    <!--1678	Voorkeurshouding	W0708-->
+
+    <!-- R025 -->
+    <xd:doc>
+        <xd:desc>Rubriek 25 wordt overgeslagen als het alleen overgeslagen groepen of elementen bevat</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R025'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob420">
+        <xsl:choose>
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[not(hl7:groupCluster/hl7:code[@code = 'G119'][@codeSystem='2.16.840.1.113883.2.4.4.40.393'])]) > 0">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob420"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Rubriek 25 is overgeslagen omdat het enkel overgeslagen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob420"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Groep G119 'Scoliose hoekmeting' bestond niet in BDS 4.0.2</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:component[hl7:groupCluster/hl7:code[@code = 'G119'][@codeSystem='2.16.840.1.113883.2.4.4.40.393']]" mode="dob420">
+        <xsl:comment><xsl:text> Groep G119 Scoliose hoekmeting is overgeslagen.</xsl:text></xsl:comment>
+        <xsl:apply-templates select="@* | ./hl7:groupCluster/hl7:component" mode="dob420"/>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Rubriek 25, elementen 1671 'Scoliose hoekmeting' en 1691 'Lichaamskant scoliose hoekmeting' bestonden niet in 4.0.2</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:component[hl7:observation/hl7:code[@code = '1671'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]" mode="dob420">
+        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
+        <xsl:if test="./hl7:observation[hl7:code[@code = '1671'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]/hl7:targetSiteCode[@code][@codeSystem='2.16.840.1.113883.2.4.4.40.13']">
+            <xsl:comment><xsl:text> element 1691 Lichaamskant scoliose hoekmeting is overgeslagen </xsl:text></xsl:comment>
+        </xsl:if>
+    </xsl:template>
+
+    <!--422	Bijzonderheden testis rechts	W0250-->
+    <xd:doc>
+        <xd:desc>Rubriek 25 - Nieuwe codes binnen waardelijst W0250 omzetten naar nullFlavors met orginal text</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.40422']/hl7:value[@code = '05' or @code = '06'][@codeSystem = '2.16.840.1.113883.2.4.4.40.72']" mode="dob420">
+        <value xsi:type="CV" nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+            <originalText>
+                <xsl:value-of select="@displayName"/>
+            </originalText>
+        </value>
+    </xsl:template>
+    <!--1392	Bijzonderheden testis links	W0250-->
+    <xd:doc>
+        <xd:desc>Rubriek 25 - Nieuwe codes binnen waardelijst W0250 </xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.41392']/hl7:value[@code = '05' or @code = '06'][@codeSystem = '2.16.840.1.113883.2.4.4.40.72']" mode="dob420">
+        <value xsi:type="CV" nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+            <originalText>
+                <xsl:value-of select="@displayName"/>
+            </originalText>
+        </value>
+    </xsl:template>
+
+    <!-- R026 -->
+    <xd:doc>
+        <xd:desc>Rubriek 26 wordt overgeslagen als het alleen overgeslagen groepen of elementen bevat</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R026'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob420">
+        <xsl:choose>
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1672' or @code = '1673'or @code = '1674'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob420"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Rubriek 26 is overgeslagen omdat het enkel overgeslagen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob420"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Rubriek 26, elementen 1672-1674 bestonden niet in 4.0.2</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1672' or @code = '1673' or @code = '1674'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
+        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
+    </xsl:template>
+    <!--1673	Beoordeling puberteitsontwikkeling W0707-->
+
+    <!-- R030 -->
+    <xd:doc>
+        <xd:desc>Rubriek 30 wordt overgeslagen als het alleen overgeslagen groepen of elementen bevat</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R030'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob420">
+        <xsl:choose>
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1656' or @code = '1657' or @code = '1658' or @code = '1659'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob420"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Rubriek 30 is overgeslagen omdat het enkel overgeslagen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob420"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Rubriek 30, elementen 1656-1659 bestonden niet in 4.0.2</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1656' or @code = '1657' or @code = '1658' or @code = '1659'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
+        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
+    </xsl:template>
+    <!--1658	Beoordeling cognitieve ontwikkeling W0702-->
+    <!--1659	Bevinding(en) psychosociaal functioneren W0703-->
+
+    <!-- R031 -->
+    <xd:doc>
+        <xd:desc>Rubriek 31 wordt overgeslagen als het alleen overgeslagen groepen of elementen bevat</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R031'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob420">
+        <xsl:choose>
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1675' or @code = '1676' or @code = '1677'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob420"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Rubriek 31 is overgeslagen omdat het enkel overgeslagen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob420"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Rubriek 31, elementen 1675-1677 bestonden niet in 4.0.2</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1675' or @code = '1676' or @code = '1677'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
+        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
+    </xsl:template>
+    
+    <!-- R039 -->
+    <xd:doc>
+        <xd:desc>Rubriek 39 wordt overgeslagen als het alleen overgeslagen groepen of elementen bevat</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R039'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob420">
+        <xsl:choose>
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1680' or @code = '1681'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob420"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Rubriek 39 is overgeslagen omdat het enkel overgeslagen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob420"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Rubriek 39, elementen 1680 en 1681 bestonden niet in 4.0.2</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1680' or @code = '1681'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
+        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
+    </xsl:template>
+    <!--1680	Risicosignalen hartfunctie W0709-->
+
+    <!-- R041 -->
+    <xd:doc>
+        <xd:desc>Rubriek 41 wordt overgeslagen als het alleen overgeslagen groepen of elementen bevat</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R041'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob420">
+        <xsl:choose>
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1644' or @code = '1645' or @code = '1682' or @code = '1683'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob420"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Rubriek 41 is overgeslagen omdat het enkel overgeslagen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob420"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Rubriek 41, elementen 1644, 1645, 1682 en 1683 bestonden niet in 4.0.2</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1644' or @code = '1645' or @code = '1682' or @code = '1683'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
+        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
+    </xsl:template>
+    <!--1682	De kinderarts heeft een contra-indicatie voor vaccinatie doorgegeven W0710-->
+    <!--1683	Moeder heeft biological gebruikt W0711-->
+
+    <!-- R042 -->
+    <xd:doc>
+        <xd:desc>Rubriek 42 wordt overgeslagen als het alleen overgeslagen groepen of elementen bevat</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R042'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob420">
+        <xsl:choose>
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1660' or @code = '1661' or @code = '1662' or @code = '1663' or @code = '1664' or @code = '1669' or @code = '1670' or @code = '1682' or @code = '1683' or @code = '1684' or @code = '1685' or @code = '1686' or @code = '1687' or @code = '1688' or @code = '1689' or @code = '1690'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="dob420"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment><xsl:text> Rubriek 42 is overgeslagen omdat het enkel overgeslagen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob420"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Rubriek 42, elementen 1660-1664, 1669, 1670 en 1684-1690 bestonden niet in 4.0.2</xd:desc>
+    </xd:doc>
+    <xsl:template match="
+            hl7:component[hl7:observation[hl7:code[@code = '1660' or @code = '1661' or @code = '1662' or @code = '1663' or @code = '1664' or @code = '1669' or @code = '1670' or @code = '1682' or @code = '1683' or @code = '1684' or @code = '1685' or @code = '1686' or @code = '1687' or @code = '1688' or @code = '1689' or @code = '1690'
+            ][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob420">
+        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
+    </xsl:template>
+    <!--1684	Score op aanvullende vragen op ontwikkelingskenmerk 41 W0712-->
+    <!--1686	Score spelvraag Van Wiechentaalonderzoek W0713-->
+
+    <!-- R054 -->
+    <!--1341	Screeningsinstrument psychosociale problematiek	W0640-->
+    <xd:doc>
+        <xd:desc>Rubriek 54 - Nieuwe codes binnen waardelijst W0640 </xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.41345']/hl7:methodCode[@code = '11' or @code = '12' or @code = '13' or @code = '14' or @code = '15' or @code = '16' or @code = '17'][@codeSystem = '2.16.840.1.113883.2.4.4.40.387']" mode="dob420">
+        <methodCode xsi:type="CV" nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+            <originalText>
+                <xsl:value-of select="@displayName"/>
+            </originalText>
+        </methodCode>
     </xsl:template>
 
     <xd:doc>
         <xd:desc>Skip lines consisting only of spaces</xd:desc>
     </xd:doc>
-    <xsl:template match="text()[normalize-space() = '']" mode="dob402"/>
+    <xsl:template match="text()[normalize-space() = '']" mode="dob420"/>
 
     <xd:doc>
         <xd:desc>Just copy as-is</xd:desc>
     </xd:doc>
-    <xsl:template match="@* | node()" mode="dob402">
+    <xsl:template match="@* | node()" mode="dob420">
         <xsl:copy>
-            <xsl:apply-templates select="@* | node()" mode="dob402"/>
+            <xsl:apply-templates select="@* | node()" mode="dob420"/>
         </xsl:copy>
     </xsl:template>
 
@@ -1272,7 +1661,7 @@
     <xd:doc>
         <xd:desc>BDS-rubrieknamen, BDS-groepnamen en BDS-elementnamen bijwerken.</xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:code[@codeSystem = '2.16.840.1.113883.2.4.4.40.391'] | hl7:code[@codeSystem = '2.16.840.1.113883.2.4.4.40.393'] | hl7:code[@codeSystem = '2.16.840.1.113883.2.4.4.40.267']" mode="dob402">
+    <xsl:template match="hl7:code[@codeSystem = '2.16.840.1.113883.2.4.4.40.391'] | hl7:code[@codeSystem = '2.16.840.1.113883.2.4.4.40.393'] | hl7:code[@codeSystem = '2.16.840.1.113883.2.4.4.40.267']" mode="dob420">
         <xsl:variable name="theCode">
             <xsl:value-of select="@code"/>
         </xsl:variable>
@@ -1280,7 +1669,7 @@
             <xsl:value-of select="@codeSystem"/>
         </xsl:variable>
         <xsl:copy>
-            <xsl:apply-templates select="@*" mode="dob402"/>
+            <xsl:apply-templates select="@*" mode="dob420"/>
             <xsl:attribute name="code">
                 <xsl:value-of select="$theCode"/>
             </xsl:attribute>
@@ -1288,415 +1677,7 @@
                 <xsl:value-of select="$theCodeSystem"/>
             </xsl:attribute>
             <xsl:copy-of select="exslt:node-set($W0639_HL7_W0646_HL7_W0647_HL7)//concept[@code = $theCode][@codeSystem = $theCodeSystem]/@displayName"/>
-            <xsl:apply-templates select="node()" mode="dob402"/>
+            <xsl:apply-templates select="node()" mode="dob420"/>
         </xsl:copy>
     </xsl:template>
-    
-    <!-- R012 -->
-    <xd:doc>
-        <xd:desc>Rubriek 12: element 79 vervalt</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '79' ][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob402">
-        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is vervallen </xsl:text></xsl:comment>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Rubriek 12 - Gewijzigde waardes binnen waardelijst W0114 </xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.6.10.100.40080']/hl7:value[@codeSystem = '2.16.840.1.113883.2.4.4.40.8']" mode="dob420">
-        <xsl:choose>            
-            <!-- Condition for modified displayName for codes 08, 12, and 14 -->
-            <xsl:when test="@code = '08' or @code = '12' or @code = '14'">
-                <value xsi:type="CV">
-                    <xsl:attribute name="code">
-                        <xsl:value-of select="@code"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="codeSystem">
-                        <xsl:value-of select="@codeSystem"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="displayName">
-                        <xsl:choose>
-                            <xsl:when test="@code = '08'">
-                                <xsl:text>Gehoorverlies op jongere leeftijd</xsl:text>
-                            </xsl:when>
-                            <xsl:when test="@code = '12'">
-                                <xsl:text>Erfelijke aangeboren afwijking</xsl:text>
-                            </xsl:when>
-                            <xsl:when test="@code = '14'">
-                                <xsl:text>Overige psychiatrische aandoeningen</xsl:text>
-                            </xsl:when>
-                        </xsl:choose>
-                    </xsl:attribute>
-                </value>
-            </xsl:when>
-            
-            <!-- Default behavior if none of the specific conditions are met -->
-            <xsl:otherwise>
-                <value xsi:type="CV">
-                    <xsl:attribute name="code">
-                        <xsl:value-of select="@code"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="codeSystem">
-                        <xsl:value-of select="@codeSystem"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="displayName">
-                        <xsl:value-of select="@displayName"/>
-                    </xsl:attribute>
-                </value>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-
-    <!-- R012 -->
-    <xd:doc>
-        <xd:desc>Rubriek 12 vervalt indien het alleen vervallen elementen bevat.</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R012'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob402">
-        <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '79'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
-                <xsl:copy>
-                    <xsl:apply-templates select="@* | node()" mode="dob402"/>
-                </xsl:copy>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 19 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
-                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob402"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Rubriek 12: element 79 vervalt</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '79'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob402">
-        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is vervallen </xsl:text></xsl:comment>
-    </xsl:template>
-    
-    <!-- R019 -->
-    <xd:doc>
-        <xd:desc>Rubriek 19 vervalt indien het alleen vervallen elementen bevat.</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R019'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob402">
-        <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '149' or @code = '150' or @code = '153' or @code = '510' or @code = '752' or @code = '753' or @code = '1412' or @code = '1499' or @code = '1500'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
-                <xsl:copy>
-                    <xsl:apply-templates select="@* | node()" mode="dob402"/>
-                </xsl:copy>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 19 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
-                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob402"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Groep G087 vervalt.</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:component[hl7:groupCluster/hl7:code[@code = 'G087'][@codeSystem='2.16.840.1.113883.2.4.4.40.393']]" mode="dob402">
-        <xsl:comment><xsl:text> Groep G087 vervalt.</xsl:text></xsl:comment>
-        <xsl:apply-templates select="@* | ./hl7:groupCluster/hl7:component" mode="dob402"/>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Rubriek 19: elementen 149, 150, 153, 510, 752, 753, 1412, 1499, 1500 vervallen</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '149' or @code = '150' or @code = '153' or @code = '510' or @code = '752' or @code = '753' or @code = '1412' or @code = '1499' or @code = '1500'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob402">
-        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is vervallen </xsl:text></xsl:comment>
-    </xsl:template>
-    
-    <!-- R020-->
-    <xd:doc>
-        <xd:desc>Rubriek 20 vervalt indien het alleen vervallen elementen bevat.</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R020'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob402">
-        <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '756' or @code = '757' or @code = '758' or @code = '759' or @code = '760' or @code = '761' or @code = '762' or @code = '763' or @code = '764' or @code = '765' or @code = '766' or @code = '767' or @code = '768'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
-                <xsl:copy>
-                    <xsl:apply-templates select="@* | node()" mode="dob402"/>
-                </xsl:copy>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 20 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
-                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob402"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Rubriek 20: elementen 756-768 vervallen</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '756' or @code = '757' or @code = '758' or @code = '759' or @code = '760' or @code = '761' or @code = '762' or @code = '763' or @code = '764' or @code = '765' or @code = '766' or @code = '767' or @code = '768'
-        ][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob402">
-        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is vervallen </xsl:text></xsl:comment>
-    </xsl:template>
-      
-    <!-- R021 -->
-    <xd:doc>
-        <xd:desc>Rubriek 21 vervalt indien het alleen vervallen elementen bevat.</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R021'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob402">
-        <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '321' or @code = '328' or @code = '770' or @code = '771' or @code = '772' or @code = '775' or @code = '776' or @code = '777' or @code = '778' or @code = '779' or @code = '780' or @code = '782' or @code = '783' or @code = '784' or @code = '785' or @code = '786' or @code = '787' or @code = '790' or @code = '791' or @code = '1422'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
-                <xsl:copy>
-                    <xsl:apply-templates select="@* | node()" mode="dob402"/>
-                </xsl:copy>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 21 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
-                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob402"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Rubriek 21:elementen 321, 328, 770-772, 775-779, 780, 782-787, 790-791, 1422 vervallen</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '321' or @code = '328' or @code = '770' or @code = '771' or @code = '772' or @code = '775' or @code = '776' or @code = '777' or @code = '778' or @code = '779' or @code = '780' or @code = '782' or @code = '783' or @code = '784' or @code = '785' or @code = '786' or @code = '787' or @code = '790' or @code = '791' or @code = '1422'
-        ][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob402">
-        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is vervallen </xsl:text></xsl:comment>
-    </xsl:template>
-   
-    <!-- R025 -->
-    <xd:doc>
-        <xd:desc>Rubriek 25 vervalt indien het alleen vervallen elementen bevat.</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R025'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob402">
-        <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '218'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
-                <xsl:copy>
-                    <xsl:apply-templates select="@* | node()" mode="dob402"/>
-                </xsl:copy>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 25 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
-                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob402"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Rubriek 25: element 218 vervalt</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '218'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob402">
-        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is vervallen </xsl:text></xsl:comment>
-    </xsl:template>
-    
-    <!-- R026 -->
-    <xd:doc>
-        <xd:desc>Rubriek 26 vervalt indien het alleen vervallen elementen bevat.</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R026'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob402">
-        <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '225' or @code = '230' or @code = '232' or @code = '233' or @code = '314' or @code = '316' or @code = '318' or @code = '806' or @code = '807' or @code = '826' or @code = '1393'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
-                <xsl:copy>
-                    <xsl:apply-templates select="@* | node()" mode="dob402"/>
-                </xsl:copy>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 26 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
-                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob402"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Rubriek 26: elementen elementen 225, 230, 232-233, 314, 316, 318, 806-807, 826, 1393 vervallen</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '225' or @code = '230' or @code = '232' or @code = '233' or @code = '314' or @code = '316' or @code = '318' or @code = '806' or @code = '807' or @code = '826' or @code = '1393'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob402">
-        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is vervallen </xsl:text></xsl:comment>
-    </xsl:template>
-    
-    <!-- R030 -->
-    <xd:doc>
-        <xd:desc>Rubriek 30 vervalt indien het alleen vervallen elementen bevat.</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R030'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob402">
-        <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '259' or @code = '265' or @code = '814' or @code = '1440'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
-                <xsl:copy>
-                    <xsl:apply-templates select="@* | node()" mode="dob402"/>
-                </xsl:copy>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 30 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
-                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob402"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Rubriek 30:elementen 259, 265, 814, 1440 vervallen</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '259' or @code = '265' or @code = '814' or @code = '1440'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob402">
-        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is vervallen </xsl:text></xsl:comment>
-    </xsl:template>
-
-    <!-- R031 -->
-    <xd:doc>
-        <xd:desc>Rubriek 31 vervalt indien het alleen vervallen elementen bevat.</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R030'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob402">
-        <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '268' or @code = '269' or @code = '815' or @code = '1437' or @code = '1438' or @code = '1439'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
-                <xsl:copy>
-                    <xsl:apply-templates select="@* | node()" mode="dob402"/>
-                </xsl:copy>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 30 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
-                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob402"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Rubriek 31: elementen 268-269, 271, 815, 1437, 1438, 1439 vervallen</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '268' or @code = '269' or @code = '271' or @code = '815' or @code = '1437' or @code = '1438' or @code = '1439'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob402">
-        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is vervallen </xsl:text></xsl:comment>
-    </xsl:template>
-
-    <!-- R034 -->
-    <xd:doc>
-        <xd:desc>Rubriek 34 vervalt indien het alleen vervallen elementen bevat.</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R034'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob402">
-        <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '339'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
-                <xsl:copy>
-                    <xsl:apply-templates select="@* | node()" mode="dob402"/>
-                </xsl:copy>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 34 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
-                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob402"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Rubriek 34: element 339 vervalt</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '339'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob402">
-        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is vervallen </xsl:text></xsl:comment>
-    </xsl:template>
-    
-    <!-- R038 -->
-    <xd:doc>
-        <xd:desc>Rubriek 38 vervalt indien het alleen vervallen elementen bevat.</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R038'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob402">
-        <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '692' or @code = '832' or @code = '833' or @code = '834' or @code = '835' or @code = '836' or @code = '837' or @code = '838' or @code = '1379' or @code = '1418' or @code = '1419' or @code = '1420' or @code = '1421'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
-                <xsl:copy>
-                    <xsl:apply-templates select="@* | node()" mode="dob402"/>
-                </xsl:copy>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 38 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
-                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob402"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Rubriek 38: elementen 692, 832-838, 1379, 1418-1421 vervallen</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '692' or @code = '832' or @code = '833' or @code = '834' or @code = '835' or @code = '836' or @code = '837' or @code = '838' or @code = '1379' or @code = '1418' or @code = '1419' or @code = '1420' or @code = '1421'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob402">
-        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is vervallen </xsl:text></xsl:comment>
-    </xsl:template>
-
-    <!-- R039 -->
-    <xd:doc>
-        <xd:desc>Rubriek 39 vervalt indien het alleen vervallen elementen bevat.</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R039'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob402">
-        <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '855'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
-                <xsl:copy>
-                    <xsl:apply-templates select="@* | node()" mode="dob402"/>
-                </xsl:copy>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 38 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
-                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob402"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Rubriek 39: element 855 vervalt</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '855'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob402">
-        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is vervallen </xsl:text></xsl:comment>
-    </xsl:template>
-    
-    <!-- R042 -->
-    <xd:doc>
-        <xd:desc>Rubriek 42 vervalt indien het alleen vervallen elementen bevat.</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R042'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob402">
-        <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '955' or @code = '956' or @code = '957' or @code = '958' or @code = '959' or @code = '986' or @code = '987'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
-                <xsl:copy>
-                    <xsl:apply-templates select="@* | node()" mode="dob402"/>
-                </xsl:copy>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 42 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
-                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob402"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Rubriek 42:elementen 955-959, 986-987 vervallen</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '955' or @code = '956' or @code = '957' or @code = '958' or @code = '959' or @code = '986' or @code = '987'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob402">
-        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is vervallen </xsl:text></xsl:comment>
-    </xsl:template>
-    
-    <!-- R054 -->
-    <xd:doc>
-        <xd:desc>Rubriek 54 vervalt indien het alleen vervallen elementen bevat.</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R054'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob402">
-        <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1345'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0 or ./hl7:rubricCluster/hl7:component/hl7:observation[not(hl7:value/@nullFlavor = 'NI') or hl7:effectiveTime or hl7:performer or hl7:methodCode]">
-                <xsl:copy>
-                    <xsl:apply-templates select="@* | node()" mode="dob402"/>
-                </xsl:copy>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 54 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
-                <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob402"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Bijzonderheden SPP vervalt indien het alleen vervallen elementen bevat.</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1345'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob402">
-        <xsl:choose>
-            <xsl:when test="./hl7:observation[not(hl7:value/@nullFlavor = 'NI') or hl7:effectiveTime or hl7:performer or hl7:methodCode]">
-                <xsl:copy>
-                    <xsl:apply-templates select="@* | node()" mode="dob402"/>
-                </xsl:copy>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:comment><xsl:text> Bijzonderheden SPP is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
-                <xsl:apply-templates select="./hl7:observation/hl7:location" mode="dob402"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Rubriek 54: element 1344 vervalt</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:component/hl7:observation[hl7:code[@code = '1345'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]/hl7:location" mode="dob402">
-        <xsl:comment><xsl:text> element 1344 </xsl:text><xsl:value-of select="'Plaats van afname SPP'"/><xsl:text> is vervallen </xsl:text></xsl:comment>
-    </xsl:template>
-    
 </xsl:stylesheet>
