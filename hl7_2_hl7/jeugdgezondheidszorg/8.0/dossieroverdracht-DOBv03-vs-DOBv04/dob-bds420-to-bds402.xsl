@@ -1226,7 +1226,16 @@
         </code>
     </xsl:template>
     <!--1424	Indicatie activiteit W0619-->
-    <!-- zie conversie van rubriek 47 -->
+    <xd:doc>
+        <xd:desc>Rubriek 18 - Nieuwe code binnen waardelijst W0619 </xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:encounter/hl7:reasonCode[@code = '51'][@codeSystem = '2.16.840.1.113883.2.4.4.40.373']" mode="dob420">
+        <reasonCode xsi:type="CV" nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
+            <originalText>
+                <xsl:value-of select="@displayName"/>
+            </originalText>
+        </reasonCode>
+    </xsl:template>
 
     <!-- R019 -->
     <xd:doc>
@@ -1586,19 +1595,6 @@
                 <xsl:value-of select="@displayName"/>
             </originalText>
         </methodCode>
-    </xsl:template>
-
-    <!-- R047 -->
-    <!--485	Indicatie W0619-->
-    <xd:doc>
-        <xd:desc>Rubriek 47 - Nieuwe code binnen waardelijst W0619 </xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:encounter/hl7:reasonCode[@code = '51'][@codeSystem = '2.16.840.1.113883.2.4.4.40.373']" mode="dob420">
-        <reasonCode xsi:type="CV" nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.1008" xmlns="urn:hl7-org:v3">
-            <originalText>
-                <xsl:value-of select="@displayName"/>
-            </originalText>
-        </reasonCode>
     </xsl:template>
 
     <xd:doc>
