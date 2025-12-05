@@ -1,38 +1,62 @@
-<<<<<<< HEAD
-<?xml-model href="../../../../../../art_decor/ada_2_test-xslt/jgz/7.0/dossieroverdracht/test_xslt_instance/DOB-3.0.0-CR_test_JGZ-rubriek_R026.sch " type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<REPC_IN902120NL03 xsi:schemaLocation="urn:hl7-org:v3 ../../hl7v3_schemas/REPC_IN902120NL03.xsd"
-=======
+<?xml-model href="../../../../../../art_decor/ada_2_test-xslt/jgz/7.1/dossieroverdracht/test_xslt_instance/.sch " type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <REPC_IN902120NL03 xsi:schemaLocation="urn:hl7-org:v3 ../hl7v3_schemas/REPC_IN902120NL03.xsd"
->>>>>>> feature/JGZ-qual-8.0
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xmlns="urn:hl7-org:v3"
                    xmlns:hl7="urn:hl7-org:v3"
                    xmlns:xs="http://www.w3.org/2001/XMLSchema">
-   <id extension="1243567"
-       root="2.16.528.1.1007.3.3.12345678.1"/>
-   <creationTime value="20000101000000"/>
-   <versionCode code="NICTIZEd2005-Okt"/>
+   <id extension="{$messageId}"
+       root="{$messageIdRoot}"
+       xmlns:util="urn:hl7:utilities"
+       xmlns:nf="http://www.nictiz.nl/functions"
+       xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"/>
+   <creationTime value="{current-dateTime()}"
+                 xmlns:util="urn:hl7:utilities"
+                 xmlns:nf="http://www.nictiz.nl/functions"
+                 xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"/>
+   <versionCode code="NICTIZEd2005-Okt"
+                xmlns:util="urn:hl7:utilities"
+                xmlns:nf="http://www.nictiz.nl/functions"
+                xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"/>
    <interactionId extension="REPC_IN902120NL03"
-                  root="2.16.840.1.113883.1.6"/>
+                  root="2.16.840.1.113883.1.6"
+                  xmlns:util="urn:hl7:utilities"
+                  xmlns:nf="http://www.nictiz.nl/functions"
+                  xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"/>
    <profileId extension="810"
-              root="2.16.840.1.113883.2.4.3.11.1"/>
-   <processingCode code="P"/>
-   <processingModeCode code="T"/>
-   <acceptAckCode code="AL"/>
+              root="2.16.840.1.113883.2.4.3.11.1"
+              xmlns:util="urn:hl7:utilities"
+              xmlns:nf="http://www.nictiz.nl/functions"
+              xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"/>
+   <processingCode code="P"
+                   xmlns:util="urn:hl7:utilities"
+                   xmlns:nf="http://www.nictiz.nl/functions"
+                   xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"/>
+   <processingModeCode code="T"
+                       xmlns:util="urn:hl7:utilities"
+                       xmlns:nf="http://www.nictiz.nl/functions"
+                       xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"/>
+   <acceptAckCode code="AL"
+                  xmlns:util="urn:hl7:utilities"
+                  xmlns:nf="http://www.nictiz.nl/functions"
+                  xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"/>
    <attentionLine>
       <keyWordText code="PATID"
                    codeSystem="2.16.840.1.113883.2.4.15.1">Patient.id</keyWordText>
       <value xsi:type="II"
-             extension="123456782"
+             extension="999902003"
              root="2.16.840.1.113883.2.4.6.3"/>
    </attentionLine>
-   <receiver>
+   <receiver xmlns:util="urn:hl7:utilities"
+             xmlns:nf="http://www.nictiz.nl/functions"
+             xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
       <device>
          <id extension="{$receiverId}"
              root="2.16.840.1.113883.2.4.6.6"/>
       </device>
    </receiver>
-   <sender>
+   <sender xmlns:util="urn:hl7:utilities"
+           xmlns:nf="http://www.nictiz.nl/functions"
+           xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
       <device>
          <id extension="{$applicationId}"
              root="2.16.840.1.113883.2.4.6.6"/>
@@ -56,14 +80,14 @@
       <subject>
          <CareProvisionRequest>
             <templateId root="2.16.840.1.113883.2.4.6.10.100.10000"/>
-            <id extension="123456782"
+            <id extension="987654322"
                 root="2.16.528.1.1007.3.3.1111.999.2"/>
             <code code="CPHC"
                   codeSystem="2.16.840.1.113883.5.4"
                   displayName="certified public health and general preventive medicine care"/>
             <statusCode code="active"/>
             <author>
-               <time value="2024"/>
+               <time value="2025"/>
                <assignedEntity classCode="ASSIGNED">
                   <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
                   <id root="2.16.528.1.1007.3.3"
@@ -72,7 +96,7 @@
             </author>
             <sequelTo>
                <careProvisionEvent moodCode="EVN">
-                  <id extension="123456782"
+                  <id extension="987654322"
                       root="2.16.528.1.1007.3.3.1111.999.2"/>
                   <code codeSystem="2.16.840.1.113883.5.4"
                         code="CPHC"
@@ -84,18 +108,27 @@
                   <subject typeCode="SBJ">
                      <patient classCode="PAT">
                         <templateId root="2.16.840.1.113883.2.4.6.10.100.131"/>
-                        <id extension="123456782"
+                        <id extension="999902003"
                             root="2.16.840.1.113883.2.4.6.3"/>
+                        <addr use="PHYS">
+                           <streetName>Knolweg</streetName>
+                           <houseNumber>1003</houseNumber>
+                           <postalCode>9999 ZA</postalCode>
+                           <city>Stitswerd</city>
+                           <country code="6030"
+                                    codeSystem="2.16.840.1.113883.2.4.4.16.34">Nederland</country>
+                        </addr>
                         <statusCode code="active"/>
                         <patientPerson>
                            <name use="OR">
-                              <family qualifier="BR">AchternaamTest</family>
+                              <given>A</given>
+                              <family qualifier="BR"> XXX_Uljee</family>
                            </name>
-<<<<<<< HEAD
-                           <birthTime value="19000101"/>
-=======
-                           <birthTime value="20000101"/>
->>>>>>> feature/JGZ-qual-8.0
+                           <administrativeGenderCode xsi:type="CV"
+                                                     code="M"
+                                                     codeSystem="2.16.840.1.113883.5.1"
+                                                     displayName="Mannelijk"/>
+                           <birthTime value="{format-dateTime(current-dateTime() - xs:yearMonthDuration(P14Y), '[Y0001]-[M01]-[D01]')}"/>
                         </patientPerson>
                      </patient>
                   </subject>
@@ -103,28 +136,51 @@
                      <time nullFlavor="UNK"/>
                      <assignedEntity classCode="ASSIGNED">
                         <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
-                        <id extension="12345678"
+                        <id extension="{$orgId}"
                             root="2.16.528.1.1007.3.3"/>
-                        <assignedOrganization classCode="ORG"
-                                              determinerCode="INSTANCE">
-                           <name>GGD TEST</name>
-                        </assignedOrganization>
                      </assignedEntity>
                   </author>
                   <component7 typeCode="COMP">
                      <encounter classCode="ENC"
                                 moodCode="EVN">
                         <id extension="01"
-                            root="2.16.528.1.1007.3.3.1111.999.2"/>
-                        <code code="01"
+                            root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
+                        <code code="40"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
-                              displayName="Contact 4-7 dagen"/>
+                              displayName="Contact 4 tot 12 jaar"/>
                         <statusCode code="completed"/>
-<<<<<<< HEAD
-                        <effectiveTime value="19000101"/>
-=======
-                        <effectiveTime value="20000101"/>
->>>>>>> feature/JGZ-qual-8.0
+                        <effectiveTime value="{format-dateTime(current-dateTime() - xs:yearMonthDuration(P14Y) + xs:yearMonthDuration(P11Y), '[Y0001]-[M01]-[D01]')}"/>
+                        <reasonCode code="07"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.373"
+                                    displayName="Genitalia"/>
+                        <escort typeCode="ESC">
+                           <responsibleParty classCode="ASSIGNED">
+                              <code code="02"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.421"
+                                    displayName="(Biologische of adoptief) Vader"/>
+                              <agentPerson nullFlavor="NI"/>
+                           </responsibleParty>
+                        </escort>
+                        <inFulfillmentOf typeCode="FLFS">
+                           <encounter classCode="ENC"
+                                      moodCode="INT">
+                              <id nullFlavor="NI"/>
+                              <code code="40"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.308"
+                                    displayName="Contact 4 tot 12 jaar"/>
+                              <statusCode code="completed"/>
+                              <author typeCode="AUT">
+                                 <personalRelationship classCode="PRS">
+                                    <code code="02"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.411"
+                                          displayName="Ouder(s)/verzorger(s)"/>
+                                    <relationshipHolder classCode="PSN"
+                                                        determinerCode="INSTANCE"
+                                                        nullFlavor="NI"/>
+                                 </personalRelationship>
+                              </author>
+                           </encounter>
+                        </inFulfillmentOf>
                         <!-- r018_activiteit -->
                         <pertinentInformation typeCode="PERT">
                            <rubricCluster classCode="CLUSTER"
@@ -143,7 +199,7 @@
                                           displayName="Vorm activiteit"/>
                                     <value xsi:type="CV"
                                            code="07"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.424"
+                                           codeSystem="2.16.840.1.113883.2.4.3.11.60.100.12.679"
                                            displayName="Inloopspreekuur"/>
                                  </observation>
                               </component>
@@ -187,96 +243,14 @@
                                  <observation classCode="OBS"
                                               moodCode="EVN"
                                               negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40228"/>
-                                    <code code="228"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Bijzonderheden genitalia/puberteitsontwikkeling"/>
-                                    <value xsi:type="ST">gb</value>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40230"/>
-                                    <code code="230"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Bijzonderheden vulva"/>
-                                    <value xsi:type="CV"
-                                           code="01"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.24"
-                                           displayName="Synechiae"/>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40317"/>
-                                    <code code="317"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Borstontwikkeling meisje"/>
-                                    <value xsi:type="CV"
-                                           code="02"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.45"
-                                           displayName="M2"/>
-                                    <methodCode code="2"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.34"
-                                                displayName="Mededeling"/>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40825"/>
-                                    <code code="825"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Pubesbeharing meisje"/>
-                                    <value xsi:type="CV"
-                                           code="04"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.44"
-                                           displayName="P4"/>
-                                    <methodCode code="1"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.34"
-                                                displayName="Onderzocht"/>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40312"/>
-                                    <code code="312"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Datum menarche"/>
-                                    <value xsi:type="TS"
-                                           value="20000101"/>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40824"/>
-                                    <code code="824"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Bijzonderheden menstruatie"/>
-                                    <value xsi:type="ST">gb</value>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
                                     <templateId root="2.16.840.1.113883.2.4.6.10.100.40232"/>
                                     <code code="232"
                                           codeSystem="2.16.840.1.113883.2.4.4.40.267"
                                           displayName="Bijzonderheden penis"/>
                                     <value xsi:type="CV"
-                                           code="03"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.26"
-                                           displayName="Phimosis"/>
+                                           nullFlavor="OTH">
+                                       <originalText>Onderontwikkeld</originalText>
+                                    </value>
                                  </observation>
                               </component>
                               <component>
@@ -356,9 +330,9 @@
                                           codeSystem="2.16.840.1.113883.2.4.4.40.267"
                                           displayName="Ontwikkeling genitalia jongen"/>
                                     <value xsi:type="CV"
-                                           code="03"
+                                           code="01"
                                            codeSystem="2.16.840.1.113883.2.4.4.40.43"
-                                           displayName="G3"/>
+                                           displayName="G1"/>
                                     <methodCode code="1"
                                                 codeSystem="2.16.840.1.113883.2.4.4.40.34"
                                                 displayName="Onderzocht"/>
@@ -376,20 +350,9 @@
                                            code="01"
                                            codeSystem="2.16.840.1.113883.2.4.4.40.44"
                                            displayName="P1"/>
-                                    <methodCode code="2"
+                                    <methodCode code="1"
                                                 codeSystem="2.16.840.1.113883.2.4.4.40.34"
-                                                displayName="Mededeling"/>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40807"/>
-                                    <code code="807"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Bijzonderheden anus"/>
-                                    <value xsi:type="ST">gb</value>
+                                                displayName="Onderzocht"/>
                                  </observation>
                               </component>
                            </rubricCluster>
@@ -403,11 +366,7 @@
                         <code code="1197"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Status in zorg"/>
-<<<<<<< HEAD
-                        <effectiveTime value="19000101"/>
-=======
-                        <effectiveTime value="20000101"/>
->>>>>>> feature/JGZ-qual-8.0
+                        <effectiveTime value="{format-dateTime(current-dateTime() - xs:yearMonthDuration(P14Y) + xs:dayTimeDuration(P5D), '[Y0001]-[M01]-[D01]')}"/>
                         <reasonCode code="01"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.376"
                                     displayName="Regulier"/>
@@ -420,14 +379,10 @@
                         <code code="487"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Zorgbeëindiging"/>
-<<<<<<< HEAD
-                        <effectiveTime value="19010101"/>
-=======
-                        <effectiveTime value="20000101"/>
->>>>>>> feature/JGZ-qual-8.0
-                        <reasonCode code="04"
+                        <effectiveTime value="{format-dateTime(current-dateTime(), '[Y0001]-[M01]-[D01]')}"/>
+                        <reasonCode code="01"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.82"
-                                    displayName="Leeftijd"/>
+                                    displayName="Overdracht naar een andere JGZ-organisatie"/>
                      </careStatus>
                   </subjectOf>
                </careProvisionEvent>
