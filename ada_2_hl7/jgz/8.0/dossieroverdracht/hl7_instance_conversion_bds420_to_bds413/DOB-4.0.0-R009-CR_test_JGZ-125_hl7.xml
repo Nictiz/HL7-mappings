@@ -141,16 +141,6 @@
                         <effectiveTime value="20000101"/>
                      </document>
                   </appendage>
-                  <appendage typeCode="APND">
-                     <document classCode="DOC"
-                               moodCode="EVN">
-                        <code nullFlavor="OTH"
-                              codeSystem="2.16.840.1.113883.5.1008">
-                           <originalText>Verwijsbrief</originalText>
-                        </code>
-                        <effectiveTime value="20000101"/>
-                     </document>
-                  </appendage>
                   <component7 typeCode="COMP">
                      <encounter classCode="ENC"
                                 moodCode="EVN">
@@ -169,6 +159,20 @@
                               <code code="R018"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.391"
                                     displayName="Activiteit"/>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41577"/>
+                                    <code code="1577"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Vorm activiteit"/>
+                                    <value xsi:type="CV"
+                                           code="01"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.424"
+                                           displayName="Beeldbellen"/>
+                                 </observation>
+                              </component>
                               <component>
                                  <observation classCode="OBS"
                                               moodCode="EVN"

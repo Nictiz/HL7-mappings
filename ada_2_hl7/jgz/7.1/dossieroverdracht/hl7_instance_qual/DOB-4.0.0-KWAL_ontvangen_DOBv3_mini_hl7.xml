@@ -87,7 +87,7 @@
                   displayName="certified public health and general preventive medicine care"/>
             <statusCode code="active"/>
             <author>
-               <time value="2025"/>
+               <time value="2024"/>
                <assignedEntity classCode="ASSIGNED">
                   <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
                   <id root="2.16.528.1.1007.3.3"
@@ -128,7 +128,7 @@
                                                      code="M"
                                                      codeSystem="2.16.840.1.113883.5.1"
                                                      displayName="Mannelijk"/>
-                           <birthTime value="{format-dateTime(current-dateTime() - xs:yearMonthDuration(P14Y), '[Y0001]-[M01]-[D01]')}"/>
+                           <birthTime value="{format-dateTime(current-dateTime() - xs:yearMonthDuration('P14Y'), '[Y0001][M01][D01]')}"/>
                         </patientPerson>
                      </patient>
                   </subject>
@@ -149,7 +149,7 @@
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contact 4 tot 12 jaar"/>
                         <statusCode code="completed"/>
-                        <effectiveTime value="{format-dateTime(current-dateTime() - xs:yearMonthDuration(P14Y) + xs:yearMonthDuration(P11Y), '[Y0001]-[M01]-[D01]')}"/>
+                        <effectiveTime value="{format-dateTime(current-dateTime() - xs:yearMonthDuration('P14Y') + xs:yearMonthDuration('P11Y'), '[Y0001][M01][D01]')}"/>
                         <reasonCode code="07"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.373"
                                     displayName="Genitalia"/>
@@ -366,7 +366,7 @@
                         <code code="1197"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Status in zorg"/>
-                        <effectiveTime value="{format-dateTime(current-dateTime() - xs:yearMonthDuration(P14Y) + xs:dayTimeDuration(P5D), '[Y0001]-[M01]-[D01]')}"/>
+                        <effectiveTime value="{format-dateTime(current-dateTime() - xs:yearMonthDuration('P14Y') + xs:dayTimeDuration('P5D'), '[Y0001][M01][D01]')}"/>
                         <reasonCode code="01"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.376"
                                     displayName="Regulier"/>
@@ -379,7 +379,7 @@
                         <code code="487"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Zorgbeëindiging"/>
-                        <effectiveTime value="{format-dateTime(current-dateTime(), '[Y0001]-[M01]-[D01]')}"/>
+                        <effectiveTime value="{format-dateTime(current-dateTime(), '[Y0001][M01][D01]')}"/>
                         <reasonCode code="01"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.82"
                                     displayName="Overdracht naar een andere JGZ-organisatie"/>
