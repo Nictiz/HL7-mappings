@@ -1,41 +1,69 @@
-<?xml-model href="../../../../../../art_decor/ada_2_test-xslt/jgz/8.0/dossieroverdracht/test_xslt_instance/DOB-4.0.0-R054-CR_test_JGZ-250.sch " type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<REPC_IN902120NL04 xmlns="urn:hl7-org:v3"
-                   xmlns:hl7="urn:hl7-org:v3"
-                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                   xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<REPC_IN902120NL03 xsi:schemaLocation="urn:hl7-org:v3 ../schemas/REPC_IN902120NL03.xsd"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="urn:hl7-org:v3"
+                   xmlns:util="urn:hl7:utilities">
    <id extension="1243567"
-       root="2.16.528.1.1007.3.3.12345678.1"/>
-   <creationTime value="20000101000000"/>
-   <versionCode code="NICTIZEd2005-Okt"/>
-   <interactionId extension="REPC_IN902120NL04"
+       root="2.16.528.1.1007.3.3.12345678.1"
+       xmlns:hl7="urn:hl7-org:v3"
+       xmlns:xs="http://www.w3.org/2001/XMLSchema"
+       xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"/>
+   <creationTime value="20000101000000"
+                 xmlns:hl7="urn:hl7-org:v3"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"/>
+   <versionCode code="NICTIZEd2005-Okt"
+                xmlns:hl7="urn:hl7-org:v3"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"/>
+   <interactionId extension="REPC_IN902120NL03"
                   root="2.16.840.1.113883.1.6"/>
    <profileId extension="810"
-              root="2.16.840.1.113883.2.4.3.11.1"/>
-   <processingCode code="P"/>
-   <processingModeCode code="T"/>
-   <acceptAckCode code="AL"/>
-   <attentionLine>
+              root="2.16.840.1.113883.2.4.3.11.1"
+              xmlns:hl7="urn:hl7-org:v3"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema"
+              xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"/>
+   <processingCode code="P"
+                   xmlns:hl7="urn:hl7-org:v3"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"/>
+   <processingModeCode code="T"
+                       xmlns:hl7="urn:hl7-org:v3"
+                       xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                       xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"/>
+   <acceptAckCode code="AL"
+                  xmlns:hl7="urn:hl7-org:v3"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"/>
+   <attentionLine xmlns:hl7="urn:hl7-org:v3"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
       <keyWordText code="PATID"
                    codeSystem="2.16.840.1.113883.2.4.15.1">Patient.id</keyWordText>
       <value xsi:type="II"
              extension="123456782"
              root="2.16.840.1.113883.2.4.6.3"/>
    </attentionLine>
-   <receiver>
+   <receiver xmlns:hl7="urn:hl7-org:v3"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
       <device>
          <id extension="{$receiverId}"
              root="2.16.840.1.113883.2.4.6.6"/>
       </device>
    </receiver>
-   <sender>
+   <sender xmlns:hl7="urn:hl7-org:v3"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
       <device>
          <id extension="{$applicationId}"
              root="2.16.840.1.113883.2.4.6.6"/>
       </device>
    </sender>
    <ControlActProcess classCode="CACT"
-                      moodCode="EVN">
+                      moodCode="EVN"
+                      xmlns:hl7="urn:hl7-org:v3"
+                      xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                      xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
       <authorOrPerformer typeCode="AUT">
          <participant>
             <AssignedDevice>
@@ -125,20 +153,6 @@
                                  <observation classCode="OBS"
                                               moodCode="EVN"
                                               negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41577"/>
-                                    <code code="1577"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Vorm activiteit"/>
-                                    <value xsi:type="CV"
-                                           code="01"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.424"
-                                           displayName="Beeldbellen"/>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
                                     <templateId root="2.16.840.1.113883.2.4.6.10.100.41605"/>
                                     <code code="1605"
                                           codeSystem="2.16.840.1.113883.2.4.4.40.267"
@@ -158,7 +172,7 @@
                               <templateId root="2.16.840.1.113883.2.4.6.10.100.11054"/>
                               <code code="R054"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Screening psychosociale problemen"/>
+                                    displayName="Screeningsinstrumenten"/>
                               <component>
                                  <observation classCode="OBS"
                                               moodCode="EVN"
@@ -169,459 +183,11 @@
                                           displayName="Bijzonderheden SPP"/>
                                     <value xsi:type="ST"
                                            nullFlavor="NI"/>
-                                    <methodCode code="11"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.387"
-                                                displayName="Cosos"/>
-                                 </observation>
-                              </component>
-                           </rubricCluster>
-                        </pertinentInformation>
-                     </encounter>
-                  </component7>
-                  <component7 typeCode="COMP">
-                     <encounter classCode="ENC"
-                                moodCode="EVN">
-                        <id extension="02"
-                            root="2.16.528.1.1007.3.3.1111.999.2"/>
-                        <code code="37"
-                              codeSystem="2.16.840.1.113883.2.4.4.40.308"
-                              displayName="Contact week 2 t/m 6 maanden"/>
-                        <statusCode code="completed"/>
-                        <effectiveTime value="19000101"/>
-                        <!-- r018_activiteit -->
-                        <pertinentInformation typeCode="PERT">
-                           <rubricCluster classCode="CLUSTER"
-                                          moodCode="EVN">
-                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11018"/>
-                              <code code="R018"
-                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Activiteit"/>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41577"/>
-                                    <code code="1577"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Vorm activiteit"/>
-                                    <value xsi:type="CV"
-                                           code="01"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.424"
-                                           displayName="Beeldbellen"/>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41605"/>
-                                    <code code="1605"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Status activiteit"/>
-                                    <value xsi:type="CV"
-                                           code="01"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.434"
-                                           displayName="Gerealiseerd"/>
-                                 </observation>
-                              </component>
-                           </rubricCluster>
-                        </pertinentInformation>
-                        <!-- r054_screeningsinstrumenten -->
-                        <pertinentInformation>
-                           <rubricCluster classCode="CLUSTER"
-                                          moodCode="EVN">
-                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11054"/>
-                              <code code="R054"
-                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Screening psychosociale problemen"/>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41345"/>
-                                    <code code="1345"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Bijzonderheden SPP"/>
-                                    <value xsi:type="ST"
-                                           nullFlavor="NI"/>
-                                    <methodCode code="12"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.387"
-                                                displayName="GIZ"/>
-                                 </observation>
-                              </component>
-                           </rubricCluster>
-                        </pertinentInformation>
-                     </encounter>
-                  </component7>
-                  <component7 typeCode="COMP">
-                     <encounter classCode="ENC"
-                                moodCode="EVN">
-                        <id extension="03"
-                            root="2.16.528.1.1007.3.3.1111.999.2"/>
-                        <code code="38"
-                              codeSystem="2.16.840.1.113883.2.4.4.40.308"
-                              displayName="Contact 7-12 maanden"/>
-                        <statusCode code="completed"/>
-                        <effectiveTime value="19000101"/>
-                        <!-- r018_activiteit -->
-                        <pertinentInformation typeCode="PERT">
-                           <rubricCluster classCode="CLUSTER"
-                                          moodCode="EVN">
-                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11018"/>
-                              <code code="R018"
-                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Activiteit"/>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41577"/>
-                                    <code code="1577"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Vorm activiteit"/>
-                                    <value xsi:type="CV"
-                                           code="01"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.424"
-                                           displayName="Beeldbellen"/>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41605"/>
-                                    <code code="1605"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Status activiteit"/>
-                                    <value xsi:type="CV"
-                                           code="01"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.434"
-                                           displayName="Gerealiseerd"/>
-                                 </observation>
-                              </component>
-                           </rubricCluster>
-                        </pertinentInformation>
-                        <!-- r054_screeningsinstrumenten -->
-                        <pertinentInformation>
-                           <rubricCluster classCode="CLUSTER"
-                                          moodCode="EVN">
-                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11054"/>
-                              <code code="R054"
-                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Screening psychosociale problemen"/>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41345"/>
-                                    <code code="1345"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Bijzonderheden SPP"/>
-                                    <value xsi:type="ST"
-                                           nullFlavor="NI"/>
-                                    <methodCode code="13"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.387"
-                                                displayName="SDQ ouders 2-4 jaar"/>
-                                 </observation>
-                              </component>
-                           </rubricCluster>
-                        </pertinentInformation>
-                     </encounter>
-                  </component7>
-                  <component7 typeCode="COMP">
-                     <encounter classCode="ENC"
-                                moodCode="EVN">
-                        <id extension="04"
-                            root="2.16.528.1.1007.3.3.1111.999.2"/>
-                        <code code="39"
-                              codeSystem="2.16.840.1.113883.2.4.4.40.308"
-                              displayName="Contact 1 tot 4 jaar"/>
-                        <statusCode code="completed"/>
-                        <effectiveTime value="19000101"/>
-                        <!-- r018_activiteit -->
-                        <pertinentInformation typeCode="PERT">
-                           <rubricCluster classCode="CLUSTER"
-                                          moodCode="EVN">
-                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11018"/>
-                              <code code="R018"
-                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Activiteit"/>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41577"/>
-                                    <code code="1577"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Vorm activiteit"/>
-                                    <value xsi:type="CV"
-                                           code="01"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.424"
-                                           displayName="Beeldbellen"/>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41605"/>
-                                    <code code="1605"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Status activiteit"/>
-                                    <value xsi:type="CV"
-                                           code="01"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.434"
-                                           displayName="Gerealiseerd"/>
-                                 </observation>
-                              </component>
-                           </rubricCluster>
-                        </pertinentInformation>
-                        <!-- r054_screeningsinstrumenten -->
-                        <pertinentInformation>
-                           <rubricCluster classCode="CLUSTER"
-                                          moodCode="EVN">
-                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11054"/>
-                              <code code="R054"
-                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Screening psychosociale problemen"/>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41345"/>
-                                    <code code="1345"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Bijzonderheden SPP"/>
-                                    <value xsi:type="ST"
-                                           nullFlavor="NI"/>
-                                    <methodCode code="14"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.387"
-                                                displayName="SDQ ouders 4-17 jaar"/>
-                                 </observation>
-                              </component>
-                           </rubricCluster>
-                        </pertinentInformation>
-                     </encounter>
-                  </component7>
-                  <component7 typeCode="COMP">
-                     <encounter classCode="ENC"
-                                moodCode="EVN">
-                        <id extension="05"
-                            root="2.16.528.1.1007.3.3.1111.999.2"/>
-                        <code code="40"
-                              codeSystem="2.16.840.1.113883.2.4.4.40.308"
-                              displayName="Contact 4 tot 12 jaar"/>
-                        <statusCode code="completed"/>
-                        <effectiveTime value="19000101"/>
-                        <!-- r018_activiteit -->
-                        <pertinentInformation typeCode="PERT">
-                           <rubricCluster classCode="CLUSTER"
-                                          moodCode="EVN">
-                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11018"/>
-                              <code code="R018"
-                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Activiteit"/>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41577"/>
-                                    <code code="1577"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Vorm activiteit"/>
-                                    <value xsi:type="CV"
-                                           code="01"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.424"
-                                           displayName="Beeldbellen"/>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41605"/>
-                                    <code code="1605"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Status activiteit"/>
-                                    <value xsi:type="CV"
-                                           code="01"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.434"
-                                           displayName="Gerealiseerd"/>
-                                 </observation>
-                              </component>
-                           </rubricCluster>
-                        </pertinentInformation>
-                        <!-- r054_screeningsinstrumenten -->
-                        <pertinentInformation>
-                           <rubricCluster classCode="CLUSTER"
-                                          moodCode="EVN">
-                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11054"/>
-                              <code code="R054"
-                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Screening psychosociale problemen"/>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41345"/>
-                                    <code code="1345"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Bijzonderheden SPP"/>
-                                    <value xsi:type="ST"
-                                           nullFlavor="NI"/>
-                                    <methodCode code="15"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.387"
-                                                displayName="SDQ leerkrachten 2-4 jaar"/>
-                                 </observation>
-                              </component>
-                           </rubricCluster>
-                        </pertinentInformation>
-                     </encounter>
-                  </component7>
-                  <component7 typeCode="COMP">
-                     <encounter classCode="ENC"
-                                moodCode="EVN">
-                        <id extension="06"
-                            root="2.16.528.1.1007.3.3.1111.999.2"/>
-                        <code code="41"
-                              codeSystem="2.16.840.1.113883.2.4.4.40.308"
-                              displayName="Contact 12 tot 18 jaar"/>
-                        <statusCode code="completed"/>
-                        <effectiveTime value="19000101"/>
-                        <!-- r018_activiteit -->
-                        <pertinentInformation typeCode="PERT">
-                           <rubricCluster classCode="CLUSTER"
-                                          moodCode="EVN">
-                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11018"/>
-                              <code code="R018"
-                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Activiteit"/>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41577"/>
-                                    <code code="1577"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Vorm activiteit"/>
-                                    <value xsi:type="CV"
-                                           code="01"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.424"
-                                           displayName="Beeldbellen"/>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41605"/>
-                                    <code code="1605"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Status activiteit"/>
-                                    <value xsi:type="CV"
-                                           code="01"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.434"
-                                           displayName="Gerealiseerd"/>
-                                 </observation>
-                              </component>
-                           </rubricCluster>
-                        </pertinentInformation>
-                        <!-- r054_screeningsinstrumenten -->
-                        <pertinentInformation>
-                           <rubricCluster classCode="CLUSTER"
-                                          moodCode="EVN">
-                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11054"/>
-                              <code code="R054"
-                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Screening psychosociale problemen"/>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41345"/>
-                                    <code code="1345"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Bijzonderheden SPP"/>
-                                    <value xsi:type="ST"
-                                           nullFlavor="NI"/>
-                                    <methodCode code="16"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.387"
-                                                displayName="SDQ leerkrachten 4-17 jaar "/>
-                                 </observation>
-                              </component>
-                           </rubricCluster>
-                        </pertinentInformation>
-                     </encounter>
-                  </component7>
-                  <component7 typeCode="COMP">
-                     <encounter classCode="ENC"
-                                moodCode="EVN">
-                        <id extension="07"
-                            root="2.16.528.1.1007.3.3.1111.999.2"/>
-                        <code code="22"
-                              codeSystem="2.16.840.1.113883.2.4.4.40.308"
-                              displayName="Contact op indicatie"/>
-                        <statusCode code="completed"/>
-                        <effectiveTime value="19000101"/>
-                        <!-- r018_activiteit -->
-                        <pertinentInformation typeCode="PERT">
-                           <rubricCluster classCode="CLUSTER"
-                                          moodCode="EVN">
-                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11018"/>
-                              <code code="R018"
-                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Activiteit"/>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41577"/>
-                                    <code code="1577"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Vorm activiteit"/>
-                                    <value xsi:type="CV"
-                                           code="01"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.424"
-                                           displayName="Beeldbellen"/>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41605"/>
-                                    <code code="1605"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Status activiteit"/>
-                                    <value xsi:type="CV"
-                                           code="01"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.434"
-                                           displayName="Gerealiseerd"/>
-                                 </observation>
-                              </component>
-                           </rubricCluster>
-                        </pertinentInformation>
-                        <!-- r054_screeningsinstrumenten -->
-                        <pertinentInformation>
-                           <rubricCluster classCode="CLUSTER"
-                                          moodCode="EVN">
-                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11054"/>
-                              <code code="R054"
-                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Screening psychosociale problemen"/>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41345"/>
-                                    <code code="1345"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Bijzonderheden SPP"/>
-                                    <value xsi:type="ST"
-                                           nullFlavor="NI"/>
-                                    <methodCode code="11"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.387"
-                                                displayName="Cosos"/>
+                                    <methodCode xsi:type="CV"
+                                                nullFlavor="OTH"
+                                                codeSystem="2.16.840.1.113883.5.1008">
+                                       <originalText>Cosos</originalText>
+                                    </methodCode>
                                  </observation>
                               </component>
                            </rubricCluster>
@@ -669,7 +235,7 @@
                               <templateId root="2.16.840.1.113883.2.4.6.10.100.11054"/>
                               <code code="R054"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Screening psychosociale problemen"/>
+                                    displayName="Screeningsinstrumenten"/>
                               <component>
                                  <observation classCode="OBS"
                                               moodCode="EVN"
@@ -680,9 +246,11 @@
                                           displayName="Bijzonderheden SPP"/>
                                     <value xsi:type="ST"
                                            nullFlavor="NI"/>
-                                    <methodCode code="12"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.387"
-                                                displayName="GIZ"/>
+                                    <methodCode xsi:type="CV"
+                                                nullFlavor="OTH"
+                                                codeSystem="2.16.840.1.113883.5.1008">
+                                       <originalText>GIZ</originalText>
+                                    </methodCode>
                                  </observation>
                               </component>
                            </rubricCluster>
@@ -730,7 +298,7 @@
                               <templateId root="2.16.840.1.113883.2.4.6.10.100.11054"/>
                               <code code="R054"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Screening psychosociale problemen"/>
+                                    displayName="Screeningsinstrumenten"/>
                               <component>
                                  <observation classCode="OBS"
                                               moodCode="EVN"
@@ -741,9 +309,11 @@
                                           displayName="Bijzonderheden SPP"/>
                                     <value xsi:type="ST"
                                            nullFlavor="NI"/>
-                                    <methodCode code="13"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.387"
-                                                displayName="SDQ ouders 2-4 jaar"/>
+                                    <methodCode xsi:type="CV"
+                                                nullFlavor="OTH"
+                                                codeSystem="2.16.840.1.113883.5.1008">
+                                       <originalText>SDQ ouders 2-4 jaar</originalText>
+                                    </methodCode>
                                  </observation>
                               </component>
                            </rubricCluster>
@@ -791,7 +361,7 @@
                               <templateId root="2.16.840.1.113883.2.4.6.10.100.11054"/>
                               <code code="R054"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Screening psychosociale problemen"/>
+                                    displayName="Screeningsinstrumenten"/>
                               <component>
                                  <observation classCode="OBS"
                                               moodCode="EVN"
@@ -802,9 +372,11 @@
                                           displayName="Bijzonderheden SPP"/>
                                     <value xsi:type="ST"
                                            nullFlavor="NI"/>
-                                    <methodCode code="14"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.387"
-                                                displayName="SDQ ouders 4-17 jaar"/>
+                                    <methodCode xsi:type="CV"
+                                                nullFlavor="OTH"
+                                                codeSystem="2.16.840.1.113883.5.1008">
+                                       <originalText>SDQ ouders 4-17 jaar</originalText>
+                                    </methodCode>
                                  </observation>
                               </component>
                            </rubricCluster>
@@ -852,7 +424,7 @@
                               <templateId root="2.16.840.1.113883.2.4.6.10.100.11054"/>
                               <code code="R054"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Screening psychosociale problemen"/>
+                                    displayName="Screeningsinstrumenten"/>
                               <component>
                                  <observation classCode="OBS"
                                               moodCode="EVN"
@@ -863,9 +435,11 @@
                                           displayName="Bijzonderheden SPP"/>
                                     <value xsi:type="ST"
                                            nullFlavor="NI"/>
-                                    <methodCode code="15"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.387"
-                                                displayName="SDQ leerkrachten 2-4 jaar"/>
+                                    <methodCode xsi:type="CV"
+                                                nullFlavor="OTH"
+                                                codeSystem="2.16.840.1.113883.5.1008">
+                                       <originalText>SDQ leerkrachten 2-4 jaar</originalText>
+                                    </methodCode>
                                  </observation>
                               </component>
                            </rubricCluster>
@@ -913,7 +487,7 @@
                               <templateId root="2.16.840.1.113883.2.4.6.10.100.11054"/>
                               <code code="R054"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Screening psychosociale problemen"/>
+                                    displayName="Screeningsinstrumenten"/>
                               <component>
                                  <observation classCode="OBS"
                                               moodCode="EVN"
@@ -924,9 +498,11 @@
                                           displayName="Bijzonderheden SPP"/>
                                     <value xsi:type="ST"
                                            nullFlavor="NI"/>
-                                    <methodCode code="16"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.387"
-                                                displayName="SDQ leerkrachten 4-17 jaar "/>
+                                    <methodCode xsi:type="CV"
+                                                nullFlavor="OTH"
+                                                codeSystem="2.16.840.1.113883.5.1008">
+                                       <originalText>SDQ leerkrachten 4-17 jaar </originalText>
+                                    </methodCode>
                                  </observation>
                               </component>
                            </rubricCluster>
@@ -974,7 +550,7 @@
                               <templateId root="2.16.840.1.113883.2.4.6.10.100.11054"/>
                               <code code="R054"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Screening psychosociale problemen"/>
+                                    displayName="Screeningsinstrumenten"/>
                               <component>
                                  <observation classCode="OBS"
                                               moodCode="EVN"
@@ -985,9 +561,11 @@
                                           displayName="Bijzonderheden SPP"/>
                                     <value xsi:type="ST"
                                            nullFlavor="NI"/>
-                                    <methodCode code="16"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.387"
-                                                displayName="SDQ leerkrachten 4-17 jaar "/>
+                                    <methodCode xsi:type="CV"
+                                                nullFlavor="OTH"
+                                                codeSystem="2.16.840.1.113883.5.1008">
+                                       <originalText>SDQ leerkrachten 4-17 jaar </originalText>
+                                    </methodCode>
                                  </observation>
                               </component>
                            </rubricCluster>
@@ -1035,7 +613,7 @@
                               <templateId root="2.16.840.1.113883.2.4.6.10.100.11054"/>
                               <code code="R054"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Screening psychosociale problemen"/>
+                                    displayName="Screeningsinstrumenten"/>
                               <component>
                                  <observation classCode="OBS"
                                               moodCode="EVN"
@@ -1046,9 +624,11 @@
                                           displayName="Bijzonderheden SPP"/>
                                     <value xsi:type="ST"
                                            nullFlavor="NI"/>
-                                    <methodCode code="11"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.387"
-                                                displayName="Cosos"/>
+                                    <methodCode xsi:type="CV"
+                                                nullFlavor="OTH"
+                                                codeSystem="2.16.840.1.113883.5.1008">
+                                       <originalText>Cosos</originalText>
+                                    </methodCode>
                                  </observation>
                               </component>
                            </rubricCluster>
@@ -1086,4 +666,4 @@
          </CareProvisionRequest>
       </subject>
    </ControlActProcess>
-</REPC_IN902120NL04>
+</REPC_IN902120NL03>

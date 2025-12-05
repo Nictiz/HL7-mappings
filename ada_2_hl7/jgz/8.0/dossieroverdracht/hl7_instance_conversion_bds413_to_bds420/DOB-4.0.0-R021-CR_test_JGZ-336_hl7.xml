@@ -1,41 +1,58 @@
-<REPC_IN902120NL04 xsi:schemaLocation="urn:hl7-org:v3 ../hl7v3_schemas/REPC_IN902120NL04.xsd"
+<REPC_IN902120NL04 xsi:schemaLocation="urn:hl7-org:v3 ../schemas/REPC_IN902120NL04.xsd"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xmlns="urn:hl7-org:v3"
-                   xmlns:hl7="urn:hl7-org:v3"
-                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                   xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+                   xmlns:util="urn:hl7:utilities">
    <id extension="1243567"
-       root="2.16.528.1.1007.3.3.12345678.1"/>
-   <creationTime value="20000101000000"/>
-   <versionCode code="NICTIZEd2005-Okt"/>
+       root="2.16.528.1.1007.3.3.12345678.1"
+       xmlns:hl7="urn:hl7-org:v3"
+       xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+   <creationTime value="20000101000000"
+                 xmlns:hl7="urn:hl7-org:v3"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+   <versionCode code="NICTIZEd2005-Okt"
+                xmlns:hl7="urn:hl7-org:v3"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
    <interactionId extension="REPC_IN902120NL04"
                   root="2.16.840.1.113883.1.6"/>
    <profileId extension="810"
-              root="2.16.840.1.113883.2.4.3.11.1"/>
-   <processingCode code="P"/>
-   <processingModeCode code="T"/>
-   <acceptAckCode code="AL"/>
-   <attentionLine>
+              root="2.16.840.1.113883.2.4.3.11.1"
+              xmlns:hl7="urn:hl7-org:v3"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+   <processingCode code="P"
+                   xmlns:hl7="urn:hl7-org:v3"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+   <processingModeCode code="T"
+                       xmlns:hl7="urn:hl7-org:v3"
+                       xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+   <acceptAckCode code="AL"
+                  xmlns:hl7="urn:hl7-org:v3"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+   <attentionLine xmlns:hl7="urn:hl7-org:v3"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <keyWordText code="PATID"
                    codeSystem="2.16.840.1.113883.2.4.15.1">Patient.id</keyWordText>
       <value xsi:type="II"
              extension="123456782"
              root="2.16.840.1.113883.2.4.6.3"/>
    </attentionLine>
-   <receiver>
+   <receiver xmlns:hl7="urn:hl7-org:v3"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <device>
          <id extension="{$receiverId}"
              root="2.16.840.1.113883.2.4.6.6"/>
       </device>
    </receiver>
-   <sender>
+   <sender xmlns:hl7="urn:hl7-org:v3"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <device>
          <id extension="{$applicationId}"
              root="2.16.840.1.113883.2.4.6.6"/>
       </device>
    </sender>
    <ControlActProcess classCode="CACT"
-                      moodCode="EVN">
+                      moodCode="EVN"
+                      xmlns:hl7="urn:hl7-org:v3"
+                      xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <authorOrPerformer typeCode="AUT">
          <participant>
             <AssignedDevice>
@@ -137,36 +154,11 @@
                               </component>
                            </rubricCluster>
                         </pertinentInformation>
-                        <!-- r054_screeningsinstrumenten -->
-                        <pertinentInformation>
-                           <rubricCluster classCode="CLUSTER"
-                                          moodCode="EVN">
-                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11054"/>
-                              <code code="R054"
-                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Screening psychosociale problemen"/>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41345"/>
-                                    <code code="1345"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Bijzonderheden SPP"/>
-                                    <effectiveTime value="20000101"/>
-                                    <value xsi:type="ST"
-                                           nullFlavor="NI"/>
-                                    <location typeCode="LOC">
-                                       <serviceDeliveryLocation>
-                                          <code code="03"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.372"
-                                                displayName="Consult"/>
-                                       </serviceDeliveryLocation>
-                                    </location>
-                                 </observation>
-                              </component>
-                           </rubricCluster>
-                        </pertinentInformation>
+                        <!-- r021_functioneren -->
+                        <!-- Rubriek 21 is verwijderd omdat het enkel vervallen elementen bevat.-->
+                        <!-- element 787 Functioneren op school nagevraagd is vervallen -->
+                        <!-- element 790 Bijzonderheden functioneren in de klas is vervallen -->
+                        <!-- element 791 Bijzonderheden indruk school is vervallen -->
                      </encounter>
                   </component7>
                   <subjectOf typeCode="SUBJ"

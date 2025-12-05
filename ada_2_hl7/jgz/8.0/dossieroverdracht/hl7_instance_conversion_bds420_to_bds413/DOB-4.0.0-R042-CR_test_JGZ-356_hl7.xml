@@ -1,41 +1,69 @@
-<REPC_IN902120NL04 xsi:schemaLocation="urn:hl7-org:v3 ../hl7v3_schemas/REPC_IN902120NL04.xsd"
+<REPC_IN902120NL03 xsi:schemaLocation="urn:hl7-org:v3 ../schemas/REPC_IN902120NL03.xsd"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xmlns="urn:hl7-org:v3"
-                   xmlns:hl7="urn:hl7-org:v3"
-                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                   xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+                   xmlns:util="urn:hl7:utilities">
    <id extension="1243567"
-       root="2.16.528.1.1007.3.3.12345678.1"/>
-   <creationTime value="20000101000000"/>
-   <versionCode code="NICTIZEd2005-Okt"/>
-   <interactionId extension="REPC_IN902120NL04"
+       root="2.16.528.1.1007.3.3.12345678.1"
+       xmlns:hl7="urn:hl7-org:v3"
+       xmlns:xs="http://www.w3.org/2001/XMLSchema"
+       xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"/>
+   <creationTime value="20000101000000"
+                 xmlns:hl7="urn:hl7-org:v3"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"/>
+   <versionCode code="NICTIZEd2005-Okt"
+                xmlns:hl7="urn:hl7-org:v3"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"/>
+   <interactionId extension="REPC_IN902120NL03"
                   root="2.16.840.1.113883.1.6"/>
    <profileId extension="810"
-              root="2.16.840.1.113883.2.4.3.11.1"/>
-   <processingCode code="P"/>
-   <processingModeCode code="T"/>
-   <acceptAckCode code="AL"/>
-   <attentionLine>
+              root="2.16.840.1.113883.2.4.3.11.1"
+              xmlns:hl7="urn:hl7-org:v3"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema"
+              xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"/>
+   <processingCode code="P"
+                   xmlns:hl7="urn:hl7-org:v3"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"/>
+   <processingModeCode code="T"
+                       xmlns:hl7="urn:hl7-org:v3"
+                       xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                       xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"/>
+   <acceptAckCode code="AL"
+                  xmlns:hl7="urn:hl7-org:v3"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"/>
+   <attentionLine xmlns:hl7="urn:hl7-org:v3"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
       <keyWordText code="PATID"
                    codeSystem="2.16.840.1.113883.2.4.15.1">Patient.id</keyWordText>
       <value xsi:type="II"
              extension="123456782"
              root="2.16.840.1.113883.2.4.6.3"/>
    </attentionLine>
-   <receiver>
+   <receiver xmlns:hl7="urn:hl7-org:v3"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
       <device>
          <id extension="{$receiverId}"
              root="2.16.840.1.113883.2.4.6.6"/>
       </device>
    </receiver>
-   <sender>
+   <sender xmlns:hl7="urn:hl7-org:v3"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
       <device>
          <id extension="{$applicationId}"
              root="2.16.840.1.113883.2.4.6.6"/>
       </device>
    </sender>
    <ControlActProcess classCode="CACT"
-                      moodCode="EVN">
+                      moodCode="EVN"
+                      xmlns:hl7="urn:hl7-org:v3"
+                      xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                      xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
       <authorOrPerformer typeCode="AUT">
          <participant>
             <AssignedDevice>
@@ -137,36 +165,9 @@
                               </component>
                            </rubricCluster>
                         </pertinentInformation>
-                        <!-- r054_screeningsinstrumenten -->
-                        <pertinentInformation>
-                           <rubricCluster classCode="CLUSTER"
-                                          moodCode="EVN">
-                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11054"/>
-                              <code code="R054"
-                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Screening psychosociale problemen"/>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41345"/>
-                                    <code code="1345"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Bijzonderheden SPP"/>
-                                    <effectiveTime value="20000101"/>
-                                    <value xsi:type="ST"
-                                           nullFlavor="NI"/>
-                                    <location typeCode="LOC">
-                                       <serviceDeliveryLocation>
-                                          <code code="03"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.372"
-                                                displayName="Consult"/>
-                                       </serviceDeliveryLocation>
-                                    </location>
-                                 </observation>
-                              </component>
-                           </rubricCluster>
-                        </pertinentInformation>
+                        <!-- r042_van_wiechen_ontwikkelingsonderzoek -->
+                        <!-- Rubriek 42 is overgeslagen omdat het enkel overgeslagen elementen bevat.-->
+                        <!-- element 1670 53. Beweegt benen evenveel is overgeslagen -->
                      </encounter>
                   </component7>
                   <subjectOf typeCode="SUBJ"
@@ -200,4 +201,4 @@
          </CareProvisionRequest>
       </subject>
    </ControlActProcess>
-</REPC_IN902120NL04>
+</REPC_IN902120NL03>
