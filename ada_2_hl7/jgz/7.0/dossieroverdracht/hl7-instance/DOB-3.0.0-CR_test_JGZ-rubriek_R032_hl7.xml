@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-<?xml-model href="../../../../../../art_decor/ada_2_test-xslt/jgz/7.0/dossieroverdracht/test_xslt_instance/DOB-3.0.0-CR_test_JGZ-rubriek_R025.sch " type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="../../../../../../art_decor/ada_2_test-xslt/jgz/7.0/dossieroverdracht/test_xslt_instance/DOB-3.0.0-CR_test_JGZ-rubriek_R032.sch " type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <REPC_IN902120NL03 xsi:schemaLocation="urn:hl7-org:v3 ../../hl7v3_schemas/REPC_IN902120NL03.xsd"
-=======
-<REPC_IN902120NL03 xsi:schemaLocation="urn:hl7-org:v3 ../hl7v3_schemas/REPC_IN902120NL03.xsd"
->>>>>>> feature/JGZ-qual-8.0
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xmlns="urn:hl7-org:v3"
                    xmlns:hl7="urn:hl7-org:v3"
@@ -91,11 +87,7 @@
                            <name use="OR">
                               <family qualifier="BR">AchternaamTest</family>
                            </name>
-<<<<<<< HEAD
                            <birthTime value="19000101"/>
-=======
-                           <birthTime value="20000101"/>
->>>>>>> feature/JGZ-qual-8.0
                         </patientPerson>
                      </patient>
                   </subject>
@@ -120,11 +112,7 @@
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contact 4-7 dagen"/>
                         <statusCode code="completed"/>
-<<<<<<< HEAD
                         <effectiveTime value="19000101"/>
-=======
-                        <effectiveTime value="20000101"/>
->>>>>>> feature/JGZ-qual-8.0
                         <!-- r018_activiteit -->
                         <pertinentInformation typeCode="PERT">
                            <rubricCluster classCode="CLUSTER"
@@ -163,100 +151,96 @@
                               </component>
                            </rubricCluster>
                         </pertinentInformation>
-                        <!-- r025_bewegingsapparaat -->
+                        <!-- r032_spraak_en_taalontwikkeling -->
                         <pertinentInformation>
                            <rubricCluster classCode="CLUSTER"
                                           moodCode="EVN">
-                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11025"/>
-                              <code code="R025"
+                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11032"/>
+                              <code code="R032"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Bewegingsapparaat"/>
+                                    displayName="Spraak- en taalontwikkeling"/>
                               <component>
                                  <observation classCode="OBS"
                                               moodCode="EVN"
                                               negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40212"/>
-                                    <code code="212"
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40294"/>
+                                    <code code="294"
                                           codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Bewegingsapparaat onderzocht"/>
+                                          displayName="Spraak- en taalontwikkeling onderzocht"/>
                                     <value xsi:type="BL"
                                            value="true"/>
                                  </observation>
                               </component>
                               <component>
-                                 <groupCluster>
-                                    <code code="G024"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.393"
-                                          displayName="Wervelkolom"/>
-                                    <component>
-                                       <observation classCode="OBS"
-                                                    moodCode="EVN"
-                                                    negationInd="false">
-                                          <templateId root="2.16.840.1.113883.2.4.6.10.100.40217"/>
-                                          <code code="217"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                                displayName="Bijzonderheden wervelkolom"/>
-                                          <value xsi:type="CV"
-                                                 code="04"
-                                                 codeSystem="2.16.840.1.113883.2.4.4.40.320"
-                                                 displayName="Hyperkyfose redresseerbaar"/>
-                                          <targetSiteCode code="1"
-                                                          codeSystem="2.16.840.1.113883.2.4.4.40.13"
-                                                          displayName="Rechts"/>
-                                       </observation>
-                                    </component>
-                                 </groupCluster>
-                              </component>
-                              <component>
                                  <observation classCode="OBS"
                                               moodCode="EVN"
                                               negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40800"/>
-                                    <code code="800"
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40301"/>
+                                    <code code="301"
                                           codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Hoogteverschil gibbus bij scoliose"/>
-                                    <value xsi:type="PQ"
-                                           value="3"
-                                           unit="mm"/>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40218"/>
-                                    <code code="218"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Scoliose hoekmeting"/>
+                                          displayName="Meertaligheid"/>
                                     <value xsi:type="CV"
                                            code="02"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.21"
-                                           displayName="Hoek 4˚ tot 7˚"/>
-                                    <targetSiteCode code="1"
-                                                    codeSystem="2.16.840.1.113883.2.4.4.40.13"
-                                                    displayName="Rechts"/>
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.40"
+                                           displayName="Simultane twee/meertaligheid"/>
                                  </observation>
                               </component>
                               <component>
                                  <groupCluster>
-                                    <code code="G026"
+                                    <code code="G036"
                                           codeSystem="2.16.840.1.113883.2.4.4.40.393"
-                                          displayName="Heupen"/>
+                                          displayName="Taal"/>
                                     <component>
                                        <observation classCode="OBS"
                                                     moodCode="EVN"
                                                     negationInd="false">
-                                          <templateId root="2.16.840.1.113883.2.4.6.10.100.40219"/>
-                                          <code code="219"
+                                          <templateId root="2.16.840.1.113883.2.4.6.10.100.40302"/>
+                                          <code code="302"
                                                 codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                                displayName="Bijzonderheden heupen"/>
+                                                displayName="Taal"/>
                                           <value xsi:type="CV"
-                                                 code="03"
-                                                 codeSystem="2.16.840.1.113883.2.4.4.40.22"
-                                                 displayName="Bilplooiverschil"/>
-                                          <targetSiteCode code="2"
-                                                          codeSystem="2.16.840.1.113883.2.4.4.40.13"
-                                                          displayName="Links"/>
+                                                 code="nld"
+                                                 codeSystem="1.0.639.2"
+                                                 displayName="Nederlands"/>
+                                       </observation>
+                                    </component>
+                                    <component>
+                                       <observation classCode="OBS"
+                                                    moodCode="EVN"
+                                                    negationInd="false">
+                                          <templateId root="2.16.840.1.113883.2.4.6.10.100.41329"/>
+                                          <code code="1329"
+                                                codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                                displayName="Dialect"/>
+                                          <value xsi:type="ST">geen</value>
+                                       </observation>
+                                    </component>
+                                    <component>
+                                       <observation classCode="OBS"
+                                                    moodCode="EVN"
+                                                    negationInd="false">
+                                          <templateId root="2.16.840.1.113883.2.4.6.10.100.40307"/>
+                                          <code code="307"
+                                                codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                                displayName="Eerste/tweede taal"/>
+                                          <value xsi:type="CV"
+                                                 code="1"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.40.323"
+                                                 displayName="Eerste taal"/>
+                                       </observation>
+                                    </component>
+                                    <component>
+                                       <observation classCode="OBS"
+                                                    moodCode="EVN"
+                                                    negationInd="false">
+                                          <templateId root="2.16.840.1.113883.2.4.6.10.100.40816"/>
+                                          <code code="816"
+                                                codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                                displayName="Taalomgeving stimulerend"/>
+                                          <value xsi:type="CV"
+                                                 code="1"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.40.324"
+                                                 displayName="Voldoende"/>
                                        </observation>
                                     </component>
                                  </groupCluster>
@@ -265,109 +249,51 @@
                                  <observation classCode="OBS"
                                               moodCode="EVN"
                                               negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41446"/>
-                                    <code code="1446"
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40820"/>
+                                    <code code="820"
                                           codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Toelichting bijzonderheden heupen"/>
-                                    <value xsi:type="ST">gb</value>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40802"/>
-                                    <code code="802"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Bijzonderheden bovenste extremiteiten"/>
-                                    <value xsi:type="ST">gb</value>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41426"/>
-                                    <code code="1426"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Bijzonderheden hand rechts"/>
-                                    <value xsi:type="ST">gb</value>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41425"/>
-                                    <code code="1425"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Bijzonderheden hand links"/>
-                                    <value xsi:type="ST">gb</value>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <groupCluster>
-                                    <code code="G028"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.393"
-                                          displayName="Onderste extremiteiten"/>
-                                    <component>
-                                       <observation classCode="OBS"
-                                                    moodCode="EVN"
-                                                    negationInd="false">
-                                          <templateId root="2.16.840.1.113883.2.4.6.10.100.40221"/>
-                                          <code code="221"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                                displayName="Bijzonderheden onderste extremiteiten"/>
-                                          <value xsi:type="CV"
-                                                 code="02"
-                                                 codeSystem="2.16.840.1.113883.2.4.4.40.23"
-                                                 displayName="X-benen"/>
-                                          <targetSiteCode code="2"
-                                                          codeSystem="2.16.840.1.113883.2.4.4.40.13"
-                                                          displayName="Links"/>
-                                       </observation>
-                                    </component>
-                                 </groupCluster>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40804"/>
-                                    <code code="804"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Beenlengteverschil"/>
-                                    <value xsi:type="PQ"
-                                           value="2"
-                                           unit="mm"/>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40223"/>
-                                    <code code="223"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Bijzonderheden voet rechts"/>
-                                    <value xsi:type="CV"
-                                           code="02"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.321"
-                                           displayName="Platvoet corrigeerbaar"/>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40805"/>
-                                    <code code="805"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Bijzonderheden voet links"/>
+                                          displayName="Aard bijzonderheden spraak- en taalontwikkeling"/>
                                     <value xsi:type="CV"
                                            code="04"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.321"
-                                           displayName="Te korte achillespees"/>
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.326"
+                                           displayName="Mondgedrag (zoals habitueel mondademen, kwijlen, speen)"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40821"/>
+                                    <code code="821"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Toelichting aard bijzonderheden"/>
+                                    <value xsi:type="ST">GB</value>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40822"/>
+                                    <code code="822"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Totaalscore SLS"/>
+                                    <value xsi:type="INT"
+                                           value="10"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40823"/>
+                                    <code code="823"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Beoordeling spraak- en taalontwikkeling Nederlands"/>
+                                    <value xsi:type="CV"
+                                           code="1"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.327"
+                                           displayName="Leeftijdsadequaat of sneller"/>
                                  </observation>
                               </component>
                            </rubricCluster>
@@ -381,11 +307,7 @@
                         <code code="1197"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Status in zorg"/>
-<<<<<<< HEAD
                         <effectiveTime value="19000101"/>
-=======
-                        <effectiveTime value="20000101"/>
->>>>>>> feature/JGZ-qual-8.0
                         <reasonCode code="01"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.376"
                                     displayName="Regulier"/>
@@ -398,11 +320,7 @@
                         <code code="487"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Zorgbeëindiging"/>
-<<<<<<< HEAD
                         <effectiveTime value="19010101"/>
-=======
-                        <effectiveTime value="20000101"/>
->>>>>>> feature/JGZ-qual-8.0
                         <reasonCode code="04"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.82"
                                     displayName="Leeftijd"/>

@@ -1,4 +1,5 @@
-<REPC_IN902120NL03 xsi:schemaLocation="urn:hl7-org:v3 ../hl7v3_schemas/REPC_IN902120NL03.xsd"
+<?xml-model href="../../../../../../art_decor/ada_2_test-xslt/jgz/7.0/dossieroverdracht/test_xslt_instance/DOB-3.0.0-CR_test_JGZ-rubriek_R027.sch " type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<REPC_IN902120NL03 xsi:schemaLocation="urn:hl7-org:v3 ../../hl7v3_schemas/REPC_IN902120NL03.xsd"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xmlns="urn:hl7-org:v3"
                    xmlns:hl7="urn:hl7-org:v3"
@@ -86,7 +87,7 @@
                            <name use="OR">
                               <family qualifier="BR">AchternaamTest</family>
                            </name>
-                           <birthTime value="20000101"/>
+                           <birthTime value="19000101"/>
                         </patientPerson>
                      </patient>
                   </subject>
@@ -111,7 +112,7 @@
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contact 4-7 dagen"/>
                         <statusCode code="completed"/>
-                        <effectiveTime value="20000101"/>
+                        <effectiveTime value="19000101"/>
                         <!-- r018_activiteit -->
                         <pertinentInformation typeCode="PERT">
                            <rubricCluster classCode="CLUSTER"
@@ -150,42 +151,95 @@
                               </component>
                            </rubricCluster>
                         </pertinentInformation>
-                        <!-- r054_screening_psychosociale_problemen -->
+                        <!-- r027_groei -->
                         <pertinentInformation>
                            <rubricCluster classCode="CLUSTER"
                                           moodCode="EVN">
-                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11054"/>
-                              <code code="R054"
+                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11027"/>
+                              <code code="R027"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Screening psychosociale problemen"/>
+                                    displayName="Groei"/>
                               <component>
                                  <observation classCode="OBS"
                                               moodCode="EVN"
                                               negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41345"/>
-                                    <code code="1345"
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40234"/>
+                                    <code code="234"
                                           codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Bijzonderheden SPP"/>
-                                    <effectiveTime value="20000101"/>
-                                    <value xsi:type="ST"
-                                           nullFlavor="NI"/>
-                                    <methodCode code="09"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.387"
-                                                displayName="SDQ 7-12 jaar"/>
-                                    <performer typeCode="PRF">
-                                       <assignedEntity classCode="ASSIGNED">
-                                          <code code="01"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.388"
-                                                displayName="Ouder"/>
-                                       </assignedEntity>
-                                    </performer>
-                                    <location typeCode="LOC">
-                                       <serviceDeliveryLocation>
-                                          <code code="01"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.372"
-                                                displayName="Thuis"/>
-                                       </serviceDeliveryLocation>
-                                    </location>
+                                          displayName="Bijzonderheden groei"/>
+                                    <value xsi:type="ST">activiteit-04723-18</value>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40235"/>
+                                    <code code="235"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Lengte"/>
+                                    <value xsi:type="PQ"
+                                           value="133"
+                                           unit="mm"/>
+                                    <methodCode code="1"
+                                                codeSystem="2.16.840.1.113883.2.4.4.40.28"
+                                                displayName="Liggend gemeten"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40245"/>
+                                    <code code="245"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Gewicht"/>
+                                    <value xsi:type="PQ"
+                                           value="30"
+                                           unit="g"/>
+                                    <methodCode code="1"
+                                                codeSystem="2.16.840.1.113883.2.4.4.40.30"
+                                                displayName="Gewogen met kleren"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40247"/>
+                                    <code code="247"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Indruk JGZ professional gewicht/lengte"/>
+                                    <value xsi:type="CV"
+                                           code="2"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.31"
+                                           displayName="Normaal gewicht"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41485"/>
+                                    <code code="1485"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Middelomtrek in millimeters"/>
+                                    <value xsi:type="PQ"
+                                           value="60"
+                                           unit="mm"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40252"/>
+                                    <code code="252"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Hoofdomtrek"/>
+                                    <value xsi:type="PQ"
+                                           value="30"
+                                           unit="mm"/>
                                  </observation>
                               </component>
                            </rubricCluster>
@@ -199,7 +253,7 @@
                         <code code="1197"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Status in zorg"/>
-                        <effectiveTime value="20000101"/>
+                        <effectiveTime value="19000101"/>
                         <reasonCode code="01"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.376"
                                     displayName="Regulier"/>
@@ -212,7 +266,7 @@
                         <code code="487"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Zorgbeëindiging"/>
-                        <effectiveTime value="20000101"/>
+                        <effectiveTime value="19010101"/>
                         <reasonCode code="04"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.82"
                                     displayName="Leeftijd"/>
