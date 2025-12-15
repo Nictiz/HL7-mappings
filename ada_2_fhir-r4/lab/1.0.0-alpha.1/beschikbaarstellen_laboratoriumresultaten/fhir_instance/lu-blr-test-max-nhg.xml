@@ -2,10 +2,10 @@
    <id value="lu-blr-test-max-nhg"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:163be067-d9a6-11f0-3290-020000000000"/>
+      <fullUrl value="urn:uuid:a4c00655-d9ad-11f0-4909-020000000000"/>
       <resource>
          <DiagnosticReport>
-            <id value="163be067-d9a6-11f0-3290-020000000000"/>
+            <id value="a4c00655-d9ad-11f0-4909-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/lu-LaboratoryTestResult-DiagnosticReport"/>
             </meta>
@@ -14,7 +14,7 @@
                <value value="AG03"/>
             </identifier>
             <basedOn>
-               <reference value="urn:uuid:163be053-d9a6-11f0-3290-020000000000"/>
+               <reference value="urn:uuid:a4c00641-d9ad-11f0-4909-020000000000"/>
                <type value="ServiceRequest"/>
                <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
             </basedOn>
@@ -34,17 +34,17 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:163bdf6d-d9a6-11f0-3290-020000000000"/>
+               <reference value="urn:uuid:a4c0055b-d9ad-11f0-4909-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
             <performer>
-               <reference value="urn:uuid:163be017-d9a6-11f0-3290-020000000000"/>
+               <reference value="urn:uuid:a4c00605-d9ad-11f0-4909-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), organisation-id in system"/>
             </performer>
             <result>
-               <reference value="urn:uuid:163be03f-d9a6-11f0-3290-020000000000"/>
+               <reference value="urn:uuid:a4c0062d-d9ad-11f0-4909-020000000000"/>
                <type value="Observation"/>
                <display value="laboratorium_test"/>
             </result>
@@ -52,10 +52,10 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:163be03f-d9a6-11f0-3290-020000000000"/>
+      <fullUrl value="urn:uuid:a4c0062d-d9ad-11f0-4909-020000000000"/>
       <resource>
          <Observation>
-            <id value="163be03f-d9a6-11f0-3290-020000000000"/>
+            <id value="a4c0062d-d9ad-11f0-4909-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>
@@ -79,13 +79,34 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:163bdf6d-d9a6-11f0-3290-020000000000"/>
+               <reference value="urn:uuid:a4c0055b-d9ad-11f0-4909-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, -12}"/>
             <performer>
-               <reference value="urn:uuid:163be017-d9a6-11f0-3290-020000000000"/>
+               <extension url="http://hl7.org/fhir/StructureDefinition/event-performerFunction">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-ParticipationType"/>
+                        <code value="PPRF"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                  <valueCode value="unknown"/>
+               </extension>
+            </performer>
+            <performer>
+               <extension url="http://hl7.org/fhir/StructureDefinition/event-performerFunction">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-ParticipationType"/>
+                        <code value="RESP"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <reference value="urn:uuid:a4c00605-d9ad-11f0-4909-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), organisation-id in system"/>
             </performer>
@@ -114,7 +135,7 @@
                <text value="Onderzoek voltooid"/>
             </note>
             <specimen>
-               <reference value="urn:uuid:163be07b-d9a6-11f0-3290-020000000000"/>
+               <reference value="urn:uuid:a4c00669-d9ad-11f0-4909-020000000000"/>
                <type value="Specimen"/>
                <display value="monster"/>
             </specimen>
@@ -140,10 +161,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:163be053-d9a6-11f0-3290-020000000000"/>
+      <fullUrl value="urn:uuid:a4c00641-d9ad-11f0-4909-020000000000"/>
       <resource>
          <ServiceRequest>
-            <id value="163be053-d9a6-11f0-3290-020000000000"/>
+            <id value="a4c00641-d9ad-11f0-4909-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/lu-OrderData"/>
             </meta>
@@ -161,13 +182,13 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:163bdf6d-d9a6-11f0-3290-020000000000"/>
+               <reference value="urn:uuid:a4c0055b-d9ad-11f0-4909-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
             <authoredOn value="${DATE, T, D, -14}"/>
             <requester>
-               <reference value="urn:uuid:163bdf8b-d9a6-11f0-3290-020000000000"/>
+               <reference value="urn:uuid:a4c00579-d9ad-11f0-4909-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
             </requester>
@@ -185,20 +206,20 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:163bdf8b-d9a6-11f0-3290-020000000000"/>
+      <fullUrl value="urn:uuid:a4c00579-d9ad-11f0-4909-020000000000"/>
       <resource>
          <PractitionerRole>
-            <id value="163bdf8b-d9a6-11f0-3290-020000000000"/>
+            <id value="a4c00579-d9ad-11f0-4909-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:163bdfa9-d9a6-11f0-3290-020000000000"/>
+               <reference value="urn:uuid:a4c00597-d9ad-11f0-4909-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:163bdfc7-d9a6-11f0-3290-020000000000"/>
+               <reference value="urn:uuid:a4c005b5-d9ad-11f0-4909-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -221,10 +242,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:163bdfa9-d9a6-11f0-3290-020000000000"/>
+      <fullUrl value="urn:uuid:a4c00597-d9ad-11f0-4909-020000000000"/>
       <resource>
          <Practitioner>
-            <id value="163bdfa9-d9a6-11f0-3290-020000000000"/>
+            <id value="a4c00597-d9ad-11f0-4909-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
             </meta>
@@ -261,10 +282,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:163be07b-d9a6-11f0-3290-020000000000"/>
+      <fullUrl value="urn:uuid:a4c00669-d9ad-11f0-4909-020000000000"/>
       <resource>
          <Specimen>
-            <id value="163be07b-d9a6-11f0-3290-020000000000"/>
+            <id value="a4c00669-d9ad-11f0-4909-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
             </meta>
@@ -276,7 +297,7 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:163bdf6d-d9a6-11f0-3290-020000000000"/>
+               <reference value="urn:uuid:a4c0055b-d9ad-11f0-4909-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
@@ -294,10 +315,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:163be017-d9a6-11f0-3290-020000000000"/>
+      <fullUrl value="urn:uuid:a4c00605-d9ad-11f0-4909-020000000000"/>
       <resource>
          <Organization>
-            <id value="163be017-d9a6-11f0-3290-020000000000"/>
+            <id value="a4c00605-d9ad-11f0-4909-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -317,10 +338,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:163bdfc7-d9a6-11f0-3290-020000000000"/>
+      <fullUrl value="urn:uuid:a4c005b5-d9ad-11f0-4909-020000000000"/>
       <resource>
          <Organization>
-            <id value="163bdfc7-d9a6-11f0-3290-020000000000"/>
+            <id value="a4c005b5-d9ad-11f0-4909-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -363,10 +384,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:163bdf6d-d9a6-11f0-3290-020000000000"/>
+      <fullUrl value="urn:uuid:a4c0055b-d9ad-11f0-4909-020000000000"/>
       <resource>
          <Patient>
-            <id value="163bdf6d-d9a6-11f0-3290-020000000000"/>
+            <id value="a4c0055b-d9ad-11f0-4909-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
