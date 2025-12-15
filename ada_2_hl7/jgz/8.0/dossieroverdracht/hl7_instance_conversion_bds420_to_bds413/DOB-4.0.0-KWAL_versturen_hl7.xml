@@ -721,33 +721,41 @@
                            </rubricCluster>
                         </pertinentInformation>
                         <!-- r039_hartonderzoek -->
-                        <!-- Rubriek 39 is overgeslagen omdat het enkel overgeslagen elementen bevat.-->
-                        <!-- element 1681 Hart- en Vaatstelsel is overgeslagen -->
-                        <!-- element 1680 Risicosignalen hartfunctie is overgeslagen -->
-                        <component>
-                           <groupCluster>
-                              <code code="G044"
-                                    codeSystem="2.16.840.1.113883.2.4.4.40.393"
-                                    displayName="Geruis intensiteit"/>
+                        <pertinentInformation>
+                           <rubricCluster classCode="CLUSTER"
+                                          moodCode="EVN">
+                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11039"/>
+                              <code code="R039"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
+                                    displayName="Hartonderzoek"/>
+                              <!-- element 1681 Hart- en Vaatstelsel is overgeslagen -->
+                              <!-- element 1680 Risicosignalen hartfunctie is overgeslagen -->
                               <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40856"/>
-                                    <code code="856"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                 <groupCluster>
+                                    <code code="G044"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.393"
                                           displayName="Geruis intensiteit"/>
-                                    <value xsi:type="CV"
-                                           code="03"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.335"
-                                           displayName="Graad 3/6"/>
-                                    <methodCode code="2"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.395"
-                                                displayName="Liggend"/>
-                                 </observation>
+                                    <component>
+                                       <observation classCode="OBS"
+                                                    moodCode="EVN"
+                                                    negationInd="false">
+                                          <templateId root="2.16.840.1.113883.2.4.6.10.100.40856"/>
+                                          <code code="856"
+                                                codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                                displayName="Geruis intensiteit"/>
+                                          <value xsi:type="CV"
+                                                 code="03"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.40.335"
+                                                 displayName="Graad 3/6"/>
+                                          <methodCode code="2"
+                                                      codeSystem="2.16.840.1.113883.2.4.4.40.395"
+                                                      displayName="Liggend"/>
+                                       </observation>
+                                    </component>
+                                 </groupCluster>
                               </component>
-                           </groupCluster>
-                        </component>
+                           </rubricCluster>
+                        </pertinentInformation>
                         <!-- r054_screeningsinstrumenten -->
                         <pertinentInformation>
                            <rubricCluster classCode="CLUSTER"
