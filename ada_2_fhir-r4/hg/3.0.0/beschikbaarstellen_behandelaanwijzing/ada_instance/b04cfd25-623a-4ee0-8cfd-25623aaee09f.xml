@@ -1,0 +1,491 @@
+<adaxml>
+   <meta status="new"
+         created-by="hguitwisselingada"
+         last-update-by="hguitwisselingada"
+         creation-date="2025-12-17T16:04:04.132Z"
+         last-update-date="2025-12-19T11:01:16.323Z"/>
+   <data>
+      <beschikbaarstellen_behandelaanwijzing app="hg-3.0.0"
+                                             shortName="beschikbaarstellen_behandelaanwijzing"
+                                             formName="beschikbaarstellen_behandelaanwijzing"
+                                             transactionRef="2.16.840.1.113883.2.4.3.11.60.103.4.143"
+                                             transactionEffectiveDate="2025-03-24T10:48:33"
+                                             versionDate=""
+                                             prefix="hg-"
+                                             language="nl-NL"
+                                             title="TestComplexBerichtBA"
+                                             desc="&lt;div&gt;Het Complexe testbericht voor de BehandelAanwijzing2 omvat een aantal behandelaanwijzingen waarvan er meerdere instanties zijn aangemaakt. Het resultaat van de test moet zijn dat alleen de meest recente behandelaanwijzingen zonder einddatum wordt opgeleverd.&lt;/div&gt;&lt;div&gt;De volgende varianten zijn opgenomen in de test:&lt;/div&gt;&lt;div&gt;- Behandelaanwijzijng CPR met twee instanties waarbij alleen de CPR met aanwijzing Anders moet worden opgeleverd&lt;/div&gt;&lt;div&gt;- Behandelaanwijzing Opname in ziekenhuis waarvan alleen een meest recente instantie is met een datum gelijk aan andere meest recente behandelaanwijzingen&lt;/div&gt;&lt;div&gt;- Behandelaanwijzing&amp;nbsp;Opname op intensive care waarbij alleen de OIC met aanwijzing Niet uitvoeren moet worden opgeleverd&lt;/div&gt;&lt;div&gt;- Behandelaanwijzing&amp;nbsp;Toediening van antibiotica met een einddatum zonder vervolginstantie: deze mag dus niet worden opgeleverd&lt;/div&gt;&lt;div&gt;- Behandelaanwijzing&amp;nbsp;Kunstmatige beademing met ongewijzigde aanwijzing, waarvan alleen de meest recente instantie moet worden opgeleverd&lt;/div&gt;&lt;div&gt;- Behandelaanwijzing&amp;nbsp;Overige behandeling (in vrije tekst) die in de Toelichting is gespecificeerd als Nierdialyse met twee instanties, waarbij alleen de Nierdialyse met aanwijzing Anders moet worden opgeleverd&lt;/div&gt;&lt;div&gt;- Behandelaanwijzing&amp;nbsp;Toediening van een bloedproduct waarvan alleen een meest recente instantie is met een datum eerder dan andere meest recente behandelaanwijzingen&lt;/div&gt;"
+                                             id="b04cfd25-623a-4ee0-8cfd-25623aaee09f">
+         <bundel_generieke_huisartsoverdrachten conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1199">
+            <patient id="XXX_Mutter"
+                     conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.2">
+               <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3">
+                  <voornamen value="Franka"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.4"/>
+                  <roepnaam value="Franka"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.6"/>
+                  <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.7"
+                               value="1"
+                               code="NL1"
+                               codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                               displayName="Eigen geslachtsnaam"/>
+                  <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.8">
+                     <achternaam value="XXX_Mutter"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.10"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.27">
+                  <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.28">
+                     <telefoonnummer value="+35950531770"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.29"/>
+                     <telecom_type conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.30"
+                                   value="1"
+                                   code="LL"
+                                   codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.22.1"
+                                   displayName="Land Line"/>
+                     <nummer_soort conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.31"
+                                   value="1"
+                                   code="HP"
+                                   codeSystem="2.16.840.1.113883.5.1119"
+                                   displayName="Telefoonnummer thuis"/>
+                  </telefoonnummers>
+               </contactgegevens>
+               <identificatienummer value="999911673"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.36"/>
+               <geboortedatum value="1964-08-02"
+                              datatype="datetime"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.37"/>
+               <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.38"
+                         value="3"
+                         code="F"
+                         codeSystem="2.16.840.1.113883.5.1"
+                         displayName="Vrouw"/>
+               <meerling_indicator nullFlavor="NI"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.39"/>
+               <overlijdens_indicator nullFlavor="NI"
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.40"/>
+            </patient>
+            <zorgverlener id="Huisarts2"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5322">
+               <zorgverlener_identificatienummer value="UZI 7"
+                                                 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5323"/>
+               <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5324">
+                  <voornamen value="Vaste"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5325"/>
+                  <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5329">
+                     <achternaam value="Huisarts 2"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5331"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5336"
+                            value="17"
+                            code="01.015"
+                            codeSystem="2.16.840.1.113883.2.4.15.111"
+                            codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                            codeSystemVersion="2024-01-29T00:00:00"
+                            displayName="Huisarts"/>
+               <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5338">
+                  <straat value="Valkendael"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5339"/>
+                  <huisnummer value="45"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5340"/>
+                  <postcode value="6245 HK"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5344"/>
+                  <woonplaats value="Maastricht"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5345"/>
+                  <land conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5347"
+                        value="157"
+                        code="NL"
+                        codeSystem="1.0.3166.1.2.2"
+                        codeSystemName="ISO 3166-1 (alpha-2)"
+                        codeSystemVersion="2020-10-26T00:00:00"
+                        displayName="Nederland"/>
+               </adresgegevens>
+               <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5350">
+                  <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5351">
+                     <telefoonnummer value="+31434073576"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5352"/>
+                     <telecom_type conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5353"
+                                   value="1"
+                                   code="LL"
+                                   codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.22.1"
+                                   displayName="Land Line"/>
+                     <nummer_soort conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5354"
+                                   value="3"
+                                   code="WP"
+                                   codeSystem="2.16.840.1.113883.5.1119"
+                                   displayName="Zakelijk telefoonnummer"/>
+                  </telefoonnummers>
+               </contactgegevens>
+               <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5359">
+                  <zorgaanbieder value="Aesculaap"
+                                 datatype="reference"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5548"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="Aesculaap"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5362">
+               <zorgaanbieder_identificatienummer value="URA 1"
+                                                  root="2.16.528.1.1007.3.3"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5363"/>
+               <organisatie_naam value="Gezondheidscentrum Aesculaap"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5364"/>
+               <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5366">
+                  <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5367">
+                     <telefoonnummer value="+31434073576"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5368"/>
+                     <telecom_type conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5369"
+                                   value="1"
+                                   code="LL"
+                                   codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.22.1"
+                                   displayName="Land Line"/>
+                     <nummer_soort conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5370"
+                                   value="3"
+                                   code="WP"
+                                   codeSystem="2.16.840.1.113883.5.1119"
+                                   displayName="Zakelijk telefoonnummer"/>
+                  </telefoonnummers>
+               </contactgegevens>
+               <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5375">
+                  <straat value="Valkendael"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5376"/>
+                  <huisnummer value="45"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5377"/>
+                  <postcode value="6245 HK"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5381"/>
+                  <woonplaats value="Maastricht"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5382"/>
+                  <land conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5384"
+                        value="157"
+                        code="NL"
+                        codeSystem="1.0.3166.1.2.2"
+                        codeSystemName="ISO 3166-1 (alpha-2)"
+                        codeSystemVersion="2020-10-26T00:00:00"
+                        displayName="Nederland"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bundel_generieke_huisartsoverdrachten>
+         <dossiergegevens conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1725">
+            <behandel_aanwijzing2 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5482">
+               <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5483"
+                                 value="1"
+                                 code="0"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.25.1"
+                                 displayName="Wel uitvoeren"/>
+               <behandeling code="1"
+                            codeSystem="2.16.840.1.113883.2.4.4.30.62"
+                            displayName="Cardiopulmonaire resuscitatie (Reanimatie)"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+               <meest_recente_bespreekdatum value="2020-05-06"
+                                            datatype="datetime"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5486"/>
+               <datum_beeindigd value="2024-12-01"
+                                datatype="datetime"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5487"/>
+               <reden_beeindigd value="Behandelbesluit herzien"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5488"/>
+               <zorg_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5499">
+                  <zorgverlener value="Huisarts2"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5500"/>
+               </zorg_partij>
+               <patient_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5491">
+                  <patient conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5492">
+                     <patient value="b04cfd25-623a-4ee0-8cfd-25623aaee09f#XXX_Mutter"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5550"/>
+                  </patient>
+               </patient_partij>
+            </behandel_aanwijzing2>
+            <behandel_aanwijzing2 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5482">
+               <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5483"
+                                 value="2"
+                                 code="1"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.25.1"
+                                 displayName="Anders"/>
+               <behandeling code="1"
+                            codeSystem="2.16.840.1.113883.2.4.4.30.62"
+                            displayName="Cardiopulmonaire resuscitatie (Reanimatie)"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+               <specificatie_anders value="Alleen reanimatie tijdens opname in ziekenhuis"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5485"/>
+               <meest_recente_bespreekdatum value="2024-12-01"
+                                            datatype="datetime"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5486"/>
+               <zorg_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5499">
+                  <zorgverlener value="Huisarts2"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5500"/>
+               </zorg_partij>
+               <patient_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5491">
+                  <patient conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5492">
+                     <patient value="b04cfd25-623a-4ee0-8cfd-25623aaee09f#XXX_Mutter"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5550"/>
+                  </patient>
+               </patient_partij>
+            </behandel_aanwijzing2>
+            <behandel_aanwijzing2 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5482">
+               <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5483"
+                                 value="1"
+                                 code="0"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.25.1"
+                                 displayName="Wel uitvoeren"/>
+               <behandeling code="2"
+                            codeSystem="2.16.840.1.113883.2.4.4.30.62"
+                            displayName="Opname in het ziekenhuis"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+               <meest_recente_bespreekdatum value="2024-12-01"
+                                            datatype="datetime"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5486"/>
+               <zorg_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5499">
+                  <zorgverlener value="Huisarts2"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5500"/>
+               </zorg_partij>
+               <patient_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5491">
+                  <patient conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5492">
+                     <patient value="b04cfd25-623a-4ee0-8cfd-25623aaee09f#XXX_Mutter"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5550"/>
+                  </patient>
+               </patient_partij>
+            </behandel_aanwijzing2>
+            <behandel_aanwijzing2 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5482">
+               <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5483"
+                                 value="1"
+                                 code="0"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.25.1"
+                                 displayName="Wel uitvoeren"/>
+               <behandeling code="3"
+                            codeSystem="2.16.840.1.113883.2.4.4.30.62"
+                            displayName="Opname op intensive care"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+               <meest_recente_bespreekdatum value="2020-05-06"
+                                            datatype="datetime"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5486"/>
+               <datum_beeindigd value="2024-12-01"
+                                datatype="datetime"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5487"/>
+               <reden_beeindigd value="Behandelbesluit herzien"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5488"/>
+               <zorg_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5499">
+                  <zorgverlener value="Huisarts2"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5500"/>
+               </zorg_partij>
+               <patient_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5491">
+                  <patient conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5492">
+                     <patient value="b04cfd25-623a-4ee0-8cfd-25623aaee09f#XXX_Mutter"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5550"/>
+                  </patient>
+               </patient_partij>
+            </behandel_aanwijzing2>
+            <behandel_aanwijzing2 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5482">
+               <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5483"
+                                 value="3"
+                                 code="2"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.25.1"
+                                 displayName="Niet uitvoeren"/>
+               <behandeling code="3"
+                            codeSystem="2.16.840.1.113883.2.4.4.30.62"
+                            displayName="Opname op intensive care"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+               <meest_recente_bespreekdatum value="2024-12-01"
+                                            datatype="datetime"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5486"/>
+               <zorg_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5499">
+                  <zorgverlener value="Huisarts2"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5500"/>
+               </zorg_partij>
+               <patient_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5491">
+                  <patient conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5492">
+                     <patient value="b04cfd25-623a-4ee0-8cfd-25623aaee09f#XXX_Mutter"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5550"/>
+                  </patient>
+               </patient_partij>
+            </behandel_aanwijzing2>
+            <behandel_aanwijzing2 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5482">
+               <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5483"
+                                 value="2"
+                                 code="1"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.25.1"
+                                 displayName="Anders"/>
+               <behandeling code="7"
+                            codeSystem="2.16.840.1.113883.2.4.4.30.62"
+                            displayName="Toediening van antibiotica"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+               <specificatie_anders value="Alleen toedienen antibiotica na overleg partner"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5485"/>
+               <meest_recente_bespreekdatum value="2020-05-06"
+                                            datatype="datetime"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5486"/>
+               <datum_beeindigd value="2024-12-01"
+                                datatype="datetime"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5487"/>
+               <reden_beeindigd value="Geen partner meer"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5488"/>
+               <zorg_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5499">
+                  <zorgverlener value="Huisarts2"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5500"/>
+               </zorg_partij>
+               <patient_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5491">
+                  <patient conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5492">
+                     <patient value="b04cfd25-623a-4ee0-8cfd-25623aaee09f#XXX_Mutter"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5550"/>
+                  </patient>
+               </patient_partij>
+            </behandel_aanwijzing2>
+            <behandel_aanwijzing2 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5482">
+               <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5483"
+                                 value="1"
+                                 code="0"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.25.1"
+                                 displayName="Wel uitvoeren"/>
+               <behandeling code="4"
+                            codeSystem="2.16.840.1.113883.2.4.4.30.62"
+                            displayName="Kunstmatige beademing"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+               <meest_recente_bespreekdatum value="2020-05-06"
+                                            datatype="datetime"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5486"/>
+               <datum_beeindigd value="2024-12-01"
+                                datatype="datetime"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5487"/>
+               <zorg_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5499">
+                  <zorgverlener value="Huisarts2"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5500"/>
+               </zorg_partij>
+               <patient_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5491">
+                  <patient conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5492">
+                     <patient value="b04cfd25-623a-4ee0-8cfd-25623aaee09f#XXX_Mutter"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5550"/>
+                  </patient>
+               </patient_partij>
+            </behandel_aanwijzing2>
+            <behandel_aanwijzing2 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5482">
+               <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5483"
+                                 value="1"
+                                 code="0"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.25.1"
+                                 displayName="Wel uitvoeren"/>
+               <behandeling code="4"
+                            codeSystem="2.16.840.1.113883.2.4.4.30.62"
+                            displayName="Kunstmatige beademing"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+               <meest_recente_bespreekdatum value="2024-12-01"
+                                            datatype="datetime"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5486"/>
+               <zorg_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5499">
+                  <zorgverlener value="Huisarts2"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5500"/>
+               </zorg_partij>
+               <patient_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5491">
+                  <patient conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5492">
+                     <patient value="b04cfd25-623a-4ee0-8cfd-25623aaee09f#XXX_Mutter"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5550"/>
+                  </patient>
+               </patient_partij>
+            </behandel_aanwijzing2>
+            <behandel_aanwijzing2 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5482">
+               <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5483"
+                                 value="1"
+                                 code="0"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.25.1"
+                                 displayName="Wel uitvoeren"/>
+               <behandeling code="6"
+                            codeSystem="2.16.840.1.113883.2.4.4.30.62"
+                            displayName="Overige behandeling (in vrije tekst)"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+               <meest_recente_bespreekdatum value="2020-05-06"
+                                            datatype="datetime"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5486"/>
+               <datum_beeindigd value="2024-12-01"
+                                datatype="datetime"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5487"/>
+               <zorg_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5499">
+                  <zorgverlener value="Huisarts2"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5500"/>
+               </zorg_partij>
+               <patient_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5491">
+                  <patient conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5492">
+                     <patient value="b04cfd25-623a-4ee0-8cfd-25623aaee09f#XXX_Mutter"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5550"/>
+                  </patient>
+               </patient_partij>
+               <toelichting value="Nierdialyse"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5498"/>
+            </behandel_aanwijzing2>
+            <behandel_aanwijzing2 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5482">
+               <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5483"
+                                 value="2"
+                                 code="1"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.25.1"
+                                 displayName="Anders"/>
+               <behandeling code="6"
+                            codeSystem="2.16.840.1.113883.2.4.4.30.62"
+                            displayName="Overige behandeling (in vrije tekst)"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+               <specificatie_anders value="Alleen nierdialyse indien opgenomen in ziekenhuis"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5485"/>
+               <meest_recente_bespreekdatum value="2024-12-01"
+                                            datatype="datetime"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5486"/>
+               <reden_beeindigd value="Behandelbesluit herzien"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5488"/>
+               <zorg_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5499">
+                  <zorgverlener value="Huisarts2"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5500"/>
+               </zorg_partij>
+               <patient_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5491">
+                  <patient conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5492">
+                     <patient value="b04cfd25-623a-4ee0-8cfd-25623aaee09f#XXX_Mutter"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5550"/>
+                  </patient>
+               </patient_partij>
+               <toelichting value="Nierdialyse"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5498"/>
+            </behandel_aanwijzing2>
+            <behandel_aanwijzing2 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5482">
+               <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5483"
+                                 value="1"
+                                 code="0"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.25.1"
+                                 displayName="Wel uitvoeren"/>
+               <behandeling code="5"
+                            codeSystem="2.16.840.1.113883.2.4.4.30.62"
+                            displayName="Toediening van een bloedproduct"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+               <meest_recente_bespreekdatum value="2020-05-06"
+                                            datatype="datetime"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5486"/>
+               <zorg_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5499">
+                  <zorgverlener value="Huisarts2"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5500"/>
+               </zorg_partij>
+               <patient_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5491">
+                  <patient conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5492">
+                     <patient value="b04cfd25-623a-4ee0-8cfd-25623aaee09f#XXX_Mutter"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5550"/>
+                  </patient>
+               </patient_partij>
+            </behandel_aanwijzing2>
+         </dossiergegevens>
+      </beschikbaarstellen_behandelaanwijzing>
+   </data>
+</adaxml>
