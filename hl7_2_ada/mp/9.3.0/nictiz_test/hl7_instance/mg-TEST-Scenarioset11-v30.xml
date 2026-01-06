@@ -30,7 +30,7 @@
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
-         <id extension="MBH_200_wdsmtd1_MA"
+         <id extension="MBH_300_wdsmtd1_MA"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
@@ -38,7 +38,7 @@
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Volgens schema trombosedienst, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20211212000000+0100"/>
+            <low value="20231212"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
          <routeCode code="9"
@@ -63,7 +63,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20211212080000+0100"/>
+            <time value="20231212080000+0100"/>
             <assignedAuthor>
                <id extension="000001111"
                    root="2.16.528.1.1007.3.1"/>
@@ -107,7 +107,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_200_wdsmtd1"/>
+                   extension="MBH_300_wdsmtd1"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -119,16 +119,16 @@
       <substanceAdministration classCode="SBADM"
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9412"/>
-         <id extension="MBH_200_wdsmtd1_WDS_opstartschema"
+         <id extension="MBH_300_wdsmtd1_WDS_opstartschema"
              root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
          <code code="395067002"
                displayName="optimaliseren van dosering van medicatie (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">eerst gedurende 3 dagen 1 maal per dag om 20:00 2 stuks, dan gedurende 3 dagen 1 maal per dag om 20:00 1 stuk, Oraal</text>
+         <text mediaType="text/plain">eerst gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 2 stuks, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20211212000000+0100"/>
-            <high value="20211217235959+0100"/>
+            <low value="20231212"/>
+            <high value="20231217235900+0100"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -152,7 +152,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20211212080000+0100"/>
+            <time value="20231212080000+0100"/>
             <assignedAuthor>
                <id extension="000001111"
                    root="2.16.528.1.1007.3.1"/>
@@ -189,11 +189,8 @@
                <effectiveTime xsi:type="Timing"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
                      <boundsDuration>
-                        <value value="3"/>
+                        <value value="1"/>
                         <unit value="dag"/>
                         <system value="http://unitsofmeasure.org"/>
                         <code value="d"/>
@@ -201,43 +198,6 @@
                      <frequency value="1"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
-                     <timeOfDay value="20:00:00"/>
-                  </repeat>
-               </effectiveTime>
-               <doseQuantity>
-                  <center value="2"
-                          unit="1">
-                     <translation value="2"
-                                  code="245"
-                                  displayName="stuk"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                  </center>
-               </doseQuantity>
-               <consumable xsi:nil="true"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <sequenceNumber value="2"/>
-            <substanceAdministration classCode="SBADM"
-                                     moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xsi:type="Timing"
-                              xmlns="http://hl7.org/fhir">
-                  <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
-                     <boundsDuration>
-                        <value value="3"/>
-                        <unit value="dag"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="d"/>
-                     </boundsDuration>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                     <timeOfDay value="20:00:00"/>
                   </repeat>
                </effectiveTime>
                <doseQuantity>
@@ -253,151 +213,6 @@
                <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM"
-                                     moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_200_wdsmtd1_MA"
-                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <code code="33633005"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"
-                     displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP"
-                            inversionInd="true">
-            <procedure classCode="PROC"
-                       moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_200_wdsmtd1"/>
-               <code code="1"
-                     displayName="Medicamenteuze behandeling"
-                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
-            </procedure>
-         </entryRelationship>
-      </substanceAdministration>
-   </component>
-   <component typeCode="COMP">
-      <substanceAdministration classCode="SBADM"
-                               moodCode="RQO">
-         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9412"/>
-         <id extension="MBH_200_wdsmtd1_WDS_trombosedienst"
-             root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-         <code code="395067002"
-               displayName="optimaliseren van dosering van medicatie (verrichting)"
-               codeSystem="2.16.840.1.113883.6.96"
-               codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">cyclus van 5 dagen: steeds eerst gedurende 2 dagen 1 maal per dag 2 stuks 's avonds, dan gedurende 2 dagen 1 maal per dag 2 stuks 's avonds, dan gedurende 1 dag 1 maal per dag 0 stuks 's avonds, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS">
-            <low value="20211218000000+0100"/>
-            <high value="20211227235959+0100"/>
-         </effectiveTime>
-         <routeCode code="9"
-                    codeSystem="2.16.840.1.113883.2.4.4.9"
-                    displayName="Oraal"
-                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
-         <consumable>
-            <manufacturedProduct>
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT"
-                                     determinerCode="KIND">
-                  <code code="7323"
-                        codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="ACENOCOUMAROL TABLET 1MG"
-                        codeSystemName="G-Standaard PRK">
-                     <translation code="20303"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="ACENOCOUMAROL TABLET 1MG"
-                                  codeSystemName="G-Standaard GPK"/>
-                  </code>
-               </manufacturedMaterial>
-            </manufacturedProduct>
-         </consumable>
-         <author>
-            <time value="20211217143000+0100"/>
-            <assignedAuthor>
-               <id extension="222221111"
-                   root="2.16.528.1.1007.3.1"/>
-               <code code="3400"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Trombosediensten"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
-               <assignedPerson>
-                  <name>
-                     <given qualifier="BR">Tanja</given>
-                     <prefix qualifier="VV">de </prefix>
-                     <family qualifier="BR">Bakker</family>
-                  </name>
-               </assignedPerson>
-               <representedOrganization>
-                  <id extension="11112222"
-                      root="2.16.528.1.1007.3.3"/>
-                  <name>Trombosedienst Ons Dorp</name>
-                  <addr>
-                     <streetName>Kerkstraat </streetName>
-                     <houseNumber>28</houseNumber>
-                     <buildingNumberSuffix>d</buildingNumberSuffix>
-                     <postalCode>1332 GH</postalCode>
-                     <city>Ons Dorp</city>
-                  </addr>
-                  <asOrganizationPartOf>
-                     <code code="3400"
-                           codeSystem="2.16.840.1.113883.2.4.6.7"
-                           displayName="Trombosediensten"
-                           codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                           codeSystemVersion="2020-10-23T00:00:00"/>
-                  </asOrganizationPartOf>
-               </representedOrganization>
-            </assignedAuthor>
-         </author>
-         <entryRelationship typeCode="COMP">
-            <sequenceNumber value="1"/>
-            <substanceAdministration classCode="SBADM"
-                                     moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xsi:type="Timing"
-                              xmlns="http://hl7.org/fhir">
-                  <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
-                     <valueDuration>
-                        <value value="5"/>
-                        <unit value="dag"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="d"/>
-                     </valueDuration>
-                  </modifierExtension>
-                  <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
-                     <boundsDuration>
-                        <value value="2"/>
-                        <unit value="dag"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="d"/>
-                     </boundsDuration>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                     <when value="EVE"/>
-                  </repeat>
-               </effectiveTime>
-               <doseQuantity>
-                  <center value="2"
-                          unit="1">
-                     <translation value="2"
-                                  code="245"
-                                  displayName="stuk"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                  </center>
-               </doseQuantity>
-               <consumable xsi:nil="true"/>
-            </substanceAdministration>
-         </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="2"/>
             <substanceAdministration classCode="SBADM"
@@ -405,20 +220,9 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
                               xmlns="http://hl7.org/fhir">
-                  <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
-                     <valueDuration>
-                        <value value="5"/>
-                        <unit value="dag"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="d"/>
-                     </valueDuration>
-                  </modifierExtension>
                   <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
                      <boundsDuration>
-                        <value value="2"/>
+                        <value value="1"/>
                         <unit value="dag"/>
                         <system value="http://unitsofmeasure.org"/>
                         <code value="d"/>
@@ -426,7 +230,6 @@
                      <frequency value="1"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
-                     <when value="EVE"/>
                   </repeat>
                </effectiveTime>
                <doseQuantity>
@@ -449,18 +252,7 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
                               xmlns="http://hl7.org/fhir">
-                  <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
-                     <valueDuration>
-                        <value value="5"/>
-                        <unit value="dag"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="d"/>
-                     </valueDuration>
-                  </modifierExtension>
                   <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
                      <boundsDuration>
                         <value value="1"/>
                         <unit value="dag"/>
@@ -470,13 +262,108 @@
                      <frequency value="1"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
-                     <when value="EVE"/>
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="0"
+                  <center value="1"
                           unit="1">
-                     <translation value="0"
+                     <translation value="1"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="4"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2"
+                          unit="1">
+                     <translation value="2"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="5"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="1"
+                          unit="1">
+                     <translation value="1"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="6"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2"
+                          unit="1">
+                     <translation value="2"
                                   code="245"
                                   displayName="stuk"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -490,25 +377,12 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_200_wdsmtd1_MA"
+               <id extension="MBH_300_wdsmtd1_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM"
-                                     moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9381"/>
-               <id extension="MBH_200_wdsmtd1_WDS_opstartschema"
-                   root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-               <code code="395067002"
-                     displayName="optimaliseren van dosering van medicatie (verrichting)"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"/>
                <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
@@ -518,7 +392,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_200_wdsmtd1"/>
+                   extension="MBH_300_wdsmtd1"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -530,16 +404,16 @@
       <substanceAdministration classCode="SBADM"
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9412"/>
-         <id extension="MBH_200_wdsmtd1_WDS_technischestop"
+         <id extension="MBH_300_wdsmtd1_WDS_trombosedienst"
              root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
          <code code="395067002"
                displayName="optimaliseren van dosering van medicatie (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">cyclus van 5 dagen: steeds eerst gedurende 2 dagen 1 maal per dag 2 stuks 's avonds, dan gedurende 2 dagen 1 maal per dag 2 stuks 's avonds, dan gedurende 1 dag 1 maal per dag 0 stuks 's avonds, Oraal</text>
+         <text mediaType="text/plain">eerst gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 2 stuks, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20211218000000+0100"/>
-            <high value="20211225235959+0100"/>
+            <low value="20231218"/>
+            <high value="20231227235900+0100"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -563,7 +437,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20211225103000+0100"/>
+            <time value="20231217143000+0100"/>
             <assignedAuthor>
                <id extension="222221111"
                    root="2.16.528.1.1007.3.1"/>
@@ -583,8 +457,442 @@
                   <id extension="11112222"
                       root="2.16.528.1.1007.3.3"/>
                   <name>Trombosedienst Ons Dorp</name>
-                  <addr>
-                     <streetName>Kerkstraat </streetName>
+                  <addr use="WP">
+                     <streetName>Kerkstraat</streetName>
+                     <houseNumber>28</houseNumber>
+                     <buildingNumberSuffix>d</buildingNumberSuffix>
+                     <postalCode>1332 GH</postalCode>
+                     <city>Ons Dorp</city>
+                  </addr>
+                  <asOrganizationPartOf>
+                     <code code="3400"
+                           codeSystem="2.16.840.1.113883.2.4.6.7"
+                           displayName="Trombosediensten"
+                           codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                           codeSystemVersion="2020-10-23T00:00:00"/>
+                  </asOrganizationPartOf>
+               </representedOrganization>
+            </assignedAuthor>
+         </author>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="1"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="1"
+                          unit="1">
+                     <translation value="1"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="2"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="1"
+                          unit="1">
+                     <translation value="1"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="3"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="1"
+                          unit="1">
+                     <translation value="1"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="4"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="1"
+                          unit="1">
+                     <translation value="1"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="5"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2"
+                          unit="1">
+                     <translation value="2"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="6"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="1"
+                          unit="1">
+                     <translation value="1"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="7"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="1"
+                          unit="1">
+                     <translation value="1"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="8"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="1"
+                          unit="1">
+                     <translation value="1"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="9"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="1"
+                          unit="1">
+                     <translation value="1"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="10"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2"
+                          unit="1">
+                     <translation value="2"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
+               <id extension="MBH_300_wdsmtd1_MA"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <code code="33633005"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"
+                     displayName="Medicatieafspraak"/>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9381"/>
+               <id extension="MBH_300_wdsmtd1_WDS_opstartschema"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+               <code code="395067002"
+                     displayName="optimaliseren van dosering van medicatie (verrichting)"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="MBH_300_wdsmtd1"/>
+               <code code="1"
+                     displayName="Medicamenteuze behandeling"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </substanceAdministration>
+   </component>
+   <component typeCode="COMP">
+      <substanceAdministration classCode="SBADM"
+                               moodCode="RQO">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9412"/>
+         <id extension="MBH_300_wdsmtd1_WDS_technischestop"
+             root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+         <code code="395067002"
+               displayName="optimaliseren van dosering van medicatie (verrichting)"
+               codeSystem="2.16.840.1.113883.6.96"
+               codeSystemName="SNOMED CT"/>
+         <text mediaType="text/plain">eerst gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, Oraal</text>
+         <effectiveTime xsi:type="IVL_TS">
+            <low value="20231218"/>
+            <high value="20231225225900+0100"/>
+         </effectiveTime>
+         <routeCode code="9"
+                    codeSystem="2.16.840.1.113883.2.4.4.9"
+                    displayName="Oraal"
+                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+         <consumable>
+            <manufacturedProduct>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
+                  <code code="7323"
+                        codeSystem="2.16.840.1.113883.2.4.4.10"
+                        displayName="ACENOCOUMAROL TABLET 1MG"
+                        codeSystemName="G-Standaard PRK">
+                     <translation code="20303"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1"
+                                  displayName="ACENOCOUMAROL TABLET 1MG"
+                                  codeSystemName="G-Standaard GPK"/>
+                  </code>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </consumable>
+         <author>
+            <time value="20231225103000+0100"/>
+            <assignedAuthor>
+               <id extension="222221111"
+                   root="2.16.528.1.1007.3.1"/>
+               <code code="3400"
+                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                     displayName="Trombosediensten"
+                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <assignedPerson>
+                  <name>
+                     <given qualifier="BR">Tanja</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Bakker</family>
+                  </name>
+               </assignedPerson>
+               <representedOrganization>
+                  <id extension="11112222"
+                      root="2.16.528.1.1007.3.3"/>
+                  <name>Trombosedienst Ons Dorp</name>
+                  <addr use="WP">
+                     <streetName>Kerkstraat</streetName>
                      <houseNumber>28</houseNumber>
                      <buildingNumberSuffix>d</buildingNumberSuffix>
                      <postalCode>1332 GH</postalCode>
@@ -609,11 +917,445 @@
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
                      codeSystemName="Medicatieproces observaties"/>
                <value xsi:type="CE"
-                      code="113371000146109"
+                      code="410546004"
                       codeSystem="2.16.840.1.113883.6.96"
-                      displayName="definitief gestopt met medicatie"/>
+                      displayName="stopgezet"/>
             </observation>
          </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="1"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2"
+                          unit="1">
+                     <translation value="2"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="2"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2"
+                          unit="1">
+                     <translation value="2"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="3"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2"
+                          unit="1">
+                     <translation value="2"
+                                  code="245"
+                                  displayName="stuks"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="4"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2"
+                          unit="1">
+                     <translation value="2"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="5"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2"
+                          unit="1">
+                     <translation value="2"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="6"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2"
+                          unit="1">
+                     <translation value="2"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="7"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2"
+                          unit="1">
+                     <translation value="2"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="8"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2"
+                          unit="1">
+                     <translation value="2"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="9"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2"
+                          unit="1">
+                     <translation value="2"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="10"/>
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2"
+                          unit="1">
+                     <translation value="2"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
+               <id extension="MBH_300_wdsmtd1_MA"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <code code="33633005"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"
+                     displayName="Medicatieafspraak"/>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9381"/>
+               <id extension="MBH_300_wdsmtd1_WDS_trombosedienst"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+               <code code="395067002"
+                     displayName="optimaliseren van dosering van medicatie (verrichting)"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="MBH_300_wdsmtd1"/>
+               <code code="1"
+                     displayName="Medicamenteuze behandeling"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </substanceAdministration>
+   </component>
+   <component typeCode="COMP">
+      <substanceAdministration classCode="SBADM"
+                               moodCode="RQO">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9412"/>
+         <id extension="MBH_300_wdsmtd1_WDS_verhoging"
+             root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+         <code code="395067002"
+               displayName="optimaliseren van dosering van medicatie (verrichting)"
+               codeSystem="2.16.840.1.113883.6.96"
+               codeSystemName="SNOMED CT"/>
+         <text mediaType="text/plain">cyclus van 5 dagen: steeds eerst gedurende 3 dagen 1 maal per dag 2 stuks, dan gedurende 2 dagen 1 maal per dag 1 stuk, oraal</text>
+         <effectiveTime xsi:type="IVL_TS">
+            <low value="20231226"/>
+            <high value="20240104215900+0100"/>
+         </effectiveTime>
+         <routeCode code="9"
+                    codeSystem="2.16.840.1.113883.2.4.4.9"
+                    displayName="oraal"
+                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+         <consumable>
+            <manufacturedProduct>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
+                  <code code="7323"
+                        codeSystem="2.16.840.1.113883.2.4.4.10"
+                        displayName="ACENOCOUMAROL TABLET 1MG"
+                        codeSystemName="G-Standaard PRK">
+                     <translation code="20303"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1"
+                                  displayName="ACENOCOUMAROL TABLET 1MG"
+                                  codeSystemName="G-Standaard GPK"/>
+                  </code>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </consumable>
+         <author>
+            <time value="20231225103000+0100"/>
+            <assignedAuthor>
+               <id extension="222221111"
+                   root="2.16.528.1.1007.3.1"/>
+               <code code="3400"
+                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                     displayName="Trombosediensten"
+                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <assignedPerson>
+                  <name>
+                     <given qualifier="BR">Tanja</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Bakker</family>
+                  </name>
+               </assignedPerson>
+               <representedOrganization>
+                  <id extension="11112222"
+                      root="2.16.528.1.1007.3.3"/>
+                  <name>Trombosedienst Ons Dorp</name>
+                  <addr use="WP">
+                     <streetName>Kerkstraat</streetName>
+                     <houseNumber>28</houseNumber>
+                     <buildingNumberSuffix>d</buildingNumberSuffix>
+                     <postalCode>1332 GH</postalCode>
+                     <city>Ons Dorp</city>
+                  </addr>
+                  <asOrganizationPartOf>
+                     <code code="3400"
+                           codeSystem="2.16.840.1.113883.2.4.6.7"
+                           displayName="Trombosediensten"
+                           codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                           codeSystemVersion="2020-10-23T00:00:00"/>
+                  </asOrganizationPartOf>
+               </representedOrganization>
+            </assignedAuthor>
+         </author>
          <entryRelationship typeCode="RSON">
             <observation classCode="OBS"
                          moodCode="EVN">
@@ -656,255 +1398,6 @@
                      </valueDuration>
                   </modifierExtension>
                   <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
-                     <boundsDuration>
-                        <value value="2"/>
-                        <unit value="dag"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="d"/>
-                     </boundsDuration>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                     <when value="EVE"/>
-                  </repeat>
-               </effectiveTime>
-               <doseQuantity>
-                  <center value="2"
-                          unit="1">
-                     <translation value="2"
-                                  code="245"
-                                  displayName="stuk"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                  </center>
-               </doseQuantity>
-               <consumable xsi:nil="true"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <sequenceNumber value="2"/>
-            <substanceAdministration classCode="SBADM"
-                                     moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xsi:type="Timing"
-                              xmlns="http://hl7.org/fhir">
-                  <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
-                     <valueDuration>
-                        <value value="5"/>
-                        <unit value="dag"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="d"/>
-                     </valueDuration>
-                  </modifierExtension>
-                  <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
-                     <boundsDuration>
-                        <value value="2"/>
-                        <unit value="dag"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="d"/>
-                     </boundsDuration>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                     <when value="EVE"/>
-                  </repeat>
-               </effectiveTime>
-               <doseQuantity>
-                  <center value="2"
-                          unit="1">
-                     <translation value="2"
-                                  code="245"
-                                  displayName="stuk"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                  </center>
-               </doseQuantity>
-               <consumable xsi:nil="true"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <sequenceNumber value="3"/>
-            <substanceAdministration classCode="SBADM"
-                                     moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xsi:type="Timing"
-                              xmlns="http://hl7.org/fhir">
-                  <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
-                     <valueDuration>
-                        <value value="5"/>
-                        <unit value="dag"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="d"/>
-                     </valueDuration>
-                  </modifierExtension>
-                  <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
-                     <boundsDuration>
-                        <value value="1"/>
-                        <unit value="dag"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="d"/>
-                     </boundsDuration>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                     <when value="EVE"/>
-                  </repeat>
-               </effectiveTime>
-               <doseQuantity>
-                  <center value="0"
-                          unit="1">
-                     <translation value="0"
-                                  code="245"
-                                  displayName="stuks"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                  </center>
-               </doseQuantity>
-               <consumable xsi:nil="true"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM"
-                                     moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_200_wdsmtd1_MA"
-                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <code code="33633005"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"
-                     displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM"
-                                     moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9381"/>
-               <id extension="MBH_200_wdsmtd1_WDS_trombosedienst"
-                   root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-               <code code="395067002"
-                     displayName="optimaliseren van dosering van medicatie (verrichting)"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"/>
-               <consumable xsi:nil="true"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP"
-                            inversionInd="true">
-            <procedure classCode="PROC"
-                       moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_200_wdsmtd1"/>
-               <code code="1"
-                     displayName="Medicamenteuze behandeling"
-                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
-            </procedure>
-         </entryRelationship>
-      </substanceAdministration>
-   </component>
-   <component typeCode="COMP">
-      <substanceAdministration classCode="SBADM"
-                               moodCode="RQO">
-         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9412"/>
-         <id extension="MBH_200_wdsmtd1_WDS_verhoging"
-             root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-         <code code="395067002"
-               displayName="optimaliseren van dosering van medicatie (verrichting)"
-               codeSystem="2.16.840.1.113883.6.96"
-               codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">cyclus van 5 dagen: steeds eerst gedurende 3 dagen 1 maal per dag om 19:00 2 stuks, dan gedurende 2 dagen 1 maal per dag om 19:00 1 stuk, oraal</text>
-         <effectiveTime xsi:type="IVL_TS">
-            <low value="20211226000000+0100"/>
-            <high value="20220107235959+0100"/>
-         </effectiveTime>
-         <routeCode code="9"
-                    codeSystem="2.16.840.1.113883.2.4.4.9"
-                    displayName="oraal"
-                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
-         <consumable>
-            <manufacturedProduct>
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT"
-                                     determinerCode="KIND">
-                  <code code="7323"
-                        codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="ACENOCOUMAROL TABLET 1MG"
-                        codeSystemName="G-Standaard PRK">
-                     <translation code="20303"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="ACENOCOUMAROL TABLET 1MG"
-                                  codeSystemName="G-Standaard GPK"/>
-                  </code>
-               </manufacturedMaterial>
-            </manufacturedProduct>
-         </consumable>
-         <author>
-            <time value="20211225103000+0100"/>
-            <assignedAuthor>
-               <id extension="222221111"
-                   root="2.16.528.1.1007.3.1"/>
-               <code code="3400"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Trombosediensten"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
-               <assignedPerson>
-                  <name>
-                     <given qualifier="BR">Tanja</given>
-                     <prefix qualifier="VV">de </prefix>
-                     <family qualifier="BR">Bakker</family>
-                  </name>
-               </assignedPerson>
-               <representedOrganization>
-                  <id extension="11112222"
-                      root="2.16.528.1.1007.3.3"/>
-                  <name>Trombosedienst Ons Dorp</name>
-                  <addr>
-                     <streetName>Kerkstraat </streetName>
-                     <houseNumber>28</houseNumber>
-                     <buildingNumberSuffix>d</buildingNumberSuffix>
-                     <postalCode>1332 GH</postalCode>
-                     <city>Ons Dorp</city>
-                  </addr>
-                  <asOrganizationPartOf>
-                     <code code="3400"
-                           codeSystem="2.16.840.1.113883.2.4.6.7"
-                           displayName="Trombosediensten"
-                           codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                           codeSystemVersion="2020-10-23T00:00:00"/>
-                  </asOrganizationPartOf>
-               </representedOrganization>
-            </assignedAuthor>
-         </author>
-         <entryRelationship typeCode="COMP">
-            <sequenceNumber value="1"/>
-            <substanceAdministration classCode="SBADM"
-                                     moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xsi:type="Timing"
-                              xmlns="http://hl7.org/fhir">
-                  <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
-                     <valueDuration>
-                        <value value="5"/>
-                        <unit value="dag"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="d"/>
-                     </valueDuration>
-                  </modifierExtension>
-                  <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
                      <boundsDuration>
                         <value value="3"/>
                         <unit value="dag"/>
@@ -914,7 +1407,6 @@
                      <frequency value="1"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
-                     <timeOfDay value="19:00:00"/>
                   </repeat>
                </effectiveTime>
                <doseQuantity>
@@ -946,9 +1438,6 @@
                      </valueDuration>
                   </modifierExtension>
                   <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
                      <boundsDuration>
                         <value value="2"/>
                         <unit value="dag"/>
@@ -958,7 +1447,6 @@
                      <frequency value="1"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
-                     <timeOfDay value="19:00:00"/>
                   </repeat>
                </effectiveTime>
                <doseQuantity>
@@ -978,7 +1466,7 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_200_wdsmtd1_MA"
+               <id extension="MBH_300_wdsmtd1_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
@@ -991,7 +1479,7 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9381"/>
-               <id extension="MBH_200_wdsmtd1_WDS_trombosedienst"
+               <id extension="MBH_300_wdsmtd1_WDS_trombosedienst"
                    root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
                <code code="395067002"
                      displayName="optimaliseren van dosering van medicatie (verrichting)"
@@ -1006,7 +1494,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_200_wdsmtd1"/>
+                   extension="MBH_300_wdsmtd1"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -1018,7 +1506,7 @@
       <supply classCode="SPLY"
               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
-         <id extension="MBH_200_wdsmtd1_VV"
+         <id extension="MBH_300_wdsmtd1_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
          <code code="52711000146108"
                displayName="Verstrekkingsverzoek"
@@ -1067,7 +1555,7 @@
             </assignedEntity>
          </performer>
          <author>
-            <time value="20211212080000+0100"/>
+            <time value="20231212080000+0100"/>
             <assignedAuthor>
                <id extension="000001111"
                    root="2.16.528.1.1007.3.1"/>
@@ -1100,7 +1588,7 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_200_wdsmtd1_MA"
+               <id extension="MBH_300_wdsmtd1_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
@@ -1115,7 +1603,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_200_wdsmtd1"/>
+                   extension="MBH_300_wdsmtd1"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -1128,7 +1616,7 @@
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9416"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9415"/>
-         <id extension="MBH_200_wdsmtd1_TA"
+         <id extension="MBH_300_wdsmtd1_TA"
              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
          <code code="422037009"
                displayName="Toedieningsafspraak"
@@ -1136,7 +1624,7 @@
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Volgens schema trombosedienst, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20211212000000+0100"/>
+            <low value="20231212000000+0100"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
          <routeCode code="9"
@@ -1165,7 +1653,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20211212090000+0100"/>
+            <time value="20231212090000+0100"/>
             <assignedAuthor>
                <id nullFlavor="NI"/>
                <representedOrganization>
@@ -1195,7 +1683,7 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_200_wdsmtd1_MA"
+               <id extension="MBH_300_wdsmtd1_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
@@ -1210,7 +1698,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_200_wdsmtd1"/>
+                   extension="MBH_300_wdsmtd1"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -1222,13 +1710,13 @@
       <supply classCode="SPLY"
               moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9364"/>
-         <id extension="MBH_200_wdsmtd1_MVE"
+         <id extension="MBH_300_wdsmtd1_MVE"
              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
          <code displayName="Verstrekking"
                code="373784005"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <effectiveTime value="20211212090000+0100"/>
+         <effectiveTime value="20231212090000+0100"/>
          <quantity value="60"
                    unit="1">
             <translation value="60"
@@ -1279,7 +1767,7 @@
             <supply classCode="SPLY"
                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9312"/>
-               <id extension="MBH_200_wdsmtd1_VV"
+               <id extension="MBH_300_wdsmtd1_VV"
                    root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
                <code code="52711000146108"
                      displayName="Request to dispense medication to patient"
@@ -1293,7 +1781,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_200_wdsmtd1"/>
+                   extension="MBH_300_wdsmtd1"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -1305,23 +1793,23 @@
       <substanceAdministration classCode="SBADM"
                                moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9406"/>
-         <id extension="MBH_200_wdsmtd1_MTD1"
+         <id extension="MBH_300_wdsmtd1_MTD"
              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
          <code code="18629005"
                displayName="toediening van medicatie (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <effectiveTime value="20211212203000+0100"/>
+         <effectiveTime value="20231212203000+0100"/>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
-                    displayName="ORAAL"
+                    displayName="oraal"
                     codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
          <doseQuantity>
-            <center value="1"
+            <center value="2"
                     unit="1">
-               <translation value="1"
+               <translation value="2"
                             code="245"
-                            displayName="stuk"
+                            displayName="stuks"
                             codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                             codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </center>
@@ -1331,10 +1819,14 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
                <manufacturedMaterial classCode="MMAT"
                                      determinerCode="KIND">
-                  <code code="7323"
-                        codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="ACENOCOUMAROL TABLET 1MG"
-                        codeSystemName="G-Standaard PRK">
+                  <code code="856126"
+                        codeSystem="2.16.840.1.113883.2.4.4.7"
+                        displayName="ACENOCOUMAROL CF TABLET 1MG"
+                        codeSystemName="G-Standaard HPK">
+                     <translation code="7323"
+                                  codeSystem="2.16.840.1.113883.2.4.4.10"
+                                  displayName="ACENOCOUMAROL TABLET 1MG"
+                                  codeSystemName="G-Standaard PRK"/>
                      <translation code="20303"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
                                   displayName="ACENOCOUMAROL TABLET 1MG"
@@ -1346,175 +1838,70 @@
          <performer>
             <time nullFlavor="NI"/>
             <assignedEntity>
-               <id nullFlavor="NI"/>
-               <code code="100001"
-                     codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.23.1"
-                     displayName="Mantelzorger"/>
-               <assignedPerson>
-                  <name>
-                     <given qualifier="BR">Toos</given>
-                     <prefix qualifier="VV">de </prefix>
-                     <family qualifier="BR">Bakker</family>
-                  </name>
-               </assignedPerson>
-            </assignedEntity>
-         </performer>
-         <entryRelationship typeCode="COMP">
-            <substanceAdministration classCode="SBADM"
-                                     moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9376"/>
-               <effectiveTime value="20211212200000+0100"/>
-               <doseQuantity>
-                  <center value="2"
-                          unit="1">
-                     <translation value="2"
-                                  code="245"
-                                  displayName="stuk"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                  </center>
-               </doseQuantity>
-               <consumable xsi:nil="true"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM"
-                                     moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9381"/>
-               <id extension="MBH_200_wdsmtd1_WDS_opstartschema"
-                   root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-               <code code="395067002"
-                     displayName="optimaliseren van dosering van medicatie (verrichting)"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"/>
-               <consumable xsi:nil="true"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP"
-                            inversionInd="true">
-            <procedure classCode="PROC"
-                       moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_200_wdsmtd1"/>
-               <code code="1"
-                     displayName="Medicamenteuze behandeling"
-                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
-            </procedure>
-         </entryRelationship>
-      </substanceAdministration>
-   </component>
-   <component typeCode="COMP">
-      <substanceAdministration classCode="SBADM"
-                               moodCode="EVN">
-         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9406"/>
-         <id extension="MBH_200_wdsmtd1_MTD2"
-             root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-         <code code="18629005"
-               displayName="toediening van medicatie (verrichting)"
-               codeSystem="2.16.840.1.113883.6.96"
-               codeSystemName="SNOMED CT"/>
-         <effectiveTime value="20211213200000+0100"/>
-         <routeCode code="9"
-                    codeSystem="2.16.840.1.113883.2.4.4.9"
-                    displayName="Oraal"
-                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
-         <doseQuantity>
-            <center value="1"
-                    unit="1">
-               <translation value="1"
-                            code="245"
-                            displayName="stuk"
-                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                            codeSystemName="G-Standaard thesaurus basiseenheden"/>
-            </center>
-         </doseQuantity>
-         <consumable>
-            <manufacturedProduct>
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT"
-                                     determinerCode="KIND">
-                  <code code="7323"
-                        codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="ACENOCOUMAROL TABLET 1MG"
-                        codeSystemName="G-Standaard PRK">
-                     <translation code="20303"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="ACENOCOUMAROL TABLET 1MG"
-                                  codeSystemName="G-Standaard GPK"/>
-                  </code>
-               </manufacturedMaterial>
-            </manufacturedProduct>
-         </consumable>
-         <performer>
-            <time nullFlavor="NI"/>
-            <assignedEntity>
-               <id extension="222220000"
+               <id extension="000001111"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="9100"
+               <code code="0100"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Verpleegkundigen, niet nader gespecificeerd"
+                     displayName="Huisartsen, niet nader gespecificeerd"
                      codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
                      codeSystemVersion="2020-10-23T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Jantien</given>
-                     <family qualifier="BR">Toedien</family>
+                     <given qualifier="BR">Peter</given>
+                     <prefix qualifier="VV">van </prefix>
+                     <family qualifier="BR">Pulver</family>
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="11110000"
+                  <id extension="00001111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Thuiszorg Om en Bij</name>
-                  <addr>
-                     <streetName>Voorstraat</streetName>
+                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <addr use="WP">
+                     <streetName>Dorpsstraat</streetName>
                      <houseNumber>1</houseNumber>
-                     <postalCode>1223 BA</postalCode>
+                     <postalCode>1234 AA</postalCode>
                      <city>Ons Dorp</city>
                   </addr>
-                  <standardIndustryClassCode code="T2"
-                                             codeSystem="2.16.840.1.113883.2.4.15.1060"
-                                             displayName="Thuiszorg"/>
                </representedOrganization>
             </assignedEntity>
          </performer>
-         <entryRelationship typeCode="COMP">
+         <author>
+            <time value="20231212203000+0100"/>
+            <assignedAuthor>
+               <id nullFlavor="NI"/>
+            </assignedAuthor>
+         </author>
+         <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9376"/>
-               <effectiveTime value="20211213200000+0100"/>
-               <doseQuantity>
-                  <center value="2"
-                          unit="1">
-                     <translation value="2"
-                                  code="245"
-                                  displayName="stuk"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                  </center>
-               </doseQuantity>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
+               <id extension="MBH_300_wdsmtd1_MA"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <code code="33633005"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"
+                     displayName="Medicatieafspraak"/>
                <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="RSON">
-            <observation classCode="OBS"
-                         moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9375"/>
-               <code code="153631000146105"
-                     displayName="reden voor afwijken in toedienen van medicatie (waarneembare entiteit)"
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
+               <id extension="MBH_300_wdsmtd1_TA"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <code displayName="Toedieningsafspraak"
+                     code="422037009"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
-               <value xsi:type="CE"
-                      code="406149000"
-                      codeSystem="2.16.840.1.113883.6.96"
-                      displayName="toediening van medicatie geweigerd"/>
-            </observation>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9381"/>
-               <id extension="MBH_200_wdsmtd1_WDS_opstartschema"
+               <id extension="MBH_300_wdsmtd1_WDS_opstartschema"
                    root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
                <code code="395067002"
                      displayName="optimaliseren van dosering van medicatie (verrichting)"
@@ -1529,7 +1916,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_200_wdsmtd1"/>
+                   extension="MBH_300_wdsmtd1"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
