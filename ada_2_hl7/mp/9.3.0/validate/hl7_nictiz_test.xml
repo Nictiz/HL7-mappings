@@ -1,701 +1,272 @@
-<start timestamp="2026-01-05T16:12:42.8789414+01:00"
-       detection-count="72"
-       document-count="35">
-   <validation href-original-report="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/validate_hl7_instance/schematron-report-hl7-validate-nictiz-test-mgb.xml"
-               detection-count="64"
-               validation-step-name="schematron-validate-hl7-nictiz_test"
-               href-schema="YATC-internal/ada-2-hl7/env/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_mg_mgb.sch"
-               validation-type="schematron"
-               timestamp="2026-01-05T16:11:45.13+01:00"
-               document-count="30">
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-MATA-Onzekerheidscriterium.xml"
-            detection-count="2">
+<!--start--><start xmlns:saxon="http://saxon.sf.net/"
+       xmlns:schold="http://www.ascc.net/xml/schematron"
+       xmlns:iso="http://purl.oclc.org/dsdl/schematron"
+       xmlns:xhtml="http://www.w3.org/1999/xhtml"
+       xmlns:hl7="urn:hl7-org:v3"
+       xmlns:cda="urn:hl7-org:v3"
+       xmlns:hl7v2="urn:hl7-org:v2xml"
+       xmlns:lab="urn:oid:1.3.6.1.4.1.19376.1.3.2"
+       xmlns:ihe="urn:ihe:pcc:hl7v3"
+       xmlns:sdtc="urn:hl7-org:sdtc"
+       xmlns:nfu="urn:urn:nictiz-nl:v3/nfu"
+       xmlns:pharm="urn:ihe:pharm:medication"
+       xmlns:f="http://hl7.org/fhir"
+       xmlns:hl7nl="urn:hl7-nl:v3"
+       xmlns:h="http://www.w3.org/1999/xhtml"
+       inputDir="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/validate_hl7_instance">
+   <validate>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/av-mp-va-tamve-references-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-MATA-Onzekerheidscriterium.xml">
+         <pass/>
+      </file>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-MATAMGB-MultipleZoNodig.xml">
+         <pass/>
+      </file>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999900468-tst-ALL.xml">
+         <pass/>
+      </file>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999900481-tst-ALL.xml">
+         <pass/>
+      </file>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999900493-tst-ALL.xml">
          <fail>
-            <svrl:failed-assert location="/"
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(.)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9411-2022-11-18T091239.html"
                                 role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[4]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][30]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:participant[namespace-uri()='urn:hl7-org:v3'][1]/*:participantRole[namespace-uri()='urn:hl7-org:v3'][1]/*:scopingEntity[namespace-uri()='urn:hl7-org:v3'][1]/*:addr[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MP HL7 Medicatiegegevens Organizer)/d119695e32-true-d120013e0: dit element 'addr' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: hl7:id[@root = '2.16.528.1.1007.3.3'] | hl7:id[@root = '2.16.840.1.113883.2.4.6.1'] | hl7:id[@root = '2.16.840.1.113883.2.4.6.8'] | hl7:id[not(@root = ('2.16.528.1.1007.3.3', '2.16.840.1.113883.2.4.6.1', '2.16.840.1.113883.2.4.6.8'))] | cda:code | cda:desc (rule-reference: d119695e32-true-d120013e0)</svrl:text>
             </svrl:failed-assert>
          </fail>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-MATAMGB-MultipleZoNodig.xml"
-            detection-count="1">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-         </fail>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999900936-tst-ALL.xml">
+         <pass/>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999900468-tst-ALL.xml"
-            detection-count="1">
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999900948-tst-ALL.xml">
          <fail>
-            <svrl:failed-assert location="/"
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="hl7:manufacturedMaterial/hl7:code/@code or hl7:manufacturedMaterial/pharm:ingredient"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9362-2021-06-02T154632.html"
                                 role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][19]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:consumable[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MP CDA Medication Information): Als er geen gecodeerde medicatie is, moeten de bekende ingrediënten gecodeerd meegegeven worden. Alleen bij hoge uitzondering mag er voorgeschreven worden in vrije tekst. </svrl:text>
             </svrl:failed-assert>
-         </fail>
-      </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999900481-tst-ALL.xml"
-            detection-count="2">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[11]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[3]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-         </fail>
-      </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999900493-tst-ALL.xml"
-            detection-count="17">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[2]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[4]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[7]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[10]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[13]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[16]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[18]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[20]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[23]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[25]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[27]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[29]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[34]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[45]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[48]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[61]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-         </fail>
-      </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999900936-tst-ALL.xml"
-            detection-count="1">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-         </fail>
-      </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999900948-tst-ALL.xml"
-            detection-count="2">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[23]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}consumable[1]/Q{urn:hl7-org:v3}manufacturedProduct[1]/Q{urn:hl7-org:v3}manufacturedMaterial[1]/Q{urn:hl7-org:v3}code[1]"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                 test="../pharm:ingredient"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPCDAMedicationCode3): Bij magistraal / eigen bereiding / eigen codering moet er minimaal één - volgens de G-standaard gecodeerd - ingrediënt worden opgenomen.</svrl:text>
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][19]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:consumable[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MP CDA Medication Code): Bij magistraal / eigen bereiding / eigen codering moet er minimaal één - volgens de G-standaard gecodeerd - ingrediënt worden opgenomen.</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="hl7:manufacturedMaterial/hl7:code/@code or hl7:manufacturedMaterial/pharm:ingredient"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9362-2021-06-02T154632.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][20]/*:supply[namespace-uri()='urn:hl7-org:v3'][1]/*:product[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MP CDA Medication Information): Als er geen gecodeerde medicatie is, moeten de bekende ingrediënten gecodeerd meegegeven worden. Alleen bij hoge uitzondering mag er voorgeschreven worden in vrije tekst. </svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="../pharm:ingredient"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][20]/*:supply[namespace-uri()='urn:hl7-org:v3'][1]/*:product[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MP CDA Medication Code): Bij magistraal / eigen bereiding / eigen codering moet er minimaal één - volgens de G-standaard gecodeerd - ingrediënt worden opgenomen.</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="hl7:manufacturedMaterial/hl7:code/@code or hl7:manufacturedMaterial/pharm:ingredient"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9362-2021-06-02T154632.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][21]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:consumable[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MP CDA Medication Information): Als er geen gecodeerde medicatie is, moeten de bekende ingrediënten gecodeerd meegegeven worden. Alleen bij hoge uitzondering mag er voorgeschreven worden in vrije tekst. </svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="../pharm:ingredient"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][21]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:consumable[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MP CDA Medication Code): Bij magistraal / eigen bereiding / eigen codering moet er minimaal één - volgens de G-standaard gecodeerd - ingrediënt worden opgenomen.</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="hl7:manufacturedMaterial/hl7:code/@code or hl7:manufacturedMaterial/pharm:ingredient"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9362-2021-06-02T154632.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][22]/*:supply[namespace-uri()='urn:hl7-org:v3'][1]/*:product[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MP CDA Medication Information): Als er geen gecodeerde medicatie is, moeten de bekende ingrediënten gecodeerd meegegeven worden. Alleen bij hoge uitzondering mag er voorgeschreven worden in vrije tekst. </svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="../pharm:ingredient"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][22]/*:supply[namespace-uri()='urn:hl7-org:v3'][1]/*:product[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MP CDA Medication Code): Bij magistraal / eigen bereiding / eigen codering moet er minimaal één - volgens de G-standaard gecodeerd - ingrediënt worden opgenomen.</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="hl7:manufacturedMaterial/hl7:code/@code or hl7:manufacturedMaterial/pharm:ingredient"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9362-2021-06-02T154632.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][24]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:consumable[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MP CDA Medication Information): Als er geen gecodeerde medicatie is, moeten de bekende ingrediënten gecodeerd meegegeven worden. Alleen bij hoge uitzondering mag er voorgeschreven worden in vrije tekst. </svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="../pharm:ingredient"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][24]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:consumable[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MP CDA Medication Code): Bij magistraal / eigen bereiding / eigen codering moet er minimaal één - volgens de G-standaard gecodeerd - ingrediënt worden opgenomen.</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="../pharm:ingredient"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][23]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:consumable[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MP CDA Medication Code): Bij magistraal / eigen bereiding / eigen codering moet er minimaal één - volgens de G-standaard gecodeerd - ingrediënt worden opgenomen.</svrl:text>
             </svrl:failed-assert>
          </fail>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999900961-tst-ALL.xml"
-            detection-count="1">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-         </fail>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999900961-tst-ALL.xml">
+         <pass/>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999900973-tst-ALL.xml"
-            detection-count="1">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-         </fail>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999900973-tst-ALL.xml">
+         <pass/>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999900985-tst-ALL.xml"
-            detection-count="3">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[4]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[3]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[5]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[3]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-         </fail>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999900985-tst-ALL.xml">
+         <pass/>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999901072-tst-ALL.xml"
-            detection-count="1">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-         </fail>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999901072-tst-ALL.xml">
+         <pass/>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999901084-tst-ALL.xml"
-            detection-count="2">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[39]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-         </fail>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999901084-tst-ALL.xml">
+         <pass/>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999901126-tst-ALL.xml"
-            detection-count="1">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-         </fail>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999901126-tst-ALL.xml">
+         <pass/>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999901588-tst-ALL.xml"
-            detection-count="1">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-         </fail>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999901588-tst-ALL.xml">
+         <pass/>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999911089-tst-ALL.xml"
-            detection-count="1">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-         </fail>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mgrp-999911089-tst-ALL.xml">
+         <pass/>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mp-mg-tst-MA-Scenarioset1-v30-1-1.xml"
-            detection-count="1">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-         </fail>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mp-mg-tst-MA-Scenarioset1-v30-1-1.xml">
+         <pass/>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mp-mg-tst-MA-Scenarioset1-v30-1-2a.xml"
-            detection-count="1">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-         </fail>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mp-mg-tst-MA-Scenarioset1-v30-1-2a.xml">
+         <pass/>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mp-mg-tst-MA-Scenarioset1-v30-1-2b.xml"
-            detection-count="1">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-         </fail>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mp-mg-tst-MA-Scenarioset1-v30-1-2b.xml">
+         <pass/>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mp-mg-tst-MA-Scenarioset1-v30-1-3.xml"
-            detection-count="1">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-         </fail>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mp-mg-tst-MA-Scenarioset1-v30-1-3.xml">
+         <pass/>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mp-mg-tst-MA-Scenarioset1-v30-1-4.xml"
-            detection-count="1">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-         </fail>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mp-mg-tst-MA-Scenarioset1-v30-1-4.xml">
+         <pass/>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mp-mg-tst-MA-Scenarioset1-v30-1-6.xml"
-            detection-count="1">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-         </fail>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mp-mg-tst-MA-Scenarioset1-v30-1-6.xml">
+         <pass/>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mp930beta.3.xml"
-            detection-count="1">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-         </fail>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-mp930beta.3.xml">
+         <pass/>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-MTD-reden-afwijken.xml"
-            detection-count="1">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-         </fail>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-MTD-reden-afwijken.xml">
+         <pass/>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-MTD-toediener.xml"
-            detection-count="1">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-         </fail>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-MTD-toediener.xml">
+         <pass/>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-MTD-toedieningssnelheid-mettijdseenheid.xml"
-            detection-count="1">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-         </fail>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-MTD-toedieningssnelheid-mettijdseenheid.xml">
+         <pass/>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-MTD-toedieningssnelheid-zondertijdseenheid.xml"
-            detection-count="1">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-         </fail>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-MTD-toedieningssnelheid-zondertijdseenheid.xml">
+         <pass/>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-stoptype.xml"
-            detection-count="10">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[2]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[4]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[6]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[8]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[9]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[11]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[14]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[15]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[3]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[16]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[3]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-         </fail>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-stoptype.xml">
+         <pass/>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-test-lotsof-zorgverleners.xml"
-            detection-count="1">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-         </fail>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-test-lotsof-zorgverleners.xml">
+         <pass/>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-TEST-Scenarioset11-v20.xml"
-            detection-count="3">
-         <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[4]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                test="count(hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:code[(@code = '410684002' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
-            </svrl:failed-assert>
-            <svrl:successful-report location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[4]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}observation[1]/Q{urn:hl7-org:v3}value[1]"
-                                    role="warning"
-                                    see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506.html"
-                                    fpi="CD-DEPR-BSP"
-                                    test="exists(doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.50-2022-12-16T102010.xml')//valueSet[1]/conceptList/concept[@type='D'][@code = $theCode][@codeSystem = $theCodeSystem])"
-                                    xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(Stoptype4): element hl7:value is gecodeerd met bindingssterkte 'required' en bevat een code die verouderd is.</svrl:text>
-            </svrl:successful-report>
-         </fail>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-TEST-Scenarioset11-v30.xml">
+         <pass/>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-toedieningssnelheid.xml"
-            detection-count="2">
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mg-toedieningssnelheid.xml">
          <fail>
-            <svrl:failed-assert location="/"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9445-2022-11-24T155420.html"
-                                test="descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7MedicatiegebruikOrganizer4): In de instance werd het volgende element verwacht: descendant-or-self::hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9445']]</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[1]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}rateQuantity[1]"
-                                role="warning"
-                                see="https://art-decor.org/mediawiki/index.php?title=DTr1_IVL_PQ"
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                 test="not(hl7:low/@unit and hl7:high/@unit) or hl7:low/@unit = hl7:high/@unit"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+                                see="https://docs.art-decor.org/documentation/datatypes/DTr1_IVL_PQ"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:rateQuantity[namespace-uri()='urn:hl7-org:v3'][1]">
                <svrl:text>dtr1-8-IVL_PQ: units in low and high should be equal or comparable</svrl:text>
             </svrl:failed-assert>
          </fail>
       </file>
-   </validation>
-   <validation href-original-report="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/validate_hl7_instance/schematron-report-hl7-validate-nictiz-test-vos.xml"
-               detection-count="8"
-               validation-step-name="schematron-validate-hl7-nictiz_test"
-               href-schema="YATC-internal/ada-2-hl7/env/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_vos.sch"
-               validation-type="schematron"
-               timestamp="2026-01-05T16:12:42.62+01:00"
-               document-count="5">
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mv-MaxDoseDenominator.xml"
-            detection-count="2">
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mv-MaxDoseDenominator.xml">
          <fail>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[1]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}maxDoseQuantity[1]/Q{urn:hl7-org:v3}denominator[1]"
-                                role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9456-2023-12-19T114825.html"
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                 test="not(@value) or matches(@value, '^[-+]?\d*\.?[0-9]+([eE][-+]?\d+)?$')"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(maxDoseQuantity): @value is geen geldig PQ getal 
-1,00</svrl:text>
-            </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[1]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}maxDoseQuantity[1]/Q{urn:hl7-org:v3}denominator[1]"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9456-2023-12-19T114825.html"
                                 role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9456-2023-12-19T114825.html"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:maxDoseQuantity[namespace-uri()='urn:hl7-org:v3'][1]/*:denominator[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(maxDoseQuantity): @value is geen geldig PQ getal 1,00</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                 test="not(@value) or matches(string(@value), '^[-+]?\d*\.?[0-9]+([eE][-+]?\d+)?$')"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(maxDoseQuantity): attribuut @value is geen geldig real getal 
-1,00</svrl:text>
-            </svrl:failed-assert>
-         </fail>
-      </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mv-mp-vo-mavv-references-v30.xml"
-            detection-count="1">
-         <fail>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9456-2023-12-19T114825.html"
                                 role="error"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9433-2022-11-22T134545.html"
-                                test="count(hl7:recordTarget[not(@nullFlavor)][hl7:patientRole]) &gt;= 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7VoorschriftOrganizer6): element hl7:recordTarget[not(@nullFlavor)][hl7:patientRole] is mandatory [min 1x].</svrl:text>
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:maxDoseQuantity[namespace-uri()='urn:hl7-org:v3'][1]/*:denominator[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(maxDoseQuantity): attribuut @value is geen geldig real getal 1,00</svrl:text>
             </svrl:failed-assert>
          </fail>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mv-RedundantFreq.xml"
-            detection-count="0">
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mv-mp-vo-mavv-references-v30.xml">
          <pass/>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mv-TestAddress.xml"
-            detection-count="4">
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mv-RedundantFreq.xml">
+         <pass/>
+      </file>
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mv-TestAddress.xml">
          <fail>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[2]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}author[1]"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9429-2022-11-22T130054.html"
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                 test="count(hl7:assignedAuthor/hl7:representedOrganization/hl7:addr[@use='WP']) ge 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPCDAMedicatieAfspraakSchemaInhoud5): Er is minimaal één werkadres van de auteur (hl7:assignedAuthor/hl7:representedOrganization/hl7:addr[@use='WP']) verwacht bij een medicatieafspraak.</svrl:text>
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9429-2022-11-22T130054.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][2]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MP CDA Medicatieafspraak inhoud): Er is minimaal één werkadres van de auteur (hl7:assignedAuthor/hl7:representedOrganization/hl7:addr[@use='WP']) verwacht bij een medicatieafspraak.</svrl:text>
             </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[3]/Q{urn:hl7-org:v3}supply[1]/Q{urn:hl7-org:v3}performer[1]/Q{urn:hl7-org:v3}assignedEntity[1]/Q{urn:hl7-org:v3}representedOrganization[1]/Q{urn:hl7-org:v3}addr[1]"
-                                role="error"
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                 test="@nullFlavor or (count(*)&gt;0 and not(text()[string-length(normalize-space())&gt;0])) or (count(*)=0 and text()[string-length(normalize-space())&gt;0])"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][3]/*:supply[namespace-uri()='urn:hl7-org:v3'][1]/*:performer[namespace-uri()='urn:hl7-org:v3'][1]/*:assignedEntity[namespace-uri()='urn:hl7-org:v3'][1]/*:representedOrganization[namespace-uri()='urn:hl7-org:v3'][1]/*:addr[namespace-uri()='urn:hl7-org:v3'][1]">
                <svrl:text>dtr1-1-AD: address shall be null or text only or element only (no mixed content)</svrl:text>
             </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[3]/Q{urn:hl7-org:v3}supply[1]/Q{urn:hl7-org:v3}author[1]"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9449-2023-01-06T093041.html"
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                 test="count(hl7:assignedAuthor/hl7:representedOrganization/hl7:addr[@use='WP']) ge 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPCDAVerstrekkingsverzoek6): Er is minimaal één werkadres van de auteur verwacht bij een verstrekkingsverzoek.</svrl:text>
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9449-2023-01-06T093041.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][3]/*:supply[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MP CDA Verstrekkingsverzoek): Er is minimaal één werkadres van de auteur verwacht bij een verstrekkingsverzoek.</svrl:text>
             </svrl:failed-assert>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[4]/Q{urn:hl7-org:v3}supply[1]/Q{urn:hl7-org:v3}author[1]"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9449-2023-01-06T093041.html"
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                 test="count(hl7:assignedAuthor/hl7:representedOrganization/hl7:addr[@use='WP']) ge 1"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPCDAVerstrekkingsverzoek6): Er is minimaal één werkadres van de auteur verwacht bij een verstrekkingsverzoek.</svrl:text>
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9449-2023-01-06T093041.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][4]/*:supply[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MP CDA Verstrekkingsverzoek): Er is minimaal één werkadres van de auteur verwacht bij een verstrekkingsverzoek.</svrl:text>
             </svrl:failed-assert>
          </fail>
       </file>
-      <file name="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mv-VolgendeBehandelaar.xml"
-            detection-count="1">
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mv-VolgendeBehandelaar.xml">
          <fail>
-            <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[2]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}participant[1]/Q{urn:hl7-org:v3}participantRole[1]/Q{urn:hl7-org:v3}telecom[1]"
-                                role="warning"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9433-2022-11-22T134545.html"
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                 test="not(.)"
-                                xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-               <svrl:text>(MPHL7VoorschriftOrganizer6)/d383249e3-true-d383338e0: dit element '
-telecom' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: hl7:id[@root = '2.16.528.1.1007.3.1'] | hl7:id[@root = '2.16.840.1.113883.2.4.6.1'] | hl7:id[@root = '2.16.528.1.1007.5.1'] | hl7:id[not(@root = ('2.16.528.1.1007.3.1', '2.16.840.1.113883.2.4.6.1', '2.16.528.1.1007.5.1'))] | cda:code[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.17.1.7-2020-09-01T000000.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.17.1.6-2020-09-01T000000.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor] | cda:playingEntity | cda:scopingEntity (rule-reference: d383249e3-true-d383338e0)</svrl:text>
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9433-2022-11-22T134545.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][2]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:participant[namespace-uri()='urn:hl7-org:v3'][1]/*:participantRole[namespace-uri()='urn:hl7-org:v3'][1]/*:telecom[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MP HL7 Voorschrift Organizer)/d346107e3-true-d346230e0: dit element 'telecom' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: hl7:id[@root = '2.16.528.1.1007.3.1'] | hl7:id[@root = '2.16.840.1.113883.2.4.6.1'] | hl7:id[@root = '2.16.528.1.1007.5.1'] | hl7:id[not(@root = ('2.16.528.1.1007.3.1', '2.16.840.1.113883.2.4.6.1', '2.16.528.1.1007.5.1'))] | cda:code | cda:playingEntity | cda:scopingEntity (rule-reference: d346107e3-true-d346230e0)</svrl:text>
             </svrl:failed-assert>
          </fail>
       </file>
-   </validation>
+   </validate>
 </start>
