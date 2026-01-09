@@ -1,24 +1,23 @@
 <PractitionerRole xmlns="http://hl7.org/fhir">
-   <id value="pracrole-UZI-7"/>
+   <id value="pracrole-12345678901"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
    </meta>
    <practitioner>
-      <reference value="Practitioner/prac-UZI-7"/>
+      <reference value="Practitioner/prac-12345678901"/>
       <type value="Practitioner"/>
-      <display value="Healthcare professional (person), Vaste Huisarts 2"/>
+      <display value="Healthcare professional (person), Desirée (Desirée) Wolters"/>
    </practitioner>
    <organization>
-      <reference value="Organization/org-URA-1"/>
+      <reference value="Organization/org-1234567890123456"/>
       <type value="Organization"/>
-      <display value="Healthcare provider (organization), Gezondheidscentrum Aesculaap"/>
+      <display value="Healthcare provider (organization), Zorghuis_Test"/>
    </organization>
    <specialty>
       <coding>
-         <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
-         <version value="2024-01-29T00:00:00"/>
-         <code value="01.015"/>
-         <display value="Huisarts"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.30.12"/>
+         <code value="HAG"/>
+         <display value="Huisartsgeneeskunde"/>
       </coding>
    </specialty>
    <telecom>
@@ -33,7 +32,12 @@
             </valueCodeableConcept>
          </extension>
       </system>
-      <value value="+31434073576"/>
+      <value value="053-1112223"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="d.wolters@zorghuis.test.nl"/>
       <use value="work"/>
    </telecom>
 </PractitionerRole>

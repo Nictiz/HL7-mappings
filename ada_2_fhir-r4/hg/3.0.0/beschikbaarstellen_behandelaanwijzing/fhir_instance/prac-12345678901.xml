@@ -1,23 +1,23 @@
-<Patient xmlns="http://hl7.org/fhir">
-   <id value="patient-XXX-Mutter"/>
+<Practitioner xmlns="http://hl7.org/fhir">
+   <id value="prac-12345678901"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
    </meta>
    <identifier>
-      <value value="999911673"/>
+      <value value="12345678901"/>
    </identifier>
    <name>
       <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
          <valueCode value="NL1"/>
       </extension>
       <use value="official"/>
-      <text value="Franka (Franka) XXX_Mutter"/>
-      <family value="XXX_Mutter">
+      <text value="Desirée (Desirée) Wolters"/>
+      <family value="Wolters">
          <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-            <valueString value="XXX_Mutter"/>
+            <valueString value="Wolters"/>
          </extension>
       </family>
-      <given value="Franka">
+      <given value="Desirée">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
             <valueCode value="BR"/>
          </extension>
@@ -25,7 +25,7 @@
    </name>
    <name>
       <use value="usual"/>
-      <given value="Franka"/>
+      <given value="Desirée"/>
    </name>
    <telecom>
       <system value="phone">
@@ -39,43 +39,38 @@
             </valueCodeableConcept>
          </extension>
       </system>
-      <value value="+35950531770"/>
-      <use value="home"/>
+      <value value="053-1112223"/>
+      <use value="work"/>
    </telecom>
-   <gender value="female">
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
-         <valueCodeableConcept>
-            <coding>
-               <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
-               <code value="F"/>
-               <display value="Vrouw"/>
-            </coding>
-         </valueCodeableConcept>
-      </extension>
-   </gender>
-   <birthDate value="1964-08-02"/>
+   <telecom>
+      <system value="email"/>
+      <value value="d.wolters@zorghuis.test.nl"/>
+      <use value="work"/>
+   </telecom>
    <address>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
          <valueCodeableConcept>
             <coding>
                <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
-               <code value="PHYS"/>
-               <display value="Woon-/verblijfadres"/>
+               <code value="WP"/>
+               <display value="Werkadres"/>
             </coding>
          </valueCodeableConcept>
       </extension>
-      <use value="home"/>
-      <type value="physical"/>
-      <line value="Knolweg 1001">
+      <use value="work"/>
+      <line value="Doktersstraat 45 A">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
-            <valueString value="Knolweg"/>
+            <valueString value="Doktersstraat"/>
          </extension>
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-            <valueString value="1001"/>
+            <valueString value="45"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+            <valueString value="A"/>
          </extension>
       </line>
-      <city value="Stitswerd"/>
-      <postalCode value="9999 XX"/>
+      <city value="Enschede"/>
+      <postalCode value="9999XA"/>
       <country value="Nederland">
          <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
             <valueCodeableConcept>
@@ -89,4 +84,15 @@
          </extension>
       </country>
    </address>
-</Patient>
+   <gender value="female">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
+               <code value="F"/>
+               <display value="Vrouw"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </gender>
+</Practitioner>

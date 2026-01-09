@@ -1,0 +1,38 @@
+<Consent xmlns="http://hl7.org/fhir">
+   <id value="td-2022-05-04-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentDirective2"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+      <valueString value="Patiënt heeft besloten dat hij geen CPR wil. Bij deze afspraak was ook Contactpersoon 1 aanwezig."/>
+   </extension>
+   <status value="active"/>
+   <scope>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/consentscope"/>
+         <code value="treatment"/>
+         <display value="Treatment"/>
+      </coding>
+   </scope>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="129125009"/>
+         <display value="verrichting met expliciete context"/>
+      </coding>
+   </category>
+   <dateTime value="2022-05-04"/>
+   <policy>
+      <uri value="https://wetten.overheid.nl/"/>
+   </policy>
+   <provision>
+      <type value="deny"/>
+      <code>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.30.62"/>
+            <code value="1"/>
+            <display value="Cardiopulmonaire resuscitatie (Reanimatie)"/>
+         </coding>
+      </code>
+   </provision>
+</Consent>

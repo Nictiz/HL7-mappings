@@ -1,15 +1,15 @@
 <PractitionerRole xmlns="http://hl7.org/fhir">
-   <id value="pracrole-UZI-7"/>
+   <id value="pracrole-000001111"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
    </meta>
    <practitioner>
-      <reference value="Practitioner/prac-UZI-7"/>
+      <reference value="Practitioner/prac-000001111"/>
       <type value="Practitioner"/>
-      <display value="Healthcare professional (person), Vaste Huisarts 2"/>
+      <display value="Healthcare professional (person), Peter (Peter) van Pulver"/>
    </practitioner>
    <organization>
-      <reference value="Organization/org-URA-1"/>
+      <reference value="Organization/org-00002222"/>
       <type value="Organization"/>
       <display value="Healthcare provider (organization), Gezondheidscentrum Aesculaap"/>
    </organization>
@@ -26,14 +26,19 @@
          <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
             <valueCodeableConcept>
                <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
-                  <code value="LL"/>
-                  <display value="Land Line"/>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                  <code value="MC"/>
+                  <display value="Mobiel telefoonnummer"/>
                </coding>
             </valueCodeableConcept>
          </extension>
       </system>
       <value value="+31434073576"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="xxx_petervanpulder@valkendael.com"/>
       <use value="work"/>
    </telecom>
 </PractitionerRole>

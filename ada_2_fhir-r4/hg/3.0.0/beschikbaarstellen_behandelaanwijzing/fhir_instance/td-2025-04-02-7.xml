@@ -1,0 +1,41 @@
+<Consent xmlns="http://hl7.org/fhir">
+   <id value="td-2025-04-02-7"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentDirective2"/>
+   </meta>
+   <status value="inactive"/>
+   <scope>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/consentscope"/>
+         <code value="treatment"/>
+         <display value="Treatment"/>
+      </coding>
+   </scope>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="129125009"/>
+         <display value="verrichting met expliciete context"/>
+      </coding>
+   </category>
+   <dateTime value="2025-04-02"/>
+   <policy>
+      <uri value="https://wetten.overheid.nl/"/>
+   </policy>
+   <provision>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.ReasonForEnding">
+         <valueString value="patiënt is van gedachten veranderd en wil toch antibiotica indien nodig"/>
+      </extension>
+      <type value="deny"/>
+      <period>
+         <end value="2025-07-08"/>
+      </period>
+      <code>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.30.62"/>
+            <code value="7"/>
+            <display value="Toediening van antibiotica"/>
+         </coding>
+      </code>
+   </provision>
+</Consent>

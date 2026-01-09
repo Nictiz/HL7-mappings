@@ -1,23 +1,23 @@
 <Patient xmlns="http://hl7.org/fhir">
-   <id value="patient-XXX-Mutter"/>
+   <id value="patient-XXX-Weele"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
    </meta>
    <identifier>
-      <value value="999911673"/>
+      <value value="999910255"/>
    </identifier>
    <name>
       <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
          <valueCode value="NL1"/>
       </extension>
       <use value="official"/>
-      <text value="Franka (Franka) XXX_Mutter"/>
-      <family value="XXX_Mutter">
+      <text value="Hendrik (Hendrik) XXX_Weele"/>
+      <family value="XXX_Weele">
          <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-            <valueString value="XXX_Mutter"/>
+            <valueString value="XXX_Weele"/>
          </extension>
       </family>
-      <given value="Franka">
+      <given value="Hendrik">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
             <valueCode value="BR"/>
          </extension>
@@ -25,35 +25,40 @@
    </name>
    <name>
       <use value="usual"/>
-      <given value="Franka"/>
+      <given value="Hendrik"/>
    </name>
    <telecom>
       <system value="phone">
          <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
             <valueCodeableConcept>
                <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
-                  <code value="LL"/>
-                  <display value="Land Line"/>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                  <code value="MC"/>
+                  <display value="Mobiel telefoonnummer"/>
                </coding>
             </valueCodeableConcept>
          </extension>
       </system>
-      <value value="+35950531770"/>
+      <value value="06-22223333"/>
       <use value="home"/>
    </telecom>
-   <gender value="female">
+   <telecom>
+      <system value="email"/>
+      <value value="Hendrik.XXX_Weele@test.test.nl"/>
+      <use value="home"/>
+   </telecom>
+   <gender value="male">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
          <valueCodeableConcept>
             <coding>
                <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
-               <code value="F"/>
-               <display value="Vrouw"/>
+               <code value="M"/>
+               <display value="Man"/>
             </coding>
          </valueCodeableConcept>
       </extension>
    </gender>
-   <birthDate value="1964-08-02"/>
+   <birthDate value="1954-07-25"/>
    <address>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
          <valueCodeableConcept>
@@ -66,16 +71,16 @@
       </extension>
       <use value="home"/>
       <type value="physical"/>
-      <line value="Knolweg 1001">
+      <line value="Knolweg 1000">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
             <valueString value="Knolweg"/>
          </extension>
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-            <valueString value="1001"/>
+            <valueString value="1000"/>
          </extension>
       </line>
-      <city value="Stitswerd"/>
-      <postalCode value="9999 XX"/>
+      <city value="Enschede"/>
+      <postalCode value="9999XA"/>
       <country value="Nederland">
          <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
             <valueCodeableConcept>

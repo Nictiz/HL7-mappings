@@ -3,7 +3,7 @@
          created-by="hguitwisselingada"
          last-update-by="hguitwisselingada"
          creation-date="2025-12-17T16:04:04.132Z"
-         last-update-date="2025-12-19T11:01:16.323Z"/>
+         last-update-date="2026-01-09T11:57:02.151Z"/>
    <data>
       <beschikbaarstellen_behandelaanwijzing app="hg-3.0.0"
                                              shortName="beschikbaarstellen_behandelaanwijzing"
@@ -15,7 +15,7 @@
                                              language="nl-NL"
                                              title="TestComplexBerichtBA"
                                              desc="&lt;div&gt;Het Complexe testbericht voor de BehandelAanwijzing2 omvat een aantal behandelaanwijzingen waarvan er meerdere instanties zijn aangemaakt. Het resultaat van de test moet zijn dat alleen de meest recente behandelaanwijzingen zonder einddatum wordt opgeleverd.&lt;/div&gt;&lt;div&gt;De volgende varianten zijn opgenomen in de test:&lt;/div&gt;&lt;div&gt;- Behandelaanwijzijng CPR met twee instanties waarbij alleen de CPR met aanwijzing Anders moet worden opgeleverd&lt;/div&gt;&lt;div&gt;- Behandelaanwijzing Opname in ziekenhuis waarvan alleen een meest recente instantie is met een datum gelijk aan andere meest recente behandelaanwijzingen&lt;/div&gt;&lt;div&gt;- Behandelaanwijzing&amp;nbsp;Opname op intensive care waarbij alleen de OIC met aanwijzing Niet uitvoeren moet worden opgeleverd&lt;/div&gt;&lt;div&gt;- Behandelaanwijzing&amp;nbsp;Toediening van antibiotica met een einddatum zonder vervolginstantie: deze mag dus niet worden opgeleverd&lt;/div&gt;&lt;div&gt;- Behandelaanwijzing&amp;nbsp;Kunstmatige beademing met ongewijzigde aanwijzing, waarvan alleen de meest recente instantie moet worden opgeleverd&lt;/div&gt;&lt;div&gt;- Behandelaanwijzing&amp;nbsp;Overige behandeling (in vrije tekst) die in de Toelichting is gespecificeerd als Nierdialyse met twee instanties, waarbij alleen de Nierdialyse met aanwijzing Anders moet worden opgeleverd&lt;/div&gt;&lt;div&gt;- Behandelaanwijzing&amp;nbsp;Toediening van een bloedproduct waarvan alleen een meest recente instantie is met een datum eerder dan andere meest recente behandelaanwijzingen&lt;/div&gt;"
-                                             id="b04cfd25-623a-4ee0-8cfd-25623aaee09f">
+                                             id="elz-TEST-HWG-PSR-BA2-Complex">
          <bundel_generieke_huisartsoverdrachten conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1199">
             <patient id="XXX_Mutter"
                      conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.2">
@@ -34,6 +34,28 @@
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.10"/>
                   </geslachtsnaam>
                </naamgegevens>
+               <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.15">
+                  <straat value="Knolweg"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.16"/>
+                  <huisnummer value="1001"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.17"/>
+                  <postcode value="9999 XX"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.21"/>
+                  <woonplaats value="Stitswerd"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.22"/>
+                  <land conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.24"
+                        value="157"
+                        code="NL"
+                        codeSystem="1.0.3166.1.2.2"
+                        codeSystemName="ISO 3166-1 (alpha-2)"
+                        codeSystemVersion="2020-10-26T00:00:00"
+                        displayName="Nederland"/>
+                  <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.26"
+                               value="3"
+                               code="PHYS"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Woon-/verblijfadres"/>
+               </adresgegevens>
                <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.27">
                   <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.28">
                      <telefoonnummer value="+35950531770"
@@ -60,10 +82,6 @@
                          code="F"
                          codeSystem="2.16.840.1.113883.5.1"
                          displayName="Vrouw"/>
-               <meerling_indicator nullFlavor="NI"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.39"/>
-               <overlijdens_indicator nullFlavor="NI"
-                                      conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.40"/>
             </patient>
             <zorgverlener id="Huisarts2"
                           conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5322">
@@ -167,6 +185,8 @@
          </bundel_generieke_huisartsoverdrachten>
          <dossiergegevens conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1725">
             <behandel_aanwijzing2 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5482">
+               <identificatienummer value="120200506"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5574"/>
                <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5483"
                                  value="1"
                                  code="0"
@@ -175,7 +195,12 @@
                <behandeling code="1"
                             codeSystem="2.16.840.1.113883.2.4.4.30.62"
                             displayName="Cardiopulmonaire resuscitatie (Reanimatie)"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5575">
+                  <behandeling code="1"
+                               codeSystem="2.16.840.1.113883.2.4.4.30.62"
+                               displayName="Cardiopulmonaire resuscitatie (Reanimatie)"
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+               </behandeling>
                <meest_recente_bespreekdatum value="2020-05-06"
                                             datatype="datetime"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5486"/>
@@ -191,13 +216,15 @@
                </zorg_partij>
                <patient_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5491">
                   <patient conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5492">
-                     <patient value="b04cfd25-623a-4ee0-8cfd-25623aaee09f#XXX_Mutter"
+                     <patient value="elz-TEST-HWG-PSR-BA2-Complex#XXX_Mutter"
                               datatype="reference"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5550"/>
                   </patient>
                </patient_partij>
             </behandel_aanwijzing2>
             <behandel_aanwijzing2 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5482">
+               <identificatienummer value="120241201"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5574"/>
                <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5483"
                                  value="2"
                                  code="1"
@@ -206,7 +233,12 @@
                <behandeling code="1"
                             codeSystem="2.16.840.1.113883.2.4.4.30.62"
                             displayName="Cardiopulmonaire resuscitatie (Reanimatie)"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5575">
+                  <behandeling code="1"
+                               codeSystem="2.16.840.1.113883.2.4.4.30.62"
+                               displayName="Cardiopulmonaire resuscitatie (Reanimatie)"
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+               </behandeling>
                <specificatie_anders value="Alleen reanimatie tijdens opname in ziekenhuis"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5485"/>
                <meest_recente_bespreekdatum value="2024-12-01"
@@ -219,13 +251,15 @@
                </zorg_partij>
                <patient_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5491">
                   <patient conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5492">
-                     <patient value="b04cfd25-623a-4ee0-8cfd-25623aaee09f#XXX_Mutter"
+                     <patient value="elz-TEST-HWG-PSR-BA2-Complex#XXX_Mutter"
                               datatype="reference"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5550"/>
                   </patient>
                </patient_partij>
             </behandel_aanwijzing2>
             <behandel_aanwijzing2 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5482">
+               <identificatienummer value="220241201"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5574"/>
                <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5483"
                                  value="1"
                                  code="0"
@@ -234,7 +268,12 @@
                <behandeling code="2"
                             codeSystem="2.16.840.1.113883.2.4.4.30.62"
                             displayName="Opname in het ziekenhuis"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5575">
+                  <behandeling code="2"
+                               codeSystem="2.16.840.1.113883.2.4.4.30.62"
+                               displayName="Opname in het ziekenhuis"
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+               </behandeling>
                <meest_recente_bespreekdatum value="2024-12-01"
                                             datatype="datetime"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5486"/>
@@ -245,13 +284,15 @@
                </zorg_partij>
                <patient_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5491">
                   <patient conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5492">
-                     <patient value="b04cfd25-623a-4ee0-8cfd-25623aaee09f#XXX_Mutter"
+                     <patient value="elz-TEST-HWG-PSR-BA2-Complex#XXX_Mutter"
                               datatype="reference"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5550"/>
                   </patient>
                </patient_partij>
             </behandel_aanwijzing2>
             <behandel_aanwijzing2 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5482">
+               <identificatienummer value="320200506"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5574"/>
                <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5483"
                                  value="1"
                                  code="0"
@@ -260,7 +301,12 @@
                <behandeling code="3"
                             codeSystem="2.16.840.1.113883.2.4.4.30.62"
                             displayName="Opname op intensive care"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5575">
+                  <behandeling code="3"
+                               codeSystem="2.16.840.1.113883.2.4.4.30.62"
+                               displayName="Opname op intensive care"
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+               </behandeling>
                <meest_recente_bespreekdatum value="2020-05-06"
                                             datatype="datetime"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5486"/>
@@ -276,13 +322,15 @@
                </zorg_partij>
                <patient_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5491">
                   <patient conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5492">
-                     <patient value="b04cfd25-623a-4ee0-8cfd-25623aaee09f#XXX_Mutter"
+                     <patient value="elz-TEST-HWG-PSR-BA2-Complex#XXX_Mutter"
                               datatype="reference"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5550"/>
                   </patient>
                </patient_partij>
             </behandel_aanwijzing2>
             <behandel_aanwijzing2 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5482">
+               <identificatienummer value="320241201"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5574"/>
                <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5483"
                                  value="3"
                                  code="2"
@@ -291,7 +339,12 @@
                <behandeling code="3"
                             codeSystem="2.16.840.1.113883.2.4.4.30.62"
                             displayName="Opname op intensive care"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5575">
+                  <behandeling code="3"
+                               codeSystem="2.16.840.1.113883.2.4.4.30.62"
+                               displayName="Opname op intensive care"
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+               </behandeling>
                <meest_recente_bespreekdatum value="2024-12-01"
                                             datatype="datetime"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5486"/>
@@ -302,13 +355,15 @@
                </zorg_partij>
                <patient_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5491">
                   <patient conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5492">
-                     <patient value="b04cfd25-623a-4ee0-8cfd-25623aaee09f#XXX_Mutter"
+                     <patient value="elz-TEST-HWG-PSR-BA2-Complex#XXX_Mutter"
                               datatype="reference"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5550"/>
                   </patient>
                </patient_partij>
             </behandel_aanwijzing2>
             <behandel_aanwijzing2 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5482">
+               <identificatienummer value="720200506"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5574"/>
                <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5483"
                                  value="2"
                                  code="1"
@@ -317,7 +372,12 @@
                <behandeling code="7"
                             codeSystem="2.16.840.1.113883.2.4.4.30.62"
                             displayName="Toediening van antibiotica"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5575">
+                  <behandeling code="7"
+                               codeSystem="2.16.840.1.113883.2.4.4.30.62"
+                               displayName="Toediening van antibiotica"
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+               </behandeling>
                <specificatie_anders value="Alleen toedienen antibiotica na overleg partner"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5485"/>
                <meest_recente_bespreekdatum value="2020-05-06"
@@ -335,13 +395,15 @@
                </zorg_partij>
                <patient_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5491">
                   <patient conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5492">
-                     <patient value="b04cfd25-623a-4ee0-8cfd-25623aaee09f#XXX_Mutter"
+                     <patient value="elz-TEST-HWG-PSR-BA2-Complex#XXX_Mutter"
                               datatype="reference"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5550"/>
                   </patient>
                </patient_partij>
             </behandel_aanwijzing2>
             <behandel_aanwijzing2 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5482">
+               <identificatienummer value="420200506"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5574"/>
                <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5483"
                                  value="1"
                                  code="0"
@@ -350,7 +412,12 @@
                <behandeling code="4"
                             codeSystem="2.16.840.1.113883.2.4.4.30.62"
                             displayName="Kunstmatige beademing"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5575">
+                  <behandeling code="4"
+                               codeSystem="2.16.840.1.113883.2.4.4.30.62"
+                               displayName="Kunstmatige beademing"
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+               </behandeling>
                <meest_recente_bespreekdatum value="2020-05-06"
                                             datatype="datetime"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5486"/>
@@ -364,13 +431,15 @@
                </zorg_partij>
                <patient_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5491">
                   <patient conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5492">
-                     <patient value="b04cfd25-623a-4ee0-8cfd-25623aaee09f#XXX_Mutter"
+                     <patient value="elz-TEST-HWG-PSR-BA2-Complex#XXX_Mutter"
                               datatype="reference"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5550"/>
                   </patient>
                </patient_partij>
             </behandel_aanwijzing2>
             <behandel_aanwijzing2 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5482">
+               <identificatienummer value="420241201"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5574"/>
                <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5483"
                                  value="1"
                                  code="0"
@@ -379,7 +448,12 @@
                <behandeling code="4"
                             codeSystem="2.16.840.1.113883.2.4.4.30.62"
                             displayName="Kunstmatige beademing"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5575">
+                  <behandeling code="4"
+                               codeSystem="2.16.840.1.113883.2.4.4.30.62"
+                               displayName="Kunstmatige beademing"
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+               </behandeling>
                <meest_recente_bespreekdatum value="2024-12-01"
                                             datatype="datetime"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5486"/>
@@ -390,13 +464,15 @@
                </zorg_partij>
                <patient_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5491">
                   <patient conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5492">
-                     <patient value="b04cfd25-623a-4ee0-8cfd-25623aaee09f#XXX_Mutter"
+                     <patient value="elz-TEST-HWG-PSR-BA2-Complex#XXX_Mutter"
                               datatype="reference"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5550"/>
                   </patient>
                </patient_partij>
             </behandel_aanwijzing2>
             <behandel_aanwijzing2 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5482">
+               <identificatienummer value="620200506"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5574"/>
                <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5483"
                                  value="1"
                                  code="0"
@@ -405,43 +481,20 @@
                <behandeling code="6"
                             codeSystem="2.16.840.1.113883.2.4.4.30.62"
                             displayName="Overige behandeling (in vrije tekst)"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5575">
+                  <behandeling code="6"
+                               codeSystem="2.16.840.1.113883.2.4.4.30.62"
+                               displayName="Overige behandeling (in vrije tekst)"
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+                  <behandeling_anders value="Nierdialyse"
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5576"/>
+               </behandeling>
                <meest_recente_bespreekdatum value="2020-05-06"
                                             datatype="datetime"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5486"/>
                <datum_beeindigd value="2024-12-01"
                                 datatype="datetime"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5487"/>
-               <zorg_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5499">
-                  <zorgverlener value="Huisarts2"
-                                datatype="reference"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5500"/>
-               </zorg_partij>
-               <patient_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5491">
-                  <patient conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5492">
-                     <patient value="b04cfd25-623a-4ee0-8cfd-25623aaee09f#XXX_Mutter"
-                              datatype="reference"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5550"/>
-                  </patient>
-               </patient_partij>
-               <toelichting value="Nierdialyse"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5498"/>
-            </behandel_aanwijzing2>
-            <behandel_aanwijzing2 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5482">
-               <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5483"
-                                 value="2"
-                                 code="1"
-                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.25.1"
-                                 displayName="Anders"/>
-               <behandeling code="6"
-                            codeSystem="2.16.840.1.113883.2.4.4.30.62"
-                            displayName="Overige behandeling (in vrije tekst)"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
-               <specificatie_anders value="Alleen nierdialyse indien opgenomen in ziekenhuis"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5485"/>
-               <meest_recente_bespreekdatum value="2024-12-01"
-                                            datatype="datetime"
-                                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5486"/>
                <reden_beeindigd value="Behandelbesluit herzien"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5488"/>
                <zorg_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5499">
@@ -451,15 +504,52 @@
                </zorg_partij>
                <patient_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5491">
                   <patient conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5492">
-                     <patient value="b04cfd25-623a-4ee0-8cfd-25623aaee09f#XXX_Mutter"
+                     <patient value="elz-TEST-HWG-PSR-BA2-Complex#XXX_Mutter"
                               datatype="reference"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5550"/>
                   </patient>
                </patient_partij>
-               <toelichting value="Nierdialyse"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5498"/>
             </behandel_aanwijzing2>
             <behandel_aanwijzing2 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5482">
+               <identificatienummer value="620241201"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5574"/>
+               <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5483"
+                                 value="2"
+                                 code="1"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.25.1"
+                                 displayName="Anders"/>
+               <behandeling code="6"
+                            codeSystem="2.16.840.1.113883.2.4.4.30.62"
+                            displayName="Overige behandeling (in vrije tekst)"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5575">
+                  <behandeling code="6"
+                               codeSystem="2.16.840.1.113883.2.4.4.30.62"
+                               displayName="Overige behandeling (in vrije tekst)"
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+                  <behandeling_anders value="Nierdialyse"
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5576"/>
+               </behandeling>
+               <specificatie_anders value="Alleen nierdialyse indien opgenomen in ziekenhuis"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5485"/>
+               <meest_recente_bespreekdatum value="2024-12-01"
+                                            datatype="datetime"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5486"/>
+               <zorg_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5499">
+                  <zorgverlener value="Huisarts2"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5500"/>
+               </zorg_partij>
+               <patient_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5491">
+                  <patient conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5492">
+                     <patient value="elz-TEST-HWG-PSR-BA2-Complex#XXX_Mutter"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5550"/>
+                  </patient>
+               </patient_partij>
+            </behandel_aanwijzing2>
+            <behandel_aanwijzing2 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5482">
+               <identificatienummer value="520200506"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5574"/>
                <behandel_besluit conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5483"
                                  value="1"
                                  code="0"
@@ -468,7 +558,12 @@
                <behandeling code="5"
                             codeSystem="2.16.840.1.113883.2.4.4.30.62"
                             displayName="Toediening van een bloedproduct"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5575">
+                  <behandeling code="5"
+                               codeSystem="2.16.840.1.113883.2.4.4.30.62"
+                               displayName="Toediening van een bloedproduct"
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5484"/>
+               </behandeling>
                <meest_recente_bespreekdatum value="2020-05-06"
                                             datatype="datetime"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5486"/>
@@ -479,7 +574,7 @@
                </zorg_partij>
                <patient_partij conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5491">
                   <patient conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5492">
-                     <patient value="b04cfd25-623a-4ee0-8cfd-25623aaee09f#XXX_Mutter"
+                     <patient value="elz-TEST-HWG-PSR-BA2-Complex#XXX_Mutter"
                               datatype="reference"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5550"/>
                   </patient>
