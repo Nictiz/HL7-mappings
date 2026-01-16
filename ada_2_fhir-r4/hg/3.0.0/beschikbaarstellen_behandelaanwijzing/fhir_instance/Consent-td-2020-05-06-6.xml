@@ -3,6 +3,9 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentDirective2"/>
    </meta>
+   <identifier>
+      <value value="620200506"/>
+   </identifier>
    <status value="inactive"/>
    <scope>
       <coding>
@@ -18,6 +21,11 @@
          <display value="verrichting met expliciete context"/>
       </coding>
    </category>
+   <patient>
+      <reference value="Patient/patient-XXX-Mutter"/>
+      <type value="Patient"/>
+      <display value="Patient, Franka (Franka) XXX_Mutter"/>
+   </patient>
    <dateTime value="2020-05-06"/>
    <policy>
       <uri value="https://wetten.overheid.nl/"/>
@@ -30,6 +38,34 @@
       <period>
          <end value="2024-12-01"/>
       </period>
+      <actor>
+         <role>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
+               <code value="CONSWIT"/>
+               <display value="consent witness"/>
+            </coding>
+         </role>
+         <reference>
+            <reference value="PractitionerRole/pracrole-UZI-7"/>
+            <type value="PractitionerRole"/>
+            <display value="Healthcare professional (role), Vaste Huisarts 2, Huisarts, Gezondheidscentrum Aesculaap"/>
+         </reference>
+      </actor>
+      <actor>
+         <role>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
+               <code value="CONSENTER"/>
+               <display value="consenter"/>
+            </coding>
+         </role>
+         <reference>
+            <reference value="Patient/patient-XXX-Mutter"/>
+            <type value="Patient"/>
+            <display value="Patient, Franka (Franka) XXX_Mutter"/>
+         </reference>
+      </actor>
       <code>
          <coding>
             <system value="urn:oid:2.16.840.1.113883.2.4.4.30.62"/>
