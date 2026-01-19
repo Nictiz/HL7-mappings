@@ -13,7 +13,7 @@
                                    prefix="mp-"
                                    language="nl-NL"
                                    title="Generated from HL7 FHIR sturen_medicatievoorschrift"
-                                   id="0b15554b-f542-11f0-5572-020000000000">
+                                   id="0a5d3bf9-f542-11f0-1353-020000000000">
          <patient>
             <naamgegevens>
                <initialen value="A."/>
@@ -34,32 +34,34 @@
                       displayName="Man"/>
          </patient>
          <medicamenteuze_behandeling>
-            <identificatie value="MBH_VolgendeBehandelaar-za"
+            <identificatie value="MBH_DosageConsolidation-1"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <medicatieafspraak>
-               <identificatie value="VolgendeBehandelaar-za-MA1"
+               <identificatie value="MBH_DosageConsolidation-1-MA1"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-02T11:32:00+01:00"
+               <registratie_datum_tijd value="2025-12-02T11:32:00+01:00"
                                        datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-02T00:00:00+01:00"
+                  <start_datum_tijd value="2025-12-02T00:00:00+01:00"
                                     datatype="datetime"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="urn-uuid-e912775c-eb1b-11f0-4093-020000000000"
+                  <zorgverlener value="urn-uuid-42ee8b42-f537-11f0-8843-020000000000"
                                 datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-e91278b0-eb1b-11f0-4093-020000000000"
+                  <farmaceutisch_product value="urn-uuid-42ee8bec-f537-11f0-8843-020000000000"
                                          datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
-                  <omschrijving value="1 maal per dag 1 stuk, Oraal"/>
+                  <omschrijving value="gedurende 3 dagen, 1 maal per dag, 's avonds 1 stuk én 2 maal per dag, 's ochtends en 's middags, 2 stuks, daarna gedurende 7 dagen 3 maal per dag 1 stuk. Oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                   displayName="Oraal"/>
                   <doseerinstructie>
+                     <doseerduur value="3"
+                                 unit="dag"/>
                      <volgnummer value="1"/>
                      <dosering>
                         <keerdosis>
@@ -79,53 +81,75 @@
                               <tijdseenheid value="1"
                                             unit="dag"/>
                            </frequentie>
+                           <dagdeel code="3157002"
+                                    displayName="'s avonds"
+                                    codeSystem="2.16.840.1.113883.6.96"/>
                            <adaextension>
                               <timing xmlns="http://hl7.org/fhir">
                                  <repeat>
+                                    <boundsDuration>
+                                       <value value="3"/>
+                                       <unit value="dag"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="d"/>
+                                    </boundsDuration>
                                     <frequency value="1"/>
                                     <period value="1"/>
                                     <periodUnit value="d"/>
+                                    <when value="EVE"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
+                        </toedieningsschema>
+                     </dosering>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
+                           </frequentie>
+                           <dagdeel code="73775008"
+                                    displayName="'s ochtends"
+                                    codeSystem="2.16.840.1.113883.6.96"/>
+                           <dagdeel code="255213009"
+                                    displayName="'s middags"
+                                    codeSystem="2.16.840.1.113883.6.96"/>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <boundsDuration>
+                                       <value value="3"/>
+                                       <unit value="dag"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="d"/>
+                                    </boundsDuration>
+                                    <frequency value="2"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                    <when value="MORN"/>
+                                    <when value="AFT"/>
                                  </repeat>
                               </timing>
                            </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
-               </gebruiksinstructie>
-               <volgende_behandelaar>
-                  <zorgaanbieder value="urn-uuid-e9127838-eb1b-11f0-4093-020000000000"
-                                 datatype="reference"/>
-               </volgende_behandelaar>
-            </medicatieafspraak>
-         </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_VolgendeBehandelaar-zvl"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
-               <identificatie value="VolgendeBehandelaar-zvl-MA1"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2022-12-02T11:32:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2022-12-02T00:00:00+01:00"
-                                    datatype="datetime"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-e912775c-eb1b-11f0-4093-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-e91278b0-eb1b-11f0-4093-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="1 maal per dag 1 stuk, Oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="Oraal"/>
                   <doseerinstructie>
-                     <volgnummer value="1"/>
+                     <doseerduur value="7"
+                                 unit="dag"/>
+                     <volgnummer value="2"/>
                      <dosering>
                         <keerdosis>
                            <aantal>
@@ -139,7 +163,7 @@
                         <toedieningsschema>
                            <frequentie>
                               <aantal>
-                                 <nominale_waarde value="1"/>
+                                 <nominale_waarde value="3"/>
                               </aantal>
                               <tijdseenheid value="1"
                                             unit="dag"/>
@@ -147,7 +171,13 @@
                            <adaextension>
                               <timing xmlns="http://hl7.org/fhir">
                                  <repeat>
-                                    <frequency value="1"/>
+                                    <boundsDuration>
+                                       <value value="7"/>
+                                       <unit value="dag"/>
+                                       <system value="http://unitsofmeasure.org"/>
+                                       <code value="d"/>
+                                    </boundsDuration>
+                                    <frequency value="3"/>
                                     <period value="1"/>
                                     <periodUnit value="d"/>
                                  </repeat>
@@ -157,14 +187,10 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-               <volgende_behandelaar>
-                  <zorgverlener value="urn-uuid-e91277ac-eb1b-11f0-4093-020000000000"
-                                datatype="reference"/>
-               </volgende_behandelaar>
             </medicatieafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-e91278b0-eb1b-11f0-4093-020000000000">
+            <farmaceutisch_product id="urn-uuid-42ee8bec-f537-11f0-8843-020000000000">
                <product_code code="3891"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -175,7 +201,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="ACETYLSALICYLZUUR/PARACETAMOL/COF TAB 250/250/50MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-e912775c-eb1b-11f0-4093-020000000000">
+            <zorgverlener id="urn-uuid-42ee8b42-f537-11f0-8843-020000000000">
                <zorgverlener_identificatienummer value="000001111"
                                                  root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
@@ -200,35 +226,10 @@
                </contactgegevens>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-e91277fc-eb1b-11f0-4093-020000000000"/>
+                                 value="urn-uuid-42ee8b92-f537-11f0-8843-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgverlener id="urn-uuid-e91277ac-eb1b-11f0-4093-020000000000">
-               <zorgverlener_identificatienummer value="000001111"
-                                                 root="2.16.528.1.1007.3.1"/>
-               <naamgegevens>
-                  <voornamen value="Peter"/>
-                  <geslachtsnaam>
-                     <voorvoegsels value="van"/>
-                     <achternaam value="Pulver"/>
-                  </geslachtsnaam>
-               </naamgegevens>
-               <specialisme code="0100"
-                            codeSystem="2.16.840.1.113883.2.4.6.7"
-                            codeSystemName="Vektis AGB-medische specialismen"
-                            codeSystemVersion="2017-12-14T00:00:00"
-                            displayName="Huisartsen, niet nader gespecificeerd"/>
-               <contactgegevens>
-                  <telefoonnummers>
-                     <telefoonnummer value="0101234567"/>
-                  </telefoonnummers>
-               </contactgegevens>
-               <zorgaanbieder>
-                  <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-e9127838-eb1b-11f0-4093-020000000000"/>
-               </zorgaanbieder>
-            </zorgverlener>
-            <zorgaanbieder id="urn-uuid-e91277fc-eb1b-11f0-4093-020000000000">
+            <zorgaanbieder id="urn-uuid-42ee8b92-f537-11f0-8843-020000000000">
                <zorgaanbieder_identificatienummer value="18001111"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Ziekenhuis Abeltje &amp; Co"/>
@@ -241,11 +242,6 @@
                                codeSystem="2.16.840.1.113883.5.1119"
                                displayName="Werkadres"/>
                </adresgegevens>
-            </zorgaanbieder>
-            <zorgaanbieder id="urn-uuid-e9127838-eb1b-11f0-4093-020000000000">
-               <zorgaanbieder_identificatienummer value="00001111"
-                                                  root="2.16.528.1.1007.3.3"/>
-               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_medicatievoorschrift>
