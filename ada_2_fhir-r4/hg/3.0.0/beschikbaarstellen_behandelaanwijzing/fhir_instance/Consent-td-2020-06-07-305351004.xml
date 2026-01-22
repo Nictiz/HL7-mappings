@@ -1,13 +1,10 @@
 <Consent xmlns="http://hl7.org/fhir">
-   <id value="td-2024-12-01-6"/>
+   <id value="td-2020-06-07-305351004"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentDirective2"/>
    </meta>
-   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.SpecificationOther">
-      <valueString value="Alleen nierdialyse indien opgenomen in ziekenhuis"/>
-   </modifierExtension>
    <identifier>
-      <value value="620241201"/>
+      <value value="320200607"/>
    </identifier>
    <status value="active"/>
    <scope>
@@ -25,15 +22,16 @@
       </coding>
    </category>
    <patient>
-      <reference value="Patient/patient-XXX-Mutter"/>
+      <reference value="Patient/patient-van--XXX-vanAnkeren-de-Jong"/>
       <type value="Patient"/>
-      <display value="Patient, Franka (Franka) XXX_Mutter"/>
+      <display value="Patient, Alfred (Alfred) van XXX_vanAnkeren-de Jong"/>
    </patient>
-   <dateTime value="2024-12-01"/>
+   <dateTime value="2020-06-07"/>
    <policy>
       <uri value="https://wetten.overheid.nl/"/>
    </policy>
    <provision>
+      <type value="deny"/>
       <actor>
          <role>
             <coding>
@@ -43,9 +41,9 @@
             </coding>
          </role>
          <reference>
-            <reference value="PractitionerRole/pracrole-UZI-7"/>
+            <reference value="PractitionerRole/pracrole-000001111"/>
             <type value="PractitionerRole"/>
-            <display value="Healthcare professional (role), Vaste Huisarts 2, Huisarts, Gezondheidscentrum Aesculaap"/>
+            <display value="Healthcare professional (role), Peter (Peter) van Pulver, Huisarts, Gezondheidscentrum Aesculaap"/>
          </reference>
       </actor>
       <actor>
@@ -57,16 +55,16 @@
             </coding>
          </role>
          <reference>
-            <reference value="Patient/patient-XXX-Mutter"/>
+            <reference value="Patient/patient-van--XXX-vanAnkeren-de-Jong"/>
             <type value="Patient"/>
-            <display value="Patient, Franka (Franka) XXX_Mutter"/>
+            <display value="Patient, Alfred (Alfred) van XXX_vanAnkeren-de Jong"/>
          </reference>
       </actor>
       <code>
          <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.4.30.62"/>
-            <code value="6"/>
-            <display value="Overige behandeling (in vrije tekst)"/>
+            <system value="http://snomed.info/sct"/>
+            <code value="305351004"/>
+            <display value="opname op intensive care"/>
          </coding>
       </code>
    </provision>

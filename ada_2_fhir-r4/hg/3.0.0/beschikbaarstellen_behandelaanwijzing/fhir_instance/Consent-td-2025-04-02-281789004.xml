@@ -1,12 +1,12 @@
 <Consent xmlns="http://hl7.org/fhir">
-   <id value="td-2020-05-06-5"/>
+   <id value="td-2025-04-02-281789004"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentDirective2"/>
    </meta>
    <identifier>
-      <value value="520200506"/>
+      <value value="720250402"/>
    </identifier>
-   <status value="active"/>
+   <status value="inactive"/>
    <scope>
       <coding>
          <system value="http://terminology.hl7.org/CodeSystem/consentscope"/>
@@ -22,16 +22,22 @@
       </coding>
    </category>
    <patient>
-      <reference value="Patient/patient-XXX-Mutter"/>
+      <reference value="Patient/patient-van--XXX-vanAnkeren-de-Jong"/>
       <type value="Patient"/>
-      <display value="Patient, Franka (Franka) XXX_Mutter"/>
+      <display value="Patient, Alfred (Alfred) van XXX_vanAnkeren-de Jong"/>
    </patient>
-   <dateTime value="2020-05-06"/>
+   <dateTime value="2025-04-02"/>
    <policy>
       <uri value="https://wetten.overheid.nl/"/>
    </policy>
    <provision>
-      <type value="permit"/>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.ReasonForEnding">
+         <valueString value="patiënt is van gedachten veranderd en wil toch antibiotica indien nodig"/>
+      </extension>
+      <type value="deny"/>
+      <period>
+         <end value="2025-07-08"/>
+      </period>
       <actor>
          <role>
             <coding>
@@ -41,9 +47,9 @@
             </coding>
          </role>
          <reference>
-            <reference value="PractitionerRole/pracrole-UZI-7"/>
+            <reference value="PractitionerRole/pracrole-000001111"/>
             <type value="PractitionerRole"/>
-            <display value="Healthcare professional (role), Vaste Huisarts 2, Huisarts, Gezondheidscentrum Aesculaap"/>
+            <display value="Healthcare professional (role), Peter (Peter) van Pulver, Huisarts, Gezondheidscentrum Aesculaap"/>
          </reference>
       </actor>
       <actor>
@@ -55,16 +61,16 @@
             </coding>
          </role>
          <reference>
-            <reference value="Patient/patient-XXX-Mutter"/>
+            <reference value="Patient/patient-van--XXX-vanAnkeren-de-Jong"/>
             <type value="Patient"/>
-            <display value="Patient, Franka (Franka) XXX_Mutter"/>
+            <display value="Patient, Alfred (Alfred) van XXX_vanAnkeren-de Jong"/>
          </reference>
       </actor>
       <code>
          <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.4.30.62"/>
-            <code value="5"/>
-            <display value="Toediening van een bloedproduct"/>
+            <system value="http://snomed.info/sct"/>
+            <code value="281789004"/>
+            <display value="antibiotische therapie"/>
          </coding>
       </code>
    </provision>

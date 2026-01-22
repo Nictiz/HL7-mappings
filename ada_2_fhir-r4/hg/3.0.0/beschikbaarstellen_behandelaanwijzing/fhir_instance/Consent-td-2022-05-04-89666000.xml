@@ -1,16 +1,13 @@
 <Consent xmlns="http://hl7.org/fhir">
-   <id value="td-2024-11-12-4"/>
+   <id value="td-2022-05-04-89666000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentDirective2"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
-      <valueString value="Vastgelegd met contactpersoon 2"/>
+      <valueString value="Patiënt heeft besloten dat hij geen CPR wil. Bij deze afspraak was ook Contactpersoon 1 aanwezig."/>
    </extension>
-   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.SpecificationOther">
-      <valueString value="Kortdurend bij een omkeerbare oorzaak (zoals longontsteking), niet bij chronisch respiratoir falen of bij progressieve neurologische aandoening."/>
-   </modifierExtension>
    <identifier>
-      <value value="420241112"/>
+      <value value="120220504"/>
    </identifier>
    <status value="active"/>
    <scope>
@@ -27,11 +24,17 @@
          <display value="verrichting met expliciete context"/>
       </coding>
    </category>
-   <dateTime value="2024-11-12"/>
+   <patient>
+      <reference value="Patient/patient-van--XXX-vanAnkeren-de-Jong"/>
+      <type value="Patient"/>
+      <display value="Patient, Alfred (Alfred) van XXX_vanAnkeren-de Jong"/>
+   </patient>
+   <dateTime value="2022-05-04"/>
    <policy>
       <uri value="https://wetten.overheid.nl/"/>
    </policy>
    <provision>
+      <type value="deny"/>
       <actor>
          <role>
             <coding>
@@ -50,21 +53,35 @@
          <role>
             <coding>
                <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
+               <code value="CONSENTER"/>
+               <display value="consenter"/>
+            </coding>
+         </role>
+         <reference>
+            <reference value="Patient/patient-van--XXX-vanAnkeren-de-Jong"/>
+            <type value="Patient"/>
+            <display value="Patient, Alfred (Alfred) van XXX_vanAnkeren-de Jong"/>
+         </reference>
+      </actor>
+      <actor>
+         <role>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
                <code value="RESPRSN"/>
                <display value="responsible party"/>
             </coding>
          </role>
          <reference>
-            <reference value="RelatedPerson/cp-Witteveen"/>
+            <reference value="RelatedPerson/cp-Janssen-de--Vries"/>
             <type value="RelatedPerson"/>
-            <display value="Contact person, Els (Els) Witteveen"/>
+            <display value="Contact person, Piet (Pietje) Janssen-de Vries"/>
          </reference>
       </actor>
       <code>
          <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.4.30.62"/>
-            <code value="4"/>
-            <display value="Kunstmatige beademing"/>
+            <system value="http://snomed.info/sct"/>
+            <code value="89666000"/>
+            <display value="Cardiopulmonaire resuscitatie (Reanimatie)"/>
          </coding>
       </code>
    </provision>

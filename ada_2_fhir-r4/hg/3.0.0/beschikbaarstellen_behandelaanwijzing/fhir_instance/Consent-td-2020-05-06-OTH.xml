@@ -1,12 +1,12 @@
 <Consent xmlns="http://hl7.org/fhir">
-   <id value="td-2024-12-01-3"/>
+   <id value="td-2020-05-06-OTH"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentDirective2"/>
    </meta>
    <identifier>
-      <value value="320241201"/>
+      <value value="620200506"/>
    </identifier>
-   <status value="active"/>
+   <status value="inactive"/>
    <scope>
       <coding>
          <system value="http://terminology.hl7.org/CodeSystem/consentscope"/>
@@ -26,12 +26,18 @@
       <type value="Patient"/>
       <display value="Patient, Franka (Franka) XXX_Mutter"/>
    </patient>
-   <dateTime value="2024-12-01"/>
+   <dateTime value="2020-05-06"/>
    <policy>
       <uri value="https://wetten.overheid.nl/"/>
    </policy>
    <provision>
-      <type value="deny"/>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.ReasonForEnding">
+         <valueString value="Behandelbesluit herzien"/>
+      </extension>
+      <type value="permit"/>
+      <period>
+         <end value="2024-12-01"/>
+      </period>
       <actor>
          <role>
             <coding>
@@ -61,11 +67,9 @@
          </reference>
       </actor>
       <code>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.4.30.62"/>
-            <code value="3"/>
-            <display value="Opname op intensive care"/>
-         </coding>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+            <valueCode value="OTH"/>
+         </extension>
       </code>
    </provision>
 </Consent>

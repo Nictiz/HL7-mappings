@@ -1,15 +1,12 @@
 <Consent xmlns="http://hl7.org/fhir">
-   <id value="td-2024-12-01-1"/>
+   <id value="td-2020-05-06-40617009"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentDirective2"/>
    </meta>
-   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.SpecificationOther">
-      <valueString value="Alleen reanimatie tijdens opname in ziekenhuis"/>
-   </modifierExtension>
    <identifier>
-      <value value="120241201"/>
+      <value value="420200506"/>
    </identifier>
-   <status value="active"/>
+   <status value="inactive"/>
    <scope>
       <coding>
          <system value="http://terminology.hl7.org/CodeSystem/consentscope"/>
@@ -29,11 +26,15 @@
       <type value="Patient"/>
       <display value="Patient, Franka (Franka) XXX_Mutter"/>
    </patient>
-   <dateTime value="2024-12-01"/>
+   <dateTime value="2020-05-06"/>
    <policy>
       <uri value="https://wetten.overheid.nl/"/>
    </policy>
    <provision>
+      <type value="permit"/>
+      <period>
+         <end value="2024-12-01"/>
+      </period>
       <actor>
          <role>
             <coding>
@@ -64,9 +65,9 @@
       </actor>
       <code>
          <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.4.30.62"/>
-            <code value="1"/>
-            <display value="Cardiopulmonaire resuscitatie (Reanimatie)"/>
+            <system value="http://snomed.info/sct"/>
+            <code value="40617009"/>
+            <display value="beademing"/>
          </coding>
       </code>
    </provision>
