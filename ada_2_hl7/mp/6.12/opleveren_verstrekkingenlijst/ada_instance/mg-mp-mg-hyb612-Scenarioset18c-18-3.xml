@@ -3,8 +3,8 @@
    <meta status="new"
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
-         creation-date="2025-04-11T13:15:47.773Z"
-         last-update-date="2025-08-14T15:09:46.152Z"/>
+         creation-date="2026-01-30T15:25:21.103Z"
+         last-update-date="2026-01-30T15:25:21.103Z"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -15,7 +15,7 @@
                                             language="nl-NL"
                                             title="TEST Medicatiegegevens Scenarioset 18c (MP9 Hybride)"
                                             desc="XIS toont aan dat de MP6.12 verstrekking (TA) met generieke MBH mogelijk gerelateerd is aan de MA in de specifieke MBH, zodat de eindgebruiker makkelijk kan evalueren en reconciliëren."
-                                            id="mg-mp-mg-hybmp9-TA-Scenarioset18c-18-3">
+                                            id="mg-mp-mg-hyb612-Scenarioset18c-18-3">
          <scenario-nr value="18.3"
                       conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2.1.1"/>
          <systeemrol conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.6"
@@ -54,7 +54,6 @@
                       codeSystem="2.16.840.1.113883.5.1"
                       displayName="Man"/>
          </patient>
-         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_hybmp9_duplicMBHspec_MA_TA612_verPRK-->
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.61.2-26298-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
             <identificatie value="26298"
@@ -139,6 +138,37 @@
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.565"/>
                </relatie_medicatieafspraak>
             </toedieningsafspraak>
+            <medicatieverstrekking comment=""
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.346">
+               <identificatie value="MBH_hybmp9_duplicMBHgen_MA_TA612_verPRK_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.361"/>
+               <medicatieverstrekkings_datum_tijd value="2023-12-25T08:00:00+01:00"
+                                                  datatype="datetime"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.353"/>
+               <verstrekker comment=""
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.347">
+                  <zorgaanbieder value="APOTHEEK_DE_GULLE_GAPER"
+                                 datatype="reference"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.348"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment=""
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.358">
+                  <aantal value="14"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.700"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="Stuks"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.701"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel comment=""
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.351">
+                  <farmaceutisch_product value="HPK_CETIRIZINE_2497905"
+                                         datatype="reference"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.352"/>
+               </verstrekt_geneesmiddel>
+            </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <bouwstenen comment=""
                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">
