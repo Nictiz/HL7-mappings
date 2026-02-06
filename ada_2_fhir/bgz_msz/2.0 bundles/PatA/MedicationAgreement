@@ -1,0 +1,311 @@
+{
+  "resourceType": "Bundle",
+  "id": "e4ac6c76-47a5-47d7-8955-bb44f0496d60",
+  "meta": {
+    "lastUpdated": "2026-02-05T12:56:41.991+00:00"
+  },
+  "type": "searchset",
+  "total": 2,
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/MedicationRequest?_include\u003dMedicationRequest%3Amedication\u0026_revinclude\u003dProvenance%3Atarget\u0026category\u003dhttp%3A%2F%2Fsnomed.info%2Fsct%7C16076005\u0026patient\u003dPatient%2FJAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN\u0026patient.identifier\u003dhttp%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999909587"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/MedicationRequest/zib-MedicationAgreement-msz-2b9f02d2-6b17-11ec-0000-2",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "zib-MedicationAgreement-msz-2b9f02d2-6b17-11ec-0000-2",
+        "meta": {
+          "versionId": "95",
+          "lastUpdated": "2026-02-03T10:55:54.639+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eMedicatieafspraak. Subject: Jan Adrianus J.A.H. Jan van Houten. Categorie: \u003cspan title\u003d\"Prescription (procedure) (16076005 - SNOMED CT)\"\u003ePrescription (procedure)\u003c/span\u003e, \u003cspan style\u003d\"display: block;\"\u003eIntentie: aanvraag\u003c/span\u003e\n          \u003cspan style\u003d\"display: block;\"\u003eAangevraagd door: Beendokter B. Beendokter Aangenaam\u003c/span\u003e\n        \u003c/caption\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eMedicatie\u003c/th\u003e\n            \u003ctd\u003eTRAMADOL CAPSULE 50MG\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eGemaakt\u003c/th\u003e\n            \u003ctd\u003e2025-12-19\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eGebruiksduur\u003c/th\u003e\n            \u003ctd\u003e15 dag\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eDoseerinstructie\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cdiv\u003eVolgnummer: 1\u003c/div\u003e\n              \u003cdiv\u003eTekst: Vanaf \u0026lt;T-45D\u0026gt;, 15 dagen, 3 maal per dag 1 stuk, oraal, met voldoende water innemen, bij voorkeur bij maaltijd innemen.\u003c/div\u003e\n              \u003cdiv\u003eInstructie: \u003cul\u003e\n                  \u003cli\u003emet voldoende water innemen\u003c/li\u003e\n                  \u003cli\u003ebij voorkeur bij maaltijd innemen\u003c/li\u003e\n                \u003c/ul\u003e\n              \u003c/div\u003e\n              \u003cdiv\u003eTiming: \u003cdiv\u003e3 maal per dag\u003c/div\u003e\n              \u003c/div\u003e\n              \u003cdiv\u003eToedieningsweg: \u003cspan title\u003d\"Oraal (9 - G-Standaard thesaurus subtabel 0007)\"\u003eOraal\u003c/span\u003e\n              \u003c/div\u003e\n              \u003cdiv\u003eDosering: 1 STUK\u003c/div\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "extension": [
+          {
+            "url": "http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration",
+            "valueDuration": {
+              "value": 15,
+              "unit": "dag",
+              "system": "http://unitsofmeasure.org",
+              "code": "d"
+            }
+          }
+        ],
+        "intent": "order",
+        "category": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "16076005",
+              "display": "Prescription (procedure)"
+            }
+          ],
+          "text": "Medicatieafspraak"
+        },
+        "medicationReference": {
+          "reference": "Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-35475",
+          "display": "TRAMADOL CAPSULE 50MG"
+        },
+        "subject": {
+          "reference": "Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN",
+          "display": "Jan Adrianus J.A.H. Jan van Houten"
+        },
+        "authoredOn": "2025-12-19",
+        "requester": {
+          "extension": [
+            {
+              "url": "http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole",
+              "valueReference": {
+                "reference": "PractitionerRole/nl-core-practitionerrole-msz-1000000301-032",
+                "display": "Beendokter B. Beendokter Aangenaam || Orthopedisch chirurg"
+              }
+            }
+          ],
+          "agent": {
+            "reference": "Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000003",
+            "display": "Beendokter B. Beendokter Aangenaam"
+          }
+        },
+        "dosageInstruction": [
+          {
+            "sequence": 1,
+            "text": "Vanaf \u003cT-45D\u003e, 15 dagen, 3 maal per dag 1 stuk, oraal, met voldoende water innemen, bij voorkeur bij maaltijd innemen.",
+            "additionalInstruction": [
+              {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/v3/NullFlavor",
+                    "code": "OTH",
+                    "display": "overig"
+                  }
+                ],
+                "text": "met voldoende water innemen"
+              },
+              {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/v3/NullFlavor",
+                    "code": "OTH",
+                    "display": "overig"
+                  }
+                ],
+                "text": "bij voorkeur bij maaltijd innemen"
+              }
+            ],
+            "timing": {
+              "repeat": {
+                "frequency": 3,
+                "period": 1,
+                "periodUnit": "d"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "urn:oid:2.16.840.1.113883.2.4.4.9",
+                  "code": "9",
+                  "display": "Oraal"
+                }
+              ]
+            },
+            "doseQuantity": {
+              "value": 1,
+              "unit": "STUK",
+              "system": "urn:oid:2.16.840.1.113883.2.4.4.1.900.2",
+              "code": "ST"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/MedicationRequest/zib-MedicationAgreement-msz-c359e452-6b21-11ec-0000-2",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "zib-MedicationAgreement-msz-c359e452-6b21-11ec-0000-2",
+        "meta": {
+          "versionId": "95",
+          "lastUpdated": "2026-02-03T10:56:01.962+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eMedicatieafspraak. Subject: Jan Adrianus J.A.H. Jan van Houten. Categorie: \u003cspan title\u003d\"Prescription (procedure) (16076005 - SNOMED CT)\"\u003ePrescription (procedure)\u003c/span\u003e, \u003cspan style\u003d\"display: block;\"\u003eIntentie: aanvraag\u003c/span\u003e\n          \u003cspan style\u003d\"display: block;\"\u003eAangevraagd door: Beendokter B. Beendokter Aangenaam\u003c/span\u003e\n        \u003c/caption\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eMedicatie\u003c/th\u003e\n            \u003ctd\u003ePARACETAMOL TABLET 500MG\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eGemaakt\u003c/th\u003e\n            \u003ctd\u003e2025-12-19\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eReden\u003c/th\u003e\n            \u003ctd/\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eGebruiksduur\u003c/th\u003e\n            \u003ctd\u003e15 dag\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eDoseerinstructie\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cdiv\u003eVolgnummer: 1\u003c/div\u003e\n              \u003cdiv\u003eTekst: Vanaf \u0026lt;T-45D\u0026gt;, 15 dagen, 4 maal per dag 2 stuk, oraal, met voldoende water innemen\u003c/div\u003e\n              \u003cdiv\u003eInstructie: met voldoende water innemen.\u003c/div\u003e\n              \u003cdiv\u003eTiming: \u003cdiv\u003e4 maal per dag\u003c/div\u003e\n              \u003c/div\u003e\n              \u003cdiv\u003eToedieningsweg: \u003cspan title\u003d\"Oraal (9 - G-Standaard thesaurus subtabel 0007)\"\u003eOraal\u003c/span\u003e\n              \u003c/div\u003e\n              \u003cdiv\u003eDosering: 2 STUK\u003c/div\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "extension": [
+          {
+            "url": "http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration",
+            "valueDuration": {
+              "value": 15,
+              "unit": "dag",
+              "system": "http://unitsofmeasure.org",
+              "code": "d"
+            }
+          }
+        ],
+        "intent": "order",
+        "category": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "16076005",
+              "display": "Prescription (procedure)"
+            }
+          ],
+          "text": "Medicatieafspraak"
+        },
+        "medicationReference": {
+          "reference": "Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-67903",
+          "display": "PARACETAMOL TABLET 500MG"
+        },
+        "subject": {
+          "reference": "Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN",
+          "display": "Jan Adrianus J.A.H. Jan van Houten"
+        },
+        "authoredOn": "2025-12-19",
+        "requester": {
+          "extension": [
+            {
+              "url": "http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole",
+              "valueReference": {
+                "reference": "PractitionerRole/nl-core-practitionerrole-msz-1000000301-032",
+                "display": "Beendokter B. Beendokter Aangenaam || Orthopedisch chirurg"
+              }
+            }
+          ],
+          "agent": {
+            "reference": "Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000003",
+            "display": "Beendokter B. Beendokter Aangenaam"
+          }
+        },
+        "reasonReference": [
+          {
+            "reference": "Condition/zib-Problem-msz-4c1fb8c9-6b65-11ec-0000-2"
+          }
+        ],
+        "dosageInstruction": [
+          {
+            "sequence": 1,
+            "text": "Vanaf \u003cT-45D\u003e, 15 dagen, 4 maal per dag 2 stuk, oraal, met voldoende water innemen",
+            "additionalInstruction": [
+              {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/v3/NullFlavor",
+                    "code": "OTH",
+                    "display": "overig"
+                  }
+                ],
+                "text": "met voldoende water innemen."
+              }
+            ],
+            "timing": {
+              "repeat": {
+                "frequency": 4,
+                "period": 1,
+                "periodUnit": "d"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "urn:oid:2.16.840.1.113883.2.4.4.9",
+                  "code": "9",
+                  "display": "Oraal"
+                }
+              ]
+            },
+            "doseQuantity": {
+              "value": 2,
+              "unit": "STUK",
+              "system": "urn:oid:2.16.840.1.113883.2.4.4.1.900.2",
+              "code": "ST"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-35475",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "zib-Product-msz-2-16-840-1-113883-2-4-4-10-35475",
+        "meta": {
+          "versionId": "3",
+          "lastUpdated": "2025-12-15T09:38:01.579+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-Product"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eCode\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cspan title\u003d\"TRAMADOL CAPSULE 50MG (35475 - G-Standaard PRK)\"\u003eTRAMADOL CAPSULE 50MG\u003c/span\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:2.16.840.1.113883.2.4.4.10",
+              "code": "35475",
+              "display": "TRAMADOL CAPSULE 50MG"
+            }
+          ]
+        }
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-67903",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "zib-Product-msz-2-16-840-1-113883-2-4-4-10-67903",
+        "meta": {
+          "versionId": "3",
+          "lastUpdated": "2025-12-15T03:47:57.533+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-Product"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eCode\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cspan title\u003d\"PARACETAMOL TABLET 500MG (2194 - G-Standaard GPK)\"\u003ePARACETAMOL TABLET 500MG\u003c/span\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:2.16.840.1.113883.2.4.4.1",
+              "code": "2194",
+              "display": "PARACETAMOL TABLET 500MG"
+            },
+            {
+              "system": "urn:oid:2.16.840.1.113883.2.4.4.10",
+              "code": "67903",
+              "display": "PARACETAMOL 500MG TABLET"
+            }
+          ]
+        }
+      },
+      "search": {
+        "mode": "include"
+      }
+    }
+  ]
+}

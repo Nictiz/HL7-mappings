@@ -1,0 +1,179 @@
+{
+  "resourceType": "Bundle",
+  "id": "23de1b4a-034c-4d54-8fc8-d0e32f993abc",
+  "meta": {
+    "lastUpdated": "2026-02-05T12:57:04.298+00:00"
+  },
+  "type": "searchset",
+  "total": 2,
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Encounter?_revinclude\u003dProvenance%3Atarget\u0026patient\u003dPatient%2FJAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN\u0026patient.identifier\u003dhttp%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999909587"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Encounter/zib-Encounter-msz-BGZ-MSZ-PATA-ENCOUNTER1T-45D1600",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "zib-Encounter-msz-BGZ-MSZ-PATA-ENCOUNTER1T-45D1600",
+        "meta": {
+          "versionId": "55",
+          "lastUpdated": "2026-02-03T10:54:41.887+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eContact. Subject: Jan Adrianus J.A.H. Jan van Houten. Status: voltooid\u003c/caption\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eType contact\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cdiv\u003e\n                \u003cspan title\u003d\"SEH (EMER - v3/ActCode)\"\u003eSEH\u003c/span\u003e\n              \u003c/div\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003ePeriode\u003c/th\u003e\n            \u003ctd\u003e2025-12-19T16:00:00+02:00 - 2025-12-19T19:15:00+02:00\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eProbleem/Verrichting\u003c/th\u003e\n            \u003ctd\u003etraumatische huidscheur\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eParticipant\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cdiv\u003eBeendokter B. Beendokter Aangenaam || Orthopedisch chirurg\u003c/div\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eZorgaanbieder\u003c/th\u003e\n            \u003ctd\u003eZiekenhuis de Aandacht\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eOpnamegegevens\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cul\u003e\n                \u003cli\u003eOpname vanuit: Openbare weg, motorongeluk\u003c/li\u003e\n              \u003c/ul\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "status": "finished",
+        "class": {
+          "extension": [
+            {
+              "url": "http://nictiz.nl/fhir/StructureDefinition/code-specification",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/v3/ActCode",
+                    "code": "EMER",
+                    "display": "SEH"
+                  }
+                ]
+              }
+            }
+          ],
+          "system": "http://hl7.org/fhir/v3/ActCode",
+          "code": "EMER",
+          "display": "SEH"
+        },
+        "subject": {
+          "reference": "Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN",
+          "display": "Jan Adrianus J.A.H. Jan van Houten"
+        },
+        "participant": [
+          {
+            "individual": {
+              "extension": [
+                {
+                  "url": "http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference",
+                  "valueReference": {
+                    "reference": "PractitionerRole/nl-core-practitionerrole-msz-1000000301-032",
+                    "display": "Beendokter B. Beendokter Aangenaam || Orthopedisch chirurg"
+                  }
+                }
+              ],
+              "reference": "Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000003",
+              "display": "Beendokter B. Beendokter Aangenaam"
+            }
+          }
+        ],
+        "period": {
+          "start": "2025-12-19T16:00:00+02:00",
+          "end": "2025-12-19T19:15:00+02:00"
+        },
+        "diagnosis": [
+          {
+            "condition": {
+              "reference": "Condition/zib-Problem-msz-f8e1d2c9-6aff-11ec-0000-2",
+              "display": "traumatische huidscheur"
+            }
+          }
+        ],
+        "hospitalization": {
+          "admitSource": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/v3/NullFlavor",
+                "code": "OTH",
+                "display": "Overig"
+              }
+            ],
+            "text": "Openbare weg, motorongeluk"
+          }
+        },
+        "serviceProvider": {
+          "reference": "Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000002",
+          "display": "Ziekenhuis de Aandacht"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Encounter/zib-Encounter-msz-BGZ-MSZ-PATA-ENCOUNTER2T-45D1915",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "zib-Encounter-msz-BGZ-MSZ-PATA-ENCOUNTER2T-45D1915",
+        "meta": {
+          "versionId": "58",
+          "lastUpdated": "2026-02-03T10:54:43.385+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eContact. Subject: Jan Adrianus J.A.H. Jan van Houten. Status: voltooid\u003c/caption\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eType contact\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cdiv\u003e\n                \u003cspan title\u003d\"Klinisch (IMP - v3/ActCode)\"\u003eKlinisch\u003c/span\u003e\n              \u003c/div\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003ePeriode\u003c/th\u003e\n            \u003ctd\u003e2025-12-19T19:15:00+02:00 - 2025-12-21T10:00:00+02:00\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eProbleem/Verrichting\u003c/th\u003e\n            \u003ctd\u003eVerrichtingtype: operatie met gebruik van externe fixateur\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eZorgaanbieder\u003c/th\u003e\n            \u003ctd\u003eZiekenhuis de Aandacht\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eOpnamegegevens\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cul\u003e\n                \u003cli\u003eOntslagwijze: \u003cspan title\u003d\"Ander ziekenhuis (22232009 - SNOMED CT)\"\u003eAnder ziekenhuis\u003c/span\u003e\n                \u003c/li\u003e\n              \u003c/ul\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "status": "finished",
+        "class": {
+          "extension": [
+            {
+              "url": "http://nictiz.nl/fhir/StructureDefinition/code-specification",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/v3/ActCode",
+                    "code": "IMP",
+                    "display": "Klinisch"
+                  }
+                ]
+              }
+            }
+          ],
+          "system": "http://hl7.org/fhir/v3/ActCode",
+          "code": "IMP",
+          "display": "Klinisch"
+        },
+        "subject": {
+          "reference": "Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN",
+          "display": "Jan Adrianus J.A.H. Jan van Houten"
+        },
+        "period": {
+          "start": "2025-12-19T19:15:00+02:00",
+          "end": "2025-12-21T10:00:00+02:00"
+        },
+        "diagnosis": [
+          {
+            "condition": {
+              "reference": "Procedure/zib-Procedure-msz-ec9ba309-6add-11ec-0000-2",
+              "display": "Verrichtingtype: operatie met gebruik van externe fixateur"
+            }
+          }
+        ],
+        "hospitalization": {
+          "dischargeDisposition": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "22232009",
+                "display": "Ander ziekenhuis"
+              }
+            ]
+          }
+        },
+        "serviceProvider": {
+          "reference": "Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000002",
+          "display": "Ziekenhuis de Aandacht"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    }
+  ]
+}

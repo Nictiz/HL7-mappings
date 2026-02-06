@@ -1,0 +1,92 @@
+{
+  "resourceType": "Bundle",
+  "id": "c3698281-f7ee-460f-9875-191eb19d3986",
+  "meta": {
+    "lastUpdated": "2026-02-05T12:56:54.903+00:00"
+  },
+  "type": "searchset",
+  "total": 1,
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Observation?_revinclude\u003dProvenance%3Atarget\u0026code\u003dhttp%3A%2F%2Floinc.org%7C29463-7\u0026patient\u003dPatient%2FJAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN\u0026patient.identifier\u003dhttp%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999909587"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Observation/zib-BodyWeight-msz-5b482919-6b6d-11ec-0000-2",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "zib-BodyWeight-msz-5b482919-6b6d-11ec-0000-2",
+        "meta": {
+          "versionId": "95",
+          "lastUpdated": "2026-02-03T10:57:21.705+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-BodyWeight"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eObservatie/bepaling. Subject: Jan Adrianus J.A.H. Jan van Houten. Categorie: \u003cspan title\u003d\"Vital Signs (vital-signs - observation-category)\"\u003eVital Signs\u003c/span\u003e, Status: definitief\u003c/caption\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eBepalingdatum/tijd\u003c/th\u003e\n            \u003ctd\u003e2025-12-19\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eCode\u003c/th\u003e\n            \u003cth\u003eWaarde\u003c/th\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003ctd\u003e\n              \u003cspan title\u003d\"Lichaamsgewicht [massa] in ^patiënt (29463-7 - LOINC)\"\u003eLichaamsgewicht [massa] in ^patiënt\u003c/span\u003e\n            \u003c/td\u003e\n            \u003ctd\u003e86 kg\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003ctd\u003e\n              \u003cspan title\u003d\"Clothing worn during measure (8352-7 - LOINC)\"\u003eClothing worn during measure\u003c/span\u003e\n            \u003c/td\u003e\n            \u003ctd\u003e\n              \u003cspan title\u003d\"Volledig gekleed, inclusief schoenen (FULL - 2.16.840.1.113883.2.4.3.11.60.40.4.8.1)\"\u003eVolledig gekleed, inclusief schoenen\u003c/span\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Lichaamsgewicht [massa] in ^patiënt"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN",
+          "display": "Jan Adrianus J.A.H. Jan van Houten"
+        },
+        "effectiveDateTime": "2025-12-19",
+        "valueQuantity": {
+          "value": 86,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8352-7",
+                  "display": "Clothing worn during measure"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.8.1",
+                  "code": "FULL",
+                  "display": "Volledig gekleed, inclusief schoenen"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    }
+  ]
+}

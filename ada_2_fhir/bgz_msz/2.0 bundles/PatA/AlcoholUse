@@ -1,0 +1,84 @@
+{
+  "resourceType": "Bundle",
+  "id": "7e587593-0731-4882-9df6-21e6cd8f4b96",
+  "meta": {
+    "lastUpdated": "2026-02-05T12:56:27.464+00:00"
+  },
+  "type": "searchset",
+  "total": 1,
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Observation?_revinclude\u003dProvenance%3Atarget\u0026code\u003dhttp%3A%2F%2Fsnomed.info%2Fsct%7C228273003\u0026patient\u003dPatient%2FJAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN\u0026patient.identifier\u003dhttp%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999909587"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Observation/zib-AlcoholUse-msz-f68a62cf-6aeb-11ec-0000-2",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "zib-AlcoholUse-msz-f68a62cf-6aeb-11ec-0000-2",
+        "meta": {
+          "versionId": "94",
+          "lastUpdated": "2026-02-03T10:57:08.618+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-AlcoholUse"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eObservatie/bepaling. Subject: Jan Adrianus J.A.H. Jan van Houten. Status: definitief\u003c/caption\u003e\n        \u003ctfoot\u003e\n          \u003ctr\u003e\n            \u003ctd colspan\u003d\"2\"\u003eflesje bier\u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tfoot\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eBepalingdatum/tijd\u003c/th\u003e\n            \u003ctd\u003eVanaf 1980\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eCode\u003c/th\u003e\n            \u003cth\u003eWaarde\u003c/th\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003ctd\u003e\n              \u003cspan title\u003d\"bevinding betreffende alcoholgebruik (228273003 - SNOMED CT)\"\u003ebevinding betreffende alcoholgebruik\u003c/span\u003e\n            \u003c/td\u003e\n            \u003ctd\u003e\n              \u003cspan title\u003d\"Drinkt alcohol (219006 - SNOMED CT)\"\u003eDrinkt alcohol\u003c/span\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003ctd\u003e\n              \u003cspan title\u003d\"inname van alcohol (160573003 - SNOMED CT)\"\u003einname van alcohol\u003c/span\u003e\n            \u003c/td\u003e\n            \u003ctd\u003e1 /d\u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "228273003",
+              "display": "bevinding betreffende alcoholgebruik"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN",
+          "display": "Jan Adrianus J.A.H. Jan van Houten"
+        },
+        "effectivePeriod": {
+          "start": "1980"
+        },
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "219006",
+              "display": "Drinkt alcohol"
+            }
+          ]
+        },
+        "comment": "flesje bier",
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "160573003",
+                  "display": "inname van alcohol"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 1,
+              "unit": "/d",
+              "system": "http://unitsofmeasure.org",
+              "code": "/d"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    }
+  ]
+}
