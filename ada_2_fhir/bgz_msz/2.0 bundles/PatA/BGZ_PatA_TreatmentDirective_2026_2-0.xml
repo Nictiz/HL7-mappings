@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bundle xmlns="http://hl7.org/fhir">
+    <id value="70de3118-c94f-4707-82f0-707f2e952a2e"/>
+    <meta>
+        <lastUpdated value="2026-02-05T12:56:12.216+00:00"/>
+    </meta>
+    <type value="searchset"/>
+    <total value="1"/>
+    <link>
+        <relation value="self"/>
+        <url value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Consent?_revinclude=Provenance%3Atarget&amp;category=http%3A%2F%2Fsnomed.info%2Fsct%7C11291000146105&amp;patient=Patient%2FJAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN&amp;patient.identifier=http%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999909587"/>
+    </link>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Consent/zib-TreatmentDirective-msz-b8dec329-6b1f-11ec-0000-2"/>
+        <resource>
+            <Consent>
+                <id value="zib-TreatmentDirective-msz-b8dec329-6b1f-11ec-0000-2"/>
+                <meta>
+                    <versionId value="98"/>
+                    <lastUpdated value="2026-02-03T10:54:11.765+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <caption>
+                                Toestemming. Patiënt: Jan Adrianus J.A.H. Jan van Houten. Categorie:
+                                <span title="behandelaanwijzing (11291000146105 - SNOMED CT)">
+                                    behandelaanwijzing
+                                </span>
+                                , Status: actief
+                            </caption>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Geverifieerd
+                                    </th>
+                                    <td>
+                                        ja - 2025-12-19 -
+                                        <span title="Patiënt (116154003 - SNOMED CT)">
+                                            Patiënt
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        MRI
+                                    </th>
+                                    <td>
+                                        <span title="Ja, maar met beperkingen (JA_MAAR - 2.16.840.1.113883.2.4.3.11.60.40.4)">
+                                            Ja, maar met beperkingen
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Niet toegestaan tenzij
+                                    </th>
+                                    <td>
+                                        <div>
+                                            <b>
+                                                Behandelrestrictie
+                                            </b>
+                                            <div>
+                                                Eerst overleg met de partner.
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Bron
+                                    </th>
+                                    <td>
+                                        Wilsverklaring: Levenswensverklaring
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-Verification">
+                    <extension url="Verified">
+                        <valueBoolean value="true"/>
+                    </extension>
+                    <extension url="VerifiedWith">
+                        <valueCodeableConcept>
+                            <coding>
+                                <system value="http://snomed.info/sct"/>
+                                <code value="116154003"/>
+                                <display value="Patiënt"/>
+                            </coding>
+                        </valueCodeableConcept>
+                    </extension>
+                    <extension url="VerificationDate">
+                        <valueDateTime value="2025-12-19"/>
+                    </extension>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-Treatment">
+                    <valueCodeableConcept>
+                        <coding>
+                            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+                            <code value="OTH"/>
+                            <display value="Anders"/>
+                        </coding>
+                        <text value="MRI"/>
+                    </valueCodeableConcept>
+                </extension>
+                <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-TreatmentPermitted">
+                    <valueCodeableConcept>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4"/>
+                            <code value="JA_MAAR"/>
+                            <display value="Ja, maar met beperkingen"/>
+                        </coding>
+                    </valueCodeableConcept>
+                </modifierExtension>
+                <status value="active"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="11291000146105"/>
+                        <display value="behandelaanwijzing"/>
+                    </coding>
+                </category>
+                <patient>
+                    <reference value="Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN"/>
+                    <display value="Jan Adrianus J.A.H. Jan van Houten"/>
+                </patient>
+                <sourceReference>
+                    <reference value="Consent/zib-AdvanceDirective-msz-9297ac71-6b2e-11ec-0000-2"/>
+                    <display value="Wilsverklaring: Levenswensverklaring"/>
+                </sourceReference>
+                <policy>
+                    <uri value="http://wetten.overheid.nl/"/>
+                </policy>
+            </Consent>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+</Bundle>

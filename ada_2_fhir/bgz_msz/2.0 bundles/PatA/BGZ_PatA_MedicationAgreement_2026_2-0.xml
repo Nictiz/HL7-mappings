@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bundle xmlns="http://hl7.org/fhir">
+    <id value="e4ac6c76-47a5-47d7-8955-bb44f0496d60"/>
+    <meta>
+        <lastUpdated value="2026-02-05T12:56:41.991+00:00"/>
+    </meta>
+    <type value="searchset"/>
+    <total value="2"/>
+    <link>
+        <relation value="self"/>
+        <url value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/MedicationRequest?_include=MedicationRequest%3Amedication&amp;_revinclude=Provenance%3Atarget&amp;category=http%3A%2F%2Fsnomed.info%2Fsct%7C16076005&amp;patient=Patient%2FJAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN&amp;patient.identifier=http%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999909587"/>
+    </link>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/MedicationRequest/zib-MedicationAgreement-msz-2b9f02d2-6b17-11ec-0000-2"/>
+        <resource>
+            <MedicationRequest>
+                <id value="zib-MedicationAgreement-msz-2b9f02d2-6b17-11ec-0000-2"/>
+                <meta>
+                    <versionId value="95"/>
+                    <lastUpdated value="2026-02-03T10:55:54.639+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <caption>
+                                Medicatieafspraak. Subject: Jan Adrianus J.A.H. Jan van Houten. Categorie:
+                                <span title="Prescription (procedure) (16076005 - SNOMED CT)">
+                                    Prescription (procedure)
+                                </span>
+                                ,
+                                <span style="display: block;">
+                                    Intentie: aanvraag
+                                </span>
+                                <span style="display: block;">
+                                    Aangevraagd door: Beendokter B. Beendokter Aangenaam
+                                </span>
+                            </caption>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Medicatie
+                                    </th>
+                                    <td>
+                                        TRAMADOL CAPSULE 50MG
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Gemaakt
+                                    </th>
+                                    <td>
+                                        2025-12-19
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Gebruiksduur
+                                    </th>
+                                    <td>
+                                        15 dag
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Doseerinstructie
+                                    </th>
+                                    <td>
+                                        <div>
+                                            Volgnummer: 1
+                                        </div>
+                                        <div>
+                                            Tekst: Vanaf &lt;T-45D&gt;, 15 dagen, 3 maal per dag 1 stuk, oraal, met voldoende water innemen, bij voorkeur bij maaltijd innemen.
+                                        </div>
+                                        <div>
+                                            Instructie:
+                                            <ul>
+                                                <li>
+                                                    met voldoende water innemen
+                                                </li>
+                                                <li>
+                                                    bij voorkeur bij maaltijd innemen
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            Timing:
+                                            <div>
+                                                3 maal per dag
+                                            </div>
+                                        </div>
+                                        <div>
+                                            Toedieningsweg:
+                                            <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">
+                                                Oraal
+                                            </span>
+                                        </div>
+                                        <div>
+                                            Dosering: 1 STUK
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+                    <valueDuration>
+                        <value value="15"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                    </valueDuration>
+                </extension>
+                <intent value="order"/>
+                <medicationReference>
+                    <reference value="Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-35475"/>
+                    <display value="TRAMADOL CAPSULE 50MG"/>
+                </medicationReference>
+                <subject>
+                    <reference value="Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN"/>
+                    <display value="Jan Adrianus J.A.H. Jan van Houten"/>
+                </subject>
+                <authoredOn value="2025-12-19"/>
+                <requester>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+                        <valueReference>
+                            <reference value="PractitionerRole/nl-core-practitionerrole-msz-1000000301-032"/>
+                            <display value="Beendokter B. Beendokter Aangenaam || Orthopedisch chirurg"/>
+                        </valueReference>
+                    </extension>
+                </requester>
+                <dosageInstruction>
+                    <sequence value="1"/>
+                    <text value="Vanaf &lt;T-45D&gt;, 15 dagen, 3 maal per dag 1 stuk, oraal, met voldoende water innemen, bij voorkeur bij maaltijd innemen."/>
+                    <additionalInstruction>
+                        <coding>
+                            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+                            <code value="OTH"/>
+                            <display value="overig"/>
+                        </coding>
+                        <text value="met voldoende water innemen"/>
+                    </additionalInstruction>
+                    <additionalInstruction>
+                        <coding>
+                            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+                            <code value="OTH"/>
+                            <display value="overig"/>
+                        </coding>
+                        <text value="bij voorkeur bij maaltijd innemen"/>
+                    </additionalInstruction>
+                    <timing>
+                        <repeat>
+                            <frequency value="3"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="Oraal"/>
+                        </coding>
+                    </route>
+                </dosageInstruction>
+            </MedicationRequest>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/MedicationRequest/zib-MedicationAgreement-msz-c359e452-6b21-11ec-0000-2"/>
+        <resource>
+            <MedicationRequest>
+                <id value="zib-MedicationAgreement-msz-c359e452-6b21-11ec-0000-2"/>
+                <meta>
+                    <versionId value="95"/>
+                    <lastUpdated value="2026-02-03T10:56:01.962+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <caption>
+                                Medicatieafspraak. Subject: Jan Adrianus J.A.H. Jan van Houten. Categorie:
+                                <span title="Prescription (procedure) (16076005 - SNOMED CT)">
+                                    Prescription (procedure)
+                                </span>
+                                ,
+                                <span style="display: block;">
+                                    Intentie: aanvraag
+                                </span>
+                                <span style="display: block;">
+                                    Aangevraagd door: Beendokter B. Beendokter Aangenaam
+                                </span>
+                            </caption>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Medicatie
+                                    </th>
+                                    <td>
+                                        PARACETAMOL TABLET 500MG
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Gemaakt
+                                    </th>
+                                    <td>
+                                        2025-12-19
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Reden
+                                    </th>
+                                    <td/>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Gebruiksduur
+                                    </th>
+                                    <td>
+                                        15 dag
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Doseerinstructie
+                                    </th>
+                                    <td>
+                                        <div>
+                                            Volgnummer: 1
+                                        </div>
+                                        <div>
+                                            Tekst: Vanaf &lt;T-45D&gt;, 15 dagen, 4 maal per dag 2 stuk, oraal, met voldoende water innemen
+                                        </div>
+                                        <div>
+                                            Instructie: met voldoende water innemen.
+                                        </div>
+                                        <div>
+                                            Timing:
+                                            <div>
+                                                4 maal per dag
+                                            </div>
+                                        </div>
+                                        <div>
+                                            Toedieningsweg:
+                                            <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">
+                                                Oraal
+                                            </span>
+                                        </div>
+                                        <div>
+                                            Dosering: 2 STUK
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+                    <valueDuration>
+                        <value value="15"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                    </valueDuration>
+                </extension>
+                <intent value="order"/>
+                <medicationReference>
+                    <reference value="Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-67903"/>
+                    <display value="PARACETAMOL TABLET 500MG"/>
+                </medicationReference>
+                <subject>
+                    <reference value="Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN"/>
+                    <display value="Jan Adrianus J.A.H. Jan van Houten"/>
+                </subject>
+                <authoredOn value="2025-12-19"/>
+                <requester>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+                        <valueReference>
+                            <reference value="PractitionerRole/nl-core-practitionerrole-msz-1000000301-032"/>
+                            <display value="Beendokter B. Beendokter Aangenaam || Orthopedisch chirurg"/>
+                        </valueReference>
+                    </extension>
+                </requester>
+                <reasonReference>
+                    <reference value="Condition/zib-Problem-msz-4c1fb8c9-6b65-11ec-0000-2"/>
+                </reasonReference>
+                <dosageInstruction>
+                    <sequence value="1"/>
+                    <text value="Vanaf &lt;T-45D&gt;, 15 dagen, 4 maal per dag 2 stuk, oraal, met voldoende water innemen"/>
+                    <additionalInstruction>
+                        <coding>
+                            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+                            <code value="OTH"/>
+                            <display value="overig"/>
+                        </coding>
+                        <text value="met voldoende water innemen."/>
+                    </additionalInstruction>
+                    <timing>
+                        <repeat>
+                            <frequency value="4"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="Oraal"/>
+                        </coding>
+                    </route>
+                </dosageInstruction>
+            </MedicationRequest>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-35475"/>
+        <resource>
+            <Medication>
+                <id value="zib-Product-msz-2-16-840-1-113883-2-4-4-10-35475"/>
+                <meta>
+                    <versionId value="3"/>
+                    <lastUpdated value="2025-12-15T09:38:01.579+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Code
+                                    </th>
+                                    <td>
+                                        <span title="TRAMADOL CAPSULE 50MG (35475 - G-Standaard PRK)">
+                                            TRAMADOL CAPSULE 50MG
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <code>
+                    <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                        <code value="35475"/>
+                        <display value="TRAMADOL CAPSULE 50MG"/>
+                    </coding>
+                </code>
+            </Medication>
+        </resource>
+        <search>
+            <mode value="include"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-67903"/>
+        <resource>
+            <Medication>
+                <id value="zib-Product-msz-2-16-840-1-113883-2-4-4-10-67903"/>
+                <meta>
+                    <versionId value="3"/>
+                    <lastUpdated value="2025-12-15T03:47:57.533+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Code
+                                    </th>
+                                    <td>
+                                        <span title="PARACETAMOL TABLET 500MG (2194 - G-Standaard GPK)">
+                                            PARACETAMOL TABLET 500MG
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <code>
+                    <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                        <code value="2194"/>
+                        <display value="PARACETAMOL TABLET 500MG"/>
+                    </coding>
+                    <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                        <code value="67903"/>
+                        <display value="PARACETAMOL 500MG TABLET"/>
+                    </coding>
+                </code>
+            </Medication>
+        </resource>
+        <search>
+            <mode value="include"/>
+        </search>
+    </entry>
+</Bundle>

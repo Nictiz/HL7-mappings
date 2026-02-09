@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bundle xmlns="http://hl7.org/fhir">
+    <id value="ba7dbe52-21d1-42c5-80f4-d072db5a11d0"/>
+    <meta>
+        <lastUpdated value="2026-02-05T12:57:01.653+00:00"/>
+    </meta>
+    <type value="searchset"/>
+    <total value="7"/>
+    <link>
+        <relation value="self"/>
+        <url value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Procedure?_revinclude=Provenance%3Atarget&amp;category=http%3A%2F%2Fsnomed.info%2Fsct%7C387713003%2Chttp%3A%2F%2Fsnomed.info%2Fsct%7C258174001&amp;patient=Patient%2FJAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN&amp;patient.identifier=http%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999909587"/>
+    </link>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Procedure/zib-Procedure-msz-ec9ba309-6add-11ec-0000-2"/>
+        <resource>
+            <Procedure>
+                <id value="zib-Procedure-msz-ec9ba309-6add-11ec-0000-2"/>
+                <meta>
+                    <versionId value="59"/>
+                    <lastUpdated value="2026-02-03T10:59:22.017+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <caption>
+                                Verrichting. Subject: Jan Adrianus J.A.H. Jan van Houten. Categorie:
+                                <span title="chirurgische ingreep (387713003 - SNOMED CT)">
+                                    chirurgische ingreep
+                                </span>
+                                , Status: voltooid
+                                <span style="display: block;">
+                                    Uitvoerende: Ziekenhuis de Aandacht
+                                </span>
+                            </caption>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span title="operatie met gebruik van externe fixateur (239613002 - SNOMED CT)">
+                                            operatie met gebruik van externe fixateur
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            Uitgevoerd: 2025-12-19T20:00:00+02:00 - 2025-12-19T21:00:00+02:00
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Methode
+                                    </th>
+                                    <td>
+                                        <span title="immobilisatie (129371009 - SNOMED CT)">
+                                            immobilisatie
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Gebaseerd op
+                                    </th>
+                                    <td>
+                                        operatie met gebruik van externe fixateur
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Deel van lichaam
+                                    </th>
+                                    <td>
+                                        <span title="structuur van enkelgewricht (70258002 - SNOMED CT)">
+                                            structuur van enkelgewricht
+                                        </span>
+                                        <span title="Links (7771000 - SNOMED CT)">
+                                            Links
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Reden
+                                    </th>
+                                    <td>
+                                        fractuur van enkel
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
+                    <valueCodeableConcept>
+                        <coding>
+                            <system value="http://snomed.info/sct"/>
+                            <code value="129371009"/>
+                            <display value="immobilisatie"/>
+                        </coding>
+                    </valueCodeableConcept>
+                </extension>
+                <basedOn>
+                    <reference value="ProcedureRequest/zib-ProcedureRequest-msz-ec9ba309-6add-11ec-0000-2"/>
+                    <display value="operatie met gebruik van externe fixateur"/>
+                </basedOn>
+                <status value="completed"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="387713003"/>
+                        <display value="chirurgische ingreep"/>
+                    </coding>
+                </category>
+                <code>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="239613002"/>
+                        <display value="operatie met gebruik van externe fixateur"/>
+                    </coding>
+                </code>
+                <subject>
+                    <reference value="Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN"/>
+                    <display value="Jan Adrianus J.A.H. Jan van Houten"/>
+                </subject>
+                <performedPeriod>
+                    <start value="2025-12-19T20:00:00+02:00"/>
+                    <end value="2025-12-19T21:00:00+02:00"/>
+                </performedPeriod>
+                <performer>
+                    <actor>
+                        <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000002"/>
+                        <display value="Ziekenhuis de Aandacht"/>
+                    </actor>
+                </performer>
+                <reasonReference>
+                    <reference value="Condition/zib-Problem-msz-4c1fb8c9-6b65-11ec-0000-2"/>
+                    <display value="fractuur van enkel"/>
+                </reasonReference>
+                <bodySite>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+                        <valueCodeableConcept>
+                            <coding>
+                                <system value="http://snomed.info/sct"/>
+                                <code value="7771000"/>
+                                <display value="Links"/>
+                            </coding>
+                        </valueCodeableConcept>
+                    </extension>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="70258002"/>
+                        <display value="structuur van enkelgewricht"/>
+                    </coding>
+                </bodySite>
+            </Procedure>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Procedure/zib-Procedure-msz-331c5d72-6b33-11ec-0000-2"/>
+        <resource>
+            <Procedure>
+                <id value="zib-Procedure-msz-331c5d72-6b33-11ec-0000-2"/>
+                <meta>
+                    <versionId value="55"/>
+                    <lastUpdated value="2026-02-03T10:59:06.032+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <caption>
+                                Verrichting. Subject: Jan Adrianus J.A.H. Jan van Houten. Categorie:
+                                <span title="chirurgische ingreep (387713003 - SNOMED CT)">
+                                    chirurgische ingreep
+                                </span>
+                                , Status: is bezig
+                            </caption>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span title="intracapsulaire staaroperatie (404628003 - SNOMED CT)">
+                                            intracapsulaire staaroperatie
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            Uitgevoerd: Vanaf 2010
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Deel van lichaam
+                                    </th>
+                                    <td>
+                                        <span title="Links (7771000 - SNOMED CT)">
+                                            Links
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Reden
+                                    </th>
+                                    <td>
+                                        staar
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <status value="in-progress"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="387713003"/>
+                        <display value="chirurgische ingreep"/>
+                    </coding>
+                </category>
+                <code>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="404628003"/>
+                        <display value="intracapsulaire staaroperatie"/>
+                    </coding>
+                </code>
+                <subject>
+                    <reference value="Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN"/>
+                    <display value="Jan Adrianus J.A.H. Jan van Houten"/>
+                </subject>
+                <performedPeriod>
+                    <start value="2010"/>
+                </performedPeriod>
+                <reasonReference>
+                    <reference value="Condition/zib-Problem-msz-4343301e-6aab-11ec-0000-2"/>
+                    <display value="staar"/>
+                </reasonReference>
+                <bodySite>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+                        <valueCodeableConcept>
+                            <coding>
+                                <system value="http://snomed.info/sct"/>
+                                <code value="7771000"/>
+                                <display value="Links"/>
+                            </coding>
+                        </valueCodeableConcept>
+                    </extension>
+                </bodySite>
+            </Procedure>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Procedure/zib-Procedure-msz-338490c2-6b15-11ec-0000-2"/>
+        <resource>
+            <Procedure>
+                <id value="zib-Procedure-msz-338490c2-6b15-11ec-0000-2"/>
+                <meta>
+                    <versionId value="55"/>
+                    <lastUpdated value="2026-02-03T10:59:07.541+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <caption>
+                                Verrichting. Subject: Jan Adrianus J.A.H. Jan van Houten. Categorie:
+                                <span title="verrichting onder geleide van beeldvormende techniek (258174001 - SNOMED CT)">
+                                    verrichting onder geleide van beeldvormende techniek
+                                </span>
+                                , Status: is bezig
+                            </caption>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span title="discografie met injectie van contrast in tussenwervelschijf (1251645009 - SNOMED CT)">
+                                            discografie met injectie van contrast in tussenwervelschijf
+                                        </span>
+                                    </td>
+                                    <td/>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <status value="in-progress"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="258174001"/>
+                        <display value="verrichting onder geleide van beeldvormende techniek"/>
+                    </coding>
+                </category>
+                <code>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="1251645009"/>
+                        <display value="discografie met injectie van contrast in tussenwervelschijf"/>
+                    </coding>
+                </code>
+                <subject>
+                    <reference value="Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN"/>
+                    <display value="Jan Adrianus J.A.H. Jan van Houten"/>
+                </subject>
+            </Procedure>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Procedure/zib-Procedure-msz-765dd3af-6aa7-11ec-0000-2"/>
+        <resource>
+            <Procedure>
+                <id value="zib-Procedure-msz-765dd3af-6aa7-11ec-0000-2"/>
+                <meta>
+                    <versionId value="55"/>
+                    <lastUpdated value="2026-02-03T10:59:10.460+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <caption>
+                                Verrichting. Subject: Jan Adrianus J.A.H. Jan van Houten. Categorie:
+                                <span title="chirurgische ingreep (387713003 - SNOMED CT)">
+                                    chirurgische ingreep
+                                </span>
+                                , Status: is bezig
+                            </caption>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span title="coloscopie (73761001 - SNOMED CT)">
+                                            coloscopie
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            Uitgevoerd: Vanaf 2010
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Reden
+                                    </th>
+                                    <td>
+                                        poliep van colon
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <status value="in-progress"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="387713003"/>
+                        <display value="chirurgische ingreep"/>
+                    </coding>
+                </category>
+                <code>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="73761001"/>
+                        <display value="coloscopie"/>
+                    </coding>
+                </code>
+                <subject>
+                    <reference value="Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN"/>
+                    <display value="Jan Adrianus J.A.H. Jan van Houten"/>
+                </subject>
+                <performedPeriod>
+                    <start value="2010"/>
+                </performedPeriod>
+                <reasonReference>
+                    <reference value="Condition/zib-Problem-msz-b383792f-6aba-11ec-0000-2"/>
+                    <display value="poliep van colon"/>
+                </reasonReference>
+            </Procedure>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Procedure/zib-Procedure-msz-9c1737af-6b4a-11ec-0000-2"/>
+        <resource>
+            <Procedure>
+                <id value="zib-Procedure-msz-9c1737af-6b4a-11ec-0000-2"/>
+                <meta>
+                    <versionId value="58"/>
+                    <lastUpdated value="2026-02-03T10:59:11.835+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <caption>
+                                Verrichting. Subject: Jan Adrianus J.A.H. Jan van Houten. Categorie:
+                                <span title="chirurgische ingreep (387713003 - SNOMED CT)">
+                                    chirurgische ingreep
+                                </span>
+                                , Status: is bezig
+                            </caption>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span title="operatief herstel van lip (71917006 - SNOMED CT)">
+                                            operatief herstel van lip
+                                        </span>
+                                    </td>
+                                    <td/>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <status value="in-progress"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="387713003"/>
+                        <display value="chirurgische ingreep"/>
+                    </coding>
+                </category>
+                <code>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="71917006"/>
+                        <display value="operatief herstel van lip"/>
+                    </coding>
+                </code>
+                <subject>
+                    <reference value="Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN"/>
+                    <display value="Jan Adrianus J.A.H. Jan van Houten"/>
+                </subject>
+            </Procedure>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Procedure/zib-Procedure-msz-bc111b2f-6b31-11ec-0000-2"/>
+        <resource>
+            <Procedure>
+                <id value="zib-Procedure-msz-bc111b2f-6b31-11ec-0000-2"/>
+                <meta>
+                    <versionId value="58"/>
+                    <lastUpdated value="2026-02-03T10:59:16.235+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <caption>
+                                Verrichting. Subject: Jan Adrianus J.A.H. Jan van Houten. Categorie:
+                                <span title="chirurgische ingreep (387713003 - SNOMED CT)">
+                                    chirurgische ingreep
+                                </span>
+                                , Status: is bezig
+                            </caption>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span title="laminectomie op één niveau bij degeneratieve aandoening (62181000146108 - SNOMED CT)">
+                                            laminectomie op één niveau bij degeneratieve aandoening
+                                        </span>
+                                    </td>
+                                    <td/>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Reden
+                                    </th>
+                                    <td>
+                                        lumbale hernia nuclei pulposi
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <status value="in-progress"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="387713003"/>
+                        <display value="chirurgische ingreep"/>
+                    </coding>
+                </category>
+                <code>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="62181000146108"/>
+                        <display value="laminectomie op één niveau bij degeneratieve aandoening"/>
+                    </coding>
+                </code>
+                <subject>
+                    <reference value="Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN"/>
+                    <display value="Jan Adrianus J.A.H. Jan van Houten"/>
+                </subject>
+                <reasonReference>
+                    <reference value="Condition/zib-Problem-msz-d896ce49-6b3a-11ec-0000-2"/>
+                    <display value="lumbale hernia nuclei pulposi"/>
+                </reasonReference>
+            </Procedure>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Procedure/zib-Procedure-msz-f09e5209-6acd-11ec-0000-2"/>
+        <resource>
+            <Procedure>
+                <id value="zib-Procedure-msz-f09e5209-6acd-11ec-0000-2"/>
+                <meta>
+                    <versionId value="58"/>
+                    <lastUpdated value="2026-02-03T10:59:24.804+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <caption>
+                                Verrichting. Subject: Jan Adrianus J.A.H. Jan van Houten. Categorie:
+                                <span title="chirurgische ingreep (387713003 - SNOMED CT)">
+                                    chirurgische ingreep
+                                </span>
+                                , Status: is bezig
+                            </caption>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span title="'one stage' extracapsulaire cataractoperatie met insertie van intraoculaire lens (447304001 - SNOMED CT)">
+                                            'one stage' extracapsulaire cataractoperatie met insertie van intraoculaire lens
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            Uitgevoerd: Vanaf 3 oktober 2022
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Deel van lichaam
+                                    </th>
+                                    <td>
+                                        <span title="Rechts (24028007 - SNOMED CT)">
+                                            Rechts
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Reden
+                                    </th>
+                                    <td>
+                                        cataract
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <status value="in-progress"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="387713003"/>
+                        <display value="chirurgische ingreep"/>
+                    </coding>
+                </category>
+                <code>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="447304001"/>
+                        <display value="'one stage' extracapsulaire cataractoperatie met insertie van intraoculaire lens"/>
+                    </coding>
+                </code>
+                <subject>
+                    <reference value="Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN"/>
+                    <display value="Jan Adrianus J.A.H. Jan van Houten"/>
+                </subject>
+                <performedPeriod>
+                    <start value="2022-10-03"/>
+                </performedPeriod>
+                <reasonReference>
+                    <reference value="Condition/zib-Problem-msz-2d8d2e49-6b35-11ec-0000-2"/>
+                    <display value="cataract"/>
+                </reasonReference>
+                <bodySite>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+                        <valueCodeableConcept>
+                            <coding>
+                                <system value="http://snomed.info/sct"/>
+                                <code value="24028007"/>
+                                <display value="Rechts"/>
+                            </coding>
+                        </valueCodeableConcept>
+                    </extension>
+                </bodySite>
+            </Procedure>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+</Bundle>
