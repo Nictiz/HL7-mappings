@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bundle xmlns="http://hl7.org/fhir">
+    <id value="c4ac9688-fdc6-453a-8f95-92d03fd620dc"/>
+    <meta>
+        <lastUpdated value="2026-02-05T13:12:19.472+00:00"/>
+    </meta>
+    <type value="searchset"/>
+    <total value="1"/>
+    <link>
+        <relation value="self"/>
+        <url value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/CareTeam?_include=CareTeam%3Aparticipant&amp;_revinclude=Provenance%3Atarget&amp;patient=Patient%2FGHANIYA-SAIDA-G-S-N--GHAN-NOERMOHAMED-ELIK&amp;patient.identifier=http%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999901497&amp;status=active"/>
+    </link>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/CareTeam/nl-core-careteam-msz-38c11e61-6aa8-11ec-0000-2"/>
+        <resource>
+            <CareTeam>
+                <id value="nl-core-careteam-msz-38c11e61-6aa8-11ec-0000-2"/>
+                <meta>
+                    <versionId value="114"/>
+                    <lastUpdated value="2026-02-03T10:00:10.601+00:00"/>
+                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-careteam"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <caption>
+                                Zorgteam. Subject: Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik. Status: actief
+                            </caption>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Participant
+                                    </th>
+                                    <td>
+                                        Haar Scherp || Cardioloog
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Verantwoordelijke organisatie
+                                    </th>
+                                    <td>
+                                        Ziekenhuis de Grondtoon
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <status value="active"/>
+                <subject>
+                    <reference value="Patient/GHANIYA-SAIDA-G-S-N--GHAN-NOERMOHAMED-ELIK"/>
+                    <display value="Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik"/>
+                </subject>
+                <participant>
+                    <member>
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                            <valueReference>
+                                <reference value="PractitionerRole/nl-core-practitionerrole-msz-1000001201-010"/>
+                                <display value="Haar Scherp || Cardioloog"/>
+                            </valueReference>
+                        </extension>
+                        <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000012"/>
+                        <display value="Haar Scherp"/>
+                    </member>
+                </participant>
+                <managingOrganization>
+                    <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000012"/>
+                    <display value="Ziekenhuis de Grondtoon"/>
+                </managingOrganization>
+            </CareTeam>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000012"/>
+        <resource>
+            <Practitioner>
+                <id value="nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000012"/>
+                <meta>
+                    <versionId value="5"/>
+                    <lastUpdated value="2025-12-15T03:50:55.255+00:00"/>
+                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <div>
+                            Id 10000012 (AGB-Z), Haar Scherp
+                        </div>
+                        <div>
+                            <a href="tel:021-9990104">
+                                021-9990104
+                            </a>
+                            (Vast telefoonnummer Werk)
+                        </div>
+                        <div>
+                            Zorgpad 9900, 9999XY de Eed (WP)
+                        </div>
+                    </div>
+                </text>
+                <identifier>
+                    <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+                    <value value="10000012"/>
+                </identifier>
+                <name>
+                    <text value="Haar Scherp"/>
+                    <family value="Scherp">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                            <valueString value="Scherp"/>
+                        </extension>
+                    </family>
+                    <given value="Haar">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                            <valueCode value="BR"/>
+                        </extension>
+                    </given>
+                </name>
+                <telecom>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+                        <valueCodeableConcept>
+                            <coding>
+                                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+                                <code value="LL"/>
+                                <display value="Vast telefoonnummer"/>
+                            </coding>
+                        </valueCodeableConcept>
+                    </extension>
+                    <system value="phone"/>
+                    <value value="021-9990104"/>
+                    <use value="work"/>
+                </telecom>
+                <address>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                        <valueCodeableConcept>
+                            <coding>
+                                <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                                <code value="WP"/>
+                                <display value="Werkadres"/>
+                            </coding>
+                        </valueCodeableConcept>
+                    </extension>
+                    <use value="work"/>
+                    <line value="Zorgpad 9900">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                            <valueString value="Zorgpad"/>
+                        </extension>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                            <valueString value="9900"/>
+                        </extension>
+                    </line>
+                    <city value="de Eed"/>
+                    <postalCode value="9999XY"/>
+                </address>
+            </Practitioner>
+        </resource>
+        <search>
+            <mode value="include"/>
+        </search>
+    </entry>
+</Bundle>

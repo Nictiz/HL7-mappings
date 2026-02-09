@@ -1,0 +1,179 @@
+{
+  "resourceType": "Bundle",
+  "id": "c4ac9688-fdc6-453a-8f95-92d03fd620dc",
+  "meta": {
+    "lastUpdated": "2026-02-05T13:12:19.472+00:00"
+  },
+  "type": "searchset",
+  "total": 1,
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/CareTeam?_include\u003dCareTeam%3Aparticipant\u0026_revinclude\u003dProvenance%3Atarget\u0026patient\u003dPatient%2FGHANIYA-SAIDA-G-S-N--GHAN-NOERMOHAMED-ELIK\u0026patient.identifier\u003dhttp%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999901497\u0026status\u003dactive"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/CareTeam/nl-core-careteam-msz-38c11e61-6aa8-11ec-0000-2",
+      "resource": {
+        "resourceType": "CareTeam",
+        "id": "nl-core-careteam-msz-38c11e61-6aa8-11ec-0000-2",
+        "meta": {
+          "versionId": "114",
+          "lastUpdated": "2026-02-03T10:00:10.601+00:00",
+          "profile": [
+            "http://fhir.nl/fhir/StructureDefinition/nl-core-careteam"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eZorgteam. Subject: Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik. Status: actief\u003c/caption\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eParticipant\u003c/th\u003e\n            \u003ctd\u003eHaar Scherp || Cardioloog\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eVerantwoordelijke organisatie\u003c/th\u003e\n            \u003ctd\u003eZiekenhuis de Grondtoon\u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "status": "active",
+        "subject": {
+          "reference": "Patient/GHANIYA-SAIDA-G-S-N--GHAN-NOERMOHAMED-ELIK",
+          "display": "Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik"
+        },
+        "participant": [
+          {
+            "member": {
+              "extension": [
+                {
+                  "url": "http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference",
+                  "valueReference": {
+                    "reference": "PractitionerRole/nl-core-practitionerrole-msz-1000001201-010",
+                    "display": "Haar Scherp || Cardioloog"
+                  }
+                }
+              ],
+              "reference": "Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000012",
+              "display": "Haar Scherp"
+            }
+          }
+        ],
+        "managingOrganization": [
+          {
+            "reference": "Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000012",
+            "display": "Ziekenhuis de Grondtoon"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000012",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000012",
+        "meta": {
+          "versionId": "5",
+          "lastUpdated": "2025-12-15T03:50:55.255+00:00",
+          "profile": [
+            "http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003cdiv\u003eId 10000012 (AGB-Z), Haar Scherp\u003c/div\u003e\n      \u003cdiv\u003e\n        \u003ca href\u003d\"tel:021-9990104\"\u003e021-9990104\u003c/a\u003e (Vast telefoonnummer Werk)\u003c/div\u003e\n      \u003cdiv\u003eZorgpad 9900, 9999XY de Eed (WP)\u003c/div\u003e\n    \u003c/div\u003e"
+        },
+        "identifier": [
+          {
+            "system": "http://fhir.nl/fhir/NamingSystem/agb-z",
+            "value": "10000012"
+          }
+        ],
+        "name": [
+          {
+            "text": "Haar Scherp",
+            "family": "Scherp",
+            "_family": {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/humanname-own-name",
+                  "valueString": "Scherp"
+                }
+              ]
+            },
+            "given": [
+              "Haar"
+            ],
+            "_given": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier",
+                    "valueCode": "BR"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "extension": [
+              {
+                "url": "http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1",
+                      "code": "LL",
+                      "display": "Vast telefoonnummer"
+                    }
+                  ]
+                }
+              }
+            ],
+            "system": "phone",
+            "value": "021-9990104",
+            "use": "work"
+          }
+        ],
+        "address": [
+          {
+            "extension": [
+              {
+                "url": "http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "http://hl7.org/fhir/v3/AddressUse",
+                      "code": "WP",
+                      "display": "Werkadres"
+                    }
+                  ]
+                }
+              }
+            ],
+            "use": "work",
+            "line": [
+              "Zorgpad 9900"
+            ],
+            "_line": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+                    "valueString": "Zorgpad"
+                  },
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+                    "valueString": "9900"
+                  }
+                ]
+              }
+            ],
+            "city": "de Eed",
+            "postalCode": "9999XY"
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    }
+  ]
+}
