@@ -1,0 +1,567 @@
+{
+  "resourceType": "Bundle",
+  "id": "2db60fae-5e26-487e-819f-e94d0cf952bf",
+  "meta": {
+    "lastUpdated": "2026-02-05T12:58:33.981+00:00"
+  },
+  "type": "searchset",
+  "total": 4,
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/MedicationRequest?_include\u003dMedicationRequest%3Amedication\u0026_revinclude\u003dProvenance%3Atarget\u0026category\u003dhttp%3A%2F%2Fsnomed.info%2Fsct%7C16076005\u0026patient\u003dPatient%2FMICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL\u0026patient.identifier\u003dhttp%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999911259"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/MedicationRequest/zib-MedicationAgreement-msz-11ec08cd-6ab2-11ec-0000-2",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "zib-MedicationAgreement-msz-11ec08cd-6ab2-11ec-0000-2",
+        "meta": {
+          "versionId": "97",
+          "lastUpdated": "2026-02-03T10:55:53.189+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eMedicatieafspraak. Subject: Michelle M.B. Michelle Bergzoon Verheul. Categorie: \u003cspan title\u003d\"Prescription (procedure) (16076005 - SNOMED CT)\"\u003ePrescription (procedure)\u003c/span\u003e, \u003cspan style\u003d\"display: block;\"\u003eIntentie: aanvraag\u003c/span\u003e\n          \u003cspan style\u003d\"display: block;\"\u003eAangevraagd door: Jolanda J. Martha Cormane\u003c/span\u003e\n        \u003c/caption\u003e\n        \u003ctfoot\u003e\n          \u003ctr\u003e\n            \u003ctd colspan\u003d\"2\"\u003ebij contacteczeem\u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tfoot\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eMedicatie\u003c/th\u003e\n            \u003ctd\u003eMOMENTASON CREME 1MG/G\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eGemaakt\u003c/th\u003e\n            \u003ctd\u003e15 oktober 2018\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eReden\u003c/th\u003e\n            \u003ctd/\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eDoseerinstructie\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cdiv\u003eTekst: Vanaf 2018-10-15, 1 maal per dag 1 stuk, alleen bij klachten, ma t/m do WEL, vr t/m zo NIET\u003c/div\u003e\n              \u003cdiv\u003eInstructie: Alleen bij klachten, ma t/m do WEL, vr t/m zo NIET\u003c/div\u003e\n              \u003cdiv\u003eZo nodig: Bij klachten\u003c/div\u003e\n              \u003cdiv\u003eToedieningsweg: \u003cspan title\u003d\"cutaan (53 - G-Standaard thesaurus subtabel 0007)\"\u003ecutaan\u003c/span\u003e\n              \u003c/div\u003e\n              \u003cdiv\u003eMax dosering: 1 STUK / 1 dag (per period)\u003c/div\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "intent": "order",
+        "category": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "16076005",
+              "display": "Prescription (procedure)"
+            }
+          ],
+          "text": "Medicatieafspraak"
+        },
+        "medicationReference": {
+          "reference": "Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-129224",
+          "display": "MOMENTASON CREME 1MG/G"
+        },
+        "subject": {
+          "reference": "Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL",
+          "display": "Michelle M.B. Michelle Bergzoon Verheul"
+        },
+        "authoredOn": "2018-10-15",
+        "requester": {
+          "extension": [
+            {
+              "url": "http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole",
+              "valueReference": {
+                "reference": "PractitionerRole/nl-core-practitionerrole-msz-0017171701-01220000007",
+                "display": "Jolanda J. Martha Cormane || Dermatoloog || Algemeen Medisch Centrum"
+              }
+            }
+          ],
+          "agent": {
+            "reference": "Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00171717",
+            "display": "Jolanda J. Martha Cormane"
+          }
+        },
+        "reasonReference": [
+          {
+            "reference": "Condition/zib-Problem-msz-9bd3ddcf-6b5e-11ec-0000-2"
+          }
+        ],
+        "note": [
+          {
+            "text": "bij contacteczeem"
+          }
+        ],
+        "dosageInstruction": [
+          {
+            "text": "Vanaf 2018-10-15, 1 maal per dag 1 stuk, alleen bij klachten, ma t/m do WEL, vr t/m zo NIET",
+            "additionalInstruction": [
+              {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/v3/NullFlavor",
+                    "code": "OTH",
+                    "display": "overig"
+                  }
+                ],
+                "text": "Alleen bij klachten, ma t/m do WEL, vr t/m zo NIET"
+              }
+            ],
+            "asNeededCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/v3/NullFlavor",
+                  "code": "OTH",
+                  "display": "overig"
+                }
+              ],
+              "text": "Bij klachten"
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "urn:oid:2.16.840.1.113883.2.4.4.9",
+                  "code": "53",
+                  "display": "cutaan"
+                }
+              ]
+            },
+            "maxDosePerPeriod": {
+              "numerator": {
+                "value": 1,
+                "unit": "STUK",
+                "system": "urn:oid:2.16.840.1.113883.2.4.4.1.900.2",
+                "code": "ST"
+              },
+              "denominator": {
+                "value": 1,
+                "unit": "dag",
+                "system": "http://unitsofmeasure.org",
+                "code": "d"
+              }
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/MedicationRequest/zib-MedicationAgreement-msz-7d094b76-6b19-11ec-0000-2",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "zib-MedicationAgreement-msz-7d094b76-6b19-11ec-0000-2",
+        "meta": {
+          "versionId": "98",
+          "lastUpdated": "2026-02-03T10:55:57.550+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eMedicatieafspraak. Subject: Michelle M.B. Michelle Bergzoon Verheul. Categorie: \u003cspan title\u003d\"Prescription (procedure) (16076005 - SNOMED CT)\"\u003ePrescription (procedure)\u003c/span\u003e, \u003cspan style\u003d\"display: block;\"\u003eIntentie: aanvraag\u003c/span\u003e\n          \u003cspan style\u003d\"display: block;\"\u003eAangevraagd door: Zaza Z. Zaza Bedachtzaam\u003c/span\u003e\n        \u003c/caption\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eMedicatie\u003c/th\u003e\n            \u003ctd\u003eFLUCLOXACILLINE CAPSULE 500MG\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eGemaakt\u003c/th\u003e\n            \u003ctd\u003e2026-01-31\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eGebruiksduur\u003c/th\u003e\n            \u003ctd\u003e10 dag\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eDoseerinstructie\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cdiv\u003eVolgnummer: 1\u003c/div\u003e\n              \u003cdiv\u003eTekst: Vanaf \u0026lt;T-2D\u0026gt;, 10 dagen, 3 keer per dag 1 stuk, oraal, op een lege maag innemen minstens 1 uur vóór of 2 uur na de maaltijd, niet meteen gaan liggen nu inname van Fluclaxacilline.\u003c/div\u003e\n              \u003cdiv\u003eInstructie: \u003cul\u003e\n                  \u003cli\u003eop een lege maag innemen minstens 1 uur vóór of 2 uur na de maaltijd\u003c/li\u003e\n                  \u003cli\u003eniet meteen gaan liggen nu inname van Fluclaxacilline\u003c/li\u003e\n                \u003c/ul\u003e\n              \u003c/div\u003e\n              \u003cdiv\u003eTiming: \u003cdiv\u003e3 maal per dag\u003c/div\u003e\n              \u003c/div\u003e\n              \u003cdiv\u003eToedieningsweg: \u003cspan title\u003d\"Oraal (9 - G-Standaard thesaurus subtabel 0007)\"\u003eOraal\u003c/span\u003e\n              \u003c/div\u003e\n              \u003cdiv\u003eDosering: 1 STUK\u003c/div\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "extension": [
+          {
+            "url": "http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration",
+            "valueDuration": {
+              "value": 10,
+              "unit": "dag",
+              "system": "http://unitsofmeasure.org",
+              "code": "d"
+            }
+          }
+        ],
+        "intent": "order",
+        "category": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "16076005",
+              "display": "Prescription (procedure)"
+            }
+          ],
+          "text": "Medicatieafspraak"
+        },
+        "medicationReference": {
+          "reference": "Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-5274",
+          "display": "FLUCLOXACILLINE CAPSULE 500MG"
+        },
+        "subject": {
+          "reference": "Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL",
+          "display": "Michelle M.B. Michelle Bergzoon Verheul"
+        },
+        "authoredOn": "2026-01-31",
+        "requester": {
+          "extension": [
+            {
+              "url": "http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole",
+              "valueReference": {
+                "reference": "PractitionerRole/nl-core-practitionerrole-msz-0014141401-01420000005",
+                "display": "Zaza Z. Zaza Bedachtzaam || Chirurg || Ziekenhuis Mammazorg"
+              }
+            }
+          ],
+          "agent": {
+            "reference": "Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00141414",
+            "display": "Zaza Z. Zaza Bedachtzaam"
+          }
+        },
+        "dosageInstruction": [
+          {
+            "sequence": 1,
+            "text": "Vanaf \u003cT-2D\u003e, 10 dagen, 3 keer per dag 1 stuk, oraal, op een lege maag innemen minstens 1 uur vóór of 2 uur na de maaltijd, niet meteen gaan liggen nu inname van Fluclaxacilline.",
+            "additionalInstruction": [
+              {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/v3/NullFlavor",
+                    "code": "OTH",
+                    "display": "overig"
+                  }
+                ],
+                "text": "op een lege maag innemen minstens 1 uur vóór of 2 uur na de maaltijd"
+              },
+              {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/v3/NullFlavor",
+                    "code": "OTH",
+                    "display": "overig"
+                  }
+                ],
+                "text": "niet meteen gaan liggen nu inname van Fluclaxacilline"
+              }
+            ],
+            "timing": {
+              "repeat": {
+                "frequency": 3,
+                "period": 1,
+                "periodUnit": "d"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "urn:oid:2.16.840.1.113883.2.4.4.9",
+                  "code": "9",
+                  "display": "Oraal"
+                }
+              ]
+            },
+            "doseQuantity": {
+              "value": 1,
+              "unit": "STUK",
+              "system": "urn:oid:2.16.840.1.113883.2.4.4.1.900.2",
+              "code": "ST"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/MedicationRequest/zib-MedicationAgreement-msz-88e57969-6b11-11ec-0000-2",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "zib-MedicationAgreement-msz-88e57969-6b11-11ec-0000-2",
+        "meta": {
+          "versionId": "97",
+          "lastUpdated": "2026-02-03T10:55:59.011+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eMedicatieafspraak. Subject: Michelle M.B. Michelle Bergzoon Verheul. Categorie: \u003cspan title\u003d\"Prescription (procedure) (16076005 - SNOMED CT)\"\u003ePrescription (procedure)\u003c/span\u003e, \u003cspan style\u003d\"display: block;\"\u003eIntentie: aanvraag\u003c/span\u003e\n          \u003cspan style\u003d\"display: block;\"\u003eAangevraagd door: Huisdokter H. Huisdokter Behulpzaam\u003c/span\u003e\n        \u003c/caption\u003e\n        \u003ctfoot\u003e\n          \u003ctr\u003e\n            \u003ctd colspan\u003d\"2\"\u003eVanaf 2012-07-03\u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tfoot\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eMedicatie\u003c/th\u003e\n            \u003ctd\u003eCALCIUMCARB/COLECALC KAUWTB 1,25G/400IE (500MG CA)\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eGemaakt\u003c/th\u003e\n            \u003ctd\u003e3 juli 2012\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eReden\u003c/th\u003e\n            \u003ctd/\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eDoseerinstructie\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cdiv\u003eTekst: Om de dag 1 STUK\u003c/div\u003e\n              \u003cdiv\u003eTiming: \u003cdiv\u003eeenmalig per 2 dagen\u003c/div\u003e\n              \u003c/div\u003e\n              \u003cdiv\u003eToedieningsweg: \u003cspan title\u003d\"Oraal (9 - G-Standaard thesaurus subtabel 0007)\"\u003eOraal\u003c/span\u003e\n              \u003c/div\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "intent": "order",
+        "category": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "16076005",
+              "display": "Prescription (procedure)"
+            }
+          ],
+          "text": "Medicatieafspraak"
+        },
+        "medicationReference": {
+          "reference": "Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-58807",
+          "display": "CALCIUMCARB/COLECALC KAUWTB 1,25G/400IE (500MG CA)"
+        },
+        "subject": {
+          "reference": "Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL",
+          "display": "Michelle M.B. Michelle Bergzoon Verheul"
+        },
+        "authoredOn": "2012-07-03",
+        "requester": {
+          "extension": [
+            {
+              "url": "http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole",
+              "valueReference": {
+                "reference": "PractitionerRole/nl-core-practitionerrole-msz-0013131301-01520000004",
+                "display": "Huisdokter H. Huisdokter Behulpzaam || Huisarts || Huisartsenpraktijk Betrokken"
+              }
+            }
+          ],
+          "agent": {
+            "reference": "Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00131313",
+            "display": "Huisdokter H. Huisdokter Behulpzaam"
+          }
+        },
+        "reasonReference": [
+          {
+            "reference": "Condition/zib-Problem-msz-31bf4dcf-6b18-11ec-0000-2"
+          }
+        ],
+        "note": [
+          {
+            "text": "Vanaf 2012-07-03"
+          }
+        ],
+        "dosageInstruction": [
+          {
+            "text": "Om de dag 1 STUK",
+            "timing": {
+              "repeat": {
+                "frequency": 1,
+                "period": 2,
+                "periodUnit": "d"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "urn:oid:2.16.840.1.113883.2.4.4.9",
+                  "code": "9",
+                  "display": "Oraal"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/MedicationRequest/zib-MedicationAgreement-msz-e245ea05-6b45-11ec-0000-2",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "zib-MedicationAgreement-msz-e245ea05-6b45-11ec-0000-2",
+        "meta": {
+          "versionId": "97",
+          "lastUpdated": "2026-02-03T10:56:03.387+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eMedicatieafspraak. Subject: Michelle M.B. Michelle Bergzoon Verheul. Categorie: \u003cspan title\u003d\"Prescription (procedure) (16076005 - SNOMED CT)\"\u003ePrescription (procedure)\u003c/span\u003e, \u003cspan style\u003d\"display: block;\"\u003eIntentie: aanvraag\u003c/span\u003e\n          \u003cspan style\u003d\"display: block;\"\u003eAangevraagd door: Zaza Z. Zaza Bedachtzaam\u003c/span\u003e\n        \u003c/caption\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eMedicatie\u003c/th\u003e\n            \u003ctd\u003eALENDRONINEZUUR DRANK 70MG\u003d100ML (0,7MG/ML) FL\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eGemaakt\u003c/th\u003e\n            \u003ctd\u003e2 juli 2012\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eReden\u003c/th\u003e\n            \u003ctd/\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eDoseerinstructie\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cdiv\u003eTekst: 1 maal per week 1 stuk, oraal, Innemen bij het opstaan \u0027s ochtends, ten minste een half uur voor het eerste eten of drinken of de eerste geneesmiddelen van die dag, Bij het vergeten in te nemen van de wekelijkse drank, deze de volgende ochtend innemen.\u003c/div\u003e\n              \u003cdiv\u003eInstructie: \u003cul\u003e\n                  \u003cli\u003eInnemen bij het opstaan, ten minste een half uur voor het eerste eten of drinken of de eerste geneesmiddelen van die dag\u003c/li\u003e\n                  \u003cli\u003eBij het vergeten in te nemen van de wekelijkse drank, deze de volgende ochtend innemen\u003c/li\u003e\n                \u003c/ul\u003e\n              \u003c/div\u003e\n              \u003cdiv\u003eTiming: \u003cdiv\u003eeenmalig per week\u003c/div\u003e\n              \u003c/div\u003e\n              \u003cdiv\u003eToedieningsweg: \u003cspan title\u003d\"Oraal (9 - G-Standaard thesaurus subtabel 0007)\"\u003eOraal\u003c/span\u003e\n              \u003c/div\u003e\n              \u003cdiv\u003eDosering: 1 STUK\u003c/div\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "intent": "order",
+        "category": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "16076005",
+              "display": "Prescription (procedure)"
+            }
+          ],
+          "text": "Medicatieafspraak"
+        },
+        "medicationReference": {
+          "reference": "Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10--129933",
+          "display": "ALENDRONINEZUUR DRANK 70MG\u003d100ML (0,7MG/ML) FL"
+        },
+        "subject": {
+          "reference": "Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL",
+          "display": "Michelle M.B. Michelle Bergzoon Verheul"
+        },
+        "authoredOn": "2012-07-02",
+        "requester": {
+          "extension": [
+            {
+              "url": "http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole",
+              "valueReference": {
+                "reference": "PractitionerRole/nl-core-practitionerrole-msz-0014141401-01420000005",
+                "display": "Zaza Z. Zaza Bedachtzaam || Chirurg || Ziekenhuis Mammazorg"
+              }
+            }
+          ],
+          "agent": {
+            "reference": "Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00141414",
+            "display": "Zaza Z. Zaza Bedachtzaam"
+          }
+        },
+        "reasonReference": [
+          {
+            "reference": "Condition/zib-Problem-msz-31bf4dcf-6b18-11ec-0000-2"
+          }
+        ],
+        "dosageInstruction": [
+          {
+            "text": "1 maal per week 1 stuk, oraal, Innemen bij het opstaan \u0027s ochtends, ten minste een half uur voor het eerste eten of drinken of de eerste geneesmiddelen van die dag, Bij het vergeten in te nemen van de wekelijkse drank, deze de volgende ochtend innemen.",
+            "additionalInstruction": [
+              {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/v3/NullFlavor",
+                    "code": "OTH",
+                    "display": "overig"
+                  }
+                ],
+                "text": "Innemen bij het opstaan, ten minste een half uur voor het eerste eten of drinken of de eerste geneesmiddelen van die dag"
+              },
+              {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/v3/NullFlavor",
+                    "code": "OTH",
+                    "display": "overig"
+                  }
+                ],
+                "text": "Bij het vergeten in te nemen van de wekelijkse drank, deze de volgende ochtend innemen"
+              }
+            ],
+            "timing": {
+              "repeat": {
+                "frequency": 1,
+                "period": 1,
+                "periodUnit": "wk"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "urn:oid:2.16.840.1.113883.2.4.4.9",
+                  "code": "9",
+                  "display": "Oraal"
+                }
+              ]
+            },
+            "doseQuantity": {
+              "value": 1,
+              "unit": "STUK",
+              "system": "urn:oid:2.16.840.1.113883.2.4.4.1.900.2",
+              "code": "ST"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10--129933",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "zib-Product-msz-2-16-840-1-113883-2-4-4-10--129933",
+        "meta": {
+          "versionId": "3",
+          "lastUpdated": "2025-12-15T09:37:57.358+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-Product"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eCode\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cspan title\u003d\"ALENDRONINEZUUR DRANK 70MG\u003d100ML (0,7MG/ML) FL (129933 - G-Standaard PRK)\"\u003eALENDRONINEZUUR DRANK 70MG\u003d100ML (0,7MG/ML) FL\u003c/span\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:2.16.840.1.113883.2.4.4.10",
+              "code": "129933",
+              "display": "ALENDRONINEZUUR DRANK 70MG\u003d100ML (0,7MG/ML) FL"
+            }
+          ]
+        }
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-129224",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "zib-Product-msz-2-16-840-1-113883-2-4-4-10-129224",
+        "meta": {
+          "versionId": "3",
+          "lastUpdated": "2025-12-15T09:37:58.751+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-Product"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eCode\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cspan title\u003d\"MOMENTASON CREME 1MG/G (129224 - G-Standaard PRK)\"\u003eMOMENTASON CREME 1MG/G\u003c/span\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:2.16.840.1.113883.2.4.4.10",
+              "code": "129224",
+              "display": "MOMENTASON CREME 1MG/G"
+            }
+          ]
+        }
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-58807",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "zib-Product-msz-2-16-840-1-113883-2-4-4-10-58807",
+        "meta": {
+          "versionId": "3",
+          "lastUpdated": "2025-12-15T09:38:04.405+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-Product"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eCode\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cspan title\u003d\"CALCIUMCARB/COLECALC KAUWTB 1,25G/400IE (500MG CA) (58807 - G-Standaard PRK)\"\u003eCALCIUMCARB/COLECALC KAUWTB 1,25G/400IE (500MG CA)\u003c/span\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:2.16.840.1.113883.2.4.4.10",
+              "code": "58807",
+              "display": "CALCIUMCARB/COLECALC KAUWTB 1,25G/400IE (500MG CA)"
+            }
+          ]
+        }
+      },
+      "search": {
+        "mode": "include"
+      }
+    },
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-5274",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "zib-Product-msz-2-16-840-1-113883-2-4-4-10-5274",
+        "meta": {
+          "versionId": "3",
+          "lastUpdated": "2025-12-15T09:38:02.974+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-Product"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eCode\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cspan title\u003d\"FLUCLOXACILLINE CAPSULE 500MG (5274 - G-Standaard PRK)\"\u003eFLUCLOXACILLINE CAPSULE 500MG\u003c/span\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:2.16.840.1.113883.2.4.4.10",
+              "code": "5274",
+              "display": "FLUCLOXACILLINE CAPSULE 500MG"
+            }
+          ]
+        }
+      },
+      "search": {
+        "mode": "include"
+      }
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "resourceType": "Bundle",
+  "id": "86bc6d4c-1576-4700-9098-2a013941fd6e",
+  "meta": {
+    "lastUpdated": "2026-02-05T12:58:44.362+00:00"
+  },
+  "type": "searchset",
+  "total": 1,
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Observation/$lastn?_revinclude\u003dProvenance%3Atarget\u0026code\u003dhttp%3A%2F%2Floinc.org%7C29463-7\u0026patient\u003dPatient%2FMICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL\u0026patient.identifier\u003dhttp%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999911259"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Observation/zib-BodyWeight-msz-dbf77082-6b27-11ec-0000-2",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "zib-BodyWeight-msz-dbf77082-6b27-11ec-0000-2",
+        "meta": {
+          "versionId": "97",
+          "lastUpdated": "2026-02-03T10:57:24.526+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-BodyWeight"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eObservatie/bepaling. Subject: Michelle M.B. Michelle Bergzoon Verheul. Categorie: \u003cspan title\u003d\"Vital Signs (vital-signs - observation-category)\"\u003eVital Signs\u003c/span\u003e, Status: definitief\u003c/caption\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eBepalingdatum/tijd\u003c/th\u003e\n            \u003ctd\u003e09:05:00, 3 oktober 2022\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eCode\u003c/th\u003e\n            \u003cth\u003eWaarde\u003c/th\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003ctd\u003e\n              \u003cspan title\u003d\"Lichaamsgewicht [massa] in ^patiënt (29463-7 - LOINC)\"\u003eLichaamsgewicht [massa] in ^patiënt\u003c/span\u003e\n            \u003c/td\u003e\n            \u003ctd\u003e95 kg\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003ctd\u003e\n              \u003cspan title\u003d\"Clothing worn during measure (8352-7 - LOINC)\"\u003eClothing worn during measure\u003c/span\u003e\n            \u003c/td\u003e\n            \u003ctd\u003e\n              \u003cspan title\u003d\"Lichte kleding/ondergoed (MINIMAL - 2.16.840.1.113883.2.4.3.11.60.40.4.8.1)\"\u003eLichte kleding/ondergoed\u003c/span\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Lichaamsgewicht [massa] in ^patiënt"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL",
+          "display": "Michelle M.B. Michelle Bergzoon Verheul"
+        },
+        "effectiveDateTime": "2022-10-03T09:05:00+02:00",
+        "valueQuantity": {
+          "value": 95,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8352-7",
+                  "display": "Clothing worn during measure"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.8.1",
+                  "code": "MINIMAL",
+                  "display": "Lichte kleding/ondergoed"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    }
+  ]
+}

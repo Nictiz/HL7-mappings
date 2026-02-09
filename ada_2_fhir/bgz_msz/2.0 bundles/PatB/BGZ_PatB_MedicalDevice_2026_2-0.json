@@ -1,0 +1,158 @@
+{
+  "resourceType": "Bundle",
+  "id": "863f9561-8fbf-49ea-bee7-e652709c3187",
+  "meta": {
+    "lastUpdated": "2026-02-05T12:58:37.695+00:00"
+  },
+  "type": "searchset",
+  "total": 1,
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/DeviceUseStatement?_include\u003dDeviceUseStatement%3Adevice\u0026_revinclude\u003dProvenance%3Atarget\u0026patient\u003dPatient%2FMICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL\u0026patient.identifier\u003dhttp%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999911259"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/DeviceUseStatement/zib-MedicalDevice-msz-4781d9e6-6b37-11ec-0000-2",
+      "resource": {
+        "resourceType": "DeviceUseStatement",
+        "id": "zib-MedicalDevice-msz-4781d9e6-6b37-11ec-0000-2",
+        "meta": {
+          "versionId": "98",
+          "lastUpdated": "2026-02-03T10:54:33.357+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eBeschrijving apparaatgebruik. Subject: Michelle M.B. Michelle Bergzoon Verheul. Status: actief\u003c/caption\u003e\n        \u003ctfoot\u003e\n          \u003ctr\u003e\n            \u003ctd colspan\u003d\"2\"\u003eVanwege spierzwakte rechterarm\u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tfoot\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eApparaat/Systeem\u003c/th\u003e\n            \u003ctd\u003epolsbrace armondersteuning bij eten en drinken en computerwerk\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eDeel van lichaam\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cspan title\u003d\"structuur van bovenste extremiteit (53120007 - SNOMED CT)\"\u003estructuur van bovenste extremiteit\u003c/span\u003e\n              \u003cspan title\u003d\"Rechts (24028007 - SNOMED CT)\"\u003eRechts\u003c/span\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eGebruiksperiode\u003c/th\u003e\n            \u003ctd\u003eVanaf 2011-02\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eIndicatie\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cdiv\u003eCVA\u003c/div\u003e\n              \u003cdiv\u003espasticiteit als laat gevolg van CVA\u003c/div\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "extension": [
+          {
+            "url": "http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Organization",
+            "valueReference": {
+              "reference": "Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000005",
+              "display": "Ziekenhuis Mammazorg - Mammapoli"
+            }
+          },
+          {
+            "url": "http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Practitioner",
+            "valueReference": {
+              "reference": "Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00131313",
+              "display": "Huisdokter H. Huisdokter Behulpzaam"
+            }
+          }
+        ],
+        "status": "active",
+        "subject": {
+          "reference": "Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL",
+          "display": "Michelle M.B. Michelle Bergzoon Verheul"
+        },
+        "whenUsed": {
+          "start": "2011-02"
+        },
+        "device": {
+          "reference": "Device/zib-MedicalDeviceProduct-msz-4781d9e6-6b37-11ec-0000-2",
+          "display": "polsbrace armondersteuning bij eten en drinken en computerwerk"
+        },
+        "indication": [
+          {
+            "extension": [
+              {
+                "url": "http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Problem",
+                "valueReference": {
+                  "reference": "Condition/zib-Problem-msz-5b64cf75-6b76-11ec-0000-2",
+                  "display": "CVA"
+                }
+              }
+            ]
+          },
+          {
+            "extension": [
+              {
+                "url": "http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Problem",
+                "valueReference": {
+                  "reference": "Condition/zib-Problem-msz-cef4f3cf-6b67-11ec-0000-2",
+                  "display": "spasticiteit als laat gevolg van CVA"
+                }
+              }
+            ]
+          }
+        ],
+        "bodySite": {
+          "extension": [
+            {
+              "url": "http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "24028007",
+                    "display": "Rechts"
+                  }
+                ]
+              }
+            }
+          ],
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "53120007",
+              "display": "structuur van bovenste extremiteit"
+            }
+          ]
+        },
+        "note": [
+          {
+            "text": "Vanwege spierzwakte rechterarm"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Device/zib-MedicalDeviceProduct-msz-4781d9e6-6b37-11ec-0000-2",
+      "resource": {
+        "resourceType": "Device",
+        "id": "zib-MedicalDeviceProduct-msz-4781d9e6-6b37-11ec-0000-2",
+        "meta": {
+          "versionId": "95",
+          "lastUpdated": "2026-02-03T10:54:21.897+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDeviceProduct"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eApparaat/Systeem. Patiënt: Michelle M.B. Michelle Bergzoon Verheul. Status: actief\u003c/caption\u003e\n        \u003ctfoot\u003e\n          \u003ctr\u003e\n            \u003ctd colspan\u003d\"2\"\u003earmondersteuning bij eten en drinken en computerwerk\u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tfoot\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eType\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cspan title\u003d\"polsbrace (1137330008 - SNOMED CT)\"\u003epolsbrace\u003c/span\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "status": "active",
+        "type": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "1137330008",
+              "display": "polsbrace"
+            }
+          ]
+        },
+        "patient": {
+          "reference": "Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL",
+          "display": "Michelle M.B. Michelle Bergzoon Verheul"
+        },
+        "note": [
+          {
+            "text": "armondersteuning bij eten en drinken en computerwerk"
+          }
+        ]
+      },
+      "search": {
+        "mode": "include"
+      }
+    }
+  ]
+}

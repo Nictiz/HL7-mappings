@@ -1,0 +1,123 @@
+{
+  "resourceType": "Bundle",
+  "id": "4617a1fc-2c92-4391-a7f3-a09174e26c18",
+  "meta": {
+    "lastUpdated": "2026-02-05T12:58:35.890+00:00"
+  },
+  "type": "searchset",
+  "total": 1,
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/MedicationDispense?_include\u003dMedicationDispense%3Amedication\u0026_revinclude\u003dProvenance%3Atarget\u0026category\u003dhttp%3A%2F%2Fsnomed.info%2Fsct%7C422037009\u0026patient\u003dPatient%2FMICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL\u0026patient.identifier\u003dhttp%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999911259"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/MedicationDispense/zib-AdministrationAgreement-msz-4b49fd51-6a98-11ec-0000-2",
+      "resource": {
+        "resourceType": "MedicationDispense",
+        "id": "zib-AdministrationAgreement-msz-4b49fd51-6a98-11ec-0000-2",
+        "meta": {
+          "versionId": "94",
+          "lastUpdated": "2026-02-03T10:55:45.848+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eToedieningsafspraak. Subject: Michelle M.B. Michelle Bergzoon Verheul. Categorie: \u003cspan title\u003d\"Provider medication administration instructions (procedure) (422037009 - SNOMED CT)\"\u003eProvider medication administration instructions (procedure)\u003c/span\u003e\n          \u003cspan style\u003d\"display: block;\"\u003eUitvoerende: Ziekenhuis Mammazorg - Mammapoli\u003c/span\u003e\n        \u003c/caption\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eGemaakt\u003c/th\u003e\n            \u003ctd\u003e2026-02-02\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eMedicatie\u003c/th\u003e\n            \u003ctd\u003eFLUCLOXACILLINE AURO CAPSULE 500MG\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eGebruiksduur\u003c/th\u003e\n            \u003ctd\u003e6 dag\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eDoseerinstructie\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cdiv\u003eTekst: Vanaf \u0026lt;T-2D\u0026gt;, 10 dagen, 3 keer per dag 1 stuk, oraal, op een lege maag innemen minstens 1 uur vóór of 2 uur na de maaltijd, niet meteen gaan liggen nu inname van Fluclaxacilline.\u003c/div\u003e\n              \u003cdiv\u003eToedieningsweg: \u003cspan title\u003d\"Oraal (9 - G-Standaard thesaurus subtabel 0007)\"\u003eOraal\u003c/span\u003e\n              \u003c/div\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "extension": [
+          {
+            "url": "http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn",
+            "valueDateTime": "2026-02-02"
+          },
+          {
+            "url": "http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration",
+            "valueDuration": {
+              "value": 6,
+              "unit": "dag",
+              "system": "http://unitsofmeasure.org",
+              "code": "d"
+            }
+          }
+        ],
+        "category": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "422037009",
+              "display": "Provider medication administration instructions (procedure)"
+            }
+          ],
+          "text": "Toedieningsafspraak"
+        },
+        "medicationReference": {
+          "reference": "Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-7-3071197",
+          "display": "FLUCLOXACILLINE AURO CAPSULE 500MG"
+        },
+        "subject": {
+          "reference": "Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL",
+          "display": "Michelle M.B. Michelle Bergzoon Verheul"
+        },
+        "performer": [
+          {
+            "actor": {
+              "reference": "Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000005",
+              "display": "Ziekenhuis Mammazorg - Mammapoli"
+            }
+          }
+        ],
+        "dosageInstruction": [
+          {
+            "text": "Vanaf \u003cT-2D\u003e, 10 dagen, 3 keer per dag 1 stuk, oraal, op een lege maag innemen minstens 1 uur vóór of 2 uur na de maaltijd, niet meteen gaan liggen nu inname van Fluclaxacilline.",
+            "route": {
+              "coding": [
+                {
+                  "system": "urn:oid:2.16.840.1.113883.2.4.4.9",
+                  "code": "9",
+                  "display": "Oraal"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-7-3071197",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "zib-Product-msz-2-16-840-1-113883-2-4-4-7-3071197",
+        "meta": {
+          "versionId": "3",
+          "lastUpdated": "2025-12-15T09:38:15.523+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-Product"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eCode\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cspan title\u003d\"FLUCLOXACILLINE AURO CAPSULE 500MG (3071197 - G-Standaard HPK)\"\u003eFLUCLOXACILLINE AURO CAPSULE 500MG\u003c/span\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:2.16.840.1.113883.2.4.4.7",
+              "code": "3071197",
+              "display": "FLUCLOXACILLINE AURO CAPSULE 500MG"
+            }
+          ]
+        }
+      },
+      "search": {
+        "mode": "include"
+      }
+    }
+  ]
+}

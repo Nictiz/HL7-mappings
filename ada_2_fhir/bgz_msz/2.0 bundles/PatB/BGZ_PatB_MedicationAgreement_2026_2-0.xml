@@ -1,0 +1,778 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bundle xmlns="http://hl7.org/fhir">
+    <id value="2db60fae-5e26-487e-819f-e94d0cf952bf"/>
+    <meta>
+        <lastUpdated value="2026-02-05T12:58:33.981+00:00"/>
+    </meta>
+    <type value="searchset"/>
+    <total value="4"/>
+    <link>
+        <relation value="self"/>
+        <url value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/MedicationRequest?_include=MedicationRequest%3Amedication&amp;_revinclude=Provenance%3Atarget&amp;category=http%3A%2F%2Fsnomed.info%2Fsct%7C16076005&amp;patient=Patient%2FMICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL&amp;patient.identifier=http%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999911259"/>
+    </link>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/MedicationRequest/zib-MedicationAgreement-msz-11ec08cd-6ab2-11ec-0000-2"/>
+        <resource>
+            <MedicationRequest>
+                <id value="zib-MedicationAgreement-msz-11ec08cd-6ab2-11ec-0000-2"/>
+                <meta>
+                    <versionId value="97"/>
+                    <lastUpdated value="2026-02-03T10:55:53.189+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <caption>
+                                Medicatieafspraak. Subject: Michelle M.B. Michelle Bergzoon Verheul. Categorie:
+                                <span title="Prescription (procedure) (16076005 - SNOMED CT)">
+                                    Prescription (procedure)
+                                </span>
+                                ,
+                                <span style="display: block;">
+                                    Intentie: aanvraag
+                                </span>
+                                <span style="display: block;">
+                                    Aangevraagd door: Jolanda J. Martha Cormane
+                                </span>
+                            </caption>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2">
+                                        bij contacteczeem
+                                    </td>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Medicatie
+                                    </th>
+                                    <td>
+                                        MOMENTASON CREME 1MG/G
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Gemaakt
+                                    </th>
+                                    <td>
+                                        15 oktober 2018
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Reden
+                                    </th>
+                                    <td/>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Doseerinstructie
+                                    </th>
+                                    <td>
+                                        <div>
+                                            Tekst: Vanaf 2018-10-15, 1 maal per dag 1 stuk, alleen bij klachten, ma t/m do WEL, vr t/m zo NIET
+                                        </div>
+                                        <div>
+                                            Instructie: Alleen bij klachten, ma t/m do WEL, vr t/m zo NIET
+                                        </div>
+                                        <div>
+                                            Zo nodig: Bij klachten
+                                        </div>
+                                        <div>
+                                            Toedieningsweg:
+                                            <span title="cutaan (53 - G-Standaard thesaurus subtabel 0007)">
+                                                cutaan
+                                            </span>
+                                        </div>
+                                        <div>
+                                            Max dosering: 1 STUK / 1 dag (per period)
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <intent value="order"/>
+                <medicationReference>
+                    <reference value="Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-129224"/>
+                    <display value="MOMENTASON CREME 1MG/G"/>
+                </medicationReference>
+                <subject>
+                    <reference value="Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL"/>
+                    <display value="Michelle M.B. Michelle Bergzoon Verheul"/>
+                </subject>
+                <authoredOn value="2018-10-15"/>
+                <requester>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+                        <valueReference>
+                            <reference value="PractitionerRole/nl-core-practitionerrole-msz-0017171701-01220000007"/>
+                            <display value="Jolanda J. Martha Cormane || Dermatoloog || Algemeen Medisch Centrum"/>
+                        </valueReference>
+                    </extension>
+                </requester>
+                <reasonReference>
+                    <reference value="Condition/zib-Problem-msz-9bd3ddcf-6b5e-11ec-0000-2"/>
+                </reasonReference>
+                <note>
+                    <text value="bij contacteczeem"/>
+                </note>
+                <dosageInstruction>
+                    <text value="Vanaf 2018-10-15, 1 maal per dag 1 stuk, alleen bij klachten, ma t/m do WEL, vr t/m zo NIET"/>
+                    <additionalInstruction>
+                        <coding>
+                            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+                            <code value="OTH"/>
+                            <display value="overig"/>
+                        </coding>
+                        <text value="Alleen bij klachten, ma t/m do WEL, vr t/m zo NIET"/>
+                    </additionalInstruction>
+                    <asNeededCodeableConcept>
+                        <coding>
+                            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+                            <code value="OTH"/>
+                            <display value="overig"/>
+                        </coding>
+                        <text value="Bij klachten"/>
+                    </asNeededCodeableConcept>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="53"/>
+                            <display value="cutaan"/>
+                        </coding>
+                    </route>
+                    <maxDosePerPeriod>
+                        <numerator>
+                            <value value="1"/>
+                            <unit value="STUK"/>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                            <code value="ST"/>
+                        </numerator>
+                        <denominator>
+                            <value value="1"/>
+                            <unit value="dag"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="d"/>
+                        </denominator>
+                    </maxDosePerPeriod>
+                </dosageInstruction>
+            </MedicationRequest>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/MedicationRequest/zib-MedicationAgreement-msz-7d094b76-6b19-11ec-0000-2"/>
+        <resource>
+            <MedicationRequest>
+                <id value="zib-MedicationAgreement-msz-7d094b76-6b19-11ec-0000-2"/>
+                <meta>
+                    <versionId value="98"/>
+                    <lastUpdated value="2026-02-03T10:55:57.550+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <caption>
+                                Medicatieafspraak. Subject: Michelle M.B. Michelle Bergzoon Verheul. Categorie:
+                                <span title="Prescription (procedure) (16076005 - SNOMED CT)">
+                                    Prescription (procedure)
+                                </span>
+                                ,
+                                <span style="display: block;">
+                                    Intentie: aanvraag
+                                </span>
+                                <span style="display: block;">
+                                    Aangevraagd door: Zaza Z. Zaza Bedachtzaam
+                                </span>
+                            </caption>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Medicatie
+                                    </th>
+                                    <td>
+                                        FLUCLOXACILLINE CAPSULE 500MG
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Gemaakt
+                                    </th>
+                                    <td>
+                                        2026-01-31
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Gebruiksduur
+                                    </th>
+                                    <td>
+                                        10 dag
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Doseerinstructie
+                                    </th>
+                                    <td>
+                                        <div>
+                                            Volgnummer: 1
+                                        </div>
+                                        <div>
+                                            Tekst: Vanaf &lt;T-2D&gt;, 10 dagen, 3 keer per dag 1 stuk, oraal, op een lege maag innemen minstens 1 uur vóór of 2 uur na de maaltijd, niet meteen gaan liggen nu inname van Fluclaxacilline.
+                                        </div>
+                                        <div>
+                                            Instructie:
+                                            <ul>
+                                                <li>
+                                                    op een lege maag innemen minstens 1 uur vóór of 2 uur na de maaltijd
+                                                </li>
+                                                <li>
+                                                    niet meteen gaan liggen nu inname van Fluclaxacilline
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            Timing:
+                                            <div>
+                                                3 maal per dag
+                                            </div>
+                                        </div>
+                                        <div>
+                                            Toedieningsweg:
+                                            <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">
+                                                Oraal
+                                            </span>
+                                        </div>
+                                        <div>
+                                            Dosering: 1 STUK
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+                    <valueDuration>
+                        <value value="10"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                    </valueDuration>
+                </extension>
+                <intent value="order"/>
+                <medicationReference>
+                    <reference value="Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-5274"/>
+                    <display value="FLUCLOXACILLINE CAPSULE 500MG"/>
+                </medicationReference>
+                <subject>
+                    <reference value="Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL"/>
+                    <display value="Michelle M.B. Michelle Bergzoon Verheul"/>
+                </subject>
+                <authoredOn value="2026-01-31"/>
+                <requester>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+                        <valueReference>
+                            <reference value="PractitionerRole/nl-core-practitionerrole-msz-0014141401-01420000005"/>
+                            <display value="Zaza Z. Zaza Bedachtzaam || Chirurg || Ziekenhuis Mammazorg"/>
+                        </valueReference>
+                    </extension>
+                </requester>
+                <dosageInstruction>
+                    <sequence value="1"/>
+                    <text value="Vanaf &lt;T-2D&gt;, 10 dagen, 3 keer per dag 1 stuk, oraal, op een lege maag innemen minstens 1 uur vóór of 2 uur na de maaltijd, niet meteen gaan liggen nu inname van Fluclaxacilline."/>
+                    <additionalInstruction>
+                        <coding>
+                            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+                            <code value="OTH"/>
+                            <display value="overig"/>
+                        </coding>
+                        <text value="op een lege maag innemen minstens 1 uur vóór of 2 uur na de maaltijd"/>
+                    </additionalInstruction>
+                    <additionalInstruction>
+                        <coding>
+                            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+                            <code value="OTH"/>
+                            <display value="overig"/>
+                        </coding>
+                        <text value="niet meteen gaan liggen nu inname van Fluclaxacilline"/>
+                    </additionalInstruction>
+                    <timing>
+                        <repeat>
+                            <frequency value="3"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="Oraal"/>
+                        </coding>
+                    </route>
+                </dosageInstruction>
+            </MedicationRequest>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/MedicationRequest/zib-MedicationAgreement-msz-88e57969-6b11-11ec-0000-2"/>
+        <resource>
+            <MedicationRequest>
+                <id value="zib-MedicationAgreement-msz-88e57969-6b11-11ec-0000-2"/>
+                <meta>
+                    <versionId value="97"/>
+                    <lastUpdated value="2026-02-03T10:55:59.011+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <caption>
+                                Medicatieafspraak. Subject: Michelle M.B. Michelle Bergzoon Verheul. Categorie:
+                                <span title="Prescription (procedure) (16076005 - SNOMED CT)">
+                                    Prescription (procedure)
+                                </span>
+                                ,
+                                <span style="display: block;">
+                                    Intentie: aanvraag
+                                </span>
+                                <span style="display: block;">
+                                    Aangevraagd door: Huisdokter H. Huisdokter Behulpzaam
+                                </span>
+                            </caption>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2">
+                                        Vanaf 2012-07-03
+                                    </td>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Medicatie
+                                    </th>
+                                    <td>
+                                        CALCIUMCARB/COLECALC KAUWTB 1,25G/400IE (500MG CA)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Gemaakt
+                                    </th>
+                                    <td>
+                                        3 juli 2012
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Reden
+                                    </th>
+                                    <td/>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Doseerinstructie
+                                    </th>
+                                    <td>
+                                        <div>
+                                            Tekst: Om de dag 1 STUK
+                                        </div>
+                                        <div>
+                                            Timing:
+                                            <div>
+                                                eenmalig per 2 dagen
+                                            </div>
+                                        </div>
+                                        <div>
+                                            Toedieningsweg:
+                                            <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">
+                                                Oraal
+                                            </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <intent value="order"/>
+                <medicationReference>
+                    <reference value="Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-58807"/>
+                    <display value="CALCIUMCARB/COLECALC KAUWTB 1,25G/400IE (500MG CA)"/>
+                </medicationReference>
+                <subject>
+                    <reference value="Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL"/>
+                    <display value="Michelle M.B. Michelle Bergzoon Verheul"/>
+                </subject>
+                <authoredOn value="2012-07-03"/>
+                <requester>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+                        <valueReference>
+                            <reference value="PractitionerRole/nl-core-practitionerrole-msz-0013131301-01520000004"/>
+                            <display value="Huisdokter H. Huisdokter Behulpzaam || Huisarts || Huisartsenpraktijk Betrokken"/>
+                        </valueReference>
+                    </extension>
+                </requester>
+                <reasonReference>
+                    <reference value="Condition/zib-Problem-msz-31bf4dcf-6b18-11ec-0000-2"/>
+                </reasonReference>
+                <note>
+                    <text value="Vanaf 2012-07-03"/>
+                </note>
+                <dosageInstruction>
+                    <text value="Om de dag 1 STUK"/>
+                    <timing>
+                        <repeat>
+                            <frequency value="1"/>
+                            <period value="2"/>
+                            <periodUnit value="d"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="Oraal"/>
+                        </coding>
+                    </route>
+                </dosageInstruction>
+            </MedicationRequest>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/MedicationRequest/zib-MedicationAgreement-msz-e245ea05-6b45-11ec-0000-2"/>
+        <resource>
+            <MedicationRequest>
+                <id value="zib-MedicationAgreement-msz-e245ea05-6b45-11ec-0000-2"/>
+                <meta>
+                    <versionId value="97"/>
+                    <lastUpdated value="2026-02-03T10:56:03.387+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <caption>
+                                Medicatieafspraak. Subject: Michelle M.B. Michelle Bergzoon Verheul. Categorie:
+                                <span title="Prescription (procedure) (16076005 - SNOMED CT)">
+                                    Prescription (procedure)
+                                </span>
+                                ,
+                                <span style="display: block;">
+                                    Intentie: aanvraag
+                                </span>
+                                <span style="display: block;">
+                                    Aangevraagd door: Zaza Z. Zaza Bedachtzaam
+                                </span>
+                            </caption>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Medicatie
+                                    </th>
+                                    <td>
+                                        ALENDRONINEZUUR DRANK 70MG=100ML (0,7MG/ML) FL
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Gemaakt
+                                    </th>
+                                    <td>
+                                        2 juli 2012
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Reden
+                                    </th>
+                                    <td/>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Doseerinstructie
+                                    </th>
+                                    <td>
+                                        <div>
+                                            Tekst: 1 maal per week 1 stuk, oraal, Innemen bij het opstaan 's ochtends, ten minste een half uur voor het eerste eten of drinken of de eerste geneesmiddelen van die dag, Bij het vergeten in te nemen van de wekelijkse drank, deze de volgende ochtend innemen.
+                                        </div>
+                                        <div>
+                                            Instructie:
+                                            <ul>
+                                                <li>
+                                                    Innemen bij het opstaan, ten minste een half uur voor het eerste eten of drinken of de eerste geneesmiddelen van die dag
+                                                </li>
+                                                <li>
+                                                    Bij het vergeten in te nemen van de wekelijkse drank, deze de volgende ochtend innemen
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            Timing:
+                                            <div>
+                                                eenmalig per week
+                                            </div>
+                                        </div>
+                                        <div>
+                                            Toedieningsweg:
+                                            <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">
+                                                Oraal
+                                            </span>
+                                        </div>
+                                        <div>
+                                            Dosering: 1 STUK
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <intent value="order"/>
+                <medicationReference>
+                    <reference value="Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10--129933"/>
+                    <display value="ALENDRONINEZUUR DRANK 70MG=100ML (0,7MG/ML) FL"/>
+                </medicationReference>
+                <subject>
+                    <reference value="Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL"/>
+                    <display value="Michelle M.B. Michelle Bergzoon Verheul"/>
+                </subject>
+                <authoredOn value="2012-07-02"/>
+                <requester>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+                        <valueReference>
+                            <reference value="PractitionerRole/nl-core-practitionerrole-msz-0014141401-01420000005"/>
+                            <display value="Zaza Z. Zaza Bedachtzaam || Chirurg || Ziekenhuis Mammazorg"/>
+                        </valueReference>
+                    </extension>
+                </requester>
+                <reasonReference>
+                    <reference value="Condition/zib-Problem-msz-31bf4dcf-6b18-11ec-0000-2"/>
+                </reasonReference>
+                <dosageInstruction>
+                    <text value="1 maal per week 1 stuk, oraal, Innemen bij het opstaan 's ochtends, ten minste een half uur voor het eerste eten of drinken of de eerste geneesmiddelen van die dag, Bij het vergeten in te nemen van de wekelijkse drank, deze de volgende ochtend innemen."/>
+                    <additionalInstruction>
+                        <coding>
+                            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+                            <code value="OTH"/>
+                            <display value="overig"/>
+                        </coding>
+                        <text value="Innemen bij het opstaan, ten minste een half uur voor het eerste eten of drinken of de eerste geneesmiddelen van die dag"/>
+                    </additionalInstruction>
+                    <additionalInstruction>
+                        <coding>
+                            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+                            <code value="OTH"/>
+                            <display value="overig"/>
+                        </coding>
+                        <text value="Bij het vergeten in te nemen van de wekelijkse drank, deze de volgende ochtend innemen"/>
+                    </additionalInstruction>
+                    <timing>
+                        <repeat>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="wk"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="Oraal"/>
+                        </coding>
+                    </route>
+                </dosageInstruction>
+            </MedicationRequest>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10--129933"/>
+        <resource>
+            <Medication>
+                <id value="zib-Product-msz-2-16-840-1-113883-2-4-4-10--129933"/>
+                <meta>
+                    <versionId value="3"/>
+                    <lastUpdated value="2025-12-15T09:37:57.358+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Code
+                                    </th>
+                                    <td>
+                                        <span title="ALENDRONINEZUUR DRANK 70MG=100ML (0,7MG/ML) FL (129933 - G-Standaard PRK)">
+                                            ALENDRONINEZUUR DRANK 70MG=100ML (0,7MG/ML) FL
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <code>
+                    <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                        <code value="129933"/>
+                        <display value="ALENDRONINEZUUR DRANK 70MG=100ML (0,7MG/ML) FL"/>
+                    </coding>
+                </code>
+            </Medication>
+        </resource>
+        <search>
+            <mode value="include"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-129224"/>
+        <resource>
+            <Medication>
+                <id value="zib-Product-msz-2-16-840-1-113883-2-4-4-10-129224"/>
+                <meta>
+                    <versionId value="3"/>
+                    <lastUpdated value="2025-12-15T09:37:58.751+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Code
+                                    </th>
+                                    <td>
+                                        <span title="MOMENTASON CREME 1MG/G (129224 - G-Standaard PRK)">
+                                            MOMENTASON CREME 1MG/G
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <code>
+                    <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                        <code value="129224"/>
+                        <display value="MOMENTASON CREME 1MG/G"/>
+                    </coding>
+                </code>
+            </Medication>
+        </resource>
+        <search>
+            <mode value="include"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-58807"/>
+        <resource>
+            <Medication>
+                <id value="zib-Product-msz-2-16-840-1-113883-2-4-4-10-58807"/>
+                <meta>
+                    <versionId value="3"/>
+                    <lastUpdated value="2025-12-15T09:38:04.405+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Code
+                                    </th>
+                                    <td>
+                                        <span title="CALCIUMCARB/COLECALC KAUWTB 1,25G/400IE (500MG CA) (58807 - G-Standaard PRK)">
+                                            CALCIUMCARB/COLECALC KAUWTB 1,25G/400IE (500MG CA)
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <code>
+                    <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                        <code value="58807"/>
+                        <display value="CALCIUMCARB/COLECALC KAUWTB 1,25G/400IE (500MG CA)"/>
+                    </coding>
+                </code>
+            </Medication>
+        </resource>
+        <search>
+            <mode value="include"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-5274"/>
+        <resource>
+            <Medication>
+                <id value="zib-Product-msz-2-16-840-1-113883-2-4-4-10-5274"/>
+                <meta>
+                    <versionId value="3"/>
+                    <lastUpdated value="2025-12-15T09:38:02.974+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Code
+                                    </th>
+                                    <td>
+                                        <span title="FLUCLOXACILLINE CAPSULE 500MG (5274 - G-Standaard PRK)">
+                                            FLUCLOXACILLINE CAPSULE 500MG
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <code>
+                    <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                        <code value="5274"/>
+                        <display value="FLUCLOXACILLINE CAPSULE 500MG"/>
+                    </coding>
+                </code>
+            </Medication>
+        </resource>
+        <search>
+            <mode value="include"/>
+        </search>
+    </entry>
+</Bundle>
