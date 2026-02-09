@@ -1,0 +1,70 @@
+{
+  "resourceType": "Bundle",
+  "id": "01bca90f-5206-44bd-866b-fb30a13da7c0",
+  "meta": {
+    "lastUpdated": "2026-02-05T13:10:24.613+00:00"
+  },
+  "type": "searchset",
+  "total": 1,
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Observation?_revinclude\u003dProvenance%3Atarget\u0026code\u003dhttp%3A%2F%2Floinc.org%7C8302-2%2Chttp%3A%2F%2Floinc.org%7C8306-3%2Chttp%3A%2F%2Floinc.org%7C8308-9\u0026patient\u003dPatient%2FDE-HERDER\u0026patient.identifier\u003dhttp%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999901370"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Observation/zib-BodyHeight-msz-4f327cf6-6b35-11ec-0000-2",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "zib-BodyHeight-msz-4f327cf6-6b35-11ec-0000-2",
+        "meta": {
+          "versionId": "97",
+          "lastUpdated": "2026-02-03T10:01:41.141+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-BodyHeight"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eObservatie/bepaling. Subject: de Herder. Categorie: \u003cspan title\u003d\"Vital Signs (vital-signs - observation-category)\"\u003eVital Signs\u003c/span\u003e, Status: definitief\u003c/caption\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eBepalingdatum/tijd\u003c/th\u003e\n            \u003ctd\u003e2 januari 2000\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eCode\u003c/th\u003e\n            \u003cth\u003eWaarde\u003c/th\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003ctd\u003e\n              \u003cspan title\u003d\"Lichaamslengte [lengte] in ^patiënt (8302-2 - LOINC)\"\u003eLichaamslengte [lengte] in ^patiënt\u003c/span\u003e\n            \u003c/td\u003e\n            \u003ctd\u003e170 cm\u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8302-2",
+              "display": "Lichaamslengte [lengte] in ^patiënt"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/DE-HERDER",
+          "display": "de Herder"
+        },
+        "effectiveDateTime": "2000-01-02",
+        "valueQuantity": {
+          "value": 170,
+          "unit": "cm",
+          "system": "http://unitsofmeasure.org",
+          "code": "cm"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    }
+  ]
+}

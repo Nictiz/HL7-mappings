@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bundle xmlns="http://hl7.org/fhir">
+    <id value="3fc1c86c-c94e-443f-96fa-453531d6a07f"/>
+    <meta>
+        <lastUpdated value="2026-02-05T13:08:37.600+00:00"/>
+    </meta>
+    <type value="searchset"/>
+    <total value="1"/>
+    <link>
+        <relation value="self"/>
+        <url value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Patient?_id=Patient%2FDE-HERDER&amp;_include=Patient%3Ageneral-practitioner&amp;_revinclude=Provenance%3Atarget&amp;identifier=http%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999901370"/>
+    </link>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Patient/DE-HERDER"/>
+        <resource>
+            <Patient>
+                <id value="DE-HERDER"/>
+                <meta>
+                    <versionId value="1"/>
+                    <lastUpdated value="2026-02-03T10:00:01.444+00:00"/>
+                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/BgZ-Patient"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <div>
+                            Id 999901370 (BSN), de Herder, Man, 16 december 1985
+                        </div>
+                        <div>
+                            Jansen
+                        </div>
+                    </div>
+                </text>
+                <identifier>
+                    <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                    <value value="999901370"/>
+                </identifier>
+                <name>
+                    <family value="de Herder">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                            <valueString value="de"/>
+                        </extension>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                            <valueString value="Herder"/>
+                        </extension>
+                    </family>
+                </name>
+                <gender value="male">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                        <valueCodeableConcept>
+                            <coding>
+                                <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                                <code value="M"/>
+                                <display value="Man"/>
+                            </coding>
+                        </valueCodeableConcept>
+                    </extension>
+                </gender>
+                <birthDate value="1985-12-16"/>
+                <contact>
+                    <name>
+                        <family value="Jansen">
+                            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                                <valueString value="Jansen"/>
+                            </extension>
+                        </family>
+                    </name>
+                </contact>
+            </Patient>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+</Bundle>

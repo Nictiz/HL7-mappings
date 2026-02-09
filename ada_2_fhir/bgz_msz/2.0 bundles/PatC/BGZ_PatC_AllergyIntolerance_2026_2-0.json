@@ -1,0 +1,84 @@
+{
+  "resourceType": "Bundle",
+  "id": "2c216c0e-ced6-43b8-aa51-e0676c4c2574",
+  "meta": {
+    "lastUpdated": "2026-02-05T13:09:02.829+00:00"
+  },
+  "type": "searchset",
+  "total": 1,
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/AllergyIntolerance?_revinclude\u003dProvenance%3Atarget\u0026patient\u003dPatient%2FDE-HERDER\u0026patient.identifier\u003dhttp%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999901370"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/AllergyIntolerance/zib-AllergyIntolerance-msz-c8c146cf-6b49-11ec-0000-2",
+      "resource": {
+        "resourceType": "AllergyIntolerance",
+        "id": "zib-AllergyIntolerance-msz-c8c146cf-6b49-11ec-0000-2",
+        "meta": {
+          "versionId": "58",
+          "lastUpdated": "2026-02-03T10:00:06.138+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eAllergie/intolerantie. Patiënt: de Herder. Status: actief / bevestigd\u003c/caption\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eCode\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cspan title\u003d\"eiwit van kat (143491000146106 - SNOMED CT)\"\u003eeiwit van kat\u003c/span\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eReactie\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cul\u003e\n                \u003cli\u003e\n                  \u003cdiv\u003e\n                    \u003cspan title\u003d\"Urticaria (126485001 - SNOMED CT)\"\u003eUrticaria\u003c/span\u003e\n                  \u003c/div\u003e\n                \u003c/li\u003e\n              \u003c/ul\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "clinicalStatus": "active",
+        "_clinicalStatus": {
+          "extension": [
+            {
+              "url": "http://nictiz.nl/fhir/StructureDefinition/code-specification",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/v3/ActStatus",
+                    "code": "active",
+                    "display": "Actief"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "verificationStatus": "confirmed",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "143491000146106",
+              "display": "eiwit van kat"
+            }
+          ]
+        },
+        "patient": {
+          "reference": "Patient/DE-HERDER",
+          "display": "de Herder"
+        },
+        "reaction": [
+          {
+            "manifestation": [
+              {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "126485001",
+                    "display": "Urticaria"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    }
+  ]
+}

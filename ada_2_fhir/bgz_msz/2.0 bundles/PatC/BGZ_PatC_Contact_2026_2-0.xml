@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bundle xmlns="http://hl7.org/fhir">
+    <id value="88370bc8-6ac8-4082-83f2-aaac08042aa9"/>
+    <meta>
+        <lastUpdated value="2026-02-05T13:10:31.039+00:00"/>
+    </meta>
+    <type value="searchset"/>
+    <total value="1"/>
+    <link>
+        <relation value="self"/>
+        <url value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Encounter?_revinclude=Provenance%3Atarget&amp;patient=Patient%2FDE-HERDER&amp;patient.identifier=http%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999901370"/>
+    </link>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Encounter/zib-Encounter-msz-BGZ-MSZ-PATC-ENCOUNTER1T-44D"/>
+        <resource>
+            <Encounter>
+                <id value="zib-Encounter-msz-BGZ-MSZ-PATC-ENCOUNTER1T-44D"/>
+                <meta>
+                    <versionId value="61"/>
+                    <lastUpdated value="2026-02-03T10:00:44.814+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <caption>
+                                Contact. Subject: de Herder. Status: onbekend
+                            </caption>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Type contact
+                                    </th>
+                                    <td>
+                                        <div>
+                                            <span title="Poliklinisch (AMB - v3/ActCode)">
+                                                Poliklinisch
+                                            </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Periode
+                                    </th>
+                                    <td>
+                                        Vanaf 2025-12-20
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Probleem/Verrichting
+                                    </th>
+                                    <td>
+                                        Verrichtingtype: implantatie van cardiale pacemaker
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <status value="unknown"/>
+                <class>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                        <valueCodeableConcept>
+                            <coding>
+                                <system value="http://hl7.org/fhir/v3/ActCode"/>
+                                <code value="AMB"/>
+                                <display value="Poliklinisch"/>
+                            </coding>
+                        </valueCodeableConcept>
+                    </extension>
+                    <system value="http://hl7.org/fhir/v3/ActCode"/>
+                    <code value="AMB"/>
+                    <display value="Poliklinisch"/>
+                </class>
+                <subject>
+                    <reference value="Patient/DE-HERDER"/>
+                    <display value="de Herder"/>
+                </subject>
+                <period>
+                    <start value="2025-12-20"/>
+                </period>
+                <diagnosis>
+                    <condition>
+                        <reference value="Procedure/zib-Procedure-msz-d76e54ef-6af6-11ec-0000-2"/>
+                        <display value="Verrichtingtype: implantatie van cardiale pacemaker"/>
+                    </condition>
+                </diagnosis>
+            </Encounter>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+</Bundle>

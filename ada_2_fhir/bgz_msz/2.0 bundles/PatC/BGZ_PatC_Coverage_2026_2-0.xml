@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bundle xmlns="http://hl7.org/fhir">
+    <id value="3fc32c13-a733-437f-bd01-146db172c01d"/>
+    <meta>
+        <lastUpdated value="2026-02-05T13:08:40.140+00:00"/>
+    </meta>
+    <type value="searchset"/>
+    <total value="1"/>
+    <link>
+        <relation value="self"/>
+        <url value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Coverage?_include=Coverage%3Apayor&amp;_revinclude=Provenance%3Atarget&amp;beneficiary=Patient%2FDE-HERDER&amp;beneficiary.identifier=http%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999901370"/>
+    </link>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Coverage/zib-Payer-msz-ea048981-6b36-11ec-0000-2-1"/>
+        <resource>
+            <Coverage>
+                <id value="zib-Payer-msz-ea048981-6b36-11ec-0000-2-1"/>
+                <meta>
+                    <versionId value="64"/>
+                    <lastUpdated value="2026-02-03T10:00:28.290+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Payer"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <caption>
+                                Verzekering/garantstelling.
+                            </caption>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Type
+                                    </th>
+                                    <td>
+                                        <span title="Basis (B - 2.16.840.1.113883.2.4.3.11.60.101.5.1)">
+                                            Basis
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Periode
+                                    </th>
+                                    <td>
+                                        tot 2026-08-04
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        verzekerde
+                                    </th>
+                                    <td>
+                                        de Herder
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Verzekerdenummer
+                                    </th>
+                                    <td>
+                                        999999999001
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Betaler
+                                    </th>
+                                    <td>
+                                        Consistente Verzekeraars N.V.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        begunstigde
+                                    </th>
+                                    <td>
+                                        de Herder
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <type>
+                    <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.101.5.1"/>
+                        <code value="B"/>
+                        <display value="Basis"/>
+                    </coding>
+                </type>
+                <subscriber>
+                    <reference value="Patient/DE-HERDER"/>
+                    <display value="de Herder"/>
+                </subscriber>
+                <subscriberId value="999999999001"/>
+                <beneficiary>
+                    <reference value="Patient/DE-HERDER"/>
+                    <display value="de Herder"/>
+                </beneficiary>
+                <period>
+                    <end value="2026-08-04"/>
+                </period>
+                <payor>
+                    <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-4-1906"/>
+                    <display value="Consistente Verzekeraars N.V."/>
+                </payor>
+            </Coverage>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-4-1906"/>
+        <resource>
+            <Organization>
+                <id value="nl-core-organization-msz-2-16-840-1-113883-2-4-6-4-1906"/>
+                <meta>
+                    <versionId value="4"/>
+                    <lastUpdated value="2025-12-15T03:50:37.340+00:00"/>
+                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <caption>
+                                Organisatie. Id: 1906 (UZOVI)
+                            </caption>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Naam
+                                    </th>
+                                    <td>
+                                        Consistente Verzekeraars N.V.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <identifier>
+                    <system value="http://fhir.nl/fhir/NamingSystem/uzovi"/>
+                    <value value="1906"/>
+                </identifier>
+                <name value="Consistente Verzekeraars N.V."/>
+            </Organization>
+        </resource>
+        <search>
+            <mode value="include"/>
+        </search>
+    </entry>
+</Bundle>

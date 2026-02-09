@@ -1,0 +1,93 @@
+{
+  "resourceType": "Bundle",
+  "id": "3fc32c13-a733-437f-bd01-146db172c01d",
+  "meta": {
+    "lastUpdated": "2026-02-05T13:08:40.140+00:00"
+  },
+  "type": "searchset",
+  "total": 1,
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Coverage?_include\u003dCoverage%3Apayor\u0026_revinclude\u003dProvenance%3Atarget\u0026beneficiary\u003dPatient%2FDE-HERDER\u0026beneficiary.identifier\u003dhttp%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999901370"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Coverage/zib-Payer-msz-ea048981-6b36-11ec-0000-2-1",
+      "resource": {
+        "resourceType": "Coverage",
+        "id": "zib-Payer-msz-ea048981-6b36-11ec-0000-2-1",
+        "meta": {
+          "versionId": "64",
+          "lastUpdated": "2026-02-03T10:00:28.290+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-Payer"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eVerzekering/garantstelling. \u003c/caption\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eType\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cspan title\u003d\"Basis (B - 2.16.840.1.113883.2.4.3.11.60.101.5.1)\"\u003eBasis\u003c/span\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003ePeriode\u003c/th\u003e\n            \u003ctd\u003e tot 2026-08-04\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003everzekerde\u003c/th\u003e\n            \u003ctd\u003ede Herder\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eVerzekerdenummer\u003c/th\u003e\n            \u003ctd\u003e999999999001\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eBetaler\u003c/th\u003e\n            \u003ctd\u003eConsistente Verzekeraars N.V.\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003ebegunstigde\u003c/th\u003e\n            \u003ctd\u003ede Herder\u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "type": {
+          "coding": [
+            {
+              "system": "urn:oid:2.16.840.1.113883.2.4.3.11.60.101.5.1",
+              "code": "B",
+              "display": "Basis"
+            }
+          ]
+        },
+        "subscriber": {
+          "reference": "Patient/DE-HERDER",
+          "display": "de Herder"
+        },
+        "subscriberId": "999999999001",
+        "beneficiary": {
+          "reference": "Patient/DE-HERDER",
+          "display": "de Herder"
+        },
+        "period": {
+          "end": "2026-08-04"
+        },
+        "payor": [
+          {
+            "reference": "Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-4-1906",
+            "display": "Consistente Verzekeraars N.V."
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-4-1906",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "nl-core-organization-msz-2-16-840-1-113883-2-4-6-4-1906",
+        "meta": {
+          "versionId": "4",
+          "lastUpdated": "2025-12-15T03:50:37.340+00:00",
+          "profile": [
+            "http://fhir.nl/fhir/StructureDefinition/nl-core-organization"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eOrganisatie. Id: 1906 (UZOVI)\u003c/caption\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eNaam\u003c/th\u003e\n            \u003ctd\u003eConsistente Verzekeraars N.V.\u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "identifier": [
+          {
+            "system": "http://fhir.nl/fhir/NamingSystem/uzovi",
+            "value": "1906"
+          }
+        ],
+        "name": "Consistente Verzekeraars N.V."
+      },
+      "search": {
+        "mode": "include"
+      }
+    }
+  ]
+}

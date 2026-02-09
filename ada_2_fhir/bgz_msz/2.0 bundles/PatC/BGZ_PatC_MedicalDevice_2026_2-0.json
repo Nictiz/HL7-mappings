@@ -1,0 +1,82 @@
+{
+  "resourceType": "Bundle",
+  "id": "bbe3766c-41a2-446a-87cf-2dc780f3a7eb",
+  "meta": {
+    "lastUpdated": "2026-02-05T13:10:16.487+00:00"
+  },
+  "type": "searchset",
+  "total": 1,
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/DeviceUseStatement?_include\u003dDeviceUseStatement%3Adevice\u0026_revinclude\u003dProvenance%3Atarget\u0026patient\u003dPatient%2FDE-HERDER\u0026patient.identifier\u003dhttp%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999901370"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/DeviceUseStatement/zib-MedicalDevice-msz-4d88bbef-6ac3-11ec-0000-2",
+      "resource": {
+        "resourceType": "DeviceUseStatement",
+        "id": "zib-MedicalDevice-msz-4d88bbef-6ac3-11ec-0000-2",
+        "meta": {
+          "versionId": "103",
+          "lastUpdated": "2026-02-03T10:00:38.854+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eBeschrijving apparaatgebruik. Subject: de Herder. Status: actief\u003c/caption\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eApparaat/Systeem\u003c/th\u003e\n            \u003ctd\u003eimplanteerbare cardiale pacemaker\u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "status": "active",
+        "subject": {
+          "reference": "Patient/DE-HERDER",
+          "display": "de Herder"
+        },
+        "device": {
+          "reference": "Device/zib-MedicalDeviceProduct-msz-4d88bbef-6ac3-11ec-0000-2",
+          "display": "implanteerbare cardiale pacemaker"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Device/zib-MedicalDeviceProduct-msz-4d88bbef-6ac3-11ec-0000-2",
+      "resource": {
+        "resourceType": "Device",
+        "id": "zib-MedicalDeviceProduct-msz-4d88bbef-6ac3-11ec-0000-2",
+        "meta": {
+          "versionId": "106",
+          "lastUpdated": "2026-02-03T10:00:31.272+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDeviceProduct"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eApparaat/Systeem. Patiënt: de Herder. Status: actief\u003c/caption\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eType\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cspan title\u003d\"implanteerbare cardiale pacemaker (706004007 - SNOMED CT)\"\u003eimplanteerbare cardiale pacemaker\u003c/span\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "status": "active",
+        "type": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "706004007",
+              "display": "implanteerbare cardiale pacemaker"
+            }
+          ]
+        },
+        "patient": {
+          "reference": "Patient/DE-HERDER",
+          "display": "de Herder"
+        }
+      },
+      "search": {
+        "mode": "include"
+      }
+    }
+  ]
+}

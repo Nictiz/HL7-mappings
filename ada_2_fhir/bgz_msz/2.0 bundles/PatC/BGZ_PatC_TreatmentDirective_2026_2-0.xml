@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bundle xmlns="http://hl7.org/fhir">
+    <id value="d4f03f4a-0f9a-421f-a75f-96c0cb2ab467"/>
+    <meta>
+        <lastUpdated value="2026-02-05T13:08:42.259+00:00"/>
+    </meta>
+    <type value="searchset"/>
+    <total value="1"/>
+    <link>
+        <relation value="self"/>
+        <url value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Consent?_revinclude=Provenance%3Atarget&amp;category=http%3A%2F%2Fsnomed.info%2Fsct%7C11291000146105&amp;patient=Patient%2FDE-HERDER&amp;patient.identifier=http%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999901370"/>
+    </link>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Consent/zib-TreatmentDirective-msz-7619184a-6ade-11ec-0000-2"/>
+        <resource>
+            <Consent>
+                <id value="zib-TreatmentDirective-msz-7619184a-6ade-11ec-0000-2"/>
+                <meta>
+                    <versionId value="106"/>
+                    <lastUpdated value="2026-02-03T10:00:23.902+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <caption>
+                                Toestemming. Patiënt: de Herder. Categorie:
+                                <span title="behandelaanwijzing (11291000146105 - SNOMED CT)">
+                                    behandelaanwijzing
+                                </span>
+                                , Status: actief
+                            </caption>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Geverifieerd
+                                    </th>
+                                    <td/>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-Verification">
+                    <extension url="Verified">
+                        <valueBoolean>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                <valueCode value="unknown"/>
+                            </extension>
+                        </valueBoolean>
+                    </extension>
+                </extension>
+                <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-TreatmentPermitted">
+                    <valueCodeableConcept>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4"/>
+                            <code value="JA"/>
+                            <display value="Ja"/>
+                        </coding>
+                    </valueCodeableConcept>
+                </modifierExtension>
+                <status value="active"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="11291000146105"/>
+                        <display value="behandelaanwijzing"/>
+                    </coding>
+                </category>
+                <patient>
+                    <reference value="Patient/DE-HERDER"/>
+                    <display value="de Herder"/>
+                </patient>
+                <policy>
+                    <uri value="http://wetten.overheid.nl/"/>
+                </policy>
+            </Consent>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+</Bundle>

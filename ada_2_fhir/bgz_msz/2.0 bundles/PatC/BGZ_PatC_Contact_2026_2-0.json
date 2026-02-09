@@ -1,0 +1,73 @@
+{
+  "resourceType": "Bundle",
+  "id": "88370bc8-6ac8-4082-83f2-aaac08042aa9",
+  "meta": {
+    "lastUpdated": "2026-02-05T13:10:31.039+00:00"
+  },
+  "type": "searchset",
+  "total": 1,
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Encounter?_revinclude\u003dProvenance%3Atarget\u0026patient\u003dPatient%2FDE-HERDER\u0026patient.identifier\u003dhttp%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999901370"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Encounter/zib-Encounter-msz-BGZ-MSZ-PATC-ENCOUNTER1T-44D",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "zib-Encounter-msz-BGZ-MSZ-PATC-ENCOUNTER1T-44D",
+        "meta": {
+          "versionId": "61",
+          "lastUpdated": "2026-02-03T10:00:44.814+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eContact. Subject: de Herder. Status: onbekend\u003c/caption\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eType contact\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cdiv\u003e\n                \u003cspan title\u003d\"Poliklinisch (AMB - v3/ActCode)\"\u003ePoliklinisch\u003c/span\u003e\n              \u003c/div\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003ePeriode\u003c/th\u003e\n            \u003ctd\u003eVanaf 2025-12-20\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eProbleem/Verrichting\u003c/th\u003e\n            \u003ctd\u003eVerrichtingtype: implantatie van cardiale pacemaker\u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "status": "unknown",
+        "class": {
+          "extension": [
+            {
+              "url": "http://nictiz.nl/fhir/StructureDefinition/code-specification",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/v3/ActCode",
+                    "code": "AMB",
+                    "display": "Poliklinisch"
+                  }
+                ]
+              }
+            }
+          ],
+          "system": "http://hl7.org/fhir/v3/ActCode",
+          "code": "AMB",
+          "display": "Poliklinisch"
+        },
+        "subject": {
+          "reference": "Patient/DE-HERDER",
+          "display": "de Herder"
+        },
+        "period": {
+          "start": "2025-12-20"
+        },
+        "diagnosis": [
+          {
+            "condition": {
+              "reference": "Procedure/zib-Procedure-msz-d76e54ef-6af6-11ec-0000-2",
+              "display": "Verrichtingtype: implantatie van cardiale pacemaker"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    }
+  ]
+}

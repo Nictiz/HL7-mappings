@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bundle xmlns="http://hl7.org/fhir">
+    <id value="bbe3766c-41a2-446a-87cf-2dc780f3a7eb"/>
+    <meta>
+        <lastUpdated value="2026-02-05T13:10:16.487+00:00"/>
+    </meta>
+    <type value="searchset"/>
+    <total value="1"/>
+    <link>
+        <relation value="self"/>
+        <url value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/DeviceUseStatement?_include=DeviceUseStatement%3Adevice&amp;_revinclude=Provenance%3Atarget&amp;patient=Patient%2FDE-HERDER&amp;patient.identifier=http%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999901370"/>
+    </link>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/DeviceUseStatement/zib-MedicalDevice-msz-4d88bbef-6ac3-11ec-0000-2"/>
+        <resource>
+            <DeviceUseStatement>
+                <id value="zib-MedicalDevice-msz-4d88bbef-6ac3-11ec-0000-2"/>
+                <meta>
+                    <versionId value="103"/>
+                    <lastUpdated value="2026-02-03T10:00:38.854+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <caption>
+                                Beschrijving apparaatgebruik. Subject: de Herder. Status: actief
+                            </caption>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Apparaat/Systeem
+                                    </th>
+                                    <td>
+                                        implanteerbare cardiale pacemaker
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <status value="active"/>
+                <subject>
+                    <reference value="Patient/DE-HERDER"/>
+                    <display value="de Herder"/>
+                </subject>
+                <device>
+                    <reference value="Device/zib-MedicalDeviceProduct-msz-4d88bbef-6ac3-11ec-0000-2"/>
+                    <display value="implanteerbare cardiale pacemaker"/>
+                </device>
+            </DeviceUseStatement>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Device/zib-MedicalDeviceProduct-msz-4d88bbef-6ac3-11ec-0000-2"/>
+        <resource>
+            <Device>
+                <id value="zib-MedicalDeviceProduct-msz-4d88bbef-6ac3-11ec-0000-2"/>
+                <meta>
+                    <versionId value="106"/>
+                    <lastUpdated value="2026-02-03T10:00:31.272+00:00"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDeviceProduct"/>
+                </meta>
+                <text>
+                    <status value="extensions"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <table>
+                            <caption>
+                                Apparaat/Systeem. Patiënt: de Herder. Status: actief
+                            </caption>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Type
+                                    </th>
+                                    <td>
+                                        <span title="implanteerbare cardiale pacemaker (706004007 - SNOMED CT)">
+                                            implanteerbare cardiale pacemaker
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </text>
+                <status value="active"/>
+                <type>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="706004007"/>
+                        <display value="implanteerbare cardiale pacemaker"/>
+                    </coding>
+                </type>
+                <patient>
+                    <reference value="Patient/DE-HERDER"/>
+                    <display value="de Herder"/>
+                </patient>
+            </Device>
+        </resource>
+        <search>
+            <mode value="include"/>
+        </search>
+    </entry>
+</Bundle>

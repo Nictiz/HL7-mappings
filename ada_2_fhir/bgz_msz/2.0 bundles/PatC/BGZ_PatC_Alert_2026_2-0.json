@@ -1,0 +1,62 @@
+{
+  "resourceType": "Bundle",
+  "id": "44700d97-a288-4d0f-b1e0-7834de88ef6c",
+  "meta": {
+    "lastUpdated": "2026-02-05T13:09:00.422+00:00"
+  },
+  "type": "searchset",
+  "total": 1,
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Flag?_revinclude\u003dProvenance%3Atarget\u0026patient\u003dPatient%2FDE-HERDER\u0026patient.identifier\u003dhttp%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999901370"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Flag/zib-Alert-msz-716352b5-6b62-11ec-0000-2",
+      "resource": {
+        "resourceType": "Flag",
+        "id": "zib-Alert-msz-716352b5-6b62-11ec-0000-2",
+        "meta": {
+          "versionId": "103",
+          "lastUpdated": "2026-02-03T10:00:56.515+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-Alert"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eAttentievlag. Subject: de Herder. Status: actief\u003c/caption\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eCode\u003c/th\u003e\n            \u003ctd\u003eZie probleem\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eDetail\u003c/th\u003e\n            \u003ctd\u003ebradycardie\u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/flag-detail",
+            "valueReference": {
+              "reference": "Condition/zib-Problem-msz-2d4e21a1-6afc-11ec-0000-2",
+              "display": "bradycardie"
+            }
+          }
+        ],
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v3/NullFlavor",
+              "code": "OTH",
+              "display": "other"
+            }
+          ],
+          "text": "Zie probleem"
+        },
+        "subject": {
+          "reference": "Patient/DE-HERDER",
+          "display": "de Herder"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    }
+  ]
+}

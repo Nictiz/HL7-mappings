@@ -1,0 +1,91 @@
+{
+  "resourceType": "Bundle",
+  "id": "d4f03f4a-0f9a-421f-a75f-96c0cb2ab467",
+  "meta": {
+    "lastUpdated": "2026-02-05T13:08:42.259+00:00"
+  },
+  "type": "searchset",
+  "total": 1,
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Consent?_revinclude\u003dProvenance%3Atarget\u0026category\u003dhttp%3A%2F%2Fsnomed.info%2Fsct%7C11291000146105\u0026patient\u003dPatient%2FDE-HERDER\u0026patient.identifier\u003dhttp%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999901370"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Consent/zib-TreatmentDirective-msz-7619184a-6ade-11ec-0000-2",
+      "resource": {
+        "resourceType": "Consent",
+        "id": "zib-TreatmentDirective-msz-7619184a-6ade-11ec-0000-2",
+        "meta": {
+          "versionId": "106",
+          "lastUpdated": "2026-02-03T10:00:23.902+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eToestemming. Patiënt: de Herder. Categorie: \u003cspan title\u003d\"behandelaanwijzing (11291000146105 - SNOMED CT)\"\u003ebehandelaanwijzing\u003c/span\u003e, Status: actief\u003c/caption\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eGeverifieerd\u003c/th\u003e\n            \u003ctd/\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "extension": [
+          {
+            "url": "http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-Verification",
+            "extension": [
+              {
+                "url": "Verified",
+                "_valueBoolean": {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                      "valueCode": "unknown"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "modifierExtension": [
+          {
+            "url": "http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-TreatmentPermitted",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4",
+                  "code": "JA",
+                  "display": "Ja"
+                }
+              ]
+            }
+          }
+        ],
+        "status": "active",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "11291000146105",
+                "display": "behandelaanwijzing"
+              }
+            ]
+          }
+        ],
+        "patient": {
+          "reference": "Patient/DE-HERDER",
+          "display": "de Herder"
+        },
+        "policy": [
+          {
+            "uri": "http://wetten.overheid.nl/"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "resourceType": "Bundle",
+  "id": "af2a12bf-7f70-42ee-b6b1-1ebf8ee0bc7e",
+  "meta": {
+    "lastUpdated": "2026-02-05T13:09:06.837+00:00"
+  },
+  "type": "searchset",
+  "total": 1,
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/MedicationRequest?_include\u003dMedicationRequest%3Amedication\u0026_revinclude\u003dProvenance%3Atarget\u0026category\u003dhttp%3A%2F%2Fsnomed.info%2Fsct%7C16076005\u0026patient\u003dPatient%2FDE-HERDER\u0026patient.identifier\u003dhttp%3A%2F%2Ffhir.nl%2Ffhir%2FNamingSystem%2Fbsn%7C999901370"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/MedicationRequest/zib-MedicationAgreement-msz-7d82b10f-6aed-11ec-0000-2",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "zib-MedicationAgreement-msz-7d82b10f-6aed-11ec-0000-2",
+        "meta": {
+          "versionId": "107",
+          "lastUpdated": "2026-02-03T10:01:12.671+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ccaption\u003eMedicatieafspraak. Subject: de Herder. Categorie: \u003cspan title\u003d\"Prescription (procedure) (16076005 - SNOMED CT)\"\u003ePrescription (procedure)\u003c/span\u003e, \u003cspan style\u003d\"display: block;\"\u003eIntentie: aanvraag\u003c/span\u003e\n          \u003cspan style\u003d\"display: block;\"\u003eAangevraagd door: Max Hart\u003c/span\u003e\n        \u003c/caption\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eMedicatie\u003c/th\u003e\n            \u003ctd\u003ePARACETAMOL 500MG TABLET\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eGemaakt\u003c/th\u003e\n            \u003ctd\u003e2025-12-20\u003c/td\u003e\n          \u003c/tr\u003e\n          \u003ctr\u003e\n            \u003cth\u003eDoseerinstructie\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cdiv\u003eTekst: Oraal\u003c/div\u003e\n              \u003cdiv\u003eToedieningsweg: \u003cspan title\u003d\"Oraal (9 - G-Standaard thesaurus subtabel 0007)\"\u003eOraal\u003c/span\u003e\n              \u003c/div\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "intent": "order",
+        "category": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "16076005",
+              "display": "Prescription (procedure)"
+            }
+          ],
+          "text": "Medicatieafspraak"
+        },
+        "medicationReference": {
+          "reference": "Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-67903",
+          "display": "PARACETAMOL 500MG TABLET"
+        },
+        "subject": {
+          "reference": "Patient/DE-HERDER",
+          "display": "de Herder"
+        },
+        "authoredOn": "2025-12-20",
+        "requester": {
+          "extension": [
+            {
+              "url": "http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole",
+              "valueReference": {
+                "reference": "PractitionerRole/nl-core-practitionerrole-msz-10000017",
+                "display": "Max Hart"
+              }
+            }
+          ],
+          "agent": {
+            "reference": "Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000017",
+            "display": "Max Hart"
+          }
+        },
+        "dosageInstruction": [
+          {
+            "text": "Oraal",
+            "route": {
+              "coding": [
+                {
+                  "system": "urn:oid:2.16.840.1.113883.2.4.4.9",
+                  "code": "9",
+                  "display": "Oraal"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://nictiz.proxy.interoplab.eu/uc-nictiz/stu3/fhir/Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-67903",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "zib-Product-msz-2-16-840-1-113883-2-4-4-10-67903",
+        "meta": {
+          "versionId": "3",
+          "lastUpdated": "2025-12-15T03:47:57.533+00:00",
+          "profile": [
+            "http://nictiz.nl/fhir/StructureDefinition/zib-Product"
+          ]
+        },
+        "text": {
+          "status": "extensions",
+          "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\n      \u003ctable\u003e\n        \u003ctbody\u003e\n          \u003ctr\u003e\n            \u003cth\u003eCode\u003c/th\u003e\n            \u003ctd\u003e\n              \u003cspan title\u003d\"PARACETAMOL TABLET 500MG (2194 - G-Standaard GPK)\"\u003ePARACETAMOL TABLET 500MG\u003c/span\u003e\n            \u003c/td\u003e\n          \u003c/tr\u003e\n        \u003c/tbody\u003e\n      \u003c/table\u003e\n    \u003c/div\u003e"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:2.16.840.1.113883.2.4.4.1",
+              "code": "2194",
+              "display": "PARACETAMOL TABLET 500MG"
+            },
+            {
+              "system": "urn:oid:2.16.840.1.113883.2.4.4.10",
+              "code": "67903",
+              "display": "PARACETAMOL 500MG TABLET"
+            }
+          ]
+        }
+      },
+      "search": {
+        "mode": "include"
+      }
+    }
+  ]
+}
