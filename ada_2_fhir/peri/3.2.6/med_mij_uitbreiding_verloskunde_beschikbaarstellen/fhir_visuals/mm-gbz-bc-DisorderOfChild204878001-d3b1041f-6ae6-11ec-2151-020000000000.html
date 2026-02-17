@@ -1,0 +1,98 @@
+<html lang="en">
+   <head>
+      <title>Condition - d3b1041f-6ae6-11ec-2151-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Aandoening. Subject: Kind Daniel Mateo DM Daniel De Kleine. Categorie: <span title="aandoening van foetus of neonaat (aandoening) (414025005 - SNOMED CT)">aandoening van foetus of neonaat (aandoening)</span>, Status: actief / bevestigd</caption>
+               <tbody>
+                  <tr>
+                     <th>Code</th>
+                     <td>
+                        <span title="niet-ingedaalde testis (aandoening) (204878001 - SNOMED CT)">niet-ingedaalde testis (aandoening)</span>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Eerste symptomen</th>
+                     <td>${DATE, T, D, -53}</td>
+                  </tr>
+                  <tr>
+                     <th>Oplossing/remissie</th>
+                     <td>${DATE, T, D, -48}</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Condition niet-ingedaalde testis (aandoening)</b>
+      </p>
+      <ul>
+         <li>
+            <a href="mm-gbz-bc-Encounter-f2ba733f-6af7-11ec-1275-020000000000.html">Encounter verlossing (verrichting)</a>
+         </li>
+      </ul>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 4, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-e2116b0f-6b20-11ec-0000-020000000000.html" }, 
+{ id: 36, label: "Condition niet-ingedaalde testis (aandoening)", url: "mm-gbz-bc-DisorderOfChild204878001-d3b1041f-6ae6-11ec-2151-020000000000.html" }, 
+{ id: 258, label: "Patient De Kleine", url: "mm-gbz-bc-Child-DANIEL-MATEO-DM-DANIEL-DE-KLEINE.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 36, to: 258 }, 
+{ from: 36, to: 4 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

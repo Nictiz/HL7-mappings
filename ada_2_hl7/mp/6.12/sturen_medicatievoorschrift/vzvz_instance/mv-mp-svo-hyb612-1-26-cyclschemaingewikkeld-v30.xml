@@ -1,0 +1,1311 @@
+<?xml-model href="../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schematron_closed_warnings/mp-medvoors.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
+<PORX_IN932000NL xsi:schemaLocation="urn:hl7-org:v3 ../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/PORX_IN932000NL.xsd"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns="urn:hl7-org:v3"
+                 xmlns:hl7="urn:hl7-org:v3"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <id extension="2BGeneratedID"
+       root="2.16.840.1.113883.2.4.3.11.999.77.3"/>
+   <creationTime value="20240101000000"/>
+   <versionCode code="NICTIZEd2005-Okt"/>
+   <interactionId extension="PORX_IN932000NL"
+                  root="2.16.840.1.113883.1.6"/>
+   <profileId root="2.16.840.1.113883.2.4.3.11.1"
+              extension="810"/>
+   <processingCode code="P"/>
+   <processingModeCode code="T"/>
+   <acceptAckCode code="AL"/>
+   <attentionLine>
+      <keyWordText code="PATID"
+                   codeSystem="2.16.840.1.113883.2.4.15.1">Patient.id</keyWordText>
+      <value extension="012345672"
+             root="2.16.840.1.113883.2.4.6.3"
+             xsi:type="II"/>
+   </attentionLine>
+   <receiver typeCode="RCV">
+      <device classCode="DEV"
+              determinerCode="INSTANCE">
+         <id extension="2BFilledWithRealValue"
+             root="2.16.840.1.113883.2.4.6.6"/>
+         <name>AIS van openbare apotheek De Gulle Gaper</name>
+      </device>
+   </receiver>
+   <sender typeCode="SND">
+      <device classCode="DEV"
+              determinerCode="INSTANCE">
+         <id extension="2BFilledWithRealValue"
+             root="2.16.840.1.113883.2.4.6.6"/>
+         <name>EVS van ziekenhuis Medisch Centrum Oost</name>
+      </device>
+   </sender>
+   <ControlActProcess classCode="CACT"
+                      moodCode="EVN">
+      <authorOrPerformer typeCode="AUT">
+         <participant>
+            <AssignedPerson>
+               <id extension="000001113"
+                   root="2.16.528.1.1007.3.1"/>
+               <code code="01.015"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                     codeSystemVersion="2024-01-29T00:00:00"/>
+               <assignedPrincipalChoiceList>
+                  <assignedPerson classCode="PSN"
+                                  determinerCode="INSTANCE">
+                     <name>
+                        <given qualifier="BR">Jan</given>
+                        <prefix qualifier="VV">de </prefix>
+                        <family qualifier="BR">Dokter</family>
+                     </name>
+                  </assignedPerson>
+               </assignedPrincipalChoiceList>
+               <Organization classCode="ORG"
+                             determinerCode="INSTANCE">
+                  <id extension="00005111"
+                      root="2.16.528.1.1007.3.3"/>
+                  <name>Huisartsenpraktijk Itis</name>
+                  <addr>
+                     <city>Onze Stad</city>
+                  </addr>
+               </Organization>
+            </AssignedPerson>
+         </participant>
+      </authorOrPerformer>
+      <overseer typeCode="RESP">
+         <AssignedPerson>
+            <id extension="000001113"
+                root="2.16.528.1.1007.3.1"/>
+            <code code="01.015"
+                  codeSystem="2.16.840.1.113883.2.4.15.111"
+                  displayName="Huisarts"
+                  codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                  codeSystemVersion="2024-01-29T00:00:00"/>
+            <assignedPrincipalChoiceList>
+               <assignedPerson classCode="PSN"
+                               determinerCode="INSTANCE">
+                  <name>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Dokter</family>
+                  </name>
+               </assignedPerson>
+            </assignedPrincipalChoiceList>
+            <Organization classCode="ORG"
+                          determinerCode="INSTANCE">
+               <id extension="00005111"
+                   root="2.16.528.1.1007.3.3"/>
+               <name>Huisartsenpraktijk Itis</name>
+               <addr>
+                  <city>Onze Stad</city>
+               </addr>
+            </Organization>
+         </AssignedPerson>
+      </overseer>
+      <!--Generated from ada instance with title: "Hybride Cyclisch schema ingewikkeld Scenarioset 1.26" and id: "mv-mp-svo-hyb612-1-26-cyclschemaingewikkeld-v30".-->
+      <subject>
+         <prescription classCode="SBADM"
+                       moodCode="RQO">
+            <id root="1.3.6.1.4.1.58606.1.3.2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                extension="MBH_hyb_vo_cyclschm_ingwk_MA!MBH_hyb_vo_cyclschm_ingwk_VV"/>
+            <statusCode code="active"/>
+            <subject typeCode="SBJ">
+               <Patient>
+                  <id extension="999900821"
+                      root="2.16.840.1.113883.2.4.6.3"/>
+                  <addr use="PHYS">
+                     <streetName>Knolweg</streetName>
+                     <houseNumber>1003</houseNumber>
+                     <postalCode>9999 ZA</postalCode>
+                     <city>Apeldoorn</city>
+                     <country code="NL"
+                              codeSystem="1.0.3166.1.2.2"
+                              displayName="Nederland"
+                              codeSystemName="ISO 3166-1 (alpha-2)"
+                              codeSystemVersion="2020-10-26T00:00:00">Nederland</country>
+                  </addr>
+                  <statusCode code="active"/>
+                  <Person>
+                     <name>
+                        <given qualifier="IN">L.</given>
+                        <prefix qualifier="VV">van de </prefix>
+                        <family qualifier="BR">XXX_Meijsz</family>
+                     </name>
+                     <administrativeGenderCode code="M"
+                                               codeSystem="2.16.840.1.113883.5.1"
+                                               displayName="Man"/>
+                     <birthTime value="19851027"/>
+                  </Person>
+               </Patient>
+            </subject>
+            <author typeCode="AUT">
+               <time value="20240101084000+0100"/>
+               <AssignedPerson classCode="ASSIGNED">
+                  <id extension="000001113"
+                      root="2.16.528.1.1007.3.1"/>
+                  <code code="01.015"
+                        codeSystem="2.16.840.1.113883.2.4.15.111"
+                        displayName="Huisarts"
+                        codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
+                        codeSystemVersion="2024-01-29T00:00:00"/>
+                  <assignee>
+                     <assigneePerson classCode="PSN"
+                                     determinerCode="INSTANCE">
+                        <name>
+                           <given qualifier="BR">Jan</given>
+                           <prefix qualifier="VV">de </prefix>
+                           <family qualifier="BR">Dokter</family>
+                        </name>
+                     </assigneePerson>
+                  </assignee>
+                  <!--The message template (9043) incorrectly defines representedOrganization, however the xsd only accepts Organization-->
+                  <!--Closed warnings schematron messages for this element should be ignored.-->
+                  <Organization classCode="ORG"
+                                determinerCode="INSTANCE">
+                     <id extension="00005111"
+                         root="2.16.528.1.1007.3.3"/>
+                     <name>Huisartsenpraktijk Itis</name>
+                     <addr use="WP">
+                        <streetName>Langelaan</streetName>
+                        <houseNumber>1</houseNumber>
+                        <postalCode>1234 ZZ</postalCode>
+                        <city>Onze Stad</city>
+                     </addr>
+                  </Organization>
+               </AssignedPerson>
+            </author>
+            <directTarget typeCode="DIR">
+               <prescribedMedication>
+                  <MedicationKind classCode="MMAT"
+                                  determinerCode="KIND">
+                     <code code="106704"
+                           codeSystem="2.16.840.1.113883.2.4.4.10"
+                           displayName="PREDNISOLON TABLET 2.5MG"
+                           codeSystemName="G-Standaard PRK">
+                        <translation code="142670"
+                                     codeSystem="2.16.840.1.113883.2.4.4.1"
+                                     displayName="PREDNISOLON TABLET 2.5MG"
+                                     codeSystemName="G-Standaard GPK"/>
+                     </code>
+                  </MedicationKind>
+                  <productOf>
+                     <medicationDispenseRequest>
+                        <id extension="MBH_hyb_vo_cyclschm_ingwk_VV"
+                            root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                        <statusCode nullFlavor="NA"/>
+                        <quantity value="91"
+                                  unit="1">
+                           <translation value="91"
+                                        code="245"
+                                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                        displayName="stuk"/>
+                        </quantity>
+                        <performer typeCode="PRF">
+                           <assignedPerson>
+                              <representedOrganization>
+                                 <id extension="01236578"
+                                     root="2.16.528.1.1007.3.3"/>
+                                 <name>Apotheek De Gulle Gaper</name>
+                              </representedOrganization>
+                           </assignedPerson>
+                        </performer>
+                     </medicationDispenseRequest>
+                  </productOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240101"/>
+                                 <width value="4"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="4"
+                                   unit="1">
+                              <translation value="4"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240115"/>
+                                 <width value="1"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="3"
+                                   unit="1">
+                              <translation value="3"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240207"/>
+                                 <width value="3"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="4"
+                                   unit="1">
+                              <translation value="4"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240210"/>
+                                 <width value="1"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="3"
+                                   unit="1">
+                              <translation value="3"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240211"/>
+                                 <width value="3"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="4"
+                                   unit="1">
+                              <translation value="4"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240214"/>
+                                 <width value="1"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="3"
+                                   unit="1">
+                              <translation value="3"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240215"/>
+                                 <width value="2"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="4"
+                                   unit="1">
+                              <translation value="4"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240217"/>
+                                 <width value="1"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="3"
+                                   unit="1">
+                              <translation value="3"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240218"/>
+                                 <width value="1"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="4"
+                                   unit="1">
+                              <translation value="4"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240105"/>
+                                 <width value="1"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="3"
+                                   unit="1">
+                              <translation value="3"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240106"/>
+                                 <width value="1"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="4"
+                                   unit="1">
+                              <translation value="4"
+                                           code="245"
+                                           displayName="atuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240107"/>
+                                 <width value="1"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="3"
+                                   unit="1">
+                              <translation value="3"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240108"/>
+                                 <width value="1"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="4"
+                                   unit="1">
+                              <translation value="4"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240109"/>
+                                 <width value="1"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="3"
+                                   unit="1">
+                              <translation value="3"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240110"/>
+                                 <width value="1"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="4"
+                                   unit="1">
+                              <translation value="4"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240111"/>
+                                 <width value="1"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="3"
+                                   unit="1">
+                              <translation value="3"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240112"/>
+                                 <width value="1"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="4"
+                                   unit="1">
+                              <translation value="4"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240113"/>
+                                 <width value="1"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="3"
+                                   unit="1">
+                              <translation value="3"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240114"/>
+                                 <width value="1"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="4"
+                                   unit="1">
+                              <translation value="4"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240116"/>
+                                 <width value="2"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="3"
+                                   unit="1">
+                              <translation value="3"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240118"/>
+                                 <width value="1"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="4"
+                                   unit="1">
+                              <translation value="4"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240119"/>
+                                 <width value="3"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="3"
+                                   unit="1">
+                              <translation value="3"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240122"/>
+                                 <width value="1"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="4"
+                                   unit="1">
+                              <translation value="4"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240123"/>
+                                 <width value="4"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="3"
+                                   unit="1">
+                              <translation value="3"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240127"/>
+                                 <width value="1"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="4"
+                                   unit="1">
+                              <translation value="4"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 atuk, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240219235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="1"
+                                      unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <phase>
+                                 <low value="20240128"/>
+                                 <width value="10"
+                                        unit="d"/>
+                              </phase>
+                              <period value="49"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                        <doseQuantity>
+                           <center value="3"
+                                   unit="1">
+                              <translation value="3"
+                                           code="245"
+                                           displayName="stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+               </prescribedMedication>
+            </directTarget>
+         </prescription>
+      </subject>
+   </ControlActProcess>
+</PORX_IN932000NL>

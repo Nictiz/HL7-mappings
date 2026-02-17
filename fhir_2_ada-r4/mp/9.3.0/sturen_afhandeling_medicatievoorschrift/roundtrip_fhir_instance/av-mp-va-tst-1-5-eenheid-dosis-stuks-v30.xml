@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="8503507d-4835-11ef-1262-020000000000"/>
+   <id value="9c129b5b-a281-11ef-9343-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:8503516c-4835-11ef-1262-020000000000"/>
+      <fullUrl value="urn:uuid:9c129c4a-a281-11ef-9343-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -18,9 +18,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2023-01-01T12:35:00+01:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf &lt;T-130D{00:00:00}&gt; t/m &lt;T-101D{00:00:00}&gt;, 2 maal per dag 1 inhalatie, inhalatie"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 1 jan 2023, tot en met 30 jan 2023, 2 maal per dag 1 dosis, inhalatie"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="2023-01-01T00:00:00+01:00"/>
@@ -46,18 +47,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:850351a8-4835-11ef-1262-020000000000"/>
+               <reference value="urn:uuid:9c129c86-a281-11ef-9343-020000000000"/>
                <type value="Medication"/>
                <display value="FLIXOTIDE DISKUS INHPDR 100MCG 60DO"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:850350f4-4835-11ef-1262-020000000000"/>
+               <reference value="urn:uuid:9c129bd2-a281-11ef-9343-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:85035130-4835-11ef-1262-020000000000"/>
+                  <reference value="urn:uuid:9c129c0e-a281-11ef-9343-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -110,7 +111,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:8503518a-4835-11ef-1262-020000000000"/>
+      <fullUrl value="urn:uuid:9c129c68-a281-11ef-9343-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -139,18 +140,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:850351a8-4835-11ef-1262-020000000000"/>
+               <reference value="urn:uuid:9c129c86-a281-11ef-9343-020000000000"/>
                <type value="Medication"/>
                <display value="FLIXOTIDE DISKUS INHPDR 100MCG 60DO"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:850350f4-4835-11ef-1262-020000000000"/>
+               <reference value="urn:uuid:9c129bd2-a281-11ef-9343-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:85035130-4835-11ef-1262-020000000000"/>
+                  <reference value="urn:uuid:9c129c0e-a281-11ef-9343-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -186,7 +187,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:850350f4-4835-11ef-1262-020000000000"/>
+      <fullUrl value="urn:uuid:9c129bd2-a281-11ef-9343-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -233,7 +234,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:85035130-4835-11ef-1262-020000000000"/>
+      <fullUrl value="urn:uuid:9c129c0e-a281-11ef-9343-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -277,7 +278,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:850351a8-4835-11ef-1262-020000000000"/>
+      <fullUrl value="urn:uuid:9c129c86-a281-11ef-9343-020000000000"/>
       <resource>
          <Medication>
             <meta>

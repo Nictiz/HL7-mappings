@@ -1,0 +1,73 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-ize-kwa-casus3 /adaxml/data/med_mij_echo_beschikbaarstellen/medisch_onderzoek/maternale_onderzoeksgegevens/verrichting_maternaal_onderzoek (peri32-dataelement-2416) -->
+   <id value="9b038ef5-6b16-11ec-2241-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ObstetricProcedure"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Merthe M XXX_Kooijman. Categorie: <span title="obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="echografie voor foetale groei (verrichting) (241493005 - SNOMED CT)">echografie voor foetale groei (verrichting)</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: ${DATE, T, D, -13} - ${DATE, T, D, -13}</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>Zwangerschap 1 XXX_Kooijman_Vrouw</td>
+               </tr>
+               <tr>
+                  <th>Report</th>
+                  <td>Echoscopie</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="9b038ef5-6b16-11ec-2241-020000000000"/>
+   </identifier>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="386637004"/>
+         <display value="obstetrische verrichting (verrichting)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="241493005"/>
+         <display value="echografie voor foetale groei (verrichting)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/MERTHE-M-XXX-KOOIJMAN"/>
+      <display value="Merthe M XXX_Kooijman"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/6188717b-6b7b-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Kooijman_Vrouw"/>
+   </context>
+   <performedPeriod>
+      <start value="${DATE, T, D, -13}"/>
+      <end value="${DATE, T, D, -13}"/>
+   </performedPeriod>
+   <reasonReference>
+      <reference value="Condition/c6ab20cb-6b5e-11ec-2334-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Kooijman_Vrouw"/>
+   </reasonReference>
+   <report>
+      <reference value="DiagnosticReport/641f2f1b-6b11-11ec-2120-020000000000"/>
+      <display value="Echoscopie"/>
+   </report>
+</Procedure>

@@ -1,0 +1,83 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <id value="zib-Encounter-bgz-msz-patD-encounter5"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: Fatima Saïda F.S.K. Fatima Al Ksar el Kebir Çelik. Id: bgz-msz-patD-encounter5 (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div>
+                        <span title="Emergency (EMER - v3/ActCode)">Emergency</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>09:00 - 10:00 op 22 juni 2008</td>
+               </tr>
+               <tr>
+                  <th>Probleem/Verrichting</th>
+                  <td>Fractuur van elleboog</td>
+               </tr>
+               <tr>
+                  <th>Opnamegegevens</th>
+                  <td>
+                     <ul>
+                        <li>Opname vanuit: <span title="Home (264362003 - SNOMED CT)">Home</span>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patD-encounter5"/>
+   </identifier>
+   <status value="finished"/>
+   <class>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActCode"/>
+               <code value="EMER"/>
+               <display value="Emergency"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="http://hl7.org/fhir/v3/ActCode"/>
+      <code value="EMER"/>
+      <display value="Emergency"/>
+   </class>
+   <subject>
+      <reference value="Patient/FATIMA-SAIDA-F-S-K--FATIMA-AL-KSAR-EL-KEBIR-ELIK"/>
+      <display value="Fatima Saïda F.S.K. Fatima Al Ksar el Kebir Çelik"/>
+   </subject>
+   <period>
+      <start value="2008-06-22T09:00:00+02:00"/>
+      <end value="2008-06-22T10:00:00+02:00"/>
+   </period>
+   <diagnosis>
+      <condition>
+         <reference value="Condition/zib-Problem-bgz-msz-bgz-msz-patD-problem4"/>
+         <display value="Fractuur van elleboog"/>
+      </condition>
+   </diagnosis>
+   <hospitalization>
+      <admitSource>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="264362003"/>
+            <display value="Home"/>
+         </coding>
+      </admitSource>
+   </hospitalization>
+</Encounter>

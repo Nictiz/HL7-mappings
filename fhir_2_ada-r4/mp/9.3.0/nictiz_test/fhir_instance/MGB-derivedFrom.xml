@@ -1,0 +1,2446 @@
+<Bundle xmlns="http://hl7.org/fhir">
+    <type value="searchset"/>
+    <timestamp value="2024-12-04T09:50:30+01:00"/>
+    <total value="5"/>
+    <link>
+        <relation value="self"/>
+        <url value="urn:uuid:55dec8f2-b7fc-42fd-bc86-a49f755f89b7"/>
+    </link>
+    <!--mgb-derivedfrom-ma-identifier-type-extension-->
+    <entry>
+        <fullUrl value="urn:uuid:814ec97a-0140-43a6-bfee-2ceebf700e51"/>
+        <resource>
+            <MedicationStatement>
+                <id value="1"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
+                </meta>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString value="Vanaf 12 nov 2024 15:03, om 08:00 1x per dag 1 stuks en om 12:00 1x per dag  en om 17:00 1x per dag  en om 21:00 1x per dag , oraal"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.234.1003.12"/>
+                        <value value="e7c63a10-3ab2-46b4-ae18-bf72f9b88f45"/>
+                    </valueIdentifier>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
+                    <valueReference>
+                        <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                        <type value="PractitionerRole"/>
+                        <display value="Peter van Pulver, huisarts - Pulver en partners"/>
+                    </valueReference>
+                </extension>
+                <identifier>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.123"/>
+                    <value value="mgb-derivedfrom-ma-identifier-type-extension"/>
+                </identifier>
+                <status value="not-taken"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="422979000"/>
+                        <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+                    </coding>
+                </category>
+                <medicationReference>
+                    <reference value="urn:uuid:8a2d3506-3d61-4d5d-b4d8-508cb1e75d71"/>
+                    <type value="Medication"/>
+                    <display value="Allopurinol tablet 100mg"/>
+                </medicationReference>
+                <subject>
+                    <reference value="urn:uuid:f2e13f8d-d622-4613-908c-7b63f7fb47c8"/>
+                    <type value="Patient"/>
+                    <display value="Dhr. Agir von Thursen"/>
+                </subject>
+                <effectivePeriod>
+                    <start value="2024-11-12T15:03:00+01:00"/>
+                </effectivePeriod>
+                <dateAsserted value="2024-11-12T15:03:57+01:00"/>
+                <informationSource>
+                    <reference value="urn:uuid:cd9f5eb9-b30d-4182-b722-a3155b88aawe"/>
+                    <type value="Practitioner"/>
+                    <display value="Peter van Pulver, huisarts"/>
+                </informationSource>
+                <derivedFrom>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                        <valueCodeableConcept>
+                            <coding>
+                                <system value="http://snomed.info/sct"/>
+                                <code value="33633005"/>
+                                <display value="voorschrijven van geneesmiddel"/>
+                            </coding>
+                        </valueCodeableConcept>
+                    </extension>
+                    <type value="MedicationRequest"/>
+                    <identifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.12"/>
+                        <value value="MA-1"/>
+                    </identifier>
+                    <display value="Relatie naar MA"/>
+                </derivedFrom>
+                <dosage>
+                    <sequence value="1"/>
+                    <timing>
+                        <repeat>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                <valueBoolean value="false"/>
+                            </extension>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                            <timeOfDay value="08:00:00"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="ORAAL"/>
+                        </coding>
+                    </route>
+                    <doseAndRate>
+                        <doseQuantity>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                                <valueQuantity>
+                                    <value value="1"/>
+                                    <unit value="stuks"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="245"/>
+                                </valueQuantity>
+                            </extension>
+                            <value value="1"/>
+                            <unit value="stuks"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="1"/>
+                        </doseQuantity>
+                    </doseAndRate>
+                </dosage>
+            </MedicationStatement>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <!--mgb-derivedfrom-ma-identifier-type-NOextension-->
+    <entry>
+        <fullUrl value="urn:uuid:814ec97a-0140-43a6-bfee-2ceebf700e52"/>
+        <resource>
+            <MedicationStatement>
+                <id value="2"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
+                </meta>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString value="Vanaf 12 nov 2024 15:03, om 08:00 1x per dag 1 stuks en om 12:00 1x per dag  en om 17:00 1x per dag  en om 21:00 1x per dag , oraal"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.234.1003.12"/>
+                        <value value="e7c63a10-3ab2-46b4-ae18-bf72f9b88f45"/>
+                    </valueIdentifier>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
+                    <valueReference>
+                        <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                        <type value="PractitionerRole"/>
+                        <display value="Peter van Pulver, huisarts - Pulver en partners"/>
+                    </valueReference>
+                </extension>
+                <identifier>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.123"/>
+                    <value value="mgb-derivedfrom-ma-identifier-type-NOextension"/>
+                </identifier>
+                <status value="not-taken"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="422979000"/>
+                        <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+                    </coding>
+                </category>
+                <medicationReference>
+                    <reference value="urn:uuid:8a2d3506-3d61-4d5d-b4d8-508cb1e75d71"/>
+                    <type value="Medication"/>
+                    <display value="Allopurinol tablet 100mg"/>
+                </medicationReference>
+                <subject>
+                    <reference value="urn:uuid:f2e13f8d-d622-4613-908c-7b63f7fb47c8"/>
+                    <type value="Patient"/>
+                    <display value="Dhr. Agir von Thursen"/>
+                </subject>
+                <effectivePeriod>
+                    <start value="2024-11-12T15:03:00+01:00"/>
+                </effectivePeriod>
+                <dateAsserted value="2024-11-12T15:03:57+01:00"/>
+                <informationSource>
+                    <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                    <type value="Practitioner"/>
+                    <display value="Peter van Pulver, huisarts"/>
+                </informationSource>
+                <derivedFrom>
+                    <type value="MedicationRequest"/>
+                    <identifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.12"/>
+                        <value value="MA-2"/>
+                    </identifier>
+                    <display value="Relatie naar MA"/>
+                </derivedFrom>
+                <dosage>
+                    <sequence value="1"/>
+                    <timing>
+                        <repeat>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                <valueBoolean value="false"/>
+                            </extension>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                            <timeOfDay value="08:00:00"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="ORAAL"/>
+                        </coding>
+                    </route>
+                    <doseAndRate>
+                        <doseQuantity>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                                <valueQuantity>
+                                    <value value="1"/>
+                                    <unit value="stuks"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="245"/>
+                                </valueQuantity>
+                            </extension>
+                            <value value="1"/>
+                            <unit value="stuks"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="1"/>
+                        </doseQuantity>
+                    </doseAndRate>
+                </dosage>
+            </MedicationStatement>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <!--mgb-derivedfrom-ma-identifier-NOtype-extension-->
+    <entry>
+        <fullUrl value="urn:uuid:814ec97a-0140-43a6-bfee-2ceebf700e53"/>
+        <resource>
+            <MedicationStatement>
+                <id value="3"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
+                </meta>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString value="Vanaf 12 nov 2024 15:03, om 08:00 1x per dag 1 stuks en om 12:00 1x per dag  en om 17:00 1x per dag  en om 21:00 1x per dag , oraal"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.234.1003.12"/>
+                        <value value="e7c63a10-3ab2-46b4-ae18-bf72f9b88f45"/>
+                    </valueIdentifier>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
+                    <valueReference>
+                        <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                        <type value="PractitionerRole"/>
+                        <display value="Peter van Pulver, huisarts - Pulver en partners"/>
+                    </valueReference>
+                </extension>
+                <identifier>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.123"/>
+                    <value value="mgb-derivedfrom-ma-identifier-NOtype-extension"/>
+                </identifier>
+                <status value="not-taken"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="422979000"/>
+                        <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+                    </coding>
+                </category>
+                <medicationReference>
+                    <reference value="urn:uuid:8a2d3506-3d61-4d5d-b4d8-508cb1e75d71"/>
+                    <type value="Medication"/>
+                    <display value="Allopurinol tablet 100mg"/>
+                </medicationReference>
+                <subject>
+                    <reference value="urn:uuid:f2e13f8d-d622-4613-908c-7b63f7fb47c8"/>
+                    <type value="Patient"/>
+                    <display value="Dhr. Agir von Thursen"/>
+                </subject>
+                <effectivePeriod>
+                    <start value="2024-11-12T15:03:00+01:00"/>
+                </effectivePeriod>
+                <dateAsserted value="2024-11-12T15:03:57+01:00"/>
+                <informationSource>
+                    <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                    <type value="Practitioner"/>
+                    <display value="Peter van Pulver, huisarts"/>
+                </informationSource>
+                <derivedFrom>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                        <valueCodeableConcept>
+                            <coding>
+                                <system value="http://snomed.info/sct"/>
+                                <code value="33633005"/>
+                                <display value="voorschrijven van geneesmiddel"/>
+                            </coding>
+                        </valueCodeableConcept>
+                    </extension>
+                    <identifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.12"/>
+                        <value value="MA-3"/>
+                    </identifier>
+                    <display value="Relatie naar MA"/>
+                </derivedFrom>
+                <dosage>
+                    <sequence value="1"/>
+                    <timing>
+                        <repeat>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                <valueBoolean value="false"/>
+                            </extension>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                            <timeOfDay value="08:00:00"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="ORAAL"/>
+                        </coding>
+                    </route>
+                    <doseAndRate>
+                        <doseQuantity>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                                <valueQuantity>
+                                    <value value="1"/>
+                                    <unit value="stuks"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="245"/>
+                                </valueQuantity>
+                            </extension>
+                            <value value="1"/>
+                            <unit value="stuks"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="1"/>
+                        </doseQuantity>
+                    </doseAndRate>
+                </dosage>
+            </MedicationStatement>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <!--mgb-derivedfrom-ma-identifier-NOtype-NOextension-->
+    <entry>
+        <fullUrl value="urn:uuid:814ec97a-0140-43a6-bfee-2ceebf700e16"/>
+        <resource>
+            <MedicationStatement>
+                <id value="16"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
+                </meta>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString value="Vanaf 12 nov 2024 15:03, om 08:00 1x per dag 1 stuks en om 12:00 1x per dag  en om 17:00 1x per dag  en om 21:00 1x per dag , oraal"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.234.1003.12"/>
+                        <value value="e7c63a10-3ab2-46b4-ae18-bf72f9b88f45"/>
+                    </valueIdentifier>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
+                    <valueReference>
+                        <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                        <type value="PractitionerRole"/>
+                        <display value="Peter van Pulver, huisarts - Pulver en partners"/>
+                    </valueReference>
+                </extension>
+                <identifier>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.123"/>
+                    <value value="mgb-derivedfrom-ma-identifier-NOtype-NOextension"/>
+                </identifier>
+                <status value="not-taken"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="422979000"/>
+                        <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+                    </coding>
+                </category>
+                <medicationReference>
+                    <reference value="urn:uuid:8a2d3506-3d61-4d5d-b4d8-508cb1e75d71"/>
+                    <type value="Medication"/>
+                    <display value="Allopurinol tablet 100mg"/>
+                </medicationReference>
+                <subject>
+                    <reference value="urn:uuid:f2e13f8d-d622-4613-908c-7b63f7fb47c8"/>
+                    <type value="Patient"/>
+                    <display value="Dhr. Agir von Thursen"/>
+                </subject>
+                <effectivePeriod>
+                    <start value="2024-11-12T15:03:00+01:00"/>
+                </effectivePeriod>
+                <dateAsserted value="2024-11-12T15:03:57+01:00"/>
+                <informationSource>
+                    <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                    <type value="Practitioner"/>
+                    <display value="Peter van Pulver, huisarts"/>
+                </informationSource>
+                <derivedFrom>
+                    <identifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.12"/>
+                        <value value="MA-7"/>
+                    </identifier>
+                    <display value="Relatie naar MA"/>
+                </derivedFrom>
+                <dosage>
+                    <sequence value="1"/>
+                    <timing>
+                        <repeat>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                <valueBoolean value="false"/>
+                            </extension>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                            <timeOfDay value="08:00:00"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="ORAAL"/>
+                        </coding>
+                    </route>
+                    <doseAndRate>
+                        <doseQuantity>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                                <valueQuantity>
+                                    <value value="1"/>
+                                    <unit value="stuks"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="245"/>
+                                </valueQuantity>
+                            </extension>
+                            <value value="1"/>
+                            <unit value="stuks"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="1"/>
+                        </doseQuantity>
+                    </doseAndRate>
+                </dosage>
+            </MedicationStatement>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <!--mgb-derivedfrom-ma-nonresolvablereference-->
+    <entry>
+        <fullUrl value="urn:uuid:814ec97a-0140-43a6-bfee-2ceebf700e54"/>
+        <resource>
+            <MedicationStatement>
+                <id value="4"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
+                </meta>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString value="Vanaf 12 nov 2024 15:03, om 08:00 1x per dag 1 stuks en om 12:00 1x per dag  en om 17:00 1x per dag  en om 21:00 1x per dag , oraal"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.234.1003.12"/>
+                        <value value="e7c63a10-3ab2-46b4-ae18-bf72f9b88f45"/>
+                    </valueIdentifier>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
+                    <valueReference>
+                        <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                        <type value="PractitionerRole"/>
+                        <display value="Peter van Pulver, huisarts - Pulver en partners"/>
+                    </valueReference>
+                </extension>
+                <identifier>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.123"/>
+                    <value value="mgb-derivedfrom-ma-nonresolvablereference"/>
+                </identifier>
+                <status value="not-taken"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="422979000"/>
+                        <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+                    </coding>
+                </category>
+                <medicationReference>
+                    <reference value="urn:uuid:8a2d3506-3d61-4d5d-b4d8-508cb1e75d71"/>
+                    <type value="Medication"/>
+                    <display value="Allopurinol tablet 100mg"/>
+                </medicationReference>
+                <subject>
+                    <reference value="urn:uuid:f2e13f8d-d622-4613-908c-7b63f7fb47c8"/>
+                    <type value="Patient"/>
+                    <display value="Dhr. Agir von Thursen"/>
+                </subject>
+                <effectivePeriod>
+                    <start value="2024-11-12T15:03:00+01:00"/>
+                </effectivePeriod>
+                <dateAsserted value="2024-11-12T15:03:57+01:00"/>
+                <informationSource>
+                    <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                    <type value="Practitioner"/>
+                    <display value="Peter van Pulver, huisarts"/>
+                </informationSource>
+                <derivedFrom>
+                    <!-- intentionally nonresolvable -->
+                    <reference value="urn:uuid:0f2c9ff7-c51f-42c2-b0d3-8eef11422e15"/>
+                    <type value="MedicationRequest"/>
+                    <display value="Relatie naar MA"/>
+                </derivedFrom>
+                <dosage>
+                    <sequence value="1"/>
+                    <timing>
+                        <repeat>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                <valueBoolean value="false"/>
+                            </extension>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                            <timeOfDay value="08:00:00"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="ORAAL"/>
+                        </coding>
+                    </route>
+                    <doseAndRate>
+                        <doseQuantity>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                                <valueQuantity>
+                                    <value value="1"/>
+                                    <unit value="stuks"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="245"/>
+                                </valueQuantity>
+                            </extension>
+                            <value value="1"/>
+                            <unit value="stuks"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="1"/>
+                        </doseQuantity>
+                    </doseAndRate>
+                </dosage>
+            </MedicationStatement>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <!--mgb-derivedfrom-ma-resolvablereference-->
+    <entry>
+        <fullUrl value="urn:uuid:814ec97a-0140-43a6-bfee-2ceebf700e55"/>
+        <resource>
+            <MedicationStatement>
+                <id value="5"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
+                </meta>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString value="Vanaf 12 nov 2024 15:03, om 08:00 1x per dag 1 stuks en om 12:00 1x per dag  en om 17:00 1x per dag  en om 21:00 1x per dag , oraal"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.234.1003.12"/>
+                        <value value="e7c63a10-3ab2-46b4-ae18-bf72f9b88f45"/>
+                    </valueIdentifier>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
+                    <valueReference>
+                        <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                        <type value="PractitionerRole"/>
+                        <display value="Peter van Pulver, huisarts - Pulver en partners"/>
+                    </valueReference>
+                </extension>
+                <identifier>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.123"/>
+                    <value value="mgb-derivedfrom-ma-resolvablereference"/>
+                </identifier>
+                <status value="not-taken"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="422979000"/>
+                        <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+                    </coding>
+                </category>
+                <medicationReference>
+                    <reference value="urn:uuid:8a2d3506-3d61-4d5d-b4d8-508cb1e75d71"/>
+                    <type value="Medication"/>
+                    <display value="Allopurinol tablet 100mg"/>
+                </medicationReference>
+                <subject>
+                    <reference value="urn:uuid:f2e13f8d-d622-4613-908c-7b63f7fb47c8"/>
+                    <type value="Patient"/>
+                    <display value="Dhr. Agir von Thursen"/>
+                </subject>
+                <effectivePeriod>
+                    <start value="2024-11-12T15:03:00+01:00"/>
+                </effectivePeriod>
+                <dateAsserted value="2024-11-12T15:03:57+01:00"/>
+                <informationSource>
+                    <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                    <type value="Practitioner"/>
+                    <display value="Peter van Pulver, huisarts"/>
+                </informationSource>
+                <derivedFrom>
+                    <reference value="urn:uuid:bb2bdf90-9d24-11ef-9233-020000000000"/>
+                    <type value="MedicationRequest"/>
+                    <display value="Relatie naar MA"/>
+                </derivedFrom>
+                <dosage>
+                    <sequence value="1"/>
+                    <timing>
+                        <repeat>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                <valueBoolean value="false"/>
+                            </extension>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                            <timeOfDay value="08:00:00"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="ORAAL"/>
+                        </coding>
+                    </route>
+                    <doseAndRate>
+                        <doseQuantity>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                                <valueQuantity>
+                                    <value value="1"/>
+                                    <unit value="stuks"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="245"/>
+                                </valueQuantity>
+                            </extension>
+                            <value value="1"/>
+                            <unit value="stuks"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="1"/>
+                        </doseQuantity>
+                    </doseAndRate>
+                </dosage>
+            </MedicationStatement>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <!--mgb-derivedfrom-ta-identifier-type-extension-->
+    <entry>
+        <fullUrl value="urn:uuid:814ec97a-0140-43a6-bfee-2ceebf700e56"/>
+        <resource>
+            <MedicationStatement>
+                <id value="6"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
+                </meta>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString value="Vanaf 12 nov 2024 15:03, om 08:00 1x per dag 1 stuks en om 12:00 1x per dag  en om 17:00 1x per dag  en om 21:00 1x per dag , oraal"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.234.1003.12"/>
+                        <value value="e7c63a10-3ab2-46b4-ae18-bf72f9b88f45"/>
+                    </valueIdentifier>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
+                    <valueReference>
+                        <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                        <type value="PractitionerRole"/>
+                        <display value="Peter van Pulver, huisarts - Pulver en partners"/>
+                    </valueReference>
+                </extension>
+                <identifier>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.123"/>
+                    <value value="mgb-derivedfrom-ta-identifier-type-extension"/>
+                </identifier>
+                <status value="not-taken"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="422979000"/>
+                        <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+                    </coding>
+                </category>
+                <medicationReference>
+                    <reference value="urn:uuid:8a2d3506-3d61-4d5d-b4d8-508cb1e75d71"/>
+                    <type value="Medication"/>
+                    <display value="Allopurinol tablet 100mg"/>
+                </medicationReference>
+                <subject>
+                    <reference value="urn:uuid:f2e13f8d-d622-4613-908c-7b63f7fb47c8"/>
+                    <type value="Patient"/>
+                    <display value="Dhr. Agir von Thursen"/>
+                </subject>
+                <effectivePeriod>
+                    <start value="2024-11-12T15:03:00+01:00"/>
+                </effectivePeriod>
+                <dateAsserted value="2024-11-12T15:03:57+01:00"/>
+                <informationSource>
+                    <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                    <type value="Practitioner"/>
+                    <display value="Peter van Pulver, huisarts"/>
+                </informationSource>
+                <derivedFrom>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                        <valueCodeableConcept>
+                            <coding>
+                                <system value="http://snomed.info/sct"/>
+                                <code value="422037009"/>
+                                <display value="voorschrijven van geneesmiddel"/>
+                            </coding>
+                        </valueCodeableConcept>
+                    </extension>
+                    <type value="MedicationDispense"/>
+                    <identifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.1234"/>
+                        <value value="TA-1"/>
+                    </identifier>
+                    <display value="Relatie naar TA"/>
+                </derivedFrom>
+
+                <dosage>
+                    <sequence value="1"/>
+                    <timing>
+                        <repeat>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                <valueBoolean value="false"/>
+                            </extension>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                            <timeOfDay value="08:00:00"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="ORAAL"/>
+                        </coding>
+                    </route>
+                    <doseAndRate>
+                        <doseQuantity>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                                <valueQuantity>
+                                    <value value="1"/>
+                                    <unit value="stuks"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="245"/>
+                                </valueQuantity>
+                            </extension>
+                            <value value="1"/>
+                            <unit value="stuks"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="1"/>
+                        </doseQuantity>
+                    </doseAndRate>
+                </dosage>
+            </MedicationStatement>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <!--mgb-derivedfrom-ta-identifier-type-Noextension-->
+    <entry>
+        <fullUrl value="urn:uuid:814ec97a-0140-43a6-bfee-2ceebf700e57"/>
+        <resource>
+            <MedicationStatement>
+                <id value="7"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
+                </meta>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString value="Vanaf 12 nov 2024 15:03, om 08:00 1x per dag 1 stuks en om 12:00 1x per dag  en om 17:00 1x per dag  en om 21:00 1x per dag , oraal"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.234.1003.12"/>
+                        <value value="e7c63a10-3ab2-46b4-ae18-bf72f9b88f45"/>
+                    </valueIdentifier>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
+                    <valueReference>
+                        <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                        <type value="PractitionerRole"/>
+                        <display value="Peter van Pulver, huisarts - Pulver en partners"/>
+                    </valueReference>
+                </extension>
+                <identifier>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.123"/>
+                    <value value="mgb-derivedfrom-ta-identifier-type-Noextension"/>
+                </identifier>
+                <status value="not-taken"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="422979000"/>
+                        <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+                    </coding>
+                </category>
+                <medicationReference>
+                    <reference value="urn:uuid:8a2d3506-3d61-4d5d-b4d8-508cb1e75d71"/>
+                    <type value="Medication"/>
+                    <display value="Allopurinol tablet 100mg"/>
+                </medicationReference>
+                <subject>
+                    <reference value="urn:uuid:f2e13f8d-d622-4613-908c-7b63f7fb47c8"/>
+                    <type value="Patient"/>
+                    <display value="Dhr. Agir von Thursen"/>
+                </subject>
+                <effectivePeriod>
+                    <start value="2024-11-12T15:03:00+01:00"/>
+                </effectivePeriod>
+                <dateAsserted value="2024-11-12T15:03:57+01:00"/>
+                <informationSource>
+                    <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                    <type value="Practitioner"/>
+                    <display value="Peter van Pulver, huisarts"/>
+                </informationSource>
+                <derivedFrom>
+                    <type value="MedicationDispense"/>
+                    <identifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.1234"/>
+                        <value value="TA-2"/>
+                    </identifier>
+                    <display value="Relatie naar TA"/>
+                </derivedFrom>
+
+                <dosage>
+                    <sequence value="1"/>
+                    <timing>
+                        <repeat>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                <valueBoolean value="false"/>
+                            </extension>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                            <timeOfDay value="08:00:00"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="ORAAL"/>
+                        </coding>
+                    </route>
+                    <doseAndRate>
+                        <doseQuantity>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                                <valueQuantity>
+                                    <value value="1"/>
+                                    <unit value="stuks"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="245"/>
+                                </valueQuantity>
+                            </extension>
+                            <value value="1"/>
+                            <unit value="stuks"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="1"/>
+                        </doseQuantity>
+                    </doseAndRate>
+                </dosage>
+            </MedicationStatement>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <!--mgb-derivedfrom-ta-identifier-NoType-extension-->
+    <entry>
+        <fullUrl value="urn:uuid:814ec97a-0140-43a6-bfee-2ceebf700e58"/>
+        <resource>
+            <MedicationStatement>
+                <id value="8"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
+                </meta>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString value="Vanaf 12 nov 2024 15:03, om 08:00 1x per dag 1 stuks en om 12:00 1x per dag  en om 17:00 1x per dag  en om 21:00 1x per dag , oraal"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.234.1003.12"/>
+                        <value value="e7c63a10-3ab2-46b4-ae18-bf72f9b88f45"/>
+                    </valueIdentifier>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
+                    <valueReference>
+                        <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                        <type value="PractitionerRole"/>
+                        <display value="Peter van Pulver, huisarts - Pulver en partners"/>
+                    </valueReference>
+                </extension>
+                <identifier>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.123"/>
+                    <value value="mgb-derivedfrom-ta-identifier-NoType-extension"/>
+                </identifier>
+                <status value="not-taken"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="422979000"/>
+                        <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+                    </coding>
+                </category>
+                <medicationReference>
+                    <reference value="urn:uuid:8a2d3506-3d61-4d5d-b4d8-508cb1e75d71"/>
+                    <type value="Medication"/>
+                    <display value="Allopurinol tablet 100mg"/>
+                </medicationReference>
+                <subject>
+                    <reference value="urn:uuid:f2e13f8d-d622-4613-908c-7b63f7fb47c8"/>
+                    <type value="Patient"/>
+                    <display value="Dhr. Agir von Thursen"/>
+                </subject>
+                <effectivePeriod>
+                    <start value="2024-11-12T15:03:00+01:00"/>
+                </effectivePeriod>
+                <dateAsserted value="2024-11-12T15:03:57+01:00"/>
+                <informationSource>
+                    <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                    <type value="Practitioner"/>
+                    <display value="Peter van Pulver, huisarts"/>
+                </informationSource>
+                <derivedFrom>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                        <valueCodeableConcept>
+                            <coding>
+                                <system value="http://snomed.info/sct"/>
+                                <code value="422037009"/>
+                                <display value="voorschrijven van geneesmiddel"/>
+                            </coding>
+                        </valueCodeableConcept>
+                    </extension>
+                    <identifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.1234"/>
+                        <value value="TA-3"/>
+                    </identifier>
+                    <display value="Relatie naar TA"/>
+                </derivedFrom>
+
+                <dosage>
+                    <sequence value="1"/>
+                    <timing>
+                        <repeat>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                <valueBoolean value="false"/>
+                            </extension>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                            <timeOfDay value="08:00:00"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="ORAAL"/>
+                        </coding>
+                    </route>
+                    <doseAndRate>
+                        <doseQuantity>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                                <valueQuantity>
+                                    <value value="1"/>
+                                    <unit value="stuks"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="245"/>
+                                </valueQuantity>
+                            </extension>
+                            <value value="1"/>
+                            <unit value="stuks"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="1"/>
+                        </doseQuantity>
+                    </doseAndRate>
+                </dosage>
+            </MedicationStatement>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <!--mgb-derivedfrom-ta-identifier-NOtype-NOextension-->
+    <entry>
+        <fullUrl value="urn:uuid:814ec97a-0140-43a6-bfee-2ceebf700e17"/>
+        <resource>
+            <MedicationStatement>
+                <id value="17"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
+                </meta>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString value="Vanaf 12 nov 2024 15:03, om 08:00 1x per dag 1 stuks en om 12:00 1x per dag  en om 17:00 1x per dag  en om 21:00 1x per dag , oraal"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.234.1003.12"/>
+                        <value value="e7c63a10-3ab2-46b4-ae18-bf72f9b88f45"/>
+                    </valueIdentifier>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
+                    <valueReference>
+                        <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                        <type value="PractitionerRole"/>
+                        <display value="Peter van Pulver, huisarts - Pulver en partners"/>
+                    </valueReference>
+                </extension>
+                <identifier>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.123"/>
+                    <value value="mgb-derivedfrom-ta-identifier-NOtype-NOextension"/>
+                </identifier>
+                <status value="not-taken"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="422979000"/>
+                        <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+                    </coding>
+                </category>
+                <medicationReference>
+                    <reference value="urn:uuid:8a2d3506-3d61-4d5d-b4d8-508cb1e75d71"/>
+                    <type value="Medication"/>
+                    <display value="Allopurinol tablet 100mg"/>
+                </medicationReference>
+                <subject>
+                    <reference value="urn:uuid:f2e13f8d-d622-4613-908c-7b63f7fb47c8"/>
+                    <type value="Patient"/>
+                    <display value="Dhr. Agir von Thursen"/>
+                </subject>
+                <effectivePeriod>
+                    <start value="2024-11-12T15:03:00+01:00"/>
+                </effectivePeriod>
+                <dateAsserted value="2024-11-12T15:03:57+01:00"/>
+                <informationSource>
+                    <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                    <type value="Practitioner"/>
+                    <display value="Peter van Pulver, huisarts"/>
+                </informationSource>
+                <derivedFrom>
+                    <identifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.12"/>
+                        <value value="TA-7"/>
+                    </identifier>
+                    <display value="Relatie naar TA"/>
+                </derivedFrom>
+                <dosage>
+                    <sequence value="1"/>
+                    <timing>
+                        <repeat>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                <valueBoolean value="false"/>
+                            </extension>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                            <timeOfDay value="08:00:00"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="ORAAL"/>
+                        </coding>
+                    </route>
+                    <doseAndRate>
+                        <doseQuantity>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                                <valueQuantity>
+                                    <value value="1"/>
+                                    <unit value="stuks"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="245"/>
+                                </valueQuantity>
+                            </extension>
+                            <value value="1"/>
+                            <unit value="stuks"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="1"/>
+                        </doseQuantity>
+                    </doseAndRate>
+                </dosage>
+            </MedicationStatement>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <!--mgb-derivedfrom-ta-nonresolvablereference-->
+    <entry>
+        <fullUrl value="urn:uuid:814ec97a-0140-43a6-bfee-2ceebf700e59"/>
+        <resource>
+            <MedicationStatement>
+                <id value="9"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
+                </meta>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString value="Vanaf 12 nov 2024 15:03, om 08:00 1x per dag 1 stuks en om 12:00 1x per dag  en om 17:00 1x per dag  en om 21:00 1x per dag , oraal"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.234.1003.12"/>
+                        <value value="e7c63a10-3ab2-46b4-ae18-bf72f9b88f45"/>
+                    </valueIdentifier>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
+                    <valueReference>
+                        <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                        <type value="PractitionerRole"/>
+                        <display value="Peter van Pulver, huisarts - Pulver en partners"/>
+                    </valueReference>
+                </extension>
+                <identifier>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.123"/>
+                    <value value="mgb-derivedfrom-ta-nonresolvablereference"/>
+                </identifier>
+                <status value="not-taken"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="422979000"/>
+                        <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+                    </coding>
+                </category>
+                <medicationReference>
+                    <reference value="urn:uuid:8a2d3506-3d61-4d5d-b4d8-508cb1e75d71"/>
+                    <type value="Medication"/>
+                    <display value="Allopurinol tablet 100mg"/>
+                </medicationReference>
+                <subject>
+                    <reference value="urn:uuid:f2e13f8d-d622-4613-908c-7b63f7fb47c8"/>
+                    <type value="Patient"/>
+                    <display value="Dhr. Agir von Thursen"/>
+                </subject>
+                <effectivePeriod>
+                    <start value="2024-11-12T15:03:00+01:00"/>
+                </effectivePeriod>
+                <dateAsserted value="2024-11-12T15:03:57+01:00"/>
+                <informationSource>
+                    <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                    <type value="Practitioner"/>
+                    <display value="Peter van Pulver, huisarts"/>
+                </informationSource>
+                <derivedFrom>
+                    <!-- intentionally nonresolvable -->
+                    <reference value="urn:uuid:0f2c9ff7-c51f-42c2-b0d3-8eef11422e15"/>
+                    <type value="MedicationDispense"/>
+                    <display value="Relatie naar TA"/>
+                </derivedFrom>
+                <dosage>
+                    <sequence value="1"/>
+                    <timing>
+                        <repeat>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                <valueBoolean value="false"/>
+                            </extension>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                            <timeOfDay value="08:00:00"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="ORAAL"/>
+                        </coding>
+                    </route>
+                    <doseAndRate>
+                        <doseQuantity>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                                <valueQuantity>
+                                    <value value="1"/>
+                                    <unit value="stuks"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="245"/>
+                                </valueQuantity>
+                            </extension>
+                            <value value="1"/>
+                            <unit value="stuks"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="1"/>
+                        </doseQuantity>
+                    </doseAndRate>
+                </dosage>
+            </MedicationStatement>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <!--mgb-derivedfrom-ta-resolvablereference-->
+    <entry>
+        <fullUrl value="urn:uuid:814ec97a-0140-43a6-bfee-2ceebf700e10"/>
+        <resource>
+            <MedicationStatement>
+                <id value="10"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
+                </meta>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString value="Vanaf 12 nov 2024 15:03, om 08:00 1x per dag 1 stuks en om 12:00 1x per dag  en om 17:00 1x per dag  en om 21:00 1x per dag , oraal"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.234.1003.12"/>
+                        <value value="e7c63a10-3ab2-46b4-ae18-bf72f9b88f45"/>
+                    </valueIdentifier>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
+                    <valueReference>
+                        <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                        <type value="PractitionerRole"/>
+                        <display value="Peter van Pulver, huisarts - Pulver en partners"/>
+                    </valueReference>
+                </extension>
+                <identifier>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.123"/>
+                    <value value="mgb-derivedfrom-ta-resolvablereference"/>
+                </identifier>
+                <status value="not-taken"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="422979000"/>
+                        <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+                    </coding>
+                </category>
+                <medicationReference>
+                    <reference value="urn:uuid:8a2d3506-3d61-4d5d-b4d8-508cb1e75d71"/>
+                    <type value="Medication"/>
+                    <display value="Allopurinol tablet 100mg"/>
+                </medicationReference>
+                <subject>
+                    <reference value="urn:uuid:f2e13f8d-d622-4613-908c-7b63f7fb47c8"/>
+                    <type value="Patient"/>
+                    <display value="Dhr. Agir von Thursen"/>
+                </subject>
+                <effectivePeriod>
+                    <start value="2024-11-12T15:03:00+01:00"/>
+                </effectivePeriod>
+                <dateAsserted value="2024-11-12T15:03:57+01:00"/>
+                <informationSource>
+                    <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                    <type value="Practitioner"/>
+                    <display value="Peter van Pulver, huisarts"/>
+                </informationSource>
+                <derivedFrom>
+                    <reference value="urn:uuid:bb2be026-9d24-11ef-9233-020000000000"/>
+                    <type value="MedicationRequest"/>
+                    <display value="Relatie naar TA"/>
+                </derivedFrom>
+                <dosage>
+                    <sequence value="1"/>
+                    <timing>
+                        <repeat>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                <valueBoolean value="false"/>
+                            </extension>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                            <timeOfDay value="08:00:00"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="ORAAL"/>
+                        </coding>
+                    </route>
+                    <doseAndRate>
+                        <doseQuantity>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                                <valueQuantity>
+                                    <value value="1"/>
+                                    <unit value="stuks"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="245"/>
+                                </valueQuantity>
+                            </extension>
+                            <value value="1"/>
+                            <unit value="stuks"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="1"/>
+                        </doseQuantity>
+                    </doseAndRate>
+                </dosage>
+            </MedicationStatement>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <!--mgb-derivedfrom-mve-identifier-type-extension-->
+    <entry>
+        <fullUrl value="urn:uuid:814ec97a-0140-43a6-bfee-2ceebf700e11"/>
+        <resource>
+            <MedicationStatement>
+                <id value="11"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
+                </meta>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString value="Vanaf 12 nov 2024 15:03, om 08:00 1x per dag 1 stuks en om 12:00 1x per dag  en om 17:00 1x per dag  en om 21:00 1x per dag , oraal"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.234.1003.12"/>
+                        <value value="e7c63a10-3ab2-46b4-ae18-bf72f9b88f45"/>
+                    </valueIdentifier>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
+                    <valueReference>
+                        <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                        <type value="PractitionerRole"/>
+                        <display value="Peter van Pulver, huisarts - Pulver en partners"/>
+                    </valueReference>
+                </extension>
+                <identifier>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.123"/>
+                    <value value="mgb-derivedfrom-mve-identifier-type-extension"/>
+                </identifier>
+                <status value="not-taken"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="422979000"/>
+                        <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+                    </coding>
+                </category>
+                <medicationReference>
+                    <reference value="urn:uuid:8a2d3506-3d61-4d5d-b4d8-508cb1e75d71"/>
+                    <type value="Medication"/>
+                    <display value="Allopurinol tablet 100mg"/>
+                </medicationReference>
+                <subject>
+                    <reference value="urn:uuid:f2e13f8d-d622-4613-908c-7b63f7fb47c8"/>
+                    <type value="Patient"/>
+                    <display value="Dhr. Agir von Thursen"/>
+                </subject>
+                <effectivePeriod>
+                    <start value="2024-11-12T15:03:00+01:00"/>
+                </effectivePeriod>
+                <dateAsserted value="2024-11-12T15:03:57+01:00"/>
+                <informationSource>
+                    <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                    <type value="Practitioner"/>
+                    <display value="Peter van Pulver, huisarts"/>
+                </informationSource>
+                <derivedFrom>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                        <valueCodeableConcept>
+                            <coding>
+                                <system value="http://snomed.info/sct"/>
+                                <code value="373784005"/>
+                                <display value="voorschrijven van geneesmiddel"/>
+                            </coding>
+                        </valueCodeableConcept>
+                    </extension>
+                    <type value="MedicationDispense"/>
+                    <identifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.1234"/>
+                        <value value="MVE-1"/>
+                    </identifier>
+                    <display value="Relatie naar MVE"/>
+                </derivedFrom>
+
+                <dosage>
+                    <sequence value="1"/>
+                    <timing>
+                        <repeat>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                <valueBoolean value="false"/>
+                            </extension>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                            <timeOfDay value="08:00:00"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="ORAAL"/>
+                        </coding>
+                    </route>
+                    <doseAndRate>
+                        <doseQuantity>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                                <valueQuantity>
+                                    <value value="1"/>
+                                    <unit value="stuks"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="245"/>
+                                </valueQuantity>
+                            </extension>
+                            <value value="1"/>
+                            <unit value="stuks"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="1"/>
+                        </doseQuantity>
+                    </doseAndRate>
+                </dosage>
+            </MedicationStatement>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <!--mgb-derivedfrom-mve-identifier-type-Noextension-->
+    <entry>
+        <fullUrl value="urn:uuid:814ec97a-0140-43a6-bfee-2ceebf700e12"/>
+        <resource>
+            <MedicationStatement>
+                <id value="12"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
+                </meta>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString value="Vanaf 12 nov 2024 15:03, om 08:00 1x per dag 1 stuks en om 12:00 1x per dag  en om 17:00 1x per dag  en om 21:00 1x per dag , oraal"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.234.1003.12"/>
+                        <value value="e7c63a10-3ab2-46b4-ae18-bf72f9b88f45"/>
+                    </valueIdentifier>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
+                    <valueReference>
+                        <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                        <type value="PractitionerRole"/>
+                        <display value="Peter van Pulver, huisarts - Pulver en partners"/>
+                    </valueReference>
+                </extension>
+                <identifier>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.123"/>
+                    <value value="mgb-derivedfrom-mve-identifier-type-Noextension"/>
+                </identifier>
+                <status value="not-taken"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="422979000"/>
+                        <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+                    </coding>
+                </category>
+                <medicationReference>
+                    <reference value="urn:uuid:8a2d3506-3d61-4d5d-b4d8-508cb1e75d71"/>
+                    <type value="Medication"/>
+                    <display value="Allopurinol tablet 100mg"/>
+                </medicationReference>
+                <subject>
+                    <reference value="urn:uuid:f2e13f8d-d622-4613-908c-7b63f7fb47c8"/>
+                    <type value="Patient"/>
+                    <display value="Dhr. Agir von Thursen"/>
+                </subject>
+                <effectivePeriod>
+                    <start value="2024-11-12T15:03:00+01:00"/>
+                </effectivePeriod>
+                <dateAsserted value="2024-11-12T15:03:57+01:00"/>
+                <informationSource>
+                    <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                    <type value="Practitioner"/>
+                    <display value="Peter van Pulver, huisarts"/>
+                </informationSource>
+                <derivedFrom>
+                    <type value="MedicationDispense"/>
+                    <identifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.1234"/>
+                        <value value="MVE-2"/>
+                    </identifier>
+                    <display value="Relatie naar MVE"/>
+                </derivedFrom>
+
+                <dosage>
+                    <sequence value="1"/>
+                    <timing>
+                        <repeat>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                <valueBoolean value="false"/>
+                            </extension>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                            <timeOfDay value="08:00:00"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="ORAAL"/>
+                        </coding>
+                    </route>
+                    <doseAndRate>
+                        <doseQuantity>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                                <valueQuantity>
+                                    <value value="1"/>
+                                    <unit value="stuks"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="245"/>
+                                </valueQuantity>
+                            </extension>
+                            <value value="1"/>
+                            <unit value="stuks"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="1"/>
+                        </doseQuantity>
+                    </doseAndRate>
+                </dosage>
+            </MedicationStatement>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <!--mgb-derivedfrom-mve-identifier-NoType-extension-->
+    <entry>
+        <fullUrl value="urn:uuid:814ec97a-0140-43a6-bfee-2ceebf700e13"/>
+        <resource>
+            <MedicationStatement>
+                <id value="13"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
+                </meta>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString value="Vanaf 12 nov 2024 15:03, om 08:00 1x per dag 1 stuks en om 12:00 1x per dag  en om 17:00 1x per dag  en om 21:00 1x per dag , oraal"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.234.1003.12"/>
+                        <value value="e7c63a10-3ab2-46b4-ae18-bf72f9b88f45"/>
+                    </valueIdentifier>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
+                    <valueReference>
+                        <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                        <type value="PractitionerRole"/>
+                        <display value="Peter van Pulver, huisarts - Pulver en partners"/>
+                    </valueReference>
+                </extension>
+                <identifier>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.123"/>
+                    <value value="mgb-derivedfrom-mve-identifier-NoType-extension"/>
+                </identifier>
+                <status value="not-taken"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="422979000"/>
+                        <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+                    </coding>
+                </category>
+                <medicationReference>
+                    <reference value="urn:uuid:8a2d3506-3d61-4d5d-b4d8-508cb1e75d71"/>
+                    <type value="Medication"/>
+                    <display value="Allopurinol tablet 100mg"/>
+                </medicationReference>
+                <subject>
+                    <reference value="urn:uuid:f2e13f8d-d622-4613-908c-7b63f7fb47c8"/>
+                    <type value="Patient"/>
+                    <display value="Dhr. Agir von Thursen"/>
+                </subject>
+                <effectivePeriod>
+                    <start value="2024-11-12T15:03:00+01:00"/>
+                </effectivePeriod>
+                <dateAsserted value="2024-11-12T15:03:57+01:00"/>
+                <informationSource>
+                    <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                    <type value="Practitioner"/>
+                    <display value="Peter van Pulver, huisarts"/>
+                </informationSource>
+                <derivedFrom>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                        <valueCodeableConcept>
+                            <coding>
+                                <system value="http://snomed.info/sct"/>
+                                <code value="373784005"/>
+                                <display value="verstrekken van geneesmiddel"/>
+                            </coding>
+                        </valueCodeableConcept>
+                    </extension>
+                    <identifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.1234"/>
+                        <value value="MVE-3"/>
+                    </identifier>
+                    <display value="Relatie naar MVE"/>
+                </derivedFrom>
+
+                <dosage>
+                    <sequence value="1"/>
+                    <timing>
+                        <repeat>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                <valueBoolean value="false"/>
+                            </extension>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                            <timeOfDay value="08:00:00"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="ORAAL"/>
+                        </coding>
+                    </route>
+                    <doseAndRate>
+                        <doseQuantity>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                                <valueQuantity>
+                                    <value value="1"/>
+                                    <unit value="stuks"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="245"/>
+                                </valueQuantity>
+                            </extension>
+                            <value value="1"/>
+                            <unit value="stuks"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="1"/>
+                        </doseQuantity>
+                    </doseAndRate>
+                </dosage>
+            </MedicationStatement>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <!--mgb-derivedfrom-mve-nonresolvablereference-->
+    <entry>
+        <fullUrl value="urn:uuid:814ec97a-0140-43a6-bfee-2ceebf700e14"/>
+        <resource>
+            <MedicationStatement>
+                <id value="14"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
+                </meta>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString value="Vanaf 12 nov 2024 15:03, om 08:00 1x per dag 1 stuks en om 12:00 1x per dag  en om 17:00 1x per dag  en om 21:00 1x per dag , oraal"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.234.1003.12"/>
+                        <value value="e7c63a10-3ab2-46b4-ae18-bf72f9b88f45"/>
+                    </valueIdentifier>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
+                    <valueReference>
+                        <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                        <type value="PractitionerRole"/>
+                        <display value="Peter van Pulver, huisarts - Pulver en partners"/>
+                    </valueReference>
+                </extension>
+                <identifier>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.123"/>
+                    <value value="mgb-derivedfrom-mve-nonresolvablereference"/>
+                </identifier>
+                <status value="not-taken"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="422979000"/>
+                        <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+                    </coding>
+                </category>
+                <medicationReference>
+                    <reference value="urn:uuid:8a2d3506-3d61-4d5d-b4d8-508cb1e75d71"/>
+                    <type value="Medication"/>
+                    <display value="Allopurinol tablet 100mg"/>
+                </medicationReference>
+                <subject>
+                    <reference value="urn:uuid:f2e13f8d-d622-4613-908c-7b63f7fb47c8"/>
+                    <type value="Patient"/>
+                    <display value="Dhr. Agir von Thursen"/>
+                </subject>
+                <effectivePeriod>
+                    <start value="2024-11-12T15:03:00+01:00"/>
+                </effectivePeriod>
+                <dateAsserted value="2024-11-12T15:03:57+01:00"/>
+                <informationSource>
+                    <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                    <type value="Practitioner"/>
+                    <display value="Peter van Pulver, huisarts"/>
+                </informationSource>
+                <derivedFrom>
+                    <!-- intentionally nonresolvable -->
+                    <reference value="urn:uuid:0f2c9ff7-c51f-42c2-b0d3-8eef11422e15"/>
+                    <type value="MedicationDispense"/>
+                    <display value="Relatie naar MVE"/>
+                </derivedFrom>
+                <dosage>
+                    <sequence value="1"/>
+                    <timing>
+                        <repeat>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                <valueBoolean value="false"/>
+                            </extension>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                            <timeOfDay value="08:00:00"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="ORAAL"/>
+                        </coding>
+                    </route>
+                    <doseAndRate>
+                        <doseQuantity>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                                <valueQuantity>
+                                    <value value="1"/>
+                                    <unit value="stuks"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="245"/>
+                                </valueQuantity>
+                            </extension>
+                            <value value="1"/>
+                            <unit value="stuks"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="1"/>
+                        </doseQuantity>
+                    </doseAndRate>
+                </dosage>
+            </MedicationStatement>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <!--mgb-derivedfrom-mve-resolvablereference-->
+    <entry>
+        <fullUrl value="urn:uuid:814ec97a-0140-43a6-bfee-2ceebf700e15"/>
+        <resource>
+            <MedicationStatement>
+                <id value="15"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
+                </meta>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString value="Vanaf 12 nov 2024 15:03, om 08:00 1x per dag 1 stuks en om 12:00 1x per dag  en om 17:00 1x per dag  en om 21:00 1x per dag , oraal"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.1234.234.1003.12"/>
+                        <value value="e7c63a10-3ab2-46b4-ae18-bf72f9b88f45"/>
+                    </valueIdentifier>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+                    <valueBoolean value="false"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
+                    <valueReference>
+                        <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                        <type value="PractitionerRole"/>
+                        <display value="Peter van Pulver, huisarts - Pulver en partners"/>
+                    </valueReference>
+                </extension>
+                <identifier>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.123.123"/>
+                    <value value="mgb-derivedfrom-mve-resolvablereference"/>
+                </identifier>
+                <status value="not-taken"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="422979000"/>
+                        <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+                    </coding>
+                </category>
+                <medicationReference>
+                    <reference value="urn:uuid:8a2d3506-3d61-4d5d-b4d8-508cb1e75d71"/>
+                    <type value="Medication"/>
+                    <display value="Allopurinol tablet 100mg"/>
+                </medicationReference>
+                <subject>
+                    <reference value="urn:uuid:f2e13f8d-d622-4613-908c-7b63f7fb47c8"/>
+                    <type value="Patient"/>
+                    <display value="Dhr. Agir von Thursen"/>
+                </subject>
+                <effectivePeriod>
+                    <start value="2024-11-12T15:03:00+01:00"/>
+                </effectivePeriod>
+                <dateAsserted value="2024-11-12T15:03:57+01:00"/>
+                <informationSource>
+                    <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                    <type value="Practitioner"/>
+                    <display value="Peter van Pulver, huisarts"/>
+                </informationSource>
+                <derivedFrom>
+                    <reference value="urn:uuid:bb2be1ac-9d24-11ef-9233-020000000000"/>
+                    <type value="MedicationDispense"/>
+                    <display value="Relatie naar MVE"/>
+                </derivedFrom>
+                <dosage>
+                    <sequence value="1"/>
+                    <timing>
+                        <repeat>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                <valueBoolean value="false"/>
+                            </extension>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                            <timeOfDay value="08:00:00"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="ORAAL"/>
+                        </coding>
+                    </route>
+                    <doseAndRate>
+                        <doseQuantity>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                                <valueQuantity>
+                                    <value value="1"/>
+                                    <unit value="stuks"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="245"/>
+                                </valueQuantity>
+                            </extension>
+                            <value value="1"/>
+                            <unit value="stuks"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="1"/>
+                        </doseQuantity>
+                    </doseAndRate>
+                </dosage>
+            </MedicationStatement>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="urn:uuid:8a2d3506-3d61-4d5d-b4d8-508cb1e75d71"/>
+        <resource>
+            <Medication>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+                </meta>
+                <code>
+                    <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                        <code value="671"/>
+                        <display value="Allopurinol tablet 100mg"/>
+                        <userSelected value="true"/>
+                    </coding>
+                    <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                        <code value="2224"/>
+                        <display value="Allopurinol tablet 100mg"/>
+                    </coding>
+                    <text value="Allopurinol tablet 100mg"/>
+                </code>
+            </Medication>
+        </resource>
+        <search>
+            <mode value="include"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+        <resource>
+            <PractitionerRole>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+                </meta>
+                <practitioner>
+                    <reference value="urn:uuid:cd9f5eb9-b30d-4182-b722-a3155b88ab1e"/>
+                    <type value="Practitioner"/>
+                    <display value="Peter van Pulver, huisarts"/>
+                </practitioner>
+                <organization>
+                    <reference value="urn:uuid:8b7820fb-d644-4696-93b4-d7a1619cee25"/>
+                    <type value="Organization"/>
+                    <display value="Pulver en partners"/>
+                </organization>
+                <specialty>
+                    <coding>
+                        <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+                        <code value="01.000"/>
+                        <display value="ALGEMEEN OVERIGE ARTS"/>
+                    </coding>
+                </specialty>
+            </PractitionerRole>
+        </resource>
+        <search>
+            <mode value="include"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="urn:uuid:8b7820fb-d644-4696-93b4-d7a1619cee25"/>
+        <resource>
+            <Organization>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+                </meta>
+                <name value="Pulver en partners"/>
+            </Organization>
+        </resource>
+        <search>
+            <mode value="include"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="urn:uuid:cd9f5eb9-b30d-4182-b722-a3155b88ab1e"/>
+        <resource>
+            <Practitioner>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+                </meta>
+                <identifier>
+                    <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+                    <value value="00001113"/>
+                </identifier>
+                <name>
+                    <use value="official"/>
+                    <text value="Peter van Pulver, huisarts"/>
+                </name>
+                <telecom>
+                    <system value="phone"/>
+                    <value value="030-2345678"/>
+                    <use value="work"/>
+                </telecom>
+            </Practitioner>
+        </resource>
+        <search>
+            <mode value="include"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="urn:uuid:cd9f5eb9-b30d-4182-b722-a3155b88aawe"/>
+        <resource>
+            <Practitioner>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+                </meta>
+                <identifier>
+                    <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+                    <value value="00001113"/>
+                </identifier>
+                <name>
+                    <use value="official"/>
+                    <text value="testing, huisarts"/>
+                </name>
+                <telecom>
+                    <system value="phone"/>
+                    <value value="030-2345678"/>
+                    <use value="work"/>
+                </telecom>
+            </Practitioner>
+        </resource>
+        <search>
+            <mode value="include"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="urn:uuid:b9f1a085-5328-4555-a961-44bac0596d7b"/>
+        <resource>
+            <Organization>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+                </meta>
+                <identifier>
+                    <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+                    <value value="12345678"/>
+                </identifier>
+                <name value="Test"/>
+            </Organization>
+        </resource>
+        <search>
+            <mode value="include"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="urn:uuid:56322cef-cabc-4df7-bc36-e52c93958b97"/>
+        <resource>
+            <Practitioner>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+                </meta>
+                <identifier>
+                    <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                    <value value="123456789"/>
+                </identifier>
+                <name>
+                    <use value="official"/>
+                    <text value="Demo apotheek"/>
+                </name>
+            </Practitioner>
+        </resource>
+        <search>
+            <mode value="include"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="urn:uuid:f2e13f8d-d622-4613-908c-7b63f7fb47c8"/>
+        <resource>
+            <Patient>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+                </meta>
+                <identifier>
+                    <use value="official"/>
+                    <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                    <value value="999995157"/>
+                </identifier>
+                <name>
+                    <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                        <valueCode value="NL3"/>
+                    </extension>
+                    <use value="official"/>
+                    <text value="Agir von Thursen"/>
+                    <family value="Thursen">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                            <valueString value="Thursen"/>
+                        </extension>
+                    </family>
+                    <given value="Agir">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                            <valueCode value="BR"/>
+                        </extension>
+                    </given>
+                </name>
+                <gender value="male">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                        <valueCodeableConcept>
+                            <coding>
+                                <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
+                                <code value="M"/>
+                                <display value="Male"/>
+                            </coding>
+                        </valueCodeableConcept>
+                    </extension>
+                </gender>
+                <birthDate value="1998-05-05"/>
+                <deceasedBoolean value="false"/>
+            </Patient>
+        </resource>
+        <search>
+            <mode value="include"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="urn:uuid:bb2bdf90-9d24-11ef-9233-020000000000"/>
+        <resource>
+            <MedicationRequest>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+                </meta>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+                    <valueDateTime value="2022-12-22T11:20:00+01:00"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString value="1 maal per dag 1 stuk, oraal"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+                    <valuePeriod>
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.PeriodOfUse.Condition">
+                            <valueString value="3 dagen voor opname stoppen"/>
+                        </extension>
+                        <start value="2022-12-22T00:00:00+01:00"/>
+                        <end value="2022-12-27T23:59:59+01:00"/>
+                    </valuePeriod>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                        <value value="MBH_300_start_eind"/>
+                    </valueIdentifier>
+                </extension>
+                <identifier>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    <value value="MBH_300_start_eind_MA"/>
+                </identifier>
+                <status value="unknown"/>
+                <intent value="order"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="33633005"/>
+                        <display value="voorschrijven van geneesmiddel"/>
+                    </coding>
+                </category>
+                <medicationReference>
+                    <reference value="urn:uuid:8a2d3506-3d61-4d5d-b4d8-508cb1e75d71"/>
+                    <type value="Medication"/>
+                    <display value="sdff"/>
+                </medicationReference>
+                <subject>
+                    <reference value="urn:uuid:f2e13f8d-d622-4613-908c-7b63f7fb47c8"/>
+                    <type value="Patient"/>
+                    <display value="Dhr. Agir von Thursen"/>
+                </subject>
+                <requester>
+                    <reference value="urn:uuid:9ccbd546-42a5-4da9-9d07-8f46ded95c7e"/>
+                    <type value="PractitionerRole"/>
+                    <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+                </requester>
+                <dosageInstruction>
+                    <timing>
+                        <repeat>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="oraal"/>
+                        </coding>
+                    </route>
+                    <doseAndRate>
+                        <doseQuantity>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                                <valueQuantity>
+                                    <value value="1"/>
+                                    <unit value="stuk"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="245"/>
+                                </valueQuantity>
+                            </extension>
+                            <value value="1"/>
+                            <unit value="stuk"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="1"/>
+                        </doseQuantity>
+                    </doseAndRate>
+                </dosageInstruction>
+            </MedicationRequest>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="urn:uuid:bb2be026-9d24-11ef-9233-020000000000"/>
+        <resource>
+            <MedicationDispense>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
+                </meta>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+                    <valueDateTime value="2022-12-22T12:20:00+01:00"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString value="1 maal per dag 1 stuk, Oraal"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+                    <valuePeriod>
+                        <start value="2022-12-22T00:00:00+01:00"/>
+                        <end value="2022-12-27T23:59:59+01:00"/>
+                    </valuePeriod>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                        <value value="MBH_300_start_eind"/>
+                    </valueIdentifier>
+                </extension>
+                <identifier>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                    <value value="MBH_300_start_eind_TA"/>
+                </identifier>
+                <status value="unknown"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="422037009"/>
+                        <display value="toedieningsafspraak"/>
+                    </coding>
+                </category>
+                <medicationReference>
+                    <reference value="urn:uuid:8a2d3506-3d61-4d5d-b4d8-508cb1e75d71"/>
+                    <type value="Medication"/>
+                    <display value="sdf"/>
+                </medicationReference>
+                <subject>
+                    <reference value="urn:uuid:f2e13f8d-d622-4613-908c-7b63f7fb47c8"/>
+                    <type value="Patient"/>
+                    <display value="Dhr. Agir von Thursen"/>
+                </subject>
+                <performer>
+                    <actor>
+                        <reference value="urn:uuid:b9f1a085-5328-4555-a961-44bac0596d7b"/>
+                        <type value="Organization"/>
+                        <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+                    </actor>
+                </performer>
+                <authorizingPrescription>
+                    <type value="MedicationRequest"/>
+                    <identifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                        <value value="MBH_300_start_eind_MA"/>
+                    </identifier>
+                    <display value="relatie naar medicatieafspraak met identificatie: MBH_300_start_eind_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                </authorizingPrescription>
+                <dosageInstruction>
+                    <timing>
+                        <repeat>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="Oraal"/>
+                        </coding>
+                    </route>
+                    <doseAndRate>
+                        <doseQuantity>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                                <valueQuantity>
+                                    <value value="1"/>
+                                    <unit value="stuk"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="245"/>
+                                </valueQuantity>
+                            </extension>
+                            <value value="1"/>
+                            <unit value="stuk"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="1"/>
+                        </doseQuantity>
+                    </doseAndRate>
+                </dosageInstruction>
+            </MedicationDispense>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="urn:uuid:bb2be1ac-9d24-11ef-9233-020000000000"/>
+        <resource>
+            <MedicationDispense>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
+                </meta>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                        <value value="MBH_300_chronisch"/>
+                    </valueIdentifier>
+                </extension>
+                <identifier>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+                    <value value="MBH_300_chronisch_MVE_extraMVEbestaandeTA"/>
+                </identifier>
+                <status value="completed"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="373784005"/>
+                        <display value="verstrekken van medicatie"/>
+                    </coding>
+                </category>
+                <medicationReference>
+                    <reference value="urn:uuid:8a2d3506-3d61-4d5d-b4d8-508cb1e75d71"/>
+                    <type value="Medication"/>
+                    <display value="fdfds"/>
+                </medicationReference>
+                <subject>
+                    <reference value="urn:uuid:f2e13f8d-d622-4613-908c-7b63f7fb47c8"/>
+                    <type value="Patient"/>
+                    <display value="Dhr. Agir von Thursen"/>
+                </subject>
+                <performer>
+                    <actor>
+                        <reference value="urn:uuid:b9f1a085-5328-4555-a961-44bac0596d7b"/>
+                        <type value="Organization"/>
+                        <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+                    </actor>
+                </performer>
+                <authorizingPrescription>
+                    <type value="MedicationRequest"/>
+                    <identifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                        <value value="MBH_300_chronisch_VV_extraVVbestaandeMA"/>
+                    </identifier>
+                    <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_chronisch_VV_extraVVbestaandeMA || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                </authorizingPrescription>
+                <quantity>
+                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                            <value value="90"/>
+                            <unit value="stuk"/>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                            <code value="245"/>
+                        </valueQuantity>
+                    </extension>
+                    <value value="90"/>
+                    <unit value="stuk"/>
+                    <system value="http://unitsofmeasure.org"/>
+                    <code value="1"/>
+                </quantity>
+                <whenHandedOver value="2022-12-22T12:35:00+01:00"/>
+            </MedicationDispense>
+        </resource>
+        <search>
+            <mode value="match"/>
+        </search>
+    </entry>
+
+</Bundle>

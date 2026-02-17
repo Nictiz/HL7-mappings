@@ -1,0 +1,116 @@
+<ProcedureRequest xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-tes-casus9999 -->
+   <id value="142b7f7f-6ab5-11ec-2231-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichtingaanvraag. Subject: Maaike M Maaike Ostendorf. Status: onbekend<span style="display: block;">Intentie: plan</span>
+               <span style="display: block;">Aangevraagd door: Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="resectie van poliep (verrichting) (82035006 - SNOMED CT)">resectie van poliep (verrichting)</span>
+                  </td>
+                  <td>
+                     <div>Wanneer: ${DATE, T, D, -9} - ${DATE, T, D, -9}</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Beoogde uitvoerende</th>
+                  <td>
+                     <div>Type: <span title="Hoofdbehandelaar (RESP - v3/ParticipationType)">Hoofdbehandelaar</span>
+                     </div>
+                     <div>Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td/>
+               </tr>
+               <tr>
+                  <td>Deel van lichaam</td>
+                  <td>
+                     <span title="structuur van cervix uteri (lichaamsstructuur) (71252005 - SNOMED CT)">structuur van cervix uteri (lichaamsstructuur)</span>
+                     <span title="Rechts (24028007 - SNOMED CT)">Rechts</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="142b7f7f-6ab5-11ec-2231-020000000000"/>
+   </identifier>
+   <status value="unknown"/>
+   <intent value="plan"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="82035006"/>
+         <display value="resectie van poliep (verrichting)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/MAAIKE-M-MAAIKE-OSTENDORF"/>
+      <display value="Maaike M Maaike Ostendorf"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/e2116b0f-6b20-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 P1-Maaike"/>
+   </context>
+   <occurrencePeriod>
+      <start value="${DATE, T, D, -9}"/>
+      <end value="${DATE, T, D, -9}"/>
+   </occurrencePeriod>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/practitionerrole-mm-gbz-03073167030706019999"/>
+               <display value="Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167"/>
+         <display value="Suzan S Suzan De Jong"/>
+      </agent>
+   </requester>
+   <performerType>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+         <code value="RESP"/>
+         <display value="Hoofdbehandelaar"/>
+      </coding>
+   </performerType>
+   <performer>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/practitionerrole-mm-gbz-03073167030706019999"/>
+            <display value="Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167"/>
+      <display value="Suzan S Suzan De Jong"/>
+   </performer>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="24028007"/>
+               <display value="Rechts"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="71252005"/>
+         <display value="structuur van cervix uteri (lichaamsstructuur)"/>
+      </coding>
+   </bodySite>
+</ProcedureRequest>

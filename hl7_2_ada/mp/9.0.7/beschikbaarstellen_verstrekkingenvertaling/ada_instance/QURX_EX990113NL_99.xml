@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--Generated from HL7v3 verstrekkingenlijst 6.12 xml with message id (QURX_IN990113NL/id) root: 2.16.840.1.113883.2.4.6.6.1.1 and extension: 0123456789.-->
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<!--Generated from HL7v3 verstrekkingenlijst 6.12 xml with message id (QURX_IN990113NL/id) root: 2.16.840.1.113883.2.4.6.6.1.1 and extension: 0123456789.--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_verstrekkingenvertaling.xsd">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2022-08-23T14:00:10.068262+02:00"
-         last-update-date="2022-08-23T14:00:10.068262+02:00"/>
+         creation-date="2024-12-24T12:25:57.837+01:00"
+         last-update-date="2024-12-24T12:25:57.837+01:00"/>
    <data>
       <beschikbaarstellen_verstrekkingenvertaling app="mp-mp907"
                                                   shortName="beschikbaarstellen_verstrekkingenvertaling"
@@ -20,10 +18,10 @@
          <patient>
             <naamgegevens>
                <initialen value="J.J."/>
-               <naamgebruik value="3"
-                            code="NL3"
+               <naamgebruik value="4"
+                            code="NL4"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
-                            displayName="Geslachtsnaam partner gevolgd door eigen geslachtsnaam"/>
+                            displayName="Eigen geslachtsnaam gevolgd door geslachtsnaam partner"/>
                <geslachtsnaam>
                   <voorvoegsels value="le "/>
                   <achternaam value="Noble"/>
@@ -40,10 +38,10 @@
                       codeSystemName="AdministrativeGender"
                       displayName="Vrouw"/>
          </patient>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="mag01" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
-               <afspraakdatum value="2016-03-04T12:00:00"/>
+            <toedieningsafspraak>
+               <afspraakdatum value="2016-03-04T12:00"/>
                <verstrekker>
                   <zorgaanbieder>
                      <zorgaanbieder_identificatie_nummer value="01234567" root="2.16.528.1.1007.3.3"/>
@@ -54,7 +52,7 @@
                   <product>
                      <product_code code="OTH"
                                    codeSystem="2.16.840.1.113883.5.1008"
-                                   displayName=""
+                                   displayName="overig"
                                    originalText="Hydrocortison zetpil 100 mg"/>
                      <product_specificatie>
                         <product_naam value="Hydrocortison zetpil 100 mg"/>
@@ -107,8 +105,22 @@
                      </product_specificatie>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+						
+						
+						
+
+						
+							
+						
+						
+							
+						
+						
+							
+								
+							
+						
+						         <gebruiksinstructie>
                   <omschrijving value="pilschema"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
@@ -116,14 +128,37 @@
                   <aanvullende_instructie code="1131"
                                           codeSystem="2.16.840.1.113883.2.4.4.5"
                                           displayName="gebruik volgens schema"/>
-                  <!--mp9-doseerinstructie-from-mp612-tijden-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis--><!--geen keerdosis in input-->
+                     <dosering>
                         <toedieningsschema>
                            <toedientijd value="2018-06-10T09:00"/>
                            <toedientijd value="2018-06-10T12:00"/>
                         </toedieningsschema>
-                        <zo_nodig>
+										pilschema
+										
+										
+										
+											
+												
+													
+												
+												
+											
+											
+												
+													
+												
+												
+											
+										
+										
+											
+												
+											
+										
+										
+											
+												<zo_nodig>
                            <criterium>
                               <code code="OTH"
                                     codeSystem="2.16.840.1.113883.5.1008"
@@ -131,14 +166,49 @@
                                     originalText="nullFlavor: overig, originalText: adf a dfasdf asdf d. Code: 1137, displayName: zo nodig. nullFlavor: geen informatie, originalText: adf."/>
                            </criterium>
                         </zo_nodig>
-                     </dosering>
+											
+										
+										
+											
+												            <zo_nodig>
+                           <criterium>
+                              <code code="OTH"
+                                    codeSystem="2.16.840.1.113883.5.1008"
+                                    displayName="overig"
+                                    originalText="nullFlavor: overig, originalText: adf a dfasdf asdf d. Code: 1137, displayName: zo nodig. nullFlavor: geen informatie, originalText: adf."/>
+                           </criterium>
+                        </zo_nodig>
+											
+										
+										
+											
+												            <zo_nodig>
+                           <criterium>
+                              <code code="OTH"
+                                    codeSystem="2.16.840.1.113883.5.1008"
+                                    displayName="overig"
+                                    originalText="nullFlavor: overig, originalText: adf a dfasdf asdf d. Code: 1137, displayName: zo nodig. nullFlavor: geen informatie, originalText: adf."/>
+                           </criterium>
+                        </zo_nodig>
+											
+										
+									            </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+						
+							
+								
+								
+								
+									
+								
+							
+						
+					       </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="mag01"/>
                <datum nullFlavor="NI"/>
-               <aanschrijfdatum value="2016-03-04T12:00:00"/>
+               <aanschrijfdatum value="2016-03-04T12:00"/>
                <verstrekker>
                   <zorgaanbieder>
                      <zorgaanbieder_identificatie_nummer value="01234567" root="2.16.528.1.1007.3.3"/>
@@ -155,7 +225,7 @@
                   <product>
                      <product_code code="OTH"
                                    codeSystem="2.16.840.1.113883.5.1008"
-                                   displayName=""
+                                   displayName="overig"
                                    originalText="Hydrocortison zetpil 100 mg"/>
                      <product_specificatie>
                         <product_naam value="Hydrocortison zetpil 100 mg"/>

@@ -1,0 +1,63 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-tes-casus9999 -->
+   <id value="0f1c4ddf-6b13-11ec-2335-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MultidisciplinaryTeamMeeting"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: Maaike M Maaike Ostendorf. Status: onbekend</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div>
+                        <span title="multidisciplinair overleg (verrichting) (384682003 - SNOMED CT)">multidisciplinair overleg (verrichting)</span>
+                     </div>Overdracht</td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>Vanaf ${DATE, T, D, -145}</td>
+               </tr>
+               <tr>
+                  <th>Probleem/Verrichting</th>
+                  <td>probleem P1-Maaike</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="0f1c4ddf-6b13-11ec-2335-020000000000"/>
+   </identifier>
+   <status value="unknown"/>
+   <class>
+      <system value="http://snomed.info/sct"/>
+      <code value="384682003"/>
+      <display value="multidisciplinair overleg (verrichting)"/>
+   </class>
+   <type>
+      <text value="Overdracht"/>
+   </type>
+   <subject>
+      <reference value="Patient/MAAIKE-M-MAAIKE-OSTENDORF"/>
+      <display value="Maaike M Maaike Ostendorf"/>
+   </subject>
+   <episodeOfCare>
+      <reference value="EpisodeOfCare/e2116b0f-6b20-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 P1-Maaike"/>
+   </episodeOfCare>
+   <period>
+      <start value="${DATE, T, D, -145}"/>
+   </period>
+   <diagnosis>
+      <condition>
+         <reference value="Condition/8057b0cf-6b6d-11ec-2884-020000000000"/>
+         <display value="probleem P1-Maaike"/>
+      </condition>
+   </diagnosis>
+</Encounter>

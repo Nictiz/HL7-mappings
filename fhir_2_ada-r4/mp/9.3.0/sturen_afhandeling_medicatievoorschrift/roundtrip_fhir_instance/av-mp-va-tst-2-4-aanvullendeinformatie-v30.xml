@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="850992ad-4835-11ef-8407-020000000000"/>
+   <id value="9c177f13-a281-11ef-2814-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:8509939c-4835-11ef-8407-020000000000"/>
+      <fullUrl value="urn:uuid:9c178002-a281-11ef-2814-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -18,9 +18,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2022-12-27T09:06:00+01:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf &lt;T-4D{00:00:00}&gt; t/m &lt;T+5D{23:59:59}&gt;, 3 maal per dag 1 stuk, oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 28 dec 2022, tot en met 6 jan 2023, elke dag om 19:00 1 stuk - let op, tijden exact aanhouden, Oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="2022-12-28T00:00:00+01:00"/>
@@ -46,18 +47,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:850993d8-4835-11ef-8407-020000000000"/>
+               <reference value="urn:uuid:9c17803e-a281-11ef-2814-020000000000"/>
                <type value="Medication"/>
                <display value="BROXIL CAPSULE 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:85099324-4835-11ef-8407-020000000000"/>
+               <reference value="urn:uuid:9c177f8a-a281-11ef-2814-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:85099360-4835-11ef-8407-020000000000"/>
+                  <reference value="urn:uuid:9c177fc6-a281-11ef-2814-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -114,7 +115,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:850993ba-4835-11ef-8407-020000000000"/>
+      <fullUrl value="urn:uuid:9c178020-a281-11ef-2814-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -152,18 +153,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:850993d8-4835-11ef-8407-020000000000"/>
+               <reference value="urn:uuid:9c17803e-a281-11ef-2814-020000000000"/>
                <type value="Medication"/>
                <display value="BROXIL CAPSULE 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:85099324-4835-11ef-8407-020000000000"/>
+               <reference value="urn:uuid:9c177f8a-a281-11ef-2814-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:85099360-4835-11ef-8407-020000000000"/>
+                  <reference value="urn:uuid:9c177fc6-a281-11ef-2814-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -199,7 +200,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:85099324-4835-11ef-8407-020000000000"/>
+      <fullUrl value="urn:uuid:9c177f8a-a281-11ef-2814-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -246,7 +247,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:85099360-4835-11ef-8407-020000000000"/>
+      <fullUrl value="urn:uuid:9c177fc6-a281-11ef-2814-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -290,7 +291,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:850993d8-4835-11ef-8407-020000000000"/>
+      <fullUrl value="urn:uuid:9c17803e-a281-11ef-2814-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -311,7 +312,7 @@
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
                   <code value="41092"/>
-                  <display value="FENETICILLINE 500MG CAPSULE"/>
+                  <display value="FENETICILLINE CAPSULE 500MG"/>
                </coding>
                <text value="BROXIL CAPSULE 500MG"/>
             </code>

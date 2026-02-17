@@ -1,0 +1,127 @@
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="zib-AllergyIntolerance-msz-8ba2e20f-6ad9-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Allergie/intolerantie. Patiënt: Michelle M.B. Michelle Bergzoon Verheul. Categorie: medicatie, Status: actief / bevestigd</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Allergische reactie door spierontspanner tijdens narcose</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="spierrelaxans (372666009 - SNOMED CT)">spierrelaxans</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>2024</td>
+               </tr>
+               <tr>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>matig</div>
+                           <div>
+                              <span title="Bronchospasme (4386001 - SNOMED CT)">Bronchospasme</span>
+                           </div>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActStatus"/>
+               <code value="active"/>
+               <display value="Actief"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus value="confirmed"/>
+   <category value="medication">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="419511003"/>
+               <display value="neiging tot ongewenste reactie op medicatie en/of drug"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <criticality value="high">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="6736007"/>
+               <display value="matig"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </criticality>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="372666009"/>
+         <display value="spierrelaxans"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL"/>
+      <display value="Michelle M.B. Michelle Bergzoon Verheul"/>
+   </patient>
+   <onsetDateTime value="2024"/>
+   <note>
+      <text value="Allergische reactie door spierontspanner tijdens narcose"/>
+   </note>
+   <reaction>
+      <substance>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="372495006"/>
+            <display value="cisatracurium"/>
+         </coding>
+      </substance>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="4386001"/>
+            <display value="Bronchospasme"/>
+         </coding>
+      </manifestation>
+      <severity value="moderate">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="6736007"/>
+                  <display value="Matig"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </severity>
+      <exposureRoute>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="432054008"/>
+            <display value="intraveneuze infusie van geneesmiddel"/>
+         </coding>
+      </exposureRoute>
+   </reaction>
+</AllergyIntolerance>

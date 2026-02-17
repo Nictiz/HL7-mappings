@@ -12,47 +12,39 @@
    <statusCode code="completed"/>
    <recordTarget>
       <patientRole>
-         <id extension="999901011"
+         <id extension="999900511"
              root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
-               <given qualifier="BR">Patricia</given>
-               <family qualifier="BR">XXX_Sacht</family>
+               <given qualifier="IN">E.</given>
+               <family qualifier="BR">XXX_Doppen</family>
             </name>
-            <administrativeGenderCode code="F"
+            <administrativeGenderCode code="M"
                                       codeSystem="2.16.840.1.113883.5.1"
-                                      displayName="Vrouw"/>
-            <birthTime value="20001113000000"/>
-            <sdtc:multipleBirthInd nullFlavor="NA"
-                                   xmlns:sdtc="urn:hl7-org:sdtc"/>
+                                      displayName="Man"/>
+            <birthTime value="19631024"/>
          </patient>
       </patientRole>
    </recordTarget>
    <participant typeCode="CST">
       <participantRole classCode="ASSIGNED">
-         <id extension="00003334"
+         <id extension="00001111"
              root="2.16.528.1.1007.3.3"/>
-         <code code="L1"
+         <code code="Z3"
                codeSystem="2.16.840.1.113883.2.4.15.1060"
-               displayName="Laboratorium"
+               displayName="Huisartspraktijk (zelfstandig of groepspraktijk)"
                codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
                codeSystemVersion="2023-04-14T00:00:00"/>
          <addr use="WP">
-            <streetName>Kerkstraat</streetName>
-            <houseNumber>23</houseNumber>
-            <postalCode>2143 BB</postalCode>
-            <city>Zorgstad</city>
-            <country code="NL"
-                     codeSystem="1.0.3166.1.2.2"
-                     displayName="Nederland"
-                     codeSystemName="ISO 3166-1 (alpha-2)"
-                     codeSystemVersion="2020-10-26T00:00:00"/>
+            <streetName>Dorpsstraat</streetName>
+            <houseNumber>1</houseNumber>
+            <postalCode>1234 AA</postalCode>
+            <city>Ons Dorp</city>
          </addr>
-         <telecom use="WP"
-                  value="tel:06-11122244"/>
+         <telecom value="tel:099-12345678"/>
          <playingEntity classCode="ORG"
                         determinerCode="INSTANCE">
-            <name>Microbiologisch Lab Flagel</name>
+            <name>Huisartsenpraktijk Pulver &amp; Partners</name>
          </playingEntity>
       </participantRole>
    </participant>
@@ -95,6 +87,19 @@
                </representedOrganization>
             </assignedEntity>
          </performer>
+         <entryRelationship typeCode="COMP">
+            <observation classCode="OBS"
+                         moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.121.10.55"/>
+               <code code="92235-1"
+                     codeSystem="2.16.840.1.113883.6.1"
+                     displayName="Lab order result status"/>
+               <value xsi:type="CV"
+                      code="final"
+                      codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                      displayName="Definitief"/>
+            </observation>
+         </entryRelationship>
          <entryRelationship typeCode="COMP">
             <procedure classCode="PROC"
                        moodCode="EVN">

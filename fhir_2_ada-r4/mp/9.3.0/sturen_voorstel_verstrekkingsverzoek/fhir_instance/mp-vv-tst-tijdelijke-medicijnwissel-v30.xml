@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="ddfae93f-4807-11ef-2011-020000000000"/>
+   <id value="5c914ec3-a281-11ef-1328-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-ProposalDispenseRequest-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ddfaea88-4807-11ef-2011-020000000000"/>
+      <fullUrl value="urn:uuid:5c91500c-a281-11ef-1328-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -32,23 +32,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ddfaeaa6-4807-11ef-2011-020000000000"/>
+               <reference value="urn:uuid:5c91502a-a281-11ef-1328-020000000000"/>
                <type value="Medication"/>
                <display value="METOCLOPRAMIDE TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:ddfae9b6-4807-11ef-2011-020000000000"/>
+               <reference value="urn:uuid:5c914f3a-a281-11ef-1328-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. van de XXX_Brugge"/>
             </subject>
             <authoredOn value="2023-01-01T13:24:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:ddfae9de-4807-11ef-2011-020000000000"/>
+               <reference value="urn:uuid:5c914f62-a281-11ef-1328-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Victor de Verstrekker, Apothekers, Apotheek De Gulle Gaper"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:ddfaea4c-4807-11ef-2011-020000000000"/>
+               <reference value="urn:uuid:5c914fd0-a281-11ef-1328-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -84,7 +84,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ddfae9b6-4807-11ef-2011-020000000000"/>
+      <fullUrl value="urn:uuid:5c914f3a-a281-11ef-1328-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -134,19 +134,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ddfae9de-4807-11ef-2011-020000000000"/>
+      <fullUrl value="urn:uuid:5c914f62-a281-11ef-1328-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:ddfaea06-4807-11ef-2011-020000000000"/>
+               <reference value="urn:uuid:5c914f8a-a281-11ef-1328-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Victor de Verstrekker"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:ddfaea4c-4807-11ef-2011-020000000000"/>
+               <reference value="urn:uuid:5c914fd0-a281-11ef-1328-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </organization>
@@ -166,7 +166,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ddfaea06-4807-11ef-2011-020000000000"/>
+      <fullUrl value="urn:uuid:5c914f8a-a281-11ef-1328-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -201,7 +201,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ddfaea4c-4807-11ef-2011-020000000000"/>
+      <fullUrl value="urn:uuid:5c914fd0-a281-11ef-1328-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -212,6 +212,31 @@
                <value value="01236578"/>
             </identifier>
             <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -220,7 +245,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ddfaeaa6-4807-11ef-2011-020000000000"/>
+      <fullUrl value="urn:uuid:5c91502a-a281-11ef-1328-020000000000"/>
       <resource>
          <Medication>
             <meta>

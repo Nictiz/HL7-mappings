@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="845bb0e3-4835-11ef-5503-020000000000"/>
+   <id value="9ba959e3-a281-11ef-5807-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:845bb286-4835-11ef-5503-020000000000"/>
+      <fullUrl value="urn:uuid:9ba95b86-a281-11ef-5807-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -18,9 +18,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2023-01-01T11:30:00+01:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf &lt;T-20D{00:00:00}&gt;, gedurende 3 weken, 1 maal per dag 1 stuk, oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 1 jan 2023, gedurende 3 weken, 1 maal per dag 1 stuk, oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
@@ -54,17 +55,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:845bb2c2-4835-11ef-5503-020000000000"/>
+               <reference value="urn:uuid:9ba95bc2-a281-11ef-5807-020000000000"/>
                <type value="Medication"/>
                <display value="LISINOPRIL 10MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:845bb15a-4835-11ef-5503-020000000000"/>
+               <reference value="urn:uuid:9ba95a5a-a281-11ef-5807-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:845bb182-4835-11ef-5503-020000000000"/>
+               <reference value="urn:uuid:9ba95a82-a281-11ef-5807-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -108,7 +109,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:845bb2a4-4835-11ef-5503-020000000000"/>
+      <fullUrl value="urn:uuid:9ba95ba4-a281-11ef-5807-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -138,23 +139,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:845bb2e0-4835-11ef-5503-020000000000"/>
+               <reference value="urn:uuid:9ba95be0-a281-11ef-5807-020000000000"/>
                <type value="Medication"/>
                <display value="LISINOPRIL SANDOZ TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:845bb15a-4835-11ef-5503-020000000000"/>
+               <reference value="urn:uuid:9ba95a5a-a281-11ef-5807-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
             <authoredOn value="2023-01-01T11:30:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:845bb182-4835-11ef-5503-020000000000"/>
+               <reference value="urn:uuid:9ba95a82-a281-11ef-5807-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:845bb24a-4835-11ef-5503-020000000000"/>
+               <reference value="urn:uuid:9ba95b4a-a281-11ef-5807-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -190,7 +191,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:845bb15a-4835-11ef-5503-020000000000"/>
+      <fullUrl value="urn:uuid:9ba95a5a-a281-11ef-5807-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -237,19 +238,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:845bb182-4835-11ef-5503-020000000000"/>
+      <fullUrl value="urn:uuid:9ba95a82-a281-11ef-5807-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:845bb1aa-4835-11ef-5503-020000000000"/>
+               <reference value="urn:uuid:9ba95aaa-a281-11ef-5807-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:845bb1f0-4835-11ef-5503-020000000000"/>
+               <reference value="urn:uuid:9ba95af0-a281-11ef-5807-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -274,7 +275,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:845bb1aa-4835-11ef-5503-020000000000"/>
+      <fullUrl value="urn:uuid:9ba95aaa-a281-11ef-5807-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -314,7 +315,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:845bb1f0-4835-11ef-5503-020000000000"/>
+      <fullUrl value="urn:uuid:9ba95af0-a281-11ef-5807-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -355,7 +356,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:845bb24a-4835-11ef-5503-020000000000"/>
+      <fullUrl value="urn:uuid:9ba95b4a-a281-11ef-5807-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -399,7 +400,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:845bb2c2-4835-11ef-5503-020000000000"/>
+      <fullUrl value="urn:uuid:9ba95bc2-a281-11ef-5807-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -427,7 +428,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:845bb2e0-4835-11ef-5503-020000000000"/>
+      <fullUrl value="urn:uuid:9ba95be0-a281-11ef-5807-020000000000"/>
       <resource>
          <Medication>
             <meta>

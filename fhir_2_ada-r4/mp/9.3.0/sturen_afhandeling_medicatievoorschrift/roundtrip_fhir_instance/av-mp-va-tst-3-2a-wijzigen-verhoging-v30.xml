@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="850d043d-4835-11ef-1287-020000000000"/>
+   <id value="9c198605-a281-11ef-1906-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:850d052c-4835-11ef-1287-020000000000"/>
+      <fullUrl value="urn:uuid:9c1986f4-a281-11ef-1906-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -18,9 +18,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2023-01-01T09:02:00+01:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="wordt automatisch gegenereerd"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 1 jan 2023, 1 maal per dag 1 stuk, Oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="2023-01-01T09:00:00+01:00"/>
@@ -45,18 +46,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:850d0568-4835-11ef-1287-020000000000"/>
+               <reference value="urn:uuid:9c198730-a281-11ef-1906-020000000000"/>
                <type value="Medication"/>
                <display value="FUROSEMIDE SANDOZ TABLET 40MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:850d04b4-4835-11ef-1287-020000000000"/>
+               <reference value="urn:uuid:9c19867c-a281-11ef-1906-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:850d04f0-4835-11ef-1287-020000000000"/>
+                  <reference value="urn:uuid:9c1986b8-a281-11ef-1906-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -109,7 +110,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:850d054a-4835-11ef-1287-020000000000"/>
+      <fullUrl value="urn:uuid:9c198712-a281-11ef-1906-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -138,18 +139,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:850d0568-4835-11ef-1287-020000000000"/>
+               <reference value="urn:uuid:9c198730-a281-11ef-1906-020000000000"/>
                <type value="Medication"/>
                <display value="FUROSEMIDE SANDOZ TABLET 40MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:850d04b4-4835-11ef-1287-020000000000"/>
+               <reference value="urn:uuid:9c19867c-a281-11ef-1906-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:850d04f0-4835-11ef-1287-020000000000"/>
+                  <reference value="urn:uuid:9c1986b8-a281-11ef-1906-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -185,7 +186,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:850d04b4-4835-11ef-1287-020000000000"/>
+      <fullUrl value="urn:uuid:9c19867c-a281-11ef-1906-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -235,7 +236,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:850d04f0-4835-11ef-1287-020000000000"/>
+      <fullUrl value="urn:uuid:9c1986b8-a281-11ef-1906-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -279,7 +280,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:850d0568-4835-11ef-1287-020000000000"/>
+      <fullUrl value="urn:uuid:9c198730-a281-11ef-1906-020000000000"/>
       <resource>
          <Medication>
             <meta>

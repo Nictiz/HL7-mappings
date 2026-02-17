@@ -1,0 +1,132 @@
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="zib-AllergyIntolerance-msz-2bc63cde-6b27-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Allergie/intolerantie. Patiënt: Jan Adrianus J.A.H. Jan van Houten. Categorie: medicatie, Status: actief / bevestigd</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Alleen voor amoxicilline.</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="penicillines (764146007 - SNOMED CT)">penicillines</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>2009</td>
+               </tr>
+               <tr>
+                  <th>Laatste reactie tijd</th>
+                  <td>24 februari 2011</td>
+               </tr>
+               <tr>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>licht</div>
+                           <div>
+                              <span title="Misselijk en braken (16932000 - SNOMED CT)">Misselijk en braken</span>
+                           </div>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActStatus"/>
+               <code value="active"/>
+               <display value="Actief"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus value="confirmed"/>
+   <category value="medication">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="419511003"/>
+               <display value="neiging tot ongewenste reactie op medicatie en/of drug"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <criticality value="low">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="255604002"/>
+               <display value="licht"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </criticality>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="764146007"/>
+         <display value="penicillines"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN"/>
+      <display value="Jan Adrianus J.A.H. Jan van Houten"/>
+   </patient>
+   <onsetDateTime value="2009"/>
+   <lastOccurrence value="2011-02-24"/>
+   <note>
+      <text value="Alleen voor amoxicilline."/>
+   </note>
+   <reaction>
+      <substance>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="372687004"/>
+            <display value="amoxicilline"/>
+         </coding>
+      </substance>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="16932000"/>
+            <display value="Misselijk en braken"/>
+         </coding>
+      </manifestation>
+      <severity value="mild">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="255604002"/>
+                  <display value="Licht"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </severity>
+      <exposureRoute>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="orale route"/>
+            <display value="26643006"/>
+         </coding>
+      </exposureRoute>
+   </reaction>
+</AllergyIntolerance>

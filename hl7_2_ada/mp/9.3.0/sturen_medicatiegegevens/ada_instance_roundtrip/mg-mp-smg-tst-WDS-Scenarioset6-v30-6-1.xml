@@ -1,11 +1,10 @@
-<!--Generated from HL7v3 instance.-->
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<!--Generated from HL7v3 instance.--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatiegegevens.xsd">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2024-04-17T15:48:39.084+02:00"
-         last-update-date="2024-04-17T15:48:39.084+02:00"/>
+         creation-date="2024-01-01T00:00:00+02:00"
+         last-update-date="2024-01-01T00:00:00+02:00"/>
    <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
       <sturen_medicatiegegevens app="mp-mp93"
                                 shortName="sturen_medicatiegegevens"
@@ -31,28 +30,28 @@
             <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
          </patient>
          <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_WDS_weekdagen"
+            <identificatie value="MBH_300_WDS_dagdeel"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <wisselend_doseerschema>
-               <identificatie value="MBH_300_WDS_weekdagen_wds"
+               <identificatie value="MBH_300_WDS_dagdeel_wds"
                               root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2022-12-31T08:15:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-12-31T08:15:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-01-01"/>
-                  <tijds_duur value="6" unit="dag"/>
+                  <start_datum_tijd datatype="datetime" value="2024-01-01"/>
+                  <tijds_duur value="8" unit="dag"/>
                </gebruiksperiode>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d4136e62" datatype="reference"/>
+                  <farmaceutisch_product value="d4820e62" datatype="reference"/>
                </afgesproken_geneesmiddel>
                <relatie_medicatieafspraak>
-                  <identificatie value="MBH_300_WDS_weekdagen_MA"
+                  <identificatie value="MBH_300_WDS_dagdeel_MA"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_medicatieafspraak>
                <auteur>
-                  <zorgverlener value="d4136e76" datatype="reference"/>
+                  <zorgverlener value="d4820e76" datatype="reference"/>
                </auteur>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, gedurende 6 dagen, eerst gedurende 1 dag op maandag 2 stuks, dan gedurende 5 dagen op dinsdag, woensdag, donderdag, vrijdag en zaterdag 1.5 stuk, Oraal"/>
+                  <omschrijving value="eerst gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 uur 2 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, dan gedurende 1 dag 2 stuks 's avonds, Oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
@@ -71,19 +70,19 @@
                                     codeSystemName="G-Standaard thesaurus basiseenheden"/>
                         </keerdosis>
                         <toedieningsschema>
-                           <weekdag code="307145004"
-                                    displayName="maandag"
+                           <dagdeel code="3157002"
+                                    displayName="'s avonds"
                                     codeSystem="2.16.840.1.113883.6.96"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
                   <doseerinstructie>
-                     <doseerduur value="5" unit="dag"/>
+                     <doseerduur value="1" unit="dag"/>
                      <volgnummer value="2"/>
                      <dosering>
                         <keerdosis>
                            <aantal>
-                              <nominale_waarde value="1.5"/>
+                              <nominale_waarde value="2"/>
                            </aantal>
                            <eenheid code="245"
                                     displayName="stuk"
@@ -91,20 +90,128 @@
                                     codeSystemName="G-Standaard thesaurus basiseenheden"/>
                         </keerdosis>
                         <toedieningsschema>
-                           <weekdag code="307147007"
-                                    displayName="dinsdag"
+                           <dagdeel code="3157002"
+                                    displayName="'s avonds"
                                     codeSystem="2.16.840.1.113883.6.96"/>
-                           <weekdag code="307148002"
-                                    displayName="woensdag"
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie>
+                     <doseerduur value="1" unit="dag"/>
+                     <volgnummer value="3"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <dagdeel code="3157002"
+                                    displayName="'s avonds"
                                     codeSystem="2.16.840.1.113883.6.96"/>
-                           <weekdag code="307149005"
-                                    displayName="donderdag"
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie>
+                     <doseerduur value="1" unit="dag"/>
+                     <volgnummer value="4"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <dagdeel code="3157002"
+                                    displayName="'s avonds"
                                     codeSystem="2.16.840.1.113883.6.96"/>
-                           <weekdag code="307150005"
-                                    displayName="vrijdag"
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie>
+                     <doseerduur value="1" unit="uur"/>
+                     <volgnummer value="5"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <dagdeel code="3157002"
+                                    displayName="'s avonds"
                                     codeSystem="2.16.840.1.113883.6.96"/>
-                           <weekdag code="307151009"
-                                    displayName="zaterdag"
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie>
+                     <doseerduur value="1" unit="dag"/>
+                     <volgnummer value="6"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <dagdeel code="3157002"
+                                    displayName="'s avonds"
+                                    codeSystem="2.16.840.1.113883.6.96"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie>
+                     <doseerduur value="1" unit="dag"/>
+                     <volgnummer value="7"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <dagdeel code="3157002"
+                                    displayName="'s avonds"
+                                    codeSystem="2.16.840.1.113883.6.96"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie>
+                     <doseerduur value="1" unit="dag"/>
+                     <volgnummer value="8"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <dagdeel code="3157002"
+                                    displayName="'s avonds"
                                     codeSystem="2.16.840.1.113883.6.96"/>
                         </toedieningsschema>
                      </dosering>
@@ -114,17 +221,17 @@
             </wisselend_doseerschema>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d4136e62">
+            <farmaceutisch_product id="d4820e62">
                <product_code code="1783"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
-                             displayName="FENPRCOUMON TABLET 3MG"/>
+                             displayName="FENPROCOUMON TABLET 3MG"/>
                <product_code code="6637"
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              codeSystemName="G-Standaard GPK"
-                             displayName="FENPRCOUMON TABLET 3MG"/>
+                             displayName="FENPROCOUMON TABLET 3MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="d4136e76">
+            <zorgverlener id="d4820e76">
                <zorgverlener_identificatienummer value="222221111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Tanja"/>
@@ -139,10 +246,10 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Trombosediensten"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d4136e97" datatype="reference"/>
+                  <zorgaanbieder value="d4820e97" datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d4136e97">
+            <zorgaanbieder id="d4820e97">
                <zorgaanbieder_identificatienummer value="11112222" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Trombosedienst Ons Dorp"/>
                <afdeling_specialisme code="3400"
@@ -156,6 +263,9 @@
                   <huisnummerletter value="d"/>
                   <postcode value="1332 GH"/>
                   <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>

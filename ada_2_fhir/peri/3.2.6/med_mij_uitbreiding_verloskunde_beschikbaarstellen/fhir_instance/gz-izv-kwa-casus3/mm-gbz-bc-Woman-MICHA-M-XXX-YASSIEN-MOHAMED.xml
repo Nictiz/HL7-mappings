@@ -1,0 +1,134 @@
+<Patient xmlns="http://hl7.org/fhir">
+   <id value="MICHA-M-XXX-YASSIEN-MOHAMED"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Woman"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), <span title="Naamsamenstelling: Eigennaam">Micha M XXX_Yassien-Mohamed</span>, Vrouw, 23 december 1985, <i>Overleden ${DATE, T, D, -320}</i>, Geen meerling</div>
+         <div>
+            <a href="tel:0705321689">0705321689</a> (Vast telefoonnummer)</div>
+         <div>Knolweg 1000, 9999XA STITSWERD, NL (Bezoek)</div>
+         <div>Huisarts: Bert van XXX_Ernie || Huisarts || Huisartsenpraktijk Sesam</div>
+         <div>Voorkeursapotheek: Apotheek de 3 Bergen</div>
+      </div>
+   </text>
+   <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-preferred-pharmacy">
+      <valueReference>
+         <reference value="Organization/organization-mm-gbz-2-16-840-1-113883-2-4-6-1-1234567"/>
+         <display value="Apotheek de 3 Bergen"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-patient-ethnicity">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.13.28"/>
+            <code value="3"/>
+            <display value="Noord-Afrikaans"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+      <value>
+         <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+            <valueCode value="masked"/>
+         </extension>
+      </value>
+   </identifier>
+   <name>
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+         <valueCode value="NL1"/>
+      </extension>
+      <text value="Micha M XXX_Yassien-Mohamed"/>
+      <family value="XXX_Yassien-Mohamed">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="XXX_Yassien-Mohamed"/>
+         </extension>
+      </family>
+      <given value="Micha">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <given value="M">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="IN"/>
+         </extension>
+      </given>
+   </name>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Vast telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="0705321689"/>
+   </telecom>
+   <gender value="female">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+               <code value="F"/>
+               <display value="Vrouw"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </gender>
+   <birthDate value="1985-12-23"/>
+   <deceasedDateTime value="${DATE, T, D, -320}"/>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="PHYS"/>
+               <display value="Woon-/verblijfadres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="home"/>
+      <type value="physical"/>
+      <line value="Knolweg 1000">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Knolweg"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="1000"/>
+         </extension>
+      </line>
+      <city value="STITSWERD"/>
+      <postalCode value="9999XA"/>
+      <country value="NL">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:iso:std:iso:3166"/>
+                  <version value="2020-10-26T00:00:00"/>
+                  <code value="NL"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+   <multipleBirthBoolean value="false"/>
+   <generalPractitioner>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/practitionerrole-mm-gbz-12345678801-01512645878"/>
+            <display value="Bert van XXX_Ernie || Huisarts || Huisartsenpraktijk Sesam"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-123456788"/>
+      <display value="Bert van XXX_Ernie"/>
+   </generalPractitioner>
+</Patient>

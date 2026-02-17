@@ -1,0 +1,143 @@
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="zib-AllergyIntolerance-msz-a5f3be0f-6ac4-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Allergie/intolerantie. Patiënt: Michelle M.B. Michelle Bergzoon Verheul. Categorie: medicatie, Status: actief / bevestigd</caption>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="clindamycine (372786004 - SNOMED CT)">clindamycine</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>2016-03</td>
+               </tr>
+               <tr>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>2016-03 matig</div>
+                           <div>
+                              <span title="Diarree (62315008 - SNOMED CT)">Diarree</span>
+                           </div>
+                        </li>
+                        <li>
+                           <div>2016-02 </div>
+                           <div>
+                              <span title="Urticaria (126485001 - SNOMED CT)">Urticaria</span>, <span title="Jeuk (418363000 - SNOMED CT)">Jeuk</span>
+                           </div>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActStatus"/>
+               <code value="active"/>
+               <display value="Actief"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus value="confirmed"/>
+   <category value="medication">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="419511003"/>
+               <display value="neiging tot ongewenste reactie op medicatie en/of drug"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <criticality value="high">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="6736007"/>
+               <display value="matig"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </criticality>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="372786004"/>
+         <display value="clindamycine"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL"/>
+      <display value="Michelle M.B. Michelle Bergzoon Verheul"/>
+   </patient>
+   <onsetDateTime value="2016-03"/>
+   <reaction>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="62315008"/>
+            <display value="Diarree"/>
+         </coding>
+      </manifestation>
+      <onset value="2016-03"/>
+      <severity value="moderate">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="6736007"/>
+                  <display value="Matig"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </severity>
+      <exposureRoute>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="26643006"/>
+            <display value="orale route"/>
+         </coding>
+      </exposureRoute>
+   </reaction>
+   <reaction>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="126485001"/>
+            <display value="Urticaria"/>
+         </coding>
+      </manifestation>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="418363000"/>
+            <display value="Jeuk"/>
+         </coding>
+      </manifestation>
+      <onset value="2016-02"/>
+      <exposureRoute>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="26643006"/>
+            <display value="orale route"/>
+         </coding>
+      </exposureRoute>
+   </reaction>
+</AllergyIntolerance>

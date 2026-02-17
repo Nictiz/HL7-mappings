@@ -1,0 +1,1402 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:annotation>
+      <xs:documentation>Schema for transaction: 2.16.840.1.113883.2.4.3.11.60.121.4.2.7.6</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="empty_string">
+      <xs:annotation>
+         <xs:documentation>Type for empty value-strings on non-mandatory concepts</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="0"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:element name="nationaliteit_registratie" type="nationaliteit_registratie_type"/>
+   <xs:complexType name="nationaliteit_registratie_type">
+      <xs:sequence>
+         <xs:element name="nationaliteit_rc-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.7.6.1"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="nationaliteit_rc"
+                     type="nationaliteit_rc_type_2_16_840_1_113883_2_4_3_11_60_40_1_7_6_1"
+                     minOccurs="0"
+                     maxOccurs="unbounded"/>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:string"/>
+      <xs:attribute name="app" type="xs:string"/>
+      <xs:attribute name="shortName" type="xs:string" use="optional"/>
+      <xs:attribute name="formName" type="xs:string" use="optional"/>
+      <xs:attribute name="transactionRef" type="xs:string"/>
+      <xs:attribute name="transactionEffectiveDate" type="xs:dateTime"/>
+      <xs:attribute name="versionDate" type="xs:string"/>
+      <xs:attribute name="language" type="xs:string"/>
+      <xs:attribute name="prefix" type="xs:string"/>
+      <xs:attribute name="adaVersion" type="xs:decimal"/>
+      <xs:attribute name="title" type="xs:string"/>
+      <xs:attribute name="desc" type="xs:string"/>
+      <xs:attribute name="rights" type="xs:string"/>
+      <xs:attribute name="owner" type="xs:string"/>
+   </xs:complexType>
+   <xs:complexType name="nationaliteit_rc_type_2_16_840_1_113883_2_4_3_11_60_40_1_7_6_1">
+      <xs:annotation>
+         <xs:documentation>Type for concept group: NationaliteitRC</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="onderwerp-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.121.1.1"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="onderwerp"
+                     type="onderwerp_type_2_16_840_1_113883_2_4_3_11_999_121_1_1"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="nationaliteit-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.7.6.3"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="nationaliteit"
+                     type="nationaliteit_type_2_16_840_1_113883_2_4_3_11_60_40_1_7_6_3"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.7.6.1"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="onderwerp_type_2_16_840_1_113883_2_4_3_11_999_121_1_1">
+      <xs:annotation>
+         <xs:documentation>Type for concept group: Onderwerp</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="patient-id-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.121.1.2"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="patient-id"
+                     type="patient-id_type_2_16_840_1_113883_2_4_3_11_999_121_1_2"
+                     minOccurs="1"
+                     maxOccurs="1"/>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.121.1.1"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Patient identificatie - 1..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="patient-id_type_2_16_840_1_113883_2_4_3_11_999_121_1_2">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.121.1.2"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:union memberTypes="patient-id_1_datatype_2_16_840_1_113883_2_4_3_11_999_121_1_2 "/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="identifier"/>
+      <xs:attribute name="root" type="xs:string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: Patient identificatie: identifier</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="patient-id_1_datatype_2_16_840_1_113883_2_4_3_11_999_121_1_2">
+      <xs:restriction base="xs:string"/>
+   </xs:simpleType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Nationaliteit - 0..1 </xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="nationaliteit_type_2_16_840_1_113883_2_4_3_11_60_40_1_7_6_3">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.7.6.3"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:annotation>
+                  <xs:documentation>valueSet/conceptList/concept</xs:documentation>
+               </xs:annotation>
+               <xs:enumeration value="">
+                  <xs:annotation>
+                     <xs:documentation>Empty</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="1">
+                  <xs:annotation>
+                     <xs:documentation>Onbekend</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="2">
+                  <xs:annotation>
+                     <xs:documentation>Nederlandse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="3">
+                  <xs:annotation>
+                     <xs:documentation>Behandeld als Nederlander</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="4">
+                  <xs:annotation>
+                     <xs:documentation>Slowaakse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="5">
+                  <xs:annotation>
+                     <xs:documentation>Tsjechische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="6">
+                  <xs:annotation>
+                     <xs:documentation>Burger van Bosnië-Herzegovina</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="7">
+                  <xs:annotation>
+                     <xs:documentation>Georgische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="8">
+                  <xs:annotation>
+                     <xs:documentation>Turkmeense</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="9">
+                  <xs:annotation>
+                     <xs:documentation>Tadzjiekse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="10">
+                  <xs:annotation>
+                     <xs:documentation>Oezbeekse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="11">
+                  <xs:annotation>
+                     <xs:documentation>Oekraïense</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="12">
+                  <xs:annotation>
+                     <xs:documentation>Kirgizische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="13">
+                  <xs:annotation>
+                     <xs:documentation>Moldavische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="14">
+                  <xs:annotation>
+                     <xs:documentation>Kazachse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="15">
+                  <xs:annotation>
+                     <xs:documentation>Belarussische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="16">
+                  <xs:annotation>
+                     <xs:documentation>Azerbeidzjaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="17">
+                  <xs:annotation>
+                     <xs:documentation>Armeense</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="18">
+                  <xs:annotation>
+                     <xs:documentation>Russische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="19">
+                  <xs:annotation>
+                     <xs:documentation>Sloveense</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="20">
+                  <xs:annotation>
+                     <xs:documentation>Kroatische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="21">
+                  <xs:annotation>
+                     <xs:documentation>Letse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="22">
+                  <xs:annotation>
+                     <xs:documentation>Estische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="23">
+                  <xs:annotation>
+                     <xs:documentation>Litouwse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="24">
+                  <xs:annotation>
+                     <xs:documentation>Marshalleilandse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="25">
+                  <xs:annotation>
+                     <xs:documentation>Myanmarese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="26">
+                  <xs:annotation>
+                     <xs:documentation>Namibische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="27">
+                  <xs:annotation>
+                     <xs:documentation>Albanese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="28">
+                  <xs:annotation>
+                     <xs:documentation>Andorrese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="29">
+                  <xs:annotation>
+                     <xs:documentation>Belgische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="30">
+                  <xs:annotation>
+                     <xs:documentation>Bulgaarse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="31">
+                  <xs:annotation>
+                     <xs:documentation>Deense</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="32">
+                  <xs:annotation>
+                     <xs:documentation>Burger van de Bondsrepubliek Duitsland</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="33">
+                  <xs:annotation>
+                     <xs:documentation>Finse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="34">
+                  <xs:annotation>
+                     <xs:documentation>Franse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="35">
+                  <xs:annotation>
+                     <xs:documentation>Jemenitische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="36">
+                  <xs:annotation>
+                     <xs:documentation>Griekse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="37">
+                  <xs:annotation>
+                     <xs:documentation>Brits burger</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="38">
+                  <xs:annotation>
+                     <xs:documentation>Hongaarse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="39">
+                  <xs:annotation>
+                     <xs:documentation>Ierse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="40">
+                  <xs:annotation>
+                     <xs:documentation>IJslandse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="41">
+                  <xs:annotation>
+                     <xs:documentation>Italiaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="42">
+                  <xs:annotation>
+                     <xs:documentation>Joegoslavische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="43">
+                  <xs:annotation>
+                     <xs:documentation>Liechtensteinse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="44">
+                  <xs:annotation>
+                     <xs:documentation>Luxemburgse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="45">
+                  <xs:annotation>
+                     <xs:documentation>Maltese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="46">
+                  <xs:annotation>
+                     <xs:documentation>Monegaskische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="47">
+                  <xs:annotation>
+                     <xs:documentation>Noorse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="48">
+                  <xs:annotation>
+                     <xs:documentation>Oostenrijkse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="49">
+                  <xs:annotation>
+                     <xs:documentation>Poolse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="50">
+                  <xs:annotation>
+                     <xs:documentation>Portugese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="51">
+                  <xs:annotation>
+                     <xs:documentation>Roemeense</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="52">
+                  <xs:annotation>
+                     <xs:documentation>Burger van de Sovjet-Unie</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="53">
+                  <xs:annotation>
+                     <xs:documentation>San Marinese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="54">
+                  <xs:annotation>
+                     <xs:documentation>Spaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="55">
+                  <xs:annotation>
+                     <xs:documentation>Tsjecho-Slowaakse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="56">
+                  <xs:annotation>
+                     <xs:documentation>Vaticaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="57">
+                  <xs:annotation>
+                     <xs:documentation>Zweedse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="58">
+                  <xs:annotation>
+                     <xs:documentation>Zwitserse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="59">
+                  <xs:annotation>
+                     <xs:documentation>Oost-Duitse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="60">
+                  <xs:annotation>
+                     <xs:documentation>Brits onderdaan</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="61">
+                  <xs:annotation>
+                     <xs:documentation>Eritrese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="62">
+                  <xs:annotation>
+                     <xs:documentation>Brits overzees burger</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="63">
+                  <xs:annotation>
+                     <xs:documentation>Macedonische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="64">
+                  <xs:annotation>
+                     <xs:documentation>Kosovaarse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="65">
+                  <xs:annotation>
+                     <xs:documentation>Macedonische/Burger van Noord-Macedonië</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="66">
+                  <xs:annotation>
+                     <xs:documentation>Algerijnse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="67">
+                  <xs:annotation>
+                     <xs:documentation>Angolese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="68">
+                  <xs:annotation>
+                     <xs:documentation>Burundese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="69">
+                  <xs:annotation>
+                     <xs:documentation>Botswaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="70">
+                  <xs:annotation>
+                     <xs:documentation>Burkinese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="71">
+                  <xs:annotation>
+                     <xs:documentation>Centraal-Afrikaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="72">
+                  <xs:annotation>
+                     <xs:documentation>Comorese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="73">
+                  <xs:annotation>
+                     <xs:documentation>Burger van Congo</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="74">
+                  <xs:annotation>
+                     <xs:documentation>Beninse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="75">
+                  <xs:annotation>
+                     <xs:documentation>Egyptische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="76">
+                  <xs:annotation>
+                     <xs:documentation>Equatoriaal-Guinese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="77">
+                  <xs:annotation>
+                     <xs:documentation>Ethiopische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="78">
+                  <xs:annotation>
+                     <xs:documentation>Djiboutiaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="79">
+                  <xs:annotation>
+                     <xs:documentation>Gabonese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="80">
+                  <xs:annotation>
+                     <xs:documentation>Gambiaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="81">
+                  <xs:annotation>
+                     <xs:documentation>Ghanese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="82">
+                  <xs:annotation>
+                     <xs:documentation>Guinese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="83">
+                  <xs:annotation>
+                     <xs:documentation>Ivoriaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="84">
+                  <xs:annotation>
+                     <xs:documentation>Kaapverdische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="85">
+                  <xs:annotation>
+                     <xs:documentation>Kameroense</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="86">
+                  <xs:annotation>
+                     <xs:documentation>Kenyaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="87">
+                  <xs:annotation>
+                     <xs:documentation>Zaïrese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="88">
+                  <xs:annotation>
+                     <xs:documentation>Lesothaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="89">
+                  <xs:annotation>
+                     <xs:documentation>Liberiaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="90">
+                  <xs:annotation>
+                     <xs:documentation>Libische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="91">
+                  <xs:annotation>
+                     <xs:documentation>Malagassische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="92">
+                  <xs:annotation>
+                     <xs:documentation>Malawische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="93">
+                  <xs:annotation>
+                     <xs:documentation>Malinese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="94">
+                  <xs:annotation>
+                     <xs:documentation>Marokkaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="95">
+                  <xs:annotation>
+                     <xs:documentation>Mauritaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="96">
+                  <xs:annotation>
+                     <xs:documentation>Mauritiaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="97">
+                  <xs:annotation>
+                     <xs:documentation>Mozambikaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="98">
+                  <xs:annotation>
+                     <xs:documentation>Swazische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="99">
+                  <xs:annotation>
+                     <xs:documentation>Nigerese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="100">
+                  <xs:annotation>
+                     <xs:documentation>Nigeriaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="101">
+                  <xs:annotation>
+                     <xs:documentation>Ugandese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="102">
+                  <xs:annotation>
+                     <xs:documentation>Guinee-Bissause</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="103">
+                  <xs:annotation>
+                     <xs:documentation>Zuid-Afrikaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="104">
+                  <xs:annotation>
+                     <xs:documentation>Eswatinische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="105">
+                  <xs:annotation>
+                     <xs:documentation>Zimbabwaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="106">
+                  <xs:annotation>
+                     <xs:documentation>Rwandese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="107">
+                  <xs:annotation>
+                     <xs:documentation>Burger van São Tomé en Principe</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="108">
+                  <xs:annotation>
+                     <xs:documentation>Senegalese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="109">
+                  <xs:annotation>
+                     <xs:documentation>Sierra Leoonse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="110">
+                  <xs:annotation>
+                     <xs:documentation>Soedanese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="111">
+                  <xs:annotation>
+                     <xs:documentation>Somalische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="112">
+                  <xs:annotation>
+                     <xs:documentation>Tanzaniaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="113">
+                  <xs:annotation>
+                     <xs:documentation>Togolese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="114">
+                  <xs:annotation>
+                     <xs:documentation>Tsjadische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="115">
+                  <xs:annotation>
+                     <xs:documentation>Tunesische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="116">
+                  <xs:annotation>
+                     <xs:documentation>Zambiaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="117">
+                  <xs:annotation>
+                     <xs:documentation>Zuid-Soedanese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="118">
+                  <xs:annotation>
+                     <xs:documentation>Bahamaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="119">
+                  <xs:annotation>
+                     <xs:documentation>Belizaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="120">
+                  <xs:annotation>
+                     <xs:documentation>Canadese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="121">
+                  <xs:annotation>
+                     <xs:documentation>Costa Ricaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="122">
+                  <xs:annotation>
+                     <xs:documentation>Cubaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="123">
+                  <xs:annotation>
+                     <xs:documentation>Dominicaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="124">
+                  <xs:annotation>
+                     <xs:documentation>Salvadoraanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="125">
+                  <xs:annotation>
+                     <xs:documentation>Guatemalaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="126">
+                  <xs:annotation>
+                     <xs:documentation>Haïtiaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="127">
+                  <xs:annotation>
+                     <xs:documentation>Hondurese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="128">
+                  <xs:annotation>
+                     <xs:documentation>Jamaicaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="129">
+                  <xs:annotation>
+                     <xs:documentation>Mexicaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="130">
+                  <xs:annotation>
+                     <xs:documentation>Nicaraguaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="131">
+                  <xs:annotation>
+                     <xs:documentation>Panamese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="132">
+                  <xs:annotation>
+                     <xs:documentation>Burger van Trinidad en Tobago</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="133">
+                  <xs:annotation>
+                     <xs:documentation>Amerikaans burger</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="134">
+                  <xs:annotation>
+                     <xs:documentation>Argentijnse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="135">
+                  <xs:annotation>
+                     <xs:documentation>Barbadaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="136">
+                  <xs:annotation>
+                     <xs:documentation>Boliviaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="137">
+                  <xs:annotation>
+                     <xs:documentation>Braziliaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="138">
+                  <xs:annotation>
+                     <xs:documentation>Chileense</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="139">
+                  <xs:annotation>
+                     <xs:documentation>Colombiaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="140">
+                  <xs:annotation>
+                     <xs:documentation>Ecuadoraanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="141">
+                  <xs:annotation>
+                     <xs:documentation>Guyaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="142">
+                  <xs:annotation>
+                     <xs:documentation>Paraguayaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="143">
+                  <xs:annotation>
+                     <xs:documentation>Peruaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="144">
+                  <xs:annotation>
+                     <xs:documentation>Surinaamse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="145">
+                  <xs:annotation>
+                     <xs:documentation>Uruguayaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="146">
+                  <xs:annotation>
+                     <xs:documentation>Venezolaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="147">
+                  <xs:annotation>
+                     <xs:documentation>Grenadaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="148">
+                  <xs:annotation>
+                     <xs:documentation>Burger van Saint Kitts en Nevis</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="149">
+                  <xs:annotation>
+                     <xs:documentation>Afghaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="150">
+                  <xs:annotation>
+                     <xs:documentation>Bahreinse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="151">
+                  <xs:annotation>
+                     <xs:documentation>Bhutaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="152">
+                  <xs:annotation>
+                     <xs:documentation>Burmaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="153">
+                  <xs:annotation>
+                     <xs:documentation>Bruneise</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="154">
+                  <xs:annotation>
+                     <xs:documentation>Cambodjaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="155">
+                  <xs:annotation>
+                     <xs:documentation>Sri Lankaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="156">
+                  <xs:annotation>
+                     <xs:documentation>Chinese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="157">
+                  <xs:annotation>
+                     <xs:documentation>Cyprische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="158">
+                  <xs:annotation>
+                     <xs:documentation>Filipijnse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="159">
+                  <xs:annotation>
+                     <xs:documentation>Taiwanese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="160">
+                  <xs:annotation>
+                     <xs:documentation>Indiase</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="161">
+                  <xs:annotation>
+                     <xs:documentation>Indonesische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="162">
+                  <xs:annotation>
+                     <xs:documentation>Iraakse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="163">
+                  <xs:annotation>
+                     <xs:documentation>Iraanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="164">
+                  <xs:annotation>
+                     <xs:documentation>Israëlische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="165">
+                  <xs:annotation>
+                     <xs:documentation>Japanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="166">
+                  <xs:annotation>
+                     <xs:documentation>Noord-Jemenitische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="167">
+                  <xs:annotation>
+                     <xs:documentation>Jordaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="168">
+                  <xs:annotation>
+                     <xs:documentation>Koeweitse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="169">
+                  <xs:annotation>
+                     <xs:documentation>Laotiaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="170">
+                  <xs:annotation>
+                     <xs:documentation>Libanese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="171">
+                  <xs:annotation>
+                     <xs:documentation>Maldivische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="172">
+                  <xs:annotation>
+                     <xs:documentation>Maleisische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="173">
+                  <xs:annotation>
+                     <xs:documentation>Mongolische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="174">
+                  <xs:annotation>
+                     <xs:documentation>Omaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="175">
+                  <xs:annotation>
+                     <xs:documentation>Nepalese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="176">
+                  <xs:annotation>
+                     <xs:documentation>Noord-Koreaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="177">
+                  <xs:annotation>
+                     <xs:documentation>Pakistaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="178">
+                  <xs:annotation>
+                     <xs:documentation>Qatarese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="179">
+                  <xs:annotation>
+                     <xs:documentation>Saoedi-Arabische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="180">
+                  <xs:annotation>
+                     <xs:documentation>Singaporese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="181">
+                  <xs:annotation>
+                     <xs:documentation>Syrische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="182">
+                  <xs:annotation>
+                     <xs:documentation>Thaise</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="183">
+                  <xs:annotation>
+                     <xs:documentation>Burger van de Verenigde Arabische Emiraten</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="184">
+                  <xs:annotation>
+                     <xs:documentation>Turkse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="185">
+                  <xs:annotation>
+                     <xs:documentation>Zuid-Jemenitische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="186">
+                  <xs:annotation>
+                     <xs:documentation>Zuid-Koreaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="187">
+                  <xs:annotation>
+                     <xs:documentation>Vietnamese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="188">
+                  <xs:annotation>
+                     <xs:documentation>Bengalese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="189">
+                  <xs:annotation>
+                     <xs:documentation>Australische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="190">
+                  <xs:annotation>
+                     <xs:documentation>Papoea-Nieuw-Guinese</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="191">
+                  <xs:annotation>
+                     <xs:documentation>Nieuw-Zeelandse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="192">
+                  <xs:annotation>
+                     <xs:documentation>West-Samoaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="193">
+                  <xs:annotation>
+                     <xs:documentation>Samoaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="194">
+                  <xs:annotation>
+                     <xs:documentation>Burger van Antigua en Barbuda</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="195">
+                  <xs:annotation>
+                     <xs:documentation>Vanuatuaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="196">
+                  <xs:annotation>
+                     <xs:documentation>Fijische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="197">
+                  <xs:annotation>
+                     <xs:documentation>Burger van Britse afhankelijke gebieden</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="198">
+                  <xs:annotation>
+                     <xs:documentation>Tongaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="199">
+                  <xs:annotation>
+                     <xs:documentation>Nauruaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="200">
+                  <xs:annotation>
+                     <xs:documentation>Palause</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="201">
+                  <xs:annotation>
+                     <xs:documentation>Amerikaans onderdaan</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="202">
+                  <xs:annotation>
+                     <xs:documentation>Salomonseilandse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="203">
+                  <xs:annotation>
+                     <xs:documentation>Micronesische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="204">
+                  <xs:annotation>
+                     <xs:documentation>Seychelse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="205">
+                  <xs:annotation>
+                     <xs:documentation>Kiribatische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="206">
+                  <xs:annotation>
+                     <xs:documentation>Tuvaluaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="207">
+                  <xs:annotation>
+                     <xs:documentation>Saint Luciaanse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="208">
+                  <xs:annotation>
+                     <xs:documentation>Burger van Dominica</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="209">
+                  <xs:annotation>
+                     <xs:documentation>Burger van Saint Vincent en de Grenadines</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="210">
+                  <xs:annotation>
+                     <xs:documentation>British National (overseas)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="211">
+                  <xs:annotation>
+                     <xs:documentation>Burger van Democratische Republiek Congo</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="212">
+                  <xs:annotation>
+                     <xs:documentation>Burger van Timor Leste</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="213">
+                  <xs:annotation>
+                     <xs:documentation>Burger van Servië en Montenegro</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="214">
+                  <xs:annotation>
+                     <xs:documentation>Servische</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="215">
+                  <xs:annotation>
+                     <xs:documentation>Montenegrijnse</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="216">
+                  <xs:annotation>
+                     <xs:documentation>Staatloos</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="217">
+                  <xs:annotation>
+                     <xs:documentation>Vastgesteld niet-Nederlander</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="code"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="preferred" type="BooleanOrEmpty"/>
+      <xs:attribute name="originalText" type="xs:string"/>
+   </xs:complexType>
+   <xs:complexType name="adaextension_type">
+      <xs:sequence>
+         <xs:any processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:anyAttribute processContents="skip"/>
+   </xs:complexType>
+   <xs:simpleType name="NullFlavorNoInformation">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value=""/>
+         <xs:enumeration value="NI"/>
+         <xs:enumeration value="UNK"/>
+         <xs:enumeration value="OTH"/>
+         <xs:enumeration value="MSK"/>
+         <xs:enumeration value="UNC"/>
+         <xs:enumeration value="NA"/>
+         <xs:enumeration value="NAV"/>
+         <xs:enumeration value="ASKU"/>
+         <xs:enumeration value="NASK"/>
+         <xs:enumeration value="INV"/>
+         <xs:enumeration value="DER"/>
+         <xs:enumeration value="NINF"/>
+         <xs:enumeration value="PINF"/>
+         <xs:enumeration value="QS"/>
+         <xs:enumeration value="TRC"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="ComplexDatatypes">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="string"/>
+         <xs:enumeration value="code"/>
+         <xs:enumeration value="identifier"/>
+         <xs:enumeration value="date"/>
+         <xs:enumeration value="datetime"/>
+         <xs:enumeration value="time"/>
+         <xs:enumeration value="quantity"/>
+         <xs:enumeration value="duration"/>
+         <xs:enumeration value="boolean"/>
+         <xs:enumeration value="count"/>
+         <xs:enumeration value="ordinal"/>
+         <xs:enumeration value="text"/>
+         <xs:enumeration value="decimal"/>
+         <xs:enumeration value="blob"/>
+         <xs:enumeration value="complex"/>
+         <xs:enumeration value="reference"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="VariableDate">
+      <xs:union memberTypes="xs:date RelativeDate"/>
+   </xs:simpleType>
+   <xs:simpleType name="VariableDateTime">
+      <xs:union memberTypes="xs:dateTime xs:date RelativeDateTime RelativeDate"/>
+   </xs:simpleType>
+   <xs:simpleType name="VariableVagueDate">
+      <xs:union memberTypes="xs:date RelativeDate DateYearOptionalMonthNoDays"/>
+   </xs:simpleType>
+   <xs:simpleType name="VariableVagueDateTime">
+      <xs:union memberTypes="xs:dateTime xs:date RelativeDateTime DateYearOptionalMonthNoDays DateTimeOptionalMinutesSeconds"/>
+   </xs:simpleType>
+   <xs:simpleType name="VagueDate">
+      <xs:union memberTypes="xs:date DateYearOptionalMonthNoDays"/>
+   </xs:simpleType>
+   <xs:simpleType name="VagueDateTime">
+      <xs:union memberTypes="xs:dateTime xs:date DateYearOptionalMonthNoDays DateTimeOptionalMinutesSeconds"/>
+   </xs:simpleType>
+   <xs:simpleType name="RelativeDate">
+      <xs:restriction base="xs:string">
+         <xs:pattern value="(T|DOB)([+\-](\d+(\.\d+)?[YMD]){1,3})?"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="RelativeDateTime">
+      <xs:restriction base="xs:string">
+         <xs:pattern value="(T|DOB)([+\-](\d+(\.\d+)?[YMD]){1,3})?(\{([01]\d|2[0-3]):(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="DateYear">
+      <xs:restriction base="xs:string">
+         <xs:pattern value="\d{4}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="DateYearMonth">
+      <xs:restriction base="xs:string">
+         <xs:pattern value="\d{4}-(0[1-9]|1[012])"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="DateYearOptionalMonthNoDays">
+      <xs:restriction base="xs:string">
+         <xs:pattern value="\d{4}(-(0[1-9]|1[012]))?"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="DateTimeOptionalMinutesSeconds">
+      <xs:restriction base="xs:string">
+         <xs:pattern value="\d{4}-(0[1-9]|1[012])-(0[1-9]|[12]\d|3[01])T([01]\d|2[0-3])(:(0\d|[1-5]\d)(:(0\d|[1-5]\d))?)?"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="VariableVagueTime">
+      <xs:union memberTypes="xs:time RelativeTime TimeHourOptionalMinutesSeconds"/>
+   </xs:simpleType>
+   <xs:simpleType name="VariableTime">
+      <xs:union memberTypes="xs:time RelativeTime"/>
+   </xs:simpleType>
+   <xs:simpleType name="VagueTime">
+      <xs:union memberTypes="xs:time TimeHourOptionalMinutesSeconds"/>
+   </xs:simpleType>
+   <xs:simpleType name="RelativeTime">
+      <xs:restriction base="xs:string">
+         <xs:pattern value="(T|DOB)(([+\-]\d+(\.\d+)?[HMS])?(\{:(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?)?"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="TimeHourOptionalMinutesSeconds">
+      <xs:restriction base="xs:string">
+         <xs:pattern value="([01]\d|2[0-3])(:(0\d|[1-5]\d)(:(0\d|[1-5]\d))?)?"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="TimeHour">
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[01]\d|2[0-3]"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="TimeHourMinute">
+      <xs:restriction base="xs:string">
+         <xs:pattern value="([01]\d|2[0-3]):(0\d|[1-5]\d)"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="BooleanOrEmpty">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value=""/>
+         <xs:enumeration value="true"/>
+         <xs:enumeration value="true"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>

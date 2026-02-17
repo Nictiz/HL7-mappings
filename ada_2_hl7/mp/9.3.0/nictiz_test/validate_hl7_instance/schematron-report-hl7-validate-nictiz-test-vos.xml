@@ -1,0 +1,87 @@
+<validation-results detection-count="6"
+                    validation-step-name="schematron-validate-hl7-nictiz_test"
+                    href-schema="YATC-internal/ada-2-hl7/env/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_vos.sch"
+                    validation-type="schematron"
+                    timestamp="2025-08-20T10:07:37.98+02:00">
+   <validation detection-count="2"
+               href="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mv-MaxDoseDenominator.xml">
+      <svrl:schematron-output title="Schematron file for transaction Sturen medicatievoorschrift MP9 3.0.0 (2.16.840.1.113883.2.4.3.11.60.20.77.4.395 2022-06-30T00:00:00)"
+                              xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                              xmlns:cda="urn:hl7-org:v3"
+                              xmlns:schxslt-api="https://doi.org/10.5281/zenodo.1495494#api"
+                              xmlns:f="http://hl7.org/fhir"
+                              xmlns:error="https://doi.org/10.5281/zenodo.1495494#error"
+                              xmlns:lab="urn:oid:1.3.6.1.4.1.19376.1.3.2"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xmlns:hl7="urn:hl7-org:v3"
+                              xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                              xmlns:schxslt="https://doi.org/10.5281/zenodo.1495494"
+                              xmlns:sdtc="urn:hl7-org:sdtc"
+                              xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                              xmlns:hl7nl="urn:hl7-nl:v3"
+                              xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                              xmlns:nfu="urn:urn:nictiz-nl:v3/nfu"
+                              xmlns:pharm="urn:ihe:pharm:medication">
+         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[1]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}maxDoseQuantity[1]/Q{urn:hl7-org:v3}denominator[1]"
+                             role="error"
+                             see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9456-2023-12-19T114825.html"
+                             test="not(@value) or matches(@value, '^[-+]?\d*\.?[0-9]+([eE][-+]?\d+)?$')">
+            <svrl:text>(maxDoseQuantity): @value is geen geldig PQ getal 
+1,00</svrl:text>
+         </svrl:failed-assert>
+         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[1]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}entryRelationship[1]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}maxDoseQuantity[1]/Q{urn:hl7-org:v3}denominator[1]"
+                             role="error"
+                             see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9456-2023-12-19T114825.html"
+                             test="not(@value) or matches(string(@value), '^[-+]?\d*\.?[0-9]+([eE][-+]?\d+)?$')">
+            <svrl:text>(maxDoseQuantity): attribuut @value is geen geldig real getal 
+1,00</svrl:text>
+         </svrl:failed-assert>
+      </svrl:schematron-output>
+   </validation>
+   <validation detection-count="0"
+               href="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mv-RedundantFreq.xml"/>
+   <validation detection-count="4"
+               href="HL7-mappings/ada_2_hl7/mp/9.3.0/nictiz_test/hl7_instance/mv-TestAddress.xml">
+      <svrl:schematron-output title="Schematron file for transaction Sturen medicatievoorschrift MP9 3.0.0 (2.16.840.1.113883.2.4.3.11.60.20.77.4.395 2022-06-30T00:00:00)"
+                              xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                              xmlns:cda="urn:hl7-org:v3"
+                              xmlns:schxslt-api="https://doi.org/10.5281/zenodo.1495494#api"
+                              xmlns:f="http://hl7.org/fhir"
+                              xmlns:error="https://doi.org/10.5281/zenodo.1495494#error"
+                              xmlns:lab="urn:oid:1.3.6.1.4.1.19376.1.3.2"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xmlns:hl7="urn:hl7-org:v3"
+                              xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                              xmlns:schxslt="https://doi.org/10.5281/zenodo.1495494"
+                              xmlns:sdtc="urn:hl7-org:sdtc"
+                              xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                              xmlns:hl7nl="urn:hl7-nl:v3"
+                              xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                              xmlns:nfu="urn:urn:nictiz-nl:v3/nfu"
+                              xmlns:pharm="urn:ihe:pharm:medication">
+         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[2]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}author[1]"
+                             role="warning"
+                             see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9429-2022-11-22T130054.html"
+                             test="count(hl7:assignedAuthor/hl7:representedOrganization/hl7:addr[@use='WP']) ge 1">
+            <svrl:text>(MPCDAMedicatieAfspraakSchemaInhoud5): Er is minimaal één werkadres van de auteur (hl7:assignedAuthor/hl7:representedOrganization/hl7:addr[@use='WP']) verwacht bij een medicatieafspraak.</svrl:text>
+         </svrl:failed-assert>
+         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[3]/Q{urn:hl7-org:v3}supply[1]/Q{urn:hl7-org:v3}performer[1]/Q{urn:hl7-org:v3}assignedEntity[1]/Q{urn:hl7-org:v3}representedOrganization[1]/Q{urn:hl7-org:v3}addr[1]"
+                             role="error"
+                             test="@nullFlavor or (count(*)&gt;0 and not(text()[string-length(normalize-space())&gt;0])) or (count(*)=0 and text()[string-length(normalize-space())&gt;0])">
+            <svrl:text>dtr1-1-AD: address shall be null or text only or element only (no mixed content)</svrl:text>
+         </svrl:failed-assert>
+         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[3]/Q{urn:hl7-org:v3}supply[1]/Q{urn:hl7-org:v3}author[1]"
+                             role="warning"
+                             see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9449-2023-01-06T093041.html"
+                             test="count(hl7:assignedAuthor/hl7:representedOrganization/hl7:addr[@use='WP']) ge 1">
+            <svrl:text>(MPCDAVerstrekkingsverzoek6): Er is minimaal één werkadres van de auteur verwacht bij een verstrekkingsverzoek.</svrl:text>
+         </svrl:failed-assert>
+         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[4]/Q{urn:hl7-org:v3}supply[1]/Q{urn:hl7-org:v3}author[1]"
+                             role="warning"
+                             see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9449-2023-01-06T093041.html"
+                             test="count(hl7:assignedAuthor/hl7:representedOrganization/hl7:addr[@use='WP']) ge 1">
+            <svrl:text>(MPCDAVerstrekkingsverzoek6): Er is minimaal één werkadres van de auteur verwacht bij een verstrekkingsverzoek.</svrl:text>
+         </svrl:failed-assert>
+      </svrl:schematron-output>
+   </validation>
+</validation-results>

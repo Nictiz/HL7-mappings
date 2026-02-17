@@ -1,0 +1,100 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-ize-kwa-casus1 /adaxml/data/med_mij_echo_beschikbaarstellen/medisch_onderzoek/foetusspecifieke_onderzoeksgegevens/echoscopie/bevindingen/placenta_lokalisatie_observatie (peri32-dataelement-2437) -->
+   <id value="0d6cda3b-6b72-11ec-2243-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-PlacentaLocalization"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Leonie L XXX_Osse. Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 1 XXX_Osse_Vrouw</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -570}</td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="echografie (kwalificatiewaarde) (278292003 - SNOMED CT)">echografie (kwalificatiewaarde)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="bevinding betreffende positie van placenta (bevinding) (7381000146107 - SNOMED CT)">bevinding betreffende positie van placenta (bevinding)</span>
+                  </td>
+                  <td/>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="positie van placenta (waarneembare entiteit) (160331000146101 - SNOMED CT)">positie van placenta (waarneembare entiteit)</span>
+                  </td>
+                  <td>
+                     <span title="rechts laterale positie van placenta (bevinding) (7401000146107 - SNOMED CT)">rechts laterale positie van placenta (bevinding)</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
+      <valueReference>
+         <reference value="BodySite/7f96aada-6ada-11ec-1267-020000000000"/>
+         <display value="foetus van Leonie L XXX_Osse"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="0d6cda3b-6b72-11ec-2243-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="7381000146107"/>
+         <display value="bevinding betreffende positie van placenta (bevinding)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/LEONIE-L-XXX-OSSE"/>
+      <display value="Leonie L XXX_Osse"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/d0510907-6af3-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Osse_Vrouw"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -570}"/>
+   <method>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="278292003"/>
+         <display value="echografie (kwalificatiewaarde)"/>
+      </coding>
+   </method>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="160331000146101"/>
+            <display value="positie van placenta (waarneembare entiteit)"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="7401000146107"/>
+            <display value="rechts laterale positie van placenta (bevinding)"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+</Observation>

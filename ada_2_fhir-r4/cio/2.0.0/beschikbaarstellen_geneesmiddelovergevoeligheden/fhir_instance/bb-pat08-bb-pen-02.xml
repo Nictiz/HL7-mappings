@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flag xmlns="http://hl7.org/fhir">
+   <id value="bb-pat08-bb-pen-02"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-SurveillanceDecision"/>
+   </meta>
+   <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
+      <valueReference>
+         <reference value="AllergyIntolerance/ovint-pat08-oi-pen-01"/>
+         <type value="AllergyIntolerance"/>
+         <display value="Overgevoeligheid/intolerantie, AMOXICILLINE/AMPICILLINE, diagnosedatum: T-12Y{10:00:41}"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-SurveillanceDecision.RelationSurveillanceDecision">
+      <valueReference>
+         <reference value="Flag/bb-pat08-bb-pen-01"/>
+         <type value="Flag"/>
+         <display value="Bewakingsbesluit, AMOXICILLINE/AMPICILLINE, ingangsdatum: T-13Y{15:31:46}"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationHypersensitivity.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.341"/>
+         <value value="pat08-gmo-01"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.754"/>
+      <value value="pat08-bb-pen-02"/>
+   </identifier>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="225419007"/>
+         <display value="surveillance"/>
+      </coding>
+   </category>
+   <code>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-SurveillanceDecision.SafeWithinUnsafeGroup">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.4.1.750"/>
+               <code value="40991"/>
+               <display value="FLUCLOXACILLINE"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.902.122"/>
+         <code value="035"/>
+         <display value="PENICILLINES"/>
+      </coding>
+      <text value="Monitor the use of PENICILLINES as treatment for the patient, since this group of substances is unsafe for the patient (with the exception of FLUCLOXACILLINE)."/>
+   </code>
+   <subject>
+      <reference value="Patient/patient-XXX-Smabers"/>
+      <type value="Patient"/>
+      <display value="Patient, Pascal XXX_Smabers"/>
+   </subject>
+   <period>
+      <start value="${DATE, T, Y, -12}T10:00:41+02:00"/>
+   </period>
+   <author>
+      <reference value="PractitionerRole/pracrole-000003334"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), A. Rast, MEDISCH SPECIALIST, ALLERGOLOGIE, Algemeen Stadsziekenhuis"/>
+   </author>
+</Flag>

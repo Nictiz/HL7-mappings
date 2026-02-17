@@ -1,0 +1,120 @@
+<subject xmlns="urn:hl7-org:v3">
+   <MedicationDispenseList>
+      <code code="MEDLIST"
+            codeSystem="2.16.840.1.113883.5.4"/>
+      <subject>
+         <Patient>
+            <id extension="999912100"
+                root="2.16.840.1.113883.2.4.6.3"/>
+            <statusCode code="active"/>
+            <Person>
+               <administrativeGenderCode code="M"
+                                         codeSystem="2.16.840.1.113883.5.1"
+                                         displayName="Man"/>
+               <birthTime value="19640108"/>
+            </Person>
+         </Patient>
+      </subject>
+      <component>
+         <medicationDispenseEvent>
+            <id extension="MBH_hyb612_mg-sch-fout-1-TA1"
+                root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            <statusCode code="completed"/>
+            <effectiveTime value="20240101100000+0100"/>
+            <quantity value="42"
+                      unit="1">
+               <translation value="42"
+                            code="245"
+                            displayName="Stuks"
+                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                            codeSystemName="G-Standaard thesaurus basiseenheden"/>
+            </quantity>
+            <performer>
+               <assignedPerson>
+                  <id nullFlavor="MSK"/>
+               </assignedPerson>
+            </performer>
+            <product>
+               <dispensedMedication>
+                  <MedicationKind classCode="MMAT"
+                                  determinerCode="KIND">
+                     <code code="1026291"
+                           codeSystem="2.16.840.1.113883.2.4.4.7"
+                           displayName="PARACETAMOL AURO TABLET 500MG"
+                           codeSystemName="G-Standaard HPK">
+                        <translation code="67903"
+                                     codeSystem="2.16.840.1.113883.2.4.4.10"
+                                     displayName="PARACETAMOL 500MG TABLET"
+                                     codeSystemName="G-Standaard PRK"/>
+                        <translation code="2194"
+                                     codeSystem="2.16.840.1.113883.2.4.4.1"
+                                     displayName="PARACETAMOL 500MG TABLET"
+                                     codeSystemName="G-Standaard GPK"/>
+                     </code>
+                  </MedicationKind>
+                  <directTargetOf typeCode="DIR">
+                     <prescription>
+                        <id extension="MBH_hyb612_mg-sch-fout-1-TA1-MA1"
+                            root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                        <statusCode nullFlavor="UNK"/>
+                     </prescription>
+                  </directTargetOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">3 maal per dag 1 stuk, Oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS"
+                                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101100000.000+0100"/>
+                              <high value="20240114235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="0.3333"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="Oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen"/>
+                        <doseQuantity>
+                           <center value="1"
+                                   unit="1">
+                              <translation value="1"
+                                           code="245"
+                                           displayName="Stuk"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+               </dispensedMedication>
+            </product>
+            <responsibleParty>
+               <assignedCareProvider>
+                  <id nullFlavor="NI"/>
+                  <code code="17.000"
+                        codeSystem="2.16.840.1.113883.2.4.15.111"
+                        displayName="Apotheker"/>
+                  <representedOrganization>
+                     <id extension="01236578"
+                         root="2.16.528.1.1007.3.3"/>
+                     <name>Apotheek De Gulle Gaper</name>
+                     <addr use="WP">
+                        <streetName>Dorpsstraat</streetName>
+                        <houseNumber>12</houseNumber>
+                        <buildingNumberSuffix>A</buildingNumberSuffix>
+                        <postalCode>1234 AA</postalCode>
+                        <city>Ons Dorp</city>
+                     </addr>
+                  </representedOrganization>
+               </assignedCareProvider>
+            </responsibleParty>
+         </medicationDispenseEvent>
+      </component>
+   </MedicationDispenseList>
+</subject>

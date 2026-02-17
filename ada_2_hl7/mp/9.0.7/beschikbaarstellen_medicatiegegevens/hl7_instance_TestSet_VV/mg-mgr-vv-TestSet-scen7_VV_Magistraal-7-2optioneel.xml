@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns:hl7nl="urn:hl7-nl:v3"
-           xmlns:pharm="urn:ihe:pharm:medication"
-           xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+<organizer classCode="CLUSTER"
+           moodCode="EVN"
            xmlns="urn:hl7-org:v3"
-           classCode="CLUSTER"
-           moodCode="EVN">
+           xmlns:hl7="urn:hl7-org:v3"
+           xmlns:hl7nl="urn:hl7-nl:v3"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9239"/>
    <code code="102"
          displayName="Medicatiegegevens"
@@ -15,19 +13,23 @@
    <statusCode nullFlavor="NI"/>
    <recordTarget>
       <patientRole>
-         <id extension="999990056" root="2.16.840.1.113883.2.4.6.3"/>
+         <id extension="999990056"
+             root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
                <given qualifier="IN">F.</given>
                <family qualifier="BR">XXX-GBZ-Smoketest-B</family>
             </name>
-            <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <administrativeGenderCode code="F"
+                                      codeSystem="2.16.840.1.113883.5.1"
+                                      displayName="Vrouw"/>
             <birthTime value="19500206"/>
          </patient>
       </patientRole>
    </recordTarget>
    <component typeCode="COMP">
-      <supply classCode="SPLY" moodCode="RQO">
+      <supply classCode="SPLY"
+              moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9257"/>
          <id extension="tsMBH_907_magistraalactieveingredient_VV-GSB"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
@@ -35,7 +37,8 @@
                displayName="Verstrekkingsverzoek"
                code="52711000146108"
                codeSystem="2.16.840.1.113883.6.96"/>
-         <quantity value="100" unit="g">
+         <quantity value="100"
+                   unit="g">
             <translation value="100"
                          code="215"
                          displayName="gram"
@@ -45,20 +48,26 @@
          <product>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
                   <code nullFlavor="OTH"/>
                   <name>Zwafel 5% in BETAMETHASON CREME</name>
-                  <pharm:desc>Titel: Zwafel 5% in BETAMETHASON CREME Regel 1: BETAMETHASON CREME 95gr</pharm:desc>
-                  <pharm:ingredient classCode="INGR">
+                  <pharm:desc xmlns:pharm="urn:ihe:pharm:medication">Titel: Zwafel 5% in BETAMETHASON CREME Regel 1: BETAMETHASON CREME 95gr</pharm:desc>
+                  <pharm:ingredient classCode="INGR"
+                                    xmlns:pharm="urn:ihe:pharm:medication">
                      <pharm:quantity>
-                        <numerator xsi:type="PQ" value="95" unit="g">
+                        <numerator xsi:type="PQ"
+                                   value="95"
+                                   unit="g">
                            <translation value="95"
                                         code="215"
                                         displayName="gram"
                                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                         codeSystemName="G-Standaard thesaurus basiseenheden"/>
                         </numerator>
-                        <denominator xsi:type="PQ" value="100" unit="g">
+                        <denominator xsi:type="PQ"
+                                     value="100"
+                                     unit="g">
                            <translation value="100"
                                         code="215"
                                         displayName="gram"
@@ -66,7 +75,8 @@
                                         codeSystemName="G-Standaard thesaurus basiseenheden"/>
                         </denominator>
                      </pharm:quantity>
-                     <pharm:ingredient classCode="MMAT" determinerCode="KIND">
+                     <pharm:ingredient classCode="MMAT"
+                                       determinerCode="KIND">
                         <pharm:code code="204307"
                                     codeSystem="2.16.840.1.113883.2.4.4.7"
                                     displayName="BETAMETHASON CREME 1MG/G"
@@ -80,15 +90,17 @@
             <assignedEntity>
                <id nullFlavor="NI"/>
                <representedOrganization>
-                  <id extension="01236579" root="2.16.528.1.1007.3.3"/>
+                  <id extension="01236579"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek De Sleutel</name>
                </representedOrganization>
             </assignedEntity>
          </performer>
          <author>
-            <time value="20201113120500"/>
+            <time value="20240101120500+0100"/>
             <assignedAuthor>
-               <id extension="000001116" root="2.16.528.1.1007.3.1"/>
+               <id extension="000001116"
+                   root="2.16.528.1.1007.3.1"/>
                <code code="0100"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
                      displayName="Huisartsen, niet nader gespecificeerd"
@@ -102,7 +114,8 @@
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001116" root="2.16.528.1.1007.3.3"/>
+                  <id extension="00001116"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Huisartsenpraktijk Staden</name>
                   <addr use="WP">
                      <streetName>Kerkstraat</streetName>
@@ -114,7 +127,8 @@
             </assignedAuthor>
          </author>
          <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
                <id extension="tsMBH_907_magistraalactieveingredient_MA-GSB"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -125,8 +139,10 @@
                <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                    extension="tsMBH_907_magistraalactieveingredient-GSB"/>

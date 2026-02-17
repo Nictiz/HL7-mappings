@@ -1,8 +1,8 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="83a709b3-4835-11ef-1115-020000000000"/>
+   <id value="9b2e428f-a281-11ef-1084-020000000000"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:83a70afc-4835-11ef-1115-020000000000"/>
+      <fullUrl value="urn:uuid:9b2e43d8-a281-11ef-1084-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -11,9 +11,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2022-07-15T13:00:00+02:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf &lt;T-170D&gt; t/m &lt;T-21D&gt;, 1 maal per dag 1 stuk, oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 15 jul 2022, tot en met 11 dec 2022, 1 maal per dag 1 stuk, Oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="2022-07-15T00:00:00+02:00"/>
@@ -40,17 +41,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:83a70b38-4835-11ef-1115-020000000000"/>
+               <reference value="urn:uuid:9b2e4432-a281-11ef-1084-020000000000"/>
                <type value="Medication"/>
                <display value="XARELTO TABLET FILMOMHULD 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:83a70a2a-4835-11ef-1115-020000000000"/>
+               <reference value="urn:uuid:9b2e4306-a281-11ef-1084-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Niesing"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:83a70a52-4835-11ef-1115-020000000000"/>
+               <reference value="urn:uuid:9b2e432e-a281-11ef-1084-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -94,7 +95,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:83a70b1a-4835-11ef-1115-020000000000"/>
+      <fullUrl value="urn:uuid:9b2e43f6-a281-11ef-1084-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -103,9 +104,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2023-01-01T13:05:00+01:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf &lt;T+0D&gt; t/m &lt;T+150D&gt;,1 maal per dag 1 stuk, oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 1 jan 2023, tot en met 31 mei 2023, 1 maal per dag 1 stuk, Oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="2023-01-01T00:00:00+01:00"/>
@@ -132,17 +134,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:83a70b56-4835-11ef-1115-020000000000"/>
+               <reference value="urn:uuid:9b2e4414-a281-11ef-1084-020000000000"/>
                <type value="Medication"/>
                <display value="INDAPAMIDE PCH TABET OMHULD 2,5MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:83a70a2a-4835-11ef-1115-020000000000"/>
+               <reference value="urn:uuid:9b2e4306-a281-11ef-1084-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Niesing"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:83a70a52-4835-11ef-1115-020000000000"/>
+               <reference value="urn:uuid:9b2e432e-a281-11ef-1084-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -186,7 +188,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:83a70a2a-4835-11ef-1115-020000000000"/>
+      <fullUrl value="urn:uuid:9b2e4306-a281-11ef-1084-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -233,19 +235,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:83a70a52-4835-11ef-1115-020000000000"/>
+      <fullUrl value="urn:uuid:9b2e432e-a281-11ef-1084-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:83a70a7a-4835-11ef-1115-020000000000"/>
+               <reference value="urn:uuid:9b2e4356-a281-11ef-1084-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:83a70ac0-4835-11ef-1115-020000000000"/>
+               <reference value="urn:uuid:9b2e439c-a281-11ef-1084-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -265,7 +267,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:83a70a7a-4835-11ef-1115-020000000000"/>
+      <fullUrl value="urn:uuid:9b2e4356-a281-11ef-1084-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -300,7 +302,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:83a70ac0-4835-11ef-1115-020000000000"/>
+      <fullUrl value="urn:uuid:9b2e439c-a281-11ef-1084-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -341,40 +343,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:83a70b38-4835-11ef-1115-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="2214350"/>
-                  <display value="XARELTO TABLET FILMOMHULD 20MG"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="100153"/>
-                  <display value="RIVAROXABAN TABLET 20MG"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="138363"/>
-                  <display value="RIVAROXABAN TABLET 20MG"/>
-               </coding>
-               <text value="XARELTO TABLET FILMOMHULD 20MG"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:83a70b56-4835-11ef-1115-020000000000"/>
+      <fullUrl value="urn:uuid:9b2e4414-a281-11ef-1084-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -403,6 +372,39 @@
                   <display value="INDAPAMIDE 2,5MG TABLET"/>
                </coding>
                <text value="INDAPAMIDE PCH TABET OMHULD 2,5MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:9b2e4432-a281-11ef-1084-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="2214350"/>
+                  <display value="XARELTO TABLET FILMOMHULD 20MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="100153"/>
+                  <display value="RIVAROXABAN TABLET 20MG"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="138363"/>
+                  <display value="RIVAROXABAN TABLET 20MG"/>
+               </coding>
+               <text value="XARELTO TABLET FILMOMHULD 20MG"/>
             </code>
          </Medication>
       </resource>

@@ -1,0 +1,70 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izk-kwa-casus1 /adaxml/data/med_mij_kraam_beschikbaarstellen/postnatale_fase/kraamweek/kind/vitamine_k_observatie (peri32-dataelement-10750) -->
+   <id value="7eeb5ff3-6b3a-11ec-1075-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-VitaminKAdministration"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Kind Joris. Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 1 XXX_Zhanganak_Vrouw</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="oraal toedienen van fytomenadion (verrichting) (698350008 - SNOMED CT)">oraal toedienen van fytomenadion (verrichting)</span>
+                  </td>
+                  <td>ja</td>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="datum van gebeurtenis (waarneembare entiteit) (439771001 - SNOMED CT)">datum van gebeurtenis (waarneembare entiteit)</span>
+                  </td>
+                  <td>${DATE, T, D, -105}</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <!-- adaChild -->
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="7eeb5ff3-6b3a-11ec-1075-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="698350008"/>
+         <display value="oraal toedienen van fytomenadion (verrichting)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/JORIS"/>
+      <display value="Kind Joris"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/f720ebe3-6b47-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Zhanganak_Vrouw"/>
+   </context>
+   <valueBoolean value="true"/>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="439771001"/>
+            <display value="datum van gebeurtenis (waarneembare entiteit)"/>
+         </coding>
+      </code>
+      <valueDateTime value="${DATE, T, D, -105}"/>
+   </component>
+</Observation>

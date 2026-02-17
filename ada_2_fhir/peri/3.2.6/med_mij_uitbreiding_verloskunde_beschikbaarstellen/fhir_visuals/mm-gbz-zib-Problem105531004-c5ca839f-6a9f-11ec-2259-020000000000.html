@@ -1,0 +1,105 @@
+<html lang="en">
+   <head>
+      <title>Condition - c5ca839f-6a9f-11ec-2259-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Aandoening. Subject: Maaike M Maaike Ostendorf. Status: actief / bevestigd</caption>
+               <tfoot>
+                  <tr>
+                     <td colspan="2">Woont bij ouders</td>
+                  </tr>
+               </tfoot>
+               <tbody>
+                  <tr>
+                     <th>Code</th>
+                     <td>
+                        <span title="probleem met woonruimte (bevinding) (105531004 - SNOMED CT)">probleem met woonruimte (bevinding)</span>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Eerste symptomen</th>
+                     <td>${DATE, T, D, -1243}</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Condition probleem met woonruimte (bevinding)</b>
+      </p>
+      <ul>
+         <li>
+            <a href="mm-gbz-bc-Encounter-8bb5b91f-6aed-11ec-1275-020000000000.html">Encounter consult (verrichting)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-Encounter-f2ba733f-6af7-11ec-1275-020000000000.html">Encounter verlossing (verrichting)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-Encounter-437f890f-6aa2-11ec-1275-020000000000.html">Encounter maternaal postnataal onderzoek 6 weken na partus (verrichting)</a>
+         </li>
+      </ul>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 4, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-e2116b0f-6b20-11ec-0000-020000000000.html" }, 
+{ id: 24, label: "Condition probleem met woonruimte (bevinding)", url: "mm-gbz-zib-Problem105531004-c5ca839f-6a9f-11ec-2259-020000000000.html" }, 
+{ id: 257, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 24, to: 257 }, 
+{ from: 24, to: 4 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

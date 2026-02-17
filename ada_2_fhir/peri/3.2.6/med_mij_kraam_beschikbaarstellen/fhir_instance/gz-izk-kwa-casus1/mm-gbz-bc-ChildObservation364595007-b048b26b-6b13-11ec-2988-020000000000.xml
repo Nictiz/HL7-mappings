@@ -1,0 +1,78 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izk-kwa-casus1 /adaxml/data/med_mij_kraam_beschikbaarstellen/postnatale_fase/kraamweek/kind/controles_kind/navelstomp_observatie (peri32-dataelement-9886) -->
+   <id value="b048b26b-6b13-11ec-2988-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ChildObservation"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Kind Joris. Status: definitief<span style="display: block;">Uitvoerende: Carolien XXX_Meijer || kraamverzorgende (beroep) || Kraamzorg Het Blije Ei</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>controles kind T-105D XXX_Zhanganak_Vrouw</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -105}</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="aspect van navelstrengstomp (waarneembare entiteit) (364595007 - SNOMED CT)">aspect van navelstrengstomp (waarneembare entiteit)</span>
+                  </td>
+                  <td>
+                     <span title="afgevallen navelstrengstomp (bevinding) (772131003 - SNOMED CT)">afgevallen navelstrengstomp (bevinding)</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <!-- adaChild -->
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="b048b26b-6b13-11ec-2988-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="364595007"/>
+         <display value="aspect van navelstrengstomp (waarneembare entiteit)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/JORIS"/>
+      <display value="Kind Joris"/>
+   </subject>
+   <context>
+      <reference value="Encounter/c326cab3-6b5d-11ec-1275-020000000000"/>
+      <display value="controles kind T-105D XXX_Zhanganak_Vrouw"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -105}"/>
+   <performer>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/practitionerrole-mm-gbz-12345678115153100014610833112345"/>
+            <display value="Carolien XXX_Meijer || kraamverzorgende (beroep) || Kraamzorg Het Blije Ei"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-123456781"/>
+      <display value="Carolien XXX_Meijer"/>
+   </performer>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="772131003"/>
+         <display value="afgevallen navelstrengstomp (bevinding)"/>
+      </coding>
+   </valueCodeableConcept>
+</Observation>

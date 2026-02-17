@@ -1,0 +1,92 @@
+<Organization xmlns="http://hl7.org/fhir">
+   <id value="organization-mm-gbz-2-16-528-1-1007-3-3-129347305"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Organisatie. Id: 129347305 (URA)</caption>
+            <tbody>
+               <tr>
+                  <th>Naam</th>
+                  <td>Huisartsenpraktijk Hulp</td>
+               </tr>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <div>
+                        <span title="Huisarts (0101 - AGB-medisch specialisme)">Huisarts</span>
+                     </div>
+                     <div>
+                        <span title="Huisartspraktijk (zelfstandig of groepspraktijk) (Z3 - organization-type)">Huisartspraktijk (zelfstandig of groepspraktijk)</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:05065498315">05065498315</a> (Vast telefoonnummer Werk)<br/>
+                     <a href="mailto:info@huisartsenpraktijkhulp.test">info@huisartsenpraktijkhulp.test</a> (E-mail Werk)<br/>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Adres</th>
+                  <td>Hulpstraat 21, 8877XX STITSWERD</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+      <value value="129347305"/>
+   </identifier>
+   <type>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+         <code value="0101"/>
+         <display value="Huisarts"/>
+      </coding>
+   </type>
+   <type>
+      <coding>
+         <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+         <code value="Z3"/>
+         <display value="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
+      </coding>
+   </type>
+   <name value="Huisartsenpraktijk Hulp"/>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Vast telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="05065498315"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="info@huisartsenpraktijkhulp.test"/>
+      <use value="work"/>
+   </telecom>
+   <address>
+      <line value="Hulpstraat 21">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Hulpstraat"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="21"/>
+         </extension>
+      </line>
+      <city value="STITSWERD"/>
+      <postalCode value="8877XX"/>
+   </address>
+</Organization>

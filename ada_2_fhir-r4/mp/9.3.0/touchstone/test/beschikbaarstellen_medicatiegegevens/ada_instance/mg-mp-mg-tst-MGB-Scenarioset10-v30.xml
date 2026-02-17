@@ -4,7 +4,7 @@
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
          creation-date="2024-03-19T14:12:19.472+01:00"
-         last-update-date="2024-03-19T14:12:19.472+01:00"/>
+         last-update-date="2025-03-11T12:22:20.992Z"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -18,18 +18,19 @@
                                             id="mg-mp-mg-tst-MGB-Scenarioset10-v30">
          <scenario-nr value="10"
                       conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2.1.1"/>
-         <!--Patient found in instance with id: mg-TEST-Scenarioset10Patient-v30 and title: id: TEST REPO Scenarioset 10 ALLEEN PATIENT-->
+         <!--Patient found in instance with id: mg-bouwstenen-patients-v30 and title: id: Bouwstenen to be reused over test en kwal instances-->
          <patient comment=""
+                  id="XXX_BREE_999901588"
                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1">
             <naamgegevens comment=""
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.2">
                <initialen value="J."
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.4"/>
-               <naamgebruik value="1"
+               <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"
+                            value="1"
                             code="NL1"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
-                            displayName="Eigen geslachtsnaam"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"/>
+                            displayName="Eigen geslachtsnaam"/>
                <geslachtsnaam comment=""
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.7">
                   <achternaam value="XXX_Bree"
@@ -42,11 +43,11 @@
             <geboortedatum value="2010-07-01"
                            datatype="datetime"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.36"/>
-            <geslacht value="2"
+            <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"
+                      value="2"
                       code="M"
                       codeSystem="2.16.840.1.113883.5.1"
-                      displayName="Man"
-                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"/>
+                      displayName="Man"/>
          </patient>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_HPKvoorschrijven-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
@@ -67,10 +68,10 @@
                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.405"/>
                <gebruiksperiode comment=""
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.401">
-                  <start_datum_tijd value="T+0D{00:00:00}"
+                  <start_datum_tijd value="T-170D{00:00:00}"
                                     datatype="datetime"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.402"/>
-                  <eind_datum_tijd value="T+0D{23:59:59}"
+                  <eind_datum_tijd value="T-21D{23:59:59}"
                                    datatype="datetime"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.403"/>
                </gebruiksperiode>
@@ -82,7 +83,7 @@
                </gebruiksproduct>
                <gebruiksinstructie comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.367">
-                  <omschrijving value="XXX"
+                  <omschrijving value="1 maal per dag 1 stuk, oraal"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.369"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -132,7 +133,7 @@
                <voorschrijver comment=""
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.363">
                   <zorgverlener datatype="reference"
-                                value="Peter_van_Pulver"
+                                value="PETER_VAN_PULVER"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.364"/>
                </voorschrijver>
                <informant conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.593"
@@ -144,7 +145,7 @@
                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.623">
                   <auteur_is_zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.627"
                                           comment="">
-                     <zorgverlener value="Peter_van_Pulver"
+                     <zorgverlener value="PETER_VAN_PULVER"
                                    datatype="reference"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.628"/>
                   </auteur_is_zorgverlener>
@@ -180,12 +181,12 @@
                <gebruiksproduct comment=""
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.365">
                   <farmaceutisch_product datatype="reference"
-                                         value="ZINR_INDAPAMIDE_13627163"
+                                         value="ZINR_INDAPAMIDE_16255429"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.366"/>
                </gebruiksproduct>
                <gebruiksinstructie comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.367">
-                  <omschrijving value="XXX"
+                  <omschrijving value="1 maal per dag 1 stuk, oraal"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.369"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -235,7 +236,7 @@
                <voorschrijver comment=""
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.363">
                   <zorgverlener datatype="reference"
-                                value="Peter_van_Pulver"
+                                value="PETER_VAN_PULVER"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.364"/>
                </voorschrijver>
                <informant conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.593"
@@ -247,7 +248,7 @@
                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.623">
                   <auteur_is_zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.627"
                                           comment="">
-                     <zorgverlener value="Peter_van_Pulver"
+                     <zorgverlener value="PETER_VAN_PULVER"
                                    datatype="reference"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.628"/>
                   </auteur_is_zorgverlener>
@@ -256,6 +257,30 @@
          </medicamenteuze_behandeling>
          <bouwstenen comment=""
                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">
+            <farmaceutisch_product id="ZINR_INDAPAMIDE_16255429"
+                                   comment=""
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="16255429"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard ZI-nr"
+                             displayName="INDAPAMIDE CF TABLET OMHULD 2,5MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="2593866"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="INDAPAMIDE CF TABLET OMHULD 2,5MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="2941"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="INDAPAMIDE 2,5MG TABLET"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="83593"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="INDAPAMIDE 2,5MG TABLET"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
             <farmaceutisch_product id="HPK_RIVAROXABAN_2214350"
                                    comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
@@ -275,31 +300,7 @@
                              displayName="RIVAROXABAN TABLET 20MG"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="ZINR_INDAPAMIDE_13627163"
-                                   comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
-               <product_code code="13627163"
-                             codeSystem="2.16.840.1.113883.2.4.4.8"
-                             codeSystemName="G-Standaard ZI-nr"
-                             displayName="INDAPAMIDE PCH TABET OMHULD 2,5MG"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="695734"
-                             codeSystem="2.16.840.1.113883.2.4.4.7"
-                             codeSystemName="G-Standaard HPK"
-                             displayName="INDAPAMIDE PCH TABET OMHULD 2,5MG"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="2941"
-                             codeSystem="2.16.840.1.113883.2.4.4.10"
-                             codeSystemName="G-Standaard PRK"
-                             displayName="INDAPAMIDE 2,5MG TABLET"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="83593"
-                             codeSystem="2.16.840.1.113883.2.4.4.1"
-                             codeSystemName="G-Standaard GPK"
-                             displayName="INDAPAMIDE 2,5MG TABLET"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-            </farmaceutisch_product>
-            <zorgverlener id="Peter_van_Pulver"
+            <zorgverlener id="PETER_VAN_PULVER"
                           comment=""
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.92">
                <zorgverlener_identificatienummer value="000001111"
@@ -317,21 +318,20 @@
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.140"/>
                   </geslachtsnaam>
                </naamgegevens>
-               <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.145"
-                            value="2"
-                            code="0100"
+               <specialisme code="0100"
                             codeSystem="2.16.840.1.113883.2.4.6.7"
                             codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
                             codeSystemVersion="2020-10-23T00:00:00"
-                            displayName="Huisartsen, niet nader gespecificeerd"/>
+                            displayName="Huisartsen, niet nader gespecificeerd"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.145"/>
                <zorgaanbieder comment=""
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.168">
                   <zorgaanbieder datatype="reference"
-                                 value="Huisartsenpraktijk_Pulver_en_Partners"
+                                 value="HUISARTSENPRAKTIJK_PULVER_EN_PARTNERS"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.846"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="Huisartsenpraktijk_Pulver_en_Partners"
+            <zorgaanbieder id="HUISARTSENPRAKTIJK_PULVER_EN_PARTNERS"
                            comment=""
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202">
                <zorgaanbieder_identificatienummer value="00001111"

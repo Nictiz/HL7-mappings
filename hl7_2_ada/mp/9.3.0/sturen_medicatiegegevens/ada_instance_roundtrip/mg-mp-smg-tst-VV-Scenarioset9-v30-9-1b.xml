@@ -1,11 +1,10 @@
-<!--Generated from HL7v3 instance.-->
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<!--Generated from HL7v3 instance.--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatiegegevens.xsd">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2024-04-17T15:48:39.033+02:00"
-         last-update-date="2024-04-17T15:48:39.033+02:00"/>
+         creation-date="2024-01-01T00:00:00+02:00"
+         last-update-date="2024-01-01T00:00:00+02:00"/>
    <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
       <sturen_medicatiegegevens app="mp-mp93"
                                 shortName="sturen_medicatiegegevens"
@@ -31,32 +30,32 @@
             <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
          </patient>
          <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_logistiekeverbruiksperiode_eind"
+            <identificatie value="MBH_300_distributievorm_GDS"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <verstrekkingsverzoek>
-               <identificatie value="MBH_300_logistiekeverbruiksperiode_eind_VV"
+               <identificatie value="MBH_300_distributievorm_GDS_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2022-12-23T11:01:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-12-23T11:01:00+01:00"/>
                <auteur>
-                  <zorgverlener value="d3812e85" datatype="reference"/>
+                  <zorgverlener value="d4488e103" datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d3812e54" datatype="reference"/>
+                  <farmaceutisch_product value="d4488e54" datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <verbruiksperiode>
-                  <eind_datum_tijd datatype="datetime" value="2023-07-20T23:59:59"/>
+                  <eind_datum_tijd datatype="datetime" value="2024-07-19T23:59:59+02:00"/>
                </verbruiksperiode>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d3812e71" datatype="reference"/>
+                  <zorgaanbieder value="d4488e71" datatype="reference"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
-                  <identificatie value="MBH_300_logistiekeverbruiksperiode_eind_MA"
+                  <identificatie value="MBH_300_distributievorm_GDS_MA"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_medicatieafspraak>
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d3812e54">
+            <farmaceutisch_product id="d4488e54">
                <product_code code="48291"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -66,7 +65,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="MIZOLASTINE TABLET MGA  10MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="d3812e85">
+            <zorgverlener id="d4488e103">
                <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Bertine"/>
@@ -81,10 +80,10 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d3812e106" datatype="reference"/>
+                  <zorgaanbieder value="d4488e124" datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d3812e106">
+            <zorgaanbieder id="d4488e124">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
@@ -97,9 +96,19 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="d3812e71">
+            <zorgaanbieder id="d4488e71">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_medicatiegegevens>

@@ -1,0 +1,76 @@
+<EpisodeOfCare xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izk-kwa-casus1 -->
+   <id value="f720ebe3-6b47-11ec-0000-020000000000"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-episodeofcare"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MaternalRecord"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgepisode. Patiënt: Kim K XXX_Zhanganak XXX_Visser. Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <span title="observatie betreffende zwangerschap (waarneembare entiteit) (364320009 - SNOMED CT)">observatie betreffende zwangerschap (waarneembare entiteit)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>${DATE, T, D, -167} - ${DATE, T, D, -69}</td>
+               </tr>
+               <tr>
+                  <th>Zorgmanager</th>
+                  <td>Elise XXX_Janssen || Verloskundige || Wolkendroom Vroedvrouwenpraktijk, Wolkendroom Vroedvrouwenpraktijk</td>
+               </tr>
+               <tr>
+                  <th>Diagnose</th>
+                  <td>Zwangerschap 1 XXX_Zhanganak_Vrouw</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="f720ebe3-6b47-11ec-0000-020000000000"/>
+   </identifier>
+   <status value="finished"/>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="364320009"/>
+         <display value="observatie betreffende zwangerschap (waarneembare entiteit)"/>
+      </coding>
+   </type>
+   <diagnosis>
+      <condition>
+         <reference value="Condition/80338356-6b6f-11ec-2334-020000000000"/>
+         <display value="Zwangerschap 1 XXX_Zhanganak_Vrouw"/>
+      </condition>
+   </diagnosis>
+   <patient>
+      <reference value="Patient/KIM-K-XXX-ZHANGANAK-XXX-VISSER"/>
+      <display value="Kim K XXX_Zhanganak XXX_Visser"/>
+   </patient>
+   <managingOrganization>
+      <reference value="Organization/organization-mm-gbz-2-16-840-1-113883-2-4-6-1-08001234"/>
+      <display value="Wolkendroom Vroedvrouwenpraktijk"/>
+   </managingOrganization>
+   <period>
+      <start value="${DATE, T, D, -167}"/>
+      <end value="${DATE, T, D, -69}"/>
+   </period>
+   <careManager>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/practitionerrole-mm-gbz-12345600103-00008001234"/>
+            <display value="Elise XXX_Janssen || Verloskundige || Wolkendroom Vroedvrouwenpraktijk"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-123456001"/>
+      <display value="Elise XXX_Janssen"/>
+   </careManager>
+</EpisodeOfCare>

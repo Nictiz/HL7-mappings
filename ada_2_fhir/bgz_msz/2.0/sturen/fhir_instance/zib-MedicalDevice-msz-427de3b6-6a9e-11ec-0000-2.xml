@@ -1,0 +1,87 @@
+<DeviceUseStatement xmlns="http://hl7.org/fhir">
+   <id value="zib-MedicalDevice-msz-427de3b6-6a9e-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Beschrijving apparaatgebruik. Subject: Olivia Madelief O.M.W. Olijf de Wilson Çelik. Status: actief</caption>
+            <tbody>
+               <tr>
+                  <th>Apparaat/Systeem</th>
+                  <td>mitella voor ondersteuning van arm mitella</td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="Links (7771000 - SNOMED CT)">Links</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Geïniteerd of geïmplanteerd door</th>
+                  <td>Ziekenhuis de grote terts</td>
+               </tr>
+               <tr>
+                  <th>Indicatie door</th>
+                  <td>A.B.C.D.E. Affine Stabiel in de Benen</td>
+               </tr>
+               <tr>
+                  <th>Gebruiksperiode</th>
+                  <td>Vanaf 22 februari 2008</td>
+               </tr>
+               <tr>
+                  <th>Indicatie</th>
+                  <td>
+                     <div>Fractuur van elleboog</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Organization">
+      <valueReference>
+         <reference value="Organization/nl-core-organization-msz-2-16-528-1-1007-3-3-20000014"/>
+         <display value="Ziekenhuis de grote terts"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Practitioner">
+      <valueReference>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000014"/>
+         <display value="A.B.C.D.E. Affine Stabiel in de Benen"/>
+      </valueReference>
+   </extension>
+   <status value="active"/>
+   <subject>
+      <reference value="Patient/OLIVIA-MADELIEF-O-M-W--OLIJF-DE-WILSON-ELIK"/>
+      <display value="Olivia Madelief O.M.W. Olijf de Wilson Çelik"/>
+   </subject>
+   <whenUsed>
+      <start value="2008-02-22"/>
+   </whenUsed>
+   <device>
+      <reference value="Device/zib-MedicalDeviceProduct-msz-427de3b6-6a9e-11ec-0000-2"/>
+      <display value="mitella voor ondersteuning van arm mitella"/>
+   </device>
+   <indication>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Problem">
+         <valueReference>
+            <reference value="Condition/zib-Problem-msz-dace5da5-6ad9-11ec-0000-2"/>
+            <display value="Fractuur van elleboog"/>
+         </valueReference>
+      </extension>
+   </indication>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </bodySite>
+</DeviceUseStatement>

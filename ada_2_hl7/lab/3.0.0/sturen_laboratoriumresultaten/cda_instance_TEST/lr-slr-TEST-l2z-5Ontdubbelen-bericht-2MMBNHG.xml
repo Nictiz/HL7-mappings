@@ -8,19 +8,19 @@
    <templateId root="2.16.840.1.113883.2.4.3.11.60.25.10.51"/>
    <templateId root="1.3.6.1.4.1.19376.1.3.3"/>
    <templateId root="2.16.840.1.113883.2.4.6.10.100001"/>
-   <id extension="2f95b466-8a29-11ef-1558-020000000000"
+   <id extension="722805a1-8290-11f0-1953-020000000000"
        root="2.16.840.1.113883.2.4.3.11.999.25.1"/>
    <code code="11502-2"
          codeSystem="2.16.840.1.113883.6.1"
          codeSystemName="LOINC"
          displayName="LABORATORY REPORT.TOTAL"/>
-   <title>Laboratory studies Elise Erelies op 14 oct 2024</title>
-   <effectiveTime value="20241014143816"/>
+   <title>Laboratory studies Elise Erelies op 26 aug 2025</title>
+   <effectiveTime value="20250826172215"/>
    <confidentialityCode code="N"
                         codeSystem="2.16.840.1.113883.5.25"
                         displayName="normal"/>
    <languageCode code="nl-NL"/>
-   <setId extension="2f95b466-8a29-11ef-1558-020000000000"
+   <setId extension="722805a1-8290-11f0-1953-020000000000"
           root="2.16.840.1.113883.2.4.3.11.999.25.2"/>
    <recordTarget>
       <patientRole>
@@ -36,9 +36,7 @@
             <administrativeGenderCode code="F"
                                       codeSystem="2.16.840.1.113883.5.1"
                                       displayName="Vrouw"/>
-            <birthTime value="19501101000000"/>
-            <sdtc:multipleBirthInd nullFlavor="NA"
-                                   xmlns:sdtc="urn:hl7-org:sdtc"/>
+            <birthTime value="19501101"/>
          </patient>
       </patientRole>
    </recordTarget>
@@ -47,22 +45,22 @@
       <assignedAuthor>
          <id nullFlavor="NI"/>
          <addr use="WP">
-            <streetName>Dorpsstraat</streetName>
+            <streetName>Langelaan</streetName>
             <houseNumber>1</houseNumber>
-            <postalCode>1234 AA</postalCode>
-            <city>Ons Dorp</city>
+            <postalCode>1234 ZZ</postalCode>
+            <city>Onze Stad</city>
          </addr>
          <telecom nullFlavor="UNK"/>
          <representedOrganization>
-            <id extension="00001111"
+            <id extension="00005111"
                 root="2.16.528.1.1007.3.3"/>
-            <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+            <name>Huisartsenpraktijk Itis</name>
             <telecom nullFlavor="UNK"/>
             <addr use="WP">
-               <streetName>Dorpsstraat</streetName>
+               <streetName>Langelaan</streetName>
                <houseNumber>1</houseNumber>
-               <postalCode>1234 AA</postalCode>
-               <city>Ons Dorp</city>
+               <postalCode>1234 ZZ</postalCode>
+               <city>Onze Stad</city>
             </addr>
             <standardIndustryClassCode code="Z3"
                                        codeSystem="2.16.840.1.113883.2.4.15.1060"
@@ -75,15 +73,15 @@
    <custodian>
       <assignedCustodian>
          <representedCustodianOrganization>
-            <id extension="00001111"
+            <id extension="00005111"
                 root="2.16.528.1.1007.3.3"/>
-            <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+            <name>Huisartsenpraktijk Itis</name>
             <telecom nullFlavor="UNK"/>
             <addr use="WP">
-               <streetName>Dorpsstraat</streetName>
+               <streetName>Langelaan</streetName>
                <houseNumber>1</houseNumber>
-               <postalCode>1234 AA</postalCode>
-               <city>Ons Dorp</city>
+               <postalCode>1234 ZZ</postalCode>
+               <city>Onze Stad</city>
             </addr>
          </representedCustodianOrganization>
       </assignedCustodian>
@@ -111,6 +109,8 @@
                            displayName="LABORATORY STUDIES"/>
                      <text>
                         <paragraph>LABORATORY STUDIES, door Microbiologisch Lab Flagel</paragraph>
+                        <paragraph>Status: Definitief</paragraph>
+                        <paragraph>Deze resultaten zijn een kopie van de bron</paragraph>
                         <paragraph>EDIFACT-referentienummer: 111666</paragraph>
                         <table>
                            <tbody>
@@ -181,6 +181,19 @@
                            <entryRelationship typeCode="COMP">
                               <observation classCode="OBS"
                                            moodCode="EVN">
+                                 <templateId root="2.16.840.1.113883.2.4.3.11.60.121.10.55"/>
+                                 <code code="92235-1"
+                                       codeSystem="2.16.840.1.113883.6.1"
+                                       displayName="Lab order result status"/>
+                                 <value xsi:type="CV"
+                                        code="final"
+                                        codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                                        displayName="Definitief"/>
+                              </observation>
+                           </entryRelationship>
+                           <entryRelationship typeCode="COMP">
+                              <observation classCode="OBS"
+                                           moodCode="EVN">
                                  <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
                                  <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
                                  <id extension="11111"
@@ -204,7 +217,7 @@
                                        code="16"
                                        codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
                                  <value xsi:type="BL"
-                                        value="false"/>
+                                        value="true"/>
                               </observation>
                            </entryRelationship>
                            <entryRelationship typeCode="COMP">

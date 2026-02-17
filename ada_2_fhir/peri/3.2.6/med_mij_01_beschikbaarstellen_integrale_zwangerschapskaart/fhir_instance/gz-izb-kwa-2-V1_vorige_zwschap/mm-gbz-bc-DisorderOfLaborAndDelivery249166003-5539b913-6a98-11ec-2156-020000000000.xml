@@ -1,0 +1,77 @@
+<Condition xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izb-kwa-2-V1_vorige_zwschap /adaxml/data/med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/bevalling/probleem_maternaal (peri32-dataelement-1564) -->
+   <id value="5539b913-6a98-11ec-2156-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DisorderOfLaborAndDelivery"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Aandoening. Subject: Hanna H XXX_Kooij. Categorie: <span title="aandoening durante partu (aandoening) (362972006 - SNOMED CT)">aandoening durante partu (aandoening)</span>, Status: actief</caption>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="niet vorderende uitdrijving (249166003 - SNOMED CT)">niet vorderende uitdrijving</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>${DATE, T, D, -587}T12:02:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Oplossing/remissie</th>
+                  <td>${DATE, T, D, -587}T12:04:00+02:00</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/condition-partOf">
+      <valueReference>
+         <reference value="Procedure/05bb4fa3-6a9a-11ec-2123-020000000000"/>
+         <display value="bevalling zwangerschap 1 XXX_Kooij_Vrouw"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="5539b913-6a98-11ec-2156-020000000000"/>
+   </identifier>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="55561003"/>
+               <display value="Actueel"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="362972006"/>
+         <display value="aandoening durante partu (aandoening)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="249166003"/>
+         <display value="niet vorderende uitdrijving"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/HANNA-H-XXX-KOOIJ"/>
+      <display value="Hanna H XXX_Kooij"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/23bb7ed3-6b26-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Kooij_Vrouw"/>
+   </context>
+   <onsetDateTime value="${DATE, T, D, -587}T12:02:00+02:00"/>
+   <abatementDateTime value="${DATE, T, D, -587}T12:04:00+02:00"/>
+</Condition>

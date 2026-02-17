@@ -1,0 +1,66 @@
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="zib-AllergyIntolerance-msz-c8c146cf-6b49-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Allergie/intolerantie. Patiënt: de Herder. Status: actief / bevestigd</caption>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="eiwit van kat (143491000146106 - SNOMED CT)">eiwit van kat</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>
+                              <span title="Urticaria (126485001 - SNOMED CT)">Urticaria</span>
+                           </div>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActStatus"/>
+               <code value="active"/>
+               <display value="Actief"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus value="confirmed"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="143491000146106"/>
+         <display value="eiwit van kat"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/DE-HERDER"/>
+      <display value="de Herder"/>
+   </patient>
+   <reaction>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="126485001"/>
+            <display value="Urticaria"/>
+         </coding>
+      </manifestation>
+   </reaction>
+</AllergyIntolerance>

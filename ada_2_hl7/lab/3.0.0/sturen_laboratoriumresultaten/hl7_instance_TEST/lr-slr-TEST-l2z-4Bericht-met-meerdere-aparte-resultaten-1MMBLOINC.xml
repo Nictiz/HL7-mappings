@@ -22,30 +22,35 @@
             <administrativeGenderCode code="F"
                                       codeSystem="2.16.840.1.113883.5.1"
                                       displayName="Vrouw"/>
-            <birthTime value="19501101000000"/>
-            <sdtc:multipleBirthInd nullFlavor="NA"
-                                   xmlns:sdtc="urn:hl7-org:sdtc"/>
+            <birthTime value="19501101"/>
          </patient>
       </patientRole>
    </recordTarget>
    <participant typeCode="CST">
       <participantRole classCode="ASSIGNED">
-         <id extension="00001111"
+         <id extension="00003334"
              root="2.16.528.1.1007.3.3"/>
-         <code code="Z3"
+         <code code="L1"
                codeSystem="2.16.840.1.113883.2.4.15.1060"
-               displayName="Huisartspraktijk (zelfstandig of groepspraktijk)"
+               displayName="Laboratorium"
                codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
                codeSystemVersion="2023-04-14T00:00:00"/>
          <addr use="WP">
-            <streetName>Dorpsstraat</streetName>
-            <houseNumber>1</houseNumber>
-            <postalCode>1234 AA</postalCode>
-            <city>Ons Dorp</city>
+            <streetName>Kerkstraat</streetName>
+            <houseNumber>23</houseNumber>
+            <postalCode>2143 BB</postalCode>
+            <city>Zorgstad</city>
+            <country code="NL"
+                     codeSystem="1.0.3166.1.2.2"
+                     displayName="Nederland"
+                     codeSystemName="ISO 3166-1 (alpha-2)"
+                     codeSystemVersion="2020-10-26T00:00:00"/>
          </addr>
+         <telecom use="WP"
+                  value="tel:06-11122244"/>
          <playingEntity classCode="ORG"
                         determinerCode="INSTANCE">
-            <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+            <name>Microbiologisch Lab Flagel</name>
          </playingEntity>
       </participantRole>
    </participant>
@@ -91,6 +96,19 @@
                </representedOrganization>
             </assignedEntity>
          </performer>
+         <entryRelationship typeCode="COMP">
+            <observation classCode="OBS"
+                         moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.121.10.55"/>
+               <code code="92235-1"
+                     codeSystem="2.16.840.1.113883.6.1"
+                     displayName="Lab order result status"/>
+               <value xsi:type="CV"
+                      code="final"
+                      codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                      displayName="Definitief"/>
+            </observation>
+         </entryRelationship>
          <entryRelationship typeCode="COMP">
             <procedure classCode="PROC"
                        moodCode="EVN">
@@ -233,6 +251,19 @@
          <entryRelationship typeCode="COMP">
             <observation classCode="OBS"
                          moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.121.10.55"/>
+               <code code="92235-1"
+                     codeSystem="2.16.840.1.113883.6.1"
+                     displayName="Lab order result status"/>
+               <value xsi:type="CV"
+                      code="final"
+                      codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                      displayName="Definitief"/>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <observation classCode="OBS"
+                         moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
                <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
                <id extension="11111"
@@ -245,7 +276,7 @@
                <value xsi:type="CV"
                       code="260373001"
                       codeSystem="2.16.840.1.113883.6.96"
-                      displayName="aangetoond (kwalificatiewaarde)"/>
+                      displayName="aangetoond(kwalificatiewaarde)"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -448,7 +479,7 @@
                      code="16"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
                <value xsi:type="BL"
-                      value="true"/>
+                      value="false"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">

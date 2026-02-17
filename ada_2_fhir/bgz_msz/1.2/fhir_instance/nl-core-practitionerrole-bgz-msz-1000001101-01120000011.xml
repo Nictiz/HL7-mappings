@@ -1,0 +1,83 @@
+<PractitionerRole xmlns="http://hl7.org/fhir">
+   <id value="nl-core-practitionerrole-bgz-msz-1000001101-01120000011"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgverlenerrol. Id: bgz-msz-patD-healthProf1 (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6)</caption>
+            <tbody>
+               <tr>
+                  <th>Zorgverlener</th>
+                  <td>
+                     <div>Perpe P.M.T. Peer Tuum</div>
+                     <div>Ziekenhuis de Kleine Pomp</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Specialisme</th>
+                  <td>
+                     <span title="Cardiothoracaal chirurg (01.011 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Cardiothoracaal chirurg</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <div>
+                        <a href="tel:021-9990106">021-9990106</a> (Vast telefoonnummer Werk)</div>
+                     <div>
+                        <a href="mailto:test@testPompMail.nl">test@testPompMail.nl</a> (E-mail Werk)</div>
+                     <div>
+                        <a href="mailto:test@test2PompMail.nl">test@test2PompMail.nl</a> (E-mail Werk)</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patD-healthProf1"/>
+   </identifier>
+   <practitioner>
+      <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-528-1-1007-3-1-10000011"/>
+      <display value="Perpe P.M.T. Peer Tuum"/>
+   </practitioner>
+   <organization>
+      <reference value="Organization/nl-core-organization-bgz-msz-2-16-840-1-113883-2-4-6-1-20000011"/>
+      <display value="Ziekenhuis de Kleine Pomp"/>
+   </organization>
+   <specialty>
+      <coding>
+         <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+         <code value="01.011"/>
+         <display value="Cardiothoracaal chirurg"/>
+      </coding>
+   </specialty>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Land Line"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="021-9990106"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="test@testPompMail.nl"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="test@test2PompMail.nl"/>
+      <use value="work"/>
+   </telecom>
+</PractitionerRole>

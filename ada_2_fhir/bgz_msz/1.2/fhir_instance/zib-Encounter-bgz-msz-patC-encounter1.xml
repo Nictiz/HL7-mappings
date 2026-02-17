@@ -1,0 +1,64 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <id value="zib-Encounter-bgz-msz-patC-encounter1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: de Boer. Id: bgz-msz-patC-encounter1 (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), Status: onbekend</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div>
+                        <span title="Ambulatory (AMB - v3/ActCode)">Ambulatory</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>Vanaf ${DATE, T, D, -44}</td>
+               </tr>
+               <tr>
+                  <th>Probleem/Verrichting</th>
+                  <td>implantatie van cardiale pacemaker</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patC-encounter1"/>
+   </identifier>
+   <status value="unknown"/>
+   <class>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActCode"/>
+               <code value="AMB"/>
+               <display value="Ambulatory"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="http://hl7.org/fhir/v3/ActCode"/>
+      <code value="AMB"/>
+      <display value="Ambulatory"/>
+   </class>
+   <subject>
+      <reference value="Patient/DE-BOER"/>
+      <display value="de Boer"/>
+   </subject>
+   <period>
+      <start value="${DATE, T, D, -44}"/>
+   </period>
+   <diagnosis>
+      <condition>
+         <reference value="Procedure/zib-Procedure-bgz-msz-bgz-msz-patC-procedure1"/>
+         <display value="implantatie van cardiale pacemaker"/>
+      </condition>
+   </diagnosis>
+</Encounter>

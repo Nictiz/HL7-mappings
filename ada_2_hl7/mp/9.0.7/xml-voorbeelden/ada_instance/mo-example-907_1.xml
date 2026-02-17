@@ -1,5 +1,5 @@
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatieoverzicht.xsd">
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatieoverzicht.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <meta status="new"
          created-by="arianne"
          last-update-by="arianne"
@@ -17,7 +17,8 @@
                                              id="mo-example-907_1">
          <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798">
             <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799">
-               <voornamen value="Joris" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19800"/>
+               <voornamen value="Joris"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19800"/>
                <naamgebruik code="UNK"
                             codeSystem="2.16.840.1.113883.5.1008"
                             displayName="Unknown"
@@ -35,18 +36,23 @@
             <geslacht code="M"
                       codeSystem="2.16.840.1.113883.5.1"
                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19831"/>
-            <meerling_indicator value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19832"/>
+            <meerling_indicator value="false"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19832"/>
          </patient>
          <medicamenteuze_behandeling>
-            <identificatie value="#MB_01h" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <identificatie value="#MB_01h"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <medicatieafspraak>
-               <gebruiksperiode_start value="T"/>
+               <gebruiksperiode_start value="2024-01-01"
+                                      datatype="datetime"/>
                <identificatie value="#MB_01h#MA_01"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <afspraakdatum value="T{10:54:23}"/>
+               <afspraakdatum value="2024-01-01T10:54:23+01:00"
+                              datatype="datetime"/>
                <voorschrijver>
                   <zorgverlener>
-                     <zorgverlener_identificatienummer value="012345678" root="2.16.528.1.1007.3.1"/>
+                     <zorgverlener_identificatienummer value="012345678"
+                                                       root="2.16.528.1.1007.3.1"/>
                      <naamgegevens>
                         <naamgegevens>
                            <geslachtsnaam>
@@ -59,7 +65,8 @@
                                   codeSystemName="RoleCodeNL - zorgverlenertype (natuurlijke personen)"
                                   displayName="Internist"/>
                      <zorgaanbieder>
-                        <zorgaanbieder_identificatienummer value="URAnummer" root="1.2.3.4"/>
+                        <zorgaanbieder_identificatienummer value="URAnummer"
+                                                           root="1.2.3.4"/>
                         <organisatie_naam value="Ziekenhuis zus en zo"/>
                         <adresgegevens>
                            <straat value="Dorpsstraat"/>
@@ -86,7 +93,7 @@
                   </product>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
-                  <omschrijving value="tobegenerated"/>
+                  <omschrijving value="Vanaf 1 jan 2024, zo nodig 1 maal per dag 1 stuk, rectaal"/>
                   <toedieningsweg code="12"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007"
@@ -105,7 +112,8 @@
                         <toedieningsschema>
                            <frequentie>
                               <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23258">
-                                 <vaste_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23260"/>
+                                 <vaste_waarde value="1"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23260"/>
                               </aantal>
                               <tijdseenheid value="1"
                                             unit="dag"
@@ -126,14 +134,17 @@
                <kopie_indicator value="false"/>
             </medicatieafspraak>
             <toedieningsafspraak>
-               <gebruiksperiode_start value="T"/>
+               <gebruiksperiode_start value="2024-01-01"
+                                      datatype="datetime"/>
                <gebruiksperiode_eind nullFlavor="NI"/>
                <identificatie value="1546339-f6753t65r"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <afspraakdatum value="T{10:54:12}"/>
+               <afspraakdatum value="2024-01-01T10:54:12+01:00"
+                              datatype="datetime"/>
                <verstrekker>
                   <zorgaanbieder>
-                     <zorgaanbieder_identificatie_nummer value="22343221" root="2.16.528.1.1007.3.3"/>
+                     <zorgaanbieder_identificatie_nummer value="22343221"
+                                                         root="2.16.528.1.1007.3.3"/>
                      <organisatie_naam value="Apotheek Boomsma"/>
                   </zorgaanbieder>
                </verstrekker>
@@ -158,7 +169,7 @@
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
-                  <omschrijving value="todo"/>
+                  <omschrijving value="Vanaf 1 jan 2024, 1 maal per dag, rectaal"/>
                   <toedieningsweg code="12"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007"
@@ -169,7 +180,8 @@
                         <toedieningsschema>
                            <frequentie>
                               <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22633">
-                                 <vaste_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22702"/>
+                                 <vaste_waarde value="1"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22702"/>
                               </aantal>
                               <tijdseenheid value="1"
                                             unit="dag"
@@ -191,14 +203,19 @@
             </toedieningsafspraak>
          </medicamenteuze_behandeling>
          <medicamenteuze_behandeling>
-            <identificatie value="#MB_01i1" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <identificatie value="#MB_01i1"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <medicatie_gebruik>
-               <gebruiksperiode_start value="T+43D"/>
-               <identificatie value="#MB_01i1#GE_01" root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <registratiedatum value="T+43D"/>
+               <gebruiksperiode_start value="2024-02-13"
+                                      datatype="datetime"/>
+               <identificatie value="#MB_01i1#GE_01"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <registratiedatum value="2024-02-13"
+                                 datatype="datetime"/>
                <gebruik_indicator value="true"/>
                <volgens_afspraak_indicator value="true"/>
-               <gebruiksperiode value="30" unit="dag"/>
+               <gebruiksperiode value="30"
+                                unit="dag"/>
                <gebruiks_product>
                   <product>
                      <product_code code="67903"
@@ -212,7 +229,7 @@
                   </product>
                </gebruiks_product>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 25 juli 2017, Gedurende 30 dagen, Zo nodig 4 maal per dag 1 à 2 stuks, max 6 per dag"/>
+                  <omschrijving value="Vanaf 13 feb 2024, gedurende 30 dagen, zo nodig maximaal 4 maal per dag 1 à 2 stuks , maximaal 6 stuks per dag, ORAAL"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007"
@@ -234,7 +251,8 @@
                               <aantal>
                                  <max value="4"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
                         </toedieningsschema>
                         <zo_nodig>
@@ -248,7 +266,8 @@
                               <eenheid code="245"
                                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                        displayName="Stuk"/>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </maximale_dosering>
                         </zo_nodig>
                      </dosering>
@@ -261,7 +280,8 @@
                <auteur>
                   <auteur_is_zorgverlener>
                      <zorgverlener>
-                        <zorgverlener_identificatie_nummer value="012345678" root="2.16.528.1.1007.3.1"/>
+                        <zorgverlener_identificatie_nummer value="012345678"
+                                                           root="2.16.528.1.1007.3.1"/>
                         <zorgverlener_naam>
                            <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22903">
                               <ongestructureerde_naam value="Dr Jansen"/>
@@ -276,7 +296,8 @@
                                      codeSystemName="RoleCodeNL - zorgverlenertype (natuurlijke personen)"/>
                         <zorgaanbieder>
                            <zorgaanbieder>
-                              <zorgaanbieder_identificatie_nummer value="URAnummer" root="1.2.3.4"/>
+                              <zorgaanbieder_identificatie_nummer value="URAnummer"
+                                                                  root="1.2.3.4"/>
                               <organisatie_naam value="Ziekenhuis zus en zo"/>
                            </zorgaanbieder>
                         </zorgaanbieder>
@@ -291,7 +312,8 @@
             <auteur>
                <auteur_is_zorgaanbieder>
                   <zorgaanbieder>
-                     <zorgaanbieder_identificatienummer value="URAnummer" root="1.2.3.4"/>
+                     <zorgaanbieder_identificatienummer value="URAnummer"
+                                                        root="1.2.3.4"/>
                      <organisatie_naam value="Ziekenhuis zus en zo"/>
                      <contactgegevens>
                         <telefoonnummers>
@@ -312,11 +334,13 @@
             </auteur>
             <verificatie_patient>
                <geverifieerd_met_patientq value="true"/>
-               <verificatie_datum value="T+43D{14:15:17}"/>
+               <verificatie_datum value="2024-02-13T14:15:17+01:00"
+                                  datatype="datetime"/>
             </verificatie_patient>
             <verificatie_zorgverlener>
                <geverifieerd_met_zorgverlenerq value="true"/>
-               <verificatie_datum value="T+43D{14:15:17}"/>
+               <verificatie_datum value="2024-02-13T14:15:17+01:00"
+                                  datatype="datetime"/>
             </verificatie_zorgverlener>
          </documentgegevens>
       </beschikbaarstellen_medicatieoverzicht>

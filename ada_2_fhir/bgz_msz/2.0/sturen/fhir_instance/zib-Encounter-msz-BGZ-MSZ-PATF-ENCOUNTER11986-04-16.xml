@@ -1,0 +1,88 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <id value="zib-Encounter-msz-BGZ-MSZ-PATF-ENCOUNTER11986-04-16"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: Olivia Madelief O.M.W. Olijf de Wilson Çelik. Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div>
+                        <span title="Klinisch (IMP - v3/ActCode)">Klinisch</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>16 april 1986 - 27 april 1986</td>
+               </tr>
+               <tr>
+                  <th>Probleem/Verrichting</th>
+                  <td>tetralogie van Fallot</td>
+               </tr>
+               <tr>
+                  <th>Opnamegegevens</th>
+                  <td>
+                     <ul>
+                        <li>Opname vanuit: <span title="Eigen woonomgeving (264362003 - SNOMED CT)">Eigen woonomgeving</span>
+                        </li>
+                        <li>Ontslagwijze: <span title="Eigen woonomgeving (264362003 - SNOMED CT)">Eigen woonomgeving</span>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <status value="finished"/>
+   <class>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActCode"/>
+               <code value="IMP"/>
+               <display value="Klinisch"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="http://hl7.org/fhir/v3/ActCode"/>
+      <code value="IMP"/>
+      <display value="Klinisch"/>
+   </class>
+   <subject>
+      <reference value="Patient/OLIVIA-MADELIEF-O-M-W--OLIJF-DE-WILSON-ELIK"/>
+      <display value="Olivia Madelief O.M.W. Olijf de Wilson Çelik"/>
+   </subject>
+   <period>
+      <start value="1986-04-16"/>
+      <end value="1986-04-27"/>
+   </period>
+   <diagnosis>
+      <condition>
+         <reference value="Condition/zib-Problem-msz-aafc1925-6b4a-11ec-0000-2"/>
+         <display value="tetralogie van Fallot"/>
+      </condition>
+   </diagnosis>
+   <hospitalization>
+      <admitSource>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="264362003"/>
+            <display value="Eigen woonomgeving"/>
+         </coding>
+      </admitSource>
+      <dischargeDisposition>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="264362003"/>
+            <display value="Eigen woonomgeving"/>
+         </coding>
+      </dischargeDisposition>
+   </hospitalization>
+</Encounter>

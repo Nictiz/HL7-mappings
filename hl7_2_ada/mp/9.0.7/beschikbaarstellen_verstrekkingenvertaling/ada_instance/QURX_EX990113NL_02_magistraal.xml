@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--Generated from HL7v3 verstrekkingenlijst 6.12 xml with message id (QURX_IN990113NL/id) root: 2.16.840.1.113883.2.4.6.6.1.1 and extension: 0123456789.-->
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<!--Generated from HL7v3 verstrekkingenlijst 6.12 xml with message id (QURX_IN990113NL/id) root: 2.16.840.1.113883.2.4.6.6.1.1 and extension: 0123456789.--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_verstrekkingenvertaling.xsd">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2022-08-23T14:00:09.912683+02:00"
-         last-update-date="2022-08-23T14:00:09.912683+02:00"/>
+         creation-date="2024-12-24T12:25:57.544+01:00"
+         last-update-date="2024-12-24T12:25:57.544+01:00"/>
    <data>
       <beschikbaarstellen_verstrekkingenvertaling app="mp-mp907"
                                                   shortName="beschikbaarstellen_verstrekkingenvertaling"
@@ -20,10 +18,10 @@
          <patient>
             <naamgegevens>
                <initialen value="J.J."/>
-               <naamgebruik value="3"
-                            code="NL3"
+               <naamgebruik value="4"
+                            code="NL4"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
-                            displayName="Geslachtsnaam partner gevolgd door eigen geslachtsnaam"/>
+                            displayName="Eigen geslachtsnaam gevolgd door geslachtsnaam partner"/>
                <geslachtsnaam>
                   <voorvoegsels value="le "/>
                   <achternaam value="Noble"/>
@@ -40,9 +38,9 @@
                       codeSystemName="AdministrativeGender"
                       displayName="Vrouw"/>
          </patient>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="mag01" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2016-03-03"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -54,7 +52,7 @@
                   <product>
                      <product_code code="OTH"
                                    codeSystem="2.16.840.1.113883.5.1008"
-                                   displayName=""
+                                   displayName="overig"
                                    originalText="Hydrocortison zetpil 100 mg"/>
                      <product_specificatie>
                         <product_naam value="Hydrocortison zetpil 100 mg"/>
@@ -104,8 +102,18 @@
                      </product_specificatie>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+                  
+                  
+                  
+                  
+                     
+                  
+                  
+                     
+                        
+                     
+                  
+                  <gebruiksinstructie>
                   <omschrijving value="gebruik volgens schema"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
@@ -113,14 +121,22 @@
                   <aanvullende_instructie code="1131"
                                           codeSystem="2.16.840.1.113883.2.4.4.5"
                                           displayName="gebruik volgens schema"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis--><!--geen keerdosis in input-->
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612--><!--geen frequentie in input--></toedieningsschema>
+                     <dosering>
+                        <toedieningsschema/>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+                  
+                     
+                        
+                        
+                        
+                           
+                        
+                     
+                  
+               </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="mag01"/>
                <datum nullFlavor="NI"/>
@@ -141,7 +157,7 @@
                   <product>
                      <product_code code="OTH"
                                    codeSystem="2.16.840.1.113883.5.1008"
-                                   displayName=""
+                                   displayName="overig"
                                    originalText="Hydrocortison zetpil 100 mg"/>
                      <product_specificatie>
                         <product_naam value="Hydrocortison zetpil 100 mg"/>
@@ -193,9 +209,9 @@
                </verstrekt_geneesmiddel>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="mag02" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2016-03-03"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -207,7 +223,7 @@
                   <product>
                      <product_code code="OTH"
                                    codeSystem="2.16.840.1.113883.5.1008"
-                                   displayName=""
+                                   displayName="overig"
                                    originalText="Ketoconazol crème met 20% vaseline en 0,1% triam acet"/>
                      <product_specificatie>
                         <product_naam value="Ketoconazol crème met 20% vaseline en 0,1% triam acet"/>
@@ -278,8 +294,18 @@
                      </product_specificatie>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+                  
+                  
+                  
+                  
+                     
+                  
+                  
+                     
+                        
+                     
+                  
+                  <gebruiksinstructie>
                   <omschrijving value="gebruik volgens schema"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
@@ -287,14 +313,22 @@
                   <aanvullende_instructie code="1131"
                                           codeSystem="2.16.840.1.113883.2.4.4.5"
                                           displayName="gebruik volgens schema"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis--><!--geen keerdosis in input-->
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612--><!--geen frequentie in input--></toedieningsschema>
+                     <dosering>
+                        <toedieningsschema/>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+                  
+                     
+                        
+                        
+                        
+                           
+                        
+                     
+                  
+               </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="mag02"/>
                <datum nullFlavor="NI"/>
@@ -315,7 +349,7 @@
                   <product>
                      <product_code code="OTH"
                                    codeSystem="2.16.840.1.113883.5.1008"
-                                   displayName=""
+                                   displayName="overig"
                                    originalText="Ketoconazol crème met 20% vaseline en 0,1% triam acet"/>
                      <product_specificatie>
                         <product_naam value="Ketoconazol crème met 20% vaseline en 0,1% triam acet"/>
@@ -388,9 +422,9 @@
                </verstrekt_geneesmiddel>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="mag03" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2016-03-03"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -402,7 +436,7 @@
                   <product>
                      <product_code code="OTH"
                                    codeSystem="2.16.840.1.113883.5.1008"
-                                   displayName=""
+                                   displayName="overig"
                                    originalText="Nafazoline oogdruppels 0,025% ex FNA"/>
                      <product_specificatie>
                         <product_naam value="Nafazoline oogdruppels 0,025% ex FNA"/>
@@ -451,8 +485,18 @@
                      </product_specificatie>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+                  
+                  
+                  
+                  
+                     
+                  
+                  
+                     
+                        
+                     
+                  
+                  <gebruiksinstructie>
                   <omschrijving value="gebruik volgens schema"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
@@ -460,14 +504,22 @@
                   <aanvullende_instructie code="1131"
                                           codeSystem="2.16.840.1.113883.2.4.4.5"
                                           displayName="gebruik volgens schema"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis--><!--geen keerdosis in input-->
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612--><!--geen frequentie in input--></toedieningsschema>
+                     <dosering>
+                        <toedieningsschema/>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+                  
+                     
+                        
+                        
+                        
+                           
+                        
+                     
+                  
+               </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="mag03"/>
                <datum nullFlavor="NI"/>
@@ -488,7 +540,7 @@
                   <product>
                      <product_code code="OTH"
                                    codeSystem="2.16.840.1.113883.5.1008"
-                                   displayName=""
+                                   displayName="overig"
                                    originalText="Nafazoline oogdruppels 0,025% ex FNA"/>
                      <product_specificatie>
                         <product_naam value="Nafazoline oogdruppels 0,025% ex FNA"/>
@@ -539,9 +591,9 @@
                </verstrekt_geneesmiddel>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="mag04" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2016-03-03"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -553,7 +605,7 @@
                   <product>
                      <product_code code="OTH"
                                    codeSystem="2.16.840.1.113883.5.1008"
-                                   displayName=""
+                                   displayName="overig"
                                    originalText="Abilify caps 2,5 mg"/>
                      <product_specificatie>
                         <product_naam value="Abilify caps 2,5 mg"/>
@@ -623,8 +675,18 @@
                      </product_specificatie>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+                  
+                  
+                  
+                  
+                     
+                  
+                  
+                     
+                        
+                     
+                  
+                  <gebruiksinstructie>
                   <omschrijving value="gebruik volgens schema"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
@@ -632,14 +694,22 @@
                   <aanvullende_instructie code="1131"
                                           codeSystem="2.16.840.1.113883.2.4.4.5"
                                           displayName="gebruik volgens schema"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis--><!--geen keerdosis in input-->
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612--><!--geen frequentie in input--></toedieningsschema>
+                     <dosering>
+                        <toedieningsschema/>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+                  
+                     
+                        
+                        
+                        
+                           
+                        
+                     
+                  
+               </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="mag04"/>
                <datum nullFlavor="NI"/>
@@ -660,7 +730,7 @@
                   <product>
                      <product_code code="OTH"
                                    codeSystem="2.16.840.1.113883.5.1008"
-                                   displayName=""
+                                   displayName="overig"
                                    originalText="Abilify caps 2,5 mg"/>
                      <product_specificatie>
                         <product_naam value="Abilify caps 2,5 mg"/>
@@ -732,9 +802,9 @@
                </verstrekt_geneesmiddel>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="mag06" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2016-03-03"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -746,7 +816,7 @@
                   <product>
                      <product_code code="OTH"
                                    codeSystem="2.16.840.1.113883.5.1008"
-                                   displayName=""
+                                   displayName="overig"
                                    originalText="Haparine 100 ie= 10 ml"/>
                      <product_specificatie>
                         <product_naam value="Haparine 100 ie= 10 ml"/>
@@ -817,8 +887,18 @@
                      </product_specificatie>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+                  
+                  
+                  
+                  
+                     
+                  
+                  
+                     
+                        
+                     
+                  
+                  <gebruiksinstructie>
                   <omschrijving value="gebruik volgens schema"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
@@ -826,14 +906,22 @@
                   <aanvullende_instructie code="1131"
                                           codeSystem="2.16.840.1.113883.2.4.4.5"
                                           displayName="gebruik volgens schema"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis--><!--geen keerdosis in input-->
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612--><!--geen frequentie in input--></toedieningsschema>
+                     <dosering>
+                        <toedieningsschema/>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+                  
+                     
+                        
+                        
+                        
+                           
+                        
+                     
+                  
+               </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="mag06"/>
                <datum nullFlavor="NI"/>
@@ -854,7 +942,7 @@
                   <product>
                      <product_code code="OTH"
                                    codeSystem="2.16.840.1.113883.5.1008"
-                                   displayName=""
+                                   displayName="overig"
                                    originalText="Haparine 100 ie= 10 ml"/>
                      <product_specificatie>
                         <product_naam value="Haparine 100 ie= 10 ml"/>
@@ -927,9 +1015,9 @@
                </verstrekt_geneesmiddel>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="mag07" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2016-03-03"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -941,7 +1029,7 @@
                   <product>
                      <product_code code="OTH"
                                    codeSystem="2.16.840.1.113883.5.1008"
-                                   displayName=""
+                                   displayName="overig"
                                    originalText="Easyspump penicilline g 18me"/>
                      <product_specificatie>
                         <product_naam value="Easyspump penicilline g 18me"/>
@@ -1033,8 +1121,18 @@
                      </product_specificatie>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+                  
+                  
+                  
+                  
+                     
+                  
+                  
+                     
+                        
+                     
+                  
+                  <gebruiksinstructie>
                   <omschrijving value="gebruik volgens schema"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
@@ -1042,14 +1140,22 @@
                   <aanvullende_instructie code="1131"
                                           codeSystem="2.16.840.1.113883.2.4.4.5"
                                           displayName="gebruik volgens schema"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis--><!--geen keerdosis in input-->
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612--><!--geen frequentie in input--></toedieningsschema>
+                     <dosering>
+                        <toedieningsschema/>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+                  
+                     
+                        
+                        
+                        
+                           
+                        
+                     
+                  
+               </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="mag07"/>
                <datum nullFlavor="NI"/>
@@ -1070,7 +1176,7 @@
                   <product>
                      <product_code code="OTH"
                                    codeSystem="2.16.840.1.113883.5.1008"
-                                   displayName=""
+                                   displayName="overig"
                                    originalText="Easyspump penicilline g 18me"/>
                      <product_specificatie>
                         <product_naam value="Easyspump penicilline g 18me"/>
@@ -1164,9 +1270,9 @@
                </verstrekt_geneesmiddel>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="mag08" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2016-03-03"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -1178,7 +1284,7 @@
                   <product>
                      <product_code code="OTH"
                                    codeSystem="2.16.840.1.113883.5.1008"
-                                   displayName=""
+                                   displayName="overig"
                                    originalText="Furosemide 125mg/50ml pump"/>
                      <product_specificatie>
                         <product_naam value="Furosemide 125mg/50ml pump"/>
@@ -1249,8 +1355,18 @@
                      </product_specificatie>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+                  
+                  
+                  
+                  
+                     
+                  
+                  
+                     
+                        
+                     
+                  
+                  <gebruiksinstructie>
                   <omschrijving value="gebruik volgens schema"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
@@ -1258,14 +1374,22 @@
                   <aanvullende_instructie code="1131"
                                           codeSystem="2.16.840.1.113883.2.4.4.5"
                                           displayName="gebruik volgens schema"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis--><!--geen keerdosis in input-->
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612--><!--geen frequentie in input--></toedieningsschema>
+                     <dosering>
+                        <toedieningsschema/>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+                  
+                     
+                        
+                        
+                        
+                           
+                        
+                     
+                  
+               </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="mag08"/>
                <datum nullFlavor="NI"/>
@@ -1286,7 +1410,7 @@
                   <product>
                      <product_code code="OTH"
                                    codeSystem="2.16.840.1.113883.5.1008"
-                                   displayName=""
+                                   displayName="overig"
                                    originalText="Furosemide 125mg/50ml pump"/>
                      <product_specificatie>
                         <product_naam value="Furosemide 125mg/50ml pump"/>
@@ -1359,9 +1483,9 @@
                </verstrekt_geneesmiddel>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="mag09" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2016-03-03"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -1373,7 +1497,7 @@
                   <product>
                      <product_code code="OTH"
                                    codeSystem="2.16.840.1.113883.5.1008"
-                                   displayName=""
+                                   displayName="overig"
                                    originalText="Penicilline 12milj/24 uur"/>
                      <product_specificatie>
                         <product_naam value="Penicilline 12milj/24 uur"/>
@@ -1465,8 +1589,18 @@
                      </product_specificatie>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+                  
+                  
+                  
+                  
+                     
+                  
+                  
+                     
+                        
+                     
+                  
+                  <gebruiksinstructie>
                   <omschrijving value="gebruik volgens schema"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
@@ -1474,14 +1608,22 @@
                   <aanvullende_instructie code="1131"
                                           codeSystem="2.16.840.1.113883.2.4.4.5"
                                           displayName="gebruik volgens schema"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis--><!--geen keerdosis in input-->
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612--><!--geen frequentie in input--></toedieningsschema>
+                     <dosering>
+                        <toedieningsschema/>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+                  
+                     
+                        
+                        
+                        
+                           
+                        
+                     
+                  
+               </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="mag09"/>
                <datum nullFlavor="NI"/>
@@ -1502,7 +1644,7 @@
                   <product>
                      <product_code code="OTH"
                                    codeSystem="2.16.840.1.113883.5.1008"
-                                   displayName=""
+                                   displayName="overig"
                                    originalText="Penicilline 12milj/24 uur"/>
                      <product_specificatie>
                         <product_naam value="Penicilline 12milj/24 uur"/>
@@ -1596,9 +1738,9 @@
                </verstrekt_geneesmiddel>
             </verstrekking>
          </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="mag10" root="2.16.528.1.1007.3.3.1234567.3"/>
-            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+            <toedieningsafspraak>
                <afspraakdatum value="2016-03-03"/>
                <verstrekker>
                   <zorgaanbieder>
@@ -1610,7 +1752,7 @@
                   <product>
                      <product_code code="OTH"
                                    codeSystem="2.16.840.1.113883.5.1008"
-                                   displayName=""
+                                   displayName="overig"
                                    originalText="Dalterparine ing. 0,5ml=500e"/>
                      <product_specificatie>
                         <product_naam value="Dalterparine ing. 0,5ml=500e"/>
@@ -1660,8 +1802,18 @@
                      </product_specificatie>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+                  
+                  
+                  
+                  
+                     
+                  
+                  
+                     
+                        
+                     
+                  
+                  <gebruiksinstructie>
                   <omschrijving value="gebruik volgens schema"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
@@ -1669,14 +1821,22 @@
                   <aanvullende_instructie code="1131"
                                           codeSystem="2.16.840.1.113883.2.4.4.5"
                                           displayName="gebruik volgens schema"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis--><!--geen keerdosis in input-->
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612--><!--geen frequentie in input--></toedieningsschema>
+                     <dosering>
+                        <toedieningsschema/>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+                  
+                     
+                        
+                        
+                        
+                           
+                        
+                     
+                  
+               </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="mag10"/>
                <datum nullFlavor="NI"/>
@@ -1697,7 +1857,7 @@
                   <product>
                      <product_code code="OTH"
                                    codeSystem="2.16.840.1.113883.5.1008"
-                                   displayName=""
+                                   displayName="overig"
                                    originalText="Dalterparine ing. 0,5ml=500e"/>
                      <product_specificatie>
                         <product_naam value="Dalterparine ing. 0,5ml=500e"/>
