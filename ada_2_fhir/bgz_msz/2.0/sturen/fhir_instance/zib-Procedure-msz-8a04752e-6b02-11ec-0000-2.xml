@@ -1,0 +1,82 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <id value="zib-Procedure-msz-8a04752e-6b02-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik. Categorie: <span title="chirurgische ingreep (387713003 - SNOMED CT)">chirurgische ingreep</span>, Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="externe fixatie van bot (257838009 - SNOMED CT)">externe fixatie van bot</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: 22 juni 2008</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="Links (7771000 - SNOMED CT)">Links</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>Fractuur van elleboog</td>
+               </tr>
+               <tr>
+                  <th>apparaat</th>
+                  <td>mitella voor ondersteuning van arm mitella</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="387713003"/>
+         <display value="chirurgische ingreep"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="257838009"/>
+         <display value="externe fixatie van bot"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/GHANIYA-SAIDA-G-S-N--GHAN-NOERMOHAMED-ELIK"/>
+      <display value="Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik"/>
+   </subject>
+   <performedPeriod>
+      <start value="2008-06-22"/>
+      <end value="2008-06-22"/>
+   </performedPeriod>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-msz-ebd44b0f-6b38-11ec-0000-2"/>
+      <display value="Fractuur van elleboog"/>
+   </reasonReference>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </bodySite>
+   <focalDevice>
+      <manipulated>
+         <reference value="Device/zib-MedicalDeviceProduct-msz-c6f4c86e-6ad3-11ec-0000-2"/>
+         <display value="mitella voor ondersteuning van arm mitella"/>
+      </manipulated>
+   </focalDevice>
+</Procedure>

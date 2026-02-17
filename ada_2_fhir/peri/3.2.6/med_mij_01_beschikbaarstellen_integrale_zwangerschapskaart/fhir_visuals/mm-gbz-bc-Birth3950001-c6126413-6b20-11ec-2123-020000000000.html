@@ -1,0 +1,121 @@
+<html lang="en">
+   <head>
+      <title>Procedure - c6126413-6b20-11ec-2123-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Verrichting. Subject: Kind F Frida XXX_Kwee. Categorie: <span title="obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+               <tbody>
+                  <tr>
+                     <td>
+                        <span title="geboorte (bevinding) (3950001 - SNOMED CT)">geboorte (bevinding)</span>
+                     </td>
+                     <td>
+                        <div>Uitgevoerd: ${DATE, T, D, -5}</div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Locatie</th>
+                     <td>Erasmus MC, Sophia kinderziekenhuis</td>
+                  </tr>
+                  <tr>
+                     <th>Reden</th>
+                     <td>Zwangerschap 1 XXX_Kwee_Vrouw</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Procedure geboorte (bevinding)</b>
+      </p>
+      <ul>
+         <li>
+            <a href="mm-gbz-bc-BirthObservation364336006-3391b266-6ac0-11ec-2414-020000000000.html">Observation soort partus (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-BirthObservation366344009-50592b71-6b54-11ec-2419-020000000000.html">Observation bevinding betreffende locatie van partus</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-DisorderOfLaborAndDelivery15028002-91a5b0c6-6af4-11ec-2159-020000000000.html">Condition liggingsafwijking van foetus (bevinding)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-zib-Pregnancy-PregnancyDuration57036006-33b94131-6b18-11ec-1069-020000000000.html">Observation zwangerschapsduur</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ObstetricProcedure80771000146107-7cb82506-6b38-11ec-2160-020000000000.html">Procedure primaire sectio caesarea (verrichting)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-ObstetricProcedure698350008370131001=133933007-195bcb71-6b61-11ec-2160-020000000000.html">Procedure vitamine K toediening aan neonaat</a>
+         </li>
+      </ul>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 2, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-c934f973-6b23-11ec-0000-020000000000.html" }, 
+{ id: 7, label: "Location", url: "mm-gbz-nl-core-location-location-mm-gbz-2-16-840-1-113883-2-4-6-1-06020806.html" }, 
+{ id: 51, label: "Patient XXX_Kwee", url: "mm-gbz-bc-Child-F-FRIDA-XXX-KWEE.html" }, 
+{ id: 53, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-55733513-6a97-11ec-2334-020000000000.html" }, 
+{ id: 61, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-311b9db3-6aec-11ec-2123-020000000000.html" }, 
+{ id: 62, label: "Procedure geboorte (bevinding)", url: "mm-gbz-bc-Birth3950001-c6126413-6b20-11ec-2123-020000000000.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 62, to: 61 }, 
+{ from: 62, to: 51 }, 
+{ from: 62, to: 2 }, 
+{ from: 62, to: 7 }, 
+{ from: 62, to: 53 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

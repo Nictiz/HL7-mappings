@@ -14,15 +14,8 @@
                   <td>Interpolis Zorgverzekeringen N.V.</td>
                </tr>
                <tr>
-                  <th>Contactgegevens</th>
-                  <td>
-                     <a href="tel:021-9990002">021-9990002</a> (Vast telefoonnummer Werk)<br/>
-                     <a href="mailto:info@interpolis.nl">info@interpolis.nl</a> (E-mail Werk)<br/>
-                  </td>
-               </tr>
-               <tr>
                   <th>Adres</th>
-                  <td>Spoorlaan 298, 5017JZ Tilburg, Nederland (WP)</td>
+                  <td>Weena 198, 3012NJ Rotterdam, Netherlands (the) (officieel Privé (hoofd) Bezoek)</td>
                </tr>
             </tbody>
          </table>
@@ -33,53 +26,39 @@
       <value value="3313"/>
    </identifier>
    <name value="Interpolis Zorgverzekeringen N.V."/>
-   <telecom>
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
-         <valueCodeableConcept>
-            <coding>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
-               <code value="LL"/>
-               <display value="Land Line"/>
-            </coding>
-         </valueCodeableConcept>
-      </extension>
-      <system value="phone"/>
-      <value value="021-9990002"/>
-      <use value="work"/>
-   </telecom>
-   <telecom>
-      <system value="email"/>
-      <value value="info@interpolis.nl"/>
-      <use value="work"/>
-   </telecom>
    <address>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
          <valueCodeableConcept>
             <coding>
                <system value="http://hl7.org/fhir/v3/AddressUse"/>
-               <code value="WP"/>
-               <display value="Werkadres"/>
+               <code value="HP"/>
+               <display value="Officieel adres"/>
             </coding>
          </valueCodeableConcept>
       </extension>
-      <use value="work"/>
-      <line value="Spoorlaan 298">
+      <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
+         <valueBoolean value="true"/>
+      </extension>
+      <use value="home"/>
+      <type value="physical"/>
+      <line value="Weena 198">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
-            <valueString value="Spoorlaan"/>
+            <valueString value="Weena"/>
          </extension>
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-            <valueString value="298"/>
+            <valueString value="198"/>
          </extension>
       </line>
-      <city value="Tilburg"/>
-      <postalCode value="5017JZ"/>
-      <country value="Nederland">
+      <city value="Rotterdam"/>
+      <postalCode value="3012NJ"/>
+      <country value="Netherlands (the)">
          <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
             <valueCodeableConcept>
                <coding>
                   <system value="urn:iso:std:iso:3166"/>
+                  <version value="2020-10-26T00:00:00"/>
                   <code value="NL"/>
-                  <display value="Nederland"/>
+                  <display value="Netherlands (the)"/>
                </coding>
             </valueCodeableConcept>
          </extension>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flag xmlns="http://hl7.org/fhir">
+   <id value="mci-pat05-mci-lev-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-MedicationContraIndication"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+      <valueString value="Levercirrose ontstaan na alcoholabusus. Op dit moment Child-Pugh-A score 6."/>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.16"/>
+      <value value="pat05-mci-lev-01"/>
+   </identifier>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="350241000146102"/>
+         <display value="potentiële contra-indicatie voor geneesmiddel (bevinding)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.902.40"/>
+         <code value="1352"/>
+         <display value="LEVERCIRROSE"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/patient-XXX-Gelderen"/>
+      <type value="Patient"/>
+      <display value="Patient, Floris XXX_Gelderen"/>
+   </subject>
+   <period>
+      <start value="${DATE, T, Y, -9}T14:48:03+02:00"/>
+   </period>
+   <author>
+      <reference value="PractitionerRole/pracrole-000003333"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), M. van Gasteren, MEDISCH SPECIALISTEN, GASTRO-ENTEROLOGIE (MAAG-DARM-LEVER-ARTS), Algemeen Stadsziekenhuis"/>
+   </author>
+</Flag>

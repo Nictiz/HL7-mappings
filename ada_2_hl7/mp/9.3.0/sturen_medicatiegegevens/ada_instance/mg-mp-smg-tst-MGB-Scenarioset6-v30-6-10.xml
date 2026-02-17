@@ -4,7 +4,7 @@
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
          creation-date="2024-03-19T14:13:51.15+01:00"
-         last-update-date="2024-03-19T14:13:51.15+01:00"/>
+         last-update-date="2025-03-11T13:08:32.241Z"/>
    <data>
       <sturen_medicatiegegevens app="mp-mp93"
                                 shortName="sturen_medicatiegegevens"
@@ -18,8 +18,9 @@
                                 id="mg-mp-smg-tst-MGB-Scenarioset6-v30-6-10">
          <scenario-nr value="6.10"
                       conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2.1.1"/>
-         <!--Patient found in instance with id: mg-TEST-Scenarioset6a-v30 and title: id: TEST REPO Scenarioset 6 a (Doseerschemas)-->
+         <!--Patient found in instance with id: mg-bouwstenen-patients-v30 and title: id: Bouwstenen to be reused over test en kwal instances-->
          <patient comment=""
+                  id="XXX_HEMSBERGEN_999900602"
                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1">
             <naamgegevens comment=""
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.2">
@@ -58,7 +59,7 @@
                <identificatie value="MBH_300_cyclischschema_MGB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.411"/>
-               <medicatiegebruik_datum_tijd value="T+14D{23:59:59}"
+               <medicatiegebruik_datum_tijd value="2024-01-15T23:59:59+01:00"
                                             datatype="datetime"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.400"/>
                <gebruik_indicator value="true"
@@ -67,10 +68,10 @@
                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.405"/>
                <gebruiksperiode comment=""
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.401">
-                  <start_datum_tijd value="T+0D{00:00:00}"
+                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
                                     datatype="datetime"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.402"/>
-                  <eind_datum_tijd value="T+14D{23:59:59}"
+                  <eind_datum_tijd value="2024-01-15T23:59:59+01:00"
                                    datatype="datetime"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.403"/>
                </gebruiksperiode>
@@ -82,7 +83,7 @@
                </gebruiksproduct>
                <gebruiksinstructie comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.367">
-                  <omschrijving value="Vanaf &lt;T+0D&gt;, cyclus van 28 dagen: gedurende 21 dagen 1 x per dag 1 tablet, dan 7 dagen niet, oraal"
+                  <omschrijving value="cyclus van 28 dagen: steeds gedurende 21 dagen 1 maal per dag 1 stuk, oraal"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.369"/>
                   <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
                                   code="9"
@@ -137,7 +138,7 @@
                </relatie_medicatieafspraak>
                <voorschrijver comment=""
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.363">
-                  <zorgverlener value="Peter_van_Pulver"
+                  <zorgverlener value="PETER_VAN_PULVER"
                                 datatype="reference"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.364"/>
                </voorschrijver>
@@ -150,7 +151,7 @@
                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.623">
                   <auteur_is_zorgverlener comment=""
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.627">
-                     <zorgverlener value="Peter_van_Pulver"
+                     <zorgverlener value="PETER_VAN_PULVER"
                                    datatype="reference"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.628"/>
                   </auteur_is_zorgverlener>
@@ -173,7 +174,7 @@
                              displayName="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
-            <zorgverlener id="Peter_van_Pulver"
+            <zorgverlener id="PETER_VAN_PULVER"
                           comment=""
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.92">
                <zorgverlener_identificatienummer value="000001111"
@@ -191,21 +192,20 @@
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.140"/>
                   </geslachtsnaam>
                </naamgegevens>
-               <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.145"
-                            value="2"
-                            code="0100"
+               <specialisme code="0100"
                             codeSystem="2.16.840.1.113883.2.4.6.7"
                             codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
                             codeSystemVersion="2020-10-23T00:00:00"
-                            displayName="Huisartsen, niet nader gespecificeerd"/>
+                            displayName="Huisartsen, niet nader gespecificeerd"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.145"/>
                <zorgaanbieder comment=""
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.168">
                   <zorgaanbieder datatype="reference"
-                                 value="Huisartsenpraktijk_Pulver_en_Partners"
+                                 value="HUISARTSENPRAKTIJK_PULVER_EN_PARTNERS"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.846"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="Huisartsenpraktijk_Pulver_en_Partners"
+            <zorgaanbieder id="HUISARTSENPRAKTIJK_PULVER_EN_PARTNERS"
                            comment=""
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202">
                <zorgaanbieder_identificatienummer value="00001111"

@@ -1,0 +1,46 @@
+<Patient xmlns="http://hl7.org/fhir">
+   <id value="AST"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/BgZ-Patient"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>Id 999906276 (BSN), Ast, Vrouw, 6 augustus 1985</div>
+         <div>Contactpersoon: Jansen</div>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+      <value value="999906276"/>
+   </identifier>
+   <name>
+      <family value="Ast">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="Ast"/>
+         </extension>
+      </family>
+   </name>
+   <gender value="female">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+               <code value="F"/>
+               <display value="Vrouw"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </gender>
+   <birthDate value="1985-08-06"/>
+   <contact>
+      <name>
+         <family value="Jansen">
+            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+               <valueString value="Jansen"/>
+            </extension>
+         </family>
+      </name>
+   </contact>
+</Patient>

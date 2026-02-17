@@ -37,9 +37,9 @@
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 1 jan 2023, gedurende 28 dagen, 1 stuk 's ochtends, Oraal</text>
+         <text mediaType="text/plain">1 stuk 's ochtends, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20230101000000"/>
+            <low value="20240101000000+0100"/>
             <width value="28"
                    unit="d"/>
          </effectiveTime>
@@ -69,13 +69,20 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20230101101500"/>
+            <time value="20240101101500+0100"/>
             <assignedAuthor>
                <id nullFlavor="NI"/>
                <representedOrganization>
                   <id extension="01236578"
                       root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek De Gulle Gaper</name>
+                  <addr use="WP">
+                     <streetName>Dorpsstraat</streetName>
+                     <houseNumber>12</houseNumber>
+                     <buildingNumberSuffix>A</buildingNumberSuffix>
+                     <postalCode>1234 AA</postalCode>
+                     <city>Ons Dorp</city>
+                  </addr>
                </representedOrganization>
             </assignedAuthor>
          </author>
@@ -149,7 +156,7 @@
                code="373784005"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <effectiveTime value="20230101100500"/>
+         <effectiveTime value="20240101100500+0100"/>
          <quantity value="28"
                    unit="1">
             <translation value="28"
@@ -186,9 +193,25 @@
                   <id extension="01236578"
                       root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek De Gulle Gaper</name>
+                  <addr use="WP">
+                     <streetName>Dorpsstraat</streetName>
+                     <houseNumber>12</houseNumber>
+                     <buildingNumberSuffix>A</buildingNumberSuffix>
+                     <postalCode>1234 AA</postalCode>
+                     <city>Ons Dorp</city>
+                  </addr>
                </representedOrganization>
             </assignedEntity>
          </performer>
+         <entryRelationship typeCode="COMP">
+            <act classCode="ACT"
+                 moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9097"/>
+               <code code="1"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8"
+                     displayName="GDS"/>
+            </act>
+         </entryRelationship>
          <entryRelationship typeCode="REFR">
             <supply classCode="SPLY"
                     moodCode="RQO">

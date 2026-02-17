@@ -11,9 +11,11 @@
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.FinancialIndicationCode">
       <valueCodeableConcept>
-         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-            <valueCode value="OTH"/>
-         </extension>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+            <code value="OTH"/>
+            <display value="overig"/>
+         </coding>
          <text value="B2"/>
       </valueCodeableConcept>
    </extension>
@@ -33,7 +35,7 @@
    <medicationReference>
       <reference value="Medication/mp-PhPrd-mp9-216840111388324410-353"/>
       <type value="Medication"/>
-      <display value="OXAZEPAM 10MG TABLET"/>
+      <display value="OXAZEPAM TABLET 10MG"/>
    </medicationReference>
    <subject>
       <reference value="Patient/nl-core-Patient-mp9-M-vandeXXX-Tewarie"/>

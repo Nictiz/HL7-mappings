@@ -1,0 +1,127 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-kwa-casus4 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/postnatale_fase/kraamweek/kind/controles_kind/uitscheiding/feces_observatie (peri32-dataelement-9937) -->
+   <id value="16f64220-6aef-11ec-2993-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ExcretionFeces"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Kind Mieke XXX_Yzendoorn. Status: definitief<span style="display: block;">Uitvoerende: Gemma XXX_Groeneboom XXX_Gras || Verloskundige || Verloskundigenpraktijk 't Groen</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>controles moeder T-320D Vrouw-XXX_Yzendoorn</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -320}</td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="observeren (kwalificatiewaarde) (129268004 - SNOMED CT)">observeren (kwalificatiewaarde)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="bevinding betreffende evaluatie van feces (bevinding) (249612005 - SNOMED CT)">bevinding betreffende evaluatie van feces (bevinding)</span>
+                  </td>
+                  <td/>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="observatie betreffende feces (waarneembare entiteit) (364689004 - SNOMED CT)">observatie betreffende feces (waarneembare entiteit)</span>
+                  </td>
+                  <td>
+                     <span title="borstvoedingsfeces (bevinding) (249621006 - SNOMED CT)">borstvoedingsfeces (bevinding)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="aantal poepluiers (waarneembare entiteit) (160281000146105 - SNOMED CT)">aantal poepluiers (waarneembare entiteit)</span>
+                  </td>
+                  <td>6 52065008 luier (fysiek object)</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <!-- adaChild -->
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="16f64220-6aef-11ec-2993-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="249612005"/>
+         <display value="bevinding betreffende evaluatie van feces (bevinding)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/MIEKE-XXX-YZENDOORN"/>
+      <display value="Kind Mieke XXX_Yzendoorn"/>
+   </subject>
+   <context>
+      <reference value="Encounter/d552483f-6b0c-11ec-1275-020000000000"/>
+      <display value="controles moeder T-320D Vrouw-XXX_Yzendoorn"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -320}"/>
+   <performer>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/practitionerrole-mm-gbz-12340001103-00008001234"/>
+            <display value="Gemma XXX_Groeneboom XXX_Gras || Verloskundige || Verloskundigenpraktijk 't Groen"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-123400011"/>
+      <display value="Gemma XXX_Groeneboom XXX_Gras"/>
+   </performer>
+   <method>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="129268004"/>
+         <display value="observeren (kwalificatiewaarde)"/>
+      </coding>
+   </method>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="364689004"/>
+            <display value="observatie betreffende feces (waarneembare entiteit)"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="249621006"/>
+            <display value="borstvoedingsfeces (bevinding)"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="160281000146105"/>
+            <display value="aantal poepluiers (waarneembare entiteit)"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="6"/>
+         <unit value="52065008 luier (fysiek object)"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="{52065008 luier (fysiek object)}"/>
+      </valueQuantity>
+   </component>
+</Observation>

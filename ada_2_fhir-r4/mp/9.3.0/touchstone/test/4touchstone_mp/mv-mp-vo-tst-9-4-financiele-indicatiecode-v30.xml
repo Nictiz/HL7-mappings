@@ -5,7 +5,7 @@
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:4259419b-6ae9-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:316b9f5d-6b32-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -19,7 +19,7 @@
                <valueDateTime value="${DATE, T, D, +0}T11:35:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T, tot en met T + 13 dagen, 4 maal per dag 1 stuk, oraal"/>
+               <valueString value="4 maal per dag 1 stuk, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -49,7 +49,7 @@
             <medicationReference>
                <reference value="urn:uuid:f516151d-6aaf-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="OXAZEPAM 10MG TABLET"/>
+               <display value="OXAZEPAM TABLET 10MG"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:eb74c70e-6ab7-11ec-0000-020000000000"/>
@@ -57,7 +57,7 @@
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:fbd0582e-6b5a-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:e074c824-6b2d-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -101,7 +101,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f79d80a1-6aa5-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:97a34689-6ab2-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -119,9 +119,11 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.FinancialIndicationCode">
                <valueCodeableConcept>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-                     <valueCode value="OTH"/>
-                  </extension>
+                  <coding>
+                     <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+                     <code value="OTH"/>
+                     <display value="overig"/>
+                  </coding>
                   <text value="B2"/>
                </valueCodeableConcept>
             </extension>
@@ -141,7 +143,7 @@
             <medicationReference>
                <reference value="urn:uuid:f516151d-6aaf-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="OXAZEPAM 10MG TABLET"/>
+               <display value="OXAZEPAM TABLET 10MG"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:eb74c70e-6ab7-11ec-0000-020000000000"/>
@@ -150,7 +152,7 @@
             </subject>
             <authoredOn value="${DATE, T, D, +0}T11:35:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:fbd0582e-6b5a-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:e074c824-6b2d-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -238,14 +240,14 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fbd0582e-6b5a-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:e074c824-6b2d-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:bb0c0824-6b30-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:4f63c558-6b65-11ec-0000-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
@@ -275,7 +277,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bb0c0824-6b30-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:4f63c558-6b65-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -410,15 +412,15 @@
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
                   <code value="353"/>
-                  <display value="OXAZEPAM 10MG TABLET"/>
+                  <display value="OXAZEPAM TABLET 10MG"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
                   <code value="1023"/>
-                  <display value="OXAZEPAM TABLET  10MG"/>
+                  <display value="OXAZEPAM TABLET 10MG"/>
                </coding>
-               <text value="OXAZEPAM 10MG TABLET"/>
+               <text value="OXAZEPAM TABLET 10MG"/>
             </code>
          </Medication>
       </resource>

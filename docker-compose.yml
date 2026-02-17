@@ -1,0 +1,13 @@
+services:
+  nictiz-r4-qa:
+    image: ghcr.io/nictiz/nictiz-tooling-r4-qa:6.4.0
+    container_name: nictiz-r4-qa-HL7-mappings
+    volumes:
+      - type: bind
+        source: .
+        target: /repo
+        read_only: true
+    environment:
+      - MENU_PORT=9000
+    ports:
+      - 9000:9000

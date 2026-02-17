@@ -1,0 +1,69 @@
+<Coverage xmlns="http://hl7.org/fhir">
+   <id value="zib-Payer-bgz-msz-patC-payer1-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Payer"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verzekering/garantstelling. Id: bgz-msz-patC-payer (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6)</caption>
+            <tbody>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <span title="Basis (B - 2.16.840.1.113883.2.4.3.11.60.101.5.1)">Basis</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td> tot ${DATE, T, D, +183}</td>
+               </tr>
+               <tr>
+                  <th>abonnee</th>
+                  <td>de Boer</td>
+               </tr>
+               <tr>
+                  <th>Verzekerdenummer</th>
+                  <td>999999999001</td>
+               </tr>
+               <tr>
+                  <th>Betaler</th>
+                  <td>Organisatie informatie: T+183D - 1 - B - 2.16.840.1.113883.2.4.3.11.60.101.5.1 - 1906 - 2.16.840.1.113883.2.4.6.4 - 999999999001</td>
+               </tr>
+               <tr>
+                  <th>begunstigde</th>
+                  <td>de Boer</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patC-payer"/>
+   </identifier>
+   <type>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.101.5.1"/>
+         <code value="B"/>
+         <display value="Basis"/>
+      </coding>
+   </type>
+   <subscriber>
+      <reference value="Patient/DE-BOER"/>
+      <display value="de Boer"/>
+   </subscriber>
+   <subscriberId value="999999999001"/>
+   <beneficiary>
+      <reference value="Patient/DE-BOER"/>
+      <display value="de Boer"/>
+   </beneficiary>
+   <period>
+      <end value="${DATE, T, D, +183}"/>
+   </period>
+   <payor>
+      <reference value="Organization/nl-core-organization-bgz-msz-2-16-840-1-113883-2-4-6-4-1906"/>
+      <display value="Organisatie informatie: T+183D - 1 - B - 2.16.840.1.113883.2.4.3.11.60.101.5.1 - 1906 - 2.16.840.1.113883.2.4.6.4 - 999999999001"/>
+   </payor>
+</Coverage>

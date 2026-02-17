@@ -1,0 +1,108 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="b-LaboratoryTestResult-Observation-msz-2c086652-6aa7-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Olivia Madelief O.M.W. Olijf de Wilson Çelik. Categorie: <span title="Laboratory (laboratory - observation-category)">Laboratory</span>, Status: voorlopig</caption>
+            <tbody>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td colspan="3">10:30:00, 22 februari 2008</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+                  <th>Interpretatie</th>
+                  <th>Referentiewaarden</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Hematocriet [volumefractie] in bloed d.m.v. geautomatiseerde telling (4544-3 - LOINC)">Hematocriet [volumefractie] in bloed d.m.v. geautomatiseerde telling</span>
+                  </td>
+                  <td>0.42 L/L</td>
+                  <td>
+                     <span title="Intermediate (I - v2/0078)">Intermediate</span>
+                  </td>
+                  <td>
+                     <div>
+                        <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span> 0.41 L/L - 0.50 L/L</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <status value="preliminary">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
+               <code value="preliminary"/>
+               <display value="Voorlopig"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </status>
+   <category>
+      <coding>
+         <system value="http://hl7.org/fhir/observation-category"/>
+         <code value="laboratory"/>
+         <display value="Laboratory"/>
+      </coding>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="49581000146104"/>
+         <display value="bevinding betreffende laboratoriumonderzoek"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="4544-3"/>
+         <display value="Hematocriet [volumefractie] in bloed d.m.v. geautomatiseerde telling"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/OLIVIA-MADELIEF-O-M-W--OLIJF-DE-WILSON-ELIK"/>
+      <display value="Olivia Madelief O.M.W. Olijf de Wilson Çelik"/>
+   </subject>
+   <effectiveDateTime value="2008-02-22T10:30:00+01:00"/>
+   <valueQuantity>
+      <value value="0.42"/>
+      <unit value="L/L"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="L/L"/>
+   </valueQuantity>
+   <interpretation>
+      <coding>
+         <system value="http://hl7.org/fhir/v2/0078"/>
+         <code value="I"/>
+         <display value="Intermediate"/>
+      </coding>
+   </interpretation>
+   <referenceRange>
+      <low>
+         <value value="0.41"/>
+         <unit value="L/L"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="L/L"/>
+      </low>
+      <high>
+         <value value="0.50"/>
+         <unit value="L/L"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="L/L"/>
+      </high>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/referencerange-meaning"/>
+            <code value="normal"/>
+            <display value="Normal Range"/>
+         </coding>
+      </type>
+   </referenceRange>
+</Observation>

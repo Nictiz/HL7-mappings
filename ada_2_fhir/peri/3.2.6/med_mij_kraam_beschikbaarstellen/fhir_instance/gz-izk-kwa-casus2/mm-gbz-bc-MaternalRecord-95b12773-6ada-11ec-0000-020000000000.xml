@@ -1,0 +1,58 @@
+<EpisodeOfCare xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izk-kwa-casus2 -->
+   <id value="95b12773-6ada-11ec-0000-020000000000"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-episodeofcare"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MaternalRecord"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgepisode. Patiënt: Linda L XXX_Hollanders. Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <span title="observatie betreffende zwangerschap (waarneembare entiteit) (364320009 - SNOMED CT)">observatie betreffende zwangerschap (waarneembare entiteit)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>${DATE, T, D, -346} - ${DATE, T, D, -101}</td>
+               </tr>
+               <tr>
+                  <th>Diagnose</th>
+                  <td>Zwangerschap 2 XXX_Hollanders_Vrouw</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="95b12773-6ada-11ec-0000-020000000000"/>
+   </identifier>
+   <status value="finished"/>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="364320009"/>
+         <display value="observatie betreffende zwangerschap (waarneembare entiteit)"/>
+      </coding>
+   </type>
+   <diagnosis>
+      <condition>
+         <reference value="Condition/1263f55d-6b51-11ec-2334-020000000000"/>
+         <display value="Zwangerschap 2 XXX_Hollanders_Vrouw"/>
+      </condition>
+   </diagnosis>
+   <patient>
+      <reference value="Patient/LINDA-L-XXX-HOLLANDERS"/>
+      <display value="Linda L XXX_Hollanders"/>
+   </patient>
+   <period>
+      <start value="${DATE, T, D, -346}"/>
+      <end value="${DATE, T, D, -101}"/>
+   </period>
+</EpisodeOfCare>

@@ -1,0 +1,120 @@
+<html lang="en">
+   <head>
+      <title>Procedure - 765d253f-6ac5-11ec-2123-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Verrichting. Subject: Kim K XXX_Zhanganak XXX_Visser. Categorie: <span title="obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+               <tbody>
+                  <tr>
+                     <td>
+                        <span title="verlossing (verrichting) (236973005 - SNOMED CT)">verlossing (verrichting)</span>
+                     </td>
+                     <td/>
+                  </tr>
+                  <tr>
+                     <th>Reden</th>
+                     <td>Zwangerschap 1 XXX_Zhanganak_Vrouw</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Procedure verlossing (verrichting)</b>
+      </p>
+      <ul>
+         <li>
+            <a href="mm-gbz-bc-DeliveryObservation160621000146107-3fd6453f-6b08-11ec-2408-020000000000.html">Observation datum van begin van eerste fase van partus (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-DeliveryObservation160611000146102-52d3ab9a-6b77-11ec-2409-020000000000.html">Observation manier waarop eerste fase van partus is begonnen (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-DeliveryObservation289251005-a230453f-6b0a-11ec-2410-020000000000.html">Observation tijdstip waarop gebroken vliezen zijn geconstateerd (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-DeliveryObservation168089007-e00632ff-6ada-11ec-2412-020000000000.html">Observation aspect van vruchtwater (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-DeliveryObservation236994008-8b77d2cd-6b6c-11ec-2421-020000000000.html">Observation geboorte van placenta (verrichting)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-DeliveryObservation136311000146100-28a81d0f-6aba-11ec-2423-020000000000.html">Observation datum en tijd van geboorte van placenta (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-DeliveryObservation364343000-0b4c0093-6ac2-11ec-2424-020000000000.html">Observation compleetheid van placenta (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-DeliveryObservation364332008-93918c8e-6b62-11ec-2396-020000000000.html">Observation bloedverlies durante partu (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-Birth3950001-e7a46a7e-6b19-11ec-2123-020000000000.html">Procedure geboorte (bevinding)</a>
+         </li>
+      </ul>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 2, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-f720ebe3-6b47-11ec-0000-020000000000.html" }, 
+{ id: 58, label: "Patient XXX_Zhanganak-XXX_Visser", url: "mm-gbz-bc-Woman-KIM-K-XXX-ZHANGANAK-XXX-VISSER.html" }, 
+{ id: 60, label: "Condition bevinding betreffende zwangerschap (bevinding)", url: "mm-gbz-zib-Pregnancy118185001-80338356-6b6f-11ec-2334-020000000000.html" }, 
+{ id: 62, label: "Procedure verlossing (verrichting)", url: "mm-gbz-bc-DeliveryProcedure236973005-765d253f-6ac5-11ec-2123-020000000000.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 62, to: 58 }, 
+{ from: 62, to: 2 }, 
+{ from: 62, to: 60 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="dc84482b-4807-11ef-4146-020000000000"/>
+   <id value="5b9536a1-a281-11ef-1953-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:dc844974-4807-11ef-4146-020000000000"/>
+      <fullUrl value="urn:uuid:5b9537ea-a281-11ef-1953-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -18,9 +18,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2023-01-01T18:12:00+01:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="wordt automatisch gegenereerd"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 1 jan 2023, tot en met 1 jan 2023, 3 maal per dag 1 stuk, Oraal, onderbroken"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="2023-01-01T00:00:00+01:00"/>
@@ -56,17 +57,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:dc844992-4807-11ef-4146-020000000000"/>
+               <reference value="urn:uuid:5b953808-a281-11ef-1953-020000000000"/>
                <type value="Medication"/>
                <display value="FENETICILLINE CAPSULE 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dc8448a2-4807-11ef-4146-020000000000"/>
+               <reference value="urn:uuid:5b953718-a281-11ef-1953-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:dc8448ca-4807-11ef-4146-020000000000"/>
+               <reference value="urn:uuid:5b953740-a281-11ef-1953-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -125,7 +126,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc8448a2-4807-11ef-4146-020000000000"/>
+      <fullUrl value="urn:uuid:5b953718-a281-11ef-1953-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -175,19 +176,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc8448ca-4807-11ef-4146-020000000000"/>
+      <fullUrl value="urn:uuid:5b953740-a281-11ef-1953-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:dc8448f2-4807-11ef-4146-020000000000"/>
+               <reference value="urn:uuid:5b953768-a281-11ef-1953-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:dc844938-4807-11ef-4146-020000000000"/>
+               <reference value="urn:uuid:5b9537ae-a281-11ef-1953-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -212,7 +213,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc8448f2-4807-11ef-4146-020000000000"/>
+      <fullUrl value="urn:uuid:5b953768-a281-11ef-1953-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -252,7 +253,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc844938-4807-11ef-4146-020000000000"/>
+      <fullUrl value="urn:uuid:5b9537ae-a281-11ef-1953-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -293,7 +294,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc844992-4807-11ef-4146-020000000000"/>
+      <fullUrl value="urn:uuid:5b953808-a281-11ef-1953-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -309,7 +310,7 @@
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
                   <code value="41092"/>
-                  <display value="FENETICILLINE 500MG CAPSULE"/>
+                  <display value="FENETICILLINE CAPSULE 500MG"/>
                </coding>
                <text value="FENETICILLINE CAPSULE 500MG"/>
             </code>

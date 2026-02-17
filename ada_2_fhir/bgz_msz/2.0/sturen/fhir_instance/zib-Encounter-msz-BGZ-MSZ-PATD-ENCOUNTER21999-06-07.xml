@@ -1,0 +1,80 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <id value="zib-Encounter-msz-BGZ-MSZ-PATD-ENCOUNTER21999-06-07"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik. Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div>
+                        <span title="Anders (OTH - v3/NullFlavor)">Anders</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>7 juni 1999</td>
+               </tr>
+               <tr>
+                  <th>Probleem/Verrichting</th>
+                  <td>kortademigheid bij milde inspanning</td>
+               </tr>
+               <tr>
+                  <th>Participant</th>
+                  <td>
+                     <div>Hip Plato Orpheus H.P.O Crates van Kos || Huisarts || Centrum Kos de rechte rug</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <status value="finished"/>
+   <class>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+               <code value="OTH"/>
+               <display value="Anders"/>
+            </coding>
+            <text value="Huisarts"/>
+         </valueCodeableConcept>
+      </extension>
+      <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+      <code value="OTH"/>
+      <display value="Anders"/>
+   </class>
+   <subject>
+      <reference value="Patient/GHANIYA-SAIDA-G-S-N--GHAN-NOERMOHAMED-ELIK"/>
+      <display value="Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik"/>
+   </subject>
+   <participant>
+      <individual>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-msz-1000001001-01520000010"/>
+               <display value="Hip Plato Orpheus H.P.O Crates van Kos || Huisarts || Centrum Kos de rechte rug"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-10000010"/>
+         <display value="Hip Plato Orpheus H.P.O Crates van Kos"/>
+      </individual>
+   </participant>
+   <period>
+      <start value="1999-06-07"/>
+      <end value="1999-06-07"/>
+   </period>
+   <diagnosis>
+      <condition>
+         <reference value="Condition/zib-Problem-msz-243db94d-6b63-11ec-0000-2"/>
+         <display value="kortademigheid bij milde inspanning"/>
+      </condition>
+   </diagnosis>
+</Encounter>

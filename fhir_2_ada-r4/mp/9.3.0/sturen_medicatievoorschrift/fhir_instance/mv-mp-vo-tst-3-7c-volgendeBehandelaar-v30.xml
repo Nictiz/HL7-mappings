@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="dc8cfc4b-4807-11ef-3894-020000000000"/>
+   <id value="5b9a0f41-a281-11ef-1741-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:dc8cfea2-4807-11ef-3894-020000000000"/>
+      <fullUrl value="urn:uuid:5b9a1198-a281-11ef-1741-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -18,9 +18,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2023-01-01T13:00:00+01:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="wordt automatisch gegenereerd"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 5 jan 2023, tot en met 21 feb 2023, 1 maal per dag 1 stuk, Oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="2023-01-05T00:00:00+01:00"/>
@@ -35,7 +36,7 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.NextPractitioner">
                <valueReference>
-                  <reference value="urn:uuid:dc8cfd44-4807-11ef-3894-020000000000"/>
+                  <reference value="urn:uuid:5b9a103a-a281-11ef-1741-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
@@ -54,17 +55,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:dc8cfede-4807-11ef-3894-020000000000"/>
+               <reference value="urn:uuid:5b9a11d4-a281-11ef-1741-020000000000"/>
                <type value="Medication"/>
                <display value="APIXABAN TABLET 5MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dc8cfcc2-4807-11ef-3894-020000000000"/>
+               <reference value="urn:uuid:5b9a0fb8-a281-11ef-1741-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:dc8cfcea-4807-11ef-3894-020000000000"/>
+               <reference value="urn:uuid:5b9a0fe0-a281-11ef-1741-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Jan van Harten, Medisch specialisten, chirurgie, Ziekenhuis het Gele Hart"/>
             </requester>
@@ -123,7 +124,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc8cfec0-4807-11ef-3894-020000000000"/>
+      <fullUrl value="urn:uuid:5b9a11b6-a281-11ef-1741-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -153,23 +154,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:dc8cfede-4807-11ef-3894-020000000000"/>
+               <reference value="urn:uuid:5b9a11d4-a281-11ef-1741-020000000000"/>
                <type value="Medication"/>
                <display value="APIXABAN TABLET 5MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dc8cfcc2-4807-11ef-3894-020000000000"/>
+               <reference value="urn:uuid:5b9a0fb8-a281-11ef-1741-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <authoredOn value="2023-01-01T13:00:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:dc8cfcea-4807-11ef-3894-020000000000"/>
+               <reference value="urn:uuid:5b9a0fe0-a281-11ef-1741-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Jan van Harten, Medisch specialisten, chirurgie, Ziekenhuis het Gele Hart"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:dc8cfe66-4807-11ef-3894-020000000000"/>
+               <reference value="urn:uuid:5b9a115c-a281-11ef-1741-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -205,7 +206,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc8cfcc2-4807-11ef-3894-020000000000"/>
+      <fullUrl value="urn:uuid:5b9a0fb8-a281-11ef-1741-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -255,19 +256,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc8cfcea-4807-11ef-3894-020000000000"/>
+      <fullUrl value="urn:uuid:5b9a0fe0-a281-11ef-1741-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:dc8cfd12-4807-11ef-3894-020000000000"/>
+               <reference value="urn:uuid:5b9a1008-a281-11ef-1741-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Jan van Harten"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:dc8cfdb2-4807-11ef-3894-020000000000"/>
+               <reference value="urn:uuid:5b9a10a8-a281-11ef-1741-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Ziekenhuis het Gele Hart"/>
             </organization>
@@ -292,7 +293,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc8cfd12-4807-11ef-3894-020000000000"/>
+      <fullUrl value="urn:uuid:5b9a1008-a281-11ef-1741-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -332,19 +333,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc8cfd44-4807-11ef-3894-020000000000"/>
+      <fullUrl value="urn:uuid:5b9a103a-a281-11ef-1741-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:dc8cfd6c-4807-11ef-3894-020000000000"/>
+               <reference value="urn:uuid:5b9a1062-a281-11ef-1741-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:dc8cfe0c-4807-11ef-3894-020000000000"/>
+               <reference value="urn:uuid:5b9a1102-a281-11ef-1741-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -364,7 +365,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc8cfd6c-4807-11ef-3894-020000000000"/>
+      <fullUrl value="urn:uuid:5b9a1062-a281-11ef-1741-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -399,7 +400,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc8cfdb2-4807-11ef-3894-020000000000"/>
+      <fullUrl value="urn:uuid:5b9a10a8-a281-11ef-1741-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -447,7 +448,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc8cfe0c-4807-11ef-3894-020000000000"/>
+      <fullUrl value="urn:uuid:5b9a1102-a281-11ef-1741-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -488,7 +489,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc8cfe66-4807-11ef-3894-020000000000"/>
+      <fullUrl value="urn:uuid:5b9a115c-a281-11ef-1741-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -532,7 +533,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc8cfede-4807-11ef-3894-020000000000"/>
+      <fullUrl value="urn:uuid:5b9a11d4-a281-11ef-1741-020000000000"/>
       <resource>
          <Medication>
             <meta>

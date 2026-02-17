@@ -1,0 +1,73 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izb-kwa-3B-V2_meerling_2elijn /adaxml/data/med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/bevalling/uitdrijvingsfase (peri32-dataelement-39) -->
+   <id value="e235ae73-6b13-11ec-2123-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Birth"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Kind Louis XXX_Kwee. Categorie: <span title="obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="geboorte (bevinding) (3950001 - SNOMED CT)">geboorte (bevinding)</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: ${DATE, T, D, -5}</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Locatie</th>
+                  <td>Erasmus MC, Sophia kinderziekenhuis</td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>Zwangerschap 1 XXX_Kwee_Vrouw</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="e235ae73-6b13-11ec-2123-020000000000"/>
+   </identifier>
+   <partOf>
+      <reference value="Procedure/311b9db3-6aec-11ec-2123-020000000000"/>
+      <display value="bevalling zwangerschap 1 XXX_Kwee_Vrouw"/>
+   </partOf>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="386637004"/>
+         <display value="obstetrische verrichting (verrichting)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="3950001"/>
+         <display value="geboorte (bevinding)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/LOUIS-XXX-KWEE"/>
+      <display value="Kind Louis XXX_Kwee"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/c934f973-6b23-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Kwee_Vrouw"/>
+   </context>
+   <performedDateTime value="${DATE, T, D, -5}"/>
+   <location>
+      <reference value="Location/location-mm-gbz-2-16-840-1-113883-2-4-6-1-06020806"/>
+      <display value="Erasmus MC, Sophia kinderziekenhuis"/>
+   </location>
+   <reasonReference>
+      <reference value="Condition/55733513-6a97-11ec-2334-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Kwee_Vrouw"/>
+   </reasonReference>
+</Procedure>

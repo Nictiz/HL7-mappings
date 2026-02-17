@@ -1,0 +1,124 @@
+<subject xmlns="urn:hl7-org:v3">
+   <MedicationDispenseList>
+      <code code="MEDLIST"
+            codeSystem="2.16.840.1.113883.5.4"/>
+      <subject>
+         <Patient>
+            <id extension="999909010"
+                root="2.16.840.1.113883.2.4.6.3"/>
+            <statusCode code="active"/>
+            <Person>
+               <name>
+                  <given qualifier="IN">E.</given>
+                  <family qualifier="BR">XXX_Stenger van Buysen</family>
+               </name>
+               <administrativeGenderCode code="M"
+                                         codeSystem="2.16.840.1.113883.5.1"
+                                         displayName="Man"/>
+               <birthTime value="19630918"/>
+            </Person>
+         </Patient>
+      </subject>
+      <component>
+         <medicationDispenseEvent>
+            <id extension="MBH_hyb612_TA_MVE_BTD_meerdaagsschema_MVE"
+                root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+            <statusCode code="completed"/>
+            <effectiveTime value="20240101100000+0100"/>
+            <quantity value="6"
+                      unit="1">
+               <translation value="6"
+                            code="245"
+                            displayName="stuks"
+                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                            codeSystemName="G-Standaard thesaurus basiseenheden"/>
+            </quantity>
+            <performer>
+               <assignedPerson>
+                  <id nullFlavor="MSK"/>
+               </assignedPerson>
+            </performer>
+            <product>
+               <dispensedMedication>
+                  <MedicationKind classCode="MMAT"
+                                  determinerCode="KIND">
+                     <code code="1421778"
+                           codeSystem="2.16.840.1.113883.2.4.4.7"
+                           displayName="METHOTREXAAT PCH TABLET 2,5MG"
+                           codeSystemName="G-Standaard HPK">
+                        <translation code="141631"
+                                     codeSystem="2.16.840.1.113883.2.4.4.10"
+                                     displayName="Methotrexaat tablet 2,5mg"
+                                     codeSystemName="G-Standaard PRK"/>
+                        <translation code="16918"
+                                     codeSystem="2.16.840.1.113883.2.4.4.1"
+                                     displayName="Methotrexaat tablet 2,5mg"
+                                     codeSystemName="G-Standaard GPK"/>
+                     </code>
+                  </MedicationKind>
+                  <directTargetOf typeCode="DIR">
+                     <prescription>
+                        <id extension="MBH_hyb_vo_meerdaagsschema_MA"
+                            root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                        <statusCode nullFlavor="UNK"/>
+                     </prescription>
+                  </directTargetOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM"
+                                                      moodCode="RQO">
+                        <text mediaType="text/plain">1 maal per 3 dagen 2 stuks, Oraal</text>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS"
+                                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20240101000000.000+0100"/>
+                              <high value="20240109235959.000+0100"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS"
+                                 operator="A">
+                              <period value="3"
+                                      unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="9"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="Oraal"
+                                   codeSystemName="G-Standaard Toedieningswegen"/>
+                        <doseQuantity>
+                           <center value="2"
+                                   unit="1">
+                              <translation value="2"
+                                           code="245"
+                                           displayName="stuks"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                           </center>
+                        </doseQuantity>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+               </dispensedMedication>
+            </product>
+            <responsibleParty>
+               <assignedCareProvider>
+                  <id nullFlavor="NI"/>
+                  <code code="17.000"
+                        codeSystem="2.16.840.1.113883.2.4.15.111"
+                        displayName="Apotheker"/>
+                  <representedOrganization>
+                     <id extension="01236578"
+                         root="2.16.528.1.1007.3.3"/>
+                     <name>Apotheek De Gulle Gaper</name>
+                     <addr use="WP">
+                        <streetName>Dorpsstraat</streetName>
+                        <houseNumber>12</houseNumber>
+                        <buildingNumberSuffix>A</buildingNumberSuffix>
+                        <postalCode>1234 AA</postalCode>
+                        <city>Ons Dorp</city>
+                     </addr>
+                  </representedOrganization>
+               </assignedCareProvider>
+            </responsibleParty>
+         </medicationDispenseEvent>
+      </component>
+   </MedicationDispenseList>
+</subject>

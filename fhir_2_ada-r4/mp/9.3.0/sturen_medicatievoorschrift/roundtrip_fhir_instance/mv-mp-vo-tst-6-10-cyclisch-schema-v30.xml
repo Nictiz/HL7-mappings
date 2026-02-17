@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="848ba8e3-4835-11ef-4867-020000000000"/>
+   <id value="9bc42c37-a281-11ef-1023-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:848baa86-4835-11ef-4867-020000000000"/>
+      <fullUrl value="urn:uuid:9bc42dda-a281-11ef-1023-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -18,9 +18,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2023-01-01T08:33:00+01:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf &lt;T+0D&gt;, cyclus van 28 dagen: gedurende 21 dagen 1 x per dag 1 tablet, dan 7 dagen niet, oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 1 jan 2023, cyclus van 28 dagen: steeds gedurende 21 dagen 1 maal per dag 1 stuk, oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="2023-01-01T00:00:00+01:00"/>
@@ -54,17 +55,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:848baac2-4835-11ef-4867-020000000000"/>
+               <reference value="urn:uuid:9bc42e16-a281-11ef-1023-020000000000"/>
                <type value="Medication"/>
                <display value="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:848ba95a-4835-11ef-4867-020000000000"/>
+               <reference value="urn:uuid:9bc42cae-a281-11ef-1023-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:848ba982-4835-11ef-4867-020000000000"/>
+               <reference value="urn:uuid:9bc42cd6-a281-11ef-1023-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -114,7 +115,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:848baaa4-4835-11ef-4867-020000000000"/>
+      <fullUrl value="urn:uuid:9bc42df8-a281-11ef-1023-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -144,25 +145,25 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:848baac2-4835-11ef-4867-020000000000"/>
+               <reference value="urn:uuid:9bc42e16-a281-11ef-1023-020000000000"/>
                <type value="Medication"/>
                <display value="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:848ba95a-4835-11ef-4867-020000000000"/>
+               <reference value="urn:uuid:9bc42cae-a281-11ef-1023-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <authoredOn value="2023-01-01T08:33:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:848ba982-4835-11ef-4867-020000000000"/>
+               <reference value="urn:uuid:9bc42cd6-a281-11ef-1023-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:848baa4a-4835-11ef-4867-020000000000"/>
+               <reference value="urn:uuid:9bc42d9e-a281-11ef-1023-020000000000"/>
                <type value="Organization"/>
-               <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
+               <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
             <basedOn>
                <type value="MedicationRequest"/>
@@ -196,7 +197,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:848ba95a-4835-11ef-4867-020000000000"/>
+      <fullUrl value="urn:uuid:9bc42cae-a281-11ef-1023-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -243,19 +244,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:848ba982-4835-11ef-4867-020000000000"/>
+      <fullUrl value="urn:uuid:9bc42cd6-a281-11ef-1023-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:848ba9aa-4835-11ef-4867-020000000000"/>
+               <reference value="urn:uuid:9bc42cfe-a281-11ef-1023-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:848ba9f0-4835-11ef-4867-020000000000"/>
+               <reference value="urn:uuid:9bc42d44-a281-11ef-1023-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -280,7 +281,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:848ba9aa-4835-11ef-4867-020000000000"/>
+      <fullUrl value="urn:uuid:9bc42cfe-a281-11ef-1023-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -320,7 +321,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:848ba9f0-4835-11ef-4867-020000000000"/>
+      <fullUrl value="urn:uuid:9bc42d44-a281-11ef-1023-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -361,7 +362,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:848baa4a-4835-11ef-4867-020000000000"/>
+      <fullUrl value="urn:uuid:9bc42d9e-a281-11ef-1023-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -371,7 +372,7 @@
                <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
                <value value="01236578"/>
             </identifier>
-            <name value="Apotheek de Gulle Gaper"/>
+            <name value="Apotheek De Gulle Gaper"/>
             <address>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
                   <valueCodeableConcept>
@@ -405,7 +406,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:848baac2-4835-11ef-4867-020000000000"/>
+      <fullUrl value="urn:uuid:9bc42e16-a281-11ef-1023-020000000000"/>
       <resource>
          <Medication>
             <meta>

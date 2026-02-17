@@ -46,7 +46,8 @@
             <!-- get these from raadplegen_medicatiegegevens -->
             <fileset dir="${refs.dir}/${usecase.mg.rp}/ada_instance_response">
                 <include name="*tst*.xml"/>
-                <include name="*CONS*.xml"/>
+                <!-- NICTIZ-28632 nolonger include CONS ada instances -->
+                <!-- <include name="*CONS*.xml"/> -->
                 <!-- exclude the ada instance with all consolidation data, which is not meant for pull usecases -->
                 <exclude name="*CONS-Scenarioset*.xml"/>
             </fileset>

@@ -4,7 +4,7 @@
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
          creation-date="2024-03-19T14:12:21.257+01:00"
-         last-update-date="2024-03-19T14:12:21.257+01:00"/>
+         last-update-date="2025-03-11T12:27:18.84Z"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -23,18 +23,19 @@
                      codeSystem="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.6.1.20201207000000"
                      displayName="Beide"
                      conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.6"/>
-         <!--Patient found in instance with id: mg-TEST-Scenarioset13Patient-v30 and title: id: TEST REPO Scenarioset 13 ALLEEN PATIENT-->
+         <!--Patient found in instance with id: mg-bouwstenen-patients-v30 and title: id: Bouwstenen to be reused over test en kwal instances-->
          <patient comment=""
+                  id="XXX_SMITSZ_999901072"
                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1">
             <naamgegevens comment=""
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.2">
                <initialen value="R."
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.4"/>
-               <naamgebruik value="1"
+               <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"
+                            value="1"
                             code="NL1"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
-                            displayName="Eigen geslachtsnaam"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"/>
+                            displayName="Eigen geslachtsnaam"/>
                <geslachtsnaam comment=""
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.7">
                   <achternaam value="XXX_Smitsz"
@@ -47,11 +48,11 @@
             <geboortedatum value="1985-11-19"
                            datatype="datetime"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.36"/>
-            <geslacht value="3"
+            <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"
+                      value="3"
                       code="F"
                       codeSystem="2.16.840.1.113883.5.1"
-                      displayName="Vrouw"
-                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"/>
+                      displayName="Vrouw"/>
          </patient>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_contactepisode-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
@@ -69,10 +70,10 @@
                                          datatype="reference"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.421"/>
                </toedienings_product>
-               <registratie_datum_tijd value="T-20D{20:30:00}"
+               <registratie_datum_tijd value="2023-12-12T20:30:00+01:00"
                                        datatype="datetime"
                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1482"/>
-               <toedienings_datum_tijd value="T-20D{20:30:00}"
+               <toedienings_datum_tijd value="2023-12-12T20:30:00+01:00"
                                        datatype="datetime"
                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.426"/>
                <toegediende_hoeveelheid comment=""
@@ -90,6 +91,18 @@
                                codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                displayName="ORAAL"
                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.430"/>
+               <relatie_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.432"
+                                          comment="">
+                  <identificatie value="MBH_300_contactepisode_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1168"/>
+               </relatie_medicatieafspraak>
+               <relatie_toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1324"
+                                            comment="">
+                  <identificatie value="MBH_300_contactepisode_TA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1169"/>
+               </relatie_toedieningsafspraak>
                <relatie_wisselend_doseerschema comment=""
                                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1325">
                   <identificatie value="MBH_300_QA1_WDS1"
@@ -113,7 +126,7 @@
                   <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1432"
                                 comment="">
                      <zorgverlener datatype="reference"
-                                   value="Peter_van_Pulver"
+                                   value="PETER_VAN_PULVER"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1473"/>
                   </zorgverlener>
                </toediener>
@@ -131,8 +144,8 @@
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
                <product_code code="7323"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
-                             displayName="ACENOCOUMAROL TABLET 1MG"
                              codeSystemName="G-Standaard PRK"
+                             displayName="ACENOCOUMAROL TABLET 1MG"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
                <product_code code="20303"
                              codeSystem="2.16.840.1.113883.2.4.4.1"
@@ -140,7 +153,7 @@
                              displayName="ACENOCOUMAROL TABLET 1MG"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
-            <zorgverlener id="Peter_van_Pulver"
+            <zorgverlener id="PETER_VAN_PULVER"
                           comment=""
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.92">
                <zorgverlener_identificatienummer value="000001111"
@@ -158,21 +171,20 @@
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.140"/>
                   </geslachtsnaam>
                </naamgegevens>
-               <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.145"
-                            value="2"
-                            code="0100"
+               <specialisme code="0100"
                             codeSystem="2.16.840.1.113883.2.4.6.7"
                             codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
                             codeSystemVersion="2020-10-23T00:00:00"
-                            displayName="Huisartsen, niet nader gespecificeerd"/>
+                            displayName="Huisartsen, niet nader gespecificeerd"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.145"/>
                <zorgaanbieder comment=""
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.168">
                   <zorgaanbieder datatype="reference"
-                                 value="Huisartsenpraktijk_Pulver_en_Partners"
+                                 value="HUISARTSENPRAKTIJK_PULVER_EN_PARTNERS"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.846"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="Huisartsenpraktijk_Pulver_en_Partners"
+            <zorgaanbieder id="HUISARTSENPRAKTIJK_PULVER_EN_PARTNERS"
                            comment=""
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202">
                <zorgaanbieder_identificatienummer value="00001111"

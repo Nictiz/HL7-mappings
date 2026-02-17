@@ -7,7 +7,7 @@
       <valueDateTime value="${DATE, T, D, -10}T11:15:00+02:00"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-      <valueString value="Vanaf T + 5 dagen, gedurende 3 dagen, 2 maal per dag 2 stuks, oraal"/>
+      <valueString value="0.7 ml 's ochtends, subcutaan"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
       <valuePeriod>
@@ -42,9 +42,9 @@
       </coding>
    </category>
    <medicationReference>
-      <reference value="Medication/mp-PhPrd-mp9-216840111388324410-67903"/>
+      <reference value="Medication/mp-PhPrd-mp9-216840111388324410-49255"/>
       <type value="Medication"/>
-      <display value="PARACETAMOL 500MG TABLET"/>
+      <display value="TINZAPARINE INJVL WWSP 14000IE=0,7ML (20.000IE/ML)"/>
    </medicationReference>
    <subject>
       <reference value="Patient/nl-core-Patient-mp9-G-XXX-Groot"/>
@@ -59,41 +59,31 @@
    <dosageInstruction>
       <timing>
          <repeat>
-            <frequency value="2"/>
-            <period value="1"/>
-            <periodUnit value="d"/>
+            <when value="MORN"/>
          </repeat>
       </timing>
       <route>
          <coding>
             <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-            <code value="9"/>
-            <display value="oraal"/>
+            <code value="21"/>
+            <display value="subcutaan"/>
          </coding>
       </route>
       <doseAndRate>
          <doseQuantity>
             <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                <valueQuantity>
-                  <value value="2"/>
-                  <unit value="stuk"/>
+                  <value value="0.7"/>
+                  <unit value="milliliter"/>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="245"/>
+                  <code value="233"/>
                </valueQuantity>
             </extension>
-            <value value="2"/>
-            <unit value="stuk"/>
+            <value value="0.7"/>
+            <unit value="milliliter"/>
             <system value="http://unitsofmeasure.org"/>
-            <code value="1"/>
+            <code value="ml"/>
          </doseQuantity>
       </doseAndRate>
    </dosageInstruction>
-   <priorPrescription>
-      <type value="MedicationRequest"/>
-      <identifier>
-         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-         <value value="MBH_300_script0_QA1_MA"/>
-      </identifier>
-      <display value="relatie naar medicatieafspraak: MBH_300_script0_QA1_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-   </priorPrescription>
 </MedicationRequest>

@@ -22,6 +22,8 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2024-11-15
+* NSM-1168 in translating ANY or ADA, add @datatype to ADA output
 2021-11-28
 * MM-2475 XSLT error: Cannot determine the datatype based. Handle datatype IVL_TS with @value or @nullFlavor the same as TS
 2021-09-03

@@ -1,0 +1,69 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="zib-AdministrationAgreement-msz-8dc29dcf-6ac3-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Toedieningsafspraak. Subject: Ast. Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Toedieningsafspraak</span>
+               <span style="display: block;">Uitvoerende: Ziekenhuis het Witte Hart</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>${DATE, T, D, -44}</td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>PARACETAMOL HTP TABLET 500MG</td>
+               </tr>
+               <tr>
+                  <th>Doseerinstructie</th>
+                  <td>
+                     <div>Tekst: Oraal</div>
+                     <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                     </div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+      <valueDateTime value="${DATE, T, D, -44}"/>
+   </extension>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="Provider medication administration instructions (procedure)"/>
+      </coding>
+      <text value="Toedieningsafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-7-2456451"/>
+      <display value="PARACETAMOL HTP TABLET 500MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/AST"/>
+      <display value="Ast"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/nl-core-organization-msz-7f270179-6b55-11ec-0000-2"/>
+         <display value="Ziekenhuis het Witte Hart"/>
+      </actor>
+   </performer>
+   <dosageInstruction>
+      <text value="Oraal"/>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+   </dosageInstruction>
+</MedicationDispense>

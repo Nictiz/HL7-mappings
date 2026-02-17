@@ -1,0 +1,108 @@
+<html lang="en">
+   <head>
+      <title>Immunization - Vaccination-mm-gbz-40d4d506-6b07-11ec-2366-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Vaccinatie. Patiënt: Maaike M Maaike Ostendorf. Status: voltooid</caption>
+               <tfoot>
+                  <tr>
+                     <td colspan="2">Door verloskundige ipv huisarts</td>
+                  </tr>
+               </tfoot>
+               <tbody>
+                  <tr>
+                     <th>
+                        <span title="Boostrix (2873826 - G-Standaard GPK)">Boostrix</span>
+                     </th>
+                     <td>
+                        <div>Toegediend: ja (${DATE, T, D, -146})</div>
+                        <div>Gemeld door uitvoerende: nee</div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>
+                        <span title="Behandelaar (ATND - v3/ParticipationType)">Behandelaar</span>
+                     </th>
+                     <td>Anne Marie AM Anne Naaktgeboren Kleinsma || Verloskundige || Verloskundigenpraktijk ter Wereld</td>
+                  </tr>
+                  <tr>
+                     <th>Vaccinatiedetails</th>
+                     <td>
+                        <div>Dosering: 0.5 ml</div>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Immunization</b>
+      </p>
+      <div> - none</div>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 8, label: "PractitionerRole Verloskundige", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-08617625080008009999.html" }, 
+{ id: 9, label: "Practitioner Kleinsma-Naaktgeboren", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-08617625.html" }, 
+{ id: 257, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
+{ id: 281, label: "Immunization", url: "mm-gbz-zib-Vaccination-Vaccination-mm-gbz-40d4d506-6b07-11ec-2366-020000000000.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 281, to: 257 }, 
+{ from: 281, to: 8 }, 
+{ from: 281, to: 9 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

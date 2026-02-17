@@ -12,7 +12,7 @@
                <valueDateTime value="${DATE, T, D, -10}T12:20:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 10 dagen, tot en met T - 5 dagen, 1 maal per dag 1 stuk, Oraal"/>
+               <valueString value="1 maal per dag 1 stuk, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -39,9 +39,9 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:f543951d-6b24-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:7ed5e604-6b31-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
+               <display value="METOCLOPRAMIDE HCL ACCORD TABLET 10MG"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:5faee092-6b61-11ec-0000-020000000000"/>
@@ -103,7 +103,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fb8769ae-6abe-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:16a2cf0d-6b6f-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -113,7 +113,7 @@
                <valueDateTime value="${DATE, T, D, -20}T12:30:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 20 dagen, gedurende 3 weken, 1 maal per dag 1 stuk, oraal"/>
+               <valueString value="1 maal per dag 1 stuk, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -211,7 +211,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f42c6488-6aea-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:705d8f0d-6b68-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -221,7 +221,7 @@
                <valueDateTime value="${DATE, T, D, -30}T12:32:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 30 dagen, 1 maal per dag 1 stuk, oraal"/>
+               <valueString value="1 maal per dag 1 stuk, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -321,7 +321,7 @@
                <valueDateTime value="${DATE, T, D, -60}T12:30:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 60 dagen, gedurende 28 dagen, 1 maal per dag 1 stuk, oraal"/>
+               <valueString value="1 maal per dag 1 stuk, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -419,7 +419,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ae5f253e-6ac0-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:54105f0d-6b34-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -429,7 +429,7 @@
                <valueDateTime value="${DATE, T, D, -130}T12:35:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 130 dagen, tot en met T - 101 dagen, 2 maal per dag 1 dosis, inhalatie"/>
+               <valueString value="2 maal per dag 1 dosis, inhalatie"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -511,6 +511,101 @@
                      <code value="1"/>
                   </doseQuantity>
                </doseAndRate>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:01105f0d-6b2d-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, +0}T12:20:00+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="1 maal per dag, cutaan"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
+                     <valueDuration>
+                        <value value="3"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </valueDuration>
+                  </extension>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PeriodOfUse.Condition">
+                     <valueString value="3 dagen voor operatie starten"/>
+                  </extension>
+                  <start value="${DATE, T, D, +1}T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_start_criterium"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <value value="MBH_300_start_criterium_TA"/>
+            </identifier>
+            <status value="unknown"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="toedieningsafspraak"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:267e9ee9-6b27-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="CHLOORHEXIDINE DIGLUCONAAT CREME 1%"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:5faee092-6b61-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, C. XXX_Brugge"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
+                  <type value="Organization"/>
+                  <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_start_criterium_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_start_criterium_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </authorizingPrescription>
+            <dosageInstruction>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="53"/>
+                     <display value="cutaan"/>
+                  </coding>
+               </route>
             </dosageInstruction>
          </MedicationDispense>
       </resource>
@@ -611,7 +706,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f543951d-6b24-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:abb8231d-6b39-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -620,21 +715,21 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="560308"/>
-                  <display value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
+                  <code value="202185"/>
+                  <display value="ROTER APC TABLET"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="6947"/>
-                  <display value="METOCLOPRAMIDE TABLET 10MG"/>
+                  <code value="3891"/>
+                  <display value="ACETYLSALICYLZUUR/PARACETAMOL/COF TAB 250/250/50MG"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="19429"/>
-                  <display value="METOCLOPRAMIDE TABLET 10MG"/>
+                  <code value="61433"/>
+                  <display value="ACETYLSALICYLZUUR/PARACETAMOL/COF TAB 250/250/50MG"/>
                </coding>
-               <text value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
+               <text value="ROTER APC TABLET"/>
             </code>
          </Medication>
       </resource>
@@ -644,7 +739,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c195331d-6aaa-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:267e9ee9-6b27-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -653,21 +748,54 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="1163094"/>
-                  <display value="PANTOZOL TABLET MSR 20MG"/>
+                  <code value="1189921"/>
+                  <display value="CHLOORHEXIDINE DIGLUCONAAT CREME 1%"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="52272"/>
-                  <display value="PANTOPRAZOL TABLET MSR 20MG"/>
+                  <code value="10138"/>
+                  <display value="CHLOORHEXIDINE CREME 10MG/G"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="106275"/>
-                  <display value="PANTOPRAZOL TABLET MSR 20MG"/>
+                  <code value="26603"/>
+                  <display value="CHLOORHEXIDINE CREME 10MG/G"/>
                </coding>
-               <text value="PANTOZOL TABLET MSR 20MG"/>
+               <text value="CHLOORHEXIDINE DIGLUCONAAT CREME 1%"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:e4eea4e9-6b56-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="1029754"/>
+                  <display value="FLIXOTIDE DISKUS INHPDR 100MCG 60DO"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="45624"/>
+                  <display value="FLUTICASON INHALATIEPOEDER 100UG/DO 60DO DISKUS"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="92487"/>
+                  <display value="FLUTICASON INHALATIEPOEDER 100UG/DO"/>
+               </coding>
+               <text value="FLIXOTIDE DISKUS INHPDR 100MCG 60DO"/>
             </code>
          </Medication>
       </resource>
@@ -710,7 +838,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:abb8231d-6b39-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:7ed5e604-6b31-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -719,21 +847,21 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="202185"/>
-                  <display value="ROTER APC TABLET"/>
+                  <code value="2115468"/>
+                  <display value="METOCLOPRAMIDE HCL ACCORD TABLET 10MG"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="3891"/>
-                  <display value="ACETYLSALICYLZUUR/PARACETAMOL/COF TAB 250/250/50MG"/>
+                  <code value="6947"/>
+                  <display value="METOCLOPRAMIDE TABLET 10MG"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="61433"/>
-                  <display value="ACETYLSALICYLZUUR/PARACETAMOL/COF TAB 250/250/50MG"/>
+                  <code value="19429"/>
+                  <display value="METOCLOPRAMIDE TABLET 10MG"/>
                </coding>
-               <text value="ROTER APC TABLET"/>
+               <text value="METOCLOPRAMIDE HCL ACCORD TABLET 10MG"/>
             </code>
          </Medication>
       </resource>
@@ -743,7 +871,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e4eea4e9-6b56-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c195331d-6aaa-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -752,21 +880,21 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="1029754"/>
-                  <display value="FLIXOTIDE DISKUS INHPDR 100MCG 60DO"/>
+                  <code value="1163094"/>
+                  <display value="PANTOZOL TABLET MSR 20MG"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="45624"/>
-                  <display value="FLUTICASON INHALATIEPOEDER 100UG/DO 60DO DISKUS"/>
+                  <code value="52272"/>
+                  <display value="PANTOPRAZOL TABLET MSR 20MG"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="92487"/>
-                  <display value="FLUTICASON INHALATIEPOEDER 100UG/DO"/>
+                  <code value="106275"/>
+                  <display value="PANTOPRAZOL TABLET MSR 20MG"/>
                </coding>
-               <text value="FLIXOTIDE DISKUS INHPDR 100MCG 60DO"/>
+               <text value="PANTOZOL TABLET MSR 20MG"/>
             </code>
          </Medication>
       </resource>

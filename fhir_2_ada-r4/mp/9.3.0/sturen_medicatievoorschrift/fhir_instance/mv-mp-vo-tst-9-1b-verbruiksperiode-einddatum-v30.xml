@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="dcb5c833-4807-11ef-1039-020000000000"/>
+   <id value="5bb47ab1-a281-11ef-7509-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:dcb5c9d6-4807-11ef-1039-020000000000"/>
+      <fullUrl value="urn:uuid:5bb47c54-a281-11ef-7509-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -18,9 +18,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2023-01-01T11:01:00+01:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf &lt;T-9D{00:00:00}&gt; t/m &lt;T+200D{23:59:59}&gt;, 1 maal per dag 1 stuk, oraal"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 1 jan 2023, tot en met 20 jul 2023, 1 maal per dag 1 stuk, Oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="2023-01-01T00:00:00+01:00"/>
@@ -47,17 +48,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:dcb5ca12-4807-11ef-1039-020000000000"/>
+               <reference value="urn:uuid:5bb47c90-a281-11ef-7509-020000000000"/>
                <type value="Medication"/>
                <display value="MIZOLASTINE TABLET MGA 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dcb5c8aa-4807-11ef-1039-020000000000"/>
+               <reference value="urn:uuid:5bb47b28-a281-11ef-7509-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:dcb5c8d2-4807-11ef-1039-020000000000"/>
+               <reference value="urn:uuid:5bb47b50-a281-11ef-7509-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -101,7 +102,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dcb5c9f4-4807-11ef-1039-020000000000"/>
+      <fullUrl value="urn:uuid:5bb47c72-a281-11ef-7509-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -131,23 +132,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:dcb5ca12-4807-11ef-1039-020000000000"/>
+               <reference value="urn:uuid:5bb47c90-a281-11ef-7509-020000000000"/>
                <type value="Medication"/>
                <display value="MIZOLASTINE TABLET MGA 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dcb5c8aa-4807-11ef-1039-020000000000"/>
+               <reference value="urn:uuid:5bb47b28-a281-11ef-7509-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <authoredOn value="2023-01-01T11:01:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:dcb5c8d2-4807-11ef-1039-020000000000"/>
+               <reference value="urn:uuid:5bb47b50-a281-11ef-7509-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:dcb5c99a-4807-11ef-1039-020000000000"/>
+               <reference value="urn:uuid:5bb47c18-a281-11ef-7509-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -172,7 +173,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dcb5c8aa-4807-11ef-1039-020000000000"/>
+      <fullUrl value="urn:uuid:5bb47b28-a281-11ef-7509-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -219,19 +220,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dcb5c8d2-4807-11ef-1039-020000000000"/>
+      <fullUrl value="urn:uuid:5bb47b50-a281-11ef-7509-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:dcb5c8fa-4807-11ef-1039-020000000000"/>
+               <reference value="urn:uuid:5bb47b78-a281-11ef-7509-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:dcb5c940-4807-11ef-1039-020000000000"/>
+               <reference value="urn:uuid:5bb47bbe-a281-11ef-7509-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -256,7 +257,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dcb5c8fa-4807-11ef-1039-020000000000"/>
+      <fullUrl value="urn:uuid:5bb47b78-a281-11ef-7509-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -296,7 +297,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dcb5c940-4807-11ef-1039-020000000000"/>
+      <fullUrl value="urn:uuid:5bb47bbe-a281-11ef-7509-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -337,7 +338,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dcb5c99a-4807-11ef-1039-020000000000"/>
+      <fullUrl value="urn:uuid:5bb47c18-a281-11ef-7509-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -381,7 +382,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dcb5ca12-4807-11ef-1039-020000000000"/>
+      <fullUrl value="urn:uuid:5bb47c90-a281-11ef-7509-020000000000"/>
       <resource>
          <Medication>
             <meta>

@@ -1,0 +1,185 @@
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="zib-AllergyIntolerance-msz-709b6d29-6b47-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Allergie/intolerantie. Patiënt: Olivia Madelief O.M.W. Olijf de Wilson Çelik. Categorie: voedsel, Status: opgelost / bevestigd</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Overheen gegroeid</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="koemelk (3718001 - SNOMED CT)">koemelk</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>1989</td>
+               </tr>
+               <tr>
+                  <th>Laatste reactie tijd</th>
+                  <td>12 november 1993</td>
+               </tr>
+               <tr>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>1991 licht</div>
+                           <div>
+                              <span title="Contactdermatitis (40275004 - SNOMED CT)">Contactdermatitis</span>
+                           </div>
+                           <div>Reactie op schaafwond</div>
+                        </li>
+                        <li>
+                           <div>1989 matig</div>
+                           <div>
+                              <span title="Diarree (62315008 - SNOMED CT)">Diarree</span>, <span title="Contactdermatitis (40275004 - SNOMED CT)">Contactdermatitis</span>
+                           </div>
+                           <div>Reactie op kleine sporen van melkeiwit.</div>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <clinicalStatus value="resolved">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActStatus"/>
+               <code value="completed"/>
+               <display value="Niet meer aanwezig"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus value="confirmed"/>
+   <category value="food">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="418471000"/>
+               <display value="neiging tot ongewenste reactie op voedsel"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <criticality value="low">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="255604002"/>
+               <display value="licht"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </criticality>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="3718001"/>
+         <display value="koemelk"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/OLIVIA-MADELIEF-O-M-W--OLIJF-DE-WILSON-ELIK"/>
+      <display value="Olivia Madelief O.M.W. Olijf de Wilson Çelik"/>
+   </patient>
+   <onsetDateTime value="1989"/>
+   <lastOccurrence value="1993-11-12"/>
+   <note>
+      <text value="Overheen gegroeid"/>
+   </note>
+   <reaction>
+      <substance>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="264295007"/>
+            <display value="koemelkeiwit"/>
+         </coding>
+      </substance>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="62315008"/>
+            <display value="Diarree"/>
+         </coding>
+      </manifestation>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="40275004"/>
+            <display value="Contactdermatitis"/>
+         </coding>
+      </manifestation>
+      <description value="Reactie op kleine sporen van melkeiwit."/>
+      <onset value="1989"/>
+      <severity value="moderate">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="6736007"/>
+                  <display value="Matig"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </severity>
+      <exposureRoute>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="26643006"/>
+            <display value="orale route"/>
+         </coding>
+      </exposureRoute>
+   </reaction>
+   <reaction>
+      <substance>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="264295007"/>
+            <display value="koemelkeiwit"/>
+         </coding>
+      </substance>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="40275004"/>
+            <display value="Contactdermatitis"/>
+         </coding>
+      </manifestation>
+      <description value="Reactie op schaafwond"/>
+      <onset value="1991"/>
+      <severity value="mild">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="255604002"/>
+                  <display value="Licht"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </severity>
+      <exposureRoute>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="448598008"/>
+            <display value="cutane route"/>
+         </coding>
+      </exposureRoute>
+   </reaction>
+</AllergyIntolerance>

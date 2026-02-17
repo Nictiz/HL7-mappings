@@ -8,37 +8,35 @@
    <templateId root="2.16.840.1.113883.2.4.3.11.60.25.10.51"/>
    <templateId root="1.3.6.1.4.1.19376.1.3.3"/>
    <templateId root="2.16.840.1.113883.2.4.6.10.100001"/>
-   <id extension="2f9b6366-8a29-11ef-2154-020000000000"
+   <id extension="71c7a8b2-8290-11f0-1593-020000000000"
        root="2.16.840.1.113883.2.4.3.11.999.25.1"/>
    <code code="11502-2"
          codeSystem="2.16.840.1.113883.6.1"
          codeSystemName="LOINC"
          displayName="LABORATORY REPORT.TOTAL"/>
-   <title>Laboratory studies Eduardo XXX_Doppen op 30 dec 2021</title>
+   <title>Laboratory studies Elise Erelies op 30 dec 2021</title>
    <effectiveTime value="20211230000000"/>
    <confidentialityCode code="N"
                         codeSystem="2.16.840.1.113883.5.25"
                         displayName="normal"/>
    <languageCode code="nl-NL"/>
-   <setId extension="2f9b6366-8a29-11ef-2154-020000000000"
+   <setId extension="71c7a8b2-8290-11f0-1593-020000000000"
           root="2.16.840.1.113883.2.4.3.11.999.25.2"/>
    <recordTarget>
       <patientRole>
-         <id extension="999900511"
+         <id extension="999999114"
              root="2.16.840.1.113883.2.4.6.3"/>
          <addr nullFlavor="UNK"/>
          <telecom nullFlavor="UNK"/>
          <patient>
             <name>
-               <given qualifier="BR">Eduardo</given>
-               <family qualifier="BR">XXX_Doppen</family>
+               <given qualifier="BR">Elise</given>
+               <family qualifier="BR">Erelies</family>
             </name>
-            <administrativeGenderCode code="M"
+            <administrativeGenderCode code="F"
                                       codeSystem="2.16.840.1.113883.5.1"
-                                      displayName="Man"/>
-            <birthTime value="19631024000000"/>
-            <sdtc:multipleBirthInd nullFlavor="NA"
-                                   xmlns:sdtc="urn:hl7-org:sdtc"/>
+                                      displayName="Vrouw"/>
+            <birthTime value="19501101"/>
          </patient>
       </patientRole>
    </recordTarget>
@@ -47,22 +45,22 @@
       <assignedAuthor>
          <id nullFlavor="NI"/>
          <addr use="WP">
-            <streetName>Dorpsstraat</streetName>
+            <streetName>Langelaan</streetName>
             <houseNumber>1</houseNumber>
-            <postalCode>1234 AA</postalCode>
-            <city>Ons Dorp</city>
+            <postalCode>1234 ZZ</postalCode>
+            <city>Onze Stad</city>
          </addr>
          <telecom nullFlavor="UNK"/>
          <representedOrganization>
-            <id extension="00001111"
+            <id extension="00005111"
                 root="2.16.528.1.1007.3.3"/>
-            <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+            <name>Huisartsenpraktijk Itis</name>
             <telecom nullFlavor="UNK"/>
             <addr use="WP">
-               <streetName>Dorpsstraat</streetName>
+               <streetName>Langelaan</streetName>
                <houseNumber>1</houseNumber>
-               <postalCode>1234 AA</postalCode>
-               <city>Ons Dorp</city>
+               <postalCode>1234 ZZ</postalCode>
+               <city>Onze Stad</city>
             </addr>
             <standardIndustryClassCode code="Z3"
                                        codeSystem="2.16.840.1.113883.2.4.15.1060"
@@ -75,15 +73,15 @@
    <custodian>
       <assignedCustodian>
          <representedCustodianOrganization>
-            <id extension="00001111"
+            <id extension="00005111"
                 root="2.16.528.1.1007.3.3"/>
-            <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+            <name>Huisartsenpraktijk Itis</name>
             <telecom nullFlavor="UNK"/>
             <addr use="WP">
-               <streetName>Dorpsstraat</streetName>
+               <streetName>Langelaan</streetName>
                <houseNumber>1</houseNumber>
-               <postalCode>1234 AA</postalCode>
-               <city>Ons Dorp</city>
+               <postalCode>1234 ZZ</postalCode>
+               <city>Onze Stad</city>
             </addr>
          </representedCustodianOrganization>
       </assignedCustodian>
@@ -111,6 +109,8 @@
                            displayName="LABORATORY STUDIES"/>
                      <text>
                         <paragraph>LABORATORY STUDIES van materiaal specimen uit keelholte, door Microbiologisch Lab Flagel</paragraph>
+                        <paragraph>Status: Gecorrigeerd</paragraph>
+                        <paragraph>Deze resultaten zijn een kopie van de bron</paragraph>
                         <paragraph>EDIFACT-referentienummer: 222444</paragraph>
                         <table>
                            <tbody>
@@ -131,7 +131,7 @@
                                  <td/>
                                  <td/>
                                  <td>
-                                    <content ID="d1595e182">Gecorrigeerd ivm kapot systeem</content>
+                                    <content ID="d1596e193">Gecorrigeerd ivm kapot systeem</content>
                                  </td>
                               </tr>
                            </tbody>
@@ -180,6 +180,19 @@
                                  </representedOrganization>
                               </assignedEntity>
                            </performer>
+                           <entryRelationship typeCode="COMP">
+                              <observation classCode="OBS"
+                                           moodCode="EVN">
+                                 <templateId root="2.16.840.1.113883.2.4.3.11.60.121.10.55"/>
+                                 <code code="92235-1"
+                                       codeSystem="2.16.840.1.113883.6.1"
+                                       displayName="Lab order result status"/>
+                                 <value xsi:type="CV"
+                                        code="corrected"
+                                        codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                                        displayName="Gecorrigeerd"/>
+                              </observation>
+                           </entryRelationship>
                            <entryRelationship typeCode="COMP">
                               <procedure classCode="PROC"
                                          moodCode="EVN">
@@ -236,7 +249,7 @@
                                              codeSystem="2.16.840.1.113883.6.1"
                                              codeSystemName="LOINC"/>
                                        <text>
-                                          <reference value="#d1595e182"/>
+                                          <reference value="#d1596e193"/>
                                        </text>
                                        <statusCode code="completed"/>
                                     </act>
@@ -264,7 +277,7 @@
                                        code="16"
                                        codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
                                  <value xsi:type="BL"
-                                        value="false"/>
+                                        value="true"/>
                               </observation>
                            </entryRelationship>
                            <entryRelationship typeCode="COMP">

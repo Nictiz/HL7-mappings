@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--Generated from HL7v3 verstrekkingenlijst 6.12 xml with message id (QURX_IN990113NL/id) root: 2.16.840.1.113883.2.4.6.6.1.1 and extension: 0123456789.-->
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<!--Generated from HL7v3 verstrekkingenlijst 6.12 xml with message id (QURX_IN990113NL/id) root: 2.16.840.1.113883.2.4.6.6.1.1 and extension: 0123456789.--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_verstrekkingenvertaling.xsd">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2022-08-23T14:00:09.897718+02:00"
-         last-update-date="2022-08-23T14:00:09.897718+02:00"/>
+         creation-date="2024-12-24T12:25:57.511+01:00"
+         last-update-date="2024-12-24T12:25:57.511+01:00"/>
    <data>
       <beschikbaarstellen_verstrekkingenvertaling app="mp-mp907"
                                                   shortName="beschikbaarstellen_verstrekkingenvertaling"
@@ -20,10 +18,10 @@
          <patient>
             <naamgegevens>
                <initialen value="J.J."/>
-               <naamgebruik value="3"
-                            code="NL3"
+               <naamgebruik value="4"
+                            code="NL4"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
-                            displayName="Geslachtsnaam partner gevolgd door eigen geslachtsnaam"/>
+                            displayName="Eigen geslachtsnaam gevolgd door geslachtsnaam partner"/>
                <geslachtsnaam>
                   <voorvoegsels value="le "/>
                   <achternaam value="Noble"/>
@@ -40,11 +38,10 @@
                       codeSystemName="AdministrativeGender"
                       displayName="Vrouw"/>
          </patient>
-         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+         <medicamenteuze_behandeling>
             <identificatie value="mag07" root="2.16.528.1.1007.3.3.1234567.3"/>
             <toedieningsafspraak>
                <gebruiksperiode_start value="2017-06-14"/>
-               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
                <afspraakdatum value="2016-03-03"/>
                <gebruiksperiode value="100" unit="dag"/>
                <verstrekker>
@@ -57,7 +54,7 @@
                   <product>
                      <product_code code="OTH"
                                    codeSystem="2.16.840.1.113883.5.1008"
-                                   displayName=""
+                                   displayName="overig"
                                    originalText="Easyspump penicilline g 18me"/>
                      <product_specificatie>
                         <product_naam value="Easyspump penicilline g 18me"/>
@@ -149,8 +146,26 @@
                      </product_specificatie>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-2-->
-               <gebruiksinstructie>
+                  
+                  
+                  
+                  
+                     
+                  
+                  
+                     
+                        
+                        
+                           baldkjlaj  kjd;lkj a;sjd 
+                        
+                     
+                  
+                  
+                     
+                        
+                     
+                  
+                  <gebruiksinstructie>
                   <omschrijving value="gebruik volgens schema"/>
                   <toedieningsweg code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
@@ -158,20 +173,51 @@
                   <aanvullende_instructie code="1131"
                                           codeSystem="2.16.840.1.113883.2.4.4.5"
                                           displayName="gebruik volgens schema"/>
-                  <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
                         <keerdosis>
                            <aantal>
-                              <min value="1"/>
-                              <max value="61"/>
+                              <min value="1">
+                                 <adaextension>
+                                    <translation value="1"
+                                                 code="121"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="zakje"/>
+                                 </adaextension>
+                              </min>
+                              <max value="61">
+                                 <adaextension>
+                                    <translation value="61"
+                                                 code="121"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="zakje"/>
+                                 </adaextension>
+                              </max>
                            </aantal>
                            <eenheid code="245"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="Stuk"/>
                         </keerdosis>
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612--><!--geen frequentie in input--></toedieningsschema>
-                        <zo_nodig><!--maximale dosering-->
+                        <toedieningsschema/>
+                              gebruik volgens schema
+                              
+                              
+                                 
+                                 
+                              
+                              
+                                
+                              
+                                 
+                                    
+                                    
+                                 
+                                 
+                                    
+                                    
+                                 
+                              
+                              <zo_nodig>
                            <maximale_dosering>
                               <aantal value="4"/>
                               <eenheid code="245"
@@ -180,10 +226,24 @@
                               <tijdseenheid value="7" unit="dag"/>
                            </maximale_dosering>
                         </zo_nodig>
-                     </dosering>
+                              
+                                 
+                                    
+                                 
+                              
+                           </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-            </toedieningsafspraak>
+                  
+                     
+                        
+                        
+                        
+                           
+                        
+                     
+                  
+               </toedieningsafspraak>
             <verstrekking>
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="mag07"/>
                <datum nullFlavor="NI"/>
@@ -204,7 +264,7 @@
                   <product>
                      <product_code code="OTH"
                                    codeSystem="2.16.840.1.113883.5.1008"
-                                   displayName=""
+                                   displayName="overig"
                                    originalText="Easyspump penicilline g 18me"/>
                      <product_specificatie>
                         <product_naam value="Easyspump penicilline g 18me"/>
@@ -296,7 +356,6 @@
                      </product_specificatie>
                   </product>
                </verstrekt_geneesmiddel>
-               <!--afleverlocatie-->
                <afleverlocatie value="baldkjlaj kjd;lkj a;sjd"/>
             </verstrekking>
          </medicamenteuze_behandeling>

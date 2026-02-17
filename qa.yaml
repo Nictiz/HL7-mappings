@@ -1,0 +1,21 @@
+main branch: origin/master
+ignored issues: known-issues.yml
+
+igs:
+  - nictiz.fhir.nl.r4.medicationprocess9#2.0.0-rc.2
+
+patterns:
+  mplab voorschrift instances: ada_2_fhir-r4/mp-lab/9.3.0-3.0.0/sturen_medicatievoorschrift_laboratoriumresultaten/fhir_instance/mv-mplab-*.xml
+  mp93 nictiz-test instances: ada_2_fhir-r4/mp/9.3.0/nictiz_test/fhir_instance/*.xml
+
+steps:
+  validate mplab voorschrift instances:
+    description: Validate the voorschrift instances using the profile for voorschrift
+    patterns: mplab voorschrift instances
+  validate mp93 nictiz-test instances:
+    description: Validate the mp93 nictiz-test instances using the profile for mp93
+    patterns: mp93 nictiz-test instances
+  check resource ids:
+    description: Check if the .id matches the name of the file
+    patterns:
+      - mplab voorschrift instances

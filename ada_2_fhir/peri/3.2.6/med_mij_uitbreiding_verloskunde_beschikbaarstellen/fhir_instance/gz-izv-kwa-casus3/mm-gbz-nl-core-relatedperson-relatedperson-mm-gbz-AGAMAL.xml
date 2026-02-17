@@ -1,0 +1,58 @@
+<RelatedPerson xmlns="http://hl7.org/fhir">
+   <id value="relatedperson-mm-gbz-AGAMAL"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>A Gamal</div>
+         <div>
+            <a href="tel:0611459873">0611459873</a> (Mobiel)</div>
+         <div>
+            <span title="Partner (DOMPART - v3/RoleCode)">Partner</span> van Micha M XXX_Yassien-Mohamed</div>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="26f8a4bb-6b43-11ec-0000-020000000000"/>
+   </identifier>
+   <patient>
+      <reference value="Patient/MICHA-M-XXX-YASSIEN-MOHAMED"/>
+      <display value="Micha M XXX_Yassien-Mohamed"/>
+   </patient>
+   <relationship>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/RoleCode"/>
+         <code value="DOMPART"/>
+         <display value="Partner"/>
+      </coding>
+   </relationship>
+   <name>
+      <text value="A Gamal"/>
+      <family value="Gamal">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="Gamal"/>
+         </extension>
+      </family>
+      <given value="A">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="IN"/>
+         </extension>
+      </given>
+   </name>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="MC"/>
+               <display value="Mobiel telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="0611459873"/>
+      <use value="mobile"/>
+   </telecom>
+</RelatedPerson>

@@ -1,9 +1,9 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="dafe73a5-4807-11ef-1754-020000000000"/>
+   <id value="5a65ddcb-a281-11ef-1204-020000000000"/>
    <type value="searchset"/>
-   <total value="6"/>
+   <total value="7"/>
    <entry>
-      <fullUrl value="urn:uuid:dafe7502-4807-11ef-1754-020000000000"/>
+      <fullUrl value="urn:uuid:5a65dfdc-a281-11ef-1204-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -12,9 +12,10 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2022-12-31T08:00:00+01:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="6 dagen lang 1 tablet van 20 mg per dag, half uur voor het slapen gaan."/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 31 dec 2022, gedurende 6 dagen, 1 maal per dag 1 stuk, Oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
@@ -48,17 +49,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:dafe75b6-4807-11ef-1754-020000000000"/>
+               <reference value="urn:uuid:5a65e0cc-a281-11ef-1204-020000000000"/>
                <type value="Medication"/>
                <display value="TEMAZEPAM CAPSULE 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dafe73d6-4807-11ef-1754-020000000000"/>
+               <reference value="urn:uuid:5a65ddfc-a281-11ef-1204-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, I. XXX_Klerk"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:dafe73fe-4807-11ef-1754-020000000000"/>
+               <reference value="urn:uuid:5a65de24-a281-11ef-1204-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -101,22 +102,23 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dafe7520-4807-11ef-1754-020000000000"/>
+      <fullUrl value="urn:uuid:5a65dffa-a281-11ef-1204-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
-               <valueDateTime value="2023-01-01T09:00:00+01:00"/>
+               <valueDateTime value="2023-01-03T09:00:00+01:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Wordt gegenereerd"/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 31 dec 2022, tot en met 3 jan 2023, 1 maal per dag 1 stuk, Oraal, stopgezet"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="2022-12-31T00:00:00+01:00"/>
-                  <end value="2023-01-01T23:59:59+01:00"/>
+                  <end value="2023-01-03T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -148,17 +150,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:dafe75b6-4807-11ef-1754-020000000000"/>
+               <reference value="urn:uuid:5a65e0cc-a281-11ef-1204-020000000000"/>
                <type value="Medication"/>
                <display value="TEMAZEPAM CAPSULE 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dafe73d6-4807-11ef-1754-020000000000"/>
+               <reference value="urn:uuid:5a65ddfc-a281-11ef-1204-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, I. XXX_Klerk"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:dafe73fe-4807-11ef-1754-020000000000"/>
+               <reference value="urn:uuid:5a65de24-a281-11ef-1204-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -216,7 +218,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dafe753e-4807-11ef-1754-020000000000"/>
+      <fullUrl value="urn:uuid:5a65e018-a281-11ef-1204-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -227,14 +229,6 @@
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
                   <value value="MBH_300_SCRIPT5"/>
                </valueIdentifier>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.FinancialIndicationCode">
-               <valueCodeableConcept>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-                     <valueCode value="OTH"/>
-                  </extension>
-                  <text value="B2"/>
-               </valueCodeableConcept>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
@@ -250,23 +244,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:dafe75b6-4807-11ef-1754-020000000000"/>
+               <reference value="urn:uuid:5a65e0cc-a281-11ef-1204-020000000000"/>
                <type value="Medication"/>
                <display value="TEMAZEPAM CAPSULE 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dafe73d6-4807-11ef-1754-020000000000"/>
+               <reference value="urn:uuid:5a65ddfc-a281-11ef-1204-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, I. XXX_Klerk"/>
             </subject>
-            <authoredOn value="2022-12-24T08:00:00+01:00"/>
+            <authoredOn value="2022-12-31T08:00:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:dafe73fe-4807-11ef-1754-020000000000"/>
+               <reference value="urn:uuid:5a65de24-a281-11ef-1204-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:dafe746c-4807-11ef-1754-020000000000"/>
+               <reference value="urn:uuid:5a65deec-a281-11ef-1204-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -301,7 +295,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dafe755c-4807-11ef-1754-020000000000"/>
+      <fullUrl value="urn:uuid:5a65e036-a281-11ef-1204-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -317,15 +311,16 @@
                </valueCodeableConcept>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
-               <valueDateTime value="2022-12-28T09:00:00+01:00"/>
+               <valueDateTime value="2023-01-03T09:20:00+01:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Stoppen met medicatie."/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 31 dec 2022, tot en met 3 jan 2023, 1 maal per dag 1 stuk, Oraal, stopgezet"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2022-12-24T00:00:00+01:00"/>
-                  <end value="2022-12-28T23:59:59+01:00"/>
+                  <start value="2022-12-31T00:00:00+01:00"/>
+                  <end value="2023-01-03T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -366,18 +361,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:dafe75d4-4807-11ef-1754-020000000000"/>
+               <reference value="urn:uuid:5a65e0ae-a281-11ef-1204-020000000000"/>
                <type value="Medication"/>
                <display value="TEMAZEPAM AUROBINDO CAPSULE 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dafe73d6-4807-11ef-1754-020000000000"/>
+               <reference value="urn:uuid:5a65ddfc-a281-11ef-1204-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, I. XXX_Klerk"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:dafe746c-4807-11ef-1754-020000000000"/>
+                  <reference value="urn:uuid:5a65deec-a281-11ef-1204-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -429,18 +424,19 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dafe757a-4807-11ef-1754-020000000000"/>
+      <fullUrl value="urn:uuid:5a65e054-a281-11ef-1204-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
-               <valueDateTime value="2022-12-24T09:00:00+01:00"/>
+               <valueDateTime value="2023-01-01T09:00:00+01:00"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="6 dagen lang 1 tablet van 20 mg per dag, half uur voor het slapen gaan."/>
-            </extension>
+            <f:extension xmlns:f="http://hl7.org/fhir"
+                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <f:valueString value="Vanaf 31 dec 2022, gedurende 6 dagen, 1 maal per dag 1 stuk, Oraal"/>
+            </f:extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
@@ -451,7 +447,7 @@
                         <code value="d"/>
                      </valueDuration>
                   </extension>
-                  <start value="2022-12-24T00:00:00+01:00"/>
+                  <start value="2022-12-31T00:00:00+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -473,18 +469,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:dafe75d4-4807-11ef-1754-020000000000"/>
+               <reference value="urn:uuid:5a65e0ae-a281-11ef-1204-020000000000"/>
                <type value="Medication"/>
                <display value="TEMAZEPAM AUROBINDO CAPSULE 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dafe73d6-4807-11ef-1754-020000000000"/>
+               <reference value="urn:uuid:5a65ddfc-a281-11ef-1204-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, I. XXX_Klerk"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:dafe746c-4807-11ef-1754-020000000000"/>
+                  <reference value="urn:uuid:5a65deec-a281-11ef-1204-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -536,7 +532,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dafe7598-4807-11ef-1754-020000000000"/>
+      <fullUrl value="urn:uuid:5a65e072-a281-11ef-1204-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -561,18 +557,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:dafe75d4-4807-11ef-1754-020000000000"/>
+               <reference value="urn:uuid:5a65e0ae-a281-11ef-1204-020000000000"/>
                <type value="Medication"/>
                <display value="TEMAZEPAM AUROBINDO CAPSULE 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dafe73d6-4807-11ef-1754-020000000000"/>
+               <reference value="urn:uuid:5a65ddfc-a281-11ef-1204-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, I. XXX_Klerk"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:dafe746c-4807-11ef-1754-020000000000"/>
+                  <reference value="urn:uuid:5a65deec-a281-11ef-1204-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -599,7 +595,7 @@
                <system value="http://unitsofmeasure.org"/>
                <code value="1"/>
             </quantity>
-            <whenHandedOver value="2022-12-24T09:00:00+01:00"/>
+            <whenHandedOver value="2023-01-01T09:00:00+01:00"/>
          </MedicationDispense>
       </resource>
       <search>
@@ -607,7 +603,107 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dafe73d6-4807-11ef-1754-020000000000"/>
+      <fullUrl value="urn:uuid:5a65e090-a281-11ef-1204-020000000000"/>
+      <resource>
+         <MedicationAdministration>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="2022-12-31T20:00:00+01:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_SCRIPT5"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <value value="MBH_300_SCRIPT5_MTD"/>
+            </identifier>
+            <status value="unknown"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="18629005"/>
+                  <display value="toediening van medicatie"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:5a65e0ae-a281-11ef-1204-020000000000"/>
+               <type value="Medication"/>
+               <display value="TEMAZEPAM AUROBINDO CAPSULE 20MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:5a65ddfc-a281-11ef-1204-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, I. XXX_Klerk"/>
+            </subject>
+            <supportingInformation>
+               <type value="MedicationDispense"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                  <value value="MBH_300_SCRIPT5_TA"/>
+               </identifier>
+               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_SCRIPT5_TA || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            </supportingInformation>
+            <effectiveDateTime value="2022-12-31T20:00:00+01:00"/>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:5a65de7e-a281-11ef-1204-020000000000"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare professional (role), Jantien Toedien, Verpleegkundigen, niet nader gespecificeerd, Thuiszorg Om en Bij"/>
+               </actor>
+            </performer>
+            <request>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="33633005"/>
+                        <display value="voorschrijven"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_SCRIPT5_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_SCRIPT5_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </request>
+            <dosage>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <dose>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                     <valueQuantity>
+                        <value value="1"/>
+                        <unit value="stuk"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="245"/>
+                     </valueQuantity>
+                  </extension>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="1"/>
+               </dose>
+            </dosage>
+         </MedicationAdministration>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:5a65ddfc-a281-11ef-1204-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -653,19 +749,19 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dafe73fe-4807-11ef-1754-020000000000"/>
+      <fullUrl value="urn:uuid:5a65de24-a281-11ef-1204-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:dafe7426-4807-11ef-1754-020000000000"/>
+               <reference value="urn:uuid:5a65de4c-a281-11ef-1204-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:dafe74c6-4807-11ef-1754-020000000000"/>
+               <reference value="urn:uuid:5a65df46-a281-11ef-1204-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -684,7 +780,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dafe7426-4807-11ef-1754-020000000000"/>
+      <fullUrl value="urn:uuid:5a65de4c-a281-11ef-1204-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -718,7 +814,69 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dafe746c-4807-11ef-1754-020000000000"/>
+      <fullUrl value="urn:uuid:5a65de7e-a281-11ef-1204-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+            </meta>
+            <practitioner>
+               <reference value="urn:uuid:5a65dea6-a281-11ef-1204-020000000000"/>
+               <type value="Practitioner"/>
+               <display value="Healthcare professional (person), Jantien Toedien"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:5a65dfa0-a281-11ef-1204-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Thuiszorg Om en Bij"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2020-10-23T00:00:00"/>
+                  <code value="9100"/>
+                  <display value="Verpleegkundigen, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:5a65dea6-a281-11ef-1204-020000000000"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="222220000"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Jantien Toedien"/>
+               <family value="Toedien">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Toedien"/>
+                  </extension>
+               </family>
+               <given value="Jantien">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:5a65deec-a281-11ef-1204-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -761,7 +919,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dafe74c6-4807-11ef-1754-020000000000"/>
+      <fullUrl value="urn:uuid:5a65df46-a281-11ef-1204-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -801,34 +959,32 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dafe75b6-4807-11ef-1754-020000000000"/>
+      <fullUrl value="urn:uuid:5a65dfa0-a281-11ef-1204-020000000000"/>
       <resource>
-         <Medication>
+         <Organization>
             <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
-            <code>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="11110000"/>
+            </identifier>
+            <type>
                <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="15814"/>
-                  <display value="TEMAZEPAM CAPSULE 20MG"/>
-                  <userSelected value="true"/>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <code value="T2"/>
+                  <display value="Thuiszorg"/>
                </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="38644"/>
-                  <display value="TEMAZEPAM CAPSULE 20MG"/>
-               </coding>
-               <text value="TEMAZEPAM CAPSULE 20MG"/>
-            </code>
-         </Medication>
+            </type>
+            <name value="Thuiszorg Om en Bij"/>
+         </Organization>
       </resource>
       <search>
          <mode value="include"/>
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dafe75d4-4807-11ef-1754-020000000000"/>
+      <fullUrl value="urn:uuid:5a65e0ae-a281-11ef-1204-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -852,6 +1008,33 @@
                   <display value="TEMAZEPAM CAPSULE 20MG"/>
                </coding>
                <text value="TEMAZEPAM AUROBINDO CAPSULE 20MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:5a65e0cc-a281-11ef-1204-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="15814"/>
+                  <display value="TEMAZEPAM CAPSULE 20MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="38644"/>
+                  <display value="TEMAZEPAM CAPSULE 20MG"/>
+               </coding>
+               <text value="TEMAZEPAM CAPSULE 20MG"/>
             </code>
          </Medication>
       </resource>

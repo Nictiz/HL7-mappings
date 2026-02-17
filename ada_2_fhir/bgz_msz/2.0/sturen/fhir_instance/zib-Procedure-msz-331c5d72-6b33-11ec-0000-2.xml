@@ -1,0 +1,71 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <id value="zib-Procedure-msz-331c5d72-6b33-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Jan Adrianus J.A.H. Jan van Houten. Categorie: <span title="chirurgische ingreep (387713003 - SNOMED CT)">chirurgische ingreep</span>, Status: is bezig</caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="intracapsulaire staaroperatie (404628003 - SNOMED CT)">intracapsulaire staaroperatie</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: Vanaf 2010</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="Links (7771000 - SNOMED CT)">Links</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>staar</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <status value="in-progress"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="387713003"/>
+         <display value="chirurgische ingreep"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="404628003"/>
+         <display value="intracapsulaire staaroperatie"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/JAN-ADRIANUS-J-A-H--JAN-VAN-HOUTEN"/>
+      <display value="Jan Adrianus J.A.H. Jan van Houten"/>
+   </subject>
+   <performedPeriod>
+      <start value="2010"/>
+   </performedPeriod>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-msz-4343301e-6aab-11ec-0000-2"/>
+      <display value="staar"/>
+   </reasonReference>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </bodySite>
+</Procedure>
