@@ -1,0 +1,527 @@
+<?xml-model href="../../../../../../art_decor/ada_2_test-xslt/jgz/7.1/dossieroverdracht/test_xslt_instance/DOB-v3.1-R054.sch " type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<REPC_IN902120NL03 xsi:schemaLocation="urn:hl7-org:v3 ../../hl7v3_schemas/REPC_IN902120NL03.xsd"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="urn:hl7-org:v3"
+                   xmlns:hl7="urn:hl7-org:v3"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <id extension="1243567"
+       root="2.16.528.1.1007.3.3.12345678.1"/>
+   <creationTime value="20000101000000"/>
+   <versionCode code="NICTIZEd2005-Okt"/>
+   <interactionId extension="REPC_IN902120NL03"
+                  root="2.16.840.1.113883.1.6"/>
+   <profileId extension="810"
+              root="2.16.840.1.113883.2.4.3.11.1"/>
+   <processingCode code="P"/>
+   <processingModeCode code="T"/>
+   <acceptAckCode code="AL"/>
+   <attentionLine>
+      <keyWordText code="PATID"
+                   codeSystem="2.16.840.1.113883.2.4.15.1">Patient.id</keyWordText>
+      <value xsi:type="II"
+             extension="999900183"
+             root="2.16.840.1.113883.2.4.6.3"/>
+   </attentionLine>
+   <receiver>
+      <device>
+         <id extension="{$receiverId}"
+             root="2.16.840.1.113883.2.4.6.6"/>
+      </device>
+   </receiver>
+   <sender>
+      <device>
+         <id extension="{$applicationId}"
+             root="2.16.840.1.113883.2.4.6.6"/>
+      </device>
+   </sender>
+   <ControlActProcess classCode="CACT"
+                      moodCode="EVN">
+      <authorOrPerformer typeCode="AUT">
+         <participant>
+            <AssignedDevice>
+               <id root="2.16.528.1.1007.3.2"
+                   extension="091287345"/>
+               <Organization>
+                  <id extension="00001111"
+                      root="2.16.528.1.1007.3.3"/>
+                  <name>GGD Groningen</name>
+               </Organization>
+            </AssignedDevice>
+         </participant>
+      </authorOrPerformer>
+      <subject>
+         <CareProvisionRequest>
+            <templateId root="2.16.840.1.113883.2.4.6.10.100.10000"/>
+            <id extension="54321"
+                root="2.16.528.1.1007.3.3.1111.999.2"/>
+            <code code="CPHC"
+                  codeSystem="2.16.840.1.113883.5.4"
+                  displayName="certified public health and general preventive medicine care"/>
+            <statusCode code="active"/>
+            <author>
+               <time value="2024"/>
+               <assignedEntity classCode="ASSIGNED">
+                  <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
+                  <id root="2.16.528.1.1007.3.3"
+                      extension="00001111"/>
+               </assignedEntity>
+            </author>
+            <sequelTo>
+               <careProvisionEvent moodCode="EVN">
+                  <id extension="54321"
+                      root="2.16.528.1.1007.3.3.1111.999.2"/>
+                  <code codeSystem="2.16.840.1.113883.5.4"
+                        code="CPHC"
+                        displayName="certified public health and general preventive medicine care"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime>
+                     <high value="20200607213533"/>
+                  </effectiveTime>
+                  <subject typeCode="SBJ">
+                     <patient classCode="PAT">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.100.131"/>
+                        <id extension="999900183"
+                            root="2.16.840.1.113883.2.4.6.3"/>
+                        <addr use="HP">
+                           <streetName>Knolweg</streetName>
+                           <houseNumber>1001</houseNumber>
+                           <postalCode>9999 XX</postalCode>
+                           <city>Stitswerd</city>
+                           <country code="6030"
+                                    codeSystem="2.16.840.1.113883.2.4.4.16.34"
+                                    displayName="Nederland"
+                                    codeSystemName="GBA Tabel 34 Landen"
+                                    codeSystemVersion="2020-03-31T00:00:00">Nederland</country>
+                        </addr>
+                        <telecom use="HP"
+                                 value="tel:050-7656633"/>
+                        <telecom value="mailto:xxx_gioparidon@test.nl"/>
+                        <statusCode code="active"/>
+                        <patientPerson>
+                           <name use="OR">
+                              <given>Giovani</given>
+                              <prefix qualifier="VV BR">van</prefix>
+                              <family qualifier="BR">XXX_Paridon</family>
+                           </name>
+                           <administrativeGenderCode xsi:type="CV"
+                                                     code="M"
+                                                     codeSystem="2.16.840.1.113883.5.1"
+                                                     displayName="Mannelijk"/>
+                           <birthTime value="19861101"/>
+                        </patientPerson>
+                     </patient>
+                  </subject>
+                  <author typeCode="AUT">
+                     <time nullFlavor="UNK"/>
+                     <assignedEntity classCode="ASSIGNED">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
+                        <id extension="12345678"
+                            root="2.16.528.1.1007.3.3"/>
+                        <assignedOrganization classCode="ORG"
+                                              determinerCode="INSTANCE">
+                           <name>GGD Groningen</name>
+                        </assignedOrganization>
+                     </assignedEntity>
+                  </author>
+                  <component7 typeCode="COMP">
+                     <encounter classCode="ENC"
+                                moodCode="EVN">
+                        <id extension="3"
+                            root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
+                        <code code="41"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.308"
+                              displayName="Contact 12 tot 18 jaar"/>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="19991101"/>
+                        <!-- r018_activiteit -->
+                        <pertinentInformation typeCode="PERT">
+                           <rubricCluster classCode="CLUSTER"
+                                          moodCode="EVN">
+                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11018"/>
+                              <code code="R018"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
+                                    displayName="Activiteit"/>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41577"/>
+                                    <code code="1577"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Vorm activiteit"/>
+                                    <value xsi:type="CV"
+                                           code="03"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.424"
+                                           displayName="Face-to-face, anders dan huisbezoek of inloopspreekuur"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41605"/>
+                                    <code code="1605"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Status activiteit"/>
+                                    <value xsi:type="CV"
+                                           code="01"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.434"
+                                           displayName="Gerealiseerd"/>
+                                 </observation>
+                              </component>
+                           </rubricCluster>
+                        </pertinentInformation>
+                        <!-- r054_screeningsinstrumenten -->
+                        <pertinentInformation>
+                           <rubricCluster classCode="CLUSTER"
+                                          moodCode="EVN">
+                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11054"/>
+                              <code code="R054"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
+                                    displayName="Screening psychosociale problemen"/>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41345"/>
+                                    <code code="1345"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Bijzonderheden SPP"/>
+                                    <effectiveTime value="19991101"/>
+                                    <value xsi:type="ST"
+                                           nullFlavor="NI"/>
+                                    <methodCode code="10"
+                                                codeSystem="2.16.840.1.113883.2.4.4.40.387"
+                                                displayName="SDQ 13/14 jaar"/>
+                                    <performer typeCode="PRF">
+                                       <assignedEntity classCode="ASSIGNED">
+                                          <code code="01"
+                                                codeSystem="2.16.840.1.113883.2.4.4.40.388"
+                                                displayName="Ouder"/>
+                                       </assignedEntity>
+                                    </performer>
+                                    <location typeCode="LOC">
+                                       <serviceDeliveryLocation>
+                                          <code code="01"
+                                                codeSystem="2.16.840.1.113883.2.4.4.40.372"
+                                                displayName="Thuis"/>
+                                       </serviceDeliveryLocation>
+                                    </location>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41623"/>
+                                    <code code="1623"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Overall conclusie alle domeinen DMOP"/>
+                                    <value xsi:type="CV"
+                                           code="01"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.436"
+                                           displayName="Goed"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41624"/>
+                                    <code code="1624"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Waardering domein ‘Omstandigheden en gebeurtenissen' (DMOP)"/>
+                                    <value xsi:type="CV"
+                                           code="01"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.436"
+                                           displayName="Goed"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41625"/>
+                                    <code code="1625"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Waardering domein 'Welbevinden kind' (DMOP)"/>
+                                    <value xsi:type="CV"
+                                           code="02"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.436"
+                                           displayName="Gaat wel"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41626"/>
+                                    <code code="1626"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Waardering domein 'Rol partner' (DMOP)"/>
+                                    <value xsi:type="CV"
+                                           code="02"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.436"
+                                           displayName="Gaat wel"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41627"/>
+                                    <code code="1627"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Waardering domein 'Competentie ouder' (DMOP)"/>
+                                    <value xsi:type="CV"
+                                           code="03"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.436"
+                                           displayName="Niet goed"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41628"/>
+                                    <code code="1628"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Waardering domein 'Sociale steun' (DMOP)"/>
+                                    <value xsi:type="CV"
+                                           code="04"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.436"
+                                           displayName="Niet besproken"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41629"/>
+                                    <code code="1629"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="GIZ-driehoek"/>
+                                    <value xsi:type="CV"
+                                           code="01"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.432"
+                                           displayName="Onderzocht, geen bijzonderheden"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41630"/>
+                                    <code code="1630"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Bijzonderheden GIZ-driehoek"/>
+                                    <value xsi:type="CV"
+                                           code="01"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.441"
+                                           displayName="Ontwikkeling"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41630"/>
+                                    <code code="1630"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Bijzonderheden GIZ-driehoek"/>
+                                    <value xsi:type="CV"
+                                           code="02"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.441"
+                                           displayName="Opvoeding"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41630"/>
+                                    <code code="1630"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Bijzonderheden GIZ-driehoek"/>
+                                    <value xsi:type="CV"
+                                           code="03"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.441"
+                                           displayName="Omgeving"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41631"/>
+                                    <code code="1631"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Lichamelijke ontwikkeling"/>
+                                    <value xsi:type="CV"
+                                           code="02"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.438"
+                                           displayName="Spanning"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41632"/>
+                                    <code code="1632"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Verstandelijke ontwikkeling"/>
+                                    <value xsi:type="CV"
+                                           code="03"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.438"
+                                           displayName="Veel stress"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41633"/>
+                                    <code code="1633"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Emotionele ontwikkeling"/>
+                                    <value xsi:type="CV"
+                                           code="01"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.438"
+                                           displayName="Normale zorgen"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41634"/>
+                                    <code code="1634"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Sociale en seksuele ontwikkeling"/>
+                                    <value xsi:type="CV"
+                                           code="02"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.438"
+                                           displayName="Spanning"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41636"/>
+                                    <code code="1636"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Opvoeden"/>
+                                    <value xsi:type="CV"
+                                           code="05"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.438"
+                                           displayName="Noodsituatie"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41637"/>
+                                    <code code="1637"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Beleving ouderschap"/>
+                                    <value xsi:type="CV"
+                                           code="01"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.438"
+                                           displayName="Normale zorgen"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41638"/>
+                                    <code code="1638"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Onderlinge steun ouders"/>
+                                    <value xsi:type="CV"
+                                           code="02"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.438"
+                                           displayName="Spanning"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41639"/>
+                                    <code code="1639"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Gezinsomstandigheden"/>
+                                    <value xsi:type="CV"
+                                           code="02"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.438"
+                                           displayName="Spanning"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41640"/>
+                                    <code code="1640"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Netwerk"/>
+                                    <value xsi:type="CV"
+                                           code="01"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.438"
+                                           displayName="Normale zorgen"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41641"/>
+                                    <code code="1641"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Conclusie van de zorgbehoeften GIZ"/>
+                                    <value xsi:type="CV"
+                                           code="01"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.442"
+                                           displayName="Bevestiging"/>
+                                 </observation>
+                              </component>
+                           </rubricCluster>
+                        </pertinentInformation>
+                     </encounter>
+                  </component7>
+                  <subjectOf typeCode="SUBJ"
+                             contextConductionInd="false">
+                     <careStatus classCode="STC"
+                                 moodCode="EVN">
+                        <code code="1197"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Status in zorg"/>
+                        <effectiveTime value="19900801"/>
+                        <reasonCode code="01"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.376"
+                                    displayName="Regulier"/>
+                     </careStatus>
+                  </subjectOf>
+                  <subjectOf typeCode="SUBJ"
+                             contextConductionInd="false">
+                     <careStatus classCode="STC"
+                                 moodCode="EVN">
+                        <code code="487"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Zorgbeëindiging"/>
+                        <effectiveTime value="20000101"/>
+                        <reasonCode code="01"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.82"
+                                    displayName="Overdracht naar een andere JGZ-organisatie"/>
+                     </careStatus>
+                  </subjectOf>
+               </careProvisionEvent>
+            </sequelTo>
+         </CareProvisionRequest>
+      </subject>
+   </ControlActProcess>
+</REPC_IN902120NL03>
