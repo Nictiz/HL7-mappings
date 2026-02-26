@@ -29,13 +29,13 @@
                                moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
-         <id extension="MBH_300_SCRIPT9_MA_ANNULERING"
+         <id extension="MBH_300_SCRIPT9_MA_ANNULERING-vos"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">1 maal per 4 dagen stuks, oraal</text>
+         <text mediaType="text/plain">4 maal per dag 1 stuk, oraal</text>
          <effectiveTime value="20240115113000+0100"/>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -126,16 +126,16 @@
                <effectiveTime xsi:type="Timing"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
-                     <frequency value="1"/>
-                     <period value="4"/>
+                     <frequency value="4"/>
+                     <period value="1"/>
                      <periodUnit value="d"/>
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value=""
+                  <center value="1"
                           unit="1">
-                     <translation value=""
-                                  code="1"
+                     <translation value="1"
+                                  code="245"
                                   displayName="Stuk"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
@@ -148,7 +148,7 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_SCRIPT9_MA_TOEKOMSTIG"
+               <id extension="MBH_300_SCRIPT9_MA_TOEKOMSTIG-vos"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
@@ -161,7 +161,7 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
-               <id extension="MBH_300_SCRIPT9_TA_TOEKOMSTIG"
+               <id extension="MBH_300_SCRIPT9_TA_TOEKOMSTIG-vos"
                    root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <code displayName="Toedieningsafspraak"
                      code="422037009"
@@ -176,7 +176,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_SCRIPT9"/>
+                   extension="MBH_300_SCRIPT9-vos"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
