@@ -24,8 +24,8 @@
     <!--    <property name="validate.dir" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210931/mp-xml-20210921T194523/schematron_closed_warnings"/>-->
     <property name="validate.dir" value="${build.dir}/../../../../../../SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop"/>
 
-    <property name="schema.organizer" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20231017/mp-xml-20231017T223005/schemas_codeGen_flat/organizer.xsd"/>
-    <property name="schema.cda" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20231017/mp-xml-20231017T223005/schemas_codeGen_flat/CDANL_extended.xsd"/>
+    <property name="schema.organizer" value="${build.dir}/../../../../../../SVN/mp-xml-20260213T112547/schemas_codeGen_flat/organizer.xsd"/>
+    <property name="schema.cda" value="${build.dir}/../../../../../../SVN/mp-xml-20260213T112547/schemas_codeGen_flat/schemas_codeGen_flat/CDANL_extended.xsd"/>
 
     <property name="xsl.validate.svrl" value="${build.dir}/../../../../YATC-shared/xsl/util/validate-svrl-output.xsl"/>
 
@@ -71,6 +71,34 @@
             <param name="input.fileset" value="*.xml"/>
         </antcall>        
     </target>
+    
+    <target name="schematronvalidate_hl7_930_nictiztest">
+        <!-- nictiz_test -->
+        <echo/>
+        <echo>${echo.label} nictiz_test</echo>
+        <xslt force="true" style="${validate.dir}/mp-mp93_mgb_svrl.xsl" destdir="${build.dir}/nictiz_test/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+            <fileset dir="${build.dir}/nictiz_test/hl7_instance" includes="mg-*.xml"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>
+        <!-- 
+        <xslt force="true" style="${validate.dir}/mp-mp93_av_svrl.xsl" destdir="${build.dir}/nictiz_test/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+            <fileset dir="${build.dir}/nictiz_test/hl7_instance" includes="av-*.xml"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>
+       -->
+        <xslt force="true" style="${validate.dir}/mp-mp93_vos_svrl.xsl" destdir="${build.dir}/nictiz_test/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+            <fileset dir="${build.dir}/nictiz_test/hl7_instance" includes="mv-*.xml"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>
+        <!-- and results nictiz_test -->
+        <antcall target="schematronresults_hl7_930_nictiztest"/>        
+        
+    </target>
+    
+    
 
     <target name="schematronresults_hl7_930">
 
@@ -149,32 +177,8 @@
         </xslt>
 
     </target>
-    
-    <target name="schematronvalidate_hl7_930_nictiztest">
-        <!-- nictiz_test -->
-        <echo/>
-        <echo>${echo.label} nictiz_test</echo>
-        <xslt force="true" style="${validate.dir}/mp-mp93_mgb_svrl.xsl" destdir="${build.dir}/nictiz_test/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
-            <fileset dir="${build.dir}/nictiz_test/hl7_instance" includes="mg-*.xml"/>
-            <factory name="${xsl.saxon.class}"/>
-            <classpath location="${xsl.saxon}"/>
-        </xslt>        
-        <xslt force="true" style="${validate.dir}/mp-mp93_av_svrl.xsl" destdir="${build.dir}/nictiz_test/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
-            <fileset dir="${build.dir}/nictiz_test/hl7_instance" includes="av-*.xml"/>
-            <factory name="${xsl.saxon.class}"/>
-            <classpath location="${xsl.saxon}"/>
-        </xslt>
-        <xslt force="true" style="${validate.dir}/mp-mp93_vos_svrl.xsl" destdir="${build.dir}/nictiz_test/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
-            <fileset dir="${build.dir}/nictiz_test/hl7_instance" includes="mv-*.xml"/>
-            <factory name="${xsl.saxon.class}"/>
-            <classpath location="${xsl.saxon}"/>
-        </xslt>
-        <!-- and results nictiz_test -->
-        <antcall target="schematronresults_hl7_930_nictiztest"/>        
-        
-    </target>
-
-    <target name="validate_hl7_930">
+ 
+        <target name="validate_hl7_930">
 
         <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="validate_hl7_sub">
@@ -213,7 +217,7 @@
             <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
             <param name="xsl.input" value="hl7_instance"/>
             <param name="xsl.output" value="validate_hl7_instance"/>
-            <param name="xsl.mp" value="${validate.dir}/mp-mp93_vos.xsl"/>
+            <param name="xsl.mp" value="${validate.dir}/mp-mp93_vos_svrl.xsl"/>
         </antcall>
 
         <!-- sturen_voorstel_medicatieafspraak -->
@@ -221,14 +225,14 @@
             <param name="sub.build.dir" value="${build.dir}/${usecase.vma}"/>
             <param name="xsl.input" value="hl7_instance"/>
             <param name="xsl.output" value="validate_hl7_instance"/>
-            <param name="xsl.mp" value="${validate.dir}/mp-mp93_vma.xsl"/>
+            <param name="xsl.mp" value="${validate.dir}/mp-mp93_vma_svrl.xsl"/>
         </antcall>
         <!-- sturen_antwoord_voorstel_medicatieafspraak -->
         <antcall target="validate_hl7_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.avma}"/>
             <param name="xsl.input" value="hl7_instance"/>
             <param name="xsl.output" value="validate_hl7_instance"/>
-            <param name="xsl.mp" value="${validate.dir}/mp-mp93_avma.xsl"/>
+            <param name="xsl.mp" value="${validate.dir}/mp-mp93_avma_svrl.xsl"/>
         </antcall>
 
         <!-- sturen_voorstel_verstrekkingsverzoek -->
@@ -236,11 +240,11 @@
             <param name="sub.build.dir" value="${build.dir}/${usecase.vvv}"/>
             <param name="xsl.input" value="hl7_instance"/>
             <param name="xsl.output" value="validate_hl7_instance"/>
-            <param name="xsl.mp" value="${validate.dir}/mp-mp93_vvv.xsl"/>
+            <param name="xsl.mp" value="${validate.dir}/mp-mp93_vvv_svrl.xsl"/>
         </antcall>
 
         <!-- nictiz_test -->
-        <antcall target="schematronvalidate_hl7_930_nictiztest"/>        
+         <antcall target="schematronvalidate_hl7_930_nictiztest"/>       
         
         <!-- xml-voorbeelden -->
         <echo/>
@@ -260,22 +264,22 @@
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
         </xslt>
-        <xslt force="true" style="${validate.dir}/mp-mp93_vos.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+        <xslt force="true" style="${validate.dir}/mp-mp93_vos_svrl.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
             <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="mv-*.xml"/>
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
         </xslt>
-        <xslt force="true" style="${validate.dir}/mp-mp93_vma.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+        <xslt force="true" style="${validate.dir}/mp-mp93_vma_svrl.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
             <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="vma-*.xml"/>
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
         </xslt>
-        <xslt force="true" style="${validate.dir}/mp-mp93_avma.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+        <xslt force="true" style="${validate.dir}/mp-mp93_avma_svrl.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
             <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="avma-*.xml"/>
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
         </xslt>
-        <xslt force="true" style="${validate.dir}/mp-mp93_vvv.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+        <xslt force="true" style="${validate.dir}/mp-mp93_vvv_svrl.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
             <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="vvv-*.xml"/>
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
@@ -283,37 +287,37 @@
 
         <echo/>
         <echo>${echo.label} xml-voorbeelden bouwstenen hl7_instance</echo>
-                <xslt force="true" style="${validate.dir}/mp-mp93_mg_ma.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+        <xslt force="true" style="${validate.dir}/mp-mp93_mg_ma_svrl.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
             <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="bsma-*.xml"/>
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
         </xslt>
-        <xslt force="true" style="${validate.dir}/mp-mp93_mg_wds.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+        <xslt force="true" style="${validate.dir}/mp-mp93_mg_wds_svrl.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
             <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="bswds-*.xml"/>
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
         </xslt>
-        <xslt force="true" style="${validate.dir}/mp-mp93_mg_vv.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+        <xslt force="true" style="${validate.dir}/mp-mp93_mg_vv_svrl.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
             <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="bsvv-*.xml"/>
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
         </xslt>
-        <xslt force="true" style="${validate.dir}/mp-mp93_mg_ta.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+        <xslt force="true" style="${validate.dir}/mp-mp93_mg_ta_svrl.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
             <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="bsta-*.xml"/>
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
         </xslt>
-        <xslt force="true" style="${validate.dir}/mp-mp93_mg_mve.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+        <xslt force="true" style="${validate.dir}/mp-mp93_mg_mve_svrl.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
             <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="bsmve-*.xml"/>
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
         </xslt>
-        <xslt force="true" style="${validate.dir}/mp-mp93_mg_mgb.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+        <xslt force="true" style="${validate.dir}/mp-mp93_mg_mgb_svrl.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
             <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="bsmgb-*.xml"/>
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
         </xslt>
-        <xslt force="true" style="${validate.dir}/mp-mp93_mg_mtd.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+        <xslt force="true" style="${validate.dir}/mp-mp93_mg_mtd_svrl.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
             <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="bsmtd-*.xml"/>
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>

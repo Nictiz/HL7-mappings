@@ -979,7 +979,7 @@
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">op maandag en donderdag 1 keer om 10:00 1 stuk, transdermaal</text>
+         <text mediaType="text/plain">op maandag en donderdag 2 maal per week om 10:00 1 stuk, Oude pleister verwijderen, nieuwe pleister niet op zelfde plek plakken, transdermaal</text>
          <effectiveTime xsi:type="IVL_TS">
             <low value="20240101000000+0100"/>
             <high nullFlavor="NI"/>
@@ -1031,7 +1031,9 @@
             <act classCode="ACT"
                  moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9085"/>
-               <code nullFlavor="Oude pleister verwijderen, nieuwe pleister niet op zelfde plek plakken"/>
+               <code nullFlavor="OTH">
+                  <originalText>Oude pleister verwijderen, nieuwe pleister niet op zelfde plek plakken</originalText>
+               </code>
             </act>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -1042,7 +1044,9 @@
                <effectiveTime xsi:type="Timing"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
-                     <count value="1"/>
+                     <frequency value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="wk"/>
                      <dayOfWeek value="mon"/>
                      <dayOfWeek value="thu"/>
                      <timeOfDay value="10:00:00"/>

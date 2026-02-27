@@ -314,7 +314,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20231220113000+0100"/>
+            <time value="20231220112400+0100"/>
             <assignedAuthor>
                <id extension="000001111"
                    root="2.16.528.1.1007.3.1"/>
@@ -471,7 +471,7 @@
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">1 maal per 4 dagen stuks, oraal</text>
+         <text mediaType="text/plain">4 maal per dag 1 stuk, oraal</text>
          <effectiveTime value="20240115113000+0100"/>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -560,16 +560,16 @@
                <effectiveTime xsi:type="Timing"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
-                     <frequency value="1"/>
-                     <period value="4"/>
+                     <frequency value="4"/>
+                     <period value="1"/>
                      <periodUnit value="d"/>
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value=""
+                  <center value="1"
                           unit="1">
-                     <translation value=""
-                                  code="1"
+                     <translation value="1"
+                                  code="245"
                                   displayName="Stuk"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
@@ -1616,6 +1616,20 @@
                </representedOrganization>
             </assignedAuthor>
          </author>
+         <entryRelationship typeCode="COMP">
+            <observation classCode="OBS"
+                         moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9414"/>
+               <code code="1"
+                     displayName="Stoptype"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
+                     codeSystemName="Medicatieproces observaties"/>
+               <value xsi:type="CE"
+                      code="410546004"
+                      codeSystem="2.16.840.1.113883.6.96"
+                      displayName="stopgezet"/>
+            </observation>
+         </entryRelationship>
          <entryRelationship typeCode="RSON">
             <observation classCode="OBS"
                          moodCode="EVN">
