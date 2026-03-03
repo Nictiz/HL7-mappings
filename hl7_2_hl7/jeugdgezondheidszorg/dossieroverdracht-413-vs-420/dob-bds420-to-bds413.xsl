@@ -9,7 +9,7 @@
                 <xd:b>History:</xd:b>
             </xd:p>
             <xd:ul>
-                <xd:li>01-12-2024 - 0.1</xd:li>
+                <xd:li>01-02-2026 - 1.0.0</xd:li>
             </xd:ul>
             <xd:p><xd:b>License:</xd:b> Copyright © Nictiz</xd:p>
             <xd:p>This program is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.</xd:p>
