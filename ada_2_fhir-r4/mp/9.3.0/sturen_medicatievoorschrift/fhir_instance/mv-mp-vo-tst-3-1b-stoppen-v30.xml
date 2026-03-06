@@ -1,13 +1,14 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="bf29984b-9887-11f0-9951-020000000000"/>
+   <id value="f19dd6df-17e2-11f1-1893-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:bf299912-9887-11f0-9951-020000000000"/>
+      <fullUrl value="urn:uuid:f19dd79c-17e2-11f1-1893-020000000000"/>
       <resource>
          <MedicationRequest>
+            <id value="f19dd79c-17e2-11f1-1893-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
                <tag>
@@ -30,7 +31,7 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_stoppen"/>
+                  <value value="MBH_300_stoppen-tvo"/>
                </valueIdentifier>
             </extension>
             <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
@@ -44,7 +45,7 @@
             </modifierExtension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_300_stoppen_MA_staken"/>
+               <value value="MBH_300_stoppen_MA_staken-tvo"/>
             </identifier>
             <status value="active"/>
             <intent value="order"/>
@@ -56,17 +57,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:bf299926-9887-11f0-9951-020000000000"/>
+               <reference value="urn:uuid:f19dd7b0-17e2-11f1-1893-020000000000"/>
                <type value="Medication"/>
-               <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+               <display value="ACETYLSALICYLZUUR DISPERTABLET 80MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:bf29987c-9887-11f0-9951-020000000000"/>
+               <reference value="urn:uuid:f19dd71a-17e2-11f1-1893-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C van de XXX_Voortman"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:bf29989a-9887-11f0-9951-020000000000"/>
+               <reference value="urn:uuid:f19dd738-17e2-11f1-1893-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -113,9 +114,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_stoppen_MA_start"/>
+                  <value value="MBH_300_stoppen_MA_start-tvo"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak: MBH_300_stoppen_MA_start || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak: MBH_300_stoppen_MA_start-tvo || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </priorPrescription>
          </MedicationRequest>
       </resource>
@@ -125,9 +126,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bf29987c-9887-11f0-9951-020000000000"/>
+      <fullUrl value="urn:uuid:f19dd71a-17e2-11f1-1893-020000000000"/>
       <resource>
          <Patient>
+            <id value="f19dd71a-17e2-11f1-1893-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -175,19 +177,20 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bf29989a-9887-11f0-9951-020000000000"/>
+      <fullUrl value="urn:uuid:f19dd738-17e2-11f1-1893-020000000000"/>
       <resource>
          <PractitionerRole>
+            <id value="f19dd738-17e2-11f1-1893-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:bf2998b8-9887-11f0-9951-020000000000"/>
+               <reference value="urn:uuid:f19dd756-17e2-11f1-1893-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:bf2998ea-9887-11f0-9951-020000000000"/>
+               <reference value="urn:uuid:f19dd774-17e2-11f1-1893-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -212,9 +215,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bf2998b8-9887-11f0-9951-020000000000"/>
+      <fullUrl value="urn:uuid:f19dd756-17e2-11f1-1893-020000000000"/>
       <resource>
          <Practitioner>
+            <id value="f19dd756-17e2-11f1-1893-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
             </meta>
@@ -252,9 +256,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bf2998ea-9887-11f0-9951-020000000000"/>
+      <fullUrl value="urn:uuid:f19dd774-17e2-11f1-1893-020000000000"/>
       <resource>
          <Organization>
+            <id value="f19dd774-17e2-11f1-1893-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -293,25 +298,26 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bf299926-9887-11f0-9951-020000000000"/>
+      <fullUrl value="urn:uuid:f19dd7b0-17e2-11f1-1893-020000000000"/>
       <resource>
          <Medication>
+            <id value="f19dd7b0-17e2-11f1-1893-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="49484"/>
-                  <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+                  <code value="68632"/>
+                  <display value="ACETYLSALICYLZUUR DISPERTABLET 80MG"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="103039"/>
-                  <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+                  <code value="117145"/>
+                  <display value="ACETYLSALICYLZUUR DISPERTABLET 80MG"/>
                </coding>
-               <text value="Acetylsalicylzuur tabletmsr 100mg"/>
+               <text value="ACETYLSALICYLZUUR DISPERTABLET 80MG"/>
             </code>
          </Medication>
       </resource>

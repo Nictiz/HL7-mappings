@@ -1,13 +1,14 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="e32de5e9-9887-11f0-1636-020000000000"/>
+   <id value="f53c70d5-17e2-11f1-9039-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:e32de6ec-9887-11f0-1636-020000000000"/>
+      <fullUrl value="urn:uuid:f53c71ba-17e2-11f1-9039-020000000000"/>
       <resource>
          <MedicationRequest>
+            <id value="f53c71ba-17e2-11f1-9039-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
                <tag>
@@ -30,12 +31,12 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_geannuleerd_indicator"/>
+                  <value value="MBH_300_geannuleerd_indicator-tvo"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_300_geannuleerd_indicator_MA"/>
+               <value value="MBH_300_geannuleerd_indicator_MA-tvo"/>
             </identifier>
             <status value="active"/>
             <intent value="order"/>
@@ -47,17 +48,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:e32de714-9887-11f0-1636-020000000000"/>
+               <reference value="urn:uuid:f53c71e2-17e2-11f1-9039-020000000000"/>
                <type value="Medication"/>
                <display value="FINASTERIDE TABLET 5MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:e32de61a-9887-11f0-1636-020000000000"/>
+               <reference value="urn:uuid:f53c7110-17e2-11f1-9039-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:e32de638-9887-11f0-1636-020000000000"/>
+               <reference value="urn:uuid:f53c712e-17e2-11f1-9039-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -101,9 +102,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e32de700-9887-11f0-1636-020000000000"/>
+      <fullUrl value="urn:uuid:f53c71ce-17e2-11f1-9039-020000000000"/>
       <resource>
          <MedicationRequest>
+            <id value="f53c71ce-17e2-11f1-9039-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-DispenseRequest"/>
                <tag>
@@ -114,12 +116,12 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_geannuleerd_indicator"/>
+                  <value value="MBH_300_geannuleerd_indicator-tvo"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <value value="MBH_300_geannuleerd_indicator_VV"/>
+               <value value="MBH_300_geannuleerd_indicator_VV-tvo"/>
             </identifier>
             <status value="active"/>
             <intent value="order"/>
@@ -131,23 +133,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:e32de714-9887-11f0-1636-020000000000"/>
+               <reference value="urn:uuid:f53c71e2-17e2-11f1-9039-020000000000"/>
                <type value="Medication"/>
                <display value="FINASTERIDE TABLET 5MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:e32de61a-9887-11f0-1636-020000000000"/>
+               <reference value="urn:uuid:f53c7110-17e2-11f1-9039-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <authoredOn value="2024-01-01T13:00:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:e32de638-9887-11f0-1636-020000000000"/>
+               <reference value="urn:uuid:f53c712e-17e2-11f1-9039-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:e32de6c4-9887-11f0-1636-020000000000"/>
+               <reference value="urn:uuid:f53c7192-17e2-11f1-9039-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -155,9 +157,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_geannuleerd_indicator_MA"/>
+                  <value value="MBH_300_geannuleerd_indicator_MA-tvo"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak  met identificatie: MBH_300_geannuleerd_indicator_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak  met identificatie: MBH_300_geannuleerd_indicator_MA-tvo || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </basedOn>
             <dispenseRequest>
                <quantity>
@@ -183,9 +185,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e32de61a-9887-11f0-1636-020000000000"/>
+      <fullUrl value="urn:uuid:f53c7110-17e2-11f1-9039-020000000000"/>
       <resource>
          <Patient>
+            <id value="f53c7110-17e2-11f1-9039-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -230,19 +233,20 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e32de638-9887-11f0-1636-020000000000"/>
+      <fullUrl value="urn:uuid:f53c712e-17e2-11f1-9039-020000000000"/>
       <resource>
          <PractitionerRole>
+            <id value="f53c712e-17e2-11f1-9039-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:e32de656-9887-11f0-1636-020000000000"/>
+               <reference value="urn:uuid:f53c714c-17e2-11f1-9039-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:e32de688-9887-11f0-1636-020000000000"/>
+               <reference value="urn:uuid:f53c716a-17e2-11f1-9039-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -267,9 +271,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e32de656-9887-11f0-1636-020000000000"/>
+      <fullUrl value="urn:uuid:f53c714c-17e2-11f1-9039-020000000000"/>
       <resource>
          <Practitioner>
+            <id value="f53c714c-17e2-11f1-9039-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
             </meta>
@@ -307,9 +312,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e32de688-9887-11f0-1636-020000000000"/>
+      <fullUrl value="urn:uuid:f53c716a-17e2-11f1-9039-020000000000"/>
       <resource>
          <Organization>
+            <id value="f53c716a-17e2-11f1-9039-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -348,9 +354,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e32de6c4-9887-11f0-1636-020000000000"/>
+      <fullUrl value="urn:uuid:f53c7192-17e2-11f1-9039-020000000000"/>
       <resource>
          <Organization>
+            <id value="f53c7192-17e2-11f1-9039-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -392,9 +399,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e32de714-9887-11f0-1636-020000000000"/>
+      <fullUrl value="urn:uuid:f53c71e2-17e2-11f1-9039-020000000000"/>
       <resource>
          <Medication>
+            <id value="f53c71e2-17e2-11f1-9039-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>

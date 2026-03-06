@@ -1,14 +1,16 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-CONS-TA-Scenarioset12d-v30"/>
-   <type value="transaction"/>
+   <type value="searchset"/>
+   <total value="2"/>
    <link>
       <relation value="self"/>
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:40d084a8-6ac4-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9329df0d-6ab1-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="9329df0d-6ab1-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
             </meta>
@@ -26,12 +28,12 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_ToekomstigEnNieuweMA"/>
+                  <value value="MBH_300_ToekomstigEnNieuweMA-tmg"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <value value="MBH_300_ToekomstigEnNieuweMA_startTA"/>
+               <value value="MBH_300_ToekomstigEnNieuweMA_startTA-tmg"/>
             </identifier>
             <status value="unknown"/>
             <category>
@@ -42,7 +44,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:9aed191d-6b0b-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:962b1c72-6aac-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="OMEPRAZOL AURO CAPSULE MSR 10MG"/>
             </medicationReference>
@@ -62,9 +64,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_ToekomstigEnNieuweMA_startMA"/>
+                  <value value="MBH_300_ToekomstigEnNieuweMA_startMA-tmg"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_ToekomstigEnNieuweMA_startMA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_ToekomstigEnNieuweMA_startMA-tmg || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </authorizingPrescription>
             <dosageInstruction>
                <timing>
@@ -100,15 +102,15 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:8e9d0f0d-6b21-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:05e5ddda-6b51-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="05e5ddda-6b51-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
             </meta>
@@ -126,12 +128,12 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_ToekomstigEnNieuweMA"/>
+                  <value value="MBH_300_ToekomstigEnNieuweMA-tmg"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <value value="MBH_300_ToekomstigEnNieuweMA_ToekomstTA"/>
+               <value value="MBH_300_ToekomstigEnNieuweMA_ToekomstTA-tmg"/>
             </identifier>
             <status value="unknown"/>
             <category>
@@ -142,7 +144,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:9aed191d-6b0b-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:962b1c72-6aac-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="OMEPRAZOL AURO CAPSULE MSR 10MG"/>
             </medicationReference>
@@ -162,9 +164,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_ToekomstigEnNieuweMA_ToekomstMA"/>
+                  <value value="MBH_300_ToekomstigEnNieuweMA_ToekomstMA-tmg"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_ToekomstigEnNieuweMA_ToekomstMA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_ToekomstigEnNieuweMA_ToekomstMA-tmg || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </authorizingPrescription>
             <dosageInstruction>
                <timing>
@@ -200,15 +202,15 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:0e9e417e-6a9c-11ec-0000-020000000000"/>
       <resource>
          <Patient>
+            <id value="0e9e417e-6a9c-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -250,15 +252,15 @@
             <birthDate value="1963-09-18"/>
          </Patient>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Patient"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
       <resource>
          <Organization>
+            <id value="10079464-6b64-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -294,15 +296,15 @@
             </address>
          </Organization>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9aed191d-6b0b-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:962b1c72-6aac-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="962b1c72-6aac-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
@@ -327,9 +329,8 @@
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
 </Bundle>

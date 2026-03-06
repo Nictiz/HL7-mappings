@@ -1,14 +1,16 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-tst-MGB-Scenarioset1-v30"/>
-   <type value="transaction"/>
+   <type value="searchset"/>
+   <total value="5"/>
    <link>
       <relation value="self"/>
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:37d2ac27-6ade-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:e54e2cbd-6a9a-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
+            <id value="e54e2cbd-6a9a-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
@@ -28,7 +30,7 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_start_eind"/>
+                  <value value="MBH_300_start_eind-tmg"/>
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
@@ -40,7 +42,7 @@
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <value value="MBH_300_start_eind_MGB"/>
+               <value value="MBH_300_start_eind_MGB-tmg"/>
             </identifier>
             <status value="active"/>
             <category>
@@ -51,7 +53,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:7ed5e604-6b31-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:1fba3786-6aee-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="METOCLOPRAMIDE HCL ACCORD TABLET 10MG"/>
             </medicationReference>
@@ -83,7 +85,7 @@
                <type value="MedicationDispense"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-                  <value value="MBH_300_start_eind_TA"/>
+                  <value value="MBH_300_start_eind_TA-tmg"/>
                </identifier>
                <display value="relatie naar toedieningsafspraak"/>
             </derivedFrom>
@@ -114,15 +116,15 @@
             </dosage>
          </MedicationStatement>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationStatement"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a74d9427-6b1f-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:d2ce0cbd-6acf-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
+            <id value="d2ce0cbd-6acf-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
@@ -142,7 +144,7 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_start_duur"/>
+                  <value value="MBH_300_start_duur-tmg"/>
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
@@ -154,7 +156,7 @@
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <value value="MBH_300_start_duur_MGB"/>
+               <value value="MBH_300_start_duur_MGB-tmg"/>
             </identifier>
             <status value="active"/>
             <category>
@@ -165,7 +167,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:dc02ff1d-6a9c-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:fb3859b2-6b07-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="LISINOPRIL 10MG TABLET"/>
             </medicationReference>
@@ -204,7 +206,7 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_start_duur_MA"/>
+                  <value value="MBH_300_start_duur_MA-tmg"/>
                </identifier>
                <display value="relatie naar medicatieafspraak"/>
             </derivedFrom>
@@ -242,15 +244,15 @@
             </dosage>
          </MedicationStatement>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationStatement"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:18732cbd-6b0b-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:e0d216d6-6acb-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
+            <id value="e0d216d6-6acb-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
@@ -270,7 +272,7 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_chronisch"/>
+                  <value value="MBH_300_chronisch-tmg"/>
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
@@ -282,7 +284,7 @@
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <value value="MBH_300_chronisch_MGB"/>
+               <value value="MBH_300_chronisch_MGB-tmg"/>
             </identifier>
             <status value="active"/>
             <category>
@@ -293,7 +295,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:abb8231d-6b39-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:a46a3532-6b17-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="ROTER APC TABLET"/>
             </medicationReference>
@@ -324,7 +326,7 @@
                <type value="MedicationDispense"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-                  <value value="MBH_300_chronisch_TA"/>
+                  <value value="MBH_300_chronisch_TA-tmg"/>
                </identifier>
                <display value="relatie naar toedieningsafspraak"/>
             </derivedFrom>
@@ -362,15 +364,15 @@
             </dosage>
          </MedicationStatement>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationStatement"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7e658d26-6ab1-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:96c3fc27-6ad4-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
+            <id value="96c3fc27-6ad4-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
@@ -390,7 +392,7 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_start_duur2"/>
+                  <value value="MBH_300_start_duur2-tmg"/>
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
@@ -402,7 +404,7 @@
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <value value="MBH_300_start_duur2_MGB"/>
+               <value value="MBH_300_start_duur2_MGB-tmg"/>
             </identifier>
             <status value="active"/>
             <category>
@@ -413,7 +415,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:6b7d6104-6b5e-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:eb288386-6afe-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="PANTOPRAZOL 20MG TABLET MSR"/>
             </medicationReference>
@@ -452,7 +454,7 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_start_duur2_MA"/>
+                  <value value="MBH_300_start_duur2_MA-tmg"/>
                </identifier>
                <display value="relatie naar medicatieafspraak"/>
             </derivedFrom>
@@ -490,15 +492,15 @@
             </dosage>
          </MedicationStatement>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationStatement"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:91118e06-6b48-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6cd249e7-6add-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
+            <id value="6cd249e7-6add-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
@@ -518,7 +520,7 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_dosis_stuks"/>
+                  <value value="MBH_300_dosis_stuks-tmg"/>
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
@@ -530,7 +532,7 @@
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <value value="MBH_300_dosis_stuks_MGB"/>
+               <value value="MBH_300_dosis_stuks_MGB-tmg"/>
             </identifier>
             <status value="active"/>
             <category>
@@ -541,7 +543,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:501c9f1d-6b1e-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:338b95b2-6ac8-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="FLUTICASON INHALATIEPOEDER 100UG/DO 60DO DISKUS"/>
             </medicationReference>
@@ -573,7 +575,7 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_dosis_stuks_MA"/>
+                  <value value="MBH_300_dosis_stuks_MA-tmg"/>
                </identifier>
                <display value="relatie naar medicatieafspraak"/>
             </derivedFrom>
@@ -611,15 +613,15 @@
             </dosage>
          </MedicationStatement>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationStatement"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:4c764878-6b0d-11ec-0000-020000000000"/>
       <resource>
          <Patient>
+            <id value="4c764878-6b0d-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -658,15 +660,15 @@
             <birthDate value="1963-10-21"/>
          </Patient>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Patient"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:eb081824-6b03-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
+            <id value="eb081824-6b03-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
@@ -690,15 +692,15 @@
             </specialty>
          </PractitionerRole>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="PractitionerRole"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:cdc75558-6ada-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
+            <id value="cdc75558-6ada-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
             </meta>
@@ -725,15 +727,15 @@
             </name>
          </Practitioner>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Practitioner"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:fdf54558-6b5e-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
+            <id value="fdf54558-6b5e-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
@@ -757,15 +759,15 @@
             </specialty>
          </PractitionerRole>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="PractitionerRole"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:9bdfc42e-6ab8-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
+            <id value="9bdfc42e-6ab8-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
             </meta>
@@ -792,15 +794,15 @@
             </name>
          </Practitioner>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Practitioner"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:1ca6c464-6b4c-11ec-0000-020000000000"/>
       <resource>
          <Organization>
+            <id value="1ca6c464-6b4c-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -833,15 +835,15 @@
             </address>
          </Organization>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
       <resource>
          <Organization>
+            <id value="7fa869d8-6b44-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -874,15 +876,15 @@
             </address>
          </Organization>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:abb8231d-6b39-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:a46a3532-6b17-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="a46a3532-6b17-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
@@ -907,15 +909,15 @@
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:501c9f1d-6b1e-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:338b95b2-6ac8-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="338b95b2-6ac8-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
@@ -935,15 +937,15 @@
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc02ff1d-6a9c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:fb3859b2-6b07-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="fb3859b2-6b07-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
@@ -963,15 +965,15 @@
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7ed5e604-6b31-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:1fba3786-6aee-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="1fba3786-6aee-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
@@ -996,15 +998,15 @@
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6b7d6104-6b5e-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:eb288386-6afe-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="eb288386-6afe-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
@@ -1024,9 +1026,8 @@
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
 </Bundle>
