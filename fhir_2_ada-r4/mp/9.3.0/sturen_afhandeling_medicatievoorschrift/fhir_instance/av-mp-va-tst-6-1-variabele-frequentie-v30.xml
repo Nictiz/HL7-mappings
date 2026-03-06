@@ -1,13 +1,14 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="5bfe5825-a281-11ef-3517-020000000000"/>
+   <id value="42114e29-1961-11f1-9248-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:5bfe5914-a281-11ef-3517-020000000000"/>
+      <fullUrl value="urn:uuid:42114ea0-1961-11f1-9248-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="42114ea0-1961-11f1-9248-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
                <tag>
@@ -16,27 +17,26 @@
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
-               <valueDateTime value="2023-01-01T09:00:00+01:00"/>
+               <valueDateTime value="2024-01-01T09:00:00+01:00"/>
             </extension>
-            <f:extension xmlns:f="http://hl7.org/fhir"
-                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <f:valueString value="Vanaf 1 jan 2023, tot en met 17 jan 2023, 1 à 2 maal per dag 1 stuk, Oraal"/>
-            </f:extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="1 à 2 maal per dag 1 stuk, Oraal"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2023-01-01T00:00:00+01:00"/>
-                  <end value="2023-01-17T23:59:59+01:00"/>
+                  <start value="2024-01-01T00:00:00+01:00"/>
+                  <end value="2024-01-17T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_variabelefrequentie"/>
+                  <value value="MBH_300_variabelefrequentie-tav"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <value value="MBH_300_variabelefrequentie_TA"/>
+               <value value="MBH_300_variabelefrequentie_TA-tav"/>
             </identifier>
             <status value="unknown"/>
             <category>
@@ -47,18 +47,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:5bfe5950-a281-11ef-3517-020000000000"/>
+               <reference value="urn:uuid:42114ec8-1961-11f1-9248-020000000000"/>
                <type value="Medication"/>
                <display value="MIZOLLEN TABLET MGA 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:5bfe589c-a281-11ef-3517-020000000000"/>
+               <reference value="urn:uuid:42114e64-1961-11f1-9248-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:5bfe58d8-a281-11ef-3517-020000000000"/>
+                  <reference value="urn:uuid:42114e78-1961-11f1-9248-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -67,9 +67,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_variabelefrequentie_MA"/>
+                  <value value="MBH_300_variabelefrequentie_MA-tav"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_variabelefrequentie_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_variabelefrequentie_MA-tav || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </authorizingPrescription>
             <dosageInstruction>
                <timing>
@@ -112,9 +112,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5bfe5932-a281-11ef-3517-020000000000"/>
+      <fullUrl value="urn:uuid:42114eb4-1961-11f1-9248-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="42114eb4-1961-11f1-9248-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
                <tag>
@@ -125,12 +126,12 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_variabelefrequentie"/>
+                  <value value="MBH_300_variabelefrequentie-tav"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <value value="MBH_300_variabelefrequentie_MVE"/>
+               <value value="MBH_300_variabelefrequentie_MVE-tav"/>
             </identifier>
             <status value="completed"/>
             <category>
@@ -141,18 +142,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:5bfe5950-a281-11ef-3517-020000000000"/>
+               <reference value="urn:uuid:42114ec8-1961-11f1-9248-020000000000"/>
                <type value="Medication"/>
                <display value="MIZOLLEN TABLET MGA 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:5bfe589c-a281-11ef-3517-020000000000"/>
+               <reference value="urn:uuid:42114e64-1961-11f1-9248-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:5bfe58d8-a281-11ef-3517-020000000000"/>
+                  <reference value="urn:uuid:42114e78-1961-11f1-9248-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -161,9 +162,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-                  <value value="MBH_300_variabelefrequentie_VV"/>
+                  <value value="MBH_300_variabelefrequentie_VV-tav"/>
                </identifier>
-               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_variabelefrequentie_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_variabelefrequentie_VV-tav || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
             </authorizingPrescription>
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
@@ -179,7 +180,7 @@
                <system value="http://unitsofmeasure.org"/>
                <code value="1"/>
             </quantity>
-            <whenHandedOver value="2023-01-01T09:00:00+01:00"/>
+            <whenHandedOver value="2024-01-01T09:00:00+01:00"/>
          </MedicationDispense>
       </resource>
       <request>
@@ -188,9 +189,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5bfe589c-a281-11ef-3517-020000000000"/>
+      <fullUrl value="urn:uuid:42114e64-1961-11f1-9248-020000000000"/>
       <resource>
          <Patient>
+            <id value="42114e64-1961-11f1-9248-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -235,9 +237,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5bfe58d8-a281-11ef-3517-020000000000"/>
+      <fullUrl value="urn:uuid:42114e78-1961-11f1-9248-020000000000"/>
       <resource>
          <Organization>
+            <id value="42114e78-1961-11f1-9248-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -279,9 +282,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5bfe5950-a281-11ef-3517-020000000000"/>
+      <fullUrl value="urn:uuid:42114ec8-1961-11f1-9248-020000000000"/>
       <resource>
          <Medication>
+            <id value="42114ec8-1961-11f1-9248-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>

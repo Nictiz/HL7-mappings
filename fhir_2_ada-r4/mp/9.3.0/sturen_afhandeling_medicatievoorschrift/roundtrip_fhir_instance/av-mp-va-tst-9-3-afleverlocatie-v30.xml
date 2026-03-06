@@ -1,13 +1,14 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="9c30b02d-a281-11ef-1005-020000000000"/>
+   <id value="9d897bb1-1964-11f1-7052-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:9c30b11c-a281-11ef-1005-020000000000"/>
+      <fullUrl value="urn:uuid:9d897c28-1964-11f1-7052-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="9d897c28-1964-11f1-7052-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
                <tag>
@@ -16,27 +17,26 @@
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
-               <valueDateTime value="2023-01-01T12:07:00+01:00"/>
+               <valueDateTime value="2024-01-01T12:07:00+01:00"/>
             </extension>
-            <f:extension xmlns:f="http://hl7.org/fhir"
-                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <f:valueString value="Vanaf 2 jan 2023, tot en met 11 jan 2023, 3 maal per dag 1 stuk, Oraal"/>
-            </f:extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="3 maal per dag 1 stuk, Oraal"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2023-01-02T00:00:00+01:00"/>
-                  <end value="2023-01-11T23:59:59+01:00"/>
+                  <start value="2024-01-02T00:00:00+01:00"/>
+                  <end value="2024-01-11T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_afleverlocatie"/>
+                  <value value="MBH_300_afleverlocatie-tav"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <value value="MBH_300_afleverlocatie_TA"/>
+               <value value="MBH_300_afleverlocatie_TA-tav"/>
             </identifier>
             <status value="unknown"/>
             <category>
@@ -47,18 +47,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:9c30b176-a281-11ef-1005-020000000000"/>
+               <reference value="urn:uuid:9d897c64-1964-11f1-7052-020000000000"/>
                <type value="Medication"/>
                <display value="MODAFINIL FOCUS TABLET 200MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:9c30b0a4-a281-11ef-1005-020000000000"/>
+               <reference value="urn:uuid:9d897bec-1964-11f1-7052-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:9c30b0e0-a281-11ef-1005-020000000000"/>
+                  <reference value="urn:uuid:9d897c00-1964-11f1-7052-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -67,9 +67,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_afleverlocatie_MA"/>
+                  <value value="MBH_300_afleverlocatie_MA-tav"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_afleverlocatie_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_afleverlocatie_MA-tav || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </authorizingPrescription>
             <dosageInstruction>
                <timing>
@@ -111,9 +111,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9c30b13a-a281-11ef-1005-020000000000"/>
+      <fullUrl value="urn:uuid:9d897c3c-1964-11f1-7052-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="9d897c3c-1964-11f1-7052-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
                <tag>
@@ -122,17 +123,17 @@
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.RequestDate">
-               <valueDateTime value="2023-01-01T11:07:00+01:00"/>
+               <valueDateTime value="2024-01-01T11:07:00+01:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_afleverlocatie"/>
+                  <value value="MBH_300_afleverlocatie-tav"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <value value="MBH_300_afleverlocatie_MVE"/>
+               <value value="MBH_300_afleverlocatie_MVE-tav"/>
             </identifier>
             <status value="completed"/>
             <category>
@@ -143,18 +144,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:9c30b176-a281-11ef-1005-020000000000"/>
+               <reference value="urn:uuid:9d897c64-1964-11f1-7052-020000000000"/>
                <type value="Medication"/>
                <display value="MODAFINIL FOCUS TABLET 200MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:9c30b0a4-a281-11ef-1005-020000000000"/>
+               <reference value="urn:uuid:9d897bec-1964-11f1-7052-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:9c30b0e0-a281-11ef-1005-020000000000"/>
+                  <reference value="urn:uuid:9d897c00-1964-11f1-7052-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -163,9 +164,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-                  <value value="MBH_300_afleverlocatie_VV"/>
+                  <value value="MBH_300_afleverlocatie_VV-tav"/>
                </identifier>
-               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_afleverlocatie_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_afleverlocatie_VV-tav || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
             </authorizingPrescription>
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
@@ -181,9 +182,9 @@
                <system value="http://unitsofmeasure.org"/>
                <code value="1"/>
             </quantity>
-            <whenHandedOver value="2023-01-01T12:07:00+01:00"/>
+            <whenHandedOver value="2024-01-01T12:07:00+01:00"/>
             <destination>
-               <reference value="urn:uuid:9c30b158-a281-11ef-1005-020000000000"/>
+               <reference value="urn:uuid:9d897c50-1964-11f1-7052-020000000000"/>
                <type value="Location"/>
                <display value="afleverlocatie"/>
             </destination>
@@ -195,9 +196,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9c30b0a4-a281-11ef-1005-020000000000"/>
+      <fullUrl value="urn:uuid:9d897bec-1964-11f1-7052-020000000000"/>
       <resource>
          <Patient>
+            <id value="9d897bec-1964-11f1-7052-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -242,9 +244,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9c30b0e0-a281-11ef-1005-020000000000"/>
+      <fullUrl value="urn:uuid:9d897c00-1964-11f1-7052-020000000000"/>
       <resource>
          <Organization>
+            <id value="9d897c00-1964-11f1-7052-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -286,9 +289,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9c30b176-a281-11ef-1005-020000000000"/>
+      <fullUrl value="urn:uuid:9d897c64-1964-11f1-7052-020000000000"/>
       <resource>
          <Medication>
+            <id value="9d897c64-1964-11f1-7052-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
@@ -319,9 +323,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9c30b158-a281-11ef-1005-020000000000"/>
+      <fullUrl value="urn:uuid:9d897c50-1964-11f1-7052-020000000000"/>
       <resource>
          <Location>
+            <id value="9d897c50-1964-11f1-7052-020000000000"/>
             <meta>
                <profile value="http://hl7.org/fhir/StructureDefinition/Location"/>
             </meta>

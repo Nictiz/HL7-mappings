@@ -1,13 +1,14 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="9c18888b-a281-11ef-1747-020000000000"/>
+   <id value="a3dd0717-1964-11f1-1185-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:9c18897a-a281-11ef-1747-020000000000"/>
+      <fullUrl value="urn:uuid:a3dd078e-1964-11f1-1185-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="a3dd078e-1964-11f1-1185-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
                <tag>
@@ -16,27 +17,26 @@
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
-               <valueDateTime value="2023-01-01T09:00:00+01:00"/>
+               <valueDateTime value="2024-01-01T09:00:00+01:00"/>
             </extension>
-            <f:extension xmlns:f="http://hl7.org/fhir"
-                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <f:valueString value="Vanaf 1 jan 2023, tot en met 8 okt 2023, 1 maal per dag 1 stuk, Oraal"/>
-            </f:extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="1 maal per dag 1 stuk, Oraal"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2023-01-01T00:00:00+01:00"/>
-                  <end value="2023-10-08T23:59:59+02:00"/>
+                  <start value="2024-01-01T00:00:00+01:00"/>
+                  <end value="2024-10-07T23:59:59+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_stoppen"/>
+                  <value value="MBH_300_stoppen-tav"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <value value="MBH_300_stoppen_TA_start"/>
+               <value value="MBH_300_stoppen_TA_start-tav"/>
             </identifier>
             <status value="unknown"/>
             <category>
@@ -47,18 +47,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:9c1889b6-a281-11ef-1747-020000000000"/>
+               <reference value="urn:uuid:a3dd07b6-1964-11f1-1185-020000000000"/>
                <type value="Medication"/>
-               <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+               <display value="ACETYLSALICYLZUUR CARDIO AUROBINDO DISP TABL 80MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:9c188902-a281-11ef-1747-020000000000"/>
+               <reference value="urn:uuid:a3dd0752-1964-11f1-1185-020000000000"/>
                <type value="Patient"/>
-               <display value="Patient, J. de XXX_Luzac"/>
+               <display value="Patient, C van de XXX_Voortman"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:9c18893e-a281-11ef-1747-020000000000"/>
+                  <reference value="urn:uuid:a3dd0766-1964-11f1-1185-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -67,9 +67,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_stoppen_MA_start"/>
+                  <value value="MBH_300_stoppen_MA_start-tav"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_stoppen_MA_start || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_stoppen_MA_start-tav || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </authorizingPrescription>
             <dosageInstruction>
                <timing>
@@ -111,9 +111,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9c188998-a281-11ef-1747-020000000000"/>
+      <fullUrl value="urn:uuid:a3dd07a2-1964-11f1-1185-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="a3dd07a2-1964-11f1-1185-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
                <tag>
@@ -124,12 +125,12 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_stoppen"/>
+                  <value value="MBH_300_stoppen-tav"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <value value="MBH_300_stoppen_MVE"/>
+               <value value="MBH_300_stoppen_MVE-tav"/>
             </identifier>
             <status value="completed"/>
             <category>
@@ -140,18 +141,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:9c1889b6-a281-11ef-1747-020000000000"/>
+               <reference value="urn:uuid:a3dd07b6-1964-11f1-1185-020000000000"/>
                <type value="Medication"/>
-               <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+               <display value="ACETYLSALICYLZUUR CARDIO AUROBINDO DISP TABL 80MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:9c188902-a281-11ef-1747-020000000000"/>
+               <reference value="urn:uuid:a3dd0752-1964-11f1-1185-020000000000"/>
                <type value="Patient"/>
-               <display value="Patient, J. de XXX_Luzac"/>
+               <display value="Patient, C van de XXX_Voortman"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:9c18893e-a281-11ef-1747-020000000000"/>
+                  <reference value="urn:uuid:a3dd0766-1964-11f1-1185-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -160,9 +161,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-                  <value value="MBH_300_stoppen_VV"/>
+                  <value value="MBH_300_stoppen_VV-tav"/>
                </identifier>
-               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_stoppen_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_stoppen_VV-tav || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
             </authorizingPrescription>
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
@@ -178,7 +179,7 @@
                <system value="http://unitsofmeasure.org"/>
                <code value="1"/>
             </quantity>
-            <whenHandedOver value="2023-01-01T09:00:00+01:00"/>
+            <whenHandedOver value="2024-01-01T09:00:00+01:00"/>
          </MedicationDispense>
       </resource>
       <request>
@@ -187,48 +188,49 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9c188902-a281-11ef-1747-020000000000"/>
+      <fullUrl value="urn:uuid:a3dd0752-1964-11f1-1185-020000000000"/>
       <resource>
          <Patient>
+            <id value="a3dd0752-1964-11f1-1185-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="999900778"/>
+               <value value="999908881"/>
             </identifier>
             <name>
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
                   <valueCode value="NL1"/>
                </extension>
                <use value="official"/>
-               <text value="J. de XXX_Luzac"/>
-               <family value="de XXX_Luzac">
+               <text value="C van de XXX_Voortman"/>
+               <family value="van de XXX_Voortman">
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
-                     <valueString value="de"/>
+                     <valueString value="van de"/>
                   </extension>
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="XXX_Luzac"/>
+                     <valueString value="XXX_Voortman"/>
                   </extension>
                </family>
-               <given value="J.">
+               <given value="C">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                     <valueCode value="IN"/>
+                     <valueCode value="BR"/>
                   </extension>
                </given>
             </name>
-            <gender value="female">
+            <gender value="male">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
                   <valueCodeableConcept>
                      <coding>
                         <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
-                        <code value="F"/>
-                        <display value="Vrouw"/>
+                        <code value="M"/>
+                        <display value="Man"/>
                      </coding>
                   </valueCodeableConcept>
                </extension>
             </gender>
-            <birthDate value="1985-10-24"/>
+            <birthDate value="1963-09-18"/>
          </Patient>
       </resource>
       <request>
@@ -237,9 +239,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9c18893e-a281-11ef-1747-020000000000"/>
+      <fullUrl value="urn:uuid:a3dd0766-1964-11f1-1185-020000000000"/>
       <resource>
          <Organization>
+            <id value="a3dd0766-1964-11f1-1185-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -281,30 +284,31 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9c1889b6-a281-11ef-1747-020000000000"/>
+      <fullUrl value="urn:uuid:a3dd07b6-1964-11f1-1185-020000000000"/>
       <resource>
          <Medication>
+            <id value="a3dd07b6-1964-11f1-1185-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="1110837"/>
-                  <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+                  <code value="1137891"/>
+                  <display value="ACETYLSALICYLZUUR CARDIO AUROBINDO DISP TABL 80MG"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="49484"/>
-                  <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+                  <code value="68632"/>
+                  <display value="ACETYLSALICYLZUUR DISPERTABLET 80MG"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="103039"/>
-                  <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+                  <code value="117145"/>
+                  <display value="ACETYLSALICYLZUUR DISPERTABLET 80MG"/>
                </coding>
-               <text value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+               <text value="ACETYLSALICYLZUUR CARDIO AUROBINDO DISP TABL 80MG"/>
             </code>
          </Medication>
       </resource>

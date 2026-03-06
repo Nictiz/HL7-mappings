@@ -1,13 +1,14 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="9c2d0a9f-a281-11ef-7244-020000000000"/>
+   <id value="a61a85b3-1964-11f1-1647-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:9c2d0b8e-a281-11ef-7244-020000000000"/>
+      <fullUrl value="urn:uuid:a61a862a-1964-11f1-1647-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="a61a862a-1964-11f1-1647-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
                <tag>
@@ -16,12 +17,11 @@
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
-               <valueDateTime value="2023-01-01T15:50:00+01:00"/>
+               <valueDateTime value="2024-01-01T15:50:00+01:00"/>
             </extension>
-            <f:extension xmlns:f="http://hl7.org/fhir"
-                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <f:valueString value="Vanaf 31 dec 2022, gedurende 12 weken, 1 maal per 3 weken 1 stuk, Intraveneus"/>
-            </f:extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="1 maal per 3 weken 1 stuk, Intraveneus"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
@@ -32,18 +32,18 @@
                         <code value="wk"/>
                      </valueDuration>
                   </extension>
-                  <start value="2022-12-31T00:00:00+01:00"/>
+                  <start value="2023-12-31T00:00:00+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_vrijetekstproduct"/>
+                  <value value="MBH_300_vrijetekstproduct-tav"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <value value="MBH_300_vrijetekstproduct_TA"/>
+               <value value="MBH_300_vrijetekstproduct_TA-tav"/>
             </identifier>
             <status value="unknown"/>
             <category>
@@ -54,18 +54,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:9c2d0bca-a281-11ef-7244-020000000000"/>
+               <reference value="urn:uuid:a61a8652-1964-11f1-1647-020000000000"/>
                <type value="Medication"/>
                <display value="Jemperli 500 mg/ 10 mL"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:9c2d0b16-a281-11ef-7244-020000000000"/>
+               <reference value="urn:uuid:a61a85ee-1964-11f1-1647-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hess"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:9c2d0b52-a281-11ef-7244-020000000000"/>
+                  <reference value="urn:uuid:a61a8602-1964-11f1-1647-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -74,9 +74,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_vrijetekstproduct_MA"/>
+                  <value value="MBH_300_vrijetekstproduct_MA-tav"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_vrijetekstproduct_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_vrijetekstproduct_MA-tav || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </authorizingPrescription>
             <dosageInstruction>
                <timing>
@@ -118,9 +118,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9c2d0bac-a281-11ef-7244-020000000000"/>
+      <fullUrl value="urn:uuid:a61a863e-1964-11f1-1647-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="a61a863e-1964-11f1-1647-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
                <tag>
@@ -131,12 +132,12 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_vrijetekstproduct"/>
+                  <value value="MBH_300_vrijetekstproduct-tav"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <value value="MBH_300_vrijetekstproduct_MVE"/>
+               <value value="MBH_300_vrijetekstproduct_MVE-tav"/>
             </identifier>
             <status value="completed"/>
             <category>
@@ -147,18 +148,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:9c2d0bca-a281-11ef-7244-020000000000"/>
+               <reference value="urn:uuid:a61a8652-1964-11f1-1647-020000000000"/>
                <type value="Medication"/>
                <display value="Jemperli 500 mg/ 10 mL"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:9c2d0b16-a281-11ef-7244-020000000000"/>
+               <reference value="urn:uuid:a61a85ee-1964-11f1-1647-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hess"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:9c2d0b52-a281-11ef-7244-020000000000"/>
+                  <reference value="urn:uuid:a61a8602-1964-11f1-1647-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -167,9 +168,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-                  <value value="MBH_300_vrijetekstproduct_VV"/>
+                  <value value="MBH_300_vrijetekstproduct_VV-tav"/>
                </identifier>
-               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_vrijetekstproduct_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_vrijetekstproduct_VV-tav || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
             </authorizingPrescription>
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
@@ -185,7 +186,7 @@
                <system value="http://unitsofmeasure.org"/>
                <code value="1"/>
             </quantity>
-            <whenHandedOver value="2023-01-01T15:50:00+01:00"/>
+            <whenHandedOver value="2024-01-01T15:50:00+01:00"/>
          </MedicationDispense>
       </resource>
       <request>
@@ -194,9 +195,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9c2d0b16-a281-11ef-7244-020000000000"/>
+      <fullUrl value="urn:uuid:a61a85ee-1964-11f1-1647-020000000000"/>
       <resource>
          <Patient>
+            <id value="a61a85ee-1964-11f1-1647-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -241,9 +243,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9c2d0b52-a281-11ef-7244-020000000000"/>
+      <fullUrl value="urn:uuid:a61a8602-1964-11f1-1647-020000000000"/>
       <resource>
          <Organization>
+            <id value="a61a8602-1964-11f1-1647-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -285,9 +288,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9c2d0bca-a281-11ef-7244-020000000000"/>
+      <fullUrl value="urn:uuid:a61a8652-1964-11f1-1647-020000000000"/>
       <resource>
          <Medication>
+            <id value="a61a8652-1964-11f1-1647-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>

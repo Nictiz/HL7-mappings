@@ -1,13 +1,14 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="5be7a2f1-a281-11ef-2033-020000000000"/>
+   <id value="4b255b63-1961-11f1-1691-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:5be7a3ea-a281-11ef-2033-020000000000"/>
+      <fullUrl value="urn:uuid:4b255bda-1961-11f1-1691-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="4b255bda-1961-11f1-1691-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
                <tag>
@@ -16,27 +17,26 @@
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
-               <valueDateTime value="2023-01-01T12:20:00+01:00"/>
+               <valueDateTime value="2024-01-01T12:20:00+01:00"/>
             </extension>
-            <f:extension xmlns:f="http://hl7.org/fhir"
-                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <f:valueString value="Vanaf 1 jan 2023, tot en met 6 jan 2023, 1 maal per dag 1 stuk, Oraal"/>
-            </f:extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="1 maal per dag 1 stuk, Oraal"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2023-01-01T00:00:00+01:00"/>
-                  <end value="2023-01-06T23:59:59+01:00"/>
+                  <start value="2024-01-01T00:00:00+01:00"/>
+                  <end value="2024-01-06T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_start_eind"/>
+                  <value value="MBH_300_start_eind-tav"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <value value="MBH_300_start_eind_TA"/>
+               <value value="MBH_300_start_eind_TA-tav"/>
             </identifier>
             <status value="unknown"/>
             <category>
@@ -47,18 +47,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:5be7a426-a281-11ef-2033-020000000000"/>
+               <reference value="urn:uuid:4b255c02-1961-11f1-1691-020000000000"/>
                <type value="Medication"/>
-               <display value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
+               <display value="METOCLOPRAMIDE HCL ACCORD TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:5be7a372-a281-11ef-2033-020000000000"/>
+               <reference value="urn:uuid:4b255b9e-1961-11f1-1691-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:5be7a3ae-a281-11ef-2033-020000000000"/>
+                  <reference value="urn:uuid:4b255bb2-1961-11f1-1691-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -67,9 +67,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_start_eind_MA"/>
+                  <value value="MBH_300_start_eind_MA-tav"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_start_eind_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_start_eind_MA-tav || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </authorizingPrescription>
             <dosageInstruction>
                <timing>
@@ -111,9 +111,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5be7a408-a281-11ef-2033-020000000000"/>
+      <fullUrl value="urn:uuid:4b255bee-1961-11f1-1691-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="4b255bee-1961-11f1-1691-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
                <tag>
@@ -124,12 +125,12 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_start_eind"/>
+                  <value value="MBH_300_start_eind-tav"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <value value="MBH_300_start_eind_MVE"/>
+               <value value="MBH_300_start_eind_MVE-tav"/>
             </identifier>
             <status value="completed"/>
             <category>
@@ -140,18 +141,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:5be7a426-a281-11ef-2033-020000000000"/>
+               <reference value="urn:uuid:4b255c02-1961-11f1-1691-020000000000"/>
                <type value="Medication"/>
-               <display value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
+               <display value="METOCLOPRAMIDE HCL ACCORD TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:5be7a372-a281-11ef-2033-020000000000"/>
+               <reference value="urn:uuid:4b255b9e-1961-11f1-1691-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:5be7a3ae-a281-11ef-2033-020000000000"/>
+                  <reference value="urn:uuid:4b255bb2-1961-11f1-1691-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -160,9 +161,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-                  <value value="MBH_300_start_eind_VV"/>
+                  <value value="MBH_300_start_eind_VV-tav"/>
                </identifier>
-               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_start_eind_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_start_eind_VV-tav || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
             </authorizingPrescription>
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
@@ -178,7 +179,7 @@
                <system value="http://unitsofmeasure.org"/>
                <code value="1"/>
             </quantity>
-            <whenHandedOver value="2023-01-01T12:20:00+01:00"/>
+            <whenHandedOver value="2024-01-01T12:20:00+01:00"/>
          </MedicationDispense>
       </resource>
       <request>
@@ -187,9 +188,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5be7a372-a281-11ef-2033-020000000000"/>
+      <fullUrl value="urn:uuid:4b255b9e-1961-11f1-1691-020000000000"/>
       <resource>
          <Patient>
+            <id value="4b255b9e-1961-11f1-1691-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -234,9 +236,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5be7a3ae-a281-11ef-2033-020000000000"/>
+      <fullUrl value="urn:uuid:4b255bb2-1961-11f1-1691-020000000000"/>
       <resource>
          <Organization>
+            <id value="4b255bb2-1961-11f1-1691-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -278,17 +281,18 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5be7a426-a281-11ef-2033-020000000000"/>
+      <fullUrl value="urn:uuid:4b255c02-1961-11f1-1691-020000000000"/>
       <resource>
          <Medication>
+            <id value="4b255c02-1961-11f1-1691-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="560308"/>
-                  <display value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
+                  <code value="2115468"/>
+                  <display value="METOCLOPRAMIDE HCL ACCORD TABLET 10MG"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
@@ -301,7 +305,7 @@
                   <code value="19429"/>
                   <display value="METOCLOPRAMIDE TABLET 10MG"/>
                </coding>
-               <text value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
+               <text value="METOCLOPRAMIDE HCL ACCORD TABLET 10MG"/>
             </code>
          </Medication>
       </resource>
