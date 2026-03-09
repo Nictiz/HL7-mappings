@@ -1,13 +1,14 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="9bb5a793-a281-11ef-1667-020000000000"/>
+   <id value="926b3ee5-1964-11f1-7336-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:9bb5a8dc-a281-11ef-1667-020000000000"/>
+      <fullUrl value="urn:uuid:926b3fa2-1964-11f1-7336-020000000000"/>
       <resource>
          <MedicationRequest>
+            <id value="926b3fa2-1964-11f1-7336-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
                <tag>
@@ -16,22 +17,21 @@
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
-               <valueDateTime value="2023-01-01T18:00:00+01:00"/>
+               <valueDateTime value="2024-01-01T18:00:00+01:00"/>
             </extension>
-            <f:extension xmlns:f="http://hl7.org/fhir"
-                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <f:valueString value="Vanaf 1 jan 2023, tot en met 2 jan 2023, 1 maal per dag 1 stuk, Oraal, stopgezet"/>
-            </f:extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="1 maal per dag 1 stuk, Oraal"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2023-01-01T00:00:00+01:00"/>
-                  <end value="2023-01-02T23:59:59+01:00"/>
+                  <start value="2024-01-01T00:00:00+01:00"/>
+                  <end value="2024-01-02T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_stoppen"/>
+                  <value value="MBH_300_stoppen-tvo"/>
                </valueIdentifier>
             </extension>
             <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
@@ -45,7 +45,7 @@
             </modifierExtension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_300_stoppen_MA_staken"/>
+               <value value="MBH_300_stoppen_MA_staken-tvo"/>
             </identifier>
             <status value="active"/>
             <intent value="order"/>
@@ -57,17 +57,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:9bb5a8fa-a281-11ef-1667-020000000000"/>
+               <reference value="urn:uuid:926b3fb6-1964-11f1-7336-020000000000"/>
                <type value="Medication"/>
-               <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+               <display value="ACETYLSALICYLZUUR DISPERTABLET 80MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:9bb5a80a-a281-11ef-1667-020000000000"/>
+               <reference value="urn:uuid:926b3f20-1964-11f1-7336-020000000000"/>
                <type value="Patient"/>
-               <display value="Patient, J. de XXX_Luzac"/>
+               <display value="Patient, C van de XXX_Voortman"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:9bb5a832-a281-11ef-1667-020000000000"/>
+               <reference value="urn:uuid:926b3f3e-1964-11f1-7336-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -114,9 +114,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_stoppen_MA_start"/>
+                  <value value="MBH_300_stoppen_MA_start-tvo"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak: MBH_300_stoppen_MA_start || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak: MBH_300_stoppen_MA_start-tvo || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </priorPrescription>
          </MedicationRequest>
       </resource>
@@ -126,48 +126,49 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9bb5a80a-a281-11ef-1667-020000000000"/>
+      <fullUrl value="urn:uuid:926b3f20-1964-11f1-7336-020000000000"/>
       <resource>
          <Patient>
+            <id value="926b3f20-1964-11f1-7336-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="999900778"/>
+               <value value="999908881"/>
             </identifier>
             <name>
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
                   <valueCode value="NL1"/>
                </extension>
                <use value="official"/>
-               <text value="J. de XXX_Luzac"/>
-               <family value="de XXX_Luzac">
+               <text value="C van de XXX_Voortman"/>
+               <family value="van de XXX_Voortman">
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
-                     <valueString value="de"/>
+                     <valueString value="van de"/>
                   </extension>
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="XXX_Luzac"/>
+                     <valueString value="XXX_Voortman"/>
                   </extension>
                </family>
-               <given value="J.">
+               <given value="C">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                     <valueCode value="IN"/>
+                     <valueCode value="BR"/>
                   </extension>
                </given>
             </name>
-            <gender value="female">
+            <gender value="male">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
                   <valueCodeableConcept>
                      <coding>
                         <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
-                        <code value="F"/>
-                        <display value="Vrouw"/>
+                        <code value="M"/>
+                        <display value="Man"/>
                      </coding>
                   </valueCodeableConcept>
                </extension>
             </gender>
-            <birthDate value="1985-10-24"/>
+            <birthDate value="1963-09-18"/>
          </Patient>
       </resource>
       <request>
@@ -176,19 +177,20 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9bb5a832-a281-11ef-1667-020000000000"/>
+      <fullUrl value="urn:uuid:926b3f3e-1964-11f1-7336-020000000000"/>
       <resource>
          <PractitionerRole>
+            <id value="926b3f3e-1964-11f1-7336-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:9bb5a85a-a281-11ef-1667-020000000000"/>
+               <reference value="urn:uuid:926b3f5c-1964-11f1-7336-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:9bb5a8a0-a281-11ef-1667-020000000000"/>
+               <reference value="urn:uuid:926b3f7a-1964-11f1-7336-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -213,9 +215,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9bb5a85a-a281-11ef-1667-020000000000"/>
+      <fullUrl value="urn:uuid:926b3f5c-1964-11f1-7336-020000000000"/>
       <resource>
          <Practitioner>
+            <id value="926b3f5c-1964-11f1-7336-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
             </meta>
@@ -253,9 +256,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9bb5a8a0-a281-11ef-1667-020000000000"/>
+      <fullUrl value="urn:uuid:926b3f7a-1964-11f1-7336-020000000000"/>
       <resource>
          <Organization>
+            <id value="926b3f7a-1964-11f1-7336-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -294,25 +298,26 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9bb5a8fa-a281-11ef-1667-020000000000"/>
+      <fullUrl value="urn:uuid:926b3fb6-1964-11f1-7336-020000000000"/>
       <resource>
          <Medication>
+            <id value="926b3fb6-1964-11f1-7336-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="49484"/>
-                  <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+                  <code value="68632"/>
+                  <display value="ACETYLSALICYLZUUR DISPERTABLET 80MG"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="103039"/>
-                  <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+                  <code value="117145"/>
+                  <display value="ACETYLSALICYLZUUR DISPERTABLET 80MG"/>
                </coding>
-               <text value="Acetylsalicylzuur tabletmsr 100mg"/>
+               <text value="ACETYLSALICYLZUUR DISPERTABLET 80MG"/>
             </code>
          </Medication>
       </resource>

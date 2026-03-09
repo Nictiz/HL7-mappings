@@ -1,14 +1,16 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-kwal-MTD-script2-v30"/>
-   <type value="transaction"/>
+   <type value="searchset"/>
+   <total value="4"/>
    <link>
       <relation value="self"/>
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:573c480f-6b58-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:21ec1c96-6b55-11ec-0000-020000000000"/>
       <resource>
          <MedicationAdministration>
+            <id value="21ec1c96-6b55-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
             </meta>
@@ -18,14 +20,14 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_script2"/>
+                  <value value="MBH_300_script2-tmg"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-               <value value="MBH_300_script2_MTD1"/>
+               <value value="MBH_300_script2_MTD1-tmg"/>
             </identifier>
-            <status value="unknown"/>
+            <status value="completed"/>
             <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -34,7 +36,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:d6d3451d-6ae0-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9e4140f2-6aa3-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL CF TABLET 1MG"/>
             </medicationReference>
@@ -47,17 +49,17 @@
                <type value="MedicationDispense"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-                  <value value="MBH_300_script2_TA"/>
+                  <value value="MBH_300_script2_TA-tmg"/>
                </identifier>
-               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_script2_TA || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_script2_TA-tmg || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
             </supportingInformation>
             <supportingInformation>
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-                  <value value="MBH_300_script2_WDS_opstartschema"/>
+                  <value value="MBH_300_script2_WDS_opstartschema-tmg"/>
                </identifier>
-               <display value="relatie naar wisselend doseersschema met identificatie: MBH_300_script2_WDS_opstartschema || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+               <display value="relatie naar wisselend doseersschema met identificatie: MBH_300_script2_WDS_opstartschema-tmg || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
             </supportingInformation>
             <effectiveDateTime value="${DATE, T, D, -40}T20:00:00+02:00"/>
             <performer>
@@ -71,9 +73,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_script2_MA"/>
+                  <value value="MBH_300_script2_MA-tmg"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_script2_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_script2_MA-tmg || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </request>
             <dosage>
                <route>
@@ -100,15 +102,15 @@
             </dosage>
          </MedicationAdministration>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationAdministration"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:31a03c96-6b26-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:ee45545d-6b27-11ec-0000-020000000000"/>
       <resource>
          <MedicationAdministration>
+            <id value="ee45545d-6b27-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
             </meta>
@@ -118,14 +120,14 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_script2"/>
+                  <value value="MBH_300_script2-tmg"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-               <value value="MBH_300_script2_MTD2_Afwijking"/>
+               <value value="MBH_300_script2_MTD2_Afwijking-tmg"/>
             </identifier>
-            <status value="unknown"/>
+            <status value="completed"/>
             <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -134,7 +136,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:d6d3451d-6ae0-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9e4140f2-6aa3-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL CF TABLET 1MG"/>
             </medicationReference>
@@ -147,17 +149,17 @@
                <type value="MedicationDispense"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-                  <value value="MBH_300_script2_TA"/>
+                  <value value="MBH_300_script2_TA-tmg"/>
                </identifier>
-               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_script2_TA || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_script2_TA-tmg || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
             </supportingInformation>
             <supportingInformation>
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-                  <value value="MBH_300_script2_WDS_opstartschema"/>
+                  <value value="MBH_300_script2_WDS_opstartschema-tmg"/>
                </identifier>
-               <display value="relatie naar wisselend doseersschema met identificatie: MBH_300_script2_WDS_opstartschema || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+               <display value="relatie naar wisselend doseersschema met identificatie: MBH_300_script2_WDS_opstartschema-tmg || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
             </supportingInformation>
             <effectiveDateTime value="${DATE, T, D, -39}T20:00:00+02:00"/>
             <performer>
@@ -171,9 +173,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_script2_MA"/>
+                  <value value="MBH_300_script2_MA-tmg"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_script2_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_script2_MA-tmg || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </request>
             <dosage>
                <route>
@@ -200,15 +202,15 @@
             </dosage>
          </MedicationAdministration>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationAdministration"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:1fd4980f-6b66-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:cdfb1c96-6aef-11ec-0000-020000000000"/>
       <resource>
          <MedicationAdministration>
+            <id value="cdfb1c96-6aef-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
             </meta>
@@ -227,14 +229,14 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_script2"/>
+                  <value value="MBH_300_script2-tmg"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-               <value value="MBH_300_script2_MTD3_Correctie"/>
+               <value value="MBH_300_script2_MTD3_Correctie-tmg"/>
             </identifier>
-            <status value="unknown"/>
+            <status value="completed"/>
             <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -243,7 +245,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:d6d3451d-6ae0-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9e4140f2-6aa3-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL CF TABLET 1MG"/>
             </medicationReference>
@@ -256,17 +258,17 @@
                <type value="MedicationDispense"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-                  <value value="MBH_300_script2_TA"/>
+                  <value value="MBH_300_script2_TA-tmg"/>
                </identifier>
-               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_script2_TA || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_script2_TA-tmg || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
             </supportingInformation>
             <supportingInformation>
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-                  <value value="MBH_300_script2_WDS_opstartschema"/>
+                  <value value="MBH_300_script2_WDS_opstartschema-tmg"/>
                </identifier>
-               <display value="relatie naar wisselend doseersschema met identificatie: MBH_300_script2_WDS_opstartschema || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+               <display value="relatie naar wisselend doseersschema met identificatie: MBH_300_script2_WDS_opstartschema-tmg || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
             </supportingInformation>
             <effectiveDateTime value="${DATE, T, D, -39}T20:00:00+02:00"/>
             <performer>
@@ -280,9 +282,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_script2_MA"/>
+                  <value value="MBH_300_script2_MA-tmg"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_script2_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_script2_MA-tmg || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </request>
             <dosage>
                <route>
@@ -309,15 +311,15 @@
             </dosage>
          </MedicationAdministration>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationAdministration"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:890ed80f-6b73-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:fe3ccc96-6b7c-11ec-0000-020000000000"/>
       <resource>
          <MedicationAdministration>
+            <id value="fe3ccc96-6b7c-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
             </meta>
@@ -327,14 +329,14 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_script2"/>
+                  <value value="MBH_300_script2-tmg"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-               <value value="MBH_300_script2_MTD4"/>
+               <value value="MBH_300_script2_MTD4-tmg"/>
             </identifier>
-            <status value="unknown"/>
+            <status value="completed"/>
             <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -343,7 +345,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:d6d3451d-6ae0-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9e4140f2-6aa3-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL CF TABLET 1MG"/>
             </medicationReference>
@@ -356,17 +358,17 @@
                <type value="MedicationDispense"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-                  <value value="MBH_300_script2_TA"/>
+                  <value value="MBH_300_script2_TA-tmg"/>
                </identifier>
-               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_script2_TA || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_script2_TA-tmg || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
             </supportingInformation>
             <supportingInformation>
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-                  <value value="MBH_300_script2_WDS_opstartschema"/>
+                  <value value="MBH_300_script2_WDS_opstartschema-tmg"/>
                </identifier>
-               <display value="relatie naar wisselend doseersschema met identificatie: MBH_300_script2_WDS_opstartschema || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+               <display value="relatie naar wisselend doseersschema met identificatie: MBH_300_script2_WDS_opstartschema-tmg || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
             </supportingInformation>
             <effectiveDateTime value="${DATE, T, D, -38}T20:00:00+02:00"/>
             <performer>
@@ -380,9 +382,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_script2_MA"/>
+                  <value value="MBH_300_script2_MA-tmg"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_script2_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_script2_MA-tmg || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </request>
             <dosage>
                <route>
@@ -409,15 +411,15 @@
             </dosage>
          </MedicationAdministration>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationAdministration"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:8f8c8dfe-6b19-11ec-0000-020000000000"/>
       <resource>
          <Patient>
+            <id value="8f8c8dfe-6b19-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -456,15 +458,15 @@
             <birthDate value="1985-10-31"/>
          </Patient>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Patient"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:c4abd82e-6b1d-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
+            <id value="c4abd82e-6b1d-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
@@ -488,15 +490,15 @@
             </specialty>
          </PractitionerRole>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="PractitionerRole"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:32e9d824-6b33-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
+            <id value="32e9d824-6b33-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
             </meta>
@@ -520,15 +522,15 @@
             </name>
          </Practitioner>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Practitioner"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:b0d9956e-6a9d-11ec-0000-020000000000"/>
       <resource>
          <Organization>
+            <id value="b0d9956e-6a9d-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -546,15 +548,15 @@
             <name value="Thuiszorg Om en Bij"/>
          </Organization>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d6d3451d-6ae0-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9e4140f2-6aa3-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="9e4140f2-6aa3-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
@@ -579,9 +581,8 @@
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
 </Bundle>

@@ -1,13 +1,14 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="f950e8fa-9887-11f0-1124-020000000000"/>
+   <id value="4b462753-1961-11f1-1513-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:f950e97b-9887-11f0-1124-020000000000"/>
+      <fullUrl value="urn:uuid:4b4627ca-1961-11f1-1513-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="4b4627ca-1961-11f1-1513-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
                <tag>
@@ -30,7 +31,7 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_annuleren"/>
+                  <value value="MBH_300_annuleren-tav"/>
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationAdministrationAgreement">
@@ -38,9 +39,9 @@
                   <type value="MedicationDispense"/>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-                     <value value="MBH_300_annuleren_TA_starten"/>
+                     <value value="MBH_300_annuleren_TA_starten-tav"/>
                   </identifier>
-                  <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_annuleren_TA_starten || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                  <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_annuleren_TA_starten-tav || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                </valueReference>
             </extension>
             <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
@@ -54,7 +55,7 @@
             </modifierExtension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <value value="MBH_300_annuleren_TA_geannuleerd"/>
+               <value value="MBH_300_annuleren_TA_geannuleerd-tav"/>
             </identifier>
             <status value="unknown"/>
             <category>
@@ -65,18 +66,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:f950e98f-9887-11f0-1124-020000000000"/>
+               <reference value="urn:uuid:4b4627de-1961-11f1-1513-020000000000"/>
                <type value="Medication"/>
                <display value="LARIAM TABLET 250MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:f950e92b-9887-11f0-1124-020000000000"/>
+               <reference value="urn:uuid:4b46278e-1961-11f1-1513-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C van de XXX_Voortman"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:f950e953-9887-11f0-1124-020000000000"/>
+                  <reference value="urn:uuid:4b4627a2-1961-11f1-1513-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -85,9 +86,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_annuleren_MA_geannuleerd"/>
+                  <value value="MBH_300_annuleren_MA_geannuleerd-tav"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_annuleren_MA_geannuleerd || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_annuleren_MA_geannuleerd-tav || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </authorizingPrescription>
             <dosageInstruction>
                <timing>
@@ -129,9 +130,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f950e92b-9887-11f0-1124-020000000000"/>
+      <fullUrl value="urn:uuid:4b46278e-1961-11f1-1513-020000000000"/>
       <resource>
          <Patient>
+            <id value="4b46278e-1961-11f1-1513-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -179,9 +181,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f950e953-9887-11f0-1124-020000000000"/>
+      <fullUrl value="urn:uuid:4b4627a2-1961-11f1-1513-020000000000"/>
       <resource>
          <Organization>
+            <id value="4b4627a2-1961-11f1-1513-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -223,9 +226,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f950e98f-9887-11f0-1124-020000000000"/>
+      <fullUrl value="urn:uuid:4b4627de-1961-11f1-1513-020000000000"/>
       <resource>
          <Medication>
+            <id value="4b4627de-1961-11f1-1513-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>

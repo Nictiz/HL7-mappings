@@ -1,26 +1,28 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-tst-MVE-Scenarioset9-v30"/>
-   <type value="transaction"/>
+   <type value="searchset"/>
+   <total value="7"/>
    <link>
       <relation value="self"/>
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:d38e8bdd-6b1e-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:f5c762fe-6b6a-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="f5c762fe-6b6a-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_logistiekeverbruiksperiode_start_eind"/>
+                  <value value="MBH_300_logistiekeverbruiksperiode_start_eind-tmg"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <value value="MBH_300_logistiekeverbruiksperiode_start_eind_MVE"/>
+               <value value="MBH_300_logistiekeverbruiksperiode_start_eind_MVE-tmg"/>
             </identifier>
             <status value="completed"/>
             <category>
@@ -31,9 +33,9 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:e353031d-6b40-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:d02fabf2-6ac7-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+               <display value="ACETYLSALICYLZUUR CARDIO AUROBINDO DISP TABL 80MG"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:2e1fbd3e-6ad3-11ec-0000-020000000000"/>
@@ -51,9 +53,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-                  <value value="MBH_300_logistiekeverbruiksperiode_start_eind_VV"/>
+                  <value value="MBH_300_logistiekeverbruiksperiode_start_eind_VV-tmg"/>
                </identifier>
-               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_logistiekeverbruiksperiode_start_eind_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_logistiekeverbruiksperiode_start_eind_VV-tmg || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
             </authorizingPrescription>
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
@@ -78,15 +80,15 @@
             <whenHandedOver value="${DATE, T, D, +0}T12:00:00+02:00"/>
          </MedicationDispense>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a7bd28fe-6b2a-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c8c4a3a7-6b01-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="c8c4a3a7-6b01-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
             </meta>
@@ -102,12 +104,12 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_distributievorm_GDS"/>
+                  <value value="MBH_300_distributievorm_GDS-tmg"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <value value="MBH_300_distributievorm_GDS_MVE"/>
+               <value value="MBH_300_distributievorm_GDS_MVE-tmg"/>
             </identifier>
             <status value="completed"/>
             <category>
@@ -118,7 +120,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:65ff631d-6b39-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:3948bd32-6b2b-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="MIZOLLEN TABLET MGA 10MG"/>
             </medicationReference>
@@ -138,9 +140,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-                  <value value="MBH_300_distributievorm_GDS_VV"/>
+                  <value value="MBH_300_distributievorm_GDS_VV-tmg"/>
                </identifier>
-               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_distributievorm_GDS_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_distributievorm_GDS_VV-tmg || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
             </authorizingPrescription>
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
@@ -165,27 +167,27 @@
             <whenHandedOver value="${DATE, T, D, -9}T12:01:00+02:00"/>
          </MedicationDispense>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:05a3ebdd-6b27-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:2cec42fe-6b70-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="2cec42fe-6b70-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_logistiekeverbruiksperiode_duur_dagen"/>
+                  <value value="MBH_300_logistiekeverbruiksperiode_duur_dagen-tmg"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <value value="MBH_300_logistiekeverbruiksperiode_duur_dagen_MVE"/>
+               <value value="MBH_300_logistiekeverbruiksperiode_duur_dagen_MVE-tmg"/>
             </identifier>
             <status value="completed"/>
             <category>
@@ -196,7 +198,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:9270a11d-6b35-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:157a6172-6ab7-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="PARACETAMOL PCH TABLET 500MG"/>
             </medicationReference>
@@ -216,9 +218,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-                  <value value="MBH_300_logistiekeverbruiksperiode_duur_dagen_VV"/>
+                  <value value="MBH_300_logistiekeverbruiksperiode_duur_dagen_VV-tmg"/>
                </identifier>
-               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_logistiekeverbruiksperiode_duur_dagen_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_logistiekeverbruiksperiode_duur_dagen_VV-tmg || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
             </authorizingPrescription>
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
@@ -243,27 +245,27 @@
             <whenHandedOver value="${DATE, T, D, +0}T12:02:00+02:00"/>
          </MedicationDispense>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:64dc02fe-6b47-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:b00483a7-6b1d-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="b00483a7-6b1d-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_herhalingen"/>
+                  <value value="MBH_300_herhalingen-tmg"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <value value="MBH_300_herhalingen_MVE1"/>
+               <value value="MBH_300_herhalingen_MVE1-tmg"/>
             </identifier>
             <status value="completed"/>
             <category>
@@ -274,7 +276,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:bf911a04-6aac-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:d1237786-6b06-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="FUROSEMIDE APOTEX TABLET 40MG"/>
             </medicationReference>
@@ -294,9 +296,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-                  <value value="MBH_300_herhalingen_VV"/>
+                  <value value="MBH_300_herhalingen_VV-tmg"/>
                </identifier>
-               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_herhalingen_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_herhalingen_VV-tmg || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
             </authorizingPrescription>
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
@@ -315,27 +317,27 @@
             <whenHandedOver value="${DATE, T, D, -50}T12:05:00+02:00"/>
          </MedicationDispense>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:30b23afe-6ac8-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:dc5c33a7-6ab7-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="dc5c33a7-6ab7-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_herhalingen"/>
+                  <value value="MBH_300_herhalingen-tmg"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <value value="MBH_300_herhalingen_MVE2"/>
+               <value value="MBH_300_herhalingen_MVE2-tmg"/>
             </identifier>
             <status value="completed"/>
             <category>
@@ -346,7 +348,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:bf911a04-6aac-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:d1237786-6b06-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="FUROSEMIDE APOTEX TABLET 40MG"/>
             </medicationReference>
@@ -366,9 +368,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-                  <value value="MBH_300_herhalingen_VV"/>
+                  <value value="MBH_300_herhalingen_VV-tmg"/>
                </identifier>
-               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_herhalingen_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_herhalingen_VV-tmg || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
             </authorizingPrescription>
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
@@ -387,27 +389,27 @@
             <whenHandedOver value="${DATE, T, D, -20}T10:24:05+02:00"/>
          </MedicationDispense>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:3c30f2fe-6b7b-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:3ba953a7-6b7c-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="3ba953a7-6b7c-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_herhalingen"/>
+                  <value value="MBH_300_herhalingen-tmg"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <value value="MBH_300_herhalingen_MVE3"/>
+               <value value="MBH_300_herhalingen_MVE3-tmg"/>
             </identifier>
             <status value="completed"/>
             <category>
@@ -418,7 +420,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:bf911a04-6aac-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:d1237786-6b06-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="FUROSEMIDE APOTEX TABLET 40MG"/>
             </medicationReference>
@@ -438,9 +440,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-                  <value value="MBH_300_herhalingen_VV"/>
+                  <value value="MBH_300_herhalingen_VV-tmg"/>
                </identifier>
-               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_herhalingen_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_herhalingen_VV-tmg || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
             </authorizingPrescription>
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
@@ -459,15 +461,15 @@
             <whenHandedOver value="${DATE, T, D, +10}T09:46:48+02:00"/>
          </MedicationDispense>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c6ae5bdd-6ae1-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:ca8c0afe-6b79-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="ca8c0afe-6b79-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
             </meta>
@@ -477,12 +479,12 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_afleverlocatie"/>
+                  <value value="MBH_300_afleverlocatie-tmg"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <value value="MBH_300_afleverlocatie_MVE"/>
+               <value value="MBH_300_afleverlocatie_MVE-tmg"/>
             </identifier>
             <status value="completed"/>
             <category>
@@ -493,7 +495,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:8f27a004-6aca-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:bc237f86-6af0-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="MODAFINIL FOCUS TABLET 200MG"/>
             </medicationReference>
@@ -513,9 +515,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-                  <value value="MBH_300_afleverlocatie_VV"/>
+                  <value value="MBH_300_afleverlocatie_VV-tmg"/>
                </identifier>
-               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_afleverlocatie_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_afleverlocatie_VV-tmg || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
             </authorizingPrescription>
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
@@ -539,15 +541,15 @@
             </destination>
          </MedicationDispense>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:2e1fbd3e-6ad3-11ec-0000-020000000000"/>
       <resource>
          <Patient>
+            <id value="2e1fbd3e-6ad3-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -589,15 +591,15 @@
             <birthDate value="1985-11-09"/>
          </Patient>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Patient"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
       <resource>
          <Organization>
+            <id value="10079464-6b64-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -633,48 +635,48 @@
             </address>
          </Organization>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e353031d-6b40-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:d02fabf2-6ac7-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="d02fabf2-6ac7-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="1110837"/>
-                  <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+                  <code value="1137891"/>
+                  <display value="ACETYLSALICYLZUUR CARDIO AUROBINDO DISP TABL 80MG"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="49484"/>
-                  <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+                  <code value="68632"/>
+                  <display value="ACETYLSALICYLZUUR DISPERTABLET 80MG"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="103039"/>
-                  <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+                  <code value="117145"/>
+                  <display value="ACETYLSALICYLZUUR DISPERTABLET 80MG"/>
                </coding>
-               <text value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+               <text value="ACETYLSALICYLZUUR CARDIO AUROBINDO DISP TABL 80MG"/>
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bf911a04-6aac-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:d1237786-6b06-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="d1237786-6b06-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
@@ -699,15 +701,15 @@
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:65ff631d-6b39-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:3948bd32-6b2b-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="3948bd32-6b2b-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
@@ -732,15 +734,15 @@
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:8f27a004-6aca-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:bc237f86-6af0-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="bc237f86-6af0-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
@@ -765,15 +767,15 @@
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9270a11d-6b35-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:157a6172-6ab7-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="157a6172-6ab7-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
@@ -798,24 +800,23 @@
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:c3deabb0-6b34-11ec-0000-020000000000"/>
       <resource>
          <Location>
+            <id value="c3deabb0-6b34-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://hl7.org/fhir/StructureDefinition/Location"/>
             </meta>
             <name value="Dorpsrand 200,1256ZZ Ons Dorp"/>
          </Location>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Location"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
 </Bundle>

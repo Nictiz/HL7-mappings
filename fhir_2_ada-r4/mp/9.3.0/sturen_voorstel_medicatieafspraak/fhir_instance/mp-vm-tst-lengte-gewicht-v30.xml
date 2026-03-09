@@ -1,13 +1,14 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="5c3bd3d5-a281-11ef-5595-020000000000"/>
+   <id value="4c3dccdd-1961-11f1-1600-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-ProposalMedicationAgreement-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:5c3bd4ce-a281-11ef-5595-020000000000"/>
+      <fullUrl value="urn:uuid:4c3dcd54-1961-11f1-1600-020000000000"/>
       <resource>
          <MedicationRequest>
+            <id value="4c3dcd54-1961-11f1-1600-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
                <tag>
@@ -15,14 +16,13 @@
                   <code value="actionable"/>
                </tag>
             </meta>
-            <f:extension xmlns:f="http://hl7.org/fhir"
-                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <f:valueString value="Vanaf 3 jan 2023, tot en met 6 jan 2023, 1 maal per 2 dagen 2 stuks, Oraal"/>
-            </f:extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="1 maal per 2 dagen 2 stuks, Oraal"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2023-01-03T00:00:00+01:00"/>
-                  <end value="2023-01-06T23:59:59+01:00"/>
+                  <start value="2024-01-03T00:00:00+01:00"/>
+                  <end value="2024-01-06T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -48,18 +48,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:5c3bd4ec-a281-11ef-5595-020000000000"/>
+               <reference value="urn:uuid:4c3dcd68-1961-11f1-1600-020000000000"/>
                <type value="Medication"/>
                <display value="METOCLOPRAMIDE TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:5c3bd456-a281-11ef-5595-020000000000"/>
+               <reference value="urn:uuid:4c3dcd18-1961-11f1-1600-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
-            <authoredOn value="2023-01-01T07:10:00+01:00"/>
+            <authoredOn value="2024-01-01T07:10:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:5c3bd492-a281-11ef-5595-020000000000"/>
+               <reference value="urn:uuid:4c3dcd2c-1961-11f1-1600-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </requester>
@@ -103,9 +103,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5c3bd456-a281-11ef-5595-020000000000"/>
+      <fullUrl value="urn:uuid:4c3dcd18-1961-11f1-1600-020000000000"/>
       <resource>
          <Patient>
+            <id value="4c3dcd18-1961-11f1-1600-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -150,9 +151,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5c3bd492-a281-11ef-5595-020000000000"/>
+      <fullUrl value="urn:uuid:4c3dcd2c-1961-11f1-1600-020000000000"/>
       <resource>
          <Organization>
+            <id value="4c3dcd2c-1961-11f1-1600-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -194,9 +196,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5c3bd4ec-a281-11ef-5595-020000000000"/>
+      <fullUrl value="urn:uuid:4c3dcd68-1961-11f1-1600-020000000000"/>
       <resource>
          <Medication>
+            <id value="4c3dcd68-1961-11f1-1600-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
@@ -222,9 +225,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5c3bd514-a281-11ef-5595-020000000000"/>
+      <fullUrl value="urn:uuid:4c3dcd7c-1961-11f1-1600-020000000000"/>
       <resource>
          <Observation>
+            <id value="4c3dcd7c-1961-11f1-1600-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BodyHeight"/>
             </meta>
@@ -244,11 +248,11 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:5c3bd456-a281-11ef-5595-020000000000"/>
+               <reference value="urn:uuid:4c3dcd18-1961-11f1-1600-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
-            <effectiveDateTime value="2023-01-01T07:05:00+01:00"/>
+            <effectiveDateTime value="2024-01-01T07:05:00+01:00"/>
             <valueQuantity>
                <value value="165"/>
                <unit value="cm"/>
@@ -263,9 +267,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5c3bd53c-a281-11ef-5595-020000000000"/>
+      <fullUrl value="urn:uuid:4c3dcd90-1961-11f1-1600-020000000000"/>
       <resource>
          <Observation>
+            <id value="4c3dcd90-1961-11f1-1600-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BodyWeight"/>
             </meta>
@@ -285,11 +290,11 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:5c3bd456-a281-11ef-5595-020000000000"/>
+               <reference value="urn:uuid:4c3dcd18-1961-11f1-1600-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
-            <effectiveDateTime value="2023-01-01T07:05:00+01:00"/>
+            <effectiveDateTime value="2024-01-01T07:05:00+01:00"/>
             <valueQuantity>
                <value value="75"/>
                <unit value="kg"/>
