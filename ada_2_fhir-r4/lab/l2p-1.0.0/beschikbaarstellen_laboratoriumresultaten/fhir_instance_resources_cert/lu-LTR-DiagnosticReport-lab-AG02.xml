@@ -1,0 +1,45 @@
+<DiagnosticReport xmlns="http://hl7.org/fhir">
+   <id value="lu-LTR-DiagnosticReport-lab-AG02"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/lu-LaboratoryTestResult-DiagnosticReport"/>
+   </meta>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.25.1.1"/>
+      <value value="AG02"/>
+   </identifier>
+   <basedOn>
+      <reference value="ServiceRequest/lu-OrderData-lab-AG02"/>
+      <type value="ServiceRequest"/>
+      <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+   </basedOn>
+   <status value="unknown"/>
+   <category>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/v2-0074"/>
+         <code value="LAB"/>
+         <display value="Laboratory"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="11502-2"/>
+         <display value="Laboratory report"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-lab-E-XXX-Doppen"/>
+      <type value="Patient"/>
+      <display value="Patient, E. XXX_Doppen"/>
+   </subject>
+   <performer>
+      <reference value="Organization/nl-core-HPrv-Org-lab-7ba8a464-6b33-11ec-0000-020000000000"/>
+      <type value="Organization"/>
+      <display value="Healthcare provider (organization), organisation-id in system"/>
+   </performer>
+   <result>
+      <reference value="Observation/nl-core-LTR-lab-66666"/>
+      <type value="Observation"/>
+      <display value="laboratorium_test"/>
+   </result>
+</DiagnosticReport>
