@@ -1,0 +1,72 @@
+<Consent xmlns="http://hl7.org/fhir">
+   <id value="td-2024-11-12-40617009"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentDirective2"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+      <valueString value="Vastgelegd met contactpersoon 2"/>
+   </extension>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.SpecificationOther">
+      <valueString value="Kortdurend bij een omkeerbare oorzaak (zoals longontsteking), niet bij chronisch respiratoir falen of bij progressieve neurologische aandoening."/>
+   </modifierExtension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.103.1"/>
+      <value value="420241112"/>
+   </identifier>
+   <status value="active"/>
+   <scope>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/consentscope"/>
+         <code value="treatment"/>
+         <display value="Treatment"/>
+      </coding>
+   </scope>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="129125009"/>
+         <display value="verrichting met expliciete context"/>
+      </coding>
+   </category>
+   <dateTime value="2024-11-12"/>
+   <policy>
+      <uri value="https://wetten.overheid.nl/"/>
+   </policy>
+   <provision>
+      <actor>
+         <role>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
+               <code value="CONSWIT"/>
+               <display value="consent witness"/>
+            </coding>
+         </role>
+         <reference>
+            <reference value="PractitionerRole/pracrole-000001111"/>
+            <type value="PractitionerRole"/>
+            <display value="Healthcare professional (role), Peter (Peter) van Pulver, Huisarts, Gezondheidscentrum Aesculaap"/>
+         </reference>
+      </actor>
+      <actor>
+         <role>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
+               <code value="RESPRSN"/>
+               <display value="responsible party"/>
+            </coding>
+         </role>
+         <reference>
+            <reference value="RelatedPerson/cp-Witteveen"/>
+            <type value="RelatedPerson"/>
+            <display value="Contact person, Els (Els) Witteveen"/>
+         </reference>
+      </actor>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="40617009"/>
+            <display value="beademing"/>
+         </coding>
+      </code>
+   </provision>
+</Consent>

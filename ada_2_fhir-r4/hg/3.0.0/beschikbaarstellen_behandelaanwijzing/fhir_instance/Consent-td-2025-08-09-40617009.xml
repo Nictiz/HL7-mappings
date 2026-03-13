@@ -1,0 +1,74 @@
+<Consent xmlns="http://hl7.org/fhir">
+   <id value="td-2025-08-09-40617009"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentDirective2"/>
+   </meta>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.SpecificationOther">
+      <valueString value="Kortdurend bij een omkeerbare oorzaak (zoals longontsteking), niet bij chronisch respiratoir falen of bij progressieve neurologische aandoening."/>
+   </modifierExtension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.103.1"/>
+      <value value="420250809"/>
+   </identifier>
+   <status value="active"/>
+   <scope>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/consentscope"/>
+         <code value="treatment"/>
+         <display value="Treatment"/>
+      </coding>
+   </scope>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="129125009"/>
+         <display value="verrichting met expliciete context"/>
+      </coding>
+   </category>
+   <patient>
+      <reference value="Patient/patient-XXX-vanHenegouwen"/>
+      <type value="Patient"/>
+      <display value="Patient, XXX_vanHenegouwen"/>
+   </patient>
+   <dateTime value="2025-08-09"/>
+   <policy>
+      <uri value="https://wetten.overheid.nl/"/>
+   </policy>
+   <provision>
+      <actor>
+         <role>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
+               <code value="CONSWIT"/>
+               <display value="consent witness"/>
+            </coding>
+         </role>
+         <reference>
+            <reference value="PractitionerRole/pracrole-UZI1"/>
+            <type value="PractitionerRole"/>
+            <display value="Healthcare professional (role), Vaste Huisarts 1"/>
+         </reference>
+      </actor>
+      <actor>
+         <role>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
+               <code value="CONSENTER"/>
+               <display value="consenter"/>
+            </coding>
+         </role>
+         <reference>
+            <reference value="Patient/patient-XXX-vanHenegouwen"/>
+            <type value="Patient"/>
+            <display value="Patient, XXX_vanHenegouwen"/>
+         </reference>
+      </actor>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="40617009"/>
+            <display value="beademing"/>
+         </coding>
+      </code>
+   </provision>
+</Consent>

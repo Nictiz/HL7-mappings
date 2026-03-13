@@ -1,0 +1,72 @@
+<Consent xmlns="http://hl7.org/fhir">
+   <id value="td-2024-12-01-305351004"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentDirective2"/>
+   </meta>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.103.1"/>
+      <value value="320241201"/>
+   </identifier>
+   <status value="active"/>
+   <scope>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/consentscope"/>
+         <code value="treatment"/>
+         <display value="Treatment"/>
+      </coding>
+   </scope>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="129125009"/>
+         <display value="verrichting met expliciete context"/>
+      </coding>
+   </category>
+   <patient>
+      <reference value="Patient/patient-XXX-Mutter"/>
+      <type value="Patient"/>
+      <display value="Patient, Franka (Franka) XXX_Mutter"/>
+   </patient>
+   <dateTime value="2024-12-01"/>
+   <policy>
+      <uri value="https://wetten.overheid.nl/"/>
+   </policy>
+   <provision>
+      <type value="deny"/>
+      <actor>
+         <role>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
+               <code value="CONSWIT"/>
+               <display value="consent witness"/>
+            </coding>
+         </role>
+         <reference>
+            <reference value="PractitionerRole/pracrole-UZI-7"/>
+            <type value="PractitionerRole"/>
+            <display value="Healthcare professional (role), Vaste Huisarts 2, Huisarts, Gezondheidscentrum Aesculaap"/>
+         </reference>
+      </actor>
+      <actor>
+         <role>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
+               <code value="CONSENTER"/>
+               <display value="consenter"/>
+            </coding>
+         </role>
+         <reference>
+            <reference value="Patient/patient-XXX-Mutter"/>
+            <type value="Patient"/>
+            <display value="Patient, Franka (Franka) XXX_Mutter"/>
+         </reference>
+      </actor>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="305351004"/>
+            <display value="opname op intensive care"/>
+         </coding>
+      </code>
+   </provision>
+</Consent>
