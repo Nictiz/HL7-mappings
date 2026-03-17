@@ -1,14 +1,16 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-kwal-MVE-script2-v30"/>
-   <type value="transaction"/>
+   <type value="searchset"/>
+   <total value="2"/>
    <link>
       <relation value="self"/>
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:d6f179a7-6acd-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:242533dd-6b67-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="242533dd-6b67-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
             </meta>
@@ -24,12 +26,12 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_script2"/>
+                  <value value="MBH_300_script2-tmg"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <value value="MBH_300_script2_MVE1"/>
+               <value value="MBH_300_script2_MVE1-tmg"/>
             </identifier>
             <status value="completed"/>
             <category>
@@ -40,7 +42,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:d6d3451d-6ae0-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9e4140f2-6aa3-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL CF TABLET 1MG"/>
             </medicationReference>
@@ -60,9 +62,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-                  <value value="MBH_300_script2_VV1"/>
+                  <value value="MBH_300_script2_VV1-tmg"/>
                </identifier>
-               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_script2_VV1 || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_script2_VV1-tmg || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
             </authorizingPrescription>
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
@@ -81,15 +83,15 @@
             <whenHandedOver value="${DATE, T, D, -40}T15:25:00+02:00"/>
          </MedicationDispense>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7284c1a7-6b4c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:3884e3dd-6b66-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="3884e3dd-6b66-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
             </meta>
@@ -105,12 +107,12 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_script2"/>
+                  <value value="MBH_300_script2-tmg"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <value value="MBH_300_script2_MVE2"/>
+               <value value="MBH_300_script2_MVE2-tmg"/>
             </identifier>
             <status value="completed"/>
             <category>
@@ -121,7 +123,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:d6d3451d-6ae0-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9e4140f2-6aa3-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL CF TABLET 1MG"/>
             </medicationReference>
@@ -141,9 +143,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-                  <value value="MBH_300_script2_VV2"/>
+                  <value value="MBH_300_script2_VV2-tmg"/>
                </identifier>
-               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_script2_VV2 || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_script2_VV2-tmg || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
             </authorizingPrescription>
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
@@ -162,15 +164,15 @@
             <whenHandedOver value="${DATE, T, D, -26}T16:44:00+02:00"/>
          </MedicationDispense>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:8f8c8dfe-6b19-11ec-0000-020000000000"/>
       <resource>
          <Patient>
+            <id value="8f8c8dfe-6b19-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -209,15 +211,15 @@
             <birthDate value="1985-10-31"/>
          </Patient>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Patient"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
       <resource>
          <Organization>
+            <id value="10079464-6b64-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -253,15 +255,15 @@
             </address>
          </Organization>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d6d3451d-6ae0-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9e4140f2-6aa3-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="9e4140f2-6aa3-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
@@ -286,9 +288,8 @@
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
 </Bundle>

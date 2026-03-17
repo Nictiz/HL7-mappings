@@ -1,13 +1,14 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="5bfd07a9-a281-11ef-1914-020000000000"/>
+   <id value="4234100d-1961-11f1-6835-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:5bfd0898-a281-11ef-1914-020000000000"/>
+      <fullUrl value="urn:uuid:42341084-1961-11f1-6835-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="42341084-1961-11f1-6835-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
                <tag>
@@ -25,22 +26,21 @@
                </valueCodeableConcept>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
-               <valueDateTime value="2023-01-01T10:05:00+01:00"/>
+               <valueDateTime value="2024-01-01T10:05:00+01:00"/>
             </extension>
-            <f:extension xmlns:f="http://hl7.org/fhir"
-                         url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <f:valueString value="Vanaf 28 dec 2022, tot en met 1 jan 2023, Bij pijn 1 stuk 's avonds, Oraal, stopgezet"/>
-            </f:extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="Bij pijn 1 stuk 's avonds, Oraal"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2022-12-28T00:00:00+01:00"/>
-                  <end value="2023-01-01T23:59:59+01:00"/>
+                  <start value="2023-12-28T00:00:00+01:00"/>
+                  <end value="2024-01-01T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_stoppen_parallele_TA"/>
+                  <value value="MBH_300_stoppen_parallele_TA-tav"/>
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationAdministrationAgreement">
@@ -48,9 +48,9 @@
                   <type value="MedicationDispense"/>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-                     <value value="MBH_300_stoppen_parallele_TA_TA_start_zonodig"/>
+                     <value value="MBH_300_stoppen_parallele_TA_TA_start_zonodig-tav"/>
                   </identifier>
-                  <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_stoppen_parallele_TA_TA_start_zonodig || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                  <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_stoppen_parallele_TA_TA_start_zonodig-tav || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                </valueReference>
             </extension>
             <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
@@ -64,7 +64,7 @@
             </modifierExtension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <value value="MBH_300_stoppen_parallele_TA_TA_stop_zonodig"/>
+               <value value="MBH_300_stoppen_parallele_TA_TA_stop_zonodig-tav"/>
             </identifier>
             <status value="unknown"/>
             <category>
@@ -75,18 +75,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:5bfd08b6-a281-11ef-1914-020000000000"/>
+               <reference value="urn:uuid:42341098-1961-11f1-6835-020000000000"/>
                <type value="Medication"/>
                <display value="PANTOZOL TABLET MSR 40MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:5bfd0820-a281-11ef-1914-020000000000"/>
+               <reference value="urn:uuid:42341048-1961-11f1-6835-020000000000"/>
                <type value="Patient"/>
-               <display value="Patient, J. de XXX_Luzac"/>
+               <display value="Patient, C van de XXX_Voortman"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:5bfd085c-a281-11ef-1914-020000000000"/>
+                  <reference value="urn:uuid:4234105c-1961-11f1-6835-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -95,9 +95,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_stoppen_parallele_TA_MA_start"/>
+                  <value value="MBH_300_stoppen_parallele_TA_MA_start-tav"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_stoppen_parallele_TA_MA_start || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_stoppen_parallele_TA_MA_start-tav || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </authorizingPrescription>
             <dosageInstruction>
                <timing>
@@ -144,48 +144,49 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5bfd0820-a281-11ef-1914-020000000000"/>
+      <fullUrl value="urn:uuid:42341048-1961-11f1-6835-020000000000"/>
       <resource>
          <Patient>
+            <id value="42341048-1961-11f1-6835-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="999900778"/>
+               <value value="999908881"/>
             </identifier>
             <name>
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
                   <valueCode value="NL1"/>
                </extension>
                <use value="official"/>
-               <text value="J. de XXX_Luzac"/>
-               <family value="de XXX_Luzac">
+               <text value="C van de XXX_Voortman"/>
+               <family value="van de XXX_Voortman">
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
-                     <valueString value="de"/>
+                     <valueString value="van de"/>
                   </extension>
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="XXX_Luzac"/>
+                     <valueString value="XXX_Voortman"/>
                   </extension>
                </family>
-               <given value="J.">
+               <given value="C">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                     <valueCode value="IN"/>
+                     <valueCode value="BR"/>
                   </extension>
                </given>
             </name>
-            <gender value="female">
+            <gender value="male">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
                   <valueCodeableConcept>
                      <coding>
                         <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
-                        <code value="F"/>
-                        <display value="Vrouw"/>
+                        <code value="M"/>
+                        <display value="Man"/>
                      </coding>
                   </valueCodeableConcept>
                </extension>
             </gender>
-            <birthDate value="1985-10-24"/>
+            <birthDate value="1963-09-18"/>
          </Patient>
       </resource>
       <request>
@@ -194,9 +195,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5bfd085c-a281-11ef-1914-020000000000"/>
+      <fullUrl value="urn:uuid:4234105c-1961-11f1-6835-020000000000"/>
       <resource>
          <Organization>
+            <id value="4234105c-1961-11f1-6835-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -238,9 +240,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5bfd08b6-a281-11ef-1914-020000000000"/>
+      <fullUrl value="urn:uuid:42341098-1961-11f1-6835-020000000000"/>
       <resource>
          <Medication>
+            <id value="42341098-1961-11f1-6835-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>

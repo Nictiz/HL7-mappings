@@ -1,6 +1,7 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-toedieningssnelheid"/>
-   <type value="transaction"/>
+   <type value="searchset"/>
+   <total value="4"/>
    <link>
       <relation value="self"/>
       <url value="http://dummy.nictiz.nl/dummyquery"/>
@@ -9,6 +10,7 @@
       <fullUrl value="urn:uuid:70ec8d1b-6aac-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
+            <id value="70ec8d1b-6aac-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
@@ -44,7 +46,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:d4136f04-6aed-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:bbb36b86-6ae3-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="MORFINE INFVLST 5MG/ML CAS 100ML"/>
             </medicationReference>
@@ -54,7 +56,7 @@
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:fdf54558-6b5e-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -85,15 +87,15 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationRequest"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:e7f2a928-6b64-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="e7f2a928-6b64-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
             </meta>
@@ -128,7 +130,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c7fa3d1d-6b16-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:cb8acdf2-6b5d-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="MORFINE HCL 3WATER INFVLST 5MG/ML CASS 100ML AHZ"/>
             </medicationReference>
@@ -179,15 +181,15 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:228f7cbd-6b49-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
+            <id value="228f7cbd-6b49-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
@@ -196,7 +198,7 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:fdf54558-6b5e-11ec-0000-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
@@ -212,7 +214,7 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
                <valueReference>
-                  <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:fdf54558-6b5e-11ec-0000-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
@@ -230,7 +232,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:d4136f04-6aed-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:bbb36b86-6ae3-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="MORFINE INFVLST 5MG/ML CAS 100ML"/>
             </medicationReference>
@@ -285,15 +287,15 @@
             </dosage>
          </MedicationStatement>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationStatement"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:3bcb400f-6b4c-11ec-0000-020000000000"/>
       <resource>
          <MedicationAdministration>
+            <id value="3bcb400f-6b4c-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
             </meta>
@@ -328,7 +330,7 @@
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
                <value value="MBH_300_toedieningssnelheid_MTD"/>
             </identifier>
-            <status value="unknown"/>
+            <status value="completed"/>
             <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -337,7 +339,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c7fa3d1d-6b16-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:cb8acdf2-6b5d-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="MORFINE HCL 3WATER INFVLST 5MG/ML CASS 100ML AHZ"/>
             </medicationReference>
@@ -357,7 +359,7 @@
             <effectiveDateTime value="2024-01-01T11:49:39+01:00"/>
             <performer>
                <actor>
-                  <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:fdf54558-6b5e-11ec-0000-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
                </actor>
@@ -393,15 +395,15 @@
             </dosage>
          </MedicationAdministration>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationAdministration"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:839f5efe-6b41-11ec-0000-020000000000"/>
       <resource>
          <Patient>
+            <id value="839f5efe-6b41-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -440,20 +442,20 @@
             <birthDate value="1963-11-02"/>
          </Patient>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Patient"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:fdf54558-6b5e-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
+            <id value="fdf54558-6b5e-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:4a573558-6ad5-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9bdfc42e-6ab8-11ec-0000-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
@@ -472,15 +474,15 @@
             </specialty>
          </PractitionerRole>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="PractitionerRole"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4a573558-6ad5-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9bdfc42e-6ab8-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
+            <id value="9bdfc42e-6ab8-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
             </meta>
@@ -507,15 +509,15 @@
             </name>
          </Practitioner>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Practitioner"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
       <resource>
          <Organization>
+            <id value="10079464-6b64-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -551,15 +553,15 @@
             </address>
          </Organization>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
       <resource>
          <Organization>
+            <id value="7fa869d8-6b44-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -592,15 +594,15 @@
             </address>
          </Organization>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d4136f04-6aed-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:bbb36b86-6ae3-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="bbb36b86-6ae3-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
@@ -620,15 +622,15 @@
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c7fa3d1d-6b16-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:cb8acdf2-6b5d-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="cb8acdf2-6b5d-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
@@ -653,9 +655,8 @@
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
 </Bundle>

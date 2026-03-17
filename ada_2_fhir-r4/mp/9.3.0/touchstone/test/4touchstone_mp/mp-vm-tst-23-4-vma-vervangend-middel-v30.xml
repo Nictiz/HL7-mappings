@@ -1,0 +1,305 @@
+<Bundle xmlns="http://hl7.org/fhir">
+   <id value="mp-vm-tst-23-4-vma-vervangend-middel-v30"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-ProposalMedicationAgreement-Bundle"/>
+   </meta>
+   <type value="transaction"/>
+   <entry>
+      <fullUrl value="urn:uuid:a724a8ed-6ab0-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <id value="a724a8ed-6ab0-11ec-0000-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+               <tag>
+                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
+                  <code value="actionable"/>
+               </tag>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="2 maal per week, een kleine hoeveelheid over het nog natte haar verdelen en voorzichtig inmasseren, na 3–5 min uitspoelen. De behandeling voortzetten tot de symptomen zijn verdwenen, Cutaan"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+               <valueString value="denorex niet voorradig, daarom verzoek voor alternatief: ketoconazol shampoo"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.2"/>
+               <value value="MBH_300_VMAvervangend_voorschr_VMA"/>
+            </identifier>
+            <status value="active"/>
+            <intent value="plan"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="33633005"/>
+                  <display value="voorschrijven van geneesmiddel"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:2a41fb86-6ad4-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="KETOCONAZOL SHAMPOO 20MG/G"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:00682cf8-6b17-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, J. van de XXX_Knaap"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, +0}T15:00:00+02:00"/>
+            <requester>
+               <reference value="urn:uuid:87802558-6b15-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Victor de Verstrekker, Apothekers, Apotheek De Gulle Gaper"/>
+            </requester>
+            <basedOn>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationAdministrationAgreement">
+                  <valueReference>
+                     <type value="MedicationDispense"/>
+                     <identifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                        <value value="MBH_300_VMAvervangend_voorschr_TA_start"/>
+                     </identifier>
+                     <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_VMAvervangend_voorschr_TA_start || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                  </valueReference>
+               </extension>
+               <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_VMAvervangend_voorschr_TA_start || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            </basedOn>
+            <dosageInstruction>
+               <additionalInstruction>
+                  <coding>
+                     <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+                     <code value="OTH"/>
+                     <display value="overig"/>
+                  </coding>
+                  <text value="een kleine hoeveelheid over het nog natte haar verdelen en voorzichtig inmasseren, na 3–5 min uitspoelen. De behandeling voortzetten tot de symptomen zijn verdwenen"/>
+               </additionalInstruction>
+               <timing>
+                  <repeat>
+                     <frequency value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="wk"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="53"/>
+                     <display value="Cutaan"/>
+                  </coding>
+               </route>
+            </dosageInstruction>
+            <priorPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_VMAvervangend_voorschr_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak: MBH_300_VMAvervangend_voorschr_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </priorPrescription>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:00682cf8-6b17-11ec-0000-020000000000"/>
+      <resource>
+         <Patient>
+            <id value="00682cf8-6b17-11ec-0000-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999908480"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <use value="official"/>
+               <text value="J. van de XXX_Knaap"/>
+               <family value="van de XXX_Knaap">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van de"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Knaap"/>
+                  </extension>
+               </family>
+               <given value="J.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1912-02-15"/>
+         </Patient>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:87802558-6b15-11ec-0000-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <id value="87802558-6b15-11ec-0000-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+            </meta>
+            <practitioner>
+               <reference value="urn:uuid:7c2a142e-6ad9-11ec-0000-020000000000"/>
+               <type value="Practitioner"/>
+               <display value="Healthcare professional (person), Victor de Verstrekker"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2020-10-23T00:00:00"/>
+                  <code value="0200"/>
+                  <display value="Apothekers"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:7c2a142e-6ad9-11ec-0000-020000000000"/>
+      <resource>
+         <Practitioner>
+            <id value="7c2a142e-6ad9-11ec-0000-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="000001116"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Victor de Verstrekker"/>
+               <family value="de Verstrekker">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="de"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Verstrekker"/>
+                  </extension>
+               </family>
+               <given value="Victor">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
+      <resource>
+         <Organization>
+            <id value="10079464-6b64-11ec-0000-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="01236578"/>
+            </identifier>
+            <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2a41fb86-6ad4-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <id value="2a41fb86-6ad4-11ec-0000-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="80349"/>
+                  <display value="KETOCONAZOL SHAMPOO 20MG/G"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="125156"/>
+                  <display value="KETOCONAZOL SHAMPOO 20MG/G"/>
+               </coding>
+               <text value="KETOCONAZOL SHAMPOO 20MG/G"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+</Bundle>

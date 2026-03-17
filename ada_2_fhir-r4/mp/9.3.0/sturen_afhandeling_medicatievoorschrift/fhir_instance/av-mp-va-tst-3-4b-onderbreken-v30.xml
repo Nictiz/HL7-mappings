@@ -1,13 +1,14 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="f6796836-9887-11f0-8181-020000000000"/>
+   <id value="473a037d-1961-11f1-7305-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:f67968b7-9887-11f0-8181-020000000000"/>
+      <fullUrl value="urn:uuid:473a03f4-1961-11f1-7305-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="473a03f4-1961-11f1-7305-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
                <tag>
@@ -30,7 +31,7 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_onderbreken"/>
+                  <value value="MBH_300_onderbreken-tav"/>
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationAdministrationAgreement">
@@ -38,9 +39,9 @@
                   <type value="MedicationDispense"/>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-                     <value value="MBH_300_onderbreken_TA_start"/>
+                     <value value="MBH_300_onderbreken_TA_start-tav"/>
                   </identifier>
-                  <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_onderbreken_TA_start || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                  <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_onderbreken_TA_start-tav || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                </valueReference>
             </extension>
             <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
@@ -54,7 +55,7 @@
             </modifierExtension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <value value="MBH_300_onderbreken_TA_onderbreken"/>
+               <value value="MBH_300_onderbreken_TA_onderbreken-tav"/>
             </identifier>
             <status value="unknown"/>
             <category>
@@ -65,18 +66,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:f67968cb-9887-11f0-8181-020000000000"/>
+               <reference value="urn:uuid:473a0408-1961-11f1-7305-020000000000"/>
                <type value="Medication"/>
                <display value="BROXIL CAPSULE 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:f6796867-9887-11f0-8181-020000000000"/>
+               <reference value="urn:uuid:473a03b8-1961-11f1-7305-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C van de XXX_Voortman"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:f679688f-9887-11f0-8181-020000000000"/>
+                  <reference value="urn:uuid:473a03cc-1961-11f1-7305-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek Jansen en Co"/>
                </actor>
@@ -85,9 +86,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_onderbreken_MA_onderbreken"/>
+                  <value value="MBH_300_onderbreken_MA_onderbreken-tav"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_onderbreken_MA_onderbreken || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_onderbreken_MA_onderbreken-tav || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </authorizingPrescription>
             <dosageInstruction>
                <timing>
@@ -129,9 +130,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f6796867-9887-11f0-8181-020000000000"/>
+      <fullUrl value="urn:uuid:473a03b8-1961-11f1-7305-020000000000"/>
       <resource>
          <Patient>
+            <id value="473a03b8-1961-11f1-7305-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -179,9 +181,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f679688f-9887-11f0-8181-020000000000"/>
+      <fullUrl value="urn:uuid:473a03cc-1961-11f1-7305-020000000000"/>
       <resource>
          <Organization>
+            <id value="473a03cc-1961-11f1-7305-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -198,9 +201,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f67968cb-9887-11f0-8181-020000000000"/>
+      <fullUrl value="urn:uuid:473a0408-1961-11f1-7305-020000000000"/>
       <resource>
          <Medication>
+            <id value="473a0408-1961-11f1-7305-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>

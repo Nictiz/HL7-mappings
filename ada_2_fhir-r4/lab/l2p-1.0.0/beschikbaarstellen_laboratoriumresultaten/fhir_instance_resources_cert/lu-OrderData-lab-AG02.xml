@@ -1,0 +1,36 @@
+<ServiceRequest xmlns="http://hl7.org/fhir">
+   <id value="lu-OrderData-lab-AG02"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/lu-OrderData"/>
+   </meta>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.25.1.1"/>
+      <value value="AG02"/>
+   </identifier>
+   <status value="completed"/>
+   <intent value="order"/>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="14631-6"/>
+         <display value="Bilirubine [mol/volume] in serum of plasma"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-lab-E-XXX-Doppen"/>
+      <type value="Patient"/>
+      <display value="Patient, E. XXX_Doppen"/>
+   </subject>
+   <authoredOn value="${DATE, T, D, -14}"/>
+   <requester>
+      <reference value="PractitionerRole/nl-core-HPrf-PracRol-lab-PrcRol-21684011138832461-00001111"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
+   </requester>
+   <reasonCode>
+      <text value="Follow-up bij eerder verhoogde ALAT"/>
+   </reasonCode>
+   <note>
+      <text value="Eerder lichte stijging ALAT (54 U/L), geen geelzucht. Hercontrole op leverenzymen en bilirubine. Patiënt gebruikt sinds 3 maanden geen alcohol meer"/>
+   </note>
+</ServiceRequest>

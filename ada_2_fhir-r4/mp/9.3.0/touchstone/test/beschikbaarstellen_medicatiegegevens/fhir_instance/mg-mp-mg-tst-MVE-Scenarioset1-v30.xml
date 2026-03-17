@@ -1,26 +1,28 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-tst-MVE-Scenarioset1-v30"/>
-   <type value="transaction"/>
+   <type value="searchset"/>
+   <total value="2"/>
    <link>
       <relation value="self"/>
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:44d1c9a7-6afd-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:cdfeebdd-6ad6-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="cdfeebdd-6ad6-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_chronisch"/>
+                  <value value="MBH_300_chronisch-tmg"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <value value="MBH_300_chronisch_MVE"/>
+               <value value="MBH_300_chronisch_MVE-tmg"/>
             </identifier>
             <status value="completed"/>
             <category>
@@ -31,7 +33,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:abb8231d-6b39-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:a46a3532-6b17-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="ROTER APC TABLET"/>
             </medicationReference>
@@ -51,9 +53,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-                  <value value="MBH_300_chronisch_VV"/>
+                  <value value="MBH_300_chronisch_VV-tmg"/>
                </identifier>
-               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_chronisch_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_chronisch_VV-tmg || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
             </authorizingPrescription>
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
@@ -72,27 +74,27 @@
             <whenHandedOver value="${DATE, T, D, -30}T12:32:00+02:00"/>
          </MedicationDispense>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:da174da7-6b70-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:99539bdd-6b5b-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="99539bdd-6b5b-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_chronisch"/>
+                  <value value="MBH_300_chronisch-tmg"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <value value="MBH_300_chronisch_MVE_extraMVEbestaandeTA"/>
+               <value value="MBH_300_chronisch_MVE_extraMVEbestaandeTA-tmg"/>
             </identifier>
             <status value="completed"/>
             <category>
@@ -103,7 +105,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:abb8231d-6b39-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:a46a3532-6b17-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="ROTER APC TABLET"/>
             </medicationReference>
@@ -123,9 +125,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-                  <value value="MBH_300_chronisch_VV_extraVVbestaandeMA"/>
+                  <value value="MBH_300_chronisch_VV_extraVVbestaandeMA-tmg"/>
                </identifier>
-               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_chronisch_VV_extraVVbestaandeMA || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_chronisch_VV_extraVVbestaandeMA-tmg || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
             </authorizingPrescription>
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
@@ -144,15 +146,15 @@
             <whenHandedOver value="${DATE, T, D, -10}T12:35:00+02:00"/>
          </MedicationDispense>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:4c764878-6b0d-11ec-0000-020000000000"/>
       <resource>
          <Patient>
+            <id value="4c764878-6b0d-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -191,15 +193,15 @@
             <birthDate value="1963-10-21"/>
          </Patient>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Patient"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
       <resource>
          <Organization>
+            <id value="10079464-6b64-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -235,15 +237,15 @@
             </address>
          </Organization>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:abb8231d-6b39-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:a46a3532-6b17-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="a46a3532-6b17-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
@@ -268,9 +270,8 @@
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
 </Bundle>

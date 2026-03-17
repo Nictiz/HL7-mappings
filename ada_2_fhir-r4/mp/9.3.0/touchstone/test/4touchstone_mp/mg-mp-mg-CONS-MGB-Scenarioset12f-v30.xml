@@ -1,14 +1,16 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-CONS-MGB-Scenarioset12f-v30"/>
-   <type value="transaction"/>
+   <type value="searchset"/>
+   <total value="1"/>
    <link>
       <relation value="self"/>
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:d8e32366-6b61-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c9e10a27-6ac6-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
+            <id value="c9e10a27-6ac6-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
@@ -25,7 +27,7 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_stopMA_zonder_referentie"/>
+                  <value value="MBH_300_stopMA_zonder_referentie-tmg"/>
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
@@ -37,7 +39,7 @@
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <value value="MBH_300_stopMA_zonder_referentie_MGB"/>
+               <value value="MBH_300_stopMA_zonder_referentie_MGB-tmg"/>
             </identifier>
             <status value="active"/>
             <category>
@@ -48,9 +50,9 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:f44d631d-6b0c-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:4f8511b2-6b68-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="DICLOFENAC NATRIUM SANDOZ RETARD TABLET MGA 100MG"/>
+               <display value="DICLOFENAC NATRIUM AUROBINDO RET TABLET MGA 100MG"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:b1c0f13e-6b51-11ec-0000-020000000000"/>
@@ -80,7 +82,7 @@
                <type value="MedicationDispense"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-                  <value value="MBH_300_stopMA_zonder_referentie_TA"/>
+                  <value value="MBH_300_stopMA_zonder_referentie_TA-tmg"/>
                </identifier>
                <display value="relatie naar toedieningsafspraak"/>
             </derivedFrom>
@@ -118,15 +120,15 @@
             </dosage>
          </MedicationStatement>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationStatement"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:b1c0f13e-6b51-11ec-0000-020000000000"/>
       <resource>
          <Patient>
+            <id value="b1c0f13e-6b51-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -168,15 +170,15 @@
             <birthDate value="1963-09-18"/>
          </Patient>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Patient"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:fdf54558-6b5e-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
+            <id value="fdf54558-6b5e-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
@@ -200,15 +202,15 @@
             </specialty>
          </PractitionerRole>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="PractitionerRole"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:9bdfc42e-6ab8-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
+            <id value="9bdfc42e-6ab8-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
             </meta>
@@ -235,15 +237,15 @@
             </name>
          </Practitioner>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Practitioner"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
       <resource>
          <Organization>
+            <id value="7fa869d8-6b44-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -276,23 +278,23 @@
             </address>
          </Organization>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f44d631d-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:4f8511b2-6b68-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="4f8511b2-6b68-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="594253"/>
-                  <display value="DICLOFENAC NATRIUM SANDOZ RETARD TABLET MGA 100MG"/>
+                  <code value="630608"/>
+                  <display value="DICLOFENAC NATRIUM AUROBINDO RET TABLET MGA 100MG"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
@@ -305,13 +307,12 @@
                   <code value="22268"/>
                   <display value="DICLOFENAC NATRIUM TABLET MGA 100MG"/>
                </coding>
-               <text value="DICLOFENAC NATRIUM SANDOZ RETARD TABLET MGA 100MG"/>
+               <text value="DICLOFENAC NATRIUM AUROBINDO RET TABLET MGA 100MG"/>
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
 </Bundle>

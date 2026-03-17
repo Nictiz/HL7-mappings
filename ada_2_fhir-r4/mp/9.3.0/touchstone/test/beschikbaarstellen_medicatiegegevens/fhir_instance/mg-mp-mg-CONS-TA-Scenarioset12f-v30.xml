@@ -1,14 +1,16 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-CONS-TA-Scenarioset12f-v30"/>
-   <type value="transaction"/>
+   <type value="searchset"/>
+   <total value="1"/>
    <link>
       <relation value="self"/>
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:c2dd0da2-6af5-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:3bad7f0d-6af4-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="3bad7f0d-6af4-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
             </meta>
@@ -27,12 +29,12 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_stopMA_zonder_referentie"/>
+                  <value value="MBH_300_stopMA_zonder_referentie-tmg"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <value value="MBH_300_stopMA_zonder_referentie_TA"/>
+               <value value="MBH_300_stopMA_zonder_referentie_TA-tmg"/>
             </identifier>
             <status value="unknown"/>
             <category>
@@ -43,9 +45,9 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:f44d631d-6b0c-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:4f8511b2-6b68-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="DICLOFENAC NATRIUM SANDOZ RETARD TABLET MGA 100MG"/>
+               <display value="DICLOFENAC NATRIUM AUROBINDO RET TABLET MGA 100MG"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:b1c0f13e-6b51-11ec-0000-020000000000"/>
@@ -93,15 +95,15 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:b1c0f13e-6b51-11ec-0000-020000000000"/>
       <resource>
          <Patient>
+            <id value="b1c0f13e-6b51-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -143,15 +145,15 @@
             <birthDate value="1963-09-18"/>
          </Patient>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Patient"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
       <resource>
          <Organization>
+            <id value="10079464-6b64-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -187,23 +189,23 @@
             </address>
          </Organization>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f44d631d-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:4f8511b2-6b68-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="4f8511b2-6b68-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="594253"/>
-                  <display value="DICLOFENAC NATRIUM SANDOZ RETARD TABLET MGA 100MG"/>
+                  <code value="630608"/>
+                  <display value="DICLOFENAC NATRIUM AUROBINDO RET TABLET MGA 100MG"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
@@ -216,13 +218,12 @@
                   <code value="22268"/>
                   <display value="DICLOFENAC NATRIUM TABLET MGA 100MG"/>
                </coding>
-               <text value="DICLOFENAC NATRIUM SANDOZ RETARD TABLET MGA 100MG"/>
+               <text value="DICLOFENAC NATRIUM AUROBINDO RET TABLET MGA 100MG"/>
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
 </Bundle>

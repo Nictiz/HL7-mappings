@@ -1,0 +1,1448 @@
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp93"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.374"
+                                            transactionEffectiveDate="2022-06-30T00:00:00"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="Generated from HL7 FHIR medicatiegegevens"
+                                            id="2835a1df-1961-11f1-6356-020000000000">
+         <patient>
+            <naamgegevens>
+               <voornamen value="C"/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Jol"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999908923"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1963-09-18"
+                           datatype="datetime"/>
+            <geslacht code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_300_SCRIPT9-tmg"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak>
+               <identificatie value="MBH_300_SCRIPT9_MA-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <registratie_datum_tijd value="2023-12-18T11:30:00+01:00"
+                                       datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="2023-12-18T11:30:00+01:00"
+                                    datatype="datetime"/>
+               </gebruiksperiode>
+               <voorschrijver>
+                  <zorgverlener value="urn-uuid-2835a274-1961-11f1-6356-020000000000"
+                                datatype="reference"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-2835a53a-1961-11f1-6356-020000000000"
+                                         datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie>
+                  <omschrijving value="3 maal per dag 1 stuk en Bij pijn 1 stuk 's avonds, oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="oraal"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="Stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="3"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
+                           </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="3"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
+                        </toedieningsschema>
+                     </dosering>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="Stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <dagdeel code="3157002"
+                                    displayName="'s avonds"
+                                    codeSystem="2.16.840.1.113883.6.96"/>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <when value="EVE"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
+                        </toedieningsschema>
+                        <zo_nodig>
+                           <criterium code="1028"
+                                      codeSystem="2.16.840.1.113883.2.4.4.5"
+                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                      displayName="Bij pijn"/>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <medicatieafspraak>
+               <identificatie value="MBH_300_SCRIPT9_MA_TOEKOMSTIG-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <registratie_datum_tijd value="2023-12-20T11:25:00+01:00"
+                                       datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="2024-01-15T11:30:00+01:00"
+                                    datatype="datetime"/>
+                  <tijds_duur value="3"
+                              unit="dag"/>
+                  <criterium value="Dag 1 tot en met dag 3 na knieoperatie"/>
+               </gebruiksperiode>
+               <voorschrijver>
+                  <zorgverlener value="urn-uuid-2835a274-1961-11f1-6356-020000000000"
+                                datatype="reference"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-2835a53a-1961-11f1-6356-020000000000"
+                                         datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie>
+                  <omschrijving value="4 maal per dag 1 stuk, oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="oraal"/>
+                  <doseerinstructie>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="Stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="4"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
+                           </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="4"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <medicatieafspraak>
+               <identificatie value="MBH_300_SCRIPT9_MA_STOP-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <registratie_datum_tijd value="2023-12-20T11:24:00+01:00"
+                                       datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="2023-12-18T11:30:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2024-01-14T23:59:59+01:00"
+                                   datatype="datetime"/>
+                  <criterium value="Stoppen 1 dag voor operatie"/>
+               </gebruiksperiode>
+               <medicatieafspraak_stop_type code="410546004"
+                                            codeSystem="2.16.840.1.113883.6.96"
+                                            codeSystemName="SNOMED CT"
+                                            displayName="stopgezet"/>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_SCRIPT9_MA-tmg"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <voorschrijver>
+                  <zorgverlener value="urn-uuid-2835a274-1961-11f1-6356-020000000000"
+                                datatype="reference"/>
+               </voorschrijver>
+               <reden_wijzigen_of_staken code="112751000146109"
+                                         codeSystem="2.16.840.1.113883.6.96"
+                                         codeSystemName="SNOMED CT"
+                                         displayName="medicatiebeleid veranderd"/>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-2835a53a-1961-11f1-6356-020000000000"
+                                         datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie>
+                  <omschrijving value="3 maal per dag 1 stuk en Bij pijn 1 stuk 's avonds, oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="oraal"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="3"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
+                           </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="3"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
+                        </toedieningsschema>
+                     </dosering>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <dagdeel code="3157002"
+                                    displayName="'s avonds"
+                                    codeSystem="2.16.840.1.113883.6.96"/>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <when value="EVE"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
+                        </toedieningsschema>
+                        <zo_nodig>
+                           <criterium code="1028"
+                                      codeSystem="2.16.840.1.113883.2.4.4.5"
+                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                      displayName="Bij pijn"/>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <medicatieafspraak>
+               <identificatie value="MBH_300_SCRIPT9_MA_ANNULERING-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <registratie_datum_tijd value="2024-01-08T09:30:00+01:00"
+                                       datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="2024-01-15T11:30:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2024-01-15T11:30:00+01:00"
+                                   datatype="datetime"/>
+               </gebruiksperiode>
+               <medicatieafspraak_stop_type code="89925002"
+                                            codeSystem="2.16.840.1.113883.6.96"
+                                            codeSystemName="SNOMED CT"
+                                            displayName="geannuleerd"/>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_SCRIPT9_MA_TOEKOMSTIG-tmg"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <voorschrijver>
+                  <zorgverlener value="urn-uuid-2835a274-1961-11f1-6356-020000000000"
+                                datatype="reference"/>
+               </voorschrijver>
+               <reden_wijzigen_of_staken code="OTH"
+                                         codeSystem="2.16.840.1.113883.5.1008"
+                                         codeSystemName="HL7 NullFlavor"
+                                         displayName="Overig"
+                                         originalText="operatie tot nader order uitgesteld"/>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-2835a53a-1961-11f1-6356-020000000000"
+                                         datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie>
+                  <omschrijving value="4 maal per dag 1 stuk, oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="oraal"/>
+                  <doseerinstructie>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="Stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="4"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
+                           </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="4"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <medicatieafspraak>
+               <identificatie value="MBH_300_SCRIPT9_MA_DEFINITIEVESTOP-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <registratie_datum_tijd value="2024-01-08T09:32:00+01:00"
+                                       datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="2023-12-18T11:30:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2024-01-14T23:59:59+01:00"
+                                   datatype="datetime"/>
+               </gebruiksperiode>
+               <medicatieafspraak_stop_type code="410546004"
+                                            codeSystem="2.16.840.1.113883.6.96"
+                                            codeSystemName="SNOMED CT"
+                                            displayName="stopgezet"/>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_SCRIPT9_MA_STOP-tmg"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <voorschrijver>
+                  <zorgverlener value="urn-uuid-2835a274-1961-11f1-6356-020000000000"
+                                datatype="reference"/>
+               </voorschrijver>
+               <reden_wijzigen_of_staken code="112751000146109"
+                                         codeSystem="2.16.840.1.113883.6.96"
+                                         codeSystemName="SNOMED CT"
+                                         displayName="medicatiebeleid veranderd"/>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-2835a53a-1961-11f1-6356-020000000000"
+                                         datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie>
+                  <omschrijving value="3 maal per dag 1 stuk en Bij pijn 1 maal per dag 1 stuk 's avonds, oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="oraal"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="3"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
+                           </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="3"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
+                        </toedieningsschema>
+                     </dosering>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
+                           </frequentie>
+                           <dagdeel code="3157002"
+                                    displayName="'s avonds"
+                                    codeSystem="2.16.840.1.113883.6.96"/>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                    <when value="EVE"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
+                        </toedieningsschema>
+                        <zo_nodig>
+                           <criterium code="1028"
+                                      codeSystem="2.16.840.1.113883.2.4.4.5"
+                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                      displayName="Bij pijn"/>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek>
+               <identificatie value="MBH_300_SCRIPT9_VV-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <verstrekkingsverzoek_datum_tijd value="2023-12-18T11:30:00+01:00"
+                                                datatype="datetime"/>
+               <auteur>
+                  <zorgverlener value="urn-uuid-2835a274-1961-11f1-6356-020000000000"
+                                datatype="reference"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-2835a53a-1961-11f1-6356-020000000000"
+                                         datatype="reference"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid>
+                  <aantal value="120"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="Stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-2835a2f6-1961-11f1-6356-020000000000"/>
+               </beoogd_verstrekker>
+               <aanvullende_wensen code="3"
+                                   codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2051"
+                                   codeSystemName="Medicatieproces VV aanvullende wensen"
+                                   displayName="Bezorgen"/>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_SCRIPT9_MA-tmg"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <verstrekkingsverzoek>
+               <identificatie value="MBH_300_SCRIPT9_VV_TOEKOMSTIG-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <verstrekkingsverzoek_datum_tijd value="2023-12-20T11:25:00+01:00"
+                                                datatype="datetime"/>
+               <auteur>
+                  <zorgverlener value="urn-uuid-2835a274-1961-11f1-6356-020000000000"
+                                datatype="reference"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-2835a53a-1961-11f1-6356-020000000000"
+                                         datatype="reference"/>
+               </te_verstrekken_geneesmiddel>
+               <verbruiksperiode>
+                  <start_datum_tijd value="2024-01-15T11:30:00+01:00"
+                                    datatype="datetime"/>
+                  <tijds_duur value="3"
+                              unit="dag"/>
+               </verbruiksperiode>
+               <beoogd_verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-2835a2f6-1961-11f1-6356-020000000000"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_SCRIPT9_MA_TOEKOMSTIG-tmg"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak>
+               <identificatie value="MBH_300_SCRIPT9_TA_GDS-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <registratie_datum_tijd value="2023-12-18T13:00:00+01:00"
+                                       datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="2023-12-19T00:00:00+01:00"
+                                    datatype="datetime"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-2835a2f6-1961-11f1-6356-020000000000"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product datatype="reference"
+                                         value="urn-uuid-2835a54e-1961-11f1-6356-020000000000"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie>
+                  <omschrijving value="elke dag om 08:00, 12:00 en 17:00 1 stuk, Oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="Stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <toedientijd value="08:00:00"
+                                        datatype="time"/>
+                           <toedientijd value="12:00:00"
+                                        datatype="time"/>
+                           <toedientijd value="17:00:00"
+                                        datatype="time"/>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <timeOfDay value="08:00:00"/>
+                                    <timeOfDay value="12:00:00"/>
+                                    <timeOfDay value="17:00:00"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <distributievorm code="1"
+                                codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8"
+                                codeSystemName="Distributievorm"
+                                displayName="GDS"/>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_SCRIPT9_MA-tmg"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <toedieningsafspraak>
+               <identificatie value="MBH_300_SCRIPT9_TA_LOS-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <registratie_datum_tijd value="2023-12-18T13:02:00+01:00"
+                                       datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="2023-12-19T00:00:00+01:00"
+                                    datatype="datetime"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-2835a2f6-1961-11f1-6356-020000000000"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product datatype="reference"
+                                         value="urn-uuid-2835a54e-1961-11f1-6356-020000000000"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie>
+                  <omschrijving value="Bij pijn elke dag om 22:00 1 stuk, oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="oraal"/>
+                  <doseerinstructie>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="Stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <toedientijd value="22:00:00"
+                                        datatype="time"/>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <timeOfDay value="22:00:00"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
+                        </toedieningsschema>
+                        <zo_nodig>
+                           <criterium code="1028"
+                                      codeSystem="2.16.840.1.113883.2.4.4.5"
+                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                      displayName="Bij pijn"/>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_SCRIPT9_MA-tmg"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <toedieningsafspraak>
+               <identificatie value="MBH_300_SCRIPT9_TA_TOEKOMSTIG-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <registratie_datum_tijd value="2023-12-20T13:35:00+01:00"
+                                       datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="2024-01-15T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <tijds_duur value="3"
+                              unit="dag"/>
+                  <criterium value="Dag 1 tot en met dag 3 na knieoperatie"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-2835a2f6-1961-11f1-6356-020000000000"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product datatype="reference"
+                                         value="urn-uuid-2835a54e-1961-11f1-6356-020000000000"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie>
+                  <omschrijving value="elke dag om 08:00, 12:00, 17:00 en 22:00 1 stuk, oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="oraal"/>
+                  <doseerinstructie>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="Stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <toedientijd value="08:00:00"
+                                        datatype="time"/>
+                           <toedientijd value="12:00:00"
+                                        datatype="time"/>
+                           <toedientijd value="17:00:00"
+                                        datatype="time"/>
+                           <toedientijd value="22:00:00"
+                                        datatype="time"/>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <timeOfDay value="08:00:00"/>
+                                    <timeOfDay value="12:00:00"/>
+                                    <timeOfDay value="17:00:00"/>
+                                    <timeOfDay value="22:00:00"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <distributievorm code="1"
+                                codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8"
+                                codeSystemName="Distributievorm"
+                                displayName="GDS"/>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_SCRIPT9_MA_TOEKOMSTIG-tmg"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <toedieningsafspraak>
+               <identificatie value="MBH_300_SCRIPT9_TA_GDS_STOP-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <registratie_datum_tijd value="2023-12-20T13:37:00+01:00"
+                                       datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="2023-12-19T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2024-01-14T23:59:59+01:00"
+                                   datatype="datetime"/>
+                  <criterium value="Stoppen 1 dag voor operatie"/>
+               </gebruiksperiode>
+               <toedieningsafspraak_stop_type code="410546004"
+                                              codeSystem="2.16.840.1.113883.6.96"
+                                              codeSystemName="SNOMED CT"
+                                              displayName="stopgezet"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-2835a2f6-1961-11f1-6356-020000000000"/>
+               </verstrekker>
+               <toedieningsafspraak_reden_wijzigen_of_staken code="112751000146109"
+                                                             codeSystem="2.16.840.1.113883.6.96"
+                                                             codeSystemName="SNOMED CT"
+                                                             displayName="medicatiebeleid veranderd"/>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product datatype="reference"
+                                         value="urn-uuid-2835a54e-1961-11f1-6356-020000000000"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie>
+                  <omschrijving value="elke dag om 08:00, 12:00 en 17:00 1 stuk, Oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <toedientijd value="08:00:00"
+                                        datatype="time"/>
+                           <toedientijd value="12:00:00"
+                                        datatype="time"/>
+                           <toedientijd value="17:00:00"
+                                        datatype="time"/>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <timeOfDay value="08:00:00"/>
+                                    <timeOfDay value="12:00:00"/>
+                                    <timeOfDay value="17:00:00"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <distributievorm code="1"
+                                codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8"
+                                codeSystemName="Distributievorm"
+                                displayName="GDS"/>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_SCRIPT9_MA_STOP-tmg"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <relatie_toedieningsafspraak>
+                  <identificatie value="MBH_300_SCRIPT9_TA_GDS-tmg"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_toedieningsafspraak>
+            </toedieningsafspraak>
+            <toedieningsafspraak>
+               <identificatie value="MBH_300_SCRIPT9_TA_LOS_STOP-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <registratie_datum_tijd value="2023-12-20T13:39:00+01:00"
+                                       datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="2023-12-19T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2024-01-14T23:59:59+01:00"
+                                   datatype="datetime"/>
+                  <criterium value="Stoppen 1 dag voor operatie"/>
+               </gebruiksperiode>
+               <toedieningsafspraak_stop_type code="410546004"
+                                              codeSystem="2.16.840.1.113883.6.96"
+                                              codeSystemName="SNOMED CT"
+                                              displayName="stopgezet"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-2835a2f6-1961-11f1-6356-020000000000"/>
+               </verstrekker>
+               <toedieningsafspraak_reden_wijzigen_of_staken code="112751000146109"
+                                                             codeSystem="2.16.840.1.113883.6.96"
+                                                             codeSystemName="SNOMED CT"
+                                                             displayName="medicatiebeleid veranderd"/>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product datatype="reference"
+                                         value="urn-uuid-2835a54e-1961-11f1-6356-020000000000"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie>
+                  <omschrijving value="Bij pijn elke dag om 22:00 1 stuk, Oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <toedientijd value="22:00:00"
+                                        datatype="time"/>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <timeOfDay value="22:00:00"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
+                        </toedieningsschema>
+                        <zo_nodig>
+                           <criterium code="1028"
+                                      codeSystem="2.16.840.1.113883.2.4.4.5"
+                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                      displayName="Bij pijn"/>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_SCRIPT9_MA_STOP-tmg"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <relatie_toedieningsafspraak>
+                  <identificatie value="MBH_300_SCRIPT9_TA_LOS-tmg"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_toedieningsafspraak>
+            </toedieningsafspraak>
+            <toedieningsafspraak>
+               <identificatie value="MBH_300_SCRIPT9_TA_ANNULERING-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <registratie_datum_tijd value="2024-01-08T10:30:00+01:00"
+                                       datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="2024-01-15T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2024-01-15T00:00:00+01:00"
+                                   datatype="datetime"/>
+               </gebruiksperiode>
+               <toedieningsafspraak_stop_type code="89925002"
+                                              codeSystem="2.16.840.1.113883.6.96"
+                                              codeSystemName="SNOMED CT"
+                                              displayName="geannuleerd"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-2835a2f6-1961-11f1-6356-020000000000"/>
+               </verstrekker>
+               <toedieningsafspraak_reden_wijzigen_of_staken code="OTH"
+                                                             codeSystem="2.16.840.1.113883.5.1008"
+                                                             codeSystemName="HL7 NullFlavor"
+                                                             displayName="Overig"
+                                                             originalText="operatie tot nader order uitgesteld"/>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product datatype="reference"
+                                         value="urn-uuid-2835a54e-1961-11f1-6356-020000000000"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie>
+                  <omschrijving value="elke dag om 08:00, 12:00, 17:00 en 22:00 1 stuk, Oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="Stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <toedientijd value="08:00:00"
+                                        datatype="time"/>
+                           <toedientijd value="12:00:00"
+                                        datatype="time"/>
+                           <toedientijd value="17:00:00"
+                                        datatype="time"/>
+                           <toedientijd value="22:00:00"
+                                        datatype="time"/>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <timeOfDay value="08:00:00"/>
+                                    <timeOfDay value="12:00:00"/>
+                                    <timeOfDay value="17:00:00"/>
+                                    <timeOfDay value="22:00:00"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <distributievorm code="1"
+                                codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8"
+                                codeSystemName="Distributievorm"
+                                displayName="GDS"/>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_SCRIPT9_MA_ANNULERING-tmg"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <relatie_toedieningsafspraak>
+                  <identificatie value="MBH_300_SCRIPT9_TA_TOEKOMSTIG-tmg"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_toedieningsafspraak>
+            </toedieningsafspraak>
+            <toedieningsafspraak>
+               <identificatie value="MBH_300_SCRIPT9_TA_GDS_DEFINITIEVESTOP-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <registratie_datum_tijd value="2024-01-08T10:32:00+01:00"
+                                       datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="2023-12-19T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2024-01-14T23:59:59+01:00"
+                                   datatype="datetime"/>
+               </gebruiksperiode>
+               <toedieningsafspraak_stop_type code="410546004"
+                                              codeSystem="2.16.840.1.113883.6.96"
+                                              codeSystemName="SNOMED CT"
+                                              displayName="stopgezet"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-2835a2f6-1961-11f1-6356-020000000000"/>
+               </verstrekker>
+               <toedieningsafspraak_reden_wijzigen_of_staken code="112751000146109"
+                                                             codeSystem="2.16.840.1.113883.6.96"
+                                                             codeSystemName="SNOMED CT"
+                                                             displayName="medicatiebeleid veranderd"/>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product datatype="reference"
+                                         value="urn-uuid-2835a54e-1961-11f1-6356-020000000000"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie>
+                  <omschrijving value="elke dag om 08:00, 12:00 en 17:00 1 stuk, Oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <toedientijd value="08:00:00"
+                                        datatype="time"/>
+                           <toedientijd value="12:00:00"
+                                        datatype="time"/>
+                           <toedientijd value="17:00:00"
+                                        datatype="time"/>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <timeOfDay value="08:00:00"/>
+                                    <timeOfDay value="12:00:00"/>
+                                    <timeOfDay value="17:00:00"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <distributievorm code="1"
+                                codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8"
+                                codeSystemName="Distributievorm"
+                                displayName="GDS"/>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_SCRIPT9_MA_DEFINITIEVESTOP-tmg"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <relatie_toedieningsafspraak>
+                  <identificatie value="MBH_300_SCRIPT9_TA_GDS_STOP-tmg"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_toedieningsafspraak>
+            </toedieningsafspraak>
+            <toedieningsafspraak>
+               <identificatie value="MBH_300_SCRIPT9_TA_LOS_DEFINITIEVESTOP-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <registratie_datum_tijd value="2024-01-08T10:34:00+01:00"
+                                       datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="2023-12-19T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2024-01-14T23:59:59+01:00"
+                                   datatype="datetime"/>
+               </gebruiksperiode>
+               <toedieningsafspraak_stop_type code="410546004"
+                                              codeSystem="2.16.840.1.113883.6.96"
+                                              codeSystemName="SNOMED CT"
+                                              displayName="stopgezet"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-2835a2f6-1961-11f1-6356-020000000000"/>
+               </verstrekker>
+               <toedieningsafspraak_reden_wijzigen_of_staken code="112751000146109"
+                                                             codeSystem="2.16.840.1.113883.6.96"
+                                                             codeSystemName="SNOMED CT"
+                                                             displayName="medicatiebeleid veranderd"/>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product datatype="reference"
+                                         value="urn-uuid-2835a54e-1961-11f1-6356-020000000000"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie>
+                  <omschrijving value="Bij pijn elke dag om 22:00 1 stuk, Oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <toedientijd value="22:00:00"
+                                        datatype="time"/>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <timeOfDay value="22:00:00"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
+                        </toedieningsschema>
+                        <zo_nodig>
+                           <criterium code="1028"
+                                      codeSystem="2.16.840.1.113883.2.4.4.5"
+                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                      displayName="Bij pijn"/>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_SCRIPT9_MA_DEFINITIEVESTOP-tmg"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <relatie_toedieningsafspraak>
+                  <identificatie value="MBH_300_SCRIPT9_TA_LOS_STOP-tmg"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_toedieningsafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking>
+               <identificatie value="MBH_300_SCRIPT9_MVE_GDS-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                                  value="2023-12-18T13:15:00+01:00"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-2835a2f6-1961-11f1-6356-020000000000"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid>
+                  <aantal value="90"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="Stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-2835a54e-1961-11f1-6356-020000000000"
+                                         datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <distributievorm code="1"
+                                codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8"
+                                codeSystemName="Distributievorm"
+                                displayName="GDS"/>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="MBH_300_SCRIPT9_VV-tmg"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+            <medicatieverstrekking>
+               <identificatie value="MBH_300_SCRIPT9_MVE_LOS-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                                  value="2023-12-18T13:17:00+01:00"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-2835a2f6-1961-11f1-6356-020000000000"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid>
+                  <aantal value="30"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="Stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-2835a54e-1961-11f1-6356-020000000000"
+                                         datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <afleverlocatie value="thuisadres"/>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="MBH_300_SCRIPT9_VV-tmg"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+            <medicatieverstrekking>
+               <identificatie value="MBH_300_SCRIPT9_MVE_TOEKOMSTIG-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                                  value="2023-12-20T13:35:00+01:00"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-2835a2f6-1961-11f1-6356-020000000000"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid>
+                  <aantal value="12"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="Stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-2835a54e-1961-11f1-6356-020000000000"
+                                         datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="MBH_300_SCRIPT9_VV_TOEKOMSTIG-tmg"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+            <medicatiegebruik>
+               <identificatie value="MBH_300_SCRIPT9_MGB_GDS-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <medicatiegebruik_datum_tijd value="2024-01-03T13:15:00+01:00"
+                                            datatype="datetime"/>
+               <gebruik_indicator value="true"/>
+               <volgens_afspraak_indicator value="true"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="2023-12-19T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2024-01-02T23:59:59+01:00"
+                                   datatype="datetime"/>
+               </gebruiksperiode>
+               <gebruiksproduct>
+                  <farmaceutisch_product value="urn-uuid-2835a54e-1961-11f1-6356-020000000000"
+                                         datatype="reference"/>
+               </gebruiksproduct>
+               <gebruiksinstructie>
+                  <omschrijving value="elke dag om 08:00, 12:00 en 17:00 1 stuk, Oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="Stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <toedientijd value="08:00:00"
+                                        datatype="time"/>
+                           <toedientijd value="12:00:00"
+                                        datatype="time"/>
+                           <toedientijd value="17:00:00"
+                                        datatype="time"/>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <timeOfDay value="08:00:00"/>
+                                    <timeOfDay value="12:00:00"/>
+                                    <timeOfDay value="17:00:00"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_toedieningsafspraak>
+                  <identificatie value="MBH_300_SCRIPT9_TA_GDS_STOP-tmg"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_toedieningsafspraak>
+               <voorschrijver>
+                  <zorgverlener value="urn-uuid-2835a274-1961-11f1-6356-020000000000"
+                                datatype="reference"/>
+               </voorschrijver>
+               <informant>
+                  <informant_is_patient value="true"/>
+               </informant>
+               <auteur>
+                  <auteur_is_zorgverlener>
+                     <zorgverlener value="urn-uuid-2835a2ba-1961-11f1-6356-020000000000"
+                                   datatype="reference"/>
+                  </auteur_is_zorgverlener>
+               </auteur>
+            </medicatiegebruik>
+            <medicatiegebruik>
+               <identificatie value="MBH_300_SCRIPT9_MGB_LOS-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <medicatiegebruik_datum_tijd value="2024-01-10T11:30:00+01:00"
+                                            datatype="datetime"/>
+               <gebruik_indicator value="false"/>
+               <volgens_afspraak_indicator value="false"/>
+               <medicatiegebruik_stop_type code="385655000"
+                                           codeSystem="2.16.840.1.113883.6.96"
+                                           codeSystemName="SNOMED CT"
+                                           displayName="onderbroken"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="2023-12-19T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2024-01-09T23:59:59+01:00"
+                                   datatype="datetime"/>
+               </gebruiksperiode>
+               <gebruiksproduct>
+                  <farmaceutisch_product value="urn-uuid-2835a54e-1961-11f1-6356-020000000000"
+                                         datatype="reference"/>
+               </gebruiksproduct>
+               <gebruiksinstructie>
+                  <omschrijving value="geneesmiddel niet in gebruik"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  codeSystemName="HL7 NullFlavor"
+                                  displayName="geen informatie"/>
+               </gebruiksinstructie>
+               <relatie_toedieningsafspraak>
+                  <identificatie value="MBH_300_SCRIPT9_TA_LOS_DEFINITIEVESTOP-tmg"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_toedieningsafspraak>
+               <voorschrijver>
+                  <zorgverlener value="urn-uuid-2835a274-1961-11f1-6356-020000000000"
+                                datatype="reference"/>
+               </voorschrijver>
+               <informant>
+                  <informant_is_patient value="true"/>
+               </informant>
+               <auteur>
+                  <auteur_is_zorgverlener>
+                     <zorgverlener value="urn-uuid-2835a22e-1961-11f1-6356-020000000000"
+                                   datatype="reference"/>
+                  </auteur_is_zorgverlener>
+               </auteur>
+               <toelichting value="Patiënt heeft bij pijn de medicatie niet gebruikt."/>
+            </medicatiegebruik>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="urn-uuid-2835a53a-1961-11f1-6356-020000000000">
+               <product_code code="81442"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="PARACETAMOL TABLET 1000MG"
+                             preferred="true"/>
+               <product_code code="125822"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="PARACETAMOL TABLET 1000MG"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="urn-uuid-2835a54e-1961-11f1-6356-020000000000">
+               <product_code code="2189577"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="PARACETAMOL TEVA TABLET 1000MG"
+                             preferred="true"/>
+               <product_code code="81442"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="PARACETAMOL TABLET 1000MG"/>
+               <product_code code="125822"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="PARACETAMOL TABLET 1000MG"/>
+            </farmaceutisch_product>
+            <zorgverlener id="urn-uuid-2835a22e-1961-11f1-6356-020000000000">
+               <zorgverlener_identificatienummer value="000001115"
+                                                 root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Marcha"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="van"/>
+                     <achternaam value="Partners"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="Vektis AGB-medische specialismen"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-2835a31e-1961-11f1-6356-020000000000"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgverlener id="urn-uuid-2835a274-1961-11f1-6356-020000000000">
+               <zorgverlener_identificatienummer value="000001111"
+                                                 root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Peter"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="van"/>
+                     <achternaam value="Pulver"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="Vektis AGB-medische specialismen"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-2835a346-1961-11f1-6356-020000000000"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgverlener id="urn-uuid-2835a2ba-1961-11f1-6356-020000000000">
+               <zorgverlener_identificatienummer value="222221111"
+                                                 root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Tanja"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="de"/>
+                     <achternaam value="Bakker"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="3400"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="Vektis AGB-medische specialismen"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Trombosediensten"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-2835a36e-1961-11f1-6356-020000000000"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="urn-uuid-2835a2f6-1961-11f1-6356-020000000000">
+               <zorgaanbieder_identificatienummer value="01236578"
+                                                  root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="urn-uuid-2835a31e-1961-11f1-6356-020000000000">
+               <zorgaanbieder_identificatienummer value="00005111"
+                                                  root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Itis"/>
+               <adresgegevens>
+                  <straat value="Langelaan"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234ZZ"/>
+                  <woonplaats value="Onze Stad"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="urn-uuid-2835a346-1961-11f1-6356-020000000000">
+               <zorgaanbieder_identificatienummer value="00001111"
+                                                  root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="urn-uuid-2835a36e-1961-11f1-6356-020000000000">
+               <zorgaanbieder_identificatienummer value="11112222"
+                                                  root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Trombosedienst Ons Dorp"/>
+               <afdeling_specialisme code="3400"
+                                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                                     codeSystemName="Vektis AGB-medische specialismen"
+                                     codeSystemVersion="2020-10-23T00:00:00"
+                                     displayName="Trombosediensten"/>
+               <adresgegevens>
+                  <straat value="Kerkstraat"/>
+                  <huisnummer value="28"/>
+                  <huisnummerletter value="d"/>
+                  <postcode value="1332GH"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

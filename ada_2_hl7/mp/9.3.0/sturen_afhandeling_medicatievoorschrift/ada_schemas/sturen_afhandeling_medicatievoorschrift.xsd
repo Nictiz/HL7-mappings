@@ -674,6 +674,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.294"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="gebruiksperiode_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_334">
@@ -1586,6 +1587,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.346"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="verstrekker_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_347">
@@ -6342,7 +6344,7 @@
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: ToedieningsafspraakStopType - 0..1 R</xs:documentation>
+      <xs:documentation>Type for concept item: ToedieningsafspraakStopType - 0..1 C</xs:documentation>
    </xs:annotation>
    <xs:complexType name="toedieningsafspraak_stop_type_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_340">
       <xs:sequence>
@@ -6499,7 +6501,7 @@
                </xs:enumeration>
                <xs:enumeration value="10">
                   <xs:annotation>
-                     <xs:documentation>hervatten van beleid van vorige voorschrijver</xs:documentation>
+                     <xs:documentation>hervatten van beleid van vorige zorgverlener</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="11">
@@ -7911,17 +7913,14 @@
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.356"/>
       <xs:attribute name="value">
          <xs:simpleType>
-            <xs:union memberTypes="verbruiksduur_1_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_356 verbruiksduur_2_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_356 verbruiksduur_3_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_356 verbruiksduur_4_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_356 empty_string"/>
+            <xs:union memberTypes="verbruiksduur_1_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_356 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="quantity"/>
       <xs:attribute name="unit">
          <xs:simpleType>
             <xs:restriction base="xs:string">
-               <xs:enumeration value="uur"/>
                <xs:enumeration value="dag"/>
-               <xs:enumeration value="week"/>
-               <xs:enumeration value="jaar"/>
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
@@ -7931,24 +7930,6 @@
       <xs:documentation>simpleType for valueDomain: Verbruiksduur: quantity</xs:documentation>
    </xs:annotation>
    <xs:simpleType name="verbruiksduur_1_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_356">
-      <xs:restriction base="xs:decimal"/>
-   </xs:simpleType>
-   <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Verbruiksduur: quantity</xs:documentation>
-   </xs:annotation>
-   <xs:simpleType name="verbruiksduur_2_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_356">
-      <xs:restriction base="xs:decimal"/>
-   </xs:simpleType>
-   <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Verbruiksduur: quantity</xs:documentation>
-   </xs:annotation>
-   <xs:simpleType name="verbruiksduur_3_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_356">
-      <xs:restriction base="xs:decimal"/>
-   </xs:simpleType>
-   <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Verbruiksduur: quantity</xs:documentation>
-   </xs:annotation>
-   <xs:simpleType name="verbruiksduur_4_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_356">
       <xs:restriction base="xs:decimal"/>
    </xs:simpleType>
    <xs:annotation>

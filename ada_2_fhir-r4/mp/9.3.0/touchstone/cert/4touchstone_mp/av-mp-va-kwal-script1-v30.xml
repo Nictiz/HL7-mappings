@@ -5,9 +5,10 @@
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:bba84f0d-6aa4-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:5bea2dc2-6ab5-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="5bea2dc2-6ab5-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
                <tag>
@@ -37,7 +38,7 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_SCRIPT1"/>
+                  <value value="MBH_300_SCRIPT1-tav"/>
                </valueIdentifier>
             </extension>
             <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
@@ -50,7 +51,7 @@
             </modifierExtension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <value value="MBH_300_SCRIPT1_TA"/>
+               <value value="MBH_300_SCRIPT1_TA-tav"/>
             </identifier>
             <status value="unknown"/>
             <category>
@@ -61,7 +62,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:1a726d1d-6b67-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:2cfaadf2-6b11-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="ECANSYA TABLET FILMOMHULD 500MG"/>
             </medicationReference>
@@ -81,9 +82,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_SCRIPT1_MA"/>
+                  <value value="MBH_300_SCRIPT1_MA-tav"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_SCRIPT1_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_SCRIPT1_MA-tav || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </authorizingPrescription>
             <dosageInstruction>
                <timing>
@@ -133,9 +134,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:53e903dd-6b53-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:009ea9fe-6ab6-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
+            <id value="009ea9fe-6ab6-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
                <tag>
@@ -146,12 +148,12 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_SCRIPT1"/>
+                  <value value="MBH_300_SCRIPT1-tav"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <value value="MBH_300_SCRIPT1_MVE"/>
+               <value value="MBH_300_SCRIPT1_MVE-tav"/>
             </identifier>
             <status value="completed"/>
             <category>
@@ -162,7 +164,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:1a726d1d-6b67-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:2cfaadf2-6b11-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="ECANSYA TABLET FILMOMHULD 500MG"/>
             </medicationReference>
@@ -182,9 +184,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-                  <value value="MBH_300_SCRIPT1_VV"/>
+                  <value value="MBH_300_SCRIPT1_VV-tav"/>
                </identifier>
-               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_SCRIPT1_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_SCRIPT1_VV-tav || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
             </authorizingPrescription>
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
@@ -201,10 +203,10 @@
                <code value="1"/>
             </quantity>
             <daysSupply>
-               <value value="3"/>
-               <unit value="week"/>
+               <value value="21"/>
+               <unit value="dag"/>
                <system value="http://unitsofmeasure.org"/>
-               <code value="wk"/>
+               <code value="d"/>
             </daysSupply>
             <whenHandedOver value="${DATE, T, D, +0}T08:30:00+02:00"/>
          </MedicationDispense>
@@ -218,6 +220,7 @@
       <fullUrl value="urn:uuid:3ae2f678-6b63-11ec-0000-020000000000"/>
       <resource>
          <Patient>
+            <id value="3ae2f678-6b63-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -265,6 +268,7 @@
       <fullUrl value="urn:uuid:10079464-6b64-11ec-0000-020000000000"/>
       <resource>
          <Organization>
+            <id value="10079464-6b64-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -306,9 +310,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:1a726d1d-6b67-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:2cfaadf2-6b11-11ec-0000-020000000000"/>
       <resource>
          <Medication>
+            <id value="2cfaadf2-6b11-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>

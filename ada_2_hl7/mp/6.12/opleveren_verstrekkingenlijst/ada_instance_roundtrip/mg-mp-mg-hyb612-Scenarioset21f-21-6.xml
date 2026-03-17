@@ -1,0 +1,109 @@
+<!--Generated from HL7v3 verstrekkingenlijst 6.12 xml with message id (QURX_IN990113NL/id) root:  and extension: .-->
+<adaxml xsi:noNamespaceSchemaLocation="../../beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2026-03-02T16:15:02.0573422+01:00"
+         last-update-date="2026-03-02T16:15:02.0573422+01:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp93"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.374"
+                                            transactionEffectiveDate="2022-06-30T00:00:00"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="Generated from HL7v3 verstrekkingenlijst 6.12 xml"
+                                            id="mg-mp-mg-hyb612-Scenarioset21f-21-6.xml">
+         <patient>
+            <naamgegevens>
+               <initialen value="E."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Husen"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999909009"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime"
+                           value="1963-09-18"/>
+            <geslacht code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="106704"
+                           root="2.16.840.1.113883.2.4.3.11.61.2"/>
+            <toedieningsafspraak>
+               <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
+                              value="MBH_hyb612_TA_MVE_BTD_cyclschm_ingwk_MVE"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2024-01-01T10:00:00+01:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2024-01-01T10:00:00.000+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2024-02-19T23:59:59.000+01:00"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder value="d1585e1343"
+                                 datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d1585e61"
+                                         datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, Oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <!--Non-supported (complex) dosing scheduled encountered in 6.12. No structured output, please refer to textual description.-->
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_hyb_vo_cyclschm_ingwk_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="d1585e61">
+               <product_code code="2377454"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             displayName="PREDNISOLON TABLET 2.5MG"
+                             codeSystemName="G-Standaard HPK"/>
+               <product_code code="106704"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="PREDNISOLON TABLET 2.5MG"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="142670"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             displayName="PREDNISOLON TABLET 2.5MG"
+                             codeSystemName="G-Standaard GPK"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="d1585e1343">
+               <zorgaanbieder_identificatienummer value="01236578"
+                                                  root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

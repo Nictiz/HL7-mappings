@@ -1,13 +1,14 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="cb42cccc-9887-11f0-1386-020000000000"/>
+   <id value="3b79abb5-1961-11f1-7937-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:cb42cd93-9887-11f0-1386-020000000000"/>
+      <fullUrl value="urn:uuid:3b79ac9a-1961-11f1-7937-020000000000"/>
       <resource>
          <MedicationRequest>
+            <id value="3b79ac9a-1961-11f1-7937-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
                <tag>
@@ -37,12 +38,12 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_VOS_Lengte_Gewicht"/>
+                  <value value="MBH_300_VOS_Lengte_Gewicht-tvo"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_300_VOS_Lengte_Gewicht_MA"/>
+               <value value="MBH_300_VOS_Lengte_Gewicht_MA-tvo"/>
             </identifier>
             <status value="active"/>
             <intent value="order"/>
@@ -54,17 +55,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:cb42cda7-9887-11f0-1386-020000000000"/>
+               <reference value="urn:uuid:3b79acc2-1961-11f1-7937-020000000000"/>
                <type value="Medication"/>
                <display value="RIVAROXABAN TABLET 15MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:cb42ccfd-9887-11f0-1386-020000000000"/>
+               <reference value="urn:uuid:3b79abf0-1961-11f1-7937-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:cb42cd1b-9887-11f0-1386-020000000000"/>
+               <reference value="urn:uuid:3b79ac0e-1961-11f1-7937-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -108,9 +109,93 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:cb42ccfd-9887-11f0-1386-020000000000"/>
+      <fullUrl value="urn:uuid:3b79acae-1961-11f1-7937-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <id value="3b79acae-1961-11f1-7937-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-DispenseRequest"/>
+               <tag>
+                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
+                  <code value="actionable"/>
+               </tag>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_VOS_Lengte_Gewicht-tvo"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <value value="MBH_300_VOS_Lengte_Gewicht_VV-tvo"/>
+            </identifier>
+            <status value="active"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="52711000146108"/>
+                  <display value="verstrekkingsverzoek"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:3b79acc2-1961-11f1-7937-020000000000"/>
+               <type value="Medication"/>
+               <display value="RIVAROXABAN TABLET 15MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:3b79abf0-1961-11f1-7937-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, E. XXX_Doppen"/>
+            </subject>
+            <authoredOn value="2024-01-01T10:00:00+01:00"/>
+            <requester>
+               <reference value="urn:uuid:3b79ac0e-1961-11f1-7937-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </requester>
+            <performer>
+               <reference value="urn:uuid:3b79ac72-1961-11f1-7937-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+            </performer>
+            <basedOn>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_VOS_Lengte_Gewicht_MA-tvo"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak  met identificatie: MBH_300_VOS_Lengte_Gewicht_MA-tvo || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </basedOn>
+            <dispenseRequest>
+               <quantity>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                     <valueQuantity>
+                        <value value="14"/>
+                        <unit value="stuk"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="245"/>
+                     </valueQuantity>
+                  </extension>
+                  <value value="14"/>
+                  <unit value="stuk"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="1"/>
+               </quantity>
+            </dispenseRequest>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:3b79abf0-1961-11f1-7937-020000000000"/>
       <resource>
          <Patient>
+            <id value="3b79abf0-1961-11f1-7937-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -155,19 +240,20 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:cb42cd1b-9887-11f0-1386-020000000000"/>
+      <fullUrl value="urn:uuid:3b79ac0e-1961-11f1-7937-020000000000"/>
       <resource>
          <PractitionerRole>
+            <id value="3b79ac0e-1961-11f1-7937-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:cb42cd39-9887-11f0-1386-020000000000"/>
+               <reference value="urn:uuid:3b79ac2c-1961-11f1-7937-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:cb42cd6b-9887-11f0-1386-020000000000"/>
+               <reference value="urn:uuid:3b79ac4a-1961-11f1-7937-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -192,9 +278,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:cb42cd39-9887-11f0-1386-020000000000"/>
+      <fullUrl value="urn:uuid:3b79ac2c-1961-11f1-7937-020000000000"/>
       <resource>
          <Practitioner>
+            <id value="3b79ac2c-1961-11f1-7937-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
             </meta>
@@ -232,9 +319,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:cb42cd6b-9887-11f0-1386-020000000000"/>
+      <fullUrl value="urn:uuid:3b79ac4a-1961-11f1-7937-020000000000"/>
       <resource>
          <Organization>
+            <id value="3b79ac4a-1961-11f1-7937-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -273,9 +361,55 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:cb42cda7-9887-11f0-1386-020000000000"/>
+      <fullUrl value="urn:uuid:3b79ac72-1961-11f1-7937-020000000000"/>
+      <resource>
+         <Organization>
+            <id value="3b79ac72-1961-11f1-7937-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="01236578"/>
+            </identifier>
+            <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:3b79acc2-1961-11f1-7937-020000000000"/>
       <resource>
          <Medication>
+            <id value="3b79acc2-1961-11f1-7937-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
@@ -301,9 +435,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:cb42cdbb-9887-11f0-1386-020000000000"/>
+      <fullUrl value="urn:uuid:3b79acd6-1961-11f1-7937-020000000000"/>
       <resource>
          <Observation>
+            <id value="3b79acd6-1961-11f1-7937-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BodyHeight"/>
             </meta>
@@ -327,7 +462,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:cb42ccfd-9887-11f0-1386-020000000000"/>
+               <reference value="urn:uuid:3b79abf0-1961-11f1-7937-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
@@ -346,9 +481,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:cb42cdcf-9887-11f0-1386-020000000000"/>
+      <fullUrl value="urn:uuid:3b79acea-1961-11f1-7937-020000000000"/>
       <resource>
          <Observation>
+            <id value="3b79acea-1961-11f1-7937-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BodyWeight"/>
             </meta>
@@ -372,7 +508,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:cb42ccfd-9887-11f0-1386-020000000000"/>
+               <reference value="urn:uuid:3b79abf0-1961-11f1-7937-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>

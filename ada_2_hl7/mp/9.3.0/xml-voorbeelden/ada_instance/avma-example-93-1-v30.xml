@@ -1,4 +1,4 @@
-<adaxml xsi:noNamespaceSchemaLocation="../../sturen_antwoord_voorstel_medicatieafspraak/ada_schemas/ada_sturen_antwoord_voorstel_medicatieafspraak.xsd"
+<adaxml xsi:noNamespaceSchemaLocation="../../../../../projects/mp-mp93/schemas/ada_sturen_antwoord_voorstel_medicatieafspraak.xsd"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <meta status="new"
          created-by="arianne"
@@ -16,25 +16,34 @@
                                                   language="nl-NL"
                                                   title="Example instance"
                                                   id="avma-example-93-1-v30">
-         <patient comment="">
-            <naamgegevens comment="">
-               <initialen value="S. "/>
+         <patient comment=""
+                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1">
+            <naamgegevens comment=""
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.2">
+               <initialen value="S. "
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.4"/>
                <naamgebruik value="1"
                             code="NL1"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
-                            displayName="Eigen geslachtsnaam"/>
-               <geslachtsnaam comment="">
-                  <achternaam value="XXX_Jankie"/>
+                            displayName="Eigen geslachtsnaam"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"/>
+               <geslachtsnaam comment=""
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.7">
+                  <achternaam value="XXX_Jankie"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.9"/>
                </geslachtsnaam>
             </naamgegevens>
             <identificatienummer value="999910437"
-                                 root="2.16.840.1.113883.2.4.6.3"/>
+                                 root="2.16.840.1.113883.2.4.6.3"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.35"/>
             <geboortedatum value="1954-05-08"
-                           datatype="datetime"/>
+                           datatype="datetime"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.36"/>
             <geslacht value="3"
                       code="F"
                       codeSystem="2.16.840.1.113883.5.1"
-                      displayName="Vrouw"/>
+                      displayName="Vrouw"
+                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"/>
          </patient>
          <bouwstenen comment=""
                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">
@@ -95,25 +104,30 @@
                </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
-         <voorstel_gegevens>
-            <antwoord>
+         <voorstel_gegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.526">
+            <antwoord conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.539">
                <identificatie value="#Antwoord_id_123343"
                               root="2.16.840.1.113883.2.4.3.11.999.777.540.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.540"/>
                <antwoord_datum value="2024-01-01T12:30:00+01:00"
-                               datatype="datetime"/>
-               <auteur>
+                               datatype="datetime"
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.541"/>
+               <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.542">
                   <zorgverlener datatype="reference"
-                                value="PETER_VAN_PULVER"/>
+                                value="PETER_VAN_PULVER"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.543"/>
                </auteur>
-               <relatie_voorstel_gegevens>
+               <relatie_voorstel_gegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.544">
                   <identificatie value="#Voorstel_id_123345"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.545.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.545"/>
                </relatie_voorstel_gegevens>
-               <antwoord_medicatieafspraak code="101"
-                                           codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.17"
-                                           displayName="Ja, medicatieafspraak volgt"/>
+               <antwoord_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1486">
+                  <antwoord_medicatieafspraak_besluit code="104"
+                                                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.17"
+                                                      displayName="Geaccepteerd"
+                                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1491"/>
+               </antwoord_medicatieafspraak>
             </antwoord>
          </voorstel_gegevens>
       </sturen_antwoord_voorstel_medicatieafspraak>

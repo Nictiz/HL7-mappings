@@ -1,0 +1,161 @@
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_voorstel_medicatieafspraak.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"/>
+   <data>
+      <sturen_voorstel_medicatieafspraak app="mp-mp93"
+                                         shortName="sturen_voorstel_medicatieafspraak"
+                                         formName="sturen_voorstel_medicatieafspraak"
+                                         transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.398"
+                                         transactionEffectiveDate="2022-06-30T00:00:00"
+                                         versionDate=""
+                                         prefix="mp-"
+                                         language="nl-NL"
+                                         title="Generated from HL7 FHIR sturen_medicatievoorschrift"
+                                         id="4cbe19ab-1961-11f1-3999-020000000000">
+         <patient>
+            <naamgegevens>
+               <voornamen value="K."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Wieling"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999908510"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1912-02-18"
+                           datatype="datetime"/>
+            <geslacht code="M"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Man"/>
+         </patient>
+         <medicamenteuze_behandeling id="NIEUW">
+            <medicatieafspraak>
+               <gebruiksperiode>
+                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="2024-01-14T23:59:59+01:00"
+                                   datatype="datetime"/>
+               </gebruiksperiode>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-4cbe1a7c-1961-11f1-3999-020000000000"
+                                         datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie>
+                  <omschrijving value="4 à 10 maal per dag 1 stuk, 4-10 tabletten per dag. 1 uur na elke maaltijd 1 tablet innemen en 1 tablet voor het slapen gaan, Oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"/>
+                  <aanvullende_instructie code="OTH"
+                                          codeSystem="2.16.840.1.113883.5.1008"
+                                          codeSystemName="HL7 NullFlavor"
+                                          displayName="overig"
+                                          originalText="4-10 tabletten per dag. 1 uur na elke maaltijd 1 tablet innemen en 1 tablet voor het slapen gaan"/>
+                  <doseerinstructie>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <minimum_waarde value="4"/>
+                                 <maximum_waarde value="10"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
+                           </frequentie>
+                           <adaextension>
+                              <timing xmlns="http://hl7.org/fhir">
+                                 <repeat>
+                                    <frequency value="4"/>
+                                    <frequencyMax value="10"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </timing>
+                           </adaextension>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="urn-uuid-4cbe1a7c-1961-11f1-3999-020000000000">
+               <product_code code="42234"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="MAGNESIUMHYDROXIDE TEVA KAUWTABLET 724MG"
+                             preferred="true"/>
+               <product_code code="97365"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="MAGNESIUMHYDROXIDE TEVA KAUWTABLET 724MG"/>
+            </farmaceutisch_product>
+            <zorgverlener id="urn-uuid-4cbe1a04-1961-11f1-3999-020000000000">
+               <zorgverlener_identificatienummer value="000001116"
+                                                 root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Victor"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="de"/>
+                     <achternaam value="Verstrekker"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0200"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="Vektis AGB-medische specialismen"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Apothekers"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-4cbe1a40-1961-11f1-3999-020000000000"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="urn-uuid-4cbe1a40-1961-11f1-3999-020000000000">
+               <zorgaanbieder_identificatienummer value="01236578"
+                                                  root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
+         <voorstel_gegevens>
+            <voorstel>
+               <identificatie value="MBH_300_VMAafgewezen_PRK_VMA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.2"/>
+               <voorstel_datum value="2024-01-01T11:00:00+01:00"
+                               datatype="datetime"/>
+               <auteur>
+                  <auteur_is_zorgverlener>
+                     <zorgverlener value="urn-uuid-4cbe1a04-1961-11f1-3999-020000000000"
+                                   datatype="reference"/>
+                  </auteur_is_zorgverlener>
+               </auteur>
+               <medicamenteuze_behandeling value="NIEUW"
+                                           datatype="reference"/>
+               <toelichting value="Graag een laxans starten bij het opioïde om een opioid-geinduceerde obstipatie te voorkomen en te behandelen. "/>
+            </voorstel>
+         </voorstel_gegevens>
+      </sturen_voorstel_medicatieafspraak>
+   </data>
+</adaxml>

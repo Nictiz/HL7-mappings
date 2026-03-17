@@ -1,0 +1,102 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-LTR-lab-33333"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+   </meta>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
+      <value value="33333"/>
+   </identifier>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+         <code value="laboratory"/>
+         <display value="Laboratory"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen"/>
+         <code value="3272"/>
+         <display value="kalium urine 24u"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-lab-E-XXX-Doppen"/>
+      <type value="Patient"/>
+      <display value="Patient, E. XXX_Doppen"/>
+   </subject>
+   <effectiveDateTime value="${DATE, T, D, -12}"/>
+   <performer>
+      <extension url="http://hl7.org/fhir/StructureDefinition/event-performerFunction">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-ParticipationType"/>
+               <code value="PPRF"/>
+               <display value="primary performer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </performer>
+   <performer>
+      <extension url="http://hl7.org/fhir/StructureDefinition/event-performerFunction">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-ParticipationType"/>
+               <code value="RESP"/>
+               <display value="responsible party"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <reference value="Organization/nl-core-HPrv-Org-lab-7ba8a464-6b33-11ec-0000-020000000000"/>
+      <type value="Organization"/>
+      <display value="Healthcare provider (organization), organisation-id in system"/>
+   </performer>
+   <valueQuantity>
+      <value value="30"/>
+      <unit value="mmol/(24.h)"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="mmol/(24.h)"/>
+   </valueQuantity>
+   <interpretation>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="11896004"/>
+         <display value="intermediair"/>
+      </coding>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"/>
+         <code value="I"/>
+         <display value="Intermediate"/>
+      </coding>
+   </interpretation>
+   <interpretation>
+      <text value="kaliumuitscheiding is aan de lage kant. Binnen referentiebereik. Klinische evaluatie gewenst in context van suppletie."/>
+   </interpretation>
+   <note>
+      <text value="Onderzoek voltooid"/>
+   </note>
+   <specimen>
+      <reference value="Specimen/nl-core-LTR-Specimen-lab-6d0e9bbc-6b33-11ec-0000-020000000000"/>
+      <type value="Specimen"/>
+      <display value="monster"/>
+   </specimen>
+   <referenceRange>
+      <low>
+         <value value="25"/>
+         <unit value="mmol/(24.h)"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mmol/(24.h)"/>
+      </low>
+      <high>
+         <value value="125"/>
+         <unit value="mmol/(24.h)"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mmol/(24.h)"/>
+      </high>
+   </referenceRange>
+</Observation>
