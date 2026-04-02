@@ -1,5 +1,5 @@
 <ProcedureRequest xmlns="http://hl7.org/fhir">
-   <id value="zib-ProcedureRequest-msz-dd3e81ae-6b6a-11ec-0000-2"/>
+   <id value="zib-ProcedureRequest-msz-3719d34f-6b62-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest"/>
    </meta>
@@ -11,7 +11,9 @@
             </caption>
             <tbody>
                <tr>
-                  <td/>
+                  <td>
+                     <span title="MRI van thorax (6007000 - SNOMED CT)">MRI van thorax</span>
+                  </td>
                   <td>
                      <div>Wanneer: Vanaf ${DATE, T, D, +120}</div>
                   </td>
@@ -20,18 +22,19 @@
                   <th>Reden</th>
                   <td/>
                </tr>
-               <tr>
-                  <td>Deel van lichaam</td>
-                  <td>
-                     <span title="MRI van thorax (6007000 - SNOMED CT)">MRI van thorax</span>
-                  </td>
-               </tr>
             </tbody>
          </table>
       </div>
    </text>
    <status value="unknown"/>
    <intent value="plan"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="6007000"/>
+         <display value="MRI van thorax"/>
+      </coding>
+   </code>
    <subject>
       <reference value="Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL"/>
       <display value="Michelle M.B. Michelle Bergzoon Verheul"/>
@@ -39,11 +42,4 @@
    <occurrencePeriod>
       <start value="${DATE, T, D, +120}"/>
    </occurrencePeriod>
-   <bodySite>
-      <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="6007000"/>
-         <display value="MRI van thorax"/>
-      </coding>
-   </bodySite>
 </ProcedureRequest>
