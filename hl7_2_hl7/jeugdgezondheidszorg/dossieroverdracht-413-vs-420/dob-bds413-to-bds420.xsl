@@ -1494,10 +1494,27 @@
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Rubriek 26: elementen elementen 225, 230, 232-233, 314, 316, 318, 806-807, 826, 1393 vervallen</xd:desc>
+        <xd:desc>Rubriek 26: elementen 225, 230, 232-233, 806-807 en 1393 vervallen</xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '225' or @code = '230' or @code = '232' or @code = '233' or @code = '314' or @code = '316' or @code = '318' or @code = '806' or @code = '807' or @code = '826' or @code = '1393'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob413">
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '225' or @code = '230' or @code = '232' or @code = '233' or @code = '806' or @code = '807' or @code = '1393'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob413">
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is vervallen </xsl:text></xsl:comment>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Rubriek 26: elementen 314, 316, 318 en 826 vervallen</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:observation[hl7:code[@code = '313' or @code = '315' or @code = '317' or @code = '825' ][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]/hl7:methodCode" mode="dob413">
+        <xsl:variable name="obsElementCode" select="../hl7:code/@code"/>
+        <xsl:variable name="methodeElementCode">
+            <xsl:choose>
+                <xsl:when test="$obsElementCode = '313'">314</xsl:when>
+                <xsl:when test="$obsElementCode = '315'">316</xsl:when>
+                <xsl:when test="$obsElementCode = '317'">318</xsl:when>
+                <xsl:when test="$obsElementCode = '825'">826</xsl:when>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="methodeElementDisplay" select="exslt:node-set($W0639_HL7_W0646_HL7_W0647_HL7)//concept[@code = $methodeElementCode][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>        
+        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="$methodeElementCode"/><xsl:text> </xsl:text><xsl:value-of select="$methodeElementDisplay"/><xsl:text> is vervallen </xsl:text></xsl:comment>
     </xsl:template>
     
     <!-- R030 -->
