@@ -250,39 +250,47 @@
                            </rubricCluster>
                         </pertinentInformation>
                         <!-- r012_erfelijke_belasting_en_ouderkenmerken -->
-                        <!-- Rubriek 19 is verwijderd omdat het enkel vervallen elementen bevat.-->
-                        <!-- element 79 Erfelijke belasting en ouderkenmerken nagevraagd is vervallen -->
-                        <component>
-                           <groupCluster>
-                              <code code="G020"
-                                    codeSystem="2.16.840.1.113883.2.4.4.40.393"
-                                    displayName="Kenmerken ouder/verzorger"/>
+                        <pertinentInformation>
+                           <rubricCluster classCode="CLUSTER"
+                                          moodCode="EVN">
+                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11012"/>
+                              <code code="R012"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
+                                    displayName="Erfelijke belasting en ouderkenmerken"/>
+                              <!-- element 79 Erfelijke belasting en ouderkenmerken nagevraagd is vervallen -->
                               <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40070"/>
-                                    <code code="70"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                 <groupCluster>
+                                    <code code="G020"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.393"
                                           displayName="Kenmerken ouder/verzorger"/>
-                                    <value xsi:type="CV"
-                                           code="12"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.5"
-                                           displayName="Chronisch ziek"/>
-                                    <subject typeCode="SBJ">
-                                       <personalRelationship classCode="PRS">
-                                          <code code="FTH"
-                                                codeSystem="2.16.840.1.113883.5.111"
-                                                displayName="Vader"/>
-                                          <relationshipHolder classCode="PSN"
-                                                              determinerCode="INSTANCE"
-                                                              nullFlavor="NI"/>
-                                       </personalRelationship>
-                                    </subject>
-                                 </observation>
+                                    <component>
+                                       <observation classCode="OBS"
+                                                    moodCode="EVN"
+                                                    negationInd="false">
+                                          <templateId root="2.16.840.1.113883.2.4.6.10.100.40070"/>
+                                          <code code="70"
+                                                codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                                displayName="Kenmerken ouder/verzorger"/>
+                                          <value xsi:type="CV"
+                                                 code="12"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.40.5"
+                                                 displayName="Chronisch ziek"/>
+                                          <subject typeCode="SBJ">
+                                             <personalRelationship classCode="PRS">
+                                                <code code="FTH"
+                                                      codeSystem="2.16.840.1.113883.5.111"
+                                                      displayName="Vader"/>
+                                                <relationshipHolder classCode="PSN"
+                                                                    determinerCode="INSTANCE"
+                                                                    nullFlavor="NI"/>
+                                             </personalRelationship>
+                                          </subject>
+                                       </observation>
+                                    </component>
+                                 </groupCluster>
                               </component>
-                           </groupCluster>
-                        </component>
+                           </rubricCluster>
+                        </pertinentInformation>
                         <!-- r019_terugkerende_anamnese -->
                         <pertinentInformation>
                            <rubricCluster classCode="CLUSTER"
