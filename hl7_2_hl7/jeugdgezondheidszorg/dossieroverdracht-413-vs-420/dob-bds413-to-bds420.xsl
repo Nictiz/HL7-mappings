@@ -1536,7 +1536,7 @@
     <xd:doc>
         <xd:desc>Rubriek 31 vervalt indien het alleen vervallen elementen bevat.</xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R030'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob413">
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R031'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob413">
         <xsl:choose>
             <xsl:when test="count(./hl7:rubricCluster/hl7:component[not(hl7:observation[hl7:code[@code = '268' or @code = '269' or @code = '815' or @code = '1437' or @code = '1438' or @code = '1439'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']])]) > 0">
                 <xsl:copy>
