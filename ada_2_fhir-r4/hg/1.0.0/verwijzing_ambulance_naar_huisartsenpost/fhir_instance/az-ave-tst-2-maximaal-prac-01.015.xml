@@ -1,0 +1,81 @@
+<Practitioner xmlns="http://hl7.org/fhir">
+   <id value="prac-01.015"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+   </meta>
+   <telecom>
+      <system value="phone">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+                  <code value="LL"/>
+                  <display value="Land Line"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </system>
+      <value value="0632165498"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="huisarts@test.nl"/>
+      <use value="work"/>
+   </telecom>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+               <code value="PST"/>
+               <display value="Postadres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <type value="postal"/>
+      <line value="Huisartssstraat to 1 B 2">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Huisartssstraat"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="1"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+            <valueString value="B 2"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
+            <valueString value="to"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
+            <valueString value="Gebouw D"/>
+         </extension>
+      </line>
+      <city value="Utrecht"/>
+      <district value="Utrecht"/>
+      <postalCode value="9999XX"/>
+      <country value="Nederland">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:iso:std:iso:3166"/>
+                  <version value="2020-10-26T00:00:00"/>
+                  <code value="NL"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+   <gender value="male">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
+               <code value="M"/>
+               <display value="Man"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </gender>
+</Practitioner>

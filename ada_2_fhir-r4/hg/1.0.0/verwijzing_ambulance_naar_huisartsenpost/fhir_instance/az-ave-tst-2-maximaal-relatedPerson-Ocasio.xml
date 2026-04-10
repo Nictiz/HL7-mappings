@@ -1,0 +1,111 @@
+<RelatedPerson xmlns="http://hl7.org/fhir">
+   <id value="relatedPerson-Ocasio"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson"/>
+   </meta>
+   <patient>
+      <reference value="Patient/patient-van-XXX-Sijthoff"/>
+      <type value="Patient"/>
+      <display value="Patient, Emmanuella (Emma) van XXX_Sijthoff"/>
+   </patient>
+   <relationship>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.23.1"/>
+         <code value="100001"/>
+         <display value="Mantelzorger"/>
+      </coding>
+   </relationship>
+   <relationship>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
+         <code value="UNCLE"/>
+         <display value="Oom"/>
+      </coding>
+   </relationship>
+   <name>
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+         <valueCode value="NL1"/>
+      </extension>
+      <use value="official"/>
+      <text value="Benito (Benny) Ocasio"/>
+      <family value="Ocasio">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="Ocasio"/>
+         </extension>
+      </family>
+      <given value="Benito">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+   </name>
+   <name>
+      <use value="usual"/>
+      <given value="Benny"/>
+   </name>
+   <telecom>
+      <system value="phone">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                  <code value="MC"/>
+                  <display value="Mobiel telefoonnummer"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </system>
+      <value value="0612345678"/>
+      <use value="home"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="benito@test.nl"/>
+      <use value="home"/>
+   </telecom>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+               <code value="PHYS"/>
+               <display value="Woon-/verblijfadres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="home"/>
+      <type value="physical"/>
+      <line value="Dorpsstraat by 12 A 3">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Dorpsstraat"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="12"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+            <valueString value="A 3"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
+            <valueString value="by"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
+            <valueString value="Gebouw De Horizon, ingang Noord"/>
+         </extension>
+      </line>
+      <city value="Alkmaar"/>
+      <district value="Alkmaar"/>
+      <postalCode value="9999AA"/>
+      <country value="Nederland">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.16.34"/>
+                  <version value="2025-11-04T00:00:00"/>
+                  <code value="6030"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+</RelatedPerson>

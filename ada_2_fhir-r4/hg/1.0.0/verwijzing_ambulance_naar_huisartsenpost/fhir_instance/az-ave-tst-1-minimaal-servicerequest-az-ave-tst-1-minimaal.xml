@@ -1,0 +1,46 @@
+<ServiceRequest xmlns="http://hl7.org/fhir">
+   <id value="servicerequest-az-ave-tst-1-minimaal"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/ambu-ReferralServiceRequest"/>
+   </meta>
+   <identifier>
+      <value value="az-ave-tst-1-minimaal"/>
+   </identifier>
+   <status value="completed"/>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="3457005"/>
+         <display value="verwijzen van patiënt"/>
+      </coding>
+   </category>
+   <subject>
+      <reference value="Patient/patient-XXX-Bakkersz"/>
+      <type value="Patient"/>
+      <display value="Patient, XXX_Bakkersz"/>
+   </subject>
+   <requester>
+      <reference value="Organization/org-URA-1"/>
+      <type value="Organization"/>
+      <display value="Healthcare provider (organization), organisation-id URA 1 in system 2.16.528.1.1007.3.3"/>
+   </requester>
+   <performer>
+      <reference value="Organization/org-URA-1"/>
+      <type value="Organization"/>
+      <display value="Healthcare provider (organization), organisation-id URA 1 in system 2.16.528.1.1007.3.3"/>
+   </performer>
+   <reasonCode>
+      <text value="lage rugklachten"/>
+   </reasonCode>
+   <supportingInfo>
+      <reference value="Composition/composition-ambu-az-ave-tst-1-minimaal"/>
+      <type value="Composition"/>
+      <display value="Referral note, XXX_Bakkersz"/>
+   </supportingInfo>
+   <supportingInfo>
+      <reference value="Communication/communication-"/>
+      <type value="Communication"/>
+      <display value="Communicatie item, XXX_Bakkersz"/>
+   </supportingInfo>
+</ServiceRequest>

@@ -1,0 +1,37 @@
+<ServiceRequest xmlns="http://hl7.org/fhir">
+   <id value="servicerequest-az-ave-tst-2-maximaal"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/ambu-ReferralServiceRequest"/>
+   </meta>
+   <identifier>
+      <value value="az-ave-tst-2-maximaal"/>
+   </identifier>
+   <status value="completed"/>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="3457005"/>
+         <display value="verwijzen van patiënt"/>
+      </coding>
+   </category>
+   <subject>
+      <reference value="Patient/patient-van-XXX-Sijthoff"/>
+      <type value="Patient"/>
+      <display value="Patient, Emmanuella (Emma) van XXX_Sijthoff"/>
+   </subject>
+   <reasonCode>
+      <text value="Graag uw beoordeling voor breuk"/>
+   </reasonCode>
+   <supportingInfo>
+      <reference value="Composition/composition-ambu-az-ave-tst-2-maximaal"/>
+      <type value="Composition"/>
+      <display value="Referral note, XXX_Sijthoff"/>
+   </supportingInfo>
+   <supportingInfo>
+      <reference value="Communication/communication-"/>
+      <type value="Communication"/>
+      <display value="Communicatie item, XXX_Sijthoff"/>
+   </supportingInfo>
+   <patientInstruction value="Naar de HAP voor foto"/>
+</ServiceRequest>

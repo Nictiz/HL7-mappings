@@ -1,0 +1,57 @@
+<Composition xmlns="http://hl7.org/fhir">
+   <id value="composition-ambu-az-ave-tst-2-maximaal"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/ambu-ReferralComposition"/>
+   </meta>
+   <identifier>
+      <value value="az-ave-tst-2-maximaal"/>
+   </identifier>
+   <status value="final"/>
+   <type>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="57133-1"/>
+         <display value="Referral note"/>
+      </coding>
+   </type>
+   <subject>
+      <reference value="Patient/patient-van-XXX-Sijthoff"/>
+      <type value="Patient"/>
+      <display value="Patient, Emmanuella (Emma) van XXX_Sijthoff"/>
+   </subject>
+   <title value="Referral note"/>
+   <section>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TextValue">
+         <valueString value="Drukverband"/>
+      </extension>
+      <title value="Ingestelde behandeling"/>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="182991002"/>
+            <display value="behandeling gegeven (situatie)"/>
+         </coding>
+      </code>
+      <text>
+         <status value="extensions"/>
+         <div xmlns="http://www.w3.org/1999/xhtml">Ingestelde behandeling: Drukverband</div>
+      </text>
+   </section>
+   <section>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TextValue">
+         <valueString value="Enkel distorsie"/>
+      </extension>
+      <title value="Diagnose / Conclusie"/>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="60022001"/>
+            <display value="mogelijke diagnose (kwalificatiewaarde)"/>
+         </coding>
+      </code>
+      <text>
+         <status value="extensions"/>
+         <div xmlns="http://www.w3.org/1999/xhtml">Mogelijke diagnose (kwalificatiewaarde): Enkel distorsie</div>
+      </text>
+   </section>
+</Composition>

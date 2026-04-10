@@ -1,0 +1,91 @@
+<Organization xmlns="http://hl7.org/fhir">
+   <id value="org-123456789012345"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+   </meta>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+      <value value="123456789012345"/>
+   </identifier>
+   <type>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+         <version value="2025-11-26T00:00:00"/>
+         <code value="0100"/>
+         <display value="Huisartspraktijk"/>
+      </coding>
+   </type>
+   <type>
+      <coding>
+         <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+         <code value="Z3"/>
+         <display value="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
+      </coding>
+   </type>
+   <name value="Huisartsenpraktijk nummer 12"/>
+   <telecom>
+      <system value="phone">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+                  <code value="LL"/>
+                  <display value="Land Line"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </system>
+      <value value="0698765432"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="huisartspraktijk@test.nl"/>
+      <use value="work"/>
+   </telecom>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+               <code value="PHYS"/>
+               <display value="Woon-/verblijfadres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="home"/>
+      <type value="physical"/>
+      <line value="Huisartspraktijkstraat to 12 A 2">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Huisartspraktijkstraat"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="12"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+            <valueString value="A 2"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
+            <valueString value="to"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
+            <valueString value="Ingang C"/>
+         </extension>
+      </line>
+      <city value="Utrecht"/>
+      <district value="Utrecht"/>
+      <postalCode value="9999AA"/>
+      <country value="Nederland">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:iso:std:iso:3166"/>
+                  <version value="2020-10-26T00:00:00"/>
+                  <code value="NL"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+</Organization>

@@ -1,0 +1,45 @@
+<Composition xmlns="http://hl7.org/fhir">
+   <id value="composition-ambu-az-ave-tst-1-minimaal"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/ambu-ReferralComposition"/>
+   </meta>
+   <identifier>
+      <value value="az-ave-tst-1-minimaal"/>
+   </identifier>
+   <status value="final"/>
+   <type>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="57133-1"/>
+         <display value="Referral note"/>
+      </coding>
+   </type>
+   <subject>
+      <reference value="Patient/patient-XXX-Bakkersz"/>
+      <type value="Patient"/>
+      <display value="Patient, XXX_Bakkersz"/>
+   </subject>
+   <author>
+      <reference value="Organization/org-URA-1"/>
+      <type value="Organization"/>
+      <display value="Healthcare provider (organization), organisation-id URA 1 in system 2.16.528.1.1007.3.3"/>
+   </author>
+   <title value="Referral note"/>
+   <section>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TextValue">
+         <valueString value="pijnmedicatie"/>
+      </extension>
+      <title value="Ingestelde behandeling"/>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="182991002"/>
+            <display value="behandeling gegeven (situatie)"/>
+         </coding>
+      </code>
+      <text>
+         <status value="extensions"/>
+         <div xmlns="http://www.w3.org/1999/xhtml">Ingestelde behandeling: pijnmedicatie</div>
+      </text>
+   </section>
+</Composition>
