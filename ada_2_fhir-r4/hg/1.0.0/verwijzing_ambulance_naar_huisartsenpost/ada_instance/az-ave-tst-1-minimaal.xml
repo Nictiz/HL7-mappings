@@ -3,7 +3,7 @@
          created-by="hguitwisselingada"
          last-update-by="hguitwisselingada"
          creation-date="2026-02-10T13:52:33.004Z"
-         last-update-date="2026-02-11T10:44:38.53Z"/>
+         last-update-date="2026-04-13T10:31:37.936Z"/>
    <data>
       <verwijzing_ambulance_naar_huisartsenpost app="hg-1.0.0"
                                                 shortName="verwijzing_ambulance_naar_huisartsenpost"
@@ -16,7 +16,7 @@
                                                 title="MinimaalBerichtTestDag"
                                                 desc="&lt;div&gt;test omschrijving&lt;/div&gt;"
                                                 id="az-ave-tst-1-minimaal">
-         <bundel_generieke_huisartsoverdrachten conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1199">
+         <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1199">
             <patient id="XXX_Bakkersz"
                      conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.2">
                <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3">
@@ -43,12 +43,6 @@
                <zorgverlener_identificatienummer value="UZI 1"
                                                  root="2.16.528.1.1007.3.1"
                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5323"/>
-               <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5324">
-                  <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5329">
-                     <achternaam value="XXX_Susanteu"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5331"/>
-                  </geslachtsnaam>
-               </naamgegevens>
             </zorgverlener>
             <zorgverlener id="HAP12"
                           conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5322">
@@ -70,7 +64,7 @@
                <organisatie_naam value="Aesculaap"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5364"/>
             </zorgaanbieder>
-         </bundel_generieke_huisartsoverdrachten>
+         </bouwstenen>
          <envelop conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1673">
             <patientgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1679">
                <patient value="XXX_Bakkersz"
@@ -96,6 +90,9 @@
                               datatype="reference"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5400"/>
             </ontvanger>
+            <datum_en_tijd value="T"
+                           datatype="datetime"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1684"/>
          </envelop>
          <kern conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1709">
             <reden_bericht conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1872">
@@ -122,6 +119,9 @@
                   <zorgaanbieder value="HAP1"
                                  datatype="reference"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5469"/>
+                  <zorgverlener value="HAP12"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5470"/>
                </communicatie_geadresseerde>
                <document conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5472">
                   <document_identificatie value="*"
