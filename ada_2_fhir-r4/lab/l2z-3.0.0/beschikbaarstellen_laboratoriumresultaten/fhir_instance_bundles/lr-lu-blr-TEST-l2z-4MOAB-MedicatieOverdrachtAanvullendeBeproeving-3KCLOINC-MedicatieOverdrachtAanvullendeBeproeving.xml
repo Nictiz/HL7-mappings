@@ -1,5 +1,5 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="lu-blr-kwal-AB-loinc"/>
+   <id value="endeBeproeving-3KCLOINC-MedicatieOverdrachtAanvullendeBeproeving"/>
    <type value="searchset"/>
    <total value="5"/>
    <link>
@@ -7,10 +7,10 @@
       <url value="http://dummy.nictiz.nl/dummyquery/"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:66c409cf-3969-11f1-8389-020000000000"/>
+      <fullUrl value="urn:uuid:bdba5c36-3a3e-11f1-1138-020000000000"/>
       <resource>
          <Observation>
-            <id value="66c409cf-3969-11f1-8389-020000000000"/>
+            <id value="bdba5c36-3a3e-11f1-1138-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>
@@ -34,7 +34,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:66c40871-3969-11f1-8389-020000000000"/>
+               <reference value="urn:uuid:bdba5bd2-3a3e-11f1-1138-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
@@ -49,15 +49,15 @@
                      </coding>
                   </valueCodeableConcept>
                </extension>
-               <reference value="urn:uuid:66c4092f-3969-11f1-8389-020000000000"/>
+               <reference value="urn:uuid:bdba5bf0-3a3e-11f1-1138-020000000000"/>
                <type value="Organization"/>
-               <display value="Healthcare provider (organization), organisation-id in system"/>
+               <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
             </performer>
             <valueQuantity>
                <value value="2.7"/>
-               <unit value="{INR}"/>
+               <unit value="[{NR}"/>
                <system value="http://unitsofmeasure.org"/>
-               <code value="{INR}"/>
+               <code value="{[{NR}}"/>
             </valueQuantity>
             <interpretation>
                <coding>
@@ -75,7 +75,7 @@
                <text value="Geen afwijkingen"/>
             </interpretation>
             <specimen>
-               <reference value="urn:uuid:66c40a97-3969-11f1-8389-020000000000"/>
+               <reference value="urn:uuid:bdba5cfe-3a3e-11f1-1138-020000000000"/>
                <type value="Specimen"/>
                <display value="monster"/>
             </specimen>
@@ -100,10 +100,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:66c409f7-3969-11f1-8389-020000000000"/>
+      <fullUrl value="urn:uuid:bdba5c5e-3a3e-11f1-1138-020000000000"/>
       <resource>
          <Observation>
-            <id value="66c409f7-3969-11f1-8389-020000000000"/>
+            <id value="bdba5c5e-3a3e-11f1-1138-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>
@@ -127,11 +127,25 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:66c40871-3969-11f1-8389-020000000000"/>
+               <reference value="urn:uuid:bdba5bd2-3a3e-11f1-1138-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
             <effectiveDateTime value="${DATE, T, M, -12}"/>
+            <performer>
+               <extension url="http://hl7.org/fhir/StructureDefinition/event-performerFunction">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-ParticipationType"/>
+                        <code value="PPRF"/>
+                        <display value="primary performer"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                  <valueCode value="unknown"/>
+               </extension>
+            </performer>
             <performer>
                <extension url="http://hl7.org/fhir/StructureDefinition/event-performerFunction">
                   <valueCodeableConcept>
@@ -142,9 +156,9 @@
                      </coding>
                   </valueCodeableConcept>
                </extension>
-               <reference value="urn:uuid:66c4092f-3969-11f1-8389-020000000000"/>
+               <reference value="urn:uuid:bdba5bf0-3a3e-11f1-1138-020000000000"/>
                <type value="Organization"/>
-               <display value="Healthcare provider (organization), organisation-id in system"/>
+               <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
             </performer>
             <valueQuantity>
                <value value="3.8"/>
@@ -167,8 +181,11 @@
             <interpretation>
                <text value="Geen afwijkingen"/>
             </interpretation>
+            <note>
+               <text value="Onderzoek voltooid"/>
+            </note>
             <specimen>
-               <reference value="urn:uuid:66c40abf-3969-11f1-8389-020000000000"/>
+               <reference value="urn:uuid:bdba5d26-3a3e-11f1-1138-020000000000"/>
                <type value="Specimen"/>
                <display value="monster"/>
             </specimen>
@@ -193,13 +210,16 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:66c40a1f-3969-11f1-8389-020000000000"/>
+      <fullUrl value="urn:uuid:bdba5c86-3a3e-11f1-1138-020000000000"/>
       <resource>
          <Observation>
-            <id value="66c40a1f-3969-11f1-8389-020000000000"/>
+            <id value="bdba5c86-3a3e-11f1-1138-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
+               <valueString value="111333"/>
+            </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
                <value value="99993"/>
@@ -220,7 +240,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:66c40871-3969-11f1-8389-020000000000"/>
+               <reference value="urn:uuid:bdba5bd2-3a3e-11f1-1138-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
@@ -235,9 +255,9 @@
                      </coding>
                   </valueCodeableConcept>
                </extension>
-               <reference value="urn:uuid:66c4092f-3969-11f1-8389-020000000000"/>
+               <reference value="urn:uuid:bdba5bf0-3a3e-11f1-1138-020000000000"/>
                <type value="Organization"/>
-               <display value="Healthcare provider (organization), organisation-id in system"/>
+               <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
             </performer>
             <valueQuantity>
                <value value="65"/>
@@ -261,7 +281,7 @@
                <text value="Normale nierfunctie"/>
             </interpretation>
             <specimen>
-               <reference value="urn:uuid:66c40ae7-3969-11f1-8389-020000000000"/>
+               <reference value="urn:uuid:bdba5d4e-3a3e-11f1-1138-020000000000"/>
                <type value="Specimen"/>
                <display value="monster"/>
             </specimen>
@@ -286,10 +306,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:66c40a47-3969-11f1-8389-020000000000"/>
+      <fullUrl value="urn:uuid:bdba5cae-3a3e-11f1-1138-020000000000"/>
       <resource>
          <Observation>
-            <id value="66c40a47-3969-11f1-8389-020000000000"/>
+            <id value="bdba5cae-3a3e-11f1-1138-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>
@@ -313,7 +333,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:66c40871-3969-11f1-8389-020000000000"/>
+               <reference value="urn:uuid:bdba5bd2-3a3e-11f1-1138-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
@@ -328,9 +348,9 @@
                      </coding>
                   </valueCodeableConcept>
                </extension>
-               <reference value="urn:uuid:66c4092f-3969-11f1-8389-020000000000"/>
+               <reference value="urn:uuid:bdba5bf0-3a3e-11f1-1138-020000000000"/>
                <type value="Organization"/>
-               <display value="Healthcare provider (organization), organisation-id in system"/>
+               <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
             </performer>
             <valueQuantity>
                <value value="40"/>
@@ -354,7 +374,7 @@
                <text value="Milde nierfunctiestoornis"/>
             </interpretation>
             <specimen>
-               <reference value="urn:uuid:66c40b0f-3969-11f1-8389-020000000000"/>
+               <reference value="urn:uuid:bdba5d76-3a3e-11f1-1138-020000000000"/>
                <type value="Specimen"/>
                <display value="monster"/>
             </specimen>
@@ -379,10 +399,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:66c40a6f-3969-11f1-8389-020000000000"/>
+      <fullUrl value="urn:uuid:bdba5cd6-3a3e-11f1-1138-020000000000"/>
       <resource>
          <Observation>
-            <id value="66c40a6f-3969-11f1-8389-020000000000"/>
+            <id value="bdba5cd6-3a3e-11f1-1138-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>
@@ -406,7 +426,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:66c40871-3969-11f1-8389-020000000000"/>
+               <reference value="urn:uuid:bdba5bd2-3a3e-11f1-1138-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
@@ -421,9 +441,9 @@
                      </coding>
                   </valueCodeableConcept>
                </extension>
-               <reference value="urn:uuid:66c4092f-3969-11f1-8389-020000000000"/>
+               <reference value="urn:uuid:bdba5bf0-3a3e-11f1-1138-020000000000"/>
                <type value="Organization"/>
-               <display value="Healthcare provider (organization), organisation-id in system"/>
+               <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
             </performer>
             <valueQuantity>
                <value value="45"/>
@@ -447,7 +467,7 @@
                <text value="Milde nierfunctiestoornis"/>
             </interpretation>
             <specimen>
-               <reference value="urn:uuid:66c40b37-3969-11f1-8389-020000000000"/>
+               <reference value="urn:uuid:bdba5d9e-3a3e-11f1-1138-020000000000"/>
                <type value="Specimen"/>
                <display value="monster"/>
             </specimen>
@@ -472,10 +492,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:66c40871-3969-11f1-8389-020000000000"/>
+      <fullUrl value="urn:uuid:bdba5bd2-3a3e-11f1-1138-020000000000"/>
       <resource>
          <Patient>
-            <id value="66c40871-3969-11f1-8389-020000000000"/>
+            <id value="bdba5bd2-3a3e-11f1-1138-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -516,13 +536,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:66c4092f-3969-11f1-8389-020000000000"/>
+      <fullUrl value="urn:uuid:bdba5bf0-3a3e-11f1-1138-020000000000"/>
       <resource>
          <Organization>
-            <id value="66c4092f-3969-11f1-8389-020000000000"/>
+            <id value="bdba5bf0-3a3e-11f1-1138-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00003333"/>
+            </identifier>
             <type>
                <coding>
                   <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
@@ -531,6 +555,61 @@
                   <display value="Laboratorium"/>
                </coding>
             </type>
+            <name value="Klinisch chemisch Lab 't Proefje"/>
+            <telecom>
+               <system value="phone">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                           <code value="MC"/>
+                           <display value="Mobiel telefoonnummer"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </system>
+               <value value="06-11122233"/>
+               <use value="work"/>
+            </telecom>
+            <telecom>
+               <system value="email"/>
+               <value value="tproefje@lab.nl"/>
+               <use value="work"/>
+            </telecom>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Hoofdstraat 23">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Hoofdstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="23"/>
+                  </extension>
+               </line>
+               <city value="Zorgstad"/>
+               <postalCode value="1234AA"/>
+               <country value="Nederland">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="urn:iso:std:iso:3166"/>
+                           <version value="2020-10-26T00:00:00"/>
+                           <code value="NL"/>
+                           <display value="Nederland"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </country>
+            </address>
          </Organization>
       </resource>
       <search>
@@ -538,13 +617,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:66c40a97-3969-11f1-8389-020000000000"/>
+      <fullUrl value="urn:uuid:bdba5cfe-3a3e-11f1-1138-020000000000"/>
       <resource>
          <Specimen>
-            <id value="66c40a97-3969-11f1-8389-020000000000"/>
+            <id value="bdba5cfe-3a3e-11f1-1138-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
             </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4267.2"/>
+               <value value="99991"/>
+            </identifier>
             <type>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -553,13 +636,23 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:66c40871-3969-11f1-8389-020000000000"/>
+               <reference value="urn:uuid:bdba5bd2-3a3e-11f1-1138-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
+            <receivedTime value="${DATE, T, Y, -3}"/>
             <collection>
                <collectedDateTime value="${DATE, T, Y, -3}"/>
             </collection>
+            <container>
+               <type>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="767387006"/>
+                     <display value="vacuümbuis voor bloedafname met citraat, theofylline, adenosine en dipyramidol (fysiek object)"/>
+                  </coding>
+               </type>
+            </container>
          </Specimen>
       </resource>
       <search>
@@ -567,13 +660,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:66c40abf-3969-11f1-8389-020000000000"/>
+      <fullUrl value="urn:uuid:bdba5d26-3a3e-11f1-1138-020000000000"/>
       <resource>
          <Specimen>
-            <id value="66c40abf-3969-11f1-8389-020000000000"/>
+            <id value="bdba5d26-3a3e-11f1-1138-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
             </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4267.2"/>
+               <value value="99992"/>
+            </identifier>
             <type>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -582,13 +679,23 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:66c40871-3969-11f1-8389-020000000000"/>
+               <reference value="urn:uuid:bdba5bd2-3a3e-11f1-1138-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
+            <receivedTime value="${DATE, T, M, -12}"/>
             <collection>
                <collectedDateTime value="${DATE, T, M, -12}"/>
             </collection>
+            <container>
+               <type>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="767387006"/>
+                     <display value="vacuümbuis voor bloedafname met citraat, theofylline, adenosine en dipyramidol (fysiek object)"/>
+                  </coding>
+               </type>
+            </container>
          </Specimen>
       </resource>
       <search>
@@ -596,13 +703,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:66c40ae7-3969-11f1-8389-020000000000"/>
+      <fullUrl value="urn:uuid:bdba5d4e-3a3e-11f1-1138-020000000000"/>
       <resource>
          <Specimen>
-            <id value="66c40ae7-3969-11f1-8389-020000000000"/>
+            <id value="bdba5d4e-3a3e-11f1-1138-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
             </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4267.2"/>
+               <value value="99993"/>
+            </identifier>
             <type>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -611,7 +722,7 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:66c40871-3969-11f1-8389-020000000000"/>
+               <reference value="urn:uuid:bdba5bd2-3a3e-11f1-1138-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
@@ -625,13 +736,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:66c40b0f-3969-11f1-8389-020000000000"/>
+      <fullUrl value="urn:uuid:bdba5d76-3a3e-11f1-1138-020000000000"/>
       <resource>
          <Specimen>
-            <id value="66c40b0f-3969-11f1-8389-020000000000"/>
+            <id value="bdba5d76-3a3e-11f1-1138-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
             </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4267.2"/>
+               <value value="99994"/>
+            </identifier>
             <type>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -640,10 +755,11 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:66c40871-3969-11f1-8389-020000000000"/>
+               <reference value="urn:uuid:bdba5bd2-3a3e-11f1-1138-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
+            <receivedTime value="${DATE, T, M, -8}"/>
             <collection>
                <collectedDateTime value="${DATE, T, M, -8}"/>
             </collection>
@@ -654,13 +770,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:66c40b37-3969-11f1-8389-020000000000"/>
+      <fullUrl value="urn:uuid:bdba5d9e-3a3e-11f1-1138-020000000000"/>
       <resource>
          <Specimen>
-            <id value="66c40b37-3969-11f1-8389-020000000000"/>
+            <id value="bdba5d9e-3a3e-11f1-1138-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
             </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4267.2"/>
+               <value value="99995"/>
+            </identifier>
             <type>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -669,232 +789,15 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:66c40871-3969-11f1-8389-020000000000"/>
+               <reference value="urn:uuid:bdba5bd2-3a3e-11f1-1138-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
+            <receivedTime value="${DATE, T, M, -1}"/>
             <collection>
                <collectedDateTime value="${DATE, T, M, -1}"/>
             </collection>
          </Specimen>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:66c408e9-3969-11f1-8389-020000000000"/>
-      <resource>
-         <Organization>
-            <id value="66c408e9-3969-11f1-8389-020000000000"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="00001111"/>
-            </identifier>
-            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
-            <telecom>
-               <system value="phone"/>
-               <value value="099-12345678"/>
-            </telecom>
-            <address>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
-                  <valueCodeableConcept>
-                     <coding>
-                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
-                        <code value="WP"/>
-                        <display value="Werkadres"/>
-                     </coding>
-                  </valueCodeableConcept>
-               </extension>
-               <use value="work"/>
-               <line value="Dorpstraat 1">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
-                     <valueString value="Dorpstraat"/>
-                  </extension>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-                     <valueString value="1"/>
-                  </extension>
-               </line>
-               <city value="Ons Dorp"/>
-               <postalCode value="1234AA"/>
-            </address>
-         </Organization>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:66c408c1-3969-11f1-8389-020000000000"/>
-      <resource>
-         <Practitioner>
-            <id value="66c408c1-3969-11f1-8389-020000000000"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
-               <value value="00001111"/>
-            </identifier>
-            <name>
-               <use value="official"/>
-               <text value="Peter van Pulver"/>
-               <family value="van Pulver">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
-                     <valueString value="van"/>
-                  </extension>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="Pulver"/>
-                  </extension>
-               </family>
-               <given value="Peter">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                     <valueCode value="BR"/>
-                  </extension>
-               </given>
-            </name>
-            <telecom>
-               <system value="phone"/>
-               <value value="1645645000"/>
-            </telecom>
-         </Practitioner>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:66c40899-3969-11f1-8389-020000000000"/>
-      <resource>
-         <PractitionerRole>
-            <id value="66c40899-3969-11f1-8389-020000000000"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
-            </meta>
-            <practitioner>
-               <reference value="urn:uuid:66c408c1-3969-11f1-8389-020000000000"/>
-               <type value="Practitioner"/>
-               <display value="Healthcare professional (person), Peter van Pulver"/>
-            </practitioner>
-            <organization>
-               <reference value="urn:uuid:66c408e9-3969-11f1-8389-020000000000"/>
-               <type value="Organization"/>
-               <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
-            </organization>
-            <specialty>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
-                  <code value="0101"/>
-                  <display value="Huisartsen, niet nader gespecificeerd"/>
-               </coding>
-            </specialty>
-            <telecom>
-               <system value="phone"/>
-               <value value="1645645000"/>
-            </telecom>
-         </PractitionerRole>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:66c4097f-3969-11f1-8389-020000000000"/>
-      <resource>
-         <ServiceRequest>
-            <id value="66c4097f-3969-11f1-8389-020000000000"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/lu-OrderData"/>
-            </meta>
-            <status value="unknown"/>
-            <intent value="order"/>
-            <subject>
-               <reference value="urn:uuid:66c40871-3969-11f1-8389-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, E. XXX_Doppen"/>
-            </subject>
-            <requester>
-               <reference value="urn:uuid:66c40899-3969-11f1-8389-020000000000"/>
-               <type value="PractitionerRole"/>
-               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
-            </requester>
-         </ServiceRequest>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:66c409a7-3969-11f1-8389-020000000000"/>
-      <resource>
-         <DiagnosticReport>
-            <id value="66c409a7-3969-11f1-8389-020000000000"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/lu-LaboratoryTestResult-DiagnosticReport"/>
-            </meta>
-            <basedOn>
-               <reference value="urn:uuid:66c4097f-3969-11f1-8389-020000000000"/>
-               <type value="ServiceRequest"/>
-               <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
-            </basedOn>
-            <status value="final"/>
-            <category>
-               <coding>
-                  <system value="http://terminology.hl7.org/CodeSystem/v2-0074"/>
-                  <code value="LAB"/>
-                  <display value="Laboratory"/>
-               </coding>
-            </category>
-            <code>
-               <coding>
-                  <system value="http://loinc.org"/>
-                  <code value="11502-2"/>
-                  <display value="Laboratory report"/>
-               </coding>
-            </code>
-            <subject>
-               <reference value="urn:uuid:66c40871-3969-11f1-8389-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, E. XXX_Doppen"/>
-            </subject>
-            <effectivePeriod>
-               <start value="${DATE, T, Y, -3}"/>
-               <end value="${DATE, T, M, -1}"/>
-            </effectivePeriod>
-            <performer>
-               <reference value="urn:uuid:66c4092f-3969-11f1-8389-020000000000"/>
-               <type value="Organization"/>
-               <display value="Healthcare provider (organization), organisation-id in system"/>
-            </performer>
-            <result>
-               <reference value="urn:uuid:66c409cf-3969-11f1-8389-020000000000"/>
-               <type value="Observation"/>
-               <display value="laboratorium_test"/>
-            </result>
-            <result>
-               <reference value="urn:uuid:66c409f7-3969-11f1-8389-020000000000"/>
-               <type value="Observation"/>
-               <display value="laboratorium_test"/>
-            </result>
-            <result>
-               <reference value="urn:uuid:66c40a1f-3969-11f1-8389-020000000000"/>
-               <type value="Observation"/>
-               <display value="laboratorium_test"/>
-            </result>
-            <result>
-               <reference value="urn:uuid:66c40a47-3969-11f1-8389-020000000000"/>
-               <type value="Observation"/>
-               <display value="laboratorium_test"/>
-            </result>
-            <result>
-               <reference value="urn:uuid:66c40a6f-3969-11f1-8389-020000000000"/>
-               <type value="Observation"/>
-               <display value="laboratorium_test"/>
-            </result>
-         </DiagnosticReport>
       </resource>
       <search>
          <mode value="include"/>

@@ -1,11 +1,11 @@
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="nl-core-LTR-lab-44444"/>
+   <id value="nl-core-LTR-lab-55555"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
    </meta>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
-      <value value="44444"/>
+      <value value="55555"/>
    </identifier>
    <status value="final"/>
    <category>
@@ -17,9 +17,9 @@
    </category>
    <code>
       <coding>
-         <system value="http://loinc.org"/>
-         <code value="2829-0"/>
-         <display value="Kalium [mol/tijd] in 24-uursurine"/>
+         <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen"/>
+         <code value="111"/>
+         <display value="bilirubine totaal"/>
       </coding>
    </code>
    <subject>
@@ -27,7 +27,7 @@
       <type value="Patient"/>
       <display value="Patient, E. XXX_Doppen"/>
    </subject>
-   <effectiveDateTime value="${DATE, T, D, -12}"/>
+   <effectiveDateTime value="${DATE, T, D, -13}"/>
    <performer>
       <extension url="http://hl7.org/fhir/StructureDefinition/event-performerFunction">
          <valueCodeableConcept>
@@ -57,46 +57,9 @@
       <display value="Healthcare provider (organization), organisation-id in system"/>
    </performer>
    <valueQuantity>
-      <value value="32"/>
-      <unit value="mmol/24h"/>
+      <value value="5.4"/>
+      <unit value="umol/L"/>
       <system value="http://unitsofmeasure.org"/>
-      <code value="{mmol/24h}"/>
+      <code value="umol/L"/>
    </valueQuantity>
-   <interpretation>
-      <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="11896004"/>
-         <display value="intermediair"/>
-      </coding>
-      <coding>
-         <system value="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"/>
-         <code value="I"/>
-         <display value="Intermediate"/>
-      </coding>
-   </interpretation>
-   <interpretation>
-      <text value="kaliumuitscheiding is aan de lage kant. Binnen referentiebereik. Klinische evaluatie gewenst in context van suppletie"/>
-   </interpretation>
-   <note>
-      <text value="Onderzoek voltooid"/>
-   </note>
-   <specimen>
-      <reference value="Specimen/nl-core-LTR-Specimen-lab-6d0e9bbc-6b33-11ec-0000-020000000000"/>
-      <type value="Specimen"/>
-      <display value="monster"/>
-   </specimen>
-   <referenceRange>
-      <low>
-         <value value="25"/>
-         <unit value="mmol/24h"/>
-         <system value="http://unitsofmeasure.org"/>
-         <code value="{mmol/24h}"/>
-      </low>
-      <high>
-         <value value="125"/>
-         <unit value="mmol/24h"/>
-         <system value="http://unitsofmeasure.org"/>
-         <code value="{mmol/24h}"/>
-      </high>
-   </referenceRange>
 </Observation>
