@@ -1,5 +1,5 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="lr-blr-KWAL-l2z-1Minimaal-bericht-3KCLOINC"/>
+   <id value="lr-blr-KWAL-l2z-3CorrectMaximaal-bericht-3KCLOINC"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -7,18 +7,19 @@
       <url value="http://dummy.nictiz.nl/dummyquery/"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:ba20c5d3-3a3e-11f1-8719-020000000000"/>
+      <fullUrl value="urn:uuid:4677a9a1-3cb7-11f1-1257-020000000000"/>
       <resource>
          <Observation>
-            <id value="ba20c5d3-3a3e-11f1-8719-020000000000"/>
+            <id value="4677a9a1-3cb7-11f1-1257-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
-               <valueString value="111777"/>
+               <valueString value="111666"/>
             </extension>
             <identifier>
-               <value value="66666"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
+               <value value="88888"/>
             </identifier>
             <status value="final"/>
             <category>
@@ -31,16 +32,16 @@
             <code>
                <coding>
                   <system value="http://loinc.org"/>
-                  <code value="14631-6"/>
-                  <display value="Bilirubine [mol/volume] in serum of plasma"/>
+                  <code value="2829-0"/>
+                  <display value="Kalium [mol/tijdeenheid] in 24-uursurine"/>
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:ba20c56f-3a3e-11f1-8719-020000000000"/>
+               <reference value="urn:uuid:4677a93d-3cb7-11f1-1257-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
-            <effectiveDateTime value="${DATE, T, D, -13}"/>
+            <effectiveDateTime value="${DATE, T, D, -12}"/>
             <performer>
                <extension url="http://hl7.org/fhir/StructureDefinition/event-performerFunction">
                   <valueCodeableConcept>
@@ -51,16 +52,53 @@
                      </coding>
                   </valueCodeableConcept>
                </extension>
-               <reference value="urn:uuid:ba20c58d-3a3e-11f1-8719-020000000000"/>
+               <reference value="urn:uuid:4677a95b-3cb7-11f1-1257-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
             </performer>
             <valueQuantity>
-               <value value="5.4"/>
-               <unit value="umol/L"/>
+               <value value="33"/>
+               <unit value="mmol/(24.h)"/>
                <system value="http://unitsofmeasure.org"/>
-               <code value="umol/L"/>
+               <code value="mmol/(24.h)"/>
             </valueQuantity>
+            <interpretation>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="11896004"/>
+                  <display value="intermediair"/>
+               </coding>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"/>
+                  <code value="I"/>
+                  <display value="Intermediate"/>
+               </coding>
+            </interpretation>
+            <interpretation>
+               <text value="kaliumuitscheiding is aan de lage kant. Binnen referentiebereik. Klinische evaluatie gewenst in context van suppletie."/>
+            </interpretation>
+            <note>
+               <text value="Correctie"/>
+            </note>
+            <specimen>
+               <reference value="urn:uuid:4677a9c9-3cb7-11f1-1257-020000000000"/>
+               <type value="Specimen"/>
+               <display value="monster"/>
+            </specimen>
+            <referenceRange>
+               <low>
+                  <value value="25"/>
+                  <unit value="mmol/(24.h)"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="mmol/(24.h)"/>
+               </low>
+               <high>
+                  <value value="125"/>
+                  <unit value="mmol/(24.h)"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="mmol/(24.h)"/>
+               </high>
+            </referenceRange>
          </Observation>
       </resource>
       <search>
@@ -68,10 +106,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ba20c56f-3a3e-11f1-8719-020000000000"/>
+      <fullUrl value="urn:uuid:4677a93d-3cb7-11f1-1257-020000000000"/>
       <resource>
          <Patient>
-            <id value="ba20c56f-3a3e-11f1-8719-020000000000"/>
+            <id value="4677a93d-3cb7-11f1-1257-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -112,10 +150,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ba20c58d-3a3e-11f1-8719-020000000000"/>
+      <fullUrl value="urn:uuid:4677a95b-3cb7-11f1-1257-020000000000"/>
       <resource>
          <Organization>
-            <id value="ba20c58d-3a3e-11f1-8719-020000000000"/>
+            <id value="4677a95b-3cb7-11f1-1257-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -187,6 +225,77 @@
                </country>
             </address>
          </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:4677a9c9-3cb7-11f1-1257-020000000000"/>
+      <resource>
+         <Specimen>
+            <id value="4677a9c9-3cb7-11f1-1257-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
+            </meta>
+            <identifier>
+               <value value="335"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="276833005"/>
+                  <display value="24-uursurine"/>
+               </coding>
+            </type>
+            <subject>
+               <reference value="urn:uuid:4677a93d-3cb7-11f1-1257-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, E. XXX_Doppen"/>
+            </subject>
+            <receivedTime value="${DATE, T, D, -12}"/>
+            <collection>
+               <collectedDateTime value="${DATE, T, D, -13}"/>
+               <collectedPeriod>
+                  <start value="${DATE, T, D, -13}"/>
+                  <end value="${DATE, T, D, -12}"/>
+               </collectedPeriod>
+               <duration>
+                  <value value="24"/>
+                  <unit value="H"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="H"/>
+               </duration>
+               <quantity>
+                  <value value="1.75"/>
+                  <unit value="L"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="L"/>
+               </quantity>
+               <method>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="2475000"/>
+                     <display value="verzamelen van 24-uursurine"/>
+                  </coding>
+               </method>
+            </collection>
+            <container>
+               <extension url="http://hl7.org/fhir/StructureDefinition/specimen-sequenceNumber">
+                  <valueInteger value="1"/>
+               </extension>
+               <type>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="706055000"/>
+                     <display value="container voor 24-uursurine"/>
+                  </coding>
+               </type>
+            </container>
+            <note>
+               <text value="Monster is door patiënt zelf verzameld en ingeleverd."/>
+            </note>
+         </Specimen>
       </resource>
       <search>
          <mode value="include"/>

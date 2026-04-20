@@ -1,5 +1,5 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="lu-blr-kwal-max-loinc-correctie"/>
+   <id value="lu-blr-TEST-l2p-0Minimaal-vertaling-3KCLOINC"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -7,16 +7,16 @@
       <url value="http://dummy.nictiz.nl/dummyquery/"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:ed733dd5-3a3f-11f1-1260-020000000000"/>
+      <fullUrl value="urn:uuid:f2f702b3-3cb7-11f1-1084-020000000000"/>
       <resource>
          <Observation>
-            <id value="ed733dd5-3a3f-11f1-1260-020000000000"/>
+            <id value="f2f702b3-3cb7-11f1-1084-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
-               <value value="88888"/>
+               <value value="22222"/>
             </identifier>
             <status value="final"/>
             <category>
@@ -29,30 +29,21 @@
             <code>
                <coding>
                   <system value="http://loinc.org"/>
-                  <code value="2829-0"/>
-                  <display value="Kalium [mol/tijd] in 24-uursurine"/>
+                  <code value="14631-6"/>
+                  <display value="Bilirubine [mol/volume] in serum of plasma"/>
+               </coding>
+               <coding>
+                  <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen"/>
+                  <code value="111"/>
+                  <display value="bilirubine totaal"/>
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:ed733c77-3a3f-11f1-1260-020000000000"/>
+               <reference value="urn:uuid:f2f70155-3cb7-11f1-1084-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
-            <effectiveDateTime value="${DATE, T, D, -12}"/>
-            <performer>
-               <extension url="http://hl7.org/fhir/StructureDefinition/event-performerFunction">
-                  <valueCodeableConcept>
-                     <coding>
-                        <system value="http://terminology.hl7.org/CodeSystem/v3-ParticipationType"/>
-                        <code value="PPRF"/>
-                        <display value="primary performer"/>
-                     </coding>
-                  </valueCodeableConcept>
-               </extension>
-               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                  <valueCode value="unknown"/>
-               </extension>
-            </performer>
+            <effectiveDateTime value="${DATE, T, D, -13}"/>
             <performer>
                <extension url="http://hl7.org/fhir/StructureDefinition/event-performerFunction">
                   <valueCodeableConcept>
@@ -63,53 +54,16 @@
                      </coding>
                   </valueCodeableConcept>
                </extension>
-               <reference value="urn:uuid:ed733d35-3a3f-11f1-1260-020000000000"/>
+               <reference value="urn:uuid:f2f70213-3cb7-11f1-1084-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), organisation-id in system"/>
             </performer>
             <valueQuantity>
-               <value value="35"/>
-               <unit value="mmol/24h"/>
+               <value value="5.4"/>
+               <unit value="umol/L"/>
                <system value="http://unitsofmeasure.org"/>
-               <code value="{mmol/24h}"/>
+               <code value="umol/L"/>
             </valueQuantity>
-            <interpretation>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="11896004"/>
-                  <display value="intermediair"/>
-               </coding>
-               <coding>
-                  <system value="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"/>
-                  <code value="I"/>
-                  <display value="Intermediate"/>
-               </coding>
-            </interpretation>
-            <interpretation>
-               <text value="kaliumuitscheiding is aan de lage kant. Binnen referentiebereik. Klinische evaluatie gewenst in context van suppletie."/>
-            </interpretation>
-            <note>
-               <text value="Onderzoek voltooid"/>
-            </note>
-            <specimen>
-               <reference value="urn:uuid:ed733dfd-3a3f-11f1-1260-020000000000"/>
-               <type value="Specimen"/>
-               <display value="monster"/>
-            </specimen>
-            <referenceRange>
-               <low>
-                  <value value="25"/>
-                  <unit value="mmol/24h"/>
-                  <system value="http://unitsofmeasure.org"/>
-                  <code value="{mmol/24h}"/>
-               </low>
-               <high>
-                  <value value="125"/>
-                  <unit value="mmol/24h"/>
-                  <system value="http://unitsofmeasure.org"/>
-                  <code value="{mmol/24h}"/>
-               </high>
-            </referenceRange>
          </Observation>
       </resource>
       <search>
@@ -117,10 +71,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ed733c77-3a3f-11f1-1260-020000000000"/>
+      <fullUrl value="urn:uuid:f2f70155-3cb7-11f1-1084-020000000000"/>
       <resource>
          <Patient>
-            <id value="ed733c77-3a3f-11f1-1260-020000000000"/>
+            <id value="f2f70155-3cb7-11f1-1084-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -161,10 +115,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ed733d35-3a3f-11f1-1260-020000000000"/>
+      <fullUrl value="urn:uuid:f2f70213-3cb7-11f1-1084-020000000000"/>
       <resource>
          <Organization>
-            <id value="ed733d35-3a3f-11f1-1260-020000000000"/>
+            <id value="f2f70213-3cb7-11f1-1084-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -183,42 +137,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ed733dfd-3a3f-11f1-1260-020000000000"/>
-      <resource>
-         <Specimen>
-            <id value="ed733dfd-3a3f-11f1-1260-020000000000"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
-            </meta>
-            <type>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="276833005"/>
-                  <display value="24-uurs urine"/>
-               </coding>
-            </type>
-            <subject>
-               <reference value="urn:uuid:ed733c77-3a3f-11f1-1260-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, E. XXX_Doppen"/>
-            </subject>
-            <collection>
-               <collectedDateTime value="${DATE, T, D, -13}"/>
-            </collection>
-            <note>
-               <text value="Monster is door patiënt zelf verzameld en ingeleverd."/>
-            </note>
-         </Specimen>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:ed733cef-3a3f-11f1-1260-020000000000"/>
+      <fullUrl value="urn:uuid:f2f701cd-3cb7-11f1-1084-020000000000"/>
       <resource>
          <Organization>
-            <id value="ed733cef-3a3f-11f1-1260-020000000000"/>
+            <id value="f2f701cd-3cb7-11f1-1084-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -260,10 +182,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ed733cc7-3a3f-11f1-1260-020000000000"/>
+      <fullUrl value="urn:uuid:f2f701a5-3cb7-11f1-1084-020000000000"/>
       <resource>
          <Practitioner>
-            <id value="ed733cc7-3a3f-11f1-1260-020000000000"/>
+            <id value="f2f701a5-3cb7-11f1-1084-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
             </meta>
@@ -299,20 +221,20 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ed733c9f-3a3f-11f1-1260-020000000000"/>
+      <fullUrl value="urn:uuid:f2f7017d-3cb7-11f1-1084-020000000000"/>
       <resource>
          <PractitionerRole>
-            <id value="ed733c9f-3a3f-11f1-1260-020000000000"/>
+            <id value="f2f7017d-3cb7-11f1-1084-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:ed733cc7-3a3f-11f1-1260-020000000000"/>
+               <reference value="urn:uuid:f2f701a5-3cb7-11f1-1084-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:ed733cef-3a3f-11f1-1260-020000000000"/>
+               <reference value="urn:uuid:f2f701cd-3cb7-11f1-1084-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -334,42 +256,42 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ed733d85-3a3f-11f1-1260-020000000000"/>
+      <fullUrl value="urn:uuid:f2f70263-3cb7-11f1-1084-020000000000"/>
       <resource>
          <ServiceRequest>
-            <id value="ed733d85-3a3f-11f1-1260-020000000000"/>
+            <id value="f2f70263-3cb7-11f1-1084-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/lu-OrderData"/>
             </meta>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.25.1.1"/>
-               <value value="AG03"/>
+               <value value="AG02"/>
             </identifier>
             <status value="completed"/>
             <intent value="order"/>
             <code>
                <coding>
                   <system value="http://loinc.org"/>
-                  <code value="2829-0"/>
-                  <display value="Kalium [mol/tijd] in 24-uursurine"/>
+                  <code value="14631-6"/>
+                  <display value="Bilirubine [mol/volume] in serum of plasma"/>
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:ed733c77-3a3f-11f1-1260-020000000000"/>
+               <reference value="urn:uuid:f2f70155-3cb7-11f1-1084-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
             <authoredOn value="${DATE, T, D, -14}"/>
             <requester>
-               <reference value="urn:uuid:ed733c9f-3a3f-11f1-1260-020000000000"/>
+               <reference value="urn:uuid:f2f7017d-3cb7-11f1-1084-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
             </requester>
             <reasonCode>
-               <text value="Evaluatie kaliumuitscheiding bij hypertensie en kaliumsuppletie"/>
+               <text value="Follow-up bij eerder verhoogde ALAT"/>
             </reasonCode>
             <note>
-               <text value="Patiënt gebruikt kaliumsparend diureticum (spironolacton) én kaliumsupplementen. Beoordeeld wordt of er sprake is van kaliumretentie of verhoogde uitscheiding. Ook evaluatie therapietrouw 24-uurs verzameling."/>
+               <text value="Eerder lichte stijging ALAT (54 U/L), geen geelzucht. Hercontrole op leverenzymen en bilirubine. Patiënt gebruikt sinds 3 maanden geen alcohol meer"/>
             </note>
          </ServiceRequest>
       </resource>
@@ -378,23 +300,23 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ed733dad-3a3f-11f1-1260-020000000000"/>
+      <fullUrl value="urn:uuid:f2f7028b-3cb7-11f1-1084-020000000000"/>
       <resource>
          <DiagnosticReport>
-            <id value="ed733dad-3a3f-11f1-1260-020000000000"/>
+            <id value="f2f7028b-3cb7-11f1-1084-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/lu-LaboratoryTestResult-DiagnosticReport"/>
             </meta>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.25.1.1"/>
-               <value value="AG03"/>
+               <value value="AG02"/>
             </identifier>
             <basedOn>
-               <reference value="urn:uuid:ed733d85-3a3f-11f1-1260-020000000000"/>
+               <reference value="urn:uuid:f2f70263-3cb7-11f1-1084-020000000000"/>
                <type value="ServiceRequest"/>
                <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
             </basedOn>
-            <status value="corrected"/>
+            <status value="unknown"/>
             <category>
                <coding>
                   <system value="http://terminology.hl7.org/CodeSystem/v2-0074"/>
@@ -410,18 +332,18 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:ed733c77-3a3f-11f1-1260-020000000000"/>
+               <reference value="urn:uuid:f2f70155-3cb7-11f1-1084-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
-            <effectiveDateTime value="${DATE, T, D, -12}"/>
+            <effectiveDateTime value="${DATE, T, D, -13}"/>
             <performer>
-               <reference value="urn:uuid:ed733d35-3a3f-11f1-1260-020000000000"/>
+               <reference value="urn:uuid:f2f70213-3cb7-11f1-1084-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), organisation-id in system"/>
             </performer>
             <result>
-               <reference value="urn:uuid:ed733dd5-3a3f-11f1-1260-020000000000"/>
+               <reference value="urn:uuid:f2f702b3-3cb7-11f1-1084-020000000000"/>
                <type value="Observation"/>
                <display value="laboratorium_test"/>
             </result>

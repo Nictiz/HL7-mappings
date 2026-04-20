@@ -1,5 +1,5 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="lr-blr-KWAL-l2z-1.1CorrectMaximaal-bericht-3KCLOINC"/>
+   <id value="lr-blr-TEST-l2z-3CorrectMaximaal-bericht-3KCLOINC"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -7,10 +7,10 @@
       <url value="http://dummy.nictiz.nl/dummyquery/"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:b8e98d82-3a3e-11f1-3866-020000000000"/>
+      <fullUrl value="urn:uuid:4a96d6f1-3cb7-11f1-1087-020000000000"/>
       <resource>
          <Observation>
-            <id value="b8e98d82-3a3e-11f1-3866-020000000000"/>
+            <id value="4a96d6f1-3cb7-11f1-1087-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>
@@ -19,7 +19,7 @@
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
-               <value value="88888"/>
+               <value value="44444"/>
             </identifier>
             <status value="final"/>
             <category>
@@ -37,11 +37,25 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:b8e98d1e-3a3e-11f1-3866-020000000000"/>
+               <reference value="urn:uuid:4a96d68d-3cb7-11f1-1087-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, -12}"/>
+            <performer>
+               <extension url="http://hl7.org/fhir/StructureDefinition/event-performerFunction">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-ParticipationType"/>
+                        <code value="PPRF"/>
+                        <display value="primary performer"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                  <valueCode value="unknown"/>
+               </extension>
+            </performer>
             <performer>
                <extension url="http://hl7.org/fhir/StructureDefinition/event-performerFunction">
                   <valueCodeableConcept>
@@ -52,12 +66,12 @@
                      </coding>
                   </valueCodeableConcept>
                </extension>
-               <reference value="urn:uuid:b8e98d3c-3a3e-11f1-3866-020000000000"/>
+               <reference value="urn:uuid:4a96d6ab-3cb7-11f1-1087-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
             </performer>
             <valueQuantity>
-               <value value="33"/>
+               <value value="32"/>
                <unit value="mmol/(24.h)"/>
                <system value="http://unitsofmeasure.org"/>
                <code value="mmol/(24.h)"/>
@@ -78,10 +92,10 @@
                <text value="kaliumuitscheiding is aan de lage kant. Binnen referentiebereik. Klinische evaluatie gewenst in context van suppletie."/>
             </interpretation>
             <note>
-               <text value="Correctie"/>
+               <text value="Onderzoek voltooid."/>
             </note>
             <specimen>
-               <reference value="urn:uuid:b8e98daa-3a3e-11f1-3866-020000000000"/>
+               <reference value="urn:uuid:4a96d719-3cb7-11f1-1087-020000000000"/>
                <type value="Specimen"/>
                <display value="monster"/>
             </specimen>
@@ -106,10 +120,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b8e98d1e-3a3e-11f1-3866-020000000000"/>
+      <fullUrl value="urn:uuid:4a96d68d-3cb7-11f1-1087-020000000000"/>
       <resource>
          <Patient>
-            <id value="b8e98d1e-3a3e-11f1-3866-020000000000"/>
+            <id value="4a96d68d-3cb7-11f1-1087-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -150,10 +164,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b8e98d3c-3a3e-11f1-3866-020000000000"/>
+      <fullUrl value="urn:uuid:4a96d6ab-3cb7-11f1-1087-020000000000"/>
       <resource>
          <Organization>
-            <id value="b8e98d3c-3a3e-11f1-3866-020000000000"/>
+            <id value="4a96d6ab-3cb7-11f1-1087-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -191,16 +205,6 @@
                <use value="work"/>
             </telecom>
             <address>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
-                  <valueCodeableConcept>
-                     <coding>
-                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
-                        <code value="WP"/>
-                        <display value="Werkadres"/>
-                     </coding>
-                  </valueCodeableConcept>
-               </extension>
-               <use value="work"/>
                <line value="Hoofdstraat 23">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
                      <valueString value="Hoofdstraat"/>
@@ -210,7 +214,7 @@
                   </extension>
                </line>
                <city value="Zorgstad"/>
-               <postalCode value="2143AA"/>
+               <postalCode value="1234AA"/>
                <country value="Nederland">
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
                      <valueCodeableConcept>
@@ -231,14 +235,15 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b8e98daa-3a3e-11f1-3866-020000000000"/>
+      <fullUrl value="urn:uuid:4a96d719-3cb7-11f1-1087-020000000000"/>
       <resource>
          <Specimen>
-            <id value="b8e98daa-3a3e-11f1-3866-020000000000"/>
+            <id value="4a96d719-3cb7-11f1-1087-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
             </meta>
             <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4267.2"/>
                <value value="335"/>
             </identifier>
             <type>
@@ -249,7 +254,7 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:b8e98d1e-3a3e-11f1-3866-020000000000"/>
+               <reference value="urn:uuid:4a96d68d-3cb7-11f1-1087-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
@@ -282,7 +287,7 @@
             </collection>
             <container>
                <extension url="http://hl7.org/fhir/StructureDefinition/specimen-sequenceNumber">
-                  <valueInteger value="1"/>
+                  <valueInteger value="2"/>
                </extension>
                <type>
                   <coding>
