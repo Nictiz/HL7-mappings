@@ -1,5 +1,5 @@
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="b-LaboratoryTestResult-Observation-msz-4ef4840f-6aaa-11ec-0000-2"/>
+   <id value="b-LaboratoryTestResult-Observation-msz-67546385-6b27-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
    </meta>
@@ -7,24 +7,20 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Observatie/bepaling. Subject: Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik. Categorie: <span title="Laboratory (laboratory - observation-category)">Laboratory</span>, <span title="Microbiologie (19851009 - SNOMED CT)">Microbiologie</span>, Status: definitief</caption>
+            <caption>Observatie/bepaling. Subject: M.B. Bergzoon Verheul. Categorie: <span title="Laboratory (laboratory - observation-category)">Laboratory</span>, <span title="Microbiologie (19851009 - SNOMED CT)">Microbiologie</span>, Status: definitief</caption>
             <tfoot>
                <tr>
-                  <td colspan="2">Geen drager van MRSA</td>
+                  <td colspan="2">Negatief</td>
                </tr>
             </tfoot>
             <tbody>
-               <tr>
-                  <th>Gerelateerd</th>
-                  <td>has-member - S. aureus+MRSA screen Pnl Spec Cult</td>
-               </tr>
                <tr>
                   <th>Code</th>
                   <th>Waarde</th>
                </tr>
                <tr>
                   <td>
-                     <i>onbekend (ontbrekend gegeven)</i>
+                     <span title="Staphylococcus aureus identificatie &amp; resistentie panel in isolaat of monster d.m.v. moleculair genetisch onderzoek (97326-3 - LOINC)">Staphylococcus aureus identificatie &amp; resistentie panel in isolaat of monster d.m.v. moleculair genetisch onderzoek</span>
                   </td>
                   <td/>
                </tr>
@@ -63,20 +59,15 @@
       </coding>
    </category>
    <code>
-      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-         <valueCode value="unknown"/>
-      </extension>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="97326-3"/>
+         <display value="Staphylococcus aureus identificatie &amp; resistentie panel in isolaat of monster d.m.v. moleculair genetisch onderzoek"/>
+      </coding>
    </code>
    <subject>
-      <reference value="Patient/GHANIYA-SAIDA-G-S-N--GHAN-NOERMOHAMED-ELIK"/>
-      <display value="Ghaniya Saïda G.S.N. Ghan Noermohamed Çelik"/>
+      <reference value="Patient/bgz-msz-patB"/>
+      <display value="M.B. Bergzoon Verheul"/>
    </subject>
-   <comment value="Geen drager van MRSA"/>
-   <related>
-      <type value="has-member"/>
-      <target>
-         <reference value="Observation/b-LaboratoryTestResult-Observation-msz-a2acfc52-6b1e-11ec-0000-2"/>
-         <display value="S. aureus+MRSA screen Pnl Spec Cult"/>
-      </target>
-   </related>
+   <comment value="Negatief"/>
 </Observation>

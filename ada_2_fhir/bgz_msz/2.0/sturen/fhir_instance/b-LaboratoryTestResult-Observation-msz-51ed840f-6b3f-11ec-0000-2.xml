@@ -1,5 +1,5 @@
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="b-LaboratoryTestResult-Observation-msz-b8d452c5-6b76-11ec-0000-2"/>
+   <id value="b-LaboratoryTestResult-Observation-msz-51ed840f-6b3f-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
    </meta>
@@ -7,20 +7,24 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Observatie/bepaling. Subject: Michelle M.B. Michelle Bergzoon Verheul. Categorie: <span title="Laboratory (laboratory - observation-category)">Laboratory</span>, <span title="Microbiologie (19851009 - SNOMED CT)">Microbiologie</span>, Status: definitief</caption>
+            <caption>Observatie/bepaling. Subject: G.S.N. Noermohamed Çelik. Categorie: <span title="Laboratory (laboratory - observation-category)">Laboratory</span>, <span title="Microbiologie (19851009 - SNOMED CT)">Microbiologie</span>, Status: definitief</caption>
             <tfoot>
                <tr>
-                  <td colspan="2">Positief</td>
+                  <td colspan="2">Geen drager van MRSA</td>
                </tr>
             </tfoot>
             <tbody>
+               <tr>
+                  <th>Gerelateerd</th>
+                  <td>has-member - S. aureus+MRSA screen Pnl Spec Cult</td>
+               </tr>
                <tr>
                   <th>Code</th>
                   <th>Waarde</th>
                </tr>
                <tr>
                   <td>
-                     <span title="Staphylococcus aureus identificatie &amp; resistentie panel in isolaat of monster d.m.v. moleculair genetisch onderzoek (97326-3 - LOINC)">Staphylococcus aureus identificatie &amp; resistentie panel in isolaat of monster d.m.v. moleculair genetisch onderzoek</span>
+                     <i>onbekend (ontbrekend gegeven)</i>
                   </td>
                   <td/>
                </tr>
@@ -28,10 +32,6 @@
          </table>
       </div>
    </text>
-   <basedOn>
-      <reference value="ProcedureRequest/zib-ProcedureRequest-msz-b8d452c5-6b76-11ec-0000-2"/>
-      <display value="Staphylococcus aureus identificatie &amp; resistentie panel in isolaat of monster d.m.v. moleculair genetisch onderzoek"/>
-   </basedOn>
    <status value="final">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
          <valueCodeableConcept>
@@ -63,15 +63,20 @@
       </coding>
    </category>
    <code>
-      <coding>
-         <system value="http://loinc.org"/>
-         <code value="97326-3"/>
-         <display value="Staphylococcus aureus identificatie &amp; resistentie panel in isolaat of monster d.m.v. moleculair genetisch onderzoek"/>
-      </coding>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
    </code>
    <subject>
-      <reference value="Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL"/>
-      <display value="Michelle M.B. Michelle Bergzoon Verheul"/>
+      <reference value="Patient/bgz-msz-patD"/>
+      <display value="G.S.N. Noermohamed Çelik"/>
    </subject>
-   <comment value="Positief"/>
+   <comment value="Geen drager van MRSA"/>
+   <related>
+      <type value="has-member"/>
+      <target>
+         <reference value="Observation/b-LaboratoryTestResult-Observation-msz-a2acfc52-6b1e-11ec-0000-2"/>
+         <display value="S. aureus+MRSA screen Pnl Spec Cult"/>
+      </target>
+   </related>
 </Observation>
