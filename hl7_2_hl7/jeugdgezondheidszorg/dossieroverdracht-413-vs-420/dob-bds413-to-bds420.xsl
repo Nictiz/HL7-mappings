@@ -1371,7 +1371,7 @@
     </xd:doc>
     <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R019'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob413">
         <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[not(hl7:observation[hl7:code[@code = '149' or @code = '150' or @code = '153' or @code = '510' or @code = '752' or @code = '753' or @code = '1412' or @code = '1499' or @code = '1500'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']])]) > 0">
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[not(hl7:groupCluster[hl7:code[@code = 'G087']] or hl7:observation[hl7:code[@code = '149' or @code = '150' or @code = '153' or @code = '510' or @code = '752' or @code = '753' or @code = '1412' or @code = '1499' or @code = '1500'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']])]) > 0">
                 <xsl:copy>
                     <xsl:apply-templates select="@* | node()" mode="dob413"/>
                 </xsl:copy>
