@@ -1,5 +1,5 @@
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="b-LaboratoryTestResult-Observation-msz-a2acfc52-6b1e-11ec-0000-2"/>
+   <id value="b-LaboratoryTestResult-Observation-msz-ac4f3baa-6ad5-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
    </meta>
@@ -8,10 +8,19 @@
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
             <caption>Observatie/bepaling. Subject: G.S.N. Noermohamed Çelik. Categorie: <span title="Laboratory (laboratory - observation-category)">Laboratory</span>, <span title="Microbiologie (19851009 - SNOMED CT)">Microbiologie</span>, Status: definitief</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Geen drager van MRSA</td>
+               </tr>
+            </tfoot>
             <tbody>
                <tr>
                   <th>Bepalingdatum/tijd</th>
-                  <td>10:15:00, 22 juni 2008</td>
+                  <td>11:45:00, 22 juni 2008</td>
+               </tr>
+               <tr>
+                  <th>Gerelateerd</th>
+                  <td>has-member - Meticillineresistente Staphylococcus aureus DNA [aanwezigheid] d.m.v. probe-detectie</td>
                </tr>
                <tr>
                   <th>Code</th>
@@ -19,9 +28,9 @@
                </tr>
                <tr>
                   <td>
-                     <span title="S. aureus+MRSA screen Pnl Spec Cult (100913-3 - LOINC)">S. aureus+MRSA screen Pnl Spec Cult</span>
+                     <span title="Meticillineresistente Staphylococcus aureus DNA [aanwezigheid] d.m.v. probe-detectie (35492-8 - LOINC)">Meticillineresistente Staphylococcus aureus DNA [aanwezigheid] d.m.v. probe-detectie</span>
                   </td>
-                  <td>Geen MRSA</td>
+                  <td/>
                </tr>
             </tbody>
          </table>
@@ -60,14 +69,21 @@
    <code>
       <coding>
          <system value="http://loinc.org"/>
-         <code value="100913-3"/>
-         <display value="S. aureus+MRSA screen Pnl Spec Cult"/>
+         <code value="35492-8"/>
+         <display value="Meticillineresistente Staphylococcus aureus DNA [aanwezigheid] d.m.v. probe-detectie"/>
       </coding>
    </code>
    <subject>
       <reference value="Patient/bgz-msz-patD"/>
       <display value="G.S.N. Noermohamed Çelik"/>
    </subject>
-   <effectiveDateTime value="2008-06-22T10:15:00+02:00"/>
-   <valueString value="Geen MRSA"/>
+   <effectiveDateTime value="2008-06-22T11:45:00+02:00"/>
+   <comment value="Geen drager van MRSA"/>
+   <related>
+      <type value="has-member"/>
+      <target>
+         <reference value="Observation/b-LaboratoryTestResult-Observation-msz-a29a0c52-6b6c-11ec-0000-2"/>
+         <display value="Meticillineresistente Staphylococcus aureus DNA [aanwezigheid] d.m.v. probe-detectie"/>
+      </target>
+   </related>
 </Observation>
