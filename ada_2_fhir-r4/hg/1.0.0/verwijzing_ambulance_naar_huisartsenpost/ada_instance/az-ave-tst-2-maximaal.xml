@@ -3,7 +3,7 @@
          created-by="hguitwisselingada"
          last-update-by="hguitwisselingada"
          creation-date="2026-02-11T10:53:01.497Z"
-         last-update-date="2026-04-13T10:24:02.318Z"/>
+         last-update-date="2026-04-22T14:41:40.615Z"/>
    <data>
       <verwijzing_ambulance_naar_huisartsenpost app="hg-1.0.0"
                                                 shortName="verwijzing_ambulance_naar_huisartsenpost"
@@ -13,7 +13,7 @@
                                                 versionDate=""
                                                 prefix="hg-"
                                                 language="nl-NL"
-                                                title="MaximaalBerichtTestDag"
+                                                title="MaximaalBerichtTest"
                                                 desc=""
                                                 id="az-ave-tst-2-maximaal">
          <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1199">
@@ -57,6 +57,16 @@
                   <additionele_informatie value="Gebouwnummer 12"
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.25"/>
                </adresgegevens>
+               <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.27">
+                  <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.28">
+                     <telefoonnummer value="0211234567"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.29"/>
+                  </telefoonnummers>
+                  <email_adressen conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.33">
+                     <email_adres value="patient@test.com"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.34"/>
+                  </email_adressen>
+               </contactgegevens>
                <identificatienummer value="999910188"
                                     root="2.16.840.1.113883.2.4.3.11.60.103.2.36"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.36"/>
@@ -78,7 +88,7 @@
                </naamgegevens>
                <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5266">
                   <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5267">
-                     <telefoonnummer value="0612345678"
+                     <telefoonnummer value="0211234568"
                                      conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5268"/>
                   </telefoonnummers>
                </contactgegevens>
@@ -88,7 +98,8 @@
                         codeSystem="2.16.840.1.113883.5.111"
                         displayName="Oom"/>
             </contactpersoon>
-            <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5322">
+            <zorgverlener id="AMB_verpleegkundige_MAX"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5322">
                <zorgverlener_identificatienummer value="111110000"
                                                  root="2.16.840.1.113883.2.4.3.11.60.103.2.3.5323"
                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5323"/>
@@ -100,14 +111,19 @@
                             codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
                             codeSystemVersion="2025-11-11T00:00:00"
                             displayName="Verpleegkundige"/>
-               <zorgverlener_rol originalText="Ambulance"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5361"
-                                 value="8"
-                                 code="OTH"
-                                 codeSystem="2.16.840.1.113883.5.1008"
-                                 displayName="Anders"/>
+               <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5359">
+                  <zorgaanbieder value="CPA_MAX"
+                                 datatype="reference"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5548"/>
+               </zorgaanbieder>
+               <zorgverlener_rol conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5361"
+                                 value="2"
+                                 code="REF"
+                                 codeSystem="2.16.840.1.113883.5.90"
+                                 displayName="Verwijzer"/>
             </zorgverlener>
-            <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5322">
+            <zorgverlener id="HA_MAX"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5322">
                <zorgverlener_identificatienummer value="000001111"
                                                  root="2.16.840.1.113883.2.4.3.11.60.103.2.3.5323"
                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5323"/>
@@ -119,17 +135,23 @@
                             codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
                             codeSystemVersion="2025-11-11T00:00:00"
                             displayName="Huisarts"/>
+               <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5359">
+                  <zorgaanbieder value="HAP_MAX"
+                                 datatype="reference"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5548"/>
+               </zorgaanbieder>
                <zorgverlener_rol conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5361"
-                                 value="8"
-                                 code="OTH"
-                                 codeSystem="2.16.840.1.113883.5.1008"
-                                 displayName="Anders"/>
+                                 value="3"
+                                 code="PRF"
+                                 codeSystem="2.16.840.1.113883.5.90"
+                                 displayName="Uitvoerder"/>
             </zorgverlener>
-            <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5362">
-               <zorgaanbieder_identificatienummer value="123456789012345"
+            <zorgaanbieder id="HAP_MAX"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5362">
+               <zorgaanbieder_identificatienummer value="12345678"
                                                   root="2.16.528.1.1007.3.3"
                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5363"/>
-               <organisatie_naam value="Huisartsenpraktijk nummer 12"
+               <organisatie_naam value="Huisartsenpost Max"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5364"/>
                <afdeling_specialisme preferred="true"
                                      conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5365"
@@ -141,16 +163,43 @@
                                      displayName="Huisartspraktijk"/>
                <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5366">
                   <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5367">
-                     <telefoonnummer value="0698765432"
+                     <telefoonnummer value="0218765432"
                                      conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5368"/>
                   </telefoonnummers>
                </contactgegevens>
-               <organisatie_type preferred="true"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5387"
-                                 value="18"
-                                 code="Z3"
+               <organisatie_type conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5387"
+                                 value="20"
+                                 code="N6"
                                  codeSystem="2.16.840.1.113883.2.4.15.1060"
-                                 displayName="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
+                                 displayName="Huisartsenpost (t.b.v. dienstwaarneming)"/>
+            </zorgaanbieder>
+            <zorgaanbieder id="CPA_MAX"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5362">
+               <zorgaanbieder_identificatienummer value="00003338"
+                                                  root="2.16.528.1.1007.3.3"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5363"/>
+               <organisatie_naam value="AmbulancePost Max"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5364"/>
+               <afdeling_specialisme preferred="true"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5365"
+                                     value="333"
+                                     code="5800"
+                                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                                     codeSystemName="COD016-VEKT Zorgverlenersspecificatie (subberoepsgroep)"
+                                     codeSystemVersion="2025-11-26T00:00:00"
+                                     displayName="Centrale posten ambulancediensten (CPA's)"/>
+               <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5366">
+                  <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5367">
+                     <telefoonnummer value="0217536985"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5368"/>
+                  </telefoonnummers>
+               </contactgegevens>
+               <organisatie_type code=" AMB"
+                                 codeSystem="2.16.840.1.113883.2.4.4.30.12"
+                                 codeSystemName="NHG Code specialisme"
+                                 displayName="ambulancedienst"
+                                 preferred="true"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5387"/>
             </zorgaanbieder>
          </bouwstenen>
          <envelop conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1673">
@@ -159,18 +208,41 @@
                         datatype="reference"
                         conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1676"/>
             </patientgegevens>
+            <verzender conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5089">
+               <zorgverlener value="AMB_verpleegkundige_MAX"
+                             datatype="reference"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5398"/>
+               <zorgaanbieder value="CPA_MAX"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5391"/>
+            </verzender>
+            <ontvanger conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1680">
+               <zorgverlener value="HA_MAX"
+                             datatype="reference"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5399"/>
+               <zorgaanbieder value="HAP_MAX"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5400"/>
+            </ontvanger>
+            <bestemmingsgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5555">
+               <bestemmingsstatus conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5556"
+                                  value="3"
+                                  code="completed"
+                                  codeSystem="2.16.840.1.113883.5.14"
+                                  displayName="completed"/>
+            </bestemmingsgegevens>
             <datum_en_tijd value="T"
                            datatype="datetime"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1684"/>
          </envelop>
          <kern conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1709">
             <reden_bericht conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1872">
-               <context value="Graag uw beoordeling voor breuk"
+               <context value="Graag uw beoordeling, verdenking breuk"
                         conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1710"/>
             </reden_bericht>
-            <ingestelde_behandeling value="Drukverband"
+            <ingestelde_behandeling value="Aanleggen van drukverband "
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1711"/>
-            <diagnose_conclusie value="Enkel distorsie"
+            <diagnose_conclusie value="Enkeldistorsie"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1749"/>
             <afgesproken_met_patient value="Naar de HAP voor foto"
                                      conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1752"/>
@@ -180,6 +252,52 @@
                <identificatienummer value="1234ABC"
                                     root="2.16.840.1.113883.2.4.3.11"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5458"/>
+               <communicatie_afzender conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5464">
+                  <zorgaanbieder value="CPA_MAX"
+                                 datatype="reference"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5465"/>
+                  <zorgverlener value="AMB_verpleegkundige_MAX"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5466"/>
+                  <patient value="az-ave-tst-2-maximaal#XXX_Sijthoff"
+                           datatype="reference"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5467"/>
+               </communicatie_afzender>
+               <communicatie_geadresseerde conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5468">
+                  <zorgaanbieder value="HAP_MAX"
+                                 datatype="reference"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5469"/>
+                  <zorgverlener value="HA_MAX"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5470"/>
+                  <patient value="XXX_Sijthoff"
+                           datatype="reference"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5471"/>
+               </communicatie_geadresseerde>
+               <document conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5472">
+                  <document_identificatie value="x"
+                                          root="2.16.840.1.113883.2.4.3.11.60.103.2.3.5473"
+                                          conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5473"/>
+                  <document_set_identificatie value="4513515"
+                                              root="2.16.840.1.113883.2.4.3.11.60.103.2.3.5474"
+                                              conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5474"/>
+                  <document_versienummer value="1"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5475"/>
+                  <document_bestandtype value="application/pdf"
+                                        conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5476"/>
+                  <document_inhoud value="blob"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5477"/>
+                  <document_naam value="ambulance verslag"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5552"/>
+                  <document_creatie_datum_tijd value="T"
+                                               datatype="datetime"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5553"/>
+                  <document_type conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5554"
+                                 value="6"
+                                 code="006"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.55.5.16"
+                                 displayName="intern rapport/overdracht"/>
+               </document>
             </communicatie_item>
          </dossiergegevens>
       </verwijzing_ambulance_naar_huisartsenpost>
