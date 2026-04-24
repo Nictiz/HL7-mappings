@@ -1,41 +1,58 @@
-<?xml-model href="../../../../../../art_decor/ada_2_test-xslt/jgz/7.1/dossieroverdracht/test_xslt_instance/DOB-4.0.0-KWAL_ontvangen_DOBv3_mini.sch " type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<REPC_IN902120NL03 xsi:schemaLocation="urn:hl7-org:v3 ../../hl7v3_schemas/REPC_IN902120NL03.xsd"
+<REPC_IN902120NL04 xsi:schemaLocation="urn:hl7-org:v3 ../schemas/REPC_IN902120NL04.xsd"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xmlns="urn:hl7-org:v3"
-                   xmlns:hl7="urn:hl7-org:v3"
-                   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+                   xmlns:util="urn:hl7:utilities">
    <id extension="1243567"
-       root="2.16.528.1.1007.3.3.12345678.1"/>
-   <creationTime value="20000101000000"/>
-   <versionCode code="NICTIZEd2005-Okt"/>
-   <interactionId extension="REPC_IN902120NL03"
+       root="2.16.528.1.1007.3.3.12345678.1"
+       xmlns:hl7="urn:hl7-org:v3"
+       xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+   <creationTime value="20000101000000"
+                 xmlns:hl7="urn:hl7-org:v3"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+   <versionCode code="NICTIZEd2005-Okt"
+                xmlns:hl7="urn:hl7-org:v3"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+   <interactionId extension="REPC_IN902120NL04"
                   root="2.16.840.1.113883.1.6"/>
    <profileId extension="810"
-              root="2.16.840.1.113883.2.4.3.11.1"/>
-   <processingCode code="P"/>
-   <processingModeCode code="T"/>
-   <acceptAckCode code="AL"/>
-   <attentionLine>
+              root="2.16.840.1.113883.2.4.3.11.1"
+              xmlns:hl7="urn:hl7-org:v3"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+   <processingCode code="P"
+                   xmlns:hl7="urn:hl7-org:v3"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+   <processingModeCode code="T"
+                       xmlns:hl7="urn:hl7-org:v3"
+                       xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+   <acceptAckCode code="AL"
+                  xmlns:hl7="urn:hl7-org:v3"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+   <attentionLine xmlns:hl7="urn:hl7-org:v3"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <keyWordText code="PATID"
                    codeSystem="2.16.840.1.113883.2.4.15.1">Patient.id</keyWordText>
       <value xsi:type="II"
              extension="999902003"
              root="2.16.840.1.113883.2.4.6.3"/>
    </attentionLine>
-   <receiver>
+   <receiver xmlns:hl7="urn:hl7-org:v3"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <device>
          <id extension="{$receiverId}"
              root="2.16.840.1.113883.2.4.6.6"/>
       </device>
    </receiver>
-   <sender>
+   <sender xmlns:hl7="urn:hl7-org:v3"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <device>
          <id extension="{$applicationId}"
              root="2.16.840.1.113883.2.4.6.6"/>
       </device>
    </sender>
    <ControlActProcess classCode="CACT"
-                      moodCode="EVN">
+                      moodCode="EVN"
+                      xmlns:hl7="urn:hl7-org:v3"
+                      xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <authorOrPerformer typeCode="AUT">
          <participant>
             <AssignedDevice>
@@ -202,44 +219,9 @@
                               <code code="R026"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.391"
                                     displayName="Genitalia/puberteitsontwikkeling"/>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40225"/>
-                                    <code code="225"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Genitalia/puberteitsontwikkeling onderzocht"/>
-                                    <value xsi:type="BL"
-                                           value="true"/>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40232"/>
-                                    <code code="232"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Bijzonderheden penis"/>
-                                    <value xsi:type="CV"
-                                           nullFlavor="OTH">
-                                       <originalText>Onderontwikkeld</originalText>
-                                    </value>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40806"/>
-                                    <code code="806"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Scrotale testes"/>
-                                    <value xsi:type="BL"
-                                           value="true"/>
-                                 </observation>
-                              </component>
+                              <!-- element 225 Genitalia/puberteitsontwikkeling onderzocht is vervallen -->
+                              <!-- element 232 Bijzonderheden penis is vervallen -->
+                              <!-- element 806 Scrotale testes is vervallen -->
                               <component>
                                  <observation classCode="OBS"
                                               moodCode="EVN"
@@ -268,34 +250,8 @@
                                            displayName="Verworven niet scrotale testis, niet palpabel"/>
                                  </observation>
                               </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40233"/>
-                                    <code code="233"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Bijzonderheden scrotum rechts"/>
-                                    <value xsi:type="CV"
-                                           code="01"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.27"
-                                           displayName="Hydrokele"/>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41393"/>
-                                    <code code="1393"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Bijzonderheden scrotum links"/>
-                                    <value xsi:type="CV"
-                                           code="02"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.27"
-                                           displayName="Varicokele"/>
-                                 </observation>
-                              </component>
+                              <!-- element 233 Bijzonderheden scrotum rechts is vervallen -->
+                              <!-- element 1393 Bijzonderheden scrotum links is vervallen -->
                               <component>
                                  <observation classCode="OBS"
                                               moodCode="EVN"
@@ -308,9 +264,7 @@
                                            code="01"
                                            codeSystem="2.16.840.1.113883.2.4.4.40.43"
                                            displayName="G1"/>
-                                    <methodCode code="1"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.34"
-                                                displayName="Onderzocht"/>
+                                    <!-- element 314 Methode onderzoek ontwikkeling genitalia jongen is vervallen -->
                                  </observation>
                               </component>
                               <component>
@@ -325,9 +279,7 @@
                                            code="01"
                                            codeSystem="2.16.840.1.113883.2.4.4.40.44"
                                            displayName="P1"/>
-                                    <methodCode code="1"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.34"
-                                                displayName="Onderzocht"/>
+                                    <!-- element 316 Methode onderzoek pubesbeharing jongen is vervallen -->
                                  </observation>
                               </component>
                            </rubricCluster>
@@ -365,4 +317,4 @@
          </CareProvisionRequest>
       </subject>
    </ControlActProcess>
-</REPC_IN902120NL03>
+</REPC_IN902120NL04>

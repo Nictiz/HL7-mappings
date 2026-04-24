@@ -1,40 +1,58 @@
-<REPC_IN902120NL03 xsi:schemaLocation="urn:hl7-org:v3 ../../hl7v3_schemas/REPC_IN902120NL03.xsd"
+<REPC_IN902120NL04 xsi:schemaLocation="urn:hl7-org:v3 ../schemas/REPC_IN902120NL04.xsd"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xmlns="urn:hl7-org:v3"
-                   xmlns:hl7="urn:hl7-org:v3"
-                   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+                   xmlns:util="urn:hl7:utilities">
    <id extension="1243567"
-       root="2.16.528.1.1007.3.3.12345678.1"/>
-   <creationTime value="20000101000000"/>
-   <versionCode code="NICTIZEd2005-Okt"/>
-   <interactionId extension="REPC_IN902120NL03"
+       root="2.16.528.1.1007.3.3.12345678.1"
+       xmlns:hl7="urn:hl7-org:v3"
+       xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+   <creationTime value="20000101000000"
+                 xmlns:hl7="urn:hl7-org:v3"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+   <versionCode code="NICTIZEd2005-Okt"
+                xmlns:hl7="urn:hl7-org:v3"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+   <interactionId extension="REPC_IN902120NL04"
                   root="2.16.840.1.113883.1.6"/>
    <profileId extension="810"
-              root="2.16.840.1.113883.2.4.3.11.1"/>
-   <processingCode code="P"/>
-   <processingModeCode code="T"/>
-   <acceptAckCode code="AL"/>
-   <attentionLine>
+              root="2.16.840.1.113883.2.4.3.11.1"
+              xmlns:hl7="urn:hl7-org:v3"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+   <processingCode code="P"
+                   xmlns:hl7="urn:hl7-org:v3"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+   <processingModeCode code="T"
+                       xmlns:hl7="urn:hl7-org:v3"
+                       xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+   <acceptAckCode code="AL"
+                  xmlns:hl7="urn:hl7-org:v3"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+   <attentionLine xmlns:hl7="urn:hl7-org:v3"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <keyWordText code="PATID"
                    codeSystem="2.16.840.1.113883.2.4.15.1">Patient.id</keyWordText>
       <value xsi:type="II"
-             extension="123456782"
+             extension="999900183"
              root="2.16.840.1.113883.2.4.6.3"/>
    </attentionLine>
-   <receiver>
+   <receiver xmlns:hl7="urn:hl7-org:v3"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <device>
          <id extension="{$receiverId}"
              root="2.16.840.1.113883.2.4.6.6"/>
       </device>
    </receiver>
-   <sender>
+   <sender xmlns:hl7="urn:hl7-org:v3"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <device>
          <id extension="{$applicationId}"
              root="2.16.840.1.113883.2.4.6.6"/>
       </device>
    </sender>
    <ControlActProcess classCode="CACT"
-                      moodCode="EVN">
+                      moodCode="EVN"
+                      xmlns:hl7="urn:hl7-org:v3"
+                      xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <authorOrPerformer typeCode="AUT">
          <participant>
             <AssignedDevice>
@@ -51,7 +69,7 @@
       <subject>
          <CareProvisionRequest>
             <templateId root="2.16.840.1.113883.2.4.6.10.100.10000"/>
-            <id extension="123456782"
+            <id extension="54321"
                 root="2.16.528.1.1007.3.3.1111.999.2"/>
             <code code="CPHC"
                   codeSystem="2.16.840.1.113883.5.4"
@@ -67,7 +85,7 @@
             </author>
             <sequelTo>
                <careProvisionEvent moodCode="EVN">
-                  <id extension="123456782"
+                  <id extension="54321"
                       root="2.16.528.1.1007.3.3.1111.999.2"/>
                   <code codeSystem="2.16.840.1.113883.5.4"
                         code="CPHC"
@@ -79,14 +97,34 @@
                   <subject typeCode="SBJ">
                      <patient classCode="PAT">
                         <templateId root="2.16.840.1.113883.2.4.6.10.100.131"/>
-                        <id extension="123456782"
+                        <id extension="999900183"
                             root="2.16.840.1.113883.2.4.6.3"/>
+                        <addr use="HP">
+                           <streetName>Knolweg</streetName>
+                           <houseNumber>1001</houseNumber>
+                           <postalCode>9999 XX</postalCode>
+                           <city>Stitswerd</city>
+                           <country code="6030"
+                                    codeSystem="2.16.840.1.113883.2.4.4.16.34"
+                                    displayName="Nederland"
+                                    codeSystemName="GBA Tabel 34 Landen"
+                                    codeSystemVersion="2020-03-31T00:00:00">Nederland</country>
+                        </addr>
+                        <telecom use="HP"
+                                 value="tel:050-7656633"/>
+                        <telecom value="mailto:xxx_gioparidon@test.nl"/>
                         <statusCode code="active"/>
                         <patientPerson>
                            <name use="OR">
-                              <family qualifier="BR">AchternaamTest</family>
+                              <given>Giovani</given>
+                              <prefix qualifier="VV BR">van</prefix>
+                              <family qualifier="BR">XXX_Paridon</family>
                            </name>
-                           <birthTime value="19000101"/>
+                           <administrativeGenderCode xsi:type="CV"
+                                                     code="M"
+                                                     codeSystem="2.16.840.1.113883.5.1"
+                                                     displayName="Mannelijk"/>
+                           <birthTime value="19861101"/>
                         </patientPerson>
                      </patient>
                   </subject>
@@ -98,20 +136,20 @@
                             root="2.16.528.1.1007.3.3"/>
                         <assignedOrganization classCode="ORG"
                                               determinerCode="INSTANCE">
-                           <name>GGD TEST</name>
+                           <name>GGD Groningen</name>
                         </assignedOrganization>
                      </assignedEntity>
                   </author>
                   <component7 typeCode="COMP">
                      <encounter classCode="ENC"
                                 moodCode="EVN">
-                        <id extension="01"
-                            root="2.16.528.1.1007.3.3.1111.999.2"/>
-                        <code code="01"
+                        <id extension="3"
+                            root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
+                        <code code="41"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
-                              displayName="Contact 4-7 dagen"/>
+                              displayName="Contact 12 tot 18 jaar"/>
                         <statusCode code="completed"/>
-                        <effectiveTime value="19000101"/>
+                        <effectiveTime value="19991101"/>
                         <!-- r018_activiteit -->
                         <pertinentInformation typeCode="PERT">
                            <rubricCluster classCode="CLUSTER"
@@ -120,6 +158,20 @@
                               <code code="R018"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.391"
                                     displayName="Activiteit"/>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41577"/>
+                                    <code code="1577"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Vorm activiteit"/>
+                                    <value xsi:type="CV"
+                                           code="03"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.424"
+                                           displayName="Face-to-face, anders dan huisbezoek of inloopspreekuur"/>
+                                 </observation>
+                              </component>
                               <component>
                                  <observation classCode="OBS"
                                               moodCode="EVN"
@@ -136,32 +188,40 @@
                               </component>
                            </rubricCluster>
                         </pertinentInformation>
-                        <!-- r054_screeningsinstrumenten -->
+                        <!-- r021_functioneren -->
                         <pertinentInformation>
                            <rubricCluster classCode="CLUSTER"
                                           moodCode="EVN">
-                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11054"/>
-                              <code code="R054"
+                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11021"/>
+                              <code code="R021"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Screeningsinstrumenten"/>
+                                    displayName="Functioneren"/>
+                              <!-- element 321 Lichamelijk functioneren nagevraagd is vervallen -->
+                              <!-- element 772 Adaptatie/persoonlijkheid/sociaal gedrag nagevraagd is vervallen -->
                               <component>
                                  <observation classCode="OBS"
                                               moodCode="EVN"
                                               negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41345"/>
-                                    <code code="1345"
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40774"/>
+                                    <code code="774"
                                           codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Bijzonderheden SPP"/>
-                                    <effectiveTime value="20000101"/>
-                                    <value xsi:type="ST"
-                                           nullFlavor="NI"/>
-                                    <location typeCode="LOC">
-                                       <serviceDeliveryLocation>
-                                          <code code="03"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.372"
-                                                displayName="Consult"/>
-                                       </serviceDeliveryLocation>
-                                    </location>
+                                          displayName="Relatie met ouder/verzorger"/>
+                                    <value xsi:type="ST">goed</value>
+                                 </observation>
+                              </component>
+                              <!-- element 787 Functioneren op school nagevraagd is vervallen -->
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41601"/>
+                                    <code code="1601"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Schoolverzuim"/>
+                                    <value xsi:type="CV"
+                                           code="01"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.432"
+                                           displayName="Onderzocht, geen bijzonderheden"/>
                                  </observation>
                               </component>
                            </rubricCluster>
@@ -175,7 +235,7 @@
                         <code code="1197"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Status in zorg"/>
-                        <effectiveTime value="19000101"/>
+                        <effectiveTime value="19900801"/>
                         <reasonCode code="01"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.376"
                                     displayName="Regulier"/>
@@ -188,10 +248,10 @@
                         <code code="487"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Zorgbeëindiging"/>
-                        <effectiveTime value="19010101"/>
-                        <reasonCode code="04"
+                        <effectiveTime value="20000101"/>
+                        <reasonCode code="01"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.82"
-                                    displayName="Leeftijd"/>
+                                    displayName="Overdracht naar een andere JGZ-organisatie"/>
                      </careStatus>
                   </subjectOf>
                </careProvisionEvent>
@@ -199,4 +259,4 @@
          </CareProvisionRequest>
       </subject>
    </ControlActProcess>
-</REPC_IN902120NL03>
+</REPC_IN902120NL04>

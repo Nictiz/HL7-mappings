@@ -32,7 +32,7 @@
       <keyWordText code="PATID"
                    codeSystem="2.16.840.1.113883.2.4.15.1">Patient.id</keyWordText>
       <value xsi:type="II"
-             extension="123456782"
+             extension="999900183"
              root="2.16.840.1.113883.2.4.6.3"/>
    </attentionLine>
    <receiver xmlns:hl7="urn:hl7-org:v3"
@@ -69,7 +69,7 @@
       <subject>
          <CareProvisionRequest>
             <templateId root="2.16.840.1.113883.2.4.6.10.100.10000"/>
-            <id extension="123456782"
+            <id extension="54321"
                 root="2.16.528.1.1007.3.3.1111.999.2"/>
             <code code="CPHC"
                   codeSystem="2.16.840.1.113883.5.4"
@@ -85,7 +85,7 @@
             </author>
             <sequelTo>
                <careProvisionEvent moodCode="EVN">
-                  <id extension="123456782"
+                  <id extension="54321"
                       root="2.16.528.1.1007.3.3.1111.999.2"/>
                   <code codeSystem="2.16.840.1.113883.5.4"
                         code="CPHC"
@@ -97,14 +97,34 @@
                   <subject typeCode="SBJ">
                      <patient classCode="PAT">
                         <templateId root="2.16.840.1.113883.2.4.6.10.100.131"/>
-                        <id extension="123456782"
+                        <id extension="999900183"
                             root="2.16.840.1.113883.2.4.6.3"/>
+                        <addr use="HP">
+                           <streetName>Knolweg</streetName>
+                           <houseNumber>1001</houseNumber>
+                           <postalCode>9999 XX</postalCode>
+                           <city>Stitswerd</city>
+                           <country code="6030"
+                                    codeSystem="2.16.840.1.113883.2.4.4.16.34"
+                                    displayName="Nederland"
+                                    codeSystemName="GBA Tabel 34 Landen"
+                                    codeSystemVersion="2020-03-31T00:00:00">Nederland</country>
+                        </addr>
+                        <telecom use="HP"
+                                 value="tel:050-7656633"/>
+                        <telecom value="mailto:xxx_gioparidon@test.nl"/>
                         <statusCode code="active"/>
                         <patientPerson>
                            <name use="OR">
-                              <family qualifier="BR">AchternaamTest</family>
+                              <given>Giovani</given>
+                              <prefix qualifier="VV BR">van</prefix>
+                              <family qualifier="BR">XXX_Paridon</family>
                            </name>
-                           <birthTime value="19000101"/>
+                           <administrativeGenderCode xsi:type="CV"
+                                                     code="M"
+                                                     codeSystem="2.16.840.1.113883.5.1"
+                                                     displayName="Mannelijk"/>
+                           <birthTime value="19861101"/>
                         </patientPerson>
                      </patient>
                   </subject>
@@ -116,50 +136,10 @@
                             root="2.16.528.1.1007.3.3"/>
                         <assignedOrganization classCode="ORG"
                                               determinerCode="INSTANCE">
-                           <name>GGD TEST</name>
+                           <name>GGD Groningen</name>
                         </assignedOrganization>
                      </assignedEntity>
                   </author>
-                  <component7 typeCode="COMP">
-                     <encounter classCode="ENC"
-                                moodCode="EVN">
-                        <id extension="01"
-                            root="2.16.528.1.1007.3.3.1111.999.2"/>
-                        <code code="01"
-                              codeSystem="2.16.840.1.113883.2.4.4.40.308"
-                              displayName="Contact 4-7 dagen"/>
-                        <statusCode code="completed"/>
-                        <effectiveTime value="19000101"/>
-                        <!-- r018_activiteit -->
-                        <pertinentInformation typeCode="PERT">
-                           <rubricCluster classCode="CLUSTER"
-                                          moodCode="EVN">
-                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11018"/>
-                              <code code="R018"
-                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Activiteit"/>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41605"/>
-                                    <code code="1605"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Status activiteit"/>
-                                    <value xsi:type="CV"
-                                           code="01"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.434"
-                                           displayName="Gerealiseerd"/>
-                                 </observation>
-                              </component>
-                           </rubricCluster>
-                        </pertinentInformation>
-                        <!-- r030_psychosociaal_en_cognitief_functioneren -->
-                        <!-- Rubriek 30 is verwijderd omdat het enkel vervallen elementen bevat.-->
-                        <!-- element 265 Bijzonderheden psychische en sociale ontwikkeling is vervallen -->
-                        <!-- element 814 Bijzonderheden cognitieve ontwikkeling is vervallen -->
-                     </encounter>
-                  </component7>
                   <subjectOf typeCode="SUBJ"
                              contextConductionInd="false">
                      <careStatus classCode="STC"
@@ -167,7 +147,7 @@
                         <code code="1197"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Status in zorg"/>
-                        <effectiveTime value="19000101"/>
+                        <effectiveTime value="19900801"/>
                         <reasonCode code="01"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.376"
                                     displayName="Regulier"/>
@@ -180,10 +160,10 @@
                         <code code="487"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Zorgbeëindiging"/>
-                        <effectiveTime value="19010101"/>
-                        <reasonCode code="04"
+                        <effectiveTime value="20000101"/>
+                        <reasonCode code="01"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.82"
-                                    displayName="Leeftijd"/>
+                                    displayName="Overdracht naar een andere JGZ-organisatie"/>
                      </careStatus>
                   </subjectOf>
                </careProvisionEvent>

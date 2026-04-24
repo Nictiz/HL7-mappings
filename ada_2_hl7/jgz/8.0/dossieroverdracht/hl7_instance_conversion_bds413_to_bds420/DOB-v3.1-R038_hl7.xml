@@ -32,7 +32,7 @@
       <keyWordText code="PATID"
                    codeSystem="2.16.840.1.113883.2.4.15.1">Patient.id</keyWordText>
       <value xsi:type="II"
-             extension="123456782"
+             extension="999900183"
              root="2.16.840.1.113883.2.4.6.3"/>
    </attentionLine>
    <receiver xmlns:hl7="urn:hl7-org:v3"
@@ -69,7 +69,7 @@
       <subject>
          <CareProvisionRequest>
             <templateId root="2.16.840.1.113883.2.4.6.10.100.10000"/>
-            <id extension="123456782"
+            <id extension="54321"
                 root="2.16.528.1.1007.3.3.1111.999.2"/>
             <code code="CPHC"
                   codeSystem="2.16.840.1.113883.5.4"
@@ -85,7 +85,7 @@
             </author>
             <sequelTo>
                <careProvisionEvent moodCode="EVN">
-                  <id extension="123456782"
+                  <id extension="54321"
                       root="2.16.528.1.1007.3.3.1111.999.2"/>
                   <code codeSystem="2.16.840.1.113883.5.4"
                         code="CPHC"
@@ -97,14 +97,34 @@
                   <subject typeCode="SBJ">
                      <patient classCode="PAT">
                         <templateId root="2.16.840.1.113883.2.4.6.10.100.131"/>
-                        <id extension="123456782"
+                        <id extension="999900183"
                             root="2.16.840.1.113883.2.4.6.3"/>
+                        <addr use="HP">
+                           <streetName>Knolweg</streetName>
+                           <houseNumber>1001</houseNumber>
+                           <postalCode>9999 XX</postalCode>
+                           <city>Stitswerd</city>
+                           <country code="6030"
+                                    codeSystem="2.16.840.1.113883.2.4.4.16.34"
+                                    displayName="Nederland"
+                                    codeSystemName="GBA Tabel 34 Landen"
+                                    codeSystemVersion="2020-03-31T00:00:00">Nederland</country>
+                        </addr>
+                        <telecom use="HP"
+                                 value="tel:050-7656633"/>
+                        <telecom value="mailto:xxx_gioparidon@test.nl"/>
                         <statusCode code="active"/>
                         <patientPerson>
                            <name use="OR">
-                              <family qualifier="BR">AchternaamTest</family>
+                              <given>Giovani</given>
+                              <prefix qualifier="VV BR">van</prefix>
+                              <family qualifier="BR">XXX_Paridon</family>
                            </name>
-                           <birthTime value="19000101"/>
+                           <administrativeGenderCode xsi:type="CV"
+                                                     code="M"
+                                                     codeSystem="2.16.840.1.113883.5.1"
+                                                     displayName="Mannelijk"/>
+                           <birthTime value="19861101"/>
                         </patientPerson>
                      </patient>
                   </subject>
@@ -116,20 +136,20 @@
                             root="2.16.528.1.1007.3.3"/>
                         <assignedOrganization classCode="ORG"
                                               determinerCode="INSTANCE">
-                           <name>GGD TEST</name>
+                           <name>GGD Groningen</name>
                         </assignedOrganization>
                      </assignedEntity>
                   </author>
                   <component7 typeCode="COMP">
                      <encounter classCode="ENC"
                                 moodCode="EVN">
-                        <id extension="01"
-                            root="2.16.528.1.1007.3.3.1111.999.2"/>
-                        <code code="01"
+                        <id extension="3"
+                            root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
+                        <code code="41"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
-                              displayName="Contact 4-7 dagen"/>
+                              displayName="Contact 12 tot 18 jaar"/>
                         <statusCode code="completed"/>
-                        <effectiveTime value="19000101"/>
+                        <effectiveTime value="19991101"/>
                         <!-- r018_activiteit -->
                         <pertinentInformation typeCode="PERT">
                            <rubricCluster classCode="CLUSTER"
@@ -138,6 +158,20 @@
                               <code code="R018"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.391"
                                     displayName="Activiteit"/>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41577"/>
+                                    <code code="1577"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Vorm activiteit"/>
+                                    <value xsi:type="CV"
+                                           code="03"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.424"
+                                           displayName="Face-to-face, anders dan huisbezoek of inloopspreekuur"/>
+                                 </observation>
+                              </component>
                               <component>
                                  <observation classCode="OBS"
                                               moodCode="EVN"
@@ -154,76 +188,92 @@
                               </component>
                            </rubricCluster>
                         </pertinentInformation>
-                        <!-- r026_genitaliapuberteitsontwikkeling -->
+                        <!-- r038_visus_en_oogonderzoek -->
                         <pertinentInformation>
                            <rubricCluster classCode="CLUSTER"
                                           moodCode="EVN">
-                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11026"/>
-                              <code code="R026"
+                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11038"/>
+                              <code code="R038"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.391"
-                                    displayName="Genitalia/puberteitsontwikkeling"/>
-                              <!-- element 230 Bijzonderheden vulva is vervallen -->
+                                    displayName="Visus- en oogonderzoek"/>
+                              <!-- element 1379 Oogonderzoek uitgevoerd is vervallen -->
+                              <component>
+                                 <groupCluster>
+                                    <code code="G117"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.393"
+                                          displayName="Visus"/>
+                                    <component>
+                                       <observation classCode="OBS"
+                                                    moodCode="EVN"
+                                                    negationInd="false">
+                                          <templateId root="2.16.840.1.113883.2.4.6.10.100.41590"/>
+                                          <code code="1590"
+                                                codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                                displayName="Soort visuskaart"/>
+                                          <value xsi:type="CV"
+                                                 code="01"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.40.427"
+                                                 displayName="LEA 4 meter"/>
+                                       </observation>
+                                    </component>
+                                    <component>
+                                       <observation classCode="OBS"
+                                                    moodCode="EVN"
+                                                    negationInd="false">
+                                          <templateId root="2.16.840.1.113883.2.4.6.10.100.41591"/>
+                                          <code code="1591"
+                                                codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                                displayName="Uitslag visus rechts"/>
+                                          <value xsi:type="CV"
+                                                 code="01"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.40.428"
+                                                 displayName="0,1"/>
+                                       </observation>
+                                    </component>
+                                    <component>
+                                       <observation classCode="OBS"
+                                                    moodCode="EVN"
+                                                    negationInd="false">
+                                          <templateId root="2.16.840.1.113883.2.4.6.10.100.41592"/>
+                                          <code code="1592"
+                                                codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                                displayName="Uitslag visus links"/>
+                                          <value xsi:type="CV"
+                                                 code="01"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.40.428"
+                                                 displayName="0,1"/>
+                                       </observation>
+                                    </component>
+                                 </groupCluster>
+                              </component>
+                              <!-- element 837 Landolt-C-kaart uitslag rechts is vervallen -->
+                              <!-- element 838 Landolt-C-kaart uitslag links is vervallen -->
                               <component>
                                  <observation classCode="OBS"
                                               moodCode="EVN"
                                               negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40317"/>
-                                    <code code="317"
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40408"/>
+                                    <code code="408"
                                           codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Borstontwikkeling meisje"/>
+                                          displayName="Conclusie visusbepaling"/>
                                     <value xsi:type="CV"
-                                           code="01"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.45"
-                                           displayName="M1"/>
-                                    <!-- element 318 Methode onderzoek borstontwikkeling meisje is vervallen -->
+                                           code="1"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.333"
+                                           displayName="Voldoende"/>
                                  </observation>
                               </component>
                               <component>
                                  <observation classCode="OBS"
                                               moodCode="EVN"
                                               negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40825"/>
-                                    <code code="825"
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41618"/>
+                                    <code code="1618"
                                           codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Pubesbeharing meisje"/>
+                                          displayName="Conclusie visus 3 jaar"/>
                                     <value xsi:type="CV"
-                                           code="01"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.44"
-                                           displayName="P1"/>
-                                    <!-- element 826 Methode onderzoek pubesbeharing meisje is vervallen -->
-                                 </observation>
-                              </component>
-                              <!-- element 232 Bijzonderheden penis is vervallen -->
-                              <!-- element 233 Bijzonderheden scrotum rechts is vervallen -->
-                              <!-- element 1393 Bijzonderheden scrotum links is vervallen -->
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40313"/>
-                                    <code code="313"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Ontwikkeling genitalia jongen"/>
-                                    <value xsi:type="CV"
-                                           code="01"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.43"
-                                           displayName="G1"/>
-                                    <!-- element 314 Methode onderzoek ontwikkeling genitalia jongen is vervallen -->
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS"
-                                              moodCode="EVN"
-                                              negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40315"/>
-                                    <code code="315"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Pubesbeharing jongen"/>
-                                    <value xsi:type="CV"
-                                           code="01"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.44"
-                                           displayName="P1"/>
-                                    <!-- element 316 Methode onderzoek pubesbeharing jongen is vervallen -->
+                                           code="1"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.325"
+                                           displayName="Voldoende"/>
                                  </observation>
                               </component>
                            </rubricCluster>
@@ -237,7 +287,7 @@
                         <code code="1197"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Status in zorg"/>
-                        <effectiveTime value="19000101"/>
+                        <effectiveTime value="19900801"/>
                         <reasonCode code="01"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.376"
                                     displayName="Regulier"/>
@@ -250,10 +300,10 @@
                         <code code="487"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Zorgbeëindiging"/>
-                        <effectiveTime value="19010101"/>
-                        <reasonCode code="04"
+                        <effectiveTime value="20000101"/>
+                        <reasonCode code="01"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.82"
-                                    displayName="Leeftijd"/>
+                                    displayName="Overdracht naar een andere JGZ-organisatie"/>
                      </careStatus>
                   </subjectOf>
                </careProvisionEvent>
