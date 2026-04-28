@@ -1,0 +1,78 @@
+<Consent xmlns="http://hl7.org/fhir">
+   <id value="td-2025-04-02-281789004"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentDirective2"/>
+   </meta>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.103.1"/>
+      <value value="720250402"/>
+   </identifier>
+   <status value="inactive"/>
+   <scope>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/consentscope"/>
+         <code value="treatment"/>
+         <display value="Treatment"/>
+      </coding>
+   </scope>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="129125009"/>
+         <display value="verrichting met expliciete context"/>
+      </coding>
+   </category>
+   <patient>
+      <reference value="Patient/patient-van--XXX-vanAnkeren-de-Jong"/>
+      <type value="Patient"/>
+      <display value="Patient, Alfred (Alfred) van XXX_vanAnkeren-de Jong"/>
+   </patient>
+   <dateTime value="2025-04-02"/>
+   <policy>
+      <uri value="https://wetten.overheid.nl/"/>
+   </policy>
+   <provision>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.ReasonForEnding">
+         <valueString value="patiënt is van gedachten veranderd en wil toch antibiotica indien nodig"/>
+      </extension>
+      <type value="deny"/>
+      <period>
+         <end value="2025-07-08"/>
+      </period>
+      <actor>
+         <role>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
+               <code value="CONSWIT"/>
+               <display value="consent witness"/>
+            </coding>
+         </role>
+         <reference>
+            <reference value="PractitionerRole/pracrole-000001111"/>
+            <type value="PractitionerRole"/>
+            <display value="Healthcare professional (role), Peter (Peter) van Pulver, Huisarts, Gezondheidscentrum Aesculaap"/>
+         </reference>
+      </actor>
+      <actor>
+         <role>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
+               <code value="CONSENTER"/>
+               <display value="consenter"/>
+            </coding>
+         </role>
+         <reference>
+            <reference value="Patient/patient-van--XXX-vanAnkeren-de-Jong"/>
+            <type value="Patient"/>
+            <display value="Patient, Alfred (Alfred) van XXX_vanAnkeren-de Jong"/>
+         </reference>
+      </actor>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="281789004"/>
+            <display value="antibiotische therapie"/>
+         </coding>
+      </code>
+   </provision>
+</Consent>

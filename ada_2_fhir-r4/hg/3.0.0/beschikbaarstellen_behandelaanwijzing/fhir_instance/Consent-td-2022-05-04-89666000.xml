@@ -1,0 +1,89 @@
+<Consent xmlns="http://hl7.org/fhir">
+   <id value="td-2022-05-04-89666000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentDirective2"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+      <valueString value="Patiënt heeft besloten dat hij geen CPR wil. Bij deze afspraak was ook Contactpersoon 1 aanwezig."/>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.103.1"/>
+      <value value="120220504"/>
+   </identifier>
+   <status value="active"/>
+   <scope>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/consentscope"/>
+         <code value="treatment"/>
+         <display value="Treatment"/>
+      </coding>
+   </scope>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="129125009"/>
+         <display value="verrichting met expliciete context"/>
+      </coding>
+   </category>
+   <patient>
+      <reference value="Patient/patient-van--XXX-vanAnkeren-de-Jong"/>
+      <type value="Patient"/>
+      <display value="Patient, Alfred (Alfred) van XXX_vanAnkeren-de Jong"/>
+   </patient>
+   <dateTime value="2022-05-04"/>
+   <policy>
+      <uri value="https://wetten.overheid.nl/"/>
+   </policy>
+   <provision>
+      <type value="deny"/>
+      <actor>
+         <role>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
+               <code value="CONSWIT"/>
+               <display value="consent witness"/>
+            </coding>
+         </role>
+         <reference>
+            <reference value="PractitionerRole/pracrole-000001111"/>
+            <type value="PractitionerRole"/>
+            <display value="Healthcare professional (role), Peter (Peter) van Pulver, Huisarts, Gezondheidscentrum Aesculaap"/>
+         </reference>
+      </actor>
+      <actor>
+         <role>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
+               <code value="CONSENTER"/>
+               <display value="consenter"/>
+            </coding>
+         </role>
+         <reference>
+            <reference value="Patient/patient-van--XXX-vanAnkeren-de-Jong"/>
+            <type value="Patient"/>
+            <display value="Patient, Alfred (Alfred) van XXX_vanAnkeren-de Jong"/>
+         </reference>
+      </actor>
+      <actor>
+         <role>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
+               <code value="RESPRSN"/>
+               <display value="responsible party"/>
+            </coding>
+         </role>
+         <reference>
+            <reference value="RelatedPerson/cp-Janssen-de--Vries"/>
+            <type value="RelatedPerson"/>
+            <display value="Contact person, Piet (Pietje) Janssen-de Vries"/>
+         </reference>
+      </actor>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="89666000"/>
+            <display value="cardiopulmonale resuscitatie"/>
+         </coding>
+      </code>
+   </provision>
+</Consent>
