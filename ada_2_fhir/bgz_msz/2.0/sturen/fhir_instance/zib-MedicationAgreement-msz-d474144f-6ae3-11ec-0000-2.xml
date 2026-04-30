@@ -1,0 +1,107 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="zib-MedicationAgreement-msz-d474144f-6ae3-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Medicatieafspraak. Subject: J.J.E. XXX_Enderman Da Conceição. Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Medicatieafspraak</span>, <span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: Gaga G. Gaga Gedachtzaam</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>ALENDRONINEZUUR DRANK 70MG=100ML (0,7MG/ML) FL</td>
+               </tr>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>10:10:01, 2 juli 2012</td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>osteoporose</td>
+               </tr>
+               <tr>
+                  <th>Doseerinstructie</th>
+                  <td>
+                     <div>Tekst: 1 maal per week 1 stuk, oraal, Innemen bij het ontbijt.</div>
+                     <div>Instructie: Innemen bij het opstaan, ten minste een half uur voor het ontbijt</div>
+                     <div>Timing: <div>eenmalig per week</div>
+                     </div>
+                     <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                     </div>
+                     <div>Dosering: 1 STUK</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="Prescription (procedure)"/>
+      </coding>
+      <text value="Medicatieafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-105078"/>
+      <display value="ALENDRONINEZUUR DRANK 70MG=100ML (0,7MG/ML) FL"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/bgz-msz-patG"/>
+      <display value="J.J.E. XXX_Enderman Da Conceição"/>
+   </subject>
+   <authoredOn value="2012-07-02T10:10:01+02:00"/>
+   <requester>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-msz-0014142401-01420000015"/>
+            <display value="Gaga G. Gaga Gedachtzaam || Chirurg || Ziekenhuis Amsterdam"/>
+         </valueReference>
+      </extension>
+      <agent>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00141424"/>
+         <display value="Gaga G. Gaga Gedachtzaam"/>
+      </agent>
+   </requester>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-msz-757578ef-6af6-11ec-0000-2"/>
+      <display value="osteoporose"/>
+   </reasonReference>
+   <dosageInstruction>
+      <text value="1 maal per week 1 stuk, oraal, Innemen bij het ontbijt."/>
+      <additionalInstruction>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="overig"/>
+         </coding>
+         <text value="Innemen bij het opstaan, ten minste een half uur voor het ontbijt"/>
+      </additionalInstruction>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="wk"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseQuantity>
+         <value value="1"/>
+         <unit value="STUK"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="ST"/>
+      </doseQuantity>
+   </dosageInstruction>
+</MedicationRequest>

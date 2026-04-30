@@ -1,0 +1,99 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="zib-MedicationAgreement-msz-729d4945-6b00-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Medicatieafspraak. Subject: J.J.E. XXX_Enderman Da Conceição. Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Medicatieafspraak</span>, <span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: Huisdokter H. Huisdokter Goedzaam</span>
+            </caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Vanaf 2012-07-03</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>CALCIUMCARB/COLECALC KAUWTB 1,25G/400IE (500MG CA)</td>
+               </tr>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>10:10:01, 3 juli 2012</td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>osteoporose</td>
+               </tr>
+               <tr>
+                  <th>Doseerinstructie</th>
+                  <td>
+                     <div>Tekst: Om de dag 1 STUK</div>
+                     <div>Timing: <div>eenmalig per 2 dagen</div>
+                     </div>
+                     <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                     </div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="Prescription (procedure)"/>
+      </coding>
+      <text value="Medicatieafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-58808"/>
+      <display value="CALCIUMCARB/COLECALC KAUWTB 1,25G/400IE (500MG CA)"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/bgz-msz-patG"/>
+      <display value="J.J.E. XXX_Enderman Da Conceição"/>
+   </subject>
+   <authoredOn value="2012-07-03T10:10:01+02:00"/>
+   <requester>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-msz-0013132301-01520000014"/>
+            <display value="Huisdokter H. Huisdokter Goedzaam || Huisarts || Huisartsenpraktijk Goedzaam"/>
+         </valueReference>
+      </extension>
+      <agent>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00131323"/>
+         <display value="Huisdokter H. Huisdokter Goedzaam"/>
+      </agent>
+   </requester>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-msz-757578ef-6af6-11ec-0000-2"/>
+      <display value="osteoporose"/>
+   </reasonReference>
+   <note>
+      <text value="Vanaf 2012-07-03"/>
+   </note>
+   <dosageInstruction>
+      <text value="Om de dag 1 STUK"/>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <period value="2"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+   </dosageInstruction>
+</MedicationRequest>

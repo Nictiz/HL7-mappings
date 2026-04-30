@@ -1,0 +1,44 @@
+<CareTeam xmlns="http://hl7.org/fhir">
+   <id value="nl-core-careteam-msz-c2c560c1-6b58-11ec-0000-2"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-careteam"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgteam. Subject: J.J.E. XXX_Enderman Da Conceição. </caption>
+            <tbody>
+               <tr>
+                  <th>Participant</th>
+                  <td>Glennis G. Glen Gormane || Dermatoloog || Algemeen Huid Centrum</td>
+               </tr>
+               <tr>
+                  <th>Verantwoordelijke organisatie</th>
+                  <td>Algemeen Huid Centrum - Dermatologie</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <subject>
+      <reference value="Patient/bgz-msz-patG"/>
+      <display value="J.J.E. XXX_Enderman Da Conceição"/>
+   </subject>
+   <participant>
+      <member>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0017172701-01220000027"/>
+               <display value="Glennis G. Glen Gormane || Dermatoloog || Algemeen Huid Centrum"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00171727"/>
+         <display value="Glennis G. Glen Gormane"/>
+      </member>
+   </participant>
+   <managingOrganization>
+      <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000027"/>
+      <display value="Algemeen Huid Centrum - Dermatologie"/>
+   </managingOrganization>
+</CareTeam>

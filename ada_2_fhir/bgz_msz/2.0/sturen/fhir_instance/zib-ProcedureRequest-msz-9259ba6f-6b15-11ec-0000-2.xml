@@ -1,0 +1,78 @@
+<ProcedureRequest xmlns="http://hl7.org/fhir">
+   <id value="zib-ProcedureRequest-msz-9259ba6f-6b15-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichtingaanvraag. Subject: J.J.E. XXX_Enderman Da Conceição. Status: onbekend<span style="display: block;">Intentie: plan</span>
+               <span style="display: block;">Aangevraagd door: Gertjan G. Gert Gein || Ziekenhuis Amsterdam</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="excisie van schildwachtklier in oksel (126071000146105 - SNOMED CT)">excisie van schildwachtklier in oksel</span>
+                  </td>
+                  <td>
+                     <div>Wanneer: Vanaf ${DATE, T, D, -11}</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Beoogde uitvoerende</th>
+                  <td>
+                     <div>Gaga G. Gaga Gedachtzaam || Chirurg || Ziekenhuis Amsterdam</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>maligne neoplasma van mamma</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <status value="unknown"/>
+   <intent value="plan"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="126071000146105"/>
+         <display value="excisie van schildwachtklier in oksel"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/bgz-msz-patG"/>
+      <display value="J.J.E. XXX_Enderman Da Conceição"/>
+   </subject>
+   <occurrencePeriod>
+      <start value="${DATE, T, D, -11}"/>
+   </occurrencePeriod>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0015152520000015"/>
+               <display value="Gertjan G. Gert Gein || Ziekenhuis Amsterdam"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00151525"/>
+         <display value="Gertjan G. Gert Gein"/>
+      </agent>
+   </requester>
+   <performer>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-msz-0014142401-01420000015"/>
+            <display value="Gaga G. Gaga Gedachtzaam || Chirurg || Ziekenhuis Amsterdam"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00141424"/>
+      <display value="Gaga G. Gaga Gedachtzaam"/>
+   </performer>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-msz-5ecd16f2-6ab9-11ec-0000-2"/>
+      <display value="maligne neoplasma van mamma"/>
+   </reasonReference>
+</ProcedureRequest>

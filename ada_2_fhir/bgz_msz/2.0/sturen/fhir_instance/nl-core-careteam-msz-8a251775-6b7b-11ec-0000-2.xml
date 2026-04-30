@@ -1,0 +1,75 @@
+<CareTeam xmlns="http://hl7.org/fhir">
+   <id value="nl-core-careteam-msz-8a251775-6b7b-11ec-0000-2"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-careteam"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgteam. Subject: J.J.E. XXX_Enderman Da Conceição. Status: actief</caption>
+            <tbody>
+               <tr>
+                  <th>Participant</th>
+                  <td>
+                     <ul>
+                        <li>Gaga G. Gaga Gedachtzaam || Chirurg || Ziekenhuis Amsterdam</li>
+                        <li>Gertjan G. Gert Gein || Ziekenhuis Amsterdam</li>
+                        <li>Giña G. Giña Geluk || Radiotherapeut || Ziekenhuis Amsterdam</li>
+                     </ul>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Verantwoordelijke organisatie</th>
+                  <td>Ziekenhuis Amsterdam - Mammapoli</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <status value="active"/>
+   <subject>
+      <reference value="Patient/bgz-msz-patG"/>
+      <display value="J.J.E. XXX_Enderman Da Conceição"/>
+   </subject>
+   <participant>
+      <member>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0014142401-01420000015"/>
+               <display value="Gaga G. Gaga Gedachtzaam || Chirurg || Ziekenhuis Amsterdam"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00141424"/>
+         <display value="Gaga G. Gaga Gedachtzaam"/>
+      </member>
+   </participant>
+   <participant>
+      <member>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0015152520000015"/>
+               <display value="Gertjan G. Gert Gein || Ziekenhuis Amsterdam"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00151525"/>
+         <display value="Gertjan G. Gert Gein"/>
+      </member>
+   </participant>
+   <participant>
+      <member>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0016162601-04020000015"/>
+               <display value="Giña G. Giña Geluk || Radiotherapeut || Ziekenhuis Amsterdam"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00161626"/>
+         <display value="Giña G. Giña Geluk"/>
+      </member>
+   </participant>
+   <managingOrganization>
+      <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000015"/>
+      <display value="Ziekenhuis Amsterdam - Mammapoli"/>
+   </managingOrganization>
+</CareTeam>
