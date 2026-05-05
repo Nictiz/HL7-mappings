@@ -1,16 +1,17 @@
-<!--Generated from HL7v3 verstrekkingenlijst 6.12 xml with message id (QURX_IN990113NL/id) root: 2.16.840.1.113883.2.4.6.6.1.1 and extension: 999910620.--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../../beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+<!--Generated from HL7v3 verstrekkingenlijst 6.12 xml with message id (QURX_IN990113NL/id) root: 2.16.840.1.113883.2.4.6.6.1.1 and extension: 999910620.-->
+<adaxml xsi:noNamespaceSchemaLocation="../../beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2024-01-01T00:00:00+02:00"
-         last-update-date="2024-01-01T00:00:00+02:00"/>
+         creation-date="2026-01-01T00:00:00"
+         last-update-date="2026-01-01T00:00:00"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
                                             shortName="beschikbaarstellen_medicatiegegevens"
                                             formName="medicatiegegevens"
-                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.301"
-                                            transactionEffectiveDate="2022-02-07T00:00:00"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.374"
+                                            transactionEffectiveDate="2022-06-30T00:00:00"
                                             prefix="mp-"
                                             language="nl-NL"
                                             title="Generated from HL7v3 verstrekkingenlijst 6.12 xml"
@@ -34,26 +35,34 @@
                             codeSystem="2.16.840.1.113883.5.1119"
                             displayName="Officieel adres"/>
             </adresgegevens>
-            <identificatienummer value="999910620" root="2.16.840.1.113883.2.4.6.3"/>
-            <geboortedatum value="1954-08-10"/>
-            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1"/>
+            <identificatienummer value="999910620"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime"
+                           value="1954-08-10"/>
+            <geslacht code="F"
+                      codeSystem="2.16.840.1.113883.5.1"/>
          </patient>
          <medicamenteuze_behandeling>
             <identificatie value="9b084780-9401-11e9-b475-0800200c9a66"
                            root="1.3.6.1.4.1.58606.1.2.2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+            <toedieningsafspraak>
+               <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
                <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
                               value="9b084780-9401-11e9-b475-0800200c9a66"/>
                <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
-               <toedieningsafspraak_datum_tijd value="2015-05-13"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2015-05-13"/>
                <gebruiksperiode>
-                  <tijds_duur value="30" unit="dag"/>
+                  <tijds_duur value="30"
+                              unit="dag"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d1285e233" datatype="reference"/>
+                  <zorgaanbieder value="uuid-91e77f70-6ae0-11ec-0000-020000000000"
+                                 datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d1285e166" datatype="reference"/>
+                  <farmaceutisch_product value="uuid-3fb59f09-6ad3-11ec-0000-020000000000"
+                                         datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <!--mp9-gebruiksinstructie-from-mp612-->
                <gebruiksinstructie>
@@ -63,7 +72,8 @@
                                   displayName="geen informatie"/>
                   <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
+                        <!--mp9-keerdosis-->
                         <keerdosis>
                            <aantal>
                               <nominale_waarde value="2"/>
@@ -72,37 +82,74 @@
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="Stuk"/>
                         </keerdosis>
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                        <toedieningsschema>
+                           <!--mp9-vaste-frequentie-from-mp-612-->
                            <frequentie>
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
                <relatie_medicatieafspraak>
-                  <identificatie value="0000007848" root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+                  <identificatie value="0000007848"
+                                 root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
                </relatie_medicatieafspraak>
             </toedieningsafspraak>
+            <medicatieverstrekking>
+               <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
+               <identificatie root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
+                              value="9b084780-9401-11e9-b475-0800200c9a66"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                                  value="2015-05-13"/>
+               <aanschrijf_datum datatype="datetime"
+                                 value="2015-05-13"/>
+               <verstrekker>
+                  <zorgaanbieder value="uuid-91e77f70-6ae0-11ec-0000-020000000000"
+                                 datatype="reference"/>
+               </verstrekker>
+               <!--mp9-verstrekte-hoeveelheid-->
+               <verstrekte_hoeveelheid>
+                  <aantal value="60"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="STUK"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="uuid-3fb59f09-6ad3-11ec-0000-020000000000"
+                                         datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="0000007848"
+                                 root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <medicamenteuze_behandeling>
-            <identificatie value="101079" root="2.16.840.1.113883.2.4.3.11.61.3"/>
-            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+            <identificatie value="101079"
+                           root="2.16.840.1.113883.2.4.3.11.61.3"/>
+            <toedieningsafspraak>
+               <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
                <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
                               value="f77406a0-ef17-11e4-b80c-0800200c9a66"/>
                <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
-               <toedieningsafspraak_datum_tijd value="2015-02-22"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2015-02-22"/>
                <gebruiksperiode>
-                  <tijds_duur value="29" unit="dag"/>
+                  <tijds_duur value="29"
+                              unit="dag"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d1285e233" datatype="reference"/>
+                  <zorgaanbieder value="uuid-91e77f70-6ae0-11ec-0000-020000000000"
+                                 datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d1285e273" datatype="reference"/>
+                  <farmaceutisch_product value="uuid-9f84a645-6ae6-11ec-0000-020000000000"
+                                         datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <!--mp9-gebruiksinstructie-from-mp612-->
                <gebruiksinstructie>
@@ -112,7 +159,8 @@
                                   displayName="geen informatie"/>
                   <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
+                        <!--mp9-keerdosis-->
                         <keerdosis>
                            <aantal>
                               <nominale_waarde value="10"/>
@@ -121,37 +169,74 @@
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="MILLILITER"/>
                         </keerdosis>
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                        <toedieningsschema>
+                           <!--mp9-vaste-frequentie-from-mp-612-->
                            <frequentie>
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
                <relatie_medicatieafspraak>
-                  <identificatie value="000dfa0007849" root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+                  <identificatie value="000dfa0007849"
+                                 root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
                </relatie_medicatieafspraak>
             </toedieningsafspraak>
+            <medicatieverstrekking>
+               <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
+               <identificatie root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
+                              value="f77406a0-ef17-11e4-b80c-0800200c9a66"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                                  value="2015-02-22"/>
+               <aanschrijf_datum datatype="datetime"
+                                 value="2015-02-22"/>
+               <verstrekker>
+                  <zorgaanbieder value="uuid-91e77f70-6ae0-11ec-0000-020000000000"
+                                 datatype="reference"/>
+               </verstrekker>
+               <!--mp9-verstrekte-hoeveelheid-->
+               <verstrekte_hoeveelheid>
+                  <aantal value="290"/>
+                  <eenheid code="233"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="MILLILITER"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="uuid-9f84a645-6ae6-11ec-0000-020000000000"
+                                         datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="000dfa0007849"
+                                 root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <medicamenteuze_behandeling>
-            <identificatie value="710695" root="2.16.840.1.113883.2.4.3.11.61.3"/>
-            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+            <identificatie value="710695"
+                           root="2.16.840.1.113883.2.4.3.11.61.3"/>
+            <toedieningsafspraak>
+               <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
                <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
                               value="fc93abe0-ef17-11e4-b80c-0800200ic9a66"/>
                <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
-               <toedieningsafspraak_datum_tijd value="2015-04-13"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2015-04-13"/>
                <gebruiksperiode>
-                  <tijds_duur value="40" unit="dag"/>
+                  <tijds_duur value="40"
+                              unit="dag"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d1285e233" datatype="reference"/>
+                  <zorgaanbieder value="uuid-91e77f70-6ae0-11ec-0000-020000000000"
+                                 datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d1285e384" datatype="reference"/>
+                  <farmaceutisch_product value="uuid-7896777e-6aea-11ec-0000-020000000000"
+                                         datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <!--mp9-gebruiksinstructie-from-mp612-->
                <gebruiksinstructie>
@@ -161,7 +246,8 @@
                                   displayName="geen informatie"/>
                   <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
+                        <!--mp9-keerdosis-->
                         <keerdosis>
                            <aantal>
                               <nominale_waarde value="50"/>
@@ -170,38 +256,76 @@
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="MILLILITER"/>
                         </keerdosis>
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                        <toedieningsschema>
+                           <!--mp9-vaste-frequentie-from-mp-612-->
                            <frequentie>
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
                <relatie_medicatieafspraak>
-                  <identificatie value="0000007854" root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+                  <identificatie value="0000007854"
+                                 root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
                </relatie_medicatieafspraak>
             </toedieningsafspraak>
+            <medicatieverstrekking>
+               <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
+               <identificatie root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
+                              value="fc93abe0-ef17-11e4-b80c-0800200ic9a66"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                                  value="2015-04-13"/>
+               <aanschrijf_datum datatype="datetime"
+                                 value="2015-04-13"/>
+               <verstrekker>
+                  <zorgaanbieder value="uuid-91e77f70-6ae0-11ec-0000-020000000000"
+                                 datatype="reference"/>
+               </verstrekker>
+               <!--mp9-verstrekte-hoeveelheid-->
+               <verstrekte_hoeveelheid>
+                  <aantal value="4000"/>
+                  <eenheid code="233"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="MILLILITER"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="uuid-7896777e-6aea-11ec-0000-020000000000"
+                                         datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="0000007854"
+                                 root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <medicamenteuze_behandeling>
-            <identificatie value="202681" root="2.16.840.1.113883.2.4.3.11.61.3"/>
-            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+            <identificatie value="202681"
+                           root="2.16.840.1.113883.2.4.3.11.61.3"/>
+            <toedieningsafspraak>
+               <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
                <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
                               value="0443e710-ef18-11e4-b80c-0800200c9a66"/>
                <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
-               <toedieningsafspraak_datum_tijd value="2015-05-23"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2015-05-23"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2015-05-23T00:00"/>
-                  <tijds_duur value="30" unit="dag"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2015-05-23T00:00"/>
+                  <tijds_duur value="30"
+                              unit="dag"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d1285e233" datatype="reference"/>
+                  <zorgaanbieder value="uuid-91e77f70-6ae0-11ec-0000-020000000000"
+                                 datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d1285e493" datatype="reference"/>
+                  <farmaceutisch_product value="uuid-4361d09f-6b65-11ec-0000-020000000000"
+                                         datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <!--mp9-gebruiksinstructie-from-mp612-->
                <gebruiksinstructie>
@@ -211,7 +335,8 @@
                                   displayName="geen informatie"/>
                   <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
+                        <!--mp9-keerdosis-->
                         <keerdosis>
                            <aantal>
                               <nominale_waarde value="3"/>
@@ -220,45 +345,81 @@
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="STUK"/>
                         </keerdosis>
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                        <toedieningsschema>
+                           <!--mp9-vaste-frequentie-from-mp-612-->
                            <frequentie>
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="2" unit="dag"/>
+                              <tijdseenheid value="2"
+                                            unit="dag"/>
                            </frequentie>
                         </toedieningsschema>
                         <zo_nodig>
-                           <criterium>
-                              <criterium code="1137"
-                                         codeSystem="2.16.840.1.113883.2.4.4.5"
-                                         displayName="zo nodig"/>
-                           </criterium>
+                           <criterium code="1137"
+                                      codeSystem="2.16.840.1.113883.2.4.4.5"
+                                      displayName="zo nodig"/>
                         </zo_nodig>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
                <relatie_medicatieafspraak>
-                  <identificatie value="0000008088" root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+                  <identificatie value="0000008088"
+                                 root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
                </relatie_medicatieafspraak>
             </toedieningsafspraak>
+            <medicatieverstrekking>
+               <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
+               <identificatie root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
+                              value="0443e710-ef18-11e4-b80c-0800200c9a66"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                                  value="2015-05-23"/>
+               <aanschrijf_datum datatype="datetime"
+                                 value="2015-05-23"/>
+               <verstrekker>
+                  <zorgaanbieder value="uuid-91e77f70-6ae0-11ec-0000-020000000000"
+                                 datatype="reference"/>
+               </verstrekker>
+               <!--mp9-verstrekte-hoeveelheid-->
+               <verstrekte_hoeveelheid>
+                  <aantal value="30"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="STUK"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="uuid-4361d09f-6b65-11ec-0000-020000000000"
+                                         datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="0000008088"
+                                 root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <medicamenteuze_behandeling>
-            <identificatie value="856126" root="2.16.840.1.113883.2.4.3.11.61.3"/>
-            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+            <identificatie value="856126"
+                           root="2.16.840.1.113883.2.4.3.11.61.3"/>
+            <toedieningsafspraak>
+               <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
                <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
                               value="08c37bc0-ef18-11e4-b80c-0800200c9a66"/>
                <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
-               <toedieningsafspraak_datum_tijd value="2015-04-13"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2015-04-13"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2015-03-03T00:00"/>
-                  <tijds_duur value="7" unit="dag"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2015-03-03T00:00"/>
+                  <tijds_duur value="7"
+                              unit="dag"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d1285e233" datatype="reference"/>
+                  <zorgaanbieder value="uuid-91e77f70-6ae0-11ec-0000-020000000000"
+                                 datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d1285e615" datatype="reference"/>
+                  <farmaceutisch_product value="uuid-db397ccf-6af0-11ec-0000-020000000000"
+                                         datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <!--mp9-gebruiksinstructie-from-mp612-->
                <gebruiksinstructie>
@@ -268,32 +429,73 @@
                                   displayName="geen informatie"/>
                   <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis--><!--geen keerdosis in input-->
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612--><!--geen frequentie in input--></toedieningsschema>
+                     <dosering>
+                        <!--mp9-keerdosis-->
+                        <!--geen keerdosis in input-->
+                        <toedieningsschema>
+                           <!--mp9-vaste-frequentie-from-mp-612-->
+                           <!--geen frequentie in input-->
+                        </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
                <relatie_medicatieafspraak>
-                  <identificatie value="0000008090" root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+                  <identificatie value="0000008090"
+                                 root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
                </relatie_medicatieafspraak>
             </toedieningsafspraak>
+            <medicatieverstrekking>
+               <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
+               <identificatie root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
+                              value="08c37bc0-ef18-11e4-b80c-0800200c9a66"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                                  value="2015-04-13"/>
+               <aanschrijf_datum datatype="datetime"
+                                 value="2015-04-13"/>
+               <verstrekker>
+                  <zorgaanbieder value="uuid-91e77f70-6ae0-11ec-0000-020000000000"
+                                 datatype="reference"/>
+               </verstrekker>
+               <!--mp9-verstrekte-hoeveelheid-->
+               <verstrekte_hoeveelheid>
+                  <aantal value="14"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="STUK"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="uuid-db397ccf-6af0-11ec-0000-020000000000"
+                                         datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="0000008090"
+                                 root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <medicamenteuze_behandeling>
-            <identificatie value="1148753" root="2.16.840.1.113883.2.4.3.11.61.3"/>
-            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+            <identificatie value="1148753"
+                           root="2.16.840.1.113883.2.4.3.11.61.3"/>
+            <toedieningsafspraak>
+               <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
                <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
                               value="0caac810-ef18-11e4-b80c-0800200c9a66"/>
                <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
-               <toedieningsafspraak_datum_tijd value="2015-05-28"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2015-05-28"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="2015-05-28T00:00"/>
-                  <tijds_duur value="7" unit="dag"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2015-05-28T00:00"/>
+                  <tijds_duur value="7"
+                              unit="dag"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d1285e233" datatype="reference"/>
+                  <zorgaanbieder value="uuid-91e77f70-6ae0-11ec-0000-020000000000"
+                                 datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d1285e712" datatype="reference"/>
+                  <farmaceutisch_product value="uuid-1fdf466d-6ad8-11ec-0000-020000000000"
+                                         datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <!--mp9-gebruiksinstructie-from-mp612-->
                <gebruiksinstructie>
@@ -303,7 +505,8 @@
                                   displayName="geen informatie"/>
                   <!--mp9-doseerinstructie-from-mp612-freq-->
                   <doseerinstructie>
-                     <dosering><!--mp9-keerdosis-->
+                     <dosering>
+                        <!--mp9-keerdosis-->
                         <keerdosis>
                            <aantal>
                               <nominale_waarde value="2"/>
@@ -312,70 +515,111 @@
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     displayName="STUK"/>
                         </keerdosis>
-                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                        <toedieningsschema>
+                           <!--mp9-vaste-frequentie-from-mp-612-->
                            <frequentie>
                               <aantal>
                                  <nominale_waarde value="2"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
                <relatie_medicatieafspraak>
-                  <identificatie value="0000008092" root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+                  <identificatie value="0000008092"
+                                 root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
                </relatie_medicatieafspraak>
             </toedieningsafspraak>
+            <medicatieverstrekking>
+               <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
+               <identificatie root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
+                              value="0caac810-ef18-11e4-b80c-0800200c9a66"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                                  value="2015-05-28"/>
+               <aanschrijf_datum datatype="datetime"
+                                 value="2015-05-28"/>
+               <verstrekker>
+                  <zorgaanbieder value="uuid-91e77f70-6ae0-11ec-0000-020000000000"
+                                 datatype="reference"/>
+               </verstrekker>
+               <!--mp9-verstrekte-hoeveelheid-->
+               <verstrekte_hoeveelheid>
+                  <aantal value="35"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="STUK"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="uuid-1fdf466d-6ad8-11ec-0000-020000000000"
+                                         datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="0000008092"
+                                 root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d1285e166">
+            <farmaceutisch_product id="uuid-3fb59f09-6ad3-11ec-0000-020000000000">
                <product_code code="13550055"
                              codeSystem="2.16.840.1.113883.2.4.4.8"
                              codeSystemName="G-Standaard Artikel"
                              displayName="Ibuprofen PCH tablet 600mg"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d1285e273">
+            <farmaceutisch_product id="uuid-9f84a645-6ae6-11ec-0000-020000000000">
                <product_code code="12159220"
                              codeSystem="2.16.840.1.113883.2.4.4.8"
                              codeSystemName="G-Standaard Artikel"
                              displayName="XPRAEP SIROOP 2MG/ML"/>
-               <product_code code="101079" codeSystem="2.16.840.1.113883.2.4.4.7"/>
-               <product_code code="10960" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+               <product_code code="101079"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="10960"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d1285e384">
+            <farmaceutisch_product id="uuid-7896777e-6aea-11ec-0000-020000000000">
                <product_code code="13659847"
                              codeSystem="2.16.840.1.113883.2.4.4.8"
                              codeSystemName="G-Standaard Artikel"
                              displayName="NUTRIDRINK AARDBEI NR16642"/>
-               <product_code code="710695" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="710695"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d1285e493">
+            <farmaceutisch_product id="uuid-4361d09f-6b65-11ec-0000-020000000000">
                <product_code code="13849247"
                              codeSystem="2.16.840.1.113883.2.4.4.8"
                              codeSystemName="G-Standaard Artikel"
                              displayName="ASPIRINE TABLET 100MG"/>
-               <product_code code="202681" codeSystem="2.16.840.1.113883.2.4.4.7"/>
-               <product_code code="12548" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+               <product_code code="202681"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="12548"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d1285e615">
+            <farmaceutisch_product id="uuid-db397ccf-6af0-11ec-0000-020000000000">
                <product_code code="13918419"
                              codeSystem="2.16.840.1.113883.2.4.4.8"
                              codeSystemName="G-Standaard Artikel"
                              displayName="ACENOCOUMAROL CF TABLET 1MG"/>
-               <product_code code="856126" codeSystem="2.16.840.1.113883.2.4.4.7"/>
-               <product_code code="20303" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+               <product_code code="856126"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="20303"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d1285e712">
+            <farmaceutisch_product id="uuid-1fdf466d-6ad8-11ec-0000-020000000000">
                <product_code code="14243091"
                              codeSystem="2.16.840.1.113883.2.4.4.8"
                              codeSystemName="G-Standaard Artikel"
                              displayName="OXAZEPAM GF TABLET 10MG"/>
-               <product_code code="1148753" codeSystem="2.16.840.1.113883.2.4.4.7"/>
-               <product_code code="1023" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+               <product_code code="1148753"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="1023"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="d1285e233">
-               <zorgaanbieder_identificatienummer value="01234567" root="2.16.528.1.1007.3.3"/>
+            <zorgaanbieder id="uuid-91e77f70-6ae0-11ec-0000-020000000000">
+               <zorgaanbieder_identificatienummer value="01234567"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam nullFlavor="NI"/>
             </zorgaanbieder>
          </bouwstenen>

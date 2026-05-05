@@ -1,11 +1,13 @@
-<!--Generated from HL7v3 instance.--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+<!--Generated from HL7v3 instance.-->
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2024-01-01T00:00:00+02:00"
-         last-update-date="2024-01-01T00:00:00+02:00"/>
-   <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
+         creation-date="2026-04-28T11:16:50.5906637+02:00"
+         last-update-date="2026-04-28T11:16:50.5906637+02:00"/>
+   <data>
+      <!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
                                             shortName="beschikbaarstellen_medicatiegegevens"
                                             formName="medicatiegegevens"
@@ -25,9 +27,13 @@
                   <achternaam value="XXX_Nederveen"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999900833" root="2.16.840.1.113883.2.4.6.3"/>
-            <geboortedatum datatype="datetime" value="1985-10-28"/>
-            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <identificatienummer value="999900833"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime"
+                           value="1985-10-28"/>
+            <geslacht code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"/>
          </patient>
          <medicamenteuze_behandeling>
             <identificatie value="MBH_300_logistiekeverbruiksperiode_start_eind"
@@ -35,16 +41,21 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_logistiekeverbruiksperiode_start_eind_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2024-01-01T11:00:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2024-01-01T11:00:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2025-01-01T23:59:59+01:00"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2024-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2025-01-01T23:59:59+01:00"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d6472e78" datatype="reference"/>
+                  <zorgverlener value="d20596e78"
+                                datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d6472e64" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e64"
+                                         datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
                   <omschrijving value="1 maal per dag 1 stuk, Oraal"/>
@@ -69,8 +80,20 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir"
+                                             xmlns:pharm="urn:ihe:pharm:medication">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -79,19 +102,25 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_logistiekeverbruiksperiode_start_eind_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2024-01-01T11:00:00+01:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime"
+                                                value="2024-01-01T11:00:00+01:00"/>
                <auteur>
-                  <zorgverlener value="d6472e78" datatype="reference"/>
+                  <zorgverlener value="d20596e78"
+                                datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d6472e64" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e64"
+                                         datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <verbruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2025-01-01T23:59:59+01:00"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2024-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2025-01-01T23:59:59+01:00"/>
                </verbruiksperiode>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d6472e211" datatype="reference"/>
+                  <zorgaanbieder value="d20596e211"
+                                 datatype="reference"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_logistiekeverbruiksperiode_start_eind_MA"
@@ -101,16 +130,21 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_logistiekeverbruiksperiode_start_eind_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2024-01-01T12:00:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2024-01-01T12:00:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2025-01-01T23:59:59+01:00"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2024-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2025-01-01T23:59:59+01:00"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d6472e211" datatype="reference"/>
+                  <zorgaanbieder value="d20596e211"
+                                 datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d6472e348" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e348"
+                                         datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
                   <omschrijving value="1 maal per dag 1 stuk, Oraal"/>
@@ -135,8 +169,20 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir"
+                                             xmlns:pharm="urn:ihe:pharm:medication">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -149,9 +195,11 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_logistiekeverbruiksperiode_start_eind_MVE"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2024-01-01T12:00:00+01:00"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                                  value="2024-01-01T12:00:00+01:00"/>
                <verstrekker>
-                  <zorgaanbieder value="d6472e211" datatype="reference"/>
+                  <zorgaanbieder value="d20596e211"
+                                 datatype="reference"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="100"/>
@@ -161,8 +209,11 @@
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d6472e348" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e348"
+                                         datatype="reference"/>
                </verstrekt_geneesmiddel>
+               <verbruiksduur value="100"
+                              unit="dag"/>
                <relatie_verstrekkingsverzoek>
                   <identificatie value="MBH_300_logistiekeverbruiksperiode_start_eind_VV"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
@@ -175,16 +226,21 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_herhalingen_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-11-12T11:05:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2023-11-12T11:05:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-11-12T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" nullFlavor="NI"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2023-11-12T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   nullFlavor="NI"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d6472e78" datatype="reference"/>
+                  <zorgverlener value="d20596e78"
+                                datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d6472e584" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e589"
+                                         datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
                   <omschrijving value="1 maal per dag 1 stuk, Oraal"/>
@@ -209,8 +265,20 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir"
+                                             xmlns:pharm="urn:ihe:pharm:medication">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -219,12 +287,15 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_herhalingen_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-11-12T11:05:00+01:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime"
+                                                value="2023-11-12T11:05:00+01:00"/>
                <auteur>
-                  <zorgverlener value="d6472e78" datatype="reference"/>
+                  <zorgverlener value="d20596e78"
+                                datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d6472e584" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e589"
+                                         datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
                   <aantal value="30"/>
@@ -235,7 +306,8 @@
                </te_verstrekken_hoeveelheid>
                <aantal_herhalingen value="5"/>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d6472e211" datatype="reference"/>
+                  <zorgaanbieder value="d20596e211"
+                                 datatype="reference"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_herhalingen_MA"
@@ -245,16 +317,21 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_herhalingen_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-11-12T12:05:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2023-11-12T12:05:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-11-12T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" nullFlavor="NI"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2023-11-12T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   nullFlavor="NI"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d6472e211" datatype="reference"/>
+                  <zorgaanbieder value="d20596e211"
+                                 datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d6472e867" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e872"
+                                         datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
                   <omschrijving value="1 maal per dag 1 stuk, Oraal"/>
@@ -279,8 +356,20 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir"
+                                             xmlns:pharm="urn:ihe:pharm:medication">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -293,9 +382,11 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_herhalingen_MVE1"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-11-12T12:05:00+01:00"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                                  value="2023-11-12T12:05:00+01:00"/>
                <verstrekker>
-                  <zorgaanbieder value="d6472e211" datatype="reference"/>
+                  <zorgaanbieder value="d20596e211"
+                                 datatype="reference"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="30"/>
@@ -305,7 +396,8 @@
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d6472e867" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e872"
+                                         datatype="reference"/>
                </verstrekt_geneesmiddel>
                <relatie_verstrekkingsverzoek>
                   <identificatie value="MBH_300_herhalingen_VV"
@@ -315,9 +407,11 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_herhalingen_MVE2"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-12-12T10:24:05+01:00"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                                  value="2023-12-12T10:24:05+01:00"/>
                <verstrekker>
-                  <zorgaanbieder value="d6472e211" datatype="reference"/>
+                  <zorgaanbieder value="d20596e211"
+                                 datatype="reference"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="30"/>
@@ -327,7 +421,8 @@
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d6472e867" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e872"
+                                         datatype="reference"/>
                </verstrekt_geneesmiddel>
                <relatie_verstrekkingsverzoek>
                   <identificatie value="MBH_300_herhalingen_VV"
@@ -337,9 +432,11 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_herhalingen_MVE3"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2024-01-11T09:46:48+01:00"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                                  value="2024-01-11T09:46:48+01:00"/>
                <verstrekker>
-                  <zorgaanbieder value="d6472e211" datatype="reference"/>
+                  <zorgaanbieder value="d20596e211"
+                                 datatype="reference"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="30"/>
@@ -349,7 +446,8 @@
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d6472e867" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e872"
+                                         datatype="reference"/>
                </verstrekt_geneesmiddel>
                <relatie_verstrekkingsverzoek>
                   <identificatie value="MBH_300_herhalingen_VV"
@@ -363,16 +461,21 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_afleverlocatie_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2024-01-01T11:07:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2024-01-01T11:07:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2024-01-02T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2024-01-11T23:59:59+01:00"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2024-01-02T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2024-01-11T23:59:59+01:00"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d6472e78" datatype="reference"/>
+                  <zorgverlener value="d20596e78"
+                                datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d6472e1296" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e1301"
+                                         datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
                   <omschrijving value="3 maal per dag 1 stuk, Oraal"/>
@@ -397,8 +500,20 @@
                               <aantal>
                                  <nominale_waarde value="3"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir"
+                                             xmlns:pharm="urn:ihe:pharm:medication">
+                                 <repeat>
+                                    <frequency value="3"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -407,12 +522,15 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_afleverlocatie_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2024-01-01T11:07:00+01:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime"
+                                                value="2024-01-01T11:07:00+01:00"/>
                <auteur>
-                  <zorgverlener value="d6472e78" datatype="reference"/>
+                  <zorgverlener value="d20596e78"
+                                datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d6472e1296" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e1301"
+                                         datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
                   <aantal value="30"/>
@@ -422,7 +540,8 @@
                            displayName="stuk"/>
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d6472e211" datatype="reference"/>
+                  <zorgaanbieder value="d20596e211"
+                                 datatype="reference"/>
                </beoogd_verstrekker>
                <afleverlocatie value="Dorpsrand 200,1256ZZ Ons Dorp"/>
                <relatie_medicatieafspraak>
@@ -433,16 +552,21 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_afleverlocatie_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2024-01-01T12:07:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2024-01-01T12:07:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2024-01-02T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2024-01-11T23:59:59+01:00"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2024-01-02T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2024-01-11T23:59:59+01:00"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d6472e211" datatype="reference"/>
+                  <zorgaanbieder value="d20596e211"
+                                 datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d6472e1591" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e1596"
+                                         datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
                   <omschrijving value="3 maal per dag 1 stuk, Oraal"/>
@@ -467,8 +591,20 @@
                               <aantal>
                                  <nominale_waarde value="3"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir"
+                                             xmlns:pharm="urn:ihe:pharm:medication">
+                                 <repeat>
+                                    <frequency value="3"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -481,10 +617,13 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_afleverlocatie_MVE"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2024-01-01T12:07:00+01:00"/>
-               <aanschrijf_datum datatype="datetime" value="2024-01-01T11:07:00+01:00"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                                  value="2024-01-01T12:07:00+01:00"/>
+               <aanschrijf_datum datatype="datetime"
+                                 value="2024-01-01T11:07:00+01:00"/>
                <verstrekker>
-                  <zorgaanbieder value="d6472e211" datatype="reference"/>
+                  <zorgaanbieder value="d20596e211"
+                                 datatype="reference"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="30"/>
@@ -494,7 +633,8 @@
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d6472e1591" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e1596"
+                                         datatype="reference"/>
                </verstrekt_geneesmiddel>
                <afleverlocatie value="&#xA;                   Dorpsrand 200,1256ZZ Ons Dorp &#xA;               "/>
                <relatie_verstrekkingsverzoek>
@@ -509,16 +649,21 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_distributievorm_GDS_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-12-23T11:01:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2023-12-23T11:01:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-12-23T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2024-07-19T23:59:59+02:00"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2023-12-23T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2024-07-19T23:59:59+02:00"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d6472e78" datatype="reference"/>
+                  <zorgverlener value="d20596e78"
+                                datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d6472e1854" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e1859"
+                                         datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
                   <omschrijving value="1 maal per dag 1 stuk, Oraal"/>
@@ -543,8 +688,20 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir"
+                                             xmlns:pharm="urn:ihe:pharm:medication">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -553,18 +710,23 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_distributievorm_GDS_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-12-23T11:01:00+01:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime"
+                                                value="2023-12-23T11:01:00+01:00"/>
                <auteur>
-                  <zorgverlener value="d6472e78" datatype="reference"/>
+                  <zorgverlener value="d20596e78"
+                                datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d6472e1854" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e1859"
+                                         datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <verbruiksperiode>
-                  <eind_datum_tijd datatype="datetime" value="2024-07-19T23:59:59+02:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2024-07-19T23:59:59+02:00"/>
                </verbruiksperiode>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d6472e211" datatype="reference"/>
+                  <zorgaanbieder value="d20596e211"
+                                 datatype="reference"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_distributievorm_GDS_MA"
@@ -574,16 +736,21 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_distributievorm_GDS_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2023-12-23T12:01:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2023-12-23T12:01:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2023-12-23T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2024-07-19T23:59:59+02:00"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2023-12-23T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2024-07-19T23:59:59+02:00"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d6472e211" datatype="reference"/>
+                  <zorgaanbieder value="d20596e211"
+                                 datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d6472e2135" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e2140"
+                                         datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
                   <omschrijving value="1 maal per dag 1 stuk, Oraal"/>
@@ -608,8 +775,20 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir"
+                                             xmlns:pharm="urn:ihe:pharm:medication">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -625,20 +804,25 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_distributievorm_GDS_MVE"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-12-23T12:01:00+01:00"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                                  value="2023-12-23T12:01:00+01:00"/>
                <verstrekker>
-                  <zorgaanbieder value="d6472e211" datatype="reference"/>
+                  <zorgaanbieder value="d20596e211"
+                                 datatype="reference"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
-                  <aantal value="100"/>
+                  <aantal value="14"/>
                   <eenheid code="245"
                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                            codeSystemName="G-Standaard thesaurus basiseenheden"
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d6472e2135" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e2140"
+                                         datatype="reference"/>
                </verstrekt_geneesmiddel>
+               <verbruiksduur value="14"
+                              unit="dag"/>
                <distributievorm code="1"
                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8"
                                 displayName="GDS"/>
@@ -654,16 +838,21 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_logistiekeverbruiksperiode_duur_dagen_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2024-01-01T11:02:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2024-01-01T11:02:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2024-05-30T23:59:59+02:00"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2024-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2024-05-30T23:59:59+02:00"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d6472e78" datatype="reference"/>
+                  <zorgverlener value="d20596e78"
+                                datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d6472e2391" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e2401"
+                                         datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
                   <omschrijving value="1 maal per dag 1 stuk, Oraal"/>
@@ -688,8 +877,20 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir"
+                                             xmlns:pharm="urn:ihe:pharm:medication">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -698,18 +899,23 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_logistiekeverbruiksperiode_duur_dagen_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2024-01-01T11:02:00+01:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime"
+                                                value="2024-01-01T11:02:00+01:00"/>
                <auteur>
-                  <zorgverlener value="d6472e78" datatype="reference"/>
+                  <zorgverlener value="d20596e78"
+                                datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d6472e2391" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e2401"
+                                         datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <verbruiksperiode>
-                  <tijds_duur value="50" unit="dag"/>
+                  <tijds_duur value="50"
+                              unit="dag"/>
                </verbruiksperiode>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d6472e211" datatype="reference"/>
+                  <zorgaanbieder value="d20596e211"
+                                 datatype="reference"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_logistiekeverbruiksperiode_duur_dagen_MA"
@@ -719,16 +925,21 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_logistiekeverbruiksperiode_duur_dagen_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2024-01-01T12:02:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2024-01-01T12:02:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2024-05-30T23:59:59+02:00"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2024-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2024-05-30T23:59:59+02:00"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d6472e211" datatype="reference"/>
+                  <zorgaanbieder value="d20596e211"
+                                 datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d6472e2673" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e2683"
+                                         datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
                   <omschrijving value="1 maal per dag 1 stuk, Oraal"/>
@@ -753,8 +964,20 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir"
+                                             xmlns:pharm="urn:ihe:pharm:medication">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -767,21 +990,25 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_logistiekeverbruiksperiode_duur_dagen_MVE"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2024-01-01T12:02:00+01:00"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                                  value="2024-01-01T12:02:00+01:00"/>
                <verstrekker>
-                  <zorgaanbieder value="d6472e211" datatype="reference"/>
+                  <zorgaanbieder value="d20596e211"
+                                 datatype="reference"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
-                  <aantal value="100"/>
+                  <aantal value="50"/>
                   <eenheid code="245"
                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                            codeSystemName="G-Standaard thesaurus basiseenheden"
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d6472e2673" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e2683"
+                                         datatype="reference"/>
                </verstrekt_geneesmiddel>
-               <verbruiksduur value="50" unit="dag"/>
+               <verbruiksduur value="50"
+                              unit="dag"/>
                <relatie_verstrekkingsverzoek>
                   <identificatie value="MBH_300_logistiekeverbruiksperiode_duur_dagen_VV"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
@@ -794,16 +1021,21 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_financiele_indicatiecode_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2024-01-01T11:35:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2024-01-01T11:35:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2024-01-14T23:59:59+01:00"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2024-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2024-01-14T23:59:59+01:00"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d6472e78" datatype="reference"/>
+                  <zorgverlener value="d20596e78"
+                                datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d6472e2914" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e2924"
+                                         datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
                   <omschrijving value="4 maal per dag 1 stuk, oraal"/>
@@ -828,8 +1060,20 @@
                               <aantal>
                                  <nominale_waarde value="4"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir"
+                                             xmlns:pharm="urn:ihe:pharm:medication">
+                                 <repeat>
+                                    <frequency value="4"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -838,12 +1082,15 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_financiele_indicatiecode_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2024-01-01T11:35:00+01:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime"
+                                                value="2024-01-01T11:35:00+01:00"/>
                <auteur>
-                  <zorgverlener value="d6472e78" datatype="reference"/>
+                  <zorgverlener value="d20596e78"
+                                datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d6472e2914" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e2924"
+                                         datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
                   <aantal value="56"/>
@@ -853,7 +1100,8 @@
                            displayName="stuk"/>
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d6472e211" datatype="reference"/>
+                  <zorgaanbieder value="d20596e211"
+                                 datatype="reference"/>
                </beoogd_verstrekker>
                <financiele_indicatiecode code="OTH"
                                          codeSystem="2.16.840.1.113883.5.1008"
@@ -871,16 +1119,21 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_geannuleerd_indicator_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2024-01-01T13:00:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2024-01-01T13:00:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2024-01-01T13:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2024-06-29T13:00:00+02:00"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2024-01-01T13:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2024-06-29T13:00:00+02:00"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d6472e3225" datatype="reference"/>
+                  <zorgverlener value="d20596e3235"
+                                datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d6472e3211" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e3221"
+                                         datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
                   <omschrijving value="1 maal per dag 1 stuk, oraal"/>
@@ -905,8 +1158,20 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir"
+                                             xmlns:pharm="urn:ihe:pharm:medication">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -915,12 +1180,15 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_geannuleerd_indicator_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2024-01-01T13:00:00+01:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime"
+                                                value="2024-01-01T13:00:00+01:00"/>
                <auteur>
-                  <zorgverlener value="d6472e3225" datatype="reference"/>
+                  <zorgverlener value="d20596e3235"
+                                datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d6472e3211" datatype="reference"/>
+                  <farmaceutisch_product value="d20596e3221"
+                                         datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
                   <aantal value="180"/>
@@ -929,9 +1197,9 @@
                            codeSystemName="G-Standaard thesaurus basiseenheden"
                            displayName="stuk"/>
                </te_verstrekken_hoeveelheid>
-               <geannuleerd_indicator value="true"/>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d6472e211" datatype="reference"/>
+                  <zorgaanbieder value="d20596e211"
+                                 datatype="reference"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_geannuleerd_indicator_MA"
@@ -940,31 +1208,31 @@
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d6472e64">
-               <product_code code="49484"
+            <farmaceutisch_product id="d20596e64">
+               <product_code code="68632"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
-                             displayName="Acetylsalicylzuur tabletmsr 100mg"/>
-               <product_code code="103039"
+                             displayName="ACETYLSALICYLZUUR DISPERTABLET 80MG"/>
+               <product_code code="117145"
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              codeSystemName="G-Standaard GPK"
-                             displayName="Acetylsalicylzuur tabletmsr 100mg"/>
+                             displayName="ACETYLSALICYLZUUR DISPERTABLET 80MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d6472e348">
-               <product_code code="1110837"
+            <farmaceutisch_product id="d20596e348">
+               <product_code code="1137891"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
-                             displayName="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
-               <product_code code="49484"
+                             displayName="ACETYLSALICYLZUUR CARDIO AUROBINDO DISP TABL 80MG"/>
+               <product_code code="68632"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
-                             displayName="Acetylsalicylzuur tabletmsr 100mg"/>
-               <product_code code="103039"
+                             displayName="ACETYLSALICYLZUUR DISPERTABLET 80MG"/>
+               <product_code code="117145"
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              codeSystemName="G-Standaard GPK"
-                             displayName="Acetylsalicylzuur tabletmsr 100mg"/>
+                             displayName="ACETYLSALICYLZUUR DISPERTABLET 80MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d6472e584">
+            <farmaceutisch_product id="d20596e589">
                <product_code code="5967"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -974,7 +1242,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="FUROSEMIDE 40MG TABLET"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d6472e867">
+            <farmaceutisch_product id="d20596e872">
                <product_code code="1127047"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -988,7 +1256,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="FUROSEMIDE 40MG TABLET"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d6472e1296">
+            <farmaceutisch_product id="d20596e1301">
                <product_code code="199311"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -998,7 +1266,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="MODAFINIL TABLET 200MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d6472e1591">
+            <farmaceutisch_product id="d20596e1596">
                <product_code code="2842246"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -1012,7 +1280,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="MODAFINIL TABLET 200MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d6472e1854">
+            <farmaceutisch_product id="d20596e1859">
                <product_code code="48291"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1022,7 +1290,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="MIZOLASTINE TABLET MGA  10MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d6472e2135">
+            <farmaceutisch_product id="d20596e2140">
                <product_code code="1101099"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -1036,7 +1304,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="MIZOLASTINE TABLET MGA  10MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d6472e2391">
+            <farmaceutisch_product id="d20596e2401">
                <product_code code="67903"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1046,7 +1314,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="PARACETAMOL 500MG TABLET"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d6472e2673">
+            <farmaceutisch_product id="d20596e2683">
                <product_code code="768901"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -1060,7 +1328,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="PARACETAMOL 500MG TABLET"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d6472e2914">
+            <farmaceutisch_product id="d20596e2924">
                <product_code code="353"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1070,7 +1338,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="OXAZEPAM TABLET 10MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d6472e3211">
+            <farmaceutisch_product id="d20596e3221">
                <product_code code="34975"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1080,8 +1348,9 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="FINASTERIDE TABLET 5MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="d6472e78">
-               <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
+            <zorgverlener id="d20596e78">
+               <zorgverlener_identificatienummer value="000001112"
+                                                 root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Bertine"/>
                   <geslachtsnaam>
@@ -1095,11 +1364,13 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d6472e99" datatype="reference"/>
+                  <zorgaanbieder value="d20596e99"
+                                 datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgverlener id="d6472e3225">
-               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+            <zorgverlener id="d20596e3235">
+               <zorgverlener_identificatienummer value="000001111"
+                                                 root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Peter"/>
                   <geslachtsnaam>
@@ -1113,11 +1384,13 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d6472e99" datatype="reference"/>
+                  <zorgaanbieder value="d20596e99"
+                                 datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d6472e99">
-               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+            <zorgaanbieder id="d20596e99">
+               <zorgaanbieder_identificatienummer value="00001111"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>
@@ -1129,8 +1402,9 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="d6472e211">
-               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+            <zorgaanbieder id="d20596e211">
+               <zorgaanbieder_identificatienummer value="01236578"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>

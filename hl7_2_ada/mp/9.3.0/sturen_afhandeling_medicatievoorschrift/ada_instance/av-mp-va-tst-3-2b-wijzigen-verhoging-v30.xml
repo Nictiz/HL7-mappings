@@ -1,10 +1,11 @@
-<!--Generated from HL7v3 instance.--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_afhandeling_medicatievoorschrift.xsd">
+<!--Generated from HL7v3 instance.-->
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_afhandeling_medicatievoorschrift.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2024-01-01T00:00:00+02:00"
-         last-update-date="2024-01-01T00:00:00+02:00"/>
+         creation-date="2026-04-28T11:17:41.3522798+02:00"
+         last-update-date="2026-04-28T11:17:41.3522798+02:00"/>
    <data>
       <sturen_afhandeling_medicatievoorschrift app="mp-mp93"
                                                shortName="sturen_afhandeling_medicatievoorschrift"
@@ -18,35 +19,44 @@
                                                id="av-mp-va-tst-3-2b-wijzigen-verhoging-v30">
          <patient>
             <naamgegevens>
-               <initialen value="J."/>
+               <voornamen value="C"/>
                <naamgebruik code="NL1"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
                             displayName="Eigen geslachtsnaam"/>
                <geslachtsnaam>
-                  <voorvoegsels value="de "/>
-                  <achternaam value="XXX_Luzac"/>
+                  <voorvoegsels value="van de "/>
+                  <achternaam value="XXX_Voortman"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999900778" root="2.16.840.1.113883.2.4.6.3"/>
-            <geboortedatum datatype="datetime" value="1985-10-24"/>
-            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <identificatienummer value="999908881"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime"
+                           value="1963-09-18"/>
+            <geslacht code="M"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Man"/>
          </patient>
          <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_wijzigen_verhoging"
+            <identificatie value="MBH_300_wijzigen_verhoging-tav"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <toedieningsafspraak>
-               <identificatie value="MBH_300_wijzigen_verhoging_TA_wijzigingmetMVE"
+               <identificatie value="MBH_300_wijzigen_verhoging_TA_wijzigingmetMVE-tav"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2024-01-01T09:02:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2024-01-01T09:02:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2024-01-01T09:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" nullFlavor="NI"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2024-01-01T09:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   nullFlavor="NI"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d814e87" datatype="reference"/>
+                  <zorgaanbieder value="d49213e87"
+                                 datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d814e67" datatype="reference"/>
+                  <farmaceutisch_product value="d49213e67"
+                                         datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
                   <omschrijving value="1 maal per dag 2 stuks, Oraal"/>
@@ -71,37 +81,50 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir"
+                                             xmlns:pharm="urn:ihe:pharm:medication">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
                <relatie_medicatieafspraak>
-                  <identificatie value="MBH_300_wijzigen_verhoging_MA_wijzigingmetVV"
+                  <identificatie value="MBH_300_wijzigen_verhoging_MA_wijzigingmetVV-tav"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_medicatieafspraak>
-               <relatie_toedieningsafspraak>
-                  <identificatie value="MBH_300_wijzigen_verhoging_TA_start"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               </relatie_toedieningsafspraak>
             </toedieningsafspraak>
             <toedieningsafspraak>
-               <identificatie value="MBH_300_wijzigen_verhoging_TA_techstaken"
+               <identificatie value="MBH_300_wijzigen_verhoging_TA_techstaken-tav"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime" value="2024-01-01T09:02:00+01:00"/>
+               <registratie_datum_tijd datatype="datetime"
+                                       value="2024-01-01T09:02:00+01:00"/>
                <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime" value="2024-01-01T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2024-01-01T09:00:00+01:00"/>
+                  <start_datum_tijd datatype="datetime"
+                                    value="2024-01-01T00:00:00+01:00"/>
+                  <eind_datum_tijd datatype="datetime"
+                                   value="2024-01-01T09:00:00+01:00"/>
                </gebruiksperiode>
                <toedieningsafspraak_stop_type code="410546004"
                                               codeSystem="2.16.840.1.113883.6.96"
                                               displayName="stopgezet"/>
                <verstrekker>
-                  <zorgaanbieder value="d814e242" datatype="reference"/>
+                  <zorgaanbieder value="d49213e228"
+                                 datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d814e67" datatype="reference"/>
+                  <farmaceutisch_product value="d49213e67"
+                                         datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
                   <omschrijving value="1 maal per dag 1 stuk, Oraal"/>
@@ -126,27 +149,41 @@
                               <aantal>
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
+                              <tijdseenheid value="1"
+                                            unit="dag"/>
                            </frequentie>
+                           <adaextension>
+                              <effectiveTime xsi:type="Timing"
+                                             xmlns="http://hl7.org/fhir"
+                                             xmlns:pharm="urn:ihe:pharm:medication">
+                                 <repeat>
+                                    <frequency value="1"/>
+                                    <period value="1"/>
+                                    <periodUnit value="d"/>
+                                 </repeat>
+                              </effectiveTime>
+                           </adaextension>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
                <relatie_medicatieafspraak>
-                  <identificatie value="MBH_300_wijzigen_verhoging_MA_techstaken"
+                  <identificatie value="MBH_300_wijzigen_verhoging_MA_techstaken-tav"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_medicatieafspraak>
                <relatie_toedieningsafspraak>
-                  <identificatie value="MBH_300_wijzigen_verhoging_TA_start"
+                  <identificatie value="MBH_300_wijzigen_verhoging_TA_start-tav"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                </relatie_toedieningsafspraak>
             </toedieningsafspraak>
             <medicatieverstrekking>
-               <identificatie value="MBH_300_wijzigen_verhoging_MVE_extra"
+               <identificatie value="MBH_300_wijzigen_verhoging_MVE_extra-tav"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2024-01-01T09:02:00+01:00"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                                  value="2024-01-01T09:02:00+01:00"/>
                <verstrekker>
-                  <zorgaanbieder value="d814e87" datatype="reference"/>
+                  <zorgaanbieder value="d49213e87"
+                                 datatype="reference"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="60"/>
@@ -156,16 +193,17 @@
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d814e67" datatype="reference"/>
+                  <farmaceutisch_product value="d49213e67"
+                                         datatype="reference"/>
                </verstrekt_geneesmiddel>
                <relatie_verstrekkingsverzoek>
-                  <identificatie value="MBH_300_wijzigen_verhoging_VV_extra"
+                  <identificatie value="MBH_300_wijzigen_verhoging_VV_extra-tav"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
                </relatie_verstrekkingsverzoek>
             </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d814e67">
+            <farmaceutisch_product id="d49213e67">
                <product_code code="598860"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -179,8 +217,9 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="FUROSEMIDE 40MG TABLET"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="d814e87">
-               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+            <zorgaanbieder id="d49213e87">
+               <zorgaanbieder_identificatienummer value="01236578"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>
@@ -193,8 +232,9 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="d814e242">
-               <zorgaanbieder_identificatienummer value="99901111" root="2.16.528.1.1007.3.3"/>
+            <zorgaanbieder id="d49213e228">
+               <zorgaanbieder_identificatienummer value="99901111"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek Jansen en Co"/>
             </zorgaanbieder>
          </bouwstenen>

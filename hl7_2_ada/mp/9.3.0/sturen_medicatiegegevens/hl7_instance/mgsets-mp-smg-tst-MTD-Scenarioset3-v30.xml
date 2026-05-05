@@ -1,7 +1,8 @@
 <organizer classCode="CLUSTER"
            moodCode="EVN"
            xmlns="urn:hl7-org:v3"
-           xmlns:pharm="urn:ihe:pharm:medication">
+           xmlns:pharm="urn:ihe:pharm:medication"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9411"/>
    <code code="102"
          displayName="Medicatiegegevens"
@@ -10,18 +11,18 @@
    <statusCode nullFlavor="NI"/>
    <recordTarget>
       <patientRole>
-         <id extension="999900778"
+         <id extension="999908881"
              root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
-               <given qualifier="IN">J.</given>
-               <prefix qualifier="VV">de </prefix>
-               <family qualifier="BR">XXX_Luzac</family>
+               <given qualifier="BR">C</given>
+               <prefix qualifier="VV">van de </prefix>
+               <family qualifier="BR">XXX_Voortman</family>
             </name>
-            <administrativeGenderCode code="F"
+            <administrativeGenderCode code="M"
                                       codeSystem="2.16.840.1.113883.5.1"
-                                      displayName="Vrouw"/>
-            <birthTime value="19851024"/>
+                                      displayName="Man"/>
+            <birthTime value="19630918"/>
          </patient>
       </patientRole>
    </recordTarget>
@@ -29,7 +30,7 @@
       <substanceAdministration classCode="SBADM"
                                moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9406"/>
-         <id extension="MBH_300_MTDopschorten_MTD1"
+         <id extension="MBH_300_MTDopschorten_MTD1-tmgs"
              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
          <code code="18629005"
                displayName="toediening van medicatie (verrichting)"
@@ -114,36 +115,33 @@
                <value xsi:type="CE"
                       code="408366001"
                       codeSystem="2.16.840.1.113883.6.96"
-                      displayName="niet in staat om medicatie te gebruiken"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      displayName="niet in staat om medicatie te gebruiken"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_MTDopschorten_MA"
+               <id extension="MBH_300_MTDopschorten_MA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
-               <id extension="MBH_300_MTDopschorten_TA"
+               <id extension="MBH_300_MTDopschorten_TA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <code displayName="Toedieningsafspraak"
                      code="422037009"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -152,7 +150,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_MTDopschorten"/>
+                   extension="MBH_300_MTDopschorten-tmgs"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -164,7 +162,7 @@
       <substanceAdministration classCode="SBADM"
                                moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9406"/>
-         <id extension="MBH_300_MTDopschorten_MTD2"
+         <id extension="MBH_300_MTDopschorten_MTD2-tmgs"
              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
          <code code="18629005"
                displayName="toediening van medicatie (verrichting)"
@@ -242,28 +240,26 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_MTDopschorten_MA"
+               <id extension="MBH_300_MTDopschorten_MA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
-               <id extension="MBH_300_MTDopschorten_TA"
+               <id extension="MBH_300_MTDopschorten_TA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <code displayName="Toedieningsafspraak"
                      code="422037009"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -272,7 +268,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_MTDopschorten"/>
+                   extension="MBH_300_MTDopschorten-tmgs"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -284,7 +280,7 @@
       <substanceAdministration classCode="SBADM"
                                moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9406"/>
-         <id extension="mbh_300_AfwijkendeToediening_MTD_normaal"
+         <id extension="mbh_300_AfwijkendeToediening_MTD_normaal-tmgs"
              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
          <code code="18629005"
                displayName="toediening van medicatie (verrichting)"
@@ -362,28 +358,26 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_AfwijkendeToediening_MA"
+               <id extension="MBH_300_AfwijkendeToediening_MA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
-               <id extension="MBH_300_AfwijkendeToediening_TA"
+               <id extension="MBH_300_AfwijkendeToediening_TA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <code displayName="Toedieningsafspraak"
                      code="422037009"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -392,7 +386,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="mbh_300_AfwijkendeToediening"/>
+                   extension="mbh_300_AfwijkendeToediening-tmgs"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -404,7 +398,7 @@
       <substanceAdministration classCode="SBADM"
                                moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9406"/>
-         <id extension="mbh_300_AfwijkendeToediening_MTD_afwijkendeHoeveelheid"
+         <id extension="mbh_300_AfwijkendeToediening_MTD_afwijkendeQty-tmgs"
              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
          <code code="18629005"
                displayName="toediening van medicatie (verrichting)"
@@ -487,8 +481,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
                <value xsi:type="CE"
-                      nullFlavor="OTH"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                      nullFlavor="OTH">
                   <originalText>Tensie meting uitgevoerd. Uitslag: laag-normaal. Daarom 1 stuks toegediend i.p.v. 2.</originalText>
                </value>
             </observation>
@@ -497,28 +490,26 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_AfwijkendeToediening_MA"
+               <id extension="MBH_300_AfwijkendeToediening_MA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
-               <id extension="MBH_300_AfwijkendeToediening_TA"
+               <id extension="MBH_300_AfwijkendeToediening_TA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <code displayName="Toedieningsafspraak"
                      code="422037009"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -527,7 +518,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="mbh_300_AfwijkendeToediening"/>
+                   extension="mbh_300_AfwijkendeToediening-tmgs"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -539,7 +530,7 @@
       <substanceAdministration classCode="SBADM"
                                moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9406"/>
-         <id extension="MBH_300_CorrectieToediening_MTD_normaal"
+         <id extension="MBH_300_CorrectieToediening_MTD_normaal-tmgs"
              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
          <code code="18629005"
                displayName="toediening van medicatie (verrichting)"
@@ -571,7 +562,7 @@
                         codeSystemName="G-Standaard HPK">
                      <translation code="16020"
                                   codeSystem="2.16.840.1.113883.2.4.4.10"
-                                  displayName="TRIMETHOPRIM TABLET "
+                                  displayName="TRIMETHOPRIM TABLET"
                                   codeSystemName="G-Standaard PRK"/>
                      <translation code="39136"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
@@ -617,28 +608,26 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_CorrectieToediening_MA"
+               <id extension="MBH_300_CorrectieToediening_MA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
-               <id extension="MBH_300_CorrectieToediening_TA"
+               <id extension="MBH_300_CorrectieToediening_TA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <code displayName="Toedieningsafspraak"
                      code="422037009"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -647,7 +636,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_CorrectieToediening "/>
+                   extension="MBH_300_CorrectieToediening -tmgs"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -659,7 +648,7 @@
       <substanceAdministration classCode="SBADM"
                                moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9406"/>
-         <id extension="MBH_300_CorrectieToediening_MTD_extraHoeveelheid"
+         <id extension="MBH_300_CorrectieToediening_MTD_extraHoeveelheid-tmgs"
              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
          <code code="18629005"
                displayName="toediening van medicatie (verrichting)"
@@ -691,7 +680,7 @@
                         codeSystemName="G-Standaard HPK">
                      <translation code="16020"
                                   codeSystem="2.16.840.1.113883.2.4.4.10"
-                                  displayName="TRIMETHOPRIM TABLET "
+                                  displayName="TRIMETHOPRIM TABLET"
                                   codeSystemName="G-Standaard PRK"/>
                      <translation code="39136"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
@@ -737,28 +726,26 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_CorrectieToediening_MA"
+               <id extension="MBH_300_CorrectieToediening_MA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
-               <id extension="MBH_300_CorrectieToediening_TA"
+               <id extension="MBH_300_CorrectieToediening_TA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <code displayName="Toedieningsafspraak"
                      code="422037009"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -767,7 +754,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_CorrectieToediening "/>
+                   extension="MBH_300_CorrectieToediening -tmgs"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -779,7 +766,7 @@
       <substanceAdministration classCode="SBADM"
                                moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9406"/>
-         <id extension="MBH_300_CorrectieOpToediening_verkeerdehoeveelheid_MTD"
+         <id extension="MBH_300_CorrectieOpToediening_MTD_verkeerdeQty-tmgs"
              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
          <code code="18629005"
                displayName="toediening van medicatie (verrichting)"
@@ -869,28 +856,26 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_CorrectieOpToediening_MA"
+               <id extension="MBH_300_CorrectieOpToediening_MA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
-               <id extension="MBH_300_CorrectieOpToediening_TA"
+               <id extension="MBH_300_CorrectieOpToediening_TA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <code displayName="Toedieningsafspraak"
                      code="422037009"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -899,7 +884,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_CorrectieOpToediening"/>
+                   extension="MBH_300_CorrectieOpToediening-tmgs"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -911,7 +896,7 @@
       <substanceAdministration classCode="SBADM"
                                moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9406"/>
-         <id extension="MBH_300_CorrectieOpToediening_correctieopregistratie_MTD"
+         <id extension="MBH_300_CorrectieOpToediening_correctie_MTD-tmgs"
              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
          <code code="18629005"
                displayName="toediening van medicatie (verrichting)"
@@ -1008,36 +993,33 @@
                <value xsi:type="CE"
                       code="159691000146109"
                       codeSystem="2.16.840.1.113883.6.96"
-                      displayName="foutieve registratie van medicatie"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      displayName="foutieve registratie van medicatie"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_CorrectieOpToediening_MA"
+               <id extension="MBH_300_CorrectieOpToediening_MA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
-               <id extension="MBH_300_CorrectieOpToediening_TA"
+               <id extension="MBH_300_CorrectieOpToediening_TA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <code displayName="Toedieningsafspraak"
                      code="422037009"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1046,7 +1028,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_CorrectieOpToediening"/>
+                   extension="MBH_300_CorrectieOpToediening-tmgs"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -1058,7 +1040,7 @@
       <substanceAdministration classCode="SBADM"
                                moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9406"/>
-         <id extension="MBH_300_CorrectieOpToediening_CorrecteHoeveelheid_MTD"
+         <id extension="MBH_300_CorrectieOpToediening_CorHoeveelh_MTD-tmgs"
              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
          <code code="18629005"
                displayName="toediening van medicatie (verrichting)"
@@ -1160,28 +1142,26 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_CorrectieOpToediening_MA"
+               <id extension="MBH_300_CorrectieOpToediening_MA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
-               <id extension="MBH_300_CorrectieOpToediening_TA"
+               <id extension="MBH_300_CorrectieOpToediening_TA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <code displayName="Toedieningsafspraak"
                      code="422037009"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1190,7 +1170,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_CorrectieOpToediening"/>
+                   extension="MBH_300_CorrectieOpToediening-tmgs"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>

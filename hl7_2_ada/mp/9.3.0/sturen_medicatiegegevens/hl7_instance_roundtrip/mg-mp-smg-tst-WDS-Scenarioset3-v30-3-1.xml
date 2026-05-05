@@ -1,7 +1,8 @@
-<organizer xmlns:pharm="urn:ihe:pharm:medication"
+<organizer classCode="CLUSTER"
+           moodCode="EVN"
            xmlns="urn:hl7-org:v3"
-           classCode="CLUSTER"
-           moodCode="EVN">
+           xmlns:pharm="urn:ihe:pharm:medication"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9411"/>
    <code code="102"
          displayName="Medicatiegegevens"
@@ -10,31 +11,36 @@
    <statusCode nullFlavor="NI"/>
    <recordTarget>
       <patientRole>
-         <id extension="999900778" root="2.16.840.1.113883.2.4.6.3"/>
+         <id extension="999908881"
+             root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
-               <given qualifier="IN">J.</given>
-               <prefix qualifier="VV">de </prefix>
-               <family qualifier="BR">XXX_Luzac</family>
+               <given qualifier="BR">C</given>
+               <prefix qualifier="VV">van de </prefix>
+               <family qualifier="BR">XXX_Voortman</family>
             </name>
-            <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
-            <birthTime value="19851024"/>
+            <administrativeGenderCode code="M"
+                                      codeSystem="2.16.840.1.113883.5.1"
+                                      displayName="Man"/>
+            <birthTime value="19630918"/>
          </patient>
       </patientRole>
    </recordTarget>
    <component typeCode="COMP">
-      <substanceAdministration classCode="SBADM" moodCode="RQO">
+      <substanceAdministration classCode="SBADM"
+                               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9412"/>
-         <id extension="MBH_300_WDSwijziging_0dosering_startWDS"
+         <id extension="MBH_300_WDSwijziging_startWDS-tmgs"
              root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
          <code code="395067002"
                displayName="optimaliseren van dosering van medicatie (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">eerst gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, Oraal</text>
-         <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231227000000+0100"/>
-            <width value="2" unit="wk"/>
+            <width value="2"
+                   unit="wk"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -43,7 +49,8 @@
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
                   <code code="7323"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
                         displayName="ACENOCOUMAROL TABLET 1MG"
@@ -59,7 +66,8 @@
          <author>
             <time value="20231227134500+0100"/>
             <assignedAuthor>
-               <id extension="222221111" root="2.16.528.1.1007.3.1"/>
+               <id extension="222221111"
+                   root="2.16.528.1.1007.3.1"/>
                <code code="3400"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
                      displayName="Trombosediensten"
@@ -73,7 +81,8 @@
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="11112222" root="2.16.528.1.1007.3.3"/>
+                  <id extension="11112222"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Trombosedienst Ons Dorp</name>
                   <addr use="WP">
                      <streetName>Kerkstraat</streetName>
@@ -92,8 +101,10 @@
                </representedOrganization>
             </assignedAuthor>
          </author>
-         <entryRelationship typeCode="SUBJ" inversionInd="true">
-            <act classCode="ACT" moodCode="EVN">
+         <entryRelationship typeCode="SUBJ"
+                            inversionInd="true">
+            <act classCode="ACT"
+                 moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
                <code code="48767-8"
                      codeSystem="2.16.840.1.113883.6.1"
@@ -104,11 +115,11 @@
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -122,7 +133,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="1" unit="1">
+                  <center value="1"
+                          unit="1">
                      <translation value="1"
                                   code="245"
                                   displayName="stuk"
@@ -130,16 +142,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="2"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -153,7 +165,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="1" unit="1">
+                  <center value="1"
+                          unit="1">
                      <translation value="1"
                                   code="245"
                                   displayName="stuk"
@@ -161,16 +174,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="3"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -184,7 +197,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="1" unit="1">
+                  <center value="1"
+                          unit="1">
                      <translation value="1"
                                   code="245"
                                   displayName="stuk"
@@ -192,16 +206,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="4"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -215,7 +229,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="1" unit="1">
+                  <center value="1"
+                          unit="1">
                      <translation value="1"
                                   code="245"
                                   displayName="stuk"
@@ -223,16 +238,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="5"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -246,7 +261,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="1" unit="1">
+                  <center value="1"
+                          unit="1">
                      <translation value="1"
                                   code="245"
                                   displayName="stuk"
@@ -254,16 +270,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="6"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -277,7 +293,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="1" unit="1">
+                  <center value="1"
+                          unit="1">
                      <translation value="1"
                                   code="245"
                                   displayName="stuk"
@@ -285,16 +302,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="7"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -308,7 +325,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="1" unit="1">
+                  <center value="1"
+                          unit="1">
                      <translation value="1"
                                   code="245"
                                   displayName="stuk"
@@ -316,16 +334,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="8"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -339,7 +357,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="1" unit="1">
+                  <center value="1"
+                          unit="1">
                      <translation value="1"
                                   code="245"
                                   displayName="stuk"
@@ -347,16 +366,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="9"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -370,7 +389,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="1" unit="1">
+                  <center value="1"
+                          unit="1">
                      <translation value="1"
                                   code="245"
                                   displayName="stuk"
@@ -378,16 +398,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="10"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -401,7 +421,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="1" unit="1">
+                  <center value="1"
+                          unit="1">
                      <translation value="1"
                                   code="245"
                                   displayName="stuk"
@@ -409,16 +430,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="11"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -432,7 +453,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="1" unit="1">
+                  <center value="1"
+                          unit="1">
                      <translation value="1"
                                   code="245"
                                   displayName="stuk"
@@ -440,16 +462,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="12"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -463,7 +485,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="1" unit="1">
+                  <center value="1"
+                          unit="1">
                      <translation value="1"
                                   code="245"
                                   displayName="stuk"
@@ -471,16 +494,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="13"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -494,7 +517,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="1" unit="1">
+                  <center value="1"
+                          unit="1">
                      <translation value="1"
                                   code="245"
                                   displayName="stuk"
@@ -502,16 +526,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="14"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -525,7 +549,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="1" unit="1">
+                  <center value="1"
+                          unit="1">
                      <translation value="1"
                                   code="245"
                                   displayName="stuk"
@@ -533,26 +558,29 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_WDSwijziging_0dosering_MA"
+               <id extension="MBH_300_WDSwijziging_MA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_WDSwijziging_0dosering"/>
+                   extension="MBH_300_WDSwijziging-tmgs"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -561,18 +589,20 @@
       </substanceAdministration>
    </component>
    <component typeCode="COMP">
-      <substanceAdministration classCode="SBADM" moodCode="RQO">
+      <substanceAdministration classCode="SBADM"
+                               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9412"/>
-         <id extension="MBH_300_WDSwijziging_0dosering_wijzigingWDS"
+         <id extension="MBH_300_WDSwijziging_wijzigingWDS-tmgs"
              root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
          <code code="395067002"
                displayName="optimaliseren van dosering van medicatie (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">eerst gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, Oraal</text>
-         <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231231000000+0100"/>
-            <width value="7" unit="d"/>
+            <width value="7"
+                   unit="d"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -581,7 +611,8 @@
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
                   <code code="7323"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
                         displayName="ACENOCOUMAROL TABLET 1MG"
@@ -597,7 +628,8 @@
          <author>
             <time value="20231231151100+0100"/>
             <assignedAuthor>
-               <id extension="222221111" root="2.16.528.1.1007.3.1"/>
+               <id extension="222221111"
+                   root="2.16.528.1.1007.3.1"/>
                <code code="3400"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
                      displayName="Trombosediensten"
@@ -611,7 +643,8 @@
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="11112222" root="2.16.528.1.1007.3.3"/>
+                  <id extension="11112222"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Trombosedienst Ons Dorp</name>
                   <addr use="WP">
                      <streetName>Kerkstraat</streetName>
@@ -631,14 +664,14 @@
             </assignedAuthor>
          </author>
          <entryRelationship typeCode="RSON">
-            <observation classCode="OBS" moodCode="EVN">
+            <observation classCode="OBS"
+                         moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9439"/>
                <code code="160111000146106"
                      displayName="reden voor wijzigen van voorschrift"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
-               <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                      xsi:type="CE"
+               <value xsi:type="CE"
                       nullFlavor="OTH">
                   <originalText>Bloeding door ongeluk</originalText>
                </value>
@@ -646,11 +679,11 @@
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -664,7 +697,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="2" unit="1">
+                  <center value="2"
+                          unit="1">
                      <translation value="2"
                                   code="245"
                                   displayName="stuk"
@@ -672,16 +706,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="2"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -695,7 +729,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="2" unit="1">
+                  <center value="2"
+                          unit="1">
                      <translation value="2"
                                   code="245"
                                   displayName="stuk"
@@ -703,16 +738,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="3"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -726,7 +761,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="2" unit="1">
+                  <center value="2"
+                          unit="1">
                      <translation value="2"
                                   code="245"
                                   displayName="stuk"
@@ -734,16 +770,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="4"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -757,7 +793,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="2" unit="1">
+                  <center value="2"
+                          unit="1">
                      <translation value="2"
                                   code="245"
                                   displayName="stuk"
@@ -765,16 +802,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="5"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -788,7 +825,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="2" unit="1">
+                  <center value="2"
+                          unit="1">
                      <translation value="2"
                                   code="245"
                                   displayName="stuk"
@@ -796,16 +834,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="6"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -819,7 +857,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="2" unit="1">
+                  <center value="2"
+                          unit="1">
                      <translation value="2"
                                   code="245"
                                   displayName="stuk"
@@ -827,16 +866,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="7"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -850,7 +889,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="2" unit="1">
+                  <center value="2"
+                          unit="1">
                      <translation value="2"
                                   code="245"
                                   displayName="stuk"
@@ -858,38 +898,42 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_WDSwijziging_0dosering_MA"
+               <id extension="MBH_300_WDSwijziging_MA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9381"/>
-               <id extension="MBH_300_WDSwijziging_0dosering_startWDS"
+               <id extension="MBH_300_WDSwijziging_startWDS-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
                <code code="395067002"
                      displayName="optimaliseren van dosering van medicatie (verrichting)"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_WDSwijziging_0dosering"/>
+                   extension="MBH_300_WDSwijziging-tmgs"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -898,16 +942,17 @@
       </substanceAdministration>
    </component>
    <component typeCode="COMP">
-      <substanceAdministration classCode="SBADM" moodCode="RQO">
+      <substanceAdministration classCode="SBADM"
+                               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9412"/>
-         <id extension="MBH_300_WDSwijziging_0dosering_techstopWDS"
+         <id extension="MBH_300_WDSwijziging_techstopWDS-tmgs"
              root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
          <code code="395067002"
                displayName="optimaliseren van dosering van medicatie (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">eerst gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, Oraal</text>
-         <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231227000000+0100"/>
             <high value="20231230235959+0100"/>
          </effectiveTime>
@@ -918,7 +963,8 @@
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
                   <code code="7323"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
                         displayName="ACENOCOUMAROL TABLET 1MG"
@@ -934,7 +980,8 @@
          <author>
             <time value="20231231151100+0100"/>
             <assignedAuthor>
-               <id extension="222221111" root="2.16.528.1.1007.3.1"/>
+               <id extension="222221111"
+                   root="2.16.528.1.1007.3.1"/>
                <code code="3400"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
                      displayName="Trombosediensten"
@@ -948,7 +995,8 @@
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="11112222" root="2.16.528.1.1007.3.3"/>
+                  <id extension="11112222"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Trombosedienst Ons Dorp</name>
                   <addr use="WP">
                      <streetName>Kerkstraat</streetName>
@@ -968,21 +1016,23 @@
             </assignedAuthor>
          </author>
          <entryRelationship typeCode="COMP">
-            <observation classCode="OBS" moodCode="EVN">
+            <observation classCode="OBS"
+                         moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9414"/>
-               <code code="410684002"
-                     displayName="status van medicamenteuze behandeling"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"/>
-               <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                      xsi:type="CE"
+               <code code="1"
+                     displayName="Stoptype"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
+                     codeSystemName="Medicatieproces observaties"/>
+               <value xsi:type="CE"
                       code="410546004"
                       codeSystem="2.16.840.1.113883.6.96"
                       displayName="stopgezet"/>
             </observation>
          </entryRelationship>
-         <entryRelationship typeCode="SUBJ" inversionInd="true">
-            <act classCode="ACT" moodCode="EVN">
+         <entryRelationship typeCode="SUBJ"
+                            inversionInd="true">
+            <act classCode="ACT"
+                 moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
                <code code="48767-8"
                      codeSystem="2.16.840.1.113883.6.1"
@@ -993,11 +1043,11 @@
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -1011,7 +1061,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="1" unit="1">
+                  <center value="1"
+                          unit="1">
                      <translation value="1"
                                   code="245"
                                   displayName="stuk"
@@ -1019,16 +1070,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="2"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -1042,7 +1093,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="2" unit="1">
+                  <center value="2"
+                          unit="1">
                      <translation value="2"
                                   code="245"
                                   displayName="stuk"
@@ -1050,16 +1102,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="3"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -1073,7 +1125,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="2" unit="1">
+                  <center value="2"
+                          unit="1">
                      <translation value="2"
                                   code="245"
                                   displayName="stuk"
@@ -1081,16 +1134,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="4"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -1104,7 +1157,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="2" unit="1">
+                  <center value="2"
+                          unit="1">
                      <translation value="2"
                                   code="245"
                                   displayName="stuk"
@@ -1112,16 +1166,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="5"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -1135,7 +1189,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="2" unit="1">
+                  <center value="2"
+                          unit="1">
                      <translation value="2"
                                   code="245"
                                   displayName="stuk"
@@ -1143,16 +1198,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="6"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -1166,7 +1221,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="2" unit="1">
+                  <center value="2"
+                          unit="1">
                      <translation value="2"
                                   code="245"
                                   displayName="stuk"
@@ -1174,16 +1230,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="7"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -1197,7 +1253,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="2" unit="1">
+                  <center value="2"
+                          unit="1">
                      <translation value="2"
                                   code="245"
                                   displayName="stuk"
@@ -1205,16 +1262,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="8"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -1228,7 +1285,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="2" unit="1">
+                  <center value="2"
+                          unit="1">
                      <translation value="2"
                                   code="245"
                                   displayName="stuk"
@@ -1236,16 +1294,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="9"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -1259,7 +1317,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="2" unit="1">
+                  <center value="2"
+                          unit="1">
                      <translation value="2"
                                   code="245"
                                   displayName="stuk"
@@ -1267,16 +1326,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="10"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -1290,7 +1349,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="2" unit="1">
+                  <center value="2"
+                          unit="1">
                      <translation value="2"
                                   code="245"
                                   displayName="stuk"
@@ -1298,16 +1358,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="11"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -1321,7 +1381,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="2" unit="1">
+                  <center value="2"
+                          unit="1">
                      <translation value="2"
                                   code="245"
                                   displayName="stuk"
@@ -1329,16 +1390,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="12"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -1352,7 +1413,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="2" unit="1">
+                  <center value="2"
+                          unit="1">
                      <translation value="2"
                                   code="245"
                                   displayName="stuk"
@@ -1360,16 +1422,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="13"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -1383,7 +1445,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="2" unit="1">
+                  <center value="2"
+                          unit="1">
                      <translation value="2"
                                   code="245"
                                   displayName="stuk"
@@ -1391,16 +1454,16 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="14"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                              xsi:type="Timing">
+               <effectiveTime xsi:type="Timing"
+                              xmlns="http://hl7.org/fhir">
                   <repeat>
                      <boundsDuration>
                         <value value="1"/>
@@ -1414,7 +1477,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="2" unit="1">
+                  <center value="2"
+                          unit="1">
                      <translation value="2"
                                   code="245"
                                   displayName="stuk"
@@ -1422,38 +1486,42 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_WDSwijziging_0dosering_MA"
+               <id extension="MBH_300_WDSwijziging_MA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9381"/>
-               <id extension="MBH_300_WDSwijziging_0dosering_startWDS"
+               <id extension="MBH_300_WDSwijziging_startWDS-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
                <code code="395067002"
                      displayName="optimaliseren van dosering van medicatie (verrichting)"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
-               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_WDSwijziging_0dosering"/>
+                   extension="MBH_300_WDSwijziging-tmgs"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>

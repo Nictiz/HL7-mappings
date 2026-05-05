@@ -1,7 +1,8 @@
 <organizer classCode="CLUSTER"
            moodCode="EVN"
            xmlns="urn:hl7-org:v3"
-           xmlns:pharm="urn:ihe:pharm:medication">
+           xmlns:pharm="urn:ihe:pharm:medication"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9411"/>
    <code code="102"
          displayName="Medicatiegegevens"
@@ -30,15 +31,14 @@
                                negationInd="false">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9444"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9442"/>
-         <id extension="MBH_300_start_eind_MGB"
+         <id extension="MBH_300_start_eind_MGB-tmgs"
              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
          <code code="422979000"
                displayName="bevinding betreffende gedrag met betrekking tot medicatieregime (bevinding)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">1 stuk, oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231222000000+0100"/>
             <high value="20231227235959+0100"/>
          </effectiveTime>
@@ -51,9 +51,9 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9363"/>
                <manufacturedMaterial classCode="MMAT"
                                      determinerCode="KIND">
-                  <code code="560308"
+                  <code code="2115468"
                         codeSystem="2.16.840.1.113883.2.4.4.7"
-                        displayName="METOCLOPRAMIDE HCL PCH TABLET 10MG"
+                        displayName="METOCLOPRAMIDE HCL ACCORD TABLET 10MG"
                         codeSystemName="G-Standaard HPK">
                      <translation code="6947"
                                   codeSystem="2.16.840.1.113883.2.4.4.10"
@@ -135,8 +135,7 @@
                      code="15"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
                <value xsi:type="BL"
-                      value="true"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      value="true"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -148,8 +147,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
                <value xsi:type="BL"
-                      value="true"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      value="true"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -167,8 +165,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -179,8 +176,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
                <author>
                   <time nullFlavor="NI"/>
                   <assignedAuthor>
@@ -217,14 +213,13 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
-               <id extension="MBH_300_start_eind_TA"
+               <id extension="MBH_300_start_eind_TA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <code displayName="Toedieningsafspraak"
                      code="422037009"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -233,7 +228,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_start_eind"/>
+                   extension="MBH_300_start_eind-tmgs"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -247,15 +242,14 @@
                                negationInd="false">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9444"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9442"/>
-         <id extension="MBH_300_start_duur_MGB"
+         <id extension="MBH_300_start_duur_MGB-tmgs"
              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
          <code code="422979000"
                displayName="bevinding betreffende gedrag met betrekking tot medicatieregime (bevinding)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">1 maal per dag 1 stuk, oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231212000000+0100"/>
             <width value="3"
                    unit="wk"/>
@@ -329,8 +323,7 @@
                      code="15"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
                <value xsi:type="BL"
-                      value="true"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      value="true"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -342,8 +335,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
                <value xsi:type="BL"
-                      value="true"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      value="true"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -352,7 +344,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <frequency value="1"/>
@@ -370,8 +361,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -382,8 +372,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
                <author>
                   <time nullFlavor="NI"/>
                   <assignedAuthor>
@@ -420,14 +409,13 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_start_duur_MA"
+               <id extension="MBH_300_start_duur_MA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -436,7 +424,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_start_duur"/>
+                   extension="MBH_300_start_duur-tmgs"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -450,15 +438,14 @@
                                negationInd="false">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9444"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9442"/>
-         <id extension="MBH_300_chronisch_MGB"
+         <id extension="MBH_300_chronisch_MGB-tmgs"
              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
          <code code="422979000"
                displayName="bevinding betreffende gedrag met betrekking tot medicatieregime (bevinding)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">1 maal per dag 1 stuk, oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231202000000+0100"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
@@ -535,8 +522,7 @@
                      code="15"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
                <value xsi:type="BL"
-                      value="true"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      value="true"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -548,8 +534,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
                <value xsi:type="BL"
-                      value="true"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      value="true"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -558,7 +543,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <frequency value="1"/>
@@ -576,8 +560,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -588,8 +571,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
                <author>
                   <time nullFlavor="NI"/>
                   <assignedAuthor>
@@ -626,14 +608,13 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
-               <id extension="MBH_300_chronisch_TA"
+               <id extension="MBH_300_chronisch_TA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <code displayName="Toedieningsafspraak"
                      code="422037009"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -642,7 +623,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_chronisch"/>
+                   extension="MBH_300_chronisch-tmgs"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -656,15 +637,14 @@
                                negationInd="false">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9444"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9442"/>
-         <id extension="MBH_300_start_duur2_MGB"
+         <id extension="MBH_300_start_duur2_MGB-tmgs"
              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
          <code code="422979000"
                displayName="bevinding betreffende gedrag met betrekking tot medicatieregime (bevinding)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">1 maal per dag 1 stuk, oraal</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20231102000000+0100"/>
             <width value="28"
                    unit="d"/>
@@ -738,8 +718,7 @@
                      code="15"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
                <value xsi:type="BL"
-                      value="true"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      value="true"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -751,8 +730,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
                <value xsi:type="BL"
-                      value="true"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      value="true"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -761,7 +739,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <frequency value="1"/>
@@ -779,8 +756,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -791,8 +767,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
                <author>
                   <time nullFlavor="NI"/>
                   <assignedAuthor>
@@ -829,14 +804,13 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_start_duur2_MA"
+               <id extension="MBH_300_start_duur2_MA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -845,7 +819,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_start_duur2"/>
+                   extension="MBH_300_start_duur2-tmgs"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -859,15 +833,14 @@
                                negationInd="false">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9444"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9442"/>
-         <id extension="MBH_300_dosis_stuks_MGB"
+         <id extension="MBH_300_dosis_stuks_MGB-tmgs"
              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
          <code code="422979000"
                displayName="bevinding betreffende gedrag met betrekking tot medicatieregime (bevinding)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">2 maal per dag 1 dosis, inhalatie</text>
-         <effectiveTime xsi:type="IVL_TS"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <effectiveTime xsi:type="IVL_TS">
             <low value="20230824000000+0200"/>
             <high value="20230922235959+0200"/>
          </effectiveTime>
@@ -940,8 +913,7 @@
                      code="15"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
                <value xsi:type="BL"
-                      value="true"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      value="true"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -953,8 +925,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
                <value xsi:type="BL"
-                      value="true"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                      value="true"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -963,7 +934,6 @@
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xsi:type="Timing"
-                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
                      <frequency value="2"/>
@@ -981,8 +951,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -993,8 +962,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
                <author>
                   <time nullFlavor="NI"/>
                   <assignedAuthor>
@@ -1031,14 +999,13 @@
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_dosis_stuks_MA"
+               <id extension="MBH_300_dosis_stuks_MA-tmgs"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+               <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP"
@@ -1047,7 +1014,7 @@
                        moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_dosis_stuks"/>
+                   extension="MBH_300_dosis_stuks-tmgs"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
