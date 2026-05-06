@@ -2,12 +2,13 @@
    <id value="zib-Problem-msz-74fb0875-6b10-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/BgZ-Problem"/>
    </meta>
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Aandoening. Subject: Michelle M.B. Michelle Bergzoon Verheul. Categorie: <span title="Diagnose (282291009 - SNOMED CT)">Diagnose</span>, Status: actief / bevestigd</caption>
+            <caption>Aandoening. Subject: M.B. Bergzoon Verheul. Categorie: <span title="Diagnose (282291009 - SNOMED CT)">Diagnose</span>, Status: actief / bevestigd</caption>
             <tbody>
                <tr>
                   <th>Code</th>
@@ -53,6 +54,15 @@
       </coding>
    </category>
    <code>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/bgz-SpecificProblemName">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="254844000"/>
+               <display value="maligne phyllodestumor van mamma"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
       <coding>
          <system value="http://snomed.info/sct"/>
          <code value="254837009"/>
@@ -76,8 +86,8 @@
       </coding>
    </bodySite>
    <subject>
-      <reference value="Patient/MICHELLE-M-B--MICHELLE-BERGZOON-VERHEUL"/>
-      <display value="Michelle M.B. Michelle Bergzoon Verheul"/>
+      <reference value="Patient/bgz-msz-patB"/>
+      <display value="M.B. Bergzoon Verheul"/>
    </subject>
    <onsetDateTime value="${DATE, T, D, -20}"/>
 </Condition>

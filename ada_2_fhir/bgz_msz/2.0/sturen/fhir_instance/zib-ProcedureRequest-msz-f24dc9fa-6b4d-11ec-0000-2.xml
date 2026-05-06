@@ -1,0 +1,102 @@
+<ProcedureRequest xmlns="http://hl7.org/fhir">
+   <id value="zib-ProcedureRequest-msz-f24dc9fa-6b4d-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichtingaanvraag. Subject: J.J.E. XXX_Enderman Da Conceição. Status: onbekend<span style="display: block;">Intentie: plan</span>
+               <span style="display: block;">Aangevraagd door: Gertjan G. Gert Gein || Ziekenhuis Amsterdam</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="eenvoudige mastectomie (172043006 - SNOMED CT)">eenvoudige mastectomie</span>
+                  </td>
+                  <td>
+                     <div>Wanneer: ${DATE, T, D, -9}T10:00:00+02:00 - ${DATE, T, D, -9}T12:00:00+02:00</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Beoogde uitvoerende</th>
+                  <td>
+                     <div>Gaga G. Gaga Gedachtzaam || Chirurg || Ziekenhuis Amsterdam</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>maligne neoplasma van mamma</td>
+               </tr>
+               <tr>
+                  <td>Deel van lichaam</td>
+                  <td>
+                     <span title="gehele linker mamma (361716006 - SNOMED CT)">gehele linker mamma</span>
+                     <span title="Links (7771000 - SNOMED CT)">Links</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <status value="unknown"/>
+   <intent value="plan"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="172043006"/>
+         <display value="eenvoudige mastectomie"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/bgz-msz-patG"/>
+      <display value="J.J.E. XXX_Enderman Da Conceição"/>
+   </subject>
+   <occurrencePeriod>
+      <start value="${DATE, T, D, -9}T10:00:00+02:00"/>
+      <end value="${DATE, T, D, -9}T12:00:00+02:00"/>
+   </occurrencePeriod>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0015152520000015"/>
+               <display value="Gertjan G. Gert Gein || Ziekenhuis Amsterdam"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00151525"/>
+         <display value="Gertjan G. Gert Gein"/>
+      </agent>
+   </requester>
+   <performer>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-msz-0014142401-01420000015"/>
+            <display value="Gaga G. Gaga Gedachtzaam || Chirurg || Ziekenhuis Amsterdam"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00141424"/>
+      <display value="Gaga G. Gaga Gedachtzaam"/>
+   </performer>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-msz-5ecd16f2-6ab9-11ec-0000-2"/>
+      <display value="maligne neoplasma van mamma"/>
+   </reasonReference>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="361716006"/>
+         <display value="gehele linker mamma"/>
+      </coding>
+   </bodySite>
+</ProcedureRequest>

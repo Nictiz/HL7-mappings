@@ -1,0 +1,77 @@
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="zib-AllergyIntolerance-msz-6a553ba6-6b79-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Allergie/intolerantie. Patiënt: J.J.E. XXX_Enderman Da Conceição. Categorie: biologisch materiaal, Status: foutieve invoer</caption>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="jodium (44588005 - SNOMED CT)">jodium</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>2002</td>
+               </tr>
+               <tr>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>Onbekend</div>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <verificationStatus value="entered-in-error"/>
+   <category value="biologic">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="419199007"/>
+               <display value="allergie voor substantie"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="44588005"/>
+         <display value="jodium"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/bgz-msz-patG"/>
+      <display value="J.J.E. XXX_Enderman Da Conceição"/>
+   </patient>
+   <onsetDateTime value="2002"/>
+   <reaction>
+      <manifestation>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="Overig"/>
+         </coding>
+         <text value="Onbekend"/>
+      </manifestation>
+      <exposureRoute>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="47625008"/>
+            <display value="intraveneuze route"/>
+         </coding>
+      </exposureRoute>
+   </reaction>
+</AllergyIntolerance>

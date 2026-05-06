@@ -1,0 +1,83 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="b-LaboratoryTestResult-Observation-msz-4eff71c9-6b2e-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Ast. Categorie: <span title="Laboratory (laboratory - observation-category)">Laboratory</span>, <span title="Klinische chemie (275711006 - SNOMED CT)">Klinische chemie</span>, Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -44}T11:13:12+02:00</td>
+               </tr>
+               <tr>
+                  <th>Gerelateerd</th>
+                  <td>has-member - Natrium [mol/volume] in bloed</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Natrium [mol/volume] in bloed (2947-0 - LOINC)">Natrium [mol/volume] in bloed</span>
+                  </td>
+                  <td/>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <status value="final">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
+               <code value="final"/>
+               <display value="Definitief"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </status>
+   <category>
+      <coding>
+         <system value="http://hl7.org/fhir/observation-category"/>
+         <code value="laboratory"/>
+         <display value="Laboratory"/>
+      </coding>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="49581000146104"/>
+         <display value="bevinding betreffende laboratoriumonderzoek"/>
+      </coding>
+   </category>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="275711006"/>
+         <display value="Klinische chemie"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="2947-0"/>
+         <display value="Natrium [mol/volume] in bloed"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/bgz-msz-patE"/>
+      <display value="Ast"/>
+   </subject>
+   <effectiveDateTime value="${DATE, T, D, -44}T11:13:12+02:00"/>
+   <related>
+      <type value="has-member"/>
+      <target>
+         <reference value="Observation/b-LaboratoryTestResult-Observation-msz-a6cdc1f4-6ae7-11ec-0000-2"/>
+         <display value="Natrium [mol/volume] in bloed"/>
+      </target>
+   </related>
+</Observation>
