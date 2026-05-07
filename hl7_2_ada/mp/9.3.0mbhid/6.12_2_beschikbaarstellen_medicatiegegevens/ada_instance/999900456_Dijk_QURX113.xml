@@ -32,6 +32,7 @@
             <geslacht code="M"
                       codeSystem="2.16.840.1.113883.5.1"/>
          </patient>
+         <bouwstenen/>
       </beschikbaarstellen_medicatiegegevens>
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -82,21 +83,12 @@
                                  value="2019-04-10T00:00"/>
             </gebruiksperiode>
             <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
-               <farmaceutisch_product id="uuid-94898b37-6b52-11ec-0000-020000000000">
-                  <product_code code="14683016"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="DIABETES MELLITUS"/>
-                  <product_code code="1182501"
-                                codeSystem="2.16.840.1.113883.2.4.4.7"/>
-               </farmaceutisch_product>
+               <farmaceutisch_product value="uuid-94898b37-6b52-11ec-0000-020000000000"
+                                      datatype="reference"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <!--mp9-gebruiksinstructie-from-mp612-->
             <gebruiksinstructie>
@@ -125,45 +117,6 @@
                               root="2.16.528.1.1007.3.3.21476.932000"/>
             </relatie_medicatieafspraak>
          </toedieningsafspraak>
-         <medicatieverstrekking>
-            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
-            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
-                           value="0000980384"/>
-            <medicamenteuze_behandeling_id value="1182501"
-                                           root="2.16.840.1.113883.2.4.3.11.61.3"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2019-04-10"/>
-            <aanschrijf_datum datatype="datetime"
-                              value="2019-04-10"/>
-            <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
-            </verstrekker>
-            <!--mp9-verstrekte-hoeveelheid-->
-            <verstrekte_hoeveelheid>
-               <aantal value="1"/>
-               <eenheid code="245"
-                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="STUK"/>
-            </verstrekte_hoeveelheid>
-            <verstrekt_geneesmiddel>
-               <farmaceutisch_product id="uuid-94898b37-6b52-11ec-0000-020000000000">
-                  <product_code code="14683016"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="DIABETES MELLITUS"/>
-                  <product_code code="1182501"
-                                codeSystem="2.16.840.1.113883.2.4.4.7"/>
-               </farmaceutisch_product>
-            </verstrekt_geneesmiddel>
-            <relatie_verstrekkingsverzoek>
-               <identificatie value="0000980384"
-                              root="2.16.528.1.1007.3.3.21476.932000"/>
-            </relatie_verstrekkingsverzoek>
-         </medicatieverstrekking>
          <toedieningsafspraak>
             <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
             <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.528.1.1007.3.3.21476.9011"
@@ -178,23 +131,12 @@
                                  value="2018-11-14T00:00"/>
             </gebruiksperiode>
             <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
-               <farmaceutisch_product id="uuid-36afedfd-6af6-11ec-0000-020000000000">
-                  <product_code code="14292998"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="ACENOCOUMAROL CF TABLET 1MG"/>
-                  <product_code code="856126"
-                                codeSystem="2.16.840.1.113883.2.4.4.7"/>
-                  <product_code code="20303"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
+               <farmaceutisch_product value="uuid-36afedfd-6af6-11ec-0000-020000000000"
+                                      datatype="reference"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <!--mp9-gebruiksinstructie-from-mp612-->
             <gebruiksinstructie>
@@ -219,47 +161,6 @@
                               root="2.16.528.1.1007.3.3.21476.932000"/>
             </relatie_medicatieafspraak>
          </toedieningsafspraak>
-         <medicatieverstrekking>
-            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
-            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
-                           value="0000772743"/>
-            <medicamenteuze_behandeling_id value="856126"
-                                           root="2.16.840.1.113883.2.4.3.11.61.3"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2019-03-26"/>
-            <aanschrijf_datum datatype="datetime"
-                              value="2019-03-26"/>
-            <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
-            </verstrekker>
-            <!--mp9-verstrekte-hoeveelheid-->
-            <verstrekte_hoeveelheid>
-               <aantal value="100"/>
-               <eenheid code="245"
-                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="STUK"/>
-            </verstrekte_hoeveelheid>
-            <verstrekt_geneesmiddel>
-               <farmaceutisch_product id="uuid-36afedfd-6af6-11ec-0000-020000000000">
-                  <product_code code="14292998"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="ACENOCOUMAROL CF TABLET 1MG"/>
-                  <product_code code="856126"
-                                codeSystem="2.16.840.1.113883.2.4.4.7"/>
-                  <product_code code="20303"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
-            </verstrekt_geneesmiddel>
-            <relatie_verstrekkingsverzoek>
-               <identificatie value="0000772743"
-                              root="2.16.528.1.1007.3.3.21476.932000"/>
-            </relatie_verstrekkingsverzoek>
-         </medicatieverstrekking>
          <toedieningsafspraak>
             <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
             <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.528.1.1007.3.3.21476.9011"
@@ -274,21 +175,12 @@
                                  value="2019-03-26T00:00"/>
             </gebruiksperiode>
             <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
-               <farmaceutisch_product id="uuid-d96c06e6-6b7a-11ec-0000-020000000000">
-                  <product_code code="15903044"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="SILDENAFIL TABLET   50MG"/>
-                  <product_code code="105406"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
+               <farmaceutisch_product value="uuid-d96c06e6-6b7a-11ec-0000-020000000000"
+                                      datatype="reference"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <!--mp9-gebruiksinstructie-from-mp612-->
             <gebruiksinstructie>
@@ -330,45 +222,6 @@
                               root="2.16.528.1.1007.3.3.21476.932000"/>
             </relatie_medicatieafspraak>
          </toedieningsafspraak>
-         <medicatieverstrekking>
-            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
-            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
-                           value="0000959802"/>
-            <medicamenteuze_behandeling_id value="0000959802"
-                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2019-03-26"/>
-            <aanschrijf_datum datatype="datetime"
-                              value="2019-03-26"/>
-            <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
-            </verstrekker>
-            <!--mp9-verstrekte-hoeveelheid-->
-            <verstrekte_hoeveelheid>
-               <aantal value="4"/>
-               <eenheid code="245"
-                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="STUK"/>
-            </verstrekte_hoeveelheid>
-            <verstrekt_geneesmiddel>
-               <farmaceutisch_product id="uuid-d96c06e6-6b7a-11ec-0000-020000000000">
-                  <product_code code="15903044"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="SILDENAFIL TABLET   50MG"/>
-                  <product_code code="105406"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
-            </verstrekt_geneesmiddel>
-            <relatie_verstrekkingsverzoek>
-               <identificatie value="0000959802"
-                              root="2.16.528.1.1007.3.3.21476.932000"/>
-            </relatie_verstrekkingsverzoek>
-         </medicatieverstrekking>
          <toedieningsafspraak>
             <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
             <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.528.1.1007.3.3.21476.9011"
@@ -383,21 +236,12 @@
                                  value="2018-11-14T00:00"/>
             </gebruiksperiode>
             <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
-               <farmaceutisch_product id="uuid-e027a4a5-6af8-11ec-0000-020000000000">
-                  <product_code code="14817810"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="ACETYLSALICYLZUUR TABLET  80MG"/>
-                  <product_code code="1058"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
+               <farmaceutisch_product value="uuid-e027a4a5-6af8-11ec-0000-020000000000"
+                                      datatype="reference"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <!--mp9-gebruiksinstructie-from-mp612-->
             <gebruiksinstructie>
@@ -435,45 +279,6 @@
                               root="2.16.528.1.1007.3.3.21476.932000"/>
             </relatie_medicatieafspraak>
          </toedieningsafspraak>
-         <medicatieverstrekking>
-            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
-            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
-                           value="0000772741"/>
-            <medicamenteuze_behandeling_id value="0000772741"
-                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2019-03-26"/>
-            <aanschrijf_datum datatype="datetime"
-                              value="2019-03-26"/>
-            <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
-            </verstrekker>
-            <!--mp9-verstrekte-hoeveelheid-->
-            <verstrekte_hoeveelheid>
-               <aantal value="30"/>
-               <eenheid code="245"
-                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="STUK"/>
-            </verstrekte_hoeveelheid>
-            <verstrekt_geneesmiddel>
-               <farmaceutisch_product id="uuid-e027a4a5-6af8-11ec-0000-020000000000">
-                  <product_code code="14817810"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="ACETYLSALICYLZUUR TABLET  80MG"/>
-                  <product_code code="1058"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
-            </verstrekt_geneesmiddel>
-            <relatie_verstrekkingsverzoek>
-               <identificatie value="0000772741"
-                              root="2.16.528.1.1007.3.3.21476.932000"/>
-            </relatie_verstrekkingsverzoek>
-         </medicatieverstrekking>
          <toedieningsafspraak>
             <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
             <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.528.1.1007.3.3.21476.9011"
@@ -488,21 +293,12 @@
                                  value="2018-11-14T00:00"/>
             </gebruiksperiode>
             <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
-               <farmaceutisch_product id="uuid-63802db7-6b45-11ec-0000-020000000000">
-                  <product_code code="16061888"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="PARACETAMOL TABLET  500MG"/>
-                  <product_code code="2194"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
+               <farmaceutisch_product value="uuid-63802db7-6b45-11ec-0000-020000000000"
+                                      datatype="reference"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <!--mp9-gebruiksinstructie-from-mp612-->
             <gebruiksinstructie>
@@ -542,45 +338,6 @@
                               root="2.16.528.1.1007.3.3.21476.932000"/>
             </relatie_medicatieafspraak>
          </toedieningsafspraak>
-         <medicatieverstrekking>
-            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
-            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
-                           value="0000772739"/>
-            <medicamenteuze_behandeling_id value="0000772739"
-                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2019-03-26"/>
-            <aanschrijf_datum datatype="datetime"
-                              value="2019-03-26"/>
-            <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
-            </verstrekker>
-            <!--mp9-verstrekte-hoeveelheid-->
-            <verstrekte_hoeveelheid>
-               <aantal value="30"/>
-               <eenheid code="245"
-                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="STUK"/>
-            </verstrekte_hoeveelheid>
-            <verstrekt_geneesmiddel>
-               <farmaceutisch_product id="uuid-63802db7-6b45-11ec-0000-020000000000">
-                  <product_code code="16061888"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="PARACETAMOL TABLET  500MG"/>
-                  <product_code code="2194"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
-            </verstrekt_geneesmiddel>
-            <relatie_verstrekkingsverzoek>
-               <identificatie value="0000772739"
-                              root="2.16.528.1.1007.3.3.21476.932000"/>
-            </relatie_verstrekkingsverzoek>
-         </medicatieverstrekking>
          <toedieningsafspraak>
             <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
             <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.528.1.1007.3.3.21476.9011"
@@ -595,21 +352,12 @@
                                  value="2018-11-14T00:00"/>
             </gebruiksperiode>
             <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
-               <farmaceutisch_product id="uuid-2f5a3b03-6b7e-11ec-0000-020000000000">
-                  <product_code code="15367878"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="DICLOFENAC-KALIUM TABLET OMHULD 25MG"/>
-                  <product_code code="129461"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
+               <farmaceutisch_product value="uuid-2f5a3b03-6b7e-11ec-0000-020000000000"
+                                      datatype="reference"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <!--mp9-gebruiksinstructie-from-mp612-->
             <gebruiksinstructie>
@@ -643,45 +391,6 @@
                               root="2.16.528.1.1007.3.3.21476.932000"/>
             </relatie_medicatieafspraak>
          </toedieningsafspraak>
-         <medicatieverstrekking>
-            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
-            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
-                           value="0000772737"/>
-            <medicamenteuze_behandeling_id value="0000772737"
-                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2019-03-26"/>
-            <aanschrijf_datum datatype="datetime"
-                              value="2019-03-26"/>
-            <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
-            </verstrekker>
-            <!--mp9-verstrekte-hoeveelheid-->
-            <verstrekte_hoeveelheid>
-               <aantal value="30"/>
-               <eenheid code="245"
-                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="STUK"/>
-            </verstrekte_hoeveelheid>
-            <verstrekt_geneesmiddel>
-               <farmaceutisch_product id="uuid-2f5a3b03-6b7e-11ec-0000-020000000000">
-                  <product_code code="15367878"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="DICLOFENAC-KALIUM TABLET OMHULD 25MG"/>
-                  <product_code code="129461"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
-            </verstrekt_geneesmiddel>
-            <relatie_verstrekkingsverzoek>
-               <identificatie value="0000772737"
-                              root="2.16.528.1.1007.3.3.21476.932000"/>
-            </relatie_verstrekkingsverzoek>
-         </medicatieverstrekking>
          <toedieningsafspraak>
             <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
             <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.528.1.1007.3.3.21476.9011"
@@ -698,23 +407,12 @@
                                 value="2019-03-29T00:00:00"/>
             </gebruiksperiode>
             <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
-               <farmaceutisch_product id="uuid-535ccb6d-6ab6-11ec-0000-020000000000">
-                  <product_code code="14571013"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="METHOTREXAAT PCH TABLET  2,5MG"/>
-                  <product_code code="1421778"
-                                codeSystem="2.16.840.1.113883.2.4.4.7"/>
-                  <product_code code="16918"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
+               <farmaceutisch_product value="uuid-535ccb6d-6ab6-11ec-0000-020000000000"
+                                      datatype="reference"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <!--mp9-gebruiksinstructie-from-mp612-->
             <gebruiksinstructie>
@@ -737,47 +435,6 @@
                               root="2.16.528.1.1007.3.3.21476.932000"/>
             </relatie_medicatieafspraak>
          </toedieningsafspraak>
-         <medicatieverstrekking>
-            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
-            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
-                           value="0000959795"/>
-            <medicamenteuze_behandeling_id value="1421778"
-                                           root="2.16.840.1.113883.2.4.3.11.61.3"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2019-03-26"/>
-            <aanschrijf_datum datatype="datetime"
-                              value="2019-03-26"/>
-            <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
-            </verstrekker>
-            <!--mp9-verstrekte-hoeveelheid-->
-            <verstrekte_hoeveelheid>
-               <aantal value="30"/>
-               <eenheid code="245"
-                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="STUK"/>
-            </verstrekte_hoeveelheid>
-            <verstrekt_geneesmiddel>
-               <farmaceutisch_product id="uuid-535ccb6d-6ab6-11ec-0000-020000000000">
-                  <product_code code="14571013"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="METHOTREXAAT PCH TABLET  2,5MG"/>
-                  <product_code code="1421778"
-                                codeSystem="2.16.840.1.113883.2.4.4.7"/>
-                  <product_code code="16918"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
-            </verstrekt_geneesmiddel>
-            <relatie_verstrekkingsverzoek>
-               <identificatie value="0000959795"
-                              root="2.16.528.1.1007.3.3.21476.932000"/>
-            </relatie_verstrekkingsverzoek>
-         </medicatieverstrekking>
          <toedieningsafspraak>
             <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
             <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.528.1.1007.3.3.21476.9011"
@@ -792,21 +449,12 @@
                                  value="2018-11-14T00:00"/>
             </gebruiksperiode>
             <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
-               <farmaceutisch_product id="uuid-6c2d8643-6adf-11ec-0000-020000000000">
-                  <product_code code="14148919"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="FOLIUMZUUR TABLET 5MG"/>
-                  <product_code code="3530"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
+               <farmaceutisch_product value="uuid-6c2d8643-6adf-11ec-0000-020000000000"
+                                      datatype="reference"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <!--mp9-gebruiksinstructie-from-mp612-->
             <gebruiksinstructie>
@@ -848,45 +496,6 @@
                               root="2.16.528.1.1007.3.3.21476.932000"/>
             </relatie_medicatieafspraak>
          </toedieningsafspraak>
-         <medicatieverstrekking>
-            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
-            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
-                           value="0000772725"/>
-            <medicamenteuze_behandeling_id value="0000772725"
-                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2019-03-26"/>
-            <aanschrijf_datum datatype="datetime"
-                              value="2019-03-26"/>
-            <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
-            </verstrekker>
-            <!--mp9-verstrekte-hoeveelheid-->
-            <verstrekte_hoeveelheid>
-               <aantal value="30"/>
-               <eenheid code="245"
-                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="STUK"/>
-            </verstrekte_hoeveelheid>
-            <verstrekt_geneesmiddel>
-               <farmaceutisch_product id="uuid-6c2d8643-6adf-11ec-0000-020000000000">
-                  <product_code code="14148919"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="FOLIUMZUUR TABLET 5MG"/>
-                  <product_code code="3530"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
-            </verstrekt_geneesmiddel>
-            <relatie_verstrekkingsverzoek>
-               <identificatie value="0000772725"
-                              root="2.16.528.1.1007.3.3.21476.932000"/>
-            </relatie_verstrekkingsverzoek>
-         </medicatieverstrekking>
          <toedieningsafspraak>
             <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
             <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.528.1.1007.3.3.21476.9011"
@@ -901,21 +510,12 @@
                                  value="2018-11-14T00:00"/>
             </gebruiksperiode>
             <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
-               <farmaceutisch_product id="uuid-53e68609-6ab5-11ec-0000-020000000000">
-                  <product_code code="14077108"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="HYPERICUM TABLET"/>
-                  <product_code code="110817"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
+               <farmaceutisch_product value="uuid-53e68609-6ab5-11ec-0000-020000000000"
+                                      datatype="reference"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <!--mp9-gebruiksinstructie-from-mp612-->
             <gebruiksinstructie>
@@ -954,45 +554,6 @@
                               root="2.16.528.1.1007.3.3.21476.932000"/>
             </relatie_medicatieafspraak>
          </toedieningsafspraak>
-         <medicatieverstrekking>
-            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
-            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
-                           value="0000772722"/>
-            <medicamenteuze_behandeling_id value="0000772722"
-                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2019-03-26"/>
-            <aanschrijf_datum datatype="datetime"
-                              value="2019-03-26"/>
-            <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
-            </verstrekker>
-            <!--mp9-verstrekte-hoeveelheid-->
-            <verstrekte_hoeveelheid>
-               <aantal value="80"/>
-               <eenheid code="245"
-                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="STUK"/>
-            </verstrekte_hoeveelheid>
-            <verstrekt_geneesmiddel>
-               <farmaceutisch_product id="uuid-53e68609-6ab5-11ec-0000-020000000000">
-                  <product_code code="14077108"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="HYPERICUM TABLET"/>
-                  <product_code code="110817"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
-            </verstrekt_geneesmiddel>
-            <relatie_verstrekkingsverzoek>
-               <identificatie value="0000772722"
-                              root="2.16.528.1.1007.3.3.21476.932000"/>
-            </relatie_verstrekkingsverzoek>
-         </medicatieverstrekking>
          <toedieningsafspraak>
             <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
             <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.528.1.1007.3.3.21476.9011"
@@ -1007,21 +568,12 @@
                                  value="2018-11-14T00:00"/>
             </gebruiksperiode>
             <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
-               <farmaceutisch_product id="uuid-51345dac-6b49-11ec-0000-020000000000">
-                  <product_code code="15012832"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="INSULINE ASPART/PROTAMINE INJS 30/70E/ML PATR 3ML"/>
-                  <product_code code="115045"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
+               <farmaceutisch_product value="uuid-51345dac-6b49-11ec-0000-020000000000"
+                                      datatype="reference"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <!--mp9-gebruiksinstructie-from-mp612-->
             <gebruiksinstructie>
@@ -1059,45 +611,6 @@
                               root="2.16.528.1.1007.3.3.21476.932000"/>
             </relatie_medicatieafspraak>
          </toedieningsafspraak>
-         <medicatieverstrekking>
-            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
-            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
-                           value="0000772721"/>
-            <medicamenteuze_behandeling_id value="0000772721"
-                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2019-03-26"/>
-            <aanschrijf_datum datatype="datetime"
-                              value="2019-03-26"/>
-            <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
-            </verstrekker>
-            <!--mp9-verstrekte-hoeveelheid-->
-            <verstrekte_hoeveelheid>
-               <aantal value="5"/>
-               <eenheid code="245"
-                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="STUK"/>
-            </verstrekte_hoeveelheid>
-            <verstrekt_geneesmiddel>
-               <farmaceutisch_product id="uuid-51345dac-6b49-11ec-0000-020000000000">
-                  <product_code code="15012832"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="INSULINE ASPART/PROTAMINE INJS 30/70E/ML PATR 3ML"/>
-                  <product_code code="115045"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
-            </verstrekt_geneesmiddel>
-            <relatie_verstrekkingsverzoek>
-               <identificatie value="0000772721"
-                              root="2.16.528.1.1007.3.3.21476.932000"/>
-            </relatie_verstrekkingsverzoek>
-         </medicatieverstrekking>
          <toedieningsafspraak>
             <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
             <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.528.1.1007.3.3.21476.9011"
@@ -1112,21 +625,12 @@
                                  value="2019-03-26T00:00"/>
             </gebruiksperiode>
             <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
-               <farmaceutisch_product id="uuid-9e88671b-6b47-11ec-0000-020000000000">
-                  <product_code code="15635511"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="CETOMACROGOLCREME MET VASELINE 10%"/>
-                  <product_code code="133329"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
+               <farmaceutisch_product value="uuid-9e88671b-6b47-11ec-0000-020000000000"
+                                      datatype="reference"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <!--mp9-gebruiksinstructie-from-mp612-->
             <gebruiksinstructie>
@@ -1160,45 +664,6 @@
                               root="2.16.528.1.1007.3.3.21476.932000"/>
             </relatie_medicatieafspraak>
          </toedieningsafspraak>
-         <medicatieverstrekking>
-            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
-            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
-                           value="0000959793"/>
-            <medicamenteuze_behandeling_id value="0000959793"
-                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2019-03-26"/>
-            <aanschrijf_datum datatype="datetime"
-                              value="2019-03-26"/>
-            <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
-            </verstrekker>
-            <!--mp9-verstrekte-hoeveelheid-->
-            <verstrekte_hoeveelheid>
-               <aantal value="100"/>
-               <eenheid code="215"
-                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="GRAM"/>
-            </verstrekte_hoeveelheid>
-            <verstrekt_geneesmiddel>
-               <farmaceutisch_product id="uuid-9e88671b-6b47-11ec-0000-020000000000">
-                  <product_code code="15635511"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="CETOMACROGOLCREME MET VASELINE 10%"/>
-                  <product_code code="133329"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
-            </verstrekt_geneesmiddel>
-            <relatie_verstrekkingsverzoek>
-               <identificatie value="0000959793"
-                              root="2.16.528.1.1007.3.3.21476.932000"/>
-            </relatie_verstrekkingsverzoek>
-         </medicatieverstrekking>
          <toedieningsafspraak>
             <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
             <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.528.1.1007.3.3.21476.9011"
@@ -1213,21 +678,12 @@
                                  value="2018-11-14T00:00"/>
             </gebruiksperiode>
             <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
-               <farmaceutisch_product id="uuid-606002fc-6b75-11ec-0000-020000000000">
-                  <product_code code="15854787"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="OFLOXACINE OOGDRUPPELS 3MG/ML FL 5ML"/>
-                  <product_code code="82570"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
+               <farmaceutisch_product value="uuid-606002fc-6b75-11ec-0000-020000000000"
+                                      datatype="reference"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <!--mp9-gebruiksinstructie-from-mp612-->
             <gebruiksinstructie>
@@ -1269,45 +725,6 @@
                               root="2.16.528.1.1007.3.3.21476.932000"/>
             </relatie_medicatieafspraak>
          </toedieningsafspraak>
-         <medicatieverstrekking>
-            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
-            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
-                           value="0000772718"/>
-            <medicamenteuze_behandeling_id value="0000772718"
-                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2019-03-26"/>
-            <aanschrijf_datum datatype="datetime"
-                              value="2019-03-26"/>
-            <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
-            </verstrekker>
-            <!--mp9-verstrekte-hoeveelheid-->
-            <verstrekte_hoeveelheid>
-               <aantal value="1"/>
-               <eenheid code="245"
-                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="STUK"/>
-            </verstrekte_hoeveelheid>
-            <verstrekt_geneesmiddel>
-               <farmaceutisch_product id="uuid-606002fc-6b75-11ec-0000-020000000000">
-                  <product_code code="15854787"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="OFLOXACINE OOGDRUPPELS 3MG/ML FL 5ML"/>
-                  <product_code code="82570"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
-            </verstrekt_geneesmiddel>
-            <relatie_verstrekkingsverzoek>
-               <identificatie value="0000772718"
-                              root="2.16.528.1.1007.3.3.21476.932000"/>
-            </relatie_verstrekkingsverzoek>
-         </medicatieverstrekking>
          <toedieningsafspraak>
             <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
             <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.528.1.1007.3.3.21476.9011"
@@ -1322,21 +739,12 @@
                                  value="2019-03-26T00:00"/>
             </gebruiksperiode>
             <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
-               <farmaceutisch_product id="uuid-54d13071-6ae8-11ec-0000-020000000000">
-                  <product_code code="12133183"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="ETHINYLESTRADIOL/LEVONORGESTREL TABLET 30/150UG"/>
-                  <product_code code="127280"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
+               <farmaceutisch_product value="uuid-54d13071-6ae8-11ec-0000-020000000000"
+                                      datatype="reference"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <!--mp9-gebruiksinstructie-from-mp612-->
             <gebruiksinstructie>
@@ -1365,45 +773,6 @@
                               root="2.16.528.1.1007.3.3.21476.932000"/>
             </relatie_medicatieafspraak>
          </toedieningsafspraak>
-         <medicatieverstrekking>
-            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
-            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
-                           value="0000959789"/>
-            <medicamenteuze_behandeling_id value="0000959789"
-                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2019-03-26"/>
-            <aanschrijf_datum datatype="datetime"
-                              value="2019-03-26"/>
-            <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
-            </verstrekker>
-            <!--mp9-verstrekte-hoeveelheid-->
-            <verstrekte_hoeveelheid>
-               <aantal value="63"/>
-               <eenheid code="245"
-                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="STUK"/>
-            </verstrekte_hoeveelheid>
-            <verstrekt_geneesmiddel>
-               <farmaceutisch_product id="uuid-54d13071-6ae8-11ec-0000-020000000000">
-                  <product_code code="12133183"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="ETHINYLESTRADIOL/LEVONORGESTREL TABLET 30/150UG"/>
-                  <product_code code="127280"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
-            </verstrekt_geneesmiddel>
-            <relatie_verstrekkingsverzoek>
-               <identificatie value="0000959789"
-                              root="2.16.528.1.1007.3.3.21476.932000"/>
-            </relatie_verstrekkingsverzoek>
-         </medicatieverstrekking>
          <toedieningsafspraak>
             <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
             <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.528.1.1007.3.3.21476.9011"
@@ -1418,21 +787,12 @@
                                  value="2018-11-14T00:00"/>
             </gebruiksperiode>
             <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
-               <farmaceutisch_product id="uuid-e121b691-6b3d-11ec-0000-020000000000">
-                  <product_code code="14718871"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="TENA LADY NORMAL"/>
-                  <product_code code="705667"
-                                codeSystem="2.16.840.1.113883.2.4.4.7"/>
-               </farmaceutisch_product>
+               <farmaceutisch_product value="uuid-e121b691-6b3d-11ec-0000-020000000000"
+                                      datatype="reference"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <!--mp9-gebruiksinstructie-from-mp612-->
             <gebruiksinstructie>
@@ -1457,45 +817,6 @@
                               root="2.16.528.1.1007.3.3.21476.932000"/>
             </relatie_medicatieafspraak>
          </toedieningsafspraak>
-         <medicatieverstrekking>
-            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
-            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
-                           value="0000772713"/>
-            <medicamenteuze_behandeling_id value="705667"
-                                           root="2.16.840.1.113883.2.4.3.11.61.3"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2019-03-26"/>
-            <aanschrijf_datum datatype="datetime"
-                              value="2019-03-26"/>
-            <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
-            </verstrekker>
-            <!--mp9-verstrekte-hoeveelheid-->
-            <verstrekte_hoeveelheid>
-               <aantal value="24"/>
-               <eenheid code="245"
-                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="STUK"/>
-            </verstrekte_hoeveelheid>
-            <verstrekt_geneesmiddel>
-               <farmaceutisch_product id="uuid-e121b691-6b3d-11ec-0000-020000000000">
-                  <product_code code="14718871"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="TENA LADY NORMAL"/>
-                  <product_code code="705667"
-                                codeSystem="2.16.840.1.113883.2.4.4.7"/>
-               </farmaceutisch_product>
-            </verstrekt_geneesmiddel>
-            <relatie_verstrekkingsverzoek>
-               <identificatie value="0000772713"
-                              root="2.16.528.1.1007.3.3.21476.932000"/>
-            </relatie_verstrekkingsverzoek>
-         </medicatieverstrekking>
          <toedieningsafspraak>
             <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
             <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.528.1.1007.3.3.21476.9011"
@@ -1510,21 +831,12 @@
                                  value="2018-11-14T00:00"/>
             </gebruiksperiode>
             <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
-               <farmaceutisch_product id="uuid-c4477c6e-6b60-11ec-0000-020000000000">
-                  <product_code code="15805123"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="OMEPRAZOL CAPSULE MSR 20MG"/>
-                  <product_code code="114529"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
+               <farmaceutisch_product value="uuid-c4477c6e-6b60-11ec-0000-020000000000"
+                                      datatype="reference"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <!--mp9-gebruiksinstructie-from-mp612-->
             <gebruiksinstructie>
@@ -1571,45 +883,6 @@
                               root="2.16.528.1.1007.3.3.21476.932000"/>
             </relatie_medicatieafspraak>
          </toedieningsafspraak>
-         <medicatieverstrekking>
-            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
-            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
-                           value="0000772710"/>
-            <medicamenteuze_behandeling_id value="0000772710"
-                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2019-03-26"/>
-            <aanschrijf_datum datatype="datetime"
-                              value="2019-03-26"/>
-            <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
-            </verstrekker>
-            <!--mp9-verstrekte-hoeveelheid-->
-            <verstrekte_hoeveelheid>
-               <aantal value="30"/>
-               <eenheid code="245"
-                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="STUK"/>
-            </verstrekte_hoeveelheid>
-            <verstrekt_geneesmiddel>
-               <farmaceutisch_product id="uuid-c4477c6e-6b60-11ec-0000-020000000000">
-                  <product_code code="15805123"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="OMEPRAZOL CAPSULE MSR 20MG"/>
-                  <product_code code="114529"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
-            </verstrekt_geneesmiddel>
-            <relatie_verstrekkingsverzoek>
-               <identificatie value="0000772710"
-                              root="2.16.528.1.1007.3.3.21476.932000"/>
-            </relatie_verstrekkingsverzoek>
-         </medicatieverstrekking>
          <toedieningsafspraak>
             <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
             <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.528.1.1007.3.3.21476.9011"
@@ -1626,21 +899,12 @@
                            unit="dag"/>
             </gebruiksperiode>
             <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
-               <farmaceutisch_product id="uuid-7a4d79c4-6b12-11ec-0000-020000000000">
-                  <product_code code="15702804"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="ALENDRONINEZUUR TABLET 70MG"/>
-                  <product_code code="154792"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
+               <farmaceutisch_product value="uuid-7a4d79c4-6b12-11ec-0000-020000000000"
+                                      datatype="reference"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <!--mp9-gebruiksinstructie-from-mp612-->
             <gebruiksinstructie>
@@ -1678,45 +942,6 @@
                               root="2.16.528.1.1007.3.3.21476.932000"/>
             </relatie_medicatieafspraak>
          </toedieningsafspraak>
-         <medicatieverstrekking>
-            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
-            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
-                           value="0000772709"/>
-            <medicamenteuze_behandeling_id value="0000772709"
-                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2019-03-26"/>
-            <aanschrijf_datum datatype="datetime"
-                              value="2019-03-26"/>
-            <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
-            </verstrekker>
-            <!--mp9-verstrekte-hoeveelheid-->
-            <verstrekte_hoeveelheid>
-               <aantal value="4"/>
-               <eenheid code="245"
-                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="STUK"/>
-            </verstrekte_hoeveelheid>
-            <verstrekt_geneesmiddel>
-               <farmaceutisch_product id="uuid-7a4d79c4-6b12-11ec-0000-020000000000">
-                  <product_code code="15702804"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="ALENDRONINEZUUR TABLET 70MG"/>
-                  <product_code code="154792"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
-            </verstrekt_geneesmiddel>
-            <relatie_verstrekkingsverzoek>
-               <identificatie value="0000772709"
-                              root="2.16.528.1.1007.3.3.21476.932000"/>
-            </relatie_verstrekkingsverzoek>
-         </medicatieverstrekking>
          <toedieningsafspraak>
             <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
             <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.528.1.1007.3.3.21476.9011"
@@ -1733,21 +958,12 @@
                            unit="dag"/>
             </gebruiksperiode>
             <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
-               <farmaceutisch_product id="uuid-7acabbbb-6b5c-11ec-0000-020000000000">
-                  <product_code code="15796477"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="DESLORATADINE TABLET 5MG"/>
-                  <product_code code="113026"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
+               <farmaceutisch_product value="uuid-7acabbbb-6b5c-11ec-0000-020000000000"
+                                      datatype="reference"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <!--mp9-gebruiksinstructie-from-mp612-->
             <gebruiksinstructie>
@@ -1785,45 +1001,6 @@
                               root="2.16.528.1.1007.3.3.21476.932000"/>
             </relatie_medicatieafspraak>
          </toedieningsafspraak>
-         <medicatieverstrekking>
-            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
-            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
-                           value="0000774045"/>
-            <medicamenteuze_behandeling_id value="0000774045"
-                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2018-11-15"/>
-            <aanschrijf_datum datatype="datetime"
-                              value="2018-11-15"/>
-            <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
-            </verstrekker>
-            <!--mp9-verstrekte-hoeveelheid-->
-            <verstrekte_hoeveelheid>
-               <aantal value="5"/>
-               <eenheid code="245"
-                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="STUK"/>
-            </verstrekte_hoeveelheid>
-            <verstrekt_geneesmiddel>
-               <farmaceutisch_product id="uuid-7acabbbb-6b5c-11ec-0000-020000000000">
-                  <product_code code="15796477"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="DESLORATADINE TABLET 5MG"/>
-                  <product_code code="113026"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
-            </verstrekt_geneesmiddel>
-            <relatie_verstrekkingsverzoek>
-               <identificatie value="0000774045"
-                              root="2.16.528.1.1007.3.3.21476.932000"/>
-            </relatie_verstrekkingsverzoek>
-         </medicatieverstrekking>
          <toedieningsafspraak>
             <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
             <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.528.1.1007.3.3.21476.9011"
@@ -1840,23 +1017,12 @@
                            unit="dag"/>
             </gebruiksperiode>
             <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
-               <farmaceutisch_product id="uuid-623a3c0a-6ace-11ec-0000-020000000000">
-                  <product_code code="15948382"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="ETHINYLESTRADIOL/LEVONORGES MYL TB OMH 0,03/0,15MG"/>
-                  <product_code code="2368110"
-                                codeSystem="2.16.840.1.113883.2.4.4.7"/>
-                  <product_code code="127280"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
+               <farmaceutisch_product value="uuid-623a3c0a-6ace-11ec-0000-020000000000"
+                                      datatype="reference"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <!--mp9-gebruiksinstructie-from-mp612-->
             <gebruiksinstructie>
@@ -1884,6 +1050,516 @@
          <medicatieverstrekking>
             <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
             <identificatie root="2.16.528.1.1007.3.3.21476.9011"
+                           value="0000980384"/>
+            <medicamenteuze_behandeling_id value="1182501"
+                                           root="2.16.840.1.113883.2.4.3.11.61.3"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                               value="2019-04-10"/>
+            <aanschrijf_datum datatype="datetime"
+                              value="2019-04-10"/>
+            <verstrekker>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
+            </verstrekker>
+            <!--mp9-verstrekte-hoeveelheid-->
+            <verstrekte_hoeveelheid>
+               <aantal value="1"/>
+               <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        displayName="STUK"/>
+            </verstrekte_hoeveelheid>
+            <verstrekt_geneesmiddel>
+               <farmaceutisch_product value="uuid-94898b37-6b52-11ec-0000-020000000000"
+                                      datatype="reference"/>
+            </verstrekt_geneesmiddel>
+            <relatie_verstrekkingsverzoek>
+               <identificatie value="0000980384"
+                              root="2.16.528.1.1007.3.3.21476.932000"/>
+            </relatie_verstrekkingsverzoek>
+         </medicatieverstrekking>
+         <medicatieverstrekking>
+            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
+            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
+                           value="0000772743"/>
+            <medicamenteuze_behandeling_id value="856126"
+                                           root="2.16.840.1.113883.2.4.3.11.61.3"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                               value="2019-03-26"/>
+            <aanschrijf_datum datatype="datetime"
+                              value="2019-03-26"/>
+            <verstrekker>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
+            </verstrekker>
+            <!--mp9-verstrekte-hoeveelheid-->
+            <verstrekte_hoeveelheid>
+               <aantal value="100"/>
+               <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        displayName="STUK"/>
+            </verstrekte_hoeveelheid>
+            <verstrekt_geneesmiddel>
+               <farmaceutisch_product value="uuid-36afedfd-6af6-11ec-0000-020000000000"
+                                      datatype="reference"/>
+            </verstrekt_geneesmiddel>
+            <relatie_verstrekkingsverzoek>
+               <identificatie value="0000772743"
+                              root="2.16.528.1.1007.3.3.21476.932000"/>
+            </relatie_verstrekkingsverzoek>
+         </medicatieverstrekking>
+         <medicatieverstrekking>
+            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
+            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
+                           value="0000959802"/>
+            <medicamenteuze_behandeling_id value="0000959802"
+                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                               value="2019-03-26"/>
+            <aanschrijf_datum datatype="datetime"
+                              value="2019-03-26"/>
+            <verstrekker>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
+            </verstrekker>
+            <!--mp9-verstrekte-hoeveelheid-->
+            <verstrekte_hoeveelheid>
+               <aantal value="4"/>
+               <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        displayName="STUK"/>
+            </verstrekte_hoeveelheid>
+            <verstrekt_geneesmiddel>
+               <farmaceutisch_product value="uuid-d96c06e6-6b7a-11ec-0000-020000000000"
+                                      datatype="reference"/>
+            </verstrekt_geneesmiddel>
+            <relatie_verstrekkingsverzoek>
+               <identificatie value="0000959802"
+                              root="2.16.528.1.1007.3.3.21476.932000"/>
+            </relatie_verstrekkingsverzoek>
+         </medicatieverstrekking>
+         <medicatieverstrekking>
+            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
+            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
+                           value="0000772741"/>
+            <medicamenteuze_behandeling_id value="0000772741"
+                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                               value="2019-03-26"/>
+            <aanschrijf_datum datatype="datetime"
+                              value="2019-03-26"/>
+            <verstrekker>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
+            </verstrekker>
+            <!--mp9-verstrekte-hoeveelheid-->
+            <verstrekte_hoeveelheid>
+               <aantal value="30"/>
+               <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        displayName="STUK"/>
+            </verstrekte_hoeveelheid>
+            <verstrekt_geneesmiddel>
+               <farmaceutisch_product value="uuid-e027a4a5-6af8-11ec-0000-020000000000"
+                                      datatype="reference"/>
+            </verstrekt_geneesmiddel>
+            <relatie_verstrekkingsverzoek>
+               <identificatie value="0000772741"
+                              root="2.16.528.1.1007.3.3.21476.932000"/>
+            </relatie_verstrekkingsverzoek>
+         </medicatieverstrekking>
+         <medicatieverstrekking>
+            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
+            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
+                           value="0000772739"/>
+            <medicamenteuze_behandeling_id value="0000772739"
+                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                               value="2019-03-26"/>
+            <aanschrijf_datum datatype="datetime"
+                              value="2019-03-26"/>
+            <verstrekker>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
+            </verstrekker>
+            <!--mp9-verstrekte-hoeveelheid-->
+            <verstrekte_hoeveelheid>
+               <aantal value="30"/>
+               <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        displayName="STUK"/>
+            </verstrekte_hoeveelheid>
+            <verstrekt_geneesmiddel>
+               <farmaceutisch_product value="uuid-63802db7-6b45-11ec-0000-020000000000"
+                                      datatype="reference"/>
+            </verstrekt_geneesmiddel>
+            <relatie_verstrekkingsverzoek>
+               <identificatie value="0000772739"
+                              root="2.16.528.1.1007.3.3.21476.932000"/>
+            </relatie_verstrekkingsverzoek>
+         </medicatieverstrekking>
+         <medicatieverstrekking>
+            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
+            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
+                           value="0000772737"/>
+            <medicamenteuze_behandeling_id value="0000772737"
+                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                               value="2019-03-26"/>
+            <aanschrijf_datum datatype="datetime"
+                              value="2019-03-26"/>
+            <verstrekker>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
+            </verstrekker>
+            <!--mp9-verstrekte-hoeveelheid-->
+            <verstrekte_hoeveelheid>
+               <aantal value="30"/>
+               <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        displayName="STUK"/>
+            </verstrekte_hoeveelheid>
+            <verstrekt_geneesmiddel>
+               <farmaceutisch_product value="uuid-2f5a3b03-6b7e-11ec-0000-020000000000"
+                                      datatype="reference"/>
+            </verstrekt_geneesmiddel>
+            <relatie_verstrekkingsverzoek>
+               <identificatie value="0000772737"
+                              root="2.16.528.1.1007.3.3.21476.932000"/>
+            </relatie_verstrekkingsverzoek>
+         </medicatieverstrekking>
+         <medicatieverstrekking>
+            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
+            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
+                           value="0000959795"/>
+            <medicamenteuze_behandeling_id value="1421778"
+                                           root="2.16.840.1.113883.2.4.3.11.61.3"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                               value="2019-03-26"/>
+            <aanschrijf_datum datatype="datetime"
+                              value="2019-03-26"/>
+            <verstrekker>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
+            </verstrekker>
+            <!--mp9-verstrekte-hoeveelheid-->
+            <verstrekte_hoeveelheid>
+               <aantal value="30"/>
+               <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        displayName="STUK"/>
+            </verstrekte_hoeveelheid>
+            <verstrekt_geneesmiddel>
+               <farmaceutisch_product value="uuid-535ccb6d-6ab6-11ec-0000-020000000000"
+                                      datatype="reference"/>
+            </verstrekt_geneesmiddel>
+            <relatie_verstrekkingsverzoek>
+               <identificatie value="0000959795"
+                              root="2.16.528.1.1007.3.3.21476.932000"/>
+            </relatie_verstrekkingsverzoek>
+         </medicatieverstrekking>
+         <medicatieverstrekking>
+            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
+            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
+                           value="0000772725"/>
+            <medicamenteuze_behandeling_id value="0000772725"
+                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                               value="2019-03-26"/>
+            <aanschrijf_datum datatype="datetime"
+                              value="2019-03-26"/>
+            <verstrekker>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
+            </verstrekker>
+            <!--mp9-verstrekte-hoeveelheid-->
+            <verstrekte_hoeveelheid>
+               <aantal value="30"/>
+               <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        displayName="STUK"/>
+            </verstrekte_hoeveelheid>
+            <verstrekt_geneesmiddel>
+               <farmaceutisch_product value="uuid-6c2d8643-6adf-11ec-0000-020000000000"
+                                      datatype="reference"/>
+            </verstrekt_geneesmiddel>
+            <relatie_verstrekkingsverzoek>
+               <identificatie value="0000772725"
+                              root="2.16.528.1.1007.3.3.21476.932000"/>
+            </relatie_verstrekkingsverzoek>
+         </medicatieverstrekking>
+         <medicatieverstrekking>
+            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
+            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
+                           value="0000772722"/>
+            <medicamenteuze_behandeling_id value="0000772722"
+                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                               value="2019-03-26"/>
+            <aanschrijf_datum datatype="datetime"
+                              value="2019-03-26"/>
+            <verstrekker>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
+            </verstrekker>
+            <!--mp9-verstrekte-hoeveelheid-->
+            <verstrekte_hoeveelheid>
+               <aantal value="80"/>
+               <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        displayName="STUK"/>
+            </verstrekte_hoeveelheid>
+            <verstrekt_geneesmiddel>
+               <farmaceutisch_product value="uuid-53e68609-6ab5-11ec-0000-020000000000"
+                                      datatype="reference"/>
+            </verstrekt_geneesmiddel>
+            <relatie_verstrekkingsverzoek>
+               <identificatie value="0000772722"
+                              root="2.16.528.1.1007.3.3.21476.932000"/>
+            </relatie_verstrekkingsverzoek>
+         </medicatieverstrekking>
+         <medicatieverstrekking>
+            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
+            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
+                           value="0000772721"/>
+            <medicamenteuze_behandeling_id value="0000772721"
+                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                               value="2019-03-26"/>
+            <aanschrijf_datum datatype="datetime"
+                              value="2019-03-26"/>
+            <verstrekker>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
+            </verstrekker>
+            <!--mp9-verstrekte-hoeveelheid-->
+            <verstrekte_hoeveelheid>
+               <aantal value="5"/>
+               <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        displayName="STUK"/>
+            </verstrekte_hoeveelheid>
+            <verstrekt_geneesmiddel>
+               <farmaceutisch_product value="uuid-51345dac-6b49-11ec-0000-020000000000"
+                                      datatype="reference"/>
+            </verstrekt_geneesmiddel>
+            <relatie_verstrekkingsverzoek>
+               <identificatie value="0000772721"
+                              root="2.16.528.1.1007.3.3.21476.932000"/>
+            </relatie_verstrekkingsverzoek>
+         </medicatieverstrekking>
+         <medicatieverstrekking>
+            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
+            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
+                           value="0000959793"/>
+            <medicamenteuze_behandeling_id value="0000959793"
+                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                               value="2019-03-26"/>
+            <aanschrijf_datum datatype="datetime"
+                              value="2019-03-26"/>
+            <verstrekker>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
+            </verstrekker>
+            <!--mp9-verstrekte-hoeveelheid-->
+            <verstrekte_hoeveelheid>
+               <aantal value="100"/>
+               <eenheid code="215"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        displayName="GRAM"/>
+            </verstrekte_hoeveelheid>
+            <verstrekt_geneesmiddel>
+               <farmaceutisch_product value="uuid-9e88671b-6b47-11ec-0000-020000000000"
+                                      datatype="reference"/>
+            </verstrekt_geneesmiddel>
+            <relatie_verstrekkingsverzoek>
+               <identificatie value="0000959793"
+                              root="2.16.528.1.1007.3.3.21476.932000"/>
+            </relatie_verstrekkingsverzoek>
+         </medicatieverstrekking>
+         <medicatieverstrekking>
+            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
+            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
+                           value="0000772718"/>
+            <medicamenteuze_behandeling_id value="0000772718"
+                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                               value="2019-03-26"/>
+            <aanschrijf_datum datatype="datetime"
+                              value="2019-03-26"/>
+            <verstrekker>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
+            </verstrekker>
+            <!--mp9-verstrekte-hoeveelheid-->
+            <verstrekte_hoeveelheid>
+               <aantal value="1"/>
+               <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        displayName="STUK"/>
+            </verstrekte_hoeveelheid>
+            <verstrekt_geneesmiddel>
+               <farmaceutisch_product value="uuid-606002fc-6b75-11ec-0000-020000000000"
+                                      datatype="reference"/>
+            </verstrekt_geneesmiddel>
+            <relatie_verstrekkingsverzoek>
+               <identificatie value="0000772718"
+                              root="2.16.528.1.1007.3.3.21476.932000"/>
+            </relatie_verstrekkingsverzoek>
+         </medicatieverstrekking>
+         <medicatieverstrekking>
+            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
+            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
+                           value="0000959789"/>
+            <medicamenteuze_behandeling_id value="0000959789"
+                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                               value="2019-03-26"/>
+            <aanschrijf_datum datatype="datetime"
+                              value="2019-03-26"/>
+            <verstrekker>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
+            </verstrekker>
+            <!--mp9-verstrekte-hoeveelheid-->
+            <verstrekte_hoeveelheid>
+               <aantal value="63"/>
+               <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        displayName="STUK"/>
+            </verstrekte_hoeveelheid>
+            <verstrekt_geneesmiddel>
+               <farmaceutisch_product value="uuid-54d13071-6ae8-11ec-0000-020000000000"
+                                      datatype="reference"/>
+            </verstrekt_geneesmiddel>
+            <relatie_verstrekkingsverzoek>
+               <identificatie value="0000959789"
+                              root="2.16.528.1.1007.3.3.21476.932000"/>
+            </relatie_verstrekkingsverzoek>
+         </medicatieverstrekking>
+         <medicatieverstrekking>
+            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
+            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
+                           value="0000772713"/>
+            <medicamenteuze_behandeling_id value="705667"
+                                           root="2.16.840.1.113883.2.4.3.11.61.3"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                               value="2019-03-26"/>
+            <aanschrijf_datum datatype="datetime"
+                              value="2019-03-26"/>
+            <verstrekker>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
+            </verstrekker>
+            <!--mp9-verstrekte-hoeveelheid-->
+            <verstrekte_hoeveelheid>
+               <aantal value="24"/>
+               <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        displayName="STUK"/>
+            </verstrekte_hoeveelheid>
+            <verstrekt_geneesmiddel>
+               <farmaceutisch_product value="uuid-e121b691-6b3d-11ec-0000-020000000000"
+                                      datatype="reference"/>
+            </verstrekt_geneesmiddel>
+            <relatie_verstrekkingsverzoek>
+               <identificatie value="0000772713"
+                              root="2.16.528.1.1007.3.3.21476.932000"/>
+            </relatie_verstrekkingsverzoek>
+         </medicatieverstrekking>
+         <medicatieverstrekking>
+            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
+            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
+                           value="0000772710"/>
+            <medicamenteuze_behandeling_id value="0000772710"
+                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                               value="2019-03-26"/>
+            <aanschrijf_datum datatype="datetime"
+                              value="2019-03-26"/>
+            <verstrekker>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
+            </verstrekker>
+            <!--mp9-verstrekte-hoeveelheid-->
+            <verstrekte_hoeveelheid>
+               <aantal value="30"/>
+               <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        displayName="STUK"/>
+            </verstrekte_hoeveelheid>
+            <verstrekt_geneesmiddel>
+               <farmaceutisch_product value="uuid-c4477c6e-6b60-11ec-0000-020000000000"
+                                      datatype="reference"/>
+            </verstrekt_geneesmiddel>
+            <relatie_verstrekkingsverzoek>
+               <identificatie value="0000772710"
+                              root="2.16.528.1.1007.3.3.21476.932000"/>
+            </relatie_verstrekkingsverzoek>
+         </medicatieverstrekking>
+         <medicatieverstrekking>
+            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
+            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
+                           value="0000772709"/>
+            <medicamenteuze_behandeling_id value="0000772709"
+                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                               value="2019-03-26"/>
+            <aanschrijf_datum datatype="datetime"
+                              value="2019-03-26"/>
+            <verstrekker>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
+            </verstrekker>
+            <!--mp9-verstrekte-hoeveelheid-->
+            <verstrekte_hoeveelheid>
+               <aantal value="4"/>
+               <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        displayName="STUK"/>
+            </verstrekte_hoeveelheid>
+            <verstrekt_geneesmiddel>
+               <farmaceutisch_product value="uuid-7a4d79c4-6b12-11ec-0000-020000000000"
+                                      datatype="reference"/>
+            </verstrekt_geneesmiddel>
+            <relatie_verstrekkingsverzoek>
+               <identificatie value="0000772709"
+                              root="2.16.528.1.1007.3.3.21476.932000"/>
+            </relatie_verstrekkingsverzoek>
+         </medicatieverstrekking>
+         <medicatieverstrekking>
+            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
+            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
+                           value="0000774045"/>
+            <medicamenteuze_behandeling_id value="0000774045"
+                                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.21476.9011"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                               value="2018-11-15"/>
+            <aanschrijf_datum datatype="datetime"
+                              value="2018-11-15"/>
+            <verstrekker>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
+            </verstrekker>
+            <!--mp9-verstrekte-hoeveelheid-->
+            <verstrekte_hoeveelheid>
+               <aantal value="5"/>
+               <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        displayName="STUK"/>
+            </verstrekte_hoeveelheid>
+            <verstrekt_geneesmiddel>
+               <farmaceutisch_product value="uuid-7acabbbb-6b5c-11ec-0000-020000000000"
+                                      datatype="reference"/>
+            </verstrekt_geneesmiddel>
+            <relatie_verstrekkingsverzoek>
+               <identificatie value="0000774045"
+                              root="2.16.528.1.1007.3.3.21476.932000"/>
+            </relatie_verstrekkingsverzoek>
+         </medicatieverstrekking>
+         <medicatieverstrekking>
+            <!--The medicatieverstrekking/id is the medicationDispenseEvent/id. root and extension copied.-->
+            <identificatie root="2.16.528.1.1007.3.3.21476.9011"
                            value="0000599501"/>
             <medicamenteuze_behandeling_id value="2368110"
                                            root="2.16.840.1.113883.2.4.3.11.61.3"/>
@@ -1892,11 +1568,8 @@
             <aanschrijf_datum datatype="datetime"
                               value="2018-07-10"/>
             <verstrekker>
-               <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00021476"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Apotheek de Dorpsacker"/>
-               </zorgaanbieder>
+               <zorgaanbieder value="uuid-15382faa-6ac2-11ec-0000-020000000000"
+                              datatype="reference"/>
             </verstrekker>
             <!--mp9-verstrekte-hoeveelheid-->
             <verstrekte_hoeveelheid>
@@ -1906,22 +1579,171 @@
                         displayName="STUK"/>
             </verstrekte_hoeveelheid>
             <verstrekt_geneesmiddel>
-               <farmaceutisch_product id="uuid-623a3c0a-6ace-11ec-0000-020000000000">
-                  <product_code code="15948382"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="ETHINYLESTRADIOL/LEVONORGES MYL TB OMH 0,03/0,15MG"/>
-                  <product_code code="2368110"
-                                codeSystem="2.16.840.1.113883.2.4.4.7"/>
-                  <product_code code="127280"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
+               <farmaceutisch_product value="uuid-623a3c0a-6ace-11ec-0000-020000000000"
+                                      datatype="reference"/>
             </verstrekt_geneesmiddel>
             <relatie_verstrekkingsverzoek>
                <identificatie value="0000599501"
                               root="2.16.528.1.1007.3.3.21476.932000"/>
             </relatie_verstrekkingsverzoek>
          </medicatieverstrekking>
+         <bouwstenen>
+            <farmaceutisch_product id="uuid-94898b37-6b52-11ec-0000-020000000000">
+               <product_code code="14683016"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="DIABETES MELLITUS"/>
+               <product_code code="1182501"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="uuid-36afedfd-6af6-11ec-0000-020000000000">
+               <product_code code="14292998"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="ACENOCOUMAROL CF TABLET 1MG"/>
+               <product_code code="856126"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="20303"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="uuid-d96c06e6-6b7a-11ec-0000-020000000000">
+               <product_code code="15903044"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="SILDENAFIL TABLET   50MG"/>
+               <product_code code="105406"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="uuid-e027a4a5-6af8-11ec-0000-020000000000">
+               <product_code code="14817810"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="ACETYLSALICYLZUUR TABLET  80MG"/>
+               <product_code code="1058"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="uuid-63802db7-6b45-11ec-0000-020000000000">
+               <product_code code="16061888"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="PARACETAMOL TABLET  500MG"/>
+               <product_code code="2194"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="uuid-2f5a3b03-6b7e-11ec-0000-020000000000">
+               <product_code code="15367878"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="DICLOFENAC-KALIUM TABLET OMHULD 25MG"/>
+               <product_code code="129461"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="uuid-535ccb6d-6ab6-11ec-0000-020000000000">
+               <product_code code="14571013"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="METHOTREXAAT PCH TABLET  2,5MG"/>
+               <product_code code="1421778"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="16918"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="uuid-6c2d8643-6adf-11ec-0000-020000000000">
+               <product_code code="14148919"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="FOLIUMZUUR TABLET 5MG"/>
+               <product_code code="3530"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="uuid-53e68609-6ab5-11ec-0000-020000000000">
+               <product_code code="14077108"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="HYPERICUM TABLET"/>
+               <product_code code="110817"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="uuid-51345dac-6b49-11ec-0000-020000000000">
+               <product_code code="15012832"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="INSULINE ASPART/PROTAMINE INJS 30/70E/ML PATR 3ML"/>
+               <product_code code="115045"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="uuid-9e88671b-6b47-11ec-0000-020000000000">
+               <product_code code="15635511"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="CETOMACROGOLCREME MET VASELINE 10%"/>
+               <product_code code="133329"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="uuid-606002fc-6b75-11ec-0000-020000000000">
+               <product_code code="15854787"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="OFLOXACINE OOGDRUPPELS 3MG/ML FL 5ML"/>
+               <product_code code="82570"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="uuid-54d13071-6ae8-11ec-0000-020000000000">
+               <product_code code="12133183"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="ETHINYLESTRADIOL/LEVONORGESTREL TABLET 30/150UG"/>
+               <product_code code="127280"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="uuid-e121b691-6b3d-11ec-0000-020000000000">
+               <product_code code="14718871"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="TENA LADY NORMAL"/>
+               <product_code code="705667"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="uuid-c4477c6e-6b60-11ec-0000-020000000000">
+               <product_code code="15805123"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="OMEPRAZOL CAPSULE MSR 20MG"/>
+               <product_code code="114529"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="uuid-7a4d79c4-6b12-11ec-0000-020000000000">
+               <product_code code="15702804"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="ALENDRONINEZUUR TABLET 70MG"/>
+               <product_code code="154792"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="uuid-7acabbbb-6b5c-11ec-0000-020000000000">
+               <product_code code="15796477"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="DESLORATADINE TABLET 5MG"/>
+               <product_code code="113026"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="uuid-623a3c0a-6ace-11ec-0000-020000000000">
+               <product_code code="15948382"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="ETHINYLESTRADIOL/LEVONORGES MYL TB OMH 0,03/0,15MG"/>
+               <product_code code="2368110"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="127280"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="uuid-15382faa-6ac2-11ec-0000-020000000000">
+               <zorgaanbieder_identificatienummer value="00021476"
+                                                  root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek de Dorpsacker"/>
+            </zorgaanbieder>
+         </bouwstenen>
       </beschikbaarstellen_medicatiegegevens>
    </data>
 </adaxml>

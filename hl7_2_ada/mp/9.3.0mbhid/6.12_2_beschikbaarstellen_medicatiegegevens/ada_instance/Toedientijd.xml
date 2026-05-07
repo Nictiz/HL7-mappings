@@ -57,32 +57,12 @@
             <registratie_datum_tijd datatype="datetime"
                                     value="2019-06-28"/>
             <verstrekker>
-               <zorgaanbieder id="uuid-23bdf370-6acd-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00023639"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Kringapotheek Asten"/>
-                  <adresgegevens>
-                     <straat nullFlavor="NI"/>
-                     <huisnummer nullFlavor="NI"/>
-                     <postcode nullFlavor="NI"/>
-                     <woonplaats value="Asten"/>
-                     <adres_soort code="WP"
-                                  codeSystem="2.16.840.1.113883.5.1119"/>
-                  </adresgegevens>
-               </zorgaanbieder>
+               <zorgaanbieder value="uuid-23bdf370-6acd-11ec-0000-020000000000"
+                              datatype="reference"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
-               <farmaceutisch_product id="uuid-e843e55d-6b71-11ec-0000-020000000000">
-                  <product_code code="14899337"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                displayName="TRAMADOL HCL SANDOZ RETARD TABLET MGA 100MG"/>
-                  <product_code code="1632108"
-                                codeSystem="2.16.840.1.113883.2.4.4.7"/>
-                  <product_code code="50431"
-                                codeSystem="2.16.840.1.113883.2.4.4.10"/>
-                  <product_code code="104213"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
+               <farmaceutisch_product value="uuid-e843e55d-6b71-11ec-0000-020000000000"
+                                      datatype="reference"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <!--mp9-gebruiksinstructie-from-mp612-->
             <gebruiksinstructie>
@@ -131,19 +111,8 @@
             <aanschrijf_datum datatype="datetime"
                               value="2019-06-28"/>
             <verstrekker>
-               <zorgaanbieder id="uuid-23bdf370-6acd-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="00023639"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam value="Kringapotheek Asten"/>
-                  <adresgegevens>
-                     <straat nullFlavor="NI"/>
-                     <huisnummer nullFlavor="NI"/>
-                     <postcode nullFlavor="NI"/>
-                     <woonplaats value="Asten"/>
-                     <adres_soort code="WP"
-                                  codeSystem="2.16.840.1.113883.5.1119"/>
-                  </adresgegevens>
-               </zorgaanbieder>
+               <zorgaanbieder value="uuid-23bdf370-6acd-11ec-0000-020000000000"
+                              datatype="reference"/>
             </verstrekker>
             <!--mp9-verstrekte-hoeveelheid-->
             <verstrekte_hoeveelheid>
@@ -153,17 +122,8 @@
                         displayName="ST"/>
             </verstrekte_hoeveelheid>
             <verstrekt_geneesmiddel>
-               <farmaceutisch_product id="uuid-e843e55d-6b71-11ec-0000-020000000000">
-                  <product_code code="14899337"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                displayName="TRAMADOL HCL SANDOZ RETARD TABLET MGA 100MG"/>
-                  <product_code code="1632108"
-                                codeSystem="2.16.840.1.113883.2.4.4.7"/>
-                  <product_code code="50431"
-                                codeSystem="2.16.840.1.113883.2.4.4.10"/>
-                  <product_code code="104213"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
+               <farmaceutisch_product value="uuid-e843e55d-6b71-11ec-0000-020000000000"
+                                      datatype="reference"/>
             </verstrekt_geneesmiddel>
             <verbruiksduur value="16"
                            unit="dag"/>
@@ -172,6 +132,32 @@
                               root="2.16.840.1.113883.5.1008"/>
             </relatie_verstrekkingsverzoek>
          </medicatieverstrekking>
+         <bouwstenen>
+            <farmaceutisch_product id="uuid-e843e55d-6b71-11ec-0000-020000000000">
+               <product_code code="14899337"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             displayName="TRAMADOL HCL SANDOZ RETARD TABLET MGA 100MG"/>
+               <product_code code="1632108"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="50431"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"/>
+               <product_code code="104213"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="uuid-23bdf370-6acd-11ec-0000-020000000000">
+               <zorgaanbieder_identificatienummer value="00023639"
+                                                  root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Kringapotheek Asten"/>
+               <adresgegevens>
+                  <straat nullFlavor="NI"/>
+                  <huisnummer nullFlavor="NI"/>
+                  <postcode nullFlavor="NI"/>
+                  <woonplaats value="Asten"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
       </beschikbaarstellen_medicatiegegevens>
    </data>
 </adaxml>

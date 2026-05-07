@@ -55,23 +55,12 @@
             <registratie_datum_tijd datatype="datetime"
                                     value="2007-12-08"/>
             <verstrekker>
-               <zorgaanbieder id="uuid-91e77f70-6ae0-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="01234567"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam nullFlavor="NI"/>
-               </zorgaanbieder>
+               <zorgaanbieder value="uuid-91e77f70-6ae0-11ec-0000-020000000000"
+                              datatype="reference"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
-               <farmaceutisch_product id="uuid-575a4e35-6a99-11ec-0000-020000000000">
-                  <product_code code="14234785"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="MEBENDAZOL SAN TABLET 100MG"/>
-                  <product_code code="1046764"
-                                codeSystem="2.16.840.1.113883.2.4.4.7"/>
-                  <product_code code="9954"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
+               <farmaceutisch_product value="uuid-575a4e35-6a99-11ec-0000-020000000000"
+                                      datatype="reference"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <!--mp9-gebruiksinstructie-from-mp612-->
             <gebruiksinstructie>
@@ -107,11 +96,8 @@
             <aanschrijf_datum datatype="datetime"
                               value="2007-12-08"/>
             <verstrekker>
-               <zorgaanbieder id="uuid-91e77f70-6ae0-11ec-0000-020000000000">
-                  <zorgaanbieder_identificatienummer value="01234567"
-                                                     root="2.16.528.1.1007.3.3"/>
-                  <organisatie_naam nullFlavor="NI"/>
-               </zorgaanbieder>
+               <zorgaanbieder value="uuid-91e77f70-6ae0-11ec-0000-020000000000"
+                              datatype="reference"/>
             </verstrekker>
             <!--mp9-verstrekte-hoeveelheid-->
             <verstrekte_hoeveelheid>
@@ -121,22 +107,31 @@
                         displayName="Stuk"/>
             </verstrekte_hoeveelheid>
             <verstrekt_geneesmiddel>
-               <farmaceutisch_product id="uuid-575a4e35-6a99-11ec-0000-020000000000">
-                  <product_code code="14234785"
-                                codeSystem="2.16.840.1.113883.2.4.4.8"
-                                codeSystemName="G-Standaard Artikel"
-                                displayName="MEBENDAZOL SAN TABLET 100MG"/>
-                  <product_code code="1046764"
-                                codeSystem="2.16.840.1.113883.2.4.4.7"/>
-                  <product_code code="9954"
-                                codeSystem="2.16.840.1.113883.2.4.4.1"/>
-               </farmaceutisch_product>
+               <farmaceutisch_product value="uuid-575a4e35-6a99-11ec-0000-020000000000"
+                                      datatype="reference"/>
             </verstrekt_geneesmiddel>
             <relatie_verstrekkingsverzoek>
                <identificatie value="0000007844"
                               root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
             </relatie_verstrekkingsverzoek>
          </medicatieverstrekking>
+         <bouwstenen>
+            <farmaceutisch_product id="uuid-575a4e35-6a99-11ec-0000-020000000000">
+               <product_code code="14234785"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="MEBENDAZOL SAN TABLET 100MG"/>
+               <product_code code="1046764"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="9954"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="uuid-91e77f70-6ae0-11ec-0000-020000000000">
+               <zorgaanbieder_identificatienummer value="01234567"
+                                                  root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam nullFlavor="NI"/>
+            </zorgaanbieder>
+         </bouwstenen>
       </beschikbaarstellen_medicatiegegevens>
    </data>
 </adaxml>
