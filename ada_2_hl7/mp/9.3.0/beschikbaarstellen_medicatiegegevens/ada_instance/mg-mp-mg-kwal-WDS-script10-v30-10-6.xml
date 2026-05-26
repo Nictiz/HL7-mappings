@@ -3,8 +3,8 @@
    <meta status="new"
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
-         creation-date="2025-07-22T10:58:12.595Z"
-         last-update-date="2025-08-06T11:31:01.54Z"/>
+         creation-date="2025-07-23T10:44:23.11Z"
+         last-update-date="2025-08-06T11:34:03.427Z"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -14,15 +14,10 @@
                                             prefix="mp-"
                                             language="nl-NL"
                                             title="KWAL Medicatiegegevens WDS Script 10 (filterqueries pre-livegang kwalificatie)"
-                                            desc="WDS-en met een filter op gebruiksperiode – ingangsdatum én einddatum (alles vanaf T-16 tot en met T-9)&#xA;(Antwoord: bericht met 1 WDS-en)"
+                                            desc="WDS-en met een filter op gebruiksperiode – ingangsdatum én einddatum (alles vanaf T-16 tot en met T-9)&#xA;(Antwoord: bericht met 1 WDS)"
                                             id="mg-mp-mg-kwal-WDS-script10-v30-10-6">
          <scenario-nr value="10.6"
                       conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2.1.1"/>
-         <systeemrol conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.6"
-                     value="1"
-                     code="1"
-                     codeSystem="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.6.1.20201207000000"
-                     displayName="Beide"/>
          <!--Patient found in instance with id: mg-bouwstenen-patients-v30 and title: id: Bouwstenen to be reused over test en kwal instances-->
          <patient comment=""
                   id="XXX_PERFINI_999908911"
@@ -61,18 +56,18 @@
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
             <wisselend_doseerschema comment=""
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.632">
-               <identificatie value="MBH_300_script10_QA3_WDS1-tmg"
+               <identificatie value="MBH_300_script10_QA3_WDS2-tmg"
                               root="2.16.840.1.113883.2.4.3.11.999.77.632.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.633"/>
-               <registratie_datum_tijd value="2023-12-20T09:50:00+01:00"
+               <registratie_datum_tijd value="2023-12-28T09:45:00+01:00"
                                        datatype="datetime"
                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1483"/>
                <gebruiksperiode comment=""
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.635">
-                  <start_datum_tijd value="2023-12-20T00:00:00+01:00"
+                  <start_datum_tijd value="2023-12-28T00:00:00+01:00"
                                     datatype="datetime"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.636"/>
-                  <tijds_duur value="4"
+                  <tijds_duur value="2"
                               unit="dag"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.638"/>
                </gebruiksperiode>
@@ -96,7 +91,7 @@
                </auteur>
                <gebruiksinstructie comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.646">
-                  <omschrijving value="eerst gedurende 1 dag 1 maal per dag 0 stuks, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, Oraal"
+                  <omschrijving value="eerst gedurende 1 dag 1 maal per dag 1 stuk, dan gedurende 1 dag 1 maal per dag 1 stuk, Oraal"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.647"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -116,7 +111,7 @@
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.655">
                            <aantal comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.656">
-                              <nominale_waarde value="0"
+                              <nominale_waarde value="1"
                                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.658"/>
                            </aantal>
                            <eenheid code="245"
@@ -179,84 +174,8 @@
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
-                  <doseerinstructie comment=""
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.651">
-                     <doseerduur value="1"
-                                 unit="dag"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.652"/>
-                     <volgnummer value="3"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.653"/>
-                     <dosering comment=""
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.654">
-                        <keerdosis comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.655">
-                           <aantal comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.656">
-                              <nominale_waarde value="1"
-                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.658"/>
-                           </aantal>
-                           <eenheid code="245"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"
-                                    displayName="stuk"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.660"/>
-                        </keerdosis>
-                        <toedieningsschema comment=""
-                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.662">
-                           <frequentie comment=""
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.663">
-                              <aantal comment=""
-                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.664">
-                                 <nominale_waarde value="1"
-                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.666"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"
-                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
-                           </frequentie>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-                  <doseerinstructie comment=""
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.651">
-                     <doseerduur value="1"
-                                 unit="dag"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.652"/>
-                     <volgnummer value="4"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.653"/>
-                     <dosering comment=""
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.654">
-                        <keerdosis comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.655">
-                           <aantal comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.656">
-                              <nominale_waarde value="1"
-                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.658"/>
-                           </aantal>
-                           <eenheid code="245"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"
-                                    displayName="stuk"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.660"/>
-                        </keerdosis>
-                        <toedieningsschema comment=""
-                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.662">
-                           <frequentie comment=""
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.663">
-                              <aantal comment=""
-                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.664">
-                                 <nominale_waarde value="1"
-                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.666"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"
-                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
-                           </frequentie>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
                </gebruiksinstructie>
-               <toelichting value="gemeten INR waarde: 2,1"
+               <toelichting value="Gemeten INR waarde: 2.4"
                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.694"/>
             </wisselend_doseerschema>
          </medicamenteuze_behandeling>
