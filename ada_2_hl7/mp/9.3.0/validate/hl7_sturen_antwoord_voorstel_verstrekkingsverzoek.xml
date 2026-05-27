@@ -13,48 +13,63 @@
        xmlns:f="http://hl7.org/fhir"
        xmlns:hl7nl="urn:hl7-nl:v3"
        xmlns:h="http://www.w3.org/1999/xhtml"
-       inputDir="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_antwoord_voorstel_verstrekkingsverzoek/validate_hl7_instance">
+       inputDir="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_antwoord_voorstel_verstrekkingsverzoek/validate_hl7_instance">
    <validate>
-      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_antwoord_voorstel_verstrekkingsverzoek/hl7_instance/mp-av-tst-23.6-vvv-geaccepteerdmetwijziging-v30.xml">
-         <pass/>
-      </file>
-      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_antwoord_voorstel_verstrekkingsverzoek/hl7_instance/mp-av-tst-23.5-vvv-geaccepteerd-v30.xml">
-         <pass/>
-      </file>
-      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_antwoord_voorstel_verstrekkingsverzoek/hl7_instance/mp-av-tst-extra-voorraad-vakantie-v30.xml">
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_antwoord_voorstel_verstrekkingsverzoek/hl7_instance/mp-av-tst-23.5-vvv-geaccepteerd-v30.xml">
          <fail>
-            <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                                    test="exists(doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.36-2025-12-17T150952.xml')//valueSet[1]/conceptList/concept[@type='D'][@code = $theCode][@codeSystem = $theCodeSystem])"
-                                    fpi="CD-DEPR-BSP"
-                                    see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20260213T112547/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9213-2018-04-20T181642.html"
-                                    role="warning"
-                                    location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:act[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]/*:observation[namespace-uri()='urn:hl7-org:v3'][1]/*:value[namespace-uri()='urn:hl7-org:v3'][1]">
-               <svrl:text>(Antwoord voorstel verstrekkingsverzoek): element hl7:value is gecodeerd met bindingssterkte 'required' en bevat een code die verouderd is.</svrl:text>
-            </svrl:successful-report>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(.)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9211-2018-04-20T174512.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:act[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]/*:observation[namespace-uri()='urn:hl7-org:v3'][1]/*:value[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MP HL7 Antwoord Voorstel Verstrekkingsverzoek Organizer)/d18441e6-true-d18491e0: dit element 'value' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9213'] | hl7:code[(@code = '17' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2')] | hl7:value[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.36-2018-04-12T153353.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.36-2018-04-12T153353.xml')//valueSet[1]/conceptList/exception/@code] (rule-reference: d18441e6-true-d18491e0)</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(.)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9211-2018-04-20T174512.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:act[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][3]">
+               <svrl:text>(MP HL7 Antwoord Voorstel Verstrekkingsverzoek Organizer)/d17397e6-true-d17631e0: dit element 'entryRelationship' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9212'] | hl7:code[(@code = '9' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.3')] | cda:author[hl7:assignedAuthor] | cda:entryRelationship[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9213']]] | cda:entryRelationship[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9214']]] (rule-reference: d17397e6-true-d17631e0)</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(hl7:value[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.36-2018-04-12T153353.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.36-2018-04-12T153353.xml')//valueSet[1]/conceptList/exception/@code]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9213-2018-04-20T181642.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:act[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]/*:observation[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(Antwoord voorstel verstrekkingsverzoek): element hl7:value[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.36-2018-04-12T153353.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.36-2018-04-12T153353.xml')//valueSet[1]/conceptList/exception/@code] is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
          </fail>
       </file>
-      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_antwoord_voorstel_verstrekkingsverzoek/hl7_instance/mp-av-tst-onvoldoende-voorraad-v30.xml">
+      <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_antwoord_voorstel_verstrekkingsverzoek/hl7_instance/mp-av-tst-23.6-vvv-geaccepteerdmetwijziging-v30.xml">
          <fail>
-            <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                                    test="exists(doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.36-2025-12-17T150952.xml')//valueSet[1]/conceptList/concept[@type='D'][@code = $theCode][@codeSystem = $theCodeSystem])"
-                                    fpi="CD-DEPR-BSP"
-                                    see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20260213T112547/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9213-2018-04-20T181642.html"
-                                    role="warning"
-                                    location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:act[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]/*:observation[namespace-uri()='urn:hl7-org:v3'][1]/*:value[namespace-uri()='urn:hl7-org:v3'][1]">
-               <svrl:text>(Antwoord voorstel verstrekkingsverzoek): element hl7:value is gecodeerd met bindingssterkte 'required' en bevat een code die verouderd is.</svrl:text>
-            </svrl:successful-report>
-         </fail>
-      </file>
-      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_antwoord_voorstel_verstrekkingsverzoek/hl7_instance/mp-av-tst-tijdelijke-medicijnwissel-v30.xml">
-         <fail>
-            <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                                    test="exists(doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.36-2025-12-17T150952.xml')//valueSet[1]/conceptList/concept[@type='D'][@code = $theCode][@codeSystem = $theCodeSystem])"
-                                    fpi="CD-DEPR-BSP"
-                                    see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20260213T112547/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9213-2018-04-20T181642.html"
-                                    role="warning"
-                                    location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:act[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]/*:observation[namespace-uri()='urn:hl7-org:v3'][1]/*:value[namespace-uri()='urn:hl7-org:v3'][1]">
-               <svrl:text>(Antwoord voorstel verstrekkingsverzoek): element hl7:value is gecodeerd met bindingssterkte 'required' en bevat een code die verouderd is.</svrl:text>
-            </svrl:successful-report>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(.)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9211-2018-04-20T174512.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:act[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]/*:observation[namespace-uri()='urn:hl7-org:v3'][1]/*:value[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MP HL7 Antwoord Voorstel Verstrekkingsverzoek Organizer)/d18441e6-true-d18491e0: dit element 'value' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9213'] | hl7:code[(@code = '17' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2')] | hl7:value[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.36-2018-04-12T153353.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.36-2018-04-12T153353.xml')//valueSet[1]/conceptList/exception/@code] (rule-reference: d18441e6-true-d18491e0)</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(.)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9211-2018-04-20T174512.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:act[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]/*:observation[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MP HL7 Antwoord Voorstel Verstrekkingsverzoek Organizer)/d18441e6-true-d18491e0: dit element 'entryRelationship' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9213'] | hl7:code[(@code = '17' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2')] | hl7:value[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.36-2018-04-12T153353.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.36-2018-04-12T153353.xml')//valueSet[1]/conceptList/exception/@code] (rule-reference: d18441e6-true-d18491e0)</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(.)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9211-2018-04-20T174512.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:act[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][3]">
+               <svrl:text>(MP HL7 Antwoord Voorstel Verstrekkingsverzoek Organizer)/d17397e6-true-d17631e0: dit element 'entryRelationship' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9212'] | hl7:code[(@code = '9' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.3')] | cda:author[hl7:assignedAuthor] | cda:entryRelationship[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9213']]] | cda:entryRelationship[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9214']]] (rule-reference: d17397e6-true-d17631e0)</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(hl7:value[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.36-2018-04-12T153353.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.36-2018-04-12T153353.xml')//valueSet[1]/conceptList/exception/@code]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20250522T132618/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9213-2018-04-20T181642.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:act[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]/*:observation[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(Antwoord voorstel verstrekkingsverzoek): element hl7:value[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.36-2018-04-12T153353.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.36-2018-04-12T153353.xml')//valueSet[1]/conceptList/exception/@code] is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
          </fail>
       </file>
    </validate>
