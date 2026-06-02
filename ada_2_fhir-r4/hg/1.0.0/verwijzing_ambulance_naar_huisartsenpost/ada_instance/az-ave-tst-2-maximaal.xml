@@ -3,7 +3,7 @@
          created-by="hguitwisselingada"
          last-update-by="hguitwisselingada"
          creation-date="2026-02-11T10:53:01.497Z"
-         last-update-date="2026-04-22T14:41:40.615Z"/>
+         last-update-date="2026-04-29T10:59:51.124Z"/>
    <data>
       <verwijzing_ambulance_naar_huisartsenpost app="hg-1.0.0"
                                                 shortName="verwijzing_ambulance_naar_huisartsenpost"
@@ -101,7 +101,7 @@
             <zorgverlener id="AMB_verpleegkundige_MAX"
                           conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5322">
                <zorgverlener_identificatienummer value="111110000"
-                                                 root="2.16.840.1.113883.2.4.3.11.60.103.2.3.5323"
+                                                 root="2.16.528.1.1007.3.1"
                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5323"/>
                <specialisme preferred="true"
                             conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5336"
@@ -122,10 +122,10 @@
                                  codeSystem="2.16.840.1.113883.5.90"
                                  displayName="Verwijzer"/>
             </zorgverlener>
-            <zorgverlener id="HA_MAX"
+            <zorgverlener id="Huisarts_MAX"
                           conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5322">
                <zorgverlener_identificatienummer value="000001111"
-                                                 root="2.16.840.1.113883.2.4.3.11.60.103.2.3.5323"
+                                                 root="2.16.528.1.1007.3.1"
                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5323"/>
                <specialisme preferred="true"
                             conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5336"
@@ -217,7 +217,7 @@
                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5391"/>
             </verzender>
             <ontvanger conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1680">
-               <zorgverlener value="HA_MAX"
+               <zorgverlener value="Huisarts_MAX"
                              datatype="reference"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5399"/>
                <zorgaanbieder value="HAP_MAX"
@@ -249,8 +249,8 @@
          </kern>
          <dossiergegevens conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1725">
             <communicatie_item conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5457">
-               <identificatienummer value="1234ABC"
-                                    root="2.16.840.1.113883.2.4.3.11"
+               <identificatienummer value="1234"
+                                    root="2.16.840.1.113883.2.4.3.11.999.103"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5458"/>
                <communicatie_afzender conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5464">
                   <zorgaanbieder value="CPA_MAX"
@@ -259,27 +259,21 @@
                   <zorgverlener value="AMB_verpleegkundige_MAX"
                                 datatype="reference"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5466"/>
-                  <patient value="az-ave-tst-2-maximaal#XXX_Sijthoff"
-                           datatype="reference"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5467"/>
                </communicatie_afzender>
                <communicatie_geadresseerde conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5468">
                   <zorgaanbieder value="HAP_MAX"
                                  datatype="reference"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5469"/>
-                  <zorgverlener value="HA_MAX"
+                  <zorgverlener value="Huisarts_MAX"
                                 datatype="reference"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5470"/>
-                  <patient value="XXX_Sijthoff"
-                           datatype="reference"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5471"/>
                </communicatie_geadresseerde>
                <document conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5472">
-                  <document_identificatie value="x"
-                                          root="2.16.840.1.113883.2.4.3.11.60.103.2.3.5473"
+                  <document_identificatie value="64583546"
+                                          root="2.16.840.1.113883.2.4.3.11.999.103"
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5473"/>
-                  <document_set_identificatie value="4513515"
-                                              root="2.16.840.1.113883.2.4.3.11.60.103.2.3.5474"
+                  <document_set_identificatie value="4515342"
+                                              root="2.16.840.1.113883.2.4.3.11.999.103"
                                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5474"/>
                   <document_versienummer value="1"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5475"/>
