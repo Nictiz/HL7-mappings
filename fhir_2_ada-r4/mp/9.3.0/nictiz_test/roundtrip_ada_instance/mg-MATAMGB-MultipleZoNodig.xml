@@ -12,7 +12,7 @@
                                             prefix="mp-"
                                             language="nl-NL"
                                             title="Generated from HL7 FHIR medicatiegegevens"
-                                            id="ae53a1fb-1964-11f1-1651-020000000000">
+                                            id="35345d81-6bc3-11f1-9425-020000000000">
          <patient>
             <naamgegevens>
                <initialen value="D."/>
@@ -31,792 +31,812 @@
                       codeSystem="2.16.840.1.113883.5.1"
                       displayName="Vrouw"/>
          </patient>
-         <medicamenteuze_behandeling>
-            <identificatie value="mg-MATAMGB-MultipleZoNodig"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="mg-MATAMGB-MultipleZoNodig_MA1"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="mg-MATAMGB-MultipleZoNodig"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T11:20:00+01:00"
+                                    datatype="datetime"/>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-02T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <tijds_duur value="3"
+                           unit="dag"/>
+               <criterium value="3 dagen voor operatie starten"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-35345dd0-6bc3-11f1-9425-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-35345f4c-6bc3-11f1-9425-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="1 maal per dag, cutaan"/>
+               <toedieningsweg code="53"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="cutaan"/>
+               <doseerinstructie>
+                  <dosering>
+                     <toedieningsschema>
+                        <frequentie>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="mg-MATAMGB-MultipleZoNodig_MA2"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="mg-MATAMGB-MultipleZoNodig"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T11:20:00+01:00"
+                                    datatype="datetime"/>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-02T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <tijds_duur value="3"
+                           unit="dag"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-35345dd0-6bc3-11f1-9425-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-35345f4c-6bc3-11f1-9425-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="Bij hoest 1 maal per dag, cutaan"/>
+               <toedieningsweg code="53"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="cutaan"/>
+               <doseerinstructie>
+                  <dosering>
+                     <toedieningsschema>
+                        <frequentie>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                     <zo_nodig>
+                        <criterium code="1387"
+                                   codeSystem="2.16.840.1.113883.2.4.4.5"
+                                   codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                   displayName="Bij hoest"/>
+                     </zo_nodig>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="mg-MATAMGB-MultipleZoNodig_MA3"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="mg-MATAMGB-MultipleZoNodig"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T11:20:00+01:00"
+                                    datatype="datetime"/>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-02T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <tijds_duur value="3"
+                           unit="dag"/>
+               <criterium value="3 dagen voor operatie starten"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-35345dd0-6bc3-11f1-9425-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-35345f4c-6bc3-11f1-9425-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="Zo nodig Bij hoest 1 maal per dag, cutaan"/>
+               <toedieningsweg code="53"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="cutaan"/>
+               <doseerinstructie>
+                  <dosering>
+                     <toedieningsschema>
+                        <frequentie>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                     <zo_nodig>
+                        <criterium code="1137"
+                                   codeSystem="2.16.840.1.113883.2.4.4.5"
+                                   codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                   displayName="Zo nodig"/>
+                        <criterium code="1387"
+                                   codeSystem="2.16.840.1.113883.2.4.4.5"
+                                   codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                   displayName="Bij hoest"/>
+                     </zo_nodig>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="mg-MATAMGB-MultipleZoNodig_MA4"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="mg-MATAMGB-MultipleZoNodig"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T11:20:00+01:00"
+                                    datatype="datetime"/>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-02T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <tijds_duur value="3"
+                           unit="dag"/>
+               <criterium value="3 dagen voor operatie starten"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-35345dd0-6bc3-11f1-9425-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-35345f4c-6bc3-11f1-9425-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="Zo nodig Bij hoest Test criterium 1 maal per dag, cutaan"/>
+               <toedieningsweg code="53"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="cutaan"/>
+               <doseerinstructie>
+                  <dosering>
+                     <toedieningsschema>
+                        <frequentie>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                     <zo_nodig>
+                        <criterium code="OTH"
+                                   codeSystem="2.16.840.1.113883.5.1008"
+                                   codeSystemName="HL7 NullFlavor"
+                                   displayName="overig"
+                                   originalText="Test criterium"/>
+                        <criterium code="1137"
+                                   codeSystem="2.16.840.1.113883.2.4.4.5"
+                                   codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                   displayName="Zo nodig"/>
+                        <criterium code="1387"
+                                   codeSystem="2.16.840.1.113883.2.4.4.5"
+                                   codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                   displayName="Bij hoest"/>
+                     </zo_nodig>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <toedieningsafspraak>
+            <identificatie value="mg-MATAMGB-MultipleZoNodig_TA1"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            <medicamenteuze_behandeling_id value="mg-MATAMGB-MultipleZoNodig"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T12:20:00+01:00"
+                                    datatype="datetime"/>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-02T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <tijds_duur value="3"
+                           unit="dag"/>
+               <criterium value="3 dagen voor operatie starten"/>
+            </gebruiksperiode>
+            <verstrekker>
+               <zorgaanbieder datatype="reference"
+                              value="urn-uuid-35345e34-6bc3-11f1-9425-020000000000"/>
+            </verstrekker>
+            <geneesmiddel_bij_toedieningsafspraak>
+               <farmaceutisch_product datatype="reference"
+                                      value="urn-uuid-35345f60-6bc3-11f1-9425-020000000000"/>
+            </geneesmiddel_bij_toedieningsafspraak>
+            <gebruiksinstructie>
+               <omschrijving value="1 maal per dag, cutaan"/>
+               <toedieningsweg code="53"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="cutaan"/>
+               <doseerinstructie>
+                  <dosering>
+                     <toedieningsschema>
+                        <frequentie>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+            <relatie_medicatieafspraak>
                <identificatie value="mg-MATAMGB-MultipleZoNodig_MA1"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-01T11:20:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-02T00:00:00+01:00"
+            </relatie_medicatieafspraak>
+         </toedieningsafspraak>
+         <toedieningsafspraak>
+            <identificatie value="mg-MATAMGB-MultipleZoNodig_TA2"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            <medicamenteuze_behandeling_id value="mg-MATAMGB-MultipleZoNodig"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T12:20:00+01:00"
                                     datatype="datetime"/>
-                  <tijds_duur value="3"
-                              unit="dag"/>
-                  <criterium value="3 dagen voor operatie starten"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-ae53a24a-1964-11f1-1651-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-ae53a3c6-1964-11f1-1651-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="1 maal per dag, cutaan"/>
-                  <toedieningsweg code="53"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="cutaan"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-            <medicatieafspraak>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-02T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <tijds_duur value="3"
+                           unit="dag"/>
+               <criterium value="3 dagen voor operatie starten"/>
+            </gebruiksperiode>
+            <verstrekker>
+               <zorgaanbieder datatype="reference"
+                              value="urn-uuid-35345e34-6bc3-11f1-9425-020000000000"/>
+            </verstrekker>
+            <geneesmiddel_bij_toedieningsafspraak>
+               <farmaceutisch_product datatype="reference"
+                                      value="urn-uuid-35345f60-6bc3-11f1-9425-020000000000"/>
+            </geneesmiddel_bij_toedieningsafspraak>
+            <gebruiksinstructie>
+               <omschrijving value="Bij hoest 1 maal per dag, cutaan"/>
+               <toedieningsweg code="53"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="cutaan"/>
+               <doseerinstructie>
+                  <dosering>
+                     <toedieningsschema>
+                        <frequentie>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                     <zo_nodig>
+                        <criterium code="1387"
+                                   codeSystem="2.16.840.1.113883.2.4.4.5"
+                                   codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                   displayName="Bij hoest"/>
+                     </zo_nodig>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+            <relatie_medicatieafspraak>
                <identificatie value="mg-MATAMGB-MultipleZoNodig_MA2"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-01T11:20:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-02T00:00:00+01:00"
+            </relatie_medicatieafspraak>
+         </toedieningsafspraak>
+         <toedieningsafspraak>
+            <identificatie value="mg-MATAMGB-MultipleZoNodig_TA3"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            <medicamenteuze_behandeling_id value="mg-MATAMGB-MultipleZoNodig"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T12:20:00+01:00"
                                     datatype="datetime"/>
-                  <tijds_duur value="3"
-                              unit="dag"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-ae53a24a-1964-11f1-1651-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-ae53a3c6-1964-11f1-1651-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="Bij hoest 1 maal per dag, cutaan"/>
-                  <toedieningsweg code="53"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="cutaan"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                        <zo_nodig>
-                           <criterium code="1387"
-                                      codeSystem="2.16.840.1.113883.2.4.4.5"
-                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                      displayName="Bij hoest"/>
-                        </zo_nodig>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-            <medicatieafspraak>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-02T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <tijds_duur value="3"
+                           unit="dag"/>
+               <criterium value="3 dagen voor operatie starten"/>
+            </gebruiksperiode>
+            <verstrekker>
+               <zorgaanbieder datatype="reference"
+                              value="urn-uuid-35345e34-6bc3-11f1-9425-020000000000"/>
+            </verstrekker>
+            <geneesmiddel_bij_toedieningsafspraak>
+               <farmaceutisch_product datatype="reference"
+                                      value="urn-uuid-35345f60-6bc3-11f1-9425-020000000000"/>
+            </geneesmiddel_bij_toedieningsafspraak>
+            <gebruiksinstructie>
+               <omschrijving value="Zo nodig Bij hoest 1 maal per dag, cutaan"/>
+               <toedieningsweg code="53"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="cutaan"/>
+               <doseerinstructie>
+                  <dosering>
+                     <toedieningsschema>
+                        <frequentie>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                     <zo_nodig>
+                        <criterium code="1137"
+                                   codeSystem="2.16.840.1.113883.2.4.4.5"
+                                   codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                   displayName="Zo nodig"/>
+                        <criterium code="1387"
+                                   codeSystem="2.16.840.1.113883.2.4.4.5"
+                                   codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                   displayName="Bij hoest"/>
+                     </zo_nodig>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+            <relatie_medicatieafspraak>
                <identificatie value="mg-MATAMGB-MultipleZoNodig_MA3"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-01T11:20:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-02T00:00:00+01:00"
+            </relatie_medicatieafspraak>
+         </toedieningsafspraak>
+         <toedieningsafspraak>
+            <identificatie value="mg-MATAMGB-MultipleZoNodig_TA4"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            <medicamenteuze_behandeling_id value="mg-MATAMGB-MultipleZoNodig"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T12:20:00+01:00"
                                     datatype="datetime"/>
-                  <tijds_duur value="3"
-                              unit="dag"/>
-                  <criterium value="3 dagen voor operatie starten"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-ae53a24a-1964-11f1-1651-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-ae53a3c6-1964-11f1-1651-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="Zo nodig Bij hoest 1 maal per dag, cutaan"/>
-                  <toedieningsweg code="53"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="cutaan"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                        <zo_nodig>
-                           <criterium code="1137"
-                                      codeSystem="2.16.840.1.113883.2.4.4.5"
-                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                      displayName="Zo nodig"/>
-                           <criterium code="1387"
-                                      codeSystem="2.16.840.1.113883.2.4.4.5"
-                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                      displayName="Bij hoest"/>
-                        </zo_nodig>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-            <medicatieafspraak>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-02T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <tijds_duur value="3"
+                           unit="dag"/>
+               <criterium value="3 dagen voor operatie starten"/>
+            </gebruiksperiode>
+            <verstrekker>
+               <zorgaanbieder datatype="reference"
+                              value="urn-uuid-35345e34-6bc3-11f1-9425-020000000000"/>
+            </verstrekker>
+            <geneesmiddel_bij_toedieningsafspraak>
+               <farmaceutisch_product datatype="reference"
+                                      value="urn-uuid-35345f60-6bc3-11f1-9425-020000000000"/>
+            </geneesmiddel_bij_toedieningsafspraak>
+            <gebruiksinstructie>
+               <omschrijving value="Zo nodig Bij hoest Test criterium 1 maal per dag, cutaan"/>
+               <toedieningsweg code="53"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="cutaan"/>
+               <doseerinstructie>
+                  <dosering>
+                     <toedieningsschema>
+                        <frequentie>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                     <zo_nodig>
+                        <criterium code="OTH"
+                                   codeSystem="2.16.840.1.113883.5.1008"
+                                   codeSystemName="HL7 NullFlavor"
+                                   displayName="overig"
+                                   originalText="Test criterium"/>
+                        <criterium code="1137"
+                                   codeSystem="2.16.840.1.113883.2.4.4.5"
+                                   codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                   displayName="Zo nodig"/>
+                        <criterium code="1387"
+                                   codeSystem="2.16.840.1.113883.2.4.4.5"
+                                   codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                   displayName="Bij hoest"/>
+                     </zo_nodig>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+            <relatie_medicatieafspraak>
                <identificatie value="mg-MATAMGB-MultipleZoNodig_MA4"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-01T11:20:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-02T00:00:00+01:00"
-                                    datatype="datetime"/>
-                  <tijds_duur value="3"
-                              unit="dag"/>
-                  <criterium value="3 dagen voor operatie starten"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-ae53a24a-1964-11f1-1651-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-ae53a3c6-1964-11f1-1651-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="Zo nodig Bij hoest Test criterium 1 maal per dag, cutaan"/>
-                  <toedieningsweg code="53"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="cutaan"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                        <zo_nodig>
-                           <criterium code="OTH"
-                                      codeSystem="2.16.840.1.113883.5.1008"
-                                      codeSystemName="HL7 NullFlavor"
-                                      displayName="overig"
-                                      originalText="Test criterium"/>
-                           <criterium code="1137"
-                                      codeSystem="2.16.840.1.113883.2.4.4.5"
-                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                      displayName="Zo nodig"/>
-                           <criterium code="1387"
-                                      codeSystem="2.16.840.1.113883.2.4.4.5"
-                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                      displayName="Bij hoest"/>
-                        </zo_nodig>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-            <toedieningsafspraak>
-               <identificatie value="mg-MATAMGB-MultipleZoNodig_TA1"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2024-01-01T12:20:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-02T00:00:00+01:00"
-                                    datatype="datetime"/>
-                  <tijds_duur value="3"
-                              unit="dag"/>
-                  <criterium value="3 dagen voor operatie starten"/>
-               </gebruiksperiode>
-               <verstrekker>
-                  <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-ae53a2ae-1964-11f1-1651-020000000000"/>
-               </verstrekker>
-               <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product datatype="reference"
-                                         value="urn-uuid-ae53a3da-1964-11f1-1651-020000000000"/>
-               </geneesmiddel_bij_toedieningsafspraak>
-               <gebruiksinstructie>
-                  <omschrijving value="1 maal per dag, cutaan"/>
-                  <toedieningsweg code="53"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="cutaan"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-               <relatie_medicatieafspraak>
-                  <identificatie value="mg-MATAMGB-MultipleZoNodig_MA1"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </relatie_medicatieafspraak>
-            </toedieningsafspraak>
-            <toedieningsafspraak>
-               <identificatie value="mg-MATAMGB-MultipleZoNodig_TA2"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2024-01-01T12:20:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-02T00:00:00+01:00"
-                                    datatype="datetime"/>
-                  <tijds_duur value="3"
-                              unit="dag"/>
-                  <criterium value="3 dagen voor operatie starten"/>
-               </gebruiksperiode>
-               <verstrekker>
-                  <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-ae53a2ae-1964-11f1-1651-020000000000"/>
-               </verstrekker>
-               <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product datatype="reference"
-                                         value="urn-uuid-ae53a3da-1964-11f1-1651-020000000000"/>
-               </geneesmiddel_bij_toedieningsafspraak>
-               <gebruiksinstructie>
-                  <omschrijving value="Bij hoest 1 maal per dag, cutaan"/>
-                  <toedieningsweg code="53"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="cutaan"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                        <zo_nodig>
-                           <criterium code="1387"
-                                      codeSystem="2.16.840.1.113883.2.4.4.5"
-                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                      displayName="Bij hoest"/>
-                        </zo_nodig>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-               <relatie_medicatieafspraak>
-                  <identificatie value="mg-MATAMGB-MultipleZoNodig_MA2"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </relatie_medicatieafspraak>
-            </toedieningsafspraak>
-            <toedieningsafspraak>
-               <identificatie value="mg-MATAMGB-MultipleZoNodig_TA3"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2024-01-01T12:20:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-02T00:00:00+01:00"
-                                    datatype="datetime"/>
-                  <tijds_duur value="3"
-                              unit="dag"/>
-                  <criterium value="3 dagen voor operatie starten"/>
-               </gebruiksperiode>
-               <verstrekker>
-                  <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-ae53a2ae-1964-11f1-1651-020000000000"/>
-               </verstrekker>
-               <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product datatype="reference"
-                                         value="urn-uuid-ae53a3da-1964-11f1-1651-020000000000"/>
-               </geneesmiddel_bij_toedieningsafspraak>
-               <gebruiksinstructie>
-                  <omschrijving value="Zo nodig Bij hoest 1 maal per dag, cutaan"/>
-                  <toedieningsweg code="53"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="cutaan"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                        <zo_nodig>
-                           <criterium code="1137"
-                                      codeSystem="2.16.840.1.113883.2.4.4.5"
-                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                      displayName="Zo nodig"/>
-                           <criterium code="1387"
-                                      codeSystem="2.16.840.1.113883.2.4.4.5"
-                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                      displayName="Bij hoest"/>
-                        </zo_nodig>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-               <relatie_medicatieafspraak>
-                  <identificatie value="mg-MATAMGB-MultipleZoNodig_MA3"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </relatie_medicatieafspraak>
-            </toedieningsafspraak>
-            <toedieningsafspraak>
-               <identificatie value="mg-MATAMGB-MultipleZoNodig_TA4"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2024-01-01T12:20:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-02T00:00:00+01:00"
-                                    datatype="datetime"/>
-                  <tijds_duur value="3"
-                              unit="dag"/>
-                  <criterium value="3 dagen voor operatie starten"/>
-               </gebruiksperiode>
-               <verstrekker>
-                  <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-ae53a2ae-1964-11f1-1651-020000000000"/>
-               </verstrekker>
-               <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product datatype="reference"
-                                         value="urn-uuid-ae53a3da-1964-11f1-1651-020000000000"/>
-               </geneesmiddel_bij_toedieningsafspraak>
-               <gebruiksinstructie>
-                  <omschrijving value="Zo nodig Bij hoest Test criterium 1 maal per dag, cutaan"/>
-                  <toedieningsweg code="53"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="cutaan"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                        <zo_nodig>
-                           <criterium code="OTH"
-                                      codeSystem="2.16.840.1.113883.5.1008"
-                                      codeSystemName="HL7 NullFlavor"
-                                      displayName="overig"
-                                      originalText="Test criterium"/>
-                           <criterium code="1137"
-                                      codeSystem="2.16.840.1.113883.2.4.4.5"
-                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                      displayName="Zo nodig"/>
-                           <criterium code="1387"
-                                      codeSystem="2.16.840.1.113883.2.4.4.5"
-                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                      displayName="Bij hoest"/>
-                        </zo_nodig>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-               <relatie_medicatieafspraak>
-                  <identificatie value="mg-MATAMGB-MultipleZoNodig_MA4"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </relatie_medicatieafspraak>
-            </toedieningsafspraak>
-            <medicatiegebruik>
-               <identificatie value="mg-MATAMGB-MultipleZoNodigmg-MATAMGB-MultipleZoNodig_MGB1"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <medicatiegebruik_datum_tijd value="2024-01-17T16:00:00+01:00"
-                                            datatype="datetime"/>
-               <gebruik_indicator value="true"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
-                                    datatype="datetime"/>
-                  <eind_datum_tijd value="2024-01-17T23:59:59+01:00"
-                                   datatype="datetime"/>
-               </gebruiksperiode>
-               <gebruiksproduct>
-                  <farmaceutisch_product value="urn-uuid-ae53a3da-1964-11f1-1651-020000000000"
-                                         datatype="reference"/>
-               </gebruiksproduct>
-               <gebruiksinstructie>
-                  <omschrijving value="1 maal per dag 1 stuk, Oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="Oraal"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <keerdosis>
+            </relatie_medicatieafspraak>
+         </toedieningsafspraak>
+         <medicatiegebruik>
+            <identificatie value="mg-MATAMGB-MultipleZoNodigmg-MATAMGB-MultipleZoNodig_MGB1"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+            <medicamenteuze_behandeling_id value="mg-MATAMGB-MultipleZoNodig"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatiegebruik_datum_tijd value="2024-01-17T16:00:00+01:00"
+                                         datatype="datetime"/>
+            <gebruik_indicator value="true"/>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-17T23:59:59+01:00"
+                                datatype="datetime"/>
+            </gebruiksperiode>
+            <gebruiksproduct>
+               <farmaceutisch_product value="urn-uuid-35345f60-6bc3-11f1-9425-020000000000"
+                                      datatype="reference"/>
+            </gebruiksproduct>
+            <gebruiksinstructie>
+               <omschrijving value="1 maal per dag 1 stuk, Oraal"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="Oraal"/>
+               <doseerinstructie>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="1"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 displayName="stuk"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <frequentie>
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <eenheid code="245"
-                                    displayName="stuk"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-ae53a24a-1964-11f1-1651-020000000000"
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-35345dd0-6bc3-11f1-9425-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <informant>
+               <informant_is_patient value="true"/>
+            </informant>
+            <auteur>
+               <auteur_is_zorgverlener>
+                  <zorgverlener value="urn-uuid-35345dd0-6bc3-11f1-9425-020000000000"
                                 datatype="reference"/>
-               </voorschrijver>
-               <informant>
-                  <informant_is_patient value="true"/>
-               </informant>
-               <auteur>
-                  <auteur_is_zorgverlener>
-                     <zorgverlener value="urn-uuid-ae53a24a-1964-11f1-1651-020000000000"
-                                   datatype="reference"/>
-                  </auteur_is_zorgverlener>
-               </auteur>
-            </medicatiegebruik>
-            <medicatiegebruik>
-               <identificatie value="mg-MATAMGB-MultipleZoNodigmg-MATAMGB-MultipleZoNodig_MGB2"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <medicatiegebruik_datum_tijd value="2024-01-17T16:00:00+01:00"
-                                            datatype="datetime"/>
-               <gebruik_indicator value="true"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
-                                    datatype="datetime"/>
-                  <eind_datum_tijd value="2024-01-17T23:59:59+01:00"
-                                   datatype="datetime"/>
-               </gebruiksperiode>
-               <gebruiksproduct>
-                  <farmaceutisch_product value="urn-uuid-ae53a3da-1964-11f1-1651-020000000000"
-                                         datatype="reference"/>
-               </gebruiksproduct>
-               <gebruiksinstructie>
-                  <omschrijving value="Zo nodig 1 maal per dag 1 stuk, Oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="Oraal"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <keerdosis>
+               </auteur_is_zorgverlener>
+            </auteur>
+         </medicatiegebruik>
+         <medicatiegebruik>
+            <identificatie value="mg-MATAMGB-MultipleZoNodigmg-MATAMGB-MultipleZoNodig_MGB2"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+            <medicamenteuze_behandeling_id value="mg-MATAMGB-MultipleZoNodig"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatiegebruik_datum_tijd value="2024-01-17T16:00:00+01:00"
+                                         datatype="datetime"/>
+            <gebruik_indicator value="true"/>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-17T23:59:59+01:00"
+                                datatype="datetime"/>
+            </gebruiksperiode>
+            <gebruiksproduct>
+               <farmaceutisch_product value="urn-uuid-35345f60-6bc3-11f1-9425-020000000000"
+                                      datatype="reference"/>
+            </gebruiksproduct>
+            <gebruiksinstructie>
+               <omschrijving value="Zo nodig 1 maal per dag 1 stuk, Oraal"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="Oraal"/>
+               <doseerinstructie>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="1"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 displayName="stuk"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <frequentie>
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <eenheid code="245"
-                                    displayName="stuk"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                        <zo_nodig>
-                           <criterium code="1137"
-                                      codeSystem="2.16.840.1.113883.2.4.4.5"
-                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                      displayName="Zo nodig"/>
-                        </zo_nodig>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-ae53a24a-1964-11f1-1651-020000000000"
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                     <zo_nodig>
+                        <criterium code="1137"
+                                   codeSystem="2.16.840.1.113883.2.4.4.5"
+                                   codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                   displayName="Zo nodig"/>
+                     </zo_nodig>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-35345dd0-6bc3-11f1-9425-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <informant>
+               <informant_is_patient value="true"/>
+            </informant>
+            <auteur>
+               <auteur_is_zorgverlener>
+                  <zorgverlener value="urn-uuid-35345dd0-6bc3-11f1-9425-020000000000"
                                 datatype="reference"/>
-               </voorschrijver>
-               <informant>
-                  <informant_is_patient value="true"/>
-               </informant>
-               <auteur>
-                  <auteur_is_zorgverlener>
-                     <zorgverlener value="urn-uuid-ae53a24a-1964-11f1-1651-020000000000"
-                                   datatype="reference"/>
-                  </auteur_is_zorgverlener>
-               </auteur>
-            </medicatiegebruik>
-            <medicatiegebruik>
-               <identificatie value="mg-MATAMGB-MultipleZoNodigmg-MATAMGB-MultipleZoNodig_MGB3"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <medicatiegebruik_datum_tijd value="2024-01-17T16:00:00+01:00"
-                                            datatype="datetime"/>
-               <gebruik_indicator value="true"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
-                                    datatype="datetime"/>
-                  <eind_datum_tijd value="2024-01-17T23:59:59+01:00"
-                                   datatype="datetime"/>
-               </gebruiksperiode>
-               <gebruiksproduct>
-                  <farmaceutisch_product value="urn-uuid-ae53a3da-1964-11f1-1651-020000000000"
-                                         datatype="reference"/>
-               </gebruiksproduct>
-               <gebruiksinstructie>
-                  <omschrijving value="Zo nodig Bij hoest 1 maal per dag 1 stuk, Oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="Oraal"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <keerdosis>
+               </auteur_is_zorgverlener>
+            </auteur>
+         </medicatiegebruik>
+         <medicatiegebruik>
+            <identificatie value="mg-MATAMGB-MultipleZoNodigmg-MATAMGB-MultipleZoNodig_MGB3"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+            <medicamenteuze_behandeling_id value="mg-MATAMGB-MultipleZoNodig"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatiegebruik_datum_tijd value="2024-01-17T16:00:00+01:00"
+                                         datatype="datetime"/>
+            <gebruik_indicator value="true"/>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-17T23:59:59+01:00"
+                                datatype="datetime"/>
+            </gebruiksperiode>
+            <gebruiksproduct>
+               <farmaceutisch_product value="urn-uuid-35345f60-6bc3-11f1-9425-020000000000"
+                                      datatype="reference"/>
+            </gebruiksproduct>
+            <gebruiksinstructie>
+               <omschrijving value="Zo nodig Bij hoest 1 maal per dag 1 stuk, Oraal"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="Oraal"/>
+               <doseerinstructie>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="1"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 displayName="stuk"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <frequentie>
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <eenheid code="245"
-                                    displayName="stuk"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                        <zo_nodig>
-                           <criterium code="1137"
-                                      codeSystem="2.16.840.1.113883.2.4.4.5"
-                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                      displayName="Zo nodig"/>
-                           <criterium code="1387"
-                                      codeSystem="2.16.840.1.113883.2.4.4.5"
-                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                      displayName="Bij hoest"/>
-                        </zo_nodig>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-ae53a24a-1964-11f1-1651-020000000000"
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                     <zo_nodig>
+                        <criterium code="1137"
+                                   codeSystem="2.16.840.1.113883.2.4.4.5"
+                                   codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                   displayName="Zo nodig"/>
+                        <criterium code="1387"
+                                   codeSystem="2.16.840.1.113883.2.4.4.5"
+                                   codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                   displayName="Bij hoest"/>
+                     </zo_nodig>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-35345dd0-6bc3-11f1-9425-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <informant>
+               <informant_is_patient value="true"/>
+            </informant>
+            <auteur>
+               <auteur_is_zorgverlener>
+                  <zorgverlener value="urn-uuid-35345dd0-6bc3-11f1-9425-020000000000"
                                 datatype="reference"/>
-               </voorschrijver>
-               <informant>
-                  <informant_is_patient value="true"/>
-               </informant>
-               <auteur>
-                  <auteur_is_zorgverlener>
-                     <zorgverlener value="urn-uuid-ae53a24a-1964-11f1-1651-020000000000"
-                                   datatype="reference"/>
-                  </auteur_is_zorgverlener>
-               </auteur>
-            </medicatiegebruik>
-            <medicatiegebruik>
-               <identificatie value="mg-MATAMGB-MultipleZoNodigmg-MATAMGB-MultipleZoNodig_MGB1"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <medicatiegebruik_datum_tijd value="2024-01-17T16:00:00+01:00"
-                                            datatype="datetime"/>
-               <gebruik_indicator value="true"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
-                                    datatype="datetime"/>
-                  <eind_datum_tijd value="2024-01-17T23:59:59+01:00"
-                                   datatype="datetime"/>
-               </gebruiksperiode>
-               <gebruiksproduct>
-                  <farmaceutisch_product value="urn-uuid-ae53a3da-1964-11f1-1651-020000000000"
-                                         datatype="reference"/>
-               </gebruiksproduct>
-               <gebruiksinstructie>
-                  <omschrijving value="Zo nodig Bij hoest Test criterium 1 maal per dag 1 stuk, Oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="Oraal"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <keerdosis>
+               </auteur_is_zorgverlener>
+            </auteur>
+         </medicatiegebruik>
+         <medicatiegebruik>
+            <identificatie value="mg-MATAMGB-MultipleZoNodigmg-MATAMGB-MultipleZoNodig_MGB1"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+            <medicamenteuze_behandeling_id value="mg-MATAMGB-MultipleZoNodig"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatiegebruik_datum_tijd value="2024-01-17T16:00:00+01:00"
+                                         datatype="datetime"/>
+            <gebruik_indicator value="true"/>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-17T23:59:59+01:00"
+                                datatype="datetime"/>
+            </gebruiksperiode>
+            <gebruiksproduct>
+               <farmaceutisch_product value="urn-uuid-35345f60-6bc3-11f1-9425-020000000000"
+                                      datatype="reference"/>
+            </gebruiksproduct>
+            <gebruiksinstructie>
+               <omschrijving value="Zo nodig Bij hoest Test criterium 1 maal per dag 1 stuk, Oraal"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="Oraal"/>
+               <doseerinstructie>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="1"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 displayName="stuk"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <frequentie>
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <eenheid code="245"
-                                    displayName="stuk"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                        <zo_nodig>
-                           <criterium code="OTH"
-                                      codeSystem="2.16.840.1.113883.5.1008"
-                                      codeSystemName="HL7 NullFlavor"
-                                      displayName="overig"
-                                      originalText="Test criterium"/>
-                           <criterium code="1137"
-                                      codeSystem="2.16.840.1.113883.2.4.4.5"
-                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                      displayName="Zo nodig"/>
-                           <criterium code="1387"
-                                      codeSystem="2.16.840.1.113883.2.4.4.5"
-                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                      displayName="Bij hoest"/>
-                        </zo_nodig>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-ae53a24a-1964-11f1-1651-020000000000"
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                     <zo_nodig>
+                        <criterium code="OTH"
+                                   codeSystem="2.16.840.1.113883.5.1008"
+                                   codeSystemName="HL7 NullFlavor"
+                                   displayName="overig"
+                                   originalText="Test criterium"/>
+                        <criterium code="1137"
+                                   codeSystem="2.16.840.1.113883.2.4.4.5"
+                                   codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                   displayName="Zo nodig"/>
+                        <criterium code="1387"
+                                   codeSystem="2.16.840.1.113883.2.4.4.5"
+                                   codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                   displayName="Bij hoest"/>
+                     </zo_nodig>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-35345dd0-6bc3-11f1-9425-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <informant>
+               <informant_is_patient value="true"/>
+            </informant>
+            <auteur>
+               <auteur_is_zorgverlener>
+                  <zorgverlener value="urn-uuid-35345dd0-6bc3-11f1-9425-020000000000"
                                 datatype="reference"/>
-               </voorschrijver>
-               <informant>
-                  <informant_is_patient value="true"/>
-               </informant>
-               <auteur>
-                  <auteur_is_zorgverlener>
-                     <zorgverlener value="urn-uuid-ae53a24a-1964-11f1-1651-020000000000"
-                                   datatype="reference"/>
-                  </auteur_is_zorgverlener>
-               </auteur>
-            </medicatiegebruik>
-         </medicamenteuze_behandeling>
+               </auteur_is_zorgverlener>
+            </auteur>
+         </medicatiegebruik>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-ae53a3c6-1964-11f1-1651-020000000000">
+            <farmaceutisch_product id="urn-uuid-35345f4c-6bc3-11f1-9425-020000000000">
                <product_code code="10138"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -827,7 +847,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="CHLOORHEXIDINE CREME 10MG/G"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-ae53a3da-1964-11f1-1651-020000000000">
+            <farmaceutisch_product id="urn-uuid-35345f60-6bc3-11f1-9425-020000000000">
                <product_code code="1189921"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -842,7 +862,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="CHLOORHEXIDINE CREME 10MG/G"/>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-ae53a24a-1964-11f1-1651-020000000000">
+            <zorgverlener id="urn-uuid-35345dd0-6bc3-11f1-9425-020000000000">
                <zorgverlener_identificatienummer value="000001111"
                                                  root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
@@ -859,10 +879,10 @@
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-ae53a286-1964-11f1-1651-020000000000"/>
+                                 value="urn-uuid-35345e0c-6bc3-11f1-9425-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-ae53a286-1964-11f1-1651-020000000000">
+            <zorgaanbieder id="urn-uuid-35345e0c-6bc3-11f1-9425-020000000000">
                <zorgaanbieder_identificatienummer value="00001111"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
@@ -876,7 +896,7 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="urn-uuid-ae53a2ae-1964-11f1-1651-020000000000">
+            <zorgaanbieder id="urn-uuid-35345e34-6bc3-11f1-9425-020000000000">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
