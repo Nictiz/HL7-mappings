@@ -43,30 +43,29 @@
       <authorOrPerformer typeCode="AUT">
          <participant>
             <AssignedPerson>
-               <id extension="000001113"
+               <id extension="123456789"
                    root="2.16.528.1.1007.3.1"/>
-               <code code="01.015"
+               <id extension="12345678"
+                   root="2.16.840.1.113883.2.4.6.1"/>
+               <code code="01.046"
                      codeSystem="2.16.840.1.113883.2.4.15.111"
-                     displayName="Huisarts"
-                     codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
-                     codeSystemVersion="2024-01-29T00:00:00"/>
+                     displayName="Huisarts"/>
                <assignedPrincipalChoiceList>
-                  <assignedPerson classCode="PSN"
-                                  determinerCode="INSTANCE">
-                     <name>
-                        <given qualifier="BR">Jan</given>
-                        <prefix qualifier="VV">de </prefix>
-                        <family qualifier="BR">Dokter</family>
-                     </name>
+                  <assignedPerson>
+                     <name>Peter van den Broek</name>
                   </assignedPerson>
                </assignedPrincipalChoiceList>
-               <Organization classCode="ORG"
-                             determinerCode="INSTANCE">
-                  <id extension="00005111"
+               <Organization>
+                  <id extension="2BFilledWithRealValue"
+                      root="2.16.840.1.113883.2.4.3.11.21"/>
+                  <id extension="13265478"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Itis</name>
+                  <code code="V4"
+                        codeSystem="2.16.840.1.113883.2.4.15.1060"
+                        displayName="Ziekenhuis"/>
+                  <name>Ziekenhuis X</name>
                   <addr>
-                     <city>Onze Stad</city>
+                     <city>Lutjebroek</city>
                   </addr>
                </Organization>
             </AssignedPerson>
@@ -74,40 +73,39 @@
       </authorOrPerformer>
       <overseer typeCode="RESP">
          <AssignedPerson>
-            <id extension="000001113"
+            <id extension="123456798"
                 root="2.16.528.1.1007.3.1"/>
-            <code code="01.015"
+            <id extension="12365487"
+                root="2.16.840.1.113883.2.4.6.1"/>
+            <code code="01.046"
                   codeSystem="2.16.840.1.113883.2.4.15.111"
-                  displayName="Huisarts"
-                  codeSystemName="RoleCodeNL - zorgverlenertype (personen)"
-                  codeSystemVersion="2024-01-29T00:00:00"/>
+                  displayName="Huisarts"/>
             <assignedPrincipalChoiceList>
-               <assignedPerson classCode="PSN"
-                               determinerCode="INSTANCE">
-                  <name>
-                     <given qualifier="BR">Jan</given>
-                     <prefix qualifier="VV">de </prefix>
-                     <family qualifier="BR">Dokter</family>
-                  </name>
+               <assignedPerson>
+                  <name>Peter van den Broek</name>
                </assignedPerson>
             </assignedPrincipalChoiceList>
-            <Organization classCode="ORG"
-                          determinerCode="INSTANCE">
-               <id extension="00005111"
+            <Organization>
+               <id extension="2BFilledWithRealValue"
+                   root="2.16.840.1.113883.2.4.3.11.21"/>
+               <id extension="12346548"
                    root="2.16.528.1.1007.3.3"/>
-               <name>Huisartsenpraktijk Itis</name>
+               <code code="V4"
+                     codeSystem="2.16.840.1.113883.2.4.15.1060"
+                     displayName="Ziekenhuis"/>
+               <name>Ziekenhuis X</name>
                <addr>
-                  <city>Onze Stad</city>
+                  <city>Lutjebroek</city>
                </addr>
             </Organization>
          </AssignedPerson>
       </overseer>
-      <!--Generated from ada instance with title: "Hybride Dagdeel Scenarioset 1.7" and id: "mv-mp-svo-hyb612-1-7-dagdeel-v30".-->
+      <!--Generated from ada instance with title: "" and id: "".-->
       <subject>
          <prescription classCode="SBADM"
                        moodCode="RQO">
             <id root="1.3.6.1.4.1.58606.1.3.2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
-                extension="MBH_hyb_vo_dgdl_MA!MBH_hyb_vo_dgdl_VV"/>
+                extension="MBH_hyb_vo_dgdl_MA-tvo!MBH_hyb_vo_dgdl_VV-tvo"/>
             <statusCode code="active"/>
             <subject typeCode="SBJ">
                <Patient>
@@ -190,7 +188,7 @@
                   </MedicationKind>
                   <productOf>
                      <medicationDispenseRequest>
-                        <id extension="MBH_hyb_vo_dgdl_VV"
+                        <id extension="MBH_hyb_vo_dgdl_VV-tvo"
                             root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
                         <statusCode nullFlavor="NA"/>
                         <quantity value="60"
@@ -217,7 +215,7 @@
                         <text mediaType="text/plain">1 maal per dag 1 stuk 's avonds, Oraal</text>
                         <statusCode code="active"/>
                         <effectiveTime xsi:type="IVL_TS">
-                           <low value="20240101000000.000+0100"/>
+                           <low value="20240101000000+0100"/>
                         </effectiveTime>
                         <!--Let op! Er is in de input een toedieningsschema met een of meerdere dagdelen aangetroffen. Dit kan in 6.12 niet gestructureerd worden opgenomen, daarom vindt u alleen de eventuele gebruiksperiode en tekstuele omschrijving terug.-->
                         <routeCode code="9"
