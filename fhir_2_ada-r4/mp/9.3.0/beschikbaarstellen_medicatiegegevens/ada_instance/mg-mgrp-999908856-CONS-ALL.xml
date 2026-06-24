@@ -1,0 +1,121 @@
+<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp93"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.374"
+                                            transactionEffectiveDate="2022-06-30T00:00:00"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="Generated from HL7 FHIR medicatiegegevens"
+                                            id="02ca2d07-6fd9-11f1-1469-020000000000">
+         <patient>
+            <naamgegevens>
+               <voornamen value="A"/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Maasbommel"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999908856"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1912-02-25"
+                           datatype="datetime"/>
+            <geslacht code="M"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Man"/>
+         </patient>
+         <medicatietoediening>
+            <identificatie value="MBH_300_spoedtoediening_MTD-tmg"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_spoedtoediening-tmg"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <toedienings_product>
+               <farmaceutisch_product value="urn-uuid-02ca2dce-6fd9-11f1-1469-020000000000"
+                                      datatype="reference"/>
+            </toedienings_product>
+            <registratie_datum_tijd value="2023-12-28T08:00:00+01:00"
+                                    datatype="datetime"/>
+            <toedienings_datum_tijd value="2023-12-28T08:00:00+01:00"
+                                    datatype="datetime"/>
+            <toegediende_hoeveelheid>
+               <aantal value="2"/>
+               <eenheid code="208"
+                        displayName="dosis"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
+            </toegediende_hoeveelheid>
+            <toedieningsweg code="121"
+                            codeSystem="2.16.840.1.113883.2.4.4.9"
+                            codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                            displayName="sublinguaal"/>
+            <toediener>
+               <zorgverlener>
+                  <zorgverlener value="urn-uuid-02ca2d56-6fd9-11f1-1469-020000000000"
+                                datatype="reference"/>
+               </zorgverlener>
+            </toediener>
+            <medicatie_toediening_status code="completed"
+                                         codeSystem="2.16.840.1.113883.5.14"
+                                         displayName="voltooid"/>
+         </medicatietoediening>
+         <bouwstenen>
+            <farmaceutisch_product id="urn-uuid-02ca2dce-6fd9-11f1-1469-020000000000">
+               <product_code code="704369"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="NITROLINGUAL OROMUCOSALE SPRAY 0,4MG/DO FLAC 250DO"
+                             preferred="true"/>
+               <product_code code="72214"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO FL 250DO"/>
+               <product_code code="119431"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO"/>
+            </farmaceutisch_product>
+            <zorgverlener id="urn-uuid-02ca2d56-6fd9-11f1-1469-020000000000">
+               <zorgverlener_identificatienummer value="000001111"
+                                                 root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Peter"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="van"/>
+                     <achternaam value="Pulver"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="Vektis AGB-medische specialismen"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-02ca2d92-6fd9-11f1-1469-020000000000"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="urn-uuid-02ca2d92-6fd9-11f1-1469-020000000000">
+               <zorgaanbieder_identificatienummer value="00001111"
+                                                  root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

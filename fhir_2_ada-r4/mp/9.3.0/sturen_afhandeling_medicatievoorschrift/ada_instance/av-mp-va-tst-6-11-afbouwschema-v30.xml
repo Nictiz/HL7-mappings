@@ -13,7 +13,7 @@
                                                prefix="mp-"
                                                language="nl-NL"
                                                title="Generated from HL7 FHIR sturen_afhandeling_medicatievoorschrift"
-                                               id="4b66249f-1961-11f1-3947-020000000000">
+                                               id="289fdd83-6fd9-11f1-1953-020000000000">
          <patient>
             <naamgegevens>
                <initialen value="G."/>
@@ -32,187 +32,187 @@
                       codeSystem="2.16.840.1.113883.5.1"
                       displayName="Vrouw"/>
          </patient>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_afbouwschema-tav"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <toedieningsafspraak>
-               <identificatie value="MBH_300_afbouwschema_TA-tav"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd value="2024-01-01T09:40:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+         <toedieningsafspraak>
+            <identificatie value="MBH_300_afbouwschema_TA-tav"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_afbouwschema-tav"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T09:40:00+01:00"
                                     datatype="datetime"/>
-                  <eind_datum_tijd value="2024-02-11T23:59:59+01:00"
-                                   datatype="datetime"/>
-               </gebruiksperiode>
-               <verstrekker>
-                  <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-4b6624ee-1961-11f1-3947-020000000000"/>
-               </verstrekker>
-               <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product datatype="reference"
-                                         value="urn-uuid-4b66253e-1961-11f1-3947-020000000000"/>
-               </geneesmiddel_bij_toedieningsafspraak>
-               <gebruiksinstructie>
-                  <omschrijving value="eerst gedurende 2 weken 1 maal per dag 3 gram, dan gedurende 3 weken 1 maal per dag 2 gram, dan gedurende 6 dagen 1 maal per dag 1 gram, cutaan"/>
-                  <toedieningsweg code="53"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="cutaan"/>
-                  <doseerinstructie>
-                     <doseerduur value="2"
-                                 unit="week"/>
-                     <volgnummer value="1"/>
-                     <dosering>
-                        <keerdosis>
-                           <aantal>
-                              <nominale_waarde value="3"/>
-                           </aantal>
-                           <eenheid code="215"
-                                    displayName="gram"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <boundsDuration>
-                                       <value value="2"/>
-                                       <unit value="week"/>
-                                       <system value="http://unitsofmeasure.org"/>
-                                       <code value="wk"/>
-                                    </boundsDuration>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-                  <doseerinstructie>
-                     <doseerduur value="3"
-                                 unit="week"/>
-                     <volgnummer value="2"/>
-                     <dosering>
-                        <keerdosis>
-                           <aantal>
-                              <nominale_waarde value="2"/>
-                           </aantal>
-                           <eenheid code="215"
-                                    displayName="gram"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <boundsDuration>
-                                       <value value="3"/>
-                                       <unit value="week"/>
-                                       <system value="http://unitsofmeasure.org"/>
-                                       <code value="wk"/>
-                                    </boundsDuration>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-                  <doseerinstructie>
-                     <doseerduur value="6"
-                                 unit="dag"/>
-                     <volgnummer value="3"/>
-                     <dosering>
-                        <keerdosis>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <eind_datum_tijd value="2024-02-11T23:59:59+01:00"
+                                datatype="datetime"/>
+            </gebruiksperiode>
+            <verstrekker>
+               <zorgaanbieder datatype="reference"
+                              value="urn-uuid-289fddd2-6fd9-11f1-1953-020000000000"/>
+            </verstrekker>
+            <geneesmiddel_bij_toedieningsafspraak>
+               <farmaceutisch_product datatype="reference"
+                                      value="urn-uuid-289fde22-6fd9-11f1-1953-020000000000"/>
+            </geneesmiddel_bij_toedieningsafspraak>
+            <gebruiksinstructie>
+               <omschrijving value="eerst gedurende 2 weken 1 maal per dag 3 gram, dan gedurende 3 weken 1 maal per dag 2 gram, dan gedurende 6 dagen 1 maal per dag 1 gram, cutaan"/>
+               <toedieningsweg code="53"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="cutaan"/>
+               <doseerinstructie>
+                  <doseerduur value="2"
+                              unit="week"/>
+                  <volgnummer value="1"/>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="3"/>
+                        </aantal>
+                        <eenheid code="215"
+                                 displayName="gram"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <frequentie>
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <eenheid code="215"
-                                    displayName="gram"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <boundsDuration>
-                                       <value value="6"/>
-                                       <unit value="dag"/>
-                                       <system value="http://unitsofmeasure.org"/>
-                                       <code value="d"/>
-                                    </boundsDuration>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-               <relatie_medicatieafspraak>
-                  <identificatie value="MBH_300_afbouwschema_MA-tav"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </relatie_medicatieafspraak>
-            </toedieningsafspraak>
-            <medicatieverstrekking>
-               <identificatie value="MBH_300_afbouwschema_MVE-tav"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                                  value="2024-01-01T09:40:00+01:00"/>
-               <verstrekker>
-                  <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-4b6624ee-1961-11f1-3947-020000000000"/>
-               </verstrekker>
-               <verstrekte_hoeveelheid>
-                  <aantal value="90"/>
-                  <eenheid code="215"
-                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                           displayName="gram"/>
-               </verstrekte_hoeveelheid>
-               <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-4b66253e-1961-11f1-3947-020000000000"
-                                         datatype="reference"/>
-               </verstrekt_geneesmiddel>
-               <relatie_verstrekkingsverzoek>
-                  <identificatie value="MBH_300_afbouwschema_VV-tav"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               </relatie_verstrekkingsverzoek>
-            </medicatieverstrekking>
-         </medicamenteuze_behandeling>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <boundsDuration>
+                                    <value value="2"/>
+                                    <unit value="week"/>
+                                    <system value="http://unitsofmeasure.org"/>
+                                    <code value="wk"/>
+                                 </boundsDuration>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+               <doseerinstructie>
+                  <doseerduur value="3"
+                              unit="week"/>
+                  <volgnummer value="2"/>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="2"/>
+                        </aantal>
+                        <eenheid code="215"
+                                 displayName="gram"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <frequentie>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <boundsDuration>
+                                    <value value="3"/>
+                                    <unit value="week"/>
+                                    <system value="http://unitsofmeasure.org"/>
+                                    <code value="wk"/>
+                                 </boundsDuration>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+               <doseerinstructie>
+                  <doseerduur value="6"
+                              unit="dag"/>
+                  <volgnummer value="3"/>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="1"/>
+                        </aantal>
+                        <eenheid code="215"
+                                 displayName="gram"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <frequentie>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <boundsDuration>
+                                    <value value="6"/>
+                                    <unit value="dag"/>
+                                    <system value="http://unitsofmeasure.org"/>
+                                    <code value="d"/>
+                                 </boundsDuration>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+            <relatie_medicatieafspraak>
+               <identificatie value="MBH_300_afbouwschema_MA-tav"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </relatie_medicatieafspraak>
+         </toedieningsafspraak>
+         <medicatieverstrekking>
+            <identificatie value="MBH_300_afbouwschema_MVE-tav"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_afbouwschema-tav"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                               value="2024-01-01T09:40:00+01:00"/>
+            <verstrekker>
+               <zorgaanbieder datatype="reference"
+                              value="urn-uuid-289fddd2-6fd9-11f1-1953-020000000000"/>
+            </verstrekker>
+            <verstrekte_hoeveelheid>
+               <aantal value="90"/>
+               <eenheid code="215"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        displayName="gram"/>
+            </verstrekte_hoeveelheid>
+            <verstrekt_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-289fde22-6fd9-11f1-1953-020000000000"
+                                      datatype="reference"/>
+            </verstrekt_geneesmiddel>
+            <relatie_verstrekkingsverzoek>
+               <identificatie value="MBH_300_afbouwschema_VV-tav"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+            </relatie_verstrekkingsverzoek>
+         </medicatieverstrekking>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-4b66253e-1961-11f1-3947-020000000000">
+            <farmaceutisch_product id="urn-uuid-289fde22-6fd9-11f1-1953-020000000000">
                <product_code code="2292556"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -227,7 +227,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="Fusidinezuur creme 20mg/g"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="urn-uuid-4b6624ee-1961-11f1-3947-020000000000">
+            <zorgaanbieder id="urn-uuid-289fddd2-6fd9-11f1-1953-020000000000">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>

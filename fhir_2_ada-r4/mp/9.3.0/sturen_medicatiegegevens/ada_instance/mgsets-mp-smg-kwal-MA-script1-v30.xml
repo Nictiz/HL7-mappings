@@ -12,7 +12,7 @@
                                 prefix="mp-"
                                 language="nl-NL"
                                 title="Generated from HL7 FHIR medicatiegegevens"
-                                id="301c23fb-1961-11f1-1424-020000000000">
+                                id="0e2743b5-6fd9-11f1-1549-020000000000">
          <patient>
             <naamgegevens>
                <initialen value="P."/>
@@ -31,232 +31,234 @@
                       codeSystem="2.16.840.1.113883.5.1"
                       displayName="Vrouw"/>
          </patient>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_SCRIPT1-tmgs"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="MBH_300_SCRIPT1_MA-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_SCRIPT1-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T08:20:00+01:00"
+                                    datatype="datetime"/>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <tijds_duur value="21"
+                           unit="week"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-0e274404-6fd9-11f1-1549-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-0e2744a4-6fd9-11f1-1549-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 4 stuks - let op, exacte toedientijd(en), oraal"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="oraal"/>
+               <herhaalperiode_cyclisch_schema value="21"
+                                               unit="dag"/>
+               <doseerinstructie>
+                  <doseerduur value="14"
+                              unit="dag"/>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="4"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 displayName="stuk"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <toedientijd value="09:00:00"
+                                     datatype="time"/>
+                        <toedientijd value="21:00:00"
+                                     datatype="time"/>
+                        <is_flexibel value="false"/>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                    <valueBoolean value="true"/>
+                                 </extension>
+                                 <boundsDuration>
+                                    <value value="14"/>
+                                    <unit value="dag"/>
+                                    <system value="http://unitsofmeasure.org"/>
+                                    <code value="d"/>
+                                 </boundsDuration>
+                                 <timeOfDay value="09:00:00"/>
+                                 <timeOfDay value="21:00:00"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="MBH_300_SCRIPT1_MA_WIJZIGING-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_SCRIPT1-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-21T07:20:00+01:00"
+                                    datatype="datetime"/>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-22T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <tijds_duur value="18"
+                           unit="week"/>
+            </gebruiksperiode>
+            <relatie_medicatieafspraak>
                <identificatie value="MBH_300_SCRIPT1_MA-tmgs"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-01T08:20:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+            </relatie_medicatieafspraak>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-0e274404-6fd9-11f1-1549-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <reden_wijzigen_of_staken code="58848006"
+                                      codeSystem="2.16.840.1.113883.6.96"
+                                      codeSystemName="SNOMED CT"
+                                      displayName="gebrek aan geneesmiddeleffect"/>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-0e2744a4-6fd9-11f1-1549-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 5 stuks - let op, exacte toedientijd(en), oraal"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="oraal"/>
+               <herhaalperiode_cyclisch_schema value="21"
+                                               unit="dag"/>
+               <doseerinstructie>
+                  <doseerduur value="14"
+                              unit="dag"/>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="5"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 displayName="stuk"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <toedientijd value="09:00:00"
+                                     datatype="time"/>
+                        <toedientijd value="21:00:00"
+                                     datatype="time"/>
+                        <is_flexibel value="false"/>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                    <valueBoolean value="true"/>
+                                 </extension>
+                                 <boundsDuration>
+                                    <value value="14"/>
+                                    <unit value="dag"/>
+                                    <system value="http://unitsofmeasure.org"/>
+                                    <code value="d"/>
+                                 </boundsDuration>
+                                 <timeOfDay value="09:00:00"/>
+                                 <timeOfDay value="21:00:00"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="MBH_300_SCRIPT1_MA_STOP-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_SCRIPT1-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-21T07:20:00+01:00"
                                     datatype="datetime"/>
-                  <tijds_duur value="21"
-                              unit="week"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-301c244a-1961-11f1-1424-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-301c24ea-1961-11f1-1424-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 4 stuks - let op, exacte toedientijd(en), oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="oraal"/>
-                  <herhaalperiode_cyclisch_schema value="21"
-                                                  unit="dag"/>
-                  <doseerinstructie>
-                     <doseerduur value="14"
-                                 unit="dag"/>
-                     <dosering>
-                        <keerdosis>
-                           <aantal>
-                              <nominale_waarde value="4"/>
-                           </aantal>
-                           <eenheid code="245"
-                                    displayName="stuk"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <toedientijd value="09:00:00"
-                                        datatype="time"/>
-                           <toedientijd value="21:00:00"
-                                        datatype="time"/>
-                           <is_flexibel value="false"/>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                                       <valueBoolean value="true"/>
-                                    </extension>
-                                    <boundsDuration>
-                                       <value value="14"/>
-                                       <unit value="dag"/>
-                                       <system value="http://unitsofmeasure.org"/>
-                                       <code value="d"/>
-                                    </boundsDuration>
-                                    <timeOfDay value="09:00:00"/>
-                                    <timeOfDay value="21:00:00"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-            <medicatieafspraak>
-               <identificatie value="MBH_300_SCRIPT1_MA_WIJZIGING-tmgs"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-21T07:20:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-22T00:00:00+01:00"
-                                    datatype="datetime"/>
-                  <tijds_duur value="18"
-                              unit="week"/>
-               </gebruiksperiode>
-               <relatie_medicatieafspraak>
-                  <identificatie value="MBH_300_SCRIPT1_MA-tmgs"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </relatie_medicatieafspraak>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-301c244a-1961-11f1-1424-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <reden_wijzigen_of_staken code="58848006"
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-21T23:59:59+01:00"
+                                datatype="datetime"/>
+            </gebruiksperiode>
+            <medicatieafspraak_stop_type code="410546004"
                                          codeSystem="2.16.840.1.113883.6.96"
                                          codeSystemName="SNOMED CT"
-                                         displayName="gebrek aan geneesmiddeleffect"/>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-301c24ea-1961-11f1-1424-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 5 stuks - let op, exacte toedientijd(en), oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="oraal"/>
-                  <herhaalperiode_cyclisch_schema value="21"
-                                                  unit="dag"/>
-                  <doseerinstructie>
-                     <doseerduur value="14"
-                                 unit="dag"/>
-                     <dosering>
-                        <keerdosis>
-                           <aantal>
-                              <nominale_waarde value="5"/>
-                           </aantal>
-                           <eenheid code="245"
-                                    displayName="stuk"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <toedientijd value="09:00:00"
-                                        datatype="time"/>
-                           <toedientijd value="21:00:00"
-                                        datatype="time"/>
-                           <is_flexibel value="false"/>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                                       <valueBoolean value="true"/>
-                                    </extension>
-                                    <boundsDuration>
-                                       <value value="14"/>
-                                       <unit value="dag"/>
-                                       <system value="http://unitsofmeasure.org"/>
-                                       <code value="d"/>
-                                    </boundsDuration>
-                                    <timeOfDay value="09:00:00"/>
-                                    <timeOfDay value="21:00:00"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-            <medicatieafspraak>
-               <identificatie value="MBH_300_SCRIPT1_MA_STOP-tmgs"
+                                         displayName="stopgezet"/>
+            <relatie_medicatieafspraak>
+               <identificatie value="MBH_300_SCRIPT1_MA-tmgs"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-21T07:20:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
-                                    datatype="datetime"/>
-                  <eind_datum_tijd value="2024-01-21T23:59:59+01:00"
-                                   datatype="datetime"/>
-               </gebruiksperiode>
-               <medicatieafspraak_stop_type code="410546004"
-                                            codeSystem="2.16.840.1.113883.6.96"
-                                            codeSystemName="SNOMED CT"
-                                            displayName="stopgezet"/>
-               <relatie_medicatieafspraak>
-                  <identificatie value="MBH_300_SCRIPT1_MA-tmgs"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </relatie_medicatieafspraak>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-301c244a-1961-11f1-1424-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-301c24ea-1961-11f1-1424-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 4 stuks - let op, exacte toedientijd(en), oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="oraal"/>
-                  <herhaalperiode_cyclisch_schema value="21"
-                                                  unit="dag"/>
-                  <doseerinstructie>
-                     <doseerduur value="14"
-                                 unit="dag"/>
-                     <dosering>
-                        <keerdosis>
-                           <aantal>
-                              <nominale_waarde value="4"/>
-                           </aantal>
-                           <eenheid code="245"
-                                    displayName="stuk"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <toedientijd value="09:00:00"
-                                        datatype="time"/>
-                           <toedientijd value="21:00:00"
-                                        datatype="time"/>
-                           <is_flexibel value="false"/>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                                       <valueBoolean value="true"/>
-                                    </extension>
-                                    <boundsDuration>
-                                       <value value="14"/>
-                                       <unit value="dag"/>
-                                       <system value="http://unitsofmeasure.org"/>
-                                       <code value="d"/>
-                                    </boundsDuration>
-                                    <timeOfDay value="09:00:00"/>
-                                    <timeOfDay value="21:00:00"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-         </medicamenteuze_behandeling>
+            </relatie_medicatieafspraak>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-0e274404-6fd9-11f1-1549-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-0e2744a4-6fd9-11f1-1549-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 4 stuks - let op, exacte toedientijd(en), oraal"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="oraal"/>
+               <herhaalperiode_cyclisch_schema value="21"
+                                               unit="dag"/>
+               <doseerinstructie>
+                  <doseerduur value="14"
+                              unit="dag"/>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="4"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 displayName="stuk"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <toedientijd value="09:00:00"
+                                     datatype="time"/>
+                        <toedientijd value="21:00:00"
+                                     datatype="time"/>
+                        <is_flexibel value="false"/>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                    <valueBoolean value="true"/>
+                                 </extension>
+                                 <boundsDuration>
+                                    <value value="14"/>
+                                    <unit value="dag"/>
+                                    <system value="http://unitsofmeasure.org"/>
+                                    <code value="d"/>
+                                 </boundsDuration>
+                                 <timeOfDay value="09:00:00"/>
+                                 <timeOfDay value="21:00:00"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-301c24ea-1961-11f1-1424-020000000000">
+            <farmaceutisch_product id="urn-uuid-0e2744a4-6fd9-11f1-1549-020000000000">
                <product_code code="59366"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -267,7 +269,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="CAPECITABINE TABLET FO 500MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-301c244a-1961-11f1-1424-020000000000">
+            <zorgverlener id="urn-uuid-0e274404-6fd9-11f1-1549-020000000000">
                <zorgverlener_identificatienummer value="000001111"
                                                  root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
@@ -284,10 +286,10 @@
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-301c2486-1961-11f1-1424-020000000000"/>
+                                 value="urn-uuid-0e274440-6fd9-11f1-1549-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-301c2486-1961-11f1-1424-020000000000">
+            <zorgaanbieder id="urn-uuid-0e274440-6fd9-11f1-1549-020000000000">
                <zorgaanbieder_identificatienummer value="00001111"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>

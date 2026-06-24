@@ -13,7 +13,7 @@
                                             prefix="mp-"
                                             language="nl-NL"
                                             title="Generated from HL7 FHIR sturen_voorstel_verstrekkingsverzoek"
-                                            id="4de5cfef-1961-11f1-1148-020000000000">
+                                            id="2a344b9d-6fd9-11f1-8917-020000000000">
          <patient>
             <naamgegevens>
                <voornamen value="J."/>
@@ -33,32 +33,30 @@
                       codeSystem="2.16.840.1.113883.5.1"
                       displayName="Vrouw"/>
          </patient>
-         <medicamenteuze_behandeling id="MBH_300_VVV_geaccepteerd">
-            <identificatie value="MBH_300_VVV_geaccepteerd"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <verstrekkingsverzoek>
-               <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-4de5d0c0-1961-11f1-1148-020000000000"
-                                         datatype="reference"/>
-               </te_verstrekken_geneesmiddel>
-               <te_verstrekken_hoeveelheid>
-                  <aantal value="5"/>
-                  <eenheid code="245"
-                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                           displayName="stuk"/>
-               </te_verstrekken_hoeveelheid>
-               <beoogd_verstrekker>
-                  <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-4de5d084-1961-11f1-1148-020000000000"/>
-               </beoogd_verstrekker>
-               <relatie_medicatieafspraak>
-                  <identificatie value="MBH_300_VVV_geaccepteerd_MA"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </relatie_medicatieafspraak>
-            </verstrekkingsverzoek>
-         </medicamenteuze_behandeling>
+         <verstrekkingsverzoek id="urn:uuid:2a34286a-6fd9-11f1-8917-020000000000">
+            <medicamenteuze_behandeling_id value="MBH_300_VVV_geaccepteerd"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <te_verstrekken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-2a34287e-6fd9-11f1-8917-020000000000"
+                                      datatype="reference"/>
+            </te_verstrekken_geneesmiddel>
+            <te_verstrekken_hoeveelheid>
+               <aantal value="5"/>
+               <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        displayName="stuk"/>
+            </te_verstrekken_hoeveelheid>
+            <beoogd_verstrekker>
+               <zorgaanbieder datatype="reference"
+                              value="urn-uuid-2a342842-6fd9-11f1-8917-020000000000"/>
+            </beoogd_verstrekker>
+            <relatie_medicatieafspraak>
+               <identificatie value="MBH_300_VVV_geaccepteerd_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </relatie_medicatieafspraak>
+         </verstrekkingsverzoek>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-4de5d0c0-1961-11f1-1148-020000000000">
+            <farmaceutisch_product id="urn-uuid-2a34287e-6fd9-11f1-8917-020000000000">
                <product_code code="6947"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -69,7 +67,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="METOCLOPRAMIDE TABLET 10MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-4de5d048-1961-11f1-1148-020000000000">
+            <zorgverlener id="urn-uuid-2a342806-6fd9-11f1-8917-020000000000">
                <zorgverlener_identificatienummer value="000001116"
                                                  root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
@@ -86,10 +84,10 @@
                             displayName="Apothekers"/>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-4de5d084-1961-11f1-1148-020000000000"/>
+                                 value="urn-uuid-2a342842-6fd9-11f1-8917-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-4de5d084-1961-11f1-1148-020000000000">
+            <zorgaanbieder id="urn-uuid-2a342842-6fd9-11f1-8917-020000000000">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
@@ -113,12 +111,12 @@
                                datatype="datetime"/>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener value="urn-uuid-4de5d048-1961-11f1-1148-020000000000"
+                     <zorgverlener value="urn-uuid-2a342806-6fd9-11f1-8917-020000000000"
                                    datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
-               <medicamenteuze_behandeling value="MBH_300_VVV_geaccepteerd"
-                                           datatype="reference"/>
+               <verstrekkingsverzoek datatype="reference"
+                                     value="urn:uuid:2a34286a-6fd9-11f1-8917-020000000000"/>
                <toelichting value="Te weinig voorraad voor het komende weekend"/>
             </voorstel>
          </voorstel_gegevens>

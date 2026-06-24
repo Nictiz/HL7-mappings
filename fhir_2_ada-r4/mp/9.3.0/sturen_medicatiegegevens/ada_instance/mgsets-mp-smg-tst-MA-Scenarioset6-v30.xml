@@ -12,7 +12,7 @@
                                 prefix="mp-"
                                 language="nl-NL"
                                 title="Generated from HL7 FHIR medicatiegegevens"
-                                id="2d9e2dbd-1961-11f1-4321-020000000000">
+                                id="0b92d281-6fd9-11f1-3933-020000000000">
          <patient>
             <naamgegevens>
                <initialen value="G."/>
@@ -31,1208 +31,1172 @@
                       codeSystem="2.16.840.1.113883.5.1"
                       displayName="Vrouw"/>
          </patient>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_variabelefrequentie-tmgs"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
-               <identificatie value="MBH_300_variabelefrequentie_MA-tmgs"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-01T08:00:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+         <medicatieafspraak>
+            <identificatie value="MBH_300_variabelefrequentie_MA-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_variabelefrequentie-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T08:00:00+01:00"
                                     datatype="datetime"/>
-                  <eind_datum_tijd value="2024-01-17T23:59:59+01:00"
-                                   datatype="datetime"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-2d9e2e0c-1961-11f1-4321-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-2d9e30a0-1961-11f1-4321-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="1 à 2 maal per dag 1 stuk, Oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="Oraal"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <keerdosis>
-                           <aantal>
-                              <nominale_waarde value="1"/>
-                           </aantal>
-                           <eenheid code="245"
-                                    displayName="stuk"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <minimum_waarde value="1"/>
-                                 <maximum_waarde value="2"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <frequencyMax value="2"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-         </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_interval-tmgs"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
-               <identificatie value="MBH_300_interval_MA-tmgs"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-01T08:04:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
-                                    datatype="datetime"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-2d9e2e0c-1961-11f1-4321-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-2d9e2fec-1961-11f1-4321-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="iedere 8 uur 1 stuk - gelijke tussenpozen aanhouden, Oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="Oraal"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <keerdosis>
-                           <aantal>
-                              <nominale_waarde value="1"/>
-                           </aantal>
-                           <eenheid code="245"
-                                    displayName="stuk"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <is_flexibel value="false"/>
-                           <interval value="8"
-                                     unit="uur"/>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                                       <valueBoolean value="true"/>
-                                    </extension>
-                                    <frequency value="1"/>
-                                    <period value="8"/>
-                                    <periodUnit value="h"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-         </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_variabelehoeveelheid-tmgs"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
-               <identificatie value="MBH_300_variabelehoeveelheid_MA-tmgs"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-01T08:10:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
-                                    datatype="datetime"/>
-                  <eind_datum_tijd value="2024-01-29T23:59:59+01:00"
-                                   datatype="datetime"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-2d9e2e0c-1961-11f1-4321-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-2d9e30f0-1961-11f1-4321-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="3 maal per dag 1 à 2 stuks, oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="oraal"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <keerdosis>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-17T23:59:59+01:00"
+                                datatype="datetime"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-0b92d2d0-6fd9-11f1-3933-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-0b92d564-6fd9-11f1-3933-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="1 à 2 maal per dag 1 stuk, Oraal"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="Oraal"/>
+               <doseerinstructie>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="1"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 displayName="stuk"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <frequentie>
                            <aantal>
                               <minimum_waarde value="1"/>
                               <maximum_waarde value="2"/>
                            </aantal>
-                           <eenheid code="245"
-                                    displayName="stuk"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="3"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <frequency value="3"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-         </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_zonderkeerdosis-tmgs"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
-               <identificatie value="MBH_300_zonderkeerdosis_MA-tmgs"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-01T08:12:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <frequency value="1"/>
+                                 <frequencyMax value="2"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="MBH_300_interval_MA-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_interval-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T08:04:00+01:00"
                                     datatype="datetime"/>
-                  <eind_datum_tijd value="2024-01-29T23:59:59+01:00"
-                                   datatype="datetime"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-2d9e2e0c-1961-11f1-4321-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-2d9e3000-1961-11f1-4321-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="3 maal per dag, aanbrengen, cutaan"/>
-                  <toedieningsweg code="53"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="cutaan"/>
-                  <aanvullende_instructie code="1018"
-                                          codeSystem="2.16.840.1.113883.2.4.4.5"
-                                          codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                          displayName="aanbrengen"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="3"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <frequency value="3"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-         </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_bijzonderekeerdosis-tmgs"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
-               <identificatie value="MBH_300_bijzonderekeerdosis_MA-tmgs"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-01T08:15:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-0b92d2d0-6fd9-11f1-3933-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-0b92d4b0-6fd9-11f1-3933-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="iedere 8 uur 1 stuk - gelijke tussenpozen aanhouden, Oraal"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="Oraal"/>
+               <doseerinstructie>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="1"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 displayName="stuk"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <is_flexibel value="false"/>
+                        <interval value="8"
+                                  unit="uur"/>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                    <valueBoolean value="true"/>
+                                 </extension>
+                                 <frequency value="1"/>
+                                 <period value="8"/>
+                                 <periodUnit value="h"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="MBH_300_variabelehoeveelheid_MA-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_variabelehoeveelheid-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T08:10:00+01:00"
                                     datatype="datetime"/>
-                  <eind_datum_tijd value="2024-01-29T23:59:59+01:00"
-                                   datatype="datetime"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-2d9e2e0c-1961-11f1-4321-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-2d9e30c8-1961-11f1-4321-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="2 maal per dag 0.5 stuk, oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="oraal"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <keerdosis>
-                           <aantal>
-                              <nominale_waarde value="0.5"/>
-                           </aantal>
-                           <eenheid code="245"
-                                    displayName="stuk"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="2"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <frequency value="2"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-         </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_variabelehoeveelheid2-tmgs"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
-               <identificatie value="MBH_300_variabelehoeveelheid2_MA-tmgs"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-01T08:18:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
-                                    datatype="datetime"/>
-                  <eind_datum_tijd value="2024-01-29T23:59:59+01:00"
-                                   datatype="datetime"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-2d9e2e0c-1961-11f1-4321-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-2d9e3104-1961-11f1-4321-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="2 maal per dag 10 à 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen, OROMUCOSAAL"/>
-                  <toedieningsweg code="34"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="OROMUCOSAAL"/>
-                  <aanvullende_instructie code="27"
-                                          codeSystem="2.16.840.1.113883.2.4.4.5"
-                                          codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                          displayName="Eerst oplossen in water"/>
-                  <aanvullende_instructie code="69"
-                                          codeSystem="2.16.840.1.113883.2.4.4.5"
-                                          codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                          displayName="mond spoelen, daarna uitspugen"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <keerdosis>
-                           <aantal>
-                              <minimum_waarde value="10"/>
-                              <maximum_waarde value="15"/>
-                           </aantal>
-                           <eenheid code="233"
-                                    displayName="milliliter"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="2"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <frequency value="2"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-         </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_tijdstippen_niet_flexibel-tmgs"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
-               <identificatie value="MBH_300_tijdstippen_niet_flexibel_MA-tmgs"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-01T09:15:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
-                                    datatype="datetime"/>
-                  <eind_datum_tijd value="2024-01-08T23:59:59+01:00"
-                                   datatype="datetime"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-2d9e2e0c-1961-11f1-4321-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-2d9e308c-1961-11f1-4321-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, exacte toedientijd(en), oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="oraal"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <keerdosis>
-                           <aantal>
-                              <nominale_waarde value="1"/>
-                           </aantal>
-                           <eenheid code="245"
-                                    displayName="stuk"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <toedientijd value="09:00:00"
-                                        datatype="time"/>
-                           <toedientijd value="12:00:00"
-                                        datatype="time"/>
-                           <toedientijd value="15:00:00"
-                                        datatype="time"/>
-                           <is_flexibel value="false"/>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                                       <valueBoolean value="true"/>
-                                    </extension>
-                                    <timeOfDay value="09:00:00"/>
-                                    <timeOfDay value="12:00:00"/>
-                                    <timeOfDay value="15:00:00"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-         </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_weekdagen-tmgs"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
-               <identificatie value="MBH_300_weekdagen_MA-tmgs"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-01T08:25:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
-                                    datatype="datetime"/>
-                  <eind_datum_tijd value="2024-03-11T23:59:59+01:00"
-                                   datatype="datetime"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-2d9e2e0c-1961-11f1-4321-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-2d9e3078-1961-11f1-4321-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="op maandag, woensdag en vrijdag, voor de nacht, aanbrengen, cutaan"/>
-                  <toedieningsweg code="53"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="cutaan"/>
-                  <aanvullende_instructie code="1128"
-                                          codeSystem="2.16.840.1.113883.2.4.4.5"
-                                          codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                          displayName="voor de nacht"/>
-                  <aanvullende_instructie code="1018"
-                                          codeSystem="2.16.840.1.113883.2.4.4.5"
-                                          codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                          displayName="aanbrengen"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <toedieningsschema>
-                           <weekdag code="307145004"
-                                    displayName="maandag"
-                                    codeSystem="2.16.840.1.113883.6.96"/>
-                           <weekdag code="307148002"
-                                    displayName="woensdag"
-                                    codeSystem="2.16.840.1.113883.6.96"/>
-                           <weekdag code="307150005"
-                                    displayName="vrijdag"
-                                    codeSystem="2.16.840.1.113883.6.96"/>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <dayOfWeek value="mon"/>
-                                    <dayOfWeek value="wed"/>
-                                    <dayOfWeek value="fri"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-         </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_dagdeel-tmgs"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
-               <identificatie value="MBH_300_dagdeel_MA-tmgs"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-01T08:27:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
-                                    datatype="datetime"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-2d9e2e0c-1961-11f1-4321-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-2d9e303c-1961-11f1-4321-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="1 stuk 's avonds, oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="oraal"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <keerdosis>
-                           <aantal>
-                              <nominale_waarde value="1"/>
-                           </aantal>
-                           <eenheid code="245"
-                                    displayName="stuk"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <dagdeel code="3157002"
-                                    displayName="'s avonds"
-                                    codeSystem="2.16.840.1.113883.6.96"/>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <when value="EVE"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-         </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_cyclischschema-tmgs"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
-               <identificatie value="MBH_300_cyclischschema_MA-tmgs"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-01T08:33:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
-                                    datatype="datetime"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-2d9e2e0c-1961-11f1-4321-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-2d9e3028-1961-11f1-4321-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="cyclus van 28 dagen: steeds gedurende 21 dagen 1 maal per dag 1 stuk, oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="oraal"/>
-                  <herhaalperiode_cyclisch_schema value="28"
-                                                  unit="dag"/>
-                  <doseerinstructie>
-                     <doseerduur value="21"
-                                 unit="dag"/>
-                     <dosering>
-                        <keerdosis>
-                           <aantal>
-                              <nominale_waarde value="1"/>
-                           </aantal>
-                           <eenheid code="245"
-                                    displayName="stuk"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <boundsDuration>
-                                       <value value="21"/>
-                                       <unit value="dag"/>
-                                       <system value="http://unitsofmeasure.org"/>
-                                       <code value="d"/>
-                                    </boundsDuration>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-         </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_afbouwschema-tmgs"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
-               <identificatie value="MBH_300_afbouwschema_MA-tmgs"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-01T08:40:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
-                                    datatype="datetime"/>
-                  <eind_datum_tijd value="2024-02-11T23:59:59+01:00"
-                                   datatype="datetime"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-2d9e2e0c-1961-11f1-4321-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-2d9e3050-1961-11f1-4321-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="eerst gedurende 2 weken 1 maal per dag 3 gram, dan gedurende 3 weken 1 maal per dag 2 gram, dan gedurende 6 dagen 1 maal per dag 1 gram, cutaan"/>
-                  <toedieningsweg code="53"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="cutaan"/>
-                  <doseerinstructie>
-                     <doseerduur value="2"
-                                 unit="week"/>
-                     <volgnummer value="1"/>
-                     <dosering>
-                        <keerdosis>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-29T23:59:59+01:00"
+                                datatype="datetime"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-0b92d2d0-6fd9-11f1-3933-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-0b92d5b4-6fd9-11f1-3933-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="3 maal per dag 1 à 2 stuks, oraal"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="oraal"/>
+               <doseerinstructie>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <minimum_waarde value="1"/>
+                           <maximum_waarde value="2"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 displayName="stuk"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <frequentie>
                            <aantal>
                               <nominale_waarde value="3"/>
                            </aantal>
-                           <eenheid code="215"
-                                    displayName="gram"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <boundsDuration>
-                                       <value value="2"/>
-                                       <unit value="week"/>
-                                       <system value="http://unitsofmeasure.org"/>
-                                       <code value="wk"/>
-                                    </boundsDuration>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-                  <doseerinstructie>
-                     <doseerduur value="3"
-                                 unit="week"/>
-                     <volgnummer value="2"/>
-                     <dosering>
-                        <keerdosis>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <frequency value="3"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="MBH_300_zonderkeerdosis_MA-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_zonderkeerdosis-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T08:12:00+01:00"
+                                    datatype="datetime"/>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-29T23:59:59+01:00"
+                                datatype="datetime"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-0b92d2d0-6fd9-11f1-3933-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-0b92d4c4-6fd9-11f1-3933-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="3 maal per dag, aanbrengen, cutaan"/>
+               <toedieningsweg code="53"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="cutaan"/>
+               <aanvullende_instructie code="1018"
+                                       codeSystem="2.16.840.1.113883.2.4.4.5"
+                                       codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                       displayName="aanbrengen"/>
+               <doseerinstructie>
+                  <dosering>
+                     <toedieningsschema>
+                        <frequentie>
+                           <aantal>
+                              <nominale_waarde value="3"/>
+                           </aantal>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <frequency value="3"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="MBH_300_bijzonderekeerdosis_MA-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_bijzonderekeerdosis-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T08:15:00+01:00"
+                                    datatype="datetime"/>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-29T23:59:59+01:00"
+                                datatype="datetime"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-0b92d2d0-6fd9-11f1-3933-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-0b92d58c-6fd9-11f1-3933-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="2 maal per dag 0.5 stuk, oraal"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="oraal"/>
+               <doseerinstructie>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="0.5"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 displayName="stuk"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <frequentie>
                            <aantal>
                               <nominale_waarde value="2"/>
                            </aantal>
-                           <eenheid code="215"
-                                    displayName="gram"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <boundsDuration>
-                                       <value value="3"/>
-                                       <unit value="week"/>
-                                       <system value="http://unitsofmeasure.org"/>
-                                       <code value="wk"/>
-                                    </boundsDuration>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-                  <doseerinstructie>
-                     <doseerduur value="6"
-                                 unit="dag"/>
-                     <volgnummer value="3"/>
-                     <dosering>
-                        <keerdosis>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <frequency value="2"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="MBH_300_variabelehoeveelheid2_MA-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_variabelehoeveelheid2-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T08:18:00+01:00"
+                                    datatype="datetime"/>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-29T23:59:59+01:00"
+                                datatype="datetime"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-0b92d2d0-6fd9-11f1-3933-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-0b92d5c8-6fd9-11f1-3933-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="2 maal per dag 10 à 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen, OROMUCOSAAL"/>
+               <toedieningsweg code="34"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="OROMUCOSAAL"/>
+               <aanvullende_instructie code="27"
+                                       codeSystem="2.16.840.1.113883.2.4.4.5"
+                                       codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                       displayName="Eerst oplossen in water"/>
+               <aanvullende_instructie code="69"
+                                       codeSystem="2.16.840.1.113883.2.4.4.5"
+                                       codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                       displayName="mond spoelen, daarna uitspugen"/>
+               <doseerinstructie>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <minimum_waarde value="10"/>
+                           <maximum_waarde value="15"/>
+                        </aantal>
+                        <eenheid code="233"
+                                 displayName="milliliter"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <frequentie>
                            <aantal>
-                              <nominale_waarde value="1"/>
+                              <nominale_waarde value="2"/>
                            </aantal>
-                           <eenheid code="215"
-                                    displayName="gram"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <boundsDuration>
-                                       <value value="6"/>
-                                       <unit value="dag"/>
-                                       <system value="http://unitsofmeasure.org"/>
-                                       <code value="d"/>
-                                    </boundsDuration>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-         </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_variabelehoeveelheidenmaximum-tmgs"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
-               <identificatie value="MBH_300_variabelehoeveelheidenmaximum_MA-tmgs"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-01T08:45:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <frequency value="2"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="MBH_300_tijdstippen_niet_flexibel_MA-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_tijdstippen_niet_flexibel-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T09:15:00+01:00"
                                     datatype="datetime"/>
-                  <eind_datum_tijd value="2024-01-22T23:59:59+01:00"
-                                   datatype="datetime"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-2d9e2e0c-1961-11f1-4321-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-2d9e3014-1961-11f1-4321-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="Bij hoest 1 à 2 stuks , maximaal 6 stuks per dag, oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="oraal"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <keerdosis>
-                           <aantal>
-                              <minimum_waarde value="1"/>
-                              <maximum_waarde value="2"/>
-                           </aantal>
-                           <eenheid code="245"
-                                    displayName="stuk"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <zo_nodig>
-                           <criterium code="1387"
-                                      codeSystem="2.16.840.1.113883.2.4.4.5"
-                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                      displayName="Bij hoest"/>
-                           <maximale_dosering>
-                              <aantal value="6"/>
-                              <eenheid code="245"
-                                       displayName="stuk"
-                                       codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                       codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </maximale_dosering>
-                        </zo_nodig>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-         </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_toedieningssnelheid-tmgs"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
-               <identificatie value="MBH_300_toedieningssnelheid_MA-tmgs"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-01T08:47:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-08T23:59:59+01:00"
+                                datatype="datetime"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-0b92d2d0-6fd9-11f1-3933-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-0b92d550-6fd9-11f1-3933-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, exacte toedientijd(en), oraal"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="oraal"/>
+               <doseerinstructie>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="1"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 displayName="stuk"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <toedientijd value="09:00:00"
+                                     datatype="time"/>
+                        <toedientijd value="12:00:00"
+                                     datatype="time"/>
+                        <toedientijd value="15:00:00"
+                                     datatype="time"/>
+                        <is_flexibel value="false"/>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                    <valueBoolean value="true"/>
+                                 </extension>
+                                 <timeOfDay value="09:00:00"/>
+                                 <timeOfDay value="12:00:00"/>
+                                 <timeOfDay value="15:00:00"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="MBH_300_weekdagen_MA-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_weekdagen-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T08:25:00+01:00"
                                     datatype="datetime"/>
-                  <eind_datum_tijd value="2024-01-09T23:59:59+01:00"
-                                   datatype="datetime"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-2d9e2e0c-1961-11f1-4321-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-2d9e30b4-1961-11f1-4321-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="toedieningssnelheid: 0.2 à 0.5 ml/h, parenteraal"/>
-                  <toedieningsweg code="10"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="parenteraal"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <toedieningssnelheid>
-                           <minimum_waarde value="0.2"
-                                           unit="ml/h"/>
-                           <maximum_waarde value="0.5"
-                                           unit="ml/h"/>
-                        </toedieningssnelheid>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-         </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_toedieningsduur-tmgs"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
-               <identificatie value="MBH_300_toedieningsduur_MA-tmgs"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-01T08:49:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <eind_datum_tijd value="2024-03-11T23:59:59+01:00"
+                                datatype="datetime"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-0b92d2d0-6fd9-11f1-3933-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-0b92d53c-6fd9-11f1-3933-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="op maandag, woensdag en vrijdag, voor de nacht, aanbrengen, cutaan"/>
+               <toedieningsweg code="53"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="cutaan"/>
+               <aanvullende_instructie code="1128"
+                                       codeSystem="2.16.840.1.113883.2.4.4.5"
+                                       codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                       displayName="voor de nacht"/>
+               <aanvullende_instructie code="1018"
+                                       codeSystem="2.16.840.1.113883.2.4.4.5"
+                                       codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                       displayName="aanbrengen"/>
+               <doseerinstructie>
+                  <dosering>
+                     <toedieningsschema>
+                        <weekdag code="307145004"
+                                 displayName="maandag"
+                                 codeSystem="2.16.840.1.113883.6.96"/>
+                        <weekdag code="307148002"
+                                 displayName="woensdag"
+                                 codeSystem="2.16.840.1.113883.6.96"/>
+                        <weekdag code="307150005"
+                                 displayName="vrijdag"
+                                 codeSystem="2.16.840.1.113883.6.96"/>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <dayOfWeek value="mon"/>
+                                 <dayOfWeek value="wed"/>
+                                 <dayOfWeek value="fri"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="MBH_300_dagdeel_MA-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_dagdeel-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T08:27:00+01:00"
                                     datatype="datetime"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-2d9e2e0c-1961-11f1-4321-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-2d9e30dc-1961-11f1-4321-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="1 maal per dag 1 stuk gedurende 16 uur, transdermaal"/>
-                  <toedieningsweg code="58"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="transdermaal"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <keerdosis>
-                           <aantal>
-                              <nominale_waarde value="1"/>
-                           </aantal>
-                           <eenheid code="245"
-                                    displayName="stuk"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <duration value="16"/>
-                                    <durationUnit value="h"/>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                        <toedieningsduur>
-                           <tijds_duur value="16"
-                                       unit="uur"/>
-                        </toedieningsduur>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-         </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_zonodig-tmgs"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
-               <identificatie value="MBH_300_zonodig_MA-tmgs"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-01T08:57:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-0b92d2d0-6fd9-11f1-3933-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-0b92d500-6fd9-11f1-3933-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="1 stuk 's avonds, oraal"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="oraal"/>
+               <doseerinstructie>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="1"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 displayName="stuk"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <dagdeel code="3157002"
+                                 displayName="'s avonds"
+                                 codeSystem="2.16.840.1.113883.6.96"/>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <when value="EVE"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="MBH_300_cyclischschema_MA-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_cyclischschema-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T08:33:00+01:00"
                                     datatype="datetime"/>
-                  <eind_datum_tijd value="2024-01-28T23:59:59+01:00"
-                                   datatype="datetime"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-2d9e2e0c-1961-11f1-4321-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-2d9e2fd8-1961-11f1-4321-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="Zo nodig 1 maal per dag 1 stuk, Oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="Oraal"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <keerdosis>
-                           <aantal>
-                              <nominale_waarde value="1"/>
-                           </aantal>
-                           <eenheid code="245"
-                                    displayName="stuk"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                        <zo_nodig>
-                           <criterium code="1137"
-                                      codeSystem="2.16.840.1.113883.2.4.4.5"
-                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                      displayName="Zo nodig"/>
-                        </zo_nodig>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-         </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_tijdstippen_flexibel-tmgs"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
-               <identificatie value="MBH_300_tijdstippen_flexibel_MA-tmgs"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-01T08:24:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
-                                    datatype="datetime"/>
-                  <eind_datum_tijd value="2024-01-15T23:59:59+01:00"
-                                   datatype="datetime"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-2d9e2e0c-1961-11f1-4321-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-2d9e308c-1961-11f1-4321-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="elke dag om 08:00, 14:00 en 20:00 1 stuk, oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="oraal"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <keerdosis>
-                           <aantal>
-                              <nominale_waarde value="1"/>
-                           </aantal>
-                           <eenheid code="245"
-                                    displayName="stuk"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <toedientijd value="08:00:00"
-                                        datatype="time"/>
-                           <toedientijd value="14:00:00"
-                                        datatype="time"/>
-                           <toedientijd value="20:00:00"
-                                        datatype="time"/>
-                           <is_flexibel value="true"/>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                                       <valueBoolean value="false"/>
-                                    </extension>
-                                    <timeOfDay value="08:00:00"/>
-                                    <timeOfDay value="14:00:00"/>
-                                    <timeOfDay value="20:00:00"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-         </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_WDS_trombose_medicatie-tmgs"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
-               <identificatie value="MBH_300_WDS_trombose_medicatie_MA-tmgs"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-01T08:00:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01"
-                                    datatype="datetime"/>
-                  <tijds_duur value="2"
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-0b92d2d0-6fd9-11f1-3933-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-0b92d4ec-6fd9-11f1-3933-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="cyclus van 28 dagen: steeds gedurende 21 dagen 1 maal per dag 1 stuk, oraal"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="oraal"/>
+               <herhaalperiode_cyclisch_schema value="28"
+                                               unit="dag"/>
+               <doseerinstructie>
+                  <doseerduur value="21"
                               unit="dag"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-2d9e2e0c-1961-11f1-4321-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-2d9e3064-1961-11f1-4321-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="5 stuks 's avonds, oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="oraal"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <keerdosis>
-                           <aantal>
-                              <nominale_waarde value="5"/>
-                           </aantal>
-                           <eenheid code="245"
-                                    displayName="stuk"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <dagdeel code="3157002"
-                                    displayName="'s avonds"
-                                    codeSystem="2.16.840.1.113883.6.96"/>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <when value="EVE"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-         </medicamenteuze_behandeling>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_redundantefrequentie-tmgs"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
-               <identificatie value="MBH_300_redundantefrequentie_MA-tmgs"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-01T09:00:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T09:00:00+01:00"
-                                    datatype="datetime"/>
-                  <tijds_duur value="14"
-                              unit="dag"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-2d9e2e0c-1961-11f1-4321-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-2d9e3118-1961-11f1-4321-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="1 maal per dag om 10:00 1 stuk, Oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="Oraal"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <keerdosis>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="1"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 displayName="stuk"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <frequentie>
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <boundsDuration>
+                                    <value value="21"/>
+                                    <unit value="dag"/>
+                                    <system value="http://unitsofmeasure.org"/>
+                                    <code value="d"/>
+                                 </boundsDuration>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="MBH_300_afbouwschema_MA-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_afbouwschema-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T08:40:00+01:00"
+                                    datatype="datetime"/>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <eind_datum_tijd value="2024-02-11T23:59:59+01:00"
+                                datatype="datetime"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-0b92d2d0-6fd9-11f1-3933-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-0b92d514-6fd9-11f1-3933-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="eerst gedurende 2 weken 1 maal per dag 3 gram, dan gedurende 3 weken 1 maal per dag 2 gram, dan gedurende 6 dagen 1 maal per dag 1 gram, cutaan"/>
+               <toedieningsweg code="53"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="cutaan"/>
+               <doseerinstructie>
+                  <doseerduur value="2"
+                              unit="week"/>
+                  <volgnummer value="1"/>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="3"/>
+                        </aantal>
+                        <eenheid code="215"
+                                 displayName="gram"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <frequentie>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <boundsDuration>
+                                    <value value="2"/>
+                                    <unit value="week"/>
+                                    <system value="http://unitsofmeasure.org"/>
+                                    <code value="wk"/>
+                                 </boundsDuration>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+               <doseerinstructie>
+                  <doseerduur value="3"
+                              unit="week"/>
+                  <volgnummer value="2"/>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="2"/>
+                        </aantal>
+                        <eenheid code="215"
+                                 displayName="gram"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <frequentie>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <boundsDuration>
+                                    <value value="3"/>
+                                    <unit value="week"/>
+                                    <system value="http://unitsofmeasure.org"/>
+                                    <code value="wk"/>
+                                 </boundsDuration>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+               <doseerinstructie>
+                  <doseerduur value="6"
+                              unit="dag"/>
+                  <volgnummer value="3"/>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="1"/>
+                        </aantal>
+                        <eenheid code="215"
+                                 displayName="gram"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <frequentie>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <boundsDuration>
+                                    <value value="6"/>
+                                    <unit value="dag"/>
+                                    <system value="http://unitsofmeasure.org"/>
+                                    <code value="d"/>
+                                 </boundsDuration>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="MBH_300_variabelehoeveelheidenmaximum_MA-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_variabelehoeveelheidenmaximum-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T08:45:00+01:00"
+                                    datatype="datetime"/>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-22T23:59:59+01:00"
+                                datatype="datetime"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-0b92d2d0-6fd9-11f1-3933-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-0b92d4d8-6fd9-11f1-3933-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="Bij hoest 1 à 2 stuks , maximaal 6 stuks per dag, oraal"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="oraal"/>
+               <doseerinstructie>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <minimum_waarde value="1"/>
+                           <maximum_waarde value="2"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 displayName="stuk"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <zo_nodig>
+                        <criterium code="1387"
+                                   codeSystem="2.16.840.1.113883.2.4.4.5"
+                                   codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                   displayName="Bij hoest"/>
+                        <maximale_dosering>
+                           <aantal value="6"/>
                            <eenheid code="245"
                                     displayName="stuk"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                     codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <toedientijd value="10:00:00"
-                                        datatype="time"/>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                    <timeOfDay value="10:00:00"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-         </medicamenteuze_behandeling>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </maximale_dosering>
+                     </zo_nodig>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="MBH_300_toedieningssnelheid_MA-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_toedieningssnelheid-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T08:47:00+01:00"
+                                    datatype="datetime"/>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-09T23:59:59+01:00"
+                                datatype="datetime"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-0b92d2d0-6fd9-11f1-3933-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-0b92d578-6fd9-11f1-3933-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="toedieningssnelheid: 0.2 à 0.5 ml/h, parenteraal"/>
+               <toedieningsweg code="10"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="parenteraal"/>
+               <doseerinstructie>
+                  <dosering>
+                     <toedieningssnelheid>
+                        <minimum_waarde value="0.2"
+                                        unit="ml/h"/>
+                        <maximum_waarde value="0.5"
+                                        unit="ml/h"/>
+                     </toedieningssnelheid>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="MBH_300_toedieningsduur_MA-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_toedieningsduur-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T08:49:00+01:00"
+                                    datatype="datetime"/>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-0b92d2d0-6fd9-11f1-3933-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-0b92d5a0-6fd9-11f1-3933-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="1 maal per dag 1 stuk gedurende 16 uur, transdermaal"/>
+               <toedieningsweg code="58"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="transdermaal"/>
+               <doseerinstructie>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="1"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 displayName="stuk"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <frequentie>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <duration value="16"/>
+                                 <durationUnit value="h"/>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                     <toedieningsduur>
+                        <tijds_duur value="16"
+                                    unit="uur"/>
+                     </toedieningsduur>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="MBH_300_zonodig_MA-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_zonodig-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T08:57:00+01:00"
+                                    datatype="datetime"/>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-28T23:59:59+01:00"
+                                datatype="datetime"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-0b92d2d0-6fd9-11f1-3933-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-0b92d49c-6fd9-11f1-3933-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="Zo nodig 1 maal per dag 1 stuk, Oraal"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="Oraal"/>
+               <doseerinstructie>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="1"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 displayName="stuk"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <frequentie>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                     <zo_nodig>
+                        <criterium code="1137"
+                                   codeSystem="2.16.840.1.113883.2.4.4.5"
+                                   codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                   displayName="Zo nodig"/>
+                     </zo_nodig>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="MBH_300_tijdstippen_flexibel_MA-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_tijdstippen_flexibel-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T08:24:00+01:00"
+                                    datatype="datetime"/>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-15T23:59:59+01:00"
+                                datatype="datetime"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-0b92d2d0-6fd9-11f1-3933-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-0b92d550-6fd9-11f1-3933-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="elke dag om 08:00, 14:00 en 20:00 1 stuk, oraal"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="oraal"/>
+               <doseerinstructie>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="1"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 displayName="stuk"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <toedientijd value="08:00:00"
+                                     datatype="time"/>
+                        <toedientijd value="14:00:00"
+                                     datatype="time"/>
+                        <toedientijd value="20:00:00"
+                                     datatype="time"/>
+                        <is_flexibel value="true"/>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                    <valueBoolean value="false"/>
+                                 </extension>
+                                 <timeOfDay value="08:00:00"/>
+                                 <timeOfDay value="14:00:00"/>
+                                 <timeOfDay value="20:00:00"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="MBH_300_WDS_trombose_medicatie_MA-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_WDS_trombose_medicatie-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T08:00:00+01:00"
+                                    datatype="datetime"/>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01"
+                                 datatype="datetime"/>
+               <tijds_duur value="2"
+                           unit="dag"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-0b92d2d0-6fd9-11f1-3933-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-0b92d528-6fd9-11f1-3933-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="5 stuks 's avonds, oraal"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="oraal"/>
+               <doseerinstructie>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="5"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 displayName="stuk"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <dagdeel code="3157002"
+                                 displayName="'s avonds"
+                                 codeSystem="2.16.840.1.113883.6.96"/>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <when value="EVE"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="MBH_300_redundantefrequentie_MA-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_redundantefrequentie-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T09:00:00+01:00"
+                                    datatype="datetime"/>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T09:00:00+01:00"
+                                 datatype="datetime"/>
+               <tijds_duur value="14"
+                           unit="dag"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-0b92d2d0-6fd9-11f1-3933-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-0b92d5dc-6fd9-11f1-3933-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="1 maal per dag om 10:00 1 stuk, Oraal"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="Oraal"/>
+               <doseerinstructie>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="1"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 displayName="stuk"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <frequentie>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <toedientijd value="10:00:00"
+                                     datatype="time"/>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                                 <timeOfDay value="10:00:00"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-2d9e2fd8-1961-11f1-4321-020000000000">
+            <farmaceutisch_product id="urn-uuid-0b92d49c-6fd9-11f1-3933-020000000000">
                <product_code code="3956"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1243,7 +1207,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="ACETYLSALICYLZUUR TABLET 100MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-2d9e2fec-1961-11f1-4321-020000000000">
+            <farmaceutisch_product id="urn-uuid-0b92d4b0-6fd9-11f1-3933-020000000000">
                <product_code code="68519"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1254,7 +1218,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="AMOXICILLINE DISPERTABLET 500MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-2d9e3000-1961-11f1-4321-020000000000">
+            <farmaceutisch_product id="urn-uuid-0b92d4c4-6fd9-11f1-3933-020000000000">
                <product_code code="226866"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1265,7 +1229,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="Cetomacrogolcreme met vaseline 10%"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-2d9e3014-1961-11f1-4321-020000000000">
+            <farmaceutisch_product id="urn-uuid-0b92d4d8-6fd9-11f1-3933-020000000000">
                <product_code code="42773"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1276,7 +1240,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="CODEINE TABLET 10MG (FOSFAAT)"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-2d9e3028-1961-11f1-4321-020000000000">
+            <farmaceutisch_product id="urn-uuid-0b92d4ec-6fd9-11f1-3933-020000000000">
                <product_code code="16292"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1287,7 +1251,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-2d9e303c-1961-11f1-4321-020000000000">
+            <farmaceutisch_product id="urn-uuid-0b92d500-6fd9-11f1-3933-020000000000">
                <product_code code="77038"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1298,7 +1262,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="EZETIMIB/SIMVASTATINE 10/20"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-2d9e3050-1961-11f1-4321-020000000000">
+            <farmaceutisch_product id="urn-uuid-0b92d514-6fd9-11f1-3933-020000000000">
                <product_code code="16705"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1309,7 +1273,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="Fusidinezuur creme 20mg/g"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-2d9e3064-1961-11f1-4321-020000000000">
+            <farmaceutisch_product id="urn-uuid-0b92d528-6fd9-11f1-3933-020000000000">
                <product_code code="106720"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1320,7 +1284,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="FYTOMENADION TABLET 1MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-2d9e3078-1961-11f1-4321-020000000000">
+            <farmaceutisch_product id="urn-uuid-0b92d53c-6fd9-11f1-3933-020000000000">
                <product_code code="55050"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1331,7 +1295,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="IMIQUIMOD 50MG/G CREME"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-2d9e308c-1961-11f1-4321-020000000000">
+            <farmaceutisch_product id="urn-uuid-0b92d550-6fd9-11f1-3933-020000000000">
                <product_code code="1090"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1342,7 +1306,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="METFORMINE 500MG TABLET"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-2d9e30a0-1961-11f1-4321-020000000000">
+            <farmaceutisch_product id="urn-uuid-0b92d564-6fd9-11f1-3933-020000000000">
                <product_code code="48291"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1353,7 +1317,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="MIZOLASTINE TABLET MGA  10MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-2d9e30b4-1961-11f1-4321-020000000000">
+            <farmaceutisch_product id="urn-uuid-0b92d578-6fd9-11f1-3933-020000000000">
                <product_code code="94692"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1364,7 +1328,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="MORFINE INFVLST 5MG/ML CAS 100ML"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-2d9e30c8-1961-11f1-4321-020000000000">
+            <farmaceutisch_product id="urn-uuid-0b92d58c-6fd9-11f1-3933-020000000000">
                <product_code code="20850"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1375,7 +1339,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="NAPROXEN 500MG TABLET"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-2d9e30dc-1961-11f1-4321-020000000000">
+            <farmaceutisch_product id="urn-uuid-0b92d5a0-6fd9-11f1-3933-020000000000">
                <product_code code="228427"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1386,7 +1350,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="NITROGLYCERINE PLEISTER 5MG/24UUR (DEPONIT T)"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-2d9e30f0-1961-11f1-4321-020000000000">
+            <farmaceutisch_product id="urn-uuid-0b92d5b4-6fd9-11f1-3933-020000000000">
                <product_code code="67903"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1397,7 +1361,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="PARACETAMOL 500MG TABLET"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-2d9e3104-1961-11f1-4321-020000000000">
+            <farmaceutisch_product id="urn-uuid-0b92d5c8-6fd9-11f1-3933-020000000000">
                <product_code code="72664"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1408,7 +1372,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="WATERSTOFPEROXIDE CONC VOOR MONDSPOELING 30MG/ML"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-2d9e3118-1961-11f1-4321-020000000000">
+            <farmaceutisch_product id="urn-uuid-0b92d5dc-6fd9-11f1-3933-020000000000">
                <product_code code="8311"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -1419,7 +1383,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="PREDNISON TABLET 5MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-2d9e2e0c-1961-11f1-4321-020000000000">
+            <zorgverlener id="urn-uuid-0b92d2d0-6fd9-11f1-3933-020000000000">
                <zorgverlener_identificatienummer value="000001111"
                                                  root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
@@ -1436,10 +1400,10 @@
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-2d9e2e48-1961-11f1-4321-020000000000"/>
+                                 value="urn-uuid-0b92d30c-6fd9-11f1-3933-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-2d9e2e48-1961-11f1-4321-020000000000">
+            <zorgaanbieder id="urn-uuid-0b92d30c-6fd9-11f1-3933-020000000000">
                <zorgaanbieder_identificatienummer value="00001111"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
