@@ -13,7 +13,7 @@
                                    prefix="mp-"
                                    language="nl-NL"
                                    title="Generated from HL7 FHIR sturen_medicatievoorschrift"
-                                   id="3f0903bb-1961-11f1-4492-020000000000">
+                                   id="1cc981fd-6fd9-11f1-1309-020000000000">
          <patient>
             <naamgegevens>
                <voornamen value="J."/>
@@ -32,100 +32,100 @@
                       codeSystem="2.16.840.1.113883.5.1"
                       displayName="Man"/>
          </patient>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_VMAaanvullendmiddel-tvo"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="MBH_300_VMAaanvullendmiddel_MA_start-tvo"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_VMAaanvullendmiddel-tvo"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2024-01-01T14:00:00+01:00"
+                                    datatype="datetime"/>
+            <gebruiksperiode>
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-14T23:59:59+01:00"
+                                datatype="datetime"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="urn-uuid-1cc98256-6fd9-11f1-1309-020000000000"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-1cc9830a-6fd9-11f1-1309-020000000000"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="1 à 2 maal per dag 1 stuk, Oraal"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="Oraal"/>
+               <doseerinstructie>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="1"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 displayName="stuk"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <frequentie>
+                           <aantal>
+                              <minimum_waarde value="1"/>
+                              <maximum_waarde value="2"/>
+                           </aantal>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <timing xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <frequency value="1"/>
+                                 <frequencyMax value="2"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <verstrekkingsverzoek>
+            <identificatie value="MBH_300_VMAaanvullendmiddel_VV_start-tvo"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_VMAaanvullendmiddel-tvo"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <verstrekkingsverzoek_datum_tijd value="2024-01-01T14:00:00+01:00"
+                                             datatype="datetime"/>
+            <auteur>
+               <zorgverlener value="urn-uuid-1cc98256-6fd9-11f1-1309-020000000000"
+                             datatype="reference"/>
+            </auteur>
+            <te_verstrekken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-1cc9830a-6fd9-11f1-1309-020000000000"
+                                      datatype="reference"/>
+            </te_verstrekken_geneesmiddel>
+            <te_verstrekken_hoeveelheid>
+               <aantal value="28"/>
+               <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        displayName="stuk"/>
+            </te_verstrekken_hoeveelheid>
+            <beoogd_verstrekker>
+               <zorgaanbieder datatype="reference"
+                              value="urn-uuid-1cc982ba-6fd9-11f1-1309-020000000000"/>
+            </beoogd_verstrekker>
+            <relatie_medicatieafspraak>
                <identificatie value="MBH_300_VMAaanvullendmiddel_MA_start-tvo"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd value="2024-01-01T14:00:00+01:00"
-                                       datatype="datetime"/>
-               <gebruiksperiode>
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
-                                    datatype="datetime"/>
-                  <eind_datum_tijd value="2024-01-14T23:59:59+01:00"
-                                   datatype="datetime"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="urn-uuid-3f090414-1961-11f1-4492-020000000000"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-3f0904c8-1961-11f1-4492-020000000000"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="1 à 2 maal per dag 1 stuk, Oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="Oraal"/>
-                  <doseerinstructie>
-                     <dosering>
-                        <keerdosis>
-                           <aantal>
-                              <nominale_waarde value="1"/>
-                           </aantal>
-                           <eenheid code="245"
-                                    displayName="stuk"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <minimum_waarde value="1"/>
-                                 <maximum_waarde value="2"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <timing xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <frequencyMax value="2"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </timing>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-            <verstrekkingsverzoek>
-               <identificatie value="MBH_300_VMAaanvullendmiddel_VV_start-tvo"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd value="2024-01-01T14:00:00+01:00"
-                                                datatype="datetime"/>
-               <auteur>
-                  <zorgverlener value="urn-uuid-3f090414-1961-11f1-4492-020000000000"
-                                datatype="reference"/>
-               </auteur>
-               <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-3f0904c8-1961-11f1-4492-020000000000"
-                                         datatype="reference"/>
-               </te_verstrekken_geneesmiddel>
-               <te_verstrekken_hoeveelheid>
-                  <aantal value="28"/>
-                  <eenheid code="245"
-                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                           displayName="stuk"/>
-               </te_verstrekken_hoeveelheid>
-               <beoogd_verstrekker>
-                  <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-3f090478-1961-11f1-4492-020000000000"/>
-               </beoogd_verstrekker>
-               <relatie_medicatieafspraak>
-                  <identificatie value="MBH_300_VMAaanvullendmiddel_MA_start-tvo"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </relatie_medicatieafspraak>
-            </verstrekkingsverzoek>
-         </medicamenteuze_behandeling>
+            </relatie_medicatieafspraak>
+         </verstrekkingsverzoek>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-3f0904c8-1961-11f1-4492-020000000000">
+            <farmaceutisch_product id="urn-uuid-1cc9830a-6fd9-11f1-1309-020000000000">
                <product_code code="150002"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -136,7 +136,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="MACROGOL/ZOUTEN PDR V DRANK (PLEINVUE)"/>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-3f090414-1961-11f1-4492-020000000000">
+            <zorgverlener id="urn-uuid-1cc98256-6fd9-11f1-1309-020000000000">
                <zorgverlener_identificatienummer value="000001111"
                                                  root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
@@ -161,10 +161,10 @@
                </contactgegevens>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-3f090450-1961-11f1-4492-020000000000"/>
+                                 value="urn-uuid-1cc98292-6fd9-11f1-1309-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-3f090450-1961-11f1-4492-020000000000">
+            <zorgaanbieder id="urn-uuid-1cc98292-6fd9-11f1-1309-020000000000">
                <zorgaanbieder_identificatienummer value="00001111"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
@@ -178,7 +178,7 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="urn-uuid-3f090478-1961-11f1-4492-020000000000">
+            <zorgaanbieder id="urn-uuid-1cc982ba-6fd9-11f1-1309-020000000000">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
