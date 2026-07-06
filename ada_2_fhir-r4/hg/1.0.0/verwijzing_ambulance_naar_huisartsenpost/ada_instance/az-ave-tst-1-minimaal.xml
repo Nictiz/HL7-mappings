@@ -2,63 +2,59 @@
    <meta status="new"
          created-by="hguitwisselingada"
          last-update-by="hguitwisselingada"
-         creation-date="2026-02-10T13:52:33.004Z"
-         last-update-date="2026-04-29T10:58:47.611Z"/>
+         creation-date="2026-06-22T13:04:49.25Z"
+         last-update-date="2026-07-01T10:22:54.802Z"/>
    <data>
       <verwijzing_ambulance_naar_huisartsenpost app="hg-1.0.0"
                                                 shortName="verwijzing_ambulance_naar_huisartsenpost"
                                                 formName="verwijzing_ambulance_naar_huisartsenpost"
                                                 transactionRef="2.16.840.1.113883.2.4.3.11.60.103.4.145"
                                                 transactionEffectiveDate="2025-06-10T00:00:00"
-                                                versionDate="2025-09-01T14:57:28"
+                                                versionDate=""
                                                 prefix="hg-"
                                                 language="nl-NL"
-                                                title="MinimaalBerichtTest"
-                                                desc="&lt;div&gt;test omschrijving&lt;/div&gt;"
+                                                title="Minimaal Bericht"
+                                                desc="&lt;div&gt;&lt;span style=&#34;color: #222222; font-family: sans-serif; font-size: 14px; background-color: #f8f9fa;&#34;&gt;Het systeem kan minimale patientgegevens opleveren/verwerken, waarbij lege vullingen en bewust onbekende gegevens worden getest.&lt;/span&gt;&lt;/div&gt;"
                                                 id="az-ave-tst-1-minimaal">
          <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1199">
-            <patient id="XXX_Bakkersz"
+            <patient id="onbekend"
                      conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.2">
-               <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3">
-                  <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.8">
-                     <achternaam value="XXX_Bakkersz"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.10"/>
-                  </geslachtsnaam>
-               </naamgegevens>
-               <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.38"
-                         value="3"
-                         code="F"
-                         codeSystem="2.16.840.1.113883.5.1"
-                         displayName="Vrouw"/>
+               <identificatienummer root="2.16.840.1.113883.2.4.6.3"
+                                    nullFlavor="UNK"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.36"/>
             </patient>
-            <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5322"
-                          id="AMB_verpleegkundige_MIN">
-               <zorgverlener_identificatienummer value="111110001"
-                                                 root="2.16.528.1.1007.3.1"
-                                                 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5323"/>
-            </zorgverlener>
-            <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5322"
-                          id="huisarts_MIN">
-               <zorgverlener_identificatienummer value="000001112"
-                                                 root="2.16.528.1.1007.3.1"
-                                                 conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5323"/>
-            </zorgverlener>
          </bouwstenen>
          <envelop conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1673">
             <patientgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1679">
-               <patient value="XXX_Bakkersz"
+               <patient value="onbekend"
                         datatype="reference"
                         conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1676"/>
             </patientgegevens>
             <verzender conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5089">
-               <zorgverlener value="AMB_verpleegkundige_MIN"
-                             datatype="reference"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5398"/>
+               <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5814">
+                  <zorgverlener_identificatienummer value="567891234"
+                                                    root="2.16.528.1.1007.3.1"
+                                                    conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5815"/>
+                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5851">
+                     <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5852">
+                        <zorgaanbieder_identificatienummer value="25"
+                                                           root="2.16.840.1.113883.2.4.3.11.60.55.15.1"
+                                                           conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5853"/>
+                     </zorgaanbieder>
+                  </zorgaanbieder>
+               </zorgverlener>
             </verzender>
             <ontvanger conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1680">
-               <zorgverlener value="huisarts_MIN"
-                             datatype="reference"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5399"/>
+               <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5756">
+                  <zorgaanbieder_identificatienummer value="06020806"
+                                                     root="2.16.840.1.113883.2.4.6.1"
+                                                     conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5757"/>
+                  <organisatie_type conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5781"
+                                    value="18"
+                                    code="N6"
+                                    codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                    displayName="Huisartsenpost (t.b.v. dienstwaarneming)"/>
+               </zorgaanbieder>
             </ontvanger>
             <bestemmingsgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5555">
                <bestemmingsstatus conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5556"
@@ -67,49 +63,36 @@
                                   codeSystem="2.16.840.1.113883.5.14"
                                   displayName="completed"/>
             </bestemmingsgegevens>
+            <ritnummer value="25-2020-11-1"
+                       root="2.16.840.1.113883.2.4.3.32.5"
+                       conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.6034"/>
             <datum_en_tijd value="T"
                            datatype="datetime"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1684"/>
          </envelop>
          <kern conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1709">
             <reden_bericht conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1872">
-               <context value="lage rugklachten, graag uw beoordeling"
+               <context value="Patiënt is vanuit acute ambulancezorg voor verdere zorg doorverwezen naar de huisartsenspoedpost"
                         conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1710"/>
             </reden_bericht>
          </kern>
          <dossiergegevens conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.1725">
             <communicatie_item conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5457">
-               <identificatienummer value="45686545"
-                                    root="2.16.840.1.113883.2.4.3.11.999.103"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5458"/>
-               <communicatie_afzender conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5464">
-                  <zorgverlener value="AMB_verpleegkundige_MIN"
-                                datatype="reference"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5466"/>
-               </communicatie_afzender>
-               <communicatie_geadresseerde conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5468">
-                  <zorgverlener value="huisarts_MIN"
-                                datatype="reference"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5470"/>
-               </communicatie_geadresseerde>
                <document conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5472">
-                  <document_identificatie value="87946546"
-                                          root="2.16.840.1.113883.2.4.3.11.999.103"
+                  <document_identificatie value="9068"
+                                          root="2.25"
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5473"/>
-                  <document_set_identificatie value="164564351"
-                                              root="2.16.840.1.113883.2.4.3.11.999.103"
+                  <document_set_identificatie value="12"
+                                              root="2.25"
                                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5474"/>
                   <document_versienummer value="1"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5475"/>
                   <document_bestandtype value="application/pdf"
                                         conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5476"/>
-                  <document_inhoud value="blob"
+                  <document_inhoud value="voorbeeldbericht"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5477"/>
-                  <document_naam value="ambulanceverslag"
+                  <document_naam value="Bijlage.pdf"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5552"/>
-                  <document_creatie_datum_tijd value="T-0D"
-                                               datatype="datetime"
-                                               conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5553"/>
                   <document_type conceptId="2.16.840.1.113883.2.4.3.11.60.103.2.3.5554"
                                  value="6"
                                  code="006"
