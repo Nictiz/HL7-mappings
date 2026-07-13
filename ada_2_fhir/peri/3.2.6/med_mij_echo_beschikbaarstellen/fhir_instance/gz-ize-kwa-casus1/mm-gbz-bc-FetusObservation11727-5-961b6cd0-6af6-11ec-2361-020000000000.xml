@@ -1,6 +1,6 @@
 <Observation xmlns="http://hl7.org/fhir">
-   <!-- Source: gz-ize-kwa-casus1 /adaxml/data/med_mij_echo_beschikbaarstellen/medisch_onderzoek/foetusspecifieke_onderzoeksgegevens/echoscopie/bevindingen/sonomarkers_observatie (peri32-dataelement-7847) -->
-   <id value="7224b919-6ad1-11ec-2784-020000000000"/>
+   <!-- Source: gz-ize-kwa-casus1 /adaxml/data/med_mij_echo_beschikbaarstellen/medisch_onderzoek/foetusspecifieke_onderzoeksgegevens/echoscopie/biometrie/foetaal_geschat_gewicht_efw_meting (peri32-dataelement-3614) -->
+   <id value="961b6cd0-6af6-11ec-2361-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-FetusObservation"/>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
@@ -17,7 +17,7 @@
                </tr>
                <tr>
                   <th>Bepalingdatum/tijd</th>
-                  <td>${DATE, T, D, -570}</td>
+                  <td>Vanaf ${DATE, T, D, -570}</td>
                </tr>
                <tr>
                   <th>Methode</th>
@@ -31,11 +31,9 @@
                </tr>
                <tr>
                   <td>
-                     <span title="echogeniciteit van foetale darmen bij obstetrische echografie (bevinding) (698598000 - SNOMED CT)">echogeniciteit van foetale darmen bij obstetrische echografie (bevinding)</span>
+                     <span title="Fetal Body weight estimated by US (11727-5 - LOINC)">Fetal Body weight estimated by US</span>
                   </td>
-                  <td>
-                     <span title="Geen sonomarker geconstateerd (1 - 2.16.840.1.113883.2.4.4.13.54)">Geen sonomarker geconstateerd</span>
-                  </td>
+                  <td>320 g</td>
                </tr>
             </tbody>
          </table>
@@ -49,14 +47,14 @@
    </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="7224b919-6ad1-11ec-2784-020000000000"/>
+      <value value="961b6cd0-6af6-11ec-2361-020000000000"/>
    </identifier>
    <status value="final"/>
    <code>
       <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="698598000"/>
-         <display value="echogeniciteit van foetale darmen bij obstetrische echografie (bevinding)"/>
+         <system value="http://loinc.org"/>
+         <code value="11727-5"/>
+         <display value="Fetal Body weight estimated by US"/>
       </coding>
    </code>
    <subject>
@@ -67,14 +65,15 @@
       <reference value="EpisodeOfCare/d0510907-6af3-11ec-0000-020000000000"/>
       <display value="Zwangerschap 1 XXX_Osse_Vrouw"/>
    </context>
-   <effectiveDateTime value="${DATE, T, D, -570}"/>
-   <valueCodeableConcept>
-      <coding>
-         <system value="urn:oid:2.16.840.1.113883.2.4.4.13.54"/>
-         <code value="1"/>
-         <display value="Geen sonomarker geconstateerd"/>
-      </coding>
-   </valueCodeableConcept>
+   <effectivePeriod>
+      <start value="${DATE, T, D, -570}"/>
+   </effectivePeriod>
+   <valueQuantity>
+      <value value="320"/>
+      <unit value="g"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="g"/>
+   </valueQuantity>
    <method>
       <coding>
          <system value="http://snomed.info/sct"/>

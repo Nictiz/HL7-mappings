@@ -1,6 +1,6 @@
 <Procedure xmlns="http://hl7.org/fhir">
    <!-- Source: gz-ize-kwa-casus1 /adaxml/data/med_mij_echo_beschikbaarstellen/medisch_onderzoek/maternale_onderzoeksgegevens/verrichting_maternaal_onderzoek (peri32-dataelement-2416) -->
-   <id value="8bdd167d-6aa7-11ec-2241-020000000000"/>
+   <id value="9a00567d-6aea-11ec-2241-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ObstetricProcedure"/>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
@@ -20,6 +20,10 @@
                   </td>
                </tr>
                <tr>
+                  <th>Locatie</th>
+                  <td>Echopraktijk Groei</td>
+               </tr>
+               <tr>
                   <th>Reden</th>
                   <td>Zwangerschap 1 XXX_Osse_Vrouw</td>
                </tr>
@@ -33,7 +37,7 @@
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="8bdd167d-6aa7-11ec-2241-020000000000"/>
+      <value value="9a00567d-6aea-11ec-2241-020000000000"/>
    </identifier>
    <status value="completed"/>
    <category>
@@ -51,7 +55,7 @@
       </coding>
    </code>
    <subject>
-      <reference value="Patient/LEONIE-L-XXX-OSSE"/>
+      <reference value="Patient/L-XXX-Osse"/>
       <display value="Leonie L XXX_Osse"/>
    </subject>
    <context>
@@ -62,8 +66,12 @@
       <start value="${DATE, T, D, -570}"/>
       <end value="${DATE, T, D, -570}"/>
    </performedPeriod>
+   <location>
+      <reference value="Location/location-mm-gbz-2-16-840-1-113883-2-4-6-1-90012345"/>
+      <display value="Echopraktijk Groei"/>
+   </location>
    <reasonReference>
-      <reference value="Condition/3cc38e5b-6ac9-11ec-2334-020000000000"/>
+      <reference value="Condition/32c079df-6b65-11ec-2334-020000000000"/>
       <display value="Zwangerschap 1 XXX_Osse_Vrouw"/>
    </reasonReference>
    <report>

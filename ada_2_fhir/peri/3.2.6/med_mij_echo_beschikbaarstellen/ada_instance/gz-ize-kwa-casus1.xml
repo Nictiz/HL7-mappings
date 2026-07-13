@@ -4,7 +4,7 @@
          created-by="geboortezorgada"
          last-update-by="geboortezorgada"
          creation-date="2024-06-26T11:45:12.866Z"
-         last-update-date="2025-09-12T10:15:17.954Z"/>
+         last-update-date="2026-07-10T09:35:31.4Z"/>
    <data>
       <med_mij_echo_beschikbaarstellen app="perinatologie-326"
                                        shortName="med_mij_echo_beschikbaarstellen"
@@ -34,6 +34,7 @@
                                         displayName="Basis"/>
                   </verzekering>
                   <identificatie_nummer value="1235"
+                                        root="2.16.840.1.113883.2.4.6.4"
                                         conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1302"/>
                   <organisatie_naam value="NN"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1303"/>
@@ -103,8 +104,6 @@
                <identificatienummer value="999901710"
                                     root="2.16.840.1.113883.2.4.6.3"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.682"/>
-               <geboren_indicator value="true"
-                                  conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.9861"/>
                <geboortedatum value="1998-06-13"
                               datatype="datetime"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.683"/>
@@ -114,7 +113,7 @@
                                         codeSystem="2.16.840.1.113883.5.1"
                                         displayName="Vrouw"/>
             </patient>
-            <patient id="XXX_Osse_Foetus"
+            <patient id="XXX_Osse_Kind"
                      conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.675">
                <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3197">
                   <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3202">
@@ -122,20 +121,24 @@
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3204"/>
                   </geslachtsnaam>
                </naamgegevens>
+               <foetus value="XXX_Osse_Foetus"
+                       datatype="reference"
+                       conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11143"/>
             </patient>
-            <zorgaanbieder id="EchopraktijkGroei"
+            <zorgaanbieder id="ZA1_EchopraktijkGroei"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.956">
                <zorgaanbieder_identificatienummer root="2.16.840.1.113883.2.4.6.1"
                                                   value="90012345"
                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.957"/>
                <organisatie_naam value="Echopraktijk Groei"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.958"/>
-               <afdeling_specialisme code="9018"
+               <afdeling_specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.960"
+                                     value="514"
+                                     code="9018"
                                      codeSystem="2.16.840.1.113883.2.4.6.7"
-                                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                                     codeSystemVersion="2020-10-23T00:00:00"
-                                     displayName="Echoscopie"
-                                     conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.960"/>
+                                     codeSystemName="COD016-VEKT Zorgverlenersspecificatie (subberoepsgroep)"
+                                     codeSystemVersion="2025-11-26T00:00:00"
+                                     displayName="Echoscopie"/>
                <organisatie_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.965"
                                  value="9"
                                  code="B2"
@@ -144,18 +147,20 @@
                                  codeSystemVersion="2024-11-14T22:13:01"
                                  displayName="Echocentrum"/>
             </zorgaanbieder>
-            <zorgaanbieder id="VerloskundigePraktijk_VeiligZwanger"
+            <zorgaanbieder id="ZA2_VerloskundigenPraktijk_VeiligZwanger"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.956">
                <zorgaanbieder_identificatienummer value="87654321"
                                                   root="2.16.528.1.1007.3.3"
                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.957"/>
                <organisatie_naam value="Verloskundigenpraktijk Veilig Zwanger"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.958"/>
-               <afdeling_specialisme code="0800"
+               <afdeling_specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.960"
+                                     value="209"
+                                     code="0800"
                                      codeSystem="2.16.840.1.113883.2.4.6.7"
-                                     codeSystemName="Vektis AGB-medische specialismen"
-                                     displayName="Verloskundige"
-                                     conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.960"/>
+                                     codeSystemName="COD016-VEKT Zorgverlenersspecificatie (subberoepsgroep)"
+                                     codeSystemVersion="2025-11-26T00:00:00"
+                                     displayName="Verloskundigen, niet nader gespecificeerd"/>
                <organisatie_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.965"
                                  value="55"
                                  code="G3"
@@ -164,7 +169,7 @@
                                  codeSystemVersion="2024-11-14T22:13:01"
                                  displayName="Verloskundigenpraktijk"/>
             </zorgaanbieder>
-            <zorgverlener id="HelmaGrootkaart8"
+            <zorgverlener id="ZV1_HelmaGroot"
                           conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.978">
                <zorgverlener_identificatienummer root="2.16.528.1.1007.3.1"
                                                  value="8452962"
@@ -184,10 +189,22 @@
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3255"/>
                   </geslachtsnaam>
                </naamgegevens>
+               <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2219"
+                            value="91"
+                            code="158971006"
+                            codeSystem="2.16.840.1.113883.6.96"
+                            codeSystemName="SNOMED CT"
+                            displayName="arts in opleiding tot specialist in ziekenhuis (beroep)"/>
+               <zorgaanbieder value="ZA2_VerloskundigenPraktijk_VeiligZwanger"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1678"/>
             </zorgverlener>
          </administratief>
          <zorgverlening conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1314">
             <zorg_episode conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3399">
+               <identificatienummer root="2.16.840.1.113883.2.4.3.11.999.60.8"
+                                    value="2135467"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3338"/>
                <begin_datum value="T-705D"
                             datatype="datetime"
                             conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3400"/>
@@ -195,7 +212,7 @@
                            datatype="datetime"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3401"/>
                <zorg_episode_verantwoordelijke conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.8822">
-                  <zorgverlener value="HelmaGrootkaart8"
+                  <zorgverlener value="ZV1_HelmaGroot"
                                 datatype="reference"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2163"/>
                </zorg_episode_verantwoordelijke>
@@ -207,7 +224,7 @@
             </zorg_episode>
             <verwijsgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.8877">
                <verwijzing_van_afkomstig_van conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.8879">
-                  <zorgaanbieder value="VerloskundigePraktijk_VeiligZwanger"
+                  <zorgaanbieder value="ZA2_VerloskundigenPraktijk_VeiligZwanger"
                                  datatype="reference"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.9660"/>
                </verwijzing_van_afkomstig_van>
@@ -222,6 +239,9 @@
          </vrouw>
          <zwangerschapsgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.25">
             <zwangerschap conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3341">
+               <zwangerschapsduur value="140"
+                                  unit="d"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3342"/>
                <pariteit value="0"
                          conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3343"/>
                <graviditeit value="1"
@@ -241,9 +261,28 @@
                </aterme_datum_items>
             </zwangerschap>
          </zwangerschapsgegevens>
+         <foetus id="XXX_Osse_Foetus"
+                 conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10803">
+            <identificator_foetus value="baby A"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11141"/>
+         </foetus>
          <medisch_onderzoek conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1123">
+            <media id="Media1"
+                   conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.8912">
+               <media_type code="image"
+                           codeSystem="2.16.840.1.113883.5.79"
+                           codeSystemName="MediaType"
+                           displayName="ImageMediaType"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11066"/>
+               <datumtijd value="T-500D"
+                          datatype="datetime"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.8916"/>
+            </media>
             <foetusspecifieke_onderzoeksgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1208">
-               <patient value="XXX_Osse_Foetus"
+               <foetus value="XXX_Osse_Foetus"
+                       datatype="reference"
+                       conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11140"/>
+               <patient value="XXX_Osse_Vrouw"
                         datatype="reference"
                         conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10283"/>
                <echoscopie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1209">
@@ -273,7 +312,7 @@
                                     displayName="Verwijzing GUO2"/>
                   </echografische_bevindingen_algemeen_observatie>
                   <biometrie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1210">
-                     <foetale_buikomtrek__ac_meting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3513">
+                     <foetale_buikomtrek_ac_meting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3513">
                         <acwaarde value="151"
                                   unit="mm"
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3515"/>
@@ -285,7 +324,7 @@
                         <acdatum_begin_tijd value="T-570D"
                                             datatype="datetime"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3519"/>
-                     </foetale_buikomtrek__ac_meting>
+                     </foetale_buikomtrek_ac_meting>
                      <foetale_schedelomvang conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3626">
                         <schedelomvang_meetmethode conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3627"
                                                    value="2"
@@ -299,7 +338,7 @@
                                                   datatype="datetime"
                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3630"/>
                      </foetale_schedelomvang>
-                     <foetale_femurlengte__fl_meting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3539">
+                     <foetale_femurlengte_fl_meting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3539">
                         <flwaarde value="31"
                                   unit="mm"
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3541"/>
@@ -311,8 +350,8 @@
                         <fldatum_begin_tijd value="T-570D"
                                             datatype="datetime"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3545"/>
-                     </foetale_femurlengte__fl_meting>
-                     <foetale_biparietale_diameter__bpd_meting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3552">
+                     </foetale_femurlengte_fl_meting>
+                     <foetale_biparietale_diameter_bpd_meting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3552">
                         <bpdwaarde value="49"
                                    unit="mm"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3554"/>
@@ -324,8 +363,8 @@
                         <bpddatum_begin_tijd value="T-570D"
                                              datatype="datetime"
                                              conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3558"/>
-                     </foetale_biparietale_diameter__bpd_meting>
-                     <foetaal_longitudinale_blaas_diameter__lbd_meting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3564">
+                     </foetale_biparietale_diameter_bpd_meting>
+                     <foetaal_longitudinale_blaas_diameter_lbd_meting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3564">
                         <lbdwaarde value="52"
                                    unit="mm"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3566"/>
@@ -337,8 +376,16 @@
                         <lbddatum_begin_tijd value="T-570D"
                                              datatype="datetime"
                                              conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3570"/>
-                     </foetaal_longitudinale_blaas_diameter__lbd_meting>
-                     <foetale_transcerebellar_diameter__tcd_meting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3589">
+                     </foetaal_longitudinale_blaas_diameter_lbd_meting>
+                     <foetale_kruin_romp_lengte_crl_meting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3576">
+                        <crlwaarde value="153"
+                                   unit="mm"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3578"/>
+                        <crldatum_begin_tijd value="T-570D"
+                                             datatype="datetime"
+                                             conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3582"/>
+                     </foetale_kruin_romp_lengte_crl_meting>
+                     <foetale_transcerebellar_diameter_tcd_meting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3589">
                         <tcdwaarde value="21"
                                    unit="mm"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3591"/>
@@ -350,10 +397,18 @@
                         <tcddatum_begin_tijd value="T-570D"
                                              datatype="datetime"
                                              conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3595"/>
-                     </foetale_transcerebellar_diameter__tcd_meting>
-                     <foetaal_geschat_gewicht__efw_meting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3614">
+                     </foetale_transcerebellar_diameter_tcd_meting>
+                     <foetale_nekplooidikte_nt_meting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3602">
+                        <ntwaarde value="2"
+                                  unit="mm"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3604"/>
+                        <ntdatum_begin_tijd value="T-570D"
+                                            datatype="datetime"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3608"/>
+                     </foetale_nekplooidikte_nt_meting>
+                     <foetaal_geschat_gewicht_efw_meting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3614">
                         <efwwaarde value="320"
-                                   unit="mm"
+                                   unit="g"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3616"/>
                         <meet_methode conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3617"
                                       value="7"
@@ -363,7 +418,7 @@
                         <efwdatum_begin_tijd value="T-570D"
                                              datatype="datetime"
                                              conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3620"/>
-                     </foetaal_geschat_gewicht__efw_meting>
+                     </foetaal_geschat_gewicht_efw_meting>
                   </biometrie>
                   <bevindingen conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2451">
                      <beweging_foetus_observatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2404">
@@ -392,10 +447,10 @@
                                                         codeSystem="2.16.840.1.113883.6.96"
                                                         displayName="normaal vruchtwatervolume (bevinding)"/>
                         <vruchtwatercompartiment_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2479"
-                                                        value="1"
-                                                        code="17621005"
+                                                        value="3"
+                                                        code="1156316003"
                                                         codeSystem="2.16.840.1.113883.6.96"
-                                                        displayName="normaal (kwalificatiewaarde)"/>
+                                                        displayName="niet te bepalen (kwalificatiewaarde)"/>
                         <meet_methode conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2414"
                                       value="7"
                                       code="278292003"
@@ -411,6 +466,11 @@
                                                     code="7401000146107"
                                                     codeSystem="2.16.840.1.113883.6.96"
                                                     displayName="rechts laterale positie van placenta (bevinding)"/>
+                        <ostium_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2448"
+                                       value="3"
+                                       code="17621005"
+                                       codeSystem="2.16.840.1.113883.6.96"
+                                       displayName="normaal (kwalificatiewaarde)"/>
                         <observatie_methode conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2441"
                                             value="7"
                                             code="278292003"
@@ -547,8 +607,8 @@
                <patient value="XXX_Osse_Vrouw"
                         datatype="reference"
                         conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11027"/>
-               <verrichting_maternaal_onderzoek conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2416"
-                                                id="FoetaleGroeiEcho">
+               <verrichting_maternaal_onderzoek id="FoetaleGroeiEcho"
+                                                conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2416">
                   <verrichting_start_datum value="T-570D"
                                            datatype="datetime"
                                            conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2417"/>
@@ -561,6 +621,11 @@
                                     codeSystem="2.16.840.1.113883.6.96"
                                     codeSystemName="SNOMED CT"
                                     displayName="echografie voor foetale groei (verrichting)"/>
+                  <locatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2427">
+                     <zorgaanbieder value="ZA1_EchopraktijkGroei"
+                                    datatype="reference"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2433"/>
+                  </locatie>
                </verrichting_maternaal_onderzoek>
             </maternale_onderzoeksgegevens>
          </medisch_onderzoek>
