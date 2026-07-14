@@ -1,8 +1,8 @@
 <Observation xmlns="http://hl7.org/fhir">
-   <!-- Source: gz-izk-kwa-casus1 /adaxml/data/med_mij_kraam_beschikbaarstellen/bevalling/uitdrijvingsfase/type_partus_observatie (peri32-dataelement-4144) -->
-   <id value="1d78d063-6b51-11ec-2414-020000000000"/>
+   <!-- Source: gz-izk-kwa-casus1 /adaxml/data/med_mij_kraam_beschikbaarstellen/bevalling/uitdrijvingsfase/aard_vruchtwater_kindspecifieke_observatie (peri32-dataelement-11129) -->
+   <id value="55e4c6cf-6b13-11ec-1112-020000000000"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-BirthObservation"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-FetusObservation"/>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
    </meta>
    <text>
@@ -21,10 +21,10 @@
                </tr>
                <tr>
                   <td>
-                     <span title="soort partus (waarneembare entiteit) (364336006 - SNOMED CT)">soort partus (waarneembare entiteit)</span>
+                     <span title="aspect van vruchtwater (waarneembare entiteit) (168089007 - SNOMED CT)">aspect van vruchtwater (waarneembare entiteit)</span>
                   </td>
                   <td>
-                     <span title="vacuum (61586001 - SNOMED CT)">vacuum</span>
+                     <span title="helder vruchtwater (bevinding) (168090003 - SNOMED CT)">helder vruchtwater (bevinding)</span>
                   </td>
                </tr>
             </tbody>
@@ -33,20 +33,20 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
       <valueReference>
-         <reference value="Procedure/e7a46a7e-6b19-11ec-2123-020000000000"/>
-         <display value="uitdrijvingsfase zwangerschap 1 XXX_Zhanganak_Vrouw"/>
+         <reference value="BodySite/63e75b56-6aeb-11ec-1080-020000000000"/>
+         <display value="foetus baby A van Kim K XXX_Zhanganak XXX_Visser"/>
       </valueReference>
    </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="1d78d063-6b51-11ec-2414-020000000000"/>
+      <value value="55e4c6cf-6b13-11ec-1112-020000000000"/>
    </identifier>
    <status value="final"/>
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="364336006"/>
-         <display value="soort partus (waarneembare entiteit)"/>
+         <code value="168089007"/>
+         <display value="aspect van vruchtwater (waarneembare entiteit)"/>
       </coding>
    </code>
    <subject>
@@ -54,14 +54,14 @@
       <display value="Kim K XXX_Zhanganak XXX_Visser"/>
    </subject>
    <context>
-      <reference value="EpisodeOfCare/f720ebe3-6b47-11ec-0000-020000000000"/>
+      <reference value="EpisodeOfCare/f427ebe3-6ab2-11ec-0000-020000000000"/>
       <display value="Zwangerschap 1 XXX_Zhanganak_Vrouw"/>
    </context>
    <valueCodeableConcept>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="61586001"/>
-         <display value="vacuum"/>
+         <code value="168090003"/>
+         <display value="helder vruchtwater (bevinding)"/>
       </coding>
    </valueCodeableConcept>
 </Observation>

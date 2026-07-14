@@ -1,20 +1,22 @@
 <Procedure xmlns="http://hl7.org/fhir">
-   <!-- Source: gz-izk-kwa-casus1 /adaxml/data/med_mij_kraam_beschikbaarstellen/bevalling (peri32-dataelement-37) -->
-   <id value="765d253f-6ac5-11ec-2123-020000000000"/>
+   <!-- Source: gz-izk-kwa-casus1 /adaxml/data/med_mij_kraam_beschikbaarstellen/bevalling/uitdrijvingsfase (peri32-dataelement-39) -->
+   <id value="16f40803-6ab0-11ec-2123-020000000000"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DeliveryProcedure"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Birth"/>
    </meta>
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Verrichting. Subject: Kim K XXX_Zhanganak XXX_Visser. Categorie: <span title="obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+            <caption>Verrichting. Subject: Kind Joris Visser. Categorie: <span title="obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
             <tbody>
                <tr>
                   <td>
-                     <span title="verlossing (verrichting) (236973005 - SNOMED CT)">verlossing (verrichting)</span>
+                     <span title="geboorte (bevinding) (3950001 - SNOMED CT)">geboorte (bevinding)</span>
                   </td>
-                  <td/>
+                  <td>
+                     <div>Uitgevoerd: 18 juli 1994</div>
+                  </td>
                </tr>
                <tr>
                   <th>Reden</th>
@@ -26,8 +28,12 @@
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="765d253f-6ac5-11ec-2123-020000000000"/>
+      <value value="16f40803-6ab0-11ec-2123-020000000000"/>
    </identifier>
+   <partOf>
+      <reference value="Procedure/e868553f-6b2b-11ec-2123-020000000000"/>
+      <display value="bevalling zwangerschap 1 XXX_Zhanganak_Vrouw"/>
+   </partOf>
    <status value="completed"/>
    <category>
       <coding>
@@ -39,18 +45,19 @@
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="236973005"/>
-         <display value="verlossing (verrichting)"/>
+         <code value="3950001"/>
+         <display value="geboorte (bevinding)"/>
       </coding>
    </code>
    <subject>
-      <reference value="Patient/KIM-K-XXX-ZHANGANAK-XXX-VISSER"/>
-      <display value="Kim K XXX_Zhanganak XXX_Visser"/>
+      <reference value="Patient/JORIS-VISSER"/>
+      <display value="Kind Joris Visser"/>
    </subject>
    <context>
-      <reference value="EpisodeOfCare/f720ebe3-6b47-11ec-0000-020000000000"/>
+      <reference value="EpisodeOfCare/f427ebe3-6ab2-11ec-0000-020000000000"/>
       <display value="Zwangerschap 1 XXX_Zhanganak_Vrouw"/>
    </context>
+   <performedDateTime value="1994-07-18"/>
    <reasonReference>
       <reference value="Condition/80338356-6b6f-11ec-2334-020000000000"/>
       <display value="Zwangerschap 1 XXX_Zhanganak_Vrouw"/>

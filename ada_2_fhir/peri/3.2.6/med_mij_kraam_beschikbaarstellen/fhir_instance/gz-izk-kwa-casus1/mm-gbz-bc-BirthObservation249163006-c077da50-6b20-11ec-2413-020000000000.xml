@@ -1,6 +1,6 @@
 <Observation xmlns="http://hl7.org/fhir">
-   <!-- Source: gz-izk-kwa-casus1 /adaxml/data/med_mij_kraam_beschikbaarstellen/bevalling/uitdrijvingsfase/werkelijke_plaats_baring_type_locatie_observatie (peri32-dataelement-4193) -->
-   <id value="13602ae3-6b08-11ec-2419-020000000000"/>
+   <!-- Source: gz-izk-kwa-casus1 /adaxml/data/med_mij_kraam_beschikbaarstellen/bevalling/uitdrijvingsfase/actief_meepersen_observatie (peri32-dataelement-4132) -->
+   <id value="c077da50-6b20-11ec-2413-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-BirthObservation"/>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
@@ -21,11 +21,15 @@
                </tr>
                <tr>
                   <td>
-                     <span title="bevinding betreffende locatie van partus (366344009 - SNOMED CT)">bevinding betreffende locatie van partus</span>
+                     <span title="begin van persen tijdens partus (waarneembare entiteit) (249163006 - SNOMED CT)">begin van persen tijdens partus (waarneembare entiteit)</span>
                   </td>
+                  <td>${DATE, T, D, -111}T13:30:00+02:00</td>
+               </tr>
+               <tr>
                   <td>
-                     <span title="geboorte in ziekenhuis (bevinding) (56321000146103 - SNOMED CT)">geboorte in ziekenhuis (bevinding)</span>
+                     <span title="duur van tweede fase van partus (waarneembare entiteit) (169822006 - SNOMED CT)">duur van tweede fase van partus (waarneembare entiteit)</span>
                   </td>
+                  <td>90 min</td>
                </tr>
             </tbody>
          </table>
@@ -33,20 +37,20 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
       <valueReference>
-         <reference value="Procedure/e7a46a7e-6b19-11ec-2123-020000000000"/>
+         <reference value="Procedure/16f40803-6ab0-11ec-2123-020000000000"/>
          <display value="uitdrijvingsfase zwangerschap 1 XXX_Zhanganak_Vrouw"/>
       </valueReference>
    </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="13602ae3-6b08-11ec-2419-020000000000"/>
+      <value value="c077da50-6b20-11ec-2413-020000000000"/>
    </identifier>
    <status value="final"/>
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="366344009"/>
-         <display value="bevinding betreffende locatie van partus"/>
+         <code value="249163006"/>
+         <display value="begin van persen tijdens partus (waarneembare entiteit)"/>
       </coding>
    </code>
    <subject>
@@ -54,14 +58,23 @@
       <display value="Kim K XXX_Zhanganak XXX_Visser"/>
    </subject>
    <context>
-      <reference value="EpisodeOfCare/f720ebe3-6b47-11ec-0000-020000000000"/>
+      <reference value="EpisodeOfCare/f427ebe3-6ab2-11ec-0000-020000000000"/>
       <display value="Zwangerschap 1 XXX_Zhanganak_Vrouw"/>
    </context>
-   <valueCodeableConcept>
-      <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="56321000146103"/>
-         <display value="geboorte in ziekenhuis (bevinding)"/>
-      </coding>
-   </valueCodeableConcept>
+   <valueDateTime value="${DATE, T, D, -111}T13:30:00+02:00"/>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="169822006"/>
+            <display value="duur van tweede fase van partus (waarneembare entiteit)"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="90"/>
+         <unit value="min"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="min"/>
+      </valueQuantity>
+   </component>
 </Observation>

@@ -1,8 +1,8 @@
 <Observation xmlns="http://hl7.org/fhir">
-   <!-- Source: gz-izk-kwa-casus1 /adaxml/data/med_mij_kraam_beschikbaarstellen/bevalling/ontsluitingsfase/gebroken_vliezen_observatie (peri32-dataelement-4108) -->
-   <id value="a230453f-6b0a-11ec-2410-020000000000"/>
+   <!-- Source: gz-izk-kwa-casus1 /adaxml/data/med_mij_kraam_beschikbaarstellen/bevalling/uitdrijvingsfase/werkelijke_plaats_baring_type_locatie_observatie (peri32-dataelement-4193) -->
+   <id value="6fe4c9b2-6b0e-11ec-2419-020000000000"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DeliveryObservation"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-BirthObservation"/>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
    </meta>
    <text>
@@ -21,9 +21,11 @@
                </tr>
                <tr>
                   <td>
-                     <span title="tijdstip waarop gebroken vliezen zijn geconstateerd (waarneembare entiteit) (289251005 - SNOMED CT)">tijdstip waarop gebroken vliezen zijn geconstateerd (waarneembare entiteit)</span>
+                     <span title="bevinding betreffende locatie van partus (366344009 - SNOMED CT)">bevinding betreffende locatie van partus</span>
                   </td>
-                  <td>${DATE, T, D, -111}T08:00:00+02:00</td>
+                  <td>
+                     <span title="geboorte in ziekenhuis (bevinding) (56321000146103 - SNOMED CT)">geboorte in ziekenhuis (bevinding)</span>
+                  </td>
                </tr>
             </tbody>
          </table>
@@ -31,20 +33,20 @@
    </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
       <valueReference>
-         <reference value="Procedure/e868553f-6b2b-11ec-2123-020000000000"/>
-         <display value="bevalling zwangerschap 1 XXX_Zhanganak_Vrouw"/>
+         <reference value="Procedure/16f40803-6ab0-11ec-2123-020000000000"/>
+         <display value="uitdrijvingsfase zwangerschap 1 XXX_Zhanganak_Vrouw"/>
       </valueReference>
    </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="a230453f-6b0a-11ec-2410-020000000000"/>
+      <value value="6fe4c9b2-6b0e-11ec-2419-020000000000"/>
    </identifier>
    <status value="final"/>
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="289251005"/>
-         <display value="tijdstip waarop gebroken vliezen zijn geconstateerd (waarneembare entiteit)"/>
+         <code value="366344009"/>
+         <display value="bevinding betreffende locatie van partus"/>
       </coding>
    </code>
    <subject>
@@ -55,5 +57,11 @@
       <reference value="EpisodeOfCare/f427ebe3-6ab2-11ec-0000-020000000000"/>
       <display value="Zwangerschap 1 XXX_Zhanganak_Vrouw"/>
    </context>
-   <valueDateTime value="${DATE, T, D, -111}T08:00:00+02:00"/>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="56321000146103"/>
+         <display value="geboorte in ziekenhuis (bevinding)"/>
+      </coding>
+   </valueCodeableConcept>
 </Observation>

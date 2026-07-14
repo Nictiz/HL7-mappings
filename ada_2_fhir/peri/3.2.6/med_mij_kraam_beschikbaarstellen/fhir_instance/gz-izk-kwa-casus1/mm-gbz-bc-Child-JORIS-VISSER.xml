@@ -1,5 +1,5 @@
 <Patient xmlns="http://hl7.org/fhir">
-   <id value="JORIS"/>
+   <id value="JORIS-VISSER"/>
    <meta>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Child"/>
@@ -7,15 +7,21 @@
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
-         <div>Joris, Man, ${DATE, T, D, -111}</div>
+         <div>Id <i>n.v.t. (ontbrekend gegeven)</i>, Joris Visser, Man, ${DATE, T, D, -111}T14:25:00+02:00</div>
       </div>
    </text>
    <identifier>
-      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="6fac51bf-6b3f-11ec-0000-020000000000"/>
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+         <valueCode value="NA"/>
+      </extension>
    </identifier>
    <name>
-      <text value="Joris"/>
+      <text value="Joris Visser"/>
+      <family value="Visser">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="Visser"/>
+         </extension>
+      </family>
       <given value="Joris">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
             <valueCode value="BR"/>
@@ -33,5 +39,9 @@
          </valueCodeableConcept>
       </extension>
    </gender>
-   <birthDate value="${DATE, T, D, -111}"/>
+   <birthDate value="${DATE, T, D, -111}T14:25:00+02:00">
+      <extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
+         <valueDateTime value="${DATE, T, D, -111}T14:25:00+02:00"/>
+      </extension>
+   </birthDate>
 </Patient>

@@ -1,8 +1,8 @@
 <Observation xmlns="http://hl7.org/fhir">
-   <!-- Source: gz-izk-kwa-casus1 /adaxml/data/med_mij_kraam_beschikbaarstellen/gezin/beoordeling_gezinssituatie_observatie (peri32-dataelement-2914) -->
-   <id value="9144d61e-6aa1-11ec-2291-020000000000"/>
+   <!-- Source: gz-izk-kwa-casus1 /adaxml/data/med_mij_kraam_beschikbaarstellen/bevalling/uitdrijvingsfase/tijdstip_gebroken_vliezen_kindspecifieke_observatie (peri32-dataelement-11110) -->
+   <id value="c72e13ff-6a95-11ec-1111-020000000000"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-FamilySituationAssessment"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-FetusObservation"/>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
    </meta>
    <text>
@@ -10,19 +10,10 @@
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
             <caption>Observatie/bepaling. Subject: Kim K XXX_Zhanganak XXX_Visser. Status: definitief</caption>
-            <tfoot>
-               <tr>
-                  <td colspan="2">Stabiele gezinssituatie. Goede hechting binnen het gezin</td>
-               </tr>
-            </tfoot>
             <tbody>
                <tr>
                   <th>Context</th>
                   <td>Zwangerschap 1 XXX_Zhanganak_Vrouw</td>
-               </tr>
-               <tr>
-                  <th>Bepalingdatum/tijd</th>
-                  <td>${DATE, T, D, -167}</td>
                </tr>
                <tr>
                   <th>Code</th>
@@ -30,24 +21,30 @@
                </tr>
                <tr>
                   <td>
-                     <span title="observatie betreffende verstoring van leefstijl van familie (waarneembare entiteit) (423340009 - SNOMED CT)">observatie betreffende verstoring van leefstijl van familie (waarneembare entiteit)</span>
+                     <span title="tijdstip waarop gebroken vliezen zijn geconstateerd (waarneembare entiteit) (289251005 - SNOMED CT)">tijdstip waarop gebroken vliezen zijn geconstateerd (waarneembare entiteit)</span>
                   </td>
-                  <td/>
+                  <td>${DATE, T, D, -111}T08:00:00+02:00</td>
                </tr>
             </tbody>
          </table>
       </div>
    </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
+      <valueReference>
+         <reference value="BodySite/63e75b56-6aeb-11ec-1080-020000000000"/>
+         <display value="foetus baby A van Kim K XXX_Zhanganak XXX_Visser"/>
+      </valueReference>
+   </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="9144d61e-6aa1-11ec-2291-020000000000"/>
+      <value value="c72e13ff-6a95-11ec-1111-020000000000"/>
    </identifier>
    <status value="final"/>
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="423340009"/>
-         <display value="observatie betreffende verstoring van leefstijl van familie (waarneembare entiteit)"/>
+         <code value="289251005"/>
+         <display value="tijdstip waarop gebroken vliezen zijn geconstateerd (waarneembare entiteit)"/>
       </coding>
    </code>
    <subject>
@@ -58,6 +55,5 @@
       <reference value="EpisodeOfCare/f427ebe3-6ab2-11ec-0000-020000000000"/>
       <display value="Zwangerschap 1 XXX_Zhanganak_Vrouw"/>
    </context>
-   <effectiveDateTime value="${DATE, T, D, -167}"/>
-   <comment value="Stabiele gezinssituatie. Goede hechting binnen het gezin"/>
+   <valueDateTime value="${DATE, T, D, -111}T08:00:00+02:00"/>
 </Observation>

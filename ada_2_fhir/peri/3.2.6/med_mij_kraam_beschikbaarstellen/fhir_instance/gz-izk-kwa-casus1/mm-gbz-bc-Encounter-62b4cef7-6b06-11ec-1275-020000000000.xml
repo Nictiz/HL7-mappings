@@ -1,6 +1,6 @@
 <Encounter xmlns="http://hl7.org/fhir">
    <!-- Source: gz-izk-kwa-casus1 -->
-   <id value="c326cab3-6b5d-11ec-1275-020000000000"/>
+   <id value="62b4cef7-6b06-11ec-1275-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Encounter"/>
@@ -9,7 +9,7 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Contact. Subject: Kind Joris. Status: voltooid</caption>
+            <caption>Contact. Subject: Kim K XXX_Zhanganak XXX_Visser. Status: voltooid</caption>
             <tbody>
                <tr>
                   <th>Type contact</th>
@@ -17,11 +17,16 @@
                      <div>
                         <span title="Thuis (HH - v3/ActCode)">Thuis</span>
                      </div>
+                     <span title="prenataal huisbezoek door kraamzorg (regime/therapie) (158111000146102 - SNOMED CT)">prenataal huisbezoek door kraamzorg (regime/therapie)</span>
                   </td>
                </tr>
                <tr>
                   <th>Periode</th>
-                  <td>${DATE, T, D, -105} - ${DATE, T, D, -105}</td>
+                  <td>${DATE, T, D, -167} - ${DATE, T, D, -167}</td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>Intake</td>
                </tr>
                <tr>
                   <th>Participant</th>
@@ -29,17 +34,13 @@
                      <div>Carolien XXX_Meijer || kraamverzorgende (beroep) || Kraamzorg Het Blije Ei</div>
                   </td>
                </tr>
-               <tr>
-                  <th>Zorgaanbieder</th>
-                  <td>Kraamzorg Het Blije Ei</td>
-               </tr>
             </tbody>
          </table>
       </div>
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="c326cab3-6b5d-11ec-1275-020000000000"/>
+      <value value="62b4cef7-6b06-11ec-1275-020000000000"/>
    </identifier>
    <status value="finished"/>
    <class>
@@ -56,12 +57,19 @@
       <code value="HH"/>
       <display value="Thuis"/>
    </class>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="158111000146102"/>
+         <display value="prenataal huisbezoek door kraamzorg (regime/therapie)"/>
+      </coding>
+   </type>
    <subject>
-      <reference value="Patient/JORIS"/>
-      <display value="Kind Joris"/>
+      <reference value="Patient/KIM-K-XXX-ZHANGANAK-XXX-VISSER"/>
+      <display value="Kim K XXX_Zhanganak XXX_Visser"/>
    </subject>
    <episodeOfCare>
-      <reference value="EpisodeOfCare/f720ebe3-6b47-11ec-0000-020000000000"/>
+      <reference value="EpisodeOfCare/f427ebe3-6ab2-11ec-0000-020000000000"/>
       <display value="Zwangerschap 1 XXX_Zhanganak_Vrouw"/>
    </episodeOfCare>
    <participant>
@@ -77,11 +85,10 @@
       </individual>
    </participant>
    <period>
-      <start value="${DATE, T, D, -105}"/>
-      <end value="${DATE, T, D, -105}"/>
+      <start value="${DATE, T, D, -167}"/>
+      <end value="${DATE, T, D, -167}"/>
    </period>
-   <serviceProvider>
-      <reference value="Organization/organization-mm-gbz-2-16-840-1-113883-2-4-6-1-33112345"/>
-      <display value="Kraamzorg Het Blije Ei"/>
-   </serviceProvider>
+   <reason>
+      <text value="Intake"/>
+   </reason>
 </Encounter>

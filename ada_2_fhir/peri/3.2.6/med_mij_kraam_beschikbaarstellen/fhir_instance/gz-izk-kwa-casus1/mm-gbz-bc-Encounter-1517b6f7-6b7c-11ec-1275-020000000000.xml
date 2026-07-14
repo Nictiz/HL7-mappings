@@ -1,6 +1,6 @@
 <Encounter xmlns="http://hl7.org/fhir">
    <!-- Source: gz-izk-kwa-casus1 -->
-   <id value="52e660eb-6a9b-11ec-1275-020000000000"/>
+   <id value="1517b6f7-6b7c-11ec-1275-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Encounter"/>
@@ -9,7 +9,7 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Contact. Subject: Kind Joris. Status: voltooid</caption>
+            <caption>Contact. Subject: Kind Joris Visser. Status: voltooid</caption>
             <tbody>
                <tr>
                   <th>Type contact</th>
@@ -22,6 +22,10 @@
                <tr>
                   <th>Periode</th>
                   <td>${DATE, T, D, -107} - ${DATE, T, D, -107}</td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>Kraamperiode</td>
                </tr>
                <tr>
                   <th>Participant</th>
@@ -39,7 +43,7 @@
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="52e660eb-6a9b-11ec-1275-020000000000"/>
+      <value value="1517b6f7-6b7c-11ec-1275-020000000000"/>
    </identifier>
    <status value="finished"/>
    <class>
@@ -57,11 +61,11 @@
       <display value="Thuis"/>
    </class>
    <subject>
-      <reference value="Patient/JORIS"/>
-      <display value="Kind Joris"/>
+      <reference value="Patient/JORIS-VISSER"/>
+      <display value="Kind Joris Visser"/>
    </subject>
    <episodeOfCare>
-      <reference value="EpisodeOfCare/f720ebe3-6b47-11ec-0000-020000000000"/>
+      <reference value="EpisodeOfCare/f427ebe3-6ab2-11ec-0000-020000000000"/>
       <display value="Zwangerschap 1 XXX_Zhanganak_Vrouw"/>
    </episodeOfCare>
    <participant>
@@ -80,6 +84,9 @@
       <start value="${DATE, T, D, -107}"/>
       <end value="${DATE, T, D, -107}"/>
    </period>
+   <reason>
+      <text value="Kraamperiode"/>
+   </reason>
    <serviceProvider>
       <reference value="Organization/organization-mm-gbz-2-16-840-1-113883-2-4-6-1-33112345"/>
       <display value="Kraamzorg Het Blije Ei"/>

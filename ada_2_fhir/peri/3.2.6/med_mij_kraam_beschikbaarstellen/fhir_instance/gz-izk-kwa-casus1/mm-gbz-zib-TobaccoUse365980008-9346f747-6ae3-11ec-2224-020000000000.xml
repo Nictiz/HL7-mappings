@@ -1,6 +1,6 @@
 <Observation xmlns="http://hl7.org/fhir">
    <!-- Source: gz-izk-kwa-casus1 /adaxml/data/med_mij_kraam_beschikbaarstellen/zwangerschapsgegevens/prenatale_controle/tabak_gebruik (peri32-dataelement-2243) -->
-   <id value="a25bb5af-6b44-11ec-2224-020000000000"/>
+   <id value="9346f747-6ae3-11ec-2224-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-TobaccoUse"/>
    </meta>
@@ -26,13 +26,19 @@
                      <span title="niet-roker, maar rookgedrag in verleden onbekend (405746006 - SNOMED CT)">niet-roker, maar rookgedrag in verleden onbekend</span>
                   </td>
                </tr>
+               <tr>
+                  <td>
+                     <span title="type tabak gebruikt (waarneembare entiteit) (53661000146106 - SNOMED CT)">type tabak gebruikt (waarneembare entiteit)</span>
+                  </td>
+                  <td>onbekend</td>
+               </tr>
             </tbody>
          </table>
       </div>
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="a25bb5af-6b44-11ec-2224-020000000000"/>
+      <value value="9346f747-6ae3-11ec-2224-020000000000"/>
    </identifier>
    <status value="final"/>
    <code>
@@ -47,7 +53,7 @@
       <display value="Kim K XXX_Zhanganak XXX_Visser"/>
    </subject>
    <context>
-      <reference value="EpisodeOfCare/f720ebe3-6b47-11ec-0000-020000000000"/>
+      <reference value="EpisodeOfCare/f427ebe3-6ab2-11ec-0000-020000000000"/>
       <display value="Zwangerschap 1 XXX_Zhanganak_Vrouw"/>
    </context>
    <valueCodeableConcept>
@@ -57,4 +63,21 @@
          <display value="niet-roker, maar rookgedrag in verleden onbekend"/>
       </coding>
    </valueCodeableConcept>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="53661000146106"/>
+            <display value="type tabak gebruikt (waarneembare entiteit)"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="Anders"/>
+         </coding>
+         <text value="onbekend"/>
+      </valueCodeableConcept>
+   </component>
 </Observation>
