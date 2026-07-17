@@ -1,0 +1,72 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izb-kwa-3B-V2_meerling_2elijn /adaxml/data/med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/bevalling/uitdrijvingsfase/verrichting_kindspecifieke_maternale_verrichtingen (peri32-dataelement-1603) -->
+   <id value="964128d1-6b37-11ec-2160-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ObstetricProcedure"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Jamila J XXX_Kwee. Categorie: <span title="obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="vitamine K toediening aan neonaat (698350008:370131001=133933007 - SNOMED CT)">vitamine K toediening aan neonaat</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: Vanaf ${DATE, T, D, -5}T14:55:00+02:00</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>Zwangerschap 1 XXX_Kwee_Vrouw</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="964128d1-6b37-11ec-2160-020000000000"/>
+   </identifier>
+   <partOf>
+      <reference value="Procedure/311b9db3-6aec-11ec-2123-020000000000"/>
+      <display value="bevalling zwangerschap 1 XXX_Kwee_Vrouw"/>
+   </partOf>
+   <partOf>
+      <reference value="Procedure/e235ae73-6b13-11ec-2123-020000000000"/>
+      <display value="uitdrijvingsfase zwangerschap 1 XXX_Kwee_Vrouw"/>
+   </partOf>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="386637004"/>
+         <display value="obstetrische verrichting (verrichting)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="698350008:370131001=133933007"/>
+         <display value="vitamine K toediening aan neonaat"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/JAMILA-J-XXX-KWEE"/>
+      <display value="Jamila J XXX_Kwee"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/c934f973-6b23-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Kwee_Vrouw"/>
+   </context>
+   <performedPeriod>
+      <start value="${DATE, T, D, -5}T14:55:00+02:00"/>
+   </performedPeriod>
+   <reasonReference>
+      <reference value="Condition/55733513-6a97-11ec-2334-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Kwee_Vrouw"/>
+   </reasonReference>
+</Procedure>

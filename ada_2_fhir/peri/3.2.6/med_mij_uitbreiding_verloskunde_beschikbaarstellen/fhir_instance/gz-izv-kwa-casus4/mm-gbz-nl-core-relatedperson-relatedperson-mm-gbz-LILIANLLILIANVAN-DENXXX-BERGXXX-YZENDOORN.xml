@@ -1,0 +1,103 @@
+<RelatedPerson xmlns="http://hl7.org/fhir">
+   <id value="relatedperson-mm-gbz-LILIANLLILIANVAN-DENXXX-BERGXXX-YZENDOORN"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>
+            <span title="Naamsamenstelling: Partnernaam gevolgd door eigennaam">Lilian L XXX_Yzendoorn-van den XXX_Berg</span> (Lilian), Genderidentiteit: <b>
+               <span title="niet-binair (non-binary - 2.16.840.1.113883.4.642.4.973)">niet-binair</span>
+            </b>
+         </div>
+         <div>
+            <a href="tel:0614586923">0614586923</a> (Mobiel), <a href="mailto:l.vandenberg@test.nl">l.vandenberg@test.nl</a> (E-mail)</div>
+         <div>
+            <span title="Eerste relatie/contactpersoon (1 - RoleCodeLijst (COD472-VEKT))">Eerste relatie/contactpersoon</span>, <span title="Echtgenote (WIFE - v3/RoleCode)">Echtgenote</span> van Willemijn W XXX_Yzendoorn van den XXX_Berg</div>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-patient-genderIdentity">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.4.642.4.973"/>
+            <code value="non-binary"/>
+            <display value="niet-binair"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
+            <code value="1"/>
+            <display value="Eerste relatie/contactpersoon"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="9329ded7-6b6d-11ec-0000-020000000000"/>
+   </identifier>
+   <patient>
+      <reference value="Patient/WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG"/>
+      <display value="Willemijn W XXX_Yzendoorn van den XXX_Berg"/>
+   </patient>
+   <relationship>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/RoleCode"/>
+         <code value="WIFE"/>
+         <display value="Echtgenote"/>
+      </coding>
+   </relationship>
+   <name>
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+         <valueCode value="NL3"/>
+      </extension>
+      <text value="Lilian L XXX_Yzendoorn-van den XXX_Berg"/>
+      <family value="XXX_Yzendoorn-van den XXX_Berg">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+            <valueString value="van den"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="XXX_Berg"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+            <valueString value="XXX_Yzendoorn"/>
+         </extension>
+      </family>
+      <given value="Lilian">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <given value="L">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="IN"/>
+         </extension>
+      </given>
+      <given value="Lilian">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="CL"/>
+         </extension>
+      </given>
+   </name>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="MC"/>
+               <display value="Mobiel telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="0614586923"/>
+      <use value="mobile"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="l.vandenberg@test.nl"/>
+   </telecom>
+</RelatedPerson>

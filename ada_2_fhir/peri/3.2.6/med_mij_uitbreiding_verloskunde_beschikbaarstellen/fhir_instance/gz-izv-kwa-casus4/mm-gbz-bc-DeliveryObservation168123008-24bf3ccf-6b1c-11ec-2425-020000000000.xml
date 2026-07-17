@@ -1,0 +1,64 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-kwa-casus4 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/bevalling/nageboortefase/placenta/placenta_paq_observatie (peri32-dataelement-4254) -->
+   <id value="24bf3ccf-6b1c-11ec-2425-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DeliveryObservation"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 2 Vrouw-XXX_Yzendoorn</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -324}</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="monster ingestuurd voor onderzoek (situatie) (168123008 - SNOMED CT)">monster ingestuurd voor onderzoek (situatie)</span>
+                  </td>
+                  <td>ja</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
+      <valueReference>
+         <reference value="Procedure/3e94ea4f-6ae6-11ec-2123-020000000000"/>
+         <display value="bevalling zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="24bf3ccf-6b1c-11ec-2425-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="168123008"/>
+         <display value="monster ingestuurd voor onderzoek (situatie)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG"/>
+      <display value="Willemijn W XXX_Yzendoorn van den XXX_Berg"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/14d1a1ff-6b66-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -324}"/>
+   <valueBoolean value="true"/>
+</Observation>

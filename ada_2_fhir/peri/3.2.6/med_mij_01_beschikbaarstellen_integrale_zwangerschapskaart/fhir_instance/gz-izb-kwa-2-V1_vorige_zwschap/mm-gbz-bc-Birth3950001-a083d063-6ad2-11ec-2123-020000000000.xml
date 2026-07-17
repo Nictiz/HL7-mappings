@@ -1,0 +1,65 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izb-kwa-2-V1_vorige_zwschap /adaxml/data/med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/bevalling/uitdrijvingsfase (peri32-dataelement-39) -->
+   <id value="a083d063-6ad2-11ec-2123-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Birth"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Kind Eduard Ed XXX_Kooij. Categorie: <span title="obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="geboorte (bevinding) (3950001 - SNOMED CT)">geboorte (bevinding)</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: ${DATE, T, D, -587}</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>Zwangerschap 1 XXX_Kooij_Vrouw</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="a083d063-6ad2-11ec-2123-020000000000"/>
+   </identifier>
+   <partOf>
+      <reference value="Procedure/05bb4fa3-6a9a-11ec-2123-020000000000"/>
+      <display value="bevalling zwangerschap 1 XXX_Kooij_Vrouw"/>
+   </partOf>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="386637004"/>
+         <display value="obstetrische verrichting (verrichting)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="3950001"/>
+         <display value="geboorte (bevinding)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/EDUARD-ED-XXX-KOOIJ"/>
+      <display value="Kind Eduard Ed XXX_Kooij"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/23bb7ed3-6b26-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Kooij_Vrouw"/>
+   </context>
+   <performedDateTime value="${DATE, T, D, -587}"/>
+   <reasonReference>
+      <reference value="Condition/78b27a33-6ae8-11ec-2334-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Kooij_Vrouw"/>
+   </reasonReference>
+</Procedure>

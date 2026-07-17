@@ -1,0 +1,96 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izb-kwa-3B-V2_meerling_2elijn /adaxml/data/med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/zwangerschapsgegevens/prenatale_controle/leven_voelen_observatie (peri32-dataelement-2134) -->
+   <id value="addf1c93-6b01-11ec-2213-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-PregnancyObservation"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Jamila J XXX_Kwee. Status: definitief<span style="display: block;">Uitvoerende: Eduard XXX_Egelinks XXX_Gras || Gynaecoloog || Erasmus MC, Sophia kinderziekenhuis</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>prenatale controle T-193D XXX_Kwee_Vrouw</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -193}T13:40:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="palpatie (verrichting) (113011001 - SNOMED CT)">palpatie (verrichting)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="bewegingspatroon van foetus (waarneembare entiteit) (364618000 - SNOMED CT)">bewegingspatroon van foetus (waarneembare entiteit)</span>
+                  </td>
+                  <td>
+                     <span title="foetale bewegingen aanwezig (bevinding) (289431008 - SNOMED CT)">foetale bewegingen aanwezig (bevinding)</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
+      <valueReference>
+         <reference value="Condition/55733513-6a97-11ec-2334-020000000000"/>
+         <display value="Zwangerschap 1 XXX_Kwee_Vrouw"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="addf1c93-6b01-11ec-2213-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="364618000"/>
+         <display value="bewegingspatroon van foetus (waarneembare entiteit)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/JAMILA-J-XXX-KWEE"/>
+      <display value="Jamila J XXX_Kwee"/>
+   </subject>
+   <context>
+      <reference value="Encounter/4c771da6-6b6b-11ec-1275-020000000000"/>
+      <display value="prenatale controle T-193D XXX_Kwee_Vrouw"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -193}T13:40:00+02:00"/>
+   <performer>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/practitionerrole-mm-gbz-9876543201-04606020806"/>
+            <display value="Eduard XXX_Egelinks XXX_Gras || Gynaecoloog || Erasmus MC, Sophia kinderziekenhuis"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-98765432"/>
+      <display value="Eduard XXX_Egelinks XXX_Gras"/>
+   </performer>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="289431008"/>
+         <display value="foetale bewegingen aanwezig (bevinding)"/>
+      </coding>
+   </valueCodeableConcept>
+   <method>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="113011001"/>
+         <display value="palpatie (verrichting)"/>
+      </coding>
+   </method>
+</Observation>

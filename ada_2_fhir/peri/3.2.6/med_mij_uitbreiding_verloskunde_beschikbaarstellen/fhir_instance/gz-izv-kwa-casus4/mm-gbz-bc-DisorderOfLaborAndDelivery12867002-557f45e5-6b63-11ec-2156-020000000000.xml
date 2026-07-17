@@ -1,0 +1,83 @@
+<Condition xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-kwa-casus4 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/bevalling/probleem_maternaal (peri32-dataelement-1564) -->
+   <id value="557f45e5-6b63-11ec-2156-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DisorderOfLaborAndDelivery"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Aandoening. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Categorie: <span title="aandoening durante partu (aandoening) (362972006 - SNOMED CT)">aandoening durante partu (aandoening)</span>, Status: actief / voorlopig</caption>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="foetale nood (12867002 - SNOMED CT)">foetale nood</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>${DATE, T, D, -324}</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/condition-partOf">
+      <valueReference>
+         <reference value="Procedure/3e94ea4f-6ae6-11ec-2123-020000000000"/>
+         <display value="bevalling zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="557f45e5-6b63-11ec-2156-020000000000"/>
+   </identifier>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="55561003"/>
+               <display value="Actueel"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus value="provisional">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="415684004"/>
+               <display value="Werk"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </verificationStatus>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="362972006"/>
+         <display value="aandoening durante partu (aandoening)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="12867002"/>
+         <display value="foetale nood"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG"/>
+      <display value="Willemijn W XXX_Yzendoorn van den XXX_Berg"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/14d1a1ff-6b66-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+   </context>
+   <onsetDateTime value="${DATE, T, D, -324}"/>
+</Condition>

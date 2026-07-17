@@ -1,0 +1,48 @@
+<Patient xmlns="http://hl7.org/fhir">
+   <id value="F-FRIDA-XXX-KWEE"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Child"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>F XXX_Kwee (Frida), Man, ${DATE, T, D, -5}, Meerling</div>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="4bbba5e5-6b0a-11ec-0000-020000000000"/>
+   </identifier>
+   <name>
+      <text value="F XXX_Kwee"/>
+      <family value="XXX_Kwee">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="XXX_Kwee"/>
+         </extension>
+      </family>
+      <given value="F">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="IN"/>
+         </extension>
+      </given>
+      <given value="Frida">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="CL"/>
+         </extension>
+      </given>
+   </name>
+   <gender value="male">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+               <code value="M"/>
+               <display value="Man"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </gender>
+   <birthDate value="${DATE, T, D, -5}"/>
+   <multipleBirthBoolean value="true"/>
+</Patient>

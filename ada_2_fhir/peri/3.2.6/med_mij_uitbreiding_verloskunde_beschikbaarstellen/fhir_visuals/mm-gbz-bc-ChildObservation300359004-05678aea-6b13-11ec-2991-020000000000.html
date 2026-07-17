@@ -1,0 +1,111 @@
+<html lang="en">
+   <head>
+      <title>Observation - 05678aea-6b13-11ec-2991-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Observatie/bepaling. Subject: Kind Daniel Mateo DM Daniel De Kleine. Status: definitief<span style="display: block;">Uitvoerende: Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis</span>
+               </caption>
+               <tbody>
+                  <tr>
+                     <th>Context</th>
+                     <td>opname en ontslag T-53D{08:36} P1-Maaike</td>
+                  </tr>
+                  <tr>
+                     <th>Bepalingdatum/tijd</th>
+                     <td>${DATE, T, D, -52}</td>
+                  </tr>
+                  <tr>
+                     <th>Methode</th>
+                     <td>
+                        <span title="bevinding gerapporteerd door patiënt of andere bron van voorgeschiedenis (bevinding) (418799008 - SNOMED CT)">bevinding gerapporteerd door patiënt of andere bron van voorgeschiedenis (bevinding)</span>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Code</th>
+                     <th>Waarde</th>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span title="bevinding betreffende braken (bevinding) (300359004 - SNOMED CT)">bevinding betreffende braken (bevinding)</span>
+                     </td>
+                     <td>
+                        <span title="spuugt mondje terug (bevinding) (113531000146100 - SNOMED CT)">spuugt mondje terug (bevinding)</span>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Observation bevinding betreffende braken (bevinding)</b>
+      </p>
+      <div> - none</div>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 10, label: "Practitioner De Jong", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167.html" }, 
+{ id: 11, label: "PractitionerRole Gynaecoloog", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-03073167030706019999.html" }, 
+{ id: 47, label: "Encounter verlossing (verrichting)", url: "mm-gbz-bc-Encounter-f2ba733f-6af7-11ec-1275-020000000000.html" }, 
+{ id: 205, label: "Observation bevinding betreffende braken (bevinding)", url: "mm-gbz-bc-ChildObservation300359004-05678aea-6b13-11ec-2991-020000000000.html" }, 
+{ id: 258, label: "Patient De Kleine", url: "mm-gbz-bc-Child-DANIEL-MATEO-DM-DANIEL-DE-KLEINE.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 205, to: 258 }, 
+{ from: 205, to: 47 }, 
+{ from: 205, to: 11 }, 
+{ from: 205, to: 10 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

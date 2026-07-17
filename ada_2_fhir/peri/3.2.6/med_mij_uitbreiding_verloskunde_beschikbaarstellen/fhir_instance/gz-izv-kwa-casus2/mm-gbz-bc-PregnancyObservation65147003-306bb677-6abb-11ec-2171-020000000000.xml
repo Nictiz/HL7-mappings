@@ -1,0 +1,85 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-kwa-casus2 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/zwangerschapsgegevens/meerling_zwangerschap_observatie (peri32-dataelement-1711) -->
+   <id value="306bb677-6abb-11ec-2171-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-PregnancyObservation"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Fiona F XXX_Swart. Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 1 XXX_Swart</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -207}</td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="echografie (kwalificatiewaarde) (278292003 - SNOMED CT)">echografie (kwalificatiewaarde)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="tweelingzwangerschap (bevinding) (65147003 - SNOMED CT)">tweelingzwangerschap (bevinding)</span>
+                  </td>
+                  <td>
+                     <span title="monochoriale diamniotische tweelingzwangerschap (bevinding) (459168005 - SNOMED CT)">monochoriale diamniotische tweelingzwangerschap (bevinding)</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
+      <valueReference>
+         <reference value="Condition/e0d93b0f-6b66-11ec-2334-020000000000"/>
+         <display value="Zwangerschap 1 XXX_Swart"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="306bb677-6abb-11ec-2171-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="65147003"/>
+         <display value="tweelingzwangerschap (bevinding)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/FIONA-F-XXX-SWART"/>
+      <display value="Fiona F XXX_Swart"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/8b4a1a6f-6b0c-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Swart"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -207}"/>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="459168005"/>
+         <display value="monochoriale diamniotische tweelingzwangerschap (bevinding)"/>
+      </coding>
+   </valueCodeableConcept>
+   <method>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="278292003"/>
+         <display value="echografie (kwalificatiewaarde)"/>
+      </coding>
+   </method>
+</Observation>

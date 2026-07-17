@@ -1,0 +1,53 @@
+<CarePlan xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-tes-casus9999 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/zorgverlening/patientbespreking/beleid -->
+   <id value="6beadf85-6b1b-11ec-2337-020000000000"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-careplan"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MultidisciplinaryTeamMeeting-Plan"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgplan. Subject: Maaike M Maaike Ostendorf. Categorie: <span title="gedeelte betreffende behandelplan in status (gegevensobject) (423134005 - SNOMED CT)">gedeelte betreffende behandelplan in status (gegevensobject)</span>, Status: actief<span style="display: block;">Intentie: plan</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>patientbespreking T-145D P1-Maaike</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-multidisciplinaryteammeeting-intenttreatment">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="373808002"/>
+            <display value="curatieve intentie"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="6beadf85-6b1b-11ec-2337-020000000000"/>
+   </identifier>
+   <status value="active"/>
+   <intent value="plan"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="423134005"/>
+         <display value="gedeelte betreffende behandelplan in status (gegevensobject)"/>
+      </coding>
+   </category>
+   <subject>
+      <reference value="Patient/MAAIKE-M-MAAIKE-OSTENDORF"/>
+      <display value="Maaike M Maaike Ostendorf"/>
+   </subject>
+   <context>
+      <reference value="Encounter/0f1c4ddf-6b13-11ec-2335-020000000000"/>
+      <display value="patientbespreking T-145D P1-Maaike"/>
+   </context>
+</CarePlan>

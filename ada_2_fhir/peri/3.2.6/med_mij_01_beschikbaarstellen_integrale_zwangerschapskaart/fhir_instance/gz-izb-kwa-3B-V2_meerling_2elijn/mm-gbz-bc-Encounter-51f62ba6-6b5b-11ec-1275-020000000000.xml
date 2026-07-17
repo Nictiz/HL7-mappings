@@ -1,0 +1,97 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izb-kwa-3B-V2_meerling_2elijn -->
+   <id value="51f62ba6-6b5b-11ec-1275-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Encounter"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: Jamila J XXX_Kwee. Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div>
+                        <span title="Poliklinisch (AMB - v3/ActCode)">Poliklinisch</span>
+                     </div>
+                     <span title="consult (verrichting) (11429006 - SNOMED CT)">consult (verrichting)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>${DATE, T, D, -76} - ${DATE, T, D, -76}</td>
+               </tr>
+               <tr>
+                  <th>Probleem/Verrichting</th>
+                  <td>Zwangerschap 1 XXX_Kwee_Vrouw</td>
+               </tr>
+               <tr>
+                  <th>Participant</th>
+                  <td>
+                     <div>Eduard XXX_Egelinks XXX_Gras || Gynaecoloog || Erasmus MC, Sophia kinderziekenhuis</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="51f62ba6-6b5b-11ec-1275-020000000000"/>
+   </identifier>
+   <status value="finished"/>
+   <class>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActCode"/>
+               <code value="AMB"/>
+               <display value="Poliklinisch"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="http://hl7.org/fhir/v3/ActCode"/>
+      <code value="AMB"/>
+      <display value="Poliklinisch"/>
+   </class>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="11429006"/>
+         <display value="consult (verrichting)"/>
+      </coding>
+   </type>
+   <subject>
+      <reference value="Patient/JAMILA-J-XXX-KWEE"/>
+      <display value="Jamila J XXX_Kwee"/>
+   </subject>
+   <episodeOfCare>
+      <reference value="EpisodeOfCare/c934f973-6b23-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Kwee_Vrouw"/>
+   </episodeOfCare>
+   <participant>
+      <individual>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/practitionerrole-mm-gbz-9876543201-04606020806"/>
+               <display value="Eduard XXX_Egelinks XXX_Gras || Gynaecoloog || Erasmus MC, Sophia kinderziekenhuis"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-98765432"/>
+         <display value="Eduard XXX_Egelinks XXX_Gras"/>
+      </individual>
+   </participant>
+   <period>
+      <start value="${DATE, T, D, -76}"/>
+      <end value="${DATE, T, D, -76}"/>
+   </period>
+   <diagnosis>
+      <condition>
+         <reference value="Condition/55733513-6a97-11ec-2334-020000000000"/>
+         <display value="Zwangerschap 1 XXX_Kwee_Vrouw"/>
+      </condition>
+   </diagnosis>
+</Encounter>

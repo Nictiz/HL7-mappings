@@ -1,0 +1,91 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-tes-casus9999 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/postnatale_fase/kraamweek/kind/controles_kind/huilgedrag_observatie (peri32-dataelement-9906) -->
+   <id value="a289fb7a-6aee-11ec-2990-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ChildObservation"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Kind Daniel Mateo DM Daniel De Kleine. Status: definitief<span style="display: block;">Uitvoerende: Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>opname en ontslag T-53D{08:36} P1-Maaike</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -52}</td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="observeren (kwalificatiewaarde) (129268004 - SNOMED CT)">observeren (kwalificatiewaarde)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="huilen (waarneembare entiteit) (28263002 - SNOMED CT)">huilen (waarneembare entiteit)</span>
+                  </td>
+                  <td>
+                     <span title="huilen op lage tonen van zuigeling (bevinding) (125071000146102 - SNOMED CT)">huilen op lage tonen van zuigeling (bevinding)</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <!-- adaChild -->
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="a289fb7a-6aee-11ec-2990-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="28263002"/>
+         <display value="huilen (waarneembare entiteit)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/DANIEL-MATEO-DM-DANIEL-DE-KLEINE"/>
+      <display value="Kind Daniel Mateo DM Daniel De Kleine"/>
+   </subject>
+   <context>
+      <reference value="Encounter/f2ba733f-6af7-11ec-1275-020000000000"/>
+      <display value="opname en ontslag T-53D{08:36} P1-Maaike"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -52}"/>
+   <performer>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/practitionerrole-mm-gbz-03073167030706019999"/>
+            <display value="Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167"/>
+      <display value="Suzan S Suzan De Jong"/>
+   </performer>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="125071000146102"/>
+         <display value="huilen op lage tonen van zuigeling (bevinding)"/>
+      </coding>
+   </valueCodeableConcept>
+   <method>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="129268004"/>
+         <display value="observeren (kwalificatiewaarde)"/>
+      </coding>
+   </method>
+</Observation>

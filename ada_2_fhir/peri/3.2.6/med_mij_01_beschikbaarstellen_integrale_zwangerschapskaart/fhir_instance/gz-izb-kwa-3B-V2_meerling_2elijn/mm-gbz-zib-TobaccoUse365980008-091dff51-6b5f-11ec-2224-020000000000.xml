@@ -1,0 +1,109 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izb-kwa-3B-V2_meerling_2elijn /adaxml/data/med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/zwangerschapsgegevens/prenatale_controle/tabak_gebruik (peri32-dataelement-2243) -->
+   <id value="091dff51-6b5f-11ec-2224-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-TobaccoUse"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Jamila J XXX_Kwee. Status: definitief<span style="display: block;">Uitvoerende: Eduard XXX_Egelinks XXX_Gras || Gynaecoloog || Erasmus MC, Sophia kinderziekenhuis</span>
+            </caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">gestopt op advies verloskundige</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>prenatale controle T-193D XXX_Kwee_Vrouw</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>1 juni 2019 - ${DATE, T, D, -198}</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="bevinding betreffende tabakgebruik en blootstelling aan tabaksrook (bevinding) (365980008 - SNOMED CT)">bevinding betreffende tabakgebruik en blootstelling aan tabaksrook (bevinding)</span>
+                  </td>
+                  <td>
+                     <span title="rookte vroeger (8517006 - SNOMED CT)">rookte vroeger</span>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="type tabak gebruikt (waarneembare entiteit) (53661000146106 - SNOMED CT)">type tabak gebruikt (waarneembare entiteit)</span>
+                  </td>
+                  <td>
+                     <span title="gebruiker van elektronische sigaret (722499006 - SNOMED CT)">gebruiker van elektronische sigaret</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="091dff51-6b5f-11ec-2224-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="365980008"/>
+         <display value="bevinding betreffende tabakgebruik en blootstelling aan tabaksrook (bevinding)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/JAMILA-J-XXX-KWEE"/>
+      <display value="Jamila J XXX_Kwee"/>
+   </subject>
+   <context>
+      <reference value="Encounter/4c771da6-6b6b-11ec-1275-020000000000"/>
+      <display value="prenatale controle T-193D XXX_Kwee_Vrouw"/>
+   </context>
+   <effectivePeriod>
+      <start value="2019-06-01"/>
+      <end value="${DATE, T, D, -198}"/>
+   </effectivePeriod>
+   <performer>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/practitionerrole-mm-gbz-9876543201-04606020806"/>
+            <display value="Eduard XXX_Egelinks XXX_Gras || Gynaecoloog || Erasmus MC, Sophia kinderziekenhuis"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-98765432"/>
+      <display value="Eduard XXX_Egelinks XXX_Gras"/>
+   </performer>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="8517006"/>
+         <display value="rookte vroeger"/>
+      </coding>
+   </valueCodeableConcept>
+   <comment value="gestopt op advies verloskundige"/>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="53661000146106"/>
+            <display value="type tabak gebruikt (waarneembare entiteit)"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="722499006"/>
+            <display value="gebruiker van elektronische sigaret"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+</Observation>

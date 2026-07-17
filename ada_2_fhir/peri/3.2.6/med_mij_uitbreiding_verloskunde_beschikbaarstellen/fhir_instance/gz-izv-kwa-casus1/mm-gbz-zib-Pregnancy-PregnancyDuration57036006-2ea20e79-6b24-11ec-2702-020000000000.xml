@@ -1,0 +1,90 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-kwa-casus1 -->
+   <id value="2ea20e79-6b24-11ec-2702-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-PregnancyDuration"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Maaike M XXX_Ostendorf. Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 2 XXX_Ostendorf</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -445}</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="zwangerschapsduur (57036006 - SNOMED CT)">zwangerschapsduur</span>
+                  </td>
+                  <td>59 d</td>
+               </tr>
+               <tr>
+                  <th>Ondersteunende informatie</th>
+                  <td>prenatale controle T-445D XXX_Ostendorf, probleem zwangerschap XXX_Ostendorf, verrichting zwangerschap zwangerschap 2 XXX_Ostendorf</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
+      <valueReference>
+         <reference value="Condition/565cf23f-6b18-11ec-2334-020000000000"/>
+         <display value="Zwangerschap 2 XXX_Ostendorf"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/workflow-supportingInfoSTU3">
+      <valueReference>
+         <reference value="Encounter/7b035f27-6b20-11ec-1275-020000000000"/>
+         <display value="prenatale controle T-445D XXX_Ostendorf"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/workflow-supportingInfoSTU3">
+      <valueReference>
+         <reference value="Condition/b645daeb-6b3a-11ec-2118-020000000000"/>
+         <display value="probleem zwangerschap XXX_Ostendorf"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/workflow-supportingInfoSTU3">
+      <valueReference>
+         <reference value="Procedure/4303593f-6aec-11ec-2119-020000000000"/>
+         <display value="verrichting zwangerschap zwangerschap 2 XXX_Ostendorf"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="2ea20e79-6b24-11ec-2702-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="57036006"/>
+         <display value="zwangerschapsduur"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/MAAIKE-M-XXX-OSTENDORF"/>
+      <display value="Maaike M XXX_Ostendorf"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/f0eb00a7-6b73-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 XXX_Ostendorf"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -445}"/>
+   <valueQuantity>
+      <value value="59"/>
+      <unit value="d"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="d"/>
+   </valueQuantity>
+</Observation>

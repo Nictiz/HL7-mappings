@@ -1,0 +1,92 @@
+<Organization xmlns="http://hl7.org/fhir">
+   <id value="organization-mm-gbz-2-16-528-1-1007-3-3-12354867"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Organisatie. Id: 12354867 (URA)</caption>
+            <tbody>
+               <tr>
+                  <th>Naam</th>
+                  <td>Ziekenhuis de Hulp</td>
+               </tr>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <div>
+                        <span title="Medisch Specialist (0300 - AGB-medisch specialisme)">Medisch Specialist</span>
+                     </div>
+                     <div>
+                        <span title="Ziekenhuis (V4 - organization-type)">Ziekenhuis</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:0502316594">0502316594</a> (Vast telefoonnummer Werk)<br/>
+                     <a href="mailto:info@ziekenhuisdehulp.test">info@ziekenhuisdehulp.test</a> (E-mail Werk)<br/>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Adres</th>
+                  <td>Zorglaan 22, 8877XX STITSWERD</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+      <value value="12354867"/>
+   </identifier>
+   <type>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+         <code value="0300"/>
+         <display value="Medisch Specialist"/>
+      </coding>
+   </type>
+   <type>
+      <coding>
+         <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+         <code value="V4"/>
+         <display value="Ziekenhuis"/>
+      </coding>
+   </type>
+   <name value="Ziekenhuis de Hulp"/>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Vast telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="0502316594"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="info@ziekenhuisdehulp.test"/>
+      <use value="work"/>
+   </telecom>
+   <address>
+      <line value="Zorglaan 22">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Zorglaan"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="22"/>
+         </extension>
+      </line>
+      <city value="STITSWERD"/>
+      <postalCode value="8877XX"/>
+   </address>
+</Organization>

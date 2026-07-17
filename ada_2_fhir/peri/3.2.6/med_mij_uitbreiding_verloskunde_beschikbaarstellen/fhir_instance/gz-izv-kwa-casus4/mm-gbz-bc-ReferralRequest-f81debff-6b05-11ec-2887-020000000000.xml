@@ -1,0 +1,69 @@
+<ReferralRequest xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-kwa-casus4 -->
+   <id value="f81debff-6b05-11ec-2887-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ReferralRequest"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>ReferralRequest. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Status: actief<span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: Verloskundigenpraktijk 't Groen</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>${DATE, T, D, -527}</td>
+               </tr>
+               <tr>
+                  <th>Ontvanger</th>
+                  <td>Erasmus MC, Sophia kinderziekenhuis</td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>verrichting algemene anamnese zwangerschap 2 Vrouw-XXX_Yzendoorn</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-referralrequest-contacttype">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="169711001+11429006"/>
+            <display value="prenatale intake (verrichting)+consult (verrichting)"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="f81debff-6b05-11ec-2887-020000000000"/>
+   </identifier>
+   <status value="active"/>
+   <intent value="order"/>
+   <subject>
+      <reference value="Patient/WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG"/>
+      <display value="Willemijn W XXX_Yzendoorn van den XXX_Berg"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/14d1a1ff-6b66-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+   </context>
+   <authoredOn value="${DATE, T, D, -527}"/>
+   <requester>
+      <agent>
+         <reference value="Organization/organization-mm-gbz-2-16-840-1-113883-2-4-6-1-08001234"/>
+         <display value="Verloskundigenpraktijk 't Groen"/>
+      </agent>
+   </requester>
+   <recipient>
+      <reference value="Organization/organization-mm-gbz-2-16-840-1-113883-2-4-6-1-06020806"/>
+      <display value="Erasmus MC, Sophia kinderziekenhuis"/>
+   </recipient>
+   <reasonReference>
+      <reference value="Procedure/49646dfa-6b05-11ec-2108-020000000000"/>
+      <display value="verrichting algemene anamnese zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+   </reasonReference>
+</ReferralRequest>

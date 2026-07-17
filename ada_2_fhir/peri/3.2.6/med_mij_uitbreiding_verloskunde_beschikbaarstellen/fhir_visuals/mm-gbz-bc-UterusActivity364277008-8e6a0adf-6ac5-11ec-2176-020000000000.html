@@ -1,0 +1,141 @@
+<html lang="en">
+   <head>
+      <title>Observation - 8e6a0adf-6ac5-11ec-2176-020000000000</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <table>
+               <caption>Observatie/bepaling. Subject: Maaike M Maaike Ostendorf. Status: definitief<span style="display: block;">Uitvoerende: Anne Marie AM Anne Naaktgeboren Kleinsma || Verloskundige || Verloskundigenpraktijk ter Wereld</span>
+               </caption>
+               <tbody>
+                  <tr>
+                     <th>Context</th>
+                     <td>Zwangerschap 2 P1-Maaike</td>
+                  </tr>
+                  <tr>
+                     <th>Methode</th>
+                     <td>
+                        <span title="palpatie van uteriene contracties (verrichting) (114981000146108 - SNOMED CT)">palpatie van uteriene contracties (verrichting)</span>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Code</th>
+                     <th>Waarde</th>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span title="contractietoestand van uterus (waarneembare entiteit) (364277008 - SNOMED CT)">contractietoestand van uterus (waarneembare entiteit)</span>
+                     </td>
+                     <td/>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span title="weeënfrequentie (waarneembare entiteit) (364270005 - SNOMED CT)">weeënfrequentie (waarneembare entiteit)</span>
+                     </td>
+                     <td>2 /s</td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span title="duur van uteruscontractie (waarneembare entiteit) (364274001 - SNOMED CT)">duur van uteruscontractie (waarneembare entiteit)</span>
+                     </td>
+                     <td>35 s</td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span title="intensiteit van uteruscontracties (waarneembare entiteit) (251680002 - SNOMED CT)">intensiteit van uteruscontracties (waarneembare entiteit)</span>
+                     </td>
+                     <td>
+                        <span title="lichte uteruscontracties (bevinding) (289715004 - SNOMED CT)">lichte uteruscontracties (bevinding)</span>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span title="regelmaat van uteruscontracties (waarneembare entiteit) (364271009 - SNOMED CT)">regelmaat van uteruscontracties (waarneembare entiteit)</span>
+                     </td>
+                     <td>
+                        <span title="onregelmatige uteriene contracties (aandoening) (54212005 - SNOMED CT)">onregelmatige uteriene contracties (aandoening)</span>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span title="bevinding betreffende uteruscontracties (bevinding) (289699001 - SNOMED CT)">bevinding betreffende uteruscontracties (bevinding)</span>
+                     </td>
+                     <td>
+                        <span title="uteruscontracties normaal (bevinding) (289738001 - SNOMED CT)">uteruscontracties normaal (bevinding)</span>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Observation contractietoestand van uterus (waarneembare entiteit)</b>
+      </p>
+      <div> - none</div>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 4, label: "EpisodeOfCare observatie betreffende zwangerschap (waarneembare entiteit)", url: "mm-gbz-bc-MaternalRecord-e2116b0f-6b20-11ec-0000-020000000000.html" }, 
+{ id: 8, label: "PractitionerRole Verloskundige", url: "mm-gbz-nl-core-practitionerrole-practitionerrole-mm-gbz-08617625080008009999.html" }, 
+{ id: 9, label: "Practitioner Kleinsma-Naaktgeboren", url: "mm-gbz-nl-core-practitioner-practitioner-mm-gbz-2-16-528-1-1007-3-1-08617625.html" }, 
+{ id: 244, label: "Observation contractietoestand van uterus (waarneembare entiteit)", url: "mm-gbz-bc-UterusActivity364277008-8e6a0adf-6ac5-11ec-2176-020000000000.html" }, 
+{ id: 257, label: "Patient Ostendorf", url: "mm-gbz-bc-Woman-MAAIKE-M-MAAIKE-OSTENDORF.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([{ from: 244, to: 257 }, 
+{ from: 244, to: 4 }, 
+{ from: 244, to: 8 }, 
+{ from: 244, to: 9 }, 
+]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

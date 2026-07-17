@@ -1,0 +1,110 @@
+<ClinicalImpression xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-kwa-casus4 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/zorgverlening/conclusie_professioneel_onderzoek -->
+   <id value="0c23387e-6b4e-11ec-2262-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ClinicalImpression"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>ClinicalImpression. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Status: voltooid</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">meer dan 1000ml bloedverlies in voorgeschiedenis</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="beoordeling (verrichting) (386053000 - SNOMED CT)">beoordeling (verrichting)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Vaststellingsdatum</th>
+                  <td>${DATE, T, D, -527}</td>
+               </tr>
+               <tr>
+                  <th>Onderzoek</th>
+                  <td>
+                     <div>
+                        <span title="obstetrisch onderzoek (verrichting) (271992004 - SNOMED CT)">obstetrisch onderzoek (verrichting)</span> verrichting maternaal onderzoek zwangerschap 2 Vrouw-XXX_Yzendoorn</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Bevinding</th>
+                  <td>
+                     <span title="laagrisicozwangerschap met plaatsindicatie (situatie) (149871000146108 - SNOMED CT)">laagrisicozwangerschap met plaatsindicatie (situatie)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Actie</th>
+                  <td>
+                     <span title="volgen van klinisch zorgpad (regime/therapie) (370858005 - SNOMED CT)">volgen van klinisch zorgpad (regime/therapie)</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-clinicalimpression-management">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="370858005"/>
+            <display value="volgen van klinisch zorgpad (regime/therapie)"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="0c23387e-6b4e-11ec-2262-020000000000"/>
+   </identifier>
+   <status value="completed"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="386053000"/>
+         <display value="beoordeling (verrichting)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG"/>
+      <display value="Willemijn W XXX_Yzendoorn van den XXX_Berg"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/14d1a1ff-6b66-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -527}"/>
+   <investigation>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="271992004"/>
+            <display value="obstetrisch onderzoek (verrichting)"/>
+         </coding>
+      </code>
+      <item>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-clinicalimpression-procedure">
+            <valueReference>
+               <reference value="Procedure/a02f847a-6b10-11ec-2241-020000000000"/>
+               <display value="verrichting maternaal onderzoek zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+            </valueReference>
+         </extension>
+      </item>
+   </investigation>
+   <finding>
+      <itemCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="149871000146108"/>
+            <display value="laagrisicozwangerschap met plaatsindicatie (situatie)"/>
+         </coding>
+      </itemCodeableConcept>
+   </finding>
+   <note>
+      <text value="meer dan 1000ml bloedverlies in voorgeschiedenis"/>
+   </note>
+</ClinicalImpression>

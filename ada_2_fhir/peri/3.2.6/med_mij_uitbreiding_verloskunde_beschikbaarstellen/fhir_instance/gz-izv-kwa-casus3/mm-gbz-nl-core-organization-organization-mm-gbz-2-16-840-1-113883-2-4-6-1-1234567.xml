@@ -1,0 +1,104 @@
+<Organization xmlns="http://hl7.org/fhir">
+   <id value="organization-mm-gbz-2-16-840-1-113883-2-4-6-1-1234567"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Organisatie. Id: 1234567 (AGB-Z)</caption>
+            <tbody>
+               <tr>
+                  <th>Naam</th>
+                  <td>Apotheek de 3 Bergen</td>
+               </tr>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <div>
+                        <span title="Apothekers (0200 - AGB-medisch specialisme)">Apothekers</span>
+                     </div>
+                     <div>
+                        <span title="Openbare apotheek (J8 - organization-type)">Openbare apotheek</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:0326584657">0326584657</a> (Vast telefoonnummer Werk)<br/>
+                     <a href="mailto:info@apotheekdedriebergen.test">info@apotheekdedriebergen.test</a> (E-mail Werk)<br/>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Adres</th>
+                  <td>Wegizstraat 25, 8888XX STITSWERD, NL</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+      <value value="1234567"/>
+   </identifier>
+   <type>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+         <code value="0200"/>
+         <display value="Apothekers"/>
+      </coding>
+   </type>
+   <type>
+      <coding>
+         <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+         <code value="J8"/>
+         <display value="Openbare apotheek"/>
+      </coding>
+   </type>
+   <name value="Apotheek de 3 Bergen"/>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Vast telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="0326584657"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="info@apotheekdedriebergen.test"/>
+      <use value="work"/>
+   </telecom>
+   <address>
+      <line value="Wegizstraat 25">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Wegizstraat"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="25"/>
+         </extension>
+      </line>
+      <city value="STITSWERD"/>
+      <postalCode value="8888XX"/>
+      <country value="NL">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:iso:std:iso:3166"/>
+                  <version value="2020-10-26T00:00:00"/>
+                  <code value="NL"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+</Organization>

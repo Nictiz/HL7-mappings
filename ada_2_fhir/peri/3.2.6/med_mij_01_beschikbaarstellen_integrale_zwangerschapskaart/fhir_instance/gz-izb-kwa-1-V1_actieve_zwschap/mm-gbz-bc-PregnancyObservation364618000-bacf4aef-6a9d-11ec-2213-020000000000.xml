@@ -1,0 +1,78 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izb-kwa-1-V1_actieve_zwschap /adaxml/data/med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/zwangerschapsgegevens/prenatale_controle/leven_voelen_observatie (peri32-dataelement-2134) -->
+   <id value="bacf4aef-6a9d-11ec-2213-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-PregnancyObservation"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Hanna H XXX_Kooij. Status: definitief</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">voelt sinds enkele dagen minder frequent bewegingen</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>prenatale controle T-6D Vrouw1</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -10}</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="bewegingspatroon van foetus (waarneembare entiteit) (364618000 - SNOMED CT)">bewegingspatroon van foetus (waarneembare entiteit)</span>
+                  </td>
+                  <td>
+                     <span title="zwakke foetale bewegingen (bevinding) (276372004 - SNOMED CT)">zwakke foetale bewegingen (bevinding)</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-focusSTU3">
+      <valueReference>
+         <reference value="Condition/d1799aaf-6b7b-11ec-2334-020000000000"/>
+         <display value="Zwangerschap 3 Vrouw1"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="bacf4aef-6a9d-11ec-2213-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="364618000"/>
+         <display value="bewegingspatroon van foetus (waarneembare entiteit)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/HANNA-H-XXX-KOOIJ"/>
+      <display value="Hanna H XXX_Kooij"/>
+   </subject>
+   <context>
+      <reference value="Encounter/92503e42-6b73-11ec-1275-020000000000"/>
+      <display value="prenatale controle T-6D Vrouw1"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -10}"/>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="276372004"/>
+         <display value="zwakke foetale bewegingen (bevinding)"/>
+      </coding>
+   </valueCodeableConcept>
+   <comment value="voelt sinds enkele dagen minder frequent bewegingen"/>
+</Observation>

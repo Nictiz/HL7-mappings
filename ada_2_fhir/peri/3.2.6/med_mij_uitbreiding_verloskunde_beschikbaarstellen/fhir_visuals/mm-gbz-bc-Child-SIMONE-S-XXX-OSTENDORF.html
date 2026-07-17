@@ -1,0 +1,79 @@
+<html lang="en">
+   <head>
+      <title>Patient - SIMONE-S-XXX-OSTENDORF</title>
+      <script type="text/javascript"
+              src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script>
+      <style type="text/css">
+                                * {
+                                  font-family: Verdana, sans-serif;
+                                  font-size: 12px;
+                                }
+                                #mynetwork {
+                                  width: 100%;
+                                  height: 80%;
+                                  border: 1px solid lightgray;
+                                }</style>
+   </head>
+   <body>
+      <p>
+         <div xmlns="http://www.w3.org/1999/xhtml">
+            <div>Id <i>n.v.t. (ontbrekend gegeven)</i>, <span title="Naamsamenstelling: Eigennaam">Simone S XXX_Ostendorf</span>, ${DATE, T, D, -225}, Geen meerling</div>
+         </div>
+      </p>
+      <p>
+         <b>Resources pointing to 'this' resource - Patient XXX_Ostendorf</b>
+      </p>
+      <ul>
+         <li>
+            <a href="mm-gbz-bc-FetusObservation271692001-5dd887ab-6b2f-11ec-2416-020000000000.html">Observation presenterend deel van foetus (waarneembare entiteit)</a>
+         </li>
+         <li>
+            <a href="mm-gbz-bc-Birth3950001-e95374d3-6b68-11ec-2123-020000000000.html">Procedure geboorte (bevinding)</a>
+         </li>
+      </ul>
+      <div id="mynetwork"> </div>
+      <script type="text/javascript">// create an array with nodes
+var nodes = new vis.DataSet([
+{ id: 44, label: "Patient XXX_Ostendorf", url: "mm-gbz-bc-Child-SIMONE-S-XXX-OSTENDORF.html" }, 
+]);
+
+// create an array with edges
+var edges = new vis.DataSet([]);
+// create a network
+var container = document.getElementById("mynetwork");
+var data = {
+  nodes: nodes,
+  edges: edges,
+};
+
+var options = {
+    nodes: {
+        shape: 'dot',
+        size: 20,
+        font: {
+            size: 14,
+            color: 'black'
+        }
+    },
+    edges: {
+        width: 2
+    },
+    physics: {
+        enabled: true
+    }
+};
+var network = new vis.Network(container, data, options);
+// Add event listener for clicking a node
+network.on('selectNode', function (event) {
+
+});
+network.on('doubleClick', function (event) {
+var nodeId = event.nodes[0];
+var node = nodes.get(nodeId);
+if (node.url) {
+    window.open(node.url, '_self'); // Open in new same tab
+}
+});
+</script>
+   </body>
+</html>

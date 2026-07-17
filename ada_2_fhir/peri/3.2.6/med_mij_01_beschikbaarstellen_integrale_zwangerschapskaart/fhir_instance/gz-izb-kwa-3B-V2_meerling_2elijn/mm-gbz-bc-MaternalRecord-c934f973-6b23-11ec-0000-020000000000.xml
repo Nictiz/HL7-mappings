@@ -1,0 +1,56 @@
+<EpisodeOfCare xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izb-kwa-3B-V2_meerling_2elijn -->
+   <id value="c934f973-6b23-11ec-0000-020000000000"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-episodeofcare"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MaternalRecord"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgepisode. Patiënt: Jamila J XXX_Kwee. Id: 123123249, Status: actief</caption>
+            <tbody>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <span title="observatie betreffende zwangerschap (waarneembare entiteit) (364320009 - SNOMED CT)">observatie betreffende zwangerschap (waarneembare entiteit)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>Vanaf ${DATE, T, D, -193}</td>
+               </tr>
+               <tr>
+                  <th>Diagnose</th>
+                  <td>Zwangerschap 1 XXX_Kwee_Vrouw</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <value value="123123249"/>
+   </identifier>
+   <status value="active"/>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="364320009"/>
+         <display value="observatie betreffende zwangerschap (waarneembare entiteit)"/>
+      </coding>
+   </type>
+   <diagnosis>
+      <condition>
+         <reference value="Condition/55733513-6a97-11ec-2334-020000000000"/>
+         <display value="Zwangerschap 1 XXX_Kwee_Vrouw"/>
+      </condition>
+   </diagnosis>
+   <patient>
+      <reference value="Patient/JAMILA-J-XXX-KWEE"/>
+      <display value="Jamila J XXX_Kwee"/>
+   </patient>
+   <period>
+      <start value="${DATE, T, D, -193}"/>
+   </period>
+</EpisodeOfCare>

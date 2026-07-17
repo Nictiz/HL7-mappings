@@ -1,0 +1,98 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-tes-casus9999 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/postnatale_fase/kraamweek/vrouw/controles_moeder/controle_benen/bevindingen_benen_observatie (peri32-dataelement-2865) -->
+   <id value="aac286aa-6b68-11ec-2286-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MaternalObservation"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Maaike M Maaike Ostendorf. Status: definitief<span style="display: block;">Uitvoerende: Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>opname en ontslag T-53D{08:36} P1-Maaike</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -52}</td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="bevinding gerapporteerd door patiënt of andere bron van voorgeschiedenis (bevinding) (418799008 - SNOMED CT)">bevinding gerapporteerd door patiënt of andere bron van voorgeschiedenis (bevinding)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="bilateraal (51440002 - SNOMED CT)">bilateraal</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="bevinding betreffende onderste extremiteit (bevinding) (116312005 - SNOMED CT)">bevinding betreffende onderste extremiteit (bevinding)</span>
+                  </td>
+                  <td/>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="aac286aa-6b68-11ec-2286-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="116312005"/>
+         <display value="bevinding betreffende onderste extremiteit (bevinding)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/MAAIKE-M-MAAIKE-OSTENDORF"/>
+      <display value="Maaike M Maaike Ostendorf"/>
+   </subject>
+   <context>
+      <reference value="Encounter/f2ba733f-6af7-11ec-1275-020000000000"/>
+      <display value="opname en ontslag T-53D{08:36} P1-Maaike"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -52}"/>
+   <performer>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/practitionerrole-mm-gbz-03073167030706019999"/>
+            <display value="Suzan S Suzan De Jong || Gynaecoloog || Stitswerd Ziekenhuis"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-03073167"/>
+      <display value="Suzan S Suzan De Jong"/>
+   </performer>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="51440002"/>
+               <display value="bilateraal"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </bodySite>
+   <method>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="418799008"/>
+         <display value="bevinding gerapporteerd door patiënt of andere bron van voorgeschiedenis (bevinding)"/>
+      </coding>
+   </method>
+</Observation>

@@ -1,0 +1,122 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-kwa-casus4 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/bevalling/uitdrijvingsfase (peri32-dataelement-39) -->
+   <id value="ec528aff-6b4c-11ec-2123-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Birth"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Kind Mieke XXX_Yzendoorn. Categorie: <span title="obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">obstetrische verrichting (verrichting)</span>, Status: voltooid<span style="display: block;">Uitvoerende: Eduard XXX_Egelinks || Gynaecoloog || Erasmus MC, Sophia kinderziekenhuis (uit naam van: Erasmus MC, Sophia kinderziekenhuis), Eduard XXX_Egelinks || Gynaecoloog || Erasmus MC, Sophia kinderziekenhuis (uit naam van: Erasmus MC, Sophia kinderziekenhuis)</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="geboorte (bevinding) (3950001 - SNOMED CT)">geboorte (bevinding)</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: 9 september 2023</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Locatie</th>
+                  <td>Erasmus MC, Sophia kinderziekenhuis</td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>Zwangerschap 2 Vrouw-XXX_Yzendoorn</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="ec528aff-6b4c-11ec-2123-020000000000"/>
+   </identifier>
+   <partOf>
+      <reference value="Procedure/3e94ea4f-6ae6-11ec-2123-020000000000"/>
+      <display value="bevalling zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+   </partOf>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="386637004"/>
+         <display value="obstetrische verrichting (verrichting)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="3950001"/>
+         <display value="geboorte (bevinding)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/MIEKE-XXX-YZENDOORN"/>
+      <display value="Kind Mieke XXX_Yzendoorn"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/14d1a1ff-6b66-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+   </context>
+   <performedDateTime value="2023-09-09"/>
+   <performer>
+      <role>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="PRF"/>
+            <display value="performer"/>
+         </coding>
+         <text value="Aanpakker kind"/>
+      </role>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/practitionerrole-mm-gbz-98765432201-04606020806"/>
+               <display value="Eduard XXX_Egelinks || Gynaecoloog || Erasmus MC, Sophia kinderziekenhuis"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-987654322"/>
+         <display value="Eduard XXX_Egelinks"/>
+      </actor>
+      <onBehalfOf>
+         <reference value="Organization/organization-mm-gbz-2-16-840-1-113883-2-4-6-1-06020806"/>
+         <display value="Erasmus MC, Sophia kinderziekenhuis"/>
+      </onBehalfOf>
+   </performer>
+   <performer>
+      <role>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="RESP"/>
+            <display value="responsible party"/>
+         </coding>
+         <text value="Supervisor"/>
+      </role>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/practitionerrole-mm-gbz-98765432201-04606020806"/>
+               <display value="Eduard XXX_Egelinks || Gynaecoloog || Erasmus MC, Sophia kinderziekenhuis"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-987654322"/>
+         <display value="Eduard XXX_Egelinks"/>
+      </actor>
+      <onBehalfOf>
+         <reference value="Organization/organization-mm-gbz-2-16-840-1-113883-2-4-6-1-06020806"/>
+         <display value="Erasmus MC, Sophia kinderziekenhuis"/>
+      </onBehalfOf>
+   </performer>
+   <location>
+      <reference value="Location/location-mm-gbz-2-16-840-1-113883-2-4-6-1-06020806"/>
+      <display value="Erasmus MC, Sophia kinderziekenhuis"/>
+   </location>
+   <reasonReference>
+      <reference value="Condition/8e9592ff-6aab-11ec-2334-020000000000"/>
+      <display value="Zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+   </reasonReference>
+</Procedure>

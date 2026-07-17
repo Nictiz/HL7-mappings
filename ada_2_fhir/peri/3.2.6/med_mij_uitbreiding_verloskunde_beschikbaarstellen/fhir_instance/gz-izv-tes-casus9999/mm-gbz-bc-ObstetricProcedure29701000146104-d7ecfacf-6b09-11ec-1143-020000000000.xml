@@ -1,0 +1,107 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-tes-casus9999 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/bevalling/nageboortefase/perineum/verrichting (peri32-dataelement-1432) -->
+   <id value="d7ecfacf-6b09-11ec-1143-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ObstetricProcedure"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Maaike M Maaike Ostendorf. Categorie: <span title="obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="doorlopende intracutane hechting van huid (verrichting) (29701000146104 - SNOMED CT)">doorlopende intracutane hechting van huid (verrichting)</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: ${DATE, T, D, -53}T15:34:00+02:00 - ${DATE, T, D, -53}T15:39:00+02:00</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="doorlopende intracutane hechting van huid (verrichting) (29701000146104 - SNOMED CT)">doorlopende intracutane hechting van huid (verrichting)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="structuur van perineum (lichaamsstructuur) (38864007 - SNOMED CT)">structuur van perineum (lichaamsstructuur)</span>
+                     <span title="Rechts en links (51440002 - SNOMED CT)">Rechts en links</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>Zwangerschap 2 P1-Maaike</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="29701000146104"/>
+            <display value="doorlopende intracutane hechting van huid (verrichting)"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="d7ecfacf-6b09-11ec-1143-020000000000"/>
+   </identifier>
+   <partOf>
+      <reference value="Procedure/424379bf-6aa3-11ec-2123-020000000000"/>
+      <display value="bevalling zwangerschap 2 P1-Maaike"/>
+   </partOf>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="386637004"/>
+         <display value="obstetrische verrichting (verrichting)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="29701000146104"/>
+         <display value="doorlopende intracutane hechting van huid (verrichting)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/MAAIKE-M-MAAIKE-OSTENDORF"/>
+      <display value="Maaike M Maaike Ostendorf"/>
+   </subject>
+   <context>
+      <reference value="Encounter/f2ba733f-6af7-11ec-1275-020000000000"/>
+      <display value="opname en ontslag T-53D{08:36} P1-Maaike"/>
+   </context>
+   <performedPeriod>
+      <start value="${DATE, T, D, -53}T15:34:00+02:00"/>
+      <end value="${DATE, T, D, -53}T15:39:00+02:00"/>
+   </performedPeriod>
+   <reasonReference>
+      <reference value="Condition/1970564f-6aba-11ec-2334-020000000000"/>
+      <display value="Zwangerschap 2 P1-Maaike"/>
+   </reasonReference>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="51440002"/>
+               <display value="Rechts en links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="38864007"/>
+         <display value="structuur van perineum (lichaamsstructuur)"/>
+      </coding>
+   </bodySite>
+</Procedure>

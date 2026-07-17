@@ -1,0 +1,81 @@
+<NutritionOrder xmlns="http://hl7.org/fhir">
+   <id value="NutritionAdvice-mm-gbz-480d3bef-6b40-11ec-2794-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-NutritionAdvice"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Voedingsadvies. Patiënt: Kind Daniel Mateo DM Daniel De Kleine. Status: actief</caption>
+            <tbody>
+               <tr>
+                  <th>Aanvraagdatum</th>
+                  <td>
+                     <i>onbekend (ontbrekend gegeven)</i>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Toelichting</th>
+                  <td>Navelvene katheter</td>
+               </tr>
+               <tr>
+                  <td colspan="2">
+                     <table>
+                        <caption>Orale voeding</caption>
+                        <thead>
+                           <tr>
+                              <th>Type</th>
+                              <th>Texture</th>
+                              <th>Vloeistofconsistentie</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td>Parentale voeding</td>
+                              <td>Vloeibaar<div>Vloeibaar</div>
+                              </td>
+                              <td>Vloeibaar</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-NutritionAdvice-Explanation">
+      <valueString value="Navelvene katheter"/>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="4df062fa-6ad9-11ec-0000-020000000000"/>
+   </identifier>
+   <status value="active"/>
+   <patient>
+      <reference value="Patient/DANIEL-MATEO-DM-DANIEL-DE-KLEINE"/>
+      <display value="Kind Daniel Mateo DM Daniel De Kleine"/>
+   </patient>
+   <dateTime>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </dateTime>
+   <oralDiet>
+      <type>
+         <text value="Parentale voeding"/>
+      </type>
+      <texture>
+         <modifier>
+            <text value="Vloeibaar"/>
+         </modifier>
+         <foodType>
+            <text value="Vloeibaar"/>
+         </foodType>
+      </texture>
+      <fluidConsistencyType>
+         <text value="Vloeibaar"/>
+      </fluidConsistencyType>
+   </oralDiet>
+</NutritionOrder>

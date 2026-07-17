@@ -1,0 +1,115 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izb-kwa-1-V1_actieve_zwschap /adaxml/data/med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/bouwstenen/metingen/bloeddruk (peri32-dataelement-1060) -->
+   <id value="33a7fa6f-6b08-11ec-2106-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BloodPressure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Hanna H XXX_Kooij. Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>prenatale controle T-139D Vrouw1</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -139}</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Bloeddruk panel waarvan alle leden optioneel in arterieel vaatstelsel (85354-9 - LOINC)">Bloeddruk panel waarvan alle leden optioneel in arterieel vaatstelsel</span>
+                  </td>
+                  <td/>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Intravasculaire systolische bloeddruk [druk] in arterieel vaatstelsel (8480-6 - LOINC)">Intravasculaire systolische bloeddruk [druk] in arterieel vaatstelsel</span>
+                  </td>
+                  <td>133 mm[Hg]</td>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Intravasculaire diastolische bloeddruk [druk] in arterieel vaatstelsel (8462-4 - LOINC)">Intravasculaire diastolische bloeddruk [druk] in arterieel vaatstelsel</span>
+                  </td>
+                  <td>89 mm[Hg]</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="33a7fa6f-6b08-11ec-2106-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://hl7.org/fhir/observation-category"/>
+         <code value="vital-signs"/>
+         <display value="Vital Signs"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="85354-9"/>
+         <display value="Bloeddruk panel waarvan alle leden optioneel in arterieel vaatstelsel"/>
+      </coding>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="55284-4"/>
+         <display value="Systolische en diastolische bloeddruk in arterieel vaatstelsel"/>
+      </coding>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="46973005"/>
+         <display value="bloeddrukmeting (verrichting)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/HANNA-H-XXX-KOOIJ"/>
+      <display value="Hanna H XXX_Kooij"/>
+   </subject>
+   <context>
+      <reference value="Encounter/b61d2df6-6af1-11ec-1275-020000000000"/>
+      <display value="prenatale controle T-139D Vrouw1"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -139}"/>
+   <component>
+      <code>
+         <coding>
+            <system value="http://loinc.org"/>
+            <code value="8480-6"/>
+            <display value="Intravasculaire systolische bloeddruk [druk] in arterieel vaatstelsel"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="133"/>
+         <unit value="mm[Hg]"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mm[Hg]"/>
+      </valueQuantity>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://loinc.org"/>
+            <code value="8462-4"/>
+            <display value="Intravasculaire diastolische bloeddruk [druk] in arterieel vaatstelsel"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="89"/>
+         <unit value="mm[Hg]"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mm[Hg]"/>
+      </valueQuantity>
+   </component>
+</Observation>

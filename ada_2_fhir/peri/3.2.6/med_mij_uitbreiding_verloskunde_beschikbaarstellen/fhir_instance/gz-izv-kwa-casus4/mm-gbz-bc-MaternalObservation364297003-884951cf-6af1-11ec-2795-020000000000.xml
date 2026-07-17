@@ -1,0 +1,77 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-kwa-casus4 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/postnatale_fase/nacontrole/conditie_perineum_observatie (peri32-dataelement-7950) -->
+   <id value="884951cf-6af1-11ec-2795-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MaternalObservation"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Status: definitief<span style="display: block;">Uitvoerende: Gemma XXX_Groeneboom XXX_Gras || Verloskundige || Verloskundigenpraktijk 't Groen</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>nacontrole T-315D Vrouw-XXX_Yzendoorn</td>
+               </tr>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, -315}</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="observatie betreffende perineum van vrouw (waarneembare entiteit) (364297003 - SNOMED CT)">observatie betreffende perineum van vrouw (waarneembare entiteit)</span>
+                  </td>
+                  <td>
+                     <span title="perineum intact (bevinding) (289854007 - SNOMED CT)">perineum intact (bevinding)</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="884951cf-6af1-11ec-2795-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="364297003"/>
+         <display value="observatie betreffende perineum van vrouw (waarneembare entiteit)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG"/>
+      <display value="Willemijn W XXX_Yzendoorn van den XXX_Berg"/>
+   </subject>
+   <context>
+      <reference value="Encounter/430238a3-6af7-11ec-1275-020000000000"/>
+      <display value="nacontrole T-315D Vrouw-XXX_Yzendoorn"/>
+   </context>
+   <effectiveDateTime value="${DATE, T, D, -315}"/>
+   <performer>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/practitionerrole-mm-gbz-12340001103-00008001234"/>
+            <display value="Gemma XXX_Groeneboom XXX_Gras || Verloskundige || Verloskundigenpraktijk 't Groen"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-123400011"/>
+      <display value="Gemma XXX_Groeneboom XXX_Gras"/>
+   </performer>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="289854007"/>
+         <display value="perineum intact (bevinding)"/>
+      </coding>
+   </valueCodeableConcept>
+</Observation>
