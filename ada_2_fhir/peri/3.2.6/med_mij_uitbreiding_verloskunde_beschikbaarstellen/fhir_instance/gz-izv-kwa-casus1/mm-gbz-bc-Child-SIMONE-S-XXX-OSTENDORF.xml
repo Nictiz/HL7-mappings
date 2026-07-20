@@ -7,7 +7,7 @@
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
-         <div>Id <i>n.v.t. (ontbrekend gegeven)</i>, <span title="Naamsamenstelling: Eigennaam">Simone S XXX_Ostendorf</span>, ${DATE, T, D, -225}, Geen meerling</div>
+         <div>Id <i>n.v.t. (ontbrekend gegeven)</i>, <span title="Naamsamenstelling: Eigennaam">Simone S XXX_Ostendorf</span>, ${DATE, T, D, -225}T12:40:00+02:00, Geen meerling</div>
       </div>
    </text>
    <identifier>
@@ -36,6 +36,11 @@
          </extension>
       </given>
    </name>
-   <birthDate value="${DATE, T, D, -225}"/>
+   <birthDate value="${DATE, T, D, -225}T12:40:00+02:00">
+      <extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
+         <valueDateTime value="${DATE, T, D, -225}T12:40:00+02:00"/>
+      </extension>
+   </birthDate>
+   <deceasedBoolean value="false"/>
    <multipleBirthBoolean value="false"/>
 </Patient>
