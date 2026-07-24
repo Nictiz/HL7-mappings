@@ -7,13 +7,13 @@
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
-         <div>
-            <span title="Naamsamenstelling: Eigennaam">Mieke XXX_Yzendoorn</span>, Vrouw, 9 september 2023, Geen meerling</div>
+         <div>Id <i>n.v.t. (ontbrekend gegeven)</i>, <span title="Naamsamenstelling: Eigennaam">Mieke XXX_Yzendoorn</span>, Vrouw, ${DATE, T, D, -324}T20:50:00+02:00, Geen meerling</div>
       </div>
    </text>
    <identifier>
-      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="1f2e610e-6ae6-11ec-0000-020000000000"/>
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+         <valueCode value="NA"/>
+      </extension>
    </identifier>
    <name>
       <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
@@ -42,6 +42,10 @@
          </valueCodeableConcept>
       </extension>
    </gender>
-   <birthDate value="2023-09-09"/>
+   <birthDate value="${DATE, T, D, -324}T20:50:00+02:00">
+      <extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
+         <valueDateTime value="${DATE, T, D, -324}T20:50:00+02:00"/>
+      </extension>
+   </birthDate>
    <multipleBirthBoolean value="false"/>
 </Patient>
