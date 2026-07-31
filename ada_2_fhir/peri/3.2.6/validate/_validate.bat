@@ -12,6 +12,19 @@ GOTO igpublish
 ECHO We're online
 SET txoption=
 
+ECHO.
+ECHO ====================================
+ECHO Kies wat je wilt valideren
+ECHO ====================================
+ECHO.
+ECHO   1. Profielen
+ECHO   2. Fixtures
+ECHO.
+CHOICE /C 12 /N /M "Maak een keuze (1 of 2): "
+
+if errorlevel 2 goto igpublish
+if errorlevel 1 goto validateProfiles
+
 :igpublish
 
 SET JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
@@ -21,6 +34,8 @@ SET "echo_root=%~dp0..\med_mij_echo_beschikbaarstellen\fhir_instance"
 SET "kraam_root=%~dp0..\med_mij_kraam_beschikbaarstellen\fhir_instance"
 
 IF EXIST "%input_cache_path%\%publisher_jar%" (
+	echo.
+	echo Fixtures worden gevalideerd...
 	REM JAVA -jar "%input_cache_path%\%publisher_jar%" -ig . %txoption% %*
   	java -jar "%input_cache_path%\%publisher_jar%" ^
    		-ig nictiz.fhir.nl.stu3.geboortezorg#3.0.0-beta1-rc.2 ^
@@ -38,6 +53,7 @@ IF EXIST "%input_cache_path%\%publisher_jar%" (
 		"%echo_root%\gz-ize-kwa-casus1" ^
 		"%kraam_root%\gz-izk-kwa-casus1" ^
 		 > validator-console.log 2>&1
+		 goto end
 ) ELSE If exist "..\%publisher_jar%" (
 	REM JAVA -jar "..\%publisher_jar%" -ig . %txoption% %*
 	java -jar "..\%publisher_jar%" ^
@@ -58,8 +74,39 @@ IF EXIST "%input_cache_path%\%publisher_jar%" (
 		"%echo_root%\gz-ize-kwa-casus1" ^
 		"%kraam_root%\gz-izk-kwa-casus1" ^
 		 > validator-console.log 2>&1
+		 goto end
 ) ELSE (
 	ECHO IG Validator NOT FOUND in input-cache or parent folder.  Please run _updateValidator.  Aborting...
+	goto end
 )
 
+:validateProfiles
+
+SET JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
+set "profiles=%~dp0../../../../../Geboortezorg-STU3/profiles"
+
+IF EXIST "%input_cache_path%\%publisher_jar%" (
+	echo.
+	echo Profielen worden gevalideerd...
+	java -jar "%input_cache_path%\%publisher_jar%" ^
+  	-ig nictiz.fhir.nl.stu3.zib2017#2.2.10 ^
+	-ig "%profiles%" ^
+  	-version 3.0 ^
+	-recurse ^
+	-html-output validation-profiles.html ^
+	-txLog txlog.txt ^
+	-locale nl ^
+	-language nl ^
+	-sct 11000146104 ^
+	-display-issues-are-warnings ^
+	-level error ^
+  	"%profiles%\*" ^
+	 > validator-console.log 2>&1
+	goto end
+) ELSE (
+	ECHO IG Validator NOT FOUND in input-cache or parent folder.  Please run _updateValidator.  Aborting...
+	goto end
+)
+
+:end
 PAUSE
