@@ -1,0 +1,3211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Bundle xmlns="http://hl7.org/fhir">
+  <type value="collection"/>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <p>Alles oké</p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Information</td>
+                <td/>
+                <td>Informational Note</td>
+                <td>Alles OK</td>
+                <td/>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-1-minimaal-communication-.xml"/>
+        </extension>
+        <issue>
+          <severity value="information"/>
+          <code value="informational"/>
+          <details>
+            <text value="Alles OK"/>
+          </details>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+                <td>
+                  <b>Bron</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition</td>
+                <td>Structural Issue</td>
+                <td>Composition.author: minimum vereist = 1, maar 0 gevonden (uit http://hl7.org/fhir/StructureDefinition/Composition|4.0.1)</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Composition.type.coding[0].display</td>
+                <td>Invalid Content</td>
+                <td>Wrong Display Name 'Referral note' for http://loinc.org#57133-1. Valid display is 'Verwijsbrief [bevinding] in {instelling} d.m.v. {rol} (document)' (nl-NL) (for the language(s) 'nl')</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.date</td>
+                <td>Invalid Content</td>
+                <td>Ongeldige datum/tijd (T)</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.date</td>
+                <td>Invalid Content</td>
+                <td>Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-1-minimaal-composition-ambu-az-ave-tst-1-minimaal.xml"/>
+        </extension>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="1"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="42"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Validation_VAL_Profile_Minimum"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="Composition.author: minimum vereist = 1, maar 0 gevonden (uit http://hl7.org/fhir/StructureDefinition/Composition|4.0.1)"/>
+          </details>
+          <expression value="Composition"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="10"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="10"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Display_Name_for__should_be_one_of__instead_of"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Wrong Display Name 'Referral note' for http://loinc.org#57133-1. Valid display is 'Verwijsbrief [bevinding] in {instelling} d.m.v. {rol} (document)' (nl-NL) (for the language(s) 'nl')"/>
+          </details>
+          <expression value="Composition.type.coding[0].display"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="22"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="21"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Ongeldige datum/tijd (T)"/>
+          </details>
+          <expression value="Composition.date"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="22"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="21"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_TZ"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten"/>
+          </details>
+          <expression value="Composition.date"/>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+                <td>
+                  <b>Bron</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>DocumentReference.masterIdentifier.system</td>
+                <td>Invalid Content</td>
+                <td>OID's moeten geldig zijn (2.25)</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>DocumentReference.identifier[0].system</td>
+                <td>Invalid Content</td>
+                <td>OID's moeten geldig zijn (2.25)</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Warning</td>
+                <td>DocumentReference.type.coding[0].system</td>
+                <td>Not Found</td>
+                <td>A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.55.5.16' could not be found, so the code cannot be validated</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-1-minimaal-documentreference-9068.xml"/>
+        </extension>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="7"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="37"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_OID_Valid"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/DocumentReference|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="OID's moeten geldig zijn (2.25)"/>
+          </details>
+          <expression value="DocumentReference.masterIdentifier.system"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="11"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="37"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_OID_Valid"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/DocumentReference|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="OID's moeten geldig zijn (2.25)"/>
+          </details>
+          <expression value="DocumentReference.identifier[0].system"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="15"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="10"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="UNKNOWN_CODESYSTEM"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/DocumentReference|4.0.1"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="not-found"/>
+          <details>
+            <text value="A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.55.5.16' could not be found, so the code cannot be validated"/>
+          </details>
+          <expression value="DocumentReference.type.coding[0].system"/>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <p>Alles oké</p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Information</td>
+                <td/>
+                <td>Informational Note</td>
+                <td>Alles OK</td>
+                <td/>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-1-minimaal-patient-.xml"/>
+        </extension>
+        <issue>
+          <severity value="information"/>
+          <code value="informational"/>
+          <details>
+            <text value="Alles OK"/>
+          </details>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+                <td>
+                  <b>Bron</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>ServiceRequest.authoredOn</td>
+                <td>Invalid Content</td>
+                <td>Ongeldige datum/tijd (T)</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>ServiceRequest.authoredOn</td>
+                <td>Invalid Content</td>
+                <td>Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-1-minimaal-servicerequest-az-ave-tst-1-minimaal.xml"/>
+        </extension>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="23"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="27"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/ServiceRequest|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Ongeldige datum/tijd (T)"/>
+          </details>
+          <expression value="ServiceRequest.authoredOn"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="23"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="27"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_TZ"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/ServiceRequest|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten"/>
+          </details>
+          <expression value="ServiceRequest.authoredOn"/>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+                <td>
+                  <b>Bron</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Task.authoredOn</td>
+                <td>Invalid Content</td>
+                <td>Ongeldige datum/tijd (T)</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Task.authoredOn</td>
+                <td>Invalid Content</td>
+                <td>Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-1-minimaal-task-az-ave-tst-1-minimaal.xml"/>
+        </extension>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="28"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="27"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Task|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Ongeldige datum/tijd (T)"/>
+          </details>
+          <expression value="Task.authoredOn"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="28"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="27"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_TZ"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Task|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten"/>
+          </details>
+          <expression value="Task.authoredOn"/>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <p>Alles oké</p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Information</td>
+                <td/>
+                <td>Informational Note</td>
+                <td>Alles OK</td>
+                <td/>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-2-maximaal-communication-.xml"/>
+        </extension>
+        <issue>
+          <severity value="information"/>
+          <code value="informational"/>
+          <details>
+            <text value="Alles OK"/>
+          </details>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+                <td>
+                  <b>Bron</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition</td>
+                <td>Structural Issue</td>
+                <td>Composition.author: minimum vereist = 1, maar 0 gevonden (uit http://hl7.org/fhir/StructureDefinition/Composition|4.0.1)</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Composition.type.coding[0].display</td>
+                <td>Invalid Content</td>
+                <td>Wrong Display Name 'Referral note' for http://loinc.org#57133-1. Valid display is 'Verwijsbrief [bevinding] in {instelling} d.m.v. {rol} (document)' (nl-NL) (for the language(s) 'nl')</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.date</td>
+                <td>Invalid Content</td>
+                <td>Ongeldige datum/tijd (T)</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.date</td>
+                <td>Invalid Content</td>
+                <td>Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[0].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[1].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[2].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[3].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[4].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[5].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[6].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[7].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[8].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[9].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[10].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[11].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[12].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[13].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[14].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[15].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[16].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[17].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[18].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[19].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[20].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[21].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[22].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[23].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[24].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[25].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[26].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[27].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[28].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[29].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[30].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.section[31].extension[0]</td>
+                <td>Structural Issue</td>
+                <td>De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-2-maximaal-composition-ambu-az-ave-tst-2-maximaal.xml"/>
+        </extension>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="1"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="42"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Validation_VAL_Profile_Minimum"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="Composition.author: minimum vereist = 1, maar 0 gevonden (uit http://hl7.org/fhir/StructureDefinition/Composition|4.0.1)"/>
+          </details>
+          <expression value="Composition"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="10"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="10"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Display_Name_for__should_be_one_of__instead_of"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Wrong Display Name 'Referral note' for http://loinc.org#57133-1. Valid display is 'Verwijsbrief [bevinding] in {instelling} d.m.v. {rol} (document)' (nl-NL) (for the language(s) 'nl')"/>
+          </details>
+          <expression value="Composition.type.coding[0].display"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="22"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="21"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Ongeldige datum/tijd (T)"/>
+          </details>
+          <expression value="Composition.date"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="22"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="21"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_TZ"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten"/>
+          </details>
+          <expression value="Composition.date"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="25"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[0].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="42"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[1].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="59"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[2].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="76"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[3].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="93"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[4].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="110"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[5].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="127"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[6].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="144"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[7].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="161"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[8].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="178"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[9].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="195"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[10].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="212"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[11].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="229"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[12].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="246"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[13].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="263"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[14].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="280"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[15].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="297"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[16].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="314"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[17].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="331"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[18].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="348"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[19].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="365"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[20].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="382"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[21].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="399"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[22].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="416"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[23].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="433"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[24].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="450"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[25].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="467"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[26].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="484"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[27].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="501"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[28].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="518"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[29].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="535"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[30].extension[0]"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="552"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="80"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Extension_EXT_Unknown_NotHere"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="De extensie http://nictiz.nl/fhir/StructureDefinition/ext-TextValue is niet gevonden en dus hier niet toegestaan"/>
+          </details>
+          <expression value="Composition.section[31].extension[0]"/>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+                <td>
+                  <b>Bron</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Warning</td>
+                <td>DocumentReference.type.coding[0].system</td>
+                <td>Not Found</td>
+                <td>A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.55.5.16' could not be found, so the code cannot be validated</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>DocumentReference.content[0].attachment.creation</td>
+                <td>Invalid Content</td>
+                <td>Ongeldige datum/tijd (T)</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>DocumentReference.content[0].attachment.creation</td>
+                <td>Invalid Content</td>
+                <td>Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-2-maximaal-documentreference-9068.xml"/>
+        </extension>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="15"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="10"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="UNKNOWN_CODESYSTEM"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/DocumentReference|4.0.1"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="not-found"/>
+          <details>
+            <text value="A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.55.5.16' could not be found, so the code cannot be validated"/>
+          </details>
+          <expression value="DocumentReference.type.coding[0].system"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="32"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="31"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/DocumentReference|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Ongeldige datum/tijd (T)"/>
+          </details>
+          <expression value="DocumentReference.content[0].attachment.creation"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="32"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="31"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_TZ"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/DocumentReference|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten"/>
+          </details>
+          <expression value="DocumentReference.content[0].attachment.creation"/>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+                <td>
+                  <b>Bron</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Patient.gender.extension[0].value.ofType(CodeableConcept).coding[0].display</td>
+                <td>Invalid Content</td>
+                <td>Verkeerde weergavenaam 'Vrouw' voor http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender#F. Er zijn geen geldige weergavenamen gevonden voor taal/talen 'nl'. Standaard weergavenaam is 'Female'</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Patient.address[0].country.extension[0].value.ofType(CodeableConcept).coding[0].system</td>
+                <td>Not Found</td>
+                <td>A definition for CodeSystem 'urn:iso:std:iso:3166' version '2020-10-26T00:00:00' could not be found, so the code cannot be validated. Valid versions: 2018</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Patient.address[0].country.extension[0].value.ofType(CodeableConcept).coding[0].version</td>
+                <td>Invalid Content</td>
+                <td>The code system 'urn:iso:std:iso:3166' version '2018' for the versionless include in the ValueSet include is different to the one in the value ('2020-10-26T00:00:00')</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Patient.address[0].country.extension[0].value.ofType(CodeableConcept).coding[0].display</td>
+                <td>Invalid Content</td>
+                <td>Wrong Display Name 'Nederland' for urn:iso:std:iso:3166#NL. There are no valid display names found for language(s) 'nl'. Default display is 'Netherlands'</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Patient.address[0].country.extension[0].value.ofType(CodeableConcept)</td>
+                <td>Invalid Code</td>
+                <td>Geen van de gevonden codings bestaan in waardelijst 'LandCodelijsten' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.10--20200901000000|2020-09-01T00:00:00) en een coding uit deze waardelijst is verplicht (codes = urn:iso:std:iso:3166#NL)</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-2-maximaal-patient-van-XXX-Baatenburg.xml"/>
+        </extension>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="40"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="32"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="NO_VALID_DISPLAY_FOUND_NONE_FOR_LANG_ERR"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Verkeerde weergavenaam 'Vrouw' voor http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender#F. Er zijn geen geldige weergavenamen gevonden voor taal/talen 'nl'. Standaard weergavenaam is 'Female'"/>
+          </details>
+          <expression value="Patient.gender.extension[0].value.ofType(CodeableConcept).coding[0].display"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="66"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="35"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="UNKNOWN_CODESYSTEM_VERSION"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="not-found"/>
+          <details>
+            <text value="A definition for CodeSystem 'urn:iso:std:iso:3166' version '2020-10-26T00:00:00' could not be found, so the code cannot be validated. Valid versions: 2018"/>
+          </details>
+          <expression value="Patient.address[0].country.extension[0].value.ofType(CodeableConcept).coding[0].system"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="66"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="35"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="VALUESET_VALUE_MISMATCH_DEFAULT"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactInformation-EmailAddresses"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="invalid"/>
+          <details>
+            <text value="The code system 'urn:iso:std:iso:3166' version '2018' for the versionless include in the ValueSet include is different to the one in the value ('2020-10-26T00:00:00')"/>
+          </details>
+          <expression value="Patient.address[0].country.extension[0].value.ofType(CodeableConcept).coding[0].version"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="66"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="35"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="NO_VALID_DISPLAY_FOUND_NONE_FOR_LANG_ERR"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactInformation-EmailAddresses"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Wrong Display Name 'Nederland' for urn:iso:std:iso:3166#NL. There are no valid display names found for language(s) 'nl'. Default display is 'Netherlands'"/>
+          </details>
+          <expression value="Patient.address[0].country.extension[0].value.ofType(CodeableConcept).coding[0].display"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="66"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="35"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Terminology_TX_NoValid_1_CC"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactInformation-EmailAddresses"/>
+          </extension>
+          <severity value="error"/>
+          <code value="code-invalid"/>
+          <details>
+            <text value="Geen van de gevonden codings bestaan in waardelijst 'LandCodelijsten' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.10--20200901000000|2020-09-01T00:00:00) en een coding uit deze waardelijst is verplicht (codes = urn:iso:std:iso:3166#NL)"/>
+          </details>
+          <expression value="Patient.address[0].country.extension[0].value.ofType(CodeableConcept)"/>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <p>Alles oké</p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Information</td>
+                <td/>
+                <td>Informational Note</td>
+                <td>Alles OK</td>
+                <td/>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-2-maximaal-relatedPerson-.xml"/>
+        </extension>
+        <issue>
+          <severity value="information"/>
+          <code value="informational"/>
+          <details>
+            <text value="Alles OK"/>
+          </details>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+                <td>
+                  <b>Bron</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>ServiceRequest.authoredOn</td>
+                <td>Invalid Content</td>
+                <td>Ongeldige datum/tijd (T)</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>ServiceRequest.authoredOn</td>
+                <td>Invalid Content</td>
+                <td>Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-2-maximaal-servicerequest-az-ave-tst-2-maximaal.xml"/>
+        </extension>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="23"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="27"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/ServiceRequest|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Ongeldige datum/tijd (T)"/>
+          </details>
+          <expression value="ServiceRequest.authoredOn"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="23"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="27"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_TZ"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/ServiceRequest|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten"/>
+          </details>
+          <expression value="ServiceRequest.authoredOn"/>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+                <td>
+                  <b>Bron</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Task.authoredOn</td>
+                <td>Invalid Content</td>
+                <td>Ongeldige datum/tijd (T)</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Task.authoredOn</td>
+                <td>Invalid Content</td>
+                <td>Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-2-maximaal-task-az-ave-tst-2-maximaal.xml"/>
+        </extension>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="28"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="27"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Task|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Ongeldige datum/tijd (T)"/>
+          </details>
+          <expression value="Task.authoredOn"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="28"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="27"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_TZ"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Task|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten"/>
+          </details>
+          <expression value="Task.authoredOn"/>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <p>Alles oké</p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Information</td>
+                <td/>
+                <td>Informational Note</td>
+                <td>Alles OK</td>
+                <td/>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-3-minimaalTestdag-communication-.xml"/>
+        </extension>
+        <issue>
+          <severity value="information"/>
+          <code value="informational"/>
+          <details>
+            <text value="Alles OK"/>
+          </details>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+                <td>
+                  <b>Bron</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition</td>
+                <td>Structural Issue</td>
+                <td>Composition.author: minimum vereist = 1, maar 0 gevonden (uit http://hl7.org/fhir/StructureDefinition/Composition|4.0.1)</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Composition.type.coding[0].display</td>
+                <td>Invalid Content</td>
+                <td>Wrong Display Name 'Referral note' for http://loinc.org#57133-1. Valid display is 'Verwijsbrief [bevinding] in {instelling} d.m.v. {rol} (document)' (nl-NL) (for the language(s) 'nl')</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.date</td>
+                <td>Invalid Content</td>
+                <td>Ongeldige datum/tijd (T)</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Composition.date</td>
+                <td>Invalid Content</td>
+                <td>Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-3-minimaalTestdag-composition-ambu-az-ave-tst-3-minimaalTestdag.xml"/>
+        </extension>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="1"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="42"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Validation_VAL_Profile_Minimum"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="structure"/>
+          <details>
+            <text value="Composition.author: minimum vereist = 1, maar 0 gevonden (uit http://hl7.org/fhir/StructureDefinition/Composition|4.0.1)"/>
+          </details>
+          <expression value="Composition"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="10"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="10"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Display_Name_for__should_be_one_of__instead_of"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Wrong Display Name 'Referral note' for http://loinc.org#57133-1. Valid display is 'Verwijsbrief [bevinding] in {instelling} d.m.v. {rol} (document)' (nl-NL) (for the language(s) 'nl')"/>
+          </details>
+          <expression value="Composition.type.coding[0].display"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="22"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="21"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Ongeldige datum/tijd (T)"/>
+          </details>
+          <expression value="Composition.date"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="22"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="21"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_TZ"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten"/>
+          </details>
+          <expression value="Composition.date"/>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+                <td>
+                  <b>Bron</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Warning</td>
+                <td>DocumentReference.type.coding[0].system</td>
+                <td>Not Found</td>
+                <td>A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.55.5.16' could not be found, so the code cannot be validated</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>DocumentReference.content[0].attachment.creation</td>
+                <td>Invalid Content</td>
+                <td>Ongeldige datum/tijd (T-0D)</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>DocumentReference.content[0].attachment.creation</td>
+                <td>Invalid Content</td>
+                <td>Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-3-minimaalTestdag-documentreference-87946546.xml"/>
+        </extension>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="15"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="10"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="UNKNOWN_CODESYSTEM"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/DocumentReference|4.0.1"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="not-found"/>
+          <details>
+            <text value="A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.55.5.16' could not be found, so the code cannot be validated"/>
+          </details>
+          <expression value="DocumentReference.type.coding[0].system"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="32"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="34"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/DocumentReference|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Ongeldige datum/tijd (T-0D)"/>
+          </details>
+          <expression value="DocumentReference.content[0].attachment.creation"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="32"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="34"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_TZ"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/DocumentReference|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten"/>
+          </details>
+          <expression value="DocumentReference.content[0].attachment.creation"/>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+                <td>
+                  <b>Bron</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Warning</td>
+                <td>Patient.gender.extension[0].value.ofType(CodeableConcept).coding[0].display</td>
+                <td>Invalid Content</td>
+                <td>Verkeerde weergavenaam 'Vrouw' voor http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender#F. Er zijn geen geldige weergavenamen gevonden voor taal/talen 'nl'. Standaard weergavenaam is 'Female'</td>
+                <td/>
+                <td>TerminologyEngine</td>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-3-minimaalTestdag-patient-XXX-Bakkersz.xml"/>
+        </extension>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="17"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="32"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="TerminologyEngine"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="NO_VALID_DISPLAY_FOUND_NONE_FOR_LANG_ERR"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"/>
+          </extension>
+          <severity value="warning"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Verkeerde weergavenaam 'Vrouw' voor http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender#F. Er zijn geen geldige weergavenamen gevonden voor taal/talen 'nl'. Standaard weergavenaam is 'Female'"/>
+          </details>
+          <expression value="Patient.gender.extension[0].value.ofType(CodeableConcept).coding[0].display"/>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <p>Alles oké</p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Information</td>
+                <td/>
+                <td>Informational Note</td>
+                <td>Alles OK</td>
+                <td/>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-3-minimaalTestdag-prac-000001112.xml"/>
+        </extension>
+        <issue>
+          <severity value="information"/>
+          <code value="informational"/>
+          <details>
+            <text value="Alles OK"/>
+          </details>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <p>Alles oké</p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Information</td>
+                <td/>
+                <td>Informational Note</td>
+                <td>Alles OK</td>
+                <td/>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-3-minimaalTestdag-prac-111110001.xml"/>
+        </extension>
+        <issue>
+          <severity value="information"/>
+          <code value="informational"/>
+          <details>
+            <text value="Alles OK"/>
+          </details>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <p>Alles oké</p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Information</td>
+                <td/>
+                <td>Informational Note</td>
+                <td>Alles OK</td>
+                <td/>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-3-minimaalTestdag-pracrole-000001112.xml"/>
+        </extension>
+        <issue>
+          <severity value="information"/>
+          <code value="informational"/>
+          <details>
+            <text value="Alles OK"/>
+          </details>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <p>Alles oké</p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Information</td>
+                <td/>
+                <td>Informational Note</td>
+                <td>Alles OK</td>
+                <td/>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-3-minimaalTestdag-pracrole-111110001.xml"/>
+        </extension>
+        <issue>
+          <severity value="information"/>
+          <code value="informational"/>
+          <details>
+            <text value="Alles OK"/>
+          </details>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+                <td>
+                  <b>Bron</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>ServiceRequest.authoredOn</td>
+                <td>Invalid Content</td>
+                <td>Ongeldige datum/tijd (T)</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>ServiceRequest.authoredOn</td>
+                <td>Invalid Content</td>
+                <td>Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-3-minimaalTestdag-servicerequest-az-ave-tst-3-minimaalTestdag.xml"/>
+        </extension>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="23"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="27"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/ServiceRequest|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Ongeldige datum/tijd (T)"/>
+          </details>
+          <expression value="ServiceRequest.authoredOn"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="23"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="27"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_TZ"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/ServiceRequest|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten"/>
+          </details>
+          <expression value="ServiceRequest.authoredOn"/>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <OperationOutcome>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id">
+              <b>OperationOutcome </b>
+            </p>
+            <table class="grid">
+              <tr>
+                <td>
+                  <b>Ernst</b>
+                </td>
+                <td>
+                  <b>Locatie</b>
+                </td>
+                <td>
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>Details</b>
+                </td>
+                <td>
+                  <b>Kenmerken</b>
+                </td>
+                <td>
+                  <b>Bron</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Task.authoredOn</td>
+                <td>Invalid Content</td>
+                <td>Ongeldige datum/tijd (T)</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+              <tr>
+                <td>Error</td>
+                <td>Task.authoredOn</td>
+                <td>Invalid Content</td>
+                <td>Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten</td>
+                <td/>
+                <td>InstanceValidator</td>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-3-minimaalTestdag-task-az-ave-tst-3-minimaalTestdag.xml"/>
+        </extension>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="28"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="27"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Task|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Ongeldige datum/tijd (T)"/>
+          </details>
+          <expression value="Task.authoredOn"/>
+        </issue>
+        <issue>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+            <valueInteger value="28"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+            <valueInteger value="27"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+            <valueString value="InstanceValidator"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+            <valueCode value="Type_Specific_Checks_DT_DateTime_TZ"/>
+          </extension>
+          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Task|4.0.1"/>
+          </extension>
+          <severity value="error"/>
+          <code value="invalid"/>
+          <details>
+            <text value="Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten"/>
+          </details>
+          <expression value="Task.authoredOn"/>
+        </issue>
+      </OperationOutcome>
+    </resource>
+  </entry>
+</Bundle>
