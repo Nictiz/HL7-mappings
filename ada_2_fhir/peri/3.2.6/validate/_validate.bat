@@ -32,14 +32,15 @@ SET JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
 SET "instance_root=%~dp0..\med_mij_uitbreiding_verloskunde_beschikbaarstellen\fhir_instance"
 SET "echo_root=%~dp0..\med_mij_echo_beschikbaarstellen\fhir_instance"
 SET "kraam_root=%~dp0..\med_mij_kraam_beschikbaarstellen\fhir_instance"
+set "profiles=%~dp0../../../../../Geboortezorg-STU3/profiles"
 
 IF EXIST "%input_cache_path%\%publisher_jar%" (
 	echo.
 	echo Fixtures worden gevalideerd...
 	REM JAVA -jar "%input_cache_path%\%publisher_jar%" -ig . %txoption% %*
   	java -jar "%input_cache_path%\%publisher_jar%" ^
-   		-ig nictiz.fhir.nl.stu3.geboortezorg#3.0.0-beta1-rc.2 ^
-   		-ig nictiz.fhir.nl.stu3.zib2017#2.2.10 ^
+   		-ig "%profiles%" ^
+   		-ig nictiz.fhir.nl.stu3.zib2017#2.3.2 ^
    		-version 3.0 ^
    		-recurse -html-output validation.html ^
    		-txLog txlog.txt ^
@@ -57,8 +58,8 @@ IF EXIST "%input_cache_path%\%publisher_jar%" (
 ) ELSE If exist "..\%publisher_jar%" (
 	REM JAVA -jar "..\%publisher_jar%" -ig . %txoption% %*
 	java -jar "..\%publisher_jar%" ^
-        -ig nictiz.fhir.nl.stu3.geboortezorg#3.0.0-beta1-rc.2 ^
-        -ig nictiz.fhir.nl.stu3.zib2017#2.2.10 ^
+        -ig "%profiles%" ^
+        -ig nictiz.fhir.nl.stu3.zib2017#2.3.2 ^
         -version 3.0 ^
         -recurse ^
         -html-output validation.html ^
@@ -89,7 +90,7 @@ IF EXIST "%input_cache_path%\%publisher_jar%" (
 	echo.
 	echo Profielen worden gevalideerd...
 	java -jar "%input_cache_path%\%publisher_jar%" ^
-  	-ig nictiz.fhir.nl.stu3.zib2017#2.2.10 ^
+  	-ig nictiz.fhir.nl.stu3.zib2017#2.3.2 ^
 	-ig "%profiles%" ^
   	-version 3.0 ^
 	-recurse ^
