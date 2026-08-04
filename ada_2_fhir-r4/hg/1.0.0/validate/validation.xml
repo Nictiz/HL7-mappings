@@ -62,6 +62,7 @@
             <p class="res-header-id">
               <b>OperationOutcome </b>
             </p>
+            <p>Alles oké</p>
             <table class="grid">
               <tr>
                 <td>
@@ -79,17 +80,13 @@
                 <td>
                   <b>Kenmerken</b>
                 </td>
-                <td>
-                  <b>Bron</b>
-                </td>
               </tr>
               <tr>
-                <td>Warning</td>
-                <td>Composition.type.coding[0].display</td>
-                <td>Invalid Content</td>
-                <td>Wrong Display Name 'Referral note' for http://loinc.org#57133-1. Valid display is 'Verwijsbrief [bevinding] in {instelling} d.m.v. {rol} (document)' (nl-NL) (for the language(s) 'nl')</td>
+                <td>Information</td>
                 <td/>
-                <td>TerminologyEngine</td>
+                <td>Informational Note</td>
+                <td>Alles OK</td>
+                <td/>
               </tr>
             </table>
           </div>
@@ -98,27 +95,11 @@
           <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-1-minimaal-composition-ambu-az-ave-tst-1-minimaal.xml"/>
         </extension>
         <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="10"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="10"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="TerminologyEngine"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Display_Name_for__should_be_one_of__instead_of"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
-            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
-          </extension>
-          <severity value="warning"/>
-          <code value="invalid"/>
+          <severity value="information"/>
+          <code value="informational"/>
           <details>
-            <text value="Wrong Display Name 'Referral note' for http://loinc.org#57133-1. Valid display is 'Verwijsbrief [bevinding] in {instelling} d.m.v. {rol} (document)' (nl-NL) (for the language(s) 'nl')"/>
+            <text value="Alles OK"/>
           </details>
-          <expression value="Composition.type.coding[0].display"/>
         </issue>
       </OperationOutcome>
     </resource>
@@ -643,14 +624,6 @@
                 </td>
               </tr>
               <tr>
-                <td>Warning</td>
-                <td>Composition.type.coding[0].display</td>
-                <td>Invalid Content</td>
-                <td>Wrong Display Name 'Referral note' for http://loinc.org#57133-1. Valid display is 'Verwijsbrief [bevinding] in {instelling} d.m.v. {rol} (document)' (nl-NL) (for the language(s) 'nl')</td>
-                <td/>
-                <td>TerminologyEngine</td>
-              </tr>
-              <tr>
                 <td>Error</td>
                 <td>Composition.section[0].extension[0]</td>
                 <td>Structural Issue</td>
@@ -912,29 +885,6 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
           <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-2-maximaal-composition-ambu-az-ave-tst-2-maximaal.xml"/>
         </extension>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="10"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="10"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="TerminologyEngine"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Display_Name_for__should_be_one_of__instead_of"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
-            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
-          </extension>
-          <severity value="warning"/>
-          <code value="invalid"/>
-          <details>
-            <text value="Wrong Display Name 'Referral note' for http://loinc.org#57133-1. Valid display is 'Verwijsbrief [bevinding] in {instelling} d.m.v. {rol} (document)' (nl-NL) (for the language(s) 'nl')"/>
-          </details>
-          <expression value="Composition.type.coding[0].display"/>
-        </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
             <valueInteger value="30"/>
