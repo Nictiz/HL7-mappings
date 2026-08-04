@@ -91,22 +91,6 @@
                 <td/>
                 <td>TerminologyEngine</td>
               </tr>
-              <tr>
-                <td>Error</td>
-                <td>Composition.date</td>
-                <td>Invalid Content</td>
-                <td>Ongeldige datum/tijd (T)</td>
-                <td/>
-                <td>InstanceValidator</td>
-              </tr>
-              <tr>
-                <td>Error</td>
-                <td>Composition.date</td>
-                <td>Invalid Content</td>
-                <td>Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten</td>
-                <td/>
-                <td>InstanceValidator</td>
-              </tr>
             </table>
           </div>
         </text>
@@ -135,52 +119,6 @@
             <text value="Wrong Display Name 'Referral note' for http://loinc.org#57133-1. Valid display is 'Verwijsbrief [bevinding] in {instelling} d.m.v. {rol} (document)' (nl-NL) (for the language(s) 'nl')"/>
           </details>
           <expression value="Composition.type.coding[0].display"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="22"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="21"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="InstanceValidator"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
-            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
-          </extension>
-          <severity value="error"/>
-          <code value="invalid"/>
-          <details>
-            <text value="Ongeldige datum/tijd (T)"/>
-          </details>
-          <expression value="Composition.date"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="22"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="21"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="InstanceValidator"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Type_Specific_Checks_DT_DateTime_TZ"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
-            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
-          </extension>
-          <severity value="error"/>
-          <code value="invalid"/>
-          <details>
-            <text value="Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten"/>
-          </details>
-          <expression value="Composition.date"/>
         </issue>
       </OperationOutcome>
     </resource>
@@ -581,6 +519,7 @@
             <p class="res-header-id">
               <b>OperationOutcome </b>
             </p>
+            <p>Alles oké</p>
             <table class="grid">
               <tr>
                 <td>
@@ -598,25 +537,13 @@
                 <td>
                   <b>Kenmerken</b>
                 </td>
-                <td>
-                  <b>Bron</b>
-                </td>
               </tr>
               <tr>
-                <td>Error</td>
-                <td>ServiceRequest.authoredOn</td>
-                <td>Invalid Content</td>
-                <td>Ongeldige datum/tijd (T)</td>
+                <td>Information</td>
                 <td/>
-                <td>InstanceValidator</td>
-              </tr>
-              <tr>
-                <td>Error</td>
-                <td>ServiceRequest.authoredOn</td>
-                <td>Invalid Content</td>
-                <td>Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten</td>
+                <td>Informational Note</td>
+                <td>Alles OK</td>
                 <td/>
-                <td>InstanceValidator</td>
               </tr>
             </table>
           </div>
@@ -625,151 +552,11 @@
           <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-1-minimaal-servicerequest-az-ave-tst-1-minimaal.xml"/>
         </extension>
         <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="23"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="27"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="InstanceValidator"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
-            <valueString value="http://hl7.org/fhir/StructureDefinition/ServiceRequest|4.0.1"/>
-          </extension>
-          <severity value="error"/>
-          <code value="invalid"/>
+          <severity value="information"/>
+          <code value="informational"/>
           <details>
-            <text value="Ongeldige datum/tijd (T)"/>
+            <text value="Alles OK"/>
           </details>
-          <expression value="ServiceRequest.authoredOn"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="23"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="27"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="InstanceValidator"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Type_Specific_Checks_DT_DateTime_TZ"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
-            <valueString value="http://hl7.org/fhir/StructureDefinition/ServiceRequest|4.0.1"/>
-          </extension>
-          <severity value="error"/>
-          <code value="invalid"/>
-          <details>
-            <text value="Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten"/>
-          </details>
-          <expression value="ServiceRequest.authoredOn"/>
-        </issue>
-      </OperationOutcome>
-    </resource>
-  </entry>
-  <entry>
-    <resource>
-      <OperationOutcome>
-        <text>
-          <status value="generated"/>
-          <div xmlns="http://www.w3.org/1999/xhtml">
-            <p class="res-header-id">
-              <b>OperationOutcome </b>
-            </p>
-            <table class="grid">
-              <tr>
-                <td>
-                  <b>Ernst</b>
-                </td>
-                <td>
-                  <b>Locatie</b>
-                </td>
-                <td>
-                  <b>Code</b>
-                </td>
-                <td>
-                  <b>Details</b>
-                </td>
-                <td>
-                  <b>Kenmerken</b>
-                </td>
-                <td>
-                  <b>Bron</b>
-                </td>
-              </tr>
-              <tr>
-                <td>Error</td>
-                <td>Task.authoredOn</td>
-                <td>Invalid Content</td>
-                <td>Ongeldige datum/tijd (T)</td>
-                <td/>
-                <td>InstanceValidator</td>
-              </tr>
-              <tr>
-                <td>Error</td>
-                <td>Task.authoredOn</td>
-                <td>Invalid Content</td>
-                <td>Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten</td>
-                <td/>
-                <td>InstanceValidator</td>
-              </tr>
-            </table>
-          </div>
-        </text>
-        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
-          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-1-minimaal-task-az-ave-tst-1-minimaal.xml"/>
-        </extension>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="28"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="27"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="InstanceValidator"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
-            <valueString value="http://hl7.org/fhir/StructureDefinition/Task|4.0.1"/>
-          </extension>
-          <severity value="error"/>
-          <code value="invalid"/>
-          <details>
-            <text value="Ongeldige datum/tijd (T)"/>
-          </details>
-          <expression value="Task.authoredOn"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="28"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="27"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="InstanceValidator"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Type_Specific_Checks_DT_DateTime_TZ"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
-            <valueString value="http://hl7.org/fhir/StructureDefinition/Task|4.0.1"/>
-          </extension>
-          <severity value="error"/>
-          <code value="invalid"/>
-          <details>
-            <text value="Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten"/>
-          </details>
-          <expression value="Task.authoredOn"/>
         </issue>
       </OperationOutcome>
     </resource>
@@ -862,22 +649,6 @@
                 <td>Wrong Display Name 'Referral note' for http://loinc.org#57133-1. Valid display is 'Verwijsbrief [bevinding] in {instelling} d.m.v. {rol} (document)' (nl-NL) (for the language(s) 'nl')</td>
                 <td/>
                 <td>TerminologyEngine</td>
-              </tr>
-              <tr>
-                <td>Error</td>
-                <td>Composition.date</td>
-                <td>Invalid Content</td>
-                <td>Ongeldige datum/tijd (T)</td>
-                <td/>
-                <td>InstanceValidator</td>
-              </tr>
-              <tr>
-                <td>Error</td>
-                <td>Composition.date</td>
-                <td>Invalid Content</td>
-                <td>Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten</td>
-                <td/>
-                <td>InstanceValidator</td>
               </tr>
               <tr>
                 <td>Error</td>
@@ -1163,52 +934,6 @@
             <text value="Wrong Display Name 'Referral note' for http://loinc.org#57133-1. Valid display is 'Verwijsbrief [bevinding] in {instelling} d.m.v. {rol} (document)' (nl-NL) (for the language(s) 'nl')"/>
           </details>
           <expression value="Composition.type.coding[0].display"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="22"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="21"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="InstanceValidator"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
-            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
-          </extension>
-          <severity value="error"/>
-          <code value="invalid"/>
-          <details>
-            <text value="Ongeldige datum/tijd (T)"/>
-          </details>
-          <expression value="Composition.date"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="22"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="21"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="InstanceValidator"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Type_Specific_Checks_DT_DateTime_TZ"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
-            <valueString value="http://hl7.org/fhir/StructureDefinition/Composition|4.0.1"/>
-          </extension>
-          <severity value="error"/>
-          <code value="invalid"/>
-          <details>
-            <text value="Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten"/>
-          </details>
-          <expression value="Composition.date"/>
         </issue>
         <issue>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
@@ -1987,22 +1712,6 @@
                 <td/>
                 <td>TerminologyEngine</td>
               </tr>
-              <tr>
-                <td>Error</td>
-                <td>DocumentReference.content[0].attachment.creation</td>
-                <td>Invalid Content</td>
-                <td>Ongeldige datum/tijd (T)</td>
-                <td/>
-                <td>InstanceValidator</td>
-              </tr>
-              <tr>
-                <td>Error</td>
-                <td>DocumentReference.content[0].attachment.creation</td>
-                <td>Invalid Content</td>
-                <td>Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten</td>
-                <td/>
-                <td>InstanceValidator</td>
-              </tr>
             </table>
           </div>
         </text>
@@ -2031,52 +1740,6 @@
             <text value="A definition for CodeSystem 'urn:oid:2.16.840.1.113883.2.4.3.11.60.55.5.16' could not be found, so the code cannot be validated"/>
           </details>
           <expression value="DocumentReference.type.coding[0].system"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="37"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="31"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="InstanceValidator"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
-            <valueString value="http://hl7.org/fhir/StructureDefinition/DocumentReference|4.0.1"/>
-          </extension>
-          <severity value="error"/>
-          <code value="invalid"/>
-          <details>
-            <text value="Ongeldige datum/tijd (T)"/>
-          </details>
-          <expression value="DocumentReference.content[0].attachment.creation"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="37"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="31"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="InstanceValidator"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Type_Specific_Checks_DT_DateTime_TZ"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
-            <valueString value="http://hl7.org/fhir/StructureDefinition/DocumentReference|4.0.1"/>
-          </extension>
-          <severity value="error"/>
-          <code value="invalid"/>
-          <details>
-            <text value="Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten"/>
-          </details>
-          <expression value="DocumentReference.content[0].attachment.creation"/>
         </issue>
       </OperationOutcome>
     </resource>
@@ -2680,6 +2343,7 @@
             <p class="res-header-id">
               <b>OperationOutcome </b>
             </p>
+            <p>Alles oké</p>
             <table class="grid">
               <tr>
                 <td>
@@ -2697,25 +2361,13 @@
                 <td>
                   <b>Kenmerken</b>
                 </td>
-                <td>
-                  <b>Bron</b>
-                </td>
               </tr>
               <tr>
-                <td>Error</td>
-                <td>ServiceRequest.authoredOn</td>
-                <td>Invalid Content</td>
-                <td>Ongeldige datum/tijd (T)</td>
+                <td>Information</td>
                 <td/>
-                <td>InstanceValidator</td>
-              </tr>
-              <tr>
-                <td>Error</td>
-                <td>ServiceRequest.authoredOn</td>
-                <td>Invalid Content</td>
-                <td>Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten</td>
+                <td>Informational Note</td>
+                <td>Alles OK</td>
                 <td/>
-                <td>InstanceValidator</td>
               </tr>
             </table>
           </div>
@@ -2724,151 +2376,11 @@
           <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-2-maximaal-servicerequest-az-ave-tst-2-maximaal.xml"/>
         </extension>
         <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="23"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="27"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="InstanceValidator"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
-            <valueString value="http://hl7.org/fhir/StructureDefinition/ServiceRequest|4.0.1"/>
-          </extension>
-          <severity value="error"/>
-          <code value="invalid"/>
+          <severity value="information"/>
+          <code value="informational"/>
           <details>
-            <text value="Ongeldige datum/tijd (T)"/>
+            <text value="Alles OK"/>
           </details>
-          <expression value="ServiceRequest.authoredOn"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="23"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="27"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="InstanceValidator"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Type_Specific_Checks_DT_DateTime_TZ"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
-            <valueString value="http://hl7.org/fhir/StructureDefinition/ServiceRequest|4.0.1"/>
-          </extension>
-          <severity value="error"/>
-          <code value="invalid"/>
-          <details>
-            <text value="Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten"/>
-          </details>
-          <expression value="ServiceRequest.authoredOn"/>
-        </issue>
-      </OperationOutcome>
-    </resource>
-  </entry>
-  <entry>
-    <resource>
-      <OperationOutcome>
-        <text>
-          <status value="generated"/>
-          <div xmlns="http://www.w3.org/1999/xhtml">
-            <p class="res-header-id">
-              <b>OperationOutcome </b>
-            </p>
-            <table class="grid">
-              <tr>
-                <td>
-                  <b>Ernst</b>
-                </td>
-                <td>
-                  <b>Locatie</b>
-                </td>
-                <td>
-                  <b>Code</b>
-                </td>
-                <td>
-                  <b>Details</b>
-                </td>
-                <td>
-                  <b>Kenmerken</b>
-                </td>
-                <td>
-                  <b>Bron</b>
-                </td>
-              </tr>
-              <tr>
-                <td>Error</td>
-                <td>Task.authoredOn</td>
-                <td>Invalid Content</td>
-                <td>Ongeldige datum/tijd (T)</td>
-                <td/>
-                <td>InstanceValidator</td>
-              </tr>
-              <tr>
-                <td>Error</td>
-                <td>Task.authoredOn</td>
-                <td>Invalid Content</td>
-                <td>Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten</td>
-                <td/>
-                <td>InstanceValidator</td>
-              </tr>
-            </table>
-          </div>
-        </text>
-        <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
-          <valueString value="./../verwijzing_ambulance_naar_huisartsenpost/fhir_instance/az-ave-tst-2-maximaal-task-az-ave-tst-2-maximaal.xml"/>
-        </extension>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="28"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="27"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="InstanceValidator"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Type_Specific_Checks_DT_DateTime_Valid"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
-            <valueString value="http://hl7.org/fhir/StructureDefinition/Task|4.0.1"/>
-          </extension>
-          <severity value="error"/>
-          <code value="invalid"/>
-          <details>
-            <text value="Ongeldige datum/tijd (T)"/>
-          </details>
-          <expression value="Task.authoredOn"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="28"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="27"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="InstanceValidator"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Type_Specific_Checks_DT_DateTime_TZ"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
-            <valueString value="http://hl7.org/fhir/StructureDefinition/Task|4.0.1"/>
-          </extension>
-          <severity value="error"/>
-          <code value="invalid"/>
-          <details>
-            <text value="Als een datum een tijd bevat, dan moet deze ook een tijdzone bevatten"/>
-          </details>
-          <expression value="Task.authoredOn"/>
         </issue>
       </OperationOutcome>
     </resource>
