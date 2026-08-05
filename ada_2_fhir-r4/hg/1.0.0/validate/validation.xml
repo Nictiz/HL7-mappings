@@ -916,33 +916,9 @@
               </tr>
               <tr>
                 <td>Warning</td>
-                <td>Patient.address[0].country.extension[0].value.ofType(CodeableConcept).coding[0].system</td>
-                <td>Not Found</td>
-                <td>A definition for CodeSystem 'urn:iso:std:iso:3166' version '2020-10-26T00:00:00' could not be found, so the code cannot be validated. Valid versions: 2018</td>
-                <td/>
-                <td>TerminologyEngine</td>
-              </tr>
-              <tr>
-                <td>Warning</td>
-                <td>Patient.address[0].country.extension[0].value.ofType(CodeableConcept).coding[0].version</td>
-                <td>Invalid Content</td>
-                <td>The code system 'urn:iso:std:iso:3166' version '2018' for the versionless include in the ValueSet include is different to the one in the value ('2020-10-26T00:00:00')</td>
-                <td/>
-                <td>TerminologyEngine</td>
-              </tr>
-              <tr>
-                <td>Warning</td>
                 <td>Patient.address[0].country.extension[0].value.ofType(CodeableConcept).coding[0].display</td>
                 <td>Invalid Content</td>
                 <td>Wrong Display Name 'Nederland' for urn:iso:std:iso:3166#NL. There are no valid display names found for language(s) 'nl'. Default display is 'Netherlands'</td>
-                <td/>
-                <td>TerminologyEngine</td>
-              </tr>
-              <tr>
-                <td>Error</td>
-                <td>Patient.address[0].country.extension[0].value.ofType(CodeableConcept)</td>
-                <td>Invalid Code</td>
-                <td>Geen van de gevonden codings bestaan in waardelijst 'LandCodelijsten' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.10--20200901000000|2020-09-01T00:00:00) en een coding uit deze waardelijst is verplicht (codes = urn:iso:std:iso:3166#NL)</td>
                 <td/>
                 <td>TerminologyEngine</td>
               </tr>
@@ -986,56 +962,10 @@
             <valueString value="TerminologyEngine"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="UNKNOWN_CODESYSTEM_VERSION"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
-            <valueString value="http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"/>
-          </extension>
-          <severity value="warning"/>
-          <code value="not-found"/>
-          <details>
-            <text value="A definition for CodeSystem 'urn:iso:std:iso:3166' version '2020-10-26T00:00:00' could not be found, so the code cannot be validated. Valid versions: 2018"/>
-          </details>
-          <expression value="Patient.address[0].country.extension[0].value.ofType(CodeableConcept).coding[0].system"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="66"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="35"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="TerminologyEngine"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="VALUESET_VALUE_MISMATCH_DEFAULT"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
-            <valueString value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactInformation-EmailAddresses"/>
-          </extension>
-          <severity value="warning"/>
-          <code value="invalid"/>
-          <details>
-            <text value="The code system 'urn:iso:std:iso:3166' version '2018' for the versionless include in the ValueSet include is different to the one in the value ('2020-10-26T00:00:00')"/>
-          </details>
-          <expression value="Patient.address[0].country.extension[0].value.ofType(CodeableConcept).coding[0].version"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="66"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="35"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="TerminologyEngine"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
             <valueCode value="NO_VALID_DISPLAY_FOUND_NONE_FOR_LANG_ERR"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
-            <valueString value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactInformation-EmailAddresses"/>
+            <valueString value="http://hl7.org/fhir/StructureDefinition/Patient|4.0.1"/>
           </extension>
           <severity value="warning"/>
           <code value="invalid"/>
@@ -1043,29 +973,6 @@
             <text value="Wrong Display Name 'Nederland' for urn:iso:std:iso:3166#NL. There are no valid display names found for language(s) 'nl'. Default display is 'Netherlands'"/>
           </details>
           <expression value="Patient.address[0].country.extension[0].value.ofType(CodeableConcept).coding[0].display"/>
-        </issue>
-        <issue>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
-            <valueInteger value="66"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-            <valueInteger value="35"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
-            <valueString value="TerminologyEngine"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="Terminology_TX_NoValid_1_CC"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
-            <valueString value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactInformation-EmailAddresses"/>
-          </extension>
-          <severity value="error"/>
-          <code value="code-invalid"/>
-          <details>
-            <text value="Geen van de gevonden codings bestaan in waardelijst 'LandCodelijsten' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.10--20200901000000|2020-09-01T00:00:00) en een coding uit deze waardelijst is verplicht (codes = urn:iso:std:iso:3166#NL)"/>
-          </details>
-          <expression value="Patient.address[0].country.extension[0].value.ofType(CodeableConcept)"/>
         </issue>
       </OperationOutcome>
     </resource>
@@ -1130,6 +1037,7 @@
             <p class="res-header-id">
               <b>OperationOutcome </b>
             </p>
+            <p>Alles oké</p>
             <table class="grid">
               <tr>
                 <td>
@@ -1152,10 +1060,10 @@
                 </td>
               </tr>
               <tr>
-                <td>Warning</td>
-                <td>PractitionerRole.specialty[0].coding[0].system</td>
-                <td>Not Found</td>
-                <td>A definition for CodeSystem 'http://fhir.nl/fhir/NamingSystem/uzi-rolcode' version '2025-11-11T00:00:00' could not be found, so the code cannot be validated. No versions of this code system are known</td>
+                <td>Information</td>
+                <td>PractitionerRole.specialty[0].coding[0].display</td>
+                <td>Invalid Content</td>
+                <td>Er zijn geen geldige weergavenamen gevonden voor de code http://fhir.nl/fhir/NamingSystem/uzi-rolcode#30.000 voor taal/talen 'nl'. De weergavenaam 'Verpleegkundige' is de standaard weergavenaam</td>
                 <td/>
                 <td>TerminologyEngine</td>
               </tr>
@@ -1176,17 +1084,17 @@
             <valueString value="TerminologyEngine"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
-            <valueCode value="UNKNOWN_CODESYSTEM_VERSION_NONE"/>
+            <valueCode value="NO_VALID_DISPLAY_FOUND_NONE_FOR_LANG_OK"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context">
             <valueString value="http://hl7.org/fhir/StructureDefinition/PractitionerRole|4.0.1"/>
           </extension>
-          <severity value="warning"/>
-          <code value="not-found"/>
+          <severity value="information"/>
+          <code value="invalid"/>
           <details>
-            <text value="A definition for CodeSystem 'http://fhir.nl/fhir/NamingSystem/uzi-rolcode' version '2025-11-11T00:00:00' could not be found, so the code cannot be validated. No versions of this code system are known"/>
+            <text value="Er zijn geen geldige weergavenamen gevonden voor de code http://fhir.nl/fhir/NamingSystem/uzi-rolcode#30.000 voor taal/talen 'nl'. De weergavenaam 'Verpleegkundige' is de standaard weergavenaam"/>
           </details>
-          <expression value="PractitionerRole.specialty[0].coding[0].system"/>
+          <expression value="PractitionerRole.specialty[0].coding[0].display"/>
         </issue>
       </OperationOutcome>
     </resource>
