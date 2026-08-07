@@ -1,6 +1,6 @@
 <Encounter xmlns="http://hl7.org/fhir">
    <!-- Source: gz-izk-kwa-casus1 -->
-   <id value="a3f72727-6aeb-11ec-1275-020000000000"/>
+   <id value="9e707167-6a98-11ec-1275-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Encounter"/>
@@ -17,6 +17,7 @@
                      <div>
                         <span title="Thuis (HH - v3/ActCode)">Thuis</span>
                      </div>
+                     <span title="postnatale zorg door kraamzorg (regime/therapie) (158101000146104 - SNOMED CT)">postnatale zorg door kraamzorg (regime/therapie)</span>
                   </td>
                </tr>
                <tr>
@@ -25,7 +26,7 @@
                </tr>
                <tr>
                   <th>Reden</th>
-                  <td>Kraamperiode</td>
+                  <td>Voorlichting tijdens kraamperiode</td>
                </tr>
                <tr>
                   <th>Participant</th>
@@ -43,7 +44,7 @@
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="a3f72727-6aeb-11ec-1275-020000000000"/>
+      <value value="9e707167-6a98-11ec-1275-020000000000"/>
    </identifier>
    <status value="finished"/>
    <class>
@@ -60,12 +61,19 @@
       <code value="HH"/>
       <display value="Thuis"/>
    </class>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="158101000146104"/>
+         <display value="postnatale zorg door kraamzorg (regime/therapie)"/>
+      </coding>
+   </type>
    <subject>
       <reference value="Patient/JORIS-VISSER"/>
       <display value="Kind Joris Visser"/>
    </subject>
    <episodeOfCare>
-      <reference value="EpisodeOfCare/f427ebe3-6ab2-11ec-0000-020000000000"/>
+      <reference value="EpisodeOfCare/8515bbe3-6ae1-11ec-0000-020000000000"/>
       <display value="Zwangerschap 1 XXX_Zhanganak_Vrouw"/>
    </episodeOfCare>
    <participant>
@@ -85,7 +93,7 @@
       <end value="${DATE, T, D, -105}"/>
    </period>
    <reason>
-      <text value="Kraamperiode"/>
+      <text value="Voorlichting tijdens kraamperiode"/>
    </reason>
    <serviceProvider>
       <reference value="Organization/organization-mm-gbz-2-16-840-1-113883-2-4-6-1-33112345"/>

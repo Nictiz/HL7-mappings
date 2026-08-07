@@ -1,6 +1,6 @@
 <Encounter xmlns="http://hl7.org/fhir">
    <!-- Source: gz-izk-kwa-casus1 -->
-   <id value="07d80424-6ad7-11ec-1275-020000000000"/>
+   <id value="36558a34-6b49-11ec-1275-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Encounter"/>
@@ -17,6 +17,7 @@
                      <div>
                         <span title="Thuis (HH - v3/ActCode)">Thuis</span>
                      </div>
+                     <span title="postnatale zorg door kraamzorg (regime/therapie) (158101000146104 - SNOMED CT)">postnatale zorg door kraamzorg (regime/therapie)</span>
                   </td>
                </tr>
                <tr>
@@ -25,7 +26,7 @@
                </tr>
                <tr>
                   <th>Reden</th>
-                  <td>Kraamperiode</td>
+                  <td>Verzorging moeder</td>
                </tr>
             </tbody>
          </table>
@@ -33,7 +34,7 @@
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="07d80424-6ad7-11ec-1275-020000000000"/>
+      <value value="36558a34-6b49-11ec-1275-020000000000"/>
    </identifier>
    <status value="finished"/>
    <class>
@@ -50,12 +51,19 @@
       <code value="HH"/>
       <display value="Thuis"/>
    </class>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="158101000146104"/>
+         <display value="postnatale zorg door kraamzorg (regime/therapie)"/>
+      </coding>
+   </type>
    <subject>
       <reference value="Patient/KIM-K-XXX-ZHANGANAK-XXX-VISSER"/>
       <display value="Kim K XXX_Zhanganak XXX_Visser"/>
    </subject>
    <episodeOfCare>
-      <reference value="EpisodeOfCare/f427ebe3-6ab2-11ec-0000-020000000000"/>
+      <reference value="EpisodeOfCare/8515bbe3-6ae1-11ec-0000-020000000000"/>
       <display value="Zwangerschap 1 XXX_Zhanganak_Vrouw"/>
    </episodeOfCare>
    <period>
@@ -63,6 +71,6 @@
       <end value="${DATE, T, D, -111}"/>
    </period>
    <reason>
-      <text value="Kraamperiode"/>
+      <text value="Verzorging moeder"/>
    </reason>
 </Encounter>
