@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2026-04-28T11:17:57.5755433+02:00"
-         last-update-date="2026-04-28T11:17:57.5755433+02:00"/>
+         creation-date="2026-01-01T00:00:00"
+         last-update-date="2026-01-01T00:00:00"/>
    <data>
       <sturen_voorstel_medicatieafspraak app="mp-mp93"
                                          shortName="sturen_voorstel_medicatieafspraak"
@@ -35,68 +35,66 @@
                       codeSystem="2.16.840.1.113883.5.1"
                       displayName="Vrouw"/>
          </patient>
-         <medicamenteuze_behandeling id="d52462e174">
-            <identificatie value="MBH_300_VMA_geaccepteerd"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
-               <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime"
-                                    value="2024-01-01T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime"
-                                   value="2024-01-30T23:59:59+01:00"/>
-               </gebruiksperiode>
-               <relatie_toedieningsafspraak>
-                  <identificatie value="MBH_300_VMA_geaccepteerd_TA_start"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               </relatie_toedieningsafspraak>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d52462e63"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="1 maal per dag 1 stuk, Oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen"
-                                  displayName="Oraal"/>
-                  <doseerinstructie>
-                     <volgnummer value="1"/>
-                     <dosering>
-                        <keerdosis>
+         <medicatieafspraak>
+            <medicamenteuze_behandeling_id value="MBH_300_VMA_geaccepteerd"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <gebruiksperiode>
+               <start_datum_tijd datatype="datetime"
+                                 value="2024-01-01T00:00:00+01:00"/>
+               <eind_datum_tijd datatype="datetime"
+                                value="2024-01-30T23:59:59+01:00"/>
+            </gebruiksperiode>
+            <relatie_toedieningsafspraak>
+               <identificatie value="MBH_300_VMA_geaccepteerd_TA_start"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            </relatie_toedieningsafspraak>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="d46851e63"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="1 maal per dag 1 stuk, Oraal"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen"
+                               displayName="Oraal"/>
+               <doseerinstructie>
+                  <volgnummer value="1"/>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="1"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 displayName="stuk"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <frequentie>
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <eenheid code="245"
-                                    displayName="stuk"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <effectiveTime xsi:type="Timing"
-                                             xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </effectiveTime>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-         </medicamenteuze_behandeling>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </effectiveTime>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
          <bouwstenen>
-            <farmaceutisch_product id="d52462e63">
+            <farmaceutisch_product id="d46851e63">
                <product_code code="60062"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -106,7 +104,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="OMEPRAZOL CAPSULE MSR 20MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="d52462e77">
+            <zorgverlener id="d46851e77">
                <zorgverlener_identificatienummer value="000001116"
                                                  root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
@@ -125,11 +123,11 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Apothekers"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d52462e98"
+                  <zorgaanbieder value="d46851e98"
                                  datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d52462e98">
+            <zorgaanbieder id="d46851e98">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
@@ -153,12 +151,12 @@
                                value="2024-01-01T15:00:00+01:00"/>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener value="d52462e77"
+                     <zorgverlener value="d46851e77"
                                    datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
-               <medicamenteuze_behandeling value="d52462e174"
-                                           datatype="reference"/>
+               <medicatieafspraak datatype="reference"
+                                  value="medicatieafspraak1_mp-vm-tst-23.1-vma-geaccepteerd-v30"/>
                <toelichting value="Maagbeschermer bij NSAID"/>
             </voorstel>
          </voorstel_gegevens>

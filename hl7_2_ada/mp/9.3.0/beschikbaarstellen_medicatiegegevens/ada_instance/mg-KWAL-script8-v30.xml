@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2026-04-28T11:16:47.1053766+02:00"
-         last-update-date="2026-04-28T11:16:47.1053766+02:00"/>
+         creation-date="2026-01-01T00:00:00"
+         last-update-date="2026-01-01T00:00:00"/>
    <data>
       <!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
@@ -35,418 +35,430 @@
                       codeSystem="2.16.840.1.113883.5.1"
                       displayName="Man"/>
          </patient>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_SCRIPT8"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="MBH_300_SCRIPT8_MA"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_SCRIPT8"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd datatype="datetime"
+                                    value="2023-12-31T10:00:00+01:00"/>
+            <gebruiksperiode>
+               <start_datum_tijd datatype="datetime"
+                                 value="2023-12-31T00:00:00+01:00"/>
+               <eind_datum_tijd datatype="datetime"
+                                value="2024-01-04T23:59:59+01:00"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="d9674e78"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="d9674e64"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="1 maal per dag 0.6 ml, subcutaan"/>
+               <toedieningsweg code="21"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen"
+                               displayName="subcutaan"/>
+               <doseerinstructie>
+                  <volgnummer value="1"/>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="0.6"/>
+                        </aantal>
+                        <eenheid code="233"
+                                 displayName="milliliter"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaardthesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <frequentie>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir"
+                                          xmlns:pharm="urn:ihe:pharm:medication">
+                              <repeat>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </effectiveTime>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="MBH_300_SCRIPT8_MA_STAKEN"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_SCRIPT8"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd datatype="datetime"
+                                    value="2024-01-01T09:00:00+01:00"/>
+            <gebruiksperiode>
+               <start_datum_tijd datatype="datetime"
+                                 value="2023-12-31T00:00:00+01:00"/>
+               <eind_datum_tijd datatype="datetime"
+                                value="2024-01-01T23:59:59+01:00"/>
+            </gebruiksperiode>
+            <medicatieafspraak_stop_type code="410546004"
+                                         codeSystem="2.16.840.1.113883.6.96"
+                                         displayName="stopgezet"/>
+            <relatie_medicatieafspraak>
                <identificatie value="MBH_300_SCRIPT8_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime"
-                                       value="2023-12-31T10:00:00+01:00"/>
-               <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime"
-                                    value="2023-12-31T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime"
-                                   value="2024-01-04T23:59:59+01:00"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="d14799e78"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d14799e64"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="1 maal per dag 0.6 ml, subcutaan"/>
-                  <toedieningsweg code="21"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen"
-                                  displayName="subcutaan"/>
-                  <doseerinstructie>
-                     <volgnummer value="1"/>
-                     <dosering>
-                        <keerdosis>
+            </relatie_medicatieafspraak>
+            <voorschrijver>
+               <zorgverlener value="d9674e78"
+                             datatype="reference"/>
+            </voorschrijver>
+            <reden_wijzigen_of_staken code="62014003"
+                                      codeSystem="2.16.840.1.113883.6.96"
+                                      displayName="ongewenste reactie op medicatie en/of drugs"/>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="d9674e64"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="1 maal per dag 0.6 ml, subcutaan"/>
+               <toedieningsweg code="21"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen"
+                               displayName="subcutaan"/>
+               <doseerinstructie>
+                  <volgnummer value="1"/>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="0.6"/>
+                        </aantal>
+                        <eenheid code="233"
+                                 displayName="milliliter"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <frequentie>
                            <aantal>
-                              <nominale_waarde value="0.6"/>
+                              <nominale_waarde value="1"/>
                            </aantal>
-                           <eenheid code="233"
-                                    displayName="milliliter"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaardthesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <effectiveTime xsi:type="Timing"
-                                             xmlns="http://hl7.org/fhir"
-                                             xmlns:pharm="urn:ihe:pharm:medication">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </effectiveTime>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-            <medicatieafspraak>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir"
+                                          xmlns:pharm="urn:ihe:pharm:medication">
+                              <repeat>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </effectiveTime>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <verstrekkingsverzoek>
+            <identificatie value="MBH_300_SCRIPT8_VV"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_SCRIPT8"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <verstrekkingsverzoek_datum_tijd datatype="datetime"
+                                             value="2023-12-31T10:00:00+01:00"/>
+            <auteur>
+               <zorgverlener value="d9674e78"
+                             datatype="reference"/>
+            </auteur>
+            <te_verstrekken_geneesmiddel>
+               <farmaceutisch_product value="d9674e64"
+                                      datatype="reference"/>
+            </te_verstrekken_geneesmiddel>
+            <te_verstrekken_hoeveelheid>
+               <aantal value="5"/>
+               <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        codeSystemName="G-Standaard thesaurus basiseenheden"
+                        displayName="stuk"/>
+            </te_verstrekken_hoeveelheid>
+            <beoogd_verstrekker>
+               <zorgaanbieder value="d9674e385"
+                              datatype="reference"/>
+            </beoogd_verstrekker>
+            <relatie_medicatieafspraak>
+               <identificatie value="MBH_300_SCRIPT8_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </relatie_medicatieafspraak>
+         </verstrekkingsverzoek>
+         <toedieningsafspraak>
+            <identificatie value="MBH_300_SCRIPT8_TA"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_SCRIPT8"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd datatype="datetime"
+                                    value="2023-12-31T10:10:00+01:00"/>
+            <gebruiksperiode>
+               <start_datum_tijd datatype="datetime"
+                                 value="2023-12-31T00:00:00+01:00"/>
+               <eind_datum_tijd datatype="datetime"
+                                value="2024-01-04T23:59:59+01:00"/>
+            </gebruiksperiode>
+            <verstrekker>
+               <zorgaanbieder value="d9674e385"
+                              datatype="reference"/>
+            </verstrekker>
+            <geneesmiddel_bij_toedieningsafspraak>
+               <farmaceutisch_product value="d9674e522"
+                                      datatype="reference"/>
+            </geneesmiddel_bij_toedieningsafspraak>
+            <gebruiksinstructie>
+               <omschrijving value="elke dag om 12:00 0.6 ml, subcutaan"/>
+               <toedieningsweg code="21"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="subcutaan"/>
+               <doseerinstructie>
+                  <volgnummer value="1"/>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="0.6"/>
+                        </aantal>
+                        <eenheid code="233"
+                                 displayName="milliliter"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <toedientijd value="12:00:00"
+                                     datatype="time"/>
+                        <adaextension>
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir"
+                                          xmlns:pharm="urn:ihe:pharm:medication">
+                              <repeat>
+                                 <timeOfDay value="12:00:00"/>
+                              </repeat>
+                           </effectiveTime>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+            <relatie_medicatieafspraak>
+               <identificatie value="MBH_300_SCRIPT8_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </relatie_medicatieafspraak>
+         </toedieningsafspraak>
+         <toedieningsafspraak>
+            <identificatie value="MBH_300_SCRIPT8_TA_STAKEN"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_SCRIPT8"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd datatype="datetime"
+                                    value="2024-01-01T09:10:00+01:00"/>
+            <gebruiksperiode>
+               <start_datum_tijd datatype="datetime"
+                                 value="2023-12-31T00:00:00+01:00"/>
+               <eind_datum_tijd datatype="datetime"
+                                value="2024-01-01T23:59:59+01:00"/>
+            </gebruiksperiode>
+            <toedieningsafspraak_stop_type code="410546004"
+                                           codeSystem="2.16.840.1.113883.6.96"
+                                           displayName="stopgezet"/>
+            <verstrekker>
+               <zorgaanbieder value="d9674e385"
+                              datatype="reference"/>
+            </verstrekker>
+            <toedieningsafspraak_reden_wijzigen_of_staken code="62014003"
+                                                          codeSystem="2.16.840.1.113883.6.96"
+                                                          displayName="ongewenste reactie op medicatie en/of drugs"/>
+            <geneesmiddel_bij_toedieningsafspraak>
+               <farmaceutisch_product value="d9674e522"
+                                      datatype="reference"/>
+            </geneesmiddel_bij_toedieningsafspraak>
+            <gebruiksinstructie>
+               <omschrijving value="elke dag om 12:00 0.6 ml, subcutaan"/>
+               <toedieningsweg code="21"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="subcutaan"/>
+               <doseerinstructie>
+                  <volgnummer value="1"/>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="0.6"/>
+                        </aantal>
+                        <eenheid code="233"
+                                 displayName="milliliter"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <toedientijd value="12:00:00"
+                                     datatype="time"/>
+                        <adaextension>
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir"
+                                          xmlns:pharm="urn:ihe:pharm:medication">
+                              <repeat>
+                                 <timeOfDay value="12:00:00"/>
+                              </repeat>
+                           </effectiveTime>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+            <relatie_medicatieafspraak>
                <identificatie value="MBH_300_SCRIPT8_MA_STAKEN"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime"
-                                       value="2024-01-01T09:00:00+01:00"/>
-               <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime"
-                                    value="2023-12-31T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime"
-                                   value="2024-01-01T23:59:59+01:00"/>
-               </gebruiksperiode>
-               <medicatieafspraak_stop_type code="410546004"
-                                            codeSystem="2.16.840.1.113883.6.96"
-                                            displayName="stopgezet"/>
-               <relatie_medicatieafspraak>
-                  <identificatie value="MBH_300_SCRIPT8_MA"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </relatie_medicatieafspraak>
-               <voorschrijver>
-                  <zorgverlener value="d14799e78"
-                                datatype="reference"/>
-               </voorschrijver>
-               <reden_wijzigen_of_staken code="62014003"
-                                         codeSystem="2.16.840.1.113883.6.96"
-                                         displayName="ongewenste reactie op medicatie en/of drugs"/>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d14799e64"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="1 maal per dag 0.6 ml, subcutaan"/>
-                  <toedieningsweg code="21"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen"
-                                  displayName="subcutaan"/>
-                  <doseerinstructie>
-                     <volgnummer value="1"/>
-                     <dosering>
-                        <keerdosis>
-                           <aantal>
-                              <nominale_waarde value="0.6"/>
-                           </aantal>
-                           <eenheid code="233"
-                                    displayName="milliliter"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <effectiveTime xsi:type="Timing"
-                                             xmlns="http://hl7.org/fhir"
-                                             xmlns:pharm="urn:ihe:pharm:medication">
-                                 <repeat>
-                                    <frequency value="1"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </effectiveTime>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-            <verstrekkingsverzoek>
-               <identificatie value="MBH_300_SCRIPT8_VV"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime"
-                                                value="2023-12-31T10:00:00+01:00"/>
-               <auteur>
-                  <zorgverlener value="d14799e78"
-                                datatype="reference"/>
-               </auteur>
-               <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d14799e64"
-                                         datatype="reference"/>
-               </te_verstrekken_geneesmiddel>
-               <te_verstrekken_hoeveelheid>
-                  <aantal value="5"/>
-                  <eenheid code="245"
-                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                           codeSystemName="G-Standaard thesaurus basiseenheden"
-                           displayName="stuk"/>
-               </te_verstrekken_hoeveelheid>
-               <beoogd_verstrekker>
-                  <zorgaanbieder value="d14799e385"
-                                 datatype="reference"/>
-               </beoogd_verstrekker>
-               <relatie_medicatieafspraak>
-                  <identificatie value="MBH_300_SCRIPT8_MA"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </relatie_medicatieafspraak>
-            </verstrekkingsverzoek>
-            <toedieningsafspraak>
+            </relatie_medicatieafspraak>
+            <relatie_toedieningsafspraak>
                <identificatie value="MBH_300_SCRIPT8_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime"
-                                       value="2023-12-31T10:10:00+01:00"/>
-               <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime"
-                                    value="2023-12-31T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime"
-                                   value="2024-01-04T23:59:59+01:00"/>
-               </gebruiksperiode>
-               <verstrekker>
-                  <zorgaanbieder value="d14799e385"
-                                 datatype="reference"/>
-               </verstrekker>
-               <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d14799e522"
-                                         datatype="reference"/>
-               </geneesmiddel_bij_toedieningsafspraak>
-               <gebruiksinstructie>
-                  <omschrijving value="elke dag om 12:00 0.6 ml, subcutaan"/>
-                  <toedieningsweg code="21"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="subcutaan"/>
-                  <doseerinstructie>
-                     <volgnummer value="1"/>
-                     <dosering>
-                        <keerdosis>
-                           <aantal>
-                              <nominale_waarde value="0.6"/>
-                           </aantal>
-                           <eenheid code="233"
-                                    displayName="milliliter"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <toedientijd value="12:00:00"
-                                        datatype="time"/>
-                           <adaextension>
-                              <effectiveTime xsi:type="Timing"
-                                             xmlns="http://hl7.org/fhir"
-                                             xmlns:pharm="urn:ihe:pharm:medication">
-                                 <repeat>
-                                    <timeOfDay value="12:00:00"/>
-                                 </repeat>
-                              </effectiveTime>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-               <relatie_medicatieafspraak>
-                  <identificatie value="MBH_300_SCRIPT8_MA"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </relatie_medicatieafspraak>
-            </toedieningsafspraak>
-            <toedieningsafspraak>
+            </relatie_toedieningsafspraak>
+         </toedieningsafspraak>
+         <medicatieverstrekking>
+            <identificatie value="MBH_300_SCRIPT8_MVE"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_SCRIPT8"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                               value="2023-12-31T10:10:00+01:00"/>
+            <verstrekker>
+               <zorgaanbieder value="d9674e385"
+                              datatype="reference"/>
+            </verstrekker>
+            <verstrekte_hoeveelheid>
+               <aantal value="5"/>
+               <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        codeSystemName="G-Standaard thesaurus basiseenheden"
+                        displayName="stuk"/>
+            </verstrekte_hoeveelheid>
+            <verstrekt_geneesmiddel>
+               <farmaceutisch_product value="d9674e522"
+                                      datatype="reference"/>
+            </verstrekt_geneesmiddel>
+            <relatie_verstrekkingsverzoek>
+               <identificatie value="MBH_300_SCRIPT8_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+            </relatie_verstrekkingsverzoek>
+         </medicatieverstrekking>
+         <medicatietoediening>
+            <identificatie value="MBH_300_SCRIPT8_MTD1"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_SCRIPT8"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <toedienings_product>
+               <farmaceutisch_product value="d9674e522"
+                                      datatype="reference"/>
+            </toedienings_product>
+            <registratie_datum_tijd datatype="datetime"
+                                    value="2023-12-31T12:00:00+01:00"/>
+            <toedienings_datum_tijd datatype="datetime"
+                                    value="2023-12-31T12:00:00+01:00"/>
+            <toegediende_hoeveelheid>
+               <aantal value="0.6"/>
+               <eenheid code="233"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        codeSystemName="G-Standaard thesaurus basiseenheden"
+                        displayName="milliliter"/>
+            </toegediende_hoeveelheid>
+            <toedieningsweg code="21"
+                            codeSystem="2.16.840.1.113883.2.4.4.9"
+                            codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                            displayName="subcutaan"/>
+            <prik_plak_locatie>
+               <anatomische_locatie>
+                  <locatie code="160521000146106"
+                           codeSystem="2.16.840.1.113883.6.96"
+                           displayName="structuur van weke delen van laterale bovenkwadrant van anterieur oppervlak van bovenbeen"/>
+                  <lateraliteit code="7771000"
+                                codeSystem="2.16.840.1.113883.6.96"
+                                displayName="links"/>
+               </anatomische_locatie>
+            </prik_plak_locatie>
+            <relatie_medicatieafspraak>
+               <identificatie value="MBH_300_SCRIPT8_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </relatie_medicatieafspraak>
+            <relatie_toedieningsafspraak>
+               <identificatie value="MBH_300_SCRIPT8_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            </relatie_toedieningsafspraak>
+            <toediener>
+               <zorgverlener>
+                  <zorgverlener value="d9674e952"
+                                datatype="reference"/>
+               </zorgverlener>
+            </toediener>
+         </medicatietoediening>
+         <medicatietoediening>
+            <identificatie value="MBH_300_SCRIPT8_MTD2"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_SCRIPT8"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <toedienings_product>
+               <farmaceutisch_product value="d9674e522"
+                                      datatype="reference"/>
+            </toedienings_product>
+            <registratie_datum_tijd datatype="datetime"
+                                    value="2024-01-01T12:00:00+01:00"/>
+            <toedienings_datum_tijd datatype="datetime"
+                                    value="2024-01-01T12:00:00+01:00"/>
+            <toegediende_hoeveelheid>
+               <aantal value="0.6"/>
+               <eenheid code="233"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        codeSystemName="G-Standaard thesaurus basiseenheden"
+                        displayName="mililiter"/>
+            </toegediende_hoeveelheid>
+            <toedieningsweg code="21"
+                            codeSystem="2.16.840.1.113883.2.4.4.9"
+                            codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                            displayName="subcutaan"/>
+            <prik_plak_locatie>
+               <anatomische_locatie>
+                  <locatie code="160511000146101"
+                           codeSystem="2.16.840.1.113883.6.96"
+                           displayName="structuur van weke delen van mediale bovenkwadrant van anterieur oppervlak van bovenbeen "/>
+                  <lateraliteit code="24028007"
+                                codeSystem="2.16.840.1.113883.6.96"
+                                displayName="rechts"/>
+               </anatomische_locatie>
+            </prik_plak_locatie>
+            <relatie_medicatieafspraak>
+               <identificatie value="MBH_300_SCRIPT8_MA_STAKEN"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </relatie_medicatieafspraak>
+            <relatie_toedieningsafspraak>
                <identificatie value="MBH_300_SCRIPT8_TA_STAKEN"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <registratie_datum_tijd datatype="datetime"
-                                       value="2024-01-01T09:10:00+01:00"/>
-               <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime"
-                                    value="2023-12-31T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime"
-                                   value="2024-01-01T23:59:59+01:00"/>
-               </gebruiksperiode>
-               <toedieningsafspraak_stop_type code="410546004"
-                                              codeSystem="2.16.840.1.113883.6.96"
-                                              displayName="stopgezet"/>
-               <verstrekker>
-                  <zorgaanbieder value="d14799e385"
-                                 datatype="reference"/>
-               </verstrekker>
-               <toedieningsafspraak_reden_wijzigen_of_staken code="62014003"
-                                                             codeSystem="2.16.840.1.113883.6.96"
-                                                             displayName="ongewenste reactie op medicatie en/of drugs"/>
-               <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d14799e522"
-                                         datatype="reference"/>
-               </geneesmiddel_bij_toedieningsafspraak>
-               <gebruiksinstructie>
-                  <omschrijving value="elke dag om 12:00 0.6 ml, subcutaan"/>
-                  <toedieningsweg code="21"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="subcutaan"/>
-                  <doseerinstructie>
-                     <volgnummer value="1"/>
-                     <dosering>
-                        <keerdosis>
-                           <aantal>
-                              <nominale_waarde value="0.6"/>
-                           </aantal>
-                           <eenheid code="233"
-                                    displayName="milliliter"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <toedientijd value="12:00:00"
-                                        datatype="time"/>
-                           <adaextension>
-                              <effectiveTime xsi:type="Timing"
-                                             xmlns="http://hl7.org/fhir"
-                                             xmlns:pharm="urn:ihe:pharm:medication">
-                                 <repeat>
-                                    <timeOfDay value="12:00:00"/>
-                                 </repeat>
-                              </effectiveTime>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-               <relatie_medicatieafspraak>
-                  <identificatie value="MBH_300_SCRIPT8_MA_STAKEN"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </relatie_medicatieafspraak>
-               <relatie_toedieningsafspraak>
-                  <identificatie value="MBH_300_SCRIPT8_TA"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               </relatie_toedieningsafspraak>
-            </toedieningsafspraak>
-            <medicatieverstrekking>
-               <identificatie value="MBH_300_SCRIPT8_MVE"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                                  value="2023-12-31T10:10:00+01:00"/>
-               <verstrekker>
-                  <zorgaanbieder value="d14799e385"
-                                 datatype="reference"/>
-               </verstrekker>
-               <verstrekte_hoeveelheid>
-                  <aantal value="5"/>
-                  <eenheid code="245"
-                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                           codeSystemName="G-Standaard thesaurus basiseenheden"
-                           displayName="stuk"/>
-               </verstrekte_hoeveelheid>
-               <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d14799e522"
-                                         datatype="reference"/>
-               </verstrekt_geneesmiddel>
-               <relatie_verstrekkingsverzoek>
-                  <identificatie value="MBH_300_SCRIPT8_VV"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               </relatie_verstrekkingsverzoek>
-            </medicatieverstrekking>
-            <medicatietoediening>
-               <identificatie value="MBH_300_SCRIPT8_MTD1"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-               <toedienings_product>
-                  <farmaceutisch_product value="d14799e522"
-                                         datatype="reference"/>
-               </toedienings_product>
-               <registratie_datum_tijd datatype="datetime"
-                                       value="2023-12-31T12:00:00+01:00"/>
-               <toedienings_datum_tijd datatype="datetime"
-                                       value="2023-12-31T12:00:00+01:00"/>
-               <toegediende_hoeveelheid>
-                  <aantal value="0.6"/>
-                  <eenheid code="233"
-                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                           codeSystemName="G-Standaard thesaurus basiseenheden"
-                           displayName="milliliter"/>
-               </toegediende_hoeveelheid>
-               <toedieningsweg code="21"
-                               codeSystem="2.16.840.1.113883.2.4.4.9"
-                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                               displayName="subcutaan"/>
-               <prik_plak_locatie>
-                  <anatomische_locatie>
-                     <locatie code="160521000146106"
-                              codeSystem="2.16.840.1.113883.6.96"
-                              displayName="structuur van weke delen van laterale bovenkwadrant van anterieur oppervlak van bovenbeen"/>
-                     <lateraliteit code="7771000"
-                                   codeSystem="2.16.840.1.113883.6.96"
-                                   displayName="links"/>
-                  </anatomische_locatie>
-               </prik_plak_locatie>
-               <relatie_medicatieafspraak>
-                  <identificatie value="MBH_300_SCRIPT8_MA"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </relatie_medicatieafspraak>
-               <relatie_toedieningsafspraak>
-                  <identificatie value="MBH_300_SCRIPT8_TA"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               </relatie_toedieningsafspraak>
-               <toediener>
-                  <zorgverlener>
-                     <zorgverlener value="d14799e952"
-                                   datatype="reference"/>
-                  </zorgverlener>
-               </toediener>
-            </medicatietoediening>
-            <medicatietoediening>
-               <identificatie value="MBH_300_SCRIPT8_MTD2"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-               <toedienings_product>
-                  <farmaceutisch_product value="d14799e522"
-                                         datatype="reference"/>
-               </toedienings_product>
-               <registratie_datum_tijd datatype="datetime"
-                                       value="2024-01-01T12:00:00+01:00"/>
-               <toedienings_datum_tijd datatype="datetime"
-                                       value="2024-01-01T12:00:00+01:00"/>
-               <toegediende_hoeveelheid>
-                  <aantal value="0.6"/>
-                  <eenheid code="233"
-                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                           codeSystemName="G-Standaard thesaurus basiseenheden"
-                           displayName="mililiter"/>
-               </toegediende_hoeveelheid>
-               <toedieningsweg code="21"
-                               codeSystem="2.16.840.1.113883.2.4.4.9"
-                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                               displayName="subcutaan"/>
-               <prik_plak_locatie>
-                  <anatomische_locatie>
-                     <locatie code="160511000146101"
-                              codeSystem="2.16.840.1.113883.6.96"
-                              displayName="structuur van weke delen van mediale bovenkwadrant van anterieur oppervlak van bovenbeen "/>
-                     <lateraliteit code="24028007"
-                                   codeSystem="2.16.840.1.113883.6.96"
-                                   displayName="rechts"/>
-                  </anatomische_locatie>
-               </prik_plak_locatie>
-               <relatie_medicatieafspraak>
-                  <identificatie value="MBH_300_SCRIPT8_MA_STAKEN"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </relatie_medicatieafspraak>
-               <relatie_toedieningsafspraak>
-                  <identificatie value="MBH_300_SCRIPT8_TA_STAKEN"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               </relatie_toedieningsafspraak>
-               <toediener>
-                  <zorgverlener>
-                     <zorgverlener value="d14799e952"
-                                   datatype="reference"/>
-                  </zorgverlener>
-               </toediener>
-            </medicatietoediening>
-         </medicamenteuze_behandeling>
+            </relatie_toedieningsafspraak>
+            <toediener>
+               <zorgverlener>
+                  <zorgverlener value="d9674e952"
+                                datatype="reference"/>
+               </zorgverlener>
+            </toediener>
+         </medicatietoediening>
          <bouwstenen>
-            <farmaceutisch_product id="d14799e64">
+            <farmaceutisch_product id="d9674e64">
                <product_code code="53821"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -456,7 +468,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="NADROPARINE INJVLST 19000IE/ML"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d14799e522">
+            <farmaceutisch_product id="d9674e522">
                <product_code code="1184601"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -470,7 +482,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="NADROPARINE INJVLST 19000IE/ML"/>
             </farmaceutisch_product>
-            <zorgverlener id="d14799e78">
+            <zorgverlener id="d9674e78">
                <zorgverlener_identificatienummer value="000001112"
                                                  root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
@@ -486,11 +498,11 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d14799e99"
+                  <zorgaanbieder value="d9674e99"
                                  datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgverlener id="d14799e952">
+            <zorgverlener id="d9674e952">
                <zorgverlener_identificatienummer value="222220000"
                                                  root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
@@ -505,11 +517,11 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Verpleegkundigen, niet nader gespecificeerd"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d14799e970"
+                  <zorgaanbieder value="d9674e970"
                                  datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d14799e99">
+            <zorgaanbieder id="d9674e99">
                <zorgaanbieder_identificatienummer value="00001111"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
@@ -523,7 +535,7 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="d14799e385">
+            <zorgaanbieder id="d9674e385">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
@@ -538,7 +550,7 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="d14799e970">
+            <zorgaanbieder id="d9674e970">
                <zorgaanbieder_identificatienummer value="11110000"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Thuiszorg Om en Bij"/>

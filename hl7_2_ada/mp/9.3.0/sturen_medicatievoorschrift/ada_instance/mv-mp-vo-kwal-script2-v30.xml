@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2026-04-28T11:17:20.9612651+02:00"
-         last-update-date="2026-04-28T11:17:20.9612651+02:00"/>
+         creation-date="2026-01-01T00:00:00"
+         last-update-date="2026-01-01T00:00:00"/>
    <data>
       <sturen_medicatievoorschrift app="mp-mp93"
                                    shortName="sturen_medicatievoorschrift"
@@ -51,73 +51,73 @@
                       codeSystem="2.16.840.1.113883.5.1"
                       displayName="Vrouw"/>
          </patient>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_script2-tvo"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieafspraak>
+         <medicatieafspraak>
+            <identificatie value="MBH_300_script2_MA-tvo"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_script2-tvo"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd datatype="datetime"
+                                    value="2023-11-22T10:31:00+01:00"/>
+            <gebruiksperiode>
+               <start_datum_tijd datatype="datetime"
+                                 value="2023-11-22T00:00:00+01:00"/>
+               <eind_datum_tijd datatype="datetime"
+                                nullFlavor="NI"/>
+            </gebruiksperiode>
+            <voorschrijver>
+               <zorgverlener value="d35281e103"
+                             datatype="reference"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="d35281e89"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="Volgens schema trombosedienst, Oraal"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen"
+                               displayName="Oraal"/>
+               <aanvullende_instructie code="OTH"
+                                       codeSystem="2.16.840.1.113883.5.1008"
+                                       displayName="overig"
+                                       originalText="Volgens schema trombosedienst"/>
+            </gebruiksinstructie>
+            <toelichting value="INR range: 2,0 - 3,0"/>
+         </medicatieafspraak>
+         <verstrekkingsverzoek>
+            <identificatie value="MBH_300_script2_VV1-tvo"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_script2-tvo"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <verstrekkingsverzoek_datum_tijd datatype="datetime"
+                                             value="2023-11-22T10:32:00+01:00"/>
+            <auteur>
+               <zorgverlener value="d35281e103"
+                             datatype="reference"/>
+            </auteur>
+            <te_verstrekken_geneesmiddel>
+               <farmaceutisch_product value="d35281e89"
+                                      datatype="reference"/>
+            </te_verstrekken_geneesmiddel>
+            <te_verstrekken_hoeveelheid>
+               <aantal value="34"/>
+               <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        codeSystemName="G-Standaard thesaurus basiseenheden"
+                        displayName="stuk"/>
+            </te_verstrekken_hoeveelheid>
+            <beoogd_verstrekker>
+               <zorgaanbieder value="d35281e232"
+                              datatype="reference"/>
+            </beoogd_verstrekker>
+            <relatie_medicatieafspraak>
                <identificatie value="MBH_300_script2_MA-tvo"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <registratie_datum_tijd datatype="datetime"
-                                       value="2023-11-22T10:31:00+01:00"/>
-               <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime"
-                                    value="2023-11-22T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime"
-                                   nullFlavor="NI"/>
-               </gebruiksperiode>
-               <voorschrijver>
-                  <zorgverlener value="d40440e103"
-                                datatype="reference"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d40440e89"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="Volgens schema trombosedienst, Oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen"
-                                  displayName="Oraal"/>
-                  <aanvullende_instructie code="OTH"
-                                          codeSystem="2.16.840.1.113883.5.1008"
-                                          displayName="overig"
-                                          originalText="Volgens schema trombosedienst"/>
-               </gebruiksinstructie>
-               <toelichting value="INR range: 2,0 - 3,0"/>
-            </medicatieafspraak>
-            <verstrekkingsverzoek>
-               <identificatie value="MBH_300_script2_VV1-tvo"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime"
-                                                value="2023-11-22T10:32:00+01:00"/>
-               <auteur>
-                  <zorgverlener value="d40440e103"
-                                datatype="reference"/>
-               </auteur>
-               <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d40440e89"
-                                         datatype="reference"/>
-               </te_verstrekken_geneesmiddel>
-               <te_verstrekken_hoeveelheid>
-                  <aantal value="34"/>
-                  <eenheid code="245"
-                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                           codeSystemName="G-Standaard thesaurus basiseenheden"
-                           displayName="stuk"/>
-               </te_verstrekken_hoeveelheid>
-               <beoogd_verstrekker>
-                  <zorgaanbieder value="d40440e232"
-                                 datatype="reference"/>
-               </beoogd_verstrekker>
-               <relatie_medicatieafspraak>
-                  <identificatie value="MBH_300_script2_MA-tvo"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </relatie_medicatieafspraak>
-            </verstrekkingsverzoek>
-         </medicamenteuze_behandeling>
+            </relatie_medicatieafspraak>
+         </verstrekkingsverzoek>
          <bouwstenen>
-            <farmaceutisch_product id="d40440e89">
+            <farmaceutisch_product id="d35281e89">
                <product_code code="7323"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -127,7 +127,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="ACENOCOUMAROL TABLET 1MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="d40440e103">
+            <zorgverlener id="d35281e103">
                <zorgverlener_identificatienummer value="000001111"
                                                  root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
@@ -154,11 +154,11 @@
                   </telefoonnummers>
                </contactgegevens>
                <zorgaanbieder>
-                  <zorgaanbieder value="d40440e126"
+                  <zorgaanbieder value="d35281e126"
                                  datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d40440e126">
+            <zorgaanbieder id="d35281e126">
                <zorgaanbieder_identificatienummer value="00001111"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
@@ -172,7 +172,7 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="d40440e232">
+            <zorgaanbieder id="d35281e232">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
