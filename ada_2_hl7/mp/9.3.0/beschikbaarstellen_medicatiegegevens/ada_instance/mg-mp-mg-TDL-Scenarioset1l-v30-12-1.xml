@@ -49,169 +49,174 @@
                       codeSystem="2.16.840.1.113883.5.1"
                       displayName="Vrouw"/>
          </patient>
-         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_niet_flexibel-->
-         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
-            <identificatie value="MBH_300_niet_flexibel-tmg"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
-            <medicatieafspraak comment=""
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.43">
+         <medicatieafspraak comment=""
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.43">
+            <identificatie value="MBH_300_niet_flexibel_MA-tmg"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.194"/>
+            <medicamenteuze_behandeling_id value="MBH_300_niet_flexibel-tmg"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1498"/>
+            <registratie_datum_tijd value="2024-01-01T09:15:00+01:00"
+                                    datatype="datetime"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1480"/>
+            <gebruiksperiode comment=""
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.84">
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.629"/>
+               <eind_datum_tijd value="2024-01-08T23:59:59+01:00"
+                                datatype="datetime"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.630"/>
+            </gebruiksperiode>
+            <voorschrijver comment=""
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.44">
+               <zorgverlener value="PETER_VAN_PULVER"
+                             datatype="reference"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.45"/>
+            </voorschrijver>
+            <afgesproken_geneesmiddel comment=""
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.48">
+               <farmaceutisch_product value="PRK_METFORMINE_1090"
+                                      datatype="reference"
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.49"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie comment=""
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.50">
+               <omschrijving value="elke dag om 08:00, 14:00 en 20:00 1 stuk - let op, exacte toedientijd(en), oraal"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.52"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen"
+                               displayName="oraal"
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.54"/>
+               <doseerinstructie comment=""
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.55">
+                  <dosering comment=""
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.58">
+                     <keerdosis comment=""
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.67">
+                        <aantal comment=""
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.547">
+                           <nominale_waarde value="1"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.70"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"
+                                 displayName="stuk"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.552"/>
+                     </keerdosis>
+                     <toedieningsschema comment=""
+                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.74">
+                        <toedientijd value="08:00:00"
+                                     datatype="time"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.81"/>
+                        <toedientijd value="14:00:00"
+                                     datatype="time"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.81"/>
+                        <toedientijd value="20:00:00"
+                                     datatype="time"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.81"/>
+                        <is_flexibel value="false"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.271"/>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
+         <toedieningsafspraak comment=""
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.294">
+            <identificatie value="MBH_300_niet_flexibel_TA-tmg"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
+            <medicamenteuze_behandeling_id value="MBH_300_niet_flexibel-tmg"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1501"/>
+            <registratie_datum_tijd value="2024-01-01T10:15:00+01:00"
+                                    datatype="datetime"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1481"/>
+            <gebruiksperiode comment=""
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334">
+               <start_datum_tijd value="2024-01-01T00:00:00+01:00"
+                                 datatype="datetime"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.335"/>
+               <eind_datum_tijd value="2024-01-08T23:59:59+01:00"
+                                datatype="datetime"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.336"/>
+            </gebruiksperiode>
+            <verstrekker comment=""
+                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.295">
+               <zorgaanbieder value="APOTHEEK_DE_GULLE_GAPER"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.296"/>
+            </verstrekker>
+            <geneesmiddel_bij_toedieningsafspraak comment=""
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297">
+               <farmaceutisch_product value="HPK_METFORMINE_693332"
+                                      datatype="reference"
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.298"/>
+            </geneesmiddel_bij_toedieningsafspraak>
+            <gebruiksinstructie comment=""
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.299">
+               <omschrijving value="elke dag om 08:00, 14:00 en 20:00 1 stuk - let op, exacte toedientijd(en), oraal"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.301"/>
+               <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen"
+                               code="9"
+                               displayName="oraal"
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.303"/>
+               <doseerinstructie comment=""
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.304">
+                  <dosering comment=""
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.307">
+                     <keerdosis comment=""
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.316">
+                        <aantal comment=""
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.575">
+                           <nominale_waarde value="1"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.319"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"
+                                 displayName="stuk"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.576"/>
+                     </keerdosis>
+                     <toedieningsschema comment=""
+                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.323">
+                        <toedientijd value="08:00:00"
+                                     datatype="time"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.330"/>
+                        <toedientijd value="14:00:00"
+                                     datatype="time"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.330"/>
+                        <toedientijd value="20:00:00"
+                                     datatype="time"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.330"/>
+                        <is_flexibel value="false"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.580"/>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+            <relatie_medicatieafspraak comment=""
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.338">
                <identificatie value="MBH_300_niet_flexibel_MA-tmg"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.194"/>
-               <registratie_datum_tijd value="2024-01-01T09:15:00+01:00"
-                                       datatype="datetime"
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1480"/>
-               <gebruiksperiode comment=""
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.84">
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
-                                    datatype="datetime"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.629"/>
-                  <eind_datum_tijd value="2024-01-08T23:59:59+01:00"
-                                   datatype="datetime"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.630"/>
-               </gebruiksperiode>
-               <voorschrijver comment=""
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.44">
-                  <zorgverlener value="PETER_VAN_PULVER"
-                                datatype="reference"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.45"/>
-               </voorschrijver>
-               <afgesproken_geneesmiddel comment=""
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.48">
-                  <farmaceutisch_product value="PRK_METFORMINE_1090"
-                                         datatype="reference"
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.49"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.50">
-                  <omschrijving value="elke dag om 08:00, 14:00 en 20:00 1 stuk - let op, exacte toedientijd(en), oraal"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.52"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen"
-                                  displayName="oraal"
-                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.54"/>
-                  <doseerinstructie comment=""
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.55">
-                     <dosering comment=""
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.58">
-                        <keerdosis comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.67">
-                           <aantal comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.547">
-                              <nominale_waarde value="1"
-                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.70"/>
-                           </aantal>
-                           <eenheid code="245"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"
-                                    displayName="stuk"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.552"/>
-                        </keerdosis>
-                        <toedieningsschema comment=""
-                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.74">
-                           <toedientijd value="08:00:00"
-                                        datatype="time"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.81"/>
-                           <toedientijd value="14:00:00"
-                                        datatype="time"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.81"/>
-                           <toedientijd value="20:00:00"
-                                        datatype="time"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.81"/>
-                           <is_flexibel value="false"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.271"/>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-            <toedieningsafspraak comment=""
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.294">
-               <identificatie value="MBH_300_niet_flexibel_TA-tmg"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
-               <registratie_datum_tijd value="2024-01-01T10:15:00+01:00"
-                                       datatype="datetime"
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1481"/>
-               <gebruiksperiode comment=""
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334">
-                  <start_datum_tijd value="2024-01-01T00:00:00+01:00"
-                                    datatype="datetime"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.335"/>
-                  <eind_datum_tijd value="2024-01-08T23:59:59+01:00"
-                                   datatype="datetime"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.336"/>
-               </gebruiksperiode>
-               <verstrekker comment=""
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.295">
-                  <zorgaanbieder value="APOTHEEK_DE_GULLE_GAPER"
-                                 datatype="reference"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.296"/>
-               </verstrekker>
-               <geneesmiddel_bij_toedieningsafspraak comment=""
-                                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297">
-                  <farmaceutisch_product value="HPK_METFORMINE_693332"
-                                         datatype="reference"
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.298"/>
-               </geneesmiddel_bij_toedieningsafspraak>
-               <gebruiksinstructie comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.299">
-                  <omschrijving value="elke dag om 08:00, 14:00 en 20:00 1 stuk - let op, exacte toedientijd(en), oraal"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.301"/>
-                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen"
-                                  code="9"
-                                  displayName="oraal"
-                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.303"/>
-                  <doseerinstructie comment=""
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.304">
-                     <dosering comment=""
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.307">
-                        <keerdosis comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.316">
-                           <aantal comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.575">
-                              <nominale_waarde value="1"
-                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.319"/>
-                           </aantal>
-                           <eenheid code="245"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"
-                                    displayName="stuk"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.576"/>
-                        </keerdosis>
-                        <toedieningsschema comment=""
-                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.323">
-                           <toedientijd value="08:00:00"
-                                        datatype="time"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.330"/>
-                           <toedientijd value="14:00:00"
-                                        datatype="time"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.330"/>
-                           <toedientijd value="20:00:00"
-                                        datatype="time"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.330"/>
-                           <is_flexibel value="false"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.580"/>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-               <relatie_medicatieafspraak comment=""
-                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.338">
-                  <identificatie value="MBH_300_niet_flexibel_MA-tmg"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.565"/>
-               </relatie_medicatieafspraak>
-            </toedieningsafspraak>
-         </medicamenteuze_behandeling>
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.565"/>
+            </relatie_medicatieafspraak>
+         </toedieningsafspraak>
          <bouwstenen comment=""
                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">
-            <farmaceutisch_product id="PRK_METFORMINE_1090"
+            <farmaceutisch_product id="HPK_METFORMINE_693332"
                                    comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="693332"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="METFORMINE HCL PCH TABLET 500MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
                <product_code code="1090"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              displayName="METFORMINE 500MG TABLET"
@@ -223,14 +228,9 @@
                              displayName="METFORMINE 500MG TABLET"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="HPK_METFORMINE_693332"
+            <farmaceutisch_product id="PRK_METFORMINE_1090"
                                    comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
-               <product_code code="693332"
-                             codeSystem="2.16.840.1.113883.2.4.4.7"
-                             codeSystemName="G-Standaard HPK"
-                             displayName="METFORMINE HCL PCH TABLET 500MG"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
                <product_code code="1090"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              displayName="METFORMINE 500MG TABLET"
