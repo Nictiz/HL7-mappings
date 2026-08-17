@@ -11,9 +11,12 @@
       </div>
    </text>
    <identifier>
-      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-         <valueCode value="NA"/>
-      </extension>
+      <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+      <value>
+         <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+            <valueCode value="masked"/>
+         </extension>
+      </value>
    </identifier>
    <name>
       <text value="Joris Visser"/>
@@ -39,7 +42,7 @@
          </valueCodeableConcept>
       </extension>
    </gender>
-   <birthDate value="${DATE, T, D, -111}T14:25:00+02:00">
+   <birthDate value="${DATE, T, D, -111}">
       <extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
          <valueDateTime value="${DATE, T, D, -111}T14:25:00+02:00"/>
       </extension>
