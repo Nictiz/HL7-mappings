@@ -1,8 +1,6 @@
-<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-   <meta status="new"
-         created-by="generated"
-         last-update-by="generated"/>
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new" created-by="generated" last-update-by="generated"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -39,26 +37,18 @@
                             codeSystem="2.16.840.1.113883.5.1119"
                             displayName="Woon-/verblijfadres"/>
             </adresgegevens>
-            <identificatienummer value="999901084"
-                                 root="2.16.840.1.113883.2.4.6.3"/>
-            <geboortedatum value="1985-11-20"
-                           datatype="datetime"/>
-            <geslacht code="M"
-                      codeSystem="2.16.840.1.113883.5.1"
-                      displayName="Man"/>
+            <identificatienummer value="999901084" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1985-11-20" datatype="datetime"/>
+            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
          </patient>
          <medicatieafspraak>
             <identificatie value="MBH_300_QA1_MA-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA1-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <registratie_datum_tijd value="2023-12-12T08:00:00+01:00"
-                                    datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA1-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2023-12-12T08:00:00+01:00" datatype="datetime"/>
             <gebruiksperiode>
-               <start_datum_tijd value="2023-12-12T00:00:00+01:00"
-                                 datatype="datetime"/>
-               <eind_datum_tijd value="2024-01-10T23:59:59+01:00"
-                                datatype="datetime"/>
+               <start_datum_tijd value="2023-12-12T00:00:00+01:00" datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-10T23:59:59+01:00" datatype="datetime"/>
             </gebruiksperiode>
             <voorschrijver>
                <zorgverlener value="urn-uuid-04e11e10-6fd9-11f1-6985-020000000000"
@@ -78,7 +68,15 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -90,8 +88,7 @@
                            <aantal>
                               <nominale_waarde value="2"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -110,15 +107,11 @@
          <medicatieafspraak>
             <identificatie value="MBH_300_QA2_MA-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA2-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <registratie_datum_tijd value="2023-09-23T08:04:00+02:00"
-                                    datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA2-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2023-09-23T08:04:00+02:00" datatype="datetime"/>
             <gebruiksperiode>
-               <start_datum_tijd value="2023-09-23T00:00:00+02:00"
-                                 datatype="datetime"/>
-               <eind_datum_tijd value="2023-10-21T23:59:59+02:00"
-                                datatype="datetime"/>
+               <start_datum_tijd value="2023-09-23T00:00:00+02:00" datatype="datetime"/>
+               <eind_datum_tijd value="2023-10-21T23:59:59+02:00" datatype="datetime"/>
             </gebruiksperiode>
             <voorschrijver>
                <zorgverlener value="urn-uuid-04e11e10-6fd9-11f1-6985-020000000000"
@@ -138,7 +131,15 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="10"/>
+                           <nominale_waarde value="10">
+                              <adaextension>
+                                 <originalUCUM value="10" unit="ml"/>
+                                 <translation value="10"
+                                              code="233"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="milliliter"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="233"
                                  displayName="milliliter"
@@ -150,8 +151,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -170,15 +170,11 @@
          <medicatieafspraak>
             <identificatie value="MBH_300_QA3_MA-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA3-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <registratie_datum_tijd value="2023-11-12T08:10:00+01:00"
-                                    datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA3-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2023-11-12T08:10:00+01:00" datatype="datetime"/>
             <gebruiksperiode>
-               <start_datum_tijd value="2023-11-12T00:00:00+01:00"
-                                 datatype="datetime"/>
-               <eind_datum_tijd value="2023-12-21T23:59:59+01:00"
-                                datatype="datetime"/>
+               <start_datum_tijd value="2023-11-12T00:00:00+01:00" datatype="datetime"/>
+               <eind_datum_tijd value="2023-12-21T23:59:59+01:00" datatype="datetime"/>
             </gebruiksperiode>
             <voorschrijver>
                <zorgverlener value="urn-uuid-04e11e10-6fd9-11f1-6985-020000000000"
@@ -198,7 +194,15 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="50"/>
+                           <nominale_waarde value="50">
+                              <adaextension>
+                                 <originalUCUM value="50" unit="ml"/>
+                                 <translation value="50"
+                                              code="233"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="milliliter"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="233"
                                  displayName="milliliter"
@@ -210,8 +214,7 @@
                            <aantal>
                               <nominale_waarde value="2"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -230,15 +233,11 @@
          <medicatieafspraak>
             <identificatie value="MBH_300_QA4_MA-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA4-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <registratie_datum_tijd value="2023-12-22T08:12:00+01:00"
-                                    datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA4-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2023-12-22T08:12:00+01:00" datatype="datetime"/>
             <gebruiksperiode>
-               <start_datum_tijd value="2023-12-22T00:00:00+01:00"
-                                 datatype="datetime"/>
-               <eind_datum_tijd value="2024-01-20T23:59:59+01:00"
-                                datatype="datetime"/>
+               <start_datum_tijd value="2023-12-22T00:00:00+01:00" datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-20T23:59:59+01:00" datatype="datetime"/>
             </gebruiksperiode>
             <voorschrijver>
                <zorgverlener value="urn-uuid-04e11e10-6fd9-11f1-6985-020000000000"
@@ -258,7 +257,15 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -270,8 +277,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -290,15 +296,11 @@
          <medicatieafspraak>
             <identificatie value="MBH_300_QA5_MA-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA5-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <registratie_datum_tijd value="2023-11-12T08:15:00+01:00"
-                                    datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA5-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2023-11-12T08:15:00+01:00" datatype="datetime"/>
             <gebruiksperiode>
-               <start_datum_tijd value="2023-11-12T00:00:00+01:00"
-                                 datatype="datetime"/>
-               <tijds_duur value="7"
-                           unit="dag"/>
+               <start_datum_tijd value="2023-11-12T00:00:00+01:00" datatype="datetime"/>
+               <tijds_duur value="7" unit="dag"/>
             </gebruiksperiode>
             <voorschrijver>
                <zorgverlener value="urn-uuid-04e11e10-6fd9-11f1-6985-020000000000"
@@ -318,7 +320,15 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -330,8 +340,7 @@
                            <aantal>
                               <nominale_waarde value="4"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -350,15 +359,11 @@
          <medicatieafspraak>
             <identificatie value="MBH_300_QA6_MA-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA6-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <registratie_datum_tijd value="2023-12-27T08:18:00+01:00"
-                                    datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA6-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2023-12-27T08:18:00+01:00" datatype="datetime"/>
             <gebruiksperiode>
-               <start_datum_tijd value="2023-12-27T00:00:00+01:00"
-                                 datatype="datetime"/>
-               <eind_datum_tijd value="2024-01-02T23:59:59+01:00"
-                                datatype="datetime"/>
+               <start_datum_tijd value="2023-12-27T00:00:00+01:00" datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-02T23:59:59+01:00" datatype="datetime"/>
             </gebruiksperiode>
             <voorschrijver>
                <zorgverlener value="urn-uuid-04e11e10-6fd9-11f1-6985-020000000000"
@@ -378,7 +383,15 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -390,8 +403,7 @@
                            <aantal>
                               <nominale_waarde value="3"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -410,15 +422,11 @@
          <wisselend_doseerschema>
             <identificatie value="MBH_300_QA7_WDS-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA7-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <registratie_datum_tijd value="2023-12-01T18:00:00+01:00"
-                                    datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA7-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2023-12-01T18:00:00+01:00" datatype="datetime"/>
             <gebruiksperiode>
-               <start_datum_tijd value="2023-12-02"
-                                 datatype="datetime"/>
-               <tijds_duur value="2"
-                           unit="week"/>
+               <start_datum_tijd value="2023-12-02" datatype="datetime"/>
+               <tijds_duur value="2" unit="week"/>
             </gebruiksperiode>
             <afgesproken_geneesmiddel>
                <farmaceutisch_product value="urn-uuid-04e1227a-6fd9-11f1-6985-020000000000"
@@ -439,13 +447,20 @@
                                codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                displayName="Oraal"/>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="1"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="3"/>
+                           <nominale_waarde value="3">
+                              <adaextension>
+                                 <originalUCUM value="3" unit="1"/>
+                                 <translation value="3"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -457,8 +472,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -483,13 +497,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="3"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -501,8 +522,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -527,13 +547,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="4"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="3"/>
+                           <nominale_waarde value="3">
+                              <adaextension>
+                                 <originalUCUM value="3" unit="1"/>
+                                 <translation value="3"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -545,8 +572,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -571,13 +597,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="5"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -589,8 +622,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -615,13 +647,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="6"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="3"/>
+                           <nominale_waarde value="3">
+                              <adaextension>
+                                 <originalUCUM value="3" unit="1"/>
+                                 <translation value="3"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -633,8 +672,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -659,13 +697,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="7"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -677,8 +722,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -703,13 +747,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="2"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="3"/>
+                           <nominale_waarde value="3">
+                              <adaextension>
+                                 <originalUCUM value="3" unit="1"/>
+                                 <translation value="3"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -721,8 +772,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -747,13 +797,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="8"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="3"/>
+                           <nominale_waarde value="3">
+                              <adaextension>
+                                 <originalUCUM value="3" unit="1"/>
+                                 <translation value="3"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -765,8 +822,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -791,13 +847,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="9"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="3"/>
+                           <nominale_waarde value="3">
+                              <adaextension>
+                                 <originalUCUM value="3" unit="1"/>
+                                 <translation value="3"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -809,8 +872,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -835,13 +897,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="10"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -853,8 +922,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -879,13 +947,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="11"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="3"/>
+                           <nominale_waarde value="3">
+                              <adaextension>
+                                 <originalUCUM value="3" unit="1"/>
+                                 <translation value="3"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -897,8 +972,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -923,13 +997,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="12"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -941,8 +1022,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -967,13 +1047,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="13"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="3"/>
+                           <nominale_waarde value="3">
+                              <adaextension>
+                                 <originalUCUM value="3" unit="1"/>
+                                 <translation value="3"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -985,8 +1072,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -1011,13 +1097,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="14"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -1029,8 +1122,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -1060,15 +1152,11 @@
          <wisselend_doseerschema>
             <identificatie value="MBH_300_QA8_WDS-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA8-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <registratie_datum_tijd value="2023-11-22T08:00:00+01:00"
-                                    datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA8-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2023-11-22T08:00:00+01:00" datatype="datetime"/>
             <gebruiksperiode>
-               <start_datum_tijd value="2023-11-22"
-                                 datatype="datetime"/>
-               <tijds_duur value="1"
-                           unit="week"/>
+               <start_datum_tijd value="2023-11-22" datatype="datetime"/>
+               <tijds_duur value="1" unit="week"/>
             </gebruiksperiode>
             <afgesproken_geneesmiddel>
                <farmaceutisch_product value="urn-uuid-04e1227a-6fd9-11f1-6985-020000000000"
@@ -1089,13 +1177,20 @@
                                codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                displayName="Oraal"/>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="1"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -1107,8 +1202,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -1133,13 +1227,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="2"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -1151,8 +1252,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -1177,13 +1277,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="3"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuks"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuks"
@@ -1195,8 +1302,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -1221,13 +1327,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="4"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuks"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuks"
@@ -1239,8 +1352,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -1265,13 +1377,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="5"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuks"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuks"
@@ -1283,8 +1402,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -1309,13 +1427,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="6"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuks"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuks"
@@ -1327,8 +1452,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -1353,13 +1477,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="7"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuks"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuks"
@@ -1371,8 +1502,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -1402,15 +1532,11 @@
          <wisselend_doseerschema>
             <identificatie value="MBH_300_QA9_WDS-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA9-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <registratie_datum_tijd value="2023-12-17T12:00:00+01:00"
-                                    datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA9-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2023-12-17T12:00:00+01:00" datatype="datetime"/>
             <gebruiksperiode>
-               <start_datum_tijd value="2023-12-17"
-                                 datatype="datetime"/>
-               <tijds_duur value="10"
-                           unit="dag"/>
+               <start_datum_tijd value="2023-12-17" datatype="datetime"/>
+               <tijds_duur value="10" unit="dag"/>
             </gebruiksperiode>
             <wisselend_doseerschema_stop_type code="410546004"
                                               codeSystem="2.16.840.1.113883.6.96"
@@ -1435,13 +1561,20 @@
                                codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                displayName="Oraal"/>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="1"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -1453,8 +1586,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -1479,13 +1611,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="2"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -1497,8 +1636,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -1523,13 +1661,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="3"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -1541,8 +1686,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -1567,13 +1711,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="4"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -1585,8 +1736,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -1611,13 +1761,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="5"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -1629,8 +1786,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -1651,13 +1807,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="6"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -1669,8 +1832,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -1691,13 +1853,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="7"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -1709,8 +1878,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -1731,13 +1899,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="8"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -1749,8 +1924,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -1771,13 +1945,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="9"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -1789,8 +1970,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -1811,13 +1991,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="10"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -1829,8 +2016,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -1856,15 +2042,11 @@
          <wisselend_doseerschema>
             <identificatie value="MBH_300_QA10_WDS-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA10-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <registratie_datum_tijd value="2023-12-26T18:00:00+01:00"
-                                    datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA10-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2023-12-26T18:00:00+01:00" datatype="datetime"/>
             <gebruiksperiode>
-               <start_datum_tijd value="2023-12-27"
-                                 datatype="datetime"/>
-               <tijds_duur value="4"
-                           unit="dag"/>
+               <start_datum_tijd value="2023-12-27" datatype="datetime"/>
+               <tijds_duur value="4" unit="dag"/>
             </gebruiksperiode>
             <afgesproken_geneesmiddel>
                <farmaceutisch_product value="urn-uuid-04e122b6-6fd9-11f1-6985-020000000000"
@@ -1885,13 +2067,20 @@
                                codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                displayName="Oraal"/>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="1"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -1903,8 +2092,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -1929,13 +2117,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="2"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -1947,8 +2142,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -1973,13 +2167,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="3"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -1991,8 +2192,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -2017,13 +2217,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="4"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -2035,8 +2242,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -2066,15 +2272,11 @@
          <wisselend_doseerschema>
             <identificatie value="MBH_300_QA11_WDS-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA11-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <registratie_datum_tijd value="2023-11-02T08:00:00+01:00"
-                                    datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA11-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2023-11-02T08:00:00+01:00" datatype="datetime"/>
             <gebruiksperiode>
-               <start_datum_tijd value="2023-11-02"
-                                 datatype="datetime"/>
-               <tijds_duur value="8"
-                           unit="dag"/>
+               <start_datum_tijd value="2023-11-02" datatype="datetime"/>
+               <tijds_duur value="8" unit="dag"/>
             </gebruiksperiode>
             <afgesproken_geneesmiddel>
                <farmaceutisch_product value="urn-uuid-04e1227a-6fd9-11f1-6985-020000000000"
@@ -2095,13 +2297,20 @@
                                codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                displayName="Oraal"/>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="1"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -2113,8 +2322,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -2135,13 +2343,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="2"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -2153,8 +2368,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -2175,13 +2389,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="3"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -2193,8 +2414,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -2219,13 +2439,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="4"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -2237,8 +2464,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -2263,13 +2489,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="5"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -2281,8 +2514,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -2307,13 +2539,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="6"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -2325,8 +2564,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -2351,13 +2589,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="7"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -2369,8 +2614,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -2395,13 +2639,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="8"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -2413,8 +2664,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -2444,15 +2694,11 @@
          <wisselend_doseerschema>
             <identificatie value="MBH_300_QA12_WDS-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA12-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <registratie_datum_tijd value="2023-10-19T09:00:00+02:00"
-                                    datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA12-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2023-10-19T09:00:00+02:00" datatype="datetime"/>
             <gebruiksperiode>
-               <start_datum_tijd value="2023-10-19T09:00:00+02:00"
-                                 datatype="datetime"/>
-               <eind_datum_tijd value="2023-11-01T09:00:00+01:00"
-                                datatype="datetime"/>
+               <start_datum_tijd value="2023-10-19T09:00:00+02:00" datatype="datetime"/>
+               <eind_datum_tijd value="2023-11-01T09:00:00+01:00" datatype="datetime"/>
             </gebruiksperiode>
             <afgesproken_geneesmiddel>
                <farmaceutisch_product value="urn-uuid-04e1227a-6fd9-11f1-6985-020000000000"
@@ -2473,13 +2719,20 @@
                                codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
                                displayName="Oraal"/>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="1"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuks"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuks"
@@ -2491,8 +2744,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -2517,13 +2769,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="2"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -2535,8 +2794,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -2561,13 +2819,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="3"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuks"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuks"
@@ -2579,8 +2844,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -2605,13 +2869,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="4"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuks"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuks"
@@ -2623,8 +2894,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -2649,13 +2919,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="5"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuks"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuks"
@@ -2667,8 +2944,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -2693,13 +2969,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="6"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuks"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuks"
@@ -2711,8 +2994,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -2737,13 +3019,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="7"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuks"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuks"
@@ -2755,8 +3044,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -2781,13 +3069,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="8"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuks"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuks"
@@ -2799,8 +3094,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -2825,13 +3119,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="9"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuks"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuks"
@@ -2843,8 +3144,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -2869,13 +3169,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="10"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuks"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuks"
@@ -2887,8 +3194,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -2913,13 +3219,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="11"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuks"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuks"
@@ -2931,8 +3244,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -2957,13 +3269,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="uur"/>
+                  <doseerduur value="1" unit="uur"/>
                   <volgnummer value="12"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuks"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuks"
@@ -2975,8 +3294,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -3001,13 +3319,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="13"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuks"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuks"
@@ -3019,8 +3344,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -3045,13 +3369,20 @@
                   </dosering>
                </doseerinstructie>
                <doseerinstructie>
-                  <doseerduur value="1"
-                              unit="dag"/>
+                  <doseerduur value="1" unit="dag"/>
                   <volgnummer value="14"/>
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuks"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuks"
@@ -3063,8 +3394,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
@@ -3094,10 +3424,8 @@
          <verstrekkingsverzoek>
             <identificatie value="MBH_300_QA1_VV-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA1-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <verstrekkingsverzoek_datum_tijd value="2023-12-12T08:00:00+01:00"
-                                             datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA1-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <verstrekkingsverzoek_datum_tijd value="2023-12-12T08:00:00+01:00" datatype="datetime"/>
             <auteur>
                <zorgverlener value="urn-uuid-04e11e10-6fd9-11f1-6985-020000000000"
                              datatype="reference"/>
@@ -3107,10 +3435,19 @@
                                       datatype="reference"/>
             </te_verstrekken_geneesmiddel>
             <te_verstrekken_hoeveelheid>
-               <aantal value="60"/>
+               <aantal value="60">
+                  <adaextension>
+                     <originalUCUM value="60" unit="1"/>
+                     <translation value="60"
+                                  code="245"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="stuk"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="245"
+                        displayName="stuk"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="stuk"/>
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </te_verstrekken_hoeveelheid>
             <beoogd_verstrekker>
                <zorgaanbieder datatype="reference"
@@ -3124,10 +3461,8 @@
          <verstrekkingsverzoek>
             <identificatie value="MBH_300_QA2_VV-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA2-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <verstrekkingsverzoek_datum_tijd value="2023-09-23T08:04:00+02:00"
-                                             datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA2-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <verstrekkingsverzoek_datum_tijd value="2023-09-23T08:04:00+02:00" datatype="datetime"/>
             <auteur>
                <zorgverlener value="urn-uuid-04e11e10-6fd9-11f1-6985-020000000000"
                              datatype="reference"/>
@@ -3137,10 +3472,19 @@
                                       datatype="reference"/>
             </te_verstrekken_geneesmiddel>
             <te_verstrekken_hoeveelheid>
-               <aantal value="300"/>
+               <aantal value="300">
+                  <adaextension>
+                     <originalUCUM value="300" unit="ml"/>
+                     <translation value="300"
+                                  code="233"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="milliliter"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="233"
+                        displayName="milliliter"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="milliliter"/>
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </te_verstrekken_hoeveelheid>
             <beoogd_verstrekker>
                <zorgaanbieder datatype="reference"
@@ -3154,10 +3498,8 @@
          <verstrekkingsverzoek>
             <identificatie value="MBH_300_QA3_VV-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA3-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <verstrekkingsverzoek_datum_tijd value="2023-11-12T08:10:00+01:00"
-                                             datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA3-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <verstrekkingsverzoek_datum_tijd value="2023-11-12T08:10:00+01:00" datatype="datetime"/>
             <auteur>
                <zorgverlener value="urn-uuid-04e11e10-6fd9-11f1-6985-020000000000"
                              datatype="reference"/>
@@ -3167,10 +3509,19 @@
                                       datatype="reference"/>
             </te_verstrekken_geneesmiddel>
             <te_verstrekken_hoeveelheid>
-               <aantal value="4000"/>
+               <aantal value="4000">
+                  <adaextension>
+                     <originalUCUM value="4000" unit="ml"/>
+                     <translation value="4000"
+                                  code="233"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="milliliter"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="233"
+                        displayName="milliliter"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="milliliter"/>
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </te_verstrekken_hoeveelheid>
             <beoogd_verstrekker>
                <zorgaanbieder datatype="reference"
@@ -3184,10 +3535,8 @@
          <verstrekkingsverzoek>
             <identificatie value="MBH_300_QA4_VV-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA4-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <verstrekkingsverzoek_datum_tijd value="2023-12-22T08:12:00+01:00"
-                                             datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA4-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <verstrekkingsverzoek_datum_tijd value="2023-12-22T08:12:00+01:00" datatype="datetime"/>
             <auteur>
                <zorgverlener value="urn-uuid-04e11e10-6fd9-11f1-6985-020000000000"
                              datatype="reference"/>
@@ -3197,10 +3546,19 @@
                                       datatype="reference"/>
             </te_verstrekken_geneesmiddel>
             <te_verstrekken_hoeveelheid>
-               <aantal value="30"/>
+               <aantal value="30">
+                  <adaextension>
+                     <originalUCUM value="30" unit="1"/>
+                     <translation value="30"
+                                  code="245"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="stuk"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="245"
+                        displayName="stuk"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="stuk"/>
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </te_verstrekken_hoeveelheid>
             <beoogd_verstrekker>
                <zorgaanbieder datatype="reference"
@@ -3214,10 +3572,8 @@
          <verstrekkingsverzoek>
             <identificatie value="MBH_300_QA5_VV-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA5-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <verstrekkingsverzoek_datum_tijd value="2023-11-12T08:15:00+01:00"
-                                             datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA5-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <verstrekkingsverzoek_datum_tijd value="2023-11-12T08:15:00+01:00" datatype="datetime"/>
             <auteur>
                <zorgverlener value="urn-uuid-04e11e10-6fd9-11f1-6985-020000000000"
                              datatype="reference"/>
@@ -3227,10 +3583,19 @@
                                       datatype="reference"/>
             </te_verstrekken_geneesmiddel>
             <te_verstrekken_hoeveelheid>
-               <aantal value="56"/>
+               <aantal value="56">
+                  <adaextension>
+                     <originalUCUM value="56" unit="1"/>
+                     <translation value="56"
+                                  code="245"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="stuk"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="245"
+                        displayName="stuk"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="stuk"/>
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </te_verstrekken_hoeveelheid>
             <beoogd_verstrekker>
                <zorgaanbieder datatype="reference"
@@ -3244,10 +3609,8 @@
          <verstrekkingsverzoek>
             <identificatie value="MBH_300_QA6_VV-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA6-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <verstrekkingsverzoek_datum_tijd value="2023-12-27T08:18:00+01:00"
-                                             datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA6-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <verstrekkingsverzoek_datum_tijd value="2023-12-27T08:18:00+01:00" datatype="datetime"/>
             <auteur>
                <zorgverlener value="urn-uuid-04e11e10-6fd9-11f1-6985-020000000000"
                              datatype="reference"/>
@@ -3257,10 +3620,19 @@
                                       datatype="reference"/>
             </te_verstrekken_geneesmiddel>
             <te_verstrekken_hoeveelheid>
-               <aantal value="21"/>
+               <aantal value="21">
+                  <adaextension>
+                     <originalUCUM value="21" unit="1"/>
+                     <translation value="21"
+                                  code="245"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="stuks"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="245"
+                        displayName="stuks"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="stuks"/>
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </te_verstrekken_hoeveelheid>
             <beoogd_verstrekker>
                <zorgaanbieder datatype="reference"
@@ -3274,15 +3646,11 @@
          <toedieningsafspraak>
             <identificatie value="MBH_300_QA1_TA-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA1-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <registratie_datum_tijd value="2023-12-12T09:00:00+01:00"
-                                    datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA1-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2023-12-12T09:00:00+01:00" datatype="datetime"/>
             <gebruiksperiode>
-               <start_datum_tijd value="2023-12-12T00:00:00+01:00"
-                                 datatype="datetime"/>
-               <eind_datum_tijd value="2024-01-10T23:59:59+01:00"
-                                datatype="datetime"/>
+               <start_datum_tijd value="2023-12-12T00:00:00+01:00" datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-10T23:59:59+01:00" datatype="datetime"/>
             </gebruiksperiode>
             <verstrekker>
                <zorgaanbieder datatype="reference"
@@ -3302,7 +3670,15 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -3314,8 +3690,7 @@
                            <aantal>
                               <nominale_waarde value="2"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -3338,15 +3713,11 @@
          <toedieningsafspraak>
             <identificatie value="MBH_300_QA2_TA-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA2-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <registratie_datum_tijd value="2023-09-23T09:04:00+02:00"
-                                    datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA2-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2023-09-23T09:04:00+02:00" datatype="datetime"/>
             <gebruiksperiode>
-               <start_datum_tijd value="2023-09-23T00:00:00+02:00"
-                                 datatype="datetime"/>
-               <eind_datum_tijd value="2023-10-21T23:59:59+02:00"
-                                datatype="datetime"/>
+               <start_datum_tijd value="2023-09-23T00:00:00+02:00" datatype="datetime"/>
+               <eind_datum_tijd value="2023-10-21T23:59:59+02:00" datatype="datetime"/>
             </gebruiksperiode>
             <verstrekker>
                <zorgaanbieder datatype="reference"
@@ -3366,7 +3737,15 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="10"/>
+                           <nominale_waarde value="10">
+                              <adaextension>
+                                 <originalUCUM value="10" unit="ml"/>
+                                 <translation value="10"
+                                              code="233"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="milliliter"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="233"
                                  displayName="milliliter"
@@ -3378,8 +3757,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -3402,15 +3780,11 @@
          <toedieningsafspraak>
             <identificatie value="MBH_300_QA3_TA-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA3-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <registratie_datum_tijd value="2023-11-12T09:10:00+01:00"
-                                    datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA3-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2023-11-12T09:10:00+01:00" datatype="datetime"/>
             <gebruiksperiode>
-               <start_datum_tijd value="2023-11-12T00:00:00+01:00"
-                                 datatype="datetime"/>
-               <eind_datum_tijd value="2023-12-21T23:59:59+01:00"
-                                datatype="datetime"/>
+               <start_datum_tijd value="2023-11-12T00:00:00+01:00" datatype="datetime"/>
+               <eind_datum_tijd value="2023-12-21T23:59:59+01:00" datatype="datetime"/>
             </gebruiksperiode>
             <verstrekker>
                <zorgaanbieder datatype="reference"
@@ -3430,7 +3804,15 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="50"/>
+                           <nominale_waarde value="50">
+                              <adaextension>
+                                 <originalUCUM value="50" unit="ml"/>
+                                 <translation value="50"
+                                              code="233"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="milliliter"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="233"
                                  displayName="milliliter"
@@ -3442,8 +3824,7 @@
                            <aantal>
                               <nominale_waarde value="2"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -3466,15 +3847,11 @@
          <toedieningsafspraak>
             <identificatie value="MBH_300_QA4_TA-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA4-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <registratie_datum_tijd value="2023-12-22T09:12:00+01:00"
-                                    datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA4-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2023-12-22T09:12:00+01:00" datatype="datetime"/>
             <gebruiksperiode>
-               <start_datum_tijd value="2023-12-22T00:00:00+01:00"
-                                 datatype="datetime"/>
-               <eind_datum_tijd value="2024-01-20T23:59:59+01:00"
-                                datatype="datetime"/>
+               <start_datum_tijd value="2023-12-22T00:00:00+01:00" datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-20T23:59:59+01:00" datatype="datetime"/>
             </gebruiksperiode>
             <verstrekker>
                <zorgaanbieder datatype="reference"
@@ -3494,7 +3871,15 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -3506,8 +3891,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -3530,15 +3914,11 @@
          <toedieningsafspraak>
             <identificatie value="MBH_300_QA5_TA-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA5-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <registratie_datum_tijd value="2023-11-12T09:15:00+01:00"
-                                    datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA5-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2023-11-12T09:15:00+01:00" datatype="datetime"/>
             <gebruiksperiode>
-               <start_datum_tijd value="2023-11-12T00:00:00+01:00"
-                                 datatype="datetime"/>
-               <tijds_duur value="7"
-                           unit="dag"/>
+               <start_datum_tijd value="2023-11-12T00:00:00+01:00" datatype="datetime"/>
+               <tijds_duur value="7" unit="dag"/>
             </gebruiksperiode>
             <verstrekker>
                <zorgaanbieder datatype="reference"
@@ -3558,7 +3938,15 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -3570,8 +3958,7 @@
                            <aantal>
                               <nominale_waarde value="4"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -3594,15 +3981,11 @@
          <toedieningsafspraak>
             <identificatie value="MBH_300_QA6_TA-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA6-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <registratie_datum_tijd value="2023-12-27T09:18:00+01:00"
-                                    datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA6-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <registratie_datum_tijd value="2023-12-27T09:18:00+01:00" datatype="datetime"/>
             <gebruiksperiode>
-               <start_datum_tijd value="2023-12-27T00:00:00+01:00"
-                                 datatype="datetime"/>
-               <eind_datum_tijd value="2024-01-02T23:59:59+01:00"
-                                datatype="datetime"/>
+               <start_datum_tijd value="2023-12-27T00:00:00+01:00" datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-02T23:59:59+01:00" datatype="datetime"/>
             </gebruiksperiode>
             <verstrekker>
                <zorgaanbieder datatype="reference"
@@ -3622,7 +4005,15 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -3634,8 +4025,7 @@
                            <aantal>
                               <nominale_waarde value="3"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -3658,19 +4048,26 @@
          <medicatieverstrekking>
             <identificatie value="MBH_300_QA1_MVE-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA1-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2023-12-12T09:00:00+01:00"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA1-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-12-12T09:00:00+01:00"/>
             <verstrekker>
                <zorgaanbieder datatype="reference"
                               value="urn-uuid-04e11e92-6fd9-11f1-6985-020000000000"/>
             </verstrekker>
             <verstrekte_hoeveelheid>
-               <aantal value="60"/>
+               <aantal value="60">
+                  <adaextension>
+                     <originalUCUM value="60" unit="1"/>
+                     <translation value="60"
+                                  code="245"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="stuk"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="245"
+                        displayName="stuk"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="stuk"/>
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </verstrekte_hoeveelheid>
             <verstrekt_geneesmiddel>
                <farmaceutisch_product value="urn-uuid-04e122de-6fd9-11f1-6985-020000000000"
@@ -3684,19 +4081,26 @@
          <medicatieverstrekking>
             <identificatie value="MBH_300_QA2_MVE-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA2-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2023-09-23T09:04:00+02:00"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA2-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-09-23T09:04:00+02:00"/>
             <verstrekker>
                <zorgaanbieder datatype="reference"
                               value="urn-uuid-04e11e92-6fd9-11f1-6985-020000000000"/>
             </verstrekker>
             <verstrekte_hoeveelheid>
-               <aantal value="300"/>
+               <aantal value="300">
+                  <adaextension>
+                     <originalUCUM value="300" unit="ml"/>
+                     <translation value="300"
+                                  code="233"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="milliliter"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="233"
+                        displayName="milliliter"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="milliliter"/>
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </verstrekte_hoeveelheid>
             <verstrekt_geneesmiddel>
                <farmaceutisch_product value="urn-uuid-04e12356-6fd9-11f1-6985-020000000000"
@@ -3710,19 +4114,26 @@
          <medicatieverstrekking>
             <identificatie value="MBH_300_QA3_MVE-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA3-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2023-11-12T09:10:00+01:00"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA3-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-11-12T09:10:00+01:00"/>
             <verstrekker>
                <zorgaanbieder datatype="reference"
                               value="urn-uuid-04e11e92-6fd9-11f1-6985-020000000000"/>
             </verstrekker>
             <verstrekte_hoeveelheid>
-               <aantal value="4000"/>
+               <aantal value="4000">
+                  <adaextension>
+                     <originalUCUM value="4000" unit="ml"/>
+                     <translation value="4000"
+                                  code="233"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="milliliter"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="233"
+                        displayName="milliliter"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="milliliter"/>
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </verstrekte_hoeveelheid>
             <verstrekt_geneesmiddel>
                <farmaceutisch_product value="urn-uuid-04e1237e-6fd9-11f1-6985-020000000000"
@@ -3736,19 +4147,26 @@
          <medicatieverstrekking>
             <identificatie value="MBH_300_QA4_MVE-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA4-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2023-12-22T09:12:00+01:00"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA4-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-12-22T09:12:00+01:00"/>
             <verstrekker>
                <zorgaanbieder datatype="reference"
                               value="urn-uuid-04e11e92-6fd9-11f1-6985-020000000000"/>
             </verstrekker>
             <verstrekte_hoeveelheid>
-               <aantal value="30"/>
+               <aantal value="30">
+                  <adaextension>
+                     <originalUCUM value="30" unit="1"/>
+                     <translation value="30"
+                                  code="245"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="stuk"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="245"
+                        displayName="stuk"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="stuk"/>
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </verstrekte_hoeveelheid>
             <verstrekt_geneesmiddel>
                <farmaceutisch_product value="urn-uuid-04e122a2-6fd9-11f1-6985-020000000000"
@@ -3762,19 +4180,26 @@
          <medicatieverstrekking>
             <identificatie value="MBH_300_QA5_MVE-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA5-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2023-11-12T09:15:00+01:00"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA5-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-11-12T09:15:00+01:00"/>
             <verstrekker>
                <zorgaanbieder datatype="reference"
                               value="urn-uuid-04e11e92-6fd9-11f1-6985-020000000000"/>
             </verstrekker>
             <verstrekte_hoeveelheid>
-               <aantal value="56"/>
+               <aantal value="56">
+                  <adaextension>
+                     <originalUCUM value="56" unit="1"/>
+                     <translation value="56"
+                                  code="245"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="stuk"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="245"
+                        displayName="stuk"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="stuk"/>
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </verstrekte_hoeveelheid>
             <verstrekt_geneesmiddel>
                <farmaceutisch_product value="urn-uuid-04e1232e-6fd9-11f1-6985-020000000000"
@@ -3788,19 +4213,26 @@
          <medicatieverstrekking>
             <identificatie value="MBH_300_QA6_MVE-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA6-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2023-12-27T09:18:00+01:00"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA6-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-12-27T09:18:00+01:00"/>
             <verstrekker>
                <zorgaanbieder datatype="reference"
                               value="urn-uuid-04e11e92-6fd9-11f1-6985-020000000000"/>
             </verstrekker>
             <verstrekte_hoeveelheid>
-               <aantal value="21"/>
+               <aantal value="21">
+                  <adaextension>
+                     <originalUCUM value="21" unit="1"/>
+                     <translation value="21"
+                                  code="245"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="stuks"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="245"
+                        displayName="stuks"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="stuks"/>
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </verstrekte_hoeveelheid>
             <verstrekt_geneesmiddel>
                <farmaceutisch_product value="urn-uuid-04e12306-6fd9-11f1-6985-020000000000"
@@ -3814,17 +4246,13 @@
          <medicatiegebruik>
             <identificatie value="MBH_300_QA1_MGB-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA1-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatiegebruik_datum_tijd value="2023-12-31T10:04:23+01:00"
-                                         datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA1-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatiegebruik_datum_tijd value="2023-12-31T10:04:23+01:00" datatype="datetime"/>
             <gebruik_indicator value="true"/>
             <volgens_afspraak_indicator value="true"/>
             <gebruiksperiode>
-               <start_datum_tijd value="2023-12-12T00:00:00+01:00"
-                                 datatype="datetime"/>
-               <eind_datum_tijd value="2024-01-10T23:59:59+01:00"
-                                datatype="datetime"/>
+               <start_datum_tijd value="2023-12-12T00:00:00+01:00" datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-10T23:59:59+01:00" datatype="datetime"/>
             </gebruiksperiode>
             <gebruiksproduct>
                <farmaceutisch_product value="urn-uuid-04e122de-6fd9-11f1-6985-020000000000"
@@ -3840,7 +4268,15 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -3852,8 +4288,7 @@
                            <aantal>
                               <nominale_waarde value="2"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -3886,17 +4321,13 @@
          <medicatiegebruik>
             <identificatie value="MBH_300_QA2_MGB-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA2-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatiegebruik_datum_tijd value="2023-10-25T12:13:55+02:00"
-                                         datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA2-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatiegebruik_datum_tijd value="2023-10-25T12:13:55+02:00" datatype="datetime"/>
             <gebruik_indicator value="true"/>
             <volgens_afspraak_indicator value="true"/>
             <gebruiksperiode>
-               <start_datum_tijd value="2023-09-23T00:00:00+02:00"
-                                 datatype="datetime"/>
-               <eind_datum_tijd value="2023-10-21T23:59:59+02:00"
-                                datatype="datetime"/>
+               <start_datum_tijd value="2023-09-23T00:00:00+02:00" datatype="datetime"/>
+               <eind_datum_tijd value="2023-10-21T23:59:59+02:00" datatype="datetime"/>
             </gebruiksperiode>
             <gebruiksproduct>
                <farmaceutisch_product value="urn-uuid-04e12356-6fd9-11f1-6985-020000000000"
@@ -3912,7 +4343,15 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="10"/>
+                           <nominale_waarde value="10">
+                              <adaextension>
+                                 <originalUCUM value="10" unit="ml"/>
+                                 <translation value="10"
+                                              code="233"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="millimeter"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="233"
                                  displayName="millimeter"
@@ -3924,8 +4363,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -3958,17 +4396,13 @@
          <medicatiegebruik>
             <identificatie value="MBH_300_QA3_MGB-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA3-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatiegebruik_datum_tijd value="2023-12-23T07:59:59+01:00"
-                                         datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA3-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatiegebruik_datum_tijd value="2023-12-23T07:59:59+01:00" datatype="datetime"/>
             <gebruik_indicator value="true"/>
             <volgens_afspraak_indicator value="true"/>
             <gebruiksperiode>
-               <start_datum_tijd value="2023-11-12T00:00:00+01:00"
-                                 datatype="datetime"/>
-               <eind_datum_tijd value="2023-12-21T23:59:59+01:00"
-                                datatype="datetime"/>
+               <start_datum_tijd value="2023-11-12T00:00:00+01:00" datatype="datetime"/>
+               <eind_datum_tijd value="2023-12-21T23:59:59+01:00" datatype="datetime"/>
             </gebruiksperiode>
             <gebruiksproduct>
                <farmaceutisch_product value="urn-uuid-04e1237e-6fd9-11f1-6985-020000000000"
@@ -3984,7 +4418,15 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="50"/>
+                           <nominale_waarde value="50">
+                              <adaextension>
+                                 <originalUCUM value="50" unit="ml"/>
+                                 <translation value="50"
+                                              code="233"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="milliliter"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="233"
                                  displayName="milliliter"
@@ -3996,8 +4438,7 @@
                            <aantal>
                               <nominale_waarde value="2"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -4034,17 +4475,13 @@
          <medicatiegebruik>
             <identificatie value="MBH_300_QA4_MGB-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA4-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatiegebruik_datum_tijd value="2023-12-30T08:12:00+01:00"
-                                         datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA4-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatiegebruik_datum_tijd value="2023-12-30T08:12:00+01:00" datatype="datetime"/>
             <gebruik_indicator value="true"/>
             <volgens_afspraak_indicator value="true"/>
             <gebruiksperiode>
-               <start_datum_tijd value="2023-12-22T00:00:00+01:00"
-                                 datatype="datetime"/>
-               <eind_datum_tijd value="2024-01-20T23:59:59+01:00"
-                                datatype="datetime"/>
+               <start_datum_tijd value="2023-12-22T00:00:00+01:00" datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-20T23:59:59+01:00" datatype="datetime"/>
             </gebruiksperiode>
             <gebruiksproduct>
                <farmaceutisch_product value="urn-uuid-04e1228e-6fd9-11f1-6985-020000000000"
@@ -4060,7 +4497,15 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -4072,8 +4517,7 @@
                            <aantal>
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -4109,17 +4553,13 @@
          <medicatiegebruik>
             <identificatie value="MBH_300_QA5_MGB-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA5-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatiegebruik_datum_tijd value="2023-11-19T08:00:00+01:00"
-                                         datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA5-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatiegebruik_datum_tijd value="2023-11-19T08:00:00+01:00" datatype="datetime"/>
             <gebruik_indicator value="true"/>
             <volgens_afspraak_indicator value="true"/>
             <gebruiksperiode>
-               <start_datum_tijd value="2023-11-12T00:00:00+01:00"
-                                 datatype="datetime"/>
-               <tijds_duur value="7"
-                           unit="dag"/>
+               <start_datum_tijd value="2023-11-12T00:00:00+01:00" datatype="datetime"/>
+               <tijds_duur value="7" unit="dag"/>
             </gebruiksperiode>
             <gebruiksproduct>
                <farmaceutisch_product value="urn-uuid-04e1232e-6fd9-11f1-6985-020000000000"
@@ -4135,7 +4575,15 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2" unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -4147,8 +4595,7 @@
                            <aantal>
                               <nominale_waarde value="4"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -4184,16 +4631,12 @@
          <medicatiegebruik>
             <identificatie value="MBH_300_QA6_MGB-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA6-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatiegebruik_datum_tijd value="2023-12-30T08:59:59+01:00"
-                                         datatype="datetime"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA6-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatiegebruik_datum_tijd value="2023-12-30T08:59:59+01:00" datatype="datetime"/>
             <gebruik_indicator value="true"/>
             <gebruiksperiode>
-               <start_datum_tijd value="2023-12-27T00:00:00+01:00"
-                                 datatype="datetime"/>
-               <eind_datum_tijd value="2024-01-02T23:59:59+01:00"
-                                datatype="datetime"/>
+               <start_datum_tijd value="2023-12-27T00:00:00+01:00" datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-02T23:59:59+01:00" datatype="datetime"/>
             </gebruiksperiode>
             <gebruiksproduct>
                <farmaceutisch_product value="urn-uuid-04e122f2-6fd9-11f1-6985-020000000000"
@@ -4209,7 +4652,15 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1" unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -4221,8 +4672,7 @@
                            <aantal>
                               <nominale_waarde value="3"/>
                            </aantal>
-                           <tijdseenheid value="1"
-                                         unit="dag"/>
+                           <tijdseenheid value="1" unit="dag"/>
                         </frequentie>
                         <adaextension>
                            <timing xmlns="http://hl7.org/fhir">
@@ -4258,18 +4708,28 @@
          <medicatietoediening>
             <identificatie value="MBH_300_QA1_MTD-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA1-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA1-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <toedienings_product>
                <farmaceutisch_product value="urn-uuid-04e122de-6fd9-11f1-6985-020000000000"
                                       datatype="reference"/>
             </toedienings_product>
-            <registratie_datum_tijd value="2023-12-14T10:04:22+01:00"
-                                    datatype="datetime"/>
-            <toedienings_datum_tijd value="2023-12-14T10:04:22+01:00"
-                                    datatype="datetime"/>
+            <registratie_datum_tijd value="2023-12-14T10:04:22+01:00" datatype="datetime"/>
+            <toedienings_datum_tijd value="2023-12-14T10:04:22+01:00" datatype="datetime"/>
             <toegediende_hoeveelheid>
                <aantal value="1"/>
+               <eenheid code="245"
+                        displayName="stuk"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
+               <aantal value="1">
+                  <adaextension>
+                     <originalUCUM value="1" unit="1"/>
+                     <translation value="1"
+                                  code="245"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="stuk"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="245"
                         displayName="stuk"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -4300,18 +4760,28 @@
          <medicatietoediening>
             <identificatie value="MBH_300_QA2_MTD-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA2-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA2-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <toedienings_product>
                <farmaceutisch_product value="urn-uuid-04e12356-6fd9-11f1-6985-020000000000"
                                       datatype="reference"/>
             </toedienings_product>
-            <registratie_datum_tijd value="2023-09-24T13:10:40+02:00"
-                                    datatype="datetime"/>
-            <toedienings_datum_tijd value="2023-09-24T13:10:40+02:00"
-                                    datatype="datetime"/>
+            <registratie_datum_tijd value="2023-09-24T13:10:40+02:00" datatype="datetime"/>
+            <toedienings_datum_tijd value="2023-09-24T13:10:40+02:00" datatype="datetime"/>
             <toegediende_hoeveelheid>
                <aantal value="5"/>
+               <eenheid code="233"
+                        displayName="milliliter"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
+               <aantal value="5">
+                  <adaextension>
+                     <originalUCUM value="5" unit="ml"/>
+                     <translation value="5"
+                                  code="233"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="milliliter"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="233"
                         displayName="milliliter"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -4346,18 +4816,28 @@
          <medicatietoediening>
             <identificatie value="MBH_300_QA3_MTD-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA3-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA3-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <toedienings_product>
                <farmaceutisch_product value="urn-uuid-04e1237e-6fd9-11f1-6985-020000000000"
                                       datatype="reference"/>
             </toedienings_product>
-            <registratie_datum_tijd value="2023-11-17T11:26:44+01:00"
-                                    datatype="datetime"/>
-            <toedienings_datum_tijd value="2023-11-17T11:26:44+01:00"
-                                    datatype="datetime"/>
+            <registratie_datum_tijd value="2023-11-17T11:26:44+01:00" datatype="datetime"/>
+            <toedienings_datum_tijd value="2023-11-17T11:26:44+01:00" datatype="datetime"/>
             <toegediende_hoeveelheid>
                <aantal value="50"/>
+               <eenheid code="233"
+                        displayName="milliliter"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
+               <aantal value="50">
+                  <adaextension>
+                     <originalUCUM value="50" unit="ml"/>
+                     <translation value="50"
+                                  code="233"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="milliliter"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="233"
                         displayName="milliliter"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -4388,18 +4868,28 @@
          <medicatietoediening>
             <identificatie value="MBH_300_QA4_MTD-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA4-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA4-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <toedienings_product>
                <farmaceutisch_product value="urn-uuid-04e122a2-6fd9-11f1-6985-020000000000"
                                       datatype="reference"/>
             </toedienings_product>
-            <registratie_datum_tijd value="2023-12-23T17:01:01+01:00"
-                                    datatype="datetime"/>
-            <toedienings_datum_tijd value="2023-12-23T17:01:01+01:00"
-                                    datatype="datetime"/>
+            <registratie_datum_tijd value="2023-12-23T17:01:01+01:00" datatype="datetime"/>
+            <toedienings_datum_tijd value="2023-12-23T17:01:01+01:00" datatype="datetime"/>
             <toegediende_hoeveelheid>
                <aantal value="1"/>
+               <eenheid code="245"
+                        displayName="stuk"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
+               <aantal value="1">
+                  <adaextension>
+                     <originalUCUM value="1" unit="1"/>
+                     <translation value="1"
+                                  code="245"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="stuk"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="245"
                         displayName="stuk"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -4430,18 +4920,28 @@
          <medicatietoediening>
             <identificatie value="MBH_300_QA5_MTD-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA5-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA5-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <toedienings_product>
                <farmaceutisch_product value="urn-uuid-04e1232e-6fd9-11f1-6985-020000000000"
                                       datatype="reference"/>
             </toedienings_product>
-            <registratie_datum_tijd value="2023-11-13T13:54:35+01:00"
-                                    datatype="datetime"/>
-            <toedienings_datum_tijd value="2023-11-13T13:54:35+01:00"
-                                    datatype="datetime"/>
+            <registratie_datum_tijd value="2023-11-13T13:54:35+01:00" datatype="datetime"/>
+            <toedienings_datum_tijd value="2023-11-13T13:54:35+01:00" datatype="datetime"/>
             <toegediende_hoeveelheid>
                <aantal value="2"/>
+               <eenheid code="245"
+                        displayName="stuk"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
+               <aantal value="2">
+                  <adaextension>
+                     <originalUCUM value="2" unit="1"/>
+                     <translation value="2"
+                                  code="245"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="stuk"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="245"
                         displayName="stuk"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -4472,18 +4972,28 @@
          <medicatietoediening>
             <identificatie value="MBH_300_QA6_MTD-tmg"
                            root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-            <medicamenteuze_behandeling_id value="MBH_300_QA6-tmg"
-                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_QA6-tmg" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <toedienings_product>
                <farmaceutisch_product value="urn-uuid-04e12306-6fd9-11f1-6985-020000000000"
                                       datatype="reference"/>
             </toedienings_product>
-            <registratie_datum_tijd value="2023-12-28T08:08:08+01:00"
-                                    datatype="datetime"/>
-            <toedienings_datum_tijd value="2023-12-28T08:08:08+01:00"
-                                    datatype="datetime"/>
+            <registratie_datum_tijd value="2023-12-28T08:08:08+01:00" datatype="datetime"/>
+            <toedienings_datum_tijd value="2023-12-28T08:08:08+01:00" datatype="datetime"/>
             <toegediende_hoeveelheid>
                <aantal value="1"/>
+               <eenheid code="245"
+                        displayName="stuk"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
+               <aantal value="1">
+                  <adaextension>
+                     <originalUCUM value="1" unit="1"/>
+                     <translation value="1"
+                                  code="245"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="stuk"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="245"
                         displayName="stuk"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -4691,8 +5201,7 @@
                              displayName="VLOEIBARE VOEDING MET O.A. VITAMINE K"/>
             </farmaceutisch_product>
             <zorgverlener id="urn-uuid-04e11dca-6fd9-11f1-6985-020000000000">
-               <zorgverlener_identificatienummer value="222220000"
-                                                 root="2.16.528.1.1007.3.1"/>
+               <zorgverlener_identificatienummer value="222220000" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Jantien"/>
                   <geslachtsnaam>
@@ -4710,8 +5219,7 @@
                </zorgaanbieder>
             </zorgverlener>
             <zorgverlener id="urn-uuid-04e11e10-6fd9-11f1-6985-020000000000">
-               <zorgverlener_identificatienummer value="000001111"
-                                                 root="2.16.528.1.1007.3.1"/>
+               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Peter"/>
                   <geslachtsnaam>
@@ -4730,8 +5238,7 @@
                </zorgaanbieder>
             </zorgverlener>
             <zorgverlener id="urn-uuid-04e11e56-6fd9-11f1-6985-020000000000">
-               <zorgverlener_identificatienummer value="222221111"
-                                                 root="2.16.528.1.1007.3.1"/>
+               <zorgverlener_identificatienummer value="222221111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Tanja"/>
                   <geslachtsnaam>
@@ -4750,8 +5257,7 @@
                </zorgaanbieder>
             </zorgverlener>
             <zorgaanbieder id="urn-uuid-04e11e92-6fd9-11f1-6985-020000000000">
-               <zorgaanbieder_identificatienummer value="01236578"
-                                                  root="2.16.528.1.1007.3.3"/>
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>
@@ -4765,8 +5271,7 @@
                </adresgegevens>
             </zorgaanbieder>
             <zorgaanbieder id="urn-uuid-04e11eba-6fd9-11f1-6985-020000000000">
-               <zorgaanbieder_identificatienummer value="00001111"
-                                                  root="2.16.528.1.1007.3.3"/>
+               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>
@@ -4779,8 +5284,7 @@
                </adresgegevens>
             </zorgaanbieder>
             <zorgaanbieder id="urn-uuid-04e11ee2-6fd9-11f1-6985-020000000000">
-               <zorgaanbieder_identificatienummer value="11110000"
-                                                  root="2.16.528.1.1007.3.3"/>
+               <zorgaanbieder_identificatienummer value="11110000" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Thuiszorg Om en Bij"/>
                <organisatie_type code="T2"
                                  codeSystem="2.16.840.1.113883.2.4.15.1060"
@@ -4788,8 +5292,7 @@
                                  displayName="Thuiszorg"/>
             </zorgaanbieder>
             <zorgaanbieder id="urn-uuid-04e11f0a-6fd9-11f1-6985-020000000000">
-               <zorgaanbieder_identificatienummer value="11112222"
-                                                  root="2.16.528.1.1007.3.3"/>
+               <zorgaanbieder_identificatienummer value="11112222" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Trombosedienst Ons Dorp"/>
                <afdeling_specialisme code="3400"
                                      codeSystem="2.16.840.1.113883.2.4.6.7"
@@ -4808,8 +5311,7 @@
                </adresgegevens>
             </zorgaanbieder>
             <zorgaanbieder id="urn-uuid-04e11ece-6fd9-11f1-6985-020000000000">
-               <zorgaanbieder_identificatienummer value="00001111"
-                                                  root="2.16.528.1.1007.3.3"/>
+               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
                   <straat value="Dorpsstraat"/>
