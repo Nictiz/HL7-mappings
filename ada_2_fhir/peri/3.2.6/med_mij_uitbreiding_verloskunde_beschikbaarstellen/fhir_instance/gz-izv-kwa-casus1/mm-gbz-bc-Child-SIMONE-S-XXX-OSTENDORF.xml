@@ -7,13 +7,16 @@
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
-         <div>Id <i>n.v.t. (ontbrekend gegeven)</i>, <span title="Naamsamenstelling: Eigennaam">Simone S XXX_Ostendorf</span>, ${DATE, T, D, -225}T12:40:00+02:00, Geen meerling</div>
+         <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), <span title="Naamsamenstelling: Eigennaam">Simone S XXX_Ostendorf</span>, ${DATE, T, D, -225}, Geen meerling</div>
       </div>
    </text>
    <identifier>
-      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-         <valueCode value="NA"/>
-      </extension>
+      <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+      <value>
+         <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+            <valueCode value="masked"/>
+         </extension>
+      </value>
    </identifier>
    <name>
       <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
@@ -36,7 +39,7 @@
          </extension>
       </given>
    </name>
-   <birthDate value="${DATE, T, D, -225}T12:40:00+02:00">
+   <birthDate value="${DATE, T, D, -225}">
       <extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
          <valueDateTime value="${DATE, T, D, -225}T12:40:00+02:00"/>
       </extension>
