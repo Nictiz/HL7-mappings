@@ -1,16 +1,16 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-tst-MA-Scenarioset10-v30"/>
    <type value="searchset"/>
-   <total value="2"/>
+   <total value="3"/>
    <link>
       <relation value="self"/>
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:25823e5d-6ae8-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:7d547b3e-6aae-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
-            <id value="25823e5d-6ae8-11ec-0000-020000000000"/>
+            <id value="7d547b3e-6aae-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
@@ -99,10 +99,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2b5a0b3e-6b1a-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:8cffcb3e-6af3-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
-            <id value="2b5a0b3e-6b1a-11ec-0000-020000000000"/>
+            <id value="8cffcb3e-6af3-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
@@ -183,6 +183,82 @@
                      <code value="1"/>
                   </doseQuantity>
                </doseAndRate>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:daa4fb3e-6ab7-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <id value="daa4fb3e-6ab7-11ec-0000-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, -4}T16:25:00+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="Volgens schema trombosedienst, Oraal"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -4}T17:25:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_WDSmetHPK-tmg"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_300_WDSmetHPK_MA-tmg"/>
+            </identifier>
+            <status value="unknown"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="33633005"/>
+                  <display value="voorschrijven van geneesmiddel"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:d2d19b86-6aec-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="MARCOUMAR TABLET 3MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:4821c31e-6ab8-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, J. XXX_Bree"/>
+            </subject>
+            <requester>
+               <reference value="urn:uuid:fdf54558-6b5e-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </requester>
+            <dosageInstruction>
+               <additionalInstruction>
+                  <coding>
+                     <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+                     <code value="OTH"/>
+                     <display value="overig"/>
+                  </coding>
+                  <text value="Volgens schema trombosedienst"/>
+               </additionalInstruction>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
             </dosageInstruction>
          </MedicationRequest>
       </resource>
@@ -340,6 +416,39 @@
                <postalCode value="1234AA"/>
             </address>
          </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:d2d19b86-6aec-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <id value="d2d19b86-6aec-11ec-0000-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="52477"/>
+                  <display value="MARCOUMAR TABLET 3MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="1783"/>
+                  <display value="FENPROCOUMON TABLET 3MG"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="6637"/>
+                  <display value="FENPROCOUMON TABLET 3MG"/>
+               </coding>
+               <text value="MARCOUMAR TABLET 3MG"/>
+            </code>
+         </Medication>
       </resource>
       <search>
          <mode value="include"/>

@@ -2,10 +2,88 @@
    <id value="mgsets-mp-smg-tst-WDS-Scenarioset10-v30"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:5946c88d-6ae5-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:66e81d5d-6b75-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
-            <id value="5946c88d-6ae5-11ec-0000-020000000000"/>
+            <id value="66e81d5d-6b75-11ec-0000-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, -4}T16:25:00+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="Volgens schema trombosedienst, Oraal"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -4}T17:25:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_WDSmetHPK-tmgs"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_300_WDSmetHPK_MA-tmgs"/>
+            </identifier>
+            <status value="unknown"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="33633005"/>
+                  <display value="voorschrijven van geneesmiddel"/>
+               </coding>
+            </category>
+            <reportedBoolean value="false"/>
+            <medicationReference>
+               <reference value="urn:uuid:d2d19b86-6aec-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="MARCOUMAR TABLET 3MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:5b11573e-6aa2-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, M. XXX_Niesing"/>
+            </subject>
+            <requester>
+               <reference value="urn:uuid:fdf54558-6b5e-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </requester>
+            <dosageInstruction>
+               <additionalInstruction>
+                  <coding>
+                     <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+                     <code value="OTH"/>
+                     <display value="overig"/>
+                  </coding>
+                  <text value="Volgens schema trombosedienst"/>
+               </additionalInstruction>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:9767e08d-6aeb-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <id value="9767e08d-6aeb-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-VariableDosingRegimen"/>
             </meta>

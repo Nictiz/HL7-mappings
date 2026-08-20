@@ -2,10 +2,104 @@
    <id value="mgsets-mp-smg-tst-MGB-Scenarioset10-v30"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:81332cbd-6aa1-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6f96efbb-6ace-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <id value="6f96efbb-6ace-11ec-0000-020000000000"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, +0}T14:05:00+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="1 maal per dag 1 stuk, Oraal"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -170}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, -21}T23:59:59+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_HPKvoorschrijven-tmgs"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_300_HPKvoorschrijven_MA-tmgs"/>
+            </identifier>
+            <status value="unknown"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="33633005"/>
+                  <display value="voorschrijven van geneesmiddel"/>
+               </coding>
+            </category>
+            <reportedBoolean value="false"/>
+            <medicationReference>
+               <reference value="urn:uuid:44230786-6b4a-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="XARELTO TABLET FILMOMHULD 20MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:5b11573e-6aa2-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, M. XXX_Niesing"/>
+            </subject>
+            <requester>
+               <reference value="urn:uuid:fdf54558-6b5e-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </requester>
+            <dosageInstruction>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="1"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="1"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fb3b5cbd-6b25-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
-            <id value="81332cbd-6aa1-11ec-0000-020000000000"/>
+            <id value="fb3b5cbd-6b25-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
@@ -124,10 +218,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:94d5bcbd-6b69-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:264e4be7-6b00-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
-            <id value="94d5bcbd-6b69-11ec-0000-020000000000"/>
+            <id value="264e4be7-6b00-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
