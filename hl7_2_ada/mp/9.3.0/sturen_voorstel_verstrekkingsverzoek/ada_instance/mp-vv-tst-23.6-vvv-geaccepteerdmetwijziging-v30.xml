@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2026-04-28T11:18:02.1817915+02:00"
-         last-update-date="2026-04-28T11:18:02.1817915+02:00"/>
+         creation-date="2026-01-01T00:00:00"
+         last-update-date="2026-01-01T00:00:00"/>
    <data>
       <sturen_voorstel_verstrekkingsverzoek app="mp-mp93"
                                             shortName="sturen_voorstel_verstrekkingsverzoek"
@@ -36,33 +36,31 @@
                       codeSystem="2.16.840.1.113883.5.1"
                       displayName="Man"/>
          </patient>
-         <medicamenteuze_behandeling id="d53260e154">
-            <identificatie value="MBH_300_VVV_wijziging"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <verstrekkingsverzoek>
-               <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d53260e58"
-                                         datatype="reference"/>
-               </te_verstrekken_geneesmiddel>
-               <te_verstrekken_hoeveelheid>
-                  <aantal value="3"/>
-                  <eenheid code="245"
-                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                           codeSystemName="G-Standaard thesaurus basiseenheden"
-                           displayName="stuk"/>
-               </te_verstrekken_hoeveelheid>
-               <beoogd_verstrekker>
-                  <zorgaanbieder value="d53260e74"
-                                 datatype="reference"/>
-               </beoogd_verstrekker>
-               <relatie_medicatieafspraak>
-                  <identificatie value="MBH_300_VVV_wijziging_MA"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </relatie_medicatieafspraak>
-            </verstrekkingsverzoek>
-         </medicamenteuze_behandeling>
+         <verstrekkingsverzoek>
+            <medicamenteuze_behandeling_id value="MBH_300_VVV_wijziging"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <te_verstrekken_geneesmiddel>
+               <farmaceutisch_product value="d47350e58"
+                                      datatype="reference"/>
+            </te_verstrekken_geneesmiddel>
+            <te_verstrekken_hoeveelheid>
+               <aantal value="3"/>
+               <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        codeSystemName="G-Standaard thesaurus basiseenheden"
+                        displayName="stuk"/>
+            </te_verstrekken_hoeveelheid>
+            <beoogd_verstrekker>
+               <zorgaanbieder value="d47350e74"
+                              datatype="reference"/>
+            </beoogd_verstrekker>
+            <relatie_medicatieafspraak>
+               <identificatie value="MBH_300_VVV_wijziging_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </relatie_medicatieafspraak>
+         </verstrekkingsverzoek>
          <bouwstenen>
-            <farmaceutisch_product id="d53260e58">
+            <farmaceutisch_product id="d47350e58">
                <product_code code="60062"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -72,7 +70,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="OMEPRAZOL CAPSULE MSR 20MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="d53260e89">
+            <zorgverlener id="d47350e89">
                <zorgverlener_identificatienummer value="000001116"
                                                  root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
@@ -91,16 +89,16 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Apothekers"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d53260e110"
+                  <zorgaanbieder value="d47350e110"
                                  datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d53260e74">
+            <zorgaanbieder id="d47350e74">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
             </zorgaanbieder>
-            <zorgaanbieder id="d53260e110">
+            <zorgaanbieder id="d47350e110">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
@@ -124,12 +122,12 @@
                                value="2024-01-01T13:00:00+01:00"/>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener value="d53260e89"
+                     <zorgverlener value="d47350e89"
                                    datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
-               <medicamenteuze_behandeling value="d53260e154"
-                                           datatype="reference"/>
+               <verstrekkingsverzoek datatype="reference"
+                                     value="verstrekkingsverzoek1_mp-vv-tst-23.6-vvv-geaccepteerdmetwijziging-v30"/>
                <toelichting value="maagklachten"/>
             </voorstel>
          </voorstel_gegevens>

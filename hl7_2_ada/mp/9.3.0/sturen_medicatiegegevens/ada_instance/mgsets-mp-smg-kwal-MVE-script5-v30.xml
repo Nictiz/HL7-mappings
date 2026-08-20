@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2026-04-28T11:17:14.4358824+02:00"
-         last-update-date="2026-04-28T11:17:14.4358824+02:00"/>
+         creation-date="2026-01-01T00:00:00"
+         last-update-date="2026-01-01T00:00:00"/>
    <data>
       <!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
       <sturen_medicatiegegevens app="mp-mp93"
@@ -36,37 +36,35 @@
                       codeSystem="2.16.840.1.113883.5.1"
                       displayName="Vrouw"/>
          </patient>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_SCRIPT5-tmgs"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieverstrekking>
-               <identificatie value="MBH_300_SCRIPT5_MVE-tmgs"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                                  value="2024-01-01T09:00:00+01:00"/>
-               <verstrekker>
-                  <zorgaanbieder value="d35094e78"
-                                 datatype="reference"/>
-               </verstrekker>
-               <verstrekte_hoeveelheid>
-                  <aantal value="6"/>
-                  <eenheid code="245"
-                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                           codeSystemName="G-Standaard thesaurus basiseenheden"
-                           displayName="stuk"/>
-               </verstrekte_hoeveelheid>
-               <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d35094e60"
-                                         datatype="reference"/>
-               </verstrekt_geneesmiddel>
-               <relatie_verstrekkingsverzoek>
-                  <identificatie value="MBH_300_SCRIPT5_VV-tmgs"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               </relatie_verstrekkingsverzoek>
-            </medicatieverstrekking>
-         </medicamenteuze_behandeling>
+         <medicatieverstrekking>
+            <identificatie value="MBH_300_SCRIPT5_MVE-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_SCRIPT5-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                               value="2024-01-01T09:00:00+01:00"/>
+            <verstrekker>
+               <zorgaanbieder value="d29814e78"
+                              datatype="reference"/>
+            </verstrekker>
+            <verstrekte_hoeveelheid>
+               <aantal value="6"/>
+               <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        codeSystemName="G-Standaard thesaurus basiseenheden"
+                        displayName="stuk"/>
+            </verstrekte_hoeveelheid>
+            <verstrekt_geneesmiddel>
+               <farmaceutisch_product value="d29814e60"
+                                      datatype="reference"/>
+            </verstrekt_geneesmiddel>
+            <relatie_verstrekkingsverzoek>
+               <identificatie value="MBH_300_SCRIPT5_VV-tmgs"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+            </relatie_verstrekkingsverzoek>
+         </medicatieverstrekking>
          <bouwstenen>
-            <farmaceutisch_product id="d35094e60">
+            <farmaceutisch_product id="d29814e60">
                <product_code code="611662"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -79,7 +77,7 @@
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              displayName="TEMAZEPAM CAPSULE 20MG"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="d35094e78">
+            <zorgaanbieder id="d29814e78">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>

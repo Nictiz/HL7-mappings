@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2026-04-28T11:17:10.8998654+02:00"
-         last-update-date="2026-04-28T11:17:10.8998654+02:00"/>
+         creation-date="2026-01-01T00:00:00"
+         last-update-date="2026-01-01T00:00:00"/>
    <data>
       <!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
       <sturen_medicatiegegevens app="mp-mp93"
@@ -35,40 +35,38 @@
                       codeSystem="2.16.840.1.113883.5.1"
                       displayName="Vrouw"/>
          </patient>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_logistiekeverbruiksperiode_start_eind-tmgs"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <verstrekkingsverzoek>
-               <identificatie value="MBH_300_logistiekeverbruiksperiode_start_eind_VV-tmgs"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime"
-                                                value="2024-01-01T11:00:00+01:00"/>
-               <auteur>
-                  <zorgverlener value="d32797e105"
-                                datatype="reference"/>
-               </auteur>
-               <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d32797e56"
-                                         datatype="reference"/>
-               </te_verstrekken_geneesmiddel>
-               <verbruiksperiode>
-                  <start_datum_tijd datatype="datetime"
-                                    value="2024-01-01T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime"
-                                   value="2025-01-01T23:59:59+01:00"/>
-               </verbruiksperiode>
-               <beoogd_verstrekker>
-                  <zorgaanbieder value="d32797e73"
-                                 datatype="reference"/>
-               </beoogd_verstrekker>
-               <relatie_medicatieafspraak>
-                  <identificatie value="MBH_300_logistiekeverbruiksperiode_start_eind_MA-tmgs"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </relatie_medicatieafspraak>
-            </verstrekkingsverzoek>
-         </medicamenteuze_behandeling>
+         <verstrekkingsverzoek>
+            <identificatie value="MBH_300_logistiekeverbruiksperiode_start_eind_VV-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_logistiekeverbruiksperiode_start_eind-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <verstrekkingsverzoek_datum_tijd datatype="datetime"
+                                             value="2024-01-01T11:00:00+01:00"/>
+            <auteur>
+               <zorgverlener value="d27465e105"
+                             datatype="reference"/>
+            </auteur>
+            <te_verstrekken_geneesmiddel>
+               <farmaceutisch_product value="d27465e56"
+                                      datatype="reference"/>
+            </te_verstrekken_geneesmiddel>
+            <verbruiksperiode>
+               <start_datum_tijd datatype="datetime"
+                                 value="2024-01-01T00:00:00+01:00"/>
+               <eind_datum_tijd datatype="datetime"
+                                value="2025-01-01T23:59:59+01:00"/>
+            </verbruiksperiode>
+            <beoogd_verstrekker>
+               <zorgaanbieder value="d27465e73"
+                              datatype="reference"/>
+            </beoogd_verstrekker>
+            <relatie_medicatieafspraak>
+               <identificatie value="MBH_300_logistiekeverbruiksperiode_start_eind_MA-tmgs"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </relatie_medicatieafspraak>
+         </verstrekkingsverzoek>
          <bouwstenen>
-            <farmaceutisch_product id="d32797e56">
+            <farmaceutisch_product id="d27465e56">
                <product_code code="68632"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -78,7 +76,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="ACETYLSALICYLZUUR DISPERTABLET 80MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="d32797e105">
+            <zorgverlener id="d27465e105">
                <zorgverlener_identificatienummer value="000001112"
                                                  root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
@@ -94,11 +92,11 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d32797e126"
+                  <zorgaanbieder value="d27465e126"
                                  datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d32797e126">
+            <zorgaanbieder id="d27465e126">
                <zorgaanbieder_identificatienummer value="00001111"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
@@ -112,7 +110,7 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="d32797e73">
+            <zorgaanbieder id="d27465e73">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>

@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2026-04-28T11:17:57.8653955+02:00"
-         last-update-date="2026-04-28T11:17:57.8653955+02:00"/>
+         creation-date="2026-01-01T00:00:00"
+         last-update-date="2026-01-01T00:00:00"/>
    <data>
       <sturen_voorstel_medicatieafspraak app="mp-mp93"
                                          shortName="sturen_voorstel_medicatieafspraak"
@@ -35,68 +35,66 @@
                       codeSystem="2.16.840.1.113883.5.1"
                       displayName="Man"/>
          </patient>
-         <medicamenteuze_behandeling id="mbh-1">
-            <medicatieafspraak>
-               <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime"
-                                    value="2024-01-01T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime"
-                                   value="2024-01-14T23:59:59+01:00"/>
-               </gebruiksperiode>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d52514e63"
-                                         datatype="reference"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie>
-                  <omschrijving value="4 à 10 maal per dag 1 stuk, 4-10 tabletten per dag. 1 uur na elke maaltijd 1 tablet innemen en 1 tablet voor het slapen gaan, Oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen"
-                                  displayName="Oraal"/>
-                  <aanvullende_instructie code="OTH"
-                                          codeSystem="2.16.840.1.113883.5.1008"
-                                          displayName="overig"
-                                          originalText="4-10 tabletten per dag. 1 uur na elke maaltijd 1 tablet innemen en 1 tablet voor het slapen gaan"/>
-                  <doseerinstructie>
-                     <volgnummer value="1"/>
-                     <dosering>
-                        <keerdosis>
+         <medicatieafspraak>
+            <gebruiksperiode>
+               <start_datum_tijd datatype="datetime"
+                                 value="2024-01-01T00:00:00+01:00"/>
+               <eind_datum_tijd datatype="datetime"
+                                value="2024-01-14T23:59:59+01:00"/>
+            </gebruiksperiode>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product value="d46903e63"
+                                      datatype="reference"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie>
+               <omschrijving value="4 à 10 maal per dag 1 stuk, 4-10 tabletten per dag. 1 uur na elke maaltijd 1 tablet innemen en 1 tablet voor het slapen gaan, Oraal"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen"
+                               displayName="Oraal"/>
+               <aanvullende_instructie code="OTH"
+                                       codeSystem="2.16.840.1.113883.5.1008"
+                                       displayName="overig"
+                                       originalText="4-10 tabletten per dag. 1 uur na elke maaltijd 1 tablet innemen en 1 tablet voor het slapen gaan"/>
+               <doseerinstructie>
+                  <volgnummer value="1"/>
+                  <dosering>
+                     <keerdosis>
+                        <aantal>
+                           <nominale_waarde value="1"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 displayName="stuk"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </keerdosis>
+                     <toedieningsschema>
+                        <frequentie>
                            <aantal>
-                              <nominale_waarde value="1"/>
+                              <minimum_waarde value="4"/>
+                              <maximum_waarde value="10"/>
                            </aantal>
-                           <eenheid code="245"
-                                    displayName="stuk"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                        </keerdosis>
-                        <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <minimum_waarde value="4"/>
-                                 <maximum_waarde value="10"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"/>
-                           </frequentie>
-                           <adaextension>
-                              <effectiveTime xsi:type="Timing"
-                                             xmlns="http://hl7.org/fhir">
-                                 <repeat>
-                                    <frequency value="4"/>
-                                    <frequencyMax value="10"/>
-                                    <period value="1"/>
-                                    <periodUnit value="d"/>
-                                 </repeat>
-                              </effectiveTime>
-                           </adaextension>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-         </medicamenteuze_behandeling>
+                           <tijdseenheid value="1"
+                                         unit="dag"/>
+                        </frequentie>
+                        <adaextension>
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
+                              <repeat>
+                                 <frequency value="4"/>
+                                 <frequencyMax value="10"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </effectiveTime>
+                        </adaextension>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+         </medicatieafspraak>
          <bouwstenen>
-            <farmaceutisch_product id="d52514e63">
+            <farmaceutisch_product id="d46903e63">
                <product_code code="42234"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -106,7 +104,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="MAGNESIUMHYDROXIDE TEVA KAUWTABLET 724MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="d52514e77">
+            <zorgverlener id="d46903e77">
                <zorgverlener_identificatienummer value="000001116"
                                                  root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
@@ -125,11 +123,11 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Apothekers"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d52514e98"
+                  <zorgaanbieder value="d46903e98"
                                  datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d52514e98">
+            <zorgaanbieder id="d46903e98">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
@@ -153,12 +151,12 @@
                                value="2024-01-01T11:00:00+01:00"/>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener value="d52514e77"
+                     <zorgverlener value="d46903e77"
                                    datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
-               <medicamenteuze_behandeling value="mbh-1"
-                                           datatype="reference"/>
+               <medicatieafspraak datatype="reference"
+                                  value="medicatieafspraak1_mp-vm-tst-23.2-vma-afgewezen-PRK-v30"/>
                <toelichting value="Graag een laxans starten bij het opioïde om een opioid-geinduceerde obstipatie te voorkomen en te behandelen. "/>
             </voorstel>
          </voorstel_gegevens>
