@@ -13,7 +13,7 @@
                                    prefix="mp-"
                                    language="nl-NL"
                                    title="Generated from HL7 FHIR sturen_medicatievoorschrift"
-                                   id="192767f7-6fdb-11f1-1333-020000000000">
+                                   id="mv-RedundantFreq">
          <patient>
             <naamgegevens>
                <initialen value="A."/>
@@ -45,11 +45,11 @@
                                  datatype="datetime"/>
             </gebruiksperiode>
             <voorschrijver>
-               <zorgverlener value="urn-uuid-19276850-6fdb-11f1-1333-020000000000"
+               <zorgverlener value="urn-uuid-b35ad558-6b2c-11ec-0000-020000000000"
                              datatype="reference"/>
             </voorschrijver>
             <afgesproken_geneesmiddel>
-               <farmaceutisch_product value="urn-uuid-192768c8-6fdb-11f1-1333-020000000000"
+               <farmaceutisch_product value="urn-uuid-ca447a98-6ace-11ec-0000-020000000000"
                                       datatype="reference"/>
             </afgesproken_geneesmiddel>
             <gebruiksinstructie>
@@ -83,7 +83,8 @@
                         <toedientijd value="08:00:00"
                                      datatype="time"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <boundsDuration>
                                     <value value="1"/>
@@ -96,7 +97,7 @@
                                  <periodUnit value="d"/>
                                  <timeOfDay value="08:00:00"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -128,7 +129,8 @@
                         <toedientijd value="14:30:00"
                                      datatype="time"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <boundsDuration>
                                     <value value="2"/>
@@ -142,7 +144,7 @@
                                  <timeOfDay value="08:00:00"/>
                                  <timeOfDay value="14:30:00"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -175,7 +177,8 @@
                                      datatype="time"/>
                         <is_flexibel value="false"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="true"/>
@@ -192,7 +195,7 @@
                                  <timeOfDay value="08:00:00"/>
                                  <timeOfDay value="14:30:00"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -227,7 +230,8 @@
                                      datatype="time"/>
                         <is_flexibel value="false"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="true"/>
@@ -245,7 +249,7 @@
                                  <timeOfDay value="14:30:00"/>
                                  <timeOfDay value="19:30:00"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -269,7 +273,8 @@
                         <interval value="4"
                                   unit="uur"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="true"/>
@@ -284,7 +289,7 @@
                                  <period value="4"/>
                                  <periodUnit value="h"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -308,7 +313,8 @@
                         <interval value="4"
                                   unit="uur"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="true"/>
@@ -323,7 +329,7 @@
                                  <period value="4"/>
                                  <periodUnit value="h"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -360,7 +366,8 @@
                                  displayName="vrijdag"
                                  codeSystem="2.16.840.1.113883.6.96"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <boundsDuration>
                                     <value value="7"/>
@@ -375,7 +382,7 @@
                                  <dayOfWeek value="wed"/>
                                  <dayOfWeek value="fri"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -409,7 +416,8 @@
                                  displayName="'s avonds"
                                  codeSystem="2.16.840.1.113883.6.96"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <boundsDuration>
                                     <value value="8"/>
@@ -423,7 +431,7 @@
                                  <when value="MORN"/>
                                  <when value="EVE"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -458,7 +466,8 @@
                                  codeSystem="2.16.840.1.113883.6.96"/>
                         <is_flexibel value="false"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="true"/>
@@ -475,7 +484,7 @@
                                  <when value="MORN"/>
                                  <when value="EVE"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -504,7 +513,8 @@
                         </frequentie>
                         <is_flexibel value="false"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="true"/>
@@ -519,7 +529,7 @@
                                  <period value="4"/>
                                  <periodUnit value="h"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -527,7 +537,7 @@
             </gebruiksinstructie>
          </medicatieafspraak>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-192768c8-6fdb-11f1-1333-020000000000">
+            <farmaceutisch_product id="urn-uuid-ca447a98-6ace-11ec-0000-020000000000">
                <product_code code="3891"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -538,7 +548,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="ACETYLSALICYLZUUR/PARACETAMOL/COF TAB 250/250/50MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-19276850-6fdb-11f1-1333-020000000000">
+            <zorgverlener id="urn-uuid-b35ad558-6b2c-11ec-0000-020000000000">
                <zorgverlener_identificatienummer value="000001111"
                                                  root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
@@ -551,14 +561,13 @@
                <specialisme code="0100"
                             codeSystem="2.16.840.1.113883.2.4.6.7"
                             codeSystemName="Vektis AGB-medische specialismen"
-                            codeSystemVersion="2017-12-14T00:00:00"
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-1927688c-6fdb-11f1-1333-020000000000"/>
+                                 value="urn-uuid-d6bb29d8-6ac5-11ec-0000-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-1927688c-6fdb-11f1-1333-020000000000">
+            <zorgaanbieder id="urn-uuid-d6bb29d8-6ac5-11ec-0000-020000000000">
                <zorgaanbieder_identificatienummer value="00001111"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>

@@ -12,7 +12,7 @@
                                             prefix="mp-"
                                             language="nl-NL"
                                             title="Generated from HL7 FHIR medicatiegegevens"
-                                            id="8862d03b-4060-11f0-6314-020000000000">
+                                            id="mg-MGB-derivedFrom">
          <patient>
             <naamgegevens>
                <voornamen value="Agir"/>
@@ -79,13 +79,14 @@
                                          unit="dag"/>
                         </frequentie>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <frequency value="1"/>
                                  <period value="1"/>
                                  <periodUnit value="d"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -139,13 +140,14 @@
                                          unit="dag"/>
                         </frequentie>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <frequency value="1"/>
                                  <period value="1"/>
                                  <periodUnit value="d"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -161,8 +163,8 @@
                            root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
             <medicamenteuze_behandeling_id value="MBH_300_chronisch"
                                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2022-12-22T12:35:00+01:00"/>
+            <medicatieverstrekkings_datum_tijd value="2022-12-22T12:35:00+01:00"
+                                               datatype="datetime"/>
             <verstrekker>
                <zorgaanbieder datatype="reference"
                               value="urn-uuid-b9f1a085-5328-4555-a961-44bac0596d7b"/>
@@ -170,8 +172,9 @@
             <verstrekte_hoeveelheid>
                <aantal value="90"/>
                <eenheid code="245"
+                        displayName="stuk"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="stuk"/>
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </verstrekte_hoeveelheid>
             <verstrekt_geneesmiddel>
                <farmaceutisch_product value="urn-uuid-8a2d3506-3d61-4d5d-b4d8-508cb1e75d71"
@@ -229,7 +232,8 @@
                                      datatype="time"/>
                         <is_flexibel value="true"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="false"/>
@@ -239,7 +243,7 @@
                                  <periodUnit value="d"/>
                                  <timeOfDay value="08:00:00"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -310,7 +314,8 @@
                                      datatype="time"/>
                         <is_flexibel value="true"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="false"/>
@@ -320,7 +325,7 @@
                                  <periodUnit value="d"/>
                                  <timeOfDay value="08:00:00"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -391,7 +396,8 @@
                                      datatype="time"/>
                         <is_flexibel value="true"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="false"/>
@@ -401,7 +407,7 @@
                                  <periodUnit value="d"/>
                                  <timeOfDay value="08:00:00"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -472,7 +478,8 @@
                                      datatype="time"/>
                         <is_flexibel value="true"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="false"/>
@@ -482,7 +489,7 @@
                                  <periodUnit value="d"/>
                                  <timeOfDay value="08:00:00"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -554,7 +561,8 @@
                                      datatype="time"/>
                         <is_flexibel value="true"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="false"/>
@@ -564,7 +572,7 @@
                                  <periodUnit value="d"/>
                                  <timeOfDay value="08:00:00"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -631,7 +639,8 @@
                                      datatype="time"/>
                         <is_flexibel value="true"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="false"/>
@@ -641,7 +650,7 @@
                                  <periodUnit value="d"/>
                                  <timeOfDay value="08:00:00"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -712,7 +721,8 @@
                                      datatype="time"/>
                         <is_flexibel value="true"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="false"/>
@@ -722,7 +732,7 @@
                                  <periodUnit value="d"/>
                                  <timeOfDay value="08:00:00"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -793,7 +803,8 @@
                                      datatype="time"/>
                         <is_flexibel value="true"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="false"/>
@@ -803,7 +814,7 @@
                                  <periodUnit value="d"/>
                                  <timeOfDay value="08:00:00"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -875,7 +886,8 @@
                                      datatype="time"/>
                         <is_flexibel value="true"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="false"/>
@@ -885,7 +897,7 @@
                                  <periodUnit value="d"/>
                                  <timeOfDay value="08:00:00"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -956,7 +968,8 @@
                                      datatype="time"/>
                         <is_flexibel value="true"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="false"/>
@@ -966,7 +979,7 @@
                                  <periodUnit value="d"/>
                                  <timeOfDay value="08:00:00"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -1038,7 +1051,8 @@
                                      datatype="time"/>
                         <is_flexibel value="true"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="false"/>
@@ -1048,7 +1062,7 @@
                                  <periodUnit value="d"/>
                                  <timeOfDay value="08:00:00"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -1115,7 +1129,8 @@
                                      datatype="time"/>
                         <is_flexibel value="true"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="false"/>
@@ -1125,7 +1140,7 @@
                                  <periodUnit value="d"/>
                                  <timeOfDay value="08:00:00"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -1196,7 +1211,8 @@
                                      datatype="time"/>
                         <is_flexibel value="true"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="false"/>
@@ -1206,7 +1222,7 @@
                                  <periodUnit value="d"/>
                                  <timeOfDay value="08:00:00"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -1277,7 +1293,8 @@
                                      datatype="time"/>
                         <is_flexibel value="true"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="false"/>
@@ -1287,7 +1304,7 @@
                                  <periodUnit value="d"/>
                                  <timeOfDay value="08:00:00"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -1359,7 +1376,8 @@
                                      datatype="time"/>
                         <is_flexibel value="true"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="false"/>
@@ -1369,7 +1387,7 @@
                                  <periodUnit value="d"/>
                                  <timeOfDay value="08:00:00"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -1440,7 +1458,8 @@
                                      datatype="time"/>
                         <is_flexibel value="true"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="false"/>
@@ -1450,7 +1469,7 @@
                                  <periodUnit value="d"/>
                                  <timeOfDay value="08:00:00"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -1517,7 +1536,8 @@
                                      datatype="time"/>
                         <is_flexibel value="true"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="false"/>
@@ -1527,7 +1547,7 @@
                                  <periodUnit value="d"/>
                                  <timeOfDay value="08:00:00"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
