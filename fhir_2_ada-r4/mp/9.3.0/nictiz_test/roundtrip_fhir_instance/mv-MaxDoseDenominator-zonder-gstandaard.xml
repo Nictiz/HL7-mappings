@@ -1,14 +1,14 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="mv-VolgendeBehandelaar"/>
+   <id value="mv-MaxDoseDenominator-zonder-gstandaard"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:660c432d-6b07-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:52f63f3e-6b40-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
-            <id value="660c432d-6b07-11ec-0000-020000000000"/>
+            <id value="52f63f3e-6b40-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
                <tag>
@@ -20,7 +20,7 @@
                <valueDateTime value="2022-12-02T11:32:00+01:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="1 maal per dag 1 stuk, Oraal"/>
+               <valueString value="1 maal per dag 1 stuk , maximaal 6 stuks per 1,00 dagen, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -30,19 +30,12 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_VolgendeBehandelaar-za"/>
+                  <value value="MBH_920_mv_example-1"/>
                </valueIdentifier>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.NextPractitioner">
-               <valueReference>
-                  <reference value="urn:uuid:66640464-6b73-11ec-0000-020000000000"/>
-                  <type value="Organization"/>
-                  <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
-               </valueReference>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="VolgendeBehandelaar-za-MA1"/>
+               <value value="MBH_920_mv_example-1-MA"/>
             </identifier>
             <status value="active"/>
             <intent value="order"/>
@@ -64,9 +57,9 @@
                <display value="Patient, A. van de XXX_Boschman"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:a86a6824-6b3e-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:271a1824-6abb-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
-               <display value="Healthcare professional (role), Abeltje de Ondeugd, Keel- neus- en oorarts, Ziekenhuis Abeltje &amp; Co"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <dosageInstruction>
                <sequence value="1"/>
@@ -86,20 +79,24 @@
                </route>
                <doseAndRate>
                   <doseQuantity>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
-                        <valueQuantity>
-                           <value value="1"/>
-                           <unit value="stuk"/>
-                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                           <code value="245"/>
-                        </valueQuantity>
-                     </extension>
                      <value value="1"/>
-                     <unit value="stuk"/>
                      <system value="http://unitsofmeasure.org"/>
                      <code value="1"/>
                   </doseQuantity>
                </doseAndRate>
+               <maxDosePerPeriod>
+                  <numerator>
+                     <value value="6"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </numerator>
+                  <denominator>
+                     <value value="1,00"/>
+                     <unit value="dag"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="d"/>
+                  </denominator>
+               </maxDosePerPeriod>
             </dosageInstruction>
          </MedicationRequest>
       </resource>
@@ -109,52 +106,44 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b3f5a9be-6b22-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:e885e89d-6aee-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
-            <id value="b3f5a9be-6b22-11ec-0000-020000000000"/>
+            <id value="e885e89d-6aee-11ec-0000-020000000000"/>
             <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-DispenseRequest"/>
                <tag>
                   <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
                   <code value="actionable"/>
                </tag>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
-               <valueDateTime value="2022-12-02T11:32:00+01:00"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="1 maal per dag 1 stuk, Oraal"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
-               <valuePeriod>
-                  <start value="2022-12-02T00:00:00+01:00"/>
-               </valuePeriod>
-            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_VolgendeBehandelaar-zvl"/>
+                  <value value="MBH_920_mv_example-1"/>
                </valueIdentifier>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.NextPractitioner">
-               <valueReference>
-                  <reference value="urn:uuid:9200682e-6ae4-11ec-0000-020000000000"/>
-                  <type value="PractitionerRole"/>
-                  <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
-               </valueReference>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.FinancialIndicationCode">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+                     <code value="OTH"/>
+                     <display value="overig"/>
+                  </coding>
+                  <text value="B2"/>
+               </valueCodeableConcept>
             </extension>
             <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="VolgendeBehandelaar-zvl-MA1"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <value value="MBH_920_mv_example-1_VV"/>
             </identifier>
             <status value="active"/>
             <intent value="order"/>
             <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
-                  <code value="33633005"/>
-                  <display value="voorschrijven van geneesmiddel"/>
+                  <code value="52711000146108"/>
+                  <display value="verstrekkingsverzoek"/>
                </coding>
             </category>
             <medicationReference>
@@ -167,44 +156,32 @@
                <type value="Patient"/>
                <display value="Patient, A. van de XXX_Boschman"/>
             </subject>
+            <authoredOn value="2022-12-02T11:32:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:a86a6824-6b3e-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:271a1824-6abb-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
-               <display value="Healthcare professional (role), Abeltje de Ondeugd, Keel- neus- en oorarts, Ziekenhuis Abeltje &amp; Co"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
-            <dosageInstruction>
-               <sequence value="1"/>
-               <timing>
-                  <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="Oraal"/>
-                  </coding>
-               </route>
-               <doseAndRate>
-                  <doseQuantity>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
-                        <valueQuantity>
-                           <value value="1"/>
-                           <unit value="stuk"/>
-                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                           <code value="245"/>
-                        </valueQuantity>
-                     </extension>
-                     <value value="1"/>
-                     <unit value="stuk"/>
-                     <system value="http://unitsofmeasure.org"/>
-                     <code value="1"/>
-                  </doseQuantity>
-               </doseAndRate>
-            </dosageInstruction>
+            <performer>
+               <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+            </performer>
+            <basedOn>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_920_mv_example-1-MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak  met identificatie: MBH_920_mv_example-1-MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </basedOn>
+            <dispenseRequest>
+               <quantity>
+                  <value value="21"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="1"/>
+               </quantity>
+            </dispenseRequest>
          </MedicationRequest>
       </resource>
       <request>
@@ -264,98 +241,20 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a86a6824-6b3e-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:271a1824-6abb-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
-            <id value="a86a6824-6b3e-11ec-0000-020000000000"/>
+            <id value="271a1824-6abb-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:d2222558-6b19-11ec-0000-020000000000"/>
-               <type value="Practitioner"/>
-               <display value="Healthcare professional (person), Abeltje de Ondeugd"/>
-            </practitioner>
-            <organization>
-               <reference value="urn:uuid:6aa121d8-6b0d-11ec-0000-020000000000"/>
-               <type value="Organization"/>
-               <display value="Healthcare provider (organization), Ziekenhuis Abeltje &amp; Co"/>
-            </organization>
-            <specialty>
-               <coding>
-                  <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
-                  <code value="01.018"/>
-                  <display value="Keel- neus- en oorarts"/>
-               </coding>
-            </specialty>
-            <telecom>
-               <system value="phone"/>
-               <value value="0101234567"/>
-               <use value="work"/>
-            </telecom>
-         </PractitionerRole>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="PractitionerRole"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:d2222558-6b19-11ec-0000-020000000000"/>
-      <resource>
-         <Practitioner>
-            <id value="d2222558-6b19-11ec-0000-020000000000"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
-               <value value="000001111"/>
-            </identifier>
-            <name>
-               <use value="official"/>
-               <text value="Abeltje de Ondeugd"/>
-               <family value="de Ondeugd">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
-                     <valueString value="de"/>
-                  </extension>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="Ondeugd"/>
-                  </extension>
-               </family>
-               <given value="Abeltje">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                     <valueCode value="BR"/>
-                  </extension>
-               </given>
-            </name>
-            <telecom>
-               <system value="phone"/>
-               <value value="0101234567"/>
-               <use value="work"/>
-            </telecom>
-         </Practitioner>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Practitioner"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:9200682e-6ae4-11ec-0000-020000000000"/>
-      <resource>
-         <PractitionerRole>
-            <id value="9200682e-6ae4-11ec-0000-020000000000"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
-            </meta>
-            <practitioner>
-               <reference value="urn:uuid:974c1824-6b1d-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:40fdb558-6b35-11ec-0000-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:66640464-6b73-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:d6bb29d8-6ac5-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -367,7 +266,17 @@
                </coding>
             </specialty>
             <telecom>
-               <system value="phone"/>
+               <system value="phone">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+                           <code value="UNK"/>
+                           <display value="unknown"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </system>
                <value value="0101234567"/>
             </telecom>
          </PractitionerRole>
@@ -378,10 +287,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:974c1824-6b1d-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:40fdb558-6b35-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
-            <id value="974c1824-6b1d-11ec-0000-020000000000"/>
+            <id value="40fdb558-6b35-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
             </meta>
@@ -407,7 +316,17 @@
                </given>
             </name>
             <telecom>
-               <system value="phone"/>
+               <system value="phone">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+                           <code value="UNK"/>
+                           <display value="unknown"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </system>
                <value value="0101234567"/>
             </telecom>
          </Practitioner>
@@ -418,18 +337,18 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6aa121d8-6b0d-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:d6bb29d8-6ac5-11ec-0000-020000000000"/>
       <resource>
          <Organization>
-            <id value="6aa121d8-6b0d-11ec-0000-020000000000"/>
+            <id value="d6bb29d8-6ac5-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="18001111"/>
+               <value value="00001111"/>
             </identifier>
-            <name value="Ziekenhuis Abeltje &amp; Co"/>
+            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
             <address>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
                   <valueCodeableConcept>
@@ -441,12 +360,12 @@
                   </valueCodeableConcept>
                </extension>
                <use value="work"/>
-               <line value="Dorpsstraat 18">
+               <line value="Dorpsstraat 1">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
                      <valueString value="Dorpsstraat"/>
                   </extension>
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-                     <valueString value="18"/>
+                     <valueString value="1"/>
                   </extension>
                </line>
                <city value="Ons Dorp"/>
@@ -460,18 +379,18 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:66640464-6b73-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
       <resource>
          <Organization>
-            <id value="66640464-6b73-11ec-0000-020000000000"/>
+            <id value="98d231d8-6b0c-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="00001111"/>
+               <value value="01236578"/>
             </identifier>
-            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
       <request>
