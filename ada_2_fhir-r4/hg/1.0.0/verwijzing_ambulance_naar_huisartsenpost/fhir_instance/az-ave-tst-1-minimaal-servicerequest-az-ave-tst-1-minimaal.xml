@@ -1,7 +1,7 @@
 <ServiceRequest xmlns="http://hl7.org/fhir">
    <id value="servicerequest-az-ave-tst-1-minimaal"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/ambu-ReferralServiceRequest"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/hg-ReferralServiceRequest-ambulanceHAP"/>
    </meta>
    <identifier>
       <value value="az-ave-tst-1-minimaal"/>
@@ -26,6 +26,11 @@
       <display value="Encounter"/>
    </encounter>
    <authoredOn value="2000-01-01"/>
+   <requester>
+      <reference value="PractitionerRole/pracrole-567891234"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role)"/>
+   </requester>
    <performer>
       <reference value="Organization/org-06020806"/>
       <type value="Organization"/>
