@@ -1,10 +1,11 @@
 <ServiceRequest xmlns="http://hl7.org/fhir">
-   <id value="servicerequest-az-ave-tst-1-minimaal"/>
+   <id value="25-2020-10-1-ServiceRequest"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/hg-ReferralServiceRequest-ambulanceHAP"/>
    </meta>
    <identifier>
-      <value value="az-ave-tst-1-minimaal"/>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.32.5"/>
+      <value value="25-2020-10-1"/>
    </identifier>
    <status value="completed"/>
    <intent value="order"/>
@@ -16,37 +17,33 @@
       </coding>
    </category>
    <subject>
-      <reference value="Patient/patient-"/>
+      <reference value="Patient/patient-van-XXX-Baatenburg"/>
       <type value="Patient"/>
-      <display value="Patient,"/>
+      <display value="Patient, J.H.M. van XXX_Baatenburg"/>
    </subject>
-   <encounter>
-      <reference value="Encounter/encounter-24-2020-11-1"/>
-      <type value="Encounter"/>
-      <display value="Encounter"/>
-   </encounter>
    <authoredOn value="2000-01-01"/>
    <requester>
-      <reference value="PractitionerRole/pracrole-567891234"/>
+      <reference value="PractitionerRole/pracrole-123456789"/>
       <type value="PractitionerRole"/>
-      <display value="Healthcare professional (role)"/>
+      <display value="Healthcare professional (role), Verpleegkundige, RAV"/>
    </requester>
    <performer>
-      <reference value="Organization/org-06020806"/>
+      <reference value="Organization/org-6010860"/>
       <type value="Organization"/>
-      <display value="Healthcare provider (organization), organisation-id 06020806 in system 2.16.840.1.113883.2.4.6.1"/>
+      <display value="Healthcare provider (organization), HAP"/>
    </performer>
    <reasonCode>
       <text value="Patiënt is vanuit acute ambulancezorg voor verdere zorg doorverwezen naar de huisartsenspoedpost"/>
    </reasonCode>
    <supportingInfo>
-      <reference value="Composition/composition-ambu-az-ave-tst-1-minimaal"/>
+      <reference value="Composition/composition-ambu-az-ave-tst-2-maximaal"/>
       <type value="Composition"/>
-      <display value="Referral note, onbekend"/>
+      <display value="Referral note, XXX_Baatenburg"/>
    </supportingInfo>
    <supportingInfo>
-      <reference value="DocumentReference/documentreference-9069"/>
+      <reference value="DocumentReference/documentreference-9068"/>
       <type value="DocumentReference"/>
       <display value="Document"/>
    </supportingInfo>
+   <patientInstruction value="Huisarts nog inlichten"/>
 </ServiceRequest>
