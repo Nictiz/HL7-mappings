@@ -3,8 +3,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2026-06-23T16:11:14.6559796+02:00"
-         last-update-date="2026-06-23T16:11:14.6559796+02:00"/>
+         creation-date="2026-09-25T10:18:40.2077764+02:00"
+         last-update-date="2026-09-25T10:18:40.2077764+02:00"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -47,11 +47,11 @@
                                 value="2024-01-14T23:59:59.000+01:00"/>
             </gebruiksperiode>
             <verstrekker>
-               <zorgaanbieder value="uuid-6518916d-6f0d-11f1-1212-020000000000"
+               <zorgaanbieder value="uuid-b6fb0d8d-b8b9-11f1-7706-020000000000"
                               datatype="reference"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
-               <farmaceutisch_product value="uuid-65189e0f-6f0d-11f1-1212-020000000000"
+               <farmaceutisch_product value="uuid-b6e6a897-b8b9-11f1-7706-020000000000"
                                       datatype="reference"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <gebruiksinstructie>
@@ -64,7 +64,17 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1"
+                                               unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              displayName="Stuk"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="Stuk"
@@ -85,7 +95,7 @@
             </gebruiksinstructie>
             <relatie_medicatieafspraak>
                <identificatie value="MBH_hyb612_TA_MVE_basaal_MA-tmg"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                              root="1.3.6.1.4.1.58606.1.5.2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </relatie_medicatieafspraak>
          </toedieningsafspraak>
          <medicatieverstrekking>
@@ -98,18 +108,28 @@
             <aanschrijf_datum datatype="datetime"
                               value="2024-01-01T10:00:00+01:00"/>
             <verstrekker>
-               <zorgaanbieder value="uuid-6518916d-6f0d-11f1-1212-020000000000"
+               <zorgaanbieder value="uuid-b6fb0d8d-b8b9-11f1-7706-020000000000"
                               datatype="reference"/>
             </verstrekker>
             <verstrekte_hoeveelheid>
-               <aantal value="42"/>
+               <aantal value="42">
+                  <adaextension>
+                     <originalUCUM value="42"
+                                   unit="1"/>
+                     <translation value="42"
+                                  code="245"
+                                  displayName="Stuks"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="245"
                         displayName="Stuks"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                         codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </verstrekte_hoeveelheid>
             <verstrekt_geneesmiddel>
-               <farmaceutisch_product value="uuid-65189e0f-6f0d-11f1-1212-020000000000"
+               <farmaceutisch_product value="uuid-b6e6a897-b8b9-11f1-7706-020000000000"
                                       datatype="reference"/>
             </verstrekt_geneesmiddel>
             <relatie_verstrekkingsverzoek>
@@ -118,7 +138,7 @@
             </relatie_verstrekkingsverzoek>
          </medicatieverstrekking>
          <bouwstenen>
-            <farmaceutisch_product id="uuid-65189e0f-6f0d-11f1-1212-020000000000">
+            <farmaceutisch_product id="uuid-b6e6a897-b8b9-11f1-7706-020000000000">
                <product_code code="1026291"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              displayName="PARACETAMOL AURO TABLET 500MG"
@@ -132,7 +152,7 @@
                              displayName="PARACETAMOL 500MG TABLET"
                              codeSystemName="G-Standaard GPK"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="uuid-6518916d-6f0d-11f1-1212-020000000000">
+            <zorgaanbieder id="uuid-b6fb0d8d-b8b9-11f1-7706-020000000000">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>

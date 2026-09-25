@@ -3,8 +3,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2026-06-23T16:11:23.0992644+02:00"
-         last-update-date="2026-06-23T16:11:23.0992644+02:00"/>
+         creation-date="2026-09-25T10:18:45.0710593+02:00"
+         last-update-date="2026-09-25T10:18:45.0710593+02:00"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -48,11 +48,11 @@
                                 value="2024-03-25T23:59:59.000+01:00"/>
             </gebruiksperiode>
             <verstrekker>
-               <zorgaanbieder value="uuid-6a2100b2-6f0d-11f1-1723-020000000000"
+               <zorgaanbieder value="uuid-b9e84d7f-b8b9-11f1-1479-020000000000"
                               datatype="reference"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
-               <farmaceutisch_product value="uuid-6a20e0ca-6f0d-11f1-1723-020000000000"
+               <farmaceutisch_product value="uuid-b9cd742f-b8b9-11f1-1479-020000000000"
                                       datatype="reference"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <gebruiksinstructie>
@@ -65,7 +65,17 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1"
+                                               unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              displayName="Stuk"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="Stuk"
@@ -85,8 +95,8 @@
                </doseerinstructie>
             </gebruiksinstructie>
             <relatie_medicatieafspraak>
-               <identificatie value="MBH_hyb612_TA_MVE_BTD_vrijetxtmiddel_MA!22120251123-tmg"
-                              root="1.3.6.1.4.1.58606.1.3.2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <identificatie value="MBH_hyb612_TA_MVE_BTD_vrijetxtmiddel_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </relatie_medicatieafspraak>
          </toedieningsafspraak>
          <medicatieverstrekking>
@@ -99,18 +109,28 @@
             <aanschrijf_datum datatype="datetime"
                               value="2024-01-01T10:00:00+01:00"/>
             <verstrekker>
-               <zorgaanbieder value="uuid-6a2100b2-6f0d-11f1-1723-020000000000"
+               <zorgaanbieder value="uuid-b9e84d7f-b8b9-11f1-1479-020000000000"
                               datatype="reference"/>
             </verstrekker>
             <verstrekte_hoeveelheid>
-               <aantal value="4"/>
+               <aantal value="4">
+                  <adaextension>
+                     <originalUCUM value="4"
+                                   unit="1"/>
+                     <translation value="4"
+                                  code="245"
+                                  displayName="Stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="245"
                         displayName="Stuk"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                         codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </verstrekte_hoeveelheid>
             <verstrekt_geneesmiddel>
-               <farmaceutisch_product value="uuid-6a20e0ca-6f0d-11f1-1723-020000000000"
+               <farmaceutisch_product value="uuid-b9cd742f-b8b9-11f1-1479-020000000000"
                                       datatype="reference"/>
             </verstrekt_geneesmiddel>
             <relatie_verstrekkingsverzoek>
@@ -119,7 +139,7 @@
             </relatie_verstrekkingsverzoek>
          </medicatieverstrekking>
          <bouwstenen>
-            <farmaceutisch_product id="uuid-6a20e0ca-6f0d-11f1-1723-020000000000">
+            <farmaceutisch_product id="uuid-b9cd742f-b8b9-11f1-1479-020000000000">
                <product_code code="OTH"
                              codeSystem="2.16.840.1.113883.5.1008"
                              displayName="overig"
@@ -129,7 +149,7 @@
                   <omschrijving value="Titel: Jemperli (Dostarlimab-gxly) 500 mg/10 mL"/>
                </product_specificatie>
             </farmaceutisch_product>
-            <zorgaanbieder id="uuid-6a2100b2-6f0d-11f1-1723-020000000000">
+            <zorgaanbieder id="uuid-b9e84d7f-b8b9-11f1-1479-020000000000">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>

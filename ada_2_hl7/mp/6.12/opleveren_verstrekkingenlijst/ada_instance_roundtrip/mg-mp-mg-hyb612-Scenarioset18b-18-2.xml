@@ -3,8 +3,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2026-06-23T16:11:19.7522484+02:00"
-         last-update-date="2026-06-23T16:11:19.7522484+02:00"/>
+         creation-date="2026-09-25T10:18:42.9366873+02:00"
+         last-update-date="2026-09-25T10:18:42.9366873+02:00"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -35,8 +35,8 @@
                       displayName="Vrouw"/>
          </patient>
          <toedieningsafspraak>
-            <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
-                           value="MBH_hybmp9_duplicMBHgen_MA_TA612_ID_MVE-tmg"/>
+            <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.840.1.113883.2.4.3.11.999.77.612.1"
+                           value="MBH_hybmp9_duplicMBHgen_MP612_TA-tmg"/>
             <medicamenteuze_behandeling_id value="27251"
                                            root="2.16.840.1.113883.2.4.3.11.61.2"/>
             <registratie_datum_tijd datatype="datetime"
@@ -48,11 +48,11 @@
                                 value="2024-01-08T08:00:00.000+01:00"/>
             </gebruiksperiode>
             <verstrekker>
-               <zorgaanbieder value="uuid-682249e0-6f0d-11f1-6271-020000000000"
+               <zorgaanbieder value="uuid-b89edea5-b8b9-11f1-1864-020000000000"
                               datatype="reference"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
-               <farmaceutisch_product value="uuid-68224552-6f0d-11f1-6271-020000000000"
+               <farmaceutisch_product value="uuid-b887662f-b8b9-11f1-1864-020000000000"
                                       datatype="reference"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <gebruiksinstructie>
@@ -65,7 +65,17 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="4"/>
+                           <nominale_waarde value="4">
+                              <adaextension>
+                                 <originalUCUM value="4"
+                                               unit="1"/>
+                                 <translation value="4"
+                                              code="245"
+                                              displayName="stuks"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuks"
@@ -85,13 +95,13 @@
                </doseerinstructie>
             </gebruiksinstructie>
             <relatie_medicatieafspraak>
-               <identificatie value="MBH_hybmp9_duplicMBHspec_MA_TA612_ID_MA!1755424740-tmg"
-                              root="1.3.6.1.4.1.58606.1.3.2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <identificatie value="MBH_hybmp9_duplicMBHspec_MA_TA612_ID_MA"
+                              root="1.3.6.1.4.1.58606.1.5.2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </relatie_medicatieafspraak>
          </toedieningsafspraak>
          <medicatieverstrekking>
-            <identificatie root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
-                           value="MBH_hybmp9_duplicMBHgen_MA_TA612_ID_MVE-tmg"/>
+            <identificatie root="2.16.840.1.113883.2.4.3.11.999.77.612.1"
+                           value="MBH_hybmp9_duplicMBHgen_MP612_TA-tmg"/>
             <medicamenteuze_behandeling_id value="27251"
                                            root="2.16.840.1.113883.2.4.3.11.61.2"/>
             <medicatieverstrekkings_datum_tijd datatype="datetime"
@@ -99,27 +109,37 @@
             <aanschrijf_datum datatype="datetime"
                               value="2023-12-25T08:00:00+01:00"/>
             <verstrekker>
-               <zorgaanbieder value="uuid-682249e0-6f0d-11f1-6271-020000000000"
+               <zorgaanbieder value="uuid-b89edea5-b8b9-11f1-1864-020000000000"
                               datatype="reference"/>
             </verstrekker>
             <verstrekte_hoeveelheid>
-               <aantal value="100"/>
+               <aantal value="100">
+                  <adaextension>
+                     <originalUCUM value="100"
+                                   unit="1"/>
+                     <translation value="100"
+                                  code="245"
+                                  displayName="Stuks"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="245"
                         displayName="Stuks"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                         codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </verstrekte_hoeveelheid>
             <verstrekt_geneesmiddel>
-               <farmaceutisch_product value="uuid-68224552-6f0d-11f1-6271-020000000000"
+               <farmaceutisch_product value="uuid-b887662f-b8b9-11f1-1864-020000000000"
                                       datatype="reference"/>
             </verstrekt_geneesmiddel>
             <relatie_verstrekkingsverzoek>
                <identificatie value="MBH_hybmp9_duplicMBHspec_MA_TA612_ID_MA!1755424740-tmg"
-                              root="1.3.6.1.4.1.58606.1.3.2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                              root="1.3.6.1.4.1.58606.1.3.1.3.6.1.4.1.58606.1.5.2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </relatie_verstrekkingsverzoek>
          </medicatieverstrekking>
          <bouwstenen>
-            <farmaceutisch_product id="uuid-68224552-6f0d-11f1-6271-020000000000">
+            <farmaceutisch_product id="uuid-b887662f-b8b9-11f1-1864-020000000000">
                <product_code code="2597039"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              displayName="IBUPROFEN SAM TABLET OMHULD 200MG"
@@ -133,7 +153,7 @@
                              displayName="IBUPROFEN TABLET 200MG"
                              codeSystemName="G-Standaard GPK"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="uuid-682249e0-6f0d-11f1-6271-020000000000">
+            <zorgaanbieder id="uuid-b89edea5-b8b9-11f1-1864-020000000000">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
