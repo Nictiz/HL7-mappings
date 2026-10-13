@@ -82,7 +82,8 @@
                                          unit="dag"/>
                         </frequentie>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <boundsDuration>
                                     <value value="2"/>
@@ -94,7 +95,7 @@
                                  <period value="1"/>
                                  <periodUnit value="d"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -122,7 +123,8 @@
                                          unit="dag"/>
                         </frequentie>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <boundsDuration>
                                     <value value="3"/>
@@ -134,7 +136,7 @@
                                  <period value="1"/>
                                  <periodUnit value="d"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -162,7 +164,8 @@
                                          unit="dag"/>
                         </frequentie>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <boundsDuration>
                                     <value value="6"/>
@@ -174,7 +177,7 @@
                                  <period value="1"/>
                                  <periodUnit value="d"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -190,8 +193,8 @@
                            root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
             <medicamenteuze_behandeling_id value="MBH_300_afbouwschema-tav"
                                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2024-01-01T09:40:00+01:00"/>
+            <medicatieverstrekkings_datum_tijd value="2024-01-01T09:40:00+01:00"
+                                               datatype="datetime"/>
             <verstrekker>
                <zorgaanbieder datatype="reference"
                               value="urn-uuid-289fddd2-6fd9-11f1-1953-020000000000"/>
@@ -199,8 +202,9 @@
             <verstrekte_hoeveelheid>
                <aantal value="90"/>
                <eenheid code="215"
+                        displayName="gram"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="gram"/>
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </verstrekte_hoeveelheid>
             <verstrekt_geneesmiddel>
                <farmaceutisch_product value="urn-uuid-289fde22-6fd9-11f1-1953-020000000000"

@@ -36,50 +36,49 @@
                       codeSystem="2.16.840.1.113883.5.1"
                       displayName="Vrouw"/>
          </patient>
-         <medicamenteuze_behandeling id="MBH_920_vma-example-1">
-            <medicatieafspraak comment="">
-               <gebruiksperiode>
-                  <start_datum_tijd value="2023-12-12T00:00:00+01:00"
-                                    datatype="datetime"/>
-                  <eind_datum_tijd value="2024-01-10T23:59:59+01:00"
-                                   datatype="datetime"/>
-               </gebruiksperiode>
-               <afgesproken_geneesmiddel>
-                  <farmaceutisch_product datatype="reference"
-                                         value="PRK_OXAZEPAM_353"/>
-               </afgesproken_geneesmiddel>
-               <gebruiksinstructie comment="">
-                  <omschrijving value="1 maal per 2 dagen 1 stuk, Oraal"/>
-                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  code="9"
-                                  displayName="Oraal"
-                                  codeSystemName="G-Standaard Toedieningswegen"/>
-                  <doseerinstructie>
-                     <dosering comment="">
-                        <keerdosis comment="">
+         <medicatieafspraak comment=""
+                            id="medicatieafspraak1_vma-example-93-1-v30">
+            <gebruiksperiode>
+               <start_datum_tijd value="2023-12-12T00:00:00+01:00"
+                                 datatype="datetime"/>
+               <eind_datum_tijd value="2024-01-10T23:59:59+01:00"
+                                datatype="datetime"/>
+            </gebruiksperiode>
+            <afgesproken_geneesmiddel>
+               <farmaceutisch_product datatype="reference"
+                                      value="PRK_OXAZEPAM_353"/>
+            </afgesproken_geneesmiddel>
+            <gebruiksinstructie comment="">
+               <omschrijving value="1 maal per 2 dagen 1 stuk, Oraal"/>
+               <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                               code="9"
+                               displayName="Oraal"
+                               codeSystemName="G-Standaard Toedieningswegen"/>
+               <doseerinstructie>
+                  <dosering comment="">
+                     <keerdosis comment="">
+                        <aantal comment="">
+                           <nominale_waarde value="1"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"
+                                 displayName="stuk"/>
+                     </keerdosis>
+                     <toedieningsschema comment="">
+                        <frequentie comment="">
                            <aantal comment="">
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <eenheid code="245"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"
-                                    displayName="stuk"/>
-                        </keerdosis>
-                        <toedieningsschema comment="">
-                           <frequentie comment="">
-                              <aantal comment="">
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid unit="dag"
-                                            value="2"/>
-                           </frequentie>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-               <toelichting value="voorbeeld toelichting MA in vrije tekst"/>
-            </medicatieafspraak>
-         </medicamenteuze_behandeling>
+                           <tijdseenheid unit="dag"
+                                         value="2"/>
+                        </frequentie>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+            <toelichting value="voorbeeld toelichting MA in vrije tekst"/>
+         </medicatieafspraak>
          <bouwstenen comment=""
                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">
             <farmaceutisch_product comment=""
@@ -149,8 +148,7 @@
                                     value="APOTHEEK_DE_GULLE_GAPER"/>
                   </auteur_is_zorgaanbieder>
                </auteur>
-               <medicamenteuze_behandeling value="MBH_920_vma-example-1"
-                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.534"/>
+               <medicatieafspraak value="medicatieafspraak1_vma-example-93-1-v30"/>
                <toelichting value="voorbeeld toelichting bij het voorstel in vrije tekst"/>
             </voorstel>
          </voorstel_gegevens>

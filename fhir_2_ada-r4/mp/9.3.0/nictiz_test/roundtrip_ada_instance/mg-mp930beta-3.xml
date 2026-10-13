@@ -12,7 +12,7 @@
                                             prefix="mp-"
                                             language="nl-NL"
                                             title="Generated from HL7 FHIR medicatiegegevens"
-                                            id="18afd98f-6fdb-11f1-1543-020000000000">
+                                            id="mg-mp930beta-3">
          <patient>
             <naamgegevens>
                <initialen value="B."/>
@@ -47,11 +47,11 @@
                                 datatype="datetime"/>
             </gebruiksperiode>
             <voorschrijver>
-               <zorgverlener value="urn-uuid-18afd9de-6fdb-11f1-1543-020000000000"
+               <zorgverlener value="urn-uuid-1384782e-6b01-11ec-0000-020000000000"
                              datatype="reference"/>
             </voorschrijver>
             <afgesproken_geneesmiddel>
-               <farmaceutisch_product value="urn-uuid-18afdb28-6fdb-11f1-1543-020000000000"
+               <farmaceutisch_product value="urn-uuid-73a3a472-6b23-11ec-0000-020000000000"
                                       datatype="reference"/>
             </afgesproken_geneesmiddel>
             <gebruiksinstructie>
@@ -64,7 +64,16 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1"
+                                               unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -80,13 +89,14 @@
                                          unit="dag"/>
                         </frequentie>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <frequency value="2"/>
                                  <period value="1"/>
                                  <periodUnit value="d"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -109,7 +119,7 @@
                            unit="week"/>
             </gebruiksperiode>
             <afgesproken_geneesmiddel>
-               <farmaceutisch_product value="urn-uuid-18afdb50-6fdb-11f1-1543-020000000000"
+               <farmaceutisch_product value="urn-uuid-1e3e7298-6a98-11ec-0000-020000000000"
                                       datatype="reference"/>
             </afgesproken_geneesmiddel>
             <relatie_medicatieafspraak>
@@ -117,7 +127,7 @@
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </relatie_medicatieafspraak>
             <auteur>
-               <zorgverlener value="urn-uuid-18afda24-6fdb-11f1-1543-020000000000"
+               <zorgverlener value="urn-uuid-649e3824-6b56-11ec-0000-020000000000"
                              datatype="reference"/>
             </auteur>
             <gebruiksinstructie>
@@ -135,7 +145,16 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="3"/>
+                           <nominale_waarde value="3">
+                              <adaextension>
+                                 <originalUCUM value="3"
+                                               unit="1"/>
+                                 <translation value="3"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -152,7 +171,8 @@
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="false"/>
@@ -167,7 +187,7 @@
                                  <period value="1"/>
                                  <periodUnit value="d"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -179,7 +199,16 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2"
+                                               unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -196,7 +225,8 @@
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="false"/>
@@ -211,7 +241,7 @@
                                  <period value="1"/>
                                  <periodUnit value="d"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -223,7 +253,16 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="3"/>
+                           <nominale_waarde value="3">
+                              <adaextension>
+                                 <originalUCUM value="3"
+                                               unit="1"/>
+                                 <translation value="3"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -240,7 +279,8 @@
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="false"/>
@@ -255,7 +295,7 @@
                                  <period value="1"/>
                                  <periodUnit value="d"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -267,7 +307,16 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2"
+                                               unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -284,7 +333,8 @@
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="false"/>
@@ -299,7 +349,7 @@
                                  <period value="1"/>
                                  <periodUnit value="d"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -311,7 +361,16 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="3"/>
+                           <nominale_waarde value="3">
+                              <adaextension>
+                                 <originalUCUM value="3"
+                                               unit="1"/>
+                                 <translation value="3"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -328,7 +387,8 @@
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="false"/>
@@ -343,7 +403,7 @@
                                  <period value="1"/>
                                  <periodUnit value="d"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -355,7 +415,16 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="2"/>
+                           <nominale_waarde value="2">
+                              <adaextension>
+                                 <originalUCUM value="2"
+                                               unit="1"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -372,7 +441,8 @@
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="false"/>
@@ -387,7 +457,7 @@
                                  <period value="1"/>
                                  <periodUnit value="d"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -399,7 +469,16 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="3"/>
+                           <nominale_waarde value="3">
+                              <adaextension>
+                                 <originalUCUM value="3"
+                                               unit="1"/>
+                                 <translation value="3"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -416,7 +495,8 @@
                         </frequentie>
                         <is_flexibel value="true"/>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                     <valueBoolean value="false"/>
@@ -431,7 +511,7 @@
                                  <period value="1"/>
                                  <periodUnit value="d"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -456,11 +536,11 @@
             </gebruiksperiode>
             <verstrekker>
                <zorgaanbieder datatype="reference"
-                              value="urn-uuid-18afda88-6fdb-11f1-1543-020000000000"/>
+                              value="urn-uuid-98d231d8-6b0c-11ec-0000-020000000000"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
                <farmaceutisch_product datatype="reference"
-                                      value="urn-uuid-18afdb3c-6fdb-11f1-1543-020000000000"/>
+                                      value="urn-uuid-c13d9b86-6b69-11ec-0000-020000000000"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <gebruiksinstructie>
                <omschrijving value="Vanaf &lt;T-20D{00:00:00}&gt;t/m &lt;T+9D{23:59:59}&gt;, 2 maal per dag 1 stuk, oraal"/>
@@ -472,7 +552,16 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1"
+                                               unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -488,13 +577,14 @@
                                          unit="dag"/>
                         </frequentie>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <frequency value="2"/>
                                  <period value="1"/>
                                  <periodUnit value="d"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -511,7 +601,7 @@
             <medicamenteuze_behandeling_id value="MBH_300_QA1"
                                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <toedienings_product>
-               <farmaceutisch_product value="urn-uuid-18afdb3c-6fdb-11f1-1543-020000000000"
+               <farmaceutisch_product value="urn-uuid-c13d9b86-6b69-11ec-0000-020000000000"
                                       datatype="reference"/>
             </toedienings_product>
             <registratie_datum_tijd value="2023-12-12T08:00:00+01:00"
@@ -519,7 +609,16 @@
             <toedienings_datum_tijd value="2023-12-14T10:04:22+01:00"
                                     datatype="datetime"/>
             <toegediende_hoeveelheid>
-               <aantal value="1"/>
+               <aantal value="1">
+                  <adaextension>
+                     <originalUCUM value="1"
+                                   unit="1"/>
+                     <translation value="1"
+                                  code="245"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="stuk"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="245"
                         displayName="stuk"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -543,7 +642,7 @@
                                          displayName="voltooid"/>
          </medicatietoediening>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-18afdb28-6fdb-11f1-1543-020000000000">
+            <farmaceutisch_product id="urn-uuid-73a3a472-6b23-11ec-0000-020000000000">
                <product_code code="17469"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -554,7 +653,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="IBUPROFEN TABLET 600MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-18afdb3c-6fdb-11f1-1543-020000000000">
+            <farmaceutisch_product id="urn-uuid-c13d9b86-6b69-11ec-0000-020000000000">
                <product_code code="641898"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -569,7 +668,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="IBUPROFEN TABLET 600MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-18afdb50-6fdb-11f1-1543-020000000000">
+            <farmaceutisch_product id="urn-uuid-1e3e7298-6a98-11ec-0000-020000000000">
                <product_code code="7323"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -580,7 +679,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="ACENOCOUMAROL TABLET 1MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-18afdb64-6fdb-11f1-1543-020000000000">
+            <farmaceutisch_product id="urn-uuid-e3505786-6b0a-11ec-0000-020000000000">
                <product_code code="1783"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -591,7 +690,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="FENPRCOUMON TABLET 3MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-18afdb78-6fdb-11f1-1543-020000000000">
+            <farmaceutisch_product id="urn-uuid-54eba298-6af7-11ec-0000-020000000000">
                <product_code code="3956"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -602,7 +701,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="ACETYLSALICYLZUUR TABLET 100MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-18afd9de-6fdb-11f1-1543-020000000000">
+            <zorgverlener id="urn-uuid-1384782e-6b01-11ec-0000-020000000000">
                <zorgverlener_identificatienummer value="000001111"
                                                  root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
@@ -615,14 +714,13 @@
                <specialisme code="0100"
                             codeSystem="2.16.840.1.113883.2.4.6.7"
                             codeSystemName="Vektis AGB-medische specialismen"
-                            codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-18afda60-6fdb-11f1-1543-020000000000"/>
+                                 value="urn-uuid-2bdf096e-6adb-11ec-0000-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgverlener id="urn-uuid-18afda24-6fdb-11f1-1543-020000000000">
+            <zorgverlener id="urn-uuid-649e3824-6b56-11ec-0000-020000000000">
                <zorgverlener_identificatienummer value="222221111"
                                                  root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
@@ -635,14 +733,13 @@
                <specialisme code="3400"
                             codeSystem="2.16.840.1.113883.2.4.6.7"
                             codeSystemName="Vektis AGB-medische specialismen"
-                            codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Trombosediensten"/>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-18afdab0-6fdb-11f1-1543-020000000000"/>
+                                 value="urn-uuid-62a7b56e-6af3-11ec-0000-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-18afda60-6fdb-11f1-1543-020000000000">
+            <zorgaanbieder id="urn-uuid-2bdf096e-6adb-11ec-0000-020000000000">
                <zorgaanbieder_identificatienummer value="00001111"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
@@ -656,19 +753,18 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="urn-uuid-18afda88-6fdb-11f1-1543-020000000000">
+            <zorgaanbieder id="urn-uuid-98d231d8-6b0c-11ec-0000-020000000000">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
             </zorgaanbieder>
-            <zorgaanbieder id="urn-uuid-18afdab0-6fdb-11f1-1543-020000000000">
+            <zorgaanbieder id="urn-uuid-62a7b56e-6af3-11ec-0000-020000000000">
                <zorgaanbieder_identificatienummer value="11112222"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Trombosedienst Ons Dorp"/>
                <afdeling_specialisme code="3400"
                                      codeSystem="2.16.840.1.113883.2.4.6.7"
                                      codeSystemName="Vektis AGB-medische specialismen"
-                                     codeSystemVersion="2020-10-23T00:00:00"
                                      displayName="Trombosediensten"/>
                <adresgegevens>
                   <straat value="Kerkstraat"/>

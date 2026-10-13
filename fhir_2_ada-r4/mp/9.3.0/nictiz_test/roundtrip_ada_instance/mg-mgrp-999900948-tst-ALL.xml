@@ -12,7 +12,7 @@
                                             prefix="mp-"
                                             language="nl-NL"
                                             title="Generated from HL7 FHIR medicatiegegevens"
-                                            id="17a5f803-6fdb-11f1-2019-020000000000">
+                                            id="mg-mgrp-999900948-tst-ALL">
          <patient>
             <naamgegevens>
                <initialen value="M."/>
@@ -46,11 +46,11 @@
                                 datatype="datetime"/>
             </gebruiksperiode>
             <voorschrijver>
-               <zorgverlener value="urn-uuid-17a5d188-6fdb-11f1-2019-020000000000"
+               <zorgverlener value="urn-uuid-1384782e-6b01-11ec-0000-020000000000"
                              datatype="reference"/>
             </voorschrijver>
             <afgesproken_geneesmiddel>
-               <farmaceutisch_product value="urn-uuid-17a5d41c-6fdb-11f1-2019-020000000000"
+               <farmaceutisch_product value="urn-uuid-a51e2df2-6b1d-11ec-0000-020000000000"
                                       datatype="reference"/>
             </afgesproken_geneesmiddel>
             <gebruiksinstructie>
@@ -85,11 +85,11 @@
                                 datatype="datetime"/>
             </gebruiksperiode>
             <voorschrijver>
-               <zorgverlener value="urn-uuid-17a5d188-6fdb-11f1-2019-020000000000"
+               <zorgverlener value="urn-uuid-1384782e-6b01-11ec-0000-020000000000"
                              datatype="reference"/>
             </voorschrijver>
             <afgesproken_geneesmiddel>
-               <farmaceutisch_product value="urn-uuid-17a5d430-6fdb-11f1-2019-020000000000"
+               <farmaceutisch_product value="urn-uuid-3ccc9698-6a9a-11ec-0000-020000000000"
                                       datatype="reference"/>
             </afgesproken_geneesmiddel>
             <gebruiksinstructie>
@@ -109,13 +109,14 @@
                                          unit="dag"/>
                         </frequentie>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <frequency value="1"/>
                                  <period value="1"/>
                                  <periodUnit value="d"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -136,11 +137,11 @@
                                 datatype="datetime"/>
             </gebruiksperiode>
             <voorschrijver>
-               <zorgverlener value="urn-uuid-17a5d188-6fdb-11f1-2019-020000000000"
+               <zorgverlener value="urn-uuid-1384782e-6b01-11ec-0000-020000000000"
                              datatype="reference"/>
             </voorschrijver>
             <afgesproken_geneesmiddel>
-               <farmaceutisch_product value="urn-uuid-17a5d444-6fdb-11f1-2019-020000000000"
+               <farmaceutisch_product value="urn-uuid-5cfab386-6af4-11ec-0000-020000000000"
                                       datatype="reference"/>
             </afgesproken_geneesmiddel>
             <gebruiksinstructie>
@@ -160,13 +161,14 @@
                                          unit="dag"/>
                         </frequentie>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <frequency value="1"/>
                                  <period value="1"/>
                                  <periodUnit value="d"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -187,11 +189,11 @@
                            unit="week"/>
             </gebruiksperiode>
             <voorschrijver>
-               <zorgverlener value="urn-uuid-17a5d188-6fdb-11f1-2019-020000000000"
+               <zorgverlener value="urn-uuid-1384782e-6b01-11ec-0000-020000000000"
                              datatype="reference"/>
             </voorschrijver>
             <afgesproken_geneesmiddel>
-               <farmaceutisch_product value="urn-uuid-17a5d458-6fdb-11f1-2019-020000000000"
+               <farmaceutisch_product value="urn-uuid-2f5b5a32-6af4-11ec-0000-020000000000"
                                       datatype="reference"/>
             </afgesproken_geneesmiddel>
             <gebruiksinstructie>
@@ -204,7 +206,16 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1"
+                                               unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -220,13 +231,14 @@
                                          unit="week"/>
                         </frequentie>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <frequency value="1"/>
                                  <period value="3"/>
                                  <periodUnit value="wk"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -241,22 +253,32 @@
             <verstrekkingsverzoek_datum_tijd value="2024-01-01T12:00:00+01:00"
                                              datatype="datetime"/>
             <auteur>
-               <zorgverlener value="urn-uuid-17a5d188-6fdb-11f1-2019-020000000000"
+               <zorgverlener value="urn-uuid-1384782e-6b01-11ec-0000-020000000000"
                              datatype="reference"/>
             </auteur>
             <te_verstrekken_geneesmiddel>
-               <farmaceutisch_product value="urn-uuid-17a5d41c-6fdb-11f1-2019-020000000000"
+               <farmaceutisch_product value="urn-uuid-a51e2df2-6b1d-11ec-0000-020000000000"
                                       datatype="reference"/>
             </te_verstrekken_geneesmiddel>
             <te_verstrekken_hoeveelheid>
-               <aantal value="50"/>
+               <aantal value="50">
+                  <adaextension>
+                     <originalUCUM value="50"
+                                   unit="ml"/>
+                     <translation value="50"
+                                  code="233"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="milliliter"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="233"
+                        displayName="milliliter"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="milliliter"/>
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </te_verstrekken_hoeveelheid>
             <beoogd_verstrekker>
                <zorgaanbieder datatype="reference"
-                              value="urn-uuid-17a5d1c4-6fdb-11f1-2019-020000000000"/>
+                              value="urn-uuid-df2591d8-6b08-11ec-0000-020000000000"/>
             </beoogd_verstrekker>
             <relatie_medicatieafspraak>
                <identificatie value="MBH_300_magistraalalleingredienten_MA"
@@ -271,22 +293,32 @@
             <verstrekkingsverzoek_datum_tijd value="2024-01-01T12:05:00+01:00"
                                              datatype="datetime"/>
             <auteur>
-               <zorgverlener value="urn-uuid-17a5d188-6fdb-11f1-2019-020000000000"
+               <zorgverlener value="urn-uuid-1384782e-6b01-11ec-0000-020000000000"
                              datatype="reference"/>
             </auteur>
             <te_verstrekken_geneesmiddel>
-               <farmaceutisch_product value="urn-uuid-17a5d430-6fdb-11f1-2019-020000000000"
+               <farmaceutisch_product value="urn-uuid-3ccc9698-6a9a-11ec-0000-020000000000"
                                       datatype="reference"/>
             </te_verstrekken_geneesmiddel>
             <te_verstrekken_hoeveelheid>
-               <aantal value="75"/>
+               <aantal value="75">
+                  <adaextension>
+                     <originalUCUM value="75"
+                                   unit="g"/>
+                     <translation value="75"
+                                  code="215"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="gram"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="215"
+                        displayName="gram"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="gram"/>
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </te_verstrekken_hoeveelheid>
             <beoogd_verstrekker>
                <zorgaanbieder datatype="reference"
-                              value="urn-uuid-17a5d1c4-6fdb-11f1-2019-020000000000"/>
+                              value="urn-uuid-df2591d8-6b08-11ec-0000-020000000000"/>
             </beoogd_verstrekker>
             <relatie_medicatieafspraak>
                <identificatie value="MBH_300_magistraalactieveingredient_MA"
@@ -301,22 +333,32 @@
             <verstrekkingsverzoek_datum_tijd value="2024-01-01T12:08:00+01:00"
                                              datatype="datetime"/>
             <auteur>
-               <zorgverlener value="urn-uuid-17a5d188-6fdb-11f1-2019-020000000000"
+               <zorgverlener value="urn-uuid-1384782e-6b01-11ec-0000-020000000000"
                              datatype="reference"/>
             </auteur>
             <te_verstrekken_geneesmiddel>
-               <farmaceutisch_product value="urn-uuid-17a5d444-6fdb-11f1-2019-020000000000"
+               <farmaceutisch_product value="urn-uuid-5cfab386-6af4-11ec-0000-020000000000"
                                       datatype="reference"/>
             </te_verstrekken_geneesmiddel>
             <te_verstrekken_hoeveelheid>
-               <aantal value="100"/>
+               <aantal value="100">
+                  <adaextension>
+                     <originalUCUM value="100"
+                                   unit="g"/>
+                     <translation value="100"
+                                  code="215"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="gram"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="215"
+                        displayName="gram"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="gram"/>
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </te_verstrekken_hoeveelheid>
             <beoogd_verstrekker>
                <zorgaanbieder datatype="reference"
-                              value="urn-uuid-17a5d1c4-6fdb-11f1-2019-020000000000"/>
+                              value="urn-uuid-df2591d8-6b08-11ec-0000-020000000000"/>
             </beoogd_verstrekker>
             <relatie_medicatieafspraak>
                <identificatie value="MBH_300_magistraal90miljoennr_MA"
@@ -331,22 +373,32 @@
             <verstrekkingsverzoek_datum_tijd value="2023-12-31T14:52:00+01:00"
                                              datatype="datetime"/>
             <auteur>
-               <zorgverlener value="urn-uuid-17a5d188-6fdb-11f1-2019-020000000000"
+               <zorgverlener value="urn-uuid-1384782e-6b01-11ec-0000-020000000000"
                              datatype="reference"/>
             </auteur>
             <te_verstrekken_geneesmiddel>
-               <farmaceutisch_product value="urn-uuid-17a5d458-6fdb-11f1-2019-020000000000"
+               <farmaceutisch_product value="urn-uuid-2f5b5a32-6af4-11ec-0000-020000000000"
                                       datatype="reference"/>
             </te_verstrekken_geneesmiddel>
             <te_verstrekken_hoeveelheid>
-               <aantal value="4"/>
+               <aantal value="4">
+                  <adaextension>
+                     <originalUCUM value="4"
+                                   unit="1"/>
+                     <translation value="4"
+                                  code="245"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="stuks"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="245"
+                        displayName="stuks"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="stuks"/>
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </te_verstrekken_hoeveelheid>
             <beoogd_verstrekker>
                <zorgaanbieder datatype="reference"
-                              value="urn-uuid-17a5d1c4-6fdb-11f1-2019-020000000000"/>
+                              value="urn-uuid-df2591d8-6b08-11ec-0000-020000000000"/>
             </beoogd_verstrekker>
             <relatie_medicatieafspraak>
                <identificatie value="MBH_300_vrijetekstproduct_MA"
@@ -368,11 +420,11 @@
             </gebruiksperiode>
             <verstrekker>
                <zorgaanbieder datatype="reference"
-                              value="urn-uuid-17a5d1c4-6fdb-11f1-2019-020000000000"/>
+                              value="urn-uuid-df2591d8-6b08-11ec-0000-020000000000"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
                <farmaceutisch_product datatype="reference"
-                                      value="urn-uuid-17a5d41c-6fdb-11f1-2019-020000000000"/>
+                                      value="urn-uuid-a51e2df2-6b1d-11ec-0000-020000000000"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <gebruiksinstructie>
                <omschrijving value="Zo nodig, cutaan"/>
@@ -411,11 +463,11 @@
             </gebruiksperiode>
             <verstrekker>
                <zorgaanbieder datatype="reference"
-                              value="urn-uuid-17a5d1c4-6fdb-11f1-2019-020000000000"/>
+                              value="urn-uuid-df2591d8-6b08-11ec-0000-020000000000"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
                <farmaceutisch_product datatype="reference"
-                                      value="urn-uuid-17a5d430-6fdb-11f1-2019-020000000000"/>
+                                      value="urn-uuid-3ccc9698-6a9a-11ec-0000-020000000000"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <gebruiksinstructie>
                <omschrijving value="1 maal per dag, cutaan"/>
@@ -434,13 +486,14 @@
                                          unit="dag"/>
                         </frequentie>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <frequency value="1"/>
                                  <period value="1"/>
                                  <periodUnit value="d"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -466,11 +519,11 @@
             </gebruiksperiode>
             <verstrekker>
                <zorgaanbieder datatype="reference"
-                              value="urn-uuid-17a5d1c4-6fdb-11f1-2019-020000000000"/>
+                              value="urn-uuid-df2591d8-6b08-11ec-0000-020000000000"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
                <farmaceutisch_product datatype="reference"
-                                      value="urn-uuid-17a5d444-6fdb-11f1-2019-020000000000"/>
+                                      value="urn-uuid-5cfab386-6af4-11ec-0000-020000000000"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <gebruiksinstructie>
                <omschrijving value="1 maal per dag, cutaan"/>
@@ -489,13 +542,14 @@
                                          unit="dag"/>
                         </frequentie>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <frequency value="1"/>
                                  <period value="1"/>
                                  <periodUnit value="d"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -521,11 +575,11 @@
             </gebruiksperiode>
             <verstrekker>
                <zorgaanbieder datatype="reference"
-                              value="urn-uuid-17a5d1c4-6fdb-11f1-2019-020000000000"/>
+                              value="urn-uuid-df2591d8-6b08-11ec-0000-020000000000"/>
             </verstrekker>
             <geneesmiddel_bij_toedieningsafspraak>
                <farmaceutisch_product datatype="reference"
-                                      value="urn-uuid-17a5d458-6fdb-11f1-2019-020000000000"/>
+                                      value="urn-uuid-2f5b5a32-6af4-11ec-0000-020000000000"/>
             </geneesmiddel_bij_toedieningsafspraak>
             <gebruiksinstructie>
                <omschrijving value="1 maal per 3 weken 1 stuk, Intraveneus"/>
@@ -537,7 +591,16 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1"
+                                               unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -553,13 +616,14 @@
                                          unit="week"/>
                         </frequentie>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <frequency value="1"/>
                                  <period value="3"/>
                                  <periodUnit value="wk"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -575,20 +639,30 @@
                            root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
             <medicamenteuze_behandeling_id value="MBH_300_magistraalalleingredienten"
                                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2024-01-01T13:00:00+01:00"/>
+            <medicatieverstrekkings_datum_tijd value="2024-01-01T13:00:00+01:00"
+                                               datatype="datetime"/>
             <verstrekker>
                <zorgaanbieder datatype="reference"
-                              value="urn-uuid-17a5d1c4-6fdb-11f1-2019-020000000000"/>
+                              value="urn-uuid-df2591d8-6b08-11ec-0000-020000000000"/>
             </verstrekker>
             <verstrekte_hoeveelheid>
-               <aantal value="50"/>
+               <aantal value="50">
+                  <adaextension>
+                     <originalUCUM value="50"
+                                   unit="ml"/>
+                     <translation value="50"
+                                  code="233"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="milliliter"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="233"
+                        displayName="milliliter"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="milliliter"/>
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </verstrekte_hoeveelheid>
             <verstrekt_geneesmiddel>
-               <farmaceutisch_product value="urn-uuid-17a5d41c-6fdb-11f1-2019-020000000000"
+               <farmaceutisch_product value="urn-uuid-a51e2df2-6b1d-11ec-0000-020000000000"
                                       datatype="reference"/>
             </verstrekt_geneesmiddel>
             <relatie_verstrekkingsverzoek>
@@ -601,20 +675,30 @@
                            root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
             <medicamenteuze_behandeling_id value="MBH_300_magistraalactieveingredient"
                                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2024-01-01T13:05:00+01:00"/>
+            <medicatieverstrekkings_datum_tijd value="2024-01-01T13:05:00+01:00"
+                                               datatype="datetime"/>
             <verstrekker>
                <zorgaanbieder datatype="reference"
-                              value="urn-uuid-17a5d1c4-6fdb-11f1-2019-020000000000"/>
+                              value="urn-uuid-df2591d8-6b08-11ec-0000-020000000000"/>
             </verstrekker>
             <verstrekte_hoeveelheid>
-               <aantal value="75"/>
+               <aantal value="75">
+                  <adaextension>
+                     <originalUCUM value="75"
+                                   unit="g"/>
+                     <translation value="75"
+                                  code="215"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="gram"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="215"
+                        displayName="gram"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="gram"/>
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </verstrekte_hoeveelheid>
             <verstrekt_geneesmiddel>
-               <farmaceutisch_product value="urn-uuid-17a5d430-6fdb-11f1-2019-020000000000"
+               <farmaceutisch_product value="urn-uuid-3ccc9698-6a9a-11ec-0000-020000000000"
                                       datatype="reference"/>
             </verstrekt_geneesmiddel>
             <relatie_verstrekkingsverzoek>
@@ -627,20 +711,30 @@
                            root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
             <medicamenteuze_behandeling_id value="MBH_300_magistraal90miljoennr"
                                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2024-01-01T13:08:00+01:00"/>
+            <medicatieverstrekkings_datum_tijd value="2024-01-01T13:08:00+01:00"
+                                               datatype="datetime"/>
             <verstrekker>
                <zorgaanbieder datatype="reference"
-                              value="urn-uuid-17a5d1c4-6fdb-11f1-2019-020000000000"/>
+                              value="urn-uuid-df2591d8-6b08-11ec-0000-020000000000"/>
             </verstrekker>
             <verstrekte_hoeveelheid>
-               <aantal value="100"/>
+               <aantal value="100">
+                  <adaextension>
+                     <originalUCUM value="100"
+                                   unit="g"/>
+                     <translation value="100"
+                                  code="215"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="gram"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="215"
+                        displayName="gram"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="gram"/>
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </verstrekte_hoeveelheid>
             <verstrekt_geneesmiddel>
-               <farmaceutisch_product value="urn-uuid-17a5d444-6fdb-11f1-2019-020000000000"
+               <farmaceutisch_product value="urn-uuid-5cfab386-6af4-11ec-0000-020000000000"
                                       datatype="reference"/>
             </verstrekt_geneesmiddel>
             <relatie_verstrekkingsverzoek>
@@ -653,20 +747,30 @@
                            root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
             <medicamenteuze_behandeling_id value="MBH_300_vrijetekstproduct"
                                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatieverstrekkings_datum_tijd datatype="datetime"
-                                               value="2023-12-31T15:50:00+01:00"/>
+            <medicatieverstrekkings_datum_tijd value="2023-12-31T15:50:00+01:00"
+                                               datatype="datetime"/>
             <verstrekker>
                <zorgaanbieder datatype="reference"
-                              value="urn-uuid-17a5d1c4-6fdb-11f1-2019-020000000000"/>
+                              value="urn-uuid-df2591d8-6b08-11ec-0000-020000000000"/>
             </verstrekker>
             <verstrekte_hoeveelheid>
-               <aantal value="4"/>
+               <aantal value="4">
+                  <adaextension>
+                     <originalUCUM value="4"
+                                   unit="1"/>
+                     <translation value="4"
+                                  code="245"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="stuks"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="245"
+                        displayName="stuks"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                        displayName="stuks"/>
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </verstrekte_hoeveelheid>
             <verstrekt_geneesmiddel>
-               <farmaceutisch_product value="urn-uuid-17a5d458-6fdb-11f1-2019-020000000000"
+               <farmaceutisch_product value="urn-uuid-2f5b5a32-6af4-11ec-0000-020000000000"
                                       datatype="reference"/>
             </verstrekt_geneesmiddel>
             <relatie_verstrekkingsverzoek>
@@ -690,7 +794,7 @@
                                 datatype="datetime"/>
             </gebruiksperiode>
             <gebruiksproduct>
-               <farmaceutisch_product value="urn-uuid-17a5d41c-6fdb-11f1-2019-020000000000"
+               <farmaceutisch_product value="urn-uuid-a51e2df2-6b1d-11ec-0000-020000000000"
                                       datatype="reference"/>
             </gebruiksproduct>
             <gebruiksinstructie>
@@ -710,13 +814,14 @@
                                          unit="dag"/>
                         </frequentie>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <frequency value="2"/>
                                  <period value="1"/>
                                  <periodUnit value="d"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -727,7 +832,7 @@
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
             </relatie_toedieningsafspraak>
             <voorschrijver>
-               <zorgverlener value="urn-uuid-17a5d188-6fdb-11f1-2019-020000000000"
+               <zorgverlener value="urn-uuid-1384782e-6b01-11ec-0000-020000000000"
                              datatype="reference"/>
             </voorschrijver>
             <informant>
@@ -735,7 +840,7 @@
             </informant>
             <auteur>
                <auteur_is_zorgverlener>
-                  <zorgverlener value="urn-uuid-17a5d188-6fdb-11f1-2019-020000000000"
+                  <zorgverlener value="urn-uuid-1384782e-6b01-11ec-0000-020000000000"
                                 datatype="reference"/>
                </auteur_is_zorgverlener>
             </auteur>
@@ -756,7 +861,7 @@
                                 datatype="datetime"/>
             </gebruiksperiode>
             <gebruiksproduct>
-               <farmaceutisch_product value="urn-uuid-17a5d430-6fdb-11f1-2019-020000000000"
+               <farmaceutisch_product value="urn-uuid-3ccc9698-6a9a-11ec-0000-020000000000"
                                       datatype="reference"/>
             </gebruiksproduct>
             <gebruiksinstructie>
@@ -776,13 +881,14 @@
                                          unit="dag"/>
                         </frequentie>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <frequency value="3"/>
                                  <period value="1"/>
                                  <periodUnit value="d"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -793,7 +899,7 @@
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
             </relatie_toedieningsafspraak>
             <voorschrijver>
-               <zorgverlener value="urn-uuid-17a5d188-6fdb-11f1-2019-020000000000"
+               <zorgverlener value="urn-uuid-1384782e-6b01-11ec-0000-020000000000"
                              datatype="reference"/>
             </voorschrijver>
             <informant>
@@ -801,7 +907,7 @@
             </informant>
             <auteur>
                <auteur_is_zorgverlener>
-                  <zorgverlener value="urn-uuid-17a5d188-6fdb-11f1-2019-020000000000"
+                  <zorgverlener value="urn-uuid-1384782e-6b01-11ec-0000-020000000000"
                                 datatype="reference"/>
                </auteur_is_zorgverlener>
             </auteur>
@@ -822,7 +928,7 @@
                                 datatype="datetime"/>
             </gebruiksperiode>
             <gebruiksproduct>
-               <farmaceutisch_product value="urn-uuid-17a5d444-6fdb-11f1-2019-020000000000"
+               <farmaceutisch_product value="urn-uuid-5cfab386-6af4-11ec-0000-020000000000"
                                       datatype="reference"/>
             </gebruiksproduct>
             <gebruiksinstructie>
@@ -842,13 +948,14 @@
                                          unit="dag"/>
                         </frequentie>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <frequency value="1"/>
                                  <period value="1"/>
                                  <periodUnit value="d"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -859,7 +966,7 @@
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
             </relatie_toedieningsafspraak>
             <voorschrijver>
-               <zorgverlener value="urn-uuid-17a5d188-6fdb-11f1-2019-020000000000"
+               <zorgverlener value="urn-uuid-1384782e-6b01-11ec-0000-020000000000"
                              datatype="reference"/>
             </voorschrijver>
             <informant>
@@ -867,7 +974,7 @@
             </informant>
             <auteur>
                <auteur_is_zorgverlener>
-                  <zorgverlener value="urn-uuid-17a5d188-6fdb-11f1-2019-020000000000"
+                  <zorgverlener value="urn-uuid-1384782e-6b01-11ec-0000-020000000000"
                                 datatype="reference"/>
                </auteur_is_zorgverlener>
             </auteur>
@@ -888,7 +995,7 @@
                            unit="dag"/>
             </gebruiksperiode>
             <gebruiksproduct>
-               <farmaceutisch_product value="urn-uuid-17a5d458-6fdb-11f1-2019-020000000000"
+               <farmaceutisch_product value="urn-uuid-2f5b5a32-6af4-11ec-0000-020000000000"
                                       datatype="reference"/>
             </gebruiksproduct>
             <gebruiksinstructie>
@@ -901,7 +1008,16 @@
                   <dosering>
                      <keerdosis>
                         <aantal>
-                           <nominale_waarde value="1"/>
+                           <nominale_waarde value="1">
+                              <adaextension>
+                                 <originalUCUM value="1"
+                                               unit="1"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </adaextension>
+                           </nominale_waarde>
                         </aantal>
                         <eenheid code="245"
                                  displayName="stuk"
@@ -917,13 +1033,14 @@
                                          unit="week"/>
                         </frequentie>
                         <adaextension>
-                           <timing xmlns="http://hl7.org/fhir">
+                           <effectiveTime xsi:type="Timing"
+                                          xmlns="http://hl7.org/fhir">
                               <repeat>
                                  <frequency value="1"/>
                                  <period value="3"/>
                                  <periodUnit value="wk"/>
                               </repeat>
-                           </timing>
+                           </effectiveTime>
                         </adaextension>
                      </toedieningsschema>
                   </dosering>
@@ -934,7 +1051,7 @@
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
             </relatie_toedieningsafspraak>
             <voorschrijver>
-               <zorgverlener value="urn-uuid-17a5d188-6fdb-11f1-2019-020000000000"
+               <zorgverlener value="urn-uuid-1384782e-6b01-11ec-0000-020000000000"
                              datatype="reference"/>
             </voorschrijver>
             <informant>
@@ -942,7 +1059,7 @@
             </informant>
             <auteur>
                <auteur_is_zorgverlener>
-                  <zorgverlener value="urn-uuid-17a5d188-6fdb-11f1-2019-020000000000"
+                  <zorgverlener value="urn-uuid-1384782e-6b01-11ec-0000-020000000000"
                                 datatype="reference"/>
                </auteur_is_zorgverlener>
             </auteur>
@@ -953,7 +1070,7 @@
             <medicamenteuze_behandeling_id value="MBH_300_magistraalalleingredienten"
                                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <toedienings_product>
-               <farmaceutisch_product value="urn-uuid-17a5d41c-6fdb-11f1-2019-020000000000"
+               <farmaceutisch_product value="urn-uuid-a51e2df2-6b1d-11ec-0000-020000000000"
                                       datatype="reference"/>
             </toedienings_product>
             <registratie_datum_tijd value="2023-12-31T14:00:00+01:00"
@@ -961,7 +1078,16 @@
             <toedienings_datum_tijd value="2023-12-31T14:00:00+01:00"
                                     datatype="datetime"/>
             <toegediende_hoeveelheid>
-               <aantal value="1"/>
+               <aantal value="1">
+                  <adaextension>
+                     <originalUCUM value="1"
+                                   unit="g"/>
+                     <translation value="1"
+                                  code="215"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="gram"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="215"
                         displayName="gram"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -981,7 +1107,7 @@
             </relatie_toedieningsafspraak>
             <toediener>
                <zorgverlener>
-                  <zorgverlener value="urn-uuid-17a5d142-6fdb-11f1-2019-020000000000"
+                  <zorgverlener value="urn-uuid-3f40b558-6b30-11ec-0000-020000000000"
                                 datatype="reference"/>
                </zorgverlener>
             </toediener>
@@ -995,7 +1121,7 @@
             <medicamenteuze_behandeling_id value="MBH_300_magistraalactieveingredient"
                                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <toedienings_product>
-               <farmaceutisch_product value="urn-uuid-17a5d430-6fdb-11f1-2019-020000000000"
+               <farmaceutisch_product value="urn-uuid-3ccc9698-6a9a-11ec-0000-020000000000"
                                       datatype="reference"/>
             </toedienings_product>
             <registratie_datum_tijd value="2023-12-31T12:00:00+01:00"
@@ -1003,7 +1129,16 @@
             <toedienings_datum_tijd value="2023-12-31T12:00:00+01:00"
                                     datatype="datetime"/>
             <toegediende_hoeveelheid>
-               <aantal value="1"/>
+               <aantal value="1">
+                  <adaextension>
+                     <originalUCUM value="1"
+                                   unit="g"/>
+                     <translation value="1"
+                                  code="215"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="gram"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="215"
                         displayName="gram"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -1023,7 +1158,7 @@
             </relatie_toedieningsafspraak>
             <toediener>
                <zorgverlener>
-                  <zorgverlener value="urn-uuid-17a5d142-6fdb-11f1-2019-020000000000"
+                  <zorgverlener value="urn-uuid-3f40b558-6b30-11ec-0000-020000000000"
                                 datatype="reference"/>
                </zorgverlener>
             </toediener>
@@ -1037,7 +1172,7 @@
             <medicamenteuze_behandeling_id value="MBH_300_magistraal90miljoennr"
                                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <toedienings_product>
-               <farmaceutisch_product value="urn-uuid-17a5d444-6fdb-11f1-2019-020000000000"
+               <farmaceutisch_product value="urn-uuid-5cfab386-6af4-11ec-0000-020000000000"
                                       datatype="reference"/>
             </toedienings_product>
             <registratie_datum_tijd value="2023-12-30T13:00:00+01:00"
@@ -1045,7 +1180,16 @@
             <toedienings_datum_tijd value="2023-12-30T13:00:00+01:00"
                                     datatype="datetime"/>
             <toegediende_hoeveelheid>
-               <aantal value="1"/>
+               <aantal value="1">
+                  <adaextension>
+                     <originalUCUM value="1"
+                                   unit="g"/>
+                     <translation value="1"
+                                  code="215"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="gram"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="215"
                         displayName="gram"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -1065,7 +1209,7 @@
             </relatie_toedieningsafspraak>
             <toediener>
                <zorgverlener>
-                  <zorgverlener value="urn-uuid-17a5d142-6fdb-11f1-2019-020000000000"
+                  <zorgverlener value="urn-uuid-3f40b558-6b30-11ec-0000-020000000000"
                                 datatype="reference"/>
                </zorgverlener>
             </toediener>
@@ -1079,7 +1223,7 @@
             <medicamenteuze_behandeling_id value="MBH_300_vrijetekstproduct"
                                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <toedienings_product>
-               <farmaceutisch_product value="urn-uuid-17a5d458-6fdb-11f1-2019-020000000000"
+               <farmaceutisch_product value="urn-uuid-2f5b5a32-6af4-11ec-0000-020000000000"
                                       datatype="reference"/>
             </toedienings_product>
             <registratie_datum_tijd value="2023-12-31T19:35:00+01:00"
@@ -1087,7 +1231,16 @@
             <toedienings_datum_tijd value="2023-12-31T19:25:00+01:00"
                                     datatype="datetime"/>
             <toegediende_hoeveelheid>
-               <aantal value="1"/>
+               <aantal value="1">
+                  <adaextension>
+                     <originalUCUM value="1"
+                                   unit="1"/>
+                     <translation value="1"
+                                  code="245"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="stuks"/>
+                  </adaextension>
+               </aantal>
                <eenheid code="245"
                         displayName="stuks"
                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -1107,7 +1260,7 @@
             </relatie_toedieningsafspraak>
             <toediener>
                <zorgverlener>
-                  <zorgverlener value="urn-uuid-17a5d188-6fdb-11f1-2019-020000000000"
+                  <zorgverlener value="urn-uuid-1384782e-6b01-11ec-0000-020000000000"
                                 datatype="reference"/>
                </zorgverlener>
             </toediener>
@@ -1116,7 +1269,7 @@
                                          displayName="voltooid"/>
          </medicatietoediening>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-17a5d41c-6fdb-11f1-2019-020000000000">
+            <farmaceutisch_product id="urn-uuid-a51e2df2-6b1d-11ec-0000-020000000000">
                <product_code code="OTH"
                              codeSystem="2.16.840.1.113883.5.1008"
                              codeSystemName="HL7 NullFlavor"
@@ -1171,7 +1324,7 @@
                   </ingredient>
                </product_specificatie>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-17a5d430-6fdb-11f1-2019-020000000000">
+            <farmaceutisch_product id="urn-uuid-3ccc9698-6a9a-11ec-0000-020000000000">
                <product_code code="OTH"
                              codeSystem="2.16.840.1.113883.5.1008"
                              codeSystemName="HL7 NullFlavor"
@@ -1204,7 +1357,7 @@
                   </ingredient>
                </product_specificatie>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-17a5d444-6fdb-11f1-2019-020000000000">
+            <farmaceutisch_product id="urn-uuid-5cfab386-6af4-11ec-0000-020000000000">
                <product_code code="90000001"
                              codeSystem="2.16.840.1.113883.2.4.3.11.9999.77.90000000.1.1111"
                              displayName="Eigen artikel: ureumzalf"/>
@@ -1235,7 +1388,7 @@
                   </ingredient>
                </product_specificatie>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-17a5d458-6fdb-11f1-2019-020000000000">
+            <farmaceutisch_product id="urn-uuid-2f5b5a32-6af4-11ec-0000-020000000000">
                <product_code code="OTH"
                              codeSystem="2.16.840.1.113883.5.1008"
                              codeSystemName="HL7 NullFlavor"
@@ -1246,7 +1399,7 @@
                   <omschrijving value="Titel: Jemperli (Dostarlimab-gxly) 500 mg/10 mL"/>
                </product_specificatie>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-17a5d142-6fdb-11f1-2019-020000000000">
+            <zorgverlener id="urn-uuid-3f40b558-6b30-11ec-0000-020000000000">
                <zorgverlener_identificatienummer value="222220000"
                                                  root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
@@ -1258,14 +1411,13 @@
                <specialisme code="9100"
                             codeSystem="2.16.840.1.113883.2.4.6.7"
                             codeSystemName="Vektis AGB-medische specialismen"
-                            codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Verpleegkundigen, niet nader gespecificeerd"/>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-17a5d214-6fdb-11f1-2019-020000000000"/>
+                                 value="urn-uuid-205a51d8-6b64-11ec-0000-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgverlener id="urn-uuid-17a5d188-6fdb-11f1-2019-020000000000">
+            <zorgverlener id="urn-uuid-1384782e-6b01-11ec-0000-020000000000">
                <zorgverlener_identificatienummer value="000001111"
                                                  root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
@@ -1278,14 +1430,13 @@
                <specialisme code="0100"
                             codeSystem="2.16.840.1.113883.2.4.6.7"
                             codeSystemName="Vektis AGB-medische specialismen"
-                            codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-17a5d1ec-6fdb-11f1-2019-020000000000"/>
+                                 value="urn-uuid-2bdf096e-6adb-11ec-0000-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-17a5d1c4-6fdb-11f1-2019-020000000000">
+            <zorgaanbieder id="urn-uuid-df2591d8-6b08-11ec-0000-020000000000">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
@@ -1300,7 +1451,7 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="urn-uuid-17a5d1ec-6fdb-11f1-2019-020000000000">
+            <zorgaanbieder id="urn-uuid-2bdf096e-6adb-11ec-0000-020000000000">
                <zorgaanbieder_identificatienummer value="00001111"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
@@ -1314,7 +1465,7 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="urn-uuid-17a5d214-6fdb-11f1-2019-020000000000">
+            <zorgaanbieder id="urn-uuid-205a51d8-6b64-11ec-0000-020000000000">
                <zorgaanbieder_identificatienummer value="11110000"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Thuiszorg Om en Bij"/>

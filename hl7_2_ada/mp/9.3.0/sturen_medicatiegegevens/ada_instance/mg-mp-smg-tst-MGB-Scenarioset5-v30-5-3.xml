@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2026-04-28T11:17:00.9598469+02:00"
-         last-update-date="2026-04-28T11:17:00.9598469+02:00"/>
+         creation-date="2026-01-01T00:00:00"
+         last-update-date="2026-01-01T00:00:00"/>
    <data>
       <!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
       <sturen_medicatiegegevens app="mp-mp93"
@@ -35,53 +35,51 @@
                       codeSystem="2.16.840.1.113883.5.1"
                       displayName="Man"/>
          </patient>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_geen_gebruik_niet_volgens_afspraak-tmgs"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <medicatiegebruik>
-               <identificatie value="MBH_300_geen_gebruik_niet_volgens_afspraak_MGB-tmgs"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <medicatiegebruik_datum_tijd datatype="datetime"
-                                            value="2023-12-28T08:00:00+01:00"/>
-               <gebruik_indicator value="false"/>
-               <volgens_afspraak_indicator value="false"/>
-               <medicatiegebruik_stop_type code="410546004"
-                                           codeSystem="2.16.840.1.113883.6.96"
-                                           displayName="stopgezet"/>
-               <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime"
-                                    value="2023-12-26T00:00:00+01:00"/>
-                  <eind_datum_tijd datatype="datetime"
-                                   value="2023-12-27T23:59:50+01:00"/>
-               </gebruiksperiode>
-               <gebruiksproduct>
-                  <farmaceutisch_product value="d26736e62"
-                                         datatype="reference"/>
-               </gebruiksproduct>
-               <gebruiksinstructie>
-                  <omschrijving value="geneesmiddel niet in gebruik"/>
-               </gebruiksinstructie>
-               <relatie_toedieningsafspraak>
-                  <identificatie value="MBH_300_geen_gebruik_niet_volgens_afspraak_TA-tmgs"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               </relatie_toedieningsafspraak>
-               <voorschrijver>
-                  <zorgverlener value="d26736e185"
+         <medicatiegebruik>
+            <identificatie value="MBH_300_geen_gebruik_niet_volgens_afspraak_MGB-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_geen_gebruik_niet_volgens_afspraak-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatiegebruik_datum_tijd datatype="datetime"
+                                         value="2023-12-28T08:00:00+01:00"/>
+            <gebruik_indicator value="false"/>
+            <volgens_afspraak_indicator value="false"/>
+            <medicatiegebruik_stop_type code="410546004"
+                                        codeSystem="2.16.840.1.113883.6.96"
+                                        displayName="stopgezet"/>
+            <gebruiksperiode>
+               <start_datum_tijd datatype="datetime"
+                                 value="2023-12-26T00:00:00+01:00"/>
+               <eind_datum_tijd datatype="datetime"
+                                value="2023-12-27T23:59:50+01:00"/>
+            </gebruiksperiode>
+            <gebruiksproduct>
+               <farmaceutisch_product value="d21404e62"
+                                      datatype="reference"/>
+            </gebruiksproduct>
+            <gebruiksinstructie>
+               <omschrijving value="geneesmiddel niet in gebruik"/>
+            </gebruiksinstructie>
+            <relatie_toedieningsafspraak>
+               <identificatie value="MBH_300_geen_gebruik_niet_volgens_afspraak_TA-tmgs"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            </relatie_toedieningsafspraak>
+            <voorschrijver>
+               <zorgverlener value="d21404e185"
+                             datatype="reference"/>
+            </voorschrijver>
+            <informant>
+               <informant_is_patient value="true"/>
+            </informant>
+            <auteur>
+               <auteur_is_zorgverlener>
+                  <zorgverlener value="d21404e185"
                                 datatype="reference"/>
-               </voorschrijver>
-               <informant>
-                  <informant_is_patient value="true"/>
-               </informant>
-               <auteur>
-                  <auteur_is_zorgverlener>
-                     <zorgverlener value="d26736e185"
-                                   datatype="reference"/>
-                  </auteur_is_zorgverlener>
-               </auteur>
-            </medicatiegebruik>
-         </medicamenteuze_behandeling>
+               </auteur_is_zorgverlener>
+            </auteur>
+         </medicatiegebruik>
          <bouwstenen>
-            <farmaceutisch_product id="d26736e62">
+            <farmaceutisch_product id="d21404e62">
                <product_code code="2530104"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -95,7 +93,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="HYDROCHLOORTHIAZIDE TABLET 12,5MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="d26736e185">
+            <zorgverlener id="d21404e185">
                <zorgverlener_identificatienummer value="000001111"
                                                  root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
@@ -111,11 +109,11 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d26736e206"
+                  <zorgaanbieder value="d21404e206"
                                  datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d26736e206">
+            <zorgaanbieder id="d21404e206">
                <zorgaanbieder_identificatienummer value="00001111"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
