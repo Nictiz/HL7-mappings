@@ -1,0 +1,98 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-ize-kwa-casus1 /adaxml/data/med_mij_echo_beschikbaarstellen/medisch_onderzoek/maternale_onderzoeksgegevens/verrichting_maternaal_onderzoek (peri32-dataelement-2416) -->
+   <id value="9a00567d-6aea-11ec-2241-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ObstetricProcedure"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Iris I XXX_Kruik. Categorie: <span title="obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">obstetrische verrichting (verrichting)</span>, Status: voltooid<span style="display: block;">Uitvoerende: Emma E XXX_Visser || echoscopist (beroep) || Echopraktijk Groei (uit naam van: Echopraktijk Groei)</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="echografie voor foetale groei (verrichting) (241493005 - SNOMED CT)">echografie voor foetale groei (verrichting)</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: ${DATE, T, D, -570} - ${DATE, T, D, -570}</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Locatie</th>
+                  <td>Echopraktijk Groei</td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>Zwangerschap 1 XXX_Kruik_Vrouw</td>
+               </tr>
+               <tr>
+                  <th>Report</th>
+                  <td>Echoscopie Verdenking afwijking echografie</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="9a00567d-6aea-11ec-2241-020000000000"/>
+   </identifier>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="386637004"/>
+         <display value="obstetrische verrichting (verrichting)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="241493005"/>
+         <display value="echografie voor foetale groei (verrichting)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/IRIS-I-XXX-KRUIK"/>
+      <display value="Iris I XXX_Kruik"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/2c159507-6ae8-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Kruik_Vrouw"/>
+   </context>
+   <performedPeriod>
+      <start value="${DATE, T, D, -570}"/>
+      <end value="${DATE, T, D, -570}"/>
+   </performedPeriod>
+   <performer>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/bc-PractitionerRole-mm-gbz-657483678954300490012345"/>
+               <display value="Emma E XXX_Visser || echoscopist (beroep) || Echopraktijk Groei"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-528-1-1007-3-1-6574836"/>
+         <display value="Emma E XXX_Visser"/>
+      </actor>
+      <onBehalfOf>
+         <reference value="Organization/organization-mm-gbz-2-16-840-1-113883-2-4-6-1-90012345"/>
+         <display value="Echopraktijk Groei"/>
+      </onBehalfOf>
+   </performer>
+   <location>
+      <reference value="Location/location-mm-gbz-2-16-840-1-113883-2-4-6-1-90012345"/>
+      <display value="Echopraktijk Groei"/>
+   </location>
+   <reasonReference>
+      <reference value="Condition/498b09ce-6add-11ec-2334-020000000000"/>
+      <display value="Zwangerschap 1 XXX_Kruik_Vrouw"/>
+   </reasonReference>
+   <report>
+      <reference value="DiagnosticReport/3ee44493-6b70-11ec-2120-020000000000"/>
+      <display value="Echoscopie Verdenking afwijking echografie"/>
+   </report>
+</Procedure>

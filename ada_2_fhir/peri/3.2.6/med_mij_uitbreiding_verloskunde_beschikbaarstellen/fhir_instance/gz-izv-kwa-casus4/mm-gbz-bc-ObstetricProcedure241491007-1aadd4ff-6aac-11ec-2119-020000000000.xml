@@ -1,0 +1,68 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-kwa-casus4 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/zwangerschapsgegevens/verrichting_zwangerschap (peri32-dataelement-1190) -->
+   <id value="1aadd4ff-6aac-11ec-2119-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ObstetricProcedure"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Categorie: <span title="obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="echografie van foetus (verrichting) (241491007 - SNOMED CT)">echografie van foetus (verrichting)</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: Vanaf ${DATETIME, T, D, -374, h, +15, m, +15}</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>Zwangerschap 2 Vrouw-XXX_Yzendoorn, probleem zwangerschap Vrouw-XXX_Yzendoorn</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="1aadd4ff-6aac-11ec-2119-020000000000"/>
+   </identifier>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="386637004"/>
+         <display value="obstetrische verrichting (verrichting)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="241491007"/>
+         <display value="echografie van foetus (verrichting)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG"/>
+      <display value="Willemijn W XXX_Yzendoorn van den XXX_Berg"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/17eb51ff-6b4e-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+   </context>
+   <performedPeriod>
+      <start value="${DATETIME, T, D, -374, h, +15, m, +15}"/>
+   </performedPeriod>
+   <reasonReference>
+      <reference value="Condition/8b1b92ff-6aa1-11ec-2334-020000000000"/>
+      <display value="Zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+   </reasonReference>
+   <reasonReference>
+      <reference value="Condition/ffff5219-6ac1-11ec-2118-020000000000"/>
+      <display value="probleem zwangerschap Vrouw-XXX_Yzendoorn"/>
+   </reasonReference>
+</Procedure>
