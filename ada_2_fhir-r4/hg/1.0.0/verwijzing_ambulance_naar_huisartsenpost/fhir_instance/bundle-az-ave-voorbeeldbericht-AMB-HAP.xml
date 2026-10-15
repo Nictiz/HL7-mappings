@@ -1,0 +1,440 @@
+<Bundle xmlns="http://hl7.org/fhir">
+   <id value="bundle-az-ave-voorbeeldbericht-AMB-HAP"/>
+   <meta>
+      <profile value="http://ig.nictiz.nl/az/StructureDefinition//hg-ReferralBundle-AmbulanceHAP"/>
+   </meta>
+   <language value="nl"/>
+   <type value="transaction"/>
+   <entry>
+      <fullUrl value="http://nictiz.nl/fhir/Patient/patient-van-Putten-van-der-Giessen"/>
+      <resource>
+         <Patient>
+            <id value="patient-van-Putten-van-der-Giessen"/>
+            <meta>
+               <profile value="http://ig.nictiz.nl/az/StructureDefinition/hg-Patient-AmbulanceHAP"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999999999"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+               <family value="van Putten-van der Giessen">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Putten"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
+                     <valueString value="van der"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+                     <valueString value="Giessen"/>
+                  </extension>
+               </family>
+               <given value="Johanna">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+               <given value="Petronella">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+               <given value="Maria">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+            <name>
+               <use value="usual"/>
+               <given value="Jo"/>
+            </name>
+            <telecom>
+               <system value="phone"/>
+               <value value="+31212341234"/>
+            </telecom>
+            <telecom>
+               <system value="email"/>
+               <value value="test@test.nl"/>
+            </telecom>
+            <gender value="female"/>
+            <birthDate value="1999-03-12"/>
+            <address>
+               <line value="1e Jacob van Campenstr 15 E Twee hoog achter">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="1e Jacob van Campenstr"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="15"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="E Twee hoog achter"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
+                     <valueString value="Huis Zon en Licht"/>
+                  </extension>
+               </line>
+               <city value="Hoogmade"/>
+               <postalCode value="9999ZA"/>
+               <country value="Nederland">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="urn:iso:std:iso:3166"/>
+                           <code value="NL"/>
+                           <display value="Nederland"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </country>
+            </address>
+            <contact>
+               <relationship>
+                  <coding>
+                     <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
+                     <code value="DAUC"/>
+                     <display value="Dochter"/>
+                  </coding>
+               </relationship>
+               <name>
+                  <use value="official"/>
+                  <text value="Jannie Putten"/>
+               </name>
+            </contact>
+         </Patient>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="http://nictiz.nl/fhir/PractitionerRole/pracrole-10000020"/>
+      <resource>
+         <PractitionerRole>
+            <id value="pracrole-10000020"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+            </meta>
+            <practitioner>
+               <reference value="Practitioner/prac-10000020"/>
+               <type value="Practitioner"/>
+               <display value="Healthcare professional (person), person identification: 10000020 from system UZI Personen"/>
+            </practitioner>
+            <organization>
+               <reference value="Organization/org-00003338"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Ambulance Post"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+                  <code value="30.000"/>
+                  <display value="Verpleegkundige"/>
+               </coding>
+            </specialty>
+            <telecom>
+               <system value="phone"/>
+               <value value="+31212341235"/>
+            </telecom>
+         </PractitionerRole>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="http://nictiz.nl/fhir/Practitioner/prac-10000020"/>
+      <resource>
+         <Practitioner>
+            <id value="prac-10000020"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="10000020"/>
+            </identifier>
+            <telecom>
+               <system value="phone"/>
+               <value value="+31212341235"/>
+            </telecom>
+         </Practitioner>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="http://nictiz.nl/fhir/Organization/org-00003338"/>
+      <resource>
+         <Organization>
+            <id value="org-00003338"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+               <value value="00003338"/>
+            </identifier>
+            <name value="Ambulance Post"/>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="http://nictiz.nl/fhir/Organization/org-00003336"/>
+      <resource>
+         <Organization>
+            <id value="org-00003336"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00003336"/>
+            </identifier>
+            <name value="Huisartsencentrum Huiske"/>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="http://nictiz.nl/fhir/Encounter/encounter-05-2019-12345678901314-11"/>
+      <resource>
+         <Encounter>
+            <id value="encounter-05-2019-12345678901314-11"/>
+            <meta>
+               <profile value="http://ig.nictiz.nl/az/StructureDefinition/hg-ReferralServiceRequest-AmbulanceHAP"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.32.5"/>
+               <value value="05-2019-12345678901314-11"/>
+            </identifier>
+            <status value="in-progress"/>
+            <class>
+               <code value="EMER"/>
+            </class>
+         </Encounter>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Encounter"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="http://nictiz.nl/fhir/ServiceRequest/servicerequest-az-ave-voorbeeldbericht-AMB-HAP"/>
+      <resource>
+         <ServiceRequest>
+            <id value="servicerequest-az-ave-voorbeeldbericht-AMB-HAP"/>
+            <meta>
+               <profile value="http://ig.nictiz.nl/az/StructureDefinition/hg-ReferralServiceRequest-AmbulanceHAP"/>
+            </meta>
+            <identifier>
+               <value value="az-ave-voorbeeldbericht-AMB-HAP"/>
+            </identifier>
+            <status value="completed"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="3457005"/>
+                  <display value="verwijzen van patiënt"/>
+               </coding>
+            </category>
+            <subject>
+               <reference value="Patient/patient-van-Putten-van-der-Giessen"/>
+               <type value="Patient"/>
+               <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+            </subject>
+            <encounter>
+               <reference value="Encounter/encounter-05-2019-12345678901314-11"/>
+               <type value="Encounter"/>
+               <display value="Encounter"/>
+            </encounter>
+            <requester>
+               <reference value="PractitionerRole/pracrole-10000020"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Verpleegkundige, Ambulance Post"/>
+            </requester>
+            <performer>
+               <reference value="Organization/org-00003336"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Huisartsencentrum Huiske"/>
+            </performer>
+            <reasonCode>
+               <text value="Naar allergoloog. Graag uw analyse bij hinderlijke klachten van vermoedelijk allergische conjunctivitis en/of allergische rinitis."/>
+            </reasonCode>
+            <supportingInfo>
+               <reference value="Composition/composition-ambu-az-ave-voorbeeldbericht-AMB-HAP"/>
+               <type value="Composition"/>
+               <display value="Referral note, JovPutten"/>
+            </supportingInfo>
+            <supportingInfo>
+               <reference value="DocumentReference/documentreference-3478"/>
+               <type value="DocumentReference"/>
+               <display value="Document"/>
+            </supportingInfo>
+            <patientInstruction value="Signalen van toenemend oedeem besproken; bij twijfel of constatering van verergering van de klachten neemt mevrouw op eigen initiatief weer contact op."/>
+         </ServiceRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="ServiceRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="http://nictiz.nl/fhir/Composition/composition-ambu-az-ave-voorbeeldbericht-AMB-HAP"/>
+      <resource>
+         <Composition>
+            <id value="composition-ambu-az-ave-voorbeeldbericht-AMB-HAP"/>
+            <meta>
+               <profile value="http://ig.nictiz.nl/az/StructureDefinition/hg-ReferralComposition-AmbulanceHAP"/>
+            </meta>
+            <identifier>
+               <value value="az-ave-voorbeeldbericht-AMB-HAP"/>
+            </identifier>
+            <status value="final"/>
+            <type>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="101135-2"/>
+                  <display value="verslag van ambulanceoverdracht"/>
+               </coding>
+            </type>
+            <subject>
+               <reference value="Patient/patient-van-Putten-van-der-Giessen"/>
+               <type value="Patient"/>
+               <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+            </subject>
+            <author>
+               <reference value="Organization/org-00003338"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Ambulance Post"/>
+            </author>
+            <title value="Referral note"/>
+            <section>
+               <title value="Reden bericht"/>
+               <code>
+                  <coding>
+                     <system value="http://loinc.org"/>
+                     <code value="46239-0"/>
+                     <display value="Belangrijkste klacht + reden voor bezoek [bevinding] (tekstueel)"/>
+                  </coding>
+               </code>
+               <text>
+                  <status value="extensions"/>
+                  <div xmlns="http://www.w3.org/1999/xhtml">Reden bericht: Naar allergoloog. Graag uw analyse bij hinderlijke klachten van vermoedelijk allergische conjunctivitis en/of allergische rinitis.</div>
+               </text>
+            </section>
+            <section>
+               <title value="Ingestelde behandeling"/>
+               <code>
+                  <coding>
+                     <system value="http://loinc.org"/>
+                     <code value="51847-2"/>
+                     <display value="Beoordelingsverslag en behandelplan"/>
+                  </coding>
+               </code>
+               <text>
+                  <status value="extensions"/>
+                  <div xmlns="http://www.w3.org/1999/xhtml">Ingestelde behandeling: Zyrtec oraal gedurende twee weken helpt onvoldoende. Geen specifieke allergie aangetoond tot op heden.</div>
+               </text>
+            </section>
+            <section>
+               <title value="Diagnose / Conclusie"/>
+               <code>
+                  <coding>
+                     <system value="http://loinc.org"/>
+                     <code value="55110-1"/>
+                     <display value="Conclusies [interpretatie] (document)"/>
+                  </coding>
+               </code>
+               <text>
+                  <status value="extensions"/>
+                  <div xmlns="http://www.w3.org/1999/xhtml">Diagnose / Conclusie: Beperking bij dagelijkse activiteiten op basis van interventie schouder, bij dwarslaesie</div>
+               </text>
+            </section>
+            <section>
+               <title value="Afgesproken met patient"/>
+               <code>
+                  <coding>
+                     <system value="http://loinc.org"/>
+                     <code value="69730-0"/>
+                     <display value="Instructions"/>
+                  </coding>
+               </code>
+               <text>
+                  <status value="extensions"/>
+                  <div xmlns="http://www.w3.org/1999/xhtml">Afgesproken met Patient: Signalen van toenemend oedeem besproken; bij twijfel of constatering van verergering van de klachten neemt mevrouw op eigen initiatief weer contact op.</div>
+               </text>
+            </section>
+         </Composition>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Composition"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="http://nictiz.nl/fhir/DocumentReference/documentreference-3478"/>
+      <resource>
+         <DocumentReference>
+            <id value="documentreference-3478"/>
+            <meta>
+               <profile value="http://ig.nictiz.nl/az/StructureDefinition/hg-DocumentReference-AmbulanceHAP"/>
+            </meta>
+            <masterIdentifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.103.3"/>
+               <value value="3478"/>
+            </masterIdentifier>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.103.3"/>
+               <value value="22"/>
+            </identifier>
+            <status value="current"/>
+            <type>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.55.5.16"/>
+                  <code value="006"/>
+                  <display value="intern rapport/overdracht"/>
+               </coding>
+            </type>
+            <subject>
+               <reference value="Patient/patient-van-Putten-van-der-Giessen"/>
+               <type value="Patient"/>
+               <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+            </subject>
+            <author>
+               <reference value="Organization/org-00003338"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Ambulance Post"/>
+            </author>
+            <content>
+               <attachment>
+                  <contentType value="application/pdf"/>
+                  <data value="ZG9jdW1lbnQ="/>
+                  <title value="chest-xray-1-999999011.jpg"/>
+               </attachment>
+            </content>
+         </DocumentReference>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="DocumentReference"/>
+      </request>
+   </entry>
+</Bundle>

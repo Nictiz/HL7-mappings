@@ -1,0 +1,52 @@
+<ServiceRequest xmlns="http://hl7.org/fhir">
+   <id value="servicerequest-az-ave-voorbeeldbericht-AMB-HAP"/>
+   <meta>
+      <profile value="http://ig.nictiz.nl/az/StructureDefinition/hg-ReferralServiceRequest-AmbulanceHAP"/>
+   </meta>
+   <identifier>
+      <value value="az-ave-voorbeeldbericht-AMB-HAP"/>
+   </identifier>
+   <status value="completed"/>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="3457005"/>
+         <display value="verwijzen van patiënt"/>
+      </coding>
+   </category>
+   <subject>
+      <reference value="Patient/patient-van-Putten-van-der-Giessen"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <encounter>
+      <reference value="Encounter/encounter-05-2019-12345678901314-11"/>
+      <type value="Encounter"/>
+      <display value="Encounter"/>
+   </encounter>
+   <requester>
+      <reference value="PractitionerRole/pracrole-10000020"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Verpleegkundige, Ambulance Post"/>
+   </requester>
+   <performer>
+      <reference value="Organization/org-00003336"/>
+      <type value="Organization"/>
+      <display value="Healthcare provider (organization), Huisartsencentrum Huiske"/>
+   </performer>
+   <reasonCode>
+      <text value="Naar allergoloog. Graag uw analyse bij hinderlijke klachten van vermoedelijk allergische conjunctivitis en/of allergische rinitis."/>
+   </reasonCode>
+   <supportingInfo>
+      <reference value="Composition/composition-ambu-az-ave-voorbeeldbericht-AMB-HAP"/>
+      <type value="Composition"/>
+      <display value="Referral note, JovPutten"/>
+   </supportingInfo>
+   <supportingInfo>
+      <reference value="DocumentReference/documentreference-3478"/>
+      <type value="DocumentReference"/>
+      <display value="Document"/>
+   </supportingInfo>
+   <patientInstruction value="Signalen van toenemend oedeem besproken; bij twijfel of constatering van verergering van de klachten neemt mevrouw op eigen initiatief weer contact op."/>
+</ServiceRequest>
