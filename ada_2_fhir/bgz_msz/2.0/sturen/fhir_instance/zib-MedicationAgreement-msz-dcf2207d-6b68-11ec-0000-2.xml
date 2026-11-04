@@ -1,0 +1,113 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="zib-MedicationAgreement-msz-dcf2207d-6b68-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Medicatieafspraak. Subject: J.J.E. XXX_Enderman Da Conceição. Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Medicatieafspraak</span>, <span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: Gaga G. Gaga Gedachtzaam</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>FLUCLOXACILLINE CAPSULE 500MG</td>
+               </tr>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>${DATE, T, D, -2}</td>
+               </tr>
+               <tr>
+                  <th>Gebruiksduur</th>
+                  <td>10 dag</td>
+               </tr>
+               <tr>
+                  <th>Doseerinstructie</th>
+                  <td>
+                     <div>Volgnummer: 1</div>
+                     <div>Tekst: Vanaf &lt;T-3D&gt;, 10 dagen, 3 keer per dag 1 stuk, oraal,  minstens 1 uur  na de maaltijd,</div>
+                     <div>Instructie: Na het eten innemen minstens 1 uur na de maaltijd</div>
+                     <div>Timing: <div>3 maal per dag</div>
+                     </div>
+                     <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                     </div>
+                     <div>Dosering: 1 STUK</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+      <valueDuration>
+         <value value="10"/>
+         <unit value="dag"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="d"/>
+      </valueDuration>
+   </extension>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="Prescription (procedure)"/>
+      </coding>
+      <text value="Medicatieafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/zib-Product-msz-2-16-840-1-113883-2-4-4-10-15933601"/>
+      <display value="FLUCLOXACILLINE CAPSULE 500MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/bgz-msz-patG"/>
+      <display value="J.J.E. XXX_Enderman Da Conceição"/>
+   </subject>
+   <authoredOn value="${DATE, T, D, -2}"/>
+   <requester>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-msz-0014142401-01420000015"/>
+            <display value="Gaga G. Gaga Gedachtzaam || Chirurg || Ziekenhuis Amsterdam"/>
+         </valueReference>
+      </extension>
+      <agent>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00141424"/>
+         <display value="Gaga G. Gaga Gedachtzaam"/>
+      </agent>
+   </requester>
+   <dosageInstruction>
+      <sequence value="1"/>
+      <text value="Vanaf &lt;T-3D&gt;, 10 dagen, 3 keer per dag 1 stuk, oraal,  minstens 1 uur  na de maaltijd,"/>
+      <additionalInstruction>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="overig"/>
+         </coding>
+         <text value="Na het eten innemen minstens 1 uur na de maaltijd"/>
+      </additionalInstruction>
+      <timing>
+         <repeat>
+            <frequency value="3"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseQuantity>
+         <value value="1"/>
+         <unit value="STUK"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="ST"/>
+      </doseQuantity>
+   </dosageInstruction>
+</MedicationRequest>

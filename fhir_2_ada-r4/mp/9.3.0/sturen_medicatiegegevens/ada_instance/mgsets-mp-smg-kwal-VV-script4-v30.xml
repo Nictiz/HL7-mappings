@@ -12,7 +12,7 @@
                                 prefix="mp-"
                                 language="nl-NL"
                                 title="Generated from HL7 FHIR medicatiegegevens"
-                                id="2f555537-1961-11f1-1423-020000000000">
+                                id="0d7cfd01-6fd9-11f1-3776-020000000000">
          <patient>
             <naamgegevens>
                <initialen value="H."/>
@@ -31,40 +31,38 @@
                       codeSystem="2.16.840.1.113883.5.1"
                       displayName="Man"/>
          </patient>
-         <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_script4-tmgs"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-            <verstrekkingsverzoek>
-               <identificatie value="MBH_300_script4_VV-tmgs"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd value="2023-12-26T11:30:00+01:00"
-                                                datatype="datetime"/>
-               <auteur>
-                  <zorgverlener value="urn-uuid-2f555586-1961-11f1-1423-020000000000"
-                                datatype="reference"/>
-               </auteur>
-               <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-2f555626-1961-11f1-1423-020000000000"
-                                         datatype="reference"/>
-               </te_verstrekken_geneesmiddel>
-               <te_verstrekken_hoeveelheid>
-                  <aantal value="56"/>
-                  <eenheid code="245"
-                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                           displayName="stuk"/>
-               </te_verstrekken_hoeveelheid>
-               <beoogd_verstrekker>
-                  <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-2f5555c2-1961-11f1-1423-020000000000"/>
-               </beoogd_verstrekker>
-               <relatie_medicatieafspraak>
-                  <identificatie value="MBH_300_script4_MA-tmgs"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </relatie_medicatieafspraak>
-            </verstrekkingsverzoek>
-         </medicamenteuze_behandeling>
+         <verstrekkingsverzoek>
+            <identificatie value="MBH_300_script4_VV-tmgs"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+            <medicamenteuze_behandeling_id value="MBH_300_script4-tmgs"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <verstrekkingsverzoek_datum_tijd value="2023-12-26T11:30:00+01:00"
+                                             datatype="datetime"/>
+            <auteur>
+               <zorgverlener value="urn-uuid-0d7cfd50-6fd9-11f1-3776-020000000000"
+                             datatype="reference"/>
+            </auteur>
+            <te_verstrekken_geneesmiddel>
+               <farmaceutisch_product value="urn-uuid-0d7cfdf0-6fd9-11f1-3776-020000000000"
+                                      datatype="reference"/>
+            </te_verstrekken_geneesmiddel>
+            <te_verstrekken_hoeveelheid>
+               <aantal value="56"/>
+               <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        displayName="stuk"/>
+            </te_verstrekken_hoeveelheid>
+            <beoogd_verstrekker>
+               <zorgaanbieder datatype="reference"
+                              value="urn-uuid-0d7cfd8c-6fd9-11f1-3776-020000000000"/>
+            </beoogd_verstrekker>
+            <relatie_medicatieafspraak>
+               <identificatie value="MBH_300_script4_MA-tmgs"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </relatie_medicatieafspraak>
+         </verstrekkingsverzoek>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-2f555626-1961-11f1-1423-020000000000">
+            <farmaceutisch_product id="urn-uuid-0d7cfdf0-6fd9-11f1-3776-020000000000">
                <product_code code="8060"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -75,7 +73,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="DICLOFENAC-NATRIUM TABLET MSR 25MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-2f555586-1961-11f1-1423-020000000000">
+            <zorgverlener id="urn-uuid-0d7cfd50-6fd9-11f1-3776-020000000000">
                <zorgverlener_identificatienummer value="000001111"
                                                  root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
@@ -92,10 +90,10 @@
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-2f5555ea-1961-11f1-1423-020000000000"/>
+                                 value="urn-uuid-0d7cfdb4-6fd9-11f1-3776-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-2f5555c2-1961-11f1-1423-020000000000">
+            <zorgaanbieder id="urn-uuid-0d7cfd8c-6fd9-11f1-3776-020000000000">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
@@ -110,7 +108,7 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="urn-uuid-2f5555ea-1961-11f1-1423-020000000000">
+            <zorgaanbieder id="urn-uuid-0d7cfdb4-6fd9-11f1-3776-020000000000">
                <zorgaanbieder_identificatienummer value="00001111"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>

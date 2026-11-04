@@ -1,0 +1,70 @@
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="zib-AllergyIntolerance-msz-9b74e4cf-6ada-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Allergie/intolerantie. Patiënt: J.J.E. XXX_Enderman Da Conceição. Status: opgelost / bevestigd</caption>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="tandpasta (468950001 - SNOMED CT)">tandpasta</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Laatste reactie tijd</th>
+                  <td>15 juli 2010</td>
+               </tr>
+               <tr>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>Irritatie in de mond</div>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <clinicalStatus value="resolved">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActStatus"/>
+               <code value="completed"/>
+               <display value="Niet meer aanwezig"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus value="confirmed"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="468950001"/>
+         <display value="tandpasta"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/bgz-msz-patG"/>
+      <display value="J.J.E. XXX_Enderman Da Conceição"/>
+   </patient>
+   <lastOccurrence value="2010-07-15"/>
+   <reaction>
+      <manifestation>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="Overig"/>
+         </coding>
+         <text value="Irritatie in de mond"/>
+      </manifestation>
+   </reaction>
+</AllergyIntolerance>

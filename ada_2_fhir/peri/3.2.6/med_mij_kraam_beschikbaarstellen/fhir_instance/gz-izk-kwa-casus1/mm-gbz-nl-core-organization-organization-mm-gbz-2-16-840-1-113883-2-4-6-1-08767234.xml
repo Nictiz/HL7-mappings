@@ -19,6 +19,15 @@
                      <span title="Ziekenhuis (V4 - organization-type)">Ziekenhuis</span>
                   </td>
                </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:070-5332316">070-5332316</a> (Vast telefoonnummer)</td>
+               </tr>
+               <tr>
+                  <th>Adres</th>
+                  <td>Hartelaan 9207, 2277XX STITSWERD (WP)</td>
+               </tr>
             </tbody>
          </table>
       </div>
@@ -35,4 +44,39 @@
       </coding>
    </type>
    <name value="Medisch Centrum Hartevreugde"/>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Vast telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="070-5332316"/>
+   </telecom>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="WP"/>
+               <display value="Werkadres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="work"/>
+      <line value="Hartelaan 9207">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Hartelaan"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="9207"/>
+         </extension>
+      </line>
+      <city value="STITSWERD"/>
+      <postalCode value="2277XX"/>
+   </address>
 </Organization>

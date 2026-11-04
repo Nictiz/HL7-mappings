@@ -1,0 +1,87 @@
+<DiagnosticReport xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-izv-kwa-casus4 /adaxml/data/med_mij_uitbreiding_verloskunde_beschikbaarstellen/medisch_onderzoek/foetusspecifieke_onderzoeksgegevens/echoscopie -->
+   <id value="5329cc9f-6ac9-11ec-2120-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-PregnancyUltraSound"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Diagnostisch verslag. Subject: Willemijn W XXX_Yzendoorn van den XXX_Berg. Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 2 Vrouw-XXX_Yzendoorn</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="echografie voor foetale groei (verrichting) (241493005 - SNOMED CT)">echografie voor foetale groei (verrichting)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>${DATETIME, T, D, -330, h, +14} - ${DATETIME, T, D, -330, h, +14, m, +30}</td>
+               </tr>
+               <tr>
+                  <th>Resultaat</th>
+                  <td>echografische bevindingen algemeen observatie Vrouw-XXX_Yzendoorn</td>
+               </tr>
+               <tr>
+                  <th>Resultaat</th>
+                  <td>foetale buikomtrek ac meting Vrouw-XXX_Yzendoorn</td>
+               </tr>
+               <tr>
+                  <th>Resultaat</th>
+                  <td>foetale schedelomvang Vrouw-XXX_Yzendoorn</td>
+               </tr>
+               <tr>
+                  <th>Resultaat</th>
+                  <td>foetale hartslag hartfrequentie Vrouw-XXX_Yzendoorn</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="5329cc9f-6ac9-11ec-2120-020000000000"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="241493005"/>
+         <display value="echografie voor foetale groei (verrichting)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/WILLEMIJN-W-XXX-YZENDOORN-VAN-DEN-XXX-BERG"/>
+      <display value="Willemijn W XXX_Yzendoorn van den XXX_Berg"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/17eb51ff-6b4e-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 Vrouw-XXX_Yzendoorn"/>
+   </context>
+   <effectivePeriod>
+      <start value="${DATETIME, T, D, -330, h, +14}"/>
+      <end value="${DATETIME, T, D, -330, h, +14, m, +30}"/>
+   </effectivePeriod>
+   <result>
+      <reference value="Observation/SoundGeneralFindings-mm-gbz-203980f6-6b13-11ec-2891-020000000000"/>
+      <display value="echografische bevindingen algemeen observatie Vrouw-XXX_Yzendoorn"/>
+   </result>
+   <result>
+      <reference value="Observation/bc-FetusObs-mm-gbz-fc70f811-6ad8-11ec-2351-020000000000"/>
+      <display value="foetale buikomtrek ac meting Vrouw-XXX_Yzendoorn"/>
+   </result>
+   <result>
+      <reference value="Observation/HeadCircumference-mm-gbz-f5237ecf-6b54-11ec-2362-020000000000"/>
+      <display value="foetale schedelomvang Vrouw-XXX_Yzendoorn"/>
+   </result>
+   <result>
+      <reference value="Observation/bc-FetalHeartRate-mm-gbz-da4303ff-6ab9-11ec-2178-020000000000"/>
+      <display value="foetale hartslag hartfrequentie Vrouw-XXX_Yzendoorn"/>
+   </result>
+</DiagnosticReport>

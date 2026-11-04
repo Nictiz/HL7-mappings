@@ -10,6 +10,7 @@
             </xd:p>
             <xd:ul>
                 <xd:li>01-02-2026 - 1.0.0</xd:li>
+                <xd:li>07-03-2026 - 1.0.1</xd:li>
             </xd:ul>
             <xd:p><xd:b>License:</xd:b> Copyright © Nictiz</xd:p>
             <xd:p>This program is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.</xd:p>
@@ -1347,29 +1348,21 @@
         </xsl:choose>
     </xsl:template>
 
-    <!-- R012 -->
     <xd:doc>
         <xd:desc>Rubriek 12 vervalt indien het alleen vervallen elementen bevat.</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R012'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob413">
         <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '79'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[not(hl7:observation[hl7:code[@code = '79'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']])]) > 0">
                 <xsl:copy>
                     <xsl:apply-templates select="@* | node()" mode="dob413"/>
                 </xsl:copy>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 19 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:comment><xsl:text> Rubriek 12 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
                 <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob413"/>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Rubriek 12: element 79 vervalt</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '79'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob413">
-        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is vervallen </xsl:text></xsl:comment>
     </xsl:template>
     
     <!-- R019 -->
@@ -1378,7 +1371,7 @@
     </xd:doc>
     <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R019'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob413">
         <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '149' or @code = '150' or @code = '153' or @code = '510' or @code = '752' or @code = '753' or @code = '1412' or @code = '1499' or @code = '1500'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[not(hl7:groupCluster[hl7:code[@code = 'G087']] or hl7:observation[hl7:code[@code = '149' or @code = '150' or @code = '153' or @code = '510' or @code = '752' or @code = '753' or @code = '1412' or @code = '1499' or @code = '1500'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']])]) > 0">
                 <xsl:copy>
                     <xsl:apply-templates select="@* | node()" mode="dob413"/>
                 </xsl:copy>
@@ -1411,7 +1404,7 @@
     </xd:doc>
     <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R020'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob413">
         <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '756' or @code = '757' or @code = '758' or @code = '759' or @code = '760' or @code = '761' or @code = '762' or @code = '763' or @code = '764' or @code = '765' or @code = '766' or @code = '767' or @code = '768'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[not(hl7:observation[hl7:code[@code = '756' or @code = '757' or @code = '758' or @code = '759' or @code = '760' or @code = '761' or @code = '762' or @code = '763' or @code = '764' or @code = '765' or @code = '766' or @code = '767' or @code = '768'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']])]) > 0">
                 <xsl:copy>
                     <xsl:apply-templates select="@* | node()" mode="dob413"/>
                 </xsl:copy>
@@ -1437,7 +1430,7 @@
     </xd:doc>
     <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R021'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob413">
         <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '321' or @code = '328' or @code = '770' or @code = '771' or @code = '772' or @code = '775' or @code = '776' or @code = '777' or @code = '778' or @code = '779' or @code = '780' or @code = '782' or @code = '783' or @code = '784' or @code = '785' or @code = '786' or @code = '787' or @code = '790' or @code = '791' or @code = '1422'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[not(hl7:observation[hl7:code[@code = '321' or @code = '328' or @code = '770' or @code = '771' or @code = '772' or @code = '775' or @code = '776' or @code = '777' or @code = '778' or @code = '779' or @code = '780' or @code = '782' or @code = '783' or @code = '784' or @code = '785' or @code = '786' or @code = '787' or @code = '790' or @code = '791' or @code = '1422'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']])]) > 0">
                 <xsl:copy>
                     <xsl:apply-templates select="@* | node()" mode="dob413"/>
                 </xsl:copy>
@@ -1463,7 +1456,7 @@
     </xd:doc>
     <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R025'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob413">
         <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '218'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[not(hl7:observation[hl7:code[@code = '218'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']])]) > 0">
                 <xsl:copy>
                     <xsl:apply-templates select="@* | node()" mode="dob413"/>
                 </xsl:copy>
@@ -1488,7 +1481,7 @@
     </xd:doc>
     <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R026'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob413">
         <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '225' or @code = '230' or @code = '232' or @code = '233' or @code = '314' or @code = '316' or @code = '318' or @code = '806' or @code = '807' or @code = '826' or @code = '1393'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[not(hl7:observation[hl7:code[@code = '225' or @code = '230' or @code = '232' or @code = '233' or @code = '314' or @code = '316' or @code = '318' or @code = '806' or @code = '807' or @code = '826' or @code = '1393'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']])]) > 0">
                 <xsl:copy>
                     <xsl:apply-templates select="@* | node()" mode="dob413"/>
                 </xsl:copy>
@@ -1501,10 +1494,27 @@
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Rubriek 26: elementen elementen 225, 230, 232-233, 314, 316, 318, 806-807, 826, 1393 vervallen</xd:desc>
+        <xd:desc>Rubriek 26: elementen 225, 230, 232-233, 806-807 en 1393 vervallen</xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '225' or @code = '230' or @code = '232' or @code = '233' or @code = '314' or @code = '316' or @code = '318' or @code = '806' or @code = '807' or @code = '826' or @code = '1393'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob413">
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '225' or @code = '230' or @code = '232' or @code = '233' or @code = '806' or @code = '807' or @code = '1393'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob413">
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is vervallen </xsl:text></xsl:comment>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Rubriek 26: elementen 314, 316, 318 en 826 vervallen</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:observation[hl7:code[@code = '313' or @code = '315' or @code = '317' or @code = '825' ][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]/hl7:methodCode" mode="dob413">
+        <xsl:variable name="obsElementCode" select="../hl7:code/@code"/>
+        <xsl:variable name="methodeElementCode">
+            <xsl:choose>
+                <xsl:when test="$obsElementCode = '313'">314</xsl:when>
+                <xsl:when test="$obsElementCode = '315'">316</xsl:when>
+                <xsl:when test="$obsElementCode = '317'">318</xsl:when>
+                <xsl:when test="$obsElementCode = '825'">826</xsl:when>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="methodeElementDisplay" select="exslt:node-set($W0639_HL7_W0646_HL7_W0647_HL7)//concept[@code = $methodeElementCode][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>        
+        <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="$methodeElementCode"/><xsl:text> </xsl:text><xsl:value-of select="$methodeElementDisplay"/><xsl:text> is vervallen </xsl:text></xsl:comment>
     </xsl:template>
     
     <!-- R030 -->
@@ -1513,7 +1523,7 @@
     </xd:doc>
     <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R030'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob413">
         <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '259' or @code = '265' or @code = '814' or @code = '1440'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[not(hl7:observation[hl7:code[@code = '259' or @code = '265' or @code = '814' or @code = '1440'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']])]) > 0">
                 <xsl:copy>
                     <xsl:apply-templates select="@* | node()" mode="dob413"/>
                 </xsl:copy>
@@ -1536,15 +1546,15 @@
     <xd:doc>
         <xd:desc>Rubriek 31 vervalt indien het alleen vervallen elementen bevat.</xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R030'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob413">
+    <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R031'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob413">
         <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '268' or @code = '269' or @code = '815' or @code = '1437' or @code = '1438' or @code = '1439'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[not(hl7:observation[hl7:code[@code = '268' or @code = '269' or @code = '271' or @code = '815' or @code = '1437' or @code = '1438' or @code = '1439'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']])]) > 0">
                 <xsl:copy>
                     <xsl:apply-templates select="@* | node()" mode="dob413"/>
                 </xsl:copy>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:comment><xsl:text> Rubriek 30 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
+                <xsl:comment><xsl:text> Rubriek 31 is verwijderd omdat het enkel vervallen elementen bevat.</xsl:text></xsl:comment>
                 <xsl:apply-templates select="@* | ./hl7:rubricCluster/hl7:component" mode="dob413"/>
             </xsl:otherwise>
         </xsl:choose>
@@ -1563,7 +1573,7 @@
     </xd:doc>
     <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R034'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob413">
         <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '339'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[not(hl7:observation[hl7:code[@code = '339'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']])]) > 0">
                 <xsl:copy>
                     <xsl:apply-templates select="@* | node()" mode="dob413"/>
                 </xsl:copy>
@@ -1588,7 +1598,7 @@
     </xd:doc>
     <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R038'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob413">
         <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '692' or @code = '832' or @code = '833' or @code = '834' or @code = '835' or @code = '836' or @code = '837' or @code = '838' or @code = '1379' or @code = '1418' or @code = '1419' or @code = '1420' or @code = '1421'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[not(hl7:observation[hl7:code[@code = '692' or @code = '832' or @code = '833' or @code = '834' or @code = '835' or @code = '836' or @code = '837' or @code = '838' or @code = '1379' or @code = '1418' or @code = '1419' or @code = '1420' or @code = '1421'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']])]) > 0">
                 <xsl:copy>
                     <xsl:apply-templates select="@* | node()" mode="dob413"/>
                 </xsl:copy>
@@ -1613,7 +1623,7 @@
     </xd:doc>
     <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R039'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob413">
         <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '855'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[not(hl7:observation[hl7:code[@code = '855'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']])]) > 0">
                 <xsl:copy>
                     <xsl:apply-templates select="@* | node()" mode="dob413"/>
                 </xsl:copy>
@@ -1638,7 +1648,7 @@
     </xd:doc>
     <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R042'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob413">
         <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '955' or @code = '956' or @code = '957' or @code = '958' or @code = '959' or @code = '986' or @code = '987'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0">
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[not(hl7:observation[hl7:code[@code = '955' or @code = '956' or @code = '957' or @code = '958' or @code = '959' or @code = '986' or @code = '987'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']])]) > 0">
                 <xsl:copy>
                     <xsl:apply-templates select="@* | node()" mode="dob413"/>
                 </xsl:copy>
@@ -1663,7 +1673,7 @@
     </xd:doc>
     <xsl:template match="hl7:pertinentInformation[hl7:rubricCluster/hl7:code[@code = 'R054'][@codeSystem='2.16.840.1.113883.2.4.4.40.391']]" mode="dob413">
         <xsl:choose>
-            <xsl:when test="count(./hl7:rubricCluster/hl7:component[hl7:observation[not(hl7:code[@code = '1345'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267'])]]) > 0 or ./hl7:rubricCluster/hl7:component/hl7:observation[not(hl7:value/@nullFlavor = 'NI') or hl7:effectiveTime or hl7:performer or hl7:methodCode]">
+            <xsl:when test="count(./hl7:rubricCluster/hl7:component[not(hl7:observation[hl7:code[@code = '1345'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']])]) > 0 or ./hl7:rubricCluster/hl7:component/hl7:observation[not(hl7:value/@nullFlavor = 'NI') or hl7:effectiveTime or hl7:performer or hl7:methodCode]">
                 <xsl:copy>
                     <xsl:apply-templates select="@* | node()" mode="dob413"/>
                 </xsl:copy>

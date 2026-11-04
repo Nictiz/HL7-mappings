@@ -19,6 +19,15 @@
                      <span title="Kraamzorg (K4 - organization-type)">Kraamzorg</span>
                   </td>
                </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="mailto:info@kraamzorghetblijeei.nu">info@kraamzorghetblijeei.nu</a> (E-mail)</td>
+               </tr>
+               <tr>
+                  <th>Adres</th>
+                  <td>Wolkensingel 36, 2288XX STITSWERD (WP)</td>
+               </tr>
             </tbody>
          </table>
       </div>
@@ -35,4 +44,30 @@
       </coding>
    </type>
    <name value="Kraamzorg Het Blije Ei"/>
+   <telecom>
+      <system value="email"/>
+      <value value="info@kraamzorghetblijeei.nu"/>
+   </telecom>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="WP"/>
+               <display value="Werkadres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="work"/>
+      <line value="Wolkensingel 36">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Wolkensingel"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="36"/>
+         </extension>
+      </line>
+      <city value="STITSWERD"/>
+      <postalCode value="2288XX"/>
+   </address>
 </Organization>

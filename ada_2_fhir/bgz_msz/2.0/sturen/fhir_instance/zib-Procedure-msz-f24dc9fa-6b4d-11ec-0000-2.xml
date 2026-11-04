@@ -1,0 +1,120 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <id value="zib-Procedure-msz-f24dc9fa-6b4d-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: J.J.E. XXX_Enderman Da Conceição. Categorie: <span title="chirurgische ingreep (387713003 - SNOMED CT)">chirurgische ingreep</span>, Status: voltooid<span style="display: block;">Uitvoerende: Huisartsenpraktijk Goedzaam, Gaga G. Gaga Gedachtzaam || Chirurg || Ziekenhuis Amsterdam</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="eenvoudige mastectomie (172043006 - SNOMED CT)">eenvoudige mastectomie</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: ${DATE, T, D, -9}T10:00:00+02:00 - ${DATE, T, D, -9}T12:00:00+02:00</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="excisie (129304002 - SNOMED CT)">excisie</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Gebaseerd op</th>
+                  <td>eenvoudige mastectomie</td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="gehele linker mamma (361716006 - SNOMED CT)">gehele linker mamma</span>
+                     <span title="Links (7771000 - SNOMED CT)">Links</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>maligne neoplasma van mamma</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="129304002"/>
+            <display value="excisie"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <basedOn>
+      <reference value="ProcedureRequest/zib-ProcedureRequest-msz-f24dc9fa-6b4d-11ec-0000-2"/>
+      <display value="eenvoudige mastectomie"/>
+   </basedOn>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="387713003"/>
+         <display value="chirurgische ingreep"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="172043006"/>
+         <display value="eenvoudige mastectomie"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/bgz-msz-patG"/>
+      <display value="J.J.E. XXX_Enderman Da Conceição"/>
+   </subject>
+   <performedPeriod>
+      <start value="${DATE, T, D, -9}T10:00:00+02:00"/>
+      <end value="${DATE, T, D, -9}T12:00:00+02:00"/>
+   </performedPeriod>
+   <performer>
+      <actor>
+         <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000014"/>
+         <display value="Huisartsenpraktijk Goedzaam"/>
+      </actor>
+   </performer>
+   <performer>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-msz-0014142401-01420000015"/>
+               <display value="Gaga G. Gaga Gedachtzaam || Chirurg || Ziekenhuis Amsterdam"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-msz-2-16-840-1-113883-2-4-6-1-00141424"/>
+         <display value="Gaga G. Gaga Gedachtzaam"/>
+      </actor>
+   </performer>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-msz-5ecd16f2-6ab9-11ec-0000-2"/>
+      <display value="maligne neoplasma van mamma"/>
+   </reasonReference>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="361716006"/>
+         <display value="gehele linker mamma"/>
+      </coding>
+   </bodySite>
+</Procedure>

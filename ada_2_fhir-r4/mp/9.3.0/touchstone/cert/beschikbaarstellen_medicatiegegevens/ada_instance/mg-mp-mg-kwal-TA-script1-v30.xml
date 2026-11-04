@@ -51,274 +51,277 @@
                       codeSystem="2.16.840.1.113883.5.1"
                       displayName="Man"/>
          </patient>
-         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_SCRIPT1-->
-         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
-            <identificatie value="MBH_300_SCRIPT1-tmg"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
-            <toedieningsafspraak comment=""
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.294">
+         <toedieningsafspraak comment=""
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.294">
+            <identificatie value="MBH_300_SCRIPT1_TA-tmg"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
+            <medicamenteuze_behandeling_id value="MBH_300_SCRIPT1-tmg"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1501"/>
+            <registratie_datum_tijd value="T{08:30:00}"
+                                    datatype="datetime"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1481"/>
+            <gebruiksperiode comment=""
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334">
+               <start_datum_tijd value="T{00:00:00}"
+                                 datatype="datetime"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.335"/>
+               <tijds_duur value="21"
+                           unit="week"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.337"/>
+            </gebruiksperiode>
+            <verstrekker comment=""
+                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.295">
+               <zorgaanbieder datatype="reference"
+                              value="APOTHEEK_DE_GULLE_GAPER"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.296"/>
+            </verstrekker>
+            <geneesmiddel_bij_toedieningsafspraak comment=""
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297">
+               <farmaceutisch_product datatype="reference"
+                                      value="HPK_CAPECITABINE_3060195"
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.298"/>
+            </geneesmiddel_bij_toedieningsafspraak>
+            <gebruiksinstructie comment=""
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.299">
+               <omschrijving value="cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 4 stuks - let op, exacte toedientijd(en), Oraal"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.301"/>
+               <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                               code="9"
+                               displayName="Oraal"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.303"/>
+               <herhaalperiode_cyclisch_schema value="21"
+                                               unit="dag"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.302"/>
+               <doseerinstructie comment=""
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.304">
+                  <doseerduur value="14"
+                              unit="dag"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.305"/>
+                  <dosering comment=""
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.307">
+                     <keerdosis comment=""
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.316">
+                        <aantal comment=""
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.575">
+                           <nominale_waarde value="4"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.319"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"
+                                 displayName="stuk"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.576"/>
+                     </keerdosis>
+                     <toedieningsschema comment=""
+                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.323">
+                        <toedientijd value="09:00:00"
+                                     datatype="time"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.330"/>
+                        <toedientijd value="21:00:00"
+                                     datatype="time"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.330"/>
+                        <is_flexibel value="false"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.580"/>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+            <relatie_medicatieafspraak comment=""
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.338">
+               <identificatie value="MBH_300_SCRIPT1_MA-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.565"/>
+            </relatie_medicatieafspraak>
+         </toedieningsafspraak>
+         <toedieningsafspraak comment=""
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.294">
+            <identificatie value="MBH_300_SCRIPT1_TA_STOP-tmg"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
+            <medicamenteuze_behandeling_id value="MBH_300_SCRIPT1-tmg"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1501"/>
+            <registratie_datum_tijd value="T+20D{07:30:00}"
+                                    datatype="datetime"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1481"/>
+            <gebruiksperiode comment=""
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334">
+               <start_datum_tijd value="T{00:00:00}"
+                                 datatype="datetime"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.335"/>
+               <eind_datum_tijd value="T+20D{23:59:59}"
+                                datatype="datetime"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.336"/>
+            </gebruiksperiode>
+            <toedieningsafspraak_stop_type conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.340"
+                                           value="4"
+                                           code="410546004"
+                                           codeSystem="2.16.840.1.113883.6.96"
+                                           displayName="stopgezet"/>
+            <verstrekker comment=""
+                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.295">
+               <zorgaanbieder value="APOTHEEK_DE_GULLE_GAPER"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.296"/>
+            </verstrekker>
+            <geneesmiddel_bij_toedieningsafspraak comment=""
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297">
+               <farmaceutisch_product value="HPK_CAPECITABINE_3060195"
+                                      datatype="reference"
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.298"/>
+            </geneesmiddel_bij_toedieningsafspraak>
+            <gebruiksinstructie comment=""
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.299">
+               <omschrijving value="cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 4 stuks - let op, exacte toedientijd(en), oraal"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.301"/>
+               <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               code="9"
+                               displayName="oraal"
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.303"/>
+               <herhaalperiode_cyclisch_schema value="21"
+                                               unit="dag"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.302"/>
+               <doseerinstructie comment=""
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.304">
+                  <doseerduur value="14"
+                              unit="dag"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.305"/>
+                  <dosering comment=""
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.307">
+                     <keerdosis comment=""
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.316">
+                        <aantal comment=""
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.575">
+                           <nominale_waarde value="4"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.319"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"
+                                 displayName="stuk"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.576"/>
+                     </keerdosis>
+                     <toedieningsschema comment=""
+                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.323">
+                        <toedientijd value="09:00:00"
+                                     datatype="time"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.330"/>
+                        <toedientijd value="21:00:00"
+                                     datatype="time"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.330"/>
+                        <is_flexibel value="false"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.580"/>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+            <relatie_medicatieafspraak comment=""
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.338">
+               <identificatie value="MBH_300_SCRIPT1_MA-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.565"/>
+            </relatie_medicatieafspraak>
+            <relatie_toedieningsafspraak comment=""
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1380">
                <identificatie value="MBH_300_SCRIPT1_TA-tmg"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
-               <registratie_datum_tijd value="T{08:30:00}"
-                                       datatype="datetime"
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1481"/>
-               <gebruiksperiode comment=""
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334">
-                  <start_datum_tijd value="T{00:00:00}"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1381"/>
+            </relatie_toedieningsafspraak>
+         </toedieningsafspraak>
+         <toedieningsafspraak comment=""
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.294">
+            <identificatie value="MBH_300_SCRIPT1_TA_WIJZIGING-tmg"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
+            <medicamenteuze_behandeling_id value="MBH_300_SCRIPT1-tmg"
+                                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1501"/>
+            <registratie_datum_tijd value="T+20D{07:30:00}"
                                     datatype="datetime"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.335"/>
-                  <tijds_duur value="21"
-                              unit="week"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.337"/>
-               </gebruiksperiode>
-               <verstrekker comment=""
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.295">
-                  <zorgaanbieder datatype="reference"
-                                 value="APOTHEEK_DE_GULLE_GAPER"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.296"/>
-               </verstrekker>
-               <geneesmiddel_bij_toedieningsafspraak comment=""
-                                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297">
-                  <farmaceutisch_product datatype="reference"
-                                         value="HPK_CAPECITABINE_3060195"
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.298"/>
-               </geneesmiddel_bij_toedieningsafspraak>
-               <gebruiksinstructie comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.299">
-                  <omschrijving value="cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 4 stuks - let op, exacte toedientijd(en), Oraal"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.301"/>
-                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  code="9"
-                                  displayName="Oraal"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.303"/>
-                  <herhaalperiode_cyclisch_schema value="21"
-                                                  unit="dag"
-                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.302"/>
-                  <doseerinstructie comment=""
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.304">
-                     <doseerduur value="14"
-                                 unit="dag"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.305"/>
-                     <dosering comment=""
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.307">
-                        <keerdosis comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.316">
-                           <aantal comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.575">
-                              <nominale_waarde value="4"
-                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.319"/>
-                           </aantal>
-                           <eenheid code="245"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"
-                                    displayName="stuk"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.576"/>
-                        </keerdosis>
-                        <toedieningsschema comment=""
-                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.323">
-                           <toedientijd value="09:00:00"
-                                        datatype="time"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.330"/>
-                           <toedientijd value="21:00:00"
-                                        datatype="time"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.330"/>
-                           <is_flexibel value="false"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.580"/>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-               <relatie_medicatieafspraak comment=""
-                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.338">
-                  <identificatie value="MBH_300_SCRIPT1_MA-tmg"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.565"/>
-               </relatie_medicatieafspraak>
-            </toedieningsafspraak>
-            <toedieningsafspraak comment=""
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.294">
-               <identificatie value="MBH_300_SCRIPT1_TA_STOP-tmg"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
-               <registratie_datum_tijd value="T+20D{07:30:00}"
-                                       datatype="datetime"
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1481"/>
-               <gebruiksperiode comment=""
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334">
-                  <start_datum_tijd value="T{00:00:00}"
-                                    datatype="datetime"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.335"/>
-                  <eind_datum_tijd value="T+20D{23:59:59}"
-                                   datatype="datetime"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.336"/>
-               </gebruiksperiode>
-               <toedieningsafspraak_stop_type conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.340"
-                                              value="4"
-                                              code="410546004"
-                                              codeSystem="2.16.840.1.113883.6.96"
-                                              displayName="stopgezet"/>
-               <verstrekker comment=""
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.295">
-                  <zorgaanbieder value="APOTHEEK_DE_GULLE_GAPER"
-                                 datatype="reference"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.296"/>
-               </verstrekker>
-               <geneesmiddel_bij_toedieningsafspraak comment=""
-                                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297">
-                  <farmaceutisch_product value="HPK_CAPECITABINE_3060195"
-                                         datatype="reference"
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.298"/>
-               </geneesmiddel_bij_toedieningsafspraak>
-               <gebruiksinstructie comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.299">
-                  <omschrijving value="cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 4 stuks - let op, exacte toedientijd(en), oraal"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.301"/>
-                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  code="9"
-                                  displayName="oraal"
-                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.303"/>
-                  <herhaalperiode_cyclisch_schema value="21"
-                                                  unit="dag"
-                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.302"/>
-                  <doseerinstructie comment=""
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.304">
-                     <doseerduur value="14"
-                                 unit="dag"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.305"/>
-                     <dosering comment=""
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.307">
-                        <keerdosis comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.316">
-                           <aantal comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.575">
-                              <nominale_waarde value="4"
-                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.319"/>
-                           </aantal>
-                           <eenheid code="245"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"
-                                    displayName="stuk"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.576"/>
-                        </keerdosis>
-                        <toedieningsschema comment=""
-                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.323">
-                           <toedientijd value="09:00:00"
-                                        datatype="time"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.330"/>
-                           <toedientijd value="21:00:00"
-                                        datatype="time"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.330"/>
-                           <is_flexibel value="false"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.580"/>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-               <relatie_medicatieafspraak comment=""
-                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.338">
-                  <identificatie value="MBH_300_SCRIPT1_MA-tmg"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.565"/>
-               </relatie_medicatieafspraak>
-               <relatie_toedieningsafspraak comment=""
-                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1380">
-                  <identificatie value="MBH_300_SCRIPT1_TA-tmg"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1381"/>
-               </relatie_toedieningsafspraak>
-            </toedieningsafspraak>
-            <toedieningsafspraak comment=""
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.294">
-               <identificatie value="MBH_300_SCRIPT1_TA_WIJZIGING-tmg"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
-               <registratie_datum_tijd value="T+20D{07:30:00}"
-                                       datatype="datetime"
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1481"/>
-               <gebruiksperiode comment=""
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334">
-                  <start_datum_tijd value="T+21D{00:00:00}"
-                                    datatype="datetime"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.335"/>
-                  <tijds_duur value="18"
-                              unit="week"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.337"/>
-               </gebruiksperiode>
-               <verstrekker comment=""
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.295">
-                  <zorgaanbieder value="APOTHEEK_DE_GULLE_GAPER"
-                                 datatype="reference"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.296"/>
-               </verstrekker>
-               <toedieningsafspraak_reden_wijzigen_of_staken conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.333"
-                                                             value="4"
-                                                             code="58848006"
-                                                             codeSystem="2.16.840.1.113883.6.96"
-                                                             displayName="gebrek aan geneesmiddeleffect"/>
-               <geneesmiddel_bij_toedieningsafspraak comment=""
-                                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297">
-                  <farmaceutisch_product value="HPK_CAPECITABINE_3060195"
-                                         datatype="reference"
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.298"/>
-               </geneesmiddel_bij_toedieningsafspraak>
-               <gebruiksinstructie comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.299">
-                  <omschrijving value="cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 5 stuks - let op, exacte toedientijd(en), oraal"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.301"/>
-                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  code="9"
-                                  displayName="oraal"
-                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.303"/>
-                  <herhaalperiode_cyclisch_schema value="21"
-                                                  unit="dag"
-                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.302"/>
-                  <doseerinstructie comment=""
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.304">
-                     <doseerduur value="14"
-                                 unit="dag"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.305"/>
-                     <dosering comment=""
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.307">
-                        <keerdosis comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.316">
-                           <aantal comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.575">
-                              <nominale_waarde value="5"
-                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.319"/>
-                           </aantal>
-                           <eenheid code="245"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"
-                                    displayName="stuk"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.576"/>
-                        </keerdosis>
-                        <toedieningsschema comment=""
-                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.323">
-                           <toedientijd value="09:00:00"
-                                        datatype="time"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.330"/>
-                           <toedientijd value="21:00:00"
-                                        datatype="time"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.330"/>
-                           <is_flexibel value="false"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.580"/>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-               <relatie_medicatieafspraak comment=""
-                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.338">
-                  <identificatie value="MBH_300_SCRIPT1_MA_WIJZIGING-tmg"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.565"/>
-               </relatie_medicatieafspraak>
-            </toedieningsafspraak>
-         </medicamenteuze_behandeling>
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1481"/>
+            <gebruiksperiode comment=""
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334">
+               <start_datum_tijd value="T+21D{00:00:00}"
+                                 datatype="datetime"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.335"/>
+               <tijds_duur value="18"
+                           unit="week"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.337"/>
+            </gebruiksperiode>
+            <verstrekker comment=""
+                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.295">
+               <zorgaanbieder value="APOTHEEK_DE_GULLE_GAPER"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.296"/>
+            </verstrekker>
+            <toedieningsafspraak_reden_wijzigen_of_staken conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.333"
+                                                          value="4"
+                                                          code="58848006"
+                                                          codeSystem="2.16.840.1.113883.6.96"
+                                                          displayName="gebrek aan geneesmiddeleffect"/>
+            <geneesmiddel_bij_toedieningsafspraak comment=""
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297">
+               <farmaceutisch_product value="HPK_CAPECITABINE_3060195"
+                                      datatype="reference"
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.298"/>
+            </geneesmiddel_bij_toedieningsafspraak>
+            <gebruiksinstructie comment=""
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.299">
+               <omschrijving value="cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 5 stuks - let op, exacte toedientijd(en), oraal"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.301"/>
+               <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               code="9"
+                               displayName="oraal"
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.303"/>
+               <herhaalperiode_cyclisch_schema value="21"
+                                               unit="dag"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.302"/>
+               <doseerinstructie comment=""
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.304">
+                  <doseerduur value="14"
+                              unit="dag"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.305"/>
+                  <dosering comment=""
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.307">
+                     <keerdosis comment=""
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.316">
+                        <aantal comment=""
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.575">
+                           <nominale_waarde value="5"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.319"/>
+                        </aantal>
+                        <eenheid code="245"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 codeSystemName="G-Standaard thesaurus basiseenheden"
+                                 displayName="stuk"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.576"/>
+                     </keerdosis>
+                     <toedieningsschema comment=""
+                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.323">
+                        <toedientijd value="09:00:00"
+                                     datatype="time"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.330"/>
+                        <toedientijd value="21:00:00"
+                                     datatype="time"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.330"/>
+                        <is_flexibel value="false"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.580"/>
+                     </toedieningsschema>
+                  </dosering>
+               </doseerinstructie>
+            </gebruiksinstructie>
+            <relatie_medicatieafspraak comment=""
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.338">
+               <identificatie value="MBH_300_SCRIPT1_MA_WIJZIGING-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.565"/>
+            </relatie_medicatieafspraak>
+         </toedieningsafspraak>
          <bouwstenen comment=""
                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">
             <farmaceutisch_product comment=""

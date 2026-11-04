@@ -1,11 +1,10 @@
-<!--Generated from HL7v3 verstrekkingenlijst 6.12 xml with message id (QURX_IN990113NL/id) root:  and extension: .-->
 <adaxml xsi:noNamespaceSchemaLocation="../../beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2026-03-02T16:15:02.0573422+01:00"
-         last-update-date="2026-03-02T16:15:02.0573422+01:00"/>
+         creation-date="2026-06-23T16:11:26.3217021+02:00"
+         last-update-date="2026-06-23T16:11:26.3217021+02:00"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -34,47 +33,70 @@
                       codeSystem="2.16.840.1.113883.5.1"
                       displayName="Vrouw"/>
          </patient>
-         <medicamenteuze_behandeling>
-            <identificatie value="106704"
-                           root="2.16.840.1.113883.2.4.3.11.61.2"/>
-            <toedieningsafspraak>
-               <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
-               <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
-                              value="MBH_hyb612_TA_MVE_BTD_cyclschm_ingwk_MVE"/>
-               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
-               <registratie_datum_tijd datatype="datetime"
-                                       value="2024-01-01T10:00:00+01:00"/>
-               <gebruiksperiode>
-                  <start_datum_tijd datatype="datetime"
-                                    value="2024-01-01T10:00:00.000+01:00"/>
-                  <eind_datum_tijd datatype="datetime"
-                                   value="2024-02-19T23:59:59.000+01:00"/>
-               </gebruiksperiode>
-               <verstrekker>
-                  <zorgaanbieder value="d1585e1343"
-                                 datatype="reference"/>
-               </verstrekker>
-               <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d1585e61"
-                                         datatype="reference"/>
-               </geneesmiddel_bij_toedieningsafspraak>
-               <!--mp9-gebruiksinstructie-from-mp612-->
-               <gebruiksinstructie>
-                  <omschrijving value="cyclus van 49 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 3 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 4 dagen 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 4 stuks, dan gedurende 10 dagen 1 maal per dag 3 stuks, Oraal"/>
-                  <toedieningsweg code="9"
-                                  codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  displayName="Oraal"
-                                  codeSystemName="G-Standaard Toedieningswegen"/>
-                  <!--Non-supported (complex) dosing scheduled encountered in 6.12. No structured output, please refer to textual description.-->
-               </gebruiksinstructie>
-               <relatie_medicatieafspraak>
-                  <identificatie value="MBH_hyb_vo_cyclschm_ingwk_MA"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </relatie_medicatieafspraak>
-            </toedieningsafspraak>
-         </medicamenteuze_behandeling>
+         <toedieningsafspraak>
+            <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
+                           value="MBH_hyb612_TA_MVE_BTD_cyclschm_ingwk_MVE-tmg"/>
+            <medicamenteuze_behandeling_id value="106704"
+                                           root="2.16.840.1.113883.2.4.3.11.61.2"/>
+            <registratie_datum_tijd datatype="datetime"
+                                    value="2024-01-01T10:00:00+01:00"/>
+            <gebruiksperiode>
+               <start_datum_tijd datatype="datetime"
+                                 value="2024-01-01T10:00:00+01:00"/>
+               <eind_datum_tijd datatype="datetime"
+                                value="2024-01-09T23:59:59.000+01:00"/>
+            </gebruiksperiode>
+            <verstrekker>
+               <zorgaanbieder value="uuid-6c0c926a-6f0d-11f1-5331-020000000000"
+                              datatype="reference"/>
+            </verstrekker>
+            <geneesmiddel_bij_toedieningsafspraak>
+               <farmaceutisch_product value="uuid-6c0ca15c-6f0d-11f1-5331-020000000000"
+                                      datatype="reference"/>
+            </geneesmiddel_bij_toedieningsafspraak>
+            <gebruiksinstructie>
+               <omschrijving value="cyclus van 8 dagen: steeds eerst gedurende 4 dagen 1 maal per dag 4 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 3 dagen 1 maal per dag 4 stuks, Oraal"/>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               displayName="Oraal"
+                               codeSystemName="G-Standaard Toedieningswegen"/>
+            </gebruiksinstructie>
+            <relatie_medicatieafspraak>
+               <identificatie value="MBH_hyb_vo_cyclschm_ingwk_MA-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </relatie_medicatieafspraak>
+         </toedieningsafspraak>
+         <medicatieverstrekking>
+            <identificatie root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
+                           value="MBH_hyb612_TA_MVE_BTD_cyclschm_ingwk_MVE-tmg"/>
+            <medicamenteuze_behandeling_id value="106704"
+                                           root="2.16.840.1.113883.2.4.3.11.61.2"/>
+            <medicatieverstrekkings_datum_tijd datatype="datetime"
+                                               value="2024-01-01T10:00:00+01:00"/>
+            <aanschrijf_datum datatype="datetime"
+                              value="2024-01-01T10:00:00+01:00"/>
+            <verstrekker>
+               <zorgaanbieder value="uuid-6c0c926a-6f0d-11f1-5331-020000000000"
+                              datatype="reference"/>
+            </verstrekker>
+            <verstrekte_hoeveelheid>
+               <aantal value="31"/>
+               <eenheid code="245"
+                        displayName="stuks"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
+            </verstrekte_hoeveelheid>
+            <verstrekt_geneesmiddel>
+               <farmaceutisch_product value="uuid-6c0ca15c-6f0d-11f1-5331-020000000000"
+                                      datatype="reference"/>
+            </verstrekt_geneesmiddel>
+            <relatie_verstrekkingsverzoek>
+               <identificatie value="MBH_hyb_vo_cyclschm_ingwk_MA-tmg"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </relatie_verstrekkingsverzoek>
+         </medicatieverstrekking>
          <bouwstenen>
-            <farmaceutisch_product id="d1585e61">
+            <farmaceutisch_product id="uuid-6c0ca15c-6f0d-11f1-5331-020000000000">
                <product_code code="2377454"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              displayName="PREDNISOLON TABLET 2.5MG"
@@ -88,7 +110,7 @@
                              displayName="PREDNISOLON TABLET 2.5MG"
                              codeSystemName="G-Standaard GPK"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="d1585e1343">
+            <zorgaanbieder id="uuid-6c0c926a-6f0d-11f1-5331-020000000000">
                <zorgaanbieder_identificatienummer value="01236578"
                                                   root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
