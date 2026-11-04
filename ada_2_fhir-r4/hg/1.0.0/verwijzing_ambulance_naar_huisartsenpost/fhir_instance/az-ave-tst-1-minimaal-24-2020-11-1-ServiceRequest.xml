@@ -1,0 +1,48 @@
+<ServiceRequest xmlns="http://hl7.org/fhir">
+   <id value="24-2020-11-1-ServiceRequest"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/hg-ReferralServiceRequest-ambulanceHAP"/>
+   </meta>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.32.5"/>
+      <value value="24-2020-11-1"/>
+   </identifier>
+   <status value="completed"/>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="3457005"/>
+         <display value="verwijzen van patiënt"/>
+      </coding>
+   </category>
+   <subject>
+      <reference value="Patient/patient-"/>
+      <type value="Patient"/>
+      <display value="Patient,"/>
+   </subject>
+   <authoredOn value="2000-01-01"/>
+   <requester>
+      <reference value="PractitionerRole/pracrole-567891234"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role)"/>
+   </requester>
+   <performer>
+      <reference value="Organization/org-06020806"/>
+      <type value="Organization"/>
+      <display value="Healthcare provider (organization), organisation-id 06020806 in system 2.16.840.1.113883.2.4.6.1"/>
+   </performer>
+   <reasonCode>
+      <text value="Patiënt is vanuit acute ambulancezorg voor verdere zorg doorverwezen naar de huisartsenspoedpost"/>
+   </reasonCode>
+   <supportingInfo>
+      <reference value="Composition/composition-ambu-az-ave-tst-1-minimaal"/>
+      <type value="Composition"/>
+      <display value="Referral note, onbekend"/>
+   </supportingInfo>
+   <supportingInfo>
+      <reference value="DocumentReference/documentreference-9069"/>
+      <type value="DocumentReference"/>
+      <display value="Document"/>
+   </supportingInfo>
+</ServiceRequest>
