@@ -104,8 +104,6 @@
       <subject>
          <prescription classCode="SBADM"
                        moodCode="RQO">
-            <id root="1.3.6.1.4.1.58606.1.3.2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
-                extension="MBH_hyb_vo_strt_dr_MA-tvo!MBH_hyb_vo_strt_dr_VV-tvo"/>
             <statusCode code="active"/>
             <subject typeCode="SBJ">
                <Patient>
@@ -209,39 +207,6 @@
                         </performer>
                      </medicationDispenseRequest>
                   </productOf>
-                  <therapeuticAgentOf>
-                     <medicationAdministrationRequest classCode="SBADM"
-                                                      moodCode="RQO">
-                        <text mediaType="text/plain">1 maal per dag 1 stuk, oraal</text>
-                        <statusCode code="active"/>
-                        <effectiveTime xsi:type="SXPR_TS">
-                           <comp xsi:type="IVL_TS">
-                              <low value="20240101000000+0100"/>
-                              <width value="28"
-                                     unit="d"/>
-                           </comp>
-                           <comp xsi:type="PIVL_TS"
-                                 operator="A">
-                              <period value="1"
-                                      unit="d"/>
-                           </comp>
-                        </effectiveTime>
-                        <routeCode code="9"
-                                   codeSystem="2.16.840.1.113883.2.4.4.9"
-                                   displayName="oraal"
-                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
-                        <doseQuantity>
-                           <center value="1"
-                                   unit="1">
-                              <translation value="1"
-                                           code="245"
-                                           displayName="stuk"
-                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                           </center>
-                        </doseQuantity>
-                     </medicationAdministrationRequest>
-                  </therapeuticAgentOf>
                </prescribedMedication>
             </directTarget>
          </prescription>
