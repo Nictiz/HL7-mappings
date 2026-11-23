@@ -1,0 +1,66 @@
+<Condition xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-kzp-tes-casus2 /adaxml/data/versturen_kernset/bevalling/probleem_maternaal (peri32-dataelement-1564) -->
+   <id value="0df88d32-6aaa-11ec-2156-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DisorderOfLaborAndDelivery"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Aandoening. Subject: Patient/c990e5a2-6b73-11ec-1267-020000000000. Categorie: <span title="aandoening durante partu (aandoening) (362972006 - SNOMED CT)">aandoening durante partu (aandoening)</span>, Status: actief</caption>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="eerstegraads perineumruptuur (aandoening) (57759005 - SNOMED CT)">eerstegraads perineumruptuur (aandoening)</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/condition-partOf">
+      <valueReference>
+         <reference value="Procedure/1f64ed4b-6b59-11ec-2123-020000000000"/>
+         <display value="bevalling zwangerschap 3 Ca2_Patient_Vrouw"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="0df88d32-6aaa-11ec-2156-020000000000"/>
+   </identifier>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="55561003"/>
+               <display value="Actueel"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="362972006"/>
+         <display value="aandoening durante partu (aandoening)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="57759005"/>
+         <display value="eerstegraads perineumruptuur (aandoening)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/c990e5a2-6b73-11ec-1267-020000000000"/>
+   </subject>
+   <context>
+      <reference value="Encounter/5bfc97ac-6ae2-11ec-1071-020000000000"/>
+      <display value="partusassistentie contact  Ca2_Patient_Vrouw"/>
+   </context>
+</Condition>

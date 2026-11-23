@@ -1,0 +1,191 @@
+<Patient xmlns="http://hl7.org/fhir">
+   <id value="ed692cd4-6ad8-11ec-1267-020000000000"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Woman"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>Vrouw, Genderidentiteit: <b>
+               <span title="Asked But Declined (asked-declined - 2.16.840.1.113883.4.642.4.1048)">Asked But Declined</span>
+            </b>, 14 augustus 1985, Meerling, <span title="Geregistreerd partnerschap (T - v3/MaritalStatus)">Geregistreerd partnerschap</span>
+         </div>
+         <div>9999ZA</div>
+         <div>Nationaliteit: <span title="Nederlandse (0001 - 2.16.840.1.113883.2.4.4.16.32)">Nederlandse</span>
+         </div>
+         <div>Taalvaardigheid</div>
+         <ul>
+            <li>
+               <span title="Nederlands (nld - urn:ietf:bcp:47)">Nederlands</span>
+               <div>Received spoken: Uitstekend, Expressed spoken: Uitstekend, Received written: Uitstekend</div>
+            </li>
+            <li>
+               <span title="Frans (fra - urn:ietf:bcp:47)">Frans</span>
+               <div>Received spoken: Goed, Expressed spoken: Goed, Received written: Goed</div>
+            </li>
+         </ul>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-patient-genderIdentity">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.4.642.4.1048"/>
+            <code value="asked-declined"/>
+            <display value="Asked But Declined"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <extension url="http://hl7.org/fhir/StructureDefinition/patient-nationality">
+      <extension url="code">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.4.16.32"/>
+               <code value="0001"/>
+               <display value="Nederlandse"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="ed692cd4-6ad8-11ec-1267-020000000000"/>
+   </identifier>
+   <gender value="female">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+               <code value="F"/>
+               <display value="Vrouw"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </gender>
+   <birthDate value="1985-08-14"/>
+   <address>
+      <postalCode value="9999ZA"/>
+   </address>
+   <maritalStatus>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/MaritalStatus"/>
+         <code value="T"/>
+         <display value="Geregistreerd partnerschap"/>
+      </coding>
+   </maritalStatus>
+   <multipleBirthInteger value="2"/>
+   <communication>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/patient-proficiency">
+         <extension url="type">
+            <valueCoding>
+               <system value="http://hl7.org/fhir/v3/LanguageAbilityMode"/>
+               <code value="RSP"/>
+               <display value="Received spoken"/>
+            </valueCoding>
+         </extension>
+         <extension url="level">
+            <valueCoding>
+               <system value="http://hl7.org/fhir/v3/LanguageAbilityProficiency"/>
+               <code value="E"/>
+               <display value="Uitstekend"/>
+            </valueCoding>
+         </extension>
+      </extension>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/patient-proficiency">
+         <extension url="type">
+            <valueCoding>
+               <system value="http://hl7.org/fhir/v3/LanguageAbilityMode"/>
+               <code value="ESP"/>
+               <display value="Expressed spoken"/>
+            </valueCoding>
+         </extension>
+         <extension url="level">
+            <valueCoding>
+               <system value="http://hl7.org/fhir/v3/LanguageAbilityProficiency"/>
+               <code value="E"/>
+               <display value="Uitstekend"/>
+            </valueCoding>
+         </extension>
+      </extension>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/patient-proficiency">
+         <extension url="type">
+            <valueCoding>
+               <system value="http://hl7.org/fhir/v3/LanguageAbilityMode"/>
+               <code value="RWR"/>
+               <display value="Received written"/>
+            </valueCoding>
+         </extension>
+         <extension url="level">
+            <valueCoding>
+               <system value="http://hl7.org/fhir/v3/LanguageAbilityProficiency"/>
+               <code value="E"/>
+               <display value="Uitstekend"/>
+            </valueCoding>
+         </extension>
+      </extension>
+      <language>
+         <coding>
+            <system value="urn:ietf:bcp:47"/>
+            <code value="nld"/>
+            <display value="Nederlands"/>
+         </coding>
+      </language>
+   </communication>
+   <communication>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/patient-proficiency">
+         <extension url="type">
+            <valueCoding>
+               <system value="http://hl7.org/fhir/v3/LanguageAbilityMode"/>
+               <code value="RSP"/>
+               <display value="Received spoken"/>
+            </valueCoding>
+         </extension>
+         <extension url="level">
+            <valueCoding>
+               <system value="http://hl7.org/fhir/v3/LanguageAbilityProficiency"/>
+               <code value="G"/>
+               <display value="Goed"/>
+            </valueCoding>
+         </extension>
+      </extension>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/patient-proficiency">
+         <extension url="type">
+            <valueCoding>
+               <system value="http://hl7.org/fhir/v3/LanguageAbilityMode"/>
+               <code value="ESP"/>
+               <display value="Expressed spoken"/>
+            </valueCoding>
+         </extension>
+         <extension url="level">
+            <valueCoding>
+               <system value="http://hl7.org/fhir/v3/LanguageAbilityProficiency"/>
+               <code value="G"/>
+               <display value="Goed"/>
+            </valueCoding>
+         </extension>
+      </extension>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/patient-proficiency">
+         <extension url="type">
+            <valueCoding>
+               <system value="http://hl7.org/fhir/v3/LanguageAbilityMode"/>
+               <code value="RWR"/>
+               <display value="Received written"/>
+            </valueCoding>
+         </extension>
+         <extension url="level">
+            <valueCoding>
+               <system value="http://hl7.org/fhir/v3/LanguageAbilityProficiency"/>
+               <code value="G"/>
+               <display value="Goed"/>
+            </valueCoding>
+         </extension>
+      </extension>
+      <language>
+         <coding>
+            <system value="urn:ietf:bcp:47"/>
+            <code value="fra"/>
+            <display value="Frans"/>
+         </coding>
+      </language>
+   </communication>
+</Patient>

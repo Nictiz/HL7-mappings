@@ -1,0 +1,73 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-kzp-tes-casus2 /adaxml/data/versturen_kernset/bevalling/uitdrijvingsfase (peri32-dataelement-39) -->
+   <id value="97f98582-6aaa-11ec-2123-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Birth"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Kind. Categorie: <span title="obstetrische verrichting (verrichting) (386637004 - SNOMED CT)">obstetrische verrichting (verrichting)</span>, Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="geboorte (bevinding) (3950001 - SNOMED CT)">geboorte (bevinding)</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: ${DATE, T, D, -59}</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Locatie</th>
+                  <td>LindeHaven Medisch Centrum</td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>Zwangerschap 3 Ca2_Patient_Vrouw</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="97f98582-6aaa-11ec-2123-020000000000"/>
+   </identifier>
+   <partOf>
+      <reference value="Procedure/1f64ed4b-6b59-11ec-2123-020000000000"/>
+      <display value="bevalling zwangerschap 3 Ca2_Patient_Vrouw"/>
+   </partOf>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="386637004"/>
+         <display value="obstetrische verrichting (verrichting)"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="3950001"/>
+         <display value="geboorte (bevinding)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/4b5946cb-6b23-11ec-1267-020000000000"/>
+      <display value="Kind"/>
+   </subject>
+   <context>
+      <reference value="Encounter/5bfc97ac-6ae2-11ec-1071-020000000000"/>
+      <display value="partusassistentie contact  Ca2_Patient_Vrouw"/>
+   </context>
+   <performedDateTime value="${DATE, T, D, -59}"/>
+   <location>
+      <reference value="Location/location-mm-gbz-2-16-528-1-1007-3-3-45641873"/>
+      <display value="LindeHaven Medisch Centrum"/>
+   </location>
+   <reasonReference>
+      <reference value="Condition/5cf5b75c-6b27-11ec-2334-020000000000"/>
+      <display value="Zwangerschap 3 Ca2_Patient_Vrouw"/>
+   </reasonReference>
+</Procedure>

@@ -1,0 +1,69 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-kzp-tes-casus2 -->
+   <id value="5bfc97ac-6ae2-11ec-1071-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ChildBirthAssistance"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: Patient/c990e5a2-6b73-11ec-1267-020000000000. Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div/>
+                     <span title="verlossing (verrichting) (236973005 - SNOMED CT)">verlossing (verrichting)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>${DATETIME, T, D, -59, h, +20, m, +15} - ${DATETIME, T, D, -58, m, +05}</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-encounter-arrival">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="42857002"/>
+            <display value="tweede fase van partus (bevinding)"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-childbirthassistance-timecalled">
+      <valueDateTime value="${DATETIME, T, D, -59, h, +19, m, +15}"/>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="5bfc97ac-6ae2-11ec-1071-020000000000"/>
+   </identifier>
+   <status value="finished"/>
+   <class>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </class>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="236973005"/>
+         <display value="verlossing (verrichting)"/>
+      </coding>
+   </type>
+   <subject>
+      <reference value="Patient/c990e5a2-6b73-11ec-1267-020000000000"/>
+   </subject>
+   <episodeOfCare>
+      <reference value="EpisodeOfCare/12cc17ab-6b33-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 3 Ca2_Patient_Vrouw"/>
+   </episodeOfCare>
+   <period>
+      <start value="${DATETIME, T, D, -59, h, +20, m, +15}"/>
+      <end value="${DATETIME, T, D, -58, m, +05}"/>
+   </period>
+</Encounter>

@@ -1,0 +1,41 @@
+<Patient xmlns="http://hl7.org/fhir">
+   <id value="3977d33e-6a96-11ec-1267-020000000000"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Woman"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>Vrouw, 12 augustus 1985, <span title="Gehuwd (M - v3/MaritalStatus)">Gehuwd</span>
+         </div>
+         <div>9999XX</div>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="3977d33e-6a96-11ec-1267-020000000000"/>
+   </identifier>
+   <gender value="female">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+               <code value="F"/>
+               <display value="Vrouw"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </gender>
+   <birthDate value="1985-08-12"/>
+   <address>
+      <postalCode value="9999XX"/>
+   </address>
+   <maritalStatus>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/MaritalStatus"/>
+         <code value="M"/>
+         <display value="Gehuwd"/>
+      </coding>
+   </maritalStatus>
+</Patient>

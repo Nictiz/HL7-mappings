@@ -1,0 +1,68 @@
+<CareTeam xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-kzp-tes-casus2 /adaxml/data/versturen_kernset/zorgverlening/zorg_team -->
+   <id value="45be10d2-6aed-11ec-2338-020000000000"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-careteam"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-CareTeam"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgteam. Subject: Patient/c990e5a2-6b73-11ec-1267-020000000000. </caption>
+            <tbody>
+               <tr>
+                  <th>Context</th>
+                  <td>Zwangerschap 3 Ca2_Patient_Vrouw</td>
+               </tr>
+               <tr>
+                  <th>Participant</th>
+                  <td>
+                     <ul>
+                        <li>45649783<div>Zorgverlenerrol: Geboortegloed</div>
+                        </li>
+                        <li>132165497<div>Zorgverlenerrol: Geboortegloed</div>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="45be10d2-6aed-11ec-2338-020000000000"/>
+   </identifier>
+   <subject>
+      <reference value="Patient/c990e5a2-6b73-11ec-1267-020000000000"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/12cc17ab-6b33-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 3 Ca2_Patient_Vrouw"/>
+   </context>
+   <participant>
+      <member>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/bc-PractitionerRole-mm-gbz-839281749115654987"/>
+               <display value="Geboortegloed"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-840-1-113883-2-4-3-11-31-5-1-45649783"/>
+         <display value="45649783"/>
+      </member>
+   </participant>
+   <participant>
+      <member>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/bc-PractitionerRole-mm-gbz-13216549715654987"/>
+               <display value="Geboortegloed"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-840-1-113883-2-4-3-11-31-5-1-132165497"/>
+         <display value="132165497"/>
+      </member>
+   </participant>
+</CareTeam>

@@ -1,0 +1,123 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-kzp-tes-casus2 -->
+   <id value="e0d2e74b-6adf-11ec-1275-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Encounter"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: Patient/c990e5a2-6b73-11ec-1267-020000000000. Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div>
+                        <span title="Thuis (HH - v3/ActCode)">Thuis</span>
+                     </div>
+                     <span title="prenatale intake (verrichting) (169711001 - SNOMED CT)">prenatale intake (verrichting)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>${DATE, T, D, -108} - ${DATE, T, D, -108}</td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>probleem sociale problemen Ca2_Patient_Vrouwprobleem misbruik geweld Ca2_Patient_Vrouwprobleem zwangerschap Ca2_Patient_Vrouwverrichting zwangerschap zwangerschap 3 Ca2_Patient_Vrouw, , , </td>
+               </tr>
+               <tr>
+                  <th>Participant</th>
+                  <td>
+                     <div>45649783<div>Zorgverlenerrol: Geboortegloed</div>
+                     </div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="e0d2e74b-6adf-11ec-1275-020000000000"/>
+   </identifier>
+   <status value="finished"/>
+   <class>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActCode"/>
+               <code value="HH"/>
+               <display value="Thuis"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="http://hl7.org/fhir/v3/ActCode"/>
+      <code value="HH"/>
+      <display value="Thuis"/>
+   </class>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="169711001"/>
+         <display value="prenatale intake (verrichting)"/>
+      </coding>
+   </type>
+   <subject>
+      <reference value="Patient/c990e5a2-6b73-11ec-1267-020000000000"/>
+   </subject>
+   <episodeOfCare>
+      <reference value="EpisodeOfCare/12cc17ab-6b33-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 3 Ca2_Patient_Vrouw"/>
+   </episodeOfCare>
+   <participant>
+      <individual>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/bc-PractitionerRole-mm-gbz-839281749115654987"/>
+               <display value="Geboortegloed"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-840-1-113883-2-4-3-11-31-5-1-45649783"/>
+         <display value="45649783"/>
+      </individual>
+   </participant>
+   <period>
+      <start value="${DATE, T, D, -108}"/>
+      <end value="${DATE, T, D, -108}"/>
+   </period>
+   <reason>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-encounter-reasonreference">
+         <valueReference>
+            <reference value="Condition/d010090b-6b53-11ec-2259-020000000000"/>
+            <display value="probleem sociale problemen Ca2_Patient_Vrouw"/>
+         </valueReference>
+      </extension>
+   </reason>
+   <reason>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-encounter-reasonreference">
+         <valueReference>
+            <reference value="Condition/5688130b-6b73-11ec-2260-020000000000"/>
+            <display value="probleem misbruik geweld Ca2_Patient_Vrouw"/>
+         </valueReference>
+      </extension>
+   </reason>
+   <reason>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-encounter-reasonreference">
+         <valueReference>
+            <reference value="Condition/6e13bd0b-6adb-11ec-2118-020000000000"/>
+            <display value="probleem zwangerschap Ca2_Patient_Vrouw"/>
+         </valueReference>
+      </extension>
+   </reason>
+   <reason>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-encounter-reasonreference">
+         <valueReference>
+            <reference value="Procedure/dbd160e2-6aee-11ec-2119-020000000000"/>
+            <display value="verrichting zwangerschap zwangerschap 3 Ca2_Patient_Vrouw"/>
+         </valueReference>
+      </extension>
+   </reason>
+</Encounter>
