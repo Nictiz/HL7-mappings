@@ -18,10 +18,12 @@ ECHO Kies wat je wilt valideren
 ECHO ====================================
 ECHO.
 ECHO   1. Profielen
-ECHO   2. Fixtures
+ECHO   2. Fixtures medmij
+ECHO   3. Fixtures perined
 ECHO.
-CHOICE /C 12 /N /M "Maak een keuze (1 of 2): "
+CHOICE /C 123 /N /M "Maak een keuze (1 of 2): "
 
+if errorlevel 3 goto igperined
 if errorlevel 2 goto igpublish
 if errorlevel 1 goto validateProfiles
 
@@ -36,7 +38,7 @@ set "profiles=%~dp0../../../../../Geboortezorg-STU3/profiles"
 
 IF EXIST "%input_cache_path%\%publisher_jar%" (
 	echo.
-	echo Fixtures worden gevalideerd...
+	echo Medmij Fixtures worden gevalideerd...
 	REM JAVA -jar "%input_cache_path%\%publisher_jar%" -ig . %txoption% %*
   	java -jar "%input_cache_path%\%publisher_jar%" ^
    		-ig "%profiles%" ^
@@ -74,6 +76,56 @@ IF EXIST "%input_cache_path%\%publisher_jar%" (
 		"%instance_root%\gz-izv-kwa-casus4" ^
 		"%echo_root%\gz-ize-kwa-casus1" ^
 		"%kraam_root%\gz-izk-kwa-casus1" ^
+		 > validator-console.log 2>&1
+		 goto end
+) ELSE (
+	ECHO IG Validator NOT FOUND in input-cache or parent folder.  Please run _updateValidator.  Aborting...
+	goto end
+)
+
+:igperined
+
+SET JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
+
+SET "kernset_root=%~dp0..\versturen_kernset\fhir_instance"
+set "profiles=%~dp0../../../../../Geboortezorg-STU3/profiles"
+
+IF EXIST "%input_cache_path%\%publisher_jar%" (
+	echo.
+	echo Perined Fixtures worden gevalideerd...
+	REM JAVA -jar "%input_cache_path%\%publisher_jar%" -ig . %txoption% %*
+  	java -jar "%input_cache_path%\%publisher_jar%" ^
+   		-ig "%profiles%" ^
+   		-ig nictiz.fhir.nl.stu3.zib2017#2.3.2 ^
+   		-version 3.0 ^
+   		-recurse -html-output validation.html ^
+   		-txLog txlog.txt ^
+   		-locale nl -language nl ^
+   		-sct 11000146104 ^
+  		%txoption% ^
+   		-display-issues-are-warnings ^
+    	"%kernset_root%\gz-kzp-tes-casus1" ^
+   		"%kernset_root%\gz-kzp-tes-casus2" ^
+		"%kernset_root%\gz-kzp-tes-casus3" ^
+		 > validator-console.log 2>&1
+		 goto end
+) ELSE If exist "..\%publisher_jar%" (
+	REM JAVA -jar "..\%publisher_jar%" -ig . %txoption% %*
+	java -jar "..\%publisher_jar%" ^
+        -ig "%profiles%" ^
+        -ig nictiz.fhir.nl.stu3.zib2017#2.3.2 ^
+        -version 3.0 ^
+        -recurse ^
+        -html-output validation.html ^
+        -txLog txlog.txt ^
+        -locale nl ^
+        -language nl ^
+        -sct 11000146104 ^
+        -display-issues-are-warnings ^
+        %txoption% ^
+    	"%kernset_root%\gz-kzp-tes-casus1" ^
+   		"%kernset_root%\gz-kzp-tes-casus2" ^
+		"%kernset_root%\gz-kzp-tes-casus3" ^
 		 > validator-console.log 2>&1
 		 goto end
 ) ELSE (

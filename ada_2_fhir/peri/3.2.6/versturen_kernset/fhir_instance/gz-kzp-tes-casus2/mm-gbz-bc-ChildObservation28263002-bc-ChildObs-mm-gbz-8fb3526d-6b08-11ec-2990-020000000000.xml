@@ -1,6 +1,6 @@
 <Observation xmlns="http://hl7.org/fhir">
    <!-- Source: gz-kzp-tes-casus2 /adaxml/data/versturen_kernset/postnatale_fase/kraamweek/kind/controles_kind/huilgedrag_observatie (peri32-dataelement-9906) -->
-   <id value="bc-ChildObs-mm-gbz-b0a91705-6a9a-11ec-2990-020000000000"/>
+   <id value="bc-ChildObs-mm-gbz-8fb3526d-6b08-11ec-2990-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ChildObservation"/>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
@@ -9,11 +9,13 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Observatie/bepaling. Subject: Kind. Status: definitief</caption>
+            <caption>Observatie/bepaling. Subject: Kind. Status: definitief<span style="display: block;">Uitvoerende: 132165497<span style="display: block;">Zorgverlenerrol: Geboortegloed</span>
+               </span>
+            </caption>
             <tbody>
                <tr>
                   <th>Context</th>
-                  <td>Zwangerschap 3 Ca2_Patient_Vrouw</td>
+                  <td>controles kind T-56D{09:20} Ca2_Patient_Vrouw</td>
                </tr>
                <tr>
                   <th>Bepalingdatum/tijd</th>
@@ -28,7 +30,7 @@
                      <span title="huilen (waarneembare entiteit) (28263002 - SNOMED CT)">huilen (waarneembare entiteit)</span>
                   </td>
                   <td>
-                     <span title="excessief huilen (bevinding) (162213003 - SNOMED CT)">excessief huilen (bevinding)</span>
+                     <span title="normaal huilen van zuigeling (bevinding) (125041000146107 - SNOMED CT)">normaal huilen van zuigeling (bevinding)</span>
                   </td>
                </tr>
             </tbody>
@@ -38,7 +40,7 @@
    <!-- adaChild -->
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="3dc6c9aa-6af6-11ec-0000-020000000000"/>
+      <value value="d69da92a-6ae7-11ec-0000-020000000000"/>
    </identifier>
    <status value="final"/>
    <code>
@@ -53,15 +55,25 @@
       <display value="Kind"/>
    </subject>
    <context>
-      <reference value="EpisodeOfCare/12cc17ab-6b33-11ec-0000-020000000000"/>
-      <display value="Zwangerschap 3 Ca2_Patient_Vrouw"/>
+      <reference value="Encounter/51cfca4b-6af3-11ec-1275-020000000000"/>
+      <display value="controles kind T-56D{09:20} Ca2_Patient_Vrouw"/>
    </context>
    <effectiveDateTime value="${DATE, T, D, -56}"/>
+   <performer>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/bc-PractitionerRole-mm-gbz-13216549715654987"/>
+            <display value="Geboortegloed"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-840-1-113883-2-4-3-11-31-5-1-132165497"/>
+      <display value="132165497"/>
+   </performer>
    <valueCodeableConcept>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="162213003"/>
-         <display value="excessief huilen (bevinding)"/>
+         <code value="125041000146107"/>
+         <display value="normaal huilen van zuigeling (bevinding)"/>
       </coding>
    </valueCodeableConcept>
 </Observation>

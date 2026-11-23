@@ -9,11 +9,13 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Observatie/bepaling. Subject: Kind. Status: definitief</caption>
+            <caption>Observatie/bepaling. Subject: Kind. Status: definitief<span style="display: block;">Uitvoerende: 45649783<span style="display: block;">Zorgverlenerrol: Geboortegloed</span>
+               </span>
+            </caption>
             <tbody>
                <tr>
                   <th>Context</th>
-                  <td>Zwangerschap 3 Ca2_Patient_Vrouw</td>
+                  <td>controles kind T-53D{08:30} Ca2_Patient_Vrouw</td>
                </tr>
                <tr>
                   <th>Bepalingdatum/tijd</th>
@@ -53,10 +55,20 @@
       <display value="Kind"/>
    </subject>
    <context>
-      <reference value="EpisodeOfCare/12cc17ab-6b33-11ec-0000-020000000000"/>
-      <display value="Zwangerschap 3 Ca2_Patient_Vrouw"/>
+      <reference value="Encounter/462f2232-6b10-11ec-1275-020000000000"/>
+      <display value="controles kind T-53D{08:30} Ca2_Patient_Vrouw"/>
    </context>
    <effectiveDateTime value="${DATE, T, D, -52}"/>
+   <performer>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/bc-PractitionerRole-mm-gbz-839281749115654987"/>
+            <display value="Geboortegloed"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/practitioner-mm-gbz-2-16-840-1-113883-2-4-3-11-31-5-1-45649783"/>
+      <display value="45649783"/>
+   </performer>
    <valueCodeableConcept>
       <coding>
          <system value="http://snomed.info/sct"/>

@@ -1,0 +1,88 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <!-- Source: gz-kzp-tes-casus2 -->
+   <id value="462f2232-6b10-11ec-1275-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Encounter"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: Kind. Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div>
+                        <span title="Thuis (HH - v3/ActCode)">Thuis</span>
+                     </div>
+                     <span title="postnatale zorg door kraamzorg (regime/therapie) (158101000146104 - SNOMED CT)">postnatale zorg door kraamzorg (regime/therapie)</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>${DATETIME, T, D, -53, h, +08, m, +30} - ${DATETIME, T, D, -53, h, +14, m, +15}</td>
+               </tr>
+               <tr>
+                  <th>Participant</th>
+                  <td>
+                     <div>45649783<div>Zorgverlenerrol: Geboortegloed</div>
+                     </div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="462f2232-6b10-11ec-1275-020000000000"/>
+   </identifier>
+   <status value="finished"/>
+   <class>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActCode"/>
+               <code value="HH"/>
+               <display value="Thuis"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="http://hl7.org/fhir/v3/ActCode"/>
+      <code value="HH"/>
+      <display value="Thuis"/>
+   </class>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="158101000146104"/>
+         <display value="postnatale zorg door kraamzorg (regime/therapie)"/>
+      </coding>
+   </type>
+   <subject>
+      <reference value="Patient/4b5946cb-6b23-11ec-1267-020000000000"/>
+      <display value="Kind"/>
+   </subject>
+   <episodeOfCare>
+      <reference value="EpisodeOfCare/12cc17ab-6b33-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 3 Ca2_Patient_Vrouw"/>
+   </episodeOfCare>
+   <participant>
+      <individual>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/bc-PractitionerRole-mm-gbz-839281749115654987"/>
+               <display value="Geboortegloed"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/practitioner-mm-gbz-2-16-840-1-113883-2-4-3-11-31-5-1-45649783"/>
+         <display value="45649783"/>
+      </individual>
+   </participant>
+   <period>
+      <start value="${DATETIME, T, D, -53, h, +08, m, +30}"/>
+      <end value="${DATETIME, T, D, -53, h, +14, m, +15}"/>
+   </period>
+</Encounter>

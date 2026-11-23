@@ -9,13 +9,17 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Zorgepisode. Patiënt: Patient/c6f11ec2-6b36-11ec-1267-020000000000. Status: actief</caption>
+            <caption>Zorgepisode. Patiënt: Patient/c6f11ec2-6b36-11ec-1267-020000000000. Status: voltooid</caption>
             <tbody>
                <tr>
                   <th>Type</th>
                   <td>
                      <span title="observatie betreffende zwangerschap (waarneembare entiteit) (364320009 - SNOMED CT)">observatie betreffende zwangerschap (waarneembare entiteit)</span>
                   </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td> tot ${DATE, T, D, -94}</td>
                </tr>
                <tr>
                   <th>Diagnose</th>
@@ -29,7 +33,7 @@
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
       <value value="9e395f1b-6b23-11ec-0000-020000000000"/>
    </identifier>
-   <status value="active"/>
+   <status value="finished"/>
    <type>
       <coding>
          <system value="http://snomed.info/sct"/>
@@ -46,4 +50,7 @@
    <patient>
       <reference value="Patient/c6f11ec2-6b36-11ec-1267-020000000000"/>
    </patient>
+   <period>
+      <end value="${DATE, T, D, -94}"/>
+   </period>
 </EpisodeOfCare>

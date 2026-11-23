@@ -3,7 +3,7 @@
          created-by="geboortezorgada"
          last-update-by="geboortezorgada"
          creation-date="2026-11-06T10:12:32.668Z"
-         last-update-date="2026-11-20T13:24:40.779Z"/>
+         last-update-date="2026-11-23T14:33:05.447Z"/>
    <data>
       <versturen_kernset app="perinatologie-326"
                          shortName="versturen_kernset"
@@ -113,6 +113,30 @@
                </reden_contact>
             </contact>
             <contact id="Ca2_Contact_Zorgdag2"
+                     conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.750">
+               <contact_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.751"
+                             value="4"
+                             code="HH"
+                             codeSystem="2.16.840.1.113883.5.4"
+                             displayName="Thuis"/>
+               <contact_soort conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3690"
+                              value="13"
+                              code="158101000146104"
+                              codeSystem="2.16.840.1.113883.6.96"
+                              displayName="postnatale zorg door kraamzorg (regime/therapie)"/>
+               <contact_met conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.752">
+                  <zorgverlener value="Ca2_ZV1"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1868"/>
+               </contact_met>
+               <begin_datum_tijd value="T-53D{08:30}"
+                                 datatype="datetime"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.756"/>
+               <eind_datum_tijd value="T-53D{14:15}"
+                                datatype="datetime"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.757"/>
+            </contact>
+            <contact id="Ca2_Contact_Zorgdag3"
                      conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.750">
                <contact_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.751"
                              value="4"
@@ -599,11 +623,11 @@
                         conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.9685"/>
                <werkelijke_plaats_baring_type_locatie_observatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4193">
                   <werkelijke_plaats_baring_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4196"
-                                                   value="3"
-                                                   code="56321000146103"
+                                                   value="2"
+                                                   code="56311000146108"
                                                    codeSystem="2.16.840.1.113883.6.96"
                                                    codeSystemName="SNOMED CT"
-                                                   displayName="geboorte in ziekenhuis (bevinding)"/>
+                                                   displayName="geboorte in geboortecentrum (bevinding)"/>
                </werkelijke_plaats_baring_type_locatie_observatie>
                <ziekenhuis_baring conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1587">
                   <zorgaanbieder value="Ca2_ZA_Lindehaven"
@@ -620,11 +644,11 @@
                         conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.9685"/>
                <werkelijke_plaats_baring_type_locatie_observatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4193">
                   <werkelijke_plaats_baring_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4196"
-                                                   value="3"
-                                                   code="56321000146103"
+                                                   value="2"
+                                                   code="56311000146108"
                                                    codeSystem="2.16.840.1.113883.6.96"
                                                    codeSystemName="SNOMED CT"
-                                                   displayName="geboorte in ziekenhuis (bevinding)"/>
+                                                   displayName="geboorte in geboortecentrum (bevinding)"/>
                </werkelijke_plaats_baring_type_locatie_observatie>
                <ziekenhuis_baring conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1587">
                   <zorgaanbieder value="Ca2_ZA_Lindehaven"
@@ -738,10 +762,10 @@
                                  codeSystem="2.16.840.1.113883.6.96"
                                  displayName="Klacht"/>
                   <probleem_naam conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2309"
-                                 value="7"
-                                 code="58703003"
+                                 value="11"
+                                 code="385494008"
                                  codeSystem="2.16.840.1.113883.6.96"
-                                 displayName="postpartumdepressie (aandoening)"/>
+                                 displayName="hematoom (aandoening)"/>
                   <probleem_status conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2312"
                                    value="1"
                                    code="55561003"
@@ -766,23 +790,16 @@
                                          codeSystem="2.16.840.1.113883.6.96"
                                          displayName="altijd in staat om voor kind te zorgen (bevinding)"/>
                   </zorg_voor_kind_observatie>
-                  <controles_moeder conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2746">
-                     <zelfredzaamheid_kraamvrouw conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.3182">
-                        <zelfredzaamheid_anders_dan_verwachting value="true"
-                                                                conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10732"/>
-                        <barthel_index conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2812">
-                           <totaal_score value="17"
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2823"/>
-                        </barthel_index>
-                     </zelfredzaamheid_kraamvrouw>
-                  </controles_moeder>
                </vrouw>
                <kind conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.9825">
                   <patient value="Ca2_Patient_Kind1"
                            datatype="reference"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10663"/>
                   <controles_kind conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2747">
-                     <lichaamsgewicht value="Ca2_Lichaamsgewicht1"
+                     <contact value="Ca2_Contact_Zorgdag1"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10730"/>
+                     <lichaamsgewicht value="Ca2_Lichaamsgewicht2"
                                       datatype="reference"
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2792"/>
                      <lichaamstemperatuur value="Ca2_Lichaamstemperatuur2"
@@ -792,7 +809,7 @@
                                                 datatype="reference"
                                                 conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7947"/>
                      <huilgedrag_observatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.9906">
-                        <observatie_datum_tijd value="T-60D"
+                        <observatie_datum_tijd value="T-56D"
                                                datatype="datetime"
                                                conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.9907"/>
                         <huilgedrag_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.9909"
@@ -803,6 +820,9 @@
                      </huilgedrag_observatie>
                   </controles_kind>
                   <controles_kind conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2747">
+                     <contact value="Ca2_Contact_Zorgdag2"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10730"/>
                      <lichaamsgewicht value="Ca2_Lichaamsgewicht2"
                                       datatype="reference"
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2792"/>
@@ -813,7 +833,7 @@
                                                 datatype="reference"
                                                 conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7947"/>
                      <huilgedrag_observatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.9906">
-                        <observatie_datum_tijd value="T-56D"
+                        <observatie_datum_tijd value="T-53D"
                                                datatype="datetime"
                                                conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.9907"/>
                         <huilgedrag_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.9909"
@@ -824,6 +844,9 @@
                      </huilgedrag_observatie>
                   </controles_kind>
                   <controles_kind conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2747">
+                     <contact value="Ca2_Contact_Zorgdag2"
+                              datatype="reference"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10730"/>
                      <lichaamsgewicht value="Ca2_Lichaamsgewicht3"
                                       datatype="reference"
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2792"/>
@@ -874,7 +897,7 @@
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7937">
                   <bijvoedingq value="false"
                                conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10506"/>
-                  <voedingspatroon_zuigeling_datum_tijd value="T-59D"
+                  <voedingspatroon_zuigeling_datum_tijd value="T-56D"
                                                         datatype="datetime"
                                                         conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7938"/>
                   <voeding conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7944">
@@ -921,7 +944,7 @@
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7937">
                   <bijvoedingq value="false"
                                conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10506"/>
-                  <voedingspatroon_zuigeling_datum_tijd value="T-56D"
+                  <voedingspatroon_zuigeling_datum_tijd value="T-53D"
                                                         datatype="datetime"
                                                         conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7938"/>
                   <voeding conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7944">
@@ -989,19 +1012,19 @@
             <metingen conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1059">
                <lichaamsgewicht id="Ca2_Lichaamsgewicht1"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1073">
-                  <gewicht_waarde value="3550"
+                  <gewicht_waarde value="3450"
                                   unit="g"
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1074"/>
-                  <gewicht_datum_tijd value="T-59D"
+                  <gewicht_datum_tijd value="T-56D"
                                       datatype="datetime"
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1076"/>
                </lichaamsgewicht>
                <lichaamsgewicht id="Ca2_Lichaamsgewicht2"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1073">
-                  <gewicht_waarde value="3450"
+                  <gewicht_waarde value="3550"
                                   unit="g"
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1074"/>
-                  <gewicht_datum_tijd value="T-56D"
+                  <gewicht_datum_tijd value="T-53D"
                                       datatype="datetime"
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1076"/>
                </lichaamsgewicht>
@@ -1019,7 +1042,7 @@
                   <temperatuur_waarde value="36.3"
                                       unit="Cel"
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2794"/>
-                  <temperatuur_datum_tijd value="T-59D"
+                  <temperatuur_datum_tijd value="T-56D"
                                           datatype="datetime"
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2795"/>
                </lichaamstemperatuur>
@@ -1028,7 +1051,7 @@
                   <temperatuur_waarde value="36.5"
                                       unit="Cel"
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2794"/>
-                  <temperatuur_datum_tijd value="T-56D"
+                  <temperatuur_datum_tijd value="T-53D"
                                           datatype="datetime"
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2795"/>
                </lichaamstemperatuur>
@@ -1053,7 +1076,7 @@
                </burgerlijke_staat_rc>
                <taalvaardigheid id="Ca2_Taalvaardigheid1"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2904">
-                  <communicatie_taal code="nld"
+                  <communicatie_taal code="nl"
                                      codeSystem="1.0.639.1"
                                      codeSystemName="ISO-639-2 alpha"
                                      displayName="Nederlands"
@@ -1076,7 +1099,7 @@
                </taalvaardigheid>
                <taalvaardigheid id="Ca2_Taalvaardigheid2"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.2904">
-                  <communicatie_taal code="fra"
+                  <communicatie_taal code="fr"
                                      codeSystem="1.0.639.1"
                                      codeSystemName="ISO-639-2 alpha"
                                      displayName="Frans"
