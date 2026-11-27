@@ -1,5 +1,5 @@
 <Patient xmlns="http://hl7.org/fhir">
-   <id value="22938414-6aa6-11ec-1267-020000000000"/>
+   <id value="0ab3fa4b-6b30-11ec-1267-020000000000"/>
    <meta>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Child"/>
@@ -7,33 +7,33 @@
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
-         <div>Man, ${DATE, T, D, -59}, Meerling</div>
+         <div>Vrouw, ${DATE, T, D, -59}, <i>Overleden</i>, Meerling</div>
          <div>9999ZA</div>
       </div>
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="22938414-6aa6-11ec-1267-020000000000"/>
+      <value value="0ab3fa4b-6b30-11ec-1267-020000000000"/>
    </identifier>
-   <gender value="male">
+   <gender value="female">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
          <valueCodeableConcept>
             <coding>
                <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
-               <code value="M"/>
-               <display value="Man"/>
+               <code value="F"/>
+               <display value="Vrouw"/>
             </coding>
          </valueCodeableConcept>
       </extension>
    </gender>
    <birthDate value="${DATE, T, D, -59}">
       <extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
-         <valueDateTime value="${DATETIME, T, D, -59, h, +21, m, +10}"/>
+         <valueDateTime value="${DATETIME, T, D, -59, h, +21, m, +14}"/>
       </extension>
    </birthDate>
-   <deceasedBoolean value="false"/>
+   <deceasedBoolean value="true"/>
    <address>
       <postalCode value="9999ZA"/>
    </address>
-   <multipleBirthInteger value="1"/>
+   <multipleBirthInteger value="2"/>
 </Patient>
