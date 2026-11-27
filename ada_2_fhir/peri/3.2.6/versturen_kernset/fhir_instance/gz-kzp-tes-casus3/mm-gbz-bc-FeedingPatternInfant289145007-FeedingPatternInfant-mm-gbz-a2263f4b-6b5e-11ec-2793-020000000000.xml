@@ -1,6 +1,6 @@
 <Observation xmlns="http://hl7.org/fhir">
-   <!-- Source: gz-kzp-tes-casus2 /adaxml/data/versturen_kernset/bouwstenen/klinische_context/voedingspatroon_zuigeling (peri32-dataelement-7937) -->
-   <id value="FeedingPatternInfant-mm-gbz-67b1af4b-6b34-11ec-2793-020000000000"/>
+   <!-- Source: gz-kzp-tes-casus3 /adaxml/data/versturen_kernset/bouwstenen/klinische_context/voedingspatroon_zuigeling (peri32-dataelement-7937) -->
+   <id value="FeedingPatternInfant-mm-gbz-a2263f4b-6b5e-11ec-2793-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-FeedingPatternInfant"/>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
@@ -13,11 +13,11 @@
             <tbody>
                <tr>
                   <th>Context</th>
-                  <td>Zwangerschap 3 Ca2_Patient_Vrouw</td>
+                  <td>Zwangerschap 2 Ca3_Patient_Vrouw</td>
                </tr>
                <tr>
                   <th>Bepalingdatum/tijd</th>
-                  <td>${DATE, T, D, -52}</td>
+                  <td>${DATE, T, D, -98}</td>
                </tr>
                <tr>
                   <th>Code</th>
@@ -34,17 +34,14 @@
                      <span title="type bijvoeding voor zuigeling (waarneembare entiteit) (158451000146107 - SNOMED CT)">type bijvoeding voor zuigeling (waarneembare entiteit)</span>
                   </td>
                   <td>
-                     <div>ja</div>
+                     <div>nee</div>
                   </td>
                </tr>
                <tr>
                   <td>
-                     <span title="soort zuigelingenvoeding (waarneembare entiteit) (109021000146107 - SNOMED CT)">soort zuigelingenvoeding (waarneembare entiteit)</span>
+                     <span title="Nutritional supplement (373453009 - SNOMED CT)">Nutritional supplement</span>
                   </td>
-                  <td>
-                     <span title="moedermelk (substantie) (226789007 - SNOMED CT)">moedermelk (substantie)</span>
-                     <span title="zuigeling krijgt voeding via borst (169741004 - SNOMED CT)">zuigeling krijgt voeding via borst</span>
-                  </td>
+                  <td/>
                </tr>
                <tr>
                   <td>
@@ -62,7 +59,7 @@
    <!-- adaChild -->
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="56bc3274-6b66-11ec-0000-020000000000"/>
+      <value value="92006274-6ae4-11ec-0000-020000000000"/>
    </identifier>
    <status value="final"/>
    <code>
@@ -73,17 +70,17 @@
       </coding>
    </code>
    <subject>
-      <reference value="Patient/4b5946cb-6b23-11ec-1267-020000000000"/>
+      <reference value="Patient/0b100c84-6b78-11ec-1267-020000000000"/>
       <display value="Kind"/>
    </subject>
    <context>
-      <reference value="EpisodeOfCare/12cc17ab-6b33-11ec-0000-020000000000"/>
-      <display value="Zwangerschap 3 Ca2_Patient_Vrouw"/>
+      <reference value="EpisodeOfCare/9e395f1b-6b23-11ec-0000-020000000000"/>
+      <display value="Zwangerschap 2 Ca3_Patient_Vrouw"/>
    </context>
-   <effectiveDateTime value="${DATE, T, D, -52}"/>
+   <effectiveDateTime value="${DATE, T, D, -98}"/>
    <component>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-component-valueBooleanSTU3">
-         <valueBoolean value="true"/>
+         <valueBoolean value="false"/>
       </extension>
       <code>
          <coding>
@@ -94,29 +91,22 @@
       </code>
    </component>
    <component>
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-FeedingPatternInfant-FeedingMethod">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-feedingpatterninfant-feedingsupplementcodeableconcept">
          <valueCodeableConcept>
             <coding>
                <system value="http://snomed.info/sct"/>
-               <code value="169741004"/>
-               <display value="zuigeling krijgt voeding via borst"/>
+               <code value="789602006"/>
+               <display value="johannesbroodpitmeel (substantie)"/>
             </coding>
          </valueCodeableConcept>
       </extension>
       <code>
          <coding>
             <system value="http://snomed.info/sct"/>
-            <code value="109021000146107"/>
-            <display value="soort zuigelingenvoeding (waarneembare entiteit)"/>
+            <code value="373453009"/>
+            <display value="Nutritional supplement"/>
          </coding>
       </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="226789007"/>
-            <display value="moedermelk (substantie)"/>
-         </coding>
-      </valueCodeableConcept>
    </component>
    <component>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-FeedingPatternInfant-FeedingMethod">
@@ -127,6 +117,9 @@
                <display value="zuigeling krijgt voeding via fles"/>
             </coding>
          </valueCodeableConcept>
+      </extension>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-feedingpatterninfant-feedingdatetime">
+         <valueDateTime value="${DATETIME, T, D, -98, h, +09, m, +25}"/>
       </extension>
       <code>
          <coding>

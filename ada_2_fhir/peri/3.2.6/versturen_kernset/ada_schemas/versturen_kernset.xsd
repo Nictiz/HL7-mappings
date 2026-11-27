@@ -2203,16 +2203,6 @@
          <xs:documentation>Type for concept group: Bevalling</xs:documentation>
       </xs:annotation>
       <xs:sequence>
-         <xs:element name="zwangerschapsduur-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10694"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="zwangerschapsduur"
-                     type="zwangerschapsduur_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10694"
-                     minOccurs="0"
-                     maxOccurs="1"/>
          <xs:element name="probleem_maternaal-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1564"/>
@@ -2708,6 +2698,16 @@
          </xs:element>
          <xs:element name="gewicht_waarde"
                      type="gewicht_waarde_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1419"
+                     minOccurs="1"
+                     maxOccurs="1"/>
+         <xs:element name="gewicht_datum_tijd-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1421"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="gewicht_datum_tijd"
+                     type="gewicht_datum_tijd_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1421"
                      minOccurs="1"
                      maxOccurs="1"/>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
@@ -3759,6 +3759,16 @@
          <xs:documentation>Type for concept group: Voeding</xs:documentation>
       </xs:annotation>
       <xs:sequence>
+         <xs:element name="voeding_datum_tijd-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11102"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="voeding_datum_tijd"
+                     type="voeding_datum_tijd_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_11102"
+                     minOccurs="1"
+                     maxOccurs="1"/>
          <xs:element name="voeding_soort-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.7945"/>
@@ -3777,7 +3787,7 @@
          </xs:element>
          <xs:element name="voeding_methode"
                      type="voeding_methode_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_7946"
-                     minOccurs="0"
+                     minOccurs="1"
                      maxOccurs="1"/>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
@@ -9607,50 +9617,6 @@
       <xs:restriction base="xs:string"/>
    </xs:simpleType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: Zwangerschapsduur - 0..1 R</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="zwangerschapsduur_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10694">
-      <xs:sequence>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.10694"/>
-      <xs:attribute name="value">
-         <xs:simpleType>
-            <xs:union memberTypes="zwangerschapsduur_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10694 zwangerschapsduur_2_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10694 empty_string"/>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="quantity"/>
-      <xs:attribute name="unit">
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:enumeration value="d"/>
-               <xs:enumeration value="wk"/>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Zwangerschapsduur: quantity</xs:documentation>
-   </xs:annotation>
-   <xs:simpleType name="zwangerschapsduur_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10694">
-      <xs:restriction base="xs:decimal"/>
-   </xs:simpleType>
-   <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Zwangerschapsduur: quantity</xs:documentation>
-   </xs:annotation>
-   <xs:simpleType name="zwangerschapsduur_2_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_10694">
-      <xs:restriction base="xs:decimal"/>
-   </xs:simpleType>
-   <xs:annotation>
       <xs:documentation>Type for concept item: ProbleemType - 0..1 R</xs:documentation>
    </xs:annotation>
    <xs:complexType name="probleem_type_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1567">
@@ -10435,7 +10401,7 @@
                </xs:enumeration>
                <xs:enumeration value="3">
                   <xs:annotation>
-                     <xs:documentation>geboorte in ziekenhuis (bevinding)</xs:documentation>
+                     <xs:documentation>partus in ziekenhuis (bevinding)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="4">
@@ -10568,6 +10534,32 @@
       <xs:restriction base="xs:decimal">
          <xs:minInclusive value="0"/>
       </xs:restriction>
+   </xs:simpleType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: GewichtDatumTijd - 1..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="gewicht_datum_tijd_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1421">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.1421"/>
+      <xs:attribute name="value" type="VariableVagueDateTime"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="datetime"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: GewichtDatumTijd: string</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="gewicht_datum_tijd_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_1421">
+      <xs:restriction base="xs:string"/>
    </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: ApgarScoreDatumTijd - 1..1 R</xs:documentation>
@@ -13276,6 +13268,26 @@
       <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
+      <xs:documentation>Type for concept item: VoedingDatumTijd - 1..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="voeding_datum_tijd_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_11102">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.12.11102"/>
+      <xs:attribute name="value" type="VariableDateTime"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="datetime"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
       <xs:documentation>Type for concept item: VoedingSoort - 0..1 R</xs:documentation>
    </xs:annotation>
    <xs:complexType name="voeding_soort_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_7945">
@@ -13330,7 +13342,7 @@
       <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: VoedingMethode - 0..1 R</xs:documentation>
+      <xs:documentation>Type for concept item: VoedingMethode - 1..1 R</xs:documentation>
    </xs:annotation>
    <xs:complexType name="voeding_methode_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_12_7946">
       <xs:sequence>

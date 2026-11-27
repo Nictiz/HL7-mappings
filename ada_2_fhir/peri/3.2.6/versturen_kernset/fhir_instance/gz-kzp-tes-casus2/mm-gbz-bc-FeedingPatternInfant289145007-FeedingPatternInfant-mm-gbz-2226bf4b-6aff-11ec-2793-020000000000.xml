@@ -1,6 +1,6 @@
 <Observation xmlns="http://hl7.org/fhir">
    <!-- Source: gz-kzp-tes-casus2 /adaxml/data/versturen_kernset/bouwstenen/klinische_context/voedingspatroon_zuigeling (peri32-dataelement-7937) -->
-   <id value="FeedingPatternInfant-mm-gbz-a750b94b-6b7d-11ec-2793-020000000000"/>
+   <id value="FeedingPatternInfant-mm-gbz-2226bf4b-6aff-11ec-2793-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-FeedingPatternInfant"/>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
@@ -17,7 +17,7 @@
                </tr>
                <tr>
                   <th>Bepalingdatum/tijd</th>
-                  <td>${DATE, T, D, -53}</td>
+                  <td>${DATE, T, D, -52}</td>
                </tr>
                <tr>
                   <th>Code</th>
@@ -34,7 +34,7 @@
                      <span title="type bijvoeding voor zuigeling (waarneembare entiteit) (158451000146107 - SNOMED CT)">type bijvoeding voor zuigeling (waarneembare entiteit)</span>
                   </td>
                   <td>
-                     <div>nee</div>
+                     <div>ja</div>
                   </td>
                </tr>
                <tr>
@@ -51,8 +51,8 @@
                      <span title="soort zuigelingenvoeding (waarneembare entiteit) (109021000146107 - SNOMED CT)">soort zuigelingenvoeding (waarneembare entiteit)</span>
                   </td>
                   <td>
-                     <span title="moedermelk (substantie) (226789007 - SNOMED CT)">moedermelk (substantie)</span>
-                     <span title="zuigeling krijgt voeding via borst (169741004 - SNOMED CT)">zuigeling krijgt voeding via borst</span>
+                     <span title="kunstvoeding (substantie) (386127005 - SNOMED CT)">kunstvoeding (substantie)</span>
+                     <span title="zuigeling krijgt voeding via fles (268472006 - SNOMED CT)">zuigeling krijgt voeding via fles</span>
                   </td>
                </tr>
             </tbody>
@@ -62,7 +62,7 @@
    <!-- adaChild -->
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="2aeff274-6ab3-11ec-0000-020000000000"/>
+      <value value="f10e1274-6abd-11ec-0000-020000000000"/>
    </identifier>
    <status value="final"/>
    <code>
@@ -80,10 +80,10 @@
       <reference value="EpisodeOfCare/12cc17ab-6b33-11ec-0000-020000000000"/>
       <display value="Zwangerschap 3 Ca2_Patient_Vrouw"/>
    </context>
-   <effectiveDateTime value="${DATE, T, D, -53}"/>
+   <effectiveDateTime value="${DATE, T, D, -52}"/>
    <component>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/observation-component-valueBooleanSTU3">
-         <valueBoolean value="false"/>
+         <valueBoolean value="true"/>
       </extension>
       <code>
          <coding>
@@ -102,6 +102,9 @@
                <display value="zuigeling krijgt voeding via borst"/>
             </coding>
          </valueCodeableConcept>
+      </extension>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-feedingpatterninfant-feedingdatetime">
+         <valueDateTime value="${DATETIME, T, D, -52, h, +04, m, +54}"/>
       </extension>
       <code>
          <coding>
@@ -123,10 +126,13 @@
          <valueCodeableConcept>
             <coding>
                <system value="http://snomed.info/sct"/>
-               <code value="169741004"/>
-               <display value="zuigeling krijgt voeding via borst"/>
+               <code value="268472006"/>
+               <display value="zuigeling krijgt voeding via fles"/>
             </coding>
          </valueCodeableConcept>
+      </extension>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/bc-feedingpatterninfant-feedingdatetime">
+         <valueDateTime value="${DATETIME, T, D, -52, h, +09, m, +33}"/>
       </extension>
       <code>
          <coding>
@@ -138,8 +144,8 @@
       <valueCodeableConcept>
          <coding>
             <system value="http://snomed.info/sct"/>
-            <code value="226789007"/>
-            <display value="moedermelk (substantie)"/>
+            <code value="386127005"/>
+            <display value="kunstvoeding (substantie)"/>
          </coding>
       </valueCodeableConcept>
    </component>
